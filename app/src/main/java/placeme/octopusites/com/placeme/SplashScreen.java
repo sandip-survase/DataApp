@@ -60,6 +60,7 @@ public class SplashScreen extends Activity
     protected void onCreate(Bundle paramBundle)
     {
         //sandip cha change
+        //sunny cha change
         super.onCreate(paramBundle);
         setContentView(R.layout.activity_splashscreen);
 
