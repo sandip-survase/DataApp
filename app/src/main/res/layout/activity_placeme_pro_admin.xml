@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_placeme_pro"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context="placeme.octopusites.com.placeme.PlacemeProAdmin">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hi admin, Switch to Place Me Pro to unlock the New World of Powerful features!"
+        android:id="@+id/hitxt"
+        android:textColor="#222"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/hitxt"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/boxborderwhite"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Features For You"
+            android:textSize="25dp"
+            android:id="@+id/feattxt"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/holo_orange_light"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@drawable/viewgradiant"
+            android:layout_below="@+id/feattxt"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:id="@+id/proline1"
+            />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/proline1"
+            android:layout_above="@+id/probottomrl"
+            android:layout_marginTop="20dp"
+            android:id="@+id/proscroll1"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/test"
+                    android:tint="@android:color/holo_blue_bright"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/proimg1"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/proimg1"
+                    android:text="Customized test plugins"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/moretxt"
+                    android:textSize="15dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Conduct online mock aptitude and technical tests under your institute."
+                    android:layout_below="@+id/moretxt"
+                    android:id="@+id/moremoretxt"
+                    android:textColor="#eee"
+                    android:paddingTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/performance"
+                    android:tint="@android:color/holo_blue_bright"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/proimg2"
+                    android:layout_below="@+id/moremoretxt"
+                    android:layout_marginTop="20dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/proimg2"
+                    android:text="Dynamic report generation"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/resumetxt"
+                    android:textSize="15dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Get the dynamically generated reports about users test performances."
+                    android:layout_below="@+id/resumetxt"
+                    android:id="@+id/resumeresumetxt"
+                    android:textColor="#eee"
+                    android:paddingTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/cloud"
+                    android:tint="@android:color/holo_blue_bright"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/proimg3"
+                    android:layout_below="@+id/resumeresumetxt"
+                    android:layout_marginTop="20dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/proimg3"
+                    android:text="Extract knowledge and reports"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/digitaltxt"
+                    android:textSize="15dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Download, share, customize user related information as per your needs and/or industry needs."
+                    android:layout_below="@+id/digitaltxt"
+                    android:id="@+id/digitaldigitaltxt"
+                    android:textColor="#eee"
+                    android:paddingTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/digitaldigitaltxt"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/prorl1"
+                    >
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/institute"
+                        android:tint="@android:color/holo_blue_bright"
+                        android:id="@+id/proimg4"
+                        />
+
+                    <ImageView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:src="@drawable/exchange"
+                        android:tint="@android:color/holo_blue_bright"
+                        android:id="@+id/proimg5"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toRightOf="@+id/proimg4"
+                        />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/institute"
+                        android:tint="@android:color/holo_blue_bright"
+                        android:id="@+id/proimg6"
+                        android:layout_toRightOf="@+id/proimg5"
+                        />
+                </RelativeLayout>
+                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/prorl1"
+                    android:text="Get Connected to other institutes"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/conntxt"
+                    android:textSize="15dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Share notifications and placement updates with other institutes."
+                    android:layout_below="@+id/conntxt"
+                    android:id="@+id/connconntxt"
+                    android:textColor="#eee"
+                    android:paddingTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    />
+              <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/enhancedmgmt"
+                    android:tint="@android:color/holo_blue_bright"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/proimg7"
+                    android:layout_below="@+id/connconntxt"
+                    android:layout_marginTop="20dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/proimg7"
+                    android:text="Enhanced Management Facilities"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/performancetxt"
+                    android:textSize="15dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Get to interact with individuals by experiencing their interview performances."
+                    android:layout_below="@+id/performancetxt"
+                    android:id="@+id/performanceperformancetxt"
+                    android:textColor="#eee"
+                    android:paddingTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    />
+             <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/resume"
+                    android:tint="@android:color/holo_blue_bright"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/proimg8"
+                    android:layout_below="@+id/performanceperformancetxt"
+                    android:layout_marginTop="20dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/proimg8"
+                    android:text="Upload Resume Templates"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/uploadresumetxt"
+                    android:textSize="15dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upload institute's  standard resume templates."
+                    android:layout_below="@+id/uploadresumetxt"
+                    android:id="@+id/uploadtxt"
+                    android:textColor="#eee"
+                    android:paddingTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    />
+            <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/users"
+                    android:tint="@android:color/holo_blue_bright"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/proimg9"
+                    android:layout_below="@+id/uploadtxt"
+                    android:layout_marginTop="20dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/proimg9"
+                    android:text="Create multiple admins"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/createtxt"
+                    android:textSize="15dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Create multiple admins under your institute who can work in your absense."
+                    android:layout_below="@+id/createtxt"
+                    android:id="@+id/createadmin"
+                    android:textColor="#eee"
+                    android:paddingTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    />
+            </RelativeLayout>
+        </ScrollView>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/probottomrl"
+            android:layout_alignParentBottom="true"
+
+            >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="KNOW MORE"
+                android:textColor="@android:color/holo_orange_light"
+                android:id="@+id/knowmoretxt"
+                android:layout_marginTop="5dp"
+                android:textSize="16dp"
+                android:layout_centerHorizontal="true"
+
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#fff"
+                android:id="@+id/bottomline1"
+                android:layout_below="@+id/knowmoretxt"
+                />
+
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/bottomline1"
+                android:id="@+id/switchtorl"
+                >
+                <TextView
+                    android:id="@+id/trytxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:textColor="#fff"
+                    android:textSize="20dp"
+                    android:text="Switch to Place Me"
+                    android:layout_marginTop="7dp"
+
+
+                    />
+                <TextView
+                    android:id="@+id/protxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:textColor="#fff"
+                    android:textSize="12dp"
+                    android:text="Pro"
+                    android:layout_marginTop="2dp"
+                    android:layout_toRightOf="@+id/trytxt"
+
+
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

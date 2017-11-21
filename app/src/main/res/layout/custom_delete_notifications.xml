@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+
+     >
+
+    <TextView
+        android:id="@+id/selectedtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#282f35"
+        android:textSize="16dp"
+        android:layout_centerVertical="true"
+        android:text="0 Selected"
+        android:layout_marginTop="10dp"/>
+
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/trash"
+        android:tint="#282f35"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:id="@+id/trashnotifications"
+        />
+
+
+</RelativeLayout>

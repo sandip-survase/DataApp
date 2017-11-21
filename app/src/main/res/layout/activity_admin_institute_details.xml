@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/myprofileintroscrollview"
+    android:background="#282f35">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_admin_institute_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        android:padding="16dp"
+        tools:context="placeme.octopusites.com.placeme.AdminInstituteDetails">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/instnameinput"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Institute Name"
+                android:textSize="15dp"
+                android:singleLine="true"
+                android:textColor="#eee"
+                android:id="@+id/instname"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/instnameinput"
+            android:id="@+id/instemailinput"
+            android:layout_marginTop="10dp"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Institute Email Address"
+                android:textSize="15dp"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:textColor="#eee"
+                android:id="@+id/instemail"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/instemailinput"
+            android:id="@+id/instwebinput"
+            android:layout_marginTop="10dp"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Institute Website"
+                android:textSize="15dp"
+                android:inputType="textUri"
+                android:singleLine="true"
+                android:textColor="#eee"
+                android:id="@+id/instweb"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/instwebinput"
+            android:layout_marginTop="10dp"
+            android:id="@+id/instphoneinput"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Institute Phone Number (with STD code)"
+                android:textSize="15dp"
+                android:inputType="phone"
+                android:singleLine="true"
+                android:textColor="#eee"
+                android:id="@+id/instphone"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/instphoneinput"
+            android:layout_marginTop="10dp"
+            android:id="@+id/instphoneainput"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Alternate Phone Number (with STD code)"
+                android:textSize="15dp"
+                android:inputType="phone"
+                android:singleLine="true"
+                android:textColor="#eee"
+                android:id="@+id/instphonea"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/instuniversityinput"
+            android:layout_below="@+id/instphoneainput"
+            android:layout_marginTop="10dp"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="University Name"
+                android:textSize="15dp"
+                android:singleLine="true"
+                android:textColor="#eee"
+                android:id="@+id/instuniversity"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/instreginput"
+            android:layout_below="@+id/instuniversityinput"
+            android:layout_marginTop="10dp"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Institute Registration Number"
+                android:textSize="15dp"
+                android:singleLine="true"
+                android:textColor="#eee"
+                android:id="@+id/instreg"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+    </RelativeLayout>
+</ScrollView>

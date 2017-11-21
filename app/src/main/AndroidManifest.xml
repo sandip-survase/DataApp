@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="placeme.octopusites.com.placeme">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".SplashScreen"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="Sign in"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ForgotPasswordDialog"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dialog" />
+        <activity
+            android:name=".OTPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dialog" />
+        <activity
+            android:name=".Welcome"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SignupActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:label="Notifications"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ViewProfileImage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ViewNotification"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ViewPlacement"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MyProfileIntro"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".MyProfileEdu"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MyProfileTenth"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".MyProfileTwelthOrDiploma"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".MyProfileUg"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".MyProfilePg"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".MyProfileProjects"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".MyProfileAccomplishments"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MyProfileKnownLang"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".MyProfileAchievements"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".MyProfileSkills"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".MyProfileCertifications"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".MyProfileCourses"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".MyProfilePatents"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".MyProfilePublications"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".MyProfileCareerDetails"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MyProfileCareerObj"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".MyProfileStrengths"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".MyProfileWeaknesses"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".MyProfileLocationPreferences"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".MyProfileContact"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".EditProfile"
+            android:label="@string/title_activity_edit_profile"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ReportBug"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditEmail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LastSession"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FAQ"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HelpCenter"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PrivacyPolicy"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <data android:scheme="privacy" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".TermsConditions"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <data android:scheme="terms" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".UserAgreement"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LicenseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PlacemePro"
+            android:screenOrientation="portrait"
+            android:theme="@style/ProTheme" />
+        <activity
+            android:name=".KnowMoreActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dialog" />
+        <activity
+            android:name=".SwitchToProActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ProTheme" />
+        <activity
+            android:name=".GetTemplatesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ProSplashScreen"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+        <activity android:name=".PushNotificationPreferences" />
+        <activity
+            android:name=".QuestionsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".EbooksActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".QuestionsetsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AdminActivity"
+            android:label="@string/title_activity_admin"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AdminIntro"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".AdminInstituteDetails"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".AdminAccomplishments"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AdminExperiences"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".AdminContactDetails"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".EditProfileAdmin"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CreateNotification"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".EditNotification"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CreatePlacement"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".EditPlacement"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".EditNotificationMain"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".ViewNotificationAdmin"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ViewPlacementAdmin"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".EditPlacementMain"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ShowUsers"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AddUsersActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".EditUserActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".HRActivity"
+            android:label="@string/title_activity_hr"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ShowRegisteredUsers"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CreateNotificationHR"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".EditNotificationHrMain"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".PlacemeProAdmin"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".KnowMoreAdminActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dialog" />
+        <activity
+            android:name=".ViewResume"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AdminActions"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".BroadcastMessage"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".MessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HrIntro"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".HrCompanyDetails"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyFormTheme" />
+        <activity
+            android:name=".HrCreatedPlacements"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AlumniActivity"
+            android:label="@string/title_activity_alumni"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".OTP2Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dialog" />
+        <activity
+            android:name=".CreateNewPassword"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.soundcloud.android.crop.CropImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ViewTemplateActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".GetMoreResumeTemplates" />
+        <activity android:name=".HR_Experiences" />
+        <activity android:name=".HrContactDetails" />
+        <activity
+            android:name=".EditProfileHr"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AlumniIntro" />
+        <activity android:name=".AlumniContactDetails" />
+        <activity android:name=".AlumniProfileProjects" />
+        <activity
+            android:name=".EditProfileAlumni"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AdminSingleUserViewDialog" />
+        <activity android:name=".WelcomeActivity" />
+        <activity android:name=".WelcomePasswordActivity" />
+        <activity android:name=".WelcomeProfileActivity" />
+        <activity android:name=".WelcomeIntroActivity" />
+        <activity android:name=".WelcomeGenrateCodeActivity" />
+        <activity android:name=".MyCustomErrorActivity" />
+        <activity android:name=".NoInternet"></activity>
+    </application>
+
+</manifest>

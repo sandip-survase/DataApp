@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_centerVertical="true"
+        android:id="@+id/section"
+        />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/tableborder"
+        >
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#999"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/sectionhorizontal"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/sectionvertical"
+            android:background="#999"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/sectionhorizontal"
+            android:layout_above="@id/sectionvertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10th"
+                android:textColor="#c59a6d"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="2dp"
+                android:textSize="10dp"
+                android:id="@+id/aptitxt"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+
+                >
+
+                <TextView
+                    android:id="@+id/company10txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:text="Company Criteria"
+                    android:textSize="12dp"
+                    android:layout_centerHorizontal="true"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:id="@+id/companytenthmarksview"
+                    android:layout_below="@+id/company10txt"
+                    android:textSize="12dp"
+                    android:text="60"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#0f0"
+                    android:layout_below="@+id/companytenthmarksview"
+                    android:id="@+id/student10txt"
+                    android:text="Marks Obtained"
+                    android:textSize="12dp"
+                    android:layout_centerHorizontal="true"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#0f0"
+                    android:id="@+id/studenttenthmarksview"
+                    android:layout_below="@+id/student10txt"
+                    android:textSize="12dp"
+                    android:text="85"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    />
+
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:id="@+id/eligibilitytenth"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/check"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/sectionhorizontal"
+            android:layout_below="@id/sectionvertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UG"
+                android:textColor="#c59a6d"
+                android:paddingTop="2dp"
+                android:paddingLeft="4dp"
+                android:textSize="10dp"
+                android:id="@+id/ugtxt"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+
+                >
+
+                <TextView
+                    android:id="@+id/companyugtxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:text="Company Criteria"
+                    android:textSize="12dp"
+                    android:layout_centerHorizontal="true"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:id="@+id/companyugmarksview"
+                    android:layout_below="@+id/companyugtxt"
+                    android:textSize="12dp"
+                    android:text="60"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#f00"
+                    android:layout_below="@+id/companyugmarksview"
+                    android:id="@+id/studentugtxt"
+                    android:text="Marks Obtained"
+                    android:textSize="12dp"
+                    android:layout_centerHorizontal="true"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#f00"
+                    android:id="@+id/studentugmarksview"
+                    android:layout_below="@+id/studentugtxt"
+                    android:textSize="12dp"
+                    android:text="67"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    />
+
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:id="@+id/eligibilityug"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/incorrect"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/sectionhorizontal"
+            android:layout_above="@id/sectionvertical"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12th / Diploma"
+                android:textColor="#c59a6d"
+                android:paddingTop="2dp"
+                android:paddingLeft="4dp"
+                android:textSize="10dp"
+                android:id="@+id/diplomatxt"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+
+                >
+
+                <TextView
+                    android:id="@+id/company12txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:text="Company Criteria"
+                    android:textSize="12dp"
+                    android:layout_centerHorizontal="true"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:id="@+id/companytwelthordiplomamarksview"
+                    android:layout_below="@+id/company12txt"
+                    android:textSize="12dp"
+                    android:text="60"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#0f0"
+                    android:layout_below="@+id/companytwelthordiplomamarksview"
+                    android:id="@+id/student12txt"
+                    android:text="Marks Obtained"
+                    android:textSize="12dp"
+                    android:layout_centerHorizontal="true"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#0f0"
+                    android:id="@+id/studenttwelthordiplomamarksview"
+                    android:layout_below="@+id/student12txt"
+                    android:textSize="12dp"
+                    android:text="80"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    />
+
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:id="@+id/eligibilitytwelthordiploma"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/check"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/sectionhorizontal"
+            android:layout_below="@id/sectionvertical"
+            >
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>
+
+

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_pro_splash_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context="placeme.octopusites.com.placeme.ProSplashScreen">
+
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/splashrl"
+        >
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_below="@+id/versiontxt"
+        android:id="@+id/placemelogo"
+        android:layout_centerHorizontal="true"
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/placemelogo"
+        android:id="@+id/switchtorl"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:id="@+id/trytxt"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:textColor="#282f35"
+            android:textSize="30dp"
+            android:text="Place Me"
+            android:layout_marginTop="7dp"
+
+            />
+        <TextView
+            android:id="@+id/protxt"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:textColor="#282f35"
+            android:textSize="18dp"
+            android:text="Pro"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@+id/trytxt"
+
+            />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:focusable="false"
+            android:layout_marginTop="1dp"
+            android:max="1000"
+            android:progress="0"
+            android:layout_below="@+id/protxt"
+            android:progressDrawable="@drawable/proprogress"
+            android:layout_alignLeft="@+id/trytxt"
+            android:layout_alignRight="@+id/protxt"
+            android:id="@+id/splashprogress"
+            />
+    </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

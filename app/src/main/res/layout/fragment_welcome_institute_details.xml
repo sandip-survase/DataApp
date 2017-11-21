@@ -1,0 +1,182 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context="placeme.octopusites.com.placeme.WelcomePasswordFragment">
+
+    <TextView
+        android:id="@+id/headerMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="Enter Institute Details"
+        android:textSize="20dp" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/instituteNameTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headerMsg"
+        android:theme="@style/TextLabelNew">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/instituteName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Full Institute Name"
+            android:gravity=""
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:textSize="15sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/countryinputlayout"
+        android:layout_below="@+id/instituteNameTextInputLayout"
+        android:layout_marginTop="20dp"
+        android:theme="@style/TextLabelNew">
+
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="select country"
+            android:textSize="15dp"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:textColor="#000"
+            android:id="@+id/countryAutoBox"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/addressTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/countryinputlayout"
+        android:theme="@style/TextLabelNew">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/instituteAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Institute Address"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:textSize="15sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/emailTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addressTextInputLayout"
+        android:theme="@style/TextLabelNew">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/instituteEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Institute Email"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:textSize="15sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/websiteTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emailTextInputLayout"
+        android:theme="@style/TextLabelNew">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/institutewebsite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Institute Website"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:textSize="15sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/phoneTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/websiteTextInputLayout"
+        android:theme="@style/TextLabelNew">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/institutephone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Institute Phone"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:textSize="15sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/alternatePhoneTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phoneTextInputLayout"
+        android:theme="@style/TextLabelNew">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/instituteAlternatephone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Institute Alternate phone"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:textSize="15sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/univercityTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/alternatePhoneTextInputLayout"
+        android:theme="@style/TextLabelNew">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/university"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="University Name"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:textSize="15sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/regNumTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/univercityTextInputLayout"
+        android:theme="@style/TextLabelNew">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/regNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Registration number provided by university"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:textSize="15sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+</RelativeLayout>

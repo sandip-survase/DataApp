@@ -1,0 +1,1581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/myprofileintroscrollview"
+    android:background="#282f35">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_admin_experiences"
+    android:layout_width="match_parent"
+    android:focusableInTouchMode="true"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context="placeme.octopusites.com.placeme.AdminExperiences">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Experiences"
+        android:textSize="20dp"
+        android:textColor="#eee"
+        android:id="@+id/exptxt"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:background="@drawable/textviewborder2"
+        />
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/exptxt"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/trash"
+        android:layout_marginTop="35dp"
+        android:id="@+id/trashexp1"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/exptxt"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:id="@+id/exprl1"
+        >
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/postinput1"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Position Held"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/post1"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/instinput1"
+            android:layout_below="@+id/postinput1"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Institute/Organization Name"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/inst1"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:id="@+id/exp1section"
+            android:layout_centerHorizontal="true"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/exp1section"
+            android:layout_below="@+id/instinput1"
+            android:id="@+id/fromdaterl1"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fromdateinput1"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="From Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/fromdate1"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/exp1section"
+            android:layout_below="@+id/instinput1"
+            android:id="@+id/todaterl1"
+            >
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/todateinput1"
+                android:singleLine="true"
+                android:focusable="false"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="To Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/todate1"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:text="I currently work here"
+            android:layout_below="@+id/todaterl1"
+            android:textColor="#eee"
+            android:textSize="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/switch1"
+            />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/todaterl1"
+            android:layout_marginTop="10dp"
+            android:theme="@style/SCBSwitch"
+            />
+
+        </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c59a6d"
+        android:layout_below="@+id/exprl1"
+        android:id="@+id/expline1"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        />
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/expline1"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/trash"
+        android:layout_marginTop="35dp"
+        android:id="@+id/trashexp2"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/expline1"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:id="@+id/exprl2"
+        android:visibility="gone"
+        >
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/postinput2"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Position Held"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/post2"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/instinput2"
+            android:layout_below="@+id/postinput2"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Institute/Organization Name"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/inst2"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:id="@+id/exp2section"
+            android:layout_centerHorizontal="true"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/exp2section"
+            android:layout_below="@+id/instinput2"
+            android:id="@+id/fromdaterl2"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fromdateinput2"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="From Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/fromdate2"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/exp2section"
+            android:layout_below="@+id/instinput2"
+            android:id="@+id/todaterl2"
+            >
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/todateinput2"
+                android:singleLine="true"
+                android:focusable="false"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="To Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/todate2"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:text="I currently work here"
+            android:layout_below="@+id/todaterl2"
+            android:textColor="#eee"
+            android:textSize="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/switch2"
+            />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/todaterl2"
+            android:layout_marginTop="10dp"
+            android:theme="@style/SCBSwitch"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c59a6d"
+        android:layout_below="@+id/exprl2"
+        android:id="@+id/expline2"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        />
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/expline2"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/trash"
+        android:layout_marginTop="35dp"
+        android:id="@+id/trashexp3"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/expline2"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:id="@+id/exprl3"
+        android:visibility="gone"
+        >
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/postinput3"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Position Held"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/post3"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/instinput3"
+            android:layout_below="@+id/postinput3"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Institute/Organization Name"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/inst3"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:id="@+id/exp3section"
+            android:layout_centerHorizontal="true"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/exp3section"
+            android:layout_below="@+id/instinput3"
+            android:id="@+id/fromdaterl3"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fromdateinput3"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="From Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/fromdate3"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/exp3section"
+            android:layout_below="@+id/instinput3"
+            android:id="@+id/todaterl3"
+            >
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/todateinput3"
+                android:singleLine="true"
+                android:focusable="false"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="To Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/todate3"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:text="I currently work here"
+            android:layout_below="@+id/todaterl3"
+            android:textColor="#eee"
+            android:textSize="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/switch3"
+            />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/todaterl3"
+            android:layout_marginTop="10dp"
+            android:theme="@style/SCBSwitch"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c59a6d"
+        android:layout_below="@+id/exprl3"
+        android:id="@+id/expline3"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        />
+     <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/expline3"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/trash"
+        android:layout_marginTop="35dp"
+        android:id="@+id/trashexp4"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/expline3"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:id="@+id/exprl4"
+        android:visibility="gone"
+        >
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/postinput4"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Position Held"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/post4"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/instinput4"
+            android:layout_below="@+id/postinput4"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Institute/Organization Name"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/inst4"/>
+
+        </android.support.design.widget.TextInputLayout>
+  <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:id="@+id/exp4section"
+            android:layout_centerHorizontal="true"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/exp4section"
+            android:layout_below="@+id/instinput4"
+            android:id="@+id/fromdaterl4"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fromdateinput4"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="From Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/fromdate4"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/exp4section"
+            android:layout_below="@+id/instinput4"
+            android:id="@+id/todaterl4"
+            >
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/todateinput4"
+                android:singleLine="true"
+                android:focusable="false"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="To Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/todate4"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:text="I currently work here"
+            android:layout_below="@+id/todaterl4"
+            android:textColor="#eee"
+            android:textSize="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/switch4"
+            />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/todaterl4"
+            android:layout_marginTop="10dp"
+            android:theme="@style/SCBSwitch"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c59a6d"
+        android:layout_below="@+id/exprl4"
+        android:id="@+id/expline4"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        />
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/expline4"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/trash"
+        android:layout_marginTop="35dp"
+        android:id="@+id/trashexp5"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/expline4"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:id="@+id/exprl5"
+        android:visibility="gone"
+        >
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/postinput5"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Position Held"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/post5"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/instinput5"
+            android:layout_below="@+id/postinput5"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Institute/Organization Name"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/inst5"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:id="@+id/exp5section"
+            android:layout_centerHorizontal="true"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/exp5section"
+            android:layout_below="@+id/instinput5"
+            android:id="@+id/fromdaterl5"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fromdateinput5"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="From Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/fromdate5"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/exp5section"
+            android:layout_below="@+id/instinput5"
+            android:id="@+id/todaterl5"
+            >
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/todateinput5"
+                android:singleLine="true"
+                android:focusable="false"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="To Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/todate5"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:text="I currently work here"
+            android:layout_below="@+id/todaterl5"
+            android:textColor="#eee"
+            android:textSize="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/switch5"
+            />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/todaterl5"
+            android:layout_marginTop="10dp"
+            android:theme="@style/SCBSwitch"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c59a6d"
+        android:layout_below="@+id/exprl5"
+        android:id="@+id/expline5"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        />
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/expline5"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/trash"
+        android:layout_marginTop="35dp"
+        android:id="@+id/trashexp6"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/expline5"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:id="@+id/exprl6"
+        android:visibility="gone"
+        >
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/postinput6"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Position Held"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/post6"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/instinput6"
+            android:layout_below="@+id/postinput6"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Institute/Organization Name"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/inst6"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:id="@+id/exp6section"
+            android:layout_centerHorizontal="true"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/exp6section"
+            android:layout_below="@+id/instinput6"
+            android:id="@+id/fromdaterl6"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fromdateinput6"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="From Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/fromdate6"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/exp6section"
+            android:layout_below="@+id/instinput6"
+            android:id="@+id/todaterl6"
+            >
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/todateinput6"
+                android:singleLine="true"
+                android:focusable="false"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="To Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/todate6"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:text="I currently work here"
+            android:layout_below="@+id/todaterl6"
+            android:textColor="#eee"
+            android:textSize="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/switch6"
+            />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/todaterl6"
+            android:layout_marginTop="10dp"
+            android:theme="@style/SCBSwitch"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c59a6d"
+        android:layout_below="@+id/exprl6"
+        android:id="@+id/expline6"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        />
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/expline6"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/trash"
+        android:layout_marginTop="35dp"
+        android:id="@+id/trashexp7"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/expline6"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:id="@+id/exprl7"
+        android:visibility="gone"
+        >
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/postinput7"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Position Held"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/post7"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/instinput7"
+            android:layout_below="@+id/postinput7"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Institute/Organization Name"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/inst7"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:id="@+id/exp7section"
+            android:layout_centerHorizontal="true"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/exp7section"
+            android:layout_below="@+id/instinput7"
+            android:id="@+id/fromdaterl7"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fromdateinput7"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="From Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/fromdate7"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/exp7section"
+            android:layout_below="@+id/instinput7"
+            android:id="@+id/todaterl7"
+            >
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/todateinput7"
+                android:singleLine="true"
+                android:focusable="false"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="To Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/todate7"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:text="I currently work here"
+            android:layout_below="@+id/todaterl7"
+            android:textColor="#eee"
+            android:textSize="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/switch7"
+            />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/todaterl7"
+            android:layout_marginTop="10dp"
+            android:theme="@style/SCBSwitch"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c59a6d"
+        android:layout_below="@+id/exprl7"
+        android:id="@+id/expline7"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        />
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/expline7"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/trash"
+        android:layout_marginTop="35dp"
+        android:id="@+id/trashexp8"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/expline7"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:id="@+id/exprl8"
+        android:visibility="gone"
+        >
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/postinput8"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Position Held"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/post8"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/instinput8"
+            android:layout_below="@+id/postinput8"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Institute/Organization Name"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/inst8"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:id="@+id/exp8section"
+            android:layout_centerHorizontal="true"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/exp8section"
+            android:layout_below="@+id/instinput8"
+            android:id="@+id/fromdaterl8"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fromdateinput8"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="From Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/fromdate8"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/exp8section"
+            android:layout_below="@+id/instinput8"
+            android:id="@+id/todaterl8"
+            >
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/todateinput8"
+                android:singleLine="true"
+                android:focusable="false"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="To Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/todate8"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:text="I currently work here"
+            android:layout_below="@+id/todaterl8"
+            android:textColor="#eee"
+            android:textSize="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/switch8"
+            />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/todaterl8"
+            android:layout_marginTop="10dp"
+            android:theme="@style/SCBSwitch"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c59a6d"
+        android:layout_below="@+id/exprl8"
+        android:id="@+id/expline8"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        />
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/expline8"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/trash"
+        android:layout_marginTop="35dp"
+        android:id="@+id/trashexp9"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/expline8"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:id="@+id/exprl9"
+        android:visibility="gone"
+        >
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/postinput9"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Position Held"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/post9"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/instinput9"
+            android:layout_below="@+id/postinput9"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Institute/Organization Name"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/inst9"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:id="@+id/exp9section"
+            android:layout_centerHorizontal="true"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/exp9section"
+            android:layout_below="@+id/instinput9"
+            android:id="@+id/fromdaterl9"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fromdateinput9"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="From Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/fromdate9"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/exp9section"
+            android:layout_below="@+id/instinput9"
+            android:id="@+id/todaterl9"
+            >
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/todateinput9"
+                android:singleLine="true"
+                android:focusable="false"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="To Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/todate9"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:text="I currently work here"
+            android:layout_below="@+id/todaterl9"
+            android:textColor="#eee"
+            android:textSize="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/switch9"
+            />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/todaterl9"
+            android:layout_marginTop="10dp"
+            android:theme="@style/SCBSwitch"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c59a6d"
+        android:layout_below="@+id/exprl9"
+        android:id="@+id/expline9"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        />
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/expline9"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/trash"
+        android:layout_marginTop="35dp"
+        android:id="@+id/trashexp10"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/expline9"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:id="@+id/exprl10"
+        android:visibility="gone"
+        >
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/postinput10"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Position Held"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/post10"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/instinput10"
+            android:layout_below="@+id/postinput10"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Institute/Organization Name"
+                android:textSize="15dp"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/inst10"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:id="@+id/exp10section"
+            android:layout_centerHorizontal="true"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/exp10section"
+            android:layout_below="@+id/instinput10"
+            android:id="@+id/fromdaterl10"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fromdateinput10"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="From Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/fromdate10"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/exp10section"
+            android:layout_below="@+id/instinput10"
+            android:id="@+id/todaterl10"
+            >
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/todateinput10"
+                android:singleLine="true"
+                android:focusable="false"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="To Date"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textColor="#eee"
+                    android:id="@+id/todate10"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:text="I currently work here"
+            android:layout_below="@+id/todaterl10"
+            android:textColor="#eee"
+            android:textSize="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/switch10"
+            />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/todaterl10"
+            android:layout_marginTop="10dp"
+            android:theme="@style/SCBSwitch"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c59a6d"
+        android:layout_below="@+id/exprl10"
+        android:id="@+id/expline10"
+        android:layout_marginTop="20dp"
+
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/boxborderwhite"
+        android:layout_below="@+id/exprl10"
+        android:id="@+id/addmoreexp"
+        android:layout_marginTop="20dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/exprl10"
+        android:text="Add Another Experience"
+        android:textColor="#eee"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/addmoreexptxt"
+        />
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/exprl10"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/plus"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/addmoreexpimg"
+        />
+
+
+
+
+
+</RelativeLayout>
+</ScrollView>

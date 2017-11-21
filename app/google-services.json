@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "266793572797",
+    "firebase_url": "https://placeme-2abda.firebaseio.com",
+    "project_id": "placeme-2abda",
+    "storage_bucket": "placeme-2abda.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266793572797:android:f836995d3f8dbff5",
+        "android_client_info": {
+          "package_name": "placeme.octopusites.com.placeme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "266793572797-7sau3vaha8flstlah1ger79t2qttev2p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYL71PgYXjPhH8xN0RphSCZY-aRBRMYZ4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

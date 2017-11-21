@@ -1,0 +1,290 @@
+package placeme.octopusites.com.placeme;
+
+import android.app.DownloadManager;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
+
+
+public class ViewNotification extends AppCompatActivity {
+
+    int id;
+    String heading,notification,filename;
+    TextView notificationheadingview,notificationnotificationview,attachmentstxt;
+    RelativeLayout attachmentrl1,attachmentrl2,attachmentrl3,attachmentrl4,attachmentrl5;
+    ImageView attachment1img,attachment2img,attachment3img,attachment4img,attachment5img;
+    TextView filename1,filename2,filename3,filename4,filename5;
+    Button download;
+    String username;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    SharedPreferences sharedpreferences;
+    public static final String Username = "nameKey";
+    TextView uploadedbytxt,lastmodifiedtxt;
+    String digest1,digest2;
+    byte[] demoKeyBytes;
+    byte[] demoIVBytes;
+    String sPadding = "ISO10126Padding";
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_view_notification);
+
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle("Notification");
+        ab.setDisplayHomeAsUpEnabled(true);
+
+        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        username=sharedpreferences.getString(Username,null);
+        digest1=sharedpreferences.getString("digest1",null);
+        digest2=sharedpreferences.getString("digest2",null);
+
+        attachmentstxt=(TextView)findViewById(R.id.attachmentstxt);
+
+        attachmentrl1=(RelativeLayout)findViewById(R.id.attachmentrl1);
+        attachmentrl2=(RelativeLayout)findViewById(R.id.attachmentrl2);
+        attachmentrl3=(RelativeLayout)findViewById(R.id.attachmentrl3);
+        attachmentrl4=(RelativeLayout)findViewById(R.id.attachmentrl4);
+        attachmentrl5=(RelativeLayout)findViewById(R.id.attachmentrl5);
+
+        attachment1img=(ImageView)findViewById(R.id.attachment1img);
+        attachment2img=(ImageView)findViewById(R.id.attachment2img);
+        attachment3img=(ImageView)findViewById(R.id.attachment3img);
+        attachment4img=(ImageView)findViewById(R.id.attachment4img);
+        attachment5img=(ImageView)findViewById(R.id.attachment5img);
+
+        filename1=(TextView)findViewById(R.id.filename1);
+        filename2=(TextView)findViewById(R.id.filename2);
+        filename3=(TextView)findViewById(R.id.filename3);
+        filename4=(TextView)findViewById(R.id.filename4);
+        filename5=(TextView)findViewById(R.id.filename5);
+
+        uploadedbytxt=(TextView)findViewById(R.id.uploadedbytxt);
+        lastmodifiedtxt=(TextView)findViewById(R.id.lastmodifiedtxt);
+
+        String uploadedby_enc=getIntent().getStringExtra("uploadedby");
+        String uploadedby="";
+        try
+        {
+            demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+            demoIVBytes = SimpleBase64Encoder.decode(digest2);
+            sPadding = "ISO10126Padding";
+
+            byte[] demo1EncryptedBytes1=SimpleBase64Encoder.decode(uploadedby_enc);
+
+            byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
+
+            uploadedby=new String(demo1DecryptedBytes1);
+
+
+        }catch (Exception e){}
+
+
+        uploadedbytxt.setText("Uploaded by "+uploadedby);
+        lastmodifiedtxt.setText("Last modified on "+getIntent().getStringExtra("lastmodified"));
+        attachmentrl1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                downloadAttachment(getIntent().getStringExtra("id"),getIntent().getStringExtra("file1"));
+
+            }
+        });
+        attachmentrl2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                downloadAttachment(getIntent().getStringExtra("id"),getIntent().getStringExtra("file2"));
+            }
+        });
+        attachmentrl3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                downloadAttachment(getIntent().getStringExtra("id"),getIntent().getStringExtra("file3"));
+            }
+        });
+        attachmentrl4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                downloadAttachment(getIntent().getStringExtra("id"),getIntent().getStringExtra("file4"));
+            }
+        });
+        attachmentrl5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                downloadAttachment(getIntent().getStringExtra("id"),getIntent().getStringExtra("file5"));
+            }
+        });
+
+
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/meriweather.ttf");
+
+        notificationheadingview=(TextView)findViewById(R.id.notificationheadingview);
+        notificationnotificationview=(TextView)findViewById(R.id.notificationnotificationview);
+
+        notificationheadingview.setText(getIntent().getStringExtra("title"));
+        notificationnotificationview.setText(getIntent().getStringExtra("notification"));
+
+        notificationheadingview.setTypeface(custom_font);
+
+        if(getIntent().getStringExtra("file1")!=null)
+        {
+            String filename=getIntent().getStringExtra("file1");
+            if(!filename.equals("null")) {
+                attachmentstxt.setVisibility(View.VISIBLE);
+                attachmentrl1.setVisibility(View.VISIBLE);
+                filename1.setText(filename);
+
+                int index1=filename.lastIndexOf(".");
+                String extension="";
+                for(int i=index1+1;i<filename.length();i++)
+                    extension+=filename.charAt(i);
+
+                Drawable myDrawable=getDrawable(extension);
+                attachment1img.setImageDrawable(myDrawable);
+
+            }
+        }
+        if(getIntent().getStringExtra("file2")!=null)
+        {
+            String filename=getIntent().getStringExtra("file2");
+
+            if(!filename.equals("null")) {
+                attachmentstxt.setVisibility(View.VISIBLE);
+                attachmentrl2.setVisibility(View.VISIBLE);
+                filename2.setText(filename);
+
+                int index1=filename.lastIndexOf(".");
+                String extension="";
+                for(int i=index1+1;i<filename.length();i++)
+                    extension+=filename.charAt(i);
+
+                Drawable myDrawable=getDrawable(extension);
+                attachment2img.setImageDrawable(myDrawable);
+            }
+        }
+        if(getIntent().getStringExtra("file3")!=null)
+        {
+            String filename=getIntent().getStringExtra("file3");
+            if(!filename.equals("null")) {
+                attachmentstxt.setVisibility(View.VISIBLE);
+                attachmentrl3.setVisibility(View.VISIBLE);
+                filename3.setText(filename);
+
+                int index1=filename.lastIndexOf(".");
+                String extension="";
+                for(int i=index1+1;i<filename.length();i++)
+                    extension+=filename.charAt(i);
+
+                Drawable myDrawable=getDrawable(extension);
+                attachment3img.setImageDrawable(myDrawable);
+            }
+        }
+        if(getIntent().getStringExtra("file4")!=null)
+        {
+            String filename=getIntent().getStringExtra("file4");
+            if(!filename.equals("null")) {
+                attachmentstxt.setVisibility(View.VISIBLE);
+                attachmentrl4.setVisibility(View.VISIBLE);
+                filename4.setText(filename);
+
+                int index1=filename.lastIndexOf(".");
+                String extension="";
+                for(int i=index1+1;i<filename.length();i++)
+                    extension+=filename.charAt(i);
+
+                Drawable myDrawable=getDrawable(extension);
+                attachment4img.setImageDrawable(myDrawable);
+            }
+        }
+        if(getIntent().getStringExtra("file5")!=null)
+        {
+            String filename=getIntent().getStringExtra("file5");
+            if(!filename.equals("null")) {
+                attachmentstxt.setVisibility(View.VISIBLE);
+                attachmentrl5.setVisibility(View.VISIBLE);
+                filename5.setText(filename);
+
+                int index1=filename.lastIndexOf(".");
+                String extension="";
+                for(int i=index1+1;i<filename.length();i++)
+                    extension+=filename.charAt(i);
+
+                Drawable myDrawable=getDrawable(extension);
+                attachment5img.setImageDrawable(myDrawable);
+            }
+        }
+
+
+    }
+
+    void downloadAttachment(String id,String filename)
+    {
+        Uri uri = new Uri.Builder()
+                .scheme("http")
+                .authority("192.168.100.100")
+                .path("AESTest/DownloadAttachment")
+                .appendQueryParameter("u", username)
+                .appendQueryParameter("id", id)
+                .appendQueryParameter("f", filename)
+                .build();
+
+        DownloadManager localDownloadManager = (DownloadManager)ViewNotification.this.getSystemService(DOWNLOAD_SERVICE);
+        DownloadManager.Request localRequest = new DownloadManager.Request(uri);
+        localRequest.setNotificationVisibility(1);
+        localDownloadManager.enqueue(localRequest);
+    }
+    Drawable getDrawable(String extension)
+    {
+        Drawable myDrawable1=null;
+
+        if(extension.equalsIgnoreCase("jpg")||extension.equalsIgnoreCase("jpeg")||extension.equalsIgnoreCase("png")||extension.equalsIgnoreCase("gif")||extension.equalsIgnoreCase("bmp")||extension.equalsIgnoreCase("tiff"))
+            myDrawable1 = getResources().getDrawable(R.drawable.image);
+        else if(extension.equalsIgnoreCase("pdf"))
+            myDrawable1 = getResources().getDrawable(R.drawable.pdf);
+        else if(extension.equalsIgnoreCase("doc")||extension.equalsIgnoreCase("docx")||extension.equalsIgnoreCase("docm")||extension.equalsIgnoreCase("dot")||extension.equalsIgnoreCase("dotx")||extension.equalsIgnoreCase("dotm")||extension.equalsIgnoreCase("odt")||extension.equalsIgnoreCase("rtf"))
+            myDrawable1 = getResources().getDrawable(R.drawable.word);
+        else if(extension.equalsIgnoreCase("xlsx")||extension.equalsIgnoreCase("xls")||extension.equalsIgnoreCase("xlsm")||extension.equalsIgnoreCase("xlsb")||extension.equalsIgnoreCase("xltx")||extension.equalsIgnoreCase("xltm")||extension.equalsIgnoreCase("xlt"))
+            myDrawable1 = getResources().getDrawable(R.drawable.excel);
+        else if(extension.equalsIgnoreCase("txt"))
+            myDrawable1 = getResources().getDrawable(R.drawable.text);
+        else if(extension.equalsIgnoreCase("pptx")||extension.equalsIgnoreCase("ppt")||extension.equalsIgnoreCase("pptm"))
+            myDrawable1 = getResources().getDrawable(R.drawable.powerpoint);
+        else if(extension.equalsIgnoreCase("zip")||extension.equalsIgnoreCase("rar")||extension.equalsIgnoreCase("tar")||extension.equalsIgnoreCase("7z")||extension.equalsIgnoreCase("jar"))
+            myDrawable1 = getResources().getDrawable(R.drawable.archive);
+        else if(extension.equalsIgnoreCase("java")||extension.equalsIgnoreCase("html")||extension.equalsIgnoreCase("py")||extension.equalsIgnoreCase("c")||extension.equalsIgnoreCase("c++"))
+            myDrawable1 = getResources().getDrawable(R.drawable.code);
+        else
+            myDrawable1 = getResources().getDrawable(R.drawable.unknownfile);
+
+        return myDrawable1;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+
+                onBackPressed();
+
+                return(true);
+        }
+
+        return(super.onOptionsItemSelected(item));
+    }
+}
+

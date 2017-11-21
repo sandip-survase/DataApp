@@ -1,0 +1,1937 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyProfileFragment">
+ <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#282f35"
+        android:id="@+id/profilepreviewscrollview"
+
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="My Profile Preview"
+                android:textStyle="bold"
+                android:textColor="#fff"
+                android:id="@+id/myprofilepreview"
+                android:textSize="25dp"
+                android:layout_marginTop="10dp"
+                />
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boxborder"
+                android:layout_marginTop="140dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/box1"
+                android:layout_marginBottom="10dp"
+                android:paddingBottom="10dp"
+                >
+
+
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/pencil"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/introedit"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                />
+
+
+
+
+
+            <TextView
+                android:id="@+id/myprofilename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Your Name"
+                android:textSize="20dp"
+                android:textColor="#282f35"
+                android:textStyle="bold"
+                android:layout_marginTop="70dp"
+                />
+
+            <TextView
+                android:id="@+id/myprofilrole"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Role"
+                android:textSize="15dp"
+                android:textColor="#282f35"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/myprofilename"
+                />
+
+            <TextView
+                android:id="@+id/myprofiledu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Current Education"
+                android:textSize="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:ellipsize="start"
+                android:gravity="center_horizontal"
+                android:textColor="#282f35"
+                android:layout_marginTop="3dp"
+                android:layout_below="@+id/myprofilrole"
+                />
+
+            <TextView
+                android:id="@+id/myprofilloc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:text="Location"
+                android:layout_toLeftOf="@+id/myprofilbar"
+                android:textSize="10dp"
+                android:textColor="#282f35"
+                android:ellipsize="start"
+                android:gravity="center_horizontal"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/myprofiledu"
+                />
+
+            <TextView
+                android:id="@+id/myprofilbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="|"
+                android:textSize="13dp"
+                android:textColor="#282f35"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/myprofiledu"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/myprofilbar"
+                android:layout_below="@+id/myprofiledu"
+                >
+
+                <TextView
+                    android:id="@+id/myprofilemail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    android:textColor="#282f35"
+                    android:layout_marginTop="10dp"
+                    />
+            </RelativeLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/boxborderwhite"
+                android:layout_below="@+id/box1"
+                android:id="@+id/box2"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" % Profile Completed"
+                android:layout_below="@+id/box1"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="#fff"
+                android:textStyle="italic"
+                android:textSize="11dp"
+                android:id="@+id/myprofilepercenttxt"
+                />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                android:background="#fff"
+                android:layout_below="@+id/box1"
+                android:id="@+id/box2section"
+                android:layout_centerHorizontal="true"
+                />
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_toLeftOf="@+id/box2section"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:focusable="false"
+                android:layout_marginTop="5dp"
+                android:max="1000"
+                android:progress="10"
+                android:layout_below="@+id/myprofilepercenttxt"
+                android:progressDrawable="@drawable/progressbarblue"
+                android:indeterminate="false"
+                android:id="@+id/profileprogress"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/box2section"
+                android:layout_below="@+id/box1"
+                android:layout_above="@+id/box3"
+                android:id="@+id/editprofilerl"
+                >
+                <TextView
+                    android:id="@+id/editprofiletxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="#00BFFF"
+                    android:text="EDIT PROFILE"
+                    android:layout_marginTop="13dp"
+                    />
+
+            </RelativeLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/imgborder"
+                />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="135dp"
+                android:layout_height="135dp"
+                android:id="@+id/myprofileimg"
+                android:src="@drawable/profile_icon"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="57dp"
+                />
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="100dp"
+                android:id="@+id/updateProgress"
+                android:visibility="gone"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boxborder"
+                android:layout_below="@+id/box2"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/box3"
+                >
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/eduboxtxt"
+                android:text="Education Details"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#282f35"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/textviewborder"
+                />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/pencil"
+                android:layout_alignParentRight="true"
+                />
+
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="5dp"
+                android:id="@+id/eduedit"
+                android:layout_alignParentRight="true"
+                />
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/institute"
+                    android:layout_below="@+id/eduboxtxt"
+                    android:id="@+id/insti4"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="20dp"
+                    />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_below="@+id/eduboxtxt"
+                    android:id="@+id/edutab4"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/myprofilecource4"
+                        android:text="Attending (Course) in (Stream) at"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:ellipsize="start"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textColor="#282f35"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/myprofileclgname4"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="20dp"
+                        android:textSize="12dp"
+                        android:layout_below="@+id/myprofilecource4"
+                        android:layout_centerHorizontal="true"
+                        android:text="Institute Name"
+                        android:textColor="#282f35"
+                        android:ellipsize="start"
+                        android:gravity="center_horizontal"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/myprofileclgyearofpassing4"
+                        android:layout_below="@+id/myprofileclgname4"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="12dp"
+                        android:textColor="#282f35"
+                        android:text="Year Of Passing"
+                        android:ellipsize="start"
+                        android:gravity="center_horizontal"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#282f35"
+                        android:layout_below="@+id/myprofileclgyearofpassing4"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:id="@+id/eduline4"
+                        />
+
+                </RelativeLayout>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/institute"
+                android:layout_below="@+id/edutab4"
+                android:id="@+id/insti1"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/edutab4"
+                android:id="@+id/edutab1"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/myprofilecource"
+                    android:text="Attended (Course) in (Stream) at"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="start"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:textColor="#282f35"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/myprofileclgname"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="12dp"
+                    android:layout_below="@+id/myprofilecource"
+                    android:layout_centerHorizontal="true"
+                    android:text="Institute Name"
+                    android:textColor="#282f35"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+              <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/myprofileclgyearofpassing"
+                    android:layout_below="@+id/myprofileclgname"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12dp"
+                    android:textColor="#282f35"
+                    android:text="Year Of Passing"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#282f35"
+                    android:layout_below="@+id/myprofileclgyearofpassing"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/eduline1"
+                    />
+
+            </RelativeLayout>
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/institute"
+                android:layout_below="@+id/edutab1"
+                android:id="@+id/insti2"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/edutab1"
+                android:id="@+id/edutab2"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/myprofilecource2"
+                    android:text="Attended Std. XII/Diploma in (Stream) at"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="start"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:textColor="#282f35"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/myprofileclgname2"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="#282f35"
+                    android:textSize="12dp"
+                    android:layout_below="@+id/myprofilecource2"
+                    android:layout_centerHorizontal="true"
+                    android:text="Institute Name"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/myprofileclgyearofpassing2"
+                    android:layout_below="@+id/myprofileclgname2"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12dp"
+                    android:text="Year Of Passing"
+                    android:textColor="#282f35"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#282f35"
+                    android:layout_below="@+id/myprofileclgyearofpassing2"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    />
+
+            </RelativeLayout>
+
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/institute"
+                android:layout_below="@+id/edutab2"
+                android:id="@+id/insti3"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/edutab2"
+                android:id="@+id/edutab3"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/myprofilecource3"
+                    android:text="Attended Std. X in (Board) at"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="start"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:textColor="#282f35"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/myprofileclgname3"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="12dp"
+                    android:layout_below="@+id/myprofilecource3"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#282f35"
+                    android:text="Institute Name"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/myprofileclgyearofpassing3"
+                    android:layout_below="@+id/myprofileclgname3"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12dp"
+                    android:text="Year Of Passing"
+                    android:textColor="#282f35"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#282f35"
+                    android:layout_below="@+id/myprofileclgyearofpassing3"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    />
+
+            </RelativeLayout>
+            </RelativeLayout>
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:background="@drawable/boxborderwhite"
+               android:layout_below="@+id/box3"
+               android:id="@+id/box4"
+               android:layout_marginLeft="10dp"
+               android:layout_marginRight="10dp"
+               android:layout_marginTop="10dp"
+               >
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/projboxtxt"
+                android:text="Projects"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#fff"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/textviewborder2"
+                />
+
+
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/pencilwhite"
+                android:layout_alignParentRight="true"/>
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:id="@+id/projectsedit"
+                android:layout_alignParentRight="true"/>
+
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/gears"
+                android:layout_below="@+id/projboxtxt"
+                android:id="@+id/gear1"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="20dp"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/projboxtxt"
+                android:id="@+id/projtab1"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/myprofileproj1"
+                    android:text="Project 1"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="start"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/myprofiledomain1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="12dp"
+                    android:layout_below="@+id/myprofileproj1"
+                    android:layout_centerHorizontal="true"
+                    android:text="Project Domain"
+                    android:textColor="#fff"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/myprofileduration1"
+                    android:layout_below="@+id/myprofiledomain1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12dp"
+                    android:text="Project Duration"
+                    android:textColor="#fff"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:layout_below="@+id/myprofileduration1"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/projline1"
+                    />
+
+            </RelativeLayout>
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/gears"
+                android:layout_below="@+id/projtab1"
+                android:id="@+id/gear2"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="20dp"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/projtab1"
+                android:id="@+id/projtab2"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/myprofileproj2"
+                    android:text="Project 2"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="start"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/myprofiledomain2"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="12dp"
+                    android:layout_below="@+id/myprofileproj2"
+                    android:layout_centerHorizontal="true"
+                    android:text="Project Domain"
+                    android:textColor="#fff"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/myprofileduration2"
+                    android:layout_below="@+id/myprofiledomain2"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12dp"
+                    android:text="Project Duration"
+                    android:textColor="#fff"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:layout_below="@+id/myprofileduration2"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/projline2"
+                    />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/gears"
+                android:layout_below="@+id/projtab2"
+                android:id="@+id/gear3"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="20dp"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/projtab2"
+                android:id="@+id/projtab3"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/myprofileproj3"
+                    android:text="Project 3"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="start"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/myprofiledomain3"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="12dp"
+                    android:layout_below="@+id/myprofileproj3"
+                    android:layout_centerHorizontal="true"
+                    android:text="Project Domain"
+                    android:textColor="#fff"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/myprofileduration3"
+                    android:layout_below="@+id/myprofiledomain3"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12dp"
+                    android:text="Project Duration"
+                    android:textColor="#fff"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:layout_below="@+id/myprofileduration3"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/projline3"
+                    />
+
+            </RelativeLayout>
+           </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boxborder"
+                android:layout_below="@+id/box4"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/box5"
+                >
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/accomplishmentsboxtxt"
+                android:text="Accomplishments"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#282f35"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/textviewborder"
+                />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/pencil"
+                android:layout_alignParentRight="true"
+                />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/accomplishmentsedit"
+                />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/language"
+                android:layout_below="@+id/accomplishmentsboxtxt"
+                android:id="@+id/acc1"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/accomplishmentsboxtxt"
+                android:id="@+id/acctab1"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/acc1txt"
+                    android:text="Known Languages"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="start"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:textColor="#282f35"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/acc1txttxt"
+                    android:layout_below="@+id/acc1txt"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12dp"
+                    android:text="Language1, Language 2."
+                    android:textColor="#282f35"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#282f35"
+                    android:layout_below="@+id/acc1txttxt"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/accline1"
+                    />
+
+            </RelativeLayout>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/certification"
+                android:layout_below="@+id/acctab1"
+                android:id="@+id/acc2"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/acctab1"
+                android:id="@+id/acctab2"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/acc2txt"
+                    android:text="Certifications"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="start"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:textColor="#282f35"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/acc2txttxt"
+                    android:layout_below="@+id/acc2txt"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12dp"
+                    android:text="Certificate 1, Certificate 2."
+                    android:textColor="#282f35"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#282f35"
+                    android:layout_below="@+id/acc2txttxt"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/accline2"
+                    />
+
+            </RelativeLayout>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/courses"
+                android:layout_below="@+id/acctab2"
+                android:id="@+id/acc3"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/acctab2"
+                android:id="@+id/acctab3"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/acc3txt"
+                    android:text="Courses"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="start"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:textColor="#282f35"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/acc3txttxt"
+                    android:layout_below="@+id/acc3txt"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12dp"
+                    android:text="Certificate 1, Certificate 2."
+                    android:textColor="#282f35"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#282f35"
+                    android:layout_below="@+id/acc3txttxt"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/accline3"
+                    />
+
+            </RelativeLayout>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/skill"
+                android:layout_below="@+id/acctab3"
+                android:id="@+id/acc4"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/acctab3"
+                android:id="@+id/acctab4"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/acc4txt"
+                    android:text="Expert Skills"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="start"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:textColor="#282f35"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/acc4txttxt"
+                    android:layout_below="@+id/acc4txt"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12dp"
+                    android:text="Skill 1, Skill 2."
+                    android:textColor="#282f35"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#282f35"
+                    android:layout_below="@+id/acc4txttxt"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/accline4"
+                    />
+
+            </RelativeLayout>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/honor"
+                android:layout_below="@+id/acctab4"
+                android:id="@+id/acc5"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/acctab4"
+                android:id="@+id/acctab5"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/acc5txt"
+                    android:text="Honors and Awards"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="start"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:textColor="#282f35"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/acc5txttxt"
+                    android:layout_below="@+id/acc5txt"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12dp"
+                    android:text="Honor 1, Award 2."
+                    android:textColor="#282f35"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#282f35"
+                    android:layout_below="@+id/acc5txttxt"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/accline5"
+                    />
+
+            </RelativeLayout>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/patent"
+                android:layout_below="@+id/acctab5"
+                android:id="@+id/acc6"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/acctab5"
+                android:id="@+id/acctab6"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/acc6txt"
+                    android:text="Patents"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="start"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:textColor="#282f35"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/acc6txttxt"
+                    android:layout_below="@+id/acc6txt"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12dp"
+                    android:text="Patent 1, Patent 2."
+                    android:textColor="#282f35"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#282f35"
+                    android:layout_below="@+id/acc6txttxt"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/accline6"
+                    />
+
+            </RelativeLayout>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/publication"
+                android:layout_below="@+id/acctab6"
+                android:id="@+id/acc7"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/acctab6"
+                android:id="@+id/acctab7"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/acc7txt"
+                    android:text="Publications"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="start"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:textColor="#282f35"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/acc7txttxt"
+                    android:layout_below="@+id/acc7txt"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12dp"
+                    android:text="Publication 1, Publication 2."
+                    android:textColor="#282f35"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#282f35"
+                    android:layout_below="@+id/acc7txttxt"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/accline7"
+                    />
+
+            </RelativeLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boxborderwhite"
+                android:layout_below="@+id/box5"
+                android:id="@+id/box6"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                >
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/careerboxtxt"
+                android:text="Career Details"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#fff"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/textviewborder2"
+                />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/pencilwhite"
+                android:layout_alignParentRight="true"/>
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/careeredit"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentRight="true"/>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_below="@+id/careerboxtxt"
+                android:id="@+id/careertab1"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/careerobjtxt"
+                    android:text="Career Objective"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="start"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/careerobj"
+                    android:layout_below="@+id/careerobjtxt"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12dp"
+                    android:text="Your Career Objective"
+                    android:textColor="#fff"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:layout_below="@+id/careerobj"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/careerline1"
+                    />
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_below="@+id/careertab1"
+                android:id="@+id/careertab2"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/strengthtxt"
+                    android:text="Strengths"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="start"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/strengths"
+                    android:layout_below="@+id/strengthtxt"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12dp"
+                    android:text="Your Strengths"
+                    android:textColor="#fff"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:layout_below="@+id/strengths"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/careerline2"
+                    />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_below="@+id/careertab2"
+                android:id="@+id/careertab3"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/weaktxt"
+                    android:text="Weaknesses"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="start"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/weaknesses"
+                    android:layout_below="@+id/weaktxt"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12dp"
+                    android:text="Your Weaknesses"
+                    android:textColor="#fff"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:layout_below="@+id/weaknesses"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/careerline3"
+                    />
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_below="@+id/careertab3"
+                android:id="@+id/careertab4"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/locpretxt"
+                    android:text="Location Preferences"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:ellipsize="start"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/locationpreferences"
+                    android:layout_below="@+id/locpretxt"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12dp"
+                    android:text="Your Location Preferences"
+                    android:textColor="#fff"
+                    android:ellipsize="start"
+                    android:gravity="center_horizontal"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#fff"
+                    android:layout_below="@+id/locationpreferences"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/careerline4"
+                    />
+            </RelativeLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boxborder"
+                android:layout_below="@+id/box6"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/box7"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/contactboxtxt"
+                    android:text="Contact Details"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="#282f35"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/textviewborder"
+                    />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/pencil"
+                    android:layout_alignParentRight="true"
+                    />
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/contactedit"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentRight="true"
+                    />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/location"
+                    android:layout_below="@+id/contactboxtxt"
+                    android:id="@+id/contact1"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="20dp"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/contact1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_below="@+id/contactboxtxt"
+                    android:id="@+id/contacttab1"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/nametxt"
+                        android:text="YOUR NAME"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:ellipsize="start"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textColor="#282f35"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/contactaddr"
+                        android:layout_below="@+id/nametxt"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="12dp"
+                        android:text="Address line1, Address line2, Address line3."
+                        android:textColor="#282f35"
+                        android:ellipsize="start"
+                        android:gravity="center_horizontal"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#282f35"
+                        android:layout_below="@+id/contactaddr"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:id="@+id/contactline1"
+                        />
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/email"
+                    android:tint="#282f35"
+                    android:layout_below="@+id/contacttab1"
+                    android:id="@+id/contact2"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="20dp"
+                    />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/contact2"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_below="@+id/contacttab1"
+                    android:id="@+id/contacttab2"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/emailtxt"
+                        android:text="EMAIL"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:ellipsize="start"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textColor="#282f35"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/contactemail"
+                        android:layout_below="@+id/emailtxt"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="12dp"
+                        android:text="Your Email Address"
+                        android:textColor="#282f35"
+                        android:ellipsize="start"
+                        android:gravity="center_horizontal"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#282f35"
+                        android:layout_below="@+id/contactemail"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:id="@+id/contactline2"
+                        />
+                    </RelativeLayout>
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/mobile"
+                    android:tint="#282f35"
+                    android:layout_below="@+id/contacttab2"
+                    android:id="@+id/contact3"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="20dp"
+                    />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/contact3"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_below="@+id/contacttab2"
+                    android:id="@+id/contacttab3"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/mobiletxt"
+                        android:text="MOBILE"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:ellipsize="start"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:textColor="#282f35"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/contactmobile"
+                        android:layout_below="@+id/mobiletxt"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="12dp"
+                        android:text="Your Mobile Number"
+                        android:textColor="#282f35"
+                        android:ellipsize="start"
+                        android:gravity="center_horizontal"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#282f35"
+                        android:layout_below="@+id/contactmobile"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:id="@+id/contactline3"
+                        />
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/box7"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/prorl"
+                >
+
+
+                <TextView
+                    android:id="@+id/trytxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:textSize="20dp"
+                    android:text="TRY PLACE ME"
+                    android:background="#282f35"
+                    android:layout_marginTop="20dp"
+                    android:gravity="bottom"
+                    />
+                <TextView
+                    android:id="@+id/protxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:textSize="12dp"
+                    android:text="Pro"
+                    android:background="#282f35"
+                    android:layout_marginTop="13dp"
+                    android:layout_toRightOf="@+id/trytxt"
+                    android:layout_marginRight="10dp"
+                    android:gravity="bottom"
+                    />
+                <TextView
+                    android:id="@+id/freetxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:textColor="@android:color/holo_blue_bright"
+                    android:textSize="20dp"
+                    android:text="FOR FREE"
+                    android:background="#282f35"
+                    android:layout_marginTop="20dp"
+                    android:layout_toRightOf="@+id/protxt"
+                    android:gravity="bottom"
+                    />
+
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#c59a6d"
+                android:id="@+id/proview"
+                android:layout_below="@+id/prorl"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/proview"
+                android:layout_below="@+id/box7"
+                android:id="@+id/proselectionview"
+                />
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+</android.support.v4.widget.SwipeRefreshLayout>
+
+
+
+</RelativeLayout>

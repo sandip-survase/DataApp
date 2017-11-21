@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_message"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    tools:context="placeme.octopusites.com.placeme.MessageActivity">
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/sendrl"
+        android:scrollbars="vertical" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#eee"
+        android:id="@+id/sendrl"
+        >
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#282f35"
+            android:id="@+id/line"
+            />
+        <EditText
+            android:layout_below="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type a Message"
+            android:textColor="#282f35"
+            android:textColorHint="#aaa"
+            android:background="@android:color/transparent"
+            android:layout_toLeftOf="@+id/send"
+            android:layout_margin="10dp"
+            android:textCursorDrawable="@drawable/custom_cursor"
+            android:id="@+id/message_line"
+            />
+        <View
+            android:layout_width="45dp"
+            android:layout_height="50dp"
+            android:background="#282f35"
+            android:layout_alignParentRight="true"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/send"
+            android:tint="#eee"
+            android:id="@+id/send"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
+

@@ -1,0 +1,76 @@
+<RelativeLayout
+    android:id="@+id/main_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#282f35"
+    tools:context=".ViewPlacement">
+
+    <!-- our toolbar -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/placementtoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <!-- our tablayout to display tabs  -->
+    <android.support.design.widget.TabLayout
+        android:id="@+id/placementtabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#282f35"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:layout_below="@+id/placementtoolbar"
+        />
+
+    <!-- View pager to swipe views -->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/placementviewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="70dp"
+        android:layout_below="@+id/placementtabs"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    />
+    <ProgressBar
+        android:id="@+id/registerforplacementprogress"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom"
+        android:id="@+id/registerbuttonlayout"
+        android:visibility="gone"
+        >
+        <Button
+            android:id="@+id/registerforplacementbutton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="@android:color/holo_blue_bright"
+            android:textAllCaps="false"
+            android:textSize="20dp"
+            android:text="Register"
+            android:background="#282f35"
+            />
+        <View
+            android:layout_width="100dp"
+            android:layout_height="2dp"
+            android:background="#c59a6d"
+            android:layout_gravity="center"
+            />
+    </LinearLayout>
+</RelativeLayout>

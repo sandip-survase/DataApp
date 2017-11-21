@@ -1,0 +1,2562 @@
+package placeme.octopusites.com.placeme;
+
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.wx.wheelview.adapter.ArrayWheelAdapter;
+import com.wx.wheelview.widget.WheelView;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
+
+import placeme.octopusites.com.placeme.modal.MyProfileDiplomaModal;
+import placeme.octopusites.com.placeme.modal.MyProfileTwelthModal;
+
+import static placeme.octopusites.com.placeme.AES4all.OtoString;
+import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
+
+public class MyProfileTwelthOrDiploma extends AppCompatActivity {
+
+    EditText marks12, outof12, percent12, schoolname12, otherboard, otherstream12;
+    String selectedBoard12="", selectedBoarddiploma="", selectedStream12="", monthandyearofpassing12="", monthandyearofpassingdiploma="";
+    String encselectedboard12="", encselectedboarddiploma="", encselectedstream12="", encmonthandyearofpassing12="", encmonthandyearofpassingdiploma="";
+    Spinner stream12, board12;
+    EditText dmarkssem1, doutofsem1, dpercentsem1, dmarkssem2, doutofsem2, dpercentsem2, dmarkssem3, doutofsem3, dpercentsem3, dmarkssem4, doutofsem4, dpercentsem4, dmarkssem5, doutofsem5, dpercentsem5, dmarkssem6, doutofsem6, dpercentsem6, daggregate, schoolnamed, othercourse, otherboardd;
+    Spinner dcourse, duniversity;
+    public static final String MyPREFERENCES = "MyPrefs";
+    SharedPreferences sharedpreferences;
+    public static final String Username = "nameKey";
+    String username;
+    String digest1, digest2;
+    JSONParser jParser = new JSONParser();
+    JSONObject json;
+
+    int edittedFlag = 0;
+    String marksobtained = "", outofmarks = "", percentage = "", schoolnametwelth = "", schoolnamediploma = "", otherspecifiedboard = "", otherspecifiedstream = "", otherspecifiedcourse = "";
+    String encmarksobtained, encoutofmarks, encpercentage, encschoolname12, encschoolnamediploma;
+    String markssem1 = "", outofsem1 = "", percentsem1 = "", markssem2 = "", outofsem2 = "", percentsem2 = "", markssem3 = "", outofsem3 = "", percentsem3 = "", markssem4 = "", outofsem4 = "", percentsem4 = "", markssem5 = "", outofsem5 = "", percentsem5 = "", markssem6 = "", outofsem6 = "", percentsem6 = "", aggregate = "";
+    String encmarkssem1, encoutofsem1, encpercentsem1, encmarkssem2, encoutofsem2, encpercentsem2, encmarkssem3, encoutofsem3, encpercentsem3, encmarkssem4, encoutofsem4, encpercentsem4, encmarkssem5, encoutofsem5, encpercentsem5, encmarkssem6, encoutofsem6, encpercentsem6, encaggregat, encselectedcourse;
+    RelativeLayout layouttoshow, layouttohide;
+    RadioGroup radioGrouptwelthdiploma;
+    RadioButton radioButtonTwelth, radioButtonDiploma;
+    String pattern = "twelth";
+    EditText yearofpassing12, yearofpassingd;
+
+    int coursecount = 0;
+    List<String> courseslist = new ArrayList<String>();
+    String[] courses;
+    String selectedCourse = "";
+    StudentData s = new StudentData();
+    int isCourseSet = 0;
+    String oldStream12 = "", oldBoard12 = "", oldBoarddiploma = "", oldCourse = "";
+
+    String selectedboardBytes1 = null;
+    String selectedstreamBytes1 = null;
+    String selectedcourseBytes1 = null;
+
+    String strobj,strobj2;
+
+    public static String url_savedata_twelth = "http://192.168.100.30:8080/ProfileObjects/SaveTwelth";
+    public static String url_savedata_diploma = "http://192.168.100.30:8080/ProfileObjects/SaveDiploma";
+
+
+
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_my_profile_twelth_or_diploma);
+
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle("Edit Educational Info");
+        ab.setDisplayHomeAsUpEnabled(true);
+
+        final Drawable upArrow = getResources().getDrawable(R.drawable.close);
+        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
+        username =MySharedPreferencesManager.getUsername(this);
+        String role = MySharedPreferencesManager.getRole(this);
+
+
+
+
+
+        dmarkssem1 = (EditText) findViewById(R.id.dmarkssem1);
+        doutofsem1 = (EditText) findViewById(R.id.doutofsem1);
+        dpercentsem1 = (EditText) findViewById(R.id.dpercentsem1);
+        dmarkssem2 = (EditText) findViewById(R.id.dmarkssem2);
+        doutofsem2 = (EditText) findViewById(R.id.doutofsem2);
+        dpercentsem2 = (EditText) findViewById(R.id.dpercentsem2);
+        dmarkssem3 = (EditText) findViewById(R.id.dmarkssem3);
+        doutofsem3 = (EditText) findViewById(R.id.doutofsem3);
+        dpercentsem3 = (EditText) findViewById(R.id.dpercentsem3);
+        dmarkssem4 = (EditText) findViewById(R.id.dmarkssem4);
+        doutofsem4 = (EditText) findViewById(R.id.doutofsem4);
+        dpercentsem4 = (EditText) findViewById(R.id.dpercentsem4);
+        dmarkssem5 = (EditText) findViewById(R.id.dmarkssem5);
+        doutofsem5 = (EditText) findViewById(R.id.doutofsem5);
+        dpercentsem5 = (EditText) findViewById(R.id.dpercentsem5);
+        dmarkssem6 = (EditText) findViewById(R.id.dmarkssem6);
+        doutofsem6 = (EditText) findViewById(R.id.doutofsem6);
+        dpercentsem6 = (EditText) findViewById(R.id.dpercentsem6);
+        daggregate = (EditText) findViewById(R.id.daggregate);
+        schoolnamed = (EditText) findViewById(R.id.schoolnamed);
+        dcourse = (Spinner) findViewById(R.id.dcourse);
+        duniversity = (Spinner) findViewById(R.id.duniversity);
+        othercourse = (EditText) findViewById(R.id.othercourse);
+        otherboardd = (EditText) findViewById(R.id.otherboardd);
+
+        new GetCourses().execute();
+
+        dmarkssem1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                dmarkssem1.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+//                    String s1=dmarkssem1.getText().toString();
+//                    String s2=doutofsem1.getText().toString();
+//                    if(!s1.equals("")&&!s2.equals("")) {
+//                        double n1 = Double.parseDouble(s1);
+//                        double n2 = Double.parseDouble(s2);
+//
+//                        double percentage = (n1 * 100/ n2);
+//
+//                        if(percentage>=0&&percentage<=100)
+//                            dpercentsem1.setText("" +(new DecimalFormat("##.##").format(percentage)));
+//                    }
+//                }catch (Exception e){}
+
+                doutofsem1.setError(null);
+
+                try {
+                    double percentage = 0;
+                    String s1 = dmarkssem1.getText().toString();
+                    String s2 = doutofsem1.getText().toString();
+                    if (!s1.equals("") && !s2.equals("")) {
+                        double n1 = Double.parseDouble(s1);
+                        double n2 = Double.parseDouble(s2);
+
+                        if (n1 <= n2) {
+                            percentage = (n1 * 100 / n2);
+
+                            if (percentage >= 0 && percentage <= 100) {
+                                dpercentsem1.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                            }
+                        } else {
+                            doutofsem1.setError("Invalid Out Of Marks");
+                            dpercentsem1.setText("");
+                        }
+                    } else {
+                        dpercentsem1.setText("");
+                    }
+                } catch (Exception e) {
+                }
+            }
+        });
+
+        doutofsem1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                doutofsem1.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+//                try {
+//
+//                    String s1=dmarkssem1.getText().toString();
+//                    String s2=doutofsem1.getText().toString();
+//                    if(!s1.equals("")&&!s2.equals("")) {
+//                        double n1 = Double.parseDouble(s1);
+//                        double n2 = Double.parseDouble(s2);
+//
+//                        double percentage = (n1 * 100/ n2);
+//
+//                        if(percentage>=0&&percentage<=100)
+//                            dpercentsem1.setText("" +(new DecimalFormat("##.##").format(percentage)));
+//                    }
+//                }catch (Exception e){}
+
+
+                doutofsem1.setError(null);
+
+                try {
+                    double percentage = 0;
+                    String s1 = dmarkssem1.getText().toString();
+                    String s2 = doutofsem1.getText().toString();
+                    if (!s1.equals("") && !s2.equals("")) {
+                        double n1 = Double.parseDouble(s1);
+                        double n2 = Double.parseDouble(s2);
+
+                        if (n1 <= n2) {
+                            percentage = (n1 * 100 / n2);
+
+                            if (percentage >= 0 && percentage <= 100) {
+                                dpercentsem1.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                            }
+                        } else {
+                            doutofsem1.setError("Invalid Out Of Marks");
+                            dpercentsem1.setText("");
+                        }
+                    } else {
+                        dpercentsem1.setText("");
+                    }
+                } catch (Exception e) {
+                }
+            }
+
+
+        });
+        dmarkssem2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                dmarkssem2.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+//
+//                try {
+//
+//                    String s1=dmarkssem2.getText().toString();
+//                    String s2=doutofsem2.getText().toString();
+//                    if(!s1.equals("")&&!s2.equals("")) {
+//                        double n1 = Double.parseDouble(s1);
+//                        double n2 = Double.parseDouble(s2);
+//
+//                        double percentage = (n1 * 100/ n2);
+//
+//                        if(percentage>=0&&percentage<=100)
+//                            dpercentsem2.setText("" +(new DecimalFormat("##.##").format(percentage)));
+//                    }
+//                }catch (Exception e){}
+
+
+                doutofsem2.setError(null);
+
+                try {
+                    double percentage = 0;
+                    String s1 = dmarkssem2.getText().toString();
+                    String s2 = doutofsem2.getText().toString();
+                    if (!s1.equals("") && !s2.equals("")) {
+                        double n1 = Double.parseDouble(s1);
+                        double n2 = Double.parseDouble(s2);
+
+                        if (n1 <= n2) {
+                            percentage = (n1 * 100 / n2);
+
+                            if (percentage >= 0 && percentage <= 100) {
+                                dpercentsem2.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                            }
+                        } else {
+                            doutofsem2.setError("Invalid Out Of Marks");
+                            dpercentsem2.setText("");
+                        }
+                    } else {
+                        dpercentsem2.setText("");
+                    }
+                } catch (Exception e) {
+                }
+
+
+            }
+        });
+        doutofsem2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                doutofsem2.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+//                try {
+//
+//                    String s1=dmarkssem2.getText().toString();
+//                    String s2=doutofsem2.getText().toString();
+//                    if(!s1.equals("")&&!s2.equals("")) {
+//                        double n1 = Double.parseDouble(s1);
+//                        double n2 = Double.parseDouble(s2);
+//
+//                        double percentage = (n1 * 100/ n2);
+//
+//                        if(percentage>=0&&percentage<=100)
+//                            dpercentsem2.setText("" +(new DecimalFormat("##.##").format(percentage)));
+//                    }
+//                }catch (Exception e){}
+
+                doutofsem2.setError(null);
+
+                try {
+                    double percentage = 0;
+                    String s1 = dmarkssem2.getText().toString();
+                    String s2 = doutofsem2.getText().toString();
+                    if (!s1.equals("") && !s2.equals("")) {
+                        double n1 = Double.parseDouble(s1);
+                        double n2 = Double.parseDouble(s2);
+
+                        if (n1 <= n2) {
+                            percentage = (n1 * 100 / n2);
+
+                            if (percentage >= 0 && percentage <= 100) {
+                                dpercentsem2.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                            }
+                        } else {
+                            doutofsem2.setError("Invalid Out Of Marks");
+                            dpercentsem2.setText("");
+                        }
+                    } else {
+                        dpercentsem2.setText("");
+                    }
+                } catch (Exception e) {
+                }
+
+            }
+        });
+        dmarkssem3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                dmarkssem3.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+//                try {
+//
+//                    String s1=dmarkssem3.getText().toString();
+//                    String s2=doutofsem3.getText().toString();
+//                    if(!s1.equals("")&&!s2.equals("")) {
+//                        double n1 = Double.parseDouble(s1);
+//                        double n2 = Double.parseDouble(s2);
+//
+//                        double percentage = (n1 * 100/ n2);
+//
+//                        if(percentage>=0&&percentage<=100)
+//                            dpercentsem3.setText("" +(new DecimalFormat("##.##").format(percentage)));
+//                    }
+//                }catch (Exception e){}
+
+
+                doutofsem3.setError(null);
+
+                try {
+                    double percentage = 0;
+                    String s1 = dmarkssem3.getText().toString();
+                    String s2 = doutofsem3.getText().toString();
+                    if (!s1.equals("") && !s2.equals("")) {
+                        double n1 = Double.parseDouble(s1);
+                        double n2 = Double.parseDouble(s2);
+
+                        if (n1 <= n2) {
+                            percentage = (n1 * 100 / n2);
+
+                            if (percentage >= 0 && percentage <= 100) {
+                                dpercentsem3.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                            }
+                        } else {
+                            doutofsem3.setError("Invalid Out Of Marks");
+                            dpercentsem3.setText("");
+                        }
+                    } else {
+                        dpercentsem3.setText("");
+                    }
+                } catch (Exception e) {
+                }
+
+            }
+        });
+        doutofsem3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                doutofsem3.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+//                try {
+//
+//                    String s1=dmarkssem3.getText().toString();
+//                    String s2=doutofsem3.getText().toString();
+//                    if(!s1.equals("")&&!s2.equals("")) {
+//                        double n1 = Double.parseDouble(s1);
+//                        double n2 = Double.parseDouble(s2);
+//
+//                        double percentage = (n1 * 100/ n2);
+//
+//                        if(percentage>=0&&percentage<=100)
+//                            dpercentsem3.setText("" +(new DecimalFormat("##.##").format(percentage)));
+//                    }
+//                }catch (Exception e){}
+
+
+                doutofsem3.setError(null);
+
+                try {
+                    double percentage = 0;
+                    String s1 = dmarkssem3.getText().toString();
+                    String s2 = doutofsem3.getText().toString();
+                    if (!s1.equals("") && !s2.equals("")) {
+                        double n1 = Double.parseDouble(s1);
+                        double n2 = Double.parseDouble(s2);
+
+                        if (n1 <= n2) {
+                            percentage = (n1 * 100 / n2);
+
+                            if (percentage >= 0 && percentage <= 100) {
+                                dpercentsem3.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                            }
+                        } else {
+                            doutofsem3.setError("Invalid Out Of Marks");
+                            dpercentsem3.setText("");
+                        }
+                    } else {
+                        dpercentsem3.setText("");
+                    }
+                } catch (Exception e) {
+                }
+
+            }
+        });
+        dmarkssem4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                dmarkssem4.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+//                try {
+//
+//                    String s1=dmarkssem4.getText().toString();
+//                    String s2=doutofsem4.getText().toString();
+//                    if(!s1.equals("")&&!s2.equals("")) {
+//                        double n1 = Double.parseDouble(s1);
+//                        double n2 = Double.parseDouble(s2);
+//
+//                        double percentage = (n1 * 100/ n2);
+//
+//                        if(percentage>=0&&percentage<=100)
+//                            dpercentsem4.setText("" +(new DecimalFormat("##.##").format(percentage)));
+//                    }
+//                }catch (Exception e){}
+
+                doutofsem4.setError(null);
+
+                try {
+                    double percentage = 0;
+                    String s1 = dmarkssem4.getText().toString();
+//                    String s2 = doutofsem4.getText().toString();
+                    String s2 = outofsem4;
+                    Log.d("TAG", "afterTextChanged: main --------------- " + doutofsem4);
+                    Log.d("TAG", "afterTextChanged: main********* " + s2);
+
+
+                    if (!s1.equals("") && !s2.equals("")) {
+                        double n1 = Double.parseDouble(s1);
+                        double n2 = Double.parseDouble(s2);
+
+                        if (n1 <= n2) {
+                            percentage = (n1 * 100 / n2);
+
+                            if (percentage >= 0 && percentage <= 100) {
+                                dpercentsem4.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                            }
+                        } else {
+                            doutofsem4.setError("Invalid Out Of Marks");
+                            dpercentsem4.setText("");
+                        }
+                    } else {
+                        dpercentsem4.setText("");
+                    }
+                } catch (Exception e) {
+                }
+
+            }
+        });
+        doutofsem4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                doutofsem4.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+//                try {
+//
+//                    String s1=dmarkssem4.getText().toString();
+//                    String s2=doutofsem4.getText().toString();
+//                    if(!s1.equals("")&&!s2.equals("")) {
+//                        double n1 = Double.parseDouble(s1);
+//                        double n2 = Double.parseDouble(s2);
+//
+//                        double percentage = (n1 * 100/ n2);
+//
+//                        if(percentage>=0&&percentage<=100)
+//                            dpercentsem4.setText("" +(new DecimalFormat("##.##").format(percentage)));
+//                    }
+//                }catch (Exception e){}
+
+
+                doutofsem4.setError(null);
+
+                try {
+                    double percentage = 0;
+                    String s1 = dmarkssem4.getText().toString();
+                    String s2 = doutofsem4.getText().toString();
+                    if (!s1.equals("") && !s2.equals("")) {
+                        double n1 = Double.parseDouble(s1);
+                        double n2 = Double.parseDouble(s2);
+
+                        if (n1 <= n2) {
+                            percentage = (n1 * 100 / n2);
+
+                            if (percentage >= 0 && percentage <= 100) {
+                                dpercentsem4.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                            }
+                        } else {
+                            doutofsem4.setError("Invalid Out Of Marks");
+                            dpercentsem4.setText("");
+                        }
+                    } else {
+                        dpercentsem4.setText("");
+                    }
+                } catch (Exception e) {
+                }
+
+            }
+        });
+        dmarkssem5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                dmarkssem5.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+//
+//                try {
+//
+//                    String s1=dmarkssem5.getText().toString();
+//                    String s2=doutofsem5.getText().toString();
+//                    if(!s1.equals("")&&!s2.equals("")) {
+//                        double n1 = Double.parseDouble(s1);
+//                        double n2 = Double.parseDouble(s2);
+//
+//                        double percentage = (n1 * 100/ n2);
+//
+//                        if(percentage>=0&&percentage<=100)
+//                            dpercentsem5.setText("" +(new DecimalFormat("##.##").format(percentage)));
+//                    }
+//                }catch (Exception e){}
+
+
+                doutofsem5.setError(null);
+
+                try {
+                    double percentage = 0;
+                    String s1 = dmarkssem5.getText().toString();
+                    String s2 = doutofsem5.getText().toString();
+                    if (!s1.equals("") && !s2.equals("")) {
+                        double n1 = Double.parseDouble(s1);
+                        double n2 = Double.parseDouble(s2);
+
+                        if (n1 <= n2) {
+                            percentage = (n1 * 100 / n2);
+
+                            if (percentage >= 0 && percentage <= 100) {
+                                dpercentsem5.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                            }
+                        } else {
+                            doutofsem5.setError("Invalid Out Of Marks");
+                            dpercentsem5.setText("");
+                        }
+                    } else {
+                        dpercentsem5.setText("");
+                    }
+                } catch (Exception e) {
+                }
+
+            }
+        });
+        doutofsem5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                doutofsem5.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+//                try {
+//
+//                    String s1=dmarkssem5.getText().toString();
+//                    String s2=doutofsem5.getText().toString();
+//                    if(!s1.equals("")&&!s2.equals("")) {
+//                        double n1 = Double.parseDouble(s1);
+//                        double n2 = Double.parseDouble(s2);
+//
+//                        double percentage = (n1 * 100/ n2);
+//
+//                        if(percentage>=0&&percentage<=100)
+//                            dpercentsem5.setText("" +(new DecimalFormat("##.##").format(percentage)));
+//                    }
+//                }catch (Exception e){}
+
+
+                doutofsem5.setError(null);
+
+                try {
+                    double percentage = 0;
+                    String s1 = dmarkssem5.getText().toString();
+                    String s2 = doutofsem5.getText().toString();
+                    if (!s1.equals("") && !s2.equals("")) {
+                        double n1 = Double.parseDouble(s1);
+                        double n2 = Double.parseDouble(s2);
+
+                        if (n1 <= n2) {
+                            percentage = (n1 * 100 / n2);
+
+                            if (percentage >= 0 && percentage <= 100) {
+                                dpercentsem5.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                            }
+                        } else {
+                            doutofsem5.setError("Invalid Out Of Marks");
+                            dpercentsem5.setText("");
+                        }
+                    } else {
+                        dpercentsem5.setText("");
+                    }
+                } catch (Exception e) {
+                }
+
+            }
+        });
+        dmarkssem6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                dmarkssem6.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+//
+//                try {
+//
+//                    String s1=dmarkssem6.getText().toString();
+//                    String s2=doutofsem6.getText().toString();
+//                    if(!s1.equals("")&&!s2.equals("")) {
+//                        double n1 = Double.parseDouble(s1);
+//                        double n2 = Double.parseDouble(s2);
+//
+//                        double percentage = (n1 * 100/ n2);
+//
+//                        if(percentage>=0&&percentage<=100)
+//                            dpercentsem6.setText("" +(new DecimalFormat("##.##").format(percentage)));
+//                    }
+//                }catch (Exception e){}
+
+
+                doutofsem6.setError(null);
+
+                try {
+                    double percentage = 0;
+                    String s1 = dmarkssem6.getText().toString();
+                    String s2 = doutofsem6.getText().toString();
+                    if (!s1.equals("") && !s2.equals("")) {
+                        double n1 = Double.parseDouble(s1);
+                        double n2 = Double.parseDouble(s2);
+
+                        if (n1 <= n2) {
+                            percentage = (n1 * 100 / n2);
+
+                            if (percentage >= 0 && percentage <= 100) {
+                                dpercentsem6.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                            }
+                        } else {
+                            doutofsem6.setError("Invalid Out Of Marks");
+                            dpercentsem6.setText("");
+                        }
+                    } else {
+                        dpercentsem6.setText("");
+                    }
+                } catch (Exception e) {
+                }
+
+            }
+        });
+        doutofsem6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                doutofsem6.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+//                try {
+//
+//                    String s1=dmarkssem6.getText().toString();
+//                    String s2=doutofsem6.getText().toString();
+//                    if(!s1.equals("")&&!s2.equals("")) {
+//                        double n1 = Double.parseDouble(s1);
+//                        double n2 = Double.parseDouble(s2);
+//
+//                        double percentage = (n1 * 100/ n2);
+//
+//                        if(percentage>=0&&percentage<=100)
+//                            dpercentsem6.setText("" +(new DecimalFormat("##.##").format(percentage)));
+//                    }
+//                }catch (Exception e){}
+
+
+                doutofsem6.setError(null);
+
+                try {
+                    double percentage = 0;
+                    String s1 = dmarkssem6.getText().toString();
+                    String s2 = doutofsem6.getText().toString();
+                    if (!s1.equals("") && !s2.equals("")) {
+                        double n1 = Double.parseDouble(s1);
+                        double n2 = Double.parseDouble(s2);
+
+                        if (n1 <= n2) {
+                            percentage = (n1 * 100 / n2);
+
+                            if (percentage >= 0 && percentage <= 100) {
+                                dpercentsem6.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                            }
+                        } else {
+                            doutofsem6.setError("Invalid Out Of Marks");
+                            dpercentsem6.setText("");
+                        }
+                    } else {
+                        dpercentsem6.setText("");
+                    }
+                } catch (Exception e) {
+                }
+
+            }
+        });
+        daggregate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+        marks12 = (EditText) findViewById(R.id.marks12);
+        outof12 = (EditText) findViewById(R.id.outof12);
+        percent12 = (EditText) findViewById(R.id.percent12);
+        schoolname12 = (EditText) findViewById(R.id.schoolname12);
+        yearofpassing12 = (EditText) findViewById(R.id.yearofpassing12);
+        otherboard = (EditText) findViewById(R.id.otherboard);
+        otherstream12 = (EditText) findViewById(R.id.otherstream12);
+        stream12 = (Spinner) findViewById(R.id.stream12);
+        board12 = (Spinner) findViewById(R.id.board12);
+
+        marks12.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                marks12.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+//                try {
+//
+//                    String s1=marks12.getText().toString();
+//                    String s2=outof12.getText().toString();
+//                    if(!s1.equals("")&&!s2.equals("")) {
+//                        double n1 = Double.parseDouble(s1);
+//                        double n2 = Double.parseDouble(s2);
+//
+//                        double percentage = (n1 * 100/ n2);
+//
+//                        if(percentage>=0&&percentage<=100)
+//                            percent12.setText("" +(new DecimalFormat("##.##").format(percentage)));
+//                    }
+//                }catch (Exception e){}
+
+
+                outof12.setError(null);
+
+                try {
+                    double percentage = 0;
+                    String s1 = marks12.getText().toString();
+                    String s2 = outof12.getText().toString();
+                    if (!s1.equals("") && !s2.equals("")) {
+                        double n1 = Double.parseDouble(s1);
+                        double n2 = Double.parseDouble(s2);
+
+                        if (n1 <= n2) {
+                            percentage = (n1 * 100 / n2);
+
+                            if (percentage >= 0 && percentage <= 100) {
+
+                                percent12.setText("" + (new DecimalFormat("##.##").format(percentage)));
+                            }
+                        } else {
+                            outof12.setError("Invalid Out Of Marks");
+                            percent12.setText("");
+                        }
+                    } else {
+                        percent12.setText("");
+                    }
+                } catch (Exception e) {
+                }
+
+
+            }
+        });
+        outof12.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                outof12.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+//                try {
+//
+//                    String s1=marks12.getText().toString();
+//                    String s2=outof12.getText().toString();
+//                    if(!s1.equals("")&&!s2.equals("")) {
+//                        double n1 = Double.parseDouble(s1);
+//                        double n2 = Double.parseDouble(s2);
+//
+//                        double percentage = (n1 * 100/ n2);
+//
+//                        if(percentage>=0&&percentage<=100)
+//                            percent12.setText("" +(new DecimalFormat("##.##").format(percentage)));
+//                    }
+//                }catch (Exception e){}
+
+
+                percent12.setError(null);
+
+                try {
+                    double percentage = 0;
+                    String s1 = marks12.getText().toString();
+                    String s2 = outof12.getText().toString();
+                    if (!s1.equals("") && !s2.equals("")) {
+                        double n1 = Double.parseDouble(s1);
+                        double n2 = Double.parseDouble(s2);
+
+                        if (n1 <= n2) {
+                            percentage = (n1 * 100 / n2);
+
+                            if (percentage >= 0 && percentage <= 100)
+                                percent12.setText("" + (new DecimalFormat("##.##").format(percentage)));
+
+                        } else {
+                            outof12.setError("Invalid Out Of Marks");
+                            percent12.setText("");
+                        }
+                    } else {
+                        percent12.setText("");
+                    }
+                } catch (Exception e) {
+                }
+
+
+            }
+        });
+        otherboard.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                otherboard.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        otherstream12.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                otherstream12.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        schoolname12.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        schoolnamed.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        yearofpassing12.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+        String[] dboards = new String[]{
+                "- Select Board -", "State Board", "Other"
+        };
+        final List<String> dboardslist = new ArrayList<>(Arrays.asList(dboards));
+
+        ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item, dboardslist) {
+            @Override
+            public boolean isEnabled(int position) {
+
+                if (position == 0) {
+
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
+                tv.setTypeface(custom_font3);
+
+                if (position == 0) {
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                }
+                return view;
+            }
+        };
+        ;
+        duniversity.setAdapter(dataAdapter3);
+        duniversity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedBoarddiploma = (String) parent.getItemAtPosition(position);
+                TextInputLayout otherboardinput = (TextInputLayout) findViewById(R.id.otherboarddinput);
+                if (selectedBoarddiploma.equals("Other")) {
+
+                    otherboardinput.setVisibility(View.VISIBLE);
+                } else {
+
+                    otherboardinput.setVisibility(View.GONE);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        String[] boards = new String[]{
+                "- Select Board -", "State Board", "CBSE", "ICSE", "National Open School", "Other"
+        };
+        final List<String> boardslist = new ArrayList<>(Arrays.asList(boards));
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, boardslist) {
+            @Override
+            public boolean isEnabled(int position) {
+
+                if (position == 0) {
+
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
+                tv.setTypeface(custom_font3);
+
+                if (position == 0) {
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                }
+                return view;
+            }
+        };
+        ;
+        board12.setAdapter(dataAdapter);
+
+        board12.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedBoard12 = (String) parent.getItemAtPosition(position);
+                TextInputLayout otherboardinput = (TextInputLayout) findViewById(R.id.otherboardinput);
+                if (selectedBoard12.equals("Other")) {
+
+                    otherboardinput.setVisibility(View.VISIBLE);
+                } else {
+
+                    otherboardinput.setVisibility(View.GONE);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        String[] streams = new String[]{
+                "- Select Stream -", "Science", "Commerce", "Arts", "Other"
+        };
+        final List<String> streamslist = new ArrayList<>(Arrays.asList(streams));
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, R.layout.spinner_item, streamslist) {
+            @Override
+            public boolean isEnabled(int position) {
+
+                if (position == 0) {
+
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
+                tv.setTypeface(custom_font3);
+
+                if (position == 0) {
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                }
+                return view;
+            }
+        };
+        ;
+        stream12.setAdapter(dataAdapter2);
+
+        stream12.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedStream12 = (String) parent.getItemAtPosition(position);
+                TextInputLayout otherstreaminput = (TextInputLayout) findViewById(R.id.otherstream12input);
+                if (selectedStream12.equals("Other")) {
+
+                    otherstreaminput.setVisibility(View.VISIBLE);
+                } else {
+
+                    otherstreaminput.setVisibility(View.GONE);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        yearofpassingd = (EditText) findViewById(R.id.yearofpassingd);
+
+        yearofpassing12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyProfileTwelthOrDiploma.this);
+                LayoutInflater inflater = MyProfileTwelthOrDiploma.this.getLayoutInflater();
+                View dialog = inflater.inflate(R.layout.monthyeardialog, null);
+                dialogBuilder.setView(dialog);
+
+
+                final WheelView monthView, yearView;
+
+                final List<String> monthList = new ArrayList<String>();
+                final List<String> yearList = new ArrayList<String>();
+
+                monthView = (WheelView) dialog.findViewById(R.id.monthwheel);
+                yearView = (WheelView) dialog.findViewById(R.id.yearwheel);
+
+                monthList.add("Jan");
+                monthList.add("Feb");
+                monthList.add("Mar");
+                monthList.add("Apr");
+                monthList.add("May");
+                monthList.add("Jun");
+                monthList.add("Jul");
+                monthList.add("Aug");
+                monthList.add("Sep");
+                monthList.add("Oct");
+                monthList.add("Nov");
+                monthList.add("Dec");
+
+                Calendar cur = Calendar.getInstance();
+                for (int i = 1975; i <= cur.get(Calendar.YEAR); i++)
+                    yearList.add("" + i);
+
+
+                monthView.setWheelAdapter(new ArrayWheelAdapter(MyProfileTwelthOrDiploma.this));
+                monthView.setWheelData(monthList);
+                yearView.setWheelAdapter(new ArrayWheelAdapter(MyProfileTwelthOrDiploma.this));
+                yearView.setWheelData(yearList);
+
+                View setselectionview = (View) dialog.findViewById(R.id.setselectionview);
+                View cancelselectionview = (View) dialog.findViewById(R.id.cancelselectionview);
+
+                final AlertDialog alertDialog = dialogBuilder.create();
+
+
+                setselectionview.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int monthPosition = monthView.getCurrentPosition();
+                        int yearPosition = yearView.getCurrentPosition();
+
+                        String selectedMonth = monthList.get(monthPosition);
+                        String selectedYear = yearList.get(yearPosition);
+
+                        setMonthYear("twelth", selectedMonth, selectedYear);
+
+                        alertDialog.cancel();
+                    }
+                });
+
+
+                cancelselectionview.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        alertDialog.cancel();
+                    }
+                });
+
+                alertDialog.show();
+
+                DisplayMetrics displaymetrics = new DisplayMetrics();
+                getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+
+
+                int w = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 180, getResources().getDisplayMetrics());
+                int h = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 215, getResources().getDisplayMetrics());
+                alertDialog.getWindow().setLayout(w, h);
+            }
+        });
+        yearofpassingd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyProfileTwelthOrDiploma.this);
+                LayoutInflater inflater = MyProfileTwelthOrDiploma.this.getLayoutInflater();
+                View dialog = inflater.inflate(R.layout.monthyeardialog, null);
+                dialogBuilder.setView(dialog);
+
+
+                final WheelView monthView, yearView;
+
+                final List<String> monthList = new ArrayList<String>();
+                final List<String> yearList = new ArrayList<String>();
+
+                monthView = (WheelView) dialog.findViewById(R.id.monthwheel);
+                yearView = (WheelView) dialog.findViewById(R.id.yearwheel);
+
+                monthList.add("Jan");
+                monthList.add("Feb");
+                monthList.add("Mar");
+                monthList.add("Apr");
+                monthList.add("May");
+                monthList.add("Jun");
+                monthList.add("Jul");
+                monthList.add("Aug");
+                monthList.add("Sep");
+                monthList.add("Oct");
+                monthList.add("Nov");
+                monthList.add("Dec");
+
+                Calendar cur = Calendar.getInstance();
+                for (int i = 1975; i <= cur.get(Calendar.YEAR); i++)
+                    yearList.add("" + i);
+
+
+                monthView.setWheelAdapter(new ArrayWheelAdapter(MyProfileTwelthOrDiploma.this));
+                monthView.setWheelData(monthList);
+                yearView.setWheelAdapter(new ArrayWheelAdapter(MyProfileTwelthOrDiploma.this));
+                yearView.setWheelData(yearList);
+
+
+                View setselectionview = (View) dialog.findViewById(R.id.setselectionview);
+                View cancelselectionview = (View) dialog.findViewById(R.id.cancelselectionview);
+
+                final AlertDialog alertDialog = dialogBuilder.create();
+
+
+                setselectionview.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int monthPosition = monthView.getCurrentPosition();
+                        int yearPosition = yearView.getCurrentPosition();
+
+                        String selectedMonth = monthList.get(monthPosition);
+                        String selectedYear = yearList.get(yearPosition);
+
+                        setMonthYear("diploma", selectedMonth, selectedYear);
+
+                        alertDialog.cancel();
+                    }
+                });
+
+
+                cancelselectionview.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        alertDialog.cancel();
+                    }
+                });
+
+                alertDialog.show();
+
+                int w = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 180, getResources().getDisplayMetrics());
+                int h = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 215, getResources().getDisplayMetrics());
+                alertDialog.getWindow().setLayout(w, h);
+            }
+        });
+
+
+        radioGrouptwelthdiploma = (RadioGroup) findViewById(R.id.radioGrouptwelthdiploma);
+        radioButtonTwelth = (RadioButton) findViewById(R.id.radioButtonTwelth);
+        radioButtonDiploma = (RadioButton) findViewById(R.id.radioButtonDiploma);
+
+        TextView twelthtxt = (TextView) findViewById(R.id.twelthtxt);
+        Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/arba.ttf");
+        twelthtxt.setTypeface(custom_font1);
+
+        radioGrouptwelthdiploma.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i) {
+                    case R.id.radioButtonTwelth:
+
+                        layouttoshow = (RelativeLayout) findViewById(R.id.twelthform);
+                        layouttohide = (RelativeLayout) findViewById(R.id.diplomaform);
+                        layouttoshow.setVisibility(View.VISIBLE);
+                        layouttohide.setVisibility(View.GONE);
+                        pattern = "twelth";
+
+                        break;
+                    case R.id.radioButtonDiploma:
+                        layouttoshow = (RelativeLayout) findViewById(R.id.diplomaform);
+                        layouttohide = (RelativeLayout) findViewById(R.id.twelthform);
+                        layouttoshow.setVisibility(View.VISIBLE);
+                        layouttohide.setVisibility(View.GONE);
+                        pattern = "diploma";
+                        break;
+
+                }
+            }
+        });
+        ScrollView myprofileintroscrollview = (ScrollView) findViewById(R.id.myprofiletwelthordiplomascrollview);
+        disableScrollbars(myprofileintroscrollview);
+
+        marksobtained = s.getMarks12();
+        outofmarks = s.getOutof12();
+        percentage = s.getPercentage12();
+        schoolnametwelth = s.getSchoolname12();
+        selectedStream12 = s.getStream12();
+        oldStream12 = selectedStream12;
+        selectedBoard12 = s.getBoard12();
+        oldBoard12 = selectedBoard12;
+        monthandyearofpassing12 = s.getYearofpassing12();
+
+
+        if (marksobtained != null && !marksobtained.equals("")) {
+            marks12.setText(marksobtained);
+            pattern = "twelth";
+            radioButtonTwelth.setChecked(true);
+        }
+        if (outofmarks != null)
+            outof12.setText(outofmarks);
+        if (percentage != null)
+            percent12.setText(percentage);
+        if (schoolnametwelth != null)
+            schoolname12.setText(schoolnametwelth);
+        if (monthandyearofpassing12 != null)
+            yearofpassing12.setText(monthandyearofpassing12);
+        if (selectedBoard12 != null) {
+            int foundboard = 0;
+            for (int i = 1; i < boards.length - 1; i++)
+                if (selectedBoard12.equals(boards[i])) {
+                    foundboard = 1;
+                    break;
+                }
+            if (foundboard == 1)
+                board12.setSelection(dataAdapter.getPosition(selectedBoard12));
+            else {
+                board12.setSelection(dataAdapter.getPosition("Other"));
+                otherboard.setVisibility(View.VISIBLE);
+                otherboard.setText(selectedBoard12);
+            }
+        }
+        if (selectedStream12 != null) {
+            int foundstream = 0;
+            for (int i = 1; i < streams.length - 1; i++)
+                if (selectedStream12.equals(streams[i])) {
+                    foundstream = 1;
+                    break;
+                }
+            if (foundstream == 1)
+                stream12.setSelection(dataAdapter2.getPosition(selectedStream12));
+            else {
+                stream12.setSelection(dataAdapter2.getPosition("Other"));
+                otherstream12.setVisibility(View.VISIBLE);
+                otherstream12.setText(selectedStream12);
+            }
+        }
+
+        if (s.getMarkssem1diploma() != null)
+            markssem1 = s.getMarkssem1diploma();
+        if (s.getOutofsem1diploma() != null)
+            outofsem1 = s.getOutofsem1diploma();
+        if (s.getPercentagesem1diploma() != null)
+            percentsem1 = s.getPercentagesem1diploma();
+        if (s.getMarkssem2diploma() != null)
+            markssem2 = s.getMarkssem2diploma();
+        if (s.getOutofsem2diploma() != null)
+            outofsem2 = s.getOutofsem2diploma();
+        if (s.getPercentagesem2diploma() != null)
+            percentsem2 = s.getPercentagesem2diploma();
+        if (s.getMarkssem3diploma() != null)
+            markssem3 = s.getMarkssem3diploma();
+        if (s.getOutofsem3diploma() != null)
+            outofsem3 = s.getOutofsem3diploma();
+        if (s.getPercentagesem3diploma() != null)
+            percentsem3 = s.getPercentagesem3diploma();
+        if (s.getMarkssem4diploma() != null)
+            markssem4 = s.getMarkssem4diploma();
+        if (s.getOutofsem4diploma() != null)
+            outofsem4 = s.getOutofsem4diploma();
+        if (s.getPercentagesem4diploma() != null)
+            percentsem4 = s.getPercentagesem4diploma();
+        if (s.getMarkssem5diploma() != null)
+            markssem5 = s.getMarkssem5diploma();
+        if (s.getOutofsem5diploma() != null)
+            outofsem5 = s.getOutofsem5diploma();
+        if (s.getPercentagesem5diploma() != null)
+            percentsem5 = s.getPercentagesem5diploma();
+        if (s.getMarkssem6diploma() != null)
+            markssem6 = s.getMarkssem6diploma();
+        if (s.getOutofsem6diploma() != null)
+            outofsem6 = s.getOutofsem6diploma();
+        if (s.getPercentagesem6diploma() != null)
+            percentsem6 = s.getPercentagesem6diploma();
+        if (s.getAggregatediploma() != null)
+            aggregate = s.getAggregatediploma();
+
+        if (s.getUniversitydiploma() != null)
+            selectedBoarddiploma = s.getUniversitydiploma();
+
+
+
+        if (s.getCollegenamediploma() != null)
+            schoolnamediploma = s.getCollegenamediploma();
+        if (s.getYearofpassingdiploma() != null)
+            monthandyearofpassingdiploma = s.getYearofpassingdiploma();
+
+        if (s.getCoursediploma() != null)
+            selectedCourse = s.getCoursediploma();
+
+        oldBoarddiploma = selectedBoarddiploma;
+        oldBoarddiploma = selectedCourse;
+
+        if (markssem1 != null && !markssem1.equals("")) {
+            dmarkssem1.setText(markssem1);
+            pattern = "diploma";
+            radioButtonDiploma.setChecked(true);
+        }
+
+
+
+        if (outofsem1 != null)
+            doutofsem1.setText(outofsem1);
+        if (percentsem1 != null)
+            dpercentsem1.setText(percentsem1);
+        if (markssem2 != null)
+            dmarkssem2.setText(markssem2);
+        if (outofsem2 != null)
+            doutofsem2.setText(outofsem2);
+        if (percentsem2 != null)
+            dpercentsem2.setText(percentsem2);
+        if (markssem3 != null)
+            dmarkssem3.setText(markssem3);
+        if (outofsem3 != null)
+            doutofsem3.setText(outofsem3);
+        if (percentsem3 != null)
+            dpercentsem3.setText(percentsem3);
+        if (markssem4 != null)
+            dmarkssem4.setText(markssem4);
+        if (outofsem4 != null) {
+            doutofsem4.setText(outofsem4);
+        }
+        if (percentsem4 != null) {
+            dpercentsem4.setText(percentsem4);
+
+        }
+
+
+        if (markssem5 != null)
+            dmarkssem5.setText(markssem5);
+
+        if (outofsem5 != null)
+            doutofsem5.setText(outofsem5);
+
+
+        if (percentsem5 != null)
+            dpercentsem5.setText(percentsem5);
+
+        if (markssem6 != null)
+            dmarkssem6.setText(markssem6);
+
+        if (outofsem6 != null)
+            doutofsem6.setText(outofsem6);
+
+
+        if (percentsem6 != null)
+            dpercentsem6.setText(percentsem6);
+
+        if (aggregate != null)
+            daggregate.setText(aggregate);
+
+        if (schoolnamediploma != null)
+            schoolnamed.setText(schoolnamediploma);
+
+        if (monthandyearofpassingdiploma != null)
+            yearofpassingd.setText(monthandyearofpassingdiploma);
+
+
+        if (selectedBoarddiploma != null) {
+            int foundboard = 0;
+            for (int i = 1; i < dboards.length - 1; i++)
+                if (selectedBoarddiploma.equals(dboards[i])) {
+                    foundboard = 1;
+                    break;
+                }
+            if (foundboard == 1)
+                duniversity.setSelection(dataAdapter3.getPosition(selectedBoarddiploma));
+            else {
+                duniversity.setSelection(dataAdapter3.getPosition("Other"));
+                otherboardd.setVisibility(View.VISIBLE);
+                otherboardd.setText(selectedBoarddiploma);
+            }
+        }
+
+//        if (selectedCourse != null) {
+//            int foundcourse = 0;
+//            for (int i = 1; i < courses.length - 1; i++)
+//                if (selectedCourse.equals(courses[i])) {
+//                    foundcourse = 1;
+//                    break;
+//                }
+//            if (foundcourse == 1)
+//                dcourse.setSelection(dataAdapter3.getPosition(selectedCourse));
+//            else {
+//                dcourse.setSelection(dataAdapter3.getPosition("Other"));
+//                otherboardd.setVisibility(View.VISIBLE);
+//                otherboardd.setText(selectedBoarddiploma);
+//            }
+//        }
+
+
+
+        edittedFlag = 0;
+
+
+    }
+
+    class GetCourses extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+            json = jParser.makeHttpRequest(MyConstants.url_getcourses, "GET", params);
+            try {
+                String s = json.getString("count");
+                coursecount = Integer.parseInt(s);
+
+                courses = new String[coursecount];
+                for (int i = 0; i < coursecount; i++) {
+                    courses[i] = json.getString("course" + i);
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            courseslist.clear();
+            courseslist.add("- Select Course -");
+            for (int i = 0; i < coursecount; i++) {
+                courseslist.add(courses[i]);
+            }
+            populateCourses();
+            courseslist.add("Other");
+        }
+    }
+
+    void populateCourses() {
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, courseslist) {
+            @Override
+            public boolean isEnabled(int position) {
+
+                if (position == 0) {
+
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
+                tv.setTypeface(custom_font3);
+
+                if (position == 0) {
+                    // Set the hint text color gray
+                    tv.setTextColor(Color.GRAY);
+                } else {
+                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                }
+                return view;
+            }
+        };
+        ;
+        dcourse.setAdapter(dataAdapter);
+
+        dcourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedCourse = (String) parent.getItemAtPosition(position);
+                TextInputLayout otherboardinput = (TextInputLayout) findViewById(R.id.othercourseinput);
+                if (selectedCourse.equals("Other")) {
+
+                    otherboardinput.setVisibility(View.VISIBLE);
+                } else {
+
+                    otherboardinput.setVisibility(View.GONE);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        if (isCourseSet == 0) {
+            isCourseSet = 1;
+            if (s.getCoursediploma() != null) {
+                dcourse.setSelection(dataAdapter.getPosition(s.getCoursediploma()));
+                selectedCourse = s.getCoursediploma();
+                oldCourse = selectedCourse;
+            }
+        }
+
+
+    }
+
+    void setMonthYear(String tod, String selectedMonth, String selectedYear) {
+        if (tod.equals("twelth"))
+            yearofpassing12.setText(selectedMonth + ", " + selectedYear);
+        else
+            yearofpassingd.setText(selectedMonth + ", " + selectedYear);
+
+    }
+
+    private void disableScrollbars(ScrollView scrollView) {
+        if (scrollView != null) {
+
+            scrollView.setVerticalScrollBarEnabled(false);
+
+        }
+    }
+
+    void validateandSave() {
+
+        if (pattern.equals("twelth")) {
+            setBlankDelpoma();
+
+            marks12.setError(null);
+            outof12.setError(null);
+            percent12.setError(null);
+            schoolname12.setError(null);
+            otherstream12.setError(null);
+            otherboard.setError(null);
+            yearofpassing12.setError(null);
+
+            int errorflag1 = 0, errorflag2 = 0, errorflag3 = 0, errorflag4 = 0, errorflag5 = 0, errorflag6 = 0, errorflag7 = 0, errorflag8 = 0, errorflag9 = 0;
+
+            marksobtained = marks12.getText().toString();
+            outofmarks = outof12.getText().toString();
+            percentage = percent12.getText().toString();
+            schoolnametwelth = schoolname12.getText().toString();
+            monthandyearofpassing12 = yearofpassing12.getText().toString();
+
+            if (marksobtained.length() < 1) {
+                errorflag1 = 1;
+                marks12.setError("Incorrect Marks");
+            } else {
+                if (outofmarks.length() < 1) {
+                    errorflag2 = 1;
+                    marks12.setError(null);
+                    outof12.setError("Incorrect Marks");
+                } else {
+                    if (percentage.length() < 1) {
+                        errorflag3 = 1;
+                        marks12.setError(null);
+                        outof12.setError(null);
+                        percent12.setError("Incorrect Percentage");
+                    } else {
+                        if (schoolnametwelth.length() < 3) {
+                            errorflag4 = 1;
+                            marks12.setError(null);
+                            outof12.setError(null);
+                            percent12.setError(null);
+                            schoolname12.setError("Invalid Schoolname");
+                        } else {
+                            if (selectedStream12 == null || selectedStream12.equals("- Select Stream -")) {
+                                errorflag5 = 1;
+                                marks12.setError(null);
+                                outof12.setError(null);
+                                percent12.setError(null);
+                                schoolname12.setError(null);
+                                Toast.makeText(MyProfileTwelthOrDiploma.this, "Select Stream", Toast.LENGTH_LONG).show();
+                            } else {
+                                if (selectedStream12.equals("Other")) {
+                                    otherspecifiedstream = otherstream12.getText().toString();
+                                    if (otherspecifiedstream.length() < 3) {
+                                        errorflag6 = 1;
+                                        marks12.setError(null);
+                                        outof12.setError(null);
+                                        percent12.setError(null);
+                                        schoolname12.setError(null);
+                                        otherstream12.setError("Invalid Stream");
+                                    }
+                                }
+
+                                if (selectedBoard12 == null || selectedBoard12.equals("- Select Board -")) {
+                                    errorflag7 = 1;
+                                    marks12.setError(null);
+                                    outof12.setError(null);
+                                    percent12.setError(null);
+                                    schoolname12.setError(null);
+                                    Toast.makeText(MyProfileTwelthOrDiploma.this, "Select Board", Toast.LENGTH_LONG).show();
+                                } else {
+                                    if (selectedBoard12.equals("Other")) {
+                                        otherspecifiedboard = otherboard.getText().toString();
+                                        if (otherspecifiedboard.length() < 3) {
+                                            errorflag8 = 1;
+                                            marks12.setError(null);
+                                            outof12.setError(null);
+                                            percent12.setError(null);
+                                            schoolname12.setError(null);
+                                            otherboard.setError("Invalid Board");
+                                        }
+                                    }
+                                    if (monthandyearofpassing12.length() < 9 || monthandyearofpassing12.length() > 9) {
+                                        errorflag9 = 1;
+                                        marks12.setError(null);
+                                        outof12.setError(null);
+                                        percent12.setError(null);
+                                        schoolname12.setError(null);
+                                        otherboard.setError(null);
+                                        yearofpassing12.setError("Invalid Month,Year");
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag5 == 0 && errorflag6 == 0 && errorflag7 == 0 && errorflag8 == 0 && errorflag9 == 0) {
+                try {
+
+
+                    if (selectedStream12.equals("Other"))
+                        selectedstreamBytes1 = otherspecifiedstream;
+                    else
+                        selectedstreamBytes1 = selectedStream12;
+
+                    if (selectedBoard12.equals("Other"))
+                        selectedboardBytes1 = otherspecifiedboard;
+                    else
+                        selectedboardBytes1 = selectedBoard12;
+
+
+                    // enc deploma blank
+
+
+
+
+                    new SaveDataTwelth().execute();
+
+                    new SaveDataDiploma().execute();
+
+                } catch (Exception e) {
+                    Toast.makeText(this, " " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+
+        } else if (pattern.equals("diploma")) {
+
+            setBlankTwelth();
+
+            dmarkssem1.setError(null);
+            doutofsem1.setError(null);
+            dpercentsem1.setError(null);
+            dmarkssem2.setError(null);
+            doutofsem2.setError(null);
+            dpercentsem2.setError(null);
+            dmarkssem3.setError(null);
+            doutofsem3.setError(null);
+            dpercentsem3.setError(null);
+            dmarkssem4.setError(null);
+            doutofsem4.setError(null);
+            dpercentsem4.setError(null);
+            dmarkssem5.setError(null);
+            doutofsem5.setError(null);
+            dpercentsem5.setError(null);
+            dmarkssem6.setError(null);
+            doutofsem6.setError(null);
+            dpercentsem6.setError(null);
+            daggregate.setError(null);
+            schoolnamed.setError(null);
+            yearofpassingd.setError(null);
+
+            markssem1 = dmarkssem1.getText().toString();
+            outofsem1 = doutofsem1.getText().toString();
+            percentsem1 = dpercentsem1.getText().toString();
+            markssem2 = dmarkssem2.getText().toString();
+            outofsem2 = doutofsem2.getText().toString();
+            percentsem2 = dpercentsem2.getText().toString();
+            markssem3 = dmarkssem3.getText().toString();
+            outofsem3 = doutofsem3.getText().toString();
+            percentsem3 = dpercentsem3.getText().toString();
+            markssem4 = dmarkssem4.getText().toString();
+            Log.d("TAG", "Befor: set per " + dpercentsem4.getText().toString());
+            outofsem4 = doutofsem4.getText().toString();
+            Log.d("TAG", "after: set per " + dpercentsem4.getText().toString());
+            percentsem4 = dpercentsem4.getText().toString();
+            markssem5 = dmarkssem5.getText().toString();
+            outofsem5 = doutofsem5.getText().toString();
+            percentsem5 = dpercentsem5.getText().toString();
+            markssem6 = dmarkssem6.getText().toString();
+            outofsem6 = doutofsem6.getText().toString();
+            percentsem6 = dpercentsem6.getText().toString();
+            aggregate = daggregate.getText().toString();
+            schoolnamediploma = schoolnamed.getText().toString();
+            monthandyearofpassingdiploma = yearofpassingd.getText().toString();
+
+            int errorflag1 = 0, errorflag2 = 0, errorflag3 = 0, errorflag4 = 0, errorflag5 = 0;
+
+            if (markssem1.length() < 1) {
+                errorflag1 = 1;
+                dmarkssem1.setError("Incorrect Marks");
+            } else {
+                errorflag1 = 0;
+                if (outofsem1.length() < 1) {
+                    errorflag1 = 1;
+                    dmarkssem1.setError(null);
+                    doutofsem1.setError("Incorrect Marks");
+                } else {
+                    errorflag1 = 0;
+                    if (percentsem1.length() < 1) {
+                        errorflag1 = 1;
+                        dmarkssem1.setError(null);
+                        doutofsem1.setError(null);
+                        doutofsem1.setError("Incorrect Percentage");
+                    } else {
+                        errorflag1 = 0;
+                        if (markssem2.length() < 1) {
+                            errorflag1 = 1;
+                            dmarkssem2.setError("Incorrect Marks");
+                        } else {
+                            errorflag1 = 0;
+                            if (outofsem2.length() < 1) {
+                                errorflag1 = 1;
+                                dmarkssem2.setError(null);
+                                doutofsem2.setError("Incorrect Marks");
+                            } else {
+                                errorflag1 = 0;
+                                if (percentsem2.length() < 1) {
+                                    errorflag1 = 1;
+                                    dmarkssem2.setError(null);
+                                    doutofsem2.setError(null);
+                                    doutofsem2.setError("Incorrect Percentage");
+                                } else {
+                                    errorflag1 = 0;
+                                    if (markssem3.length() < 1) {
+                                        errorflag1 = 1;
+                                        dmarkssem3.setError("Incorrect Marks");
+                                    } else {
+                                        errorflag1 = 0;
+                                        if (outofsem3.length() < 1) {
+                                            errorflag1 = 1;
+                                            dmarkssem3.setError(null);
+                                            doutofsem3.setError("Incorrect Marks");
+                                        } else {
+                                            errorflag1 = 0;
+                                            if (percentsem3.length() < 1) {
+                                                errorflag1 = 1;
+                                                dmarkssem3.setError(null);
+                                                doutofsem3.setError(null);
+                                                doutofsem3.setError("Incorrect Percentage");
+                                            } else {
+                                                errorflag1 = 0;
+                                                if (markssem4.length() < 1) {
+                                                    errorflag1 = 1;
+                                                    dmarkssem4.setError("Incorrect Marks");
+                                                } else {
+                                                    errorflag1 = 0;
+                                                    if (outofsem4.length() < 1) {
+                                                        errorflag1 = 1;
+                                                        dmarkssem4.setError(null);
+                                                        doutofsem4.setError("Incorrect Marks");
+                                                    } else {
+                                                        errorflag1 = 0;
+                                                        if (percentsem4.length() < 1) {
+                                                            errorflag1 = 1;
+                                                            dmarkssem4.setError(null);
+                                                            doutofsem4.setError(null);
+                                                            doutofsem4.setError("Incorrect Percentage");
+                                                        } else {
+                                                            errorflag1 = 0;
+                                                            if (markssem5.length() < 1) {
+                                                                errorflag1 = 1;
+                                                                dmarkssem5.setError("Incorrect Marks");
+                                                            } else {
+                                                                errorflag1 = 0;
+                                                                if (outofsem5.length() < 1) {
+                                                                    errorflag1 = 1;
+                                                                    dmarkssem5.setError(null);
+                                                                    doutofsem5.setError("Incorrect Marks");
+                                                                } else {
+                                                                    errorflag1 = 0;
+                                                                    if (percentsem5.length() < 1) {
+                                                                        errorflag1 = 1;
+                                                                        dmarkssem5.setError(null);
+                                                                        doutofsem5.setError(null);
+                                                                        doutofsem5.setError("Incorrect Percentage");
+                                                                    } else {
+                                                                        errorflag1 = 0;
+                                                                        if (markssem6.length() < 1) {
+                                                                            errorflag1 = 1;
+                                                                            dmarkssem6.setError("Incorrect Marks");
+                                                                        } else {
+                                                                            errorflag1 = 0;
+                                                                            if (outofsem6.length() < 1) {
+                                                                                errorflag1 = 1;
+                                                                                dmarkssem6.setError(null);
+                                                                                doutofsem6.setError("Incorrect Marks");
+                                                                            } else {
+                                                                                errorflag1 = 0;
+                                                                                if (percentsem6.length() < 1) {
+                                                                                    errorflag1 = 1;
+                                                                                    dmarkssem6.setError(null);
+                                                                                    doutofsem6.setError(null);
+                                                                                    doutofsem6.setError("Incorrect Percentage");
+                                                                                } else {
+                                                                                    errorflag1 = 0;
+                                                                                    float aggg = 0;
+                                                                                    try {
+                                                                                        aggg = Float.parseFloat(aggregate);
+                                                                                    } catch (NumberFormatException e) {
+                                                                                        errorflag1 = 1;
+                                                                                        daggregate.setError("Incorrect Aggregate");
+                                                                                    }
+                                                                                    if (aggg < 0 || aggg > 100) {
+                                                                                        errorflag1 = 1;
+                                                                                        dmarkssem6.setError(null);
+                                                                                        doutofsem6.setError(null);
+                                                                                        doutofsem6.setError(null);
+                                                                                        daggregate.setError("Incorrect Aggregate");
+                                                                                    } else {
+                                                                                        errorflag1 = 0;
+                                                                                        if (selectedCourse == null || selectedCourse.equals("- Select Course -")) {
+                                                                                            errorflag1 = 1;
+                                                                                            daggregate.setError(null);
+                                                                                            Toast.makeText(MyProfileTwelthOrDiploma.this, "Select Course", Toast.LENGTH_LONG).show();
+                                                                                        } else {
+                                                                                            if (selectedCourse.equals("Other")) {
+                                                                                                otherspecifiedcourse = othercourse.getText().toString();
+                                                                                                if (otherspecifiedcourse.length() < 3) {
+                                                                                                    errorflag2 = 1;
+                                                                                                    daggregate.setError(null);
+                                                                                                    othercourse.setError("Invalid Course");
+                                                                                                }
+                                                                                            }
+
+                                                                                            if (selectedBoarddiploma.equals("- Select Board -")) {
+                                                                                                errorflag3 = 1;
+                                                                                                daggregate.setError(null);
+                                                                                                othercourse.setError(null);
+                                                                                                Toast.makeText(MyProfileTwelthOrDiploma.this, "Select Board", Toast.LENGTH_LONG).show();
+                                                                                            } else {
+                                                                                                if (schoolnamediploma.length() < 3) {
+                                                                                                    errorflag4 = 1;
+                                                                                                    schoolnamed.setError("Invalid College Name");
+                                                                                                } else if (selectedBoarddiploma.equals("Other")) {
+                                                                                                    otherspecifiedboard = otherboardd.getText().toString();
+                                                                                                    if (otherspecifiedboard.length() < 3) {
+                                                                                                        errorflag4 = 1;
+
+                                                                                                        otherboardd.setError("Invalid Board");
+                                                                                                    }
+                                                                                                }
+                                                                                                if (monthandyearofpassingdiploma.length() < 9 || monthandyearofpassingdiploma.length() > 9) {
+                                                                                                    errorflag5 = 1;
+                                                                                                    otherboardd.setError(null);
+                                                                                                    yearofpassingd.setError("Invalid Month,Year");
+                                                                                                }
+                                                                                            }
+
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+
+                                                                    }
+                                                                }
+                                                            }
+
+                                                        }
+                                                    }
+                                                }
+
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+            if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag5 == 0) {
+                try {
+
+
+
+
+                    if (selectedCourse.equals("Other"))
+                        selectedcourseBytes1 = otherspecifiedcourse;
+                    else
+                        selectedcourseBytes1 = selectedCourse;
+                    if (selectedBoarddiploma.equals("Other"))
+                        selectedboardBytes1 = otherspecifiedboard;
+                    else
+                        selectedboardBytes1 = selectedBoarddiploma;
+
+
+                    Log.d("TAG", "validateandSave: validate save 2 ()");
+
+                    new SaveDataDiploma().execute();
+                    new SaveDataTwelth().execute();
+
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    }
+
+    public void setBlankTwelth() {
+
+        marksobtained = "";
+        outofmarks = "";
+        percentage = "";
+        schoolnametwelth = "";
+        selectedStream12 = "";
+        oldStream12 = selectedStream12;
+        selectedBoard12 = "";
+        oldBoard12 = "";
+        monthandyearofpassing12 = "";
+
+        marks12.setText("");
+        outof12.setText("");
+        percent12.setText("");
+        schoolname12.setText("");
+        yearofpassing12.setText("");
+        board12.setSelection(0);
+        stream12.setSelection(0);
+
+        s.setMarks12("");
+        s.setOutof12("");
+        s.setPercentage12("");
+        s.setSchoolname12("");
+        s.setStream12("");
+        s.setBoard12("");
+        s.setYearofpassing12("");
+
+
+
+
+    }
+
+    public void setBlankDelpoma() {
+
+        markssem1 = "";
+        outofsem1 = "";
+        percentsem1 = "";
+        markssem2 = "";
+        outofsem2 = "";
+        percentsem2 = "";
+        markssem3 = "";
+        outofsem3 = "";
+        percentsem3 = "";
+        markssem4 = "";
+        outofsem4 = "";
+        percentsem4 = "";
+        markssem5 = "";
+        outofsem5 = "";
+        percentsem5 = "";
+        markssem6 = "";
+        outofsem6 = "";
+        percentsem6 = "";
+        aggregate = "";
+        schoolnamediploma = "";
+        selectedBoarddiploma="";
+        selectedCourse="";
+
+
+        dmarkssem1.setText("");
+        doutofsem1.setText("");
+        dpercentsem1.setText("");
+        dmarkssem2.setText("");
+        doutofsem2.setText("");
+        dpercentsem2.setText("");
+        dmarkssem3.setText("");
+        doutofsem3.setText("");
+        dpercentsem3.setText("");
+        dmarkssem4.setText("");
+        doutofsem4.setText("");
+        dpercentsem4.setText("");
+        dmarkssem5.setText("");
+        doutofsem5.setText("");
+        dpercentsem5.setText("");
+        dmarkssem6.setText("");
+        doutofsem6.setText("");
+        dpercentsem6.setText("");
+        daggregate.setText("");
+        schoolnamed.setText("");
+        yearofpassingd.setText("");
+
+        dcourse.setSelection(0);
+        duniversity.setSelection(0);
+        dcourse.setSelection(0);
+
+        s.setMarkssem1diploma("");
+        s.setOutofsem1diploma("");
+        s.setPercentagesem1diploma("");
+        s.setMarkssem2diploma("");
+        s.setOutofsem2diploma("");
+        s.setPercentagesem2diploma("");
+        s.setMarkssem3diploma("");
+        s.setOutofsem3diploma("");
+        s.setPercentagesem3diploma("");
+        s.setMarkssem4diploma("");
+        s.setOutofsem4diploma("");
+        s.setPercentagesem4diploma("");
+        s.setMarkssem5diploma("");
+        s.setOutofsem5diploma("");
+        s.setPercentagesem5diploma("");
+        s.setMarkssem6diploma("");
+        s.setOutofsem6diploma("");
+        s.setPercentagesem6diploma("");
+        s.setAggregatediploma("");
+        s.setUniversitydiploma("");
+        s.setCollegenamediploma("");
+        s.setYearofpassingdiploma("");
+        s.setCoursediploma("");
+
+
+        try {
+
+
+            if (selectedCourse.equals("Other"))
+                selectedcourseBytes1 = otherspecifiedcourse;
+            else
+                selectedcourseBytes1 = selectedCourse;
+            if (selectedBoarddiploma.equals("Other"))
+                selectedboardBytes1 = otherspecifiedboard;
+            else
+                selectedboardBytes1 = selectedBoarddiploma;
+
+
+        } catch (Exception e) {
+            Log.d("TAG", "setBlankDelpoma: " + e.getMessage());
+        }
+
+    }
+
+
+    class SaveDataTwelth extends AsyncTask<String, String, String> {
+
+        protected String doInBackground(String... param) {
+
+            MyProfileTwelthModal obj = new MyProfileTwelthModal(marksobtained,outofmarks,percentage,schoolnametwelth,selectedStream12,selectedBoard12,monthandyearofpassing12);
+
+            Log.d("params", "marksobtained: "+marksobtained);
+            Log.d("params", "outofmarks: "+outofmarks);
+            Log.d("params", "percentage: "+percentage);
+            Log.d("params", "schoolnametwelth: "+schoolnametwelth);
+            Log.d("params", "selectedstreamBytes1: "+selectedStream12);
+            Log.d("params", "monthandyearofpassing12: "+monthandyearofpassing12);
+            Log.d("params", "selectedboardBytes1: "+selectedBoard12);
+
+
+
+            try{
+                digest1=MySharedPreferencesManager.getDigest1(MyProfileTwelthOrDiploma.this);
+                digest2=MySharedPreferencesManager.getDigest2(MyProfileTwelthOrDiploma.this);
+
+                strobj =OtoString(obj,digest1,digest2);
+                Log.d("encstrobj", "strobj twelth: "+strobj);
+
+            }
+            catch (Exception e){
+                Log.d("TAG", "validateandSave: - "+e.getMessage());
+            }
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));    //0
+            params.add(new BasicNameValuePair("obj", strobj));        //1
+
+
+            json = jParser.makeHttpRequest(url_savedata_twelth, "GET", params);
+            try {
+                r = json.getString("info");
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (result.equals("success")) {
+                Toast.makeText(MyProfileTwelthOrDiploma.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+
+
+                ProfileRole r = new ProfileRole();
+                String role = r.getRole();
+                if (role.equals("student"))
+                    setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+                else if (role.equals("alumni"))
+                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+
+//                if(pattern.equals("twelth")) {
+//                    setBlankDelpoma();
+//                }
+//                if(pattern.equals("diploma")) {
+//                    setBlankTwelth();
+//                }
+
+
+                // fill student obj with update value
+                s.setMarks12(marksobtained);
+                s.setOutof12(outofmarks);
+                s.setPercentage12(percentage);
+                s.setSchoolname12(schoolnametwelth);
+                s.setStream12(selectedStream12);
+                s.setBoard12(selectedBoard12);
+                s.setYearofpassing12(monthandyearofpassing12);
+
+                MyProfileTwelthOrDiploma.super.onBackPressed();
+            }
+        }
+    }
+
+    class SaveDataDiploma extends AsyncTask<String, String, String> {
+
+
+
+        protected String doInBackground(String... param) {
+            Log.d("TAG", "doInBackground: SaveDataDiploma welcome ");
+
+            MyProfileDiplomaModal obj2 = new MyProfileDiplomaModal(markssem1,outofsem1,percentsem1,markssem2,outofsem2,percentsem2,markssem3,outofsem3,percentsem3,markssem4,outofsem4,percentsem4,markssem5,outofsem5,percentsem5,markssem6,outofsem6,percentsem6,aggregate,  selectedCourse, selectedBoarddiploma,  schoolnamediploma,monthandyearofpassingdiploma);
+
+            try{
+                Log.d("encstrobj", "diploma before try block: ");
+                strobj2 =OtoString(obj2,MySharedPreferencesManager.getDigest1(MyProfileTwelthOrDiploma.this),MySharedPreferencesManager.getDigest2(MyProfileTwelthOrDiploma.this));
+                Log.d("encstrobj", "diploma before: "+strobj2);
+                Log.d("encstrobj", "diploma strobj: "+strobj2);
+
+            }
+            catch (Exception e){
+                Log.d("TAG", "validateandSave: - "+e.getMessage());
+            }
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));    //0
+            params.add(new BasicNameValuePair("obj1", strobj2));        //1
+
+            json = jParser.makeHttpRequest(url_savedata_diploma, "GET", params);
+            try {
+                r = json.getString("info");
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (result.equals("success")) {
+
+
+                ProfileRole r = new ProfileRole();
+                String role = r.getRole();
+                if (role.equals("student"))
+                    setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+                else if (role.equals("alumni"))
+                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+
+                Toast.makeText(MyProfileTwelthOrDiploma.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+                MyProfileTwelthOrDiploma.super.onBackPressed();
+
+
+                s.setMarkssem1diploma(markssem1);
+                s.setOutofsem1diploma(outofsem1);
+                s.setPercentagesem1diploma(percentsem1);
+                s.setMarkssem2diploma(markssem2);
+                s.setOutofsem2diploma(outofsem2);
+                s.setPercentagesem2diploma(percentsem2);
+                s.setMarkssem3diploma(markssem3);
+                s.setOutofsem3diploma(outofsem3);
+                s.setPercentagesem3diploma(percentsem3);
+                s.setMarkssem4diploma(markssem4);
+                s.setOutofsem4diploma(outofsem4);
+
+                s.setPercentagesem4diploma(percentsem4);
+                Log.d("TAG", "onPostExecute: " + percentsem4);
+                s.setMarkssem5diploma(markssem5);
+                s.setOutofsem5diploma(outofsem5);
+                s.setPercentagesem5diploma(percentsem5);
+                s.setMarkssem6diploma(markssem6);
+                s.setOutofsem6diploma(outofsem6);
+                s.setPercentagesem6diploma(percentsem6);
+                s.setAggregatediploma(aggregate);
+                s.setUniversitydiploma(selectedBoarddiploma);
+                s.setCollegenamediploma(schoolnamediploma);
+                s.setYearofpassingdiploma(monthandyearofpassingdiploma);
+
+            }
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.action_save:
+
+                validateandSave();
+                break;
+
+            case android.R.id.home:
+
+                onBackPressed();
+
+                return (true);
+        }
+
+        return (super.onOptionsItemSelected(item));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.savemenu, menu);
+        return super.onCreateOptionsMenu(menu);
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (edittedFlag == 1) {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+            alertDialogBuilder
+                    .setMessage("Do you want to discard changes ?")
+                    .setCancelable(false)
+                    .setPositiveButton("Discard",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    MyProfileTwelthOrDiploma.super.onBackPressed();
+                                }
+                            })
+
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            dialog.cancel();
+                        }
+                    });
+
+            final AlertDialog alertDialog = alertDialogBuilder.create();
+
+            alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialogInterface) {
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                }
+            });
+
+            alertDialog.show();
+        } else
+            MyProfileTwelthOrDiploma.super.onBackPressed();
+    }
+}

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/tableborder"
+        />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="#999"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/sectionhorizontal"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#999"
+        android:layout_centerVertical="true"
+        android:id="@+id/sectionvertical"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@id/sectionhorizontal"
+        android:layout_above="@id/sectionvertical"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#999"
+            android:layout_centerVertical="true"
+            android:id="@+id/box1section"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/box1section"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Company Name"
+                android:textColor="#c59a6d"
+                android:paddingTop="2dp"
+                android:paddingLeft="4dp"
+                android:textSize="10dp"
+                android:id="@+id/companynametxt"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#eee"
+                android:id="@+id/companynameview"
+                android:layout_below="@+id/companynametxt"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:text="Octopus ITES Private Limited"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/box1section"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Post"
+                android:textColor="#c59a6d"
+                android:paddingTop="2dp"
+                android:paddingLeft="4dp"
+                android:textSize="10dp"
+                android:id="@+id/posttxt"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#eee"
+                android:id="@+id/companypostview"
+                android:layout_below="@+id/posttxt"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:text="Trainee Engineer"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/sectionhorizontal"
+        android:layout_above="@id/sectionvertical"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#999"
+            android:layout_centerVertical="true"
+            android:id="@+id/box2section"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/box2section"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Package"
+                android:textColor="#c59a6d"
+                android:paddingTop="2dp"
+                android:paddingLeft="4dp"
+                android:textSize="10dp"
+                android:id="@+id/packagetxt"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#eee"
+                android:id="@+id/companypackageview"
+                android:layout_below="@+id/packagetxt"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:text="3.35 LPA"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/box2section"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vacancies"
+                android:textColor="#c59a6d"
+                android:paddingTop="2dp"
+                android:paddingLeft="4dp"
+                android:textSize="10dp"
+                android:id="@+id/vacancytxt"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#eee"
+                android:id="@+id/companyvacanciesview"
+                android:layout_below="@+id/vacancytxt"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:text="20"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@id/sectionhorizontal"
+        android:layout_below="@id/sectionvertical"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#999"
+            android:layout_centerVertical="true"
+            android:id="@+id/box3section"
+            />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/box3section"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Last Date Of Registration"
+                android:textColor="#c59a6d"
+                android:paddingTop="2dp"
+                android:paddingLeft="4dp"
+                android:textSize="10dp"
+                android:id="@+id/lastdateofregtxt"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#eee"
+                android:id="@+id/companylastdateofregview"
+                android:layout_below="@+id/lastdateofregtxt"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:text="29-Jan-2017"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/box3section"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bond In Months"
+                android:textColor="#c59a6d"
+                android:paddingTop="2dp"
+                android:paddingLeft="4dp"
+                android:textSize="10dp"
+                android:id="@+id/bondtxt"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#eee"
+                android:id="@+id/companybondview"
+                android:layout_below="@+id/bondtxt"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:text="12"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/sectionhorizontal"
+        android:layout_below="@id/sectionvertical"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#999"
+            android:layout_centerVertical="true"
+            android:id="@+id/box4section"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/box4section"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date Of Arrival"
+                android:textColor="#c59a6d"
+                android:paddingTop="2dp"
+                android:paddingLeft="4dp"
+                android:textSize="10dp"
+                android:id="@+id/dateofarrtxt"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#eee"
+                android:id="@+id/companydateofarrview"
+                android:layout_below="@+id/dateofarrtxt"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:text="30-Jan-2017"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

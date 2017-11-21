@@ -1,0 +1,1220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/myprofilepg"
+    android:background="#282f35">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+
+        android:id="@+id/activity_my_profile_pg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:focusableInTouchMode="true"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.octopusites.placeme.MyProfilePg">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PG Details"
+            android:textSize="20dp"
+            android:textColor="#eee"
+            android:id="@+id/pgtxt"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:background="@drawable/textviewborder2"
+            />
+
+
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioGroupPg"
+            android:orientation="horizontal"
+            android:layout_below="@+id/pgtxt"
+            android:layout_marginTop="10dp"
+
+            >
+            <android.support.v7.widget.AppCompatRadioButton
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Semester Pattern"
+                android:id="@+id/radioButtonPgSem"
+                app:buttonTint="#eee"
+                android:layout_weight="1"
+                android:textColor="#eee"
+                android:checked="true"
+                />
+            <android.support.v7.widget.AppCompatRadioButton
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yearly Pattern"
+                app:buttonTint="#eee"
+                android:layout_weight="1"
+                android:textColor="#eee"
+                android:id="@+id/radioButtonPgYear"
+                android:checked="false"
+                />
+
+        </RadioGroup>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pgsemform"
+            android:layout_below="@+id/radioGroupPg"
+
+            >
+            <View
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                android:id="@+id/section"
+                android:layout_centerHorizontal="true"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/section"
+                android:id="@+id/edur17"
+                android:layout_marginTop="20dp"
+                >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pmarksusem1input"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Marks Sem 1"
+                        android:textSize="15dp"
+                        android:inputType="number"
+                        android:textColor="#eee"
+                        android:id="@+id/pmarkssem1"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pmarksusem1input"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Out Of Sem 1"
+                        android:inputType="number"
+                        android:textSize="15dp"
+                        android:textColor="#eee"
+                        android:id="@+id/poutofsem1"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/section"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                >
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Percentage Sem 1"
+                        android:textSize="15dp"
+                        android:textColor="#eee"
+                        android:focusable="false"
+                        android:id="@+id/ppercentsem1"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/section"
+                android:layout_below="@+id/edur17"
+                android:id="@+id/edur18"
+                android:layout_marginTop="20dp"
+                >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pmarksusem2input"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Marks Sem 2"
+                        android:textSize="15dp"
+                        android:inputType="number"
+                        android:textColor="#eee"
+                        android:id="@+id/pmarkssem2"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pmarksusem2input"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Out Of Sem 2"
+                        android:inputType="number"
+                        android:textSize="15dp"
+                        android:textColor="#eee"
+                        android:id="@+id/poutofsem2"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/section"
+                android:layout_below="@+id/edur17"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                >
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Percentage Sem 2"
+                        android:textSize="15dp"
+                        android:textColor="#eee"
+                        android:focusable="false"
+                        android:id="@+id/ppercentsem2"/>
+
+                </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/section"
+                android:layout_below="@+id/edur18"
+                android:id="@+id/edur19"
+                android:layout_marginTop="20dp"
+                >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pmarksusem3input"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Marks Sem 3"
+                        android:textSize="15dp"
+                        android:inputType="number"
+                        android:textColor="#eee"
+                        android:id="@+id/pmarkssem3"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pmarksusem3input"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Out Of Sem 3"
+                        android:textSize="15dp"
+                        android:inputType="number"
+                        android:textColor="#eee"
+                        android:id="@+id/poutofsem3"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/section"
+                android:layout_below="@+id/edur18"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                >
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Percentage Sem 3"
+                        android:textSize="15dp"
+                        android:textColor="#eee"
+                        android:focusable="false"
+                        android:id="@+id/ppercentsem3"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/section"
+                android:layout_below="@+id/edur19"
+                android:id="@+id/edur20"
+                android:layout_marginTop="20dp"
+                >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pmarksusem4input"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Marks Sem 4"
+                        android:textSize="15dp"
+                        android:inputType="number"
+                        android:textColor="#eee"
+                        android:id="@+id/pmarkssem4"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pmarksusem4input"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Out Of Sem 4"
+                        android:textSize="15dp"
+                        android:inputType="number"
+                        android:textColor="#eee"
+                        android:id="@+id/poutofsem4"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/section"
+                android:layout_below="@+id/edur19"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                >
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Percentage Sem 4"
+                        android:textSize="15dp"
+                        android:textColor="#eee"
+                        android:focusable="false"
+                        android:id="@+id/ppercentsem4"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/section"
+                android:layout_below="@+id/edur20"
+                android:id="@+id/edur21"
+                android:layout_marginTop="20dp"
+                >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pmarksusem5input"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Marks Sem 5"
+                        android:textSize="15dp"
+                        android:inputType="number"
+                        android:textColor="#eee"
+                        android:id="@+id/pmarkssem5"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pmarksusem5input"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Out Of Sem 5"
+                        android:textSize="15dp"
+                        android:inputType="number"
+                        android:textColor="#eee"
+                        android:id="@+id/poutofsem5"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/section"
+                android:layout_below="@+id/edur20"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                >
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Percentage Sem 5"
+                        android:textSize="15dp"
+                        android:textColor="#eee"
+                        android:focusable="false"
+                        android:id="@+id/ppercentsem5"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/section"
+                android:layout_below="@+id/edur21"
+                android:id="@+id/edur22"
+                android:layout_marginTop="20dp"
+                >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pmarksusem6input"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Marks Sem 6"
+                        android:textSize="15dp"
+                        android:inputType="number"
+                        android:textColor="#eee"
+                        android:id="@+id/pmarkssem6"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pmarksusem6input"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Out Of Sem 6"
+                        android:textSize="15dp"
+                        android:inputType="number"
+                        android:textColor="#eee"
+                        android:id="@+id/poutofsem6"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/section"
+                android:layout_below="@+id/edur21"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                >
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Percentage Sem 6"
+                        android:textSize="15dp"
+                        android:textColor="#eee"
+                        android:focusable="false"
+                        android:id="@+id/ppercentsem6"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:id="@+id/pgsemaggregateinput"
+                android:layout_below="@+id/edur22"
+                android:layout_marginLeft="5dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Aggregate"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:id="@+id/pgsemaggregate"/>
+
+            </android.support.design.widget.TextInputLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pgsemaggregateinput"
+                android:id="@+id/pgsemcoursespinner"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight=".28"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/pgsemcourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:popupBackground="#001111"
+                    android:layout_marginLeft="5dp"
+                    android:spinnerMode="dropdown" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/spinnerimg1"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:tint="#eee"
+                    android:src="@drawable/drop" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/spinnerimg1"
+                    android:background="#eee"
+                    />
+
+            </RelativeLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pgsemcoursespinner"
+                android:layout_marginTop="15dp"
+                android:id="@+id/othersemcourseinput"
+                android:visibility="gone"
+                android:theme="@style/TextLabel">
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Please Specify"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:id="@+id/othersemcourse"/>
+            </android.support.design.widget.TextInputLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/othersemcourseinput"
+                android:id="@+id/pgsemstreamspinner"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight=".28"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/pgsemstream"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:popupBackground="#001111"
+                    android:layout_marginLeft="5dp"
+                    android:spinnerMode="dropdown" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/spinnerimg2"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:tint="#eee"
+                    android:src="@drawable/drop" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/spinnerimg2"
+                    android:background="#eee"
+                    />
+
+            </RelativeLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pgsemstreamspinner"
+                android:layout_marginTop="15dp"
+                android:id="@+id/othersemstreaminput"
+                android:visibility="gone"
+                android:theme="@style/TextLabel">
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Please Specify"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:id="@+id/othersemstream"/>
+            </android.support.design.widget.TextInputLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/othersemstreaminput"
+                android:id="@+id/pgsemuniversityspinner"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight=".28"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/pgsemuniversity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:popupBackground="#001111"
+                    android:layout_marginLeft="5dp"
+                    android:spinnerMode="dropdown" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/spinnerimg3"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:tint="#eee"
+                    android:src="@drawable/drop" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/spinnerimg3"
+                    android:background="#eee"
+                    />
+
+            </RelativeLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pgsemuniversityspinner"
+                android:layout_marginTop="15dp"
+                android:id="@+id/othersemuniversityinput"
+                android:visibility="gone"
+                android:theme="@style/TextLabel">
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Please Specify"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:id="@+id/othersemuniversity"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/othersemuniversityinput"
+                android:layout_marginTop="10dp"
+                android:id="@+id/schoolnamepgseminput"
+                android:layout_marginLeft="5dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="College Name"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/schoolnamepgsem"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/section"
+                android:id="@+id/yearofpassingpgsemspinner"
+                android:layout_below="@+id/schoolnamepgseminput"
+                >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Month, Year of Passing"
+                        android:textSize="15dp"
+                        android:textColor="#eee"
+                        android:focusable="false"
+                        android:id="@+id/yearofpassingpgsem"/>
+
+                </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pgyearform"
+            android:layout_below="@+id/radioGroupPg"
+            android:visibility="gone"
+            >
+            <View
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                android:id="@+id/section2"
+                android:layout_centerHorizontal="true"
+                />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/section2"
+                android:id="@+id/edur23"
+                android:layout_marginTop="20dp"
+                >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pmarksuyear1input"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Marks Year 1"
+                        android:inputType="number"
+                        android:textSize="15dp"
+                        android:textColor="#eee"
+                        android:id="@+id/pmarksyear1"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pmarksuyear1input"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Out Of Year 1"
+                        android:textSize="15dp"
+                        android:inputType="number"
+                        android:textColor="#eee"
+                        android:id="@+id/poutofyear1"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/section2"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                >
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Percentage Year 1"
+                        android:textSize="15dp"
+                        android:textColor="#eee"
+                        android:focusable="false"
+                        android:id="@+id/ppercentyear1"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/section2"
+                android:layout_below="@+id/edur23"
+                android:id="@+id/edur24"
+                android:layout_marginTop="20dp"
+                >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pmarksuyear2input"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Marks Year 2"
+                        android:textSize="15dp"
+                        android:inputType="number"
+                        android:textColor="#eee"
+                        android:id="@+id/pmarksyear2"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pmarksuyear2input"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Out Of Year 2"
+                        android:textSize="15dp"
+                        android:inputType="number"
+                        android:textColor="#eee"
+                        android:id="@+id/poutofyear2"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/section2"
+                android:layout_below="@+id/edur23"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                >
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Percentage Year 2"
+                        android:textSize="15dp"
+                        android:textColor="#eee"
+                        android:focusable="false"
+                        android:id="@+id/ppercentyear2"/>
+
+                </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/section2"
+                android:layout_below="@+id/edur24"
+                android:id="@+id/edur25"
+                android:layout_marginTop="20dp"
+                >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pmarksuyear3input"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Marks Year 3"
+                        android:textSize="15dp"
+                        android:inputType="number"
+                        android:textColor="#eee"
+                        android:id="@+id/pmarksyear3"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pmarksuyear3input"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Out Of Year 3"
+                        android:textSize="15dp"
+                        android:inputType="number"
+                        android:textColor="#eee"
+                        android:id="@+id/poutofyear3"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/section2"
+                android:layout_below="@+id/edur24"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                >
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Percentage Year 3"
+                        android:textSize="15dp"
+                        android:textColor="#eee"
+                        android:focusable="false"
+                        android:id="@+id/ppercentyear3"/>
+
+                </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:id="@+id/pgyearaggregateinput"
+                android:layout_below="@+id/edur25"
+                android:layout_marginLeft="5dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Aggregate"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:id="@+id/pgyearaggregate"/>
+
+            </android.support.design.widget.TextInputLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pgyearaggregateinput"
+                android:id="@+id/pgyearcoursespinner"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight=".28"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/pgyearcourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:popupBackground="#001111"
+                    android:layout_marginLeft="5dp"
+                    android:spinnerMode="dropdown" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/spinnerimg4"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:tint="#eee"
+                    android:src="@drawable/drop" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/spinnerimg4"
+                    android:background="#eee"
+                    />
+
+            </RelativeLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pgyearcoursespinner"
+                android:layout_marginTop="15dp"
+                android:id="@+id/otheryearcourseinput"
+                android:visibility="gone"
+                android:theme="@style/TextLabel">
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Please Specify"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:id="@+id/otheryearcourse"/>
+            </android.support.design.widget.TextInputLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/otheryearcourseinput"
+                android:id="@+id/pgyearstreamspinner"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight=".28"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/pgyearstream"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:popupBackground="#001111"
+                    android:layout_marginLeft="5dp"
+                    android:spinnerMode="dropdown" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/spinnerimg5"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:tint="#eee"
+                    android:src="@drawable/drop" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/spinnerimg5"
+                    android:background="#eee"
+                    />
+
+            </RelativeLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pgyearstreamspinner"
+                android:layout_marginTop="15dp"
+                android:id="@+id/otheryearstreaminput"
+                android:visibility="gone"
+                android:theme="@style/TextLabel">
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Please Specify"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:id="@+id/otheryearstream"/>
+            </android.support.design.widget.TextInputLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/otheryearstreaminput"
+                android:id="@+id/pgyearuniversityspinner"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight=".28"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/pgyearuniversity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:popupBackground="#001111"
+                    android:layout_marginLeft="5dp"
+                    android:spinnerMode="dropdown" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/spinnerimg6"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:tint="#eee"
+                    android:src="@drawable/drop" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/spinnerimg6"
+                    android:background="#eee"
+                    />
+
+            </RelativeLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pgyearuniversityspinner"
+                android:layout_marginTop="15dp"
+                android:id="@+id/otheryearuniversityinput"
+                android:visibility="gone"
+                android:theme="@style/TextLabel">
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Please Specify"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:id="@+id/otheryearuniversity"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/otheryearuniversityinput"
+                android:layout_marginTop="10dp"
+                android:id="@+id/schoolnamepgyearinput"
+                android:layout_marginLeft="5dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="College Name"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/schoolnamepgyear"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/section2"
+                android:id="@+id/yearofpassingpgyearspinner"
+                android:layout_below="@+id/schoolnamepgyearinput"
+                >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Month, Year of Passing"
+                        android:textSize="15dp"
+                        android:textColor="#eee"
+                        android:focusable="false"
+                        android:id="@+id/yearofpassingpgyear"/>
+
+                </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</ScrollView>

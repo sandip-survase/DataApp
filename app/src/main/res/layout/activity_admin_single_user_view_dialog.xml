@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#282f35">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_edit_user"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:focusableInTouchMode="true"
+        tools:context="placeme.octopusites.com.placeme.EditUserActivity">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/edituserrl"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/boxborderwhite"
+            android:padding="16dp"
+            >
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/trash"
+                android:id="@+id/trash2"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+
+                />
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/trash2selectionview"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit email address"
+                android:textSize="12dp"
+                android:textColor="#bbb"
+                android:id="@+id/ass2txt"
+                />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ass2txt"
+                android:id="@+id/emailinput"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel"
+                >
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter email address"
+                    android:textSize="15dp"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:id="@+id/email"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="An email will be sent to this email address containing link to download the app, their edited username and dynamically generated password."
+                android:layout_below="@+id/emailinput"
+                android:id="@+id/passpasstxt"
+                android:textColor="#bbb"
+                android:textSize="12dp"
+                android:paddingTop="5dp"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#c59a6d"
+                android:layout_below="@+id/passpasstxt"
+                android:layout_marginTop="5dp"
+                android:id="@+id/line11"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Placement Status"
+                android:layout_below="@+id/line11"
+                android:layout_marginTop="5dp"
+                android:textSize="12dp"
+                android:textColor="#bbb"
+                android:id="@+id/placementstatus2txt"
+                />
+
+            <CheckBox
+                android:id="@+id/checkboxplaced"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/placementstatus2txt"
+                android:text="Placed"
+                android:layout_marginTop="10dp"
+                android:theme="@style/MyCheckBox"
+                android:textColor="#eee"
+                android:layout_marginLeft="14dp"
+                />
+            <CheckBox
+                android:id="@+id/checkboxnotplaced"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/placementstatus2txt"
+                android:layout_toRightOf="@+id/checkboxplaced"
+                android:text="Not Placed"
+                android:layout_marginTop="10dp"
+                android:theme="@style/MyCheckBox"
+                android:textColor="#eee"
+                android:layout_marginLeft="20dp"
+                />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/checkboxnotplaced"
+                android:layout_marginTop="5dp"
+                android:id="@+id/companynameinput"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Company Name"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:textColor="#bbb"
+                    android:id="@+id/companyname"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#c59a6d"
+                android:layout_below="@+id/companynameinput"
+                android:layout_marginTop="5dp"
+                android:id="@+id/line22"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Debar Status"
+                android:layout_below="@+id/line22"
+                android:textSize="12dp"
+                android:textColor="#bbb"
+                android:layout_marginTop="5dp"
+                android:id="@+id/debarstatus2txt"
+                />
+
+            <CheckBox
+                android:id="@+id/CheckBoxdebar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/debarstatus2txt"
+                android:text="Debarred"
+                android:layout_marginTop="10dp"
+                android:theme="@style/MyCheckBox"
+                android:textColor="#eee"
+                android:layout_marginLeft="14dp"
+                />
+            <CheckBox
+                android:id="@+id/CheckBoxsnotdebar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/debarstatus2txt"
+                android:layout_toRightOf="@+id/CheckBoxdebar"
+                android:text="Not Debarred"
+                android:layout_marginTop="10dp"
+                android:theme="@style/MyCheckBox"
+                android:textColor="#eee"
+                android:layout_marginLeft="20dp"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#c59a6d"
+                android:layout_below="@+id/CheckBoxsnotdebar"
+                android:layout_marginTop="5dp"
+                android:id="@+id/line33"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change Role"
+                android:layout_below="@+id/line33"
+                android:textColor="#bbb"
+                android:textSize="12dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/rolestatus2txt"
+                />
+
+            <CheckBox
+                android:id="@+id/checkboxstudent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rolestatus2txt"
+                android:text="Student"
+                android:layout_marginTop="10dp"
+                android:theme="@style/MyCheckBox"
+                android:textColor="#eee"
+                android:layout_marginLeft="14dp"
+                />
+            <CheckBox
+                android:id="@+id/checkboxalumni"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rolestatus2txt"
+                android:layout_toRightOf="@+id/checkboxstudent"
+                android:text="Alumni"
+                android:layout_marginTop="10dp"
+                android:theme="@style/MyCheckBox"
+                android:textColor="#eee"
+                android:layout_marginLeft="20dp"
+                />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</ScrollView>

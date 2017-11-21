@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_edit_email"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#282f35"
+    tools:context="placeme.octopusites.com.placeme.EditEmail">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/boxborderwhite"
+        android:layout_marginTop="10dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="5dp"
+        android:id="@+id/editemailrl1"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email associated with account"
+            android:textSize="18dp"
+            android:textColor="#eee"
+            android:id="@+id/asstxt"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="#eee"
+            android:textStyle="bold"
+            android:text="username@email.com"
+            android:id="@+id/primaryemail"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/asstxt"
+            />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/pencilwhite"
+            android:id="@+id/editemailicon"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is your primary email which we are using as account's username and for other communications."
+            android:layout_below="@+id/primaryemail"
+            android:id="@+id/emailemailtxt"
+            android:textColor="#bbb"
+            android:paddingTop="5dp"
+
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/editemailrl2"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit email address"
+            android:textSize="18dp"
+            android:textColor="#eee"
+            android:id="@+id/ass2txt"
+            />
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ass2txt"
+            android:id="@+id/emailinput"
+            android:layout_marginTop="20dp"
+            android:theme="@style/TextLabel"
+
+            >
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter email address"
+                android:textSize="15dp"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:inputType="textEmailAddress"
+                android:textColor="#eee"
+                android:id="@+id/newemail"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/emailinput"
+            android:id="@+id/passinput"
+            android:layout_marginTop="20dp"
+            android:theme="@style/TextLabel"
+
+            >
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your account's password"
+                android:textSize="15dp"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textColor="#eee"
+                android:id="@+id/accountpassword"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/passinput"
+            android:id="@+id/otpinput"
+            android:layout_marginTop="20dp"
+            android:theme="@style/TextLabel"
+            android:visibility="gone"
+            >
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter OTP"
+                android:textSize="15dp"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:textColor="#eee"
+                android:inputType="number"
+                android:id="@+id/otp"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A confirmation link will be sent to this email address. Click on that link to verify and change your email."
+            android:layout_below="@+id/otpinput"
+            android:id="@+id/passpasstxt"
+            android:textColor="#bbb"
+            android:paddingTop="5dp"
+            />
+        <ProgressBar
+            android:id="@+id/editemailprogress"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:visibility="gone"
+            android:layout_below="@+id/passpasstxt"
+            />
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:textSize="20dp"
+            android:textColor="#eeeeee"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_round"
+            android:layout_below="@+id/passpasstxt"
+            android:id="@+id/changeemailbutton"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/editselectionview"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        />
+
+</RelativeLayout>

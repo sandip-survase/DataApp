@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:TagsEditText="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/activity_create_placement"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#282f35"
+    tools:context="placeme.octopusites.com.placeme.CreatePlacement">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/placementtoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Placement/Internship"
+        android:textSize="18dp"
+        android:textColor="#eee"
+        android:id="@+id/createnotitxt"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/placementtoolbar"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/createnotitxt"
+        android:textColor="#bbb"
+        android:text="Choose to whom you want to send this Placement."
+        android:layout_marginTop="10dp"
+        android:id="@+id/createnotinotitxt"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        />
+
+
+    <CheckBox
+        android:id="@+id/CheckBoxstudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/createnotinotitxt"
+        android:text="Students"
+        android:layout_marginTop="10dp"
+        android:theme="@style/MyCheckBox"
+        android:textColor="#eee"
+        android:layout_marginLeft="14dp"
+        />
+    <CheckBox
+        android:id="@+id/CheckBoxsAlumni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/createnotinotitxt"
+        android:layout_toRightOf="@+id/CheckBoxstudent"
+        android:text="Alumni"
+        android:layout_marginTop="10dp"
+        android:theme="@style/MyCheckBox"
+        android:textColor="#eee"
+        android:layout_marginLeft="20dp"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/CheckBoxsAlumni"
+        android:id="@+id/allumiselector"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="3dp"
+        android:layout_weight=".28"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/batchesinput"
+            android:theme="@style/TextLabel"
+            android:maxLines="1"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:textColor="#bbb"
+                android:text=""
+                android:layout_marginTop="0dp"
+                android:id="@+id/dummy2"
+                />
+            <mabbas007.tagsedittext.TagsEditText
+                android:id="@+id/batchesTags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                TagsEditText:tagsTextColor="#282f35"
+                TagsEditText:allowSpaceInTag="true"
+                android:editable="false"
+                TagsEditText:tagsBackground="@drawable/square_default"
+                TagsEditText:tagsCloseImageRight="@drawable/tag_close"
+                android:textColor="#eee"
+                android:textSize="16dp"
+                android:singleLine = "true"
+                android:maxLines="1"
+                android:layout_marginLeft="5dp"
+                android:popupBackground="#001111"
+
+                android:layout_below="@+id/dummy2"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:textColor="#bbb"
+                android:text=""
+                android:layout_below="@+id/tagsEditText"
+                android:layout_marginTop="0dp"
+                android:id="@+id/dummy"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+    </RelativeLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/placementtabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#282f35"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:layout_below="@+id/allumiselector"
+        android:layout_marginTop="10dp"
+
+        />
+
+    <!-- View pager to swipe views -->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/placementviewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/placementtabs"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    />
+</RelativeLayout>

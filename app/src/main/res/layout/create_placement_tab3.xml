@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#282f35">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/xinput"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Std X criteria"
+                android:textSize="15dp"
+                android:inputType="numberDecimal"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/xcriteria"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/xiiinput"
+            android:layout_below="@+id/xinput"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Std XII/Diploma criteria"
+                android:textSize="15dp"
+                android:inputType="numberDecimal"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/xiicriteria"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/uginput"
+            android:layout_below="@+id/xiiinput"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="UG criteria"
+                android:textSize="15dp"
+                android:inputType="numberDecimal"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/ugcriteria"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/pginput"
+            android:layout_below="@+id/uginput"
+            android:theme="@style/TextLabel">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="PG criteria"
+                android:textSize="15dp"
+                android:inputType="numberDecimal"
+                android:textColor="#eee"
+                android:singleLine="true"
+                android:id="@+id/pgcriteria"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+
+    </RelativeLayout>
+</ScrollView>

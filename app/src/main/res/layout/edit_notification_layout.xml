@@ -1,0 +1,72 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".EditNotification"
+    tools:showIn="@layout/activity_edit_notification"
+    android:background="#282f35"
+    android:focusableInTouchMode="true"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/admincontrolsrl"
+        android:padding="16dp"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Notification"
+            android:textSize="18dp"
+            android:textColor="#eee"
+            android:id="@+id/editnotitxt"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editnotitxt"
+            android:textColor="#bbb"
+            android:text="Below is the list of notifications uploaded by you."
+            android:layout_marginTop="10dp"
+            android:id="@+id/editnotinotitxt"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DELETE NOTIFICATIONS"
+            android:layout_alignParentRight="true"
+            android:textColor="@android:color/holo_blue_bright"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/editnotinotitxt"
+            android:id="@+id/deletenotitxt"
+            />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/admincontrolsrl"
+        android:layout_marginTop="10dp"
+        >
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            />
+
+    </ScrollView>
+
+
+</RelativeLayout>

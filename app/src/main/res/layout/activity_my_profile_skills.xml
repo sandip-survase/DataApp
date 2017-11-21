@@ -1,0 +1,2009 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/myprofileskills"
+    android:background="#282f35">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_my_profile_skills"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:focusableInTouchMode="true"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.octopusites.placeme.MyProfileSkills">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skills"
+            android:textSize="20dp"
+            android:textColor="#eee"
+            android:id="@+id/skilltxt"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:background="@drawable/textviewborder2"
+            />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:id="@+id/section"
+            android:layout_centerHorizontal="true"
+            />
+
+        <RelativeLayout
+            android:id="@+id/skillrl1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skilltxt"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput1"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:inputType="textCapWords"
+                    android:textColor="#eee"
+                    android:id="@+id/skill1"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skilltxt"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner1"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:id="@+id/spinnerimg1"
+                android:tint="#eee"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg1"
+                android:background="#eee"
+                />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skilltxt"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill1"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skilltxt"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash1selectionview"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skillline1"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill2"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skillline1"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash2selectionview"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skillline2"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill3"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skillline2"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash3selectionview"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skillline3"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill4"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skillline3"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash4selectionview"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skillline4"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill5"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skillline4"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash5selectionview"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skillline5"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill6"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skillline5"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash6selectionview"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skillline6"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill7"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skillline6"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash7selectionview"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skillline7"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill8"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skillline7"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash8selectionview"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skillline8"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill9"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skillline8"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash9selectionview"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skillline9"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill10"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skillline9"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash10selectionview"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skillline10"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill11"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skillline10"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash11selectionview"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skillline11"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill12"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skillline11"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash12selectionview"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skillline12"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill13"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skillline12"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash13selectionview"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skillline13"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill14"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skillline13"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash14selectionview"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skillline14"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill15"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skillline14"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash15selectionview"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skillline15"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill16"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skillline15"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash16selectionview"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skillline16"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill17"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skillline16"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash17selectionview"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skillline17"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill18"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skillline17"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash18selectionview"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skillline18"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill19"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skillline18"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash19selectionview"
+            />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/skillline19"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashskill20"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/skillline19"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash20selectionview"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/proficiencyspinner1"
+            android:id="@+id/skillline1"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <RelativeLayout
+            android:id="@+id/skillrl2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skillline1"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:visibility="gone"
+
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput2"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/skill2"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skillline1"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner2"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:tint="#eee"
+                android:id="@+id/spinnerimg2"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg2"
+                android:background="#eee"
+                />
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/proficiencyspinner2"
+            android:id="@+id/skillline2"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <RelativeLayout
+            android:id="@+id/skillrl3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skillline2"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:visibility="gone"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput3"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/skill3"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skillline2"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner3"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:tint="#eee"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:id="@+id/spinnerimg3"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg3"
+                android:background="#eee"
+                />
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/proficiencyspinner3"
+            android:id="@+id/skillline3"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <RelativeLayout
+            android:id="@+id/skillrl4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skillline3"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:visibility="gone"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput4"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/skill4"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skillline3"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner4"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:tint="#eee"
+                android:id="@+id/spinnerimg4"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg4"
+                android:background="#eee"
+                />
+
+        </RelativeLayout>
+        <View
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/proficiencyspinner4"
+            android:id="@+id/skillline4"
+            android:layout_marginTop="20dp"
+
+            />
+        <RelativeLayout
+            android:id="@+id/skillrl5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skillline4"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:visibility="gone"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput5"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/skill5"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skillline4"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner5"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:tint="#eee"
+                android:layout_gravity="center"
+                android:id="@+id/spinnerimg5"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg5"
+                android:background="#eee"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/proficiencyspinner5"
+            android:id="@+id/skillline5"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/skillrl6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skillline5"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput6"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/skill6"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skillline5"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner6"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:tint="#eee"
+                android:id="@id/spinnerimg6"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg6"
+                android:background="#eee"
+                />
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/proficiencyspinner6"
+            android:id="@+id/skillline6"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/skillrl7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skillline6"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput7"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/skill7"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skillline6"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner7"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:tint="#eee"
+                android:layout_gravity="center"
+                android:id="@+id/spinnerimg7"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg7"
+                android:background="#eee"
+                />
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/proficiencyspinner7"
+            android:id="@+id/skillline7"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/skillrl8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skillline7"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput8"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/skill8"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skillline7"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner8"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:tint="#eee"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:id="@+id/spinnerimg8"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg8"
+                android:background="#eee"
+                />
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/proficiencyspinner8"
+            android:id="@+id/skillline8"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/skillrl9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skillline8"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput9"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/skill9"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skillline8"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner9"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:tint="#eee"
+                android:id="@+id/spinnerimg9"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg9"
+                android:background="#eee"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/proficiencyspinner9"
+            android:id="@+id/skillline9"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/skillrl10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skillline9"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput10"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/skill10"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skillline9"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner10"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:tint="#eee"
+                android:id="@+id/spinnerimg10"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg10"
+                android:background="#eee"
+                />
+
+        </RelativeLayout>
+        <View
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/proficiencyspinner10"
+            android:id="@+id/skillline10"
+            android:layout_marginTop="20dp"
+            />
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/skillrl11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skillline10"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput11"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/skill11"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skillline10"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner11"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:tint="#eee"
+                android:id="@+id/spinnerimg11"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg11"
+                android:background="#eee"
+                />
+
+        </RelativeLayout>
+        <View
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/proficiencyspinner11"
+            android:id="@+id/skillline11"
+            android:layout_marginTop="20dp"
+            />
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/skillrl12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skillline11"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput12"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/skill12"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skillline11"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner12"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:tint="#eee"
+                android:id="@+id/spinnerimg12"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg12"
+                android:background="#eee"
+                />
+
+        </RelativeLayout>
+        <View
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/proficiencyspinner12"
+            android:id="@+id/skillline12"
+            android:layout_marginTop="20dp"
+            />
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/skillrl13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skillline12"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput13"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/skill13"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skillline12"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner13"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:tint="#eee"
+                android:id="@+id/spinnerimg13"
+                android:layout_gravity="center"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg13"
+                android:background="#eee"
+                />
+
+        </RelativeLayout>
+        <View
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/proficiencyspinner13"
+            android:id="@+id/skillline13"
+            android:layout_marginTop="20dp"
+            />
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/skillrl14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skillline13"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput14"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/skill14"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skillline13"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner14"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:tint="#eee"
+                android:id="@+id/spinnerimg14"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg14"
+                android:background="#eee"
+                />
+
+        </RelativeLayout>
+        <View
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/proficiencyspinner14"
+            android:id="@+id/skillline14"
+            android:layout_marginTop="20dp"
+            />
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/skillrl15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skillline14"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput15"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/skill15"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skillline14"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner15"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:tint="#eee"
+                android:id="@+id/spinnerimg15"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg15"
+                android:background="#eee"
+                />
+
+        </RelativeLayout>
+        <View
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/proficiencyspinner15"
+            android:id="@+id/skillline15"
+            android:layout_marginTop="20dp"
+            />
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/skillrl16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skillline15"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput16"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/skill16"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skillline15"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner16"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/spinnerimg16"
+                android:tint="#eee"
+                android:layout_gravity="center"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg16"
+                android:background="#eee"
+                />
+
+        </RelativeLayout>
+        <View
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/proficiencyspinner16"
+            android:id="@+id/skillline16"
+            android:layout_marginTop="20dp"
+            />
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/skillrl17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skillline16"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput17"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/skill17"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skillline16"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner17"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:tint="#eee"
+                android:layout_centerVertical="true"
+                android:id="@+id/spinnerimg17"
+                android:layout_gravity="center"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg17"
+                android:background="#eee"
+                />
+        </RelativeLayout>
+        <View
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/proficiencyspinner17"
+            android:id="@+id/skillline17"
+            android:layout_marginTop="20dp"
+            />
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/skillrl18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skillline17"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput18"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/skill18"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skillline17"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner18"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:tint="#eee"
+                android:id="@+id/spinnerimg18"
+                android:layout_gravity="center"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg18"
+                android:background="#eee"
+                />
+
+        </RelativeLayout>
+        <View
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/proficiencyspinner18"
+            android:id="@+id/skillline18"
+            android:layout_marginTop="20dp"
+            />
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/skillrl19"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skillline18"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput19"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/skill19"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skillline18"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner19"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:tint="#eee"
+                android:layout_gravity="center"
+                android:id="@+id/spinnerimg19"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg19"
+                android:background="#eee"
+                />
+
+        </RelativeLayout>
+        <View
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/proficiencyspinner19"
+            android:id="@+id/skillline19"
+            android:layout_marginTop="20dp"
+            />
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/skillrl20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:layout_below="@+id/skillline19"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/skillinput20"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skill"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/skill20"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/skillline19"
+            android:layout_toRightOf="@+id/section"
+            android:id="@+id/proficiencyspinner20"
+            android:layout_marginTop="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/proficiency20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:popupBackground="#001111"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:tint="#eee"
+                android:id="@+id/spinnerimg20"
+                android:src="@drawable/drop" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/spinnerimg20"
+                android:background="#eee"
+                />
+
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/boxborderwhite"
+            android:layout_below="@+id/proficiencyspinner20"
+            android:id="@+id/addmoreskill"
+            android:layout_marginTop="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/proficiencyspinner20"
+            android:text="Add Another Skill"
+            android:textColor="#eee"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/addmoreskilltxt"
+            />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/proficiencyspinner20"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/plus"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/addmoreskillimg"
+            />
+
+
+    </RelativeLayout>
+</ScrollView>
+

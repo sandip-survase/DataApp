@@ -1,0 +1,12 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@android:color/transparent" />
+
+    <solid android:color="#ffffff"/>
+
+
+    <gradient
+        android:centerColor="@android:color/holo_orange_dark"
+        android:startColor="#800000"
+        android:endColor="@android:color/holo_orange_light"
+        />
+</shape>

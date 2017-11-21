@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_centerVertical="true"
+        android:id="@+id/section"
+        />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/section"
+        android:background="@drawable/tableborder"
+        >
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#999"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/sectionhorizontal"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/sectionvertical"
+            android:background="#999"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/sectionhorizontal"
+            android:layout_above="@id/sectionvertical"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number of Aptitude Tests"
+                android:textColor="#c59a6d"
+                android:paddingTop="2dp"
+                android:paddingLeft="4dp"
+                android:textSize="10dp"
+                android:id="@+id/aptitxt"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#eee"
+                android:id="@+id/companyaptiview"
+                android:layout_below="@+id/aptitxt"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:text="1"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/sectionhorizontal"
+            android:layout_below="@id/sectionvertical"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number of Group Discussions"
+                android:textColor="#c59a6d"
+                android:paddingTop="2dp"
+                android:paddingLeft="4dp"
+                android:textSize="10dp"
+                android:id="@+id/companygdtxt"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#eee"
+                android:id="@+id/companygdview"
+                android:layout_below="@+id/companygdtxt"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:text="1"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/sectionhorizontal"
+            android:layout_above="@id/sectionvertical"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number of Technical Tests"
+                android:textColor="#c59a6d"
+                android:paddingTop="2dp"
+                android:paddingLeft="4dp"
+                android:textSize="10dp"
+                android:id="@+id/companytechtesttxt"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#eee"
+                android:id="@+id/companytechtestview"
+                android:layout_below="@+id/companytechtesttxt"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:text="1"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/sectionhorizontal"
+            android:layout_below="@id/sectionvertical"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number of Technical Interviews"
+                android:textColor="#c59a6d"
+                android:paddingTop="2dp"
+                android:paddingLeft="4dp"
+                android:textSize="10dp"
+                android:id="@+id/companytechinterviewtxt"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#eee"
+                android:id="@+id/companytechinterviewview"
+                android:layout_below="@+id/companytechinterviewtxt"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:text="1"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/section"
+        >
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#999"
+            android:layout_above="@+id/sectionvertical2"
+            />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#999"
+            android:layout_above="@+id/sectionvertical2"
+            android:layout_alignParentRight="true"
+            />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#999"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/sectionhorizontal2"
+            android:layout_above="@+id/sectionvertical2"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/sectionvertical2"
+            android:background="#999"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/sectionhorizontal2"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number of HR Interviews"
+                android:textColor="#c59a6d"
+                android:paddingTop="2dp"
+                android:paddingLeft="4dp"
+                android:textSize="10dp"
+                android:id="@+id/companyhrinterviewtxt"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#eee"
+                android:id="@+id/companyhrinterviewview"
+                android:layout_below="@+id/companyhrinterviewtxt"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:text="1"
+                android:textStyle="bold"
+                />
+
+        </RelativeLayout>
+
+
+
+
+</RelativeLayout>
+</RelativeLayout>

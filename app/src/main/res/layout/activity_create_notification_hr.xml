@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_create_notification"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#282f35"
+    tools:context="placeme.octopusites.com.placeme.CreateNotificationHR">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:focusableInTouchMode="true"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create Notification"
+                android:textSize="18dp"
+                android:textColor="#eee"
+                android:id="@+id/createnotitxt"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/createnotitxt"
+                android:textColor="#bbb"
+                android:text="Your notification will be broadcasted to selected Place Me users."
+                android:layout_marginTop="10dp"
+                android:id="@+id/createnotinotitxt"
+                />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:id="@+id/titleinput"
+                android:layout_below="@+id/createnotinotitxt"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Title"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:singleLine="true"
+                    android:id="@+id/title"/>
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/titleinput"
+                android:id="@+id/notificationinput"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="5"
+                    android:hint="Notification"
+                    android:gravity="top|left"
+                    android:inputType="textMultiLine"
+                    android:scrollHorizontally="false"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:id="@+id/notification"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#bbb"
+                android:text="Choose to whom you want to send this notification."
+                android:layout_below="@+id/notificationinput"
+                android:layout_marginTop="5dp"
+                android:id="@+id/choosetxt"
+                />
+
+
+            <CheckBox
+                android:id="@+id/CheckBoxregistered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/choosetxt"
+                android:text="Registered For Current Placement"
+                android:layout_marginTop="10dp"
+                android:theme="@style/MyCheckBox"
+                android:textColor="#eee"
+                />
+            <CheckBox
+                android:id="@+id/CheckBoxsplaced"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/CheckBoxregistered"
+                android:text="Placed Under Current Placement"
+                android:layout_marginTop="10dp"
+                android:theme="@style/MyCheckBox"
+                android:textColor="#eee"
+
+                />
+            <CheckBox
+                android:id="@+id/CheckBoxsAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/CheckBoxsplaced"
+                android:text="All"
+                android:layout_marginTop="10dp"
+                android:theme="@style/MyCheckBox"
+                android:textColor="#eee"
+
+                />
+
+
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#bbb"
+                android:text="Attachments"
+                android:layout_below="@+id/CheckBoxsAll"
+                android:layout_marginTop="10dp"
+                android:id="@+id/attachmentstxt"
+                />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/attach_round"
+                android:layout_below="@+id/attachmentstxt"
+                android:layout_marginTop="8dp"
+                android:id="@+id/file1"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="10dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="abc.txt"
+                    android:id="@+id/filename"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:textColor="#282f35"
+
+                    />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/closeblack"
+                    android:layout_toRightOf="@+id/filename"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:tint="#282f35"
+
+                    />
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+    <android.support.design.widget.FloatingActionButton
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/attachnoti"
+        app:backgroundTint="#fff"
+        />
+
+</RelativeLayout>

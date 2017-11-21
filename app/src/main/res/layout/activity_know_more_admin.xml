@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_know_more"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context="placeme.octopusites.com.placeme.KnowMoreAdminActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Features For You"
+        android:textSize="25dp"
+        android:id="@+id/feattxt"
+        android:textColor="#282f35"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/bigclose"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:tint="#282f35"
+        android:id="@+id/close"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/feattxt"
+        android:layout_marginTop="10dp"
+        android:background="#282f35"
+        android:id="@+id/knowmoreline1"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/knowmoreline1"
+        android:layout_marginTop="20dp"
+
+        >
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/proline1"
+            android:layout_above="@+id/probottomrl"
+            android:id="@+id/proscroll1"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/test"
+                    android:tint="#282f35"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/proimg1"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/proimg1"
+                    android:text="Customized test plugins"
+                    android:textColor="#282f35"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/moretxt"
+                    android:textSize="15dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="You can conduct online mock aptitude and technical tests through Place Me test plugin facility and that too exclusively for the users (students and alumni) under your institution."
+                    android:layout_below="@+id/moretxt"
+                    android:id="@+id/moremoretxt"
+                    android:textColor="#101010"
+                    android:paddingTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/performance"
+                    android:tint="#282f35"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/proimg2"
+                    android:layout_below="@+id/moremoretxt"
+                    android:layout_marginTop="20dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/proimg2"
+                    android:text="Dynamic report generation"
+                    android:textColor="#282f35"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/resumetxt"
+                    android:textSize="15dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="You will get the access to dynamically generated reports in textual and graphical formats of your conducted tests/placements under your institute. This will help you to ease out your work at great extent."
+                    android:layout_below="@+id/resumetxt"
+                    android:id="@+id/resumeresumetxt"
+                    android:textColor="#101010"
+                    android:paddingTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/cloud"
+                    android:tint="#282f35"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/proimg3"
+                    android:layout_below="@+id/resumeresumetxt"
+                    android:layout_marginTop="20dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/proimg3"
+                    android:text="Extract knowledge and reports"
+                    android:textColor="#282f35"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/digitaltxt"
+                    android:textSize="15dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Place Me Pro facilitates you to share/download/customize the user relevant information as per your requirements and/or as per the industry demands from any of your uploaded In-Campus activity(s)."
+                    android:layout_below="@+id/digitaltxt"
+                    android:id="@+id/digitaldigitaltxt"
+                    android:textColor="#101010"
+                    android:paddingTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/digitaldigitaltxt"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/prorl1"
+                    >
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/institute"
+                        android:tint="#282f35"
+                        android:id="@+id/proimg4"
+                        />
+
+                    <ImageView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:src="@drawable/exchange"
+                        android:tint="#282f35"
+                        android:id="@+id/proimg5"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toRightOf="@+id/proimg4"
+                        />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/institute"
+                        android:tint="#282f35"
+                        android:id="@+id/proimg6"
+                        android:layout_toRightOf="@+id/proimg5"
+                        />
+                </RelativeLayout>
+                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/prorl1"
+                    android:text="Get Connected Professionally"
+                    android:textColor="#282f35"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/conntxt"
+                    android:textSize="15dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Institute to Institute interaction provides you to share your institute level notifications and placement updates with the other institute on the same platform. You can get connected with the other institute's Training and Placement Officers via Place Me Chatrooms."
+                    android:layout_below="@+id/conntxt"
+                    android:id="@+id/connconntxt"
+                    android:textColor="#101010"
+                    android:paddingTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    />
+
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/enhancedmgmt"
+                    android:tint="#282f35"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/proimg7"
+                    android:layout_below="@+id/connconntxt"
+                    android:layout_marginTop="20dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/proimg7"
+                    android:text="Enhanced Management Facilities"
+                    android:textColor="#282f35"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/performancetxt"
+                    android:textSize="15dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Place Me Pro provides you the unique facility to monitor the individual user's performance under your institute by viewing their online interview videos and can comment the suggestions you want in order to improve their performances for upcoming placement activities."
+                    android:layout_below="@+id/performancetxt"
+                    android:id="@+id/performanceperformancetxt"
+                    android:textColor="#101010"
+                    android:paddingTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    />
+              <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/resume"
+                    android:tint="#282f35"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/proimg8"
+                    android:layout_below="@+id/performanceperformancetxt"
+                    android:layout_marginTop="20dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/proimg8"
+                    android:text="Upload Resume Templates"
+                    android:textColor="#282f35"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/uploadresumetxt"
+                    android:textSize="15dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="As an institute administrator, your will get the facility to upload the Standard Institute's Resume template which can be dynamically visible and applied to the users under same institute."
+                    android:layout_below="@+id/uploadresumetxt"
+                    android:id="@+id/uploadtxt"
+                    android:textColor="#101010"
+                    android:paddingTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/users"
+                    android:tint="#282f35"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/proimg9"
+                    android:layout_below="@+id/uploadtxt"
+                    android:layout_marginTop="20dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/proimg9"
+                    android:text="Create Multiple Admins"
+                    android:textColor="#282f35"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/createtxt"
+                    android:textSize="15dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="You will get the facility to create the multiple administrator/coordinator accounts for your institute which will work under your supervision and/or in your absence for better placement management and assessment."
+                    android:layout_below="@+id/createtxt"
+                    android:id="@+id/createadmin"
+                    android:textColor="#101010"
+                    android:paddingTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    />
+
+
+            </RelativeLayout>
+
+
+        </ScrollView>
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/probottomrl"
+            android:layout_alignParentBottom="true"
+
+            >
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#282f35"
+                android:id="@+id/bottomline1"
+
+                />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/bottomline1"
+                android:id="@+id/switchtorl"
+                >
+                <TextView
+                    android:id="@+id/trytxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:textColor="#282f35"
+                    android:textSize="20dp"
+                    android:text="Switch to Place Me"
+                    android:layout_marginTop="7dp"
+
+
+                    />
+                <TextView
+                    android:id="@+id/protxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:textColor="#282f35"
+                    android:textSize="12dp"
+                    android:text="Pro"
+                    android:layout_marginTop="2dp"
+                    android:layout_toRightOf="@+id/trytxt"
+
+
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

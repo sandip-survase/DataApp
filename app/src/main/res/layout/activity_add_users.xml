@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_users"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#282f35"
+    android:padding="16dp"
+    android:focusableInTouchMode="true"
+    tools:context="placeme.octopusites.com.placeme.AddUsersActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create new User(s)"
+        android:textSize="18dp"
+        android:textColor="#eee"
+        android:id="@+id/createpasstxt"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/createpasstxt"
+        android:textColor="#bbb"
+        android:text="You can create either single user by entering his/her email or number of users by uploading the excel sheet."
+        android:layout_marginTop="10dp"
+        android:id="@+id/passsenstxt"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passsenstxt"
+        android:textColor="#bbb"
+        android:text="User(s) you create will get an email containing link to download the app, their username as entered email and dynamically generated password to start using Place Me."
+        android:layout_marginTop="10dp"
+        android:id="@+id/passsens1txt"
+        />
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioGroupUsers"
+        android:orientation="horizontal"
+        android:layout_below="@+id/passsens1txt"
+        android:layout_marginTop="10dp"
+
+        >
+        <android.support.v7.widget.AppCompatRadioButton
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Single User"
+            android:id="@+id/radioButtonsinle"
+            app:buttonTint="#eee"
+            android:layout_weight="1"
+            android:textColor="#eee"
+            android:checked="true"
+            />
+        <android.support.v7.widget.AppCompatRadioButton
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Multiple Users"
+            app:buttonTint="#eee"
+            android:layout_weight="1"
+            android:textColor="#eee"
+            android:id="@+id/radioButtonmulti"
+            android:checked="false"
+            />
+
+    </RadioGroup>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/adduserinput"
+        android:layout_below="@+id/radioGroupUsers"
+        android:layout_marginTop="10dp"
+        android:theme="@style/TextLabel">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:textSize="15dp"
+            android:singleLine="true"
+            android:textColor="#eee"
+            android:id="@+id/email"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/radioGroupUsers"
+        android:layout_marginTop="10dp"
+        android:id="@+id/multiusersrl"
+        android:visibility="gone"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#bbb"
+            android:text="Follow the below instructions to create multiple users."
+            android:layout_marginTop="10dp"
+            android:id="@+id/note"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#bbb"
+            android:text="1. You must upload a file in '.xls' or '.xlsx' format."
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/note"
+            android:id="@+id/note1"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#bbb"
+            android:text="2. The file must contain column named 'email' followed by list of email addresses of users to be created."
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/note1"
+            android:id="@+id/note2"
+            />
+        <RelativeLayout
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/note2"
+            android:layout_marginTop="30dp"
+            android:id="@+id/file1"
+            android:background="@drawable/attach_round"
+            android:padding="2dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:visibility="gone"
+
+            >
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:max="100"
+                android:id="@+id/PROGRESS_BAR"
+                android:progressDrawable="@drawable/uploadfileprogress"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="a.txt"
+                android:id="@+id/filename"
+                android:layout_marginLeft="5dp"
+                android:layout_centerVertical="true"
+                android:textColor="#eee"
+                android:paddingTop="5dp"
+                android:paddingBottom="10dp"
+                android:textSize="12dp"
+                android:layout_marginRight="28dp"
+                />
+
+
+            <ImageView
+                android:id="@+id/delfile1"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/close"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                />
+        </RelativeLayout>
+
+
+
+        <android.support.design.widget.FloatingActionButton
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@drawable/attachnoti"
+            app:backgroundTint="#fff"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>

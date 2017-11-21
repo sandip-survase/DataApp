@@ -1,0 +1,89 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="#282f35"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/card_margin"
+        android:elevation="3dp"
+        card_view:cardCornerRadius="@dimen/card_album_radius">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/section"
+            android:background="@drawable/boxborderwhite"
+            android:padding="5dp"
+            >
+            <ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="112dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:scaleType="fitCenter"
+                />
+            <RelativeLayout
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:background="@drawable/probubble"
+                android:layout_alignParentRight="true"
+                android:visibility="gone"
+                android:id="@+id/procard"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:id="@+id/protxt"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="Pro"
+                    android:textColor="#282f35"
+                    />
+            </RelativeLayout>
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/resumeprogress"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Template 1"
+                android:checked="true"
+                android:textSize="11dp"
+                android:id="@+id/title"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/thumbnail"
+                android:textColor="#eee" />
+            <ImageView
+                android:id="@+id/touchable_area"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                />
+            <ImageView
+                android:id="@+id/status"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/thumbnail"
+                android:scaleType="centerCrop"
+                android:src="@drawable/download" />
+
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

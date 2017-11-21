@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="query_suggestions">
+        <item>A very very long suggestion that would span multiple lines.</item>
+        <item>Android</item>
+        <item>iOS</item>
+        <item>SCALA</item>
+        <item>Ruby</item>
+        <item>JavaScript</item>
+        <item>C#</item>
+        <item>Python</item>
+        <item>C</item>
+        <item>C++</item>
+        <item>PHP</item>
+        <item>Go</item>
+        <item>Perl</item>
+        <item>Bash</item>
+        <item>Lua</item>
+        <item>R</item>
+        <item>TCL</item>
+        <item>Haskell</item>
+        <item>Objective C</item>
+        <item>Swift</item>
+        <item>Kotlin</item>
+        <item>jQuery</item>
+        <item>Development</item>
+        <item>Web</item>
+        <item>Ajax</item>
+        <item>Test</item>
+        <item>Testing</item>
+        <item>CookBook</item>
+        <item>Beagle</item>
+        <item>VMware</item>
+        <item>Less.js</item>
+        <item>IDE</item>
+        <item>Arduino</item>
+        <item>Xamarin</item>
+        <item>UI</item>
+        <item>Microsoft</item>
+        <item>Application</item>
+        <item>Development</item>
+        <item>JUnit</item>
+        <item>SQL</item>
+        <item>Beagle</item>
+    </string-array>
+
+    <string-array name="languages_array">
+        <item>Akan</item>
+        <item>Amharic</item>
+        <item>Arabic</item>
+        <item>Assamese</item>
+        <item>Awadhi</item>
+        <item>Azerbaijani</item>
+        <item>Balochi</item>
+        <item>Belarusian</item>
+        <item>Bengali</item>
+        <item>Bhojpuri</item>
+        <item>Burmese</item>
+        <item>Cebuano</item>
+        <item>Chewa</item>
+        <item>Chhattisgarhi</item>
+        <item>Chittagonian</item>
+        <item>Czech</item>
+        <item>Deccan</item>
+        <item>Dhundhari</item>
+        <item>Dutch</item>
+        <item>Eastern Min</item>
+        <item>English</item>
+        <item>French</item>
+        <item>Fula</item>
+        <item>Gan Chinese</item>
+        <item>German</item>
+        <item>Greek</item>
+        <item>Gujarati</item>
+        <item>Haitian Creole</item>
+        <item>Hakka</item>
+        <item>Haryanvi</item>
+        <item>Hausa</item>
+        <item>Hiligaynon/Ilonggo</item>
+        <item>Hindi</item>
+        <item>Hmong</item>
+        <item>Hungarian</item>
+        <item>Igbo</item>
+        <item>Ilocano</item>
+        <item>Italian</item>
+        <item>Japanese</item>
+        <item>Javanese</item>
+        <item>Jin</item>
+        <item>Kannada</item>
+        <item>Kazakh</item>
+        <item>Khmer</item>
+        <item>Kinyarwanda</item>
+        <item>Kirundi</item>
+        <item>Konkani</item>
+        <item>Korean</item>
+        <item>Kurdish</item>
+        <item>Madurese</item>
+        <item>Magahi</item>
+        <item>Maithili</item>
+        <item>Malagasy</item>
+        <item>Malay</item>
+        <item>Malayalam</item>
+        <item>Mandarin</item>
+        <item>Marathi</item>
+        <item>Marwari</item>
+        <item>Mossi</item>
+        <item>Nepali</item>
+        <item>Northern Min</item>
+        <item>Odia</item>
+        <item>Oromo</item>
+        <item>Pashto</item>
+        <item>Persian</item>
+        <item>Polish</item>
+        <item>Portuguese</item>
+        <item>Punjabi</item>
+        <item>Quechua</item>
+        <item>Romanian</item>
+        <item>Russian</item>
+        <item>Saraiki</item>
+        <item>Serbo-Croatian</item>
+        <item>Shona</item>
+        <item>Sindhi</item>
+        <item>Sinhalese</item>
+        <item>Somali</item>
+        <item>Southern Min</item>
+        <item>Spanish</item>
+        <item>Sundanese</item>
+        <item>Swedish</item>
+        <item>Sylheti</item>
+        <item>Tagalog</item>
+        <item>Tamil</item>
+        <item>Telugu</item>
+        <item>Thai</item>
+        <item>Turkish</item>
+        <item>Turkmen</item>
+        <item>Ukrainian</item>
+        <item>Urdu</item>
+        <item>Uyghur</item>
+        <item>Uzbek</item>
+        <item>Vietnamese</item>
+        <item>Wu</item>
+        <item>Xhosa</item>
+        <item>Xiang</item>
+        <item>Yoruba</item>
+        <item>Yue</item>
+        <item>Zhuang</item>
+        <item>Zulu</item>
+    </string-array>
+
+
+
+</resources>

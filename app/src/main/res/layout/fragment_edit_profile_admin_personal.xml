@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#282f35"
+
+    >
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/activity_my_profile_intro"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:id="@+id/completepersonalrl"
+            >
+
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:theme="@style/TextLabel"
+                android:id="@+id/fnameinput"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/fname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="First Name"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp" />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:theme="@style/TextLabel"
+                android:id="@+id/mnameinput"
+                android:layout_below="@+id/fnameinput"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/mname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Middle Name"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:textSize="16dp"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:theme="@style/TextLabel"
+                android:layout_marginTop="10dp"
+                android:id="@+id/snameinput"
+                android:layout_below="@+id/mnameinput"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/sname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:textSize="16dp"
+                    android:hint="Surname"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/snameinput"
+                android:id="@+id/roleinputlayout"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Role"
+                    android:textSize="15dp"
+                    android:focusable="false"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:id="@+id/role"/>
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/emailinputlayout"
+                android:layout_below="@+id/roleinputlayout"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:textSize="15dp"
+                    android:focusable="false"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:id="@+id/email"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:theme="@style/TextLabel"
+                android:id="@+id/profileaemailinput"
+                android:layout_below="@+id/emailinputlayout"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/profileaemail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Professional Email"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:textSize="16dp" />
+            </android.support.design.widget.TextInputLayout>
+
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/instinputlayout"
+                android:layout_below="@+id/profileaemailinput"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/inst"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Full Institute Name"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:textSize="15dp" />
+
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:theme="@style/TextLabel"
+                android:layout_width="match_parent"
+                android:id="@+id/dobinput"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/instinputlayout"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:inputType="date"
+                    android:hint="Date of Birth(dd/mm/yyyy)"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender"
+                android:layout_below="@+id/dobinput"
+                android:id="@+id/gendertxt"
+                android:textColor="#eee"
+                android:textSize="16dp"
+                android:layout_marginTop="12dp"
+                />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioGroupGender"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/dobinput"
+                android:layout_toRightOf="@+id/gendertxt"
+                >
+                <android.support.v7.widget.AppCompatRadioButton
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male"
+                    app:buttonTint="#eee"
+                    android:textColor="#eee"
+                    android:id="@+id/radioButtonMale"
+                    android:checked="false"
+                    android:layout_marginLeft="30dp"
+                    />
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/radioButtonFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:checked="false"
+                    android:text="Female"
+                    android:textColor="#eee"
+                    app:buttonTint="#eee" />
+            </RadioGroup>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location Details"
+                android:layout_below="@+id/gendertxt"
+                android:textSize="20dp"
+                android:textColor="#eee"
+                android:id="@+id/loctxt"
+                android:layout_marginTop="25dp"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:background="@drawable/textviewborder2"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Address"
+                android:layout_below="@+id/loctxt"
+                android:id="@+id/caddrtxt"
+                android:textColor="#eee"
+                android:textSize="16dp"
+                android:layout_marginTop="12dp"
+                />
+
+
+            <android.support.design.widget.TextInputLayout
+                android:theme="@style/TextLabel"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:id="@+id/caddrline1input"
+                android:layout_below="@+id/caddrtxt"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/caddrline1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:textColor="#eee"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:maxLines="1"
+                    android:hint="House no/Flat no/Plot no, Name"
+                    />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:theme="@style/TextLabel"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:id="@+id/caddrline2input"
+                android:layout_below="@+id/caddrline1input"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/caddrline2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:textColor="#eee"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:maxLines="1"
+                    android:hint="Street Name/Landmark"
+                    />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:theme="@style/TextLabel"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:id="@+id/caddrline3input"
+                android:layout_below="@+id/caddrline2input"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/caddrline3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:hint="City, Pincode"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Permanant Address"
+                android:layout_below="@+id/caddrline3input"
+                android:id="@+id/paddrtxt"
+                android:textColor="#eee"
+                android:textSize="16dp"
+                android:layout_marginTop="12dp"
+                />
+
+            <CheckBox
+                android:id="@+id/CheckBoxPSC"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/paddrtxt"
+                android:text="Same as Current Address"
+                android:layout_marginTop="10dp"
+                android:theme="@style/MyCheckBox"
+                android:textColor="#eee"
+                android:layout_height="wrap_content" />
+
+            <android.support.design.widget.TextInputLayout
+                android:theme="@style/TextLabel"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:id="@+id/paddrline1input"
+                android:layout_below="@+id/CheckBoxPSC"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/paddrline1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:hint="House no/Flat no/Plot no, Name"
+                    />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:theme="@style/TextLabel"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:id="@+id/paddrline2input"
+                android:layout_below="@+id/paddrline1input"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/paddrline2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:hint="Street Name/Landmark"
+                    />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:theme="@style/TextLabel"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:id="@+id/paddrline3input"
+                android:layout_below="@+id/paddrline2input"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/paddrline3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="City, Pincode"
+                    android:inputType="textCapWords"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:textSize="16dp" />
+            </android.support.design.widget.TextInputLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

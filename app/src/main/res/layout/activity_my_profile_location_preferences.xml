@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#282f35">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_my_profile_location_preferences"
+        android:layout_width="match_parent"
+        android:focusableInTouchMode="true"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context="com.octopusites.placeme.MyProfileLocationPreferences">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location Preferences"
+            android:textSize="20dp"
+            android:textColor="#eee"
+            android:id="@+id/locationtxt"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:background="@drawable/textviewborder2"
+            />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/locationtxt"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashlocation1"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/locationtxt"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash1selectionview"
+            />
+        <RelativeLayout
+            android:id="@+id/locationrl1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/locationtxt"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/locationinput1"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Location Preference"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/location1"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/locationrl1"
+            android:id="@+id/locationline1"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/locationline1"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashlocation2"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/locationline1"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash2selectionview"
+            />
+        <RelativeLayout
+            android:id="@+id/locationrl2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/locationline1"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:visibility="gone"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/locationinput2"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Location Preference"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/location2"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/locationrl2"
+            android:id="@+id/locationline2"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/locationline2"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashlocation3"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/locationline2"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash3selectionview"
+            />
+        <RelativeLayout
+            android:id="@+id/locationrl3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/locationline2"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:visibility="gone"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/locationinput3"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Location Preference"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/location3"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/locationrl3"
+            android:id="@+id/locationline3"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/locationline3"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashlocation4"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/locationline3"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash4selectionview"
+            />
+        <RelativeLayout
+            android:id="@+id/locationrl4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/locationline3"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:visibility="gone"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/locationinput4"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Location Preference"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/location4"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/locationrl4"
+            android:id="@+id/locationline4"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/locationline4"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashlocation5"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/locationline4"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash5selectionview"
+            />
+        <RelativeLayout
+            android:id="@+id/locationrl5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/locationline4"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:visibility="gone"
+            >
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/locationinput5"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Location Preference"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/location5"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/boxborderwhite"
+            android:layout_below="@+id/locationrl5"
+            android:id="@+id/addmorelocation"
+            android:layout_marginTop="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/locationrl5"
+            android:text="Add Another Location"
+            android:textColor="#eee"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/addmorelocationtxt"
+            />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/locationrl5"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/plus"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/addmorelocationimg"
+            />
+
+    </RelativeLayout>
+</ScrollView>
+

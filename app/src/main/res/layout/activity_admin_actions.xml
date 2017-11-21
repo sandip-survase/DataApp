@@ -1,0 +1,911 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#282f35">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_admin_actions"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context="placeme.octopusites.com.placeme.AdminActions">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/boxborderwhite"
+        android:id="@+id/box1"
+        android:padding="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Notifications"
+            android:textColor="@android:color/holo_blue_bright"
+            android:id="@+id/createnotitxt"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/createnotitxt"
+            android:textColor="#bbb"
+            android:textSize="12dp"
+            android:text="Your notifications will be broadcasted only to the students and/or alumnis under your supervision."
+            android:layout_marginTop="5dp"
+            android:id="@+id/createnotinotitxt"
+            />
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/admincontrolsrl"
+            android:background="@drawable/boxborder"
+            android:layout_below="@+id/createnotinotitxt"
+            >
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/section"
+                android:background="#282f35"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toLeftOf="@+id/section"
+                android:id="@+id/createnotificationrl"
+                >
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/adminplus"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/addnotification"
+                    android:tint="#282f35"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/addnotification"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Create Notification"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:textColor="#282f35"
+                    android:id="@+id/createnotificationtxt"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@+id/section"
+                android:id="@+id/editnotificationrl"
+                >
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/adminedit"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/editnotification"
+                    android:tint="#282f35"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/editnotification"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Edit Notification"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:textColor="#282f35"
+                    android:id="@+id/editnotificationtxt"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/boxborderwhite"
+        android:id="@+id/box2"
+        android:layout_below="@+id/box1"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_blue_bright"
+            android:textSize="16dp"
+            android:text="Placements"
+            android:id="@+id/createplacementtxt"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/createplacementtxt"
+            android:textColor="#bbb"
+            android:textSize="12dp"
+            android:text="Your placements will be broadcasted only to the students and/or alumnis under your supervision."
+            android:layout_marginTop="5dp"
+            android:id="@+id/createplacementplacementtxt"
+            />
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/admincontrolsrl2"
+            android:background="@drawable/boxborder"
+            android:layout_below="@+id/createplacementplacementtxt"
+            >
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/section2"
+                android:background="#282f35"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toLeftOf="@+id/section2"
+                android:id="@+id/createnotificationrl2"
+                >
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/adminplus"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/addplacement"
+                    android:tint="#282f35"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/addplacement"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Create Placement"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:textColor="#282f35"
+                    android:id="@+id/createplacementttxt"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@+id/section2"
+                android:id="@+id/editnotificationrl2"
+                >
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/adminedit"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/editnotification2"
+                    android:tint="#282f35"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/editnotification2"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Edit Placement"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:textColor="#282f35"
+                    android:id="@+id/editnotificationtxt2"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/boxborderwhite"
+        android:id="@+id/box3"
+        android:layout_below="@+id/box2"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Users"
+            android:textColor="@android:color/holo_blue_bright"
+            android:id="@+id/createnotitxt3"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/createnotitxt3"
+            android:textColor="#bbb"
+            android:textSize="12dp"
+            android:text="You can create either single user by entering his/her email or number of users by uploading the excel sheet."
+            android:layout_marginTop="5dp"
+            android:id="@+id/createnotinotitxt3"
+            />
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/admincontrolsrl3"
+            android:background="@drawable/boxborder"
+            android:layout_below="@+id/createnotinotitxt3"
+            >
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/section3"
+                android:background="#282f35"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toLeftOf="@+id/section3"
+                android:id="@+id/createnotificationrl3"
+                >
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/adminplus"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/addnotification3"
+                    android:tint="#282f35"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/addnotification3"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Add User(s)"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:textColor="#282f35"
+                    android:id="@+id/createnotificationtxt3"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@+id/section3"
+                android:id="@+id/editnotificationrl3"
+                >
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/adminedit"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/editnotification3"
+                    android:tint="#282f35"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/editnotification3"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Edit User"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:textColor="#282f35"
+                    android:id="@+id/editnotificationtxt3"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/boxborderwhite"
+        android:id="@+id/box11"
+        android:layout_below="@+id/box3"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Broadcast Your Post"
+            android:textColor="@android:color/holo_blue_bright"
+            android:id="@+id/createnotitxt11"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/createnotitxt11"
+            android:textColor="#bbb"
+            android:textSize="12dp"
+            android:text="You can broadcast the post/message on social networking sites which are linked with Place Me."
+            android:layout_marginTop="5dp"
+            android:id="@+id/createnotinotitxt11"
+            />
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/admincontrolsrl11"
+            android:background="@drawable/boxborder"
+            android:layout_below="@+id/createnotinotitxt11"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/editnotificationrl11"
+                >
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/message"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/editnotification11"
+                    android:tint="#282f35"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Broadcast Post"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textColor="#282f35"
+                    android:id="@+id/editnotificationtxt11"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/boxborderwhite"
+        android:id="@+id/box4"
+        android:layout_below="@+id/box11"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Edit Multiple Users"
+            android:textColor="@android:color/holo_blue_bright"
+            android:id="@+id/createnotitxt4"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/createnotitxt4"
+            android:textColor="#bbb"
+            android:textSize="12dp"
+            android:text="You can edit multiple user accounts information such as their placement status, debar status and roles dynamically."
+            android:layout_marginTop="5dp"
+            android:id="@+id/createnotinotitxt4"
+            />
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/admincontrolsrl4"
+            android:background="@drawable/boxborder"
+            android:layout_below="@+id/createnotinotitxt4"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/editnotificationrl4"
+                >
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/users"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/editnotification4"
+                    android:tint="#282f35"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Edit Multiple Users"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textColor="#282f35"
+                    android:id="@+id/editnotificationtxt4"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/boxborderwhite"
+        android:id="@+id/box5"
+        android:layout_below="@+id/box4"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Upload Resume Template"
+            android:textColor="@android:color/holo_blue_bright"
+            android:id="@+id/createnotitxt5"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/createnotitxt5"
+            android:textColor="#bbb"
+            android:textSize="12dp"
+            android:text="As an institute administrator, your will get the facility to upload the Standard Institute's Resume template which can be dynamically visible and applied to the users under same institute."
+            android:layout_marginTop="5dp"
+            android:id="@+id/createnotinotitxt5"
+            />
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/admincontrolsrl5"
+            android:background="@drawable/boxborder"
+            android:layout_below="@+id/createnotinotitxt5"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/editnotificationrl5"
+                >
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/resume"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/editnotification5"
+                    android:tint="#282f35"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Upload Resume Template"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textColor="#282f35"
+                    android:id="@+id/editnotificationtxt5"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/boxborderwhite"
+        android:id="@+id/box6"
+        android:layout_below="@+id/box5"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Conduct Test"
+            android:textColor="@android:color/holo_blue_bright"
+            android:id="@+id/createnotitxt6"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/createnotitxt6"
+            android:textColor="#bbb"
+            android:textSize="12dp"
+            android:text="You can conduct online mock aptitude and technical tests through Place Me test plugin facility and that too exclusively for the users (students and alumni) under your institution."
+            android:layout_marginTop="5dp"
+            android:id="@+id/createnotinotitxt6"
+            />
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/admincontrolsrl6"
+            android:background="@drawable/boxborder"
+            android:layout_below="@+id/createnotinotitxt6"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/editnotificationrl6"
+                >
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/exam"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/editnotification6"
+                    android:tint="#282f35"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Conduct Test"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textColor="#282f35"
+                    android:id="@+id/editnotificationtxt6"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/boxborderwhite"
+        android:id="@+id/box7"
+        android:layout_below="@+id/box6"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Extract knowledge and reports"
+            android:textColor="@android:color/holo_blue_bright"
+            android:id="@+id/createnotitxt7"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/createnotitxt7"
+            android:textColor="#bbb"
+            android:textSize="12dp"
+            android:text="You can share/download/customize the user relevant information as per your requirements and/or as per the industry demands from any of your uploaded In-Campus activity(s)."
+            android:layout_marginTop="5dp"
+            android:id="@+id/createnotinotitxt7"
+            />
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/admincontrolsrl7"
+            android:background="@drawable/boxborder"
+            android:layout_below="@+id/createnotinotitxt7"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/editnotificationrl7"
+                >
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/cloud"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/editnotification7"
+                    android:tint="#282f35"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Extract knowledge and reports"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textColor="#282f35"
+                    android:id="@+id/editnotificationtxt7"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/boxborderwhite"
+        android:id="@+id/box8"
+        android:layout_below="@+id/box7"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Connect with other Institutes"
+            android:textColor="@android:color/holo_blue_bright"
+            android:id="@+id/createnotitxt8"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/createnotitxt8"
+            android:textColor="#bbb"
+            android:textSize="12dp"
+            android:text="Institute to Institute interaction provides you to share your institute level notifications and placement updates with the other institute on the same platform. You can get connected with the other institute's Training and Placement Officers via Place Me Chatrooms."
+            android:layout_marginTop="5dp"
+            android:id="@+id/createnotinotitxt8"
+            />
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/admincontrolsrl8"
+            android:background="@drawable/boxborder"
+            android:layout_below="@+id/createnotinotitxt8"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/editnotificationrl8"
+                >
+
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/institute"
+                        android:tint="#282f35"
+                        android:id="@+id/proimg4"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <ImageView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:src="@drawable/exchange"
+                        android:tint="#282f35"
+                        android:id="@+id/proimg5"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toRightOf="@+id/proimg4"
+                        android:layout_centerVertical="true"
+                        />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/institute"
+                        android:tint="#282f35"
+                        android:id="@+id/proimg6"
+                        android:layout_toRightOf="@+id/proimg5"
+                        android:layout_centerVertical="true"
+                        />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Get Connected"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textColor="#282f35"
+                    android:id="@+id/editnotificationtxt8"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/boxborderwhite"
+        android:id="@+id/box9"
+        android:layout_below="@+id/box8"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Create Multiple Admins"
+            android:textColor="@android:color/holo_blue_bright"
+            android:id="@+id/createnotitxt9"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/createnotitxt9"
+            android:textColor="#bbb"
+            android:textSize="12dp"
+            android:text="You can create multiple administrator/coordinator accounts for your institute who can work under your supervision and/or in your absence for better placement management and assessment."
+            android:layout_marginTop="5dp"
+            android:id="@+id/createnotinotitxt9"
+            />
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/admincontrolsrl9"
+            android:background="@drawable/boxborder"
+            android:layout_below="@+id/createnotinotitxt9"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/editnotificationrl9"
+                >
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/users"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/editnotification9"
+                    android:tint="#282f35"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Create Multiple Admins"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textColor="#282f35"
+                    android:id="@+id/editnotificationtxt9"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/boxborderwhite"
+        android:id="@+id/box10"
+        android:layout_below="@+id/box9"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Enhanced Management Facilities"
+            android:textColor="@android:color/holo_blue_bright"
+            android:id="@+id/createnotitxt10"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/createnotitxt10"
+            android:textColor="#bbb"
+            android:textSize="12dp"
+            android:text="Place Me Pro provides you the unique facility to monitor the individual user's performance under your institute by viewing their online interview videos and can comment the suggestions you want in order to improve their performances for upcoming placement activities."
+            android:layout_marginTop="5dp"
+            android:id="@+id/createnotinotitxt10"
+            />
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/admincontrolsrl10"
+            android:background="@drawable/boxborder"
+            android:layout_below="@+id/createnotinotitxt10"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/editnotificationrl10"
+                >
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/enhancedmgmt"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/editnotification10"
+                    android:tint="#282f35"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="Enhanced Management Facilities"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textColor="#282f35"
+                    android:id="@+id/editnotificationtxt10"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>
+</ScrollView>

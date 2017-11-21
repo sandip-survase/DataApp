@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:padding="20dp"
+tools:context="placeme.octopusites.com.placeme.WelcomeCompanyDetailsFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:background="@android:color/transparent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/headerMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:text="Enter Company Details"
+        android:textSize="20dp" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/companyNameTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/headerMsg"
+        android:theme="@style/TextLabelNew">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/companyName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity=""
+            android:hint="Company Name"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:textSize="15sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/countryinputlayout"
+        android:layout_below="@+id/companyNameTextInputLayout"
+        android:layout_marginTop="20dp"
+        android:theme="@style/TextLabelNew">
+
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="select country"
+            android:textSize="15dp"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:textColor="#000"
+            android:id="@+id/countryAutoBoxCompany"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/addressTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/countryinputlayout"
+        android:theme="@style/TextLabelNew">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/companyAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Company Address"
+            android:gravity=""
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:textSize="15sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/emailTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addressTextInputLayout"
+        android:theme="@style/TextLabelNew">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/companyEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Company Email"
+            android:gravity=""
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:textSize="15sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/websiteTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emailTextInputLayout"
+        android:theme="@style/TextLabelNew">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/companyWebsite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Company Website"
+            android:gravity=""
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:textSize="15sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/phoneTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/websiteTextInputLayout"
+        android:theme="@style/TextLabelNew">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/companyPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Company Phone"
+            android:inputType="number"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:textSize="15sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/alternatePhoneTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phoneTextInputLayout"
+        android:theme="@style/TextLabelNew">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/companyAlternatephone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Company Alternate phone"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textSize="15sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/CINTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/alternatePhoneTextInputLayout"
+        android:theme="@style/TextLabelNew">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/CIN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="CIN"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:textSize="15sp" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/CINTextInputLayout"
+        android:id="@+id/companyNatureSpinner"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="3dp"
+        android:layout_weight=".28"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/companyNature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:background="#001111"
+            android:gravity="center"
+            android:popupBackground="#001111"
+            android:layout_marginLeft="5dp"
+            android:spinnerMode="dropdown" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:id="@+id/spinnerimg1"
+            android:tint="#eee"
+            android:src="@drawable/drop" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/spinnerimg1"
+            android:background="#eee"
+            />
+
+    </RelativeLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/otherNatureTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/companyNatureSpinner"
+        android:theme="@style/TextLabelNew">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/otherNature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="other Nature"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:textSize="15sp" />
+
+    </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

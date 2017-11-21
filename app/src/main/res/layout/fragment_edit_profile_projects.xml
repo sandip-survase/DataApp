@@ -1,0 +1,1320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1"
+    android:fillViewport="true"
+    android:id="@+id/myprofileprojects"
+    android:background="#282f35"
+    >
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_my_profile_projects"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:focusableInTouchMode="true"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.octopusites.placeme.MyProfileProjects">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Project Details"
+            android:textSize="20dp"
+            android:textColor="#eee"
+            android:id="@+id/projtxt"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:background="@drawable/textviewborder2"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/projtxt"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashproject1"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/projtxt"
+            android:layout_marginTop="10dp"
+            android:id="@+id/trash1selectionview"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/projtxt"
+            android:layout_marginLeft="40dp"
+            android:id="@+id/projectrl1"
+            >
+            <View
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                android:id="@+id/section1"
+                android:layout_centerHorizontal="true"
+                />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/proj1input"
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Name"
+                    android:textSize="15dp"
+                    android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:id="@+id/proj1"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/domain1input"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/proj1input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Domain"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:textColor="#eee"
+                    android:id="@+id/domain1"/>
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/team1input"
+                android:layout_toLeftOf="@+id/section1"
+                android:layout_below="@+id/domain1input"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel"
+                >
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Team Size"
+                    android:textSize="15dp"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:id="@+id/team1"
+                    android:imeOptions="actionNext"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/duration1input"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/section1"
+                android:layout_below="@+id/domain1input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Duration(Months)"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:textColor="#eee"
+                    android:id="@+id/duration1"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/projectrl1"
+            android:id="@+id/projectline1"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/projectline1"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashproject2"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/projectline1"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash2selectionview"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/projectrl1"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/projectrl2"
+            android:visibility="gone"
+            >
+            <View
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                android:id="@+id/section2"
+                android:layout_centerHorizontal="true"
+                />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/proj2input"
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Name"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:textColor="#eee"
+                    android:id="@+id/proj2"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/domain2input"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/proj2input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Domain"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:textColor="#eee"
+                    android:imeOptions="actionNext"
+                    android:id="@+id/domain2"/>
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/team2input"
+                android:layout_toLeftOf="@+id/section2"
+                android:layout_below="@+id/domain2input"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel"
+                >
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Team Size"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:textColor="#eee"
+                    android:id="@+id/team2"
+                    android:imeOptions="actionNext"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/duration2input"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/section2"
+                android:layout_below="@+id/domain2input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Duration(Months)"
+                    android:textSize="15dp"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:id="@+id/duration2"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/projectrl2"
+            android:id="@+id/projectline2"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/projectline2"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashproject3"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/projectline2"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash3selectionview"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/projectrl2"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/projectrl3"
+            android:visibility="gone"
+            >
+            <View
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                android:id="@+id/section3"
+                android:layout_centerHorizontal="true"
+                />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/proj3input"
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Name"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:textColor="#eee"
+                    android:id="@+id/proj3"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/domain3input"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/proj3input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Domain"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:textColor="#eee"
+                    android:imeOptions="actionNext"
+                    android:id="@+id/domain3"/>
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/team3input"
+                android:layout_toLeftOf="@+id/section3"
+                android:layout_below="@+id/domain3input"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel"
+                >
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Team Size"
+                    android:textSize="15dp"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:id="@+id/team3"
+                    android:imeOptions="actionNext"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/duration3input"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/section3"
+                android:layout_below="@+id/domain3input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Duration(Months)"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:textColor="#eee"
+                    android:id="@+id/duration3"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/projectrl3"
+            android:id="@+id/projectline3"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/projectline3"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashproject4"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/projectline3"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash4selectionview"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/projectrl3"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/projectrl4"
+            android:visibility="gone"
+            >
+            <View
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                android:id="@+id/section4"
+                android:layout_centerHorizontal="true"
+                />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/proj4input"
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Name"
+                    android:textSize="15dp"
+                    android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:id="@+id/proj4"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/domain4input"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/proj4input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Domain"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:imeOptions="actionNext"
+                    android:textColor="#eee"
+                    android:id="@+id/domain4"/>
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/team4input"
+                android:layout_toLeftOf="@+id/section4"
+                android:layout_below="@+id/domain4input"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel"
+                >
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Team Size"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:textColor="#eee"
+                    android:id="@+id/team4"
+                    android:imeOptions="actionNext"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/duration4input"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/section4"
+                android:layout_below="@+id/domain4input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Duration(Months)"
+                    android:textSize="15dp"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:id="@+id/duration4"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/projectrl4"
+            android:id="@+id/projectline4"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/projectline4"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashproject5"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/projectline4"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash5selectionview"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/projectrl4"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/projectrl5"
+            android:visibility="gone"
+            >
+            <View
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                android:id="@+id/section5"
+                android:layout_centerHorizontal="true"
+                />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/proj5input"
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Name"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:textColor="#eee"
+                    android:id="@+id/proj5"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/domain5input"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/proj5input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Domain"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:imeOptions="actionNext"
+                    android:textColor="#eee"
+                    android:id="@+id/domain5"/>
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/team5input"
+                android:layout_toLeftOf="@+id/section5"
+                android:layout_below="@+id/domain5input"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel"
+                >
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Team Size"
+                    android:textSize="15dp"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:id="@+id/team5"
+                    android:imeOptions="actionNext"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/duration5input"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/section5"
+                android:layout_below="@+id/domain5input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Duration(Months)"
+                    android:textSize="15dp"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:id="@+id/duration5"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/projectrl5"
+            android:id="@+id/projectline5"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/projectline5"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashproject6"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/projectline5"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash6selectionview"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/projectrl5"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/projectrl6"
+            android:visibility="gone"
+            >
+            <View
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                android:id="@+id/section6"
+                android:layout_centerHorizontal="true"
+                />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/proj6input"
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Name"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/proj6"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/domain6input"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/proj6input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Domain"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:imeOptions="actionNext"
+                    android:textColor="#eee"
+                    android:id="@+id/domain6"/>
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/team6input"
+                android:layout_toLeftOf="@+id/section6"
+                android:layout_below="@+id/domain6input"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel"
+                >
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Team Size"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:textColor="#eee"
+                    android:id="@+id/team6"
+                    android:imeOptions="actionNext"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/duration6input"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/section6"
+                android:layout_below="@+id/domain6input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Duration(Months)"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:textColor="#eee"
+                    android:id="@+id/duration6"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/projectrl6"
+            android:id="@+id/projectline6"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/projectline6"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashproject7"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/projectline6"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash7selectionview"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/projectrl6"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/projectrl7"
+            android:visibility="gone"
+            >
+            <View
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                android:id="@+id/section7"
+                android:layout_centerHorizontal="true"
+                />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/proj7input"
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Name"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:textColor="#eee"
+                    android:id="@+id/proj7"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/domain7input"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/proj7input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Domain"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:imeOptions="actionNext"
+                    android:textColor="#eee"
+                    android:id="@+id/domain7"/>
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/team7input"
+                android:layout_toLeftOf="@+id/section7"
+                android:layout_below="@+id/domain7input"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel"
+                >
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Team Size"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:textColor="#eee"
+                    android:id="@+id/team7"
+                    android:imeOptions="actionNext"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/duration7input"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/section7"
+                android:layout_below="@+id/domain7input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Duration(Months)"
+                    android:textSize="15dp"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:id="@+id/duration7"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/projectrl7"
+            android:id="@+id/projectline7"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/projectline7"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashproject8"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/projectline7"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash8selectionview"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/projectrl7"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/projectrl8"
+            android:visibility="gone"
+            >
+            <View
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                android:id="@+id/section8"
+                android:layout_centerHorizontal="true"
+                />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/proj8input"
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Name"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/proj8"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/domain8input"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/proj8input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Domain"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:imeOptions="actionNext"
+                    android:textColor="#eee"
+                    android:id="@+id/domain8"/>
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/team8input"
+                android:layout_toLeftOf="@+id/section8"
+                android:layout_below="@+id/domain8input"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel"
+                >
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Team Size"
+                    android:textSize="15dp"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:id="@+id/team8"
+                    android:imeOptions="actionNext"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/duration8input"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/section8"
+                android:layout_below="@+id/domain8input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Duration(Months)"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:textColor="#eee"
+                    android:id="@+id/duration8"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/projectrl8"
+            android:id="@+id/projectline8"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/projectline8"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashproject9"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/projectline8"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash9selectionview"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/projectrl8"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/projectrl9"
+            android:visibility="gone"
+            >
+            <View
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                android:id="@+id/section9"
+                android:layout_centerHorizontal="true"
+                />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/proj9input"
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Name"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:id="@+id/proj9"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/domain9input"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/proj9input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Domain"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="textCapWords"
+                    android:imeOptions="actionNext"
+                    android:textColor="#eee"
+                    android:id="@+id/domain9"/>
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/team9input"
+                android:layout_toLeftOf="@+id/section9"
+                android:layout_below="@+id/domain9input"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel"
+                >
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Team Size"
+                    android:textSize="15dp"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:id="@+id/team9"
+                    android:imeOptions="actionNext"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/duration9input"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/section9"
+                android:layout_below="@+id/domain9input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Duration(Months)"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:textColor="#eee"
+                    android:id="@+id/duration9"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#c59a6d"
+            android:layout_below="@+id/projectrl9"
+            android:id="@+id/projectline9"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/projectline9"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/trash"
+            android:layout_marginTop="35dp"
+            android:id="@+id/trashproject10"
+            />
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:layout_below="@+id/projectline9"
+            android:layout_marginTop="20dp"
+            android:id="@+id/trash10selectionview"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/projectrl9"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/projectrl10"
+            android:visibility="gone"
+            >
+            <View
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                android:id="@+id/section10"
+                android:layout_centerHorizontal="true"
+                />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/proj10input"
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Name"
+                    android:textSize="15dp"
+                    android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:id="@+id/proj10"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/domain10input"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/proj10input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Project Domain"
+                    android:imeOptions="actionNext"
+                    android:textSize="15dp"
+                    android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:id="@+id/domain10"/>
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/team10input"
+                android:layout_toLeftOf="@+id/section10"
+                android:layout_below="@+id/domain10input"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:theme="@style/TextLabel"
+                >
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Team Size"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:inputType="number"
+                    android:id="@+id/team10"
+                    android:imeOptions="actionNext"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/duration10input"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/section10"
+                android:layout_below="@+id/domain10input"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Duration(Months)"
+                    android:textSize="15dp"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:textColor="#eee"
+                    android:id="@+id/duration10"/>
+
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/boxborderwhite"
+            android:layout_below="@+id/projectrl10"
+            android:id="@+id/addmoreproject"
+            android:layout_marginTop="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/projectrl10"
+            android:text="Add Another Project"
+            android:textColor="#eee"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/addmoreprojecttxt"
+            />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/projectrl10"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/plus"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/addmoreprojectimg"
+            />
+
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

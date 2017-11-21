@@ -1,0 +1,125 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="placeme.octopusites.com.placeme.WelcomeRoleFragment">
+
+
+    <RelativeLayout
+        android:id="@+id/activity_my_profile_intro"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
+        android:focusableInTouchMode="true"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/selectRoleMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Select Role"
+            android:textSize="20dp" />
+
+        <View
+            android:id="@+id/studentBlock"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/boxborderwhite" />
+
+        <TextView
+            android:id="@+id/knownlangtxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="60dp"
+            android:text="Student"
+            android:textColor="#eee"
+            android:textSize="20dp" />
+
+        <View
+            android:id="@+id/alumniBlock"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/studentBlock"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/boxborderwhite" />
+
+        <TextView
+            android:id="@+id/skillstxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/studentBlock"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:text="Alumni"
+            android:textColor="#eee"
+            android:textSize="20dp" />
+
+        <View
+            android:id="@+id/adminBlock"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/alumniBlock"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/boxborderwhite" />
+
+        <TextView
+            android:id="@+id/honortxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/alumniBlock"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:text="TPO / Admin"
+            android:textColor="#eee"
+            android:textSize="20dp" />
+
+        <View
+            android:id="@+id/hrBlock"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/adminBlock"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/boxborderwhite" />
+
+        <TextView
+            android:id="@+id/patenttxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/adminBlock"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:text="Hr"
+            android:textColor="#eee"
+            android:textSize="20dp" />
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/passwordTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/patenttxt"
+            android:layout_marginTop="30dp"
+            android:theme="@style/TextLabelNew">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/instOrEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:textSize="15dp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+    </RelativeLayout>
+
+</FrameLayout>

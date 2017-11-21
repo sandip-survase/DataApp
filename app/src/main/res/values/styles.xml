@@ -1,0 +1,81 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
+</style>
+
+    <style name="MyEditTextTheme">
+        <item name="android:textColorHint">#eeeeee</item>
+        <item name="colorControlNormal">#eeeeee</item>
+        <item name="colorControlActivated">#c59a6d</item>
+        <item name="colorControlHighlight">#c59a6d</item>
+    </style>
+
+    <style name="MaterialSearchViewStyle">
+        <item name="searchBackIcon">@drawable/backarrow</item>
+
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="actionMenuTextColor">#c59a6d</item>
+    </style>
+
+    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MyFormTheme" parent="AppTheme">
+        <item name="android:homeAsUpIndicator">@drawable/close</item>
+        <item name="actionMenuTextColor">#c59a6d</item>
+    </style>
+
+    <style name="ProTheme" parent="Theme.AppCompat.Light">
+        <item name="android:homeAsUpIndicator">@drawable/backarrow</item>
+        <item name="actionMenuTextColor">#282f35</item>
+    </style>
+
+    <style name="TextLabel" parent="AppTheme.NoActionBar">
+        <item name="android:textColorHint">#eeeeee</item>
+        <item name="android:textSize">20sp</item>
+        <item name="colorAccent">#eeeeee</item>
+        <item name="colorControlNormal">#eeeeee</item>
+        <item name="colorControlActivated">#c59a6d</item>
+    </style>
+
+    <style name="TextLabelNew" parent="AppTheme.NoActionBar">
+        <item name="android:textColorHint">#000</item>
+        <item name="android:textSize">20sp</item>
+        <item name="colorAccent">#000</item>
+        <item name="colorControlNormal">#000</item>
+        <item name="colorControlActivated">#c59a6d</item>
+    </style>
+
+    <style name="SCBSwitch" parent="AppTheme">
+        <item name="colorControlActivated">#c59a6d</item>
+        <item name="colorSwitchThumbNormal">#f1f1f1</item>
+        <item name="android:colorForeground">#c59a6d</item>
+    </style>
+
+    <style name="MyCheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/white</item>
+    </style>
+
+    <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textAllCaps">false</item>
+
+    </style>
+</resources>

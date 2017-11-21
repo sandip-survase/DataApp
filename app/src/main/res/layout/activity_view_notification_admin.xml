@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_view_notification_admin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#282f35"
+    tools:context="placeme.octopusites.com.placeme.ViewNotificationAdmin">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/boxborderwhite"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/headingrl"
+            android:padding="10dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/notificationheadingview"
+                android:textColor="#eee"
+                android:textSize="16dp"
+                android:text="hello You are required to confirm your presence by email"
+                android:textStyle="bold"
+                android:layout_toLeftOf="@+id/editnotification"
+                android:gravity="center"
+                />
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/pencilwhite"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/editnotification"
+                android:layout_marginLeft="5dp"
+                />
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/headingrl"
+            android:id="@+id/notificationsection"
+            android:background="#eee"
+            />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/notificationsection"
+            android:paddingBottom="10dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#eee"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/notificationnotificationview"
+                    android:text="You are required to confirm your presence by email to pooja6547@gmail.com by filling the Google form at https://goo.gl/7IOKI5  on or before 5 pm, 25.1.2017. If you fail to collect your certificate then it will be returned to university, as per the guidelines given by Savitribai Phule Pune University.
+In case if you are unable to attend the ceremony then your degree certificate can be received by your blood relatives (i.e. Paternal Grandfather/ Paternal Grandmother/Father/Mother/Brother/Sister only). This person should bring all the documents mentioned above and their own photo ID with its photocopy. You are required to confirm your presence by email to pooja6547@gmail.com by filling the Google form at https://goo.gl/7IOKI5  on or before 5 pm, 25.1.2017. If you fail to collect your certificate then it will be returned to university, as per the guidelines given by Savitribai Phule Pune University.
+In case if you are unable to attend the ceremony then your degree certificate can be received by your blood relatives (i.e. Paternal Grandfather/ Paternal Grandmother/Father/Mother/Brother/Sister only). This person should bring all the documents mentioned above and their own photo ID with its photocopy. You are required to confirm your presence by email to pooja6547@gmail.com by filling the Google form at https://goo.gl/7IOKI5  on or before 5 pm, 25.1.2017. If you fail to collect your certificate then it will be returned to university, as per the guidelines given by Savitribai Phule Pune University.
+In case if you are unable to attend the ceremony then your degree certificate can be received by your blood relatives (i.e. Paternal Grandfather/ Paternal Grandmother/Father/Mother/Brother/Sister only). This person should bring all the documents mentioned above and their own photo ID with its photocopy. You are required to confirm your presence by email to pooja6547@gmail.com by filling the Google form at https://goo.gl/7IOKI5  on or before 5 pm, 25.1.2017. If you fail to collect your certificate then it will be returned to university, as per the guidelines given by Savitribai Phule Pune University.
+In case if you are unable to attend the ceremony then your degree certificate can be received by your blood relatives (i.e. Paternal Grandfather/ Paternal Grandmother/Father/Mother/Brother/Sister only). This person should bring all the documents mentioned above and their own photo ID with its photocopy. "
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/notificationnotificationview"
+                    android:textColor="#bbb"
+                    android:text="Attachments"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/attachmentstxt"
+                    android:layout_marginLeft="10dp"
+                    />
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="1dp"
+                    android:id="@+id/section"
+                    android:layout_centerHorizontal="true"
+                    />
+
+               <RelativeLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:padding="10dp"
+                   android:layout_below="@+id/attachmentstxt"
+                   android:background="@drawable/boxborderwhite"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginBottom="10dp"
+                   android:layout_marginLeft="10dp"
+                   android:layout_marginRight="5dp"
+                   android:id="@+id/attachmentrl1"
+                   android:layout_toLeftOf="@+id/section"
+                   >
+
+                   <ImageView
+                       android:layout_width="70dp"
+                       android:layout_height="70dp"
+                       android:src="@drawable/pdf"
+                       android:id="@+id/attachment1img"
+                       android:layout_centerHorizontal="true"
+                       />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textSize="8dp"
+                       android:text="Students.xlsx"
+                       android:layout_below="@+id/attachment1img"
+                       android:id="@+id/filename1"
+                       android:layout_marginTop="2dp"
+                       android:textColor="#eee"
+                       android:layout_centerHorizontal="true"
+                       android:gravity="center"
+                       />
+                   <View
+                       android:layout_width="match_parent"
+                       android:layout_height="1dp"
+                       android:background="#eee"
+                       android:layout_below="@+id/filename1"
+                       android:layout_marginTop="5dp"
+                       android:id="@+id/attachline1"
+                       />
+                   <ImageView
+                       android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:layout_below="@+id/attachline1"
+                       android:src="@drawable/download"
+                       android:layout_marginTop="5dp"
+                       android:layout_centerHorizontal="true"
+                       />
+
+               </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_below="@+id/attachmentstxt"
+                    android:background="@drawable/boxborderwhite"
+                    android:layout_toRightOf="@+id/section"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/pdf"
+                        android:id="@+id/attachment2img"
+                        android:layout_centerHorizontal="true"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="8dp"
+                        android:text="Students.xlsx"
+                        android:layout_below="@+id/attachment2img"
+                        android:id="@+id/filename2"
+                        android:layout_marginTop="2dp"
+                        android:textColor="#eee"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#eee"
+                        android:layout_below="@+id/filename2"
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/attachline2"
+                        />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/attachline2"
+                        android:src="@drawable/download"
+                        android:layout_marginTop="5dp"
+                        android:layout_centerHorizontal="true"
+                        />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+</RelativeLayout>
