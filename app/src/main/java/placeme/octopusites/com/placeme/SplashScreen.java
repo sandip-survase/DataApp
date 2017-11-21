@@ -59,6 +59,7 @@ public class SplashScreen extends Activity
     String sPadding = "ISO10126Padding";
     protected void onCreate(Bundle paramBundle)
     {
+        //sandip cha change
         super.onCreate(paramBundle);
         setContentView(R.layout.activity_splashscreen);
 

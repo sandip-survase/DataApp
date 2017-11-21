@@ -8,6 +8,22 @@
         "source": "D:\\MainBuild\\PlaceMe\\library\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\crop__divider.9.png"
     },
     {
+        "merged": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_line_divider.xml.flat",
+        "source": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\line_divider.xml"
+    },
+    {
+        "merged": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4_crop__divider.9.png.flat",
+        "source": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\crop__divider.9.png"
+    },
+    {
+        "merged": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_crop__ic_done.png.flat",
+        "source": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\crop__ic_done.png"
+    },
+    {
+        "merged": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_crop__selectable_background.xml.flat",
+        "source": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable\\crop__selectable_background.xml"
+    },
+    {
         "merged": "D:\\MainBuild\\PlaceMe\\library\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_crop__divider.9.png.flat",
         "source": "D:\\MainBuild\\PlaceMe\\library\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\crop__divider.9.png"
     },
@@ -18,6 +34,26 @@
     {
         "merged": "D:\\MainBuild\\PlaceMe\\library\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4_crop__divider.9.png.flat",
         "source": "D:\\MainBuild\\PlaceMe\\library\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\crop__divider.9.png"
+    },
+    {
+        "merged": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_crop__divider.9.png.flat",
+        "source": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\crop__divider.9.png"
+    },
+    {
+        "merged": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_crop__divider.9.png.flat",
+        "source": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\crop__divider.9.png"
+    },
+    {
+        "merged": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_crop__ic_cancel.png.flat",
+        "source": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\crop__ic_cancel.png"
+    },
+    {
+        "merged": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_crop__activity_crop.xml.flat",
+        "source": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\bundles\\debug\\res\\layout\\crop__activity_crop.xml"
+    },
+    {
+        "merged": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-v21_crop__selectable_background.xml.flat",
+        "source": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable-v21\\crop__selectable_background.xml"
     },
     {
         "merged": "D:\\MainBuild\\PlaceMe\\library\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_crop__layout_done_cancel.xml.flat",
@@ -34,6 +70,10 @@
     {
         "merged": "D:\\MainBuild\\PlaceMe\\library\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_crop__ic_cancel.png.flat",
         "source": "D:\\MainBuild\\PlaceMe\\library\\lib\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\crop__ic_cancel.png"
+    },
+    {
+        "merged": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_crop__layout_done_cancel.xml.flat",
+        "source": "C:\\Git\\PlacemeWork\\PlaceMe\\library\\lib\\build\\intermediates\\bundles\\debug\\res\\layout\\crop__layout_done_cancel.xml"
     },
     {
         "merged": "D:\\MainBuild\\PlaceMe\\library\\lib\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_crop__selectable_background.xml.flat",

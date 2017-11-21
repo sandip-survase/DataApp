@@ -3,10 +3,15 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PlaceMe.iml" filepath="$PROJECT_DIR$/PlaceMe.iml" />
+      <module fileurl="file://C:\Git\PlacemeWork\PlaceMe\PlaceMe.iml" filepath="C:\Git\PlacemeWork\PlaceMe\PlaceMe.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Git\PlacemeWork\PlaceMe\app\app.iml" filepath="C:\Git\PlacemeWork\PlaceMe\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/filepicker/filepicker.iml" filepath="$PROJECT_DIR$/library/filepicker/filepicker.iml" />
+      <module fileurl="file://C:\Git\PlacemeWork\PlaceMe\library\filepicker\filepicker.iml" filepath="C:\Git\PlacemeWork\PlaceMe\library\filepicker\filepicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/lib/lib.iml" filepath="$PROJECT_DIR$/library/lib/lib.iml" />
+      <module fileurl="file://C:\Git\PlacemeWork\PlaceMe\library\lib\lib.iml" filepath="C:\Git\PlacemeWork\PlaceMe\library\lib\lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://C:\Git\PlacemeWork\PlaceMe\library\library.iml" filepath="C:\Git\PlacemeWork\PlaceMe\library\library.iml" />
     </modules>
   </component>
 </project>
