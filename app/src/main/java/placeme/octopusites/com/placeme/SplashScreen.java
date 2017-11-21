@@ -62,6 +62,7 @@ public class SplashScreen extends Activity
         //sandip cha change
         //sunny cha change
         // sunny cha dusara change 123
+        //kunal cha change
         super.onCreate(paramBundle);
         setContentView(R.layout.activity_splashscreen);
 
