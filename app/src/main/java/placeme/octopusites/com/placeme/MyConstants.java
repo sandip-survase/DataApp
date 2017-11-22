@@ -12,7 +12,7 @@ public class MyConstants {
     //-----------------------------------   PlaceMe   ---------------------------------
 
     public static final String url_savesessiondetails = "http://192.168.100.100/PlaceMe/SaveSessionDetails";
-    public static final String url_create_firebase= "http://192.168.100.100:8080/PlaceMe/RegisterFirebaseUser";
+    public static final String url_create_firebase= "http://192.168.100.100/PlaceMe/RegisterFirebaseUser";
     public static final String url_UpdateFirebaseToken= "http://192.168.100.100/PlaceMe/UpdateFirebaseToken";
     public static final String url_ChangeUsernameFireBase= "http://192.168.100.100/PlaceMe/ChangeUsername";
 
@@ -43,17 +43,17 @@ public class MyConstants {
     public static String url_getugcourses = "http://192.168.100.100/ProfileObjects/GetUGCourses";
     public static String url_getstreams= "http://192.168.100.100/AESTest/GetUGStreams";
     public static String url_getuniversities= "http://192.168.100.100/AESTest/GetUGUniversities";
-    public static String url_savedata_ug= "http://192.168.100.30:8080/ProfileObjects/SaveUg";
+    public static String url_savedata_ug= "http://192.168.100.30/ProfileObjects/SaveUg";
 
     public static String url_getpgcourses = "http://192.168.100.100/AESTest/GetPGCourses";
     public static String url_getpgstreams= "http://192.168.100.100/AESTest/GetPGStreams";
     public static String url_getpguniversities= "http://192.168.100.100/AESTest/GetPGUniversities";
-    public static String url_savedata_pg_sem= "http://192.168.100.30:8080/ProfileObjects/SavePgSem";
-    public static String url_savedata_pg_year= "http://192.168.100.30:8080/ProfileObjects/SavePgYear";
+    public static String url_savedata_pg_sem= "http://192.168.100.30/ProfileObjects/SavePgSem";
+    public static String url_savedata_pg_year= "http://192.168.100.30/ProfileObjects/SavePgYear";
 
 //    public static String savepersonalinfo = "http://192.168.100.100/AESTest/SavePersonalInfo";
-public static String savepersonalinfo = "http://192.168.100.30:8080/ProfileObjects/SavePersonalInfo";
-    public static final String savepersonalinfoAlumni = "http://192.168.100.30:8080/ProfileObjects/SavePersonalInfoAlumni";
+public static String savepersonalinfo = "http://192.168.100.30/ProfileObjects/SavePersonalInfo";
+    public static final String savepersonalinfoAlumni = "http://192.168.100.30/ProfileObjects/SavePersonalInfoAlumni";
 
 
     public static final String url_getlanguages = "http://192.168.100.100/AESTest/GetLanguages";
@@ -65,20 +65,20 @@ public static String savepersonalinfo = "http://192.168.100.30:8080/ProfileObjec
     public static final String URL_SAVE_ALUMNI_PROJECTS= "http://192.168.100.100/AESTest/SaveAlumniProjects";
     public static final String url_saveHrExperience = "http://192.168.100.100/AESTest/SaveHrExperiences";
 
-    public static final String url_savecareerobj= "http://192.168.100.30:8080/ProfileObjects/SaveCareerObj";
+    public static final String url_savecareerobj= "http://192.168.100.30/ProfileObjects/SaveCareerObj";
     public static final String url_savestrengths= "http://192.168.100.30/ProfileObjects/SaveStrengths";
     public static final String url_saveweaknesses= "http://192.168.100.30/ProfileObjects/SaveWeaknesses";
     public static final String url_savelocationpreferences= "http://192.168.100.30/ProfileObjects/SaveLocationPreferences";
 
-    public static final String url_savelanguages= "http://192.168.100.30:8080/ProfileObjects/SaveLanguages";
-    public static final String url_savecertifications= "http://192.168.100.30:8080/ProfileObjects/SaveCertificates";
-    public static final String url_savecourses= "http://192.168.100.30:8080/ProfileObjects/SaveCourses";
-    public static final String url_saveskills = "http://192.168.100.30:8080/ProfileObjects/SaveSkills";
-    public static final String url_savehonors= "http://192.168.100.30:8080/ProfileObjects/SaveHonors";
-    public static final String url_savepatents= "http://192.168.100.30:8080/ProfileObjects/SavePatents";
-    public static final String url_savepublications= "http://192.168.100.30:8080/ProfileObjects/SavePublications";
+    public static final String url_savelanguages= "http://192.168.100.30/ProfileObjects/SaveLanguages";
+    public static final String url_savecertifications= "http://192.168.100.30/ProfileObjects/SaveCertificates";
+    public static final String url_savecourses= "http://192.168.100.30/ProfileObjects/SaveCourses";
+    public static final String url_saveskills = "http://192.168.100.30/ProfileObjects/SaveSkills";
+    public static final String url_savehonors= "http://192.168.100.30/ProfileObjects/SaveHonors";
+    public static final String url_savepatents= "http://192.168.100.30/ProfileObjects/SavePatents";
+    public static final String url_savepublications= "http://192.168.100.30/ProfileObjects/SavePublications";
 
-    public static final String url_saveprojects= "http://192.168.100.30:8080/ProfileObjects/SaveProjects";
+    public static final String url_saveprojects= "http://192.168.100.30/ProfileObjects/SaveProjects";
 
 
     public static final String url = "http://192.168.100.100/HandleMobileRequests/getimg.jsp?username=";
@@ -96,13 +96,13 @@ public static String savepersonalinfo = "http://192.168.100.30:8080/ProfileObjec
 
 //    private static String url = "http://192.168.100.100/HandleMobileRequests/getimg.jsp?username=";
 
-    public static final String url_savedata= "http://192.168.100.30:8080/ProfileObjects/SaveTenth";
+    public static final String url_savedata= "http://192.168.100.30/ProfileObjects/SaveTenth";
 //    public static final String savepersonalinfoAlumni = "http://192.168.100.100/AESTest/SavePersonalInfoAlumni";
     public static final String url_savedata_SaveContact= "http://192.168.100.100/AESTest/SaveContact";
 
-    public static final String url_savedata_SaveIntro= "http://192.168.100.30:8080/ProfileObjects/SaveIntro";
+    public static final String url_savedata_SaveIntro= "http://192.168.100.30/ProfileObjects/SaveIntro";
 
-    public static final String load_student_data = "http://192.168.100.30:8080/ProfileObjects/GetStudentData";
+    public static final String load_student_data = "http://192.168.100.30/ProfileObjects/GetStudentData";
 
     public static final String url_SaveExperiences_admin= "http://192.168.100.100/AESTest/SaveExperiences";
 

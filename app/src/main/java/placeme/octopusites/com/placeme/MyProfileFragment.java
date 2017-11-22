@@ -1978,7 +1978,7 @@ public class MyProfileFragment extends Fragment {
                 populateData();
 
             } catch (Exception e) {
-                Toast.makeText(getActivity(), "exp " + e.getMessage(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(getActivity(), "exp " + e.getMessage(), Toast.LENGTH_LONG).show();
                 Log.d("TAG", "onPostExecute: exp = " + e.getMessage());
             }
 
