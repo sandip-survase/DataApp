@@ -221,10 +221,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         setSupportActionBar(toolbar);
 
 
-
-
-
-
         mViewPager = (ViewPager) findViewById(R.id.blogcontainer);
         tabLayout = (TabLayout) findViewById(R.id.blogtabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -452,6 +448,10 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         mViewPager.setVisibility(View.GONE);
                         tabLayout.setVisibility(View.GONE);
                         getSupportActionBar().setTitle("My Profile");
+
+                    int i=4/0;
+
+
 
                     } else if (navMenuFlag == 2) {
 
