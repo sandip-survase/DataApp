@@ -349,7 +349,7 @@ public class MyProfileIntro extends AppCompatActivity {
 //                String user  = json.getString("username");
 
                 Log.d("TAG", "doInBackground: r -"+r);
-
+//                Log.d("TAG", "doInBackground: r -"+r);
             }catch (Exception e){e.printStackTrace();}
             return r;
         }

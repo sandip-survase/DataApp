@@ -81,6 +81,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import cat.ereza.customactivityoncrash.config.CaocConfig;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.support.design.widget.AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS;
@@ -218,6 +219,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         mViewPager = (ViewPager) findViewById(R.id.blogcontainer);
         tabLayout = (TabLayout) findViewById(R.id.blogtabs);
@@ -446,6 +448,10 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         mViewPager.setVisibility(View.GONE);
                         tabLayout.setVisibility(View.GONE);
                         getSupportActionBar().setTitle("My Profile");
+
+//                    int i=4/0;
+
+
 
                     } else if (navMenuFlag == 2) {
 

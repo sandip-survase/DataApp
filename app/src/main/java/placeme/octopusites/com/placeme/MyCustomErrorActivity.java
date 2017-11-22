@@ -41,28 +41,23 @@ public class MyCustomErrorActivity extends AppCompatActivity {
     JSONObject json;
     String error = "";
     CaocConfig config;
-    private static String url_save_error = "http://192.168.100.30/ProfileObjects/Save_Error";
+    String abd="";
+    private static String url_save_error = "http://192.168.100.10:8080/ProfileObjects/Save_Error";
+    private static String url_save_bug = "http://192.168.100.10:8080/ProfileObjects/Save_Bug";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_custom_error);
 
-
-
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         username = sharedpreferences.getString(Username, null);
-        String pass = sharedpreferences.getString(Password, null);
-        String role = sharedpreferences.getString("role", null);
-//            error+=role;
-
-        error = CustomActivityOnCrash.getAllErrorDetailsFromIntent(this, getIntent());
-
-
-        error+=getlogcat();
-
+        error=getlogcat();
+        abd=error+CustomActivityOnCrash.getAllErrorDetailsFromIntent(this, getIntent());
+        new ask().execute();
 
         config = CustomActivityOnCrash.getConfigFromIntent(getIntent());
+
         Button restartButton = (Button) findViewById(R.id.restart_button);
 
         if (config.isShowRestartButton() && config.getRestartActivityClass() != null) {
@@ -70,9 +65,6 @@ public class MyCustomErrorActivity extends AppCompatActivity {
             restartButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    new SaveError().execute();
-//                    report();
-                    Log.d("errorreport", "onClick: if click lisnner1");
                     CustomActivityOnCrash.restartApplication(MyCustomErrorActivity.this, config);
                 }
             });
@@ -80,8 +72,6 @@ public class MyCustomErrorActivity extends AppCompatActivity {
             restartButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    new SaveError().execute();
-                    Log.d("errorreport", "onClick: in else click lisnner2");
                     CustomActivityOnCrash.closeApplication(MyCustomErrorActivity.this, config);
                 }
             });
@@ -89,53 +79,42 @@ public class MyCustomErrorActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        report();
         MyCustomErrorActivity.super.onBackPressed();
     }
 
-    public void report() {
+    class ask extends AsyncTask<String, String, String> {
+        protected String doInBackground(String... param) {
+            String  r ="";
+//
+            String str =abd;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
 
-        Log.d("errorreport", "report: welcome to report");
-        new SaveError().execute();
-
-    }
-        class SaveError extends AsyncTask<String, String, String> {
-
-            protected String doInBackground(String... param) {
-
-                String r =null;
-
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u", username));  //0
-
-                params.add(new BasicNameValuePair("e", error));     //1
-
-                json = jParser.makeHttpRequest(url_save_error, "GET", params);
-                try {
-                    r = json.getString("info");
-                    Log.d("errorreport", "doInBackground: -" + json);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                return r;
+            params.add(new BasicNameValuePair("u", username));  //0
+            params.add(new BasicNameValuePair("k", str));     //1
+            json = jParser.makeHttpRequest(url_save_bug, "GET", params);
+            Log.d("TAG", "json - "+json);
+            try {
+                r = json.getString("info");
+                Log.d("errorreport", "doInBackground: errorreport  r: -" + r);
+            } catch (Exception e) {
+                Log.d("errorreport", "doInBackground: errorreport  Exception: -" + e.getMessage());
+                e.printStackTrace();
             }
 
-            @Override
-            protected void onPostExecute(String result) {
-                Log.d("errorreport", "onPostExecute: result" + result);
+            return  r;
 
-                if (result.equals("success")) {
-                    Toast.makeText(MyCustomErrorActivity.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
-//                MyCustomErrorActivity.super.onBackPressed();
-                } else {
-                    Toast.makeText(MyCustomErrorActivity.this, result, Toast.LENGTH_SHORT).show();
-                }
+        }
+        protected void onPostExecute(String result) {
 
-                CustomActivityOnCrash.restartApplication(MyCustomErrorActivity.this, config);
+            if (result.equals("success")) {
+                Toast.makeText(MyCustomErrorActivity.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(MyCustomErrorActivity.this, result, Toast.LENGTH_SHORT).show();
             }
+
         }
 
+    }
         public String getlogcat()
         {
             String logcat="";
