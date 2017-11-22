@@ -48,5 +48,6 @@ dependencies {
     compile 'com.github.mabbas007:TagsEditText:1.0.5'
     compile 'cat.ereza:customactivityoncrash:2.1.0'
     testCompile 'junit:junit:4.12'
+
 }
 apply plugin: 'com.google.gms.google-services'
