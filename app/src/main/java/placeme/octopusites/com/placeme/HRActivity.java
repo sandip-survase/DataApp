@@ -73,7 +73,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     boolean doubleBackToExitPressedOnce = false;
     int notificationorplacementflag=0;
     private List<RecyclerItem> itemList = new ArrayList<>();
-    private RecyclerView recyclerView;
     private RecyclerItemAdapter mAdapter;
     int count=0,id[],pcount=0;
     String heading[],notification[];
@@ -106,6 +105,11 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     String filepath="",filename="";
     String directory;
     List<String> response;
+    private RecyclerView recyclerView,recyclerViewPlacemetsHr;
+
+    private List<RecyclerItemHrPlacement> itemList2 = new ArrayList<>();
+    private RecyclerItemHrPlacementAdapter mAdapter2;
+
 
     //
     @Override
@@ -199,14 +203,14 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             }
         });
 
-
-        RelativeLayout bottompanel=(RelativeLayout)findViewById(R.id.bottompanel);
-        bottompanel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HRActivity.this,HrCreatedPlacements.class));
-            }
-        });
+//
+//        RelativeLayout bottompanel=(RelativeLayout)findViewById(R.id.bottompanel);
+//        bottompanel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(HRActivity.this,HrCreatedPlacements.class));
+//            }
+//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -236,9 +240,9 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 //                        tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
 //                            getNotifications();
-//                            recyclerViewNotification.setVisibility(View.VISIBLE);
-//                            recyclerViewPlacement.setVisibility(View.GONE);
-
+                         mainfragment.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
+                        recyclerViewPlacemetsHr.setVisibility(View.GONE);
                     } else if (navMenuFlag == 3) {
 
                         notificationorplacementflag=2;
@@ -248,10 +252,10 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         mainfragment.setVisibility(View.GONE);
 //                        tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
-//                            getPlacements();
-//                            recyclerViewNotification.setVisibility(View.GONE);
-//                            recyclerViewPlacement.setVisibility(View.VISIBLE);
-
+                        addTempPlacements();
+                        mainfragment.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.GONE);
+                        recyclerViewPlacemetsHr.setVisibility(View.VISIBLE);
                     } else if (navMenuFlag == 4) {
                         crop_layout.setVisibility(View.GONE);
                         MessagesFragment fragment = new MessagesFragment();
@@ -465,6 +469,15 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
 
+
+                mainfragment.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+                recyclerViewPlacemetsHr.setVisibility(View.GONE);
+                RelativeLayout rl=(RelativeLayout)findViewById(R.id.admincontrolsrl);
+                rl.setVisibility(View.VISIBLE);
+                FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
+                fab.setVisibility(View.VISIBLE);
+
             }
         });
         v3.setOnClickListener(new View.OnClickListener() {
@@ -522,6 +535,14 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
+
+                mainfragment.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.GONE);
+                recyclerViewPlacemetsHr.setVisibility(View.VISIBLE);
+                RelativeLayout rl=(RelativeLayout)findViewById(R.id.admincontrolsrl);
+                rl.setVisibility(View.VISIBLE);
+                FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
+                fab.setVisibility(View.VISIBLE);
 
 
             }
@@ -778,6 +799,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         getSupportActionBar().setTitle("Notifications");
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerViewPlacemetsHr = (RecyclerView) findViewById(R.id.recyclerViewPlacemetsHr);
 
         mAdapter = new RecyclerItemAdapter(itemList);
 
@@ -788,6 +810,14 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
+        mAdapter2 = new RecyclerItemHrPlacementAdapter(itemList2);
+        recyclerViewPlacemetsHr.setHasFixedSize(true);
+
+        RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(this);
+        recyclerViewPlacemetsHr.setLayoutManager(mLayoutManager2);
+        recyclerViewPlacemetsHr.addItemDecoration(new DividerItemDecorationHrPlacements(this, LinearLayoutManager.VERTICAL));
+        recyclerViewPlacemetsHr.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewPlacemetsHr.setAdapter(mAdapter2);
 
         //temp work remove after
         addNotificationdatatoAdapter();
@@ -814,6 +844,30 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             }
         }));
 
+        recyclerViewPlacemetsHr.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerViewPlacemetsHr, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                RecyclerItemHrPlacement item = itemList2.get(position);
+
+
+                Intent i1 = new Intent(HRActivity.this, UserSelection.class);
+
+                i1.putExtra("id",item.getId());
+                i1.putExtra("companyname",item.getCompanyname());
+                i1.putExtra("lastmodifiedtime",item.getLastmodifiedtime());
+                i1.putExtra("registerednumber",item.getRegisterednumber());
+                i1.putExtra("placednumber",item.getPlacednumber());
+                i1.putExtra("lastdateofreg",item.getLastdateofreg());
+                startActivity(i1);
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+
         disableNavigationViewScrollbars(navigationView);
 
         createnotificationrl=(RelativeLayout)findViewById(R.id.createnotificationrl);
@@ -822,21 +876,52 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         createnotificationrl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(notificationorplacementflag==0)
-                    startActivity(new Intent(HRActivity.this,CreateNotificationHR.class).putExtra("username",username));
-                else
-                    startActivity(new Intent(HRActivity.this,CreatePlacement.class).putExtra("username",username));
+                if (notificationorplacementflag == 1) {
+                    //CreateNotification
+                    Intent i1 = new Intent(HRActivity.this, CreateNotification.class);
+                    i1.putExtra("flag", "HrActivity");
+                    startActivity(i1);
+
+//                    startActivity(new Intent(AdminActivity.this,CreateNotification.class));
+
+
+                } else if (notificationorplacementflag == 2) {
+                    //CreatePlacement
+                    String Tag = "HrActivity";
+                    PlacementEditData settag = new PlacementEditData();
+                    settag.setActivityFromtag(Tag);
+                    startActivity(new Intent(HRActivity.this, CreatePlacement.class));
+
+                }
             }
         });
+
         editnotificationrl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(notificationorplacementflag==0)
-                    startActivity(new Intent(HRActivity.this,EditNotification.class).putExtra("username",username));
-                else
-                    startActivity(new Intent(HRActivity.this,EditPlacement.class).putExtra("username",username));
+                if (notificationorplacementflag == 1) {
+                    //EditNotification
+                    startActivity(new Intent(HRActivity.this, EditNotification.class));
+                } else if (notificationorplacementflag == 2) {
+                    //EditPlacement
+                    startActivity(new Intent(HRActivity.this, EditPlacement.class));
+
+                }
             }
         });
+
+
+//        editnotificationrl.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(notificationorplacementflag==0)
+//                    startActivity(new Intent(HRActivity.this,EditNotification.class).putExtra("username",username));
+//                else
+//                    startActivity(new Intent(HRActivity.this,EditPlacement.class).putExtra("username",username));
+//            }
+//        });
+
+
 // our coding here
         sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         username=sharedpreferences.getString(Username,null);
@@ -1243,6 +1328,16 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             return stream;
         }
 
+    }
+    void addTempPlacements()
+    {
+        Log.d("tag", "addTempPlacements:Accessed ");
+        for(int i=0;i<10;i++)
+        {
+            RecyclerItemHrPlacement item2=new RecyclerItemHrPlacement(i,"Cognizant","17-FEB-2017 5:20 PM","201 Candidates Registered","57 Candidates Placed","20-FEB-2017");
+            itemList2.add(item2);
+        }
+        mAdapter2.notifyDataSetChanged();
     }
 
 }

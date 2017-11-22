@@ -2,21 +2,44 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 
+import java.io.Serializable;
+
 /**
  * Created by Lincoln on 15/01/16.
  */
-public class RecyclerItemUsers {
-    private String name, email,mobile;
+public class RecyclerItemUsers implements Serializable {
+    private String name, email;
     int id;
+    boolean isSelected=false;
+
+    public Context getmContext() {
+        return mContext;
+    }
+
+    public void setmContext(Context mContext) {
+        this.mContext = mContext;
+    }
+
+    Context mContext;
 
 
-
-    public RecyclerItemUsers(int id, String name, String email,String mobile) {
+    public RecyclerItemUsers(int id, String name, String email,boolean isSelected ) {
         this.name = name;
         this.email = email;
-        this.mobile = mobile;
         this.id=id;
+        this.isSelected=isSelected;
+        this.mContext=mContext;
 
+
+
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 
     public String getName() {
@@ -36,13 +59,7 @@ public class RecyclerItemUsers {
         this.email = email;
     }
 
-    public String getMobile() {
-        return mobile;
-    }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
 
     public int getId() {
         return id;

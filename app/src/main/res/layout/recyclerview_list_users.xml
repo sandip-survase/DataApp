@@ -37,22 +37,24 @@
         android:layout_marginLeft="10dp"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/mobile"
-        android:textColor="@color/attachment"
+
+    <CheckBox
+        android:id="@+id/checkboxs"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content" />
-
-
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/download"
-        android:layout_toLeftOf="@+id/mobile"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="20dp"
+        android:padding="15dp"
+        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/email"
+        android:layout_alignTop="@+id/name"
+        android:layout_toLeftOf="@+id/checkboxs"
+        android:id="@+id/resumeSelectioview"
+        android:layout_marginRight="20dp"
         />
 
 </RelativeLayout>

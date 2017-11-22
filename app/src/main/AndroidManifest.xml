@@ -399,7 +399,10 @@
         <activity android:name=".WelcomeIntroActivity" />
         <activity android:name=".WelcomeGenrateCodeActivity" />
         <activity android:name=".MyCustomErrorActivity" />
-        <activity android:name=".NoInternet"></activity>
+        <activity android:name=".NoInternet" />
+        <activity
+            android:name=".UserSelection"
+            android:label="@string/title_activity_user_selection"></activity>
     </application>
 
 </manifest>
