@@ -516,6 +516,7 @@ public class MyProfileFragment extends Fragment {
                 String s = "";
 
                 resultofop = json.getString("info");
+
                 Log.d("TAG", "info " + resultofop);
 
                 if (resultofop.equals("found")) {
