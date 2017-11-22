@@ -291,6 +291,45 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
                 selected.setText(sselected);
             }
         }
+        if (activitytag.contains("EditPlacementHR")) {
+            sid = getdata.getId();
+            scompanyname = getdata.getCompanyname();
+            scpackage = getdata.getCpackage();
+            spost = getdata.getPost();
+            svacancies = getdata.getVacancies();
+            slastdateofrr = getdata.getLastdateofregistration();
+            sdateofarrival = getdata.getDateofarrival();
+            sbond = getdata.getBond();
+            sselected = getdata.getSelectedcourceforplacement();
+
+
+            if (scompanyname.length() > 0) {
+                companyname.setText(scompanyname);
+            }
+            if (scpackage.length() > 0) {
+                cpackage.setText(scpackage);
+            }
+            if (spost.length() > 0) {
+                post.setText(spost);
+            }
+            if (svacancies.length() > 0) {
+                vacancies.setText(svacancies);
+            }
+            if (slastdateofrr.length() > 0) {
+                lastdateofrr.setText(slastdateofrr);
+            }
+            if (sdateofarrival.length() > 0) {
+                dateofarrival.setText(sdateofarrival);
+            }
+            if (sbond.length() > 0) {
+                bond.setText(sbond);
+            }
+            if (sselected.length() > 0) {
+                selectedrl.setVisibility(View.VISIBLE);
+                selected.setText(sselected);
+            }
+        }
+
         return rootView;
     }
 
