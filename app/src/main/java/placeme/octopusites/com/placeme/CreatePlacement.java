@@ -66,7 +66,7 @@ public class CreatePlacement extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TagsEditText batchesTags;
-
+ //check
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
