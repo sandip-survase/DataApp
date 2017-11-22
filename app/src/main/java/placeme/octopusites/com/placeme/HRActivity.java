@@ -133,8 +133,12 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
 
-        digest1= "I09jdG9wdXMxMkl0ZXMjJQ==";
-        digest2 = "I1BsYWNlMTJNZSMlJSopXg==";
+//        digest1= "I09jdG9wdXMxMkl0ZXMjJQ==";
+//        digest2 = "I1BsYWNlMTJNZSMlJSopXg==";
+
+        digest1=MySharedPreferencesManager.getDigest1(this);
+        digest2=MySharedPreferencesManager.getDigest2(this);
+
 
         MySharedPreferencesManager.save(HRActivity.this,"intro","yes");
         MySharedPreferencesManager.save(HRActivity.this,"otp","no");
