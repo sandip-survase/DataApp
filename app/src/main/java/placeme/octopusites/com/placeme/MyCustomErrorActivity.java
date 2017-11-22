@@ -41,7 +41,7 @@ public class MyCustomErrorActivity extends AppCompatActivity {
     JSONObject json;
     String error = "";
     CaocConfig config;
-    private static String url_save_error = "http://192.168.100.30/ProfileObjects/Save_Error";
+    private static String url_save_error = "http://192.168.100.10:8080/ProfileObjects/Save_Error";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +63,7 @@ public class MyCustomErrorActivity extends AppCompatActivity {
 
 
         config = CustomActivityOnCrash.getConfigFromIntent(getIntent());
+
         Button restartButton = (Button) findViewById(R.id.restart_button);
 
         if (config.isShowRestartButton() && config.getRestartActivityClass() != null) {
