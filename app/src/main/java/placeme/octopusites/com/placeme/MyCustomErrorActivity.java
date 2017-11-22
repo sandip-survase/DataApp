@@ -82,7 +82,6 @@ public class MyCustomErrorActivity extends AppCompatActivity {
         MyCustomErrorActivity.super.onBackPressed();
     }
 
-
     class ask extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
             String  r ="";

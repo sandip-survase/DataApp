@@ -449,7 +449,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         tabLayout.setVisibility(View.GONE);
                         getSupportActionBar().setTitle("My Profile");
 
-                    int i=4/0;
+//                    int i=4/0;
 
 
 
