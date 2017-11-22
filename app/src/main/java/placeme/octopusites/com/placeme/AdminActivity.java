@@ -316,6 +316,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
                 if (notificationorplacementflag == 1) {
                     startActivity(new Intent(AdminActivity.this, EditNotification.class));
                 } else if (notificationorplacementflag == 2) {
+
                     startActivity(new Intent(AdminActivity.this, EditPlacement.class));
 
                 }

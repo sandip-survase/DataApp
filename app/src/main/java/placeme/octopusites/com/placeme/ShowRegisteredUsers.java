@@ -81,7 +81,7 @@ public class ShowRegisteredUsers extends AppCompatActivity {
 
         recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
 
-        mAdapter = new RecyclerItemUsersAdapter(itemList);
+//        mAdapter = new RecyclerItemUsersAdapter(itemList);
 
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -91,7 +91,7 @@ public class ShowRegisteredUsers extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
 
 
-        addUsersdatatoAdapter();
+//        addUsersdatatoAdapter();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -117,14 +117,14 @@ public class ShowRegisteredUsers extends AppCompatActivity {
 
         return(super.onOptionsItemSelected(item));
     }
-    void addUsersdatatoAdapter()
-    {
-        for(int i=0;i<10;i++)
-        {
-            RecyclerItemUsers item = new RecyclerItemUsers(i,"Abc "+i, "abc"+i+"@gmail.com ","1234");
-            itemList.add(item);
-        }
-
-        mAdapter.notifyDataSetChanged();
-    }
+//    void addUsersdatatoAdapter()
+//    {
+//        for(int i=0;i<10;i++)
+//        {
+////            RecyclerItemUsers item = new RecyclerItemUsers(i,"Abc "+i, "abc"+i+"@gmail.com ","1234");
+////            itemList.add(item);
+//        }
+//
+//        mAdapter.notifyDataSetChanged();
+//    }
 }

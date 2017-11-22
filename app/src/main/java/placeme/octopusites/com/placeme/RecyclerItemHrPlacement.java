@@ -1,6 +1,5 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 
 /**
  * Created by Lincoln on 15/01/16.
@@ -8,7 +7,7 @@ import android.content.Context;
 public class RecyclerItemHrPlacement {
     private String companyname,lastmodifiedtime,registerednumber,placednumber,lastdateofreg;
     int id;
-    Context context;
+//    Context context;
     public RecyclerItemHrPlacement() {
     }
 
@@ -70,8 +69,5 @@ public class RecyclerItemHrPlacement {
         this.id = id;
     }
 
-    public Context getContext()
-    {
-        return this.context;
-    }
+
 }
