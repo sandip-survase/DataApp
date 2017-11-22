@@ -31,7 +31,7 @@ public class MyConstants {
 
 
     public static String url_save_intro_data = "http://192.168.100.100/AESTest/SaveAlumniIntro";
-    public static String url_load_alumni_data = "http://192.168.100.30/ProfileObjects/GetAlumniData";
+    public static String url_load_alumni_data = "http://192.168.100.10/ProfileObjects/GetAlumniData";
     public static String url_getcourses = "http://192.168.100.100/AESTest/GetDiplomaCourses";
 
     // not working on my ip(http://192.168.100.10) so use "http://192.168.100.100
@@ -43,17 +43,17 @@ public class MyConstants {
     public static String url_getugcourses = "http://192.168.100.100/ProfileObjects/GetUGCourses";
     public static String url_getstreams= "http://192.168.100.100/AESTest/GetUGStreams";
     public static String url_getuniversities= "http://192.168.100.100/AESTest/GetUGUniversities";
-    public static String url_savedata_ug= "http://192.168.100.30/ProfileObjects/SaveUg";
+    public static String url_savedata_ug= "http://192.168.100.10/ProfileObjects/SaveUg";
 
     public static String url_getpgcourses = "http://192.168.100.100/AESTest/GetPGCourses";
     public static String url_getpgstreams= "http://192.168.100.100/AESTest/GetPGStreams";
     public static String url_getpguniversities= "http://192.168.100.100/AESTest/GetPGUniversities";
-    public static String url_savedata_pg_sem= "http://192.168.100.30/ProfileObjects/SavePgSem";
-    public static String url_savedata_pg_year= "http://192.168.100.30/ProfileObjects/SavePgYear";
+    public static String url_savedata_pg_sem= "http://192.168.100.10/ProfileObjects/SavePgSem";
+    public static String url_savedata_pg_year= "http://192.168.100.10/ProfileObjects/SavePgYear";
 
 //    public static String savepersonalinfo = "http://192.168.100.100/AESTest/SavePersonalInfo";
-public static String savepersonalinfo = "http://192.168.100.30/ProfileObjects/SavePersonalInfo";
-    public static final String savepersonalinfoAlumni = "http://192.168.100.30/ProfileObjects/SavePersonalInfoAlumni";
+public static String savepersonalinfo = "http://192.168.100.10:8080/ProfileObjects/SavePersonalInfo";
+    public static final String savepersonalinfoAlumni = "http://192.168.100.10/ProfileObjects/SavePersonalInfoAlumni";
 
 
     public static final String url_getlanguages = "http://192.168.100.100/AESTest/GetLanguages";
@@ -65,27 +65,27 @@ public static String savepersonalinfo = "http://192.168.100.30/ProfileObjects/Sa
     public static final String URL_SAVE_ALUMNI_PROJECTS= "http://192.168.100.100/AESTest/SaveAlumniProjects";
     public static final String url_saveHrExperience = "http://192.168.100.100/AESTest/SaveHrExperiences";
 
-    public static final String url_savecareerobj= "http://192.168.100.30/ProfileObjects/SaveCareerObj";
-    public static final String url_savestrengths= "http://192.168.100.30/ProfileObjects/SaveStrengths";
-    public static final String url_saveweaknesses= "http://192.168.100.30/ProfileObjects/SaveWeaknesses";
-    public static final String url_savelocationpreferences= "http://192.168.100.30/ProfileObjects/SaveLocationPreferences";
+    public static final String url_savecareerobj= "http://192.168.100.10/ProfileObjects/SaveCareerObj";
+    public static final String url_savestrengths= "http://192.168.100.10/ProfileObjects/SaveStrengths";
+    public static final String url_saveweaknesses= "http://192.168.100.10/ProfileObjects/SaveWeaknesses";
+    public static final String url_savelocationpreferences= "http://192.168.100.10/ProfileObjects/SaveLocationPreferences";
 
-    public static final String url_savelanguages= "http://192.168.100.30/ProfileObjects/SaveLanguages";
-    public static final String url_savecertifications= "http://192.168.100.30/ProfileObjects/SaveCertificates";
-    public static final String url_savecourses= "http://192.168.100.30/ProfileObjects/SaveCourses";
-    public static final String url_saveskills = "http://192.168.100.30/ProfileObjects/SaveSkills";
-    public static final String url_savehonors= "http://192.168.100.30/ProfileObjects/SaveHonors";
-    public static final String url_savepatents= "http://192.168.100.30/ProfileObjects/SavePatents";
-    public static final String url_savepublications= "http://192.168.100.30/ProfileObjects/SavePublications";
+    public static final String url_savelanguages= "http://192.168.100.10/ProfileObjects/SaveLanguages";
+    public static final String url_savecertifications= "http://192.168.100.10/ProfileObjects/SaveCertificates";
+    public static final String url_savecourses= "http://192.168.100.10/ProfileObjects/SaveCourses";
+    public static final String url_saveskills = "http://192.168.100.10/ProfileObjects/SaveSkills";
+    public static final String url_savehonors= "http://192.168.100.10/ProfileObjects/SaveHonors";
+    public static final String url_savepatents= "http://192.168.100.10/ProfileObjects/SavePatents";
+    public static final String url_savepublications= "http://192.168.100.10/ProfileObjects/SavePublications";
 
-    public static final String url_saveprojects= "http://192.168.100.30/ProfileObjects/SaveProjects";
+    public static final String url_saveprojects= "http://192.168.100.10/ProfileObjects/SaveProjects";
 
 
     public static final String url = "http://192.168.100.100/HandleMobileRequests/getimg.jsp?username=";
     public static final String load_student_image = "http://192.168.100.100/AESTest/GetImage";
     public static final String upload_profile = "http://192.168.100.100/AESTest/UploadProfile";
 
-    public static final String load_HR_data = "http://192.168.100.30/ProfileObjects/GetHrData";
+    public static final String load_HR_data = "http://192.168.100.10/ProfileObjects/GetHrData";
     public static final String remove_profile = "http://192.168.100.100/AESTest/RemoveImage";
 
     public static final String url_savedata_SaveHrCompany = "http://192.168.100.100/AESTest/SaveHrCompany";
@@ -96,13 +96,13 @@ public static String savepersonalinfo = "http://192.168.100.30/ProfileObjects/Sa
 
 //    private static String url = "http://192.168.100.100/HandleMobileRequests/getimg.jsp?username=";
 
-    public static final String url_savedata= "http://192.168.100.30/ProfileObjects/SaveTenth";
+    public static final String url_savedata= "http://192.168.100.10/ProfileObjects/SaveTenth";
 //    public static final String savepersonalinfoAlumni = "http://192.168.100.100/AESTest/SavePersonalInfoAlumni";
     public static final String url_savedata_SaveContact= "http://192.168.100.100/AESTest/SaveContact";
 
-    public static final String url_savedata_SaveIntro= "http://192.168.100.30/ProfileObjects/SaveIntro";
+    public static final String url_savedata_SaveIntro= "http://192.168.100.10:8080/ProfileObjects/SaveIntro";
 
-    public static final String load_student_data = "http://192.168.100.30/ProfileObjects/GetStudentData";
+    public static final String load_student_data = "http://192.168.100.10:8080/ProfileObjects/GetStudentData";
 
     public static final String url_SaveExperiences_admin= "http://192.168.100.100/AESTest/SaveExperiences";
 

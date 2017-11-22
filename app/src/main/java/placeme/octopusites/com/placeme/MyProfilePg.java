@@ -2525,7 +2525,7 @@ public class MyProfilePg extends AppCompatActivity {
 
                     PgSem objSem=new PgSem(markssem1,outofsem1,percentsem1,markssem2,outofsem2,percentsem2,markssem3,outofsem3,percentsem3,markssem4,outofsem4,percentsem4,markssem5,outofsem5,percentsem5,markssem6,outofsem6,percentsem6,schoolnamepgsemester,aggregatepgsem,monthandyearofpassingpgsem,courseSem,streamSem,universitySem);
                     String encObjStringSem=OtoString(objSem,MySharedPreferencesManager.getDigest1(MyProfilePg.this),MySharedPreferencesManager.getDigest2(MyProfilePg.this));
-                    PgYear objYear=new PgYear(marksyear1,outofyear1,percentyear1,marksyear2,outofyear2,percentyear2,marksyear3,outofyear3,percentyear3,aggregatepgyear,schoolnamepgyears,monthandyearofpassingpgyear,courseYear,streamYear,universityYear);
+                    PgYear objYear=new PgYear(marksyear1,outofyear1,percentyear1,marksyear2,outofyear2,percentyear2,marksyear3,outofyear3,percentyear3,aggregatepgyear,schoolnamepgyears,monthandyearofpassingpgyear,courseYear,streamYear,selectedUniversitypgyear);
                     String encObjStringYear=OtoString(objYear,MySharedPreferencesManager.getDigest1(MyProfilePg.this),MySharedPreferencesManager.getDigest2(MyProfilePg.this));
 
                     new SaveDataPgSem().execute(encObjStringSem);

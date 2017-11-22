@@ -67,6 +67,7 @@ import java.util.List;
 import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import placeme.octopusites.com.placeme.modal.AdminContactDetailsModal;
 import placeme.octopusites.com.placeme.modal.AdminIntroModal;
 import placeme.octopusites.com.placeme.modal.Certificates;
 import placeme.octopusites.com.placeme.modal.Courses;
@@ -101,7 +102,7 @@ public class MyProfileFragment extends Fragment {
     RelativeLayout editprofilerl;
     String username = "", resultofop,dataobject="",careerdataobject="",strengthdataobject="",weaknessesdataobject="",locationpreferencesdataobject="",tenthdataobject="",ugdataobject="";
     String fname = "", mname = "", lname = "", country = "", state = "", city = "", role = "", plainusername = "", phone = "";
-    String marks10 = "", outof10 = "", percentage10 = "", schoolname10 = "", board10 = "", yearofpassing10 = "", marks12 = "", outof12 = "", percentage12 = "", schoolname12 = "", board12 = "", stream12 = "", yearofpassing12 = "", markssem1diploma = "", outofsem1diploma = "", percentagesem1diploma = "", markssem2diploma = "", outofsem2diploma = "", percentagesem2diploma = "", markssem3diploma = "", outofsem3diploma = "", percentagesem3diploma = "", markssem4diploma = "", outofsem4diploma = "", percentagesem4diploma = "", markssem5diploma = "", outofsem5diploma = "", percentagesem5diploma = "", markssem6diploma = "", outofsem6diploma = "", percentagesem6diploma = "", aggregatediploma = "", coursediploma = "", streamdiploma = "", universitydiploma = "", collegenamediploma = "", yearofpassingdiploma = "",personaldataobject="";
+    String marks10 = "", outof10 = "", percentage10 = "", schoolname10 = "", board10 = "", yearofpassing10 = "", marks12 = "", outof12 = "", percentage12 = "", schoolname12 = "", board12 = "", stream12 = "", yearofpassing12 = "", markssem1diploma = "", outofsem1diploma = "", percentagesem1diploma = "", markssem2diploma = "", outofsem2diploma = "", percentagesem2diploma = "", markssem3diploma = "", outofsem3diploma = "", percentagesem3diploma = "", markssem4diploma = "", outofsem4diploma = "", percentagesem4diploma = "", markssem5diploma = "", outofsem5diploma = "", percentagesem5diploma = "", markssem6diploma = "", outofsem6diploma = "", percentagesem6diploma = "", aggregatediploma = "", coursediploma = "", streamdiploma = "", universitydiploma = "", collegenamediploma = "", yearofpassingdiploma = "",personaldataobject="",contact_details_dataobject="";
     String markssem1ug = "", outofsem1ug = "", percentagesem1ug = "", markssem2ug = "", outofsem2ug = "", percentagesem2ug = "", markssem3ug = "", outofsem3ug = "", percentagesem3ug = "", markssem4ug = "", outofsem4ug = "", percentagesem4ug = "", markssem5ug = "", outofsem5ug = "", percentagesem5ug = "", markssem6ug = "", outofsem6ug = "", percentagesem6ug = "", markssem7ug = "", outofsem7ug = "", percentagesem7ug = "", markssem8ug = "", outofsem8ug = "", percentagesem8ug = "", aggregateug = "", courseug = "", streamug = "", universityug = "", collegenameug = "", yearofpassingug = "";
     String markssem1pgsem = "", outofsem1pgsem = "", percentagesem1pgsem = "", markssem2pgsem = "", outofsem2pgsem = "", percentagesem2pgsem = "", markssem3pgsem = "", outofsem3pgsem = "", percentagesem3pgsem = "", markssem4pgsem = "", outofsem4pgsem = "", percentagesem4pgsem = "", markssem5pgsem = "", outofsem5pgsem = "", percentagesem5pgsem = "", markssem6pgsem = "", outofsem6pgsem = "", percentagesem6pgsem = "", aggregatepgsem = "", coursepgsem = "", streampgsem = "", universitypgsem = "", collegenamepgsem = "", yearofpassingpgsem = "";
     String marksyear1pgyear = "", outofyear1pgyear = "", percentageyear1pgyear = "", marksyear2pgyear = "", outofyear2pgyear = "", percentageyear2pgyear = "", marksyear3pgyear = "", outofyear3pgyear = "", percentageyear3pgyear = "", aggregatepgyear = "", coursepgyear = "", streampgyear = "", universitypgyear = "", collegenamepgyear = "", yearofpassingpgyear = "";
@@ -1871,8 +1872,6 @@ public class MyProfileFragment extends Fragment {
 
                         personaldataobject = json.getString("personalobj");
 
-
-
                         MyProfilePersonal obj2 = (MyProfilePersonal) fromString(personaldataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
                         fname = obj2.fname;
@@ -1905,6 +1904,8 @@ public class MyProfileFragment extends Fragment {
                         sports = obj2.sports;
                         defenceex = obj2.defenceex;
 
+                        Log.d("TAG", "doInBackground: personal - "+fname);
+                        Log.d("TAG", "doInBackground: personal - "+lname);
                         studentData.setFname(fname);
                         studentData.setMname(mname);
                         studentData.setLname(lname);
@@ -1913,10 +1914,8 @@ public class MyProfileFragment extends Fragment {
                         studentData.setMothername(mothername);
                         studentData.setDob(dob);
                         studentData.setGender(gender);
-
                         studentData.setTelephone(telephone);
                         studentData.setPhone(phone);
-
                         studentData.setMobile2(mobile2);
                         studentData.setMothertongue(mothertongue);
                         studentData.setHobbies(hobbies);
@@ -1935,9 +1934,7 @@ public class MyProfileFragment extends Fragment {
                         studentData.setLang8(lang8);
                         studentData.setLang9(lang9);
                         studentData.setLang10(lang10);
-
                         studentData.setAddressline1(addressline1);
-
                         studentData.setAddressline2(addressline2);
                         studentData.setAddressline3(addressline3);
                         studentData.setPaddrline1(paddrline1);
@@ -1948,7 +1945,35 @@ public class MyProfileFragment extends Fragment {
                         studentData.setDefenceex(defenceex);
 
                     }
+                    s = json.getString("contact_details");
+                    if (s.equals("found")) {
+                        found_contact_details = 1;
 
+                        contact_details_dataobject = json.getString("contact_detailsdata");
+
+                        AdminContactDetailsModal obj2 = (AdminContactDetailsModal) fromString(contact_details_dataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
+
+                        fname = obj2.getFname();
+                        lname = obj2.getLname();
+
+                        email2 = obj2.getEmail2();
+                        telephone = obj2.getPhone();
+                        phone = obj2.getMobile();
+                        mobile2 = obj2.getMobile2();
+                        addressline1 = obj2.getAddressline1();
+                        addressline2 = obj2.getAddressline2();
+                        addressline3 = obj2.getAddressline3();
+
+                        studentData.setFname(fname);
+                        studentData.setLname(lname);
+                        studentData.setEmail2(email2);
+                        studentData.setTelephone(telephone);
+                        studentData.setPhone(phone);
+                        studentData.setMobile2(mobile2);
+                        studentData.setAddressline1(addressline1);
+                        studentData.setAddressline2(addressline2);
+                        studentData.setAddressline3(addressline3);
+                    }
 
 
 
