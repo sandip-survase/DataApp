@@ -42,6 +42,7 @@ import placeme.octopusites.com.placeme.modal.Modelmyprofileintro;
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 public class MyProfileIntro extends AppCompatActivity {
+
     String digest1,digest2;
     EditText fname,lname,role,email;
     AutoCompleteTextView citystaecountry;

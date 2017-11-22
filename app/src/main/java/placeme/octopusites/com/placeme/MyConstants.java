@@ -31,7 +31,7 @@ public class MyConstants {
 
 
     public static String url_save_intro_data = "http://192.168.100.100/AESTest/SaveAlumniIntro";
-    public static String url_load_alumni_data = "http://192.168.100.30/ProfileObjects/GetAlumniData";
+    public static String url_load_alumni_data = "http://192.168.100.10/ProfileObjects/GetAlumniData";
     public static String url_getcourses = "http://192.168.100.100/AESTest/GetDiplomaCourses";
 
     // not working on my ip(http://192.168.100.10) so use "http://192.168.100.100
@@ -52,7 +52,7 @@ public class MyConstants {
     public static String url_savedata_pg_year= "http://192.168.100.10/ProfileObjects/SavePgYear";
 
 //    public static String savepersonalinfo = "http://192.168.100.100/AESTest/SavePersonalInfo";
-public static String savepersonalinfo = "http://192.168.100.30/ProfileObjects/SavePersonalInfo";
+public static String savepersonalinfo = "http://192.168.100.10:8080/ProfileObjects/SavePersonalInfo";
     public static final String savepersonalinfoAlumni = "http://192.168.100.10/ProfileObjects/SavePersonalInfoAlumni";
 
 

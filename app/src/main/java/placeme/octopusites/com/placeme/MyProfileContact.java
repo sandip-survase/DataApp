@@ -37,7 +37,7 @@ public class MyProfileContact extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
-    private static String url_savedata = "http://192.168.100.30:8080/ProfileObjects/SaveAdminContact";
+    private static String url_savedata = "http://192.168.100.10:8080/ProfileObjects/SaveAdminContact";
     SharedPreferences sharedpreferences;
     String username;
     String digest1, digest2;
@@ -497,17 +497,20 @@ public class MyProfileContact extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-//            if(result.equals("success"))
-//            {
-//                Toast.makeText(MyProfileContact.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
-//
-//                if(edittedFlag!=0){
-//                    setResult(111);
-//                }
-//                MyProfileContact.super.onBackPressed();
-//            }
-//            else
-//                Toast.makeText(MyProfileContact.this,result,Toast.LENGTH_SHORT).show();
+            if(result.equals("success"))
+            {
+                Toast.makeText(MyProfileContact.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
+
+                ProfileRole r=new ProfileRole();
+                String role=r.getRole();
+                if(role.equals("student"))
+                    setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+                else if(role.equals("alumni"))
+                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+                MyProfileContact.super.onBackPressed();
+            }
+            else
+                Toast.makeText(MyProfileContact.this,result,Toast.LENGTH_SHORT).show();
 
         }
     }

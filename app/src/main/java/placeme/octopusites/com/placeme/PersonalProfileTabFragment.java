@@ -1473,7 +1473,7 @@ public class PersonalProfileTabFragment extends Fragment {
 
 
             if (Myrole.equals("student")) {
-                Log.d("alumni", "onCreateView: " + Myrole);
+                Log.d("student", "onCreateView: " + Myrole);
                 json = jParser.makeHttpRequest(MyConstants.savepersonalinfo, "GET", params);
             }
             if (Myrole.equals("alumni")) {
