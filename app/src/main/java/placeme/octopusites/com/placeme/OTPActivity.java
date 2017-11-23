@@ -276,6 +276,9 @@ public class OTPActivity extends AppCompatActivity {
                 Log.d("TAG", "onPostExecute: activation 2 flag" + activationMessageflag);
                 String role = MySharedPreferencesManager.getRole(OTPActivity.this);
                 MySharedPreferencesManager.save(OTPActivity.this, "activatedCode", "yes");
+                String u = sharedpreferences.getString(Username, null);
+                String p = sharedpreferences.getString(Password, null);
+                new CreateFirebaseUser(u, p).execute();
                 startActivity(new Intent(OTPActivity.this, WelcomeGenrateCodeActivity.class));
                 finish();
             } else if (resultofop.equals("fail") && activationMessageflag == true) {
