@@ -21,7 +21,6 @@
             android:gravity="center"
             android:text="sunny.gh@gmail.com"
             android:inputType="textEmailAddress"
-            android:imeOptions="actionNext"
             android:singleLine="true"
             android:id="@+id/welcomeusername"/>
 

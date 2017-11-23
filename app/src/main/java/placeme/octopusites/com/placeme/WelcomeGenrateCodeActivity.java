@@ -79,13 +79,14 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
     String countries[];
     int countrycount;
     private static  String android_id,device_id;
-    TextView helloMsgcode, genratedCode;
+    TextView helloMsgcode, genratedCode,headerMsgcode;
 
 
     public void setWelComeShowCodeView(View v) {
         WelComeShowCodeView = v;
         helloMsgcode = (TextView) WelComeShowCodeView.findViewById(R.id.helloMsgcode);
         genratedCode = (TextView) WelComeShowCodeView.findViewById(R.id.genratedCode);
+        headerMsgcode = (TextView) WelComeShowCodeView.findViewById(R.id.headerMsgcode);
 
     }
 
@@ -645,6 +646,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 addBottomDots(1, 2);
                 helloMsgcode.setText("Hello Admin!");
                 genratedCode.setText(CODE);
+                headerMsgcode.setText("This is your Institute Code provided by PlaceMe..!!");
                 //start show code activity
             }
         }
@@ -775,6 +777,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 addBottomDots(1, 2);
                 helloMsgcode.setText("Hello Hr!");
                 genratedCode.setText(CODE);
+                headerMsgcode.setText("This is your Company Code provided by PlaceMe..!!");
             }
         }
     }

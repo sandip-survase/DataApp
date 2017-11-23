@@ -24,7 +24,6 @@ tools:context="placeme.octopusites.com.placeme.WelcomeShowGeneratedCodeFragment"
         android:gravity="center"
         android:layout_below="@+id/helloMsgcode"
         android:layout_marginTop="15dp"
-        android:text="This is your Institute Code provided by PlaceMe..!! "
         android:textSize="25sp" />
 
 

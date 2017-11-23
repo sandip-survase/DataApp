@@ -382,9 +382,8 @@ public class OTPActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", u));
             params.add(new BasicNameValuePair("p", p));
             params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
-            params.add(new BasicNameValuePair("n", encfullName));
-            params.add(new BasicNameValuePair("ph", encPhone));
             json = jParser.makeHttpRequest(MyConstants.url_create_firebase, "GET", params);
+            Log.d("TAG", "Firebase: "+json);
             try {
                 resultofop = json.getString("info");
 
