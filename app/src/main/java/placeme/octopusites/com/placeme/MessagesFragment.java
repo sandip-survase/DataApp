@@ -59,7 +59,7 @@ public class MessagesFragment extends Fragment {
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-    private static String url_get_chatrooms = "http://192.168.100.100/PlaceMe/GetChatRooms"; //new comment
+    private static String url_get_chatrooms = "http://192.168.100.100/PlaceMe/GetChatRooms";
     private static String url_getmessagesreadstatus= "http://192.168.100.100/PlaceMe/GetReadStatusOfMessages";
     String messagesreadstatus[];
     int count;
