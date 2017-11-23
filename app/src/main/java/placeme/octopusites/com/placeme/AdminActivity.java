@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -39,6 +40,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.kbeanie.multipicker.api.ImagePicker;
 import com.kbeanie.multipicker.api.Picker;
 import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
@@ -68,6 +73,7 @@ import java.util.TreeSet;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
+import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
 public class AdminActivity extends AppCompatActivity implements ImagePickerCallback {
 
@@ -180,7 +186,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     private int visibleThresholdPlacement = 0; // The minimum amount of items to have below your current scroll position before loading more.
     private int page_to_call_placement = 1;
     private int current_page_placement = 1;
-
+    public static final String Password = "passKey";
 
 
     public static boolean containsIgnoreCase(String str, String searchStr) {
@@ -231,6 +237,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         username = sharedpreferences.getString(Username, null);
+        String pass=sharedpreferences.getString(Password,null);
         String role = sharedpreferences.getString("role", null);
         ProfileRole r = new ProfileRole();
         r.setUsername(username);
@@ -258,12 +265,16 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             sPadding = "ISO10126Padding";
 
             byte[] demo1EncryptedBytes1 = SimpleBase64Encoder.decode(username);
-
             byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
-
             String plainusername = new String(demo1DecryptedBytes1);
-
             r.setPlainusername(plainusername);
+
+            byte[] demo2EncryptedBytes1=SimpleBase64Encoder.decode(pass);
+            byte[] demo2DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo2EncryptedBytes1);
+            String data=new String(demo2DecryptedBytes1);
+            String hash=md5(data + sharedpreferences.getString("digest3",null));
+
+            loginFirebase(plainusername,hash);
 
         } catch (Exception e) {
         }
@@ -1153,6 +1164,25 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 //        new GetUnreadMessagesCount().execute();
 
 
+    }
+    void loginFirebase(String username,String hash)
+    {
+        FirebaseAuth.getInstance()
+                .signInWithEmailAndPassword(username,hash)
+                .addOnCompleteListener(AdminActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+
+                        if (task.isSuccessful()) {
+                            Toast.makeText(AdminActivity.this, "Successfully logged in to Firebase from mainactivity", Toast.LENGTH_SHORT).show();
+
+
+                        } else {
+                            Toast.makeText(AdminActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     void filterNotifications(String text) {
