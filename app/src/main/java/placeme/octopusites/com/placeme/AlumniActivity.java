@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -47,6 +48,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.signature.StringSignature;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.kbeanie.multipicker.api.ImagePicker;
 import com.kbeanie.multipicker.api.Picker;
 import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
@@ -1171,7 +1176,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             String data=new String(demo2DecryptedBytes1);
             String hash=md5(data + sharedpreferences.getString("digest3",null));
 
-//           loginFirebase(plainusername,hash);
+           loginFirebase(plainusername,hash);
 
         }catch (Exception e){Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();}
 
@@ -1209,7 +1214,25 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
 
     }
+    void loginFirebase(String username,String hash)
+    {
+        FirebaseAuth.getInstance()
+                .signInWithEmailAndPassword(username,hash)
+                .addOnCompleteListener(AlumniActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
 
+
+                        if (task.isSuccessful()) {
+                            Toast.makeText(AlumniActivity.this, "Successfully logged in to Firebase from mainactivity", Toast.LENGTH_SHORT).show();
+
+
+                        } else {
+                            Toast.makeText(AlumniActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
     void filterNotifications(String text)
     {
         tempListNotification = new ArrayList();

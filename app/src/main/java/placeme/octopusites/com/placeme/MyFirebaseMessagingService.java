@@ -123,7 +123,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
                 NotificationCompat.Builder builder =
                         new NotificationCompat.Builder(this)
-                                .setSmallIcon(R.mipmap.ic_launcher)
+                                .setSmallIcon(R.drawable.logo)
                                 .setContentTitle("PlaceMe")
                                 .setContentText(name1.get(0)+": "+extractedMessage)
                                 .setAutoCancel(true)
