@@ -382,10 +382,7 @@ public class SplashScreen extends Activity {
         @Override
         protected void onPostExecute(final Integer success) {
 
-
             processOutput(success);
-
-
         }
     }
 
@@ -456,6 +453,8 @@ public class SplashScreen extends Activity {
 
     class UpdateFirebaseToken extends AsyncTask<String, String, String> {
 
+        // TODO move UpdateFirebaseToken code to all base activity
+        // TODO update AID,DID
         JSONObject json;
         JSONParser jParser = new JSONParser();
         String resultofop = null;

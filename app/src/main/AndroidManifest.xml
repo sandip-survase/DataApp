@@ -409,7 +409,9 @@
         <activity android:name=".NoInternet" />
         <activity
             android:name=".UserSelection"
-            android:label="@string/title_activity_user_selection"></activity>
+            android:label="@string/title_activity_user_selection" />
+        <activity android:name=".NewsFeedWebView"
+            ></activity>
     </application>
 
 </manifest>

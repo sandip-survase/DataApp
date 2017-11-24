@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.signature.ObjectKey;
@@ -43,7 +44,6 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.MyView
             profilePic=(ImageView)view.findViewById(R.id.profilePic);
             feedImage1=(ImageView)view.findViewById(R.id.feedImage1);
 
-
         }
     }
 
@@ -61,8 +61,10 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.MyView
         final NewsFeedItem item = itemList.get(position);
 
         holder.name.setText(item.getName());
+
         CharSequence timeAgo = DateUtils.getRelativeTimeSpanString(Long.parseLong(item.getTimeStamp()),System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS);
         holder.timestamp.setText(timeAgo);
+
         if (!TextUtils.isEmpty(item.getStatus())) {
             holder.txtStatusMsg.setText(item.getStatus());
             holder.txtStatusMsg.setVisibility(View.VISIBLE);
@@ -75,11 +77,18 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.MyView
             holder.feedImage1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent();
-                    intent.setAction(Intent.ACTION_VIEW);
-                    intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                    intent.setData(Uri.parse(item.getUrl()));
+//                    Intent intent = new Intent();
+//                    intent.setAction(Intent.ACTION_VIEW);
+//                    intent.addCategory(Intent.CATEGORY_BROWSABLE);
+//                    intent.setData(Uri.parse(item.getUrl()));
+//                    holder.feedImage1.getContext().startActivity(intent);
+
+                    Intent intent=new Intent(holder.feedImage1.getContext(),NewsFeedWebView.class);
+                    intent.putExtra("url",item.getUrl());
                     holder.feedImage1.getContext().startActivity(intent);
+
+                    Toast.makeText(holder.feedImage1.getContext(), "clicked..", Toast.LENGTH_SHORT).show();
+
                 }
             });
 
