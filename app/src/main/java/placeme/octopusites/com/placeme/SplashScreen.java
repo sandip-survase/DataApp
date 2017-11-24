@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import cat.ereza.customactivityoncrash.config.CaocConfig;
+//import cat.ereza.customactivityoncrash.config.CaocConfig;
 
 
 public class SplashScreen extends Activity {
@@ -89,16 +89,16 @@ public class SplashScreen extends Activity {
 
 
 // my code
-        CaocConfig.Builder.create()
-                .backgroundMode(CaocConfig.BACKGROUND_MODE_SILENT) //default: CaocConfig.BACKGROUND_MODE_SHOW_CUSTOM
-//                .showErrorDetails(false) //default: true
-//                .showRestartButton(false) //default: true
-                .trackActivities(true) //default: false
-//                .minTimeBetweenCrashesMs(2000) //default: 3000
-                .errorDrawable(R.mipmap.ic_launcher) //default: bug image
-                .restartActivity(SplashScreen.class) //default: null (your app's launch activity)
-                .errorActivity(MyCustomErrorActivity.class) //default: null (default error activity)
-                .apply();
+//        CaocConfig.Builder.create()
+//                .backgroundMode(CaocConfig.BACKGROUND_MODE_SILENT) //default: CaocConfig.BACKGROUND_MODE_SHOW_CUSTOM
+////                .showErrorDetails(false) //default: true
+////                .showRestartButton(false) //default: true
+//                .trackActivities(true) //default: false
+////                .minTimeBetweenCrashesMs(2000) //default: 3000
+//                .errorDrawable(R.mipmap.ic_launcher) //default: bug image
+//                .restartActivity(SplashScreen.class) //default: null (your app's launch activity)
+//                .errorActivity(MyCustomErrorActivity.class) //default: null (default error activity)
+//                .apply();
 
         // my code end
 

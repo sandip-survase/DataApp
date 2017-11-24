@@ -82,7 +82,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import cat.ereza.customactivityoncrash.config.CaocConfig;
+//import cat.ereza.customactivityoncrash.config.CaocConfig;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.support.design.widget.AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS;
@@ -268,20 +268,22 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                 if (intent.getAction().equals("pushNotification")) {
 
-                    String sender = intent.getStringExtra("sender");
-                    for(int i=0;i<reciever_username.length;i++)
-                    {
-                        if(reciever_username[i].equals(sender)) {
-                            unread_count[i] = Integer.parseInt(unread_count[i]) + 1+"";
-                            unreadMessageCount++;
-                        }
-                    }
-                    messagecountrl.setVisibility(View.VISIBLE);
-                    messagecount.setText(unreadMessageCount+"");
-                    if(unreadMessageCount==0)
-                    {
-                        messagecountrl.setVisibility(View.GONE);
-                    }
+//                    String sender = intent.getStringExtra("sender");
+//                    for(int i=0;i<reciever_username.length;i++)
+//                    {
+//                        if(reciever_username[i].equals(sender)) {
+//                            unread_count[i] = Integer.parseInt(unread_count[i]) + 1+"";
+//                            unreadMessageCount++;
+//                        }
+//                    }
+//                    messagecountrl.setVisibility(View.VISIBLE);
+//                    messagecount.setText(unreadMessageCount+"");
+//                    if(unreadMessageCount==0)
+//                    {
+//                        messagecountrl.setVisibility(View.GONE);
+//                    }
+                    MessagesFragment fragment = (MessagesFragment)getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+                    fragment.addMessages();
                 }
             }
         };
