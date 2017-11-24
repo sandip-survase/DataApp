@@ -45,7 +45,8 @@ import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.signature.StringSignature;
+import com.bumptech.glide.signature.ObjectKey;
+
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
@@ -4270,11 +4271,11 @@ public class MyProfileFragment extends Fragment {
                     .appendQueryParameter("u", username)
                     .build();
 
-            Glide.with(this)
+            GlideApp.with(this)
                     .load(uri)
-                    .crossFade()
-                    .signature(new StringSignature(System.currentTimeMillis() + ""))
+                    .signature(new ObjectKey(System.currentTimeMillis() + ""))
                     .into(myprofileimg);
+
 
         }
 

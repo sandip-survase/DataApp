@@ -15,7 +15,8 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.signature.StringSignature;
+import com.bumptech.glide.signature.ObjectKey;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -71,11 +72,11 @@ public class ViewProfileImage extends AppCompatActivity {
                 .appendQueryParameter("u", username)
                 .build();
 
-        Glide.with(this)
+        GlideApp.with(this)
                 .load(uri)
-                .crossFade()
-                .signature(new StringSignature(System.currentTimeMillis() + ""))
+                .signature(new ObjectKey(System.currentTimeMillis() + ""))
                 .into(profile_image);
+
 
     }
 

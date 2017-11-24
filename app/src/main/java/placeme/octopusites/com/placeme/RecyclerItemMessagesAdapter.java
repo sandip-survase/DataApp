@@ -15,7 +15,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.signature.StringSignature;
+import com.bumptech.glide.signature.ObjectKey;
+
 import java.text.DateFormat;
 import java.text.Normalizer;
 import java.text.SimpleDateFormat;
@@ -77,12 +78,11 @@ public class RecyclerItemMessagesAdapter extends RecyclerView.Adapter<RecyclerIt
                 .build();
 
 
-
-        Glide.with(holder.profile.getContext())
+        GlideApp.with(holder.profile.getContext())
                 .load(uri)
-                .crossFade()
-                .signature(new StringSignature(item.getSignature()))
+                .signature(new ObjectKey(item.getSignature()))
                 .into(holder.profile);
+
 
 
         holder.name.setText(item.getFname()+" "+item.getLname());

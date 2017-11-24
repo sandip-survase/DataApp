@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.signature.StringSignature;
+import com.bumptech.glide.signature.ObjectKey;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -76,11 +76,9 @@ public class RecyclerItemUsersAdminAdapter extends RecyclerView.Adapter<Recycler
                 .appendQueryParameter("u", item.getEncemail())
                 .build();
 
-
-        Glide.with(holder.name.getContext())
+        GlideApp.with(holder.name.getContext())
                 .load(uri)
-                .crossFade()
-                .signature(new StringSignature(item.getSignatsure()))
+                .signature(new ObjectKey(item.getSignatsure()))
                 .into(holder.uploadedbyprofile);
 
 

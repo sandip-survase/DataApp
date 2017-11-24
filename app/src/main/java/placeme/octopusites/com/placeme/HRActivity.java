@@ -38,7 +38,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.signature.StringSignature;
+
+import com.bumptech.glide.signature.ObjectKey;
 import com.kbeanie.multipicker.api.ImagePicker;
 import com.kbeanie.multipicker.api.Picker;
 import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
@@ -1255,11 +1256,11 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 .appendQueryParameter("u", username)
                 .build();
 
-        Glide.with(this)
+        GlideApp.with(this)
                 .load(uri)
-                .crossFade()
-                .signature(new StringSignature(System.currentTimeMillis() + ""))
+                .signature(new ObjectKey(System.currentTimeMillis() + ""))
                 .into(profile);
+
 
     }
     public void requestProfileImage()

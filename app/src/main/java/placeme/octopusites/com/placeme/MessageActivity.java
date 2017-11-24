@@ -24,7 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.signature.StringSignature;
+
+import com.bumptech.glide.signature.ObjectKey;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -144,10 +145,10 @@ public class MessageActivity extends AppCompatActivity {
                 .appendQueryParameter("u", encusername)
                 .build();
 
-        Glide.with(this)
+
+        GlideApp.with(this)
                 .load(uri)
-                .crossFade()
-                .signature(new StringSignature(signature))
+                .signature(new ObjectKey(signature))
                 .into(profile);
 
 
