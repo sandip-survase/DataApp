@@ -4,16 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#DD4B39"
     tools:context="placeme.octopusites.com.placeme.NoInternet">
 
-
     <TextView
-        android:id="@+id/textView"
+        android:textColor="#fff"
+        android:layout_centerInParent="true"
+        android:text="No internet"
+        android:textSize="25dp"
+        android:id="@+id/msg"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:id="@+id/refreshButton"
+        android:text="refresh"
+        android:layout_marginTop="100dp"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="you have no Internet Connection"
-        tools:layout_editor_absoluteX="101dp"
-        tools:layout_editor_absoluteY="239dp" />
+        android:layout_below="@id/msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
