@@ -32,7 +32,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.signature.StringSignature;
+import com.bumptech.glide.signature.ObjectKey;
+
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -2881,11 +2882,11 @@ public class MyProfileAlumniFragment extends Fragment {
                 .appendQueryParameter("u", username)
                 .build();
 
-        Glide.with(getContext())
+        GlideApp.with(getContext())
                 .load(uri)
-                .crossFade()
-                .signature(new StringSignature(System.currentTimeMillis() + ""))
+                .signature(new ObjectKey(System.currentTimeMillis() + ""))
                 .into(myprofileimg);
+
 
     }
 }

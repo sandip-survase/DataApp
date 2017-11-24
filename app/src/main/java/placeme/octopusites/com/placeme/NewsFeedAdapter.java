@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.ObjectKey;
 
 import java.util.List;
 
@@ -84,16 +85,17 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.MyView
 
 
         }
-        Glide.with(holder.profilePic.getContext())
+        GlideApp.with(holder.profilePic.getContext())
                 .load(item.getProfilePic())
-                .crossFade()
                 .into(holder.profilePic);
 
+
         if (item.getImge() != null) {
-            Glide.with(holder.feedImage1.getContext())
+
+            GlideApp.with(holder.feedImage1.getContext())
                     .load(item.getImge())
-                    .crossFade()
                     .into(holder.feedImage1);
+
             holder.feedImage1.setVisibility(View.VISIBLE);
         }
         else {
