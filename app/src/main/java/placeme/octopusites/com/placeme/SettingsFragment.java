@@ -81,8 +81,8 @@ public class SettingsFragment extends Fragment {
         TextView protxt=(TextView)rootView.findViewById(R.id.protxt);
         TextView freetxt=(TextView)rootView.findViewById(R.id.freetxt);
 
-        ProfileRole r=new ProfileRole();
-        role=r.getRole();
+        role=MySharedPreferencesManager.getRole(getActivity());
+
         if(role.equals("hr"))
         {
             proselectionview.setVisibility(View.GONE);

@@ -50,14 +50,10 @@ public class CreateNewPassword extends AppCompatActivity {
         ab.setTitle("Create New Password");
         ab.setDisplayHomeAsUpEnabled(true);
 
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        encUsername=sharedpreferences.getString(Username,null);
-        role=sharedpreferences.getString("role",null);
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        encUsername=MySharedPreferencesManager.getUsername(this);
+        String role=MySharedPreferencesManager.getRole(this);
 
         newpassedittetx=(EditText)findViewById(R.id.new_password);
         newpassaedittext=(EditText)findViewById(R.id.new_password_again);
@@ -156,9 +152,9 @@ public class CreateNewPassword extends AppCompatActivity {
 
             if(resultofop.equals("success")) {
                 Toast.makeText(CreateNewPassword.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
-                ProfileRole r=new ProfileRole();
-                r.setUsername(encUsername);
-                r.setRole(role);
+//                ProfileRole r=new ProfileRole();
+//                r.setUsername(encUsername);
+//                r.setRole(role);
 
                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedpreferences.edit();

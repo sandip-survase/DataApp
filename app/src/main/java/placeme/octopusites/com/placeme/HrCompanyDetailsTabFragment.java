@@ -74,13 +74,14 @@ public class HrCompanyDetailsTabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.fragment_hr_company_details_tab, container, false);
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
+
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
 
         sharedPreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         userName = sharedPreferences.getString(USERNAME, null);
         encUsername = userName;
+
         CompanyName = (EditText)rootView.findViewById(R.id.instname);
         CompanyEmail = (EditText)rootView.findViewById(R.id.instemail);
         CompanyWebsite = (EditText)rootView.findViewById(R.id.instweb);

@@ -48,7 +48,6 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 public class HrCompanyDetails extends AppCompatActivity {
 
     public int pos;
-    String digest1, digest2;
     String CompanyType="",strobj="";
     String encobj="";
     public static String HRlog = "HRlog";
@@ -72,10 +71,6 @@ public class HrCompanyDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hr_company_details);
-
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Company Details");

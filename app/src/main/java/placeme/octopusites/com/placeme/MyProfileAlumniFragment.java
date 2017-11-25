@@ -359,14 +359,12 @@ public class MyProfileAlumniFragment extends Fragment {
 
 
         sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, "username not found");
+        username = sharedpreferences.getString(Username, null);
 
         digest1 = sharedpreferences.getString("digest1", null);
         digest2 = sharedpreferences.getString("digest2", null);
-        role = sharedpreferences.getString("role", "role not found");
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
+        role = sharedpreferences.getString("role", null);
+
 
         demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -2738,13 +2736,6 @@ public class MyProfileAlumniFragment extends Fragment {
                     startActivity(new Intent(getContext(), ViewProfileImage.class));
                 } else if (which == 1) {
 
-                    sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                    editor.putString("digest1", digest1);
-                    editor.putString("digest2", digest2);
-                    editor.putString("plain", plainusername);
-                    editor.commit();
                     dialog.cancel();
                     ((AlumniActivity) getActivity()).requestCropImage();
                 } else if (which == 2) {

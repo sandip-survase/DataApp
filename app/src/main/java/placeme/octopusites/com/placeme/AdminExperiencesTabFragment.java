@@ -91,24 +91,11 @@ public class AdminExperiencesTabFragment extends Fragment {
 
         rootView = inflater.inflate(R.layout.fragment_edit_profile_admin_experiences, container, false);
 
-        sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, null);
-        String role = sharedpreferences.getString("role", null);
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
+        username=MySharedPreferencesManager.getUsername(getActivity());
+        String role=MySharedPreferencesManager.getRole(getActivity());
 
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest digest = new Digest();
-        digest1 = digest.getDigest1();
-        digest2 = digest.getDigest2();
-
-        if (digest1 == null || digest2 == null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            digest.setDigest1(digest1);
-            digest.setDigest2(digest2);
-        }
 
         demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -1823,7 +1810,7 @@ public class AdminExperiencesTabFragment extends Fragment {
         todates9 = a.getTodate9e();
         todates10 = a.getTodate10e();
         // if posts1 is not equal ""  i.e  inst,fromdate,todate has some value from a object
-        if (!posts1.equals("")) {
+        if (posts1!=null && !posts1.equals("")) {
             post1.setText(posts1);
             inst11.setText(inst1s1);
             fromdate1.setText(fromdates1);

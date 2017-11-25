@@ -97,9 +97,8 @@ public class AdminIntro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_intro);
 
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
+        digest1=MySharedPreferencesManager.getDigest1(this);
+        digest2=MySharedPreferencesManager.getDigest2(this);
 
 //        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 //        username=sharedpreferences.getString(Username,null);
@@ -249,7 +248,6 @@ public class AdminIntro extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                // TODO Auto-generated method stub
             }
 
 
@@ -725,10 +723,6 @@ public class AdminIntro extends AppCompatActivity {
 
                     Log.d("TAG", "mname: - "+mname);
                     Log.d("TAG", "phone: - "+phone);
-
-                    digest1=MySharedPreferencesManager.getDigest1(this);
-                    digest2=MySharedPreferencesManager.getDigest2(this);
-
 
                     obj = new AdminIntroModal(firstname,mname,lastname,selectedCountry,selectedState,selectedCity,phone,instname);
                     try{

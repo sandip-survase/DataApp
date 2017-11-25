@@ -59,7 +59,6 @@ import java.util.List;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 import static placeme.octopusites.com.placeme.MainActivity.containsIgnoreCase;
-import static placeme.octopusites.com.placeme.ProfileRole.username;
 
 public class MessagesFragment extends Fragment {
     private List<RecyclerItemMessages> itemList = new ArrayList<>();
@@ -160,8 +159,6 @@ public class MessagesFragment extends Fragment {
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-
-                ProfileRole r=new ProfileRole();
 
                 RecyclerItemMessages item = itemList.get(position);
 

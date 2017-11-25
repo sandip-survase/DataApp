@@ -55,20 +55,12 @@ public class AdminInstituteTabFragment extends Fragment {
 
         final View rootView = inflater.inflate(R.layout.fragment_edit_profile_admin_institute, container, false);
 
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
+        username=MySharedPreferencesManager.getUsername(getActivity());
+        String role=MySharedPreferencesManager.getRole(getActivity());
+        encUsername = username;
 
-        sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, null);
-//        String role=sharedpreferences.getString("role",null);
-
-        if (digest1 == null || digest2 == null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
         iname = (EditText) rootView.findViewById(R.id.instname);
         iemail = (EditText) rootView.findViewById(R.id.instemail);
         iweb = (EditText) rootView.findViewById(R.id.instweb);
@@ -79,9 +71,6 @@ public class AdminInstituteTabFragment extends Fragment {
 //        save=(Button)rootView.findViewById(R.id.savepersonal);
 //        saveprogress=(ProgressBar) rootView.findViewById(R.id.personalprogress);
 
-
-        ProfileRole r = new ProfileRole();
-        encUsername = r.getUsername();
 
         instname = a.getInstitute();
         instemail = a.getInstemail();

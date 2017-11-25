@@ -195,33 +195,45 @@ public class WelcomePasswordActivity extends AppCompatActivity {
                     public void run() {
                         if (success==1) {
                             new SaveSessionDetails().execute();
-                            ProfileRole r=new ProfileRole();
-                            r.setRole("student");
-                            r.setUsername(EmailCred);
+                            MySharedPreferencesManager.save(WelcomePasswordActivity.this, "role", "student");
+                            MySharedPreferencesManager.save(WelcomePasswordActivity.this,"nameKey",EmailCred);
+
+//                            ProfileRole r=new ProfileRole();
+//                            r.setRole("student");
+//                            r.setUsername(EmailCred);
                             startActivity(new Intent(WelcomePasswordActivity.this,MainActivity.class));
                             finish();
                         }
                         else if (success==3) {
                             new SaveSessionDetails().execute();
-                            ProfileRole r=new ProfileRole();
-                            r.setRole("admin");
-                            r.setUsername(EmailCred);
+                            MySharedPreferencesManager.save(WelcomePasswordActivity.this, "role", "admin");
+                            MySharedPreferencesManager.save(WelcomePasswordActivity.this,"nameKey",EmailCred);
+
+//                            ProfileRole r=new ProfileRole();
+//                            r.setRole("admin");
+//                            r.setUsername(EmailCred);
                             startActivity(new Intent(WelcomePasswordActivity.this,AdminActivity.class));
                             finish();
                         }
                         else if (success==4) {
                             new SaveSessionDetails().execute();
-                            ProfileRole r=new ProfileRole();
-                            r.setRole("hr");
-                            r.setUsername(EmailCred);
+                            MySharedPreferencesManager.save(WelcomePasswordActivity.this, "role", "hr");
+                            MySharedPreferencesManager.save(WelcomePasswordActivity.this,"nameKey",EmailCred);
+
+//                            ProfileRole r=new ProfileRole();
+//                            r.setRole("hr");
+//                            r.setUsername(EmailCred);
                             startActivity(new Intent(WelcomePasswordActivity.this,HRActivity.class));
                             finish();
                         }
                         else if (success==5) {
                             new SaveSessionDetails().execute();
-                            ProfileRole r=new ProfileRole();
-                            r.setRole("alumni");
-                            r.setUsername(EmailCred);
+                            MySharedPreferencesManager.save(WelcomePasswordActivity.this, "role", "alumni");
+                            MySharedPreferencesManager.save(WelcomePasswordActivity.this,"nameKey",EmailCred);
+
+//                            ProfileRole r=new ProfileRole();
+//                            r.setRole("alumni");
+//                            r.setUsername(EmailCred);
                             startActivity(new Intent(WelcomePasswordActivity.this,AlumniActivity.class));
                             finish();
                         }

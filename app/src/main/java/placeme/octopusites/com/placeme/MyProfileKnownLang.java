@@ -56,7 +56,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
     public static final String Username = "nameKey";
-    String username;
+    String username,role;
     String digest1,digest2;
     Spinner knownlang1,proficiency1,knownlang2,proficiency2,knownlang3,proficiency3,knownlang4,proficiency4,knownlang5,proficiency5,knownlang6,proficiency6,knownlang7,proficiency7,knownlang8,proficiency8,knownlang9,proficiency9,knownlang10,proficiency10;
     String sknownlang1="",sproficiency1="",sknownlang2="",sproficiency2="",sknownlang3="",sproficiency3="",sknownlang4="",sproficiency4="",sknownlang5="",sproficiency5="",sknownlang6="",sproficiency6="",sknownlang7="",sproficiency7="",sknownlang8="",sproficiency8="",sknownlang9="",sproficiency9="",sknownlang10="",sproficiency10="";;
@@ -77,24 +77,11 @@ public class MyProfileKnownLang extends AppCompatActivity {
         ab.setTitle("Edit Known Languages");
         ab.setDisplayHomeAsUpEnabled(true);
 
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        String role=sharedpreferences.getString("role",null);
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        role=MySharedPreferencesManager.getRole(this);
 
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest digest=new Digest();
-        digest1=digest.getDigest1();
-        digest2=digest.getDigest2();
-
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            digest.setDigest1(digest1);
-            digest.setDigest2(digest2);
-        }
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
@@ -2815,8 +2802,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                 Toast.makeText(MyProfileKnownLang.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
 
-                ProfileRole r=new ProfileRole();
-                String role=r.getRole();
+
                 if(role.equals("student"))
                    setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("alumni"))

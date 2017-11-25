@@ -73,23 +73,11 @@ public class AdminInstituteDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_institute_details);
 
-        //sss
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-//        String role=sharedpreferences.getString("role",null);
-
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
-
-
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        String role=MySharedPreferencesManager.getRole(this);
+        encUsername=username;
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Institute Details");
@@ -108,9 +96,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
         uniname=(EditText)findViewById(R.id.instuniversity);
         ireg=(EditText)findViewById(R.id.instreg);
 
-        ProfileRole r=new ProfileRole();
 
-        encUsername=MySharedPreferencesManager.getUsername(this);
 
         instname = a.getInstitute();
         instemail= a.getInstemail();

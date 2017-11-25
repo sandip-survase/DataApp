@@ -65,7 +65,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs";
     SharedPreferences sharedpreferences;
     public static final String Username = "nameKey";
-    String username;
+    String username,role;
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
@@ -99,10 +99,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
     public static String url_savedata_diploma = "http://192.168.100.30:8080/ProfileObjects/SaveDiploma";
 
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,11 +113,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         username =MySharedPreferencesManager.getUsername(this);
-        String role = MySharedPreferencesManager.getRole(this);
-
-
-
-
+        role = MySharedPreferencesManager.getRole(this);
 
         dmarkssem1 = (EditText) findViewById(R.id.dmarkssem1);
         doutofsem1 = (EditText) findViewById(R.id.doutofsem1);
@@ -2384,8 +2376,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 Toast.makeText(MyProfileTwelthOrDiploma.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
 
 
-                ProfileRole r = new ProfileRole();
-                String role = r.getRole();
                 if (role.equals("student"))
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if (role.equals("alumni"))
@@ -2455,8 +2445,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             if (result.equals("success")) {
 
 
-                ProfileRole r = new ProfileRole();
-                String role = r.getRole();
+                String role=MySharedPreferencesManager.getRole(MyProfileTwelthOrDiploma.this);
                 if (role.equals("student"))
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if (role.equals("alumni"))

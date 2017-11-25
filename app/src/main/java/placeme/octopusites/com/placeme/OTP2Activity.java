@@ -50,9 +50,8 @@ public class OTP2Activity extends AppCompatActivity {
 
         otpprogress=(ProgressBar)findViewById(R.id.otpprogress);
 
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
 
         Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/button.ttf");
         verify.setTypeface(custom_font);

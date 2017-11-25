@@ -38,9 +38,9 @@ public class MySharedPreferencesManager {
         return getSharedPreferences(context).getString("nameKey", null);
     }
 
-    public static String getPlainUsername(Context context) {
-        return getSharedPreferences(context).getString("plainUser", null);
-    }
+//    public static String getPlainUsername(Context context) {
+//        return getSharedPreferences(context).getString("plainUser", null);
+//    }
 
     public static String getPassword(Context context) {
         return getSharedPreferences(context).getString("passKey", null);

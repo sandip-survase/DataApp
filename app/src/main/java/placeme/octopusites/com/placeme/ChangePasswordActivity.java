@@ -39,7 +39,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
     String enccurrentpass,encnewpass;
     JSONObject json;
     JSONParser jParser = new JSONParser();
-    //TODO changepass in placeme
     private static String url_changepass = "http://192.168.100.100/PlaceMe/ChangePass";
     ProgressBar progressBar;
     Button changepassbutton;
@@ -57,24 +56,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
         ab.setTitle("Change Password");
         ab.setDisplayHomeAsUpEnabled(true);
 
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        String role=sharedpreferences.getString("role",null);
-
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        String role=MySharedPreferencesManager.getRole(this);
 
 
 
@@ -262,8 +247,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-
-            //TODO after Successful change of password call change pass servlet from placemechats tht will update the pass on firebase
 
             if(resultofop.equals("success")) {
                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);

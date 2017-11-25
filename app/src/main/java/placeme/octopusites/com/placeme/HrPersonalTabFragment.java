@@ -134,9 +134,8 @@ public class HrPersonalTabFragment extends Fragment {
 
         //-----------------
 
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
 
         fname = (EditText) rootView.findViewById(R.id.fname);
         lname = (EditText) rootView.findViewById(R.id.sname);

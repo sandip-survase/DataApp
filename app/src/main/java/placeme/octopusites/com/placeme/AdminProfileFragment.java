@@ -129,9 +129,10 @@ public class AdminProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_admin_profile, container, false);
 
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
+        username =MySharedPreferencesManager.getUsername(getActivity());
+        role =MySharedPreferencesManager.getRole(getActivity());
 
         hashMap = new HashMap<>();
         hashMap.put("Jan", 1);
@@ -379,13 +380,6 @@ public class AdminProfileFragment extends Fragment {
         });
 
 //        sharedpreferences=getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username =MySharedPreferencesManager.getUsername(getActivity());
-        role =MySharedPreferencesManager.getRole(getActivity());
-        digest1 =MySharedPreferencesManager.getDigest1(getActivity());
-        digest2 =MySharedPreferencesManager.getDigest2(getActivity());
-
-
-
 
         myprofilrole.setText(role.toUpperCase());
 

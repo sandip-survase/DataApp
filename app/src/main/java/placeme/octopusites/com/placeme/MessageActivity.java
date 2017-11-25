@@ -85,6 +85,9 @@ public class MessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
 
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowCustomEnabled(true);
@@ -120,19 +123,6 @@ public class MessageActivity extends AppCompatActivity {
         recieverUID=getIntent().getStringExtra("receiver_uid");
 
         helper.setCurrentChatRoom(senderUID,recieverUID);
-
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
-
 
         new ChangeMessageReadStatus(sharedpreferences.getString(Username, null),encusername).execute();
 

@@ -82,16 +82,10 @@ public class OTPActivity extends AppCompatActivity {
                 finish();
             }
         });
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
 
-        if (digest1 == null || digest2 == null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+
 
         entertxt = (TextView) findViewById(R.id.entertxt);
         otptxt = (TextView) findViewById(R.id.otptxt);

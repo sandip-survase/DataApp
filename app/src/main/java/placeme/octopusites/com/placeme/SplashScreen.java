@@ -223,9 +223,12 @@ public class SplashScreen extends Activity {
                         new Timer().schedule(new TimerTask() {
                             @Override
                             public void run() {
-                                ProfileRole r = new ProfileRole();
-                                r.setRole("student");
-                                r.setUsername(EmailCred);
+                                MySharedPreferencesManager.save(SplashScreen.this,"role","student");
+                                MySharedPreferencesManager.save(SplashScreen.this,"nameKey",EmailCred);
+
+//                                ProfileRole r = new ProfileRole();
+//                                r.setRole("student");
+//                                r.setUsername(EmailCred);
                                 startActivity(new Intent(SplashScreen.this, MainActivity.class));
                                 finish();
                             }
@@ -236,9 +239,12 @@ public class SplashScreen extends Activity {
                         new Timer().schedule(new TimerTask() {
                             @Override
                             public void run() {
-                                ProfileRole r = new ProfileRole();
-                                r.setRole("admin");
-                                r.setUsername(EmailCred);
+                                MySharedPreferencesManager.save(SplashScreen.this,"role","admin");
+                                MySharedPreferencesManager.save(SplashScreen.this,"nameKey",EmailCred);
+
+//                                ProfileRole r = new ProfileRole();
+//                                r.setRole("admin");
+//                                r.setUsername(EmailCred);
                                 startActivity(new Intent(SplashScreen.this, AdminActivity.class));
                                 finish();
                             }
@@ -249,9 +255,12 @@ public class SplashScreen extends Activity {
                         new Timer().schedule(new TimerTask() {
                             @Override
                             public void run() {
-                                ProfileRole r = new ProfileRole();
-                                r.setRole("hr");
-                                r.setUsername(EmailCred);
+                                MySharedPreferencesManager.save(SplashScreen.this,"role","hr");
+                                MySharedPreferencesManager.save(SplashScreen.this,"nameKey",EmailCred);
+
+//                                ProfileRole r = new ProfileRole();
+//                                r.setRole("hr");
+//                                r.setUsername(EmailCred);
                                 startActivity(new Intent(SplashScreen.this, HRActivity.class));
                                 finish();
                             }
@@ -261,9 +270,13 @@ public class SplashScreen extends Activity {
                         new Timer().schedule(new TimerTask() {
                             @Override
                             public void run() {
-                                ProfileRole r = new ProfileRole();
-                                r.setRole("alumni");
-                                r.setUsername(EmailCred);
+                                MySharedPreferencesManager.save(SplashScreen.this,"role","alumni");
+                                MySharedPreferencesManager.save(SplashScreen.this,"nameKey",EmailCred);
+
+//                                ProfileRole r = new ProfileRole();
+//                                r.setRole("alumni");
+//                                r.setUsername(EmailCred);
+
                                 startActivity(new Intent(SplashScreen.this, AlumniActivity.class));
                                 finish();
                             }
@@ -426,9 +439,9 @@ public class SplashScreen extends Activity {
                 digest2 = json.getString("digest2");
                 digest3 = json.getString("digest3");
 
-                Digest d = new Digest();
-                d.setDigest1(digest1);
-                d.setDigest2(digest2);
+//                Digest d = new Digest();
+//                d.setDigest1(digest1);
+//                d.setDigest2(digest2);
 
                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedpreferences.edit();

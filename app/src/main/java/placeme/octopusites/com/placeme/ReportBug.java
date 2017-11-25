@@ -54,24 +54,10 @@ public class ReportBug extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
 
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        String role=sharedpreferences.getString("role",null);
-
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        String role=MySharedPreferencesManager.getRole(this);
 
         TextView createreporttxt=(TextView)findViewById(R.id.createreporttxt);
         TextView reportsenstxt=(TextView)findViewById(R.id.reportsenstxt);

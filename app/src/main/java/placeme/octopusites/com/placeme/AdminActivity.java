@@ -72,6 +72,7 @@ import java.util.TreeSet;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
@@ -238,20 +239,9 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         username = sharedpreferences.getString(Username, null);
         String pass=sharedpreferences.getString(Password,null);
+        digest1 = sharedpreferences.getString("digest1", null);
+        digest2 = sharedpreferences.getString("digest2", null);
         String role = sharedpreferences.getString("role", null);
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
-
-        if (digest1 == null || digest2 == null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
 
 
         MySharedPreferencesManager.save(AdminActivity.this,"intro","yes");
@@ -264,10 +254,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             demoIVBytes = SimpleBase64Encoder.decode(digest2);
             sPadding = "ISO10126Padding";
 
-            byte[] demo1EncryptedBytes1 = SimpleBase64Encoder.decode(username);
-            byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
-            String plainusername = new String(demo1DecryptedBytes1);
-            r.setPlainusername(plainusername);
+            String plainusername=Decrypt(username,digest1,digest2);
 
             byte[] demo2EncryptedBytes1=SimpleBase64Encoder.decode(pass);
             byte[] demo2DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo2EncryptedBytes1);
@@ -1428,9 +1415,9 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         resultView.setImageDrawable(null);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString("digest1", digest1);
-        editor.putString("digest2", digest2);
-        editor.putString("plain", plainusername);
+//        editor.putString("digest1", digest1);
+//        editor.putString("digest2", digest2);
+//        editor.putString("plain", plainusername);
         editor.putString("crop", "yes");
 
         editor.commit();
@@ -1449,12 +1436,12 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString("digest1", digest1);
-        editor.putString("digest2", digest2);
-        editor.putString("plain", plainusername);
-        editor.commit();
+//        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedpreferences.edit();
+//        editor.putString("digest1", digest1);
+//        editor.putString("digest2", digest2);
+//        editor.putString("plain", plainusername);
+//        editor.commit();
     }
 //ssss
 
@@ -1462,19 +1449,11 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         plainusername = sharedpreferences.getString("plain", null);
-        digest1 = sharedpreferences.getString("digest1", null);
-        digest2 = sharedpreferences.getString("digest2", null);
+
+
         username = sharedpreferences.getString(Username, null);
-        String role = sharedpreferences.getString("role", null);
+//        String role = sharedpreferences.getString("role", null);
 
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setPlainusername(plainusername);
-        r.setRole(role);
-
-        Digest d = new Digest();
-        d.setDigest1(digest1);
-        d.setDigest2(digest2);
         if (resultCode == 111) {
             AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
             fragment.refreshContent();

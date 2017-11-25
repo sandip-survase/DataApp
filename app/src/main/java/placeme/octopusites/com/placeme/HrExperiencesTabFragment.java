@@ -81,6 +81,7 @@ public class HrExperiencesTabFragment extends Fragment {
     int errorflag = 0;
     byte[] demoKeyBytes, demoIVBytes;
     String sPadding;
+    String role;
     HrData hr = new HrData();
 
     View rootView;
@@ -90,24 +91,11 @@ public class HrExperiencesTabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_hr_experiences_tab, container, false);
-        sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, null);
-        String role = sharedpreferences.getString("role", null);
 
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest digest = new Digest();
-        digest1 = digest.getDigest1();
-        digest2 = digest.getDigest2();
-
-        if (digest1 == null || digest2 == null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            digest.setDigest1(digest1);
-            digest.setDigest2(digest2);
-        }
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
+        username=MySharedPreferencesManager.getUsername(getActivity());
+        role=MySharedPreferencesManager.getRole(getActivity());
 
         demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -4451,8 +4439,6 @@ public class HrExperiencesTabFragment extends Fragment {
             if (result.equals("success")) {
 //                Toast.makeText(getActivity(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
 
-                ProfileRole r = new ProfileRole();
-                String role = r.getRole();
                 if (role.equals("alumni"))
                     getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("hr"))

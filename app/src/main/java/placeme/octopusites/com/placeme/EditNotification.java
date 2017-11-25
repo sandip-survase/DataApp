@@ -65,8 +65,6 @@ public class EditNotification extends AppCompatActivity {
     boolean isStarted=false;
     Vibrator myVib;
     View[] selectedViews;
-    String role;
-
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
     CircleImageView profile;
@@ -74,6 +72,7 @@ public class EditNotification extends AppCompatActivity {
 
     JSONParser jParser = new JSONParser();
     String digest1,digest2;
+    String role;
     JSONObject json;
     byte[] demoKeyBytes;
     byte[] demoIVBytes;
@@ -129,6 +128,12 @@ public class EditNotification extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        role=MySharedPreferencesManager.getRole(this);
+
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(Html.fromHtml("<font color='#ffffff'>Edit Notification</font>"));
 
@@ -137,39 +142,21 @@ public class EditNotification extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
         myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
-
-
-
-        username=MySharedPreferencesManager.getUsername(this);
-
-        role=MySharedPreferencesManager.getRole(this);
-
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d=new Digest();
-        digest1=MySharedPreferencesManager.getDigest1(this);
-        digest2=MySharedPreferencesManager.getDigest2(this);
-        d.setDigest1(digest1);
-        d.setDigest2(digest2);
-
-
-        try
-        {
-            demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-            demoIVBytes = SimpleBase64Encoder.decode(digest2);
-            sPadding = "ISO10126Padding";
-
-            byte[] demo1EncryptedBytes1=SimpleBase64Encoder.decode(username);
-
-            byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
-
-            String  plainusername=new String(demo1DecryptedBytes1);
-
-            r.setPlainusername(plainusername);
-
-        }catch (Exception e){}
+//        try
+//        {
+//            demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+//            demoIVBytes = SimpleBase64Encoder.decode(digest2);
+//            sPadding = "ISO10126Padding";
+//
+//            byte[] demo1EncryptedBytes1=SimpleBase64Encoder.decode(username);
+//
+//            byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
+//
+//            String  plainusername=new String(demo1DecryptedBytes1);
+//
+//            r.setPlainusername(plainusername);
+//
+//        }catch (Exception e){}
 
         recyclerViewNotification = (RecyclerView)findViewById(R.id.recycler_view);
         mAdapterNotification = new RecyclerItemAdapter(itemListNotification);

@@ -79,7 +79,7 @@ public class HR_Experiences extends AppCompatActivity {
     //    private final String url_saveHrExperience = "http://192.168.100.10/AESTest/SaveAlumniExperience";
     int errorflag = 0;
     byte[] demoKeyBytes, demoIVBytes;
-    String sPadding;
+    String sPadding,role;
     HrData hr = new HrData();
 
     @Override
@@ -92,24 +92,10 @@ public class HR_Experiences extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, null);
-        String role = sharedpreferences.getString("role", null);
-
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest digest = new Digest();
-        digest1 = digest.getDigest1();
-        digest2 = digest.getDigest2();
-
-        if (digest1 == null || digest2 == null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            digest.setDigest1(digest1);
-            digest.setDigest2(digest2);
-        }
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        role=MySharedPreferencesManager.getRole(this);
 
         demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -4211,8 +4197,8 @@ public class HR_Experiences extends AppCompatActivity {
                 Toast.makeText(HR_Experiences.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
 
 
-                ProfileRole r=new ProfileRole();
-                String role=r.getRole();
+//                ProfileRole r=new ProfileRole();
+//                String role=r.getRole();
                 if(role.equals("alumni"))
                     setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("hr"))

@@ -40,10 +40,11 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
-import static placeme.octopusites.com.placeme.ProfileRole.plainusername;
-import static placeme.octopusites.com.placeme.R.id.myprofilemail;
+//import static placeme.octopusites.com.placeme.ProfileRole.plainusername;
+//import static placeme.octopusites.com.placeme.R.id.myprofilemail;
 
 public class HrIntro extends AppCompatActivity {
 
@@ -105,9 +106,8 @@ public class HrIntro extends AppCompatActivity {
 
         //-----------------
 
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
 
         fname = (EditText) findViewById(R.id.fname);
         lname = (EditText) findViewById(R.id.sname);
@@ -127,9 +127,7 @@ public class HrIntro extends AppCompatActivity {
         String sPadding = "ISO10126Padding";
 
         try {
-            byte[] usernameEncryptedBytes = SimpleBase64Encoder.decode(userName);
-            byte[] usernameDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, usernameEncryptedBytes);
-            plainusername = new String(usernameDecryptedBytes);
+            String plainusername=Decrypt(userName,digest1,digest2);
             email.setText(plainusername);
         } catch (Exception e) {
         }

@@ -51,8 +51,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
-import static placeme.octopusites.com.placeme.Digest.digest2;
 import static placeme.octopusites.com.placeme.JSONParser.json;
 import static placeme.octopusites.com.placeme.MyConstants.url_savedata;
 
@@ -71,7 +71,7 @@ public class AddUsersActivity extends AppCompatActivity {
 
 //filework
     String username="",userEmail,plainUsername="";
-    private String digest1;
+    private String digest1,digest2;
 
     String encadminUsername;
 
@@ -119,10 +119,8 @@ public class AddUsersActivity extends AppCompatActivity {
 
         encadminUsername=MySharedPreferencesManager.getUsername(AddUsersActivity.this);
 
-        Digest d = new Digest();
-
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
 
         radioGroupUsers.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -200,19 +198,6 @@ public class AddUsersActivity extends AppCompatActivity {
 
         });
 
-
-        Log.d("share", "role "+MySharedPreferencesManager.getRole(AddUsersActivity.this));
-        Log.d("share", "digest1 "+MySharedPreferencesManager.getDigest1(AddUsersActivity.this));
-        Log.d("share", "digest2 "+MySharedPreferencesManager.getDigest2(AddUsersActivity.this));
-        Log.d("share", "digest3 "+MySharedPreferencesManager.getDigest3(AddUsersActivity.this));
-        Log.d("share", "username "+MySharedPreferencesManager.getUsername(AddUsersActivity.this));
-        Log.d("share", "plainUsername "+MySharedPreferencesManager.getPlainUsername(AddUsersActivity.this));
-        Log.d("share", "password "+MySharedPreferencesManager.getPassword(AddUsersActivity.this));
-
-
-
-
-
     }
     void cancelDialog1()
     {
@@ -279,8 +264,7 @@ public class AddUsersActivity extends AppCompatActivity {
     class deleteFile extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
 
-            ProfileRole r=new ProfileRole();
-            String encUsername=r.getUsername();
+            String encUsername=MySharedPreferencesManager.getUsername(AddUsersActivity.this);
             Log.d("TAG", "delete :filename "+plainFilename+"\nuser"+encUsername);
             filename=plainFilename;
 
@@ -369,9 +353,12 @@ public class AddUsersActivity extends AppCompatActivity {
             Toast.makeText(this, "mul", Toast.LENGTH_SHORT).show();
             if(!filename.equals("")){
 
-                ProfileRole r = new ProfileRole();
-                plainUsername=r.getPlainusername();
-                String adminUsername = r.getUsername();
+                String adminUsername = MySharedPreferencesManager.getUsername(AddUsersActivity.this);
+                try {
+                    plainUsername=Decrypt(adminUsername,digest1,digest2);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 Toast.makeText(this, "multi selected "+filename+"\n"+adminUsername, Toast.LENGTH_SHORT).show();
                 Log.d("TAG", "multi selected "+filename+"\n"+adminUsername);

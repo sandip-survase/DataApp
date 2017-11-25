@@ -64,7 +64,7 @@ public class MyProfileUg extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
     public static final String Username = "nameKey";
-    String username;
+    String username,role;
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
@@ -83,24 +83,11 @@ public class MyProfileUg extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_ug);
 
-        sharedpreferences=getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        String role=sharedpreferences.getString("role",null);
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        role=MySharedPreferencesManager.getRole(this);
 
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Educational Info");
@@ -2077,10 +2064,6 @@ public class MyProfileUg extends AppCompatActivity {
             {
                 Toast.makeText(MyProfileUg.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
-
-
-                ProfileRole r=new ProfileRole();
-                String role=r.getRole();
                 if(role.equals("student"))
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("alumni"))

@@ -31,8 +31,9 @@ public class ProSplashScreen extends Activity {
         trytxt2.setTypeface(custom_font11);
         protxt2.setTypeface(custom_font10);
 
-        ProfileRole r=new ProfileRole();
-        role=r.getRole();
+//        ProfileRole r=new ProfileRole();
+//        role=r.getRole();
+        role=MySharedPreferencesManager.getRole(ProSplashScreen.this);
 
         new Timer().schedule(new TimerTask() {
             @Override

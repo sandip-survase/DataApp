@@ -144,9 +144,8 @@ public class MyProfileFragment extends Fragment {
 
         rootView = inflater.inflate(R.layout.fragment_my_profile, container, false);
 
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
 
         profileprogress = (ProgressBar) rootView.findViewById(R.id.profileprogress);
         updateProgress = (ProgressBar) rootView.findViewById(R.id.updateProgress);
@@ -387,9 +386,6 @@ public class MyProfileFragment extends Fragment {
 
         Log.d("in mainfragment", "update user set isactivated=\"no\" where usernamed=\"60/onJpfYmsVdoDTjizGCg7kCu7DzogOMAfO06U4hIc=\"': " + role);
 
-        digest1 = sharedpreferences.getString("digest1", null);
-        digest2 = sharedpreferences.getString("digest2", null);
-
         myprofilrole.setText(role);
 
         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
@@ -465,13 +461,13 @@ public class MyProfileFragment extends Fragment {
                     startActivity(new Intent(getContext(), ViewProfileImage.class));
                 } else if (which == 1) {
 
-                    sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                    editor.putString("digest1", digest1);
-                    editor.putString("digest2", digest2);
-                    editor.putString("plain", plainusername);
-                    editor.commit();
+//                    sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = sharedpreferences.edit();
+//
+//                    editor.putString("digest1", digest1);
+//                    editor.putString("digest2", digest2);
+//                    editor.putString("plain", plainusername);
+//                    editor.commit();
                     dialog.cancel();
                     ((MainActivity) getActivity()).requestCropImage();
                 } else if (which == 2) {

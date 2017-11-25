@@ -270,27 +270,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         searchView.setCursorDrawable(R.drawable.custom_cursor);
         searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
 
-        // digest is not getting setting manually
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-
-        digest1="I09jdG9wdXMxMkl0ZXMjJQ==";
-        digest2="I1BsYWNlMTJNZSMlJSopXg==";
-
-        editor.putString("digest1", digest1);
-        editor.putString("digest2",digest2);
-        editor.commit();
-
-
-        Digest d = new Digest();
-        d.setDigest1(digest1);
-        d.setDigest2(digest2);
-
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
-
-
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
 
 
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
@@ -1155,7 +1136,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         username = MySharedPreferencesManager.getUsername(this);
         role=MySharedPreferencesManager.getRole(this);
         pass=MySharedPreferencesManager.getPassword(this);
-        Log.d("tAG", "username: "+username);
+
 
 
 
@@ -2893,17 +2874,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         digest2=sharedpreferences.getString("digest2",null);
         username=sharedpreferences.getString(Username,null);
         String role=sharedpreferences.getString("role",null);
-
-
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setPlainusername(plainusername);
-        r.setRole(role);
-
-        Digest d=new Digest();
-        d.setDigest1(digest1);
-        d.setDigest2(digest2);
-
 
         if(resultCode==ALUMNI_DATA_CHANGE_RESULT_CODE){
 

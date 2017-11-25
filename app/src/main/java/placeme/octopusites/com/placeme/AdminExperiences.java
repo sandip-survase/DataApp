@@ -95,6 +95,11 @@ public class AdminExperiences extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_experiences);
 
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        String role=MySharedPreferencesManager.getRole(this);
+
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Experiences");
         ab.setDisplayHomeAsUpEnabled(true);
@@ -103,24 +108,8 @@ public class AdminExperiences extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        String role=sharedpreferences.getString("role",null);
 
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
 
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
         fromdate1=(EditText)findViewById(R.id.fromdate1);
         todate1=(EditText)findViewById(R.id.todate1);
         fromdate2=(EditText)findViewById(R.id.fromdate2);

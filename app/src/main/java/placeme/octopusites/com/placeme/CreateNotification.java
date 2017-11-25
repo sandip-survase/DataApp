@@ -132,7 +132,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     ArrayAdapter<String> dataAdapter;
     ArrayList<String> TagCreateList=new ArrayList<>();
     int edittedFlag=0,containsall=0;
-    String digest1="",digest2="";
+    String digest1,digest2;
 
 
     @Override
@@ -208,18 +208,6 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         Log.d("Shardpreff", "encUsername: " + encUsername);
         Log.d("Shardpreff", "onCreate: " + instname);
         Log.d("Shardpreff", "SROLR: " + srole);
-
-
-
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
-        if (digest1 == null || digest2 == null) {
-
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
-
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);

@@ -221,6 +221,11 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        String role=MySharedPreferencesManager.getRole(this);
+        String pass=MySharedPreferencesManager.getPassword(this);
 
         mViewPager = (ViewPager) findViewById(R.id.blogcontainer);
         tabLayout = (TabLayout) findViewById(R.id.blogtabs);
@@ -282,6 +287,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 //                    {
 //                        messagecountrl.setVisibility(View.GONE);
 //                    }
+                    new GetUnreadCountOfNotificationAndPlacement().execute();
+                    new GetUnreadMessagesCount().execute();
                     MessagesFragment fragment = (MessagesFragment)getSupportFragmentManager().findFragmentById(R.id.mainfragment);
                     fragment.addMessages();
                 }
@@ -299,29 +306,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         crop_layout=(FrameLayout)findViewById(R.id.crop_layout);
         resultView = (ImageView) findViewById(R.id.result_image);
 
-
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        String pass=sharedpreferences.getString(Password,null);
-        String role=sharedpreferences.getString("role",null);
-
-
-
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
-
         try
         {
 
@@ -332,7 +316,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             byte[] demo1EncryptedBytes1=SimpleBase64Encoder.decode(username);
             byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
             plainusername=new String(demo1DecryptedBytes1);
-            r.setPlainusername(plainusername);
+//            r.setPlainusername(plainusername);
 
             byte[] demo2EncryptedBytes1=SimpleBase64Encoder.decode(pass);
             byte[] demo2DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo2EncryptedBytes1);
@@ -1211,8 +1195,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         });
 
 //        tswipe_refresh_layout.setRefreshing(true);
-//        new GetUnreadCountOfNotificationAndPlacement().execute();
-////        new GetUnreadMessagesCount().execute();
+        new GetUnreadCountOfNotificationAndPlacement().execute();
+        new GetUnreadMessagesCount().execute();
 
 
         getNotifications();
@@ -1330,123 +1314,123 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             messagecountrl.setVisibility(View.GONE);
         }
     }
-//    class GetUnreadMessagesCount extends AsyncTask<String, String, String> {
-//
-//
-//        protected String doInBackground(String... param) {
-//
-//            List<NameValuePair> params = new ArrayList<NameValuePair>();
-//            params.add(new BasicNameValuePair("u", username));
-//            json = jParser.makeHttpRequest(url_get_chatrooms, "GET", params);
-//
-//            try {
-//
-//                count = Integer.parseInt(json.getString("count"));
-//                sender_uid = json.getString("uid");
-//
-//                reciever_username=new String[count];
-//                reciever_uid=new String[count];
-//                unread_count=new String[count];
-//
-//                for(int i=0;i<count;i++)
-//                {
-//                    unread_count[i]="0";
-//                    reciever_username[i]=json.getString("username"+i);
-//                    reciever_uid[i]=json.getString("uid"+i);
-//                }
-//
-//            } catch (Exception ex) {
-//
-//            }
-//
-//            return "";
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//
-//            if (count > 0) {
-//
-//                for (int i = 0; i < count; i++) {
-//
-//                    String tempusername = null;
-//                    try {
-//                        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-//                        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-//                        String sPadding = "ISO10126Padding";
-//
-//                        byte[] usernameBytes = reciever_username[i].getBytes("UTF-8");
-//
-//                        byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
-//                        tempusername = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
-//
-//
-//
-//
-//                    } catch (Exception e) {
-//                    }
-//
-//                    new GetMessagesReadStatus(username,tempusername,sender_uid, reciever_uid[i],i).execute();
-//                }
-//
-//            }
-//
-//
-//        }
-//    }
-//    class GetMessagesReadStatus extends AsyncTask<String, String, String> {
-//
-//        String sender, reciever, senderuid, recieveruid;
-//        int index;
-//
-//        GetMessagesReadStatus(String sender, String reciever, String senderuid, String recieveruid, int index) {
-//            this.sender = sender;
-//            this.reciever = reciever;
-//            this.senderuid = senderuid;
-//            this.recieveruid = recieveruid;
-//            this.index = index;
-//        }
-//
-//        protected String doInBackground(String... param) {
-//
-//            String r = null;
-//            List<NameValuePair> params = new ArrayList<NameValuePair>();
-//            params.add(new BasicNameValuePair("s", sender));       //0
-//            params.add(new BasicNameValuePair("r", reciever));     //1
-//            params.add(new BasicNameValuePair("su", senderuid));    //2
-//            params.add(new BasicNameValuePair("ru", recieveruid));  //3
-//
-//            try {
-//
-//                json = jParser.makeHttpRequest(url_getmessagesreadstatus, "GET", params);
-//                unread_count[index] = json.getString("unreadcount");
-//
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            return r;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//
-//            if (index == count - 1) {
-//
-//                for (int i = 0; i < count; i++) {
-//
-//                    unreadMessageCount+=Integer.parseInt(unread_count[i]);
-//
-//                }
-//                messagecountrl.setVisibility(View.VISIBLE);
-//                messagecount.setText(unreadMessageCount+"");
-//                if(unreadMessageCount==0)
-//                {
-//                    messagecountrl.setVisibility(View.GONE);
-//                }
-//            }
-//        }
-//    }
+    class GetUnreadMessagesCount extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            json = jParser.makeHttpRequest(url_get_chatrooms, "GET", params);
+
+            try {
+
+                count = Integer.parseInt(json.getString("count"));
+                sender_uid = json.getString("uid");
+
+                reciever_username=new String[count];
+                reciever_uid=new String[count];
+                unread_count=new String[count];
+
+                for(int i=0;i<count;i++)
+                {
+                    unread_count[i]="0";
+                    reciever_username[i]=json.getString("username"+i);
+                    reciever_uid[i]=json.getString("uid"+i);
+                }
+
+            } catch (Exception ex) {
+
+            }
+
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (count > 0) {
+
+                for (int i = 0; i < count; i++) {
+
+                    String tempusername = null;
+                    try {
+                        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+                        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
+                        String sPadding = "ISO10126Padding";
+
+                        byte[] usernameBytes = reciever_username[i].getBytes("UTF-8");
+
+                        byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
+                        tempusername = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
+
+
+
+
+                    } catch (Exception e) {
+                    }
+
+                    new GetMessagesReadStatus(username,tempusername,sender_uid, reciever_uid[i],i).execute();
+                }
+
+            }
+
+
+        }
+    }
+    class GetMessagesReadStatus extends AsyncTask<String, String, String> {
+
+        String sender, reciever, senderuid, recieveruid;
+        int index;
+
+        GetMessagesReadStatus(String sender, String reciever, String senderuid, String recieveruid, int index) {
+            this.sender = sender;
+            this.reciever = reciever;
+            this.senderuid = senderuid;
+            this.recieveruid = recieveruid;
+            this.index = index;
+        }
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("s", sender));       //0
+            params.add(new BasicNameValuePair("r", reciever));     //1
+            params.add(new BasicNameValuePair("su", senderuid));    //2
+            params.add(new BasicNameValuePair("ru", recieveruid));  //3
+
+            try {
+
+                json = jParser.makeHttpRequest(url_getmessagesreadstatus, "GET", params);
+                unread_count[index] = json.getString("unreadcount");
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (index == count - 1) {
+
+                for (int i = 0; i < count; i++) {
+
+                    unreadMessageCount+=Integer.parseInt(unread_count[i]);
+
+                }
+                messagecountrl.setVisibility(View.VISIBLE);
+                messagecount.setText(unreadMessageCount+"");
+                if(unreadMessageCount==0)
+                {
+                    messagecountrl.setVisibility(View.GONE);
+                }
+            }
+        }
+    }
     class GetUnreadCountOfNotificationAndPlacement extends AsyncTask<String, String, String> {
 
 
@@ -3080,9 +3064,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         resultView.setImageDrawable(null);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString("digest1", digest1);
-        editor.putString("digest2", digest2);
-        editor.putString("plain", plainusername);
+//        editor.putString("digest1", digest1);
+//        editor.putString("digest2", digest2);
+//        editor.putString("plain", plainusername);
         editor.putString("crop", "yes");
 
         editor.commit();
@@ -3093,30 +3077,25 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString("digest1", digest1);
-        editor.putString("digest2", digest2);
-        editor.putString("plain", plainusername);
-        editor.commit();
+//        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedpreferences.edit();
+//        editor.putString("digest1", digest1);
+//        editor.putString("digest2", digest2);
+//        editor.putString("plain", plainusername);
+//        editor.commit();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
         plainusername=sharedpreferences.getString("plain",null);
-        digest1=sharedpreferences.getString("digest1",null);
-        digest2=sharedpreferences.getString("digest2",null);
-        username=sharedpreferences.getString(Username,null);
-        String role=sharedpreferences.getString("role",null);
 
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setPlainusername(plainusername);
-        r.setRole(role);
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        String role=MySharedPreferencesManager.getRole(this);
 
-        Digest d=new Digest();
-        d.setDigest1(digest1);
-        d.setDigest2(digest2);
+
+
         if(requestCode== Picker.PICK_IMAGE_DEVICE) {
 
             try {

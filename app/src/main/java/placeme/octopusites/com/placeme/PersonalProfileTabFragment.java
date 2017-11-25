@@ -84,7 +84,7 @@ public class PersonalProfileTabFragment extends Fragment {
     public static final String MyPREFERENCES = "MyPrefs";
     SharedPreferences sharedpreferences;
     public static final String Username = "nameKey";
-    String username, plainusername, Myrole;
+    String username, plainusername, Myrole,role;
     String digest1, digest2;
     int edittedFlag = 0;
     StudentData s = new StudentData();
@@ -104,6 +104,12 @@ public class PersonalProfileTabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_edit_profile_personal, container, false);
+
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
+        username=MySharedPreferencesManager.getUsername(getActivity());
+        role=MySharedPreferencesManager.getRole(getActivity());
+        Myrole = role;
 
 
         CheckBoxPSC = (CheckBox) rootView.findViewById(R.id.CheckBoxPSC);
@@ -805,20 +811,6 @@ public class PersonalProfileTabFragment extends Fragment {
             }
         });
 
-        sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, null);
-        String role = sharedpreferences.getString("role", null);
-
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-
-        Myrole = r.getRole();
-
-
-        digest1 =MySharedPreferencesManager.getDigest1(getActivity());
-        digest2 =MySharedPreferencesManager.getDigest2(getActivity());
 
         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -1494,9 +1486,6 @@ public class PersonalProfileTabFragment extends Fragment {
         protected void onPostExecute(String result) {
 
             if (resultofop.equals("success")) {
-
-                ProfileRole r = new ProfileRole();
-                String role = r.getRole();
 
                 if (role.equals("student"))
                     getActivity().setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);

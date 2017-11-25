@@ -39,8 +39,6 @@ import java.util.List;
 import mabbas007.tagsedittext.TagsEditText;
 
 import static placeme.octopusites.com.placeme.AES4all.Encrypt;
-import static placeme.octopusites.com.placeme.Digest.digest1;
-import static placeme.octopusites.com.placeme.Digest.digest2;
 
 public class CreatePlacement extends AppCompatActivity {
 
@@ -66,11 +64,15 @@ public class CreatePlacement extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TagsEditText batchesTags;
+    private String digest1,digest2;
  //check
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_placement);
+
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
 
         toolbar = (Toolbar) findViewById(R.id.placementtoolbar);
         setSupportActionBar(toolbar);

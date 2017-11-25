@@ -123,6 +123,9 @@ public static String savepersonalinfo = "http://192.168.100.10:8080/ProfileObjec
     public static final String url_SaveAndGenrateInstituteCode = "http://192.168.100.100/AESTest/SaveAndGenrateInstituteCode";
     public static final String url_SaveAndGenrateCompanyCode = "http://192.168.100.100/AESTest/SaveAndGenrateCompanyCode";
 
+    //--
+
+
 
 //    public static String url_getplacementsmetadata = "http://192.168.100.30/CreateNotificationTemp/GetPlacementsAdminMetaData";
 //    public static String url_getplacementsreadstatus = "http://192.168.100.30/CreateNotificationTemp/GetReadStatusOfPlacementsForAdmin";

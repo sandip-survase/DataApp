@@ -1265,29 +1265,38 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
 //                            ProfileRole r = new ProfileRole();
 //                            r.setRole("student");
 //                            r.setUsername(EmailCred);
+                            MySharedPreferencesManager.save(Welcome.this,"nameKey",EmailCred);
                             MySharedPreferencesManager.save(Welcome.this, "role", "student");
                             Log.d("TAG", "run: launching mainactivity..");
                             startActivity(new Intent(Welcome.this, MainActivity.class));
                             finish();
                         } else if (success == 3) {
                             new SaveSessionDetails().execute();
-                            ProfileRole r = new ProfileRole();
-                            r.setRole("admin");
-                            r.setUsername(EmailCred);
+                            MySharedPreferencesManager.save(Welcome.this, "role", "admin");
+                            MySharedPreferencesManager.save(Welcome.this,"nameKey",EmailCred);
+//                            ProfileRole r = new ProfileRole();
+//                            r.setRole("admin");
+//                            r.setUsername(EmailCred);
                             startActivity(new Intent(Welcome.this, AdminActivity.class));
                             finish();
                         } else if (success == 4) {
                             new SaveSessionDetails().execute();
-                            ProfileRole r = new ProfileRole();
-                            r.setRole("hr");
-                            r.setUsername(EmailCred);
+                            MySharedPreferencesManager.save(Welcome.this, "role", "hr");
+                            MySharedPreferencesManager.save(Welcome.this,"nameKey",EmailCred);
+
+//                            ProfileRole r = new ProfileRole();
+//                            r.setRole("hr");
+//                            r.setUsername(EmailCred);
                             startActivity(new Intent(Welcome.this, HRActivity.class));
                             finish();
                         } else if (success == 5) {
                             new SaveSessionDetails().execute();
-                            ProfileRole r = new ProfileRole();
-                            r.setRole("alumni");
-                            r.setUsername(EmailCred);
+                            MySharedPreferencesManager.save(Welcome.this, "role", "alumni");
+                            MySharedPreferencesManager.save(Welcome.this,"nameKey",EmailCred);
+
+//                            ProfileRole r = new ProfileRole();
+//                            r.setRole("alumni");
+//                            r.setUsername(EmailCred);
                             startActivity(new Intent(Welcome.this, AlumniActivity.class));
                             finish();
                         }

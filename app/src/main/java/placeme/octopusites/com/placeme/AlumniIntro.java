@@ -39,6 +39,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
@@ -90,7 +91,6 @@ import static placeme.octopusites.com.placeme.MyProfileAlumniFragment.alumniLog;
 
 
 public class AlumniIntro extends AppCompatActivity {
-    String digest1,digest2;
     EditText fname,lname,role,email;
     JSONObject json;
     AutoCompleteTextView citystaecountry;
@@ -110,22 +110,19 @@ public class AlumniIntro extends AppCompatActivity {
     int edittedFlag=0,isCountrySet=0,isStateSet=0,isCitySet=0;
     //    AlumniData alumniDataSet = new AlumniData();
     StudentData s = new StudentData();
+    private String digest1,digest2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alumni_intro);
 
-
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Personal Info");
         ab.setDisplayHomeAsUpEnabled(true);
 
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
@@ -222,10 +219,18 @@ public class AlumniIntro extends AppCompatActivity {
 
 
 
-        ProfileRole r=new ProfileRole();
-        role.setText(r.getRole().substring(0, 1).toUpperCase()+ r.getRole().substring(1));
-        email.setText(r.getPlainusername());
-        encUsername=r.getUsername();
+
+        String plainUsername="";
+        String strRole=MySharedPreferencesManager.getRole(this);
+        encUsername=MySharedPreferencesManager.getUsername(this);
+        role.setText(strRole.substring(0, 1).toUpperCase()+ strRole.substring(1));
+        try {
+            plainUsername =Decrypt(encUsername,digest1,digest2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        email.setText(plainUsername);
 
         fname.addTextChangedListener(new TextWatcher() {
             @Override
@@ -241,8 +246,6 @@ public class AlumniIntro extends AppCompatActivity {
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                // TODO Auto-generated method stub
             }
 
 
@@ -262,7 +265,7 @@ public class AlumniIntro extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                // TODO Auto-generated method stub
+
             }
 
 

@@ -124,44 +124,19 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        username=getIntent().getStringExtra("username");
+//        username=getIntent().getStringExtra("username");
+        username=MySharedPreferencesManager.getUsername(this);
 
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         searchView.setVoiceSearch(false);
         searchView.setCursorDrawable(R.drawable.custom_cursor);
         searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
 
-        // digest are not getting setting manually
-
-
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-
-//        digest1= "I09jdG9wdXMxMkl0ZXMjJQ==";
-//        digest2 = "I1BsYWNlMTJNZSMlJSopXg==";
 
         digest1=MySharedPreferencesManager.getDigest1(this);
         digest2=MySharedPreferencesManager.getDigest2(this);
 
-
         MySharedPreferencesManager.save(HRActivity.this,"intro","yes");
-        MySharedPreferencesManager.save(HRActivity.this,"otp","no");
-        MySharedPreferencesManager.save(HRActivity.this,"activationMessage","no");
-        MySharedPreferencesManager.save(HRActivity.this,"activatedCode","no");
-
-        editor.putString("digest1", digest1);
-        editor.putString("digest2",digest2);
-        editor.commit();
-
-        Digest d = new Digest();
-
-        d.setDigest1(digest1);
-        d.setDigest2(digest2);
-
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
-
         MySharedPreferencesManager.save(HRActivity.this,"otp","no");
         MySharedPreferencesManager.save(HRActivity.this,"activationMessage","no");
         MySharedPreferencesManager.save(HRActivity.this,"activatedCode","no");
@@ -929,9 +904,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         String pass=sharedpreferences.getString(Password,null);
         String role=sharedpreferences.getString("role",null);
 
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
         try
         {
 
@@ -942,7 +914,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             byte[] demo1EncryptedBytes1=SimpleBase64Encoder.decode(username);
             byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
             plainusername=new String(demo1DecryptedBytes1);
-            r.setPlainusername(plainusername);
+//            r.setPlainusername(plainusername);
 
             byte[] demo2EncryptedBytes1=SimpleBase64Encoder.decode(pass);
             byte[] demo2DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo2EncryptedBytes1);
@@ -1052,17 +1024,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         digest2=sharedpreferences.getString("digest2",null);
         username=sharedpreferences.getString(Username,null);
         String role=sharedpreferences.getString("role",null);
-
-
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setPlainusername(plainusername);
-        r.setRole(role);
-
-        Digest d=new Digest();
-        d.setDigest1(digest1);
-        d.setDigest2(digest2);
-
 
         if(resultCode==HR_DATA_CHANGE_RESULT_CODE){
 

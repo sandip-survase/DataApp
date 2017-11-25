@@ -44,6 +44,11 @@ public class ForgotPasswordDialog extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password_dialog);
 
+
+
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+
         android_id = Settings.Secure.getString(getApplication().getContentResolver(), Settings.Secure.ANDROID_ID);
 
         forgotedittext=(EditText)findViewById(R.id.forgotedittext);
@@ -57,9 +62,7 @@ public class ForgotPasswordDialog extends AppCompatActivity {
 
         forgotprogress=(ProgressBar)findViewById(R.id.forgotprogress);
 
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
+
 
         reset.setOnClickListener(new View.OnClickListener() {
             @Override

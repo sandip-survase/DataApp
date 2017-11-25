@@ -62,6 +62,13 @@ public class EditEmail extends AppCompatActivity {
         ab.setTitle("Edit Email");
         ab.setDisplayHomeAsUpEnabled(true);
 
+
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        String role=MySharedPreferencesManager.getRole(this);
+
+
         otpinput=(TextInputLayout)findViewById(R.id.otpinput);
         emailinput=(TextInputLayout)findViewById(R.id.emailinput);
         passinput=(TextInputLayout)findViewById(R.id.passinput);
@@ -99,26 +106,7 @@ public class EditEmail extends AppCompatActivity {
         Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/button.ttf");
         changeemailbutton.setTypeface(custom_font3);
 
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        String role=sharedpreferences.getString("role",null);
 
-
-
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
         String sPadding = "ISO10126Padding";
@@ -195,8 +183,6 @@ public class EditEmail extends AppCompatActivity {
 
         protected String doInBackground(String... param) {
 
-            //TODO get fname lname and send it
-
             String r="";
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",username));       //0
@@ -215,8 +201,6 @@ public class EditEmail extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-
-            //TODO chage in all tables username | firebase update email id auth
 
             editemailprogress.setVisibility(View.GONE);
             changeemailbutton.setVisibility(View.VISIBLE);
