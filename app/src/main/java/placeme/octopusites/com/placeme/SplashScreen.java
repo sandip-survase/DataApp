@@ -119,14 +119,12 @@ public class SplashScreen extends Activity {
                 String i = sharedpreferences.getString(Intro, null);
                 String u = sharedpreferences.getString(Username, null);
                 username = sharedpreferences.getString(Username, null);
-                ;
                 String p = sharedpreferences.getString(Password, null);
                 String otp = sharedpreferences.getString("otp", null);
 
                 String activatedCode = MySharedPreferencesManager.getData(SplashScreen.this, "activatedCode");
 
-                if (activatedCode != null) {
-                    if (activatedCode.equals("yes")) {
+                if (activatedCode != null && activatedCode.equals("yes")) {
                         new Timer().schedule(new TimerTask() {
                             @Override
                             public void run() {
@@ -135,10 +133,8 @@ public class SplashScreen extends Activity {
                             }
                         }, 2000);
 
-                    }
                 }
-
-                if (otp != null) {
+                else if (otp != null) {
                     if (otp.equals("yes")) {
                         new Timer().schedule(new TimerTask() {
                             @Override

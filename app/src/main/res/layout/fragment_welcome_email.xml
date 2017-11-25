@@ -9,8 +9,7 @@
         android:id="@+id/usernameTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
+        android:layout_centerInParent="true"
         android:theme="@style/TextLabelNew">
 
         <android.support.v7.widget.AppCompatEditText
@@ -19,7 +18,6 @@
             android:hint="Enter Email"
             android:textSize="15dp"
             android:gravity="center"
-            android:text="sunny.gh@gmail.com"
             android:inputType="textEmailAddress"
             android:singleLine="true"
             android:id="@+id/welcomeusername"/>

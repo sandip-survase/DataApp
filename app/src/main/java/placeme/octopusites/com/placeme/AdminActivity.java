@@ -233,9 +233,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 
 
-
-        MySharedPreferencesManager.save(AdminActivity.this,"intro",null);
-
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         username = sharedpreferences.getString(Username, null);
         String pass=sharedpreferences.getString(Password,null);

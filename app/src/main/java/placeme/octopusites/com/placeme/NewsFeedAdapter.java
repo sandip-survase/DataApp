@@ -85,10 +85,8 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.MyView
 
                     Intent intent=new Intent(holder.feedImage1.getContext(),NewsFeedWebView.class);
                     intent.putExtra("url",item.getUrl());
+                    intent.putExtra("header",item.getStatus());
                     holder.feedImage1.getContext().startActivity(intent);
-
-                    Toast.makeText(holder.feedImage1.getContext(), "clicked..", Toast.LENGTH_SHORT).show();
-
                 }
             });
 

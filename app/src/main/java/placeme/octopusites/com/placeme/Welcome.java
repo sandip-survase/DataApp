@@ -391,8 +391,6 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
                                 byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
                                 String sPadding = "ISO10126Padding";
 
-                                Log.d("TAG", "doInBackground: mobile " + mobile);
-
                                 byte[] fnameBytes = fname.getBytes("UTF-8");
                                 byte[] lnameBytes = lname.getBytes("UTF-8");
                                 byte[] mobileBytes = mobile.getBytes("UTF-8");
@@ -427,12 +425,13 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
                                 }
                                 if (SELECTED_ROLE.equals("admin")) {
                                     genrateCodeFlag = true;
-                                    // for testing validation in comment
+                                    // for testing validation in comment  *****************************************
 
-//                                    if (!instOrEmailstr.contains("@")) {
-//                                        instoremaileror = true;
-//                                        instOrEmail.setError("Incorrect Email");
-//                                    } else if (!instOrEmailstr.contains(".edu")) {
+                                    if (!instOrEmailstr.contains("@")) {
+                                        instoremaileror = true;
+                                        instOrEmail.setError("Incorrect Email");
+                                    }
+//                                    else if (!instOrEmailstr.contains(".edu")) {
 //                                        instoremaileror = true;
 //                                        instOrEmail.setError("Incorrect professional Email");
 //                                    }
@@ -441,7 +440,11 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
                                 if (SELECTED_ROLE.equals("hr")) {
                                     genrateCodeFlag = true;
                                     String email = instOrEmail.getText().toString().trim();
-//                                    if (email.contains("gmail") || email.contains("yahoo") || email.contains("ymail") || email.contains("rediffmail") || email.contains("outlook") || email.contains("hotmail")) {
+                                    if (!email.contains("@")) {
+                                        instoremaileror = true;
+                                        instOrEmail.setError("Incorrect Email");
+                                    }
+//                                    else if (email.contains("gmail") || email.contains("yahoo") || email.contains("ymail") || email.contains("rediffmail") || email.contains("outlook") || email.contains("hotmail")) {
 //                                        instoremaileror = true;
 //                                        instOrEmail.setError("Incorrect professional Email");
 //                                    }
