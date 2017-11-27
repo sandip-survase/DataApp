@@ -30,6 +30,7 @@ import java.util.TimerTask;
 
 //import cat.ereza.customactivityoncrash.config.CaocConfig;
 
+//kunal
 
 public class SplashScreen extends Activity {
     public static final String MyPREFERENCES = "MyPrefs";
