@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -13,6 +14,7 @@ import android.provider.Settings.Secure;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -51,6 +53,7 @@ public class SplashScreen extends Activity {
     private String EmailCred = "";
     private String android_id, device_id;
 
+
     public static String getDeviceName() {
         String manufacturer = Build.MANUFACTURER;
         String model = Build.MODEL;
@@ -86,7 +89,17 @@ public class SplashScreen extends Activity {
 
         super.onCreate(paramBundle);
         setContentView(R.layout.activity_splashscreen);
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        TextView poweredbyid=(TextView)findViewById(R.id.poweredbyid);
+        TextView companynamesplash=(TextView)findViewById(R.id.companynamesplash);
+        Typeface nunito_light = Typeface.createFromAsset(this.getAssets(),  "fonts/nunitolight.ttf");
+        Typeface nunito_bold = Typeface.createFromAsset(this.getAssets(),  "fonts/nunitobold.ttf");
+        poweredbyid.setTypeface(nunito_light);
+        companynamesplash.setTypeface(nunito_bold);
+
+
+
+
 
 // my code
 //        CaocConfig.Builder.create()
@@ -115,7 +128,7 @@ public class SplashScreen extends Activity {
                 new GetDigest().execute();
                 new UpdateFirebaseToken().execute();
 
-
+                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 String i = sharedpreferences.getString(Intro, null);
                 String u = sharedpreferences.getString(Username, null);
                 username = sharedpreferences.getString(Username, null);
