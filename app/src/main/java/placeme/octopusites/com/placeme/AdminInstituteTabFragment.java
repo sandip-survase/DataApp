@@ -1,7 +1,6 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,9 +36,6 @@ public class AdminInstituteTabFragment extends Fragment {
     int errorflag1 = 0, errorflag2 = 0, errorflag3 = 0, errorflag4 = 0, errorflag5 = 0, errorflag6 = 0, errorflag7 = 0;
     String digest1, digest2;
     int edittedFlag = 0;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
     String username = "", resultofop;
     JSONObject json;
     JSONParser jParser = new JSONParser();

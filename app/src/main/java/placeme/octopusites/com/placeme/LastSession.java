@@ -1,7 +1,6 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
@@ -34,10 +33,7 @@ public class LastSession extends AppCompatActivity {
     String username;
     JSONParser jParser = new JSONParser();
     private static String url_getsession= "http://192.168.100.100/AESTest/GetSessionDetails";
-//    public static final String MyPREFERENCES = "MyPrefs" ;
-//    SharedPreferences sharedpreferences;
-//    public static final String Username = "nameKey";
-//    String digest1,digest2;
+
     int found_current=0,found_last=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

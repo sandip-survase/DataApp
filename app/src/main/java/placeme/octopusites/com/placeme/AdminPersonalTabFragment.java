@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -69,9 +68,6 @@ public class AdminPersonalTabFragment extends Fragment {
     RadioGroup radioGroupGender;
     JSONObject json;
     JSONParser jParser = new JSONParser();
-    SharedPreferences sharedpreferences;
-    public static final String MyPREFERENCES = "MyPrefs";
-    public static final String Username = "nameKey";
 
     private static String url_savedata = "http://192.168.100.100/AESTest/SaveAdminPersonal";
 

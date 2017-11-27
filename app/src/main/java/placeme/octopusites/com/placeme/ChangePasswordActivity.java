@@ -42,9 +42,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
     private static String url_changepass = "http://192.168.100.100/PlaceMe/ChangePass";
     ProgressBar progressBar;
     Button changepassbutton;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
     String digest1,digest2;
 
     @Override
@@ -249,10 +246,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             if(resultofop.equals("success")) {
-                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString("passKey", encnewpass);
-                editor.commit();
+
+                MySharedPreferencesManager.save(ChangePasswordActivity.this,"passKey", encnewpass);
+
                 Toast.makeText(ChangePasswordActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 ChangePasswordActivity.super.onBackPressed();
             }

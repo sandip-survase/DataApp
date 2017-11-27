@@ -399,10 +399,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AdminSingleUserViewDialog" />
-        <activity android:name=".WelcomeActivity" />
-        <activity android:name=".WelcomePasswordActivity" />
-        <activity android:name=".WelcomeProfileActivity" />
-        <activity android:name=".WelcomeIntroActivity" />
         <activity android:name=".WelcomeGenrateCodeActivity" />
         <activity android:name=".MyCustomErrorActivity" />
         <activity android:name=".NoInternet" />

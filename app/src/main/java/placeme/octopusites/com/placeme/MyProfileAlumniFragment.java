@@ -6,7 +6,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -80,8 +79,6 @@ public class MyProfileAlumniFragment extends Fragment {
     final static CharSequence[] items = {"View Profile Picture", "Update Profile Picture","Delete Profile Picture"};
     private String signature = "";
     String digest1, digest2, plainusername = "";
-    public static final String MyPREFERENCES = "MyPrefs";
-    public static final String Username = "nameKey";
     public String role = "";
     public static  final String alumniLog = "alumniLog";
     private String mname="";
@@ -104,7 +101,6 @@ public class MyProfileAlumniFragment extends Fragment {
     RelativeLayout editprofilerl, exptab2, exptab3;
     View rootView;
     SwipeRefreshLayout swipe_refresh_layout;
-    private SharedPreferences sharedpreferences;
     private ProgressBar updateProgress;
 
     byte[] demoKeyBytes;
@@ -357,13 +353,10 @@ public class MyProfileAlumniFragment extends Fragment {
         updateProgress = (ProgressBar) rootView.findViewById(R.id.updateProgressmain);
 
 
-
-        sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, null);
-
-        digest1 = sharedpreferences.getString("digest1", null);
-        digest2 = sharedpreferences.getString("digest2", null);
-        role = sharedpreferences.getString("role", null);
+        username=MySharedPreferencesManager.getUsername(getActivity());
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
+        role = MySharedPreferencesManager.getRole(getActivity());
 
 
         demoKeyBytes = SimpleBase64Encoder.decode(digest1);

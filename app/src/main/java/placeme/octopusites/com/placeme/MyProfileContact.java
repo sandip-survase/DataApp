@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -35,10 +34,8 @@ import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 
 public class MyProfileContact extends AppCompatActivity {
 
-    public static final String MyPREFERENCES = "MyPrefs";
-    public static final String Username = "nameKey";
+
     private static String url_savedata = "http://192.168.100.10:8080/ProfileObjects/SaveAdminContact";
-    SharedPreferences sharedpreferences;
     String username,role;
     String digest1, digest2;
     JSONParser jParser = new JSONParser();

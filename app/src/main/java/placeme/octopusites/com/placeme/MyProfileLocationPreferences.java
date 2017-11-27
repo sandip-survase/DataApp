@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -41,9 +40,6 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 public class MyProfileLocationPreferences extends AppCompatActivity {
     int locationcount=0;
     View addmorelocation;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
     String username,role;
     String digest1,digest2;
     JSONParser jParser = new JSONParser();

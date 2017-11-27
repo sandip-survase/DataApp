@@ -1,10 +1,7 @@
 package placeme.octopusites.com.placeme;
 
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
+
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -92,8 +89,6 @@ public class HrPersonalTabFragment extends Fragment {
 //    private static String url_savedata = "http://192.168.100.10/AESTest/SaveHrIntro1";
 
     HrData hr = new HrData();
-    private SharedPreferences sharedPreferences;
-
 
     public HrPersonalTabFragment() {
         // Required empty public constructor
@@ -149,9 +144,9 @@ public class HrPersonalTabFragment extends Fragment {
 //        ScrollView myprofileintroscrollview = (ScrollView) rootView.findViewById(R.id.myprofileintroscrollview);
 //        disableScrollbars(myprofileintroscrollview);
 
-        sharedPreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        userName = sharedPreferences.getString(USERNAME, null);
+        userName = MySharedPreferencesManager.getUsername(getActivity());
         encUsername = userName;
+
         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
         String sPadding = "ISO10126Padding";
@@ -165,7 +160,7 @@ public class HrPersonalTabFragment extends Fragment {
         }
 
 
-        roleValue = sharedPreferences.getString("role", null);
+        roleValue = MySharedPreferencesManager.getRole(getActivity());
         role.setText(roleValue.toUpperCase());
 
 

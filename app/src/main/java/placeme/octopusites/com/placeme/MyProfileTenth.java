@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -60,9 +59,7 @@ public class MyProfileTenth extends AppCompatActivity {
 
     EditText marks10, outof10, percent10, schoolname10, yearofpassing10, otherboard;
     Spinner board10;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
+
     String username,role;
     String digest1, digest2;
     JSONParser jParser = new JSONParser();

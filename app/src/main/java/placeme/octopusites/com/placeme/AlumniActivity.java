@@ -3,7 +3,6 @@ package placeme.octopusites.com.placeme;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -174,10 +173,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     private MaterialSearchView searchView;
     RelativeLayout createnotificationrl,editnotificationrl;
     int notificationplacementflag=0;
-    private SharedPreferences sharedpreferences;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Username = "nameKey";
-    public static final String Password = "passKey";
     public static final String Intro = "intro";
     int navMenuFlag=0,oldNavMenuFlag=0;
     int selectedMenuFlag=1;
@@ -194,7 +189,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     String sPadding = "ISO10126Padding";
     private String plainusername;
     String filepath="",filename="";
-    String directory;
+    String directory,pass;
     private static String upload_profile = "http://192.168.100.100/AESTest/UploadProfile";
     List<String> response;
     private static String load_student_image = "http://192.168.100.100/AESTest/GetImage";
@@ -233,6 +228,12 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         mViewPager = (ViewPager) findViewById(R.id.blogcontainer);
         tabLayout = (TabLayout) findViewById(R.id.blogtabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        username = MySharedPreferencesManager.getUsername(this);
+        pass=MySharedPreferencesManager.getPassword(this);
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        String role = MySharedPreferencesManager.getRole(this);
 
 
         MySharedPreferencesManager.save(AlumniActivity.this,"intro","yes");
@@ -496,7 +497,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         final View hView =  navigationView.getHeaderView(0);
         profile = (CircleImageView)hView.findViewById(R.id.profile_image);
 //        new GetProfileImage().execute();
@@ -1131,14 +1131,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
 
 // our coding here
-        String pass,role;
-
-        username = MySharedPreferencesManager.getUsername(this);
-        role=MySharedPreferencesManager.getRole(this);
-        pass=MySharedPreferencesManager.getPassword(this);
-
-
-
 
         try
         {
@@ -1156,7 +1148,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             byte[] demo2EncryptedBytes1=SimpleBase64Encoder.decode(pass);
             byte[] demo2DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo2EncryptedBytes1);
             String data=new String(demo2DecryptedBytes1);
-            String hash=md5(data + sharedpreferences.getString("digest3",null));
+            String hash=md5(data + MySharedPreferencesManager.getDigest3(AlumniActivity.this));
 
            loginFirebase(plainusername,hash);
 
@@ -2866,14 +2858,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
 
-        Log.d("TAG", "onActivityResult: AlumniActivity resultcode "+resultCode);
-
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        plainusername=sharedpreferences.getString("plain",null);
-        digest1=sharedpreferences.getString("digest1",null);
-        digest2=sharedpreferences.getString("digest2",null);
-        username=sharedpreferences.getString(Username,null);
-        String role=sharedpreferences.getString("role",null);
 
         if(resultCode==ALUMNI_DATA_CHANGE_RESULT_CODE){
 
@@ -2957,14 +2941,9 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     public void requestCropImage()
     {
         resultView.setImageDrawable(null);
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        //    editor.putString("digest1", digest1);
-        //    editor.putString("digest2", digest2);
-        //    editor.putString("plain", plainusername);
-        editor.putString("crop", "yes");
 
-        editor.commit();
+        MySharedPreferencesManager.save(AlumniActivity.this,"crop", "yes");
+
         chooseImage();
 
 
@@ -3026,10 +3005,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             mainfragment.setVisibility(View.VISIBLE);
 
             if(response.get(0).contains("success")) {
-                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString("crop", "no");
-                editor.commit();
+
+                MySharedPreferencesManager.save(AlumniActivity.this,"crop", "no");
                 Toast.makeText(AlumniActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 requestProfileImage();
                 MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);

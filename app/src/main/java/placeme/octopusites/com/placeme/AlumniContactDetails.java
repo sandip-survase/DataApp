@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -42,11 +41,6 @@ public class AlumniContactDetails extends AppCompatActivity {
 
     EditText fname, lname, email, email2, addressline1, addressline2, addressline3, phone, mobile, mobile2;
 
-
-
-    SharedPreferences sharedpreferences;
-    public static final String MyPREFERENCES = "MyPrefs";
-    public static final String Username = "nameKey";
     String username;
     String digest1, digest2;
 

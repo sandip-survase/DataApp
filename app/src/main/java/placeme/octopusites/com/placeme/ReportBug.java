@@ -1,7 +1,6 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
@@ -36,9 +35,7 @@ public class ReportBug extends AppCompatActivity {
     JSONObject json;
     JSONParser jParser = new JSONParser();
     private static String url_report= "http://192.168.100.100/AESTest/ReportBug";
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
+
     String digest1,digest2;
     EditText title,comments;
     ProgressBar reportprogress;

@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -65,9 +64,6 @@ public class AdminExperiences extends AppCompatActivity {
     TextInputLayout todateinput1,todateinput2,todateinput3,todateinput4,todateinput5,todateinput6,todateinput7,todateinput8,todateinput9,todateinput10;
     SwitchCompat expsw1,expsw2,expsw3,expsw4,expsw5,expsw6,expsw7,expsw8,expsw9,expsw10;
 
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
     String username;
     String digest1,digest2;
     JSONParser jParser = new JSONParser();

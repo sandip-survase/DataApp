@@ -7,6 +7,8 @@ package placeme.octopusites.com.placeme;
 public class MyConstants {
 
     public static final int USER_DATA_CHANGE_RESULT_CODE=888;
+    public static final String USERNAME_KEY = "nameKey";
+    public static final String PASSWORD_KEY = "passKey";
 
 
     //-----------------------------------   PlaceMe   ---------------------------------

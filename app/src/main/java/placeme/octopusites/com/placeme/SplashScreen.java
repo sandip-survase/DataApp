@@ -86,7 +86,7 @@ public class SplashScreen extends Activity {
 
         super.onCreate(paramBundle);
         setContentView(R.layout.activity_splashscreen);
-
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
 // my code
 //        CaocConfig.Builder.create()
@@ -115,7 +115,7 @@ public class SplashScreen extends Activity {
                 new GetDigest().execute();
                 new UpdateFirebaseToken().execute();
 
-                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
                 String i = sharedpreferences.getString(Intro, null);
                 String u = sharedpreferences.getString(Username, null);
                 username = sharedpreferences.getString(Username, null);

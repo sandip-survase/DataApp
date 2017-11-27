@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -73,7 +72,6 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
 public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
 
-    public static final String MyPREFERENCES = "MyPrefs";
     public static final String Intro = "intro";
     String encUsersName, plainUsername, usertype, isactivated, passwordstr, encPassword, encfname, enclname, encmobile, encinstOrEmail, encrole, encProMail;
     String resultofop = "";
@@ -81,8 +79,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     private String EmailCred = "";
     String digest1, digest2, status;
     String fname, lname, mobile;
-    public static final String Username = "nameKey";
-    private SharedPreferences sharedpreferences;
     JSONParser jParser = new JSONParser();
     JSONObject json;
     int currentPosition = 0, lastPosition = 0;
@@ -830,11 +826,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         }
     }
 
-    private void launchHomeScreen() {
-
-        startActivity(new Intent(Welcome.this, WelcomeActivity.class));
-        finish();
-    }
 
     private void addBottomDots(int currentPage, int totalPages) {
         dots = new TextView[totalPages];
@@ -1533,14 +1524,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
     public void requestCropImage() {
         resultView.setImageDrawable(null);
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        //    editor.putString("digest1", digest1);
-        //    editor.putString("digest2", digest2);
-        //    editor.putString("plain", plainusername);
-        editor.putString("crop", "yes");
 
-        editor.commit();
+        MySharedPreferencesManager.save(Welcome.this,"crop", "yes");
+
         chooseImage();
     }
 
@@ -1613,10 +1599,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             mainfragment.setVisibility(View.VISIBLE);
 
             if (response.get(0).contains("success")) {
-                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString("crop", "no");
-                editor.commit();
+
+                MySharedPreferencesManager.save(Welcome.this,"crop", "no");
+
                 Toast.makeText(Welcome.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 requestProfileImage();
                 refreshContent();
