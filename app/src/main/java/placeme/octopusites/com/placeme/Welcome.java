@@ -21,9 +21,12 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
+import android.text.Editable;
 import android.text.Html;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -67,7 +70,7 @@ import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 import static placeme.octopusites.com.placeme.OTPActivity.md5;
 
-    public class Welcome extends AppCompatActivity implements ImagePickerCallback {
+public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
 
     public static final String MyPREFERENCES = "MyPrefs";
@@ -110,6 +113,7 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
     private String instOrEmailstr;
     private String confrimpass;
     TextView adminInfo;
+    boolean instoremailerror = false;
     private static String android_id, device_id;
     String adminInstitute, adminfname, adminlname;
 
@@ -183,7 +187,10 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
                 studentBlock.setBackgroundResource(R.color.timestamp);
                 SELECTED_ROLE = "student";
                 instOrEmail.setHint("Institute code");
-
+                // max length 8
+                InputFilter[] fArray = new InputFilter[1];
+                fArray[0] = new InputFilter.LengthFilter(8);
+                instOrEmail.setFilters(fArray);
 
             }
         });
@@ -198,6 +205,10 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
                 alumniBlock.setBackgroundResource(R.color.timestamp);
                 SELECTED_ROLE = "alumni";
                 instOrEmail.setHint("Institute code");
+                // max length 8
+                InputFilter[] fArray = new InputFilter[1];
+                fArray[0] = new InputFilter.LengthFilter(8);
+                instOrEmail.setFilters(fArray);
             }
         });
 
@@ -209,7 +220,12 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
                 hrBlock.setBackgroundResource(R.color.colorPrimary);
                 adminBlock.setBackgroundResource(R.color.timestamp);
                 SELECTED_ROLE = "admin";
-                instOrEmail.setHint("professinal Email");
+                instOrEmail.setHint("professional Email");
+                // max length 100
+                InputFilter[] fArray = new InputFilter[1];
+                fArray[0] = new InputFilter.LengthFilter(100);
+                instOrEmail.setFilters(fArray);
+
             }
         });
 
@@ -221,7 +237,11 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
                 studentBlock.setBackgroundResource(R.color.colorPrimary);
                 hrBlock.setBackgroundResource(R.color.timestamp);
                 SELECTED_ROLE = "hr";
-                instOrEmail.setHint("professinal Email");
+                instOrEmail.setHint("professional Email");
+                // max length 100
+                InputFilter[] fArray = new InputFilter[1];
+                fArray[0] = new InputFilter.LengthFilter(100);
+                instOrEmail.setFilters(fArray);
             }
         });
 
@@ -411,15 +431,19 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
                         }
 
                         if (currentPosition == 2) {    //role
-                            boolean instoremaileror = false;
+
                             instOrEmailstr = instOrEmail.getText().toString();
-                            instOrEmailstr=instOrEmailstr.toUpperCase();
+                            if (SELECTED_ROLE != null) {
+                                if (SELECTED_ROLE.equals("student") || SELECTED_ROLE.equals("alumni")) {
+                                    instOrEmailstr = instOrEmailstr.toUpperCase();
+                                }
+                            }
                             instOrEmail.setError(null);
 
                             if (SELECTED_ROLE != null) {
                                 if (SELECTED_ROLE.equals("student") || SELECTED_ROLE.equals("alumni")) {
                                     if (instOrEmailstr.length() != 8) {
-                                        instoremaileror = true;
+                                        instoremailerror = true;
                                         instOrEmail.setError("Incorrect Institute code");
                                     }
                                 }
@@ -428,7 +452,7 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
                                     // for testing validation in comment  *****************************************
 
                                     if (!instOrEmailstr.contains("@")) {
-                                        instoremaileror = true;
+                                        instoremailerror = true;
                                         instOrEmail.setError("Incorrect Email");
                                     }
 //                                    else if (!instOrEmailstr.contains(".edu")) {
@@ -441,7 +465,7 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
                                     genrateCodeFlag = true;
                                     String email = instOrEmail.getText().toString().trim();
                                     if (!email.contains("@")) {
-                                        instoremaileror = true;
+                                        instoremailerror = true;
                                         instOrEmail.setError("Incorrect Email");
                                     }
 //                                    else if (email.contains("gmail") || email.contains("yahoo") || email.contains("ymail") || email.contains("rediffmail") || email.contains("outlook") || email.contains("hotmail")) {
@@ -450,9 +474,15 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
 //                                    }
                                 }
 
-                                if (!instoremaileror) {
-                                    viewPager.setCurrentItem(3);
-                                    addBottomDots(3, 4);
+                                if (!instoremailerror) {
+                                    if (SELECTED_ROLE.equals("student") || SELECTED_ROLE.equals("alumni")) {
+
+                                        new checkUcode().execute(instOrEmailstr);
+
+                                    }else{
+                                        viewPager.setCurrentItem(3);
+                                        addBottomDots(3, 4);
+                                    }
                                 }
 
                             } else
@@ -663,6 +693,35 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
         }
     }
 
+    class checkUcode extends AsyncTask<String, String, String> {
+        protected String doInBackground(String... param) {
+
+            String inputUcode = param[0];
+            Log.d("TAG", "checkUcode: " + inputUcode);
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", inputUcode));       //0
+
+            json = jParser.makeHttpRequest(MyConstants.url_checkUcode, "GET", params);
+            Log.d("TAG", "checkUcode result: " + json);
+            try {
+                r = json.getString("info");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (result != null && result.equals("found")) {
+                viewPager.setCurrentItem(3);
+                addBottomDots(3, 4);
+            } else
+                Toast.makeText(Welcome.this, "Invalid Institute Code/nPelase contact your TPO", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     class SaveDataUserCreatedThroughAdmin extends AsyncTask<String, String, String> {
 
@@ -967,6 +1026,25 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
                 MySharedPreferencesManager.save(Welcome.this, "proEmail", encProMail);
                 startActivity(new Intent(Welcome.this, OTPActivity.class));
 
+            }else if (result.equals("exist")) {
+                Toast.makeText(Welcome.this, "Account already exist on PlaceMe", Toast.LENGTH_SHORT).show();
+            }else {
+                if(instOrEmail!=null){
+                    instOrEmail.setError("Incorrect Professional Email");
+                }else
+                    Toast.makeText(Welcome.this, "Incorrect Professional Email", Toast.LENGTH_SHORT).show();
+
+                String enterpass = enterPassword.getText().toString();
+                confrimpass = confirmPassword.getText().toString();
+
+                if(enterPassword!=null && confirmPassword!=null){
+                    enterPassword.setText("");
+                    confirmPassword.setText("");
+                }
+
+                onBackPressed();
+
+
             }
 
         }
@@ -1032,7 +1110,6 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
                     myViewPagerAdapter.notifyDataSetChanged();
                     viewPager.setCurrentItem(1);
                     addBottomDots(1, 2);
-
 
                 } else {
 
@@ -1268,7 +1345,7 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
 //                            ProfileRole r = new ProfileRole();
 //                            r.setRole("student");
 //                            r.setUsername(EmailCred);
-                            MySharedPreferencesManager.save(Welcome.this,"nameKey",EmailCred);
+                            MySharedPreferencesManager.save(Welcome.this, "nameKey", EmailCred);
                             MySharedPreferencesManager.save(Welcome.this, "role", "student");
                             Log.d("TAG", "run: launching mainactivity..");
                             startActivity(new Intent(Welcome.this, MainActivity.class));
@@ -1276,7 +1353,7 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
                         } else if (success == 3) {
                             new SaveSessionDetails().execute();
                             MySharedPreferencesManager.save(Welcome.this, "role", "admin");
-                            MySharedPreferencesManager.save(Welcome.this,"nameKey",EmailCred);
+                            MySharedPreferencesManager.save(Welcome.this, "nameKey", EmailCred);
 //                            ProfileRole r = new ProfileRole();
 //                            r.setRole("admin");
 //                            r.setUsername(EmailCred);
@@ -1285,7 +1362,7 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
                         } else if (success == 4) {
                             new SaveSessionDetails().execute();
                             MySharedPreferencesManager.save(Welcome.this, "role", "hr");
-                            MySharedPreferencesManager.save(Welcome.this,"nameKey",EmailCred);
+                            MySharedPreferencesManager.save(Welcome.this, "nameKey", EmailCred);
 
 //                            ProfileRole r = new ProfileRole();
 //                            r.setRole("hr");
@@ -1295,7 +1372,7 @@ import static placeme.octopusites.com.placeme.OTPActivity.md5;
                         } else if (success == 5) {
                             new SaveSessionDetails().execute();
                             MySharedPreferencesManager.save(Welcome.this, "role", "alumni");
-                            MySharedPreferencesManager.save(Welcome.this,"nameKey",EmailCred);
+                            MySharedPreferencesManager.save(Welcome.this, "nameKey", EmailCred);
 
 //                            ProfileRole r = new ProfileRole();
 //                            r.setRole("alumni");

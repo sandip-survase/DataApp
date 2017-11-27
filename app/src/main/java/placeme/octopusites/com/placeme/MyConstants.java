@@ -122,6 +122,7 @@ public static String savepersonalinfo = "http://192.168.100.10:8080/ProfileObjec
     public static final String url_SendActivationCode = "http://192.168.100.100/AESTest/SendActivationCode";
     public static final String url_SaveAndGenrateInstituteCode = "http://192.168.100.100/AESTest/SaveAndGenrateInstituteCode";
     public static final String url_SaveAndGenrateCompanyCode = "http://192.168.100.100/AESTest/SaveAndGenrateCompanyCode";
+    public static final String url_checkUcode = "http://192.168.100.100/AESTest/checkUcode";
 
     //--
 

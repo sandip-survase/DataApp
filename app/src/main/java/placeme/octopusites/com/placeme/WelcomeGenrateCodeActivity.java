@@ -113,6 +113,27 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, countrieslist);
         countryAutoBox.setAdapter(adapter);
+
+        instituteAlternatephone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(instituteAlternatephone.length()>0){
+                    if(instituteAlternatephone.length()<8 || instituteAlternatephone.length()>10){
+                        errorFlagCompany=true;
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
 
@@ -284,7 +305,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                     Log.d("TAG", "onClick: curent pos " + currentPosition);
 
                     if (currentPosition == 0) {
-                        errorFlagInstitute = false;
                         sInstituteName = instituteName.getText().toString();
                         sInstituteAddress = instituteAddress.getText().toString();
                         Log.d("TAG", "onClick: sInstituteAddress " + sInstituteAddress);
@@ -347,7 +367,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 } else if (ROLE != null && ROLE.equals("hr")) {            // OR  Hr
 
                     if (currentPosition == 0) {
-                        errorFlagCompany = false;
                         sCompanyName = companyName.getText().toString();
                         sCompanyAddress = companyAddress.getText().toString();
                         sCompanyEmail = companyEmail.getText().toString();
