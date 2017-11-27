@@ -359,11 +359,6 @@ public class SplashScreen extends Activity {
                     SharedPreferences.Editor editor = sharedpreferences.edit();
 
                     editor.putString("role", s);
-                    editor.putString("pref1", "yes");
-                    editor.putString("pref2", "yes");
-                    editor.putString("pref3", "yes");
-                    editor.putString("pref4", "yes");
-                    editor.putString("pref5", "yes");
                     editor.commit();
 
                     if (s.equals("notactivated")) {

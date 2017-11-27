@@ -137,8 +137,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     String placementreadstatus[];
     int placementpages=0;
     Menu menu;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedpreferences;
     private String plainusername,username="",fname="",mname="",sname="";
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
@@ -290,7 +288,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                     new GetUnreadCountOfNotificationAndPlacement().execute();
                     new GetUnreadMessagesCount().execute();
                     MessagesFragment fragment = (MessagesFragment)getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-                    fragment.addMessages();
+                    if(fragment!=null)
+                        fragment.addMessages();
                 }
             }
         };
@@ -321,17 +320,13 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             byte[] demo2EncryptedBytes1=SimpleBase64Encoder.decode(pass);
             byte[] demo2DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo2EncryptedBytes1);
             String data=new String(demo2DecryptedBytes1);
-            String hash=md5(data + sharedpreferences.getString("digest3",null));
+            String hash=md5(data + MySharedPreferencesManager.getDigest3(this));
 
             loginFirebase(plainusername,hash);
 
-        }catch (Exception e){Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();}
+        }catch (Exception e){Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();}
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-
-        editor.putString("otp", "no");
-        editor.commit();
+        MySharedPreferencesManager.save(this,"otp","no");
 
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         searchView.setVoiceSearch(false);
@@ -557,7 +552,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         final View hView =  navigationView.getHeaderView(0);
 
@@ -3062,14 +3056,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     public void requestCropImage()
     {
         resultView.setImageDrawable(null);
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-//        editor.putString("digest1", digest1);
-//        editor.putString("digest2", digest2);
-//        editor.putString("plain", plainusername);
-        editor.putString("crop", "yes");
 
-        editor.commit();
+        MySharedPreferencesManager.save(this,"crop","yes");
         chooseImage();
 
 
@@ -3077,17 +3065,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-//        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedpreferences.edit();
-//        editor.putString("digest1", digest1);
-//        editor.putString("digest2", digest2);
-//        editor.putString("plain", plainusername);
-//        editor.commit();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
-
-        plainusername=sharedpreferences.getString("plain",null);
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -3252,10 +3232,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             mainfragment.setVisibility(View.VISIBLE);
 
             if(response.get(0).contains("success")) {
-                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString("crop", "no");
-                editor.commit();
+
+                MySharedPreferencesManager.save(MainActivity.this,"crop","no");
+
                 Toast.makeText(MainActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 requestProfileImage();
                 MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);

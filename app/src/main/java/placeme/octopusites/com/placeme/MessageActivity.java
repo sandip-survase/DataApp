@@ -74,9 +74,6 @@ public class MessageActivity extends AppCompatActivity {
     int chatCount=0;
     CircleImageView profile;
     TextView name;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Username = "nameKey";
-    SharedPreferences sharedpreferences;
     String digest1,digest2;
 
     int tempflag=0;
@@ -124,7 +121,7 @@ public class MessageActivity extends AppCompatActivity {
 
         helper.setCurrentChatRoom(senderUID,recieverUID);
 
-        new ChangeMessageReadStatus(sharedpreferences.getString(Username, null),encusername).execute();
+        new ChangeMessageReadStatus(MySharedPreferencesManager.getUsername(this),encusername).execute();
 
         name.setText(fname+" "+lname);
 
