@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.design.widget.TextInputLayout;
@@ -33,9 +32,7 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 public class EditEmail extends AppCompatActivity {
 
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
+
     String username,plainusername;
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
@@ -254,11 +251,8 @@ public class EditEmail extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             if(result!=null && result.equals("success")){
-                //change email and save it in the sharedpreference
-                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString(Username, encnewemail);
-                editor.commit();
+
+                MySharedPreferencesManager.save(EditEmail.this,MyConstants.USERNAME_KEY,encnewemail);
                 primaryemail.setText(snewemail);
                 Toast.makeText(EditEmail.this, "Username successfully changed from "+plainusername+" to " +snewemail , Toast.LENGTH_SHORT).show();
                 otpflag=0;

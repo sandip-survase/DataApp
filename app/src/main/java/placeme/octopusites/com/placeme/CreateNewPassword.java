@@ -38,9 +38,6 @@ public class CreateNewPassword extends AppCompatActivity {
     Button changepassbutton;
     String digest1,digest2;
     public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
-    public static final String Password = "passKey";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,16 +149,9 @@ public class CreateNewPassword extends AppCompatActivity {
 
             if(resultofop.equals("success")) {
                 Toast.makeText(CreateNewPassword.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
-//                ProfileRole r=new ProfileRole();
-//                r.setUsername(encUsername);
-//                r.setRole(role);
 
-                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                editor.putString(Username, encUsername);
-                editor.putString(Password, encpassword);
-                editor.commit();
+                MySharedPreferencesManager.save(CreateNewPassword.this,"nameKey",encUsername);
+                MySharedPreferencesManager.save(CreateNewPassword.this,"passKey",encpassword);
 
                 if(role.equals("student"))
                 {

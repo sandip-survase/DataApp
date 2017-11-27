@@ -131,9 +131,6 @@ public class MyProfileFragment extends Fragment {
     JSONObject json;
 
     String digest1, digest2;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
     View rootView;
     StudentData studentData = new StudentData();
     int percentProfile = 0;
@@ -144,8 +141,10 @@ public class MyProfileFragment extends Fragment {
 
         rootView = inflater.inflate(R.layout.fragment_my_profile, container, false);
 
+        username=MySharedPreferencesManager.getUsername(getActivity());
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
         digest2 = MySharedPreferencesManager.getDigest2(getActivity());
+        role = MySharedPreferencesManager.getRole(getActivity());
 
         profileprogress = (ProgressBar) rootView.findViewById(R.id.profileprogress);
         updateProgress = (ProgressBar) rootView.findViewById(R.id.updateProgress);
@@ -380,9 +379,7 @@ public class MyProfileFragment extends Fragment {
             }
         });
 
-        sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, null);
-        role = sharedpreferences.getString("role", null);
+
 
         Log.d("in mainfragment", "update user set isactivated=\"no\" where usernamed=\"60/onJpfYmsVdoDTjizGCg7kCu7DzogOMAfO06U4hIc=\"': " + role);
 

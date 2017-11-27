@@ -3,7 +3,6 @@ package placeme.octopusites.com.placeme;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -65,10 +64,7 @@ public class EditNotification extends AppCompatActivity {
     boolean isStarted=false;
     Vibrator myVib;
     View[] selectedViews;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
     CircleImageView profile;
-    public static final String Username = "nameKey";
 
     JSONParser jParser = new JSONParser();
     String digest1,digest2;

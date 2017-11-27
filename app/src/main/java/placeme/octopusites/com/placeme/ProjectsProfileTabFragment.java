@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -43,9 +42,7 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
 
 
     View addmoreproject;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
+
     String username,role;
     String digest1, digest2;
     JSONParser jParser = new JSONParser();

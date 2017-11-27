@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -73,9 +72,7 @@ public class MyProfilePg extends AppCompatActivity {
     String selectedCoursepgyear="",selectedStreampgyear="",selectedUniversitypgyear="";
     String encmarksyear1,encoutofyear1,encpercentyear1,encmarksyear2,encoutofyear2,encpercentyear2,encmarksyear3,encoutofyear3,encpercentyear3,encaggregatepgyear,encschoolnamepgyear,encmonthandyearofpassingpgyear,encselectedcoursepgyear,encselectedstreampgyear,encselecteduniversitypgyear;
     int coursecount=0,streamcount=0,universitycount=0;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
+
     String username,role;
     String digest1,digest2;
     JSONParser jParser = new JSONParser();

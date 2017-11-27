@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -64,9 +63,7 @@ public class MyProfilePatents extends AppCompatActivity {
     String issuedorpending1="issued",issuedorpending2="issued",issuedorpending3="issued",issuedorpending4="issued",issuedorpending5="issued",issuedorpending6="issued",issuedorpending7="issued",issuedorpending8="issued",issuedorpending9="issued",issuedorpending10="issued";
     String encselectedCountry1,encselectedCountry2,encselectedCountry3,encselectedCountry4,encselectedCountry5,encselectedCountry6,encselectedCountry7,encselectedCountry8,encselectedCountry9,encselectedCountry10;
     String encissuedorpending1,encissuedorpending2,encissuedorpending3,encissuedorpending4,encissuedorpending5,encissuedorpending6,encissuedorpending7,encissuedorpending8,encissuedorpending9,encissuedorpending10;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
+
     String username,role;
     String digest1,digest2;
     JSONParser jParser = new JSONParser();

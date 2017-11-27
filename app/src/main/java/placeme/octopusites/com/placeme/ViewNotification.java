@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.app.DownloadManager;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -32,9 +31,6 @@ public class ViewNotification extends AppCompatActivity {
     TextView filename1,filename2,filename3,filename4,filename5;
     Button download;
     String username;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
     TextView uploadedbytxt,lastmodifiedtxt;
     String digest1,digest2;
     byte[] demoKeyBytes;
@@ -49,10 +45,9 @@ public class ViewNotification extends AppCompatActivity {
         ab.setTitle("Notification");
         ab.setDisplayHomeAsUpEnabled(true);
 
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        digest1=sharedpreferences.getString("digest1",null);
-        digest2=sharedpreferences.getString("digest2",null);
+        username=MySharedPreferencesManager.getUsername(this);
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
 
         attachmentstxt=(TextView)findViewById(R.id.attachmentstxt);
 

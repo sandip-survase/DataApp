@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -59,9 +58,6 @@ public class HrCompanyDetails extends AppCompatActivity {
     JSONParser jsonParser = new JSONParser();
     //    private static String url_savedata = "http://192.168.100.10/AESTest/SaveHrCompany";
     JSONObject json;
-    private SharedPreferences sharedPreferences;
-    public static final String USERNAME = "nameKey";
-    public static final String MyPREFERENCES = "MyPrefs";
     String userName;
     HrData h = new HrData();
     ArrayAdapter<String> dataAdapter;
@@ -76,8 +72,7 @@ public class HrCompanyDetails extends AppCompatActivity {
         ab.setTitle("Edit Company Details");
         ab.setDisplayHomeAsUpEnabled(true);
 
-        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        userName = sharedPreferences.getString(USERNAME, null);
+        userName = MySharedPreferencesManager.getUsername(HrCompanyDetails.this);
         encUsername = userName;
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);

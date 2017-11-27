@@ -68,6 +68,8 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
         try {
             android_id = Secure.getString(getApplication().getContentResolver(), Secure.ANDROID_ID);
             TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
@@ -76,7 +78,6 @@ public class SignupActivity extends AppCompatActivity {
 
 
         new GetDigest().execute();
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
 
 

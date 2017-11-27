@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -35,9 +34,6 @@ public class ForgotPasswordDialog extends AppCompatActivity {
     String resultofop="",encUsername;
     String digest1,digest2;
     private static  String android_id;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
     String role;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,12 +108,8 @@ public class ForgotPasswordDialog extends AppCompatActivity {
 
             if(resultofop.equals("success"))
             {
-                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                editor.putString(Username, encUsername);
-                editor.putString("role", role);
-                editor.commit();
+                MySharedPreferencesManager.save(ForgotPasswordDialog.this,MyConstants.USERNAME_KEY, encUsername);
+                MySharedPreferencesManager.save(ForgotPasswordDialog.this,"role", role);
 
                 Toast.makeText(ForgotPasswordDialog.this,"OTP to reset your account has been sent to your Email.!",Toast.LENGTH_LONG).show();
                 startActivity(new Intent(ForgotPasswordDialog.this,OTP2Activity.class));

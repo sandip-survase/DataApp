@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -62,9 +61,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
     Spinner stream12, board12;
     EditText dmarkssem1, doutofsem1, dpercentsem1, dmarkssem2, doutofsem2, dpercentsem2, dmarkssem3, doutofsem3, dpercentsem3, dmarkssem4, doutofsem4, dpercentsem4, dmarkssem5, doutofsem5, dpercentsem5, dmarkssem6, doutofsem6, dpercentsem6, daggregate, schoolnamed, othercourse, otherboardd;
     Spinner dcourse, duniversity;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
+
     String username,role;
     String digest1, digest2;
     JSONParser jParser = new JSONParser();

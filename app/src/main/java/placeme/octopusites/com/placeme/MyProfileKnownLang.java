@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -53,9 +52,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
     List<String> languageslist = new ArrayList<String>();
     List<String> level = new ArrayList<String>();
     StudentData s=new StudentData();
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
+
     String username,role;
     String digest1,digest2;
     Spinner knownlang1,proficiency1,knownlang2,proficiency2,knownlang3,proficiency3,knownlang4,proficiency4,knownlang5,proficiency5,knownlang6,proficiency6,knownlang7,proficiency7,knownlang8,proficiency8,knownlang9,proficiency9,knownlang10,proficiency10;

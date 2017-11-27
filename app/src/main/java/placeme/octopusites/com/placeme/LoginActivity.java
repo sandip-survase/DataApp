@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -46,10 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     Button login, signup;
     ProgressBar loginprogress;
     TextView forgotpassword;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
-    public static final String Password = "passKey";
+
     private String EmailCred = "";
     JSONParser jParser = new JSONParser();
 
@@ -95,9 +91,7 @@ public class LoginActivity extends AppCompatActivity {
         usernameedittext.setTypeface(custom_font3);
         passwordedittext.setTypeface(custom_font3);
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-
-        String otp = sharedpreferences.getString("otp", null);
+        String otp = MySharedPreferencesManager.getData(LoginActivity.this,"otp");
 
         if (otp != null) {
             if (otp.equals("yes")) {
@@ -159,13 +153,8 @@ public class LoginActivity extends AppCompatActivity {
                         String plainusername = new String(demo1DecryptedBytes1);
                         Log.d("login", "onClick: plain " + plainusername);
                         //
-                        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                        editor.putString(Username, usernameenc);
-                        editor.putString(Password, passwordenc);
-
-                        editor.commit();
+                        MySharedPreferencesManager.save(LoginActivity.this,MyConstants.USERNAME_KEY, usernameenc);
+                        MySharedPreferencesManager.save(LoginActivity.this,MyConstants.PASSWORD_KEY, passwordenc);
 
                         attemptLogin(usernameenc, passwordenc);
                     } catch (Exception e) {
@@ -223,11 +212,7 @@ public class LoginActivity extends AppCompatActivity {
                     resultofop = s;
                     Log.d("Msg", json.getString("info"));
 
-                    sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                    editor.putString("role", s);
-                    editor.commit();
+                    MySharedPreferencesManager.save(LoginActivity.this,"role", s);
 
                     if (s.equals("student")) {
 
@@ -256,13 +241,8 @@ public class LoginActivity extends AppCompatActivity {
 
                         String role = json.getString("role");
                         Log.d("Msg role ", role);
-                        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                        editor = sharedpreferences.edit();
 
-                        editor.putString("role", role);
-                        editor.commit();
-
-
+                        MySharedPreferencesManager.save(LoginActivity.this,"role", role);
                         EmailCred = mEmail;
 
                         return 6;

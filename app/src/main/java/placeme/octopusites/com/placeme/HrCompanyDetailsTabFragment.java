@@ -1,8 +1,5 @@
 package placeme.octopusites.com.placeme;
 
-
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -54,9 +51,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
 //    private static String url_savedata = "http://192.168.100.10/AESTest/SaveHrCompany";
     JSONObject json;
 //    ProgressBar personalprogress;
-    private SharedPreferences sharedPreferences;
-    public static final String USERNAME = "nameKey";
-    public static final String MyPREFERENCES = "MyPrefs";
+
     String userName;
 //    Button savepersonal;
     HrData h = new HrData();
@@ -77,9 +72,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
 
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
         digest2 = MySharedPreferencesManager.getDigest2(getActivity());
-
-        sharedPreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        userName = sharedPreferences.getString(USERNAME, null);
+        userName = MySharedPreferencesManager.getUsername(getActivity());
         encUsername = userName;
 
         CompanyName = (EditText)rootView.findViewById(R.id.instname);

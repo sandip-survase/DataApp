@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -55,9 +54,6 @@ public class AdminInstituteDetails extends AppCompatActivity {
     String digest1,digest2;
     JSONObject json;
     JSONParser jParser = new JSONParser();
-    SharedPreferences sharedpreferences;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Username = "nameKey";
     private static String url_savedata= "http://192.168.100.30:8080/ProfileObjects/SaveAdminInstituteData";
 
     AdminData a =new AdminData();

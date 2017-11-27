@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -83,8 +82,6 @@ public class HrIntro extends AppCompatActivity {
 //    private static String url_savedata = "http://192.168.100.10/AESTest/SaveHrIntro1";
 
     HrData hr = new HrData();
-    private SharedPreferences sharedPreferences;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,12 +116,8 @@ public class HrIntro extends AppCompatActivity {
         ScrollView myprofileintroscrollview = (ScrollView) findViewById(R.id.myprofileintroscrollview);
         disableScrollbars(myprofileintroscrollview);
 
-        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        userName = sharedPreferences.getString(USERNAME, null);
+        userName = MySharedPreferencesManager.getUsername(this);
         encUsername = userName;
-        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-        String sPadding = "ISO10126Padding";
 
         try {
             String plainusername=Decrypt(userName,digest1,digest2);
@@ -132,11 +125,8 @@ public class HrIntro extends AppCompatActivity {
         } catch (Exception e) {
         }
 
-
-        roleValue = sharedPreferences.getString("role", null);
+        roleValue = MySharedPreferencesManager.getRole(this);
         role.setText(roleValue.toUpperCase());
-
-
 
         citystaecountry=(AutoCompleteTextView)findViewById(R.id.citystaecountry);
 

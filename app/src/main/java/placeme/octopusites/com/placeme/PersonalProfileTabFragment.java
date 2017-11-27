@@ -4,9 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -81,9 +79,7 @@ public class PersonalProfileTabFragment extends Fragment {
     String resultofop = "",encobj="";
     ProgressBar personalprogress;
     ImageView editknownlang;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
+
     String username, plainusername, Myrole,role;
     String digest1, digest2;
     int edittedFlag = 0;

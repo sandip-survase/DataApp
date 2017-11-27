@@ -5,7 +5,6 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
@@ -93,9 +92,6 @@ public class AdminProfileFragment extends Fragment {
     private static String remove_profile = "http://192.168.100.100/AESTest/RemoveImage";
 
     String digest1,digest2;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
     String username = "", resultofop;
 
     int found_lang=0, found_AdminIntro = 0,found_institute=0,found_box2=0,found_skills=0,found_honors=0,found_patents=0,found_publications=0;
@@ -379,7 +375,6 @@ public class AdminProfileFragment extends Fragment {
             }
         });
 
-//        sharedpreferences=getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         myprofilrole.setText(role.toUpperCase());
 
@@ -451,13 +446,7 @@ public class AdminProfileFragment extends Fragment {
                     startActivity(new Intent(getContext(), ViewProfileImage.class));
                 } else if (which == 1) {
                     try {
-                        sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedpreferences.edit();
 
-                        editor.putString("digest1", digest1);
-                        editor.putString("digest2", digest2);
-                        editor.putString("plain", plainusername);
-                        editor.commit();
                         dialog.cancel();
                         ((AdminActivity) getActivity()).requestCropImage();
                     }catch (Exception e){Toast.makeText(getActivity()," error" + e.getMessage(),Toast.LENGTH_LONG).show();}
