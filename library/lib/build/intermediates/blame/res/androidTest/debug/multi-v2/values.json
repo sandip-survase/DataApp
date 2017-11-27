@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Git\\PlaceMe\\PlaceMe\\library\\lib\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+            "map": [
+                {
+                    "source": "C:\\Git\\PlaceMe\\PlaceMe\\library\\lib\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,13,14,15,16,17,18,19,20,26,37,41,45",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "100,153,198,249,301,360,790,838,910,954,1026,1083,1135,1160,1463,2073,2271,2463",
+                        "endLines": "2,3,4,5,6,7,13,14,15,16,17,18,19,25,36,40,44,53",
+                        "endColumns": "52,44,50,51,58,58,47,71,43,71,56,51,24,12,12,12,12,12",
+                        "endOffsets": "148,193,244,296,355,414,833,905,949,1021,1078,1130,1155,1458,2068,2266,2458,2994"
+                    }
+                }
+            ]
+        }
+    ]
+}
