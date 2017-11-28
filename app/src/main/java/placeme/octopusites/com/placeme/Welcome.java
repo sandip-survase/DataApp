@@ -40,6 +40,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -106,6 +112,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     EditText passwordedittext;
     TextInputEditText usernameedittext;
     TextInputLayout usernameTextInputLayout;
+    ImageView enteremailimage;
     EditText fnameEditText, lnameEditText, mobileEditText, instOrEmail;
     CircleImageView profilePicture;
     View studentBlock, alumniBlock, adminBlock, hrBlock;
@@ -128,10 +135,28 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         usernameTextInputLayout = (TextInputLayout) WelcomeEmailView.findViewById(R.id.usernameTextInputLayout);
         TextView welcometextviewcontext1=(TextView)WelcomeEmailView.findViewById(R.id.welcometextviewcontext1);
         TextView welcometextviewcontext2=(TextView)WelcomeEmailView.findViewById(R.id.welcometextviewcontext2);
+        enteremailimage=(ImageView) WelcomeEmailView.findViewById(R.id.enteremailimage);
         usernameTextInputLayout.setTypeface(light);
         usernameedittext.setTypeface(bold);
         welcometextviewcontext1.setTypeface(bold);
         welcometextviewcontext2.setTypeface(light);
+        fade(enteremailimage);
+        fadeandmove(usernameTextInputLayout);
+
+    }
+    public void fade(View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(getApplicationContext(),
+                        R.anim.fade);
+        view.startAnimation(animation1);
+    }
+    public void fadeandmove(View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(getApplicationContext(),
+                        R.anim.fadeinmove);
+        view.startAnimation(animation1);
     }
 
     public void setWelComePasswordView(View v) {
@@ -258,6 +283,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         });
 
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -281,10 +307,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         resultView = (ImageView) findViewById(R.id.result_image);
         nextProgress = (ProgressBar) findViewById(R.id.nextProgress);
         crop_layout = (FrameLayout) findViewById(R.id.crop_layout);
+        btnNext.setTypeface(bold);
 
-
-        btnNext.setTypeface(fa);
-        btnNext.setText(getString(R.string.next_button));
 
 
         // layouts of all welcome sliders
@@ -358,13 +382,13 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                     boolean usernameflag = false;
                     if (plainUsername.equals("")) {
                         usernameflag = true;
-                        usernameedittext.setError("Field Can Not Be Empty");
+                        usernameTextInputLayout.setError("Field Can Not Be Empty");
                     } else if (plainUsername.length() < 5) {
                         usernameflag = true;
-                        usernameedittext.setError("Enter Valid Email Address");
+                        usernameTextInputLayout.setError("Enter Valid Email Address");
                     } else if (!plainUsername.contains("@")) {
                         usernameflag = true;
-                        usernameedittext.setError("Enter Valid Email Address");
+                        usernameTextInputLayout.setError("Enter Valid Email Address");
                     }
                     if (usernameflag == false) {
                         new ValidateUser().execute();
