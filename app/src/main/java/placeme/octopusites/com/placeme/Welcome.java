@@ -295,7 +295,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             public void onPageSelected(int position) {
                 currentPosition = position;
 
-
             }
 
             @Override
@@ -319,6 +318,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         Log.d("TAG", "onCreate: **************** aid : " + android_id);
         //--------------------------------------------------- NEXT BUTTON ---------------------------------------------//
+
+//       path 1. existing user
+//       path 2. new user
+//       path 3. user through admin
+
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -340,7 +344,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                         usernameflag = true;
                         usernameedittext.setError("Enter Valid Email Address");
                     }
-
                     if (usernameflag == false) {
                         new ValidateUser().execute();
                     }
@@ -349,11 +352,13 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
                     if (path == 1)     // existing user
                     {
-                        if (currentPosition == 1) {
+                        if (currentPosition == 1) {     // added this check 28-11
                             passwordstr = passwordedittext.getText().toString();
-                            Log.d("TAG", "onClick: plain password : " + passwordstr);
+
                             if (passwordstr.equals("")) {
                                 passwordedittext.setError("Field can not be empty");
+                            } else if (passwordstr.length() < 6) {
+                                passwordedittext.setError("Incorrect Password");
                             } else {
                                 try {
                                     byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
@@ -361,7 +366,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                                     String sPadding = "ISO10126Padding";
 
                                     byte[] passwordBytes = passwordstr.getBytes("UTF-8");
-
                                     byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, passwordBytes);
                                     encPassword = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
 
@@ -378,55 +382,56 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                         }
                     } else if (path == 2)        //user not found i.e new user
                     {
-                        mobileEditText.setError(null);
-                        fnameEditText.setError(null);
-                        lnameEditText.setError(null);
+                        if (currentPosition == 1) {
+                            mobileEditText.setError(null);
+                            fnameEditText.setError(null);
+                            lnameEditText.setError(null);
 
-                        errorFlagIntro = false;
-                        fname = fnameEditText.getText().toString().trim();
-                        lname = lnameEditText.getText().toString().trim();
-                        mobile = mobileEditText.getText().toString().trim();
+                            errorFlagIntro = false;
+                            fname = fnameEditText.getText().toString().trim();
+                            lname = lnameEditText.getText().toString().trim();
+                            mobile = mobileEditText.getText().toString().trim();
 
-                        if (fname.length() < 2) {
-                            errorFlagIntro = true;
-                            fnameEditText.setError("Enter minimum 2 characters");
-                        } else if (lname.length() < 2) {
-                            lnameEditText.setError("Enter minimum 2 characters");
-                            errorFlagIntro = true;
-                        } else if (mobile.length() != 10) {
-                            mobileEditText.setError("Incorrect mobile number");
-                            errorFlagIntro = true;
-                        }
-
-                        if (!errorFlagIntro) {
-
-                            try {
-
-
-                                byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                                byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                                String sPadding = "ISO10126Padding";
-
-                                byte[] fnameBytes = fname.getBytes("UTF-8");
-                                byte[] lnameBytes = lname.getBytes("UTF-8");
-                                byte[] mobileBytes = mobile.getBytes("UTF-8");
-
-                                byte[] fnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fnameBytes);
-                                encfname = new String(SimpleBase64Encoder.encode(fnameEncryptedBytes));
-                                byte[] lnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, lnameBytes);
-                                enclname = new String(SimpleBase64Encoder.encode(lnameEncryptedBytes));
-                                byte[] mobileEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, mobileBytes);
-                                encmobile = new String(SimpleBase64Encoder.encode(mobileEncryptedBytes));
-
-                                viewPager.setCurrentItem(2);
-                                addBottomDots(2, 4);
-
-                            } catch (Exception e) {
-                                Log.d("TAG", "onClick: EXp " + e.getMessage());
+                            if (fname.length() < 2) {
+                                errorFlagIntro = true;
+                                fnameEditText.setError("Enter minimum 2 characters");
+                            } else if (lname.length() < 2) {
+                                lnameEditText.setError("Enter minimum 2 characters");
+                                errorFlagIntro = true;
+                            } else if (mobile.length() != 10) {
+                                mobileEditText.setError("Incorrect mobile number");
+                                errorFlagIntro = true;
                             }
-                        }
 
-                        if (currentPosition == 2) {    //role
+                            if (!errorFlagIntro) {
+
+                                try {
+
+
+                                    byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+                                    byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
+                                    String sPadding = "ISO10126Padding";
+
+                                    byte[] fnameBytes = fname.getBytes("UTF-8");
+                                    byte[] lnameBytes = lname.getBytes("UTF-8");
+                                    byte[] mobileBytes = mobile.getBytes("UTF-8");
+
+                                    byte[] fnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fnameBytes);
+                                    encfname = new String(SimpleBase64Encoder.encode(fnameEncryptedBytes));
+                                    byte[] lnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, lnameBytes);
+                                    enclname = new String(SimpleBase64Encoder.encode(lnameEncryptedBytes));
+                                    byte[] mobileEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, mobileBytes);
+                                    encmobile = new String(SimpleBase64Encoder.encode(mobileEncryptedBytes));
+
+                                    viewPager.setCurrentItem(2);
+                                    addBottomDots(2, 4);
+
+
+                                } catch (Exception e) {
+                                    Log.d("TAG", "onClick: EXp " + e.getMessage());
+                                }
+                            }
+                        } else if (currentPosition == 2) {    //role
 
                             instOrEmailstr = instOrEmail.getText().toString();
                             if (SELECTED_ROLE != null) {
@@ -475,7 +480,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
                                         new checkUcode().execute(instOrEmailstr);
 
-                                    }else{
+                                    } else {
                                         viewPager.setCurrentItem(3);
                                         addBottomDots(3, 4);
                                     }
@@ -493,27 +498,26 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                             String enterpass = enterPassword.getText().toString();
                             confrimpass = confirmPassword.getText().toString();
 
-                            try {
-                                byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                                byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                                String sPadding = "ISO10126Padding";
-                                byte[] passwordBytes = confrimpass.getBytes("UTF-8");
-                                byte[] passwordEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, passwordBytes);
-                                encPassword = new String(SimpleBase64Encoder.encode(passwordEncryptedBytes));
-                            } catch (Exception e) {
-                                Log.d("TAG", "onClick: EXp " + e.getMessage());
-                            }
 
 
                             if (!enterpass.equals(confrimpass)) {
                                 errorflag = true;
                                 confirmPassword.setError("confirm password not matched");
-                            } else if (enterpass.equals("")) {
+                            } else if (enterpass.length() < 6 || confrimpass.length() < 6) {
                                 errorflag = true;
-                            } else if (confrimpass.equals("")) {
-                                errorflag = true;
+                                confirmPassword.setError("Passwords must be at least 6 characters long");
                             }
                             if (errorflag == false) {
+                                try {
+                                    byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+                                    byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
+                                    String sPadding = "ISO10126Padding";
+                                    byte[] passwordBytes = confrimpass.getBytes("UTF-8");
+                                    byte[] passwordEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, passwordBytes);
+                                    encPassword = new String(SimpleBase64Encoder.encode(passwordEncryptedBytes));
+                                } catch (Exception e) {
+                                    Log.d("TAG", "onClick: EXp " + e.getMessage());
+                                }
 //                                Toast.makeText(Welcome.this, "start", Toast.LENGTH_SHORT).show();
                                 if (genrateCodeFlag == true) {
                                     //save pref  password instcode
@@ -645,14 +649,14 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", encUsersName));       //0
-            params.add(new BasicNameValuePair("r", encrole));            //1
-            params.add(new BasicNameValuePair("f", encfname));           //2
-            params.add(new BasicNameValuePair("l", enclname));           //3
-            params.add(new BasicNameValuePair("m", encmobile));          //4
-            params.add(new BasicNameValuePair("ie", encinstOrEmail));    //5
-            params.add(new BasicNameValuePair("p", encPassword));       //6
-            params.add(new BasicNameValuePair("id", android_id));         //7
+            params.add(new BasicNameValuePair("u", encUsersName));       // 0
+            params.add(new BasicNameValuePair("r", encrole));            // 1
+            params.add(new BasicNameValuePair("f", encfname));           // 2
+            params.add(new BasicNameValuePair("l", enclname));           // 3
+            params.add(new BasicNameValuePair("m", encmobile));          // 4
+            params.add(new BasicNameValuePair("ie", encinstOrEmail));    // 5
+            params.add(new BasicNameValuePair("p", encPassword));        // 6
+            params.add(new BasicNameValuePair("id", android_id));        // 7
 
             Log.d("TAG", "doInBackground: enc role ========================  " + encrole);
 
@@ -660,7 +664,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             json = jParser.makeHttpRequest(MyConstants.url_SaveWelcomeIntroData, "GET", params);
             try {
                 r = json.getString("info");
-
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -714,8 +717,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             if (result != null && result.equals("found")) {
                 viewPager.setCurrentItem(3);
                 addBottomDots(3, 4);
-            } else
-                Toast.makeText(Welcome.this, "Invalid Institute Code/nPelase contact your TPO", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(Welcome.this, "Invalid Institute Code\nplease contact your TPO", Toast.LENGTH_LONG).show();
+                instOrEmail.setError("Invalid Institute Code\nplease contact your TPO");
+            }
         }
     }
 
@@ -1017,18 +1022,18 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 MySharedPreferencesManager.save(Welcome.this, "proEmail", encProMail);
                 startActivity(new Intent(Welcome.this, OTPActivity.class));
 
-            }else if (result.equals("exist")) {
+            } else if (result.equals("exist")) {
                 Toast.makeText(Welcome.this, "Account already exist on PlaceMe", Toast.LENGTH_SHORT).show();
-            }else {
-                if(instOrEmail!=null){
+            } else {
+                if (instOrEmail != null) {
                     instOrEmail.setError("Incorrect Professional Email");
-                }else
+                } else
                     Toast.makeText(Welcome.this, "Incorrect Professional Email", Toast.LENGTH_SHORT).show();
 
                 String enterpass = enterPassword.getText().toString();
                 confrimpass = confirmPassword.getText().toString();
 
-                if(enterPassword!=null && confirmPassword!=null){
+                if (enterPassword != null && confirmPassword != null) {
                     enterPassword.setText("");
                     confirmPassword.setText("");
                 }
@@ -1052,31 +1057,30 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
                 String sPadding = "ISO10126Padding";
 
-                Log.d("TAG", "enc: plain---" + plainUsername);
+                Log.d("TAG", "input ValidateUser plain---" + plainUsername);
                 byte[] usernameBytes = plainUsername.getBytes("UTF-8");
                 byte[] fnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
                 encUsersName = new String(SimpleBase64Encoder.encode(fnameEncryptedBytes));
-                Log.d("TAG", "enc: " + encUsersName);
+                Log.d("TAG", "input ValidateUser enc: " + encUsersName);
 
                 MySharedPreferencesManager.save(Welcome.this, "nameKey", encUsersName);
 
-
             } catch (Exception e) {
-                Log.d("TAG", "doInBackground: 1 " + e.getMessage());
+                Log.d("TAG", "ValidateUser doInBackground exp " + e.getMessage());
             }
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encUsersName));       //0
-            Log.d("TAG", "doInBackground: welcome call " + encUsersName);
+
             json = jParser.makeHttpRequest(MyConstants.url_Welcome, "GET", params);
             try {
 
                 s = json.getString("info");
 
-                Log.d("TAG2", "json: " + json);
+                Log.d("TAG", "ValidateUser json: " + json);
 
             } catch (Exception e) {
-                Log.d("TAG", "doInBackground: 2 " + e.getMessage());
+                Log.d("TAG", "doInBackground 2 json  exp :  " + e.getMessage());
             }
 
             return s;
@@ -1084,8 +1088,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         @Override
         protected void onPostExecute(String result) {
-
-            Log.d("TAG", result);
 
             if (result.equals("found")) {
 
@@ -1170,18 +1172,17 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                     List<NameValuePair> params = new ArrayList<NameValuePair>();
                     params.add(new BasicNameValuePair("u", mEmail));
                     params.add(new BasicNameValuePair("p", mPassword));
-                    Log.d("TAG", "doInBackground: login  user : " + mEmail + " \t pass : " + mPassword);
+                    Log.d("TAG", "UserLoginTask user input : " + mEmail + " \t pass : " + mPassword);
 //                params.add(new BasicNameValuePair("t", new SharedPrefUtil(Welcome.this.getApplicationContext()).getString("firebaseToken")));
                     json = jParser.makeHttpRequest(MyConstants.url_login, "GET", params);
                     String s = null;
 
                     s = json.getString("info");
 
-                    Log.d("TAG", "login json: -- " + json);
+                    Log.d("TAG", "UserLoginTask json: " + json);
                     Log.d("TAG", "result   " + s);
 
                     resultofop = s;
-                    Log.d("Msg", json.getString("info"));
 
 //                    sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 //                    SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -1189,7 +1190,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 //                    editor.putString("role", s);
 //                    editor.commit();
 
-                    Log.d("TAG", "doInBackground: role ---------------------------------- " + s);
+                    Log.d("TAG", "UserLoginTask : role ---------------------------------- " + s);
                     if (!s.equals("notactivated"))
                         MySharedPreferencesManager.save(Welcome.this, "role", s);
                     else {
@@ -1199,19 +1200,16 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                     if (s.equals("student")) {
 
                         EmailCred = mEmail;
-
                         returnCode = 1;
                         return 1;
                     } else if (s.equals("admin")) {
 
                         EmailCred = mEmail;
-
                         returnCode = 3;
                         return 3;
                     } else if (s.equals("hr")) {
 
                         EmailCred = mEmail;
-
                         returnCode = 4;
                         return 4;
                     } else if (s.equals("alumni")) {
@@ -1220,19 +1218,15 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                         returnCode = 5;
                         return 5;
                     }
-                    if (s.equals("notactivated")) {
-                        Log.d("TAG", "user notactivated ");
+                    if (s.equals("notactivated")) {             // throughAdmin
+                        Log.d("TAG", "------------------------------------------ user notactivated ");
 
                         String throughAdmin = json.getString("throughAdmin");
-                        Log.d("TAG, ", "user throughAdmin = " + throughAdmin);
+                        Log.d("TAG, ", "------------------------------------------  user throughAdmin = " + throughAdmin);
                         Log.d("TAG", "json" + json);
 
                         if (throughAdmin != null && throughAdmin.equals("yes")) {
-                            Log.d("TAG", "doInBackground: before toast");
                             throughAdminFlag = true;
-
-                            //through TPO
-//                            Toast.makeText(Welcome.this, "THrough TPO", Toast.LENGTH_SHORT).show();
 
                             adminInstitute = json.getString("adminInst");
                             adminfname = json.getString("adminfname");
@@ -1303,7 +1297,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             if (success == 2) {
 
                 Toast.makeText(Welcome.this, "No Internet Connection..!", Toast.LENGTH_LONG).show();
-            } else if (success == 7) {
+            } else if (success == 7) { // through admin
                 path = 3;
 
                 String MSG = adminfname + " " + adminlname + " from " + adminInstitute;
@@ -1338,7 +1332,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 //                            r.setUsername(EmailCred);
                             MySharedPreferencesManager.save(Welcome.this, "nameKey", EmailCred);
                             MySharedPreferencesManager.save(Welcome.this, "role", "student");
-                            Log.d("TAG", "run: launching mainactivity..");
+                            Log.d("TAG", "launching mainactivity..");
                             startActivity(new Intent(Welcome.this, MainActivity.class));
                             finish();
                         } else if (success == 3) {
@@ -1525,7 +1519,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     public void requestCropImage() {
         resultView.setImageDrawable(null);
 
-        MySharedPreferencesManager.save(Welcome.this,"crop", "yes");
+        MySharedPreferencesManager.save(Welcome.this, "crop", "yes");
 
         chooseImage();
     }
@@ -1600,7 +1594,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
             if (response.get(0).contains("success")) {
 
-                MySharedPreferencesManager.save(Welcome.this,"crop", "no");
+                MySharedPreferencesManager.save(Welcome.this, "crop", "no");
 
                 Toast.makeText(Welcome.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 requestProfileImage();

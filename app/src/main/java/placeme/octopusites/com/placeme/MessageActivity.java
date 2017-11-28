@@ -3,7 +3,6 @@ package placeme.octopusites.com.placeme;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -76,7 +75,6 @@ public class MessageActivity extends AppCompatActivity {
     TextView name;
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String Username = "nameKey";
-    SharedPreferences sharedpreferences;
     String digest1,digest2;
 
     int tempflag=0;
@@ -124,7 +122,7 @@ public class MessageActivity extends AppCompatActivity {
 
         helper.setCurrentChatRoom(senderUID,recieverUID);
 
-        new ChangeMessageReadStatus(sharedpreferences.getString(Username, null),encusername).execute();
+        new ChangeMessageReadStatus(MySharedPreferencesManager.getUsername(MessageActivity.this),encusername).execute();
 
         name.setText(fname+" "+lname);
 
