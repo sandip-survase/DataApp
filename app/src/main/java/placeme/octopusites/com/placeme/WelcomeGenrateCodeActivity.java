@@ -470,20 +470,20 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
     private void addBottomDots(int currentPage, int totalPages) {
         dots = new TextView[totalPages];
 
-        int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
-        int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
+        int colorsActive = getResources().getColor(R.color.array_dot_active);
+        int colorsInactive = getResources().getColor(R.color.array_dot_inactive);
 
         dotsLayout.removeAllViews();
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new TextView(this);
             dots[i].setText(Html.fromHtml("&#8226;"));
             dots[i].setTextSize(35);
-            dots[i].setTextColor(colorsInactive[currentPage]);
+            dots[i].setTextColor(colorsInactive);
             dotsLayout.addView(dots[i]);
         }
 
         if (dots.length > 0)
-            dots[currentPage].setTextColor(colorsActive[currentPage]);
+            dots[currentPage].setTextColor(colorsActive);
     }
 
     private int getItem(int i) {

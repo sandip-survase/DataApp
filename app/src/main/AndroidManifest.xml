@@ -62,7 +62,8 @@
         <activity
             android:name=".Welcome"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name=".SignupActivity"
             android:screenOrientation="portrait"

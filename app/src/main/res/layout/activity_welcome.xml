@@ -13,14 +13,6 @@
         android:visibility="gone"
         android:id="@+id/crop_layout"
         >
-
-        <ImageView
-            android:id="@+id/result_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerInside"
-            android:background="@color/transparent" />
-
     </FrameLayout>
 
     <android.support.v4.view.ViewPager
@@ -31,18 +23,11 @@
     <LinearLayout
         android:id="@+id/layoutDots"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dots_height"
+        android:layout_height="30dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/dots_margin_bottom"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:orientation="horizontal"></LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:alpha=".5"
-        android:layout_above="@id/layoutDots"
-        android:background="@android:color/white" />
 
     <ProgressBar
         android:layout_width="30dp"
@@ -60,17 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:background="#03353e"
-        android:text="Next"
-        android:textColor="#fcfdfd"
+        android:textColor="#03353e"
         />
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/mainfragment"
-        android:layout_above="@+id/bottompanel">
-
-    </FrameLayout>
 
 </RelativeLayout>

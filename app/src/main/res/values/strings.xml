@@ -13,6 +13,9 @@
     <string name="title_activity_hr">HRActivity</string>
     <string name="title_activity_alumni">AlumniActivity</string>
 
+    <string name="dot_selected">&#xf111;</string>
+    <string name="dot_unselected">&#xf1db;</string>
+    <string name="next_button">&#xf0a9;</string>
     <string-array name="CountryCodes">
         <item>93,AF</item>
         <item>355,AL</item>
