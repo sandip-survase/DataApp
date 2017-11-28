@@ -131,7 +131,6 @@ public class OTPActivity extends AppCompatActivity {
             String data = new String(demo2DecryptedBytes1);
             hash = md5(data + MySharedPreferencesManager.getDigest3(OTPActivity.this));
 
-
         } catch (Exception e) {
         }
 
@@ -277,6 +276,7 @@ public class OTPActivity extends AppCompatActivity {
     }
 
     void loginFirebase(String username, String hash) {
+
         FirebaseAuth.getInstance()
                 .signInWithEmailAndPassword(username, hash)
                 .addOnCompleteListener(OTPActivity.this, new OnCompleteListener<AuthResult>() {
