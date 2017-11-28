@@ -3,7 +3,6 @@ package placeme.octopusites.com.placeme;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -17,27 +16,16 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
-import android.text.Editable;
-import android.text.Html;
 import android.text.InputFilter;
-import android.text.InputType;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.TextPaint;
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -49,7 +37,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.signature.ObjectKey;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -81,10 +68,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
 
     public static final String Intro = "intro";
+    private static String android_id, device_id;
     String encUsersName, plainUsername, usertype, isactivated, passwordstr, encPassword, encfname, enclname, encmobile, encinstOrEmail, encrole, encProMail;
     String resultofop = "";
     String SELECTED_ROLE;
-    private String EmailCred = "";
     String digest1, digest2, status;
     String fname, lname, mobile;
     JSONParser jParser = new JSONParser();
@@ -93,13 +80,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     int path = 0;
     int crop_flag = 0;
     String filepath = "", filename = "";
-    private String finalPath;
     String directory;
-    private ViewPager viewPager;
-    private MyAdapter myViewPagerAdapter;
-    private LinearLayout dotsLayout;
-    private TextView[] dots;
-    private Button btnNext;
     ProgressBar nextProgress;
     Boolean errorFlagIntro = false, genrateCodeFlag = false;
     View WelcomeEmailView, WelcomePasswordView, WelComeIntroView, WelcomeRoleView, WelcomeCreatePasswordView, WelComeIntroThroughAdminView;
@@ -110,24 +91,93 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     CircleImageView profilePicture;
     View studentBlock, alumniBlock, adminBlock, hrBlock;
     EditText enterPassword, confirmPassword;
-    private ImageView resultView;
     ImagePicker imagePicker;
     FrameLayout crop_layout;
     List<String> response;
     boolean throughAdminFlag = false, errorFlagThroughAdminIntro = false;
-    private String instOrEmailstr;
-    private String confrimpass;
     TextView adminInfo;
     boolean instoremailerror = false;
-    private static String android_id, device_id;
     String adminInstitute, adminfname, adminlname;
-    Typeface fa,bold,light;
+    Typeface fa, bold, light;
+    private String EmailCred = "";
+    private String finalPath;
+    private ViewPager viewPager;
+    private MyAdapter myViewPagerAdapter;
+    private LinearLayout dotsLayout;
+    private TextView[] dots;
+    private Button btnNext;
+    //	viewpager change listener
+    ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
+
+        @Override
+        public void onPageSelected(int position) {
+
+            if (path == 1) {
+                addBottomDots(position, 2);
+
+                if (position == 2 - 1) {
+                    // last page. make button text to GOT IT
+                    btnNext.setText("LOGIN");
+
+                } else {
+                    // still pages are left
+                    btnNext.setText("NEXT");
+
+                }
+            }
+        }
+
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int arg0) {
+
+        }
+    };
+    private ImageView resultView;
+    private String instOrEmailstr;
+    private String confrimpass;
+
+    public static String getDeviceName() {
+        String manufacturer = Build.MANUFACTURER;
+        String model = Build.MODEL;
+        if (model.startsWith(manufacturer)) {
+            return capitalize(model);
+        }
+        return capitalize(manufacturer) + " " + model;
+    }
+
+    private static String capitalize(String str) {
+        if (TextUtils.isEmpty(str)) {
+            return str;
+        }
+        char[] arr = str.toCharArray();
+        boolean capitalizeNext = true;
+
+        StringBuilder phrase = new StringBuilder();
+        for (char c : arr) {
+            if (capitalizeNext && Character.isLetter(c)) {
+                phrase.append(Character.toUpperCase(c));
+                capitalizeNext = false;
+                continue;
+            } else if (Character.isWhitespace(c)) {
+                capitalizeNext = true;
+            }
+            phrase.append(c);
+        }
+
+        return phrase.toString();
+    }
+
     public void setWelComeEmailView(View v) {
         WelcomeEmailView = v;
         usernameedittext = (TextInputEditText) WelcomeEmailView.findViewById(R.id.welcomeusername);
         usernameTextInputLayout = (TextInputLayout) WelcomeEmailView.findViewById(R.id.usernameTextInputLayout);
-        TextView welcometextviewcontext1=(TextView)WelcomeEmailView.findViewById(R.id.welcometextviewcontext1);
-        TextView welcometextviewcontext2=(TextView)WelcomeEmailView.findViewById(R.id.welcometextviewcontext2);
+        TextView welcometextviewcontext1 = (TextView) WelcomeEmailView.findViewById(R.id.welcometextviewcontext1);
+        TextView welcometextviewcontext2 = (TextView) WelcomeEmailView.findViewById(R.id.welcometextviewcontext2);
         usernameTextInputLayout.setTypeface(light);
         usernameedittext.setTypeface(bold);
         welcometextviewcontext1.setTypeface(bold);
@@ -258,6 +308,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         });
 
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -268,9 +319,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         setContentView(R.layout.activity_welcome);
 
-        fa = Typeface.createFromAsset(this.getAssets(),  "fonts/fa.ttf");
-        bold = Typeface.createFromAsset(this.getAssets(),  "fonts/nunitobold.ttf");
-        light = Typeface.createFromAsset(this.getAssets(),  "fonts/nunitolight.ttf");
+        fa = Typeface.createFromAsset(this.getAssets(), "fonts/fa.ttf");
+        bold = Typeface.createFromAsset(this.getAssets(), "fonts/nunitobold.ttf");
+        light = Typeface.createFromAsset(this.getAssets(), "fonts/nunitolight.ttf");
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -398,7 +449,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                                 }
                             }
                         }
-                    } else if (path == 2)        //user not found i.e new user
+                    } else if (path == 2)        // new user
                     {
                         mobileEditText.setError(null);
                         fnameEditText.setError(null);
@@ -467,7 +518,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                                 }
                                 if (SELECTED_ROLE.equals("admin")) {
                                     genrateCodeFlag = true;
-                                    // for testing validation in comment  *****************************************
+                                    // for testing validation in comment  *****
 
                                     if (!instOrEmailstr.contains("@")) {
                                         instoremailerror = true;
@@ -497,7 +548,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
                                         new checkUcode().execute(instOrEmailstr);
 
-                                    }else{
+                                    } else {
                                         viewPager.setCurrentItem(3);
                                         addBottomDots(3, 4);
                                     }
@@ -515,28 +566,25 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                             String enterpass = enterPassword.getText().toString();
                             confrimpass = confirmPassword.getText().toString();
 
-                            try {
-                                byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                                byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                                String sPadding = "ISO10126Padding";
-                                byte[] passwordBytes = confrimpass.getBytes("UTF-8");
-                                byte[] passwordEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, passwordBytes);
-                                encPassword = new String(SimpleBase64Encoder.encode(passwordEncryptedBytes));
-                            } catch (Exception e) {
-                                Log.d("TAG", "onClick: EXp " + e.getMessage());
-                            }
-
-
                             if (!enterpass.equals(confrimpass)) {
                                 errorflag = true;
                                 confirmPassword.setError("confirm password not matched");
-                            } else if (enterpass.equals("")) {
+                            } else if (enterpass.length() < 6 || confrimpass.length() < 6) {
                                 errorflag = true;
-                            } else if (confrimpass.equals("")) {
-                                errorflag = true;
+                                confirmPassword.setError("Passwords must be at least 6 characters long");
                             }
                             if (errorflag == false) {
-//                                Toast.makeText(Welcome.this, "start", Toast.LENGTH_SHORT).show();
+
+                                try {
+                                    byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+                                    byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
+                                    String sPadding = "ISO10126Padding";
+                                    byte[] passwordBytes = confrimpass.getBytes("UTF-8");
+                                    byte[] passwordEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, passwordBytes);
+                                    encPassword = new String(SimpleBase64Encoder.encode(passwordEncryptedBytes));
+                                } catch (Exception e) {
+                                    Log.d("TAG", "onClick: EXp " + e.getMessage());
+                                }
                                 if (genrateCodeFlag == true) {
                                     //save pref  password instcode
                                     //call a servlet that will send activation code
@@ -613,6 +661,266 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
     }//onc
 
+    private void addBottomDots(int currentPage, int totalPages) {
+        dots = new TextView[totalPages];
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(5, 5, 5, 5);
+
+
+        int colorsActive = getResources().getColor(R.color.array_dot_active);
+        int colorsInactive = getResources().getColor(R.color.array_dot_inactive);
+
+        dotsLayout.removeAllViews();
+        for (int i = 0; i < dots.length; i++) {
+            dots[i] = new TextView(this);
+            dots[i].setTypeface(fa);
+            dots[i].setLayoutParams(params);
+            dots[i].setText(getString(R.string.dot_unselected));
+            dots[i].setTextSize(8);
+            dots[i].setTextColor(colorsInactive);
+            dotsLayout.addView(dots[i]);
+        }
+
+        if (dots.length > 0) {
+            dots[currentPage].setTextColor(colorsActive);
+            dots[currentPage].setText(getString(R.string.dot_selected));
+            dots[currentPage].setTextSize(10);
+        }
+    }
+
+    private int getItem(int i) {
+        return viewPager.getCurrentItem() + i;
+    }
+
+    /**
+     * Making notification bar transparent
+     */
+    private void changeStatusBarColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.TRANSPARENT);
+        }
+    }
+
+    public void onError(String s) {
+        crop_layout.setVisibility(View.GONE);
+        // tswap       tswipe_refresh_layout.setVisibility(View.GONE);
+        Toast.makeText(Welcome.this, s, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onImagesChosen(List<ChosenImage> list) {
+        final ChosenImage file = list.get(0);
+
+        runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                if (file != null) {
+
+                    finalPath = file.getOriginalPath().toString();
+                }
+            }
+        });
+    }
+
+    void attemptLogin(String u, String p) {
+
+        Log.d("TAG", "login using:  " + u + "/n" + p);
+
+        UserLoginTask userLoginTask = new UserLoginTask(u, p);
+        userLoginTask.execute();
+
+
+    }
+
+    private boolean isNetworkAvailable() throws Exception {
+        ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+            HttpURLConnection localHttpURLConnection = (HttpURLConnection) new URL("http://192.168.100.100/").openConnection();
+            localHttpURLConnection.setConnectTimeout(1000);
+            localHttpURLConnection.connect();
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent result) {
+
+        Log.d("TAG", "onActivityResult: hr activity " + resultCode);
+
+        try {
+
+        } catch (Exception e) {
+        }
+//        plainusername=sharedpreferences.getString("plain",null);
+//        byte[] skill1EncryptedBytes = SimpleBase64Encoder.decode(skill1);
+//        skill1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, skill1EncryptedBytes);
+//        skill1 = new String(skill1DecryptedBytes);
+//        s.setSkill1(skill1);
+
+//        String role
+
+
+        if (requestCode == Picker.PICK_IMAGE_DEVICE) {
+
+            try {
+
+                if (imagePicker == null) {
+                    imagePicker = new ImagePicker(this);
+                    imagePicker.setImagePickerCallback((ImagePickerCallback) this);
+                }
+                imagePicker.submit(result);
+                crop_layout.setVisibility(View.VISIBLE);
+
+                crop_flag = 1;
+                beginCrop(result.getData());
+
+            } catch (Exception e) {
+                crop_layout.setVisibility(View.GONE);
+
+
+            }
+        } else if (resultCode == RESULT_CANCELED) {
+            crop_layout.setVisibility(View.GONE);
+
+
+            crop_flag = 0;
+        } else if (requestCode == Crop.REQUEST_CROP) {
+            // Toast.makeText(this, "cropped", Toast.LENGTH_SHORT).show();
+            handleCrop(resultCode, result);
+        }
+
+//    if(requestCode==HRProfileFragment.COMPANY_DEATAILS_CHANGE_REQUEST)
+//    {
+//
+//    }
+    }
+
+    public void requestCropImage() {
+        resultView.setImageDrawable(null);
+
+        MySharedPreferencesManager.save(Welcome.this, "crop", "yes");
+
+        chooseImage();
+    }
+
+    private void chooseImage() {
+
+        imagePicker.pickImage();
+    }
+
+    private void beginCrop(Uri source) {
+        Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"));
+        Crop.of(source, destination).asSquare().start(this);
+    }
+
+    private void handleCrop(int resultCode, Intent result) {
+        if (resultCode == RESULT_OK) {
+            File f = new File(getCacheDir(), "cropped");
+            filepath = f.getAbsolutePath();
+
+            filename = "";
+            int index = filepath.lastIndexOf("/");
+            directory = "";
+            for (int i = 0; i < index; i++)
+                directory += filepath.charAt(i);
+
+            for (int i = index + 1; i < filepath.length(); i++)
+                filename += filepath.charAt(i);
+
+            crop_layout.setVisibility(View.GONE);
+            new UploadProfile().execute();
+
+        } else if (resultCode == Crop.RESULT_ERROR) {
+            crop_layout.setVisibility(View.GONE);
+
+            Toast.makeText(this, "Try Again..!", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    public void refreshContent() {
+        downloadImage();
+    }
+
+    public void requestProfileImage() {
+        // Toast.makeText(this, "thumbnail Method()", Toast.LENGTH_SHORT).show();
+//        new GetProfileImage().execute();
+        downloadImage();
+
+    }
+
+    private void downloadImage() {
+
+        String t = String.valueOf(System.currentTimeMillis());
+
+        Uri uri = new Uri.Builder()
+                .scheme("http")
+                .authority("192.168.100.100")
+                .path("AESTest/GetImage")
+                .appendQueryParameter("u", encUsersName)
+                .build();
+
+        GlideApp.with(this)
+                .load(uri)
+                .signature(new ObjectKey(System.currentTimeMillis() + ""))
+                .into(profilePicture);
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+
+        if (path == 3 && currentPosition == 2)
+            path = 1;
+
+        if (currentPosition != 0) {
+            currentPosition--;
+            viewPager.setCurrentItem(currentPosition);
+            //dot coding
+
+            switch (currentPosition) {
+                case 0: {
+                    if (path == 1) {
+                        addBottomDots(0, 2);
+                    } else if (path == 2) {
+                        addBottomDots(0, 4);
+                    }
+                    break;
+                }
+                case 1: {
+                    if (path == 1) {
+                        addBottomDots(1, 2);
+                    } else if (path == 2) {
+                        addBottomDots(1, 4);
+                    }
+                    break;
+                }
+                case 2: {
+                    if (path == 2) {
+                        addBottomDots(2, 4);
+                    }
+                    if (path == 3) {
+                        addBottomDots(2, 3);
+                    }
+
+                    break;
+                }
+            }
+
+
+        } else
+            super.onBackPressed();
+    }
+    //prfile image ***
 
     class SaveData extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
@@ -848,106 +1156,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         }
     }
 
-
-    private void addBottomDots(int currentPage, int totalPages) {
-        dots = new TextView[totalPages];
-
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(5,5,5,5);
-
-
-        int colorsActive = getResources().getColor(R.color.array_dot_active);
-        int colorsInactive = getResources().getColor(R.color.array_dot_inactive);
-
-        dotsLayout.removeAllViews();
-        for (int i = 0; i < dots.length; i++) {
-            dots[i] = new TextView(this);
-            dots[i].setTypeface(fa);
-            dots[i].setLayoutParams(params);
-            dots[i].setText(getString(R.string.dot_unselected));
-            dots[i].setTextSize(8);
-            dots[i].setTextColor(colorsInactive);
-            dotsLayout.addView(dots[i]);
-        }
-
-        if (dots.length > 0) {
-            dots[currentPage].setTextColor(colorsActive);
-            dots[currentPage].setText(getString(R.string.dot_selected));
-            dots[currentPage].setTextSize(10);
-        }
-    }
-
-    private int getItem(int i) {
-        return viewPager.getCurrentItem() + i;
-    }
-
-    //	viewpager change listener
-    ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
-
-        @Override
-        public void onPageSelected(int position) {
-
-            if (path == 1) {
-                addBottomDots(position, 2);
-
-                if (position == 2 - 1) {
-                    // last page. make button text to GOT IT
-                    btnNext.setText("LOGIN");
-
-                } else {
-                    // still pages are left
-                    btnNext.setText("NEXT");
-
-                }
-            }
-        }
-
-        @Override
-        public void onPageScrolled(int arg0, float arg1, int arg2) {
-
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int arg0) {
-
-        }
-    };
-
-    /**
-     * Making notification bar transparent
-     */
-    private void changeStatusBarColor() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-        }
-    }
-
-    public void onError(String s) {
-        crop_layout.setVisibility(View.GONE);
-        // tswap       tswipe_refresh_layout.setVisibility(View.GONE);
-        Toast.makeText(Welcome.this, s, Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public void onImagesChosen(List<ChosenImage> list) {
-        final ChosenImage file = list.get(0);
-
-        runOnUiThread(new Runnable() {
-
-            @Override
-            public void run() {
-                if (file != null) {
-
-                    finalPath = file.getOriginalPath().toString();
-                }
-            }
-        });
-    }
-
-
     public class MyAdapter extends FragmentStatePagerAdapter {
 
         private final List<Fragment> mFragmentList = new ArrayList<>();
@@ -997,7 +1205,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         }
     }
 
-
     class SendActivationCode extends AsyncTask<String, String, String> {
 
         protected String doInBackground(String... param) {
@@ -1046,18 +1253,18 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 MySharedPreferencesManager.save(Welcome.this, "proEmail", encProMail);
                 startActivity(new Intent(Welcome.this, OTPActivity.class));
 
-            }else if (result.equals("exist")) {
+            } else if (result.equals("exist")) {
                 Toast.makeText(Welcome.this, "Account already exist on PlaceMe", Toast.LENGTH_SHORT).show();
-            }else {
-                if(instOrEmail!=null){
+            } else {
+                if (instOrEmail != null) {
                     instOrEmail.setError("Incorrect Professional Email");
-                }else
+                } else
                     Toast.makeText(Welcome.this, "Incorrect Professional Email", Toast.LENGTH_SHORT).show();
 
                 String enterpass = enterPassword.getText().toString();
                 confrimpass = confirmPassword.getText().toString();
 
-                if(enterPassword!=null && confirmPassword!=null){
+                if (enterPassword != null && confirmPassword != null) {
                     enterPassword.setText("");
                     confirmPassword.setText("");
                 }
@@ -1166,16 +1373,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
             }
         }
-    }
-
-    void attemptLogin(String u, String p) {
-
-        Log.d("TAG", "login using:  " + u + "/n" + p);
-
-        UserLoginTask userLoginTask = new UserLoginTask(u, p);
-        userLoginTask.execute();
-
-
     }
 
     public class UserLoginTask extends AsyncTask<Void, Void, Integer> {
@@ -1428,18 +1625,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         }
     }
 
-    private boolean isNetworkAvailable() throws Exception {
-        ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
-            HttpURLConnection localHttpURLConnection = (HttpURLConnection) new URL("http://192.168.100.100/").openConnection();
-            localHttpURLConnection.setConnectTimeout(1000);
-            localHttpURLConnection.connect();
-            return true;
-        }
-        return false;
-    }
-
     class SaveSessionDetails extends AsyncTask<String, String, String> {
 
 
@@ -1461,135 +1646,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         @Override
         protected void onPostExecute(String result) {
-        }
-    }
-
-
-    public static String getDeviceName() {
-        String manufacturer = Build.MANUFACTURER;
-        String model = Build.MODEL;
-        if (model.startsWith(manufacturer)) {
-            return capitalize(model);
-        }
-        return capitalize(manufacturer) + " " + model;
-    }
-
-    private static String capitalize(String str) {
-        if (TextUtils.isEmpty(str)) {
-            return str;
-        }
-        char[] arr = str.toCharArray();
-        boolean capitalizeNext = true;
-
-        StringBuilder phrase = new StringBuilder();
-        for (char c : arr) {
-            if (capitalizeNext && Character.isLetter(c)) {
-                phrase.append(Character.toUpperCase(c));
-                capitalizeNext = false;
-                continue;
-            } else if (Character.isWhitespace(c)) {
-                capitalizeNext = true;
-            }
-            phrase.append(c);
-        }
-
-        return phrase.toString();
-    }
-    //prfile image ***
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent result) {
-
-        Log.d("TAG", "onActivityResult: hr activity " + resultCode);
-
-        try {
-
-        } catch (Exception e) {
-        }
-//        plainusername=sharedpreferences.getString("plain",null);
-//        byte[] skill1EncryptedBytes = SimpleBase64Encoder.decode(skill1);
-//        skill1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, skill1EncryptedBytes);
-//        skill1 = new String(skill1DecryptedBytes);
-//        s.setSkill1(skill1);
-
-//        String role
-
-
-        if (requestCode == Picker.PICK_IMAGE_DEVICE) {
-
-            try {
-
-                if (imagePicker == null) {
-                    imagePicker = new ImagePicker(this);
-                    imagePicker.setImagePickerCallback((ImagePickerCallback) this);
-                }
-                imagePicker.submit(result);
-                crop_layout.setVisibility(View.VISIBLE);
-
-                crop_flag = 1;
-                beginCrop(result.getData());
-
-            } catch (Exception e) {
-                crop_layout.setVisibility(View.GONE);
-
-
-            }
-        } else if (resultCode == RESULT_CANCELED) {
-            crop_layout.setVisibility(View.GONE);
-
-
-            crop_flag = 0;
-        } else if (requestCode == Crop.REQUEST_CROP) {
-            // Toast.makeText(this, "cropped", Toast.LENGTH_SHORT).show();
-            handleCrop(resultCode, result);
-        }
-
-//    if(requestCode==HRProfileFragment.COMPANY_DEATAILS_CHANGE_REQUEST)
-//    {
-//
-//    }
-    }
-
-    public void requestCropImage() {
-        resultView.setImageDrawable(null);
-
-        MySharedPreferencesManager.save(Welcome.this,"crop", "yes");
-
-        chooseImage();
-    }
-
-    private void chooseImage() {
-
-        imagePicker.pickImage();
-    }
-
-    private void beginCrop(Uri source) {
-        Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"));
-        Crop.of(source, destination).asSquare().start(this);
-    }
-
-    private void handleCrop(int resultCode, Intent result) {
-        if (resultCode == RESULT_OK) {
-            File f = new File(getCacheDir(), "cropped");
-            filepath = f.getAbsolutePath();
-
-            filename = "";
-            int index = filepath.lastIndexOf("/");
-            directory = "";
-            for (int i = 0; i < index; i++)
-                directory += filepath.charAt(i);
-
-            for (int i = index + 1; i < filepath.length(); i++)
-                filename += filepath.charAt(i);
-
-            crop_layout.setVisibility(View.GONE);
-            new UploadProfile().execute();
-
-        } else if (resultCode == Crop.RESULT_ERROR) {
-            crop_layout.setVisibility(View.GONE);
-
-            Toast.makeText(this, "Try Again..!", Toast.LENGTH_SHORT).show();
-
         }
     }
 
@@ -1621,7 +1677,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
             if (response.get(0).contains("success")) {
 
-                MySharedPreferencesManager.save(Welcome.this,"crop", "no");
+                MySharedPreferencesManager.save(Welcome.this, "crop", "no");
 
                 Toast.makeText(Welcome.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 requestProfileImage();
@@ -1644,82 +1700,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         }
 
-    }
-
-    public void refreshContent() {
-        downloadImage();
-    }
-
-    public void requestProfileImage() {
-        // Toast.makeText(this, "thumbnail Method()", Toast.LENGTH_SHORT).show();
-//        new GetProfileImage().execute();
-        downloadImage();
-
-    }
-
-    private void downloadImage() {
-
-        String t = String.valueOf(System.currentTimeMillis());
-
-        Uri uri = new Uri.Builder()
-                .scheme("http")
-                .authority("192.168.100.100")
-                .path("AESTest/GetImage")
-                .appendQueryParameter("u", encUsersName)
-                .build();
-
-        GlideApp.with(this)
-                .load(uri)
-                .signature(new ObjectKey(System.currentTimeMillis() + ""))
-                .into(profilePicture);
-
-
-    }
-
-    @Override
-    public void onBackPressed() {
-
-
-        if (path == 3 && currentPosition == 2)
-            path = 1;
-
-        if (currentPosition != 0) {
-            currentPosition--;
-            viewPager.setCurrentItem(currentPosition);
-            //dot coding
-
-            switch (currentPosition) {
-                case 0: {
-                    if (path == 1) {
-                        addBottomDots(0, 2);
-                    } else if (path == 2) {
-                        addBottomDots(0, 4);
-                    }
-                    break;
-                }
-                case 1: {
-                    if (path == 1) {
-                        addBottomDots(1, 2);
-                    } else if (path == 2) {
-                        addBottomDots(1, 4);
-                    }
-                    break;
-                }
-                case 2: {
-                    if (path == 2) {
-                        addBottomDots(2, 4);
-                    }
-                    if (path == 3) {
-                        addBottomDots(2, 3);
-                    }
-
-                    break;
-                }
-            }
-
-
-        } else
-            super.onBackPressed();
     }
 
     //end prfile image
