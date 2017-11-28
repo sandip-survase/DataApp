@@ -3,6 +3,8 @@ package placeme.octopusites.com.placeme;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -11,6 +13,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -24,8 +28,12 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -95,7 +103,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     ProgressBar nextProgress;
     Boolean errorFlagIntro = false, genrateCodeFlag = false;
     View WelcomeEmailView, WelcomePasswordView, WelComeIntroView, WelcomeRoleView, WelcomeCreatePasswordView, WelComeIntroThroughAdminView;
-    EditText usernameedittext, passwordedittext;
+    EditText passwordedittext;
+    TextInputEditText usernameedittext;
+    TextInputLayout usernameTextInputLayout;
     EditText fnameEditText, lnameEditText, mobileEditText, instOrEmail;
     CircleImageView profilePicture;
     View studentBlock, alumniBlock, adminBlock, hrBlock;
@@ -103,7 +113,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     private ImageView resultView;
     ImagePicker imagePicker;
     FrameLayout crop_layout;
-    FrameLayout mainfragment;
     List<String> response;
     boolean throughAdminFlag = false, errorFlagThroughAdminIntro = false;
     private String instOrEmailstr;
@@ -112,10 +121,17 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     boolean instoremailerror = false;
     private static String android_id, device_id;
     String adminInstitute, adminfname, adminlname;
-
+    Typeface fa,bold,light;
     public void setWelComeEmailView(View v) {
         WelcomeEmailView = v;
-        usernameedittext = (EditText) WelcomeEmailView.findViewById(R.id.welcomeusername);
+        usernameedittext = (TextInputEditText) WelcomeEmailView.findViewById(R.id.welcomeusername);
+        usernameTextInputLayout = (TextInputLayout) WelcomeEmailView.findViewById(R.id.usernameTextInputLayout);
+        TextView welcometextviewcontext1=(TextView)WelcomeEmailView.findViewById(R.id.welcometextviewcontext1);
+        TextView welcometextviewcontext2=(TextView)WelcomeEmailView.findViewById(R.id.welcometextviewcontext2);
+        usernameTextInputLayout.setTypeface(light);
+        usernameedittext.setTypeface(bold);
+        welcometextviewcontext1.setTypeface(bold);
+        welcometextviewcontext2.setTypeface(light);
     }
 
     public void setWelComePasswordView(View v) {
@@ -242,8 +258,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         });
 
     }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -254,6 +268,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         setContentView(R.layout.activity_welcome);
 
+        fa = Typeface.createFromAsset(this.getAssets(),  "fonts/fa.ttf");
+        bold = Typeface.createFromAsset(this.getAssets(),  "fonts/nunitobold.ttf");
+        light = Typeface.createFromAsset(this.getAssets(),  "fonts/nunitolight.ttf");
+
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
 
@@ -263,7 +281,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         resultView = (ImageView) findViewById(R.id.result_image);
         nextProgress = (ProgressBar) findViewById(R.id.nextProgress);
         crop_layout = (FrameLayout) findViewById(R.id.crop_layout);
-        mainfragment = (FrameLayout) findViewById(R.id.mainfragment);
+
+        Typeface nunito_bold = Typeface.createFromAsset(this.getAssets(),  "fonts/nunitobold.ttf");
+        btnNext.setTypeface(nunito_bold);
 
         // layouts of all welcome sliders
         // add few more layouts if you want
@@ -830,20 +850,29 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     private void addBottomDots(int currentPage, int totalPages) {
         dots = new TextView[totalPages];
 
-        int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
-        int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(5,5,5,5);
+
+
+        int colorsActive = getResources().getColor(R.color.array_dot_active);
+        int colorsInactive = getResources().getColor(R.color.array_dot_inactive);
 
         dotsLayout.removeAllViews();
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new TextView(this);
-            dots[i].setText(Html.fromHtml("&#8226;"));
-            dots[i].setTextSize(35);
-            dots[i].setTextColor(colorsInactive[currentPage]);
+            dots[i].setTypeface(fa);
+            dots[i].setLayoutParams(params);
+            dots[i].setText(getString(R.string.dot_unselected));
+            dots[i].setTextSize(8);
+            dots[i].setTextColor(colorsInactive);
             dotsLayout.addView(dots[i]);
         }
 
-        if (dots.length > 0)
-            dots[currentPage].setTextColor(colorsActive[currentPage]);
+        if (dots.length > 0) {
+            dots[currentPage].setTextColor(colorsActive);
+            dots[currentPage].setText(getString(R.string.dot_selected));
+            dots[currentPage].setTextSize(10);
+        }
     }
 
     private int getItem(int i) {
@@ -859,7 +888,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             if (path == 1) {
                 addBottomDots(position, 2);
 
-                // changing the next button text 'NEXT' / 'GOT IT'
                 if (position == 2 - 1) {
                     // last page. make button text to GOT IT
                     btnNext.setText("LOGIN");
@@ -897,7 +925,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     public void onError(String s) {
         crop_layout.setVisibility(View.GONE);
         // tswap       tswipe_refresh_layout.setVisibility(View.GONE);
-        mainfragment.setVisibility(View.VISIBLE);
         Toast.makeText(Welcome.this, s, Toast.LENGTH_SHORT).show();
 
     }
@@ -1496,20 +1523,19 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 }
                 imagePicker.submit(result);
                 crop_layout.setVisibility(View.VISIBLE);
-                //            tswipe_refresh_layout.setVisibility(View.GONE);
-                mainfragment.setVisibility(View.GONE);
+
                 crop_flag = 1;
                 beginCrop(result.getData());
-                // Toast.makeText(this, "crop initiated", Toast.LENGTH_SHORT).show();
+
             } catch (Exception e) {
                 crop_layout.setVisibility(View.GONE);
-                //            tswipe_refresh_layout.setVisibility(View.GONE);
-                mainfragment.setVisibility(View.VISIBLE);
+
+
             }
         } else if (resultCode == RESULT_CANCELED) {
             crop_layout.setVisibility(View.GONE);
-            //        tswipe_refresh_layout.setVisibility(View.GONE);
-            mainfragment.setVisibility(View.VISIBLE);
+
+
             crop_flag = 0;
         } else if (requestCode == Crop.REQUEST_CROP) {
             // Toast.makeText(this, "cropped", Toast.LENGTH_SHORT).show();
@@ -1555,16 +1581,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 filename += filepath.charAt(i);
 
             crop_layout.setVisibility(View.GONE);
-//            tswipe_refresh_layout.setVisibility(View.GONE);
-            mainfragment.setVisibility(View.VISIBLE);
-            HRProfileFragment fragment = (HRProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-//            fragment.showUpdateProgress();
             new UploadProfile().execute();
 
         } else if (resultCode == Crop.RESULT_ERROR) {
             crop_layout.setVisibility(View.GONE);
-//            tswipe_refresh_layout.setVisibility(View.GONE);
-            mainfragment.setVisibility(View.VISIBLE);
+
             Toast.makeText(this, "Try Again..!", Toast.LENGTH_SHORT).show();
 
         }
@@ -1595,8 +1616,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         protected void onPostExecute(String result) {
 
             crop_layout.setVisibility(View.GONE);
-            //           tswipe_refresh_layout.setVisibility(View.GONE);
-            mainfragment.setVisibility(View.VISIBLE);
 
             if (response.get(0).contains("success")) {
 
@@ -1608,8 +1627,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 DeleteRecursive(new File(directory));
             } else if (response.get(0).contains("null")) {
                 requestProfileImage();
-                MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-                fragment.refreshContent();
                 Toast.makeText(Welcome.this, "Try Again", Toast.LENGTH_SHORT).show();
             }
 

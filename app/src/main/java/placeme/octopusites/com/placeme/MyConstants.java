@@ -15,7 +15,7 @@ public class MyConstants {
 
     public static final String url_savesessiondetails = "http://192.168.100.100/PlaceMe/SaveSessionDetails";
     public static final String url_create_firebase= "http://192.168.100.100/PlaceMe/RegisterFirebaseUser";
-    public static final String url_UpdateFirebaseToken= "http://192.168.100.100:8080/PlaceMe/UpdateFirebaseToken";
+    public static final String url_UpdateFirebaseToken= "http://192.168.100.100/PlaceMe/UpdateFirebaseToken";
     public static final String url_ChangeUsernameFireBase= "http://192.168.100.100/PlaceMe/ChangeUsername";
 
 

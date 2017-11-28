@@ -55,11 +55,10 @@
     </style>
 
     <style name="TextLabelNew" parent="AppTheme.NoActionBar">
-        <item name="android:textColorHint">#000</item>
-        <item name="android:textSize">20sp</item>
-        <item name="colorAccent">#000</item>
-        <item name="colorControlNormal">#000</item>
-        <item name="colorControlActivated">#c59a6d</item>
+        <item name="android:textColorHint">#03353e</item>
+        <item name="colorAccent">#03353e</item>
+        <item name="colorControlNormal">#03353e</item>
+        <item name="colorControlActivated">#00bcd4</item>
     </style>
 
     <style name="SCBSwitch" parent="AppTheme">
