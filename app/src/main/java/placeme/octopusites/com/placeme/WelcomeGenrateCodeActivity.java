@@ -75,11 +75,11 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
     Spinner companyNature;
     ArrayAdapter<String> dataAdapter;
     List<String> countrieslist = new ArrayList<String>();
-    AutoCompleteTextView countryAutoBox,countryAutoBoxCompany;
+    AutoCompleteTextView countryAutoBox, countryAutoBoxCompany;
     String countries[];
     int countrycount;
-    private static  String android_id,device_id;
-    TextView helloMsgcode, genratedCode,headerMsgcode;
+    private static String android_id, device_id;
+    TextView helloMsgcode, genratedCode, headerMsgcode;
 
 
     public void setWelComeShowCodeView(View v) {
@@ -122,9 +122,9 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(instituteAlternatephone.length()>0){
-                    if(instituteAlternatephone.length()<8 || instituteAlternatephone.length()>10){
-                        errorFlagCompany=true;
+                if (instituteAlternatephone.length() > 0) {
+                    if (instituteAlternatephone.length() < 8 || instituteAlternatephone.length() > 10) {
+                        errorFlagInstitute = true;
                     }
                 }
             }
@@ -135,7 +135,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             }
         });
     }
-
 
     public void setWelComeCompanyView(View v) {     // --------------   WelComeCompanyView
 
@@ -216,8 +215,30 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             }
         });
 
-    }
 
+        companyAlternatephone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (companyAlternatephone.length() > 0) {
+                    if (companyAlternatephone.length() < 8 ) {
+                        errorFlagCompany = true;
+                    } else
+                        errorFlagCompany = false;
+                } else
+                    errorFlagCompany = false;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -231,21 +252,22 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         nextProgress = (ProgressBar) findViewById(R.id.nextProgress);
         mainfragment = (FrameLayout) findViewById(R.id.mainfragment);
 
-        MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"otp","no");
-        MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","yes");
+        MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this, "otp", "no");
+        MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this, "activatedCode", "yes");
         ROLE = MySharedPreferencesManager.getRole(WelcomeGenrateCodeActivity.this);
-        Log.d("TAG", "WelcomeGenrateCodeActivity shared role ---------  "+ROLE);
+        Log.d("TAG", "WelcomeGenrateCodeActivity shared role ---------  " + ROLE);
 
-        digest1=MySharedPreferencesManager.getDigest1(WelcomeGenrateCodeActivity.this);
-        digest2=MySharedPreferencesManager.getDigest2(WelcomeGenrateCodeActivity.this);
+        digest1 = MySharedPreferencesManager.getDigest1(WelcomeGenrateCodeActivity.this);
+        digest2 = MySharedPreferencesManager.getDigest2(WelcomeGenrateCodeActivity.this);
 
         try {
             android_id = Settings.Secure.getString(getApplication().getContentResolver(), Settings.Secure.ANDROID_ID);
             TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
             device_id = telephonyManager.getDeviceId();
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
 
-        Log.d("TAG", "onCreate: **************** aid : "+android_id);
+        Log.d("TAG", "onCreate: **************** aid : " + android_id);
 
         viewPager.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -271,7 +293,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
             }
         });
-
 
 
         if (ROLE != null && ROLE.equals("admin")) {
@@ -376,16 +397,16 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                         sCompanyAlternatephone = companyAlternatephone.getText().toString();
                         sOtherNature = otherNature.getText().toString();
                         nature = CompanyType;
-                        Log.d("TAG", "onClick: --------- "+nature);
+                        Log.d("TAG", "onClick: --------- " + nature);
                         COUNTRY = countryAutoBoxCompany.getText().toString();
 
                         if (sCompanyName.length() < 2) {
                             errorFlagCompany = true;
                             companyName.setError("Enter valid Company name");
-                        }else if (COUNTRY.length() < 1) {
+                        } else if (COUNTRY.length() < 1) {
                             errorFlagCompany = true;
                             countryAutoBoxCompany.setError("select country");
-                        } else if (sCompanyAddress.length() < 2 ) {
+                        } else if (sCompanyAddress.length() < 2) {
                             errorFlagCompany = true;
                             companyAddress.setError("Enter valid address");
                         } else if (!sCompanyEmail.contains("@")) {
@@ -400,12 +421,13 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                         } else if (sCIN.length() < 3) {
                             errorFlagCompany = true;
                             CIN.setError("Invalid CIN");
-                        } else  if (CompanyType== null) {
+                        } else if (CompanyType == null) {
                             errorFlagCompany = true;
-                        }else  if (CompanyType != null && CompanyType.equals("-Select Company Nature-")) {
+                        } else if (CompanyType != null && CompanyType.equals("-Select Company Nature-")) {
                             errorFlagCompany = true;
                             Toast.makeText(WelcomeGenrateCodeActivity.this, "select company nature", Toast.LENGTH_SHORT).show();
-                        } if (CompanyType != null && !CompanyType.equals("")) {
+                        }
+                        if (CompanyType != null && !CompanyType.equals("")) {
                             if (CompanyType.equals("other")) {
                                 if (sOtherNature.length() < 2) {
                                     errorFlagCompany = true;
@@ -413,7 +435,8 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                                 } else
                                     nature = sOtherNature;
                             }
-                        }if (COUNTRY.length() > 1) {
+                        }
+                        if (COUNTRY.length() > 1) {
                             boolean flag = false;
                             for (String compareCountry : countrieslist) {
                                 if (compareCountry.equals(COUNTRY)) {
@@ -432,7 +455,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
                         }
 
-                    }else if (currentPosition == 1) {
+                    } else if (currentPosition == 1) {
                         startActivity(new Intent(WelcomeGenrateCodeActivity.this, HRActivity.class));
                         finish();
                     }
@@ -638,13 +661,13 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("address", encInstituteAddress));              //12
             params.add(new BasicNameValuePair("proffmail", encProfessionalEmail));             //13
             params.add(new BasicNameValuePair("country", enccountry));                       //14
-            params.add(new BasicNameValuePair("id",android_id));                              //15
+            params.add(new BasicNameValuePair("id", android_id));                              //15
             //static
 
             json = jsonParser.makeHttpRequest(MyConstants.url_SaveAndGenrateInstituteCode, "GET", params);
             try {
                 r = json.getString("info");
-                Log.d("TAG", "doInBackground: save comp data "+json);
+                Log.d("TAG", "doInBackground: save comp data " + json);
                 if (r.equals("success")) {
                     CODE = json.getString("ucode");
                 }
@@ -660,16 +683,16 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             if (result.equals("success")) {
                 Toast.makeText(WelcomeGenrateCodeActivity.this, CODE, Toast.LENGTH_SHORT).show();
                 Log.d("TAG", "admin code ===============================   " + CODE);
-                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
-                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this, "nameKey", encUsername);
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this, "passKey", encPassword);
                 viewPager.setCurrentItem(1);
                 addBottomDots(1, 2);
                 helloMsgcode.setText("Hello Admin!");
                 genratedCode.setText(CODE);
                 headerMsgcode.setText("This is your Institute Code provided by PlaceMe..!!");
 
-                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"intro","yes");
-                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","no");
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this, "intro", "yes");
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this, "activatedCode", "no");
 
             }
         }
@@ -771,19 +794,18 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("nature", encOtherNature));             //   12
             params.add(new BasicNameValuePair("proEmail", encProfessionalEmail));             //13
             params.add(new BasicNameValuePair("country", enccountry));                       //14
-            params.add(new BasicNameValuePair("id",android_id));                              //15
-
+            params.add(new BasicNameValuePair("id", android_id));                              //15
 
 
             json = jsonParser.makeHttpRequest(MyConstants.url_SaveAndGenrateCompanyCode, "GET", params);
             try {
                 r = json.getString("info");
-                if(r.equals("success")){
-                    CODE=json.getString("ucode");
+                if (r.equals("success")) {
+                    CODE = json.getString("ucode");
                 }
-                Log.d("TAG", "doInBackground: "+json);
+                Log.d("TAG", "doInBackground: " + json);
             } catch (Exception e) {
-                Log.d("TAG", "doInBackground: comp asynk"+e.getMessage());
+                Log.d("TAG", "doInBackground: comp asynk" + e.getMessage());
             }
             return r;
         }
@@ -791,19 +813,19 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            if (result!=null && result.equals("success")) {
+            if (result != null && result.equals("success")) {
                 Toast.makeText(WelcomeGenrateCodeActivity.this, CODE, Toast.LENGTH_SHORT).show();
                 Log.d("TAG", "hr comp code ===============================   " + CODE);
-                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
-                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this, "nameKey", encUsername);
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this, "passKey", encPassword);
                 viewPager.setCurrentItem(1);
                 addBottomDots(1, 2);
                 helloMsgcode.setText("Hello Hr!");
                 genratedCode.setText(CODE);
                 headerMsgcode.setText("This is your Company Code provided by PlaceMe..!!");
                 // back press next will move to base activity
-                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"intro","yes");
-                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","no");
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this, "intro", "yes");
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this, "activatedCode", "no");
 
             }
         }

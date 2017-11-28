@@ -39,7 +39,6 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:background="@color/transparent"
-        android:src="@drawable/enteremailscreen"
         android:layout_marginBottom="20dp"/>
 
     <android.support.design.widget.TextInputLayout

@@ -15,7 +15,7 @@ public class MyConstants {
 
     public static final String url_savesessiondetails = "http://192.168.100.100/PlaceMe/SaveSessionDetails";
     public static final String url_create_firebase= "http://192.168.100.100/PlaceMe/RegisterFirebaseUser";
-    public static final String url_UpdateFirebaseToken= "http://192.168.100.100:8080/PlaceMe/UpdateFirebaseToken";
+    public static final String url_UpdateFirebaseToken= "http://192.168.100.100/PlaceMe/UpdateFirebaseToken";
     public static final String url_ChangeUsernameFireBase= "http://192.168.100.100/PlaceMe/ChangeUsername";
 
 
@@ -122,7 +122,7 @@ public static String savepersonalinfo = "http://192.168.100.10:8080/ProfileObjec
     public static final String url_SaveWelcomeIntroData = "http://192.168.100.100/AESTest/SaveNewUserWelcomeIntroData";
     public static final String url_SaveStudentFnameLnameMobile = "http://192.168.100.100/AESTest/SaveStudentFnameLnameMobile";
     public static final String url_SendActivationCode = "http://192.168.100.100/AESTest/SendActivationCode";
-    public static final String url_SaveAndGenrateInstituteCode = "http://192.168.100.100/AESTest/SaveAndGenrateInstituteCode";
+    public static final String url_SaveAndGenrateInstituteCode = "http://192.168.100.20:8080/AESTest/SaveAndGenrateInstituteCode";
     public static final String url_SaveAndGenrateCompanyCode = "http://192.168.100.100/AESTest/SaveAndGenrateCompanyCode";
     public static final String url_checkUcode = "http://192.168.100.100/AESTest/checkUcode";
 
