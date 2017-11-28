@@ -45,9 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:background="#03353e"
-        android:text="Next"
-        android:textColor="#fcfdfd"
+        android:textColor="#03353e"
         />
 
 

@@ -282,8 +282,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         nextProgress = (ProgressBar) findViewById(R.id.nextProgress);
         crop_layout = (FrameLayout) findViewById(R.id.crop_layout);
 
-        Typeface nunito_bold = Typeface.createFromAsset(this.getAssets(),  "fonts/nunitobold.ttf");
-        btnNext.setTypeface(nunito_bold);
+
+        btnNext.setTypeface(fa);
+        btnNext.setText(getString(R.string.next_button));
+
 
         // layouts of all welcome sliders
         // add few more layouts if you want
