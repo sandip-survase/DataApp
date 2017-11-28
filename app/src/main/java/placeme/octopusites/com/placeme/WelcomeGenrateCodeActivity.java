@@ -123,10 +123,14 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(instituteAlternatephone.length()>0){
-                    if(instituteAlternatephone.length()<8 || instituteAlternatephone.length()>10){
-                        errorFlagCompany=true;
+                    if(instituteAlternatephone.length()<8 ){
+                        errorFlagInstitute=true;
+                        instituteAlternatephone.setError("Enter valid phone number");
                     }
-                }
+                    else
+                        errorFlagInstitute=false;
+                }else
+                    errorFlagInstitute=false;
             }
 
             @Override
@@ -213,6 +217,32 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+
+        companyAlternatephone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(companyAlternatephone.length()>0){
+                    if(companyAlternatephone.length()<8 ){
+                        errorFlagCompany=true;
+                        companyAlternatephone.setError("Enter valid phone number");
+                    }else
+                        errorFlagCompany=false;
+                }
+                else
+                errorFlagCompany=false;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
