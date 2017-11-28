@@ -126,6 +126,7 @@ public class PushNotificationPreferences extends AppCompatActivity {
         preference4=sharedpreferences.getString("pref4",null);
         preference5=sharedpreferences.getString("pref5",null);
 
+
         role=sharedpreferences.getString("role",null);
 
         if(role.equals("hr"))
