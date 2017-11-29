@@ -25,11 +25,14 @@
     <color name="timestamp">#a0a3a7</color>
     <color name="viewBg">#f1f5f8</color>
     <color name="album_title">#4c4c4c</color>
-
     <color name="array_dot_active">#00bcd4</color>
     <color name="array_dot_inactive">#03353e</color>
-
     <color name="blackOlive">#eeeeee</color>
     <color name="bg_tag_default">#c59a6d</color>
+    <color name="black_overlay">#66000000</color>
+
+    <color name="while_color">#fcfdfd</color>
+    <color name="sky_blue_color">#00bcd4</color>
+    <color name="dark_color">#03353e</color>
 
 </resources>

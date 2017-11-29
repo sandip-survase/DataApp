@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -137,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     String placementreadstatus[];
     int placementpages=0;
     Menu menu;
+    public static final String MyPREFERENCES = "MyPrefs";
     private String plainusername,username="",fname="",mname="",sname="";
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
@@ -288,8 +288,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                     new GetUnreadCountOfNotificationAndPlacement().execute();
                     new GetUnreadMessagesCount().execute();
                     MessagesFragment fragment = (MessagesFragment)getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-                    if(fragment!=null)
-                        fragment.addMessages();
+                    fragment.addMessages();
                 }
             }
         };
@@ -320,13 +319,13 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             byte[] demo2EncryptedBytes1=SimpleBase64Encoder.decode(pass);
             byte[] demo2DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo2EncryptedBytes1);
             String data=new String(demo2DecryptedBytes1);
-            String hash=md5(data + MySharedPreferencesManager.getDigest3(this));
+            String hash=md5(data + MySharedPreferencesManager.getDigest3(MainActivity.this));
 
             loginFirebase(plainusername,hash);
 
-        }catch (Exception e){Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();}
+        }catch (Exception e){Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();}
 
-        MySharedPreferencesManager.save(this,"otp","no");
+        MySharedPreferencesManager.save(MainActivity.this,"otp", "no");
 
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         searchView.setVoiceSearch(false);
@@ -551,7 +550,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-
 
         final View hView =  navigationView.getHeaderView(0);
 
@@ -3057,7 +3055,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     {
         resultView.setImageDrawable(null);
 
-        MySharedPreferencesManager.save(this,"crop","yes");
+        MySharedPreferencesManager.save(MainActivity.this,"crop", "yes");
         chooseImage();
 
 
@@ -3065,16 +3063,10 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
-
-        digest1 = MySharedPreferencesManager.getDigest1(this);
-        digest2 = MySharedPreferencesManager.getDigest2(this);
-        username=MySharedPreferencesManager.getUsername(this);
-        String role=MySharedPreferencesManager.getRole(this);
-
-
 
         if(requestCode== Picker.PICK_IMAGE_DEVICE) {
 
@@ -3232,9 +3224,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             mainfragment.setVisibility(View.VISIBLE);
 
             if(response.get(0).contains("success")) {
-
-                MySharedPreferencesManager.save(MainActivity.this,"crop","no");
-
+                MySharedPreferencesManager.save(MainActivity.this,"crop", "no");
                 Toast.makeText(MainActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 requestProfileImage();
                 MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
