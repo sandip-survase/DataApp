@@ -313,9 +313,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        }
+
 
         setContentView(R.layout.activity_welcome);
 
@@ -390,7 +388,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         } catch (Exception e) {
         }
 
-        Log.d("TAG", "onCreate: **************** aid : " + android_id);
         //--------------------------------------------------- NEXT BUTTON ---------------------------------------------//
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -399,7 +396,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 Log.d("TAG", "onClick: currentposition -------------------------------- " + currentPosition);
                 Log.d("TAG", "onClick: path ------------------- " + path);
 
-                if (currentPosition == 0) {
+                if (currentPosition == 0) {                       //---------------------------------  0
                     plainUsername = usernameedittext.getText().toString().trim();
 
                     boolean usernameflag = false;
@@ -418,38 +415,38 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                         new ValidateUser().execute();
                     }
 
-                } else {
-
+                }
+                else if(currentPosition==1)                             //---------------------------------  1
+                {
                     if (path == 1)     // existing user
                     {
-                        if (currentPosition == 1) {
-                            passwordstr = passwordedittext.getText().toString();
-                            Log.d("TAG", "onClick: plain password : " + passwordstr);
-                            if (passwordstr.equals("")) {
-                                passwordedittext.setError("Field can not be empty");
-                            } else {
-                                try {
-                                    byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                                    byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                                    String sPadding = "ISO10126Padding";
+                        passwordstr = passwordedittext.getText().toString();
+                        Log.d("TAG", "onClick: plain password : " + passwordstr);
+                        if (passwordstr.equals("")) {
+                            passwordedittext.setError("Field can not be empty");
+                        } else {
+                            try {
+                                byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+                                byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
+                                String sPadding = "ISO10126Padding";
 
-                                    byte[] passwordBytes = passwordstr.getBytes("UTF-8");
+                                byte[] passwordBytes = passwordstr.getBytes("UTF-8");
 
-                                    byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, passwordBytes);
-                                    encPassword = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
+                                byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, passwordBytes);
+                                encPassword = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
 
-                                    MySharedPreferencesManager.save(Welcome.this, "passKey", encPassword);
+                                MySharedPreferencesManager.save(Welcome.this, "passKey", encPassword);
 
-                                    nextProgress.setVisibility(View.VISIBLE);
-                                    btnNext.setVisibility(View.GONE);
-                                    attemptLogin(encUsersName, encPassword);
+                                nextProgress.setVisibility(View.VISIBLE);
+                                btnNext.setVisibility(View.GONE);
+                                attemptLogin(encUsersName, encPassword);
 
-                                } catch (Exception e) {
-                                    Log.d("TAG", "onClick: pass exp " + e.getMessage());
-                                }
+                            } catch (Exception e) {
+                                Log.d("TAG", "onClick: pass exp " + e.getMessage());
                             }
                         }
-                    } else if (path == 2)        // new user
+                    }
+                    else if (path == 2)        // new user
                     {
                         mobileEditText.setError(null);
                         fnameEditText.setError(null);
@@ -498,123 +495,69 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                                 Log.d("TAG", "onClick: EXp " + e.getMessage());
                             }
                         }
+                    }
+                }
+                else if(currentPosition==2)                                 //---------------------------------  2
+                {
+                    if(path==2)
+                    {
+                        instOrEmailstr = instOrEmail.getText().toString();
+                        if (SELECTED_ROLE != null) {
+                            if (SELECTED_ROLE.equals("student") || SELECTED_ROLE.equals("alumni")) {
+                                instOrEmailstr = instOrEmailstr.toUpperCase();
+                            }
+                        }
+                        instOrEmail.setError(null);
 
-                        if (currentPosition == 2) {    //role
-
-                            instOrEmailstr = instOrEmail.getText().toString();
-                            if (SELECTED_ROLE != null) {
-                                if (SELECTED_ROLE.equals("student") || SELECTED_ROLE.equals("alumni")) {
-                                    instOrEmailstr = instOrEmailstr.toUpperCase();
+                        if (SELECTED_ROLE != null) {
+                            if (SELECTED_ROLE.equals("student") || SELECTED_ROLE.equals("alumni")) {
+                                if (instOrEmailstr.length() != 8) {
+                                    instoremailerror = true;
+                                    instOrEmail.setError("Incorrect Institute code");
                                 }
                             }
-                            instOrEmail.setError(null);
+                            if (SELECTED_ROLE.equals("admin")) {
+                                genrateCodeFlag = true;
+                                // for testing validation in comment  *****
 
-                            if (SELECTED_ROLE != null) {
-                                if (SELECTED_ROLE.equals("student") || SELECTED_ROLE.equals("alumni")) {
-                                    if (instOrEmailstr.length() != 8) {
-                                        instoremailerror = true;
-                                        instOrEmail.setError("Incorrect Institute code");
-                                    }
+                                if (!instOrEmailstr.contains("@")) {
+                                    instoremailerror = true;
+                                    instOrEmail.setError("Incorrect Email");
                                 }
-                                if (SELECTED_ROLE.equals("admin")) {
-                                    genrateCodeFlag = true;
-                                    // for testing validation in comment  *****
-
-                                    if (!instOrEmailstr.contains("@")) {
-                                        instoremailerror = true;
-                                        instOrEmail.setError("Incorrect Email");
-                                    }
 //                                    else if (!instOrEmailstr.contains(".edu")) {
 //                                        instoremaileror = true;
 //                                        instOrEmail.setError("Incorrect professional Email");
 //                                    }
 
+                            }
+                            if (SELECTED_ROLE.equals("hr")) {
+                                genrateCodeFlag = true;
+                                String email = instOrEmail.getText().toString().trim();
+                                if (!email.contains("@")) {
+                                    instoremailerror = true;
+                                    instOrEmail.setError("Incorrect Email");
                                 }
-                                if (SELECTED_ROLE.equals("hr")) {
-                                    genrateCodeFlag = true;
-                                    String email = instOrEmail.getText().toString().trim();
-                                    if (!email.contains("@")) {
-                                        instoremailerror = true;
-                                        instOrEmail.setError("Incorrect Email");
-                                    }
 //                                    else if (email.contains("gmail") || email.contains("yahoo") || email.contains("ymail") || email.contains("rediffmail") || email.contains("outlook") || email.contains("hotmail")) {
 //                                        instoremaileror = true;
 //                                        instOrEmail.setError("Incorrect professional Email");
 //                                    }
-                                }
-
-                                if (!instoremailerror) {
-                                    if (SELECTED_ROLE.equals("student") || SELECTED_ROLE.equals("alumni")) {
-
-                                        new checkUcode().execute(instOrEmailstr);
-
-                                    } else {
-                                        viewPager.setCurrentItem(3);
-                                        addBottomDots(3, 4);
-                                    }
-                                }
-
-                            } else
-                                Toast.makeText(Welcome.this, "select role", Toast.LENGTH_SHORT).show();
-
-                        }
-                        if (currentPosition == 3) {    //passwoord
-
-                            confirmPassword.setError(null);
-
-                            boolean errorflag = false;
-                            String enterpass = enterPassword.getText().toString();
-                            confrimpass = confirmPassword.getText().toString();
-
-                            if (!enterpass.equals(confrimpass)) {
-                                errorflag = true;
-                                confirmPassword.setError("confirm password not matched");
-                            } else if (enterpass.length() < 6 || confrimpass.length() < 6) {
-                                errorflag = true;
-                                confirmPassword.setError("Passwords must be at least 6 characters long");
                             }
-                            if (errorflag == false) {
 
-                                try {
-                                    byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                                    byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                                    String sPadding = "ISO10126Padding";
-                                    byte[] passwordBytes = confrimpass.getBytes("UTF-8");
-                                    byte[] passwordEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, passwordBytes);
-                                    encPassword = new String(SimpleBase64Encoder.encode(passwordEncryptedBytes));
-                                } catch (Exception e) {
-                                    Log.d("TAG", "onClick: EXp " + e.getMessage());
-                                }
-                                if (genrateCodeFlag == true) {
-                                    //save pref  password instcode
-                                    //call a servlet that will send activation code
-                                    //call otp activty
-                                    //verify otp (activation code)
-                                    //call activity like welcome
+                            if (!instoremailerror) {
+                                if (SELECTED_ROLE.equals("student") || SELECTED_ROLE.equals("alumni")) {
 
-                                    MySharedPreferencesManager.save(Welcome.this, "passKey", encPassword);
-                                    MySharedPreferencesManager.save(Welcome.this, "role", SELECTED_ROLE);
-                                    MySharedPreferencesManager.save(Welcome.this, "nameKey", encUsersName);
+                                    new checkUcode().execute(instOrEmailstr);
 
-                                    MySharedPreferencesManager.save(Welcome.this, "fname", encfname);
-                                    MySharedPreferencesManager.save(Welcome.this, "lname", enclname);
-                                    MySharedPreferencesManager.save(Welcome.this, "phone", encmobile);
-
-                                    Log.d("TAG", "save to shared encPassword " + encPassword);
-                                    Log.d("TAG", "save to shared SELECTED_ROLE " + SELECTED_ROLE);
-                                    Log.d("TAG", "save to shared encUsersName " + encUsersName);
-                                    Log.d("TAG", "save to shared fname " + encfname);
-                                    Log.d("TAG", "save to shared lname " + enclname);
-                                    Log.d("TAG", "save to shared phone " + encmobile);
-
-                                    new SendActivationCode().execute();
                                 } else {
-                                    nextProgress.setVisibility(View.INVISIBLE);
-                                    new SaveData().execute();
+                                    viewPager.setCurrentItem(3);
+                                    addBottomDots(3, 4);
                                 }
                             }
-                        }
-                    } else if (path == 3) {
+
+                        } else
+                            Toast.makeText(Welcome.this, "select role", Toast.LENGTH_SHORT).show();
+
+                    }else if (path == 3) {
 
                         errorFlagThroughAdminIntro = false;
                         fname = fnameEditText.getText().toString().trim();
@@ -638,8 +581,67 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                             new SaveDataUserCreatedThroughAdmin().execute();
                         }
                     }
-
                 }
+                else if(currentPosition==3)                                     //---------------------------------  3
+                {
+                    if(path==2)
+                    {
+                        confirmPassword.setError(null);
+
+                        boolean errorflag = false;
+                        String enterpass = enterPassword.getText().toString();
+                        confrimpass = confirmPassword.getText().toString();
+
+                        if (!enterpass.equals(confrimpass)) {
+                            errorflag = true;
+                            confirmPassword.setError("confirm password not matched");
+                        } else if (enterpass.length() < 6 || confrimpass.length() < 6) {
+                            errorflag = true;
+                            confirmPassword.setError("Passwords must be at least 6 characters long");
+                        }
+                        if (errorflag == false) {
+
+                            try {
+                                byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+                                byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
+                                String sPadding = "ISO10126Padding";
+                                byte[] passwordBytes = confrimpass.getBytes("UTF-8");
+                                byte[] passwordEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, passwordBytes);
+                                encPassword = new String(SimpleBase64Encoder.encode(passwordEncryptedBytes));
+                            } catch (Exception e) {
+                                Log.d("TAG", "onClick: EXp " + e.getMessage());
+                            }
+                            if (genrateCodeFlag == true) {
+                                //save pref  password instcode
+                                //call a servlet that will send activation code
+                                //call otp activty
+                                //verify otp (activation code)
+                                //call activity like welcome
+
+                                MySharedPreferencesManager.save(Welcome.this, "passKey", encPassword);
+                                MySharedPreferencesManager.save(Welcome.this, "role", SELECTED_ROLE);
+                                MySharedPreferencesManager.save(Welcome.this, "nameKey", encUsersName);
+
+                                MySharedPreferencesManager.save(Welcome.this, "fname", encfname);
+                                MySharedPreferencesManager.save(Welcome.this, "lname", enclname);
+                                MySharedPreferencesManager.save(Welcome.this, "phone", encmobile);
+
+                                Log.d("TAG", "save to shared encPassword " + encPassword);
+                                Log.d("TAG", "save to shared SELECTED_ROLE " + SELECTED_ROLE);
+                                Log.d("TAG", "save to shared encUsersName " + encUsersName);
+                                Log.d("TAG", "save to shared fname " + encfname);
+                                Log.d("TAG", "save to shared lname " + enclname);
+                                Log.d("TAG", "save to shared phone " + encmobile);
+
+                                new SendActivationCode().execute();
+                            } else {
+                                nextProgress.setVisibility(View.INVISIBLE);
+                                new SaveData().execute();
+                            }
+                        }
+                    }
+                }
+
 
 
             }
@@ -1045,7 +1047,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 viewPager.setCurrentItem(3);
                 addBottomDots(3, 4);
             } else
-                Toast.makeText(Welcome.this, "Invalid Institute Code/nPelase contact your TPO", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Welcome.this, "Invalid Institute Code\nPlease contact your TPO", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -1309,10 +1311,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
                 s = json.getString("info");
 
-                Log.d("TAG2", "json: " + json);
+                Log.d("TAG", "ValidateUser json: " + json);
 
             } catch (Exception e) {
-                Log.d("TAG", "doInBackground: 2 " + e.getMessage());
+                Log.d("TAG", "ValidateUser exp : " + e.getMessage());
             }
 
             return s;
