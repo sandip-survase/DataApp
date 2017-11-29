@@ -1362,7 +1362,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                     } catch (Exception e) {
                     }
 
-                    new GetMessagesReadStatus(username,tempusername,sender_uid, reciever_uid[i],i).execute();
+//                    new GetMessagesReadStatus(username,tempusername,sender_uid, reciever_uid[i],i).execute();
                 }
 
             }

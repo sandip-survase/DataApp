@@ -913,7 +913,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         @Override
         protected void onPostExecute(String result) {
 
-
             String salt = MySharedPreferencesManager.getDigest3(Welcome.this);
             Log.d("TAG", "plain salt " + salt);
 

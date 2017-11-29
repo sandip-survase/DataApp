@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -33,10 +34,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +68,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
     public int pos;
     Boolean errorFlagInstitute = false, errorFlagCompany = false;
     String digest1, digest2;
-    String CompanyType = "";
+    String CompanyType = "",resultofop;
     private int path;
     JSONParser jsonParser = new JSONParser();
     JSONObject json;
@@ -352,6 +361,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 } else if (ROLE != null && ROLE.equals("hr")) {            // OR  Hr
 
                     if (currentPosition == 0) {
+                        errorFlagCompany=false;
                         sCompanyName = companyName.getText().toString();
                         sCompanyAddress = companyAddress.getText().toString();
                         sCompanyEmail = companyEmail.getText().toString();
@@ -780,6 +790,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             if (result!=null && result.equals("success")) {
+                new CreateFirebaseUser(encUsername,encPassword).execute();
                 Toast.makeText(WelcomeGenrateCodeActivity.this, CODE, Toast.LENGTH_SHORT).show();
                 Log.d("TAG", "hr comp code ===============================   " + CODE);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
@@ -795,6 +806,105 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
             }
         }
+    }
+
+    class CreateFirebaseUser extends AsyncTask<String, String, String> {
+
+        String u, p;
+
+        CreateFirebaseUser(String u, String p) {
+            this.u = u;
+            this.p = p;
+        }
+
+        protected String doInBackground(String... param) {
+
+
+            String fname=MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this,"fname");
+            String lname=MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this,"lname");
+            String encfullName=fname+" "+lname;
+            String encPhone=MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this,"phone");
+
+            if(encfullName==null)
+                encfullName="Name_Not_Found_From_shared";
+            if(encPhone==null)
+                encPhone="Phone_Not_Found_From_shared";
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", u));
+            params.add(new BasicNameValuePair("p", p));
+            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
+            json = jsonParser.makeHttpRequest(MyConstants.url_create_firebase, "GET", params);
+            Log.d("TAG", "Firebase: "+json);
+            try {
+                resultofop = json.getString("info");
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return resultofop;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            String plainusername = null;
+            String plainPassword = null;
+            try {
+                plainusername = AES4all.Decrypt(encUsername,digest1,digest2);
+                plainPassword = AES4all.Decrypt(encPassword,digest1,digest2);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            String hash=md5(plainPassword + MySharedPreferencesManager.getDigest3(WelcomeGenrateCodeActivity.this));
+            loginFirebase(plainusername, hash);
+            Toast.makeText(WelcomeGenrateCodeActivity.this, resultofop, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    void loginFirebase(String username, String hash) {
+
+        FirebaseAuth.getInstance()
+                .signInWithEmailAndPassword(username, hash)
+                .addOnCompleteListener(WelcomeGenrateCodeActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+
+                        if (task.isSuccessful()) {
+                            Toast.makeText(WelcomeGenrateCodeActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(WelcomeGenrateCodeActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+
+    public static String md5(String input) {
+
+        String md5 = null;
+
+        if (null == input) return null;
+
+        try {
+
+            //Create MessageDigest object for MD5
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+
+            //Update input string in message digest
+            digest.update(input.getBytes(), 0, input.length());
+
+            //Converts message digest value in base 16 (hex)
+            md5 = new BigInteger(1, digest.digest()).toString(16);
+
+        } catch (NoSuchAlgorithmException e) {
+
+            e.printStackTrace();
+        }
+        return md5;
     }
 
 
