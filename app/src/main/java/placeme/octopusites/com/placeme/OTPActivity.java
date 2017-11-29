@@ -216,15 +216,14 @@ public class OTPActivity extends AppCompatActivity {
 
                     if (role.equals("student")) {
 
+                        new AddStudentUnderAdmin().execute();
                         startActivity(new Intent(OTPActivity.this, MainActivity.class));
                         finish();
                     } else if (role.equals("admin")) {
-
-
+                        new AddStudentUnderAdmin().execute();
                         startActivity(new Intent(OTPActivity.this, AdminActivity.class));
                         finish();
                     } else if (role.equals("alumni")) {
-
 
                         startActivity(new Intent(OTPActivity.this, AlumniActivity.class));
                         finish();
@@ -327,6 +326,30 @@ public class OTPActivity extends AppCompatActivity {
             }
 
             resendotp.setVisibility(View.VISIBLE);
+
+        }
+    }
+
+    class AddStudentUnderAdmin extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("ud", encUsername));
+
+            json = jParser.makeHttpRequest(MyConstants.url_AddStudentUnderAdmin, "GET", params);
+            try {
+                resultofop = json.getString("info");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
 
         }
     }
