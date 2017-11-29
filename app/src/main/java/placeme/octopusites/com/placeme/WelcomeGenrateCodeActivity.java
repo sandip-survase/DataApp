@@ -114,30 +114,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, countrieslist);
         countryAutoBox.setAdapter(adapter);
 
-        instituteAlternatephone.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(instituteAlternatephone.length()>0){
-                    if(instituteAlternatephone.length()<8 ){
-                        errorFlagInstitute=true;
-                        instituteAlternatephone.setError("Enter valid phone number");
-                    }
-                    else
-                        errorFlagInstitute=false;
-                }else
-                    errorFlagInstitute=false;
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
     }
 
 
@@ -217,32 +194,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-
-        companyAlternatephone.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(companyAlternatephone.length()>0){
-                    if(companyAlternatephone.length()<8 ){
-                        errorFlagCompany=true;
-                        companyAlternatephone.setError("Enter valid phone number");
-                    }else
-                        errorFlagCompany=false;
-                }
-                else
-                errorFlagCompany=false;
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
             }
         });
 
@@ -335,6 +286,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                     Log.d("TAG", "onClick: curent pos " + currentPosition);
 
                     if (currentPosition == 0) {
+                        errorFlagInstitute = false;
                         sInstituteName = instituteName.getText().toString();
                         sInstituteAddress = instituteAddress.getText().toString();
                         Log.d("TAG", "onClick: sInstituteAddress " + sInstituteAddress);
@@ -363,7 +315,10 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                             institutewebsite.setError("Enter valid Website url");
                         } else if (sInstitutephone.length() < 8) {
                             errorFlagInstitute = true;
-                            institutephone.setError("Invalid phone");
+                            institutephone.setError("Invalid phone number");
+                        }else if(instituteAlternatephone.length()>0 && instituteAlternatephone.length()<8){
+                            errorFlagInstitute = true;
+                            instituteAlternatephone.setError("Invalid phone number");
                         } else if (sUniversity.length() < 2) {
                             errorFlagInstitute = true;
                             university.setError("Enter Valid University Name");
@@ -426,7 +381,10 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                             companyWebsite.setError("Enter valid website url");
                         } else if (sCompanyPhone.length() < 8) {
                             errorFlagCompany = true;
-                            companyPhone.setError("Invalid phone");
+                            companyPhone.setError("Invalid phone number");
+                        }else if(companyAlternatephone.length()>0 && companyAlternatephone.length()<8){
+                            errorFlagCompany = true;
+                            companyAlternatephone.setError("Invalid phone number");
                         } else if (sCIN.length() < 3) {
                             errorFlagCompany = true;
                             CIN.setError("Invalid CIN");
