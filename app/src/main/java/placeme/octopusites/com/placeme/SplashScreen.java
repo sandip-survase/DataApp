@@ -13,6 +13,7 @@ import android.provider.Settings.Secure;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -88,6 +89,12 @@ public class SplashScreen extends Activity {
         super.onCreate(paramBundle);
         setContentView(R.layout.activity_splashscreen);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        TextView poweredbyid=(TextView)findViewById(R.id.poweredbyid);
+        TextView companynamesplash=(TextView)findViewById(R.id.companynamesplash);
+
+        poweredbyid.setTypeface(MyConstants.getLight(this));
+        companynamesplash.setTypeface(MyConstants.getBold(this));
 
 // my code
 //        CaocConfig.Builder.create()

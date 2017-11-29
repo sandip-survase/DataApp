@@ -8,6 +8,13 @@
     android:background="#fcfdfd"
     tools:context="placeme.octopusites.com.placeme.WelcomeEmailFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/welcometextviewcontext1"
@@ -20,16 +27,28 @@
         android:textColor="#03353e"
         android:textSize="16dp" />
 
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/welcometextviewcontext1"
+        android:src="@drawable/logo"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/logo"
+        />
+
     <TextView
         android:id="@+id/welcometextviewcontext2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/welcometextviewcontext1"
+        android:layout_below="@+id/logo"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
         android:text="It's time to set up your account. Let's start by entering your email id."
         android:textColor="#03353e"
         android:textSize="14dp" />
+
+
 
     <ImageView
         android:id="@+id/enteremailimage"
@@ -58,12 +77,13 @@
             android:textSize="16dp"
             android:textColor="#03353e"
             android:maxLength="100"
+            android:digits="abcdefghijklmnopqrstuvwxyz0123456789@._"
             android:inputType="textEmailAddress"
             android:singleLine="true"
             android:id="@+id/welcomeusername"/>
 
     </android.support.design.widget.TextInputLayout>
 
-
-
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

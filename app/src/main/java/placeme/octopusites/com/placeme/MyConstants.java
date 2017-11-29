@@ -1,10 +1,14 @@
 package placeme.octopusites.com.placeme;
 
+import android.app.Activity;
+import android.graphics.Typeface;
+
 /**
  * Created by admin on 9/27/2017.
  */
 
 public class MyConstants {
+
 
     public static final int USER_DATA_CHANGE_RESULT_CODE=888;
     public static final String USERNAME_KEY = "nameKey";
@@ -125,6 +129,20 @@ public static String savepersonalinfo = "http://192.168.100.10:8080/ProfileObjec
     public static final String url_SaveAndGenrateInstituteCode = "http://192.168.100.20:8080/AESTest/SaveAndGenrateInstituteCode";
     public static final String url_SaveAndGenrateCompanyCode = "http://192.168.100.100/AESTest/SaveAndGenrateCompanyCode";
     public static final String url_checkUcode = "http://192.168.100.100/AESTest/checkUcode";
+
+
+    public static Typeface getFA(Activity activity)
+    {
+        return Typeface.createFromAsset(activity.getAssets(),  "fonts/fa.ttf");
+    }
+    public static Typeface getBold(Activity activity)
+    {
+        return Typeface.createFromAsset(activity.getAssets(),  "fonts/nunitobold.ttf");
+    }
+    public static Typeface getLight(Activity activity)
+    {
+        return Typeface.createFromAsset(activity.getAssets(),  "fonts/nunitolight.ttf");
+    }
 
     //--
 
