@@ -1822,7 +1822,9 @@ public class AdminExperiencesTabFragment extends Fragment {
         todates8 = a.getTodate8e();
         todates9 = a.getTodate9e();
         todates10 = a.getTodate10e();
+
         // if posts1 is not equal ""  i.e  inst,fromdate,todate has some value from a object
+
         if (!posts1.equals("")) {
             post1.setText(posts1);
             inst11.setText(inst1s1);

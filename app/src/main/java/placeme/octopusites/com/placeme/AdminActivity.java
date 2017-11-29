@@ -79,9 +79,11 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
+    public static final int ADMIN_DATA_CHANGE_RESULT_CODE =111;
     private static String url = "http://192.168.100.100/AESTest/GetImage";
     private static String upload_profile = "http://192.168.100.100/AESTest/UploadProfile";
     private static String load_student_image = "http://192.168.100.100/AESTest/GetImage";
+
     //placement urls
     private static String url_getplacementsmetadata = "http://192.168.100.30/CreateNotificationTemp/GetPlacementsAdminMetaData";
     private static String url_getplacementsreadstatus = "http://192.168.100.30/CreateNotificationTemp/GetReadStatusOfPlacementsForAdmin";
@@ -1475,10 +1477,12 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         Digest d = new Digest();
         d.setDigest1(digest1);
         d.setDigest2(digest2);
-        if (resultCode == 111) {
+        if (resultCode == ADMIN_DATA_CHANGE_RESULT_CODE) {
+            Log.d("TAG", "onActivityResult: result code "+ADMIN_DATA_CHANGE_RESULT_CODE);
             AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
             fragment.refreshContent();
-        } else if (requestCode == Picker.PICK_IMAGE_DEVICE) {
+        }
+        else if (requestCode == Picker.PICK_IMAGE_DEVICE) {
 
             try {
 

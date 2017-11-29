@@ -58,7 +58,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
     SharedPreferences sharedpreferences;
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String Username = "nameKey";
-    private static String url_savedata= "http://192.168.100.30:8080/ProfileObjects/SaveAdminInstituteData";
+
 
     AdminData a =new AdminData();
     //
@@ -414,7 +414,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
 
 
 
-            json = jParser.makeHttpRequest(url_savedata, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_SaveAdminInstituteData, "GET", params);
             try {
 //                Log.d("Reversecheck", "doInBackground: "+json.getString("dataobj"));
                 r = json.getString("info");

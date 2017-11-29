@@ -2,46 +2,33 @@ package placeme.octopusites.com.placeme;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.joda.time.DateTime;
-import org.joda.time.Months;
 import org.joda.time.Years;
 import org.json.JSONObject;
-
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -50,13 +37,16 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import placeme.octopusites.com.placeme.modal.AdminPersonal;
+
+import static placeme.octopusites.com.placeme.AES4all.OtoString;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 public class AdminPersonalTabFragment extends Fragment {
 
-    String digest1, digest2;
-
+    public static final String MyPREFERENCES = "MyPrefs";
+    public static final String Username = "nameKey";
+    String digest1, digest2, encobj = "";
     EditText role, inst, fnameedittext, mnameedittext, snameedittext, nameastenedittext, caddrline1, caddrline2, caddrline3, paddrline1, paddrline2, paddrline3, emailedittext, phoneedittext, profileaemail, mothernameedittext, dobedittext, mobileedittext, alternatemobileedittext, mothertongueedittext, hobbiesedittext, casteedittext, prnedittext, languagesknownedittext;
     RadioButton radioButtonMale, radioButtonFemale, radioButtonHandicappedNo, radioButtonHandicappedYes, radioButtonSportsNo, radioButtonSportsState, radioButtonSportsNational, radioButtonSportsInternational, radioButtonDefenceNo, radioButtonDefence, radioButtonExserviceman;
     Spinner bloodgrpspinner, categoryspinner, religionspinner;
@@ -70,12 +60,6 @@ public class AdminPersonalTabFragment extends Fragment {
     JSONObject json;
     JSONParser jParser = new JSONParser();
     SharedPreferences sharedpreferences;
-    public static final String MyPREFERENCES = "MyPrefs";
-    public static final String Username = "nameKey";
-
-    private static String url_savedata = "http://192.168.100.100/AESTest/SaveAdminPersonal";
-
-
     int countrycount = 0, statecount = 0, citycount = 0;
     String firstname = "", lastname = "", instname = "";
     String oldCountry = "", oldState = "", oldCity = "";
@@ -86,9 +70,9 @@ public class AdminPersonalTabFragment extends Fragment {
     List<String> citieslist = new ArrayList<String>();
     String selectedCountry = "", selectedState = "", selectedCity = "";
     String encUsername, encRole, encemail, encFname, encLname, encCountry, encState, encCity, encInst;
-//    Button save;
+    //    Button save;
     String username, plainusername;
-//    ProgressBar personalprogress;
+    //    ProgressBar personalprogress;
     View rootView;
 
 
@@ -96,7 +80,15 @@ public class AdminPersonalTabFragment extends Fragment {
     AdminData a = new AdminData();
     StudentData s = new StudentData();
     int edittedFlag = 0, isCountrySet = 0, isStateSet = 0, isCitySet = 0;
+    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
 
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+
+            dobedittext.setText(String.valueOf(dayOfMonth) + "/" + String.valueOf(monthOfYear + 1)
+                    + "/" + String.valueOf(year));
+        }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -166,10 +158,9 @@ public class AdminPersonalTabFragment extends Fragment {
         mname = a.getMname();
         sname = a.getLname();
         sinst = a.getInstitute();
+
         alternateemail = s.getEmail2();
         dob = s.getDob();
-//        Toast.makeText(getActivity(), "DOB"+dob, Toast.LENGTH_LONG).show();
-
         gender = s.getGender();
         addrline1c = s.getAddressline1();
         addrline2c = s.getAddressline2();
@@ -401,9 +392,13 @@ public class AdminPersonalTabFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 caddrline1.setError(null);
                 String Editvalue = caddrline1.getText().toString();
-                if (!addrline1c.equals(Editvalue)) {
-                    edittedFlag = 1;
-                    CheckBoxPSC.setChecked(false);
+                if (addrline1c != null) {
+                    if (!addrline1c.equals(Editvalue)) {
+                        edittedFlag = 1;
+                        CheckBoxPSC.setChecked(false);
+                    }
+                } else {
+                    addrline1c = "";
                 }
             }
 
@@ -422,9 +417,14 @@ public class AdminPersonalTabFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 caddrline2.setError(null);
                 String Editvalue = caddrline2.getText().toString();
-                if (!addrline2c.equals(Editvalue)) {
-                    edittedFlag = 1;
-                    CheckBoxPSC.setChecked(false);
+                if (addrline2c != null) {
+                    if (!addrline2c.equals(Editvalue)) {
+                        edittedFlag = 1;
+                        CheckBoxPSC.setChecked(false);
+                    }
+
+                } else {
+                    addrline2c = "";
                 }
             }
 
@@ -443,9 +443,14 @@ public class AdminPersonalTabFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 caddrline3.setError(null);
                 String Editvalue = caddrline3.getText().toString();
-                if (!addrline3c.equals(Editvalue)) {
-                    edittedFlag = 1;
-                    CheckBoxPSC.setChecked(false);
+                if (addrline3c != null) {
+
+                    if (!addrline3c.equals(Editvalue)) {
+                        edittedFlag = 1;
+                        CheckBoxPSC.setChecked(false);
+                    }
+                } else {
+                    addrline3c = "";
                 }
             }
 
@@ -565,35 +570,35 @@ public class AdminPersonalTabFragment extends Fragment {
 
     }
 
-    public Boolean validate(){
+    public Boolean validate() {
 
-        errorflag1=0;
+        errorflag1 = 0;
 
-        fname=fnameedittext.getText().toString();
-        mname=mnameedittext.getText().toString();
-        sname=snameedittext.getText().toString();
-        srole= role.getText().toString();
-        semail=emailedittext.getText().toString();
-        alternateemail=profileaemail.getText().toString();
+        fname = fnameedittext.getText().toString();
+        mname = mnameedittext.getText().toString();
+        sname = snameedittext.getText().toString();
+        srole = role.getText().toString();
+        semail = emailedittext.getText().toString();
+        alternateemail = profileaemail.getText().toString();
         sinst = inst.getText().toString();
-        dob=dobedittext.getText().toString();
+        dob = dobedittext.getText().toString();
 
-        addrline1c=caddrline1.getText().toString();
-        addrline2c=caddrline2.getText().toString();
-        addrline3c=caddrline3.getText().toString();
-        addrline1p=paddrline1.getText().toString();
-        addrline2p=paddrline2.getText().toString();
-        addrline3p=paddrline3.getText().toString();
+        addrline1c = caddrline1.getText().toString();
+        addrline2c = caddrline2.getText().toString();
+        addrline3c = caddrline3.getText().toString();
+        addrline1p = paddrline1.getText().toString();
+        addrline2p = paddrline2.getText().toString();
+        addrline3p = paddrline3.getText().toString();
 
         DateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
         DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String outputDateStrlastdateofreg="";
+        String outputDateStrlastdateofreg = "";
         try {
             Date date = inputFormat.parse(dob);
             outputDateStrlastdateofreg = outputFormat.format(date);
-            dob=outputDateStrlastdateofreg;
-        }catch (Exception e){
-            Toast.makeText(getContext(),"Enter Date of Birth Correctly..!", Toast.LENGTH_SHORT).show();
+            dob = outputDateStrlastdateofreg;
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "Enter Date of Birth Correctly..!", Toast.LENGTH_SHORT).show();
             dobedittext.setError("Invalid Date");
         }
 
@@ -603,8 +608,8 @@ public class AdminPersonalTabFragment extends Fragment {
             selectedId = radioGroupGender.getCheckedRadioButtonId();
             tempradiobutton = (RadioButton) rootView.findViewById(selectedId);
             gender = tempradiobutton.getText().toString().trim();
-        }catch (Exception e) {
-            errorflag1=1;
+        } catch (Exception e) {
+            errorflag1 = 1;
             Toast.makeText(getActivity(), "Select Gender", Toast.LENGTH_LONG).show();
         }
 
@@ -612,131 +617,68 @@ public class AdminPersonalTabFragment extends Fragment {
         if (fname.length() < 2) {
             fnameedittext.setError("Incorrect First Name");
             errorflag1 = 1;
-        } else  if (mname.length() < 2) {
+        } else if (mname.length() < 2) {
             mnameedittext.setError("Incorrect Middle Name");
             errorflag1 = 1;
-        } else  if (sname.length() < 2) {
+        } else if (sname.length() < 2) {
             snameedittext.setError("Incorrect Last Name");
             errorflag1 = 1;
         } else if (!alternateemail.contains("@")) {
             profileaemail.setError("Incorrect Email Address");
             errorflag1 = 1;
-        } else if (sinst.length()<2) {
+        } else if (sinst.length() < 2) {
             inst.setError("Incorrect Institute name");
             errorflag1 = 1;
-        }
-
-//        else if (gender.length()<2) {
-//            int selectedId;
-//            RadioButton tempradiobutton;
-//            try {
-//                Toast.makeText(getActivity(), "gender:"+gender, Toast.LENGTH_SHORT).show();
-//                selectedId = radioGroupGender.getCheckedRadioButtonId();
-//                tempradiobutton = (RadioButton) rootView.findViewById(selectedId);
-//                gender = tempradiobutton.getText().toString().trim();
-//
-//
-//            }catch (Exception e) {
-//                errorflag1 = 1;
-//                Toast.makeText(getActivity(), "Select Gender", Toast.LENGTH_LONG).show();
-//            }
-//        }
-        else if(dob.length()<2){
-            Toast.makeText(getContext(),"Select date", Toast.LENGTH_SHORT).show();
+        } else if (dob.length() < 2) {
+            Toast.makeText(getContext(), "Select date", Toast.LENGTH_SHORT).show();
             errorflag1 = 1;
-        }
-
-        else if (addrline1c.length()<2) {
+        } else if (addrline1c.length() < 2) {
             caddrline1.setError("Incorrect Address");
             errorflag1 = 1;
-        } else if (addrline2c.length()<2) {
+        } else if (addrline2c.length() < 2) {
             caddrline2.setError("Incorrect Address");
             errorflag1 = 1;
-        }else if (addrline3c.length()<2) {
+        } else if (addrline3c.length() < 2) {
             caddrline3.setError("Incorrect Address");
             errorflag1 = 1;
-        }else if (addrline1p.length()<2) {
+        } else if (addrline1p.length() < 2) {
             paddrline1.setError("Incorrect Address");
             errorflag1 = 1;
-        }else if (addrline2p.length()<2) {
+        } else if (addrline2p.length() < 2) {
             paddrline2.setError("Incorrect Address");
             errorflag1 = 1;
-        } else if (addrline3p.length()<2) {
+        } else if (addrline3p.length() < 2) {
             paddrline3.setError("Incorrect Address");
             errorflag1 = 1;
         }
-        if(errorflag1==0)
+        if (errorflag1 == 0)
             return true;
 
         return false;
     }
 
-    public void save(){
+    public void save() {
 
         if (errorflag1 == 0) {
-//            Toast.makeText(getActivity(), "everything is validated", Toast.LENGTH_SHORT).show();
-//            save.setVisibility(View.GONE);
-//            personalprogress.setVisibility(View.VISIBLE);
-
-
             try {
-                byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                String sPadding = "ISO10126Padding";
+
+                Log.d("TAG", "save: fname - "+fname);
+                Log.d("TAG", "save: mname - "+mname);
+                Log.d("TAG", "save: lname - "+sname);
+                Log.d("TAG", "save: alternateemail - "+alternateemail);
+                Log.d("TAG", "save: sinst - "+sinst);
+                Log.d("TAG", "save: dob - "+dob);
+                Log.d("TAG", "save: gender - "+gender);
+                Log.d("TAG", "save: addrline1c - "+addrline1c);
+                Log.d("TAG", "save: addrline2c - "+addrline2c);
+                Log.d("TAG", "save: addrline3c - "+addrline3c);
 
 
-                byte[] fnameBytes = fname.getBytes("UTF-8");
-                byte[] mnameBytes = mname.getBytes("UTF-8");
-                byte[] snameBytes = sname.getBytes("UTF-8");
-                byte[] roleBytes = srole.getBytes("UTF-8");
-                byte[] emailnBytes = semail.getBytes("UTF-8");
-                byte[] alternateemailBytes = alternateemail.getBytes("UTF-8");
-                byte[] instBytes = sinst.getBytes("UTF-8");
-                byte[] dobBytes = dob.getBytes("UTF-8");
-                byte[] genderBytes = gender.getBytes("UTF-8");
-                byte[] addrline1cBytes = addrline1c.getBytes("UTF-8");
-                byte[] addrline2cBytes = addrline2c.getBytes("UTF-8");
-                byte[] addrline3cBytes = addrline3c.getBytes("UTF-8");
-                byte[] addrline1pBytes = addrline1p.getBytes("UTF-8");
-                byte[] addrline2pBytes = addrline2p.getBytes("UTF-8");
-                byte[] addrline3pBytes = addrline3p.getBytes("UTF-8");
-
-                byte[] fnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fnameBytes);
-                encfname = new String(SimpleBase64Encoder.encode(fnameEncryptedBytes));
-                byte[] mnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, mnameBytes);
-                encmname = new String(SimpleBase64Encoder.encode(mnameEncryptedBytes));
-                byte[] snameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, snameBytes);
-                encsname = new String(SimpleBase64Encoder.encode(snameEncryptedBytes));
-
-                byte[] roleEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, roleBytes);
-                encRole = new String(SimpleBase64Encoder.encode(roleEncryptedBytes));
-
-                byte[] emailEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, emailnBytes);
-                encemail = new String(SimpleBase64Encoder.encode(emailEncryptedBytes));
-                byte[] alternateemailEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, alternateemailBytes);
-                encalternateemail = new String(SimpleBase64Encoder.encode(alternateemailEncryptedBytes));
-                byte[] instEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, instBytes);
-                encInst = new String(SimpleBase64Encoder.encode(instEncryptedBytes));
-
-                byte[] dobEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, dobBytes);
-                encdob = new String(SimpleBase64Encoder.encode(dobEncryptedBytes));
-                byte[] genderEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, genderBytes);
-                encgender = new String(SimpleBase64Encoder.encode(genderEncryptedBytes));
-                byte[] addrline1cEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, addrline1cBytes);
-                encaddrline1c = new String(SimpleBase64Encoder.encode(addrline1cEncryptedBytes));
-                byte[] addrline2cEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, addrline2cBytes);
-                encaddrline2c = new String(SimpleBase64Encoder.encode(addrline2cEncryptedBytes));
-                byte[] addrline3cEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, addrline3cBytes);
-                encaddrline3c = new String(SimpleBase64Encoder.encode(addrline3cEncryptedBytes));
-                byte[] addrline1pEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, addrline1pBytes);
-                encaddrline1p = new String(SimpleBase64Encoder.encode(addrline1pEncryptedBytes));
-                byte[] addrline2pEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, addrline2pBytes);
-                encaddrline2p = new String(SimpleBase64Encoder.encode(addrline2pEncryptedBytes));
-                byte[] addrline3pEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, addrline3pBytes);
-                encaddrline3p = new String(SimpleBase64Encoder.encode(addrline3pEncryptedBytes));
-
-
+                AdminPersonal obj = new AdminPersonal(fname, mname, sname, alternateemail, sinst, dob, gender, addrline1c, addrline2c, addrline3c, addrline1p, addrline2p, addrline3p);
+                encobj = OtoString(obj, digest1, digest2);
+                Log.d("TAG", "save: encobj - "+encobj);
                 new SaveData().execute();
+
 
             } catch (Exception e) {
                 Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
@@ -744,6 +686,49 @@ public class AdminPersonalTabFragment extends Fragment {
 
         }
     }
+
+    class SaveData extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", encUsername));   //0
+            params.add(new BasicNameValuePair("p", encobj));     //1
+
+            json = jParser.makeHttpRequest(MyConstants.url_SaveAdminPersonal, "GET", params);
+
+
+            try {
+                r = json.getString("info");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (result.equals("success")) {
+                Toast.makeText(getActivity(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+                if (edittedFlag == 1) {
+                    getActivity().setResult(111);
+
+                }
+                edittedFlag = 0;
+//                personalprogress.setVisibility(View.GONE);
+//                save.setVisibility(View.VISIBLE);
+            } else {
+                Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
+
+            }
+        }
+    }
+
+
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -773,112 +758,6 @@ public class AdminPersonalTabFragment extends Fragment {
         date.setCallBack(ondate);
         date.show(getFragmentManager(), "Date Picker");
     }
-
-    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
-
-        public void onDateSet(DatePicker view, int year, int monthOfYear,
-                              int dayOfMonth) {
-
-            dobedittext.setText(String.valueOf(dayOfMonth) + "/" + String.valueOf(monthOfYear + 1)
-                    + "/" + String.valueOf(year));
-        }
-    };
-
-
-    class SaveData extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", encUsername));   //0
-            params.add(new BasicNameValuePair("fn", encfname));     //1
-            params.add(new BasicNameValuePair("mn", encmname));     //2
-            params.add(new BasicNameValuePair("sn", encsname));     //3
-            params.add(new BasicNameValuePair("eroll", encRole));     //4
-            params.add(new BasicNameValuePair("em", encemail));     //5
-            params.add(new BasicNameValuePair("ae", encalternateemail)); //6
-            params.add(new BasicNameValuePair("in", encInst));      //7
-            params.add(new BasicNameValuePair("db", encdob));       //8
-            params.add(new BasicNameValuePair("g", encgender));              //9
-            params.add(new BasicNameValuePair("cdr1", encaddrline1c));       //10
-            params.add(new BasicNameValuePair("cdr2", encaddrline2c));       //11
-            params.add(new BasicNameValuePair("cdr3", encaddrline3c));       //12
-            params.add(new BasicNameValuePair("pdr1", encaddrline1p));       //13
-            params.add(new BasicNameValuePair("pdr2", encaddrline2p));       //14
-            params.add(new BasicNameValuePair("pdr3", encaddrline3p));       //15
-
-            json = jParser.makeHttpRequest(url_savedata, "GET", params);
-            try {
-                r = json.getString("info");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            if (result.equals("success")) {
-                Toast.makeText(getActivity(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
-                if (edittedFlag == 1) {
-                    getActivity().setResult(111);
-
-                }
-                 edittedFlag=0;
-//                personalprogress.setVisibility(View.GONE);
-//                save.setVisibility(View.VISIBLE);
-            } else {
-                Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
-
-            }
-        }
-    }
-
-
-//    @Override
-//    public void onBackPressed() {
-//        if (!oldCountry.equals(selectedCountry) || !oldState.equals(selectedState) || !oldCity.equals(selectedCity) || edittedFlag == 1) {
-//            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-//
-//            alertDialogBuilder
-//                    .setMessage("Do you want to discard changes ?")
-//                    .setCancelable(false)
-//                    .setPositiveButton("Discard",
-//                            new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int id) {
-//                                    AdminIntro.super.onBackPressed();
-//                                }
-//                            })
-//
-//                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int id) {
-//
-//                            dialog.cancel();
-//                        }
-//                    });
-//
-//            final AlertDialog alertDialog = alertDialogBuilder.create();
-//
-//            alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-//                @Override
-//                public void onShow(DialogInterface dialogInterface) {
-//                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-//                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
-//                }
-//            });
-//
-//            alertDialog.show();
-//
-//        }
-//        else
-//            AdminIntro.super.onBackPressed();
-//
-//    }
-
 
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         Animation animation = super.onCreateAnimation(transit, enter, nextAnim);
@@ -914,6 +793,7 @@ public class AdminPersonalTabFragment extends Fragment {
 
         return animation;
     }
+
 
 
 }

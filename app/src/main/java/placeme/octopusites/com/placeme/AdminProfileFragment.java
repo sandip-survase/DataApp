@@ -55,6 +55,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import placeme.octopusites.com.placeme.modal.AdminContactDetailsModal;
 import placeme.octopusites.com.placeme.modal.AdminInstituteModal;
 import placeme.octopusites.com.placeme.modal.AdminIntroModal;
+import placeme.octopusites.com.placeme.modal.AdminPersonal;
+import placeme.octopusites.com.placeme.modal.Experiences;
+import placeme.octopusites.com.placeme.modal.Honors;
+import placeme.octopusites.com.placeme.modal.KnownLangs;
+import placeme.octopusites.com.placeme.modal.Patents;
+import placeme.octopusites.com.placeme.modal.Publications;
+import placeme.octopusites.com.placeme.modal.Skills;
 
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.fromString;
@@ -67,7 +74,7 @@ public class AdminProfileFragment extends Fragment {
     final static CharSequence[] items = {"View Profile Picture", "Update Profile Picture", "Delete Profile Picture"};
     RelativeLayout editprofilerl;
     RelativeLayout exptab2,exptab3;
-
+String experiencesataobject="";
 
     int val1=0,val2=0;
 
@@ -80,14 +87,15 @@ public class AdminProfileFragment extends Fragment {
 
     //sssss
     AdminData a = new AdminData();
-    StudentData s=new StudentData();
+    StudentData studentData=new StudentData();
     ProgressBar mainloadingbar,updateProgress;
     SwipeRefreshLayout swipe_refresh_layout;
     ProgressBar profileprogress;
     JSONParser jParser = new JSONParser();
     JSONObject json;
+
 //    private static String load_Admin_data = "http://192.168.100.100/AESTest/GetAdminData";
-        private static String load_Admin_data = "http://192.168.100.30:8080/ProfileObjects/GetAdminData";
+
 
     private static String load_student_image = "http://192.168.100.100/AESTest/GetImage";
     private static String remove_profile = "http://192.168.100.100/AESTest/RemoveImage";
@@ -99,7 +107,7 @@ public class AdminProfileFragment extends Fragment {
     String username = "", resultofop;
 
     int found_lang=0, found_AdminIntro = 0,found_institute=0,found_box2=0,found_skills=0,found_honors=0,found_patents=0,found_publications=0;
-    int found_contact_details=0,found_personal=0,found_experiences=0,found_admin_personal=0;
+    int found_contact_details=0,found_personal=0,found_exp=0,found_admin_personal=0;
     int intfromdat1=0,inttodate1=0,intfromdate2=0,inttodate2=0;
 
 
@@ -113,7 +121,7 @@ public class AdminProfileFragment extends Fragment {
     String  email2="",addressline1 = "", addressline2 = "", addressline3 = "", telephone = "",mobile="", mobile2 = "";
     String  post1="",inst1="",post2="",inst2="",post3="",inst3="",post4="",inst4="",post5="",inst5="",post6="",inst6="",post7="",inst7="",post8="",inst8="",post9="",inst9="",post10="",inst10="";
     String fromdate1="",todate1="",fromdate2="",todate2="",fromdate3="",todate3="",fromdate4="",todate4="",fromdate5="",todate5="",fromdate6="",todate6="",fromdate7="",todate7="",fromdate8="",todate8="",fromdate9="",todate9="",fromdate10="",todate10="";
-    String dob="",gender="",paddrline1="",paddrline2="",paddrline3="";
+    String dob="",gender="",paddrline1="",paddrline2="",paddrline3="",personaldataobject="";
     boolean hrinfobox1 = false, hrinfobox2 = false, hrinfobox3 = false;
 
     String ucode="";
@@ -339,7 +347,7 @@ public class AdminProfileFragment extends Fragment {
         contactedit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(new Intent(getActivity(), AdminContactDetails.class),0);
+                startActivityForResult(new Intent(getActivity(), MyProfileContact.class),0);
             }
         });
 
@@ -582,13 +590,14 @@ public class AdminProfileFragment extends Fragment {
                 percentProfile = 0;
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", username));
-                json = jParser.makeHttpRequest(load_Admin_data, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.load_Admin_data, "GET", params);
 
 
                 resultofop = json.getString("info");
+                Log.d("tag", "JSON resultofop - "+resultofop);
                 if (resultofop.equals("found")) {
-                    ucode = json.getString("ucode");
-                    phone = json.getString("phoned");
+//                    ucode = json.getString("ucode");
+//                    phone = json.getString("phoned");
 
 
                     String s = json.getString("AdminIntro");
@@ -597,6 +606,7 @@ public class AdminProfileFragment extends Fragment {
                         found_AdminIntro = 1;
                        String AdminIntroObj = json.getString("AdminIntroObj");
                         AdminIntroModal obj1=(AdminIntroModal)fromString(AdminIntroObj,digest1,digest2);
+
                         fname =obj1.getFname();
                         mname = obj1.getMname();
                         lname = obj1.getLname();
@@ -604,6 +614,7 @@ public class AdminProfileFragment extends Fragment {
                         state = obj1.getState();
                         city = obj1.getCity();
                         inst = obj1.getInstitute();
+
                         Log.d("++AdminintroBlock", "+++++++++++++++++++++++");
                         Log.d("++AdminintroBlock", "fname "+fname);
                         Log.d("++AdminintroBlock", "mname "+mname);
@@ -650,6 +661,7 @@ public class AdminProfileFragment extends Fragment {
                     if (s.equals("found")) {
                         found_institute = 1;
 
+                        Log.d("Institute Data--: ", "doInBackground: found_institute - "+found_institute);
                         String AdminInstituteobj = json.getString("AdminInstituteobj");
                         AdminInstituteModal obj2=(AdminInstituteModal)fromString(AdminInstituteobj,digest1,digest2);
 
@@ -668,6 +680,7 @@ public class AdminProfileFragment extends Fragment {
                         Log.d("--Institute Data--", "instaltrphone: "+instaltrphone);
                         Log.d("--Institute Data--", "universityname: "+universityname);
                         Log.d("--Institute Data--", "instreg: "+instreg);
+
                         if (!instname.equals("null")) {
                             a.setInstitute(instname);
                         }
@@ -693,14 +706,844 @@ public class AdminProfileFragment extends Fragment {
 
                     }
 
-                    s=json.getString("contactdetails");
+                    s = json.getString("knownlang");
+                    Log.d("TAG", "knownlang: " + s);
+                    if (s.equals("found")) {
+                        found_lang = 1;
+
+                        ArrayList<KnownLangs> knownLangsList = (ArrayList<KnownLangs>) fromString(json.getString("knownlangdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
+
+                        KnownLangs obj1 = knownLangsList.get(0);
+                        KnownLangs obj2 = knownLangsList.get(1);
+                        KnownLangs obj3 = knownLangsList.get(2);
+                        KnownLangs obj4 = knownLangsList.get(3);
+                        KnownLangs obj5 = knownLangsList.get(4);
+                        KnownLangs obj6 = knownLangsList.get(5);
+                        KnownLangs obj7 = knownLangsList.get(6);
+                        KnownLangs obj8 = knownLangsList.get(7);
+                        KnownLangs obj9 = knownLangsList.get(8);
+                        KnownLangs obj10 = knownLangsList.get(9);
+
+                        lang1 = obj1.getKnownlang();
+                        proficiency1 = obj1.getProficiency();
+                        lang2 = obj2.getKnownlang();
+                        proficiency2 = obj2.getProficiency();
+                        lang3 = obj3.getKnownlang();
+                        proficiency3 = obj3.getProficiency();
+                        lang4 = obj4.getKnownlang();
+                        proficiency4 = obj4.getProficiency();
+                        lang5 = obj5.getKnownlang();
+                        proficiency5 = obj5.getProficiency();
+                        lang6 = obj6.getKnownlang();
+                        proficiency6 = obj6.getProficiency();
+                        lang7 = obj7.getKnownlang();
+                        proficiency7 = obj7.getProficiency();
+                        lang8 = obj8.getKnownlang();
+                        proficiency8 = obj8.getProficiency();
+                        lang9 = obj9.getKnownlang();
+                        proficiency9 = obj9.getProficiency();
+                        lang10 = obj10.getKnownlang();
+                        proficiency10 = obj10.getProficiency();
+
+                        studentData.setLang1(lang1);
+                        studentData.setProficiency1(proficiency1);
+                        studentData.setLang2(lang2);
+                        studentData.setProficiency2(proficiency2);
+                        studentData.setLang3(lang3);
+                        studentData.setProficiency3(proficiency3);
+                        studentData.setLang4(lang4);
+                        studentData.setProficiency4(proficiency4);
+                        studentData.setLang5(lang5);
+                        studentData.setProficiency5(proficiency5);
+                        studentData.setLang6(lang6);
+                        studentData.setProficiency6(proficiency6);
+                        studentData.setLang7(lang7);
+                        studentData.setProficiency7(proficiency7);
+                        studentData.setLang8(lang8);
+                        studentData.setProficiency8(proficiency8);
+                        studentData.setLang9(lang9);
+                        studentData.setProficiency9(proficiency9);
+                        studentData.setLang10(lang10);
+                        studentData.setProficiency10(proficiency10);
+
+
+                    }
+                    s = json.getString("skills");
+                    if (s.equals("found")) {
+                        found_skills = 1;
+
+                        ArrayList<Skills> skillsList = (ArrayList<Skills>) fromString(json.getString("skillsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
+
+                        Skills obj1 = skillsList.get(0);
+                        Skills obj2 = skillsList.get(1);
+                        Skills obj3 = skillsList.get(2);
+                        Skills obj4 = skillsList.get(3);
+                        Skills obj5 = skillsList.get(4);
+                        Skills obj6 = skillsList.get(5);
+                        Skills obj7 = skillsList.get(6);
+                        Skills obj8 = skillsList.get(7);
+                        Skills obj9 = skillsList.get(8);
+                        Skills obj10 = skillsList.get(9);
+                        Skills obj11 = skillsList.get(10);
+                        Skills obj12 = skillsList.get(11);
+                        Skills obj13 = skillsList.get(12);
+                        Skills obj14 = skillsList.get(13);
+                        Skills obj15 = skillsList.get(14);
+                        Skills obj16 = skillsList.get(15);
+                        Skills obj17 = skillsList.get(16);
+                        Skills obj18 = skillsList.get(17);
+                        Skills obj19 = skillsList.get(18);
+                        Skills obj20 = skillsList.get(19);
+
+                        skill1 = obj1.getSkill();
+                        sproficiency1 = obj1.getProficiency();
+
+                        skill2 = obj2.getSkill();
+                        sproficiency2 = obj2.getProficiency();
+
+                        skill3 = obj3.getSkill();
+                        sproficiency3 = obj3.getProficiency();
+
+                        skill4 = obj4.getSkill();
+                        sproficiency4 = obj4.getProficiency();
+
+                        skill5 = obj5.getSkill();
+                        sproficiency5 = obj5.getProficiency();
+
+                        skill6 = obj6.getSkill();
+                        sproficiency6 = obj6.getProficiency();
+
+                        skill7 = obj7.getSkill();
+                        sproficiency7 = obj7.getProficiency();
+
+                        skill8 = obj8.getSkill();
+                        sproficiency8 = obj8.getProficiency();
+
+                        skill9 = obj9.getSkill();
+                        sproficiency9 = obj9.getProficiency();
+
+                        skill10 = obj10.getSkill();
+                        sproficiency10 = obj10.getProficiency();
+
+                        skill11 = obj11.getSkill();
+                        sproficiency11 = obj11.getProficiency();
+
+                        skill12 = obj12.getSkill();
+                        sproficiency12 = obj12.getProficiency();
+
+                        skill13 = obj13.getSkill();
+                        sproficiency13 = obj13.getProficiency();
+
+                        skill14 = obj14.getSkill();
+                        sproficiency14 = obj14.getProficiency();
+
+                        skill15 = obj15.getSkill();
+                        sproficiency15 = obj15.getProficiency();
+
+                        skill16 = obj16.getSkill();
+                        sproficiency16 = obj16.getProficiency();
+
+                        skill17 = obj17.getSkill();
+                        sproficiency17 = obj17.getProficiency();
+
+                        skill18 = obj18.getSkill();
+                        sproficiency18 = obj18.getProficiency();
+
+                        skill19 = obj19.getSkill();
+                        sproficiency19 = obj19.getProficiency();
+
+                        skill20 = obj20.getSkill();
+                        sproficiency20 = obj20.getProficiency();
+
+                        studentData.setSkill1(skill1);
+                        studentData.setSproficiency1(sproficiency1);
+                        studentData.setSkill2(skill2);
+                        studentData.setSproficiency2(sproficiency2);
+                        studentData.setSkill3(skill3);
+                        studentData.setSproficiency3(sproficiency3);
+                        studentData.setSkill4(skill4);
+                        studentData.setSproficiency4(sproficiency4);
+                        studentData.setSkill5(skill5);
+                        studentData.setSproficiency5(sproficiency5);
+                        studentData.setSkill6(skill6);
+                        studentData.setSproficiency6(sproficiency6);
+                        studentData.setSkill7(skill7);
+                        studentData.setSproficiency7(sproficiency7);
+                        studentData.setSkill8(skill8);
+                        studentData.setSproficiency8(sproficiency8);
+                        studentData.setSkill9(skill9);
+                        studentData.setSproficiency9(sproficiency9);
+                        studentData.setSkill10(skill10);
+                        studentData.setSproficiency10(sproficiency10);
+                        studentData.setSkill11(skill11);
+                        studentData.setSproficiency11(sproficiency11);
+                        studentData.setSkill12(skill12);
+                        studentData.setSproficiency12(sproficiency12);
+                        studentData.setSkill13(skill13);
+                        studentData.setSproficiency13(sproficiency13);
+                        studentData.setSkill14(skill14);
+                        studentData.setSproficiency14(sproficiency14);
+                        studentData.setSkill15(skill15);
+                        studentData.setSproficiency15(sproficiency15);
+                        studentData.setSkill16(skill16);
+                        studentData.setSproficiency16(sproficiency16);
+                        studentData.setSkill17(skill17);
+                        studentData.setSproficiency17(sproficiency17);
+                        studentData.setSkill18(skill18);
+                        studentData.setSproficiency18(sproficiency18);
+                        studentData.setSkill19(skill19);
+                        studentData.setSproficiency19(sproficiency19);
+                        studentData.setSkill20(skill20);
+                        studentData.setSproficiency20(sproficiency20);
+
+
+                    }
+                    s = json.getString("honors");
+                    if (s.equals("found")) {
+                        found_honors = 1;
+
+                        ArrayList<Honors> honorsList = (ArrayList<Honors>) fromString(json.getString("honorsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
+
+                        Honors obj1 = honorsList.get(0);
+                        Honors obj2 = honorsList.get(1);
+                        Honors obj3 = honorsList.get(2);
+                        Honors obj4 = honorsList.get(3);
+                        Honors obj5 = honorsList.get(4);
+                        Honors obj6 = honorsList.get(5);
+                        Honors obj7 = honorsList.get(6);
+                        Honors obj8 = honorsList.get(7);
+                        Honors obj9 = honorsList.get(8);
+                        Honors obj10 = honorsList.get(9);
+
+                        htitle1 = obj1.getTitle();
+                        hissuer1 = obj1.getIssuer();
+                        hdescription1 = obj1.getDescription();
+                        yearofhonor1 = obj1.getYearofhonor();
+
+                        htitle2 = obj2.getTitle();
+                        hissuer2 = obj2.getIssuer();
+                        hdescription2 = obj2.getDescription();
+                        yearofhonor2 = obj2.getYearofhonor();
+
+                        htitle3 = obj3.getTitle();
+                        hissuer3 = obj3.getIssuer();
+                        hdescription3 = obj3.getDescription();
+                        yearofhonor3 = obj3.getYearofhonor();
+
+                        htitle4 = obj4.getTitle();
+                        hissuer4 = obj4.getIssuer();
+                        hdescription4 = obj4.getDescription();
+                        yearofhonor4 = obj4.getYearofhonor();
+
+                        htitle5 = obj5.getTitle();
+                        hissuer5 = obj5.getIssuer();
+                        hdescription5 = obj5.getDescription();
+                        yearofhonor5 = obj5.getYearofhonor();
+
+                        htitle6 = obj6.getTitle();
+                        hissuer6 = obj6.getIssuer();
+                        hdescription6 = obj6.getDescription();
+                        yearofhonor6 = obj6.getYearofhonor();
+
+                        htitle7 = obj7.getTitle();
+                        hissuer7 = obj7.getIssuer();
+                        hdescription7 = obj7.getDescription();
+                        yearofhonor7 = obj7.getYearofhonor();
+
+                        htitle8 = obj8.getTitle();
+                        hissuer8 = obj8.getIssuer();
+                        hdescription8 = obj8.getDescription();
+                        yearofhonor8 = obj8.getYearofhonor();
+
+                        htitle9 = obj9.getTitle();
+                        hissuer9 = obj9.getIssuer();
+                        hdescription9 = obj9.getDescription();
+                        yearofhonor9 = obj9.getYearofhonor();
+
+                        htitle10 = obj10.getTitle();
+                        hissuer10 = obj10.getIssuer();
+                        hdescription10 = obj10.getDescription();
+                        yearofhonor10 = obj10.getYearofhonor();
+
+                        studentData.setHtitle1(htitle1);
+                        studentData.setHissuer1(hissuer1);
+                        studentData.setHdescription1(hdescription1);
+                        studentData.setYearofhonor1(yearofhonor1);
+                        studentData.setHtitle2(htitle2);
+                        studentData.setHissuer2(hissuer2);
+                        studentData.setHdescription2(hdescription2);
+                        studentData.setYearofhonor2(yearofhonor2);
+                        studentData.setHtitle3(htitle3);
+                        studentData.setHissuer3(hissuer3);
+                        studentData.setHdescription3(hdescription3);
+                        studentData.setYearofhonor3(yearofhonor3);
+                        studentData.setHtitle4(htitle4);
+                        studentData.setHissuer4(hissuer4);
+                        studentData.setHdescription4(hdescription4);
+                        studentData.setYearofhonor4(yearofhonor4);
+                        studentData.setHtitle5(htitle5);
+                        studentData.setHissuer5(hissuer5);
+                        studentData.setHdescription5(hdescription5);
+                        studentData.setYearofhonor5(yearofhonor5);
+                        studentData.setHtitle6(htitle6);
+                        studentData.setHissuer6(hissuer6);
+                        studentData.setHdescription6(hdescription6);
+                        studentData.setYearofhonor6(yearofhonor6);
+                        studentData.setHtitle7(htitle7);
+                        studentData.setHissuer7(hissuer7);
+                        studentData.setHdescription7(hdescription7);
+                        studentData.setYearofhonor7(yearofhonor7);
+                        studentData.setHtitle8(htitle8);
+                        studentData.setHissuer8(hissuer8);
+                        studentData.setHdescription8(hdescription8);
+                        studentData.setYearofhonor8(yearofhonor8);
+                        studentData.setHtitle9(htitle9);
+                        studentData.setHissuer9(hissuer9);
+                        studentData.setHdescription9(hdescription9);
+                        studentData.setYearofhonor9(yearofhonor9);
+                        studentData.setHtitle10(htitle10);
+                        studentData.setHissuer10(hissuer10);
+                        studentData.setHdescription10(hdescription10);
+                        studentData.setYearofhonor10(yearofhonor10);
+
+
+                    }
+
+                    s = json.getString("patents");
+                    if (s.equals("found")) {
+                        found_patents = 1;
+
+                        ArrayList<Patents> patentsList = (ArrayList<Patents>) fromString(json.getString("patentsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
+
+                        Patents obj1 = patentsList.get(0);
+                        Patents obj2 = patentsList.get(1);
+                        Patents obj3 = patentsList.get(2);
+                        Patents obj4 = patentsList.get(3);
+                        Patents obj5 = patentsList.get(4);
+                        Patents obj6 = patentsList.get(5);
+                        Patents obj7 = patentsList.get(6);
+                        Patents obj8 = patentsList.get(7);
+                        Patents obj9 = patentsList.get(8);
+                        Patents obj10 = patentsList.get(9);
+
+                        ptitle1 = obj1.getTitle();
+                        pappno1 = obj1.getAppno();
+                        pselectedcountry1 = obj1.getPatoffice();
+                        pinventor1 = obj1.getInventor();
+                        issuedorpending1 = obj1.getIssuedorpending();
+                        pissue1 = obj1.getIssue();
+                        pfiling1 = obj1.getFiling();
+                        purl1 = obj1.getUrl();
+                        pdescription1 = obj1.getDescription();
+
+                        ptitle2 = obj2.getTitle();
+                        pappno2 = obj2.getAppno();
+                        pselectedcountry2 = obj2.getPatoffice();
+                        pinventor2 = obj2.getInventor();
+                        issuedorpending2 = obj2.getIssuedorpending();
+                        pissue2 = obj2.getIssue();
+                        pfiling2 = obj2.getFiling();
+                        purl2 = obj2.getUrl();
+                        pdescription2 = obj2.getDescription();
+
+                        ptitle3 = obj3.getTitle();
+                        pappno3 = obj3.getAppno();
+                        pselectedcountry3 = obj3.getPatoffice();
+                        pinventor3 = obj3.getInventor();
+                        issuedorpending3 = obj3.getIssuedorpending();
+                        pissue3 = obj3.getIssue();
+                        pfiling3 = obj3.getFiling();
+                        purl3 = obj3.getUrl();
+                        pdescription3 = obj3.getDescription();
+
+                        ptitle4 = obj4.getTitle();
+                        pappno4 = obj4.getAppno();
+                        pselectedcountry4 = obj4.getPatoffice();
+                        pinventor4 = obj4.getInventor();
+                        issuedorpending4 = obj4.getIssuedorpending();
+                        pissue4 = obj4.getIssue();
+                        pfiling4 = obj4.getFiling();
+                        purl4 = obj4.getUrl();
+                        pdescription4 = obj4.getDescription();
+
+                        ptitle5 = obj5.getTitle();
+                        pappno5 = obj5.getAppno();
+                        pselectedcountry5 = obj5.getPatoffice();
+                        pinventor5 = obj5.getInventor();
+                        issuedorpending5 = obj5.getIssuedorpending();
+                        pissue5 = obj5.getIssue();
+                        pfiling5 = obj5.getFiling();
+                        purl5 = obj5.getUrl();
+                        pdescription5 = obj5.getDescription();
+
+                        ptitle6 = obj6.getTitle();
+                        pappno6 = obj6.getAppno();
+                        pselectedcountry6 = obj6.getPatoffice();
+                        pinventor6 = obj6.getInventor();
+                        issuedorpending6 = obj6.getIssuedorpending();
+                        pissue6 = obj6.getIssue();
+                        pfiling6 = obj6.getFiling();
+                        purl6 = obj6.getUrl();
+                        pdescription6 = obj6.getDescription();
+
+                        ptitle7 = obj7.getTitle();
+                        pappno7 = obj7.getAppno();
+                        pselectedcountry7 = obj7.getPatoffice();
+                        pinventor7 = obj7.getInventor();
+                        issuedorpending7 = obj7.getIssuedorpending();
+                        pissue7 = obj7.getIssue();
+                        pfiling7 = obj7.getFiling();
+                        purl7 = obj7.getUrl();
+                        pdescription7 = obj7.getDescription();
+
+                        ptitle8 = obj8.getTitle();
+                        pappno8 = obj8.getAppno();
+                        pselectedcountry8 = obj8.getPatoffice();
+                        pinventor8 = obj8.getInventor();
+                        issuedorpending8 = obj8.getIssuedorpending();
+                        pissue8 = obj8.getIssue();
+                        pfiling8 = obj8.getFiling();
+                        purl8 = obj8.getUrl();
+                        pdescription8 = obj8.getDescription();
+
+                        ptitle9 = obj9.getTitle();
+                        pappno9 = obj9.getAppno();
+                        pselectedcountry9 = obj9.getPatoffice();
+                        pinventor9 = obj9.getInventor();
+                        issuedorpending9 = obj9.getIssuedorpending();
+                        pissue9 = obj9.getIssue();
+                        pfiling9 = obj9.getFiling();
+                        purl9 = obj9.getUrl();
+                        pdescription9 = obj9.getDescription();
+
+                        ptitle10 = obj10.getTitle();
+                        pappno10 = obj10.getAppno();
+                        pselectedcountry10 = obj10.getPatoffice();
+                        pinventor10 = obj10.getInventor();
+                        issuedorpending10 = obj10.getIssuedorpending();
+                        pissue10 = obj10.getIssue();
+                        pfiling10 = obj10.getFiling();
+                        purl10 = obj10.getUrl();
+                        pdescription10 = obj10.getDescription();
+
+                        studentData.setPtitle1(ptitle1);
+                        studentData.setPappno1(pappno1);
+                        studentData.setPinventor1(pinventor1);
+                        studentData.setPissue1(pissue1);
+                        studentData.setPfiling1(pfiling1);
+                        studentData.setPurl1(purl1);
+                        studentData.setPdescription1(pdescription1);
+                        studentData.setPselectedcountry1(pselectedcountry1);
+                        studentData.setIssuedorpending1(issuedorpending1);
+                        studentData.setPtitle2(ptitle2);
+                        studentData.setPappno2(pappno2);
+                        studentData.setPinventor2(pinventor2);
+                        studentData.setPissue2(pissue2);
+                        studentData.setPfiling2(pfiling2);
+                        studentData.setPurl2(purl2);
+                        studentData.setPdescription2(pdescription2);
+                        studentData.setPselectedcountry2(pselectedcountry2);
+                        studentData.setIssuedorpending2(issuedorpending2);
+                        studentData.setPtitle3(ptitle3);
+                        studentData.setPappno3(pappno3);
+                        studentData.setPinventor3(pinventor3);
+                        studentData.setPissue3(pissue3);
+                        studentData.setPfiling3(pfiling3);
+                        studentData.setPurl3(purl3);
+                        studentData.setPdescription3(pdescription3);
+                        studentData.setPselectedcountry3(pselectedcountry3);
+                        studentData.setIssuedorpending3(issuedorpending3);
+                        studentData.setPtitle4(ptitle4);
+                        studentData.setPappno4(pappno4);
+                        studentData.setPinventor4(pinventor4);
+                        studentData.setPissue4(pissue4);
+                        studentData.setPfiling4(pfiling4);
+                        studentData.setPurl4(purl4);
+                        studentData.setPdescription4(pdescription4);
+                        studentData.setPselectedcountry4(pselectedcountry4);
+                        studentData.setIssuedorpending4(issuedorpending4);
+                        studentData.setPtitle5(ptitle5);
+                        studentData.setPappno5(pappno5);
+                        studentData.setPinventor5(pinventor5);
+                        studentData.setPissue5(pissue5);
+                        studentData.setPfiling5(pfiling5);
+                        studentData.setPurl5(purl5);
+                        studentData.setPdescription5(pdescription5);
+                        studentData.setPselectedcountry5(pselectedcountry5);
+                        studentData.setIssuedorpending5(issuedorpending5);
+                        studentData.setPtitle6(ptitle6);
+                        studentData.setPappno6(pappno6);
+                        studentData.setPinventor6(pinventor6);
+                        studentData.setPissue6(pissue6);
+                        studentData.setPfiling6(pfiling6);
+                        studentData.setPurl6(purl6);
+                        studentData.setPdescription6(pdescription6);
+                        studentData.setPselectedcountry6(pselectedcountry6);
+                        studentData.setIssuedorpending6(issuedorpending6);
+                        studentData.setPtitle7(ptitle7);
+                        studentData.setPappno7(pappno7);
+                        studentData.setPinventor7(pinventor7);
+                        studentData.setPissue7(pissue7);
+                        studentData.setPfiling7(pfiling7);
+                        studentData.setPurl7(purl7);
+                        studentData.setPdescription7(pdescription7);
+                        studentData.setPselectedcountry7(pselectedcountry7);
+                        studentData.setIssuedorpending7(issuedorpending7);
+                        studentData.setPtitle8(ptitle8);
+                        studentData.setPappno8(pappno8);
+                        studentData.setPinventor8(pinventor8);
+                        studentData.setPissue8(pissue8);
+                        studentData.setPfiling8(pfiling8);
+                        studentData.setPurl8(purl8);
+                        studentData.setPdescription8(pdescription8);
+                        studentData.setPselectedcountry8(pselectedcountry8);
+                        studentData.setIssuedorpending8(issuedorpending8);
+                        studentData.setPtitle9(ptitle9);
+                        studentData.setPappno9(pappno9);
+                        studentData.setPinventor9(pinventor9);
+                        studentData.setPissue9(pissue9);
+                        studentData.setPfiling9(pfiling9);
+                        studentData.setPurl9(purl9);
+                        studentData.setPdescription9(pdescription9);
+                        studentData.setPselectedcountry9(pselectedcountry9);
+                        studentData.setIssuedorpending9(issuedorpending9);
+                        studentData.setPtitle10(ptitle10);
+                        studentData.setPappno10(pappno10);
+                        studentData.setPinventor10(pinventor10);
+                        studentData.setPissue10(pissue10);
+                        studentData.setPfiling10(pfiling10);
+                        studentData.setPurl10(purl10);
+                        studentData.setPdescription10(pdescription10);
+                        studentData.setPselectedcountry10(pselectedcountry10);
+                        studentData.setIssuedorpending10(issuedorpending10);
+
+                    }
+                    s = json.getString("publications");
+                    if (s.equals("found")) {
+                        found_publications = 1;
+
+                        ArrayList<Publications> publicationsList = (ArrayList<Publications>) fromString(json.getString("publicationsdata"), MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
+
+                        Publications obj1 = publicationsList.get(0);
+                        Publications obj2 = publicationsList.get(1);
+                        Publications obj3 = publicationsList.get(2);
+                        Publications obj4 = publicationsList.get(3);
+                        Publications obj5 = publicationsList.get(4);
+                        Publications obj6 = publicationsList.get(5);
+                        Publications obj7 = publicationsList.get(6);
+                        Publications obj8 = publicationsList.get(7);
+                        Publications obj9 = publicationsList.get(8);
+                        Publications obj10 = publicationsList.get(9);
+
+                        pubtitle1 = obj1.getTitle();
+                        publication1 = obj1.getPublication();
+                        author1 = obj1.getAuthor();
+                        publicationdate1 = obj1.getPublicationdate();
+                        puburl1 = obj1.getUrl();
+                        pubdescription1 = obj1.getDescription();
+
+                        pubtitle2 = obj2.getTitle();
+                        publication2 = obj2.getPublication();
+                        author2 = obj2.getAuthor();
+                        publicationdate2 = obj2.getPublicationdate();
+                        puburl2 = obj2.getUrl();
+                        pubdescription2 = obj2.getDescription();
+
+                        pubtitle3 = obj3.getTitle();
+                        publication3 = obj3.getPublication();
+                        author3 = obj3.getAuthor();
+                        publicationdate3 = obj3.getPublicationdate();
+                        puburl3 = obj3.getUrl();
+                        pubdescription3 = obj3.getDescription();
+
+                        pubtitle4 = obj4.getTitle();
+                        publication4 = obj4.getPublication();
+                        author4 = obj4.getAuthor();
+                        publicationdate4 = obj4.getPublicationdate();
+                        puburl4 = obj4.getUrl();
+                        pubdescription4 = obj4.getDescription();
+
+                        pubtitle5 = obj5.getTitle();
+                        publication5 = obj5.getPublication();
+                        author5 = obj5.getAuthor();
+                        publicationdate5 = obj5.getPublicationdate();
+                        puburl5 = obj5.getUrl();
+                        pubdescription5 = obj5.getDescription();
+
+                        pubtitle6 = obj6.getTitle();
+                        publication6 = obj6.getPublication();
+                        author6 = obj6.getAuthor();
+                        publicationdate6 = obj6.getPublicationdate();
+                        puburl6 = obj6.getUrl();
+                        pubdescription6 = obj6.getDescription();
+
+                        pubtitle7 = obj7.getTitle();
+                        publication7 = obj7.getPublication();
+                        author7 = obj7.getAuthor();
+                        publicationdate7 = obj7.getPublicationdate();
+                        puburl7 = obj7.getUrl();
+                        pubdescription7 = obj7.getDescription();
+
+                        pubtitle8 = obj8.getTitle();
+                        publication8 = obj8.getPublication();
+                        author8 = obj8.getAuthor();
+                        publicationdate8 = obj8.getPublicationdate();
+                        puburl8 = obj8.getUrl();
+                        pubdescription8 = obj8.getDescription();
+
+                        pubtitle9 = obj9.getTitle();
+                        publication9 = obj9.getPublication();
+                        author9 = obj9.getAuthor();
+                        publicationdate9 = obj9.getPublicationdate();
+                        puburl9 = obj9.getUrl();
+                        pubdescription9 = obj9.getDescription();
+
+                        pubtitle10 = obj10.getTitle();
+                        publication10 = obj10.getPublication();
+                        author10 = obj10.getAuthor();
+                        publicationdate10 = obj10.getPublicationdate();
+                        puburl10 = obj10.getUrl();
+                        pubdescription10 = obj10.getDescription();
+
+                        studentData.setPubtitle1(pubtitle1);
+                        studentData.setPublication1(publication1);
+                        studentData.setAuthor1(author1);
+                        studentData.setPublicationdate1(publicationdate1);
+                        studentData.setPuburl1(puburl1);
+                        studentData.setPubdescription1(pubdescription1);
+                        studentData.setPubtitle2(pubtitle2);
+                        studentData.setPublication2(publication2);
+                        studentData.setAuthor2(author2);
+                        studentData.setPublicationdate2(publicationdate2);
+                        studentData.setPubdescription2(pubdescription2);
+                        studentData.setPubtitle3(pubtitle3);
+                        studentData.setPublication3(publication3);
+                        studentData.setAuthor3(author3);
+                        studentData.setPublicationdate3(publicationdate3);
+                        studentData.setPuburl3(puburl3);
+                        studentData.setPubdescription3(pubdescription3);
+                        studentData.setPubtitle4(pubtitle4);
+                        studentData.setPublication4(publication4);
+                        studentData.setAuthor4(author4);
+                        studentData.setPublicationdate4(publicationdate4);
+                        studentData.setPuburl4(puburl4);
+                        studentData.setPubdescription4(pubdescription4);
+                        studentData.setPubtitle5(pubtitle5);
+                        studentData.setPublication5(publication5);
+                        studentData.setAuthor5(author5);
+                        studentData.setPublicationdate5(publicationdate5);
+                        studentData.setPuburl5(puburl5);
+                        studentData.setPubdescription5(pubdescription5);
+                        studentData.setPubtitle6(pubtitle6);
+                        studentData.setPublication6(publication6);
+                        studentData.setAuthor6(author6);
+                        studentData.setPublicationdate6(publicationdate6);
+                        studentData.setPuburl6(puburl6);
+                        studentData.setPubdescription6(pubdescription6);
+                        studentData.setPubtitle7(pubtitle7);
+                        studentData.setPublication7(publication7);
+                        studentData.setAuthor7(author7);
+                        studentData.setPublicationdate7(publicationdate7);
+                        studentData.setPuburl7(puburl7);
+                        studentData.setPubdescription7(pubdescription7);
+                        studentData.setPubtitle8(pubtitle8);
+                        studentData.setPublication8(publication8);
+                        studentData.setAuthor8(author8);
+                        studentData.setPublicationdate8(publicationdate8);
+                        studentData.setPuburl8(puburl8);
+                        studentData.setPubdescription8(pubdescription8);
+                        studentData.setPubtitle9(pubtitle9);
+                        studentData.setPublication9(publication9);
+                        studentData.setAuthor9(author9);
+                        studentData.setPublicationdate9(publicationdate9);
+                        studentData.setPuburl9(puburl9);
+                        studentData.setPubdescription9(pubdescription9);
+                        studentData.setPubtitle10(pubtitle10);
+                        studentData.setPublication10(publication10);
+                        studentData.setAuthor10(author10);
+                        studentData.setPublicationdate10(publicationdate10);
+                        studentData.setPuburl10(puburl10);
+                        studentData.setPubdescription10(pubdescription10);
+                    }
+
+                    s = json.getString("experiences");
+                    if (s.equals("found")) {
+                        found_exp=1;
+                        experiencesataobject = json.getString("experiencesdata");
+                        Log.d("TAG", "doInBackground:  experiencesataobject- " + experiencesataobject);
+
+                        ArrayList<Experiences> ExperiencesList = (ArrayList<Experiences>) fromString(experiencesataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
+
+                        Experiences obj1 = ExperiencesList.get(0);
+                        Experiences obj2 = ExperiencesList.get(1);
+                        Experiences obj3 = ExperiencesList.get(2);
+                        Experiences obj4 = ExperiencesList.get(3);
+                        Experiences obj5 = ExperiencesList.get(4);
+                        Experiences obj6 = ExperiencesList.get(5);
+                        Experiences obj7 = ExperiencesList.get(6);
+                        Experiences obj8 = ExperiencesList.get(7);
+                        Experiences obj9 = ExperiencesList.get(8);
+                        Experiences obj10 = ExperiencesList.get(9);
+
+                        post1 = obj1.getPost();
+                        inst1 = obj1.getInst();
+                        fromdate1 = obj1.getFromdate();
+                        todate1 = obj1.getTodate();
+
+                        post2 = obj2.getPost();
+                        inst2 = obj2.getInst();
+                        fromdate2 = obj2.getFromdate();
+                        todate2 = obj2.getTodate();
+
+                        post3 = obj3.getPost();
+                        inst3 = obj3.getInst();
+                        fromdate3 = obj3.getFromdate();
+                        todate3 = obj3.getTodate();
+
+                        post4 = obj4.getPost();
+                        inst4 = obj4.getInst();
+                        fromdate4 = obj4.getFromdate();
+                        todate4 = obj4.getTodate();
+
+                        post5 = obj5.getPost();
+                        inst5 = obj5.getInst();
+                        fromdate5 = obj5.getFromdate();
+                        todate5 = obj5.getTodate();
+
+                        post6 = obj6.getPost();
+                        inst6 = obj6.getInst();
+                        fromdate6 = obj6.getFromdate();
+                        todate6 = obj6.getTodate();
+
+                        post7 = obj7.getPost();
+                        inst7 = obj7.getInst();
+                        fromdate7 = obj7.getFromdate();
+                        todate7 = obj7.getTodate();
+
+                        post8 = obj8.getPost();
+                        inst8 = obj8.getInst();
+                        fromdate8 = obj8.getFromdate();
+                        todate8 = obj8.getTodate();
+
+                        post9 = obj9.getPost();
+                        inst9 = obj9.getInst();
+                        fromdate9 = obj9.getFromdate();
+                        todate9 = obj9.getTodate();
+
+                        post10 = obj10.getPost();
+                        inst10 = obj10.getInst();
+                        fromdate10 = obj10.getFromdate();
+                        todate10 = obj10.getTodate();
+
+                        Log.d("TAG", "doInbackground:  todates1  :- "+todate1 +" & fromdates1 :-"+fromdate1);
+
+                        a.setPost1e(post1);
+                        a.setInst1e(inst1);
+                        a.setFromdate1e(fromdate1);
+                        a.setTodate1e(todate1);
+
+                        a.setPost2e(post2);
+                        a.setInst2e(inst2);
+                        a.setFromdate2e(fromdate2);
+                        a.setTodate2e(todate2);
+
+                        a.setPost3e(post3);
+                        a.setInst3e(inst3);
+                        a.setFromdate3e(fromdate3);
+                        a.setTodate3e(todate3);
+
+                        a.setPost4e(post4);
+                        a.setInst4e(inst4);
+                        a.setFromdate4e(fromdate4);
+                        a.setTodate4e(todate4);
+
+                        a.setPost5e(post5);
+                        a.setInst5e(inst5);
+                        a.setFromdate5e(fromdate5);
+                        a.setTodate5e(todate5);
+
+                        a.setPost6e(post6);
+                        a.setInst6e(inst6);
+                        a.setFromdate6e(fromdate6);
+                        a.setTodate6e(todate6);
+
+                        a.setPost7e(post7);
+                        a.setInst7e(inst7);
+                        a.setFromdate7e(fromdate7);
+                        a.setTodate7e(todate7);
+
+                        a.setPost8e(post8);
+                        a.setInst8e(inst8);
+                        a.setFromdate8e(fromdate8);
+                        a.setTodate8e(todate8);
+
+                        a.setPost9e(post9);
+                        a.setInst9e(inst9);
+                        a.setFromdate9e(fromdate9);
+                        a.setTodate9e(todate9);
+
+                        a.setPost10e(post10);
+                        a.setInst10e(inst10);
+                        a.setFromdate10e(fromdate10);
+                        a.setTodate10e(todate10);
+
+                    }
+                    s = json.getString("personal");
+                    if (s.equals("found")) {
+                        found_personal = 1;
+                        Log.d("TAG", "found_personal===:-" + found_personal);
+                        personaldataobject = json.getString("personalobj");
+                        AdminPersonal obj2 = (AdminPersonal) fromString(personaldataobject, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
+
+                        fname = obj2.fname;
+                        mname = obj2.mname;
+                        lname = obj2.sname;
+                        inst = obj2.sinst;
+                        email2 = obj2.alternateemail;
+                        dob = obj2.dob;
+                        gender = obj2.gender;
+                        addressline1 = obj2.addrline1c;
+                        addressline2 = obj2.addrline2c;
+                        addressline3 = obj2.addrline3c;
+                        paddrline1 = obj2.addrline1p;
+                        paddrline2 = obj2.addrline2p;
+                        paddrline3 = obj2.addrline3p;
+
+                        Log.d("TAG", "doInBackground: personal personalobj- " + fname);
+                        Log.d("TAG", "doInBackground: personal personalobj- " + lname);
+
+
+                            a.setFname(fname);
+                            a.setMname(mname);
+                            a.setLname(lname);
+                         a.setInstitute(inst);
+
+                         studentData.setFname(fname);
+                         studentData.setLname(lname);
+
+                        studentData.setEmail2(email2);
+                        studentData.setDob(dob);
+                        studentData.setGender(gender);
+                        studentData.setAddressline1(addressline1);
+                        studentData.setAddressline2(addressline2);
+                        studentData.setAddressline3(addressline3);
+                        studentData.setPaddrline1(paddrline1);
+                        studentData.setPaddrline2(paddrline2);
+                        studentData.setPaddrline3(paddrline3);
+
+                    }
+
+                    s=json.getString("contact_details");
                     Log.d("--contactdetails Data--", "+++++++++++++++++ ");
                     Log.d("--contactdetails json--", " "+s);
                     if(s.equals("found")) {
                         found_contact_details = 1;
-                        String contactdetailsobj = json.getString("contactdetailsobj");
+                        String contactdetailsobj = json.getString("contact_detailsdata");
+
                         AdminContactDetailsModal obj3 = (AdminContactDetailsModal) fromString(contactdetailsobj, digest1, digest2);
 
+                        fname=obj3.getFname();
+                        lname=obj3.getLname();
                         email2 = obj3.getEmail2();
                         addressline1 = obj3.getAddressline1();
                         addressline2 = obj3.getAddressline2();
@@ -708,6 +1551,9 @@ public class AdminProfileFragment extends Fragment {
                         telephone = obj3.getPhone();
                         mobile = obj3.getMobile();
                         mobile2 = obj3.getMobile2();
+
+                        Log.d("--contactdetails --", "fname " + fname);
+                        Log.d("--contactdetails --", "lname " + lname);
                         Log.d("--contactdetails --", "email2 " + email2);
                         Log.d("--contactdetails --", "addressline1 " + addressline1);
                         Log.d("--contactdetails --", "addressline2 " + addressline2);
@@ -717,121 +1563,18 @@ public class AdminProfileFragment extends Fragment {
                         Log.d("--contactdetails --", "mobile " + mobile);
                         Log.d("--contactdetails json--", "mobile2 " + mobile2);
 
-                        if (!mobile.equals("")) {
-                            a.setPhone(mobile);
-                        }
-                        if (!email2.equals("")) {
-                            a.setEmail2(email2);
-                      }
-                        if (!addressline1.equals("")) {
-                          a.setAddressline1(addressline1);
-                        } if (!addressline2.equals("")) {
-                            a.setAddressline2(addressline2);
-                        } if (!addressline3.equals("")) {
-                            a.setAddressline3(addressline3);
-                        }if (!telephone.equals("")) {
-                            a.setTelephone(telephone);
-                        }if (!mobile2.equals("")) {
-                            a.setMobile2(mobile2);
-                        }
-
-
+                        studentData.setFname(fname);
+                        studentData.setLname(lname);
+                        studentData.setEmail2(email2);
+                        studentData.setTelephone(telephone);
+                        studentData.setPhone(mobile);
+                        studentData.setMobile2(mobile2);
+                        studentData.setAddressline1(addressline1);
+                        studentData.setAddressline2(addressline2);
+                        studentData.setAddressline3(addressline3);
 
                     }
 
-//                    s = json.getString("knownlang");
-//                    if (s.equals("found")) {
-//                        found_lang = 1;
-//                        lang1 = json.getString("lang1");
-//                        proficiency1 = json.getString("proficiency1");
-//                        lang2 = json.getString("lang2");
-//                        proficiency2 = json.getString("proficiency2");
-//                        lang3 = json.getString("lang3");
-//                        proficiency3 = json.getString("proficiency3");
-//                        lang4 = json.getString("lang4");
-//                        proficiency4 = json.getString("proficiency4");
-//                        lang5 = json.getString("lang5");
-//                        proficiency5 = json.getString("proficiency5");
-//                        lang6 = json.getString("lang6");
-//                        proficiency6 = json.getString("proficiency6");
-//                        lang7 = json.getString("lang7");
-//                        proficiency7 = json.getString("proficiency7");
-//                        lang8 = json.getString("lang8");
-//                        proficiency8 = json.getString("proficiency8");
-//                        lang9 = json.getString("lang9");
-//                        proficiency9 = json.getString("proficiency9");
-//                        lang10 = json.getString("lang10");
-//                        proficiency10 = json.getString("proficiency10");
-//
-//                    }
-
-
-
-//                    s=json.getString("contact_details");
-//                    if(s.equals("found")) {
-//                        found_contact_details=1;
-//                        email2 = json.getString("alternateemail");
-//                        addressline1 = json.getString("addrline1");
-//                        addressline2 = json.getString("addrline2");
-//                        addressline3 = json.getString("addrline3");
-//                        telephone = json.getString("telephone");
-//                        mobile2 = json.getString("alternatemobile");
-//                    }
-//                    s=json.getString("experiences");
-//                    if(s.equals("found")) {
-//                        found_experiences=1;
-////
-//                        post1 = json.getString("post1e");
-//                        inst1 = json.getString("inst1e");
-//                        fromdate1 = json.getString("efromdate1");
-//                        todate1 = json.getString("etodate1");
-//
-//                        post2 = json.getString("post2e");
-//                        inst2 = json.getString("inst2e");
-//                        fromdate2 = json.getString("efromdate2");
-//                        todate2 = json.getString("etodate2");
-//
-//                        post3 = json.getString("post3e");
-//                        inst3 = json.getString("inst3e");
-//                        fromdate3 = json.getString("efromdate3");
-//                        todate3 = json.getString("etodate3");
-//
-//                        post4 = json.getString("post4e");
-//                        inst4 = json.getString("inst4e");
-//                        fromdate4 = json.getString("efromdate4");
-//                        todate4 = json.getString("etodate4");
-//
-//                        post5 = json.getString("post5e");
-//                        inst5 = json.getString("inst5e");
-//                        fromdate5 = json.getString("efromdate5");
-//                        todate5 = json.getString("etodate5");
-//
-//                        post6 = json.getString("post6e");
-//                        inst6 = json.getString("inst6e");
-//                        fromdate6 = json.getString("efromdate6");
-//                        todate6 = json.getString("etodate6");
-//
-//                        post7 = json.getString("post7e");
-//                        inst7 = json.getString("inst7e");
-//                        fromdate7 = json.getString("efromdate7");
-//                        todate7 = json.getString("etodate7");
-//
-//                        post8 = json.getString("post8e");
-//                        inst8= json.getString("inst8e");
-//                        fromdate8 = json.getString("efromdate8");
-//                        todate8 = json.getString("etodate8");
-//
-//                        post9 = json.getString("post9e");
-//                        inst9 = json.getString("inst9e");
-//                        fromdate9 = json.getString("efromdate9");
-//                        todate9 = json.getString("etodate9");
-//
-//                        post10 = json.getString("post10e");
-//                        inst10 = json.getString("inst10e");
-//                        fromdate10 = json.getString("efromdate10");
-//                        todate10 = json.getString("etodate10");
-//                    }
-//
 
                 }
 
@@ -849,9 +1592,6 @@ public class AdminProfileFragment extends Fragment {
 //            myprofileimg.setImageBitmap(result);
             swipe_refresh_layout.setVisibility(View.VISIBLE);
             mainloadingbar.setVisibility(View.GONE);
-
-
-
 
             try {
 
@@ -965,65 +1705,65 @@ public class AdminProfileFragment extends Fragment {
 
 
 
-//        if (found_lang == 1) {
-//            if (!lang1.equals("") && !lang1.equals("- Select Language -"))
-//                acc2txttxt.setText(lang1);
-//            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
-//                acc2txttxt.setText(lang1 + ", " + lang2);
-//            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -"))
-//                acc2txttxt.setText(lang1 + ", " + lang2 + ", " + lang3);
-//            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -") && !lang4.equals("") && !lang4.equals("- Select Language -"))
-//                acc2txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " ...");
-//            percentProfile++;
-//        }
-//        if (found_skills == 1) {
-//            if (!skill1.equals(""))
-//                acc4txttxt.setText(skill1);
-//            if (!skill1.equals("") && !skill2.equals(""))
-//                acc4txttxt.setText(skill1 + ", " + skill2);
-//            if (!skill1.equals("") && !skill2.equals("") && !skill3.equals(""))
-//                acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3);
-//            if (!skill1.equals("") && !skill2.equals("") && !skill3.equals("") && !skill4.equals(""))
-//                acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " ...");
-//            percentProfile++;
-//        }
-//        if (found_honors == 1) {
-//            if (!htitle1.equals(""))
-//                acc5txttxt.setText(htitle1);
-//            if (!htitle1.equals("") && !htitle2.equals(""))
-//                acc5txttxt.setText(htitle1 + ", " + htitle2);
-//            if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals(""))
-//                acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3);
-//            if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals("") && !htitle4.equals(""))
-//                acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3 + " ...");
-//            percentProfile++;
-//
-//        }
-//        if (found_patents == 1) {
-//            if (!ptitle1.equals(""))
-//                acc6txttxt.setText(ptitle1);
-//            if (!ptitle1.equals("") && !ptitle2.equals(""))
-//                acc6txttxt.setText(ptitle1 + ", " + ptitle2);
-//            if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals(""))
-//                acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3);
-//            if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals("") && !ptitle4.equals(""))
-//                acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3 + " ...");
-//            percentProfile++;
-//
-//        }
+        if (found_lang == 1) {
+            if (!lang1.equals("") && !lang1.equals("- Select Language -"))
+                acc2txttxt.setText(lang1);
+            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
+                acc2txttxt.setText(lang1 + ", " + lang2);
+            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -"))
+                acc2txttxt.setText(lang1 + ", " + lang2 + ", " + lang3);
+            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -") && !lang4.equals("") && !lang4.equals("- Select Language -"))
+                acc2txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " ...");
+            percentProfile++;
+        }
+        if (found_skills == 1) {
+            if (!skill1.equals(""))
+                acc4txttxt.setText(skill1);
+            if (!skill1.equals("") && !skill2.equals(""))
+                acc4txttxt.setText(skill1 + ", " + skill2);
+            if (!skill1.equals("") && !skill2.equals("") && !skill3.equals(""))
+                acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3);
+            if (!skill1.equals("") && !skill2.equals("") && !skill3.equals("") && !skill4.equals(""))
+                acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " ...");
+            percentProfile++;
+        }
+        if (found_honors == 1) {
+            if (!htitle1.equals(""))
+                acc5txttxt.setText(htitle1);
+            if (!htitle1.equals("") && !htitle2.equals(""))
+                acc5txttxt.setText(htitle1 + ", " + htitle2);
+            if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals(""))
+                acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3);
+            if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals("") && !htitle4.equals(""))
+                acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3 + " ...");
+            percentProfile++;
 
-//            if (found_publications == 1) {
-//                if (!pubtitle1.equals(""))
-//                    acc7txttxt.setText(pubtitle1);
-//                if (!pubtitle1.equals("") && !pubtitle2.equals(""))
-//                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2);
-//                if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals(""))
-//                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3);
-//                if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals("") && !pubtitle4.equals(""))
-//                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3 + " ...");
-//                percentProfile++;
-//
-//            }
+        }
+        if (found_patents == 1) {
+            if (!ptitle1.equals(""))
+                acc6txttxt.setText(ptitle1);
+            if (!ptitle1.equals("") && !ptitle2.equals(""))
+                acc6txttxt.setText(ptitle1 + ", " + ptitle2);
+            if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals(""))
+                acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3);
+            if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals("") && !ptitle4.equals(""))
+                acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3 + " ...");
+            percentProfile++;
+
+        }
+
+            if (found_publications == 1) {
+                if (!pubtitle1.equals(""))
+                    acc7txttxt.setText(pubtitle1);
+                if (!pubtitle1.equals("") && !pubtitle2.equals(""))
+                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2);
+                if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals(""))
+                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3);
+                if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals("") && !pubtitle4.equals(""))
+                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3 + " ...");
+                percentProfile++;
+
+            }
 
 
 

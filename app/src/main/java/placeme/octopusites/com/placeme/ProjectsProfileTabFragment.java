@@ -34,13 +34,16 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import placeme.octopusites.com.placeme.modal.Projects;
+
+import static placeme.octopusites.com.placeme.AES4all.OtoString;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 
 public class ProjectsProfileTabFragment extends Fragment implements TextWatcher {
     private int projectscount = 0;
     private int projectscount2 = 0;
-
+    ArrayList<Projects> projectsList=new ArrayList<>();
 
     View addmoreproject;
     public static final String MyPREFERENCES = "MyPrefs";
@@ -2036,148 +2039,35 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
     public void save() {
 
         try {
-            byte[] proj1Bytes = sproj1.getBytes("UTF-8");
-            byte[] domain1Bytes = sdomain1.getBytes("UTF-8");
-            byte[] team1Bytes = steam1.getBytes("UTF-8");
-            byte[] duration1Bytes = sduration1.getBytes("UTF-8");
+            Projects obj1=new Projects(sproj1,sdomain1,steam1,sduration1);
+            Projects obj2=new Projects(sproj2,sdomain2,steam2,sduration2);
+            Projects obj3=new Projects(sproj3,sdomain3,steam3,sduration3);
+            Projects obj4=new Projects(sproj4,sdomain4,steam4,sduration4);
+            Projects obj5=new Projects(sproj5,sdomain5,steam5,sduration5);
+            Projects obj6=new Projects(sproj6,sdomain6,steam6,sduration6);
+            Projects obj7=new Projects(sproj7,sdomain7,steam7,sduration7);
+            Projects obj8=new Projects(sproj8,sdomain8,steam8,sduration8);
+            Projects obj9=new Projects(sproj9,sdomain9,steam9,sduration9);
+            Projects obj10=new Projects(sproj10,sdomain10,steam10,sduration10);
 
-            byte[] proj1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj1Bytes);
-            encproj1 = new String(SimpleBase64Encoder.encode(proj1EncryptedBytes));
-            byte[] domain1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain1Bytes);
-            encdomain1 = new String(SimpleBase64Encoder.encode(domain1EncryptedBytes));
-            byte[] team1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team1Bytes);
-            encteam1 = new String(SimpleBase64Encoder.encode(team1EncryptedBytes));
-            byte[] duration1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration1Bytes);
-            encduration1 = new String(SimpleBase64Encoder.encode(duration1EncryptedBytes));
+            Log.d("TAG", "objects created");
 
-            byte[] proj2Bytes = sproj2.getBytes("UTF-8");
-            byte[] domain2Bytes = sdomain2.getBytes("UTF-8");
-            byte[] team2Bytes = steam2.getBytes("UTF-8");
-            byte[] duration2Bytes = sduration2.getBytes("UTF-8");
+            projectsList.add(obj1);
+            projectsList.add(obj2);
+            projectsList.add(obj3);
+            projectsList.add(obj4);
+            projectsList.add(obj5);
+            projectsList.add(obj6);
+            projectsList.add(obj7);
+            projectsList.add(obj8);
+            projectsList.add(obj9);
+            projectsList.add(obj10);
 
-            byte[] proj2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj2Bytes);
-            encproj2 = new String(SimpleBase64Encoder.encode(proj2EncryptedBytes));
-            byte[] domain2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain2Bytes);
-            encdomain2 = new String(SimpleBase64Encoder.encode(domain2EncryptedBytes));
-            byte[] team2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team2Bytes);
-            encteam2 = new String(SimpleBase64Encoder.encode(team2EncryptedBytes));
-            byte[] duration2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration2Bytes);
-            encduration2 = new String(SimpleBase64Encoder.encode(duration2EncryptedBytes));
+            Log.d("TAG", "objects added in arraylist");
 
-            byte[] proj3Bytes = sproj3.getBytes("UTF-8");
-            byte[] domain3Bytes = sdomain3.getBytes("UTF-8");
-            byte[] team3Bytes = steam3.getBytes("UTF-8");
-            byte[] duration3Bytes = sduration3.getBytes("UTF-8");
+            String encObjString=OtoString(projectsList,MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
 
-            byte[] proj3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj3Bytes);
-            encproj3 = new String(SimpleBase64Encoder.encode(proj3EncryptedBytes));
-            byte[] domain3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain3Bytes);
-            encdomain3 = new String(SimpleBase64Encoder.encode(domain3EncryptedBytes));
-            byte[] team3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team3Bytes);
-            encteam3 = new String(SimpleBase64Encoder.encode(team3EncryptedBytes));
-            byte[] duration3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration3Bytes);
-            encduration3 = new String(SimpleBase64Encoder.encode(duration3EncryptedBytes));
-
-            byte[] proj4Bytes = sproj4.getBytes("UTF-8");
-            byte[] domain4Bytes = sdomain4.getBytes("UTF-8");
-            byte[] team4Bytes = steam4.getBytes("UTF-8");
-            byte[] duration4Bytes = sduration4.getBytes("UTF-8");
-
-            byte[] proj4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj4Bytes);
-            encproj4 = new String(SimpleBase64Encoder.encode(proj4EncryptedBytes));
-            byte[] domain4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain4Bytes);
-            encdomain4 = new String(SimpleBase64Encoder.encode(domain4EncryptedBytes));
-            byte[] team4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team4Bytes);
-            encteam4 = new String(SimpleBase64Encoder.encode(team4EncryptedBytes));
-            byte[] duration4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration4Bytes);
-            encduration4 = new String(SimpleBase64Encoder.encode(duration4EncryptedBytes));
-
-            byte[] proj5Bytes = sproj5.getBytes("UTF-8");
-            byte[] domain5Bytes = sdomain5.getBytes("UTF-8");
-            byte[] team5Bytes = steam5.getBytes("UTF-8");
-            byte[] duration5Bytes = sduration5.getBytes("UTF-8");
-
-            byte[] proj5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj5Bytes);
-            encproj5 = new String(SimpleBase64Encoder.encode(proj5EncryptedBytes));
-            byte[] domain5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain5Bytes);
-            encdomain5 = new String(SimpleBase64Encoder.encode(domain5EncryptedBytes));
-            byte[] team5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team5Bytes);
-            encteam5 = new String(SimpleBase64Encoder.encode(team5EncryptedBytes));
-            byte[] duration5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration5Bytes);
-            encduration5 = new String(SimpleBase64Encoder.encode(duration5EncryptedBytes));
-
-            byte[] proj6Bytes = sproj6.getBytes("UTF-8");
-            byte[] domain6Bytes = sdomain6.getBytes("UTF-8");
-            byte[] team6Bytes = steam6.getBytes("UTF-8");
-            byte[] duration6Bytes = sduration6.getBytes("UTF-8");
-
-            byte[] proj6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj6Bytes);
-            encproj6 = new String(SimpleBase64Encoder.encode(proj6EncryptedBytes));
-            byte[] domain6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain6Bytes);
-            encdomain6 = new String(SimpleBase64Encoder.encode(domain6EncryptedBytes));
-            byte[] team6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team6Bytes);
-            encteam6 = new String(SimpleBase64Encoder.encode(team6EncryptedBytes));
-            byte[] duration6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration6Bytes);
-            encduration6 = new String(SimpleBase64Encoder.encode(duration6EncryptedBytes));
-
-            byte[] proj7Bytes = sproj7.getBytes("UTF-8");
-            byte[] domain7Bytes = sdomain7.getBytes("UTF-8");
-            byte[] team7Bytes = steam7.getBytes("UTF-8");
-            byte[] duration7Bytes = sduration7.getBytes("UTF-8");
-
-            byte[] proj7EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj7Bytes);
-            encproj7 = new String(SimpleBase64Encoder.encode(proj7EncryptedBytes));
-            byte[] domain7EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain7Bytes);
-            encdomain7 = new String(SimpleBase64Encoder.encode(domain7EncryptedBytes));
-            byte[] team7EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team7Bytes);
-            encteam7 = new String(SimpleBase64Encoder.encode(team7EncryptedBytes));
-            byte[] duration7EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration7Bytes);
-            encduration7 = new String(SimpleBase64Encoder.encode(duration7EncryptedBytes));
-
-            byte[] proj8Bytes = sproj8.getBytes("UTF-8");
-            byte[] domain8Bytes = sdomain8.getBytes("UTF-8");
-            byte[] team8Bytes = steam8.getBytes("UTF-8");
-            byte[] duration8Bytes = sduration8.getBytes("UTF-8");
-
-            byte[] proj8EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj8Bytes);
-            encproj8 = new String(SimpleBase64Encoder.encode(proj8EncryptedBytes));
-            byte[] domain8EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain8Bytes);
-            encdomain8 = new String(SimpleBase64Encoder.encode(domain8EncryptedBytes));
-            byte[] team8EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team8Bytes);
-            encteam8 = new String(SimpleBase64Encoder.encode(team8EncryptedBytes));
-            byte[] duration8EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration8Bytes);
-            encduration8 = new String(SimpleBase64Encoder.encode(duration8EncryptedBytes));
-
-            byte[] proj9Bytes = sproj9.getBytes("UTF-8");
-            byte[] domain9Bytes = sdomain9.getBytes("UTF-8");
-            byte[] team9Bytes = steam9.getBytes("UTF-8");
-            byte[] duration9Bytes = sduration9.getBytes("UTF-8");
-
-            byte[] proj9EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj9Bytes);
-            encproj9 = new String(SimpleBase64Encoder.encode(proj9EncryptedBytes));
-            byte[] domain9EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain9Bytes);
-            encdomain9 = new String(SimpleBase64Encoder.encode(domain9EncryptedBytes));
-            byte[] team9EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team9Bytes);
-            encteam9 = new String(SimpleBase64Encoder.encode(team9EncryptedBytes));
-            byte[] duration9EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration9Bytes);
-            encduration9 = new String(SimpleBase64Encoder.encode(duration9EncryptedBytes));
-
-            byte[] proj10Bytes = sproj10.getBytes("UTF-8");
-            byte[] domain10Bytes = sdomain10.getBytes("UTF-8");
-            byte[] team10Bytes = steam10.getBytes("UTF-8");
-            byte[] duration10Bytes = sduration10.getBytes("UTF-8");
-
-            byte[] proj10EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj10Bytes);
-            encproj10 = new String(SimpleBase64Encoder.encode(proj10EncryptedBytes));
-            byte[] domain10EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain10Bytes);
-            encdomain10 = new String(SimpleBase64Encoder.encode(domain10EncryptedBytes));
-            byte[] team10EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team10Bytes);
-            encteam10 = new String(SimpleBase64Encoder.encode(team10EncryptedBytes));
-            byte[] duration10EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration10Bytes);
-            encduration10 = new String(SimpleBase64Encoder.encode(duration10EncryptedBytes));
-
-
-            new SaveProjects().execute();
+            new SaveProjects().execute(encObjString);
 
         } catch (Exception e) {
             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
@@ -2189,81 +2079,26 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
 
         protected String doInBackground(String... param) {
 
-            String r = null;
+            String r=null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("p1", encproj1));      //1
-            params.add(new BasicNameValuePair("do1", encdomain1));   //2
-            params.add(new BasicNameValuePair("t1", encteam1));      //3
-            params.add(new BasicNameValuePair("du1", encduration1)); //4
-            params.add(new BasicNameValuePair("p2", encproj2));      //5
-            params.add(new BasicNameValuePair("do2", encdomain2));   //6
-            params.add(new BasicNameValuePair("t2", encteam2));      //7
-            params.add(new BasicNameValuePair("du2", encduration2)); //8
-            params.add(new BasicNameValuePair("p3", encproj3));      //9
-            params.add(new BasicNameValuePair("do3", encdomain3));   //10
-            params.add(new BasicNameValuePair("t3", encteam3));      //11
-            params.add(new BasicNameValuePair("du3", encduration3)); //12
-            params.add(new BasicNameValuePair("p4", encproj4));      //13
-            params.add(new BasicNameValuePair("do4", encdomain4));   //14
-            params.add(new BasicNameValuePair("t4", encteam4));      //15
-            params.add(new BasicNameValuePair("du4", encduration4)); //16
-            params.add(new BasicNameValuePair("p5", encproj5));      //17
-            params.add(new BasicNameValuePair("do5", encdomain5));   //18
-            params.add(new BasicNameValuePair("t5", encteam5));      //19
-            params.add(new BasicNameValuePair("du5", encduration5)); //20
-            params.add(new BasicNameValuePair("p6", encproj6));      //21
-            params.add(new BasicNameValuePair("do6", encdomain6));   //22
-            params.add(new BasicNameValuePair("t6", encteam6));      //23
-            params.add(new BasicNameValuePair("du6", encduration6)); //24
-            params.add(new BasicNameValuePair("p7", encproj7));      //25
-            params.add(new BasicNameValuePair("do7", encdomain7));   //26
-            params.add(new BasicNameValuePair("t7", encteam7));      //27
-            params.add(new BasicNameValuePair("du7", encduration7)); //28
-            params.add(new BasicNameValuePair("p8", encproj8));      //29
-            params.add(new BasicNameValuePair("do8", encdomain8));   //30
-            params.add(new BasicNameValuePair("t8", encteam8));      //31
-            params.add(new BasicNameValuePair("du8", encduration8)); //32
-            params.add(new BasicNameValuePair("p9", encproj9));      //33
-            params.add(new BasicNameValuePair("do9", encdomain9));   //34
-            params.add(new BasicNameValuePair("t9", encteam9));      //35
-            params.add(new BasicNameValuePair("du9", encduration9)); //36
-            params.add(new BasicNameValuePair("p10", encproj10));    //37
-            params.add(new BasicNameValuePair("do10", encdomain10)); //38
-            params.add(new BasicNameValuePair("t10", encteam10));    //39
-            params.add(new BasicNameValuePair("du10", encduration10));//40
+            params.add(new BasicNameValuePair("u",username));       //0
 
-//            json = jParser.makeHttpRequest(MyConstants.url_saveprojects, "GET", params);
-//            try {
-//                r = json.getString("info");
-//
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-            ProfileRole r1 = new ProfileRole();
-            String Myrole = r1.getRole();
-            if (Myrole.equals("student")) {
-                json = jParser.makeHttpRequest(MyConstants.url_saveprojects, "GET", params);
-            }
-            if (Myrole.equals("alumni")) {
-                json = jParser.makeHttpRequest(MyConstants.URL_SAVE_ALUMNI_PROJECTS, "GET", params);
-            }
+            Log.d("TAG", "encrypted objec string2: "+param[0]);
+            params.add(new BasicNameValuePair("d",param[0]));       //0
 
+            json = jParser.makeHttpRequest(MyConstants.url_saveprojects, "GET", params);
             try {
-                resultofop = json.getString("info");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return resultofop;
+                r = json.getString("info");
+            }catch (Exception e){e.printStackTrace();}
+            return r;
         }
+
 
         @Override
         protected void onPostExecute(String result) {
 
             if (result.equals("success")) {
-                Toast.makeText(getActivity(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
 
                 ProfileRole r = new ProfileRole();
                 String role = r.getRole();
@@ -2271,12 +2106,8 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
                     getActivity().setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if (role.equals("alumni"))
                     getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
-
                 edittedFlag = 0;
-
             }
-//            projectsprogress.setVisibility(View.GONE);
-//            save.setVisibility(View.VISIBLE);
         }
 
     }

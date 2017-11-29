@@ -39,14 +39,13 @@ import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 public class AdminContactDetails extends AppCompatActivity {
 
-
-
-
     String username;
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
+
     private static String url_savedata= "http://192.168.100.30:8080/ProfileObjects/SaveAdminContact";
+
     int edittedFlag=0;
     AdminData a= new AdminData();
     StudentData s = new StudentData();
@@ -57,7 +56,6 @@ public class AdminContactDetails extends AppCompatActivity {
 
     AdminContactDetailsModal obj;
     String strobj;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +69,6 @@ public class AdminContactDetails extends AppCompatActivity {
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
-
 
 
         fname=(EditText)findViewById(R.id.fname);

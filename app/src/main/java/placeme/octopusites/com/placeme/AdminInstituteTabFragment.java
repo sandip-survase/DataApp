@@ -8,14 +8,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -25,26 +24,25 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
+import placeme.octopusites.com.placeme.modal.AdminInstituteModal;
+
+import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 public class AdminInstituteTabFragment extends Fragment {
-    EditText iname, iemail, iweb, iphone, ialtphone, uniname, ireg;
+    public static final String MyPREFERENCES = "MyPrefs";
 //    Button save;
 //    ProgressBar saveprogress;
-
-    String instname = "", instemail = "", instweb = "", instphone = "", instaltrphone = "", universityname = "", instreg = "";
+    public static final String Username = "nameKey";
+    EditText iname, iemail, iweb, iphone, ialtphone, uniname, ireg;
+    String instname = "", instemail = "", instweb = "", instphone = "", instaltrphone = "", universityname = "", instreg = "", strobj = "";
     String encUsername, enciname, encinstemail, encinstweb, encinstphone, encinstaltrphone, encuniversityname, encCinstreg;
     int errorflag1 = 0, errorflag2 = 0, errorflag3 = 0, errorflag4 = 0, errorflag5 = 0, errorflag6 = 0, errorflag7 = 0;
     String digest1, digest2;
     int edittedFlag = 0;
-    public static final String MyPREFERENCES = "MyPrefs";
     SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
     String username = "", resultofop;
     JSONObject json;
     JSONParser jParser = new JSONParser();
-
-    private static String url_savedata = "http://192.168.100.100/AESTest/SaveAdminInstitute";
 
 
     AdminData a = new AdminData();
@@ -218,26 +216,20 @@ public class AdminInstituteTabFragment extends Fragment {
 
             }
         });
-//        save.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                validateandSave();
-//
-//
-//            }
-//        });
 
         return rootView;
     }
 
-//    void validateandSave() {
-//
-//
-//    }
-
     public boolean validate() {
 
-        errorflag1 = 0;errorflag2 = 0;errorflag3 = 0; errorflag4 = 0; errorflag5 = 0; errorflag6 = 0; errorflag7 = 0;
+        errorflag1 = 0;
+        errorflag2 = 0;
+        errorflag3 = 0;
+        errorflag4 = 0;
+        errorflag5 = 0;
+        errorflag6 = 0;
+        errorflag7 = 0;
+
         instname = iname.getText().toString();
         instemail = iemail.getText().toString();
         instweb = iweb.getText().toString();
@@ -296,42 +288,14 @@ public class AdminInstituteTabFragment extends Fragment {
         if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag5 == 0 && errorflag6 == 0 && errorflag7 == 0) {
             try {
 
-                byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                String sPadding = "ISO10126Padding";
+                AdminInstituteModal obj = new AdminInstituteModal(instname, instemail, instweb, instphone, instaltrphone, universityname, instreg);
+//
 
+                digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+                digest2 = MySharedPreferencesManager.getDigest2(getActivity());
 
-                byte[] inameBytes = instname.getBytes("UTF-8");
-                byte[] instemailBytes = instemail.getBytes("UTF-8");
-                byte[] iwebBytes = instweb.getBytes("UTF-8");
-                byte[] iphoneBytes = instphone.getBytes("UTF-8");
-                byte[] iphonealtrByte = instaltrphone.getBytes("UTF-8");
-                byte[] univBytes = universityname.getBytes("UTF-8");
-                byte[] inregBytes = instreg.getBytes("UTF-8");
-
-
-                byte[] inameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, inameBytes);
-                enciname = new String(SimpleBase64Encoder.encode(inameEncryptedBytes));
-
-
-                byte[] instemailEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, instemailBytes);
-                encinstemail = new String(SimpleBase64Encoder.encode(instemailEncryptedBytes));
-
-                byte[] iwebEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, iwebBytes);
-                encinstweb = new String(SimpleBase64Encoder.encode(iwebEncryptedBytes));
-
-                byte[] iphoneEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, iphoneBytes);
-                encinstphone = new String(SimpleBase64Encoder.encode(iphoneEncryptedBytes));
-
-                byte[] instalteEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, iphonealtrByte);
-                encinstaltrphone = new String(SimpleBase64Encoder.encode(instalteEncryptedBytes));
-
-                byte[] univEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, univBytes);
-                encuniversityname = new String(SimpleBase64Encoder.encode(univEncryptedBytes));
-
-                byte[] univregEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, inregBytes);
-                encCinstreg = new String(SimpleBase64Encoder.encode(univregEncryptedBytes));
-
+                strobj = OtoString(obj, digest1, digest2);
+                Log.d("TAG", "validateandSave: - " + strobj);
 
                 new SaveData().execute();
 //                save.setVisibility(View.GONE);
@@ -344,55 +308,6 @@ public class AdminInstituteTabFragment extends Fragment {
         }
 
 
-    }
-
-    class SaveData extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", encUsername));    //0
-            params.add(new BasicNameValuePair("in", enciname));    //1
-            params.add(new BasicNameValuePair("ie", encinstemail));       //2
-            params.add(new BasicNameValuePair("iw", encinstweb));       //3
-            params.add(new BasicNameValuePair("ph", encinstphone));     //4
-            params.add(new BasicNameValuePair("pha", encinstaltrphone));       //5
-            params.add(new BasicNameValuePair("un", encuniversityname));       //6
-            params.add(new BasicNameValuePair("rg", encCinstreg));       //7
-
-
-            json = jParser.makeHttpRequest(url_savedata, "GET", params);
-            try {
-                r = json.getString("info");
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            if (result.equals("success")) {
-//                save.setVisibility(View.VISIBLE);
-//                saveprogress.setVisibility(View.GONE);
-                Toast.makeText(getActivity(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
-                if (edittedFlag == 1) {
-                    getActivity().setResult(111);
-
-                }
-                edittedFlag=0;
-
-            } else {
-                Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
-
-            }
-        }
     }
 
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
@@ -428,5 +343,48 @@ public class AdminInstituteTabFragment extends Fragment {
         }
 
         return animation;
+    }
+
+    class SaveData extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            Log.d("TAG", "doInBackground: here");
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", encUsername));    //0
+            params.add(new BasicNameValuePair("obj", strobj));    //1
+
+
+            json = jParser.makeHttpRequest(MyConstants.url_SaveAdminInstituteData, "GET", params);
+            try {
+                r = json.getString("info");
+                Log.d("TAG", "doInBackground: r - "+r);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (result.equals("success")) {
+//                save.setVisibility(View.VISIBLE);
+//                saveprogress.setVisibility(View.GONE);
+                Toast.makeText(getActivity(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+                if (edittedFlag == 1) {
+                    getActivity().setResult(111);
+
+                }
+                edittedFlag = 0;
+
+            } else {
+                Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
+
+            }
+        }
     }
 }

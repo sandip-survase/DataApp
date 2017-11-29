@@ -49,14 +49,14 @@ public class MyProfileKnownLang extends AppCompatActivity {
     JSONParser jParser = new JSONParser();
     //    private static String url_getlanguages = "http://192.168.100.10/AESTest/GetLanguages";
 //    private static String url_savelanguages= "http://192.168.100.10/AESTest/SaveLanguages";
-    String languages[];//,codes[];
+    String languages[],codes[];
     List<String> languageslist = new ArrayList<String>();
     List<String> level = new ArrayList<String>();
     StudentData s=new StudentData();
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
     public static final String Username = "nameKey";
-    String username;
+    String username, encObjString="";
     String digest1,digest2;
     Spinner knownlang1,proficiency1,knownlang2,proficiency2,knownlang3,proficiency3,knownlang4,proficiency4,knownlang5,proficiency5,knownlang6,proficiency6,knownlang7,proficiency7,knownlang8,proficiency8,knownlang9,proficiency9,knownlang10,proficiency10;
     String sknownlang1="",sproficiency1="",sknownlang2="",sproficiency2="",sknownlang3="",sproficiency3="",sknownlang4="",sproficiency4="",sknownlang5="",sproficiency5="",sknownlang6="",sproficiency6="",sknownlang7="",sproficiency7="",sknownlang8="",sproficiency8="",sknownlang9="",sproficiency9="",sknownlang10="",sproficiency10="";;
@@ -67,7 +67,6 @@ public class MyProfileKnownLang extends AppCompatActivity {
     ArrayAdapter<String> dataAdapter,dataAdapter2;
     private int proficiencyEdittedFlog=0;
     private int langEdittedFlog=0;
-
     ArrayList<KnownLangs> knownLangsList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +99,15 @@ public class MyProfileKnownLang extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
+        Window window = MyProfileKnownLang.this.getWindow();
+
+        int sdklevel=Integer.valueOf(android.os.Build.VERSION.SDK);
+        if(sdklevel>=21) {
+
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(MyProfileKnownLang.this.getResources().getColor(R.color.background));
+        }
 
         TextView knowntxt=(TextView)findViewById(R.id.knowntxt);
         Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");
@@ -115,6 +123,28 @@ public class MyProfileKnownLang extends AppCompatActivity {
         trash8selectionview=(View)findViewById(R.id.trash8selectionview);
         trash9selectionview=(View)findViewById(R.id.trash9selectionview);
         trash10selectionview=(View)findViewById(R.id.trash10selectionview);
+
+
+        knownlang1=(Spinner)findViewById(R.id.knownlang1);
+        proficiency1=(Spinner)findViewById(R.id.proficiency1);
+        knownlang2=(Spinner)findViewById(R.id.knownlang2);
+        proficiency2=(Spinner)findViewById(R.id.proficiency2);
+        knownlang3=(Spinner)findViewById(R.id.knownlang3);
+        proficiency3=(Spinner)findViewById(R.id.proficiency3);
+        knownlang4=(Spinner)findViewById(R.id.knownlang4);
+        proficiency4=(Spinner)findViewById(R.id.proficiency4);
+        knownlang5=(Spinner)findViewById(R.id.knownlang5);
+        proficiency5=(Spinner)findViewById(R.id.proficiency5);
+        knownlang6=(Spinner)findViewById(R.id.knownlang6);
+        proficiency6=(Spinner)findViewById(R.id.proficiency6);
+        knownlang7=(Spinner)findViewById(R.id.knownlang7);
+        proficiency7=(Spinner)findViewById(R.id.proficiency7);
+        knownlang8=(Spinner)findViewById(R.id.knownlang8);
+        proficiency8=(Spinner)findViewById(R.id.proficiency8);
+        knownlang9=(Spinner)findViewById(R.id.knownlang9);
+        proficiency9=(Spinner)findViewById(R.id.proficiency9);
+        knownlang10=(Spinner)findViewById(R.id.knownlang10);
+        proficiency10=(Spinner)findViewById(R.id.proficiency10);
 
         trash1selectionview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,8 +231,6 @@ public class MyProfileKnownLang extends AppCompatActivity {
 
                         RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.langrl2);
                         relativeLayout1.setVisibility(View.VISIBLE);
-
-
                         langcount++;
                     }
                     else
@@ -374,29 +402,9 @@ public class MyProfileKnownLang extends AppCompatActivity {
         ScrollView myprofileintroscrollview=(ScrollView)findViewById(R.id.myprofileknownlang);
         disableScrollbars(myprofileintroscrollview);
 
-        knownlang1=(Spinner)findViewById(R.id.knownlang1);
-        proficiency1=(Spinner)findViewById(R.id.proficiency1);
-        knownlang2=(Spinner)findViewById(R.id.knownlang2);
-        proficiency2=(Spinner)findViewById(R.id.proficiency2);
-        knownlang3=(Spinner)findViewById(R.id.knownlang3);
-        proficiency3=(Spinner)findViewById(R.id.proficiency3);
-        knownlang4=(Spinner)findViewById(R.id.knownlang4);
-        proficiency4=(Spinner)findViewById(R.id.proficiency4);
-        knownlang5=(Spinner)findViewById(R.id.knownlang5);
-        proficiency5=(Spinner)findViewById(R.id.proficiency5);
-        knownlang6=(Spinner)findViewById(R.id.knownlang6);
-        proficiency6=(Spinner)findViewById(R.id.proficiency6);
-        knownlang7=(Spinner)findViewById(R.id.knownlang7);
-        proficiency7=(Spinner)findViewById(R.id.proficiency7);
-        knownlang8=(Spinner)findViewById(R.id.knownlang8);
-        proficiency8=(Spinner)findViewById(R.id.proficiency8);
-        knownlang9=(Spinner)findViewById(R.id.knownlang9);
-        proficiency9=(Spinner)findViewById(R.id.proficiency9);
-        knownlang10=(Spinner)findViewById(R.id.knownlang10);
-        proficiency10=(Spinner)findViewById(R.id.proficiency10);
 
-//        new GetLanguages().execute();
 
+        new GetLanguages().execute();
 
         level.add("- Proficiency -");
         level.add("Elementary");
@@ -436,17 +444,6 @@ public class MyProfileKnownLang extends AppCompatActivity {
                 return view;
             }
         };
-
-
-        String[] langArray=getResources().getStringArray(R.array.languages_array);
-        languageslist.clear();
-        languageslist.add("- Select Language -");
-        for(String lang:langArray){
-            languageslist.add(lang);
-        }
-
-        populateLanguages();
-
 
 //        textChangeListerners
 
@@ -1543,45 +1540,33 @@ public class MyProfileKnownLang extends AppCompatActivity {
         protected String doInBackground(String... param) {
 
 
-//            List<NameValuePair> params = new ArrayList<NameValuePair>();
-//
-//            json = jParser.makeHttpRequest(MyConstants.url_getlanguages, "GET", params);
-//            try {
-//                String s = json.getString("count");
-//                count=Integer.parseInt(s);
-//                languages=new String[count];
-////                codes=new String[count];
-//                for(int i=0;i<count;i++)
-//                {
-//                    languages[i]=json.getString("language"+i);
-////                    codes[i]=json.getString("code"+i);
-//                }
-//            }catch (Exception e){e.printStackTrace();}
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
 
-
-            //
-            String[] langArray=getResources().getStringArray(R.array.languages_array);
-            languageslist.clear();
-            languageslist.add("- Select Language -");
-            for(String lang:langArray){
-                languageslist.add(lang);
-            }
-
-            populateLanguages();
-
+            json = jParser.makeHttpRequest(MyConstants.url_getlanguages, "GET", params);
+            try {
+                String s = json.getString("count");
+                count=Integer.parseInt(s);
+                languages=new String[count];
+                codes=new String[count];
+                for(int i=0;i<count;i++)
+                {
+                    languages[i]=json.getString("language"+i);
+                    codes[i]=json.getString("code"+i);
+                }
+            }catch (Exception e){e.printStackTrace();}
             return "";
         }
 
         @Override
         protected void onPostExecute(String result) {
 
-//            languageslist.clear();
-//            languageslist.add("- Select Language -");
-//            for(int i=0;i<count;i++)
-//            {
-//                languageslist.add(languages[i]);
-//            }
-//            populateLanguages();
+            languageslist.clear();
+            languageslist.add("- Select Language -");
+            for(int i=0;i<count;i++)
+            {
+                languageslist.add(languages[i]+" ("+codes[i]+")");
+            }
+            populateLanguages();
         }
     }
     void populateLanguages()
@@ -1667,139 +1652,16 @@ public class MyProfileKnownLang extends AppCompatActivity {
 
 
 
-//        knownlang1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                sknownlang1 = (String) parent.getItemAtPosition(position);
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//        knownlang2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                sknownlang2 = (String) parent.getItemAtPosition(position);
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//        knownlang3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                sknownlang3 = (String) parent.getItemAtPosition(position);
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//        knownlang4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                sknownlang4 = (String) parent.getItemAtPosition(position);
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//        knownlang5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                sknownlang5 = (String) parent.getItemAtPosition(position);
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//        knownlang6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                sknownlang6 = (String) parent.getItemAtPosition(position);
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//        knownlang7.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                sknownlang7 = (String) parent.getItemAtPosition(position);
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//        knownlang8.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                sknownlang8 = (String) parent.getItemAtPosition(position);
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//        knownlang9.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                sknownlang9 = (String) parent.getItemAtPosition(position);
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//        knownlang10.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                sknownlang10 = (String) parent.getItemAtPosition(position);
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-
-
-
-
-        if(sknownlang1!=null) {
+        if(sknownlang1!=null && !sknownlang1.equals("")) {
             if (!sknownlang1.equals("- Select Language -"))
                 knownlang1.setSelection(dataAdapter.getPosition(sknownlang1));
         }
+
         if(sproficiency1!=null) {
-            if (!sproficiency1.equals("Proficiency"))
+            if (!sproficiency1.equals("- Proficiency -"))
                 proficiency1.setSelection(dataAdapter2.getPosition(sproficiency1));
         }
-        if(sknownlang2!=null) {
+        if(sknownlang2!=null && !sknownlang2.equals("")) {
             if (!sknownlang2.equals("- Select Language -")) {
                 knownlang2.setSelection(dataAdapter.getPosition(sknownlang2));
                 View v = (View) findViewById(R.id.line1);
@@ -1812,10 +1674,10 @@ public class MyProfileKnownLang extends AppCompatActivity {
             }
         }
         if(sproficiency2!=null) {
-            if (!sproficiency2.equals("Proficiency"))
+            if (!sproficiency2.equals("- Proficiency -"))
                 proficiency2.setSelection(dataAdapter2.getPosition(sproficiency2));
         }
-        if(sknownlang3!=null) {
+        if(sknownlang3!=null && !sknownlang3.equals("")) {
             if (!sknownlang3.equals("- Select Language -")) {
                 knownlang3.setSelection(dataAdapter.getPosition(sknownlang3));
                 View v = (View) findViewById(R.id.line2);
@@ -1829,10 +1691,10 @@ public class MyProfileKnownLang extends AppCompatActivity {
             }
         }
         if(sproficiency3!=null) {
-            if (!sproficiency3.equals("Proficiency"))
+            if (!sproficiency3.equals("- Proficiency -"))
                 proficiency3.setSelection(dataAdapter2.getPosition(sproficiency3));
         }
-        if(sknownlang4!=null) {
+        if(sknownlang4!=null && !sknownlang4.equals("")) {
             if (!sknownlang4.equals("- Select Language -")) {
                 knownlang4.setSelection(dataAdapter.getPosition(sknownlang4));
                 View v = (View) findViewById(R.id.line3);
@@ -1846,10 +1708,10 @@ public class MyProfileKnownLang extends AppCompatActivity {
             }
         }
         if(sproficiency4!=null) {
-            if (!sproficiency4.equals("Proficiency"))
+            if (!sproficiency4.equals("- Proficiency -"))
                 proficiency4.setSelection(dataAdapter2.getPosition(sproficiency4));
         }
-        if(sknownlang5!=null) {
+        if(sknownlang5!=null && !sknownlang5.equals("")) {
             if (!sknownlang5.equals("- Select Language -")) {
                 knownlang5.setSelection(dataAdapter.getPosition(sknownlang5));
                 View v = (View) findViewById(R.id.line4);
@@ -1863,10 +1725,10 @@ public class MyProfileKnownLang extends AppCompatActivity {
             }
         }
         if(sproficiency5!=null) {
-            if (!sproficiency5.equals("Proficiency"))
+            if (!sproficiency5.equals("- Proficiency -"))
                 proficiency5.setSelection(dataAdapter2.getPosition(sproficiency5));
         }
-        if(sknownlang6!=null) {
+        if(sknownlang6!=null && !sknownlang6.equals("")) {
             if (!sknownlang6.equals("- Select Language -")) {
                 knownlang6.setSelection(dataAdapter.getPosition(sknownlang6));
                 View v = (View) findViewById(R.id.line5);
@@ -1880,10 +1742,10 @@ public class MyProfileKnownLang extends AppCompatActivity {
             }
         }
         if(sproficiency6!=null) {
-            if (!sproficiency6.equals("Proficiency"))
+            if (!sproficiency6.equals("- Proficiency -"))
                 proficiency6.setSelection(dataAdapter2.getPosition(sproficiency6));
         }
-        if(sknownlang7!=null) {
+        if(sknownlang7!=null && !sknownlang7.equals("")) {
             if (!sknownlang7.equals("- Select Language -")) {
                 knownlang7.setSelection(dataAdapter.getPosition(sknownlang7));
                 View v = (View) findViewById(R.id.line6);
@@ -1897,10 +1759,10 @@ public class MyProfileKnownLang extends AppCompatActivity {
             }
         }
         if(sproficiency7!=null) {
-            if (!sproficiency7.equals("Proficiency"))
+            if (!sproficiency7.equals("- Proficiency -"))
                 proficiency7.setSelection(dataAdapter2.getPosition(sproficiency7));
         }
-        if(sknownlang8!=null) {
+        if(sknownlang8!=null && !sknownlang8.equals("")) {
             if (!sknownlang8.equals("- Select Language -")) {
                 knownlang8.setSelection(dataAdapter.getPosition(sknownlang8));
                 View v = (View) findViewById(R.id.line7);
@@ -1914,10 +1776,10 @@ public class MyProfileKnownLang extends AppCompatActivity {
             }
         }
         if(sproficiency8!=null) {
-            if (!sproficiency8.equals("Proficiency"))
+            if (!sproficiency8.equals("- Proficiency -"))
                 proficiency8.setSelection(dataAdapter2.getPosition(sproficiency8));
         }
-        if(sknownlang9!=null) {
+        if(sknownlang9!=null && !sknownlang9.equals("")) {
             if (!sknownlang9.equals("- Select Language -")) {
                 knownlang9.setSelection(dataAdapter.getPosition(sknownlang9));
                 View v = (View) findViewById(R.id.line8);
@@ -1931,10 +1793,10 @@ public class MyProfileKnownLang extends AppCompatActivity {
             }
         }
         if(sproficiency9!=null) {
-            if (!sproficiency9.equals("Proficiency"))
+            if (!sproficiency9.equals("- Proficiency -"))
                 proficiency9.setSelection(dataAdapter2.getPosition(sproficiency9));
         }
-        if(sknownlang10!=null) {
+        if(sknownlang10!=null && !sknownlang10.equals("")) {
             if (!sknownlang10.equals("- Select Language -")) {
                 knownlang10.setSelection(dataAdapter.getPosition(sknownlang10));
                 View v = (View) findViewById(R.id.line9);
@@ -1948,7 +1810,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
             }
         }
         if(sproficiency10!=null) {
-            if (!sproficiency10.equals("Proficiency"))
+            if (!sproficiency10.equals("- Proficiency -"))
                 proficiency10.setSelection(dataAdapter2.getPosition(sproficiency10));
         }
 
@@ -1998,7 +1860,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
             }
             else
             {
-                if(sproficiency1.equals("Proficiency"))
+                if(sproficiency1.equals("- Proficiency -"))
                 {
                     errorflag=1;
                     Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2012,7 +1874,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                 errorflag=1;
                 Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
             }
-            else if(sproficiency1.equals("Proficiency"))
+            else if(sproficiency1.equals("- Proficiency -"))
             {
                 errorflag=1;
                 Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2025,7 +1887,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     errorflag=1;
                     Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                 }
-                else if(sproficiency2.equals("Proficiency"))
+                else if(sproficiency2.equals("- Proficiency -"))
                 {
                     errorflag=1;
                     Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2039,7 +1901,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                 errorflag=1;
                 Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
             }
-            else if(sproficiency1.equals("Proficiency"))
+            else if(sproficiency1.equals("- Proficiency -"))
             {
                 errorflag=1;
                 Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2052,7 +1914,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     errorflag=1;
                     Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                 }
-                else if(sproficiency2.equals("Proficiency"))
+                else if(sproficiency2.equals("- Proficiency -"))
                 {
                     errorflag=1;
                     Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2065,7 +1927,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                         errorflag=1;
                         Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                     }
-                    else if(sproficiency3.equals("Proficiency"))
+                    else if(sproficiency3.equals("- Proficiency -"))
                     {
                         errorflag=1;
                         Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2080,7 +1942,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                 errorflag=1;
                 Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
             }
-            else if(sproficiency1.equals("Proficiency"))
+            else if(sproficiency1.equals("- Proficiency -"))
             {
                 errorflag=1;
                 Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2093,7 +1955,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     errorflag=1;
                     Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                 }
-                else if(sproficiency2.equals("Proficiency"))
+                else if(sproficiency2.equals("- Proficiency -"))
                 {
                     errorflag=1;
                     Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2106,7 +1968,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                         errorflag=1;
                         Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                     }
-                    else if(sproficiency3.equals("Proficiency"))
+                    else if(sproficiency3.equals("- Proficiency -"))
                     {
                         errorflag=1;
                         Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2119,7 +1981,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                             errorflag=1;
                             Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                         }
-                        else if(sproficiency4.equals("Proficiency"))
+                        else if(sproficiency4.equals("- Proficiency -"))
                         {
                             errorflag=1;
                             Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2135,7 +1997,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                 errorflag=1;
                 Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
             }
-            else if(sproficiency1.equals("Proficiency"))
+            else if(sproficiency1.equals("- Proficiency -"))
             {
                 errorflag=1;
                 Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2148,7 +2010,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     errorflag=1;
                     Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                 }
-                else if(sproficiency2.equals("Proficiency"))
+                else if(sproficiency2.equals("- Proficiency -"))
                 {
                     errorflag=1;
                     Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2161,7 +2023,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                         errorflag=1;
                         Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                     }
-                    else if(sproficiency3.equals("Proficiency"))
+                    else if(sproficiency3.equals("- Proficiency -"))
                     {
                         errorflag=1;
                         Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2174,7 +2036,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                             errorflag=1;
                             Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                         }
-                        else if(sproficiency4.equals("Proficiency"))
+                        else if(sproficiency4.equals("- Proficiency -"))
                         {
                             errorflag=1;
                             Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2187,7 +2049,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                 errorflag=1;
                                 Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                             }
-                            else if(sproficiency5.equals("Proficiency"))
+                            else if(sproficiency5.equals("- Proficiency -"))
                             {
                                 errorflag=1;
                                 Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2204,7 +2066,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                 errorflag=1;
                 Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
             }
-            else if(sproficiency1.equals("Proficiency"))
+            else if(sproficiency1.equals("- Proficiency -"))
             {
                 errorflag=1;
                 Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2217,7 +2079,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     errorflag=1;
                     Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                 }
-                else if(sproficiency2.equals("Proficiency"))
+                else if(sproficiency2.equals("- Proficiency -"))
                 {
                     errorflag=1;
                     Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2230,7 +2092,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                         errorflag=1;
                         Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                     }
-                    else if(sproficiency3.equals("Proficiency"))
+                    else if(sproficiency3.equals("- Proficiency -"))
                     {
                         errorflag=1;
                         Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2243,7 +2105,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                             errorflag=1;
                             Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                         }
-                        else if(sproficiency4.equals("Proficiency"))
+                        else if(sproficiency4.equals("- Proficiency -"))
                         {
                             errorflag=1;
                             Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2256,7 +2118,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                 errorflag=1;
                                 Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                             }
-                            else if(sproficiency5.equals("Proficiency"))
+                            else if(sproficiency5.equals("- Proficiency -"))
                             {
                                 errorflag=1;
                                 Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2269,7 +2131,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                     errorflag=1;
                                     Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                                 }
-                                else if(sproficiency6.equals("Proficiency"))
+                                else if(sproficiency6.equals("- Proficiency -"))
                                 {
                                     errorflag=1;
                                     Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2287,7 +2149,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                 errorflag=1;
                 Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
             }
-            else if(sproficiency1.equals("Proficiency"))
+            else if(sproficiency1.equals("- Proficiency -"))
             {
                 errorflag=1;
                 Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2300,7 +2162,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     errorflag=1;
                     Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                 }
-                else if(sproficiency2.equals("Proficiency"))
+                else if(sproficiency2.equals("- Proficiency -"))
                 {
                     errorflag=1;
                     Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2313,7 +2175,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                         errorflag=1;
                         Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                     }
-                    else if(sproficiency3.equals("Proficiency"))
+                    else if(sproficiency3.equals("- Proficiency -"))
                     {
                         errorflag=1;
                         Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2326,7 +2188,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                             errorflag=1;
                             Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                         }
-                        else if(sproficiency4.equals("Proficiency"))
+                        else if(sproficiency4.equals("- Proficiency -"))
                         {
                             errorflag=1;
                             Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2339,7 +2201,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                 errorflag=1;
                                 Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                             }
-                            else if(sproficiency5.equals("Proficiency"))
+                            else if(sproficiency5.equals("- Proficiency -"))
                             {
                                 errorflag=1;
                                 Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2352,7 +2214,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                     errorflag=1;
                                     Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                                 }
-                                else if(sproficiency6.equals("Proficiency"))
+                                else if(sproficiency6.equals("- Proficiency -"))
                                 {
                                     errorflag=1;
                                     Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2365,7 +2227,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                         errorflag=1;
                                         Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                                     }
-                                    else if(sproficiency7.equals("Proficiency"))
+                                    else if(sproficiency7.equals("- Proficiency -"))
                                     {
                                         errorflag=1;
                                         Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2384,7 +2246,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                 errorflag=1;
                 Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
             }
-            else if(sproficiency1.equals("Proficiency"))
+            else if(sproficiency1.equals("- Proficiency -"))
             {
                 errorflag=1;
                 Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2397,7 +2259,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     errorflag=1;
                     Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                 }
-                else if(sproficiency2.equals("Proficiency"))
+                else if(sproficiency2.equals("- Proficiency -"))
                 {
                     errorflag=1;
                     Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2410,7 +2272,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                         errorflag=1;
                         Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                     }
-                    else if(sproficiency3.equals("Proficiency"))
+                    else if(sproficiency3.equals("- Proficiency -"))
                     {
                         errorflag=1;
                         Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2423,7 +2285,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                             errorflag=1;
                             Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                         }
-                        else if(sproficiency4.equals("Proficiency"))
+                        else if(sproficiency4.equals("- Proficiency -"))
                         {
                             errorflag=1;
                             Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2436,7 +2298,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                 errorflag=1;
                                 Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                             }
-                            else if(sproficiency5.equals("Proficiency"))
+                            else if(sproficiency5.equals("- Proficiency -"))
                             {
                                 errorflag=1;
                                 Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2449,7 +2311,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                     errorflag=1;
                                     Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                                 }
-                                else if(sproficiency6.equals("Proficiency"))
+                                else if(sproficiency6.equals("- Proficiency -"))
                                 {
                                     errorflag=1;
                                     Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2462,7 +2324,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                         errorflag=1;
                                         Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                                     }
-                                    else if(sproficiency7.equals("Proficiency"))
+                                    else if(sproficiency7.equals("- Proficiency -"))
                                     {
                                         errorflag=1;
                                         Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2475,7 +2337,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                             errorflag=1;
                                             Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                                         }
-                                        else if(sproficiency8.equals("Proficiency"))
+                                        else if(sproficiency8.equals("- Proficiency -"))
                                         {
                                             errorflag=1;
                                             Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2495,7 +2357,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                 errorflag=1;
                 Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
             }
-            else if(sproficiency1.equals("Proficiency"))
+            else if(sproficiency1.equals("- Proficiency -"))
             {
                 errorflag=1;
                 Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2508,7 +2370,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     errorflag=1;
                     Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                 }
-                else if(sproficiency2.equals("Proficiency"))
+                else if(sproficiency2.equals("- Proficiency -"))
                 {
                     errorflag=1;
                     Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2521,7 +2383,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                         errorflag=1;
                         Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                     }
-                    else if(sproficiency3.equals("Proficiency"))
+                    else if(sproficiency3.equals("- Proficiency -"))
                     {
                         errorflag=1;
                         Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2534,7 +2396,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                             errorflag=1;
                             Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                         }
-                        else if(sproficiency4.equals("Proficiency"))
+                        else if(sproficiency4.equals("- Proficiency -"))
                         {
                             errorflag=1;
                             Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2547,7 +2409,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                 errorflag=1;
                                 Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                             }
-                            else if(sproficiency5.equals("Proficiency"))
+                            else if(sproficiency5.equals("- Proficiency -"))
                             {
                                 errorflag=1;
                                 Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2560,7 +2422,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                     errorflag=1;
                                     Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                                 }
-                                else if(sproficiency6.equals("Proficiency"))
+                                else if(sproficiency6.equals("- Proficiency -"))
                                 {
                                     errorflag=1;
                                     Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2573,7 +2435,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                         errorflag=1;
                                         Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                                     }
-                                    else if(sproficiency7.equals("Proficiency"))
+                                    else if(sproficiency7.equals("- Proficiency -"))
                                     {
                                         errorflag=1;
                                         Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2586,7 +2448,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                             errorflag=1;
                                             Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                                         }
-                                        else if(sproficiency8.equals("Proficiency"))
+                                        else if(sproficiency8.equals("- Proficiency -"))
                                         {
                                             errorflag=1;
                                             Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2599,7 +2461,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                                 errorflag=1;
                                                 Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                                             }
-                                            else if(sproficiency9.equals("Proficiency"))
+                                            else if(sproficiency9.equals("- Proficiency -"))
                                             {
                                                 errorflag=1;
                                                 Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2620,7 +2482,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                 errorflag=1;
                 Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
             }
-            else if(sproficiency1.equals("Proficiency"))
+            else if(sproficiency1.equals("- Proficiency -"))
             {
                 errorflag=1;
                 Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2633,7 +2495,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     errorflag=1;
                     Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                 }
-                else if(sproficiency2.equals("Proficiency"))
+                else if(sproficiency2.equals("- Proficiency -"))
                 {
                     errorflag=1;
                     Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2646,7 +2508,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                         errorflag=1;
                         Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                     }
-                    else if(sproficiency3.equals("Proficiency"))
+                    else if(sproficiency3.equals("- Proficiency -"))
                     {
                         errorflag=1;
                         Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2659,7 +2521,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                             errorflag=1;
                             Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                         }
-                        else if(sproficiency4.equals("Proficiency"))
+                        else if(sproficiency4.equals("- Proficiency -"))
                         {
                             errorflag=1;
                             Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2672,7 +2534,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                 errorflag=1;
                                 Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                             }
-                            else if(sproficiency5.equals("Proficiency"))
+                            else if(sproficiency5.equals("- Proficiency -"))
                             {
                                 errorflag=1;
                                 Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2685,7 +2547,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                     errorflag=1;
                                     Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                                 }
-                                else if(sproficiency6.equals("Proficiency"))
+                                else if(sproficiency6.equals("- Proficiency -"))
                                 {
                                     errorflag=1;
                                     Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2698,7 +2560,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                         errorflag=1;
                                         Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                                     }
-                                    else if(sproficiency7.equals("Proficiency"))
+                                    else if(sproficiency7.equals("- Proficiency -"))
                                     {
                                         errorflag=1;
                                         Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2711,7 +2573,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                             errorflag=1;
                                             Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                                         }
-                                        else if(sproficiency8.equals("Proficiency"))
+                                        else if(sproficiency8.equals("- Proficiency -"))
                                         {
                                             errorflag=1;
                                             Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2724,7 +2586,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                                 errorflag=1;
                                                 Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                                             }
-                                            else if(sproficiency9.equals("Proficiency"))
+                                            else if(sproficiency9.equals("- Proficiency -"))
                                             {
                                                 errorflag=1;
                                                 Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2737,7 +2599,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                                     errorflag=1;
                                                     Toast.makeText(MyProfileKnownLang.this,"Please Select Language",Toast.LENGTH_LONG).show();
                                                 }
-                                                else if(sproficiency10.equals("Proficiency"))
+                                                else if(sproficiency10.equals("- Proficiency -"))
                                                 {
                                                     errorflag=1;
                                                     Toast.makeText(MyProfileKnownLang.this,"Please Select Proficiency",Toast.LENGTH_LONG).show();
@@ -2778,9 +2640,11 @@ public class MyProfileKnownLang extends AppCompatActivity {
                 knownLangsList.add(obj9);
                 knownLangsList.add(obj10);
 
-                String encObjString=OtoString(knownLangsList,MySharedPreferencesManager.getDigest1(MyProfileKnownLang.this),MySharedPreferencesManager.getDigest2(MyProfileKnownLang.this));
+                 encObjString=OtoString(knownLangsList,MySharedPreferencesManager.getDigest1(MyProfileKnownLang.this),MySharedPreferencesManager.getDigest2(MyProfileKnownLang.this));
 
-                new SaveLanguages().execute(encObjString);
+
+
+                new SaveLanguages().execute();
 
 
             }catch (Exception e){Toast.makeText(MyProfileKnownLang.this,e.getMessage(),Toast.LENGTH_LONG).show();}
@@ -2795,7 +2659,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
             String r=null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",username));       //0
-            params.add(new BasicNameValuePair("d",param[0]));       //0
+            params.add(new BasicNameValuePair("d",encObjString));       //0
 
 
             json = jParser.makeHttpRequest(MyConstants.url_savelanguages, "GET", params);
@@ -2806,6 +2670,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
             }catch (Exception e){e.printStackTrace();}
             return r;
         }
+
 
         @Override
         protected void onPostExecute(String result) {
@@ -2818,11 +2683,13 @@ public class MyProfileKnownLang extends AppCompatActivity {
                 ProfileRole r=new ProfileRole();
                 String role=r.getRole();
                 if(role.equals("student"))
-                   setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+                    setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("alumni"))
-                  setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("hr"))
                     setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
+                else if(role.equals("admin"))
+                    setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
 
                 s.setLang1(sknownlang1);
                 s.setProficiency1(sproficiency1);

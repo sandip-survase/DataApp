@@ -1472,13 +1472,17 @@ public class PersonalProfileTabFragment extends Fragment {
             params.add(new BasicNameValuePair("d", encobj));        //1
 
 
-            if (Myrole.equals("student")) {
+//            if (Myrole.equals("student")) {
+
+
                 Log.d("student", "onCreateView: " + Myrole);
                 json = jParser.makeHttpRequest(MyConstants.savepersonalinfo, "GET", params);
-            }
-            if (Myrole.equals("alumni")) {
-                json = jParser.makeHttpRequest(MyConstants.savepersonalinfoAlumni, "GET", params);
-            }
+
+
+//            }
+//            if (Myrole.equals("alumni")) {
+//                json = jParser.makeHttpRequest(MyConstants.savepersonalinfoAlumni, "GET", params);
+//            }
 
 
             try {

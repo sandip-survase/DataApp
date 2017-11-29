@@ -60,7 +60,7 @@ public class HrContactDetails extends AppCompatActivity {
 
     HrData hrData = new HrData();
     String strobj;
-    private static String url_savedata= "http://192.168.100.30:8080/ProfileObjects/SaveAdminContact";
+
 
 
 
@@ -437,15 +437,9 @@ public class HrContactDetails extends AppCompatActivity {
                 try {
 
                     AdminContactDetailsModal obj = new AdminContactDetailsModal(hrfname, hrlname, plainusername, hremail2, hraddressline1, hraddressline2, hraddressline3, hrphone, hrmobile, hrmobile2);
-                    try{
                         strobj =OtoString(obj,digest1,digest2);
                         Log.d("encstrobj", "strobj: "+strobj);
-
-                    }
-                    catch (Exception e){
-                        Log.d("TAG", "validateandSave: - "+e.getMessage());
-                    }
-                    new SaveDetails().execute();
+                                  new SaveDetails().execute();
 
                 }catch (Exception e){Toast.makeText(HrContactDetails.this,e.getMessage(),Toast.LENGTH_LONG).show();}
 
@@ -462,7 +456,7 @@ public class HrContactDetails extends AppCompatActivity {
             params.add(new BasicNameValuePair("u",username));       //0
             params.add(new BasicNameValuePair("obj",strobj));               //1
 
-            json = jParser.makeHttpRequest(url_savedata, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_SaveHrContact, "GET", params);
             try {
                 r = json.getString("info");
 
@@ -486,9 +480,14 @@ public class HrContactDetails extends AppCompatActivity {
             {
                 Toast.makeText(HrContactDetails.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
-                if(edittedFlag!=0){
-                    setResult(111);
-                }
+                ProfileRole r=new ProfileRole();
+                String role=r.getRole();
+
+                 if(role.equals("hr"))
+                    setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
+                else if(role.equals("admin"))
+                    setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
+
 
                 HrContactDetails.super.onBackPressed();
             }

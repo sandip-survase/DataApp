@@ -1602,6 +1602,7 @@ public class MyProfilePg extends AppCompatActivity {
         selectedCoursepgsem=s.getCoursepgsem();
         if(s.getStreampgsem()!=null)
             selectedStreampgsem=s.getStreampgsem();
+
         selectedUniversitypgsem=s.getUniversitypgsem();
         oldUniversitysem=selectedUniversitypgsem;
         schoolnamepgsemester=s.getCollegenamepgsem();
@@ -1620,8 +1621,24 @@ public class MyProfilePg extends AppCompatActivity {
         percentyear3=s.getPercentageyear3pgyear();
         aggregatepgyear=s.getAggregatepgyear();
         selectedCoursepgyear=s.getCoursepgyear();
+        if(selectedCoursepgyear==null){
+            selectedCoursepgyear="- Select Course -";
+        }
+
         selectedStreampgyear=s.getStreampgyear();
+
+
+        if(selectedStreampgyear==null){
+            selectedStreampgyear="Select Stream/Specialization -";
+        }
+
+
         selectedUniversitypgyear=s.getUniversitypgyear();
+
+//        if(selectedUniversitypgyear==null){
+//            selectedUniversitypgyear="- Select University -";
+//        }
+
         oldUniversityyear=selectedUniversitypgyear;
         schoolnamepgyears=s.getCollegenamepgyear();
         monthandyearofpassingpgyear=s.getYearofpassingpgyear();
@@ -2052,9 +2069,10 @@ public class MyProfilePg extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedStreampgyear= (String) parent.getItemAtPosition(position);
+                Log.d("TAG", " setOnItemSelectedListener selectedStreampgyear - "+selectedStreampgyear);
                 TextInputLayout othersemstreaminput=(TextInputLayout)findViewById(R.id.otheryearstreaminput);
                 if(selectedStreampgyear.equals("Other")) {
-
+                    Log.d("TAG", " setOnItemSelectedListener Other - "+selectedStreampgyear);
                     othersemstreaminput.setVisibility(View.VISIBLE);
                 }
                 else {
@@ -2071,6 +2089,8 @@ public class MyProfilePg extends AppCompatActivity {
 
             }
         });
+
+
         if(isStreamSetyear==0) {
             isStreamSetyear=1;
             if(s.getStreampgyear()!=null) {
@@ -2084,6 +2104,9 @@ public class MyProfilePg extends AppCompatActivity {
 
 
     }
+
+
+
     class GetUniversities extends AsyncTask<String, String, String> {
 
 
@@ -2119,6 +2142,7 @@ public class MyProfilePg extends AppCompatActivity {
             universitieslist.add("Other");
         }
     }
+
     void populateUniversities()
     {
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item_long, universitieslist)
@@ -2161,6 +2185,7 @@ public class MyProfilePg extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedUniversitypgsem= (String) parent.getItemAtPosition(position);
+
                 TextInputLayout otheruniversityinput=(TextInputLayout)findViewById(R.id.othersemuniversityinput);
                 if(selectedUniversitypgsem.equals("Other")) {
 
@@ -2265,10 +2290,14 @@ public class MyProfilePg extends AppCompatActivity {
 
     void validateandSave()
     {
+        Log.d("TAG", "validateandSave: selectedStreampgyear - "+selectedStreampgyear);
 
         if(pattern.equals("sem"))
         {
             setBlankYear();
+
+            Log.d("TAG", "validateandSave: setBlankYear selectedStreampgyear - "+selectedStreampgyear);
+            Log.d("TAG", "validateandSave: setBlankYear courseYear - "+selectedCoursepgyear);
 
             pmarkssem1.setError(null);
             poutofsem1.setError(null);
@@ -2523,9 +2552,12 @@ public class MyProfilePg extends AppCompatActivity {
                     else
                         universitySem=selectedUniversitypgsem;
 
-                    PgSem objSem=new PgSem(markssem1,outofsem1,percentsem1,markssem2,outofsem2,percentsem2,markssem3,outofsem3,percentsem3,markssem4,outofsem4,percentsem4,markssem5,outofsem5,percentsem5,markssem6,outofsem6,percentsem6,schoolnamepgsemester,aggregatepgsem,monthandyearofpassingpgsem,courseSem,streamSem,universitySem);
+                    Log.d("TAG", "validateandSave: setBlankYear selectedStreampgyear - "+selectedStreampgyear);
+                    Log.d("TAG", "validateandSave: setBlankYear courseYear - "+selectedCoursepgyear);
+
+                    PgSem objSem=new PgSem(markssem1,outofsem1,percentsem1,markssem2,outofsem2,percentsem2,markssem3,outofsem3,percentsem3,markssem4,outofsem4,percentsem4,markssem5,outofsem5,percentsem5,markssem6,outofsem6,percentsem6,schoolnamepgsemester,aggregatepgsem,monthandyearofpassingpgsem,selectedCoursepgsem,selectedStreampgsem,universitySem);
                     String encObjStringSem=OtoString(objSem,MySharedPreferencesManager.getDigest1(MyProfilePg.this),MySharedPreferencesManager.getDigest2(MyProfilePg.this));
-                    PgYear objYear=new PgYear(marksyear1,outofyear1,percentyear1,marksyear2,outofyear2,percentyear2,marksyear3,outofyear3,percentyear3,aggregatepgyear,schoolnamepgyears,monthandyearofpassingpgyear,courseYear,streamYear,selectedUniversitypgyear);
+                    PgYear objYear=new PgYear(marksyear1,outofyear1,percentyear1,marksyear2,outofyear2,percentyear2,marksyear3,outofyear3,percentyear3,aggregatepgyear,schoolnamepgyears,monthandyearofpassingpgyear,selectedCoursepgyear,selectedStreampgyear,selectedUniversitypgyear);
                     String encObjStringYear=OtoString(objYear,MySharedPreferencesManager.getDigest1(MyProfilePg.this),MySharedPreferencesManager.getDigest2(MyProfilePg.this));
 
                     new SaveDataPgSem().execute(encObjStringSem);
@@ -2540,7 +2572,7 @@ public class MyProfilePg extends AppCompatActivity {
         else if(pattern.equals("year")) {
 
             setBlankSem();
-
+            Log.d("TAG", "validateandSave: after blank sem");
             pmarksyear1.setError(null);
             poutofyear1.setError(null);
             ppercentyear1.setError(null);
@@ -2695,9 +2727,6 @@ public class MyProfilePg extends AppCompatActivity {
 
                 try {
 
-
-
-
                     if(selectedCoursepgyear.equals("Other"))
                         courseYear=otherspecifiedcoursepgyear;
                     else
@@ -2707,28 +2736,35 @@ public class MyProfilePg extends AppCompatActivity {
                         streamYear=otherspecifiedstreampgyear;
                     else
                         streamYear=selectedStreampgyear;
+
                     if(selectedUniversitypgyear.equals("Other"))
                         universityYear=otherspecifieduniversitypgyear;
                     else
                         universityYear=selectedUniversitypgyear;
 
 
+
                     PgSem objSem=new PgSem(markssem1,outofsem1,percentsem1,markssem2,outofsem2,percentsem2,markssem3,outofsem3,percentsem3,markssem4,outofsem4,percentsem4,markssem5,outofsem5,percentsem5,markssem6,outofsem6,percentsem6,schoolnamepgsemester,aggregatepgsem,monthandyearofpassingpgsem,courseSem,streamSem,universitySem);
                     String encObjStringSem=OtoString(objSem,MySharedPreferencesManager.getDigest1(MyProfilePg.this),MySharedPreferencesManager.getDigest2(MyProfilePg.this));
                     PgYear objYear=new PgYear(marksyear1,outofyear1,percentyear1,marksyear2,outofyear2,percentyear2,marksyear3,outofyear3,percentyear3,aggregatepgyear,schoolnamepgyears,monthandyearofpassingpgyear,courseYear,streamYear,universityYear);
                     String encObjStringYear=OtoString(objYear,MySharedPreferencesManager.getDigest1(MyProfilePg.this),MySharedPreferencesManager.getDigest2(MyProfilePg.this));
+                    Log.d("TAG", "validateandSave: encObjStringSem :-"+encObjStringSem);
+                    Log.d("TAG", "validateandSave: encObjStringYear :-"+encObjStringYear);
 
                     new SaveDataPgYear().execute(encObjStringYear);
                     new SaveDataPgSem().execute(encObjStringSem);
 
-                }catch (Exception e){}
+                }catch (Exception e){
+
+                    Log.d("TAG", "validateandSave: exception "+e.getMessage());
+
+                }
             }
         }
 
 
     }
     class SaveDataPgSem extends AsyncTask<String, String, String> {
-
 
         protected String doInBackground(String... param) {
 
@@ -2753,8 +2789,12 @@ public class MyProfilePg extends AppCompatActivity {
             {
                 Toast.makeText(MyProfilePg.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
-                setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
-                setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+                ProfileRole r=new ProfileRole();
+                String role=r.getRole();
+                if(role.equals("student"))
+                    setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+                else if(role.equals("alumni"))
+                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
 
                 s.setMarkssem1pgsem(markssem1);
                 s.setOutofsem1pgsem(outofsem1);
@@ -2811,6 +2851,9 @@ public class MyProfilePg extends AppCompatActivity {
             params.add(new BasicNameValuePair("u",username));    //0
             params.add(new BasicNameValuePair("d",param[0]));    //0
 
+            Log.d("TAG", "doInBackground: "+param[0]);
+
+
             json = jParser.makeHttpRequest(MyConstants.url_savedata_pg_year, "GET", params);
             try {
                 r = json.getString("info");
@@ -2832,10 +2875,10 @@ public class MyProfilePg extends AppCompatActivity {
                 if(role.equals("student"))
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("alumni"))
-                  setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
                 MyProfilePg.super.onBackPressed();
             }
-            Toast.makeText(MyProfilePg.this,result,Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MyProfilePg.this,result,Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -2867,27 +2910,27 @@ public class MyProfilePg extends AppCompatActivity {
         s.setCollegenamepgsem("");
         s.setYearofpassingpgsem("");
 
-            pmarkssem1.setText("");
-            poutofsem1.setText("");
-            ppercentsem1.setText("");
-            pmarkssem2.setText("");
-            poutofsem2.setText("");
-            ppercentsem2.setText("");
-            pmarkssem3.setText("");
-            poutofsem3.setText("");
-            ppercentsem3.setText("");
-            pmarkssem4.setText("");
-            poutofsem4.setText("");
-            ppercentsem4.setText("");
-            pmarkssem5.setText("");
-            poutofsem5.setText("");
-            ppercentsem5.setText("");
-            pmarkssem6.setText("");
-            poutofsem6.setText("");
-            ppercentsem6.setText("");
-            pgsemaggregate.setText("");
-            schoolnamepgsem.setText("");
-            yearofpassingpgsem.setText("");
+        pmarkssem1.setText("");
+        poutofsem1.setText("");
+        ppercentsem1.setText("");
+        pmarkssem2.setText("");
+        poutofsem2.setText("");
+        ppercentsem2.setText("");
+        pmarkssem3.setText("");
+        poutofsem3.setText("");
+        ppercentsem3.setText("");
+        pmarkssem4.setText("");
+        poutofsem4.setText("");
+        ppercentsem4.setText("");
+        pmarkssem5.setText("");
+        poutofsem5.setText("");
+        ppercentsem5.setText("");
+        pmarkssem6.setText("");
+        poutofsem6.setText("");
+        ppercentsem6.setText("");
+        pgsemaggregate.setText("");
+        schoolnamepgsem.setText("");
+        yearofpassingpgsem.setText("");
 
 
         markssem1="";
@@ -2909,120 +2952,12 @@ public class MyProfilePg extends AppCompatActivity {
         outofsem6="";
         percentsem6="";
         aggregatepgsem="";
-        selectedCoursepgsem="";
-            selectedStreampgsem="";
-        selectedUniversitypgsem="";
+        selectedCoursepgsem="- Select Course -";
+        selectedStreampgsem="- Select Stream/Specialization -";
+        selectedUniversitypgsem="- Select University -";
         schoolnamepgsemester="";
         monthandyearofpassingpgsem="";
 
-
-        try {
-            byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-            byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-            String sPadding = "ISO10126Padding";
-
-
-            byte[] markssem1Bytes = markssem1.getBytes("UTF-8");
-            byte[] outofsem1Bytes = outofsem1.getBytes("UTF-8");
-            byte[] percentsem1Bytes = percentsem1.getBytes("UTF-8");
-            byte[] markssem2Bytes = markssem2.getBytes("UTF-8");
-            byte[] outofsem2Bytes = outofsem2.getBytes("UTF-8");
-            byte[] percentsem2Bytes = percentsem2.getBytes("UTF-8");
-            byte[] markssem3Bytes = markssem3.getBytes("UTF-8");
-            byte[] outofsem3Bytes = outofsem3.getBytes("UTF-8");
-            byte[] percentsem3Bytes = percentsem3.getBytes("UTF-8");
-            byte[] markssem4Bytes = markssem4.getBytes("UTF-8");
-            byte[] outofsem4Bytes = outofsem4.getBytes("UTF-8");
-            byte[] percentsem4Bytes = percentsem4.getBytes("UTF-8");
-            byte[] markssem5Bytes = markssem5.getBytes("UTF-8");
-            byte[] outofsem5Bytes = outofsem5.getBytes("UTF-8");
-            byte[] percentsem5Bytes = percentsem5.getBytes("UTF-8");
-            byte[] markssem6Bytes = markssem6.getBytes("UTF-8");
-            byte[] outofsem6Bytes = outofsem6.getBytes("UTF-8");
-            byte[] percentsem6Bytes = percentsem6.getBytes("UTF-8");
-            byte[] aggregateBytes = aggregatepgsem.getBytes("UTF-8");
-            byte[] schoolnameBytes = schoolnamepgsemester.getBytes("UTF-8");
-            byte[] monthandyearofpassingBytes = monthandyearofpassingpgsem.getBytes("UTF-8");
-
-            byte[] selectedcourseBytes=null,selectedstreamBytes=null,selecteduniversityBytes=null;
-            if(selectedCoursepgsem.equals("Other"))
-                selectedcourseBytes=otherspecifiedcoursepgsem.getBytes("UTF-8");
-            else
-                selectedcourseBytes=selectedCoursepgsem.getBytes("UTF-8");
-            Log.d(alumniLog,"selectedcourseBytes "+selectedCoursepgsem);
-            Log.d(alumniLog,"selectedstreamBytes "+selectedStreampgsem);
-
-
-            if(selectedStreampgsem.equals("Other")){
-                Log.d(alumniLog, "validateandSave: before"+otherspecifiedstreampgsem);
-                selectedstreamBytes=otherspecifiedstreampgsem.getBytes("UTF-8");
-                Log.d(alumniLog, "validateandSave: after"+otherspecifiedstreampgsem);
-            }
-
-            else
-                selectedstreamBytes=selectedStreampgsem.getBytes("UTF-8");
-            Log.d(alumniLog,"selectedstreamBytes "+selectedStreampgsem);
-
-
-            if(selectedUniversitypgsem.equals("Other"))
-                selecteduniversityBytes=otherspecifieduniversitypgsem.getBytes("UTF-8");
-            else
-                selecteduniversityBytes=selectedUniversitypgsem.getBytes("UTF-8");
-            Log.d(alumniLog,"u r in after utf");
-
-            byte[] markssem1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem1Bytes);
-            encmarkssem1=new String(SimpleBase64Encoder.encode(markssem1EncryptedBytes));
-            byte[] markssem2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem2Bytes);
-            encmarkssem2=new String(SimpleBase64Encoder.encode(markssem2EncryptedBytes));
-            byte[] markssem3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem3Bytes);
-            encmarkssem3=new String(SimpleBase64Encoder.encode(markssem3EncryptedBytes));
-            byte[] markssem4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem4Bytes);
-            encmarkssem4=new String(SimpleBase64Encoder.encode(markssem4EncryptedBytes));
-            byte[] markssem5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem5Bytes);
-            encmarkssem5=new String(SimpleBase64Encoder.encode(markssem5EncryptedBytes));
-            byte[] markssem6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem6Bytes);
-            encmarkssem6=new String(SimpleBase64Encoder.encode(markssem6EncryptedBytes));
-            byte[] outofsem1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem1Bytes);
-            encoutofsem1=new String(SimpleBase64Encoder.encode(outofsem1EncryptedBytes));
-            byte[] outofsem2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem2Bytes);
-            encoutofsem2=new String(SimpleBase64Encoder.encode(outofsem2EncryptedBytes));
-            byte[] outofsem3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem3Bytes);
-            encoutofsem3=new String(SimpleBase64Encoder.encode(outofsem3EncryptedBytes));
-            byte[] outofsem4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem4Bytes);
-            encoutofsem4=new String(SimpleBase64Encoder.encode(outofsem4EncryptedBytes));
-            byte[] outofsem5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem5Bytes);
-            encoutofsem5=new String(SimpleBase64Encoder.encode(outofsem5EncryptedBytes));
-            byte[] outofsem6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem6Bytes);
-            encoutofsem6=new String(SimpleBase64Encoder.encode(outofsem6EncryptedBytes));
-            byte[] percentsem1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem1Bytes);
-            encpercentsem1=new String(SimpleBase64Encoder.encode(percentsem1EncryptedBytes));
-            byte[] percentsem2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem2Bytes);
-            encpercentsem2=new String(SimpleBase64Encoder.encode(percentsem2EncryptedBytes));
-            byte[] percentsem3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem3Bytes);
-            encpercentsem3=new String(SimpleBase64Encoder.encode(percentsem3EncryptedBytes));
-            byte[] percentsem4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem4Bytes);
-            encpercentsem4=new String(SimpleBase64Encoder.encode(percentsem4EncryptedBytes));
-            byte[] percentsem5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem5Bytes);
-            encpercentsem5=new String(SimpleBase64Encoder.encode(percentsem5EncryptedBytes));
-            byte[] percentsem6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem6Bytes);
-            encpercentsem6=new String(SimpleBase64Encoder.encode(percentsem6EncryptedBytes));
-            byte[] aggregateEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, aggregateBytes);
-            encaggregatepgsem=new String(SimpleBase64Encoder.encode(aggregateEncryptedBytes));
-            byte[] schoolnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, schoolnameBytes);
-            encschoolnamepgsem=new String(SimpleBase64Encoder.encode(schoolnameEncryptedBytes));
-            byte[] monthandyearofpassingEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, monthandyearofpassingBytes);
-            encmonthandyearofpassingpgsem=new String(SimpleBase64Encoder.encode(monthandyearofpassingEncryptedBytes));
-            byte[] selectedcourseEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, selectedcourseBytes);
-            encselectedcoursepgsem=new String(SimpleBase64Encoder.encode(selectedcourseEncryptedBytes));
-            byte[] selectedstreamEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, selectedstreamBytes);
-            encselectedstreampgsem=new String(SimpleBase64Encoder.encode(selectedstreamEncryptedBytes));
-            byte[] selecteduniversityEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, selecteduniversityBytes);
-            encselecteduniversitypgsem=new String(SimpleBase64Encoder.encode(selecteduniversityEncryptedBytes));
-
-        } catch (Exception e) {
-            Toast.makeText(MyProfilePg.this,e.getMessage(),Toast.LENGTH_LONG).show();
-            Log.d(alumniLog,"exception -"+e.getMessage());
-        }
 
     }
 
@@ -3044,19 +2979,18 @@ public class MyProfilePg extends AppCompatActivity {
         s.setCollegenamepgyear("");
         s.setYearofpassingpgyear("");
 
-
-            pmarksyear1.setText("");
-            poutofyear1.setText("");
-            ppercentyear1.setText("");
-            pmarksyear2.setText("");
-            poutofyear2.setText("");
-            ppercentyear2.setText("");
-            pmarksyear3.setText("");
-            poutofyear3.setText("");
-            ppercentyear3.setText("");
-            pgyearaggregate.setText("");
-            schoolnamepgyear.setText("");
-            yearofpassingpgyear.setText("");
+        pmarksyear1.setText("");
+        poutofyear1.setText("");
+        ppercentyear1.setText("");
+        pmarksyear2.setText("");
+        poutofyear2.setText("");
+        ppercentyear2.setText("");
+        pmarksyear3.setText("");
+        poutofyear3.setText("");
+        ppercentyear3.setText("");
+        pgyearaggregate.setText("");
+        schoolnamepgyear.setText("");
+        yearofpassingpgyear.setText("");
 
         marksyear1="";
         outofyear1="";
@@ -3068,81 +3002,12 @@ public class MyProfilePg extends AppCompatActivity {
         outofyear3="";
         percentyear3="";
         aggregatepgyear="";
-        selectedCoursepgyear="";
-        selectedStreampgyear="";
-        selectedUniversitypgyear="";
+        selectedCoursepgyear="- Select Course -";
+        selectedStreampgyear="- Select Stream/Specialization -";
+        selectedUniversitypgyear="- Select University -";
         oldUniversityyear="";
         schoolnamepgyears="";
         monthandyearofpassingpgyear="";
-
-
-        try {
-            byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-            byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-            String sPadding = "ISO10126Padding";
-
-            byte[] marksyear1Bytes = marksyear1.getBytes("UTF-8");
-            byte[] outofyear1Bytes = outofyear1.getBytes("UTF-8");
-            byte[] percentyear1Bytes = percentyear1.getBytes("UTF-8");
-            byte[] marksyear2Bytes = marksyear2.getBytes("UTF-8");
-            byte[] outofyear2Bytes = outofyear2.getBytes("UTF-8");
-            byte[] percentyear2Bytes = percentyear2.getBytes("UTF-8");
-            byte[] marksyear3Bytes = marksyear3.getBytes("UTF-8");
-            byte[] outofyear3Bytes = outofyear3.getBytes("UTF-8");
-            byte[] percentyear3Bytes = percentyear3.getBytes("UTF-8");
-
-            byte[] aggregateBytes = aggregatepgyear.getBytes("UTF-8");
-            byte[] schoolnameBytes = schoolnamepgyears.getBytes("UTF-8");
-            byte[] monthandyearofpassingBytes = monthandyearofpassingpgyear.getBytes("UTF-8");
-
-            byte[] selectedcourseBytes=null,selectedstreamBytes=null,selecteduniversityBytes=null;
-            if(selectedCoursepgyear.equals("Other"))
-                selectedcourseBytes=otherspecifiedcoursepgyear.getBytes("UTF-8");
-            else
-                selectedcourseBytes=selectedCoursepgyear.getBytes("UTF-8");
-            if(selectedStreampgyear.equals("Other"))
-                selectedstreamBytes=otherspecifiedstreampgyear.getBytes("UTF-8");
-            else
-                selectedstreamBytes=selectedStreampgyear.getBytes("UTF-8");
-            if(selectedUniversitypgyear.equals("Other"))
-                selecteduniversityBytes=otherspecifieduniversitypgyear.getBytes("UTF-8");
-            else
-                selecteduniversityBytes=selectedUniversitypgyear.getBytes("UTF-8");
-
-            byte[] marksyear1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, marksyear1Bytes);
-            encmarksyear1=new String(SimpleBase64Encoder.encode(marksyear1EncryptedBytes));
-            byte[] marksyear2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, marksyear2Bytes);
-            encmarksyear2=new String(SimpleBase64Encoder.encode(marksyear2EncryptedBytes));
-            byte[] marksyear3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, marksyear3Bytes);
-            encmarksyear3=new String(SimpleBase64Encoder.encode(marksyear3EncryptedBytes));
-            byte[] outofyear1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofyear1Bytes);
-            encoutofyear1=new String(SimpleBase64Encoder.encode(outofyear1EncryptedBytes));
-            byte[] outofyear2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofyear2Bytes);
-            encoutofyear2=new String(SimpleBase64Encoder.encode(outofyear2EncryptedBytes));
-            byte[] outofyear3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofyear3Bytes);
-            encoutofyear3=new String(SimpleBase64Encoder.encode(outofyear3EncryptedBytes));
-            byte[] percentyear1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentyear1Bytes);
-            encpercentyear1=new String(SimpleBase64Encoder.encode(percentyear1EncryptedBytes));
-            byte[] percentyear2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentyear2Bytes);
-            encpercentyear2=new String(SimpleBase64Encoder.encode(percentyear2EncryptedBytes));
-            byte[] percentyear3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentyear3Bytes);
-            encpercentyear3=new String(SimpleBase64Encoder.encode(percentyear3EncryptedBytes));
-            byte[] aggregateEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, aggregateBytes);
-            encaggregatepgyear=new String(SimpleBase64Encoder.encode(aggregateEncryptedBytes));
-            byte[] schoolnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, schoolnameBytes);
-            encschoolnamepgyear=new String(SimpleBase64Encoder.encode(schoolnameEncryptedBytes));
-            byte[] monthandyearofpassingEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, monthandyearofpassingBytes);
-            encmonthandyearofpassingpgyear=new String(SimpleBase64Encoder.encode(monthandyearofpassingEncryptedBytes));
-            byte[] selectedcourseEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, selectedcourseBytes);
-            encselectedcoursepgyear=new String(SimpleBase64Encoder.encode(selectedcourseEncryptedBytes));
-            byte[] selectedstreamEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, selectedstreamBytes);
-            encselectedstreampgyear=new String(SimpleBase64Encoder.encode(selectedstreamEncryptedBytes));
-            byte[] selecteduniversityEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, selecteduniversityBytes);
-            encselecteduniversitypgyear=new String(SimpleBase64Encoder.encode(selecteduniversityEncryptedBytes));
-
-        }catch (Exception e){
-            Log.d("TAG", "setBlankYear: "+e.getMessage());
-        }
 
     }
 

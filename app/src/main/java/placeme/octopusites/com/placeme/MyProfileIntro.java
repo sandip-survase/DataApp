@@ -184,7 +184,6 @@ public class MyProfileIntro extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                // TODO Auto-generated method stub
             }
 
 
@@ -204,7 +203,6 @@ public class MyProfileIntro extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                // TODO Auto-generated method stub
             }
 
 
@@ -344,11 +342,7 @@ public class MyProfileIntro extends AppCompatActivity {
 
             json = jParser.makeHttpRequest(MyConstants.url_savedata_SaveIntro, "GET", params);
             try {
-
                 r = json.getString("info");
-
-//                String user  = json.getString("username");
-
                 Log.d("TAG", "doInBackground: r -"+r);
 //                Log.d("TAG", "doInBackground: r -"+r);
             }catch (Exception e){e.printStackTrace();}
@@ -362,7 +356,14 @@ public class MyProfileIntro extends AppCompatActivity {
             {
                 Toast.makeText(MyProfileIntro.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
-                setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+                ProfileRole r=new ProfileRole();
+                String role=r.getRole();
+                if(role.equals("student"))
+                    setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+                else if(role.equals("alumni"))
+                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+
+                MyProfileIntro.super.onBackPressed();
 
                 s.setFname(firstname);
                 s.setLname(lastname);

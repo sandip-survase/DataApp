@@ -81,7 +81,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import cat.ereza.customactivityoncrash.config.CaocConfig;
+//import cat.ereza.customactivityoncrash.config.CaocConfig;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.support.design.widget.AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS;

@@ -37,7 +37,6 @@ public class MyProfileContact extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
-    private static String url_savedata = "http://192.168.100.10:8080/ProfileObjects/SaveAdminContact";
     SharedPreferences sharedpreferences;
     String username;
     String digest1, digest2;
@@ -49,7 +48,7 @@ public class MyProfileContact extends AppCompatActivity {
     String sfname = "", slname = "", semail2 = "", saddressline1 = "", saddressline2 = "", saddressline3 = "", sphone = "", smobile = "", smobile2 = "";
     String encfname, enclname, encemail2, encaddressline1, encaddressline2, encaddressline3, encphone, encmobile, encmobile2;
     String plainusername = "";
-    String strobj;
+    String strobj="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -382,14 +381,10 @@ public class MyProfileContact extends AppCompatActivity {
         if (errorflag == 0) {
             try {
                 AdminContactDetailsModal obj = new AdminContactDetailsModal(sfname, slname, plainusername, semail2, saddressline1, saddressline2, saddressline3, sphone, smobile, smobile2);
-                try {
+
                     strobj = OtoString(obj, digest1, digest2);
                     Log.d("encstrobj", "strobj: " + strobj);
-
-                } catch (Exception e) {
-                    Log.d("TAG", "validateandSave: - " + e.getMessage());
-                }
-                new SaveDetails().execute();
+                    new SaveDetails().execute();
 
             } catch (Exception e) {
                 Toast.makeText(MyProfileContact.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -472,20 +467,23 @@ public class MyProfileContact extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("obj", strobj));               //1
 
-            json = jParser.makeHttpRequest(url_savedata, "GET", params);
+//            json = jParser.makeHttpRequest(MyConstants.url_SaveAdminContact, "GET", params);
+
+
+            ProfileRole obj = new ProfileRole();
+            String role = obj.getRole();
+            if (role.equals("hr"))
+                json = jParser.makeHttpRequest(MyConstants.url_SaveHrContact, "GET", params);
+
+            else if (role.equals("admin"))
+                json = jParser.makeHttpRequest(MyConstants.url_SaveAdminContact, "GET", params);
+
+            else
+            json = jParser.makeHttpRequest(MyConstants.url_SaveStdalmContact, "GET", params);
+
             try {
 
                 r = json.getString("info");
-                Log.d("reverse check", ": info" + json.getString("info"));
-
-                Log.d("reverse check", ": fnameToreplace" + json.getString("fnameToreplace"));
-                Log.d("reverse check", ":lnametoreplace" + json.getString("lnametoreplace"));
-                Log.d("reverse check", ": entry" + json.getString("entry"));
-                Log.d("reverse check", ": info1" + json.getString("info1"));
-                Log.d("reverse check", ": introobj" + json.getString("introobj"));
-                Log.d("reverse check", ": updatedobj" + json.getString("updatedobj"));
-                Log.d("reverse check", ": updatedobj" + json.getString("updatedobj"));
-                Log.d("reverse check", ": info" + json.getString("info"));
 
 
             } catch (Exception e) {
@@ -497,20 +495,24 @@ public class MyProfileContact extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            if(result.equals("success"))
-            {
-                Toast.makeText(MyProfileContact.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
+            if (result.equals("success")) {
+                Toast.makeText(MyProfileContact.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
 
-                ProfileRole r=new ProfileRole();
-                String role=r.getRole();
-                if(role.equals("student"))
+                ProfileRole r = new ProfileRole();
+                String role = r.getRole();
+                if (role.equals("student"))
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
-                else if(role.equals("alumni"))
+                else if (role.equals("alumni"))
                     setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+                else if (role.equals("hr"))
+                    setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
+                else if (role.equals("admin"))
+                    setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
+
                 MyProfileContact.super.onBackPressed();
-            }
-            else
-                Toast.makeText(MyProfileContact.this,result,Toast.LENGTH_SHORT).show();
+
+            } else
+                Toast.makeText(MyProfileContact.this, result, Toast.LENGTH_SHORT).show();
 
         }
     }
