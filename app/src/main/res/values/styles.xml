@@ -50,8 +50,6 @@
         <item name="android:windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="colorControlHighlight">@color/sky_blue_color</item>
-        <item name="colorButtonNormal">#fcfdfd</item>
     </style>
 
 

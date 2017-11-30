@@ -143,6 +143,18 @@ public static String savepersonalinfo = "http://192.168.100.10:8080/ProfileObjec
     {
         return Typeface.createFromAsset(activity.getAssets(),  "fonts/nunitolight.ttf");
     }
+    public static Typeface getItalic(Activity activity)
+    {
+        return Typeface.createFromAsset(activity.getAssets(),  "fonts/nunitoitalic.ttf");
+    }
+    public static Typeface getBoldItalic(Activity activity)
+    {
+        return Typeface.createFromAsset(activity.getAssets(),  "fonts/nunitobolditalic.ttf");
+    }
+    public static Typeface getRighteous(Activity activity)
+    {
+        return Typeface.createFromAsset(activity.getAssets(),  "fonts/righteous.ttf");
+    }
 
     //--
 

@@ -24,6 +24,7 @@ import android.graphics.BitmapRegionDecoder;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.opengl.GLES10;
 import android.os.Build;
@@ -33,6 +34,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -125,6 +127,13 @@ public class CropImageActivity extends MonitoredActivity {
                 onSaveClicked();
             }
         });
+        TextView crop_cancel=(TextView)findViewById(R.id.crop_cancel);
+        TextView crop_done=(TextView)findViewById(R.id.crop_done);
+        crop_cancel.setTypeface(Typeface.createFromAsset(getAssets(),  "fonts/nunitobold.ttf"));
+        crop_done.setTypeface(Typeface.createFromAsset(getAssets(),  "fonts/nunitobold.ttf"));
+
+
+
     }
 
     private void loadInput() {

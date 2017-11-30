@@ -8,7 +8,7 @@
           <enum name="always" value="1"/>
           <enum name="never" value="2"/>
         </attr>
-    </declare-styleable></file><file path="C:\Git\PlaceMe\PlaceMe\library\lib\src\main\res\values\colors.xml" qualifiers=""><color name="crop__button_bar">#282f35</color><color name="crop__button_text">#eeeeee</color><color name="crop__selector_pressed">#1a000000</color><color name="crop__selector_focused">#77000000</color><color name="background">#282f35</color></file><file path="C:\Git\PlaceMe\PlaceMe\library\lib\src\main\res\values\dimens.xml" qualifiers=""><dimen name="crop__bar_height">56dp</dimen></file><file path="C:\Git\PlaceMe\PlaceMe\library\lib\src\main\res\values\strings.xml" qualifiers=""><string name="crop__saving">Saving picture…</string><string name="crop__wait">Please wait…</string><string name="crop__pick_error">No image sources available</string><string name="crop__done">DONE</string><string name="crop__cancel" ns1:ignore="ButtonCase">CANCEL</string></file><file path="C:\Git\PlaceMe\PlaceMe\library\lib\src\main\res\values\styles.xml" qualifiers=""><style name="Crop"/><style name="Crop.DoneCancelBar">
+    </declare-styleable></file><file path="C:\Git\PlaceMe\PlaceMe\library\lib\src\main\res\values\colors.xml" qualifiers=""><color name="crop__button_bar">#03353e</color><color name="crop__button_text">#eeeeee</color><color name="crop__selector_pressed">#1a000000</color><color name="crop__selector_focused">#77000000</color><color name="background">#282f35</color><color name="dark_color">#03353e</color><color name="sky_blue_color">#00bcd4</color><color name="while_color">#fcfdfd</color></file><file path="C:\Git\PlaceMe\PlaceMe\library\lib\src\main\res\values\dimens.xml" qualifiers=""><dimen name="crop__bar_height">56dp</dimen></file><file path="C:\Git\PlaceMe\PlaceMe\library\lib\src\main\res\values\strings.xml" qualifiers=""><string name="crop__saving">Saving picture…</string><string name="crop__wait">Please wait…</string><string name="crop__pick_error">No image sources available</string><string name="crop__done">DONE</string><string name="crop__cancel" ns1:ignore="ButtonCase">CANCEL</string></file><file path="C:\Git\PlaceMe\PlaceMe\library\lib\src\main\res\values\styles.xml" qualifiers=""><style name="Crop"/><style name="Crop.DoneCancelBar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/crop__bar_height</item>
         <item name="android:orientation">horizontal</item>
@@ -21,6 +21,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
         <item name="android:background">@drawable/crop__selectable_background</item>
+        <item name="android:tint">@color/sky_blue_color</item>
     </style><style name="Crop.ActionButtonText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -28,7 +29,7 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingRight">20dp</item> 
         <item name="android:drawablePadding">8dp</item>
-        <item name="android:textColor">@color/crop__button_text</item>
+        <item name="android:textColor">@color/sky_blue_color</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">13sp</item>
     </style><style name="Crop.ActionButtonText.Done">

@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="16dp"
     android:background="#fcfdfd"
-    tools:context="placeme.octopusites.com.placeme.WelcomeEmailFragment">
+    >
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        >
 
     <TextView
         android:id="@+id/welcometextviewcontext1"
@@ -73,17 +71,20 @@
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Email"
+            android:hint="Enter email address"
             android:textSize="16dp"
             android:textColor="#03353e"
             android:maxLength="100"
             android:digits="abcdefghijklmnopqrstuvwxyz0123456789@._"
             android:inputType="textEmailAddress"
             android:singleLine="true"
-            android:id="@+id/welcomeusername"/>
+            android:id="@+id/welcomeusername"
+
+
+            android:text="abcds@"
+            />
 
     </android.support.design.widget.TextInputLayout>
 
         </RelativeLayout>
-    </ScrollView>
-</RelativeLayout>
+</ScrollView>
