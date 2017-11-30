@@ -209,23 +209,22 @@ public class OTPActivity extends AppCompatActivity {
                     String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
                     String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
 
-                    new CreateFirebaseUser(u, p).execute();
+//                    new CreateFirebaseUser(u, p).execute();
 
                     Toast.makeText(OTPActivity.this, "Successfully Registered..!", Toast.LENGTH_LONG).show();
 
 
                     if (role.equals("student")) {
-
+                        new CreateFirebaseUser(u, p).execute();
+                        new AddStudentUnderAdmin().execute();
                         startActivity(new Intent(OTPActivity.this, MainActivity.class));
                         finish();
                     } else if (role.equals("admin")) {
-
-
+                        new AddStudentUnderAdmin().execute();
                         startActivity(new Intent(OTPActivity.this, AdminActivity.class));
                         finish();
                     } else if (role.equals("alumni")) {
-
-
+                        new CreateFirebaseUser(u, p).execute();
                         startActivity(new Intent(OTPActivity.this, AlumniActivity.class));
                         finish();
                     } else if (role.equals("hr")) {
@@ -248,10 +247,10 @@ public class OTPActivity extends AppCompatActivity {
                 String role = MySharedPreferencesManager.getRole(OTPActivity.this);
                 Log.d("TAG", "OTP onPostExecute: sahrd role ^^^^ "+role);
 
-                String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
-                String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
-
-                new CreateFirebaseUser(u, p).execute();
+//                String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
+//                String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
+//
+//                new CreateFirebaseUser(u, p).execute();
 
                 startActivity(new Intent(OTPActivity.this, WelcomeGenrateCodeActivity.class));
                 finish();
@@ -327,6 +326,30 @@ public class OTPActivity extends AppCompatActivity {
             }
 
             resendotp.setVisibility(View.VISIBLE);
+
+        }
+    }
+
+    class AddStudentUnderAdmin extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("ud", encUsername));
+
+            json = jParser.makeHttpRequest(MyConstants.url_AddStudentUnderAdmin, "GET", params);
+            try {
+                resultofop = json.getString("info");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
 
         }
     }

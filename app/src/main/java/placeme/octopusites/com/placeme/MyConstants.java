@@ -126,9 +126,10 @@ public static String savepersonalinfo = "http://192.168.100.10:8080/ProfileObjec
     public static final String url_SaveWelcomeIntroData = "http://192.168.100.100/AESTest/SaveNewUserWelcomeIntroData";
     public static final String url_SaveStudentFnameLnameMobile = "http://192.168.100.100/AESTest/SaveStudentFnameLnameMobile";
     public static final String url_SendActivationCode = "http://192.168.100.100/AESTest/SendActivationCode";
-    public static final String url_SaveAndGenrateInstituteCode = "http://192.168.100.20:8080/AESTest/SaveAndGenrateInstituteCode";
+    public static final String url_SaveAndGenrateInstituteCode = "http://192.168.100.100/AESTest/SaveAndGenrateInstituteCode";
     public static final String url_SaveAndGenrateCompanyCode = "http://192.168.100.100/AESTest/SaveAndGenrateCompanyCode";
     public static final String url_checkUcode = "http://192.168.100.100/AESTest/checkUcode";
+    public static final String url_AddStudentUnderAdmin = "http://192.168.100.100/AESTest/AddStudentUnderAdmin";
 
 
     public static Typeface getFA(Activity activity)
