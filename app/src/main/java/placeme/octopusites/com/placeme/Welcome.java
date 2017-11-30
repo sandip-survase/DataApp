@@ -220,7 +220,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 AnimationUtils.loadAnimation(getApplicationContext(),
                         R.anim.fadeinmove);
         view.startAnimation(animation1);
-    }
+    }  //test
     public void slideinleft1(View view){
 
         Animation animation1 =
