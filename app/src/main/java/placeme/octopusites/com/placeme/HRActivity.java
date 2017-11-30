@@ -3,6 +3,7 @@ package placeme.octopusites.com.placeme;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -12,6 +13,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -39,6 +41,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 
 import com.bumptech.glide.signature.ObjectKey;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.kbeanie.multipicker.api.ImagePicker;
 import com.kbeanie.multipicker.api.Picker;
 import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
@@ -918,6 +924,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             String hash = md5(data + MySharedPreferencesManager.getDigest3(HRActivity.this));
 
 //           loginFirebase(plainusername,hash);
+            new LoginFirebaseTask().execute(plainusername,hash);
 
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -1286,5 +1293,54 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         }
         mAdapter2.notifyDataSetChanged();
     }
+
+    void loginFirebase(String username,String hash)
+    {
+        Log.d("TAG", "loginFirebase: input "+username+"    "+hash);
+        FirebaseAuth.getInstance()
+                .signInWithEmailAndPassword(username,hash)
+                .addOnCompleteListener(HRActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+
+                        if (task.isSuccessful()) {
+                            Toast.makeText(HRActivity.this, "Successfully logged in to Firebase from mainactivity", Toast.LENGTH_SHORT).show();
+                            Log.d("TAG", "Fire onComplete: logged in");
+
+                        } else {
+                            Toast.makeText(HRActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+                            Log.d("TAG", "Fire onComplete: NOT logged in");
+                        }
+                    }
+                });
+    }
+
+        class LoginFirebaseTask extends AsyncTask<String, String, String> {
+            protected String doInBackground(String... param) {
+                String user=param[0];
+                String hash=param[1];
+                FirebaseAuth.getInstance()
+                        .signInWithEmailAndPassword(user,hash)
+                        .addOnCompleteListener(HRActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    MySharedPreferencesManager.save(HRActivity.this,"fireLoginStatus","Successfully logged in to Firebase");
+                                } else {
+                                    MySharedPreferencesManager.save(HRActivity.this,"fireLoginStatus","Failed to login to Firebase");
+                                }
+                            }
+                        });
+                return null;
+            }
+            @Override
+            protected void onPostExecute(String result) {
+                String status=MySharedPreferencesManager.getData(HRActivity.this,"fireLoginStatus");
+                Toast.makeText(HRActivity.this, status, Toast.LENGTH_SHORT).show();
+                // remove value from shared
+                MySharedPreferencesManager.removeKey(HRActivity.this,"fireLoginStatus");
+            }
+        }
 
 }

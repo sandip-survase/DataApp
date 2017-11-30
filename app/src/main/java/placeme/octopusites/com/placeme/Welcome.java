@@ -642,6 +642,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                                     MySharedPreferencesManager.save(Welcome.this, "passKey", encPassword);
                                     MySharedPreferencesManager.save(Welcome.this, "role", SELECTED_ROLE);
                                     MySharedPreferencesManager.save(Welcome.this, "nameKey", encUsersName);
+                                    MySharedPreferencesManager.save(Welcome.this, "ProMail", instOrEmailstr);
 
                                     MySharedPreferencesManager.save(Welcome.this, "fname", encfname);
                                     MySharedPreferencesManager.save(Welcome.this, "lname", enclname);
@@ -653,6 +654,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                                     Log.d("TAG", "save to shared fname " + encfname);
                                     Log.d("TAG", "save to shared lname " + enclname);
                                     Log.d("TAG", "save to shared phone " + encmobile);
+                                    Log.d("TAG", "save to shared pro-Email " + instOrEmailstr);
 
                                     new SendActivationCode().execute();
                                 } else {

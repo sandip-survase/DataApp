@@ -321,7 +321,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             String data=new String(demo2DecryptedBytes1);
             String hash=md5(data + MySharedPreferencesManager.getDigest3(MainActivity.this));
 
-            loginFirebase(plainusername,hash);
+            new LoginFirebaseTask().execute(plainusername,hash);
 
         }catch (Exception e){Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();}
 
@@ -1277,25 +1277,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         }
         return false;
     }
-    void loginFirebase(String username,String hash)
-    {
-        FirebaseAuth.getInstance()
-                .signInWithEmailAndPassword(username,hash)
-                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
 
-
-                        if (task.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "Successfully logged in to Firebase from mainactivity", Toast.LENGTH_SHORT).show();
-
-
-                        } else {
-                            Toast.makeText(MainActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
     public void updateUnreadMessageCount(int readCount)
     {
         unreadMessageCount-=readCount;
@@ -3252,6 +3234,32 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
     }
 
+    class LoginFirebaseTask extends AsyncTask<String, String, String> {
+        protected String doInBackground(String... param) {
+            String user=param[0];
+            String hash=param[1];
+            FirebaseAuth.getInstance()
+                    .signInWithEmailAndPassword(user,hash)
+                    .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                MySharedPreferencesManager.save(MainActivity.this,"fireLoginStatus","Successfully logged in to Firebase");
+                            } else {
+                                MySharedPreferencesManager.save(MainActivity.this,"fireLoginStatus","Failed to login to Firebase");
+                            }
+                        }
+                    });
+            return null;
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            String status=MySharedPreferencesManager.getData(MainActivity.this,"fireLoginStatus");
+            Toast.makeText(MainActivity.this, status, Toast.LENGTH_SHORT).show();
+            // remove value from shared
+            MySharedPreferencesManager.removeKey(MainActivity.this,"fireLoginStatus");
+        }
+    }
 
     @Override
     public void onResume() {

@@ -209,13 +209,13 @@ public class OTPActivity extends AppCompatActivity {
                     String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
                     String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
 
-                    new CreateFirebaseUser(u, p).execute();
+//                    new CreateFirebaseUser(u, p).execute();
 
                     Toast.makeText(OTPActivity.this, "Successfully Registered..!", Toast.LENGTH_LONG).show();
 
 
                     if (role.equals("student")) {
-
+                        new CreateFirebaseUser(u, p).execute();
                         new AddStudentUnderAdmin().execute();
                         startActivity(new Intent(OTPActivity.this, MainActivity.class));
                         finish();
@@ -224,7 +224,7 @@ public class OTPActivity extends AppCompatActivity {
                         startActivity(new Intent(OTPActivity.this, AdminActivity.class));
                         finish();
                     } else if (role.equals("alumni")) {
-
+                        new CreateFirebaseUser(u, p).execute();
                         startActivity(new Intent(OTPActivity.this, AlumniActivity.class));
                         finish();
                     } else if (role.equals("hr")) {
@@ -247,10 +247,10 @@ public class OTPActivity extends AppCompatActivity {
                 String role = MySharedPreferencesManager.getRole(OTPActivity.this);
                 Log.d("TAG", "OTP onPostExecute: sahrd role ^^^^ "+role);
 
-                String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
-                String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
-
-                new CreateFirebaseUser(u, p).execute();
+//                String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
+//                String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
+//
+//                new CreateFirebaseUser(u, p).execute();
 
                 startActivity(new Intent(OTPActivity.this, WelcomeGenrateCodeActivity.class));
                 finish();
