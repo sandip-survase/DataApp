@@ -10,7 +10,7 @@
         android:id="@+id/profile_image"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/profile_icon"
+        android:src="@drawable/profile_image_icon"
         app:border_color="#FF000000"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="20dp"
@@ -89,9 +89,9 @@
         />
     <ImageView
         android:id="@+id/profile"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/profile_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/my_profile_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/profile_image" />
@@ -102,7 +102,7 @@
         android:layout_height="wrap_content"
         android:text="My Profile"
         android:layout_below="@+id/profile"
-        android:textColor="#fff"
+        android:textColor="#fcfdfd"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="3dp"
         android:textSize="11dp"
@@ -134,9 +134,9 @@
 
     <ImageView
         android:id="@+id/notification"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/notification_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/profiletxt"
@@ -150,7 +150,7 @@
         android:layout_height="wrap_content"
         android:text="Notifications"
         android:layout_below="@+id/notification"
-        android:textColor="#fff"
+        android:textColor="#fcfdfd"
         android:layout_centerHorizontal="true"
         android:textSize="11dp"
         />
@@ -179,9 +179,9 @@
 
     <ImageView
         android:id="@+id/placement"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/placement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/placement_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/notificationtxt"
@@ -192,7 +192,7 @@
         android:layout_height="wrap_content"
         android:text="Placements"
         android:layout_below="@+id/placement"
-        android:textColor="#fff"
+        android:textColor="#fcfdfd"
         android:layout_centerHorizontal="true"
         android:textSize="11dp"
         />
@@ -219,9 +219,9 @@
     </RelativeLayout>
     <ImageView
         android:id="@+id/chat"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/messages_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/placementtxt"
@@ -232,15 +232,15 @@
         android:layout_height="wrap_content"
         android:text="Messages"
         android:layout_below="@+id/chat"
-        android:textColor="#fff"
+        android:textColor="#fcfdfd"
         android:layout_centerHorizontal="true"
         android:textSize="11dp"
         />
     <ImageView
         android:id="@+id/pro"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/paper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pro_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/chattxt"
@@ -251,16 +251,16 @@
         android:layout_height="wrap_content"
         android:text="Try Place Me Pro"
         android:layout_below="@+id/pro"
-        android:textColor="#fff"
+        android:textColor="#fcfdfd"
         android:layout_centerHorizontal="true"
         android:textSize="11dp"
         android:gravity="center"
         />
     <ImageView
         android:id="@+id/settings"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/settings_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/protxt"
@@ -271,7 +271,7 @@
         android:layout_height="wrap_content"
         android:text="Settings"
         android:layout_below="@+id/settings"
-        android:textColor="#fff"
+        android:textColor="#fcfdfd"
         android:textSize="11dp"
         android:layout_centerHorizontal="true"
         />
@@ -300,9 +300,9 @@
     <ImageView
 
         android:id="@+id/blog"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/blog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/blog_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/settingstxt"
@@ -314,14 +314,14 @@
         android:text="Blog"
         android:layout_below="@+id/blog"
         android:textSize="11dp"
-        android:textColor="#fff"
+        android:textColor="#fcfdfd"
         android:layout_centerHorizontal="true"
         />
     <ImageView
         android:id="@+id/abt"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/about_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/blogtxt"
@@ -333,7 +333,7 @@
         android:text="About"
         android:layout_below="@+id/abt"
         android:textSize="11dp"
-        android:textColor="#fff"
+        android:textColor="#fcfdfd"
         android:layout_centerHorizontal="true"
         />
 </RelativeLayout>
