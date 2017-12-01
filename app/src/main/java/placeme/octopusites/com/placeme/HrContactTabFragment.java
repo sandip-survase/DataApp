@@ -43,7 +43,7 @@ public class HrContactTabFragment extends Fragment {
 
 //    private static String   URL_SAVE_HR_CONTACT_DETAILS = "http://192.168.100.10/AESTest/SaveHrContact1";
 
-    String username;
+    String username,role;
     String digest1, digest2;
 
     String hrfname = "", hrlname = "", hremail2 = "", hraddressline1 = "", hraddressline2 = "", hraddressline3 = "", hrphone = "", hrmobile = "", hrmobile2 = "";
@@ -72,7 +72,7 @@ public class HrContactTabFragment extends Fragment {
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
         digest2 = MySharedPreferencesManager.getDigest2(getActivity());
         username=MySharedPreferencesManager.getUsername(getActivity());
-        String role=MySharedPreferencesManager.getRole(getActivity());
+        role=MySharedPreferencesManager.getRole(getActivity());
 
 
         fname = (EditText) rootView.findViewById(R.id.fname);
@@ -475,8 +475,7 @@ public class HrContactTabFragment extends Fragment {
 
     class SaveHrContactDetailsTask extends AsyncTask<String, String, String> {
 
-        ProfileRole obj = new ProfileRole();
-        String role = obj.getRole();
+
         protected String doInBackground(String... param) {
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();

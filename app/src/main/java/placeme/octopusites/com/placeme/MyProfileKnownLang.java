@@ -88,15 +88,15 @@ public class MyProfileKnownLang extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-        Window window = MyProfileKnownLang.this.getWindow();
-
-        int sdklevel=Integer.valueOf(android.os.Build.VERSION.SDK);
-        if(sdklevel>=21) {
-
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(MyProfileKnownLang.this.getResources().getColor(R.color.background));
-        }
+//        Window window = MyProfileKnownLang.this.getWindow();
+//
+//        int sdklevel=Integer.valueOf(android.os.Build.VERSION.SDK);
+//        if(sdklevel>=21) {
+//
+//            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//            window.setStatusBarColor(MyProfileKnownLang.this.getResources().getColor(R.color.background));
+//        }
 
         TextView knowntxt=(TextView)findViewById(R.id.knowntxt);
         Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");

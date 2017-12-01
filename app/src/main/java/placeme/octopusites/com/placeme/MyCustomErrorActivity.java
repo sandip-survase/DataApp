@@ -23,8 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-//import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
-//import cat.ereza.customactivityoncrash.config.CaocConfig;
+import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
+import cat.ereza.customactivityoncrash.config.CaocConfig;
 
 
 
@@ -39,10 +39,10 @@ public class MyCustomErrorActivity extends AppCompatActivity {
     JSONParser jParser = new JSONParser();
     JSONObject json;
     String error = "";
-//    CaocConfig config;
+    CaocConfig config;
     String abd="";
 
-    private static String url_save_error = "http://192.168.100.10/ProfileObjects/Save_Error";
+//    private static String url_save_error = "http://192.168.100.10/ProfileObjects/Save_Error";
 
     private static String url_save_bug = "http://192.168.100.10/ProfileObjects/Save_Bug";
 
@@ -57,29 +57,31 @@ public class MyCustomErrorActivity extends AppCompatActivity {
         username = MySharedPreferencesManager.getUsername(this);
         error=getlogcat();
 
-//        abd=error+CustomActivityOnCrash.getAllErrorDetailsFromIntent(this, getIntent());
-//        new ask().execute();
-//
-//        config = CustomActivityOnCrash.getConfigFromIntent(getIntent());
-//
-//        Button restartButton = (Button) findViewById(R.id.restart_button);
-//
-//        if (config.isShowRestartButton() && config.getRestartActivityClass() != null) {
-//            restartButton.setText("Restart app");
-//            restartButton.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    CustomActivityOnCrash.restartApplication(MyCustomErrorActivity.this, config);
-//                }
-//            });
-//        } else {
-//            restartButton.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    CustomActivityOnCrash.closeApplication(MyCustomErrorActivity.this, config);
-//                }
-//            });
-//        }
+        abd=error+CustomActivityOnCrash.getAllErrorDetailsFromIntent(this, getIntent());
+        Log.d("TAG", "onCreate: username -"+username);
+        Log.d("TAG", "onCreate: abd - "+abd);
+        new ask().execute();
+
+        config = CustomActivityOnCrash.getConfigFromIntent(getIntent());
+
+        Button restartButton = (Button) findViewById(R.id.restart_button);
+
+        if (config.isShowRestartButton() && config.getRestartActivityClass() != null) {
+            restartButton.setText("Restart app");
+            restartButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CustomActivityOnCrash.restartApplication(MyCustomErrorActivity.this, config);
+                }
+            });
+        } else {
+            restartButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CustomActivityOnCrash.closeApplication(MyCustomErrorActivity.this, config);
+                }
+            });
+        }
     }
     @Override
     public void onBackPressed() {

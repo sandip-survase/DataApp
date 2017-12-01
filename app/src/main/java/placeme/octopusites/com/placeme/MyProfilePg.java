@@ -2771,8 +2771,7 @@ public class MyProfilePg extends AppCompatActivity {
             {
                 Toast.makeText(MyProfilePg.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
-                ProfileRole r=new ProfileRole();
-                String role=r.getRole();
+
                 if(role.equals("student"))
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("alumni"))

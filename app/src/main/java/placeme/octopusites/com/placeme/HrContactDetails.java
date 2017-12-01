@@ -42,7 +42,7 @@ public class HrContactDetails extends AppCompatActivity {
 
 //    private static String   URL_SAVE_HR_CONTACT_DETAILS = "http://192.168.100.10/AESTest/SaveHrContact1";
 
-    String username;
+    String username,role;
     String digest1, digest2;
 
     String hrfname = "", hrlname = "", hremail2 = "", hraddressline1 = "", hraddressline2 = "", hraddressline3 = "", hrphone = "", hrmobile = "", hrmobile2 = "";
@@ -74,6 +74,12 @@ public class HrContactDetails extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
 
+        username = MySharedPreferencesManager.getUsername(this);
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        role = MySharedPreferencesManager.getRole(this);
+
+
 
         fname = (EditText) findViewById(R.id.fname);
         lname = (EditText) findViewById(R.id.lname);
@@ -96,12 +102,6 @@ public class HrContactDetails extends AppCompatActivity {
         Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/arba.ttf");
         addresstxt.setTypeface(custom_font1);
         contactnotxt.setTypeface(custom_font1);
-
-        digest1 = MySharedPreferencesManager.getDigest1(this);
-        digest2 = MySharedPreferencesManager.getDigest2(this);
-        username=MySharedPreferencesManager.getUsername(this);
-        String role=MySharedPreferencesManager.getRole(this);
-
 
         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -461,9 +461,6 @@ public class HrContactDetails extends AppCompatActivity {
             if(result.equals("success"))
             {
                 Toast.makeText(HrContactDetails.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
-
-                ProfileRole r=new ProfileRole();
-                String role=r.getRole();
 
                  if(role.equals("hr"))
                     setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
