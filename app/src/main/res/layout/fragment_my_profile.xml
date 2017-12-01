@@ -310,8 +310,8 @@
                 android:layout_alignParentRight="true"
                 />
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/institute_icon"
                     android:layout_below="@+id/eduboxtxt"
                     android:id="@+id/insti4"
@@ -386,8 +386,8 @@
 
                 </RelativeLayout>
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/institute_icon"
                 android:layout_below="@+id/edutab4"
                 android:id="@+id/insti1"
@@ -465,8 +465,8 @@
 
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/institute_icon"
                 android:layout_below="@+id/edutab1"
                 android:id="@+id/insti2"
@@ -546,8 +546,8 @@
 
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/institute_icon"
                 android:layout_below="@+id/edutab2"
                 android:id="@+id/insti3"
@@ -682,9 +682,9 @@
 
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/projects_new"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/projects_icon"
                 android:layout_below="@+id/projboxtxt"
                 android:id="@+id/gear1"
                 android:layout_marginTop="30dp"
@@ -765,8 +765,8 @@
 
             </RelativeLayout>
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/projects_icon"
                 android:layout_below="@+id/projtab1"
                 android:id="@+id/gear2"
@@ -845,8 +845,8 @@
             </RelativeLayout>
 
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/projects_icon"
                 android:layout_below="@+id/projtab2"
                 android:id="@+id/gear3"
@@ -976,8 +976,8 @@
                 />
 
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/known_languages_icon"
                 android:layout_below="@+id/accomplishmentsboxtxt"
                 android:id="@+id/acc1"
@@ -1038,8 +1038,8 @@
 
             </RelativeLayout>
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/certificate_icon"
                 android:layout_below="@+id/acctab1"
                 android:id="@+id/acc2"
@@ -1098,8 +1098,8 @@
 
             </RelativeLayout>
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/courses_icon"
                 android:layout_below="@+id/acctab2"
                 android:id="@+id/acc3"
@@ -1159,8 +1159,8 @@
 
             </RelativeLayout>
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/skills_icon"
                 android:layout_below="@+id/acctab3"
                 android:id="@+id/acc4"
@@ -1220,8 +1220,8 @@
 
             </RelativeLayout>
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/honors_icon"
                 android:layout_below="@+id/acctab4"
                 android:id="@+id/acc5"
@@ -1281,8 +1281,8 @@
 
             </RelativeLayout>
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/patents_icon"
                 android:layout_below="@+id/acctab5"
                 android:id="@+id/acc6"
@@ -1341,8 +1341,8 @@
 
             </RelativeLayout>
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/publications_icon"
                 android:layout_below="@+id/acctab6"
                 android:id="@+id/acc7"
@@ -1433,8 +1433,8 @@
                     />
 
                 <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:src="@drawable/pencil_icon"
@@ -1718,8 +1718,8 @@
                     />
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/location_icon"
                     android:layout_below="@+id/contactboxtxt"
                     android:id="@+id/contact1"
@@ -1781,8 +1781,8 @@
                 </RelativeLayout>
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/email_icon"
                     android:layout_below="@+id/contacttab1"
                     android:id="@+id/contact2"
@@ -1842,8 +1842,8 @@
                         />
                     </RelativeLayout>
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/mobile_icon"
                     android:layout_below="@+id/contacttab2"
                     android:id="@+id/contact3"

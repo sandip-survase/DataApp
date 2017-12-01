@@ -266,19 +266,19 @@ public class MyProfileIntro extends AppCompatActivity {
         lastname = lname.getText().toString();
         CityStateCountry = citystaecountry.getText().toString();
 
-        if (firstname.length() < 2) {
-            fnameTextInputLayout.setError("Incorrect First Name");
+        if (firstname.length() < 1) {
+            fnameTextInputLayout.setError("Kindly enter valid first name");
             errorflag4 = 1;
         } else {
             fnameTextInputLayout.setError(null);
-            if (lastname.length() < 2) {
-                lnameTextInputLayout.setError("Incorrect First Name");
+            if (lastname.length() < 1) {
+                lnameTextInputLayout.setError("Kindly enter valid last name");
                 errorflag4 = 1;
             } else {
                 lnameTextInputLayout.setError(null);
 
-                if (CityStateCountry.length() < 2) {
-                    citystaecountryinputlayout.setError("Incorrect City Name");
+                if (CityStateCountry.length() < 1) {
+                    citystaecountryinputlayout.setError("Please select your city");
                     errorflag4 = 1;
                 } else {
                     citystaecountryinputlayout.setError(null);
