@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -33,10 +34,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +68,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
     public int pos;
     Boolean errorFlagInstitute = false, errorFlagCompany = false;
     String digest1, digest2;
-    String CompanyType = "";
+    String CompanyType = "",resultofop;
     private int path;
     JSONParser jsonParser = new JSONParser();
     JSONObject json;
@@ -114,26 +123,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, countrieslist);
         countryAutoBox.setAdapter(adapter);
 
-        instituteAlternatephone.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(instituteAlternatephone.length()>0){
-                    if(instituteAlternatephone.length()<8 || instituteAlternatephone.length()>10){
-                        errorFlagCompany=true;
-                    }
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
     }
 
 
@@ -305,6 +295,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                     Log.d("TAG", "onClick: curent pos " + currentPosition);
 
                     if (currentPosition == 0) {
+                        errorFlagInstitute = false;
                         sInstituteName = instituteName.getText().toString();
                         sInstituteAddress = instituteAddress.getText().toString();
                         Log.d("TAG", "onClick: sInstituteAddress " + sInstituteAddress);
@@ -333,7 +324,10 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                             institutewebsite.setError("Enter valid Website url");
                         } else if (sInstitutephone.length() < 8) {
                             errorFlagInstitute = true;
-                            institutephone.setError("Invalid phone");
+                            institutephone.setError("Invalid phone number");
+                        }else if(instituteAlternatephone.length()>0 && instituteAlternatephone.length()<8){
+                            errorFlagInstitute = true;
+                            instituteAlternatephone.setError("Invalid phone number");
                         } else if (sUniversity.length() < 2) {
                             errorFlagInstitute = true;
                             university.setError("Enter Valid University Name");
@@ -367,6 +361,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 } else if (ROLE != null && ROLE.equals("hr")) {            // OR  Hr
 
                     if (currentPosition == 0) {
+                        errorFlagCompany=false;
                         sCompanyName = companyName.getText().toString();
                         sCompanyAddress = companyAddress.getText().toString();
                         sCompanyEmail = companyEmail.getText().toString();
@@ -396,7 +391,10 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                             companyWebsite.setError("Enter valid website url");
                         } else if (sCompanyPhone.length() < 8) {
                             errorFlagCompany = true;
-                            companyPhone.setError("Invalid phone");
+                            companyPhone.setError("Invalid phone number");
+                        }else if(companyAlternatephone.length()>0 && companyAlternatephone.length()<8){
+                            errorFlagCompany = true;
+                            companyAlternatephone.setError("Invalid phone number");
                         } else if (sCIN.length() < 3) {
                             errorFlagCompany = true;
                             CIN.setError("Invalid CIN");
@@ -447,20 +445,20 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
     private void addBottomDots(int currentPage, int totalPages) {
         dots = new TextView[totalPages];
 
-        int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
-        int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
+        int colorsActive = getResources().getColor(R.color.array_dot_active);
+        int colorsInactive = getResources().getColor(R.color.array_dot_inactive);
 
         dotsLayout.removeAllViews();
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new TextView(this);
             dots[i].setText(Html.fromHtml("&#8226;"));
             dots[i].setTextSize(35);
-            dots[i].setTextColor(colorsInactive[currentPage]);
+            dots[i].setTextColor(colorsInactive);
             dotsLayout.addView(dots[i]);
         }
 
         if (dots.length > 0)
-            dots[currentPage].setTextColor(colorsActive[currentPage]);
+            dots[currentPage].setTextColor(colorsActive);
     }
 
     private int getItem(int i) {
@@ -659,6 +657,9 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             if (result.equals("success")) {
                 Toast.makeText(WelcomeGenrateCodeActivity.this, CODE, Toast.LENGTH_SHORT).show();
+
+                new CreateFirebaseUser(encUsername,encPassword).execute();
+
                 Log.d("TAG", "admin code ===============================   " + CODE);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
@@ -744,7 +745,8 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 Log.d("TAG", "shared encLastName:          " + encFirstName);
                 Log.d("TAG", "shared encPassword:          " + encLastName);
                 Log.d("TAG", "shared encAdminPhone:        " + encAdminPhone);
-                Log.d("TAG", "shared encrole:              " + encProfessionalEmail);
+                Log.d("TAG", "shared proEmail:              " + encProfessionalEmail);
+                Log.d("TAG", "shared role              " + ROLE);
 
 
             } catch (Exception e) {
@@ -755,7 +757,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
 
-            params.add(new BasicNameValuePair("u", encUsername));                       // 0
+            params.add(new BasicNameValuePair("u", encUsername));                      // 0
             params.add(new BasicNameValuePair("pass", encPassword));                  //  1
             params.add(new BasicNameValuePair("fname", encFirstName));                //  2
             params.add(new BasicNameValuePair("lname", encLastName));                 //  3
@@ -767,7 +769,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("web", encCompanyWebsite));            //    8
             params.add(new BasicNameValuePair("cp", encCompanyPhone));              //     9
             params.add(new BasicNameValuePair("cap", encCompanyAlternatephone));     //    10
-            params.add(new BasicNameValuePair("cin", encCIN));                     //      11
+            params.add(new BasicNameValuePair("cin", encCIN));                      //      11
             params.add(new BasicNameValuePair("nature", encOtherNature));             //   12
             params.add(new BasicNameValuePair("proEmail", encProfessionalEmail));             //13
             params.add(new BasicNameValuePair("country", enccountry));                       //14
@@ -792,6 +794,9 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             if (result!=null && result.equals("success")) {
+
+                new CreateFirebaseUser(encUsername,encPassword).execute();
+
                 Toast.makeText(WelcomeGenrateCodeActivity.this, CODE, Toast.LENGTH_SHORT).show();
                 Log.d("TAG", "hr comp code ===============================   " + CODE);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
@@ -807,6 +812,101 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
             }
         }
+    }
+
+    class CreateFirebaseUser extends AsyncTask<String, String, String> {
+
+        String u, p;
+
+        CreateFirebaseUser(String u, String p) {
+            this.u = u;
+            this.p = p;
+            Log.d("TAG", "CreateFirebaseUser input : "+u+"   "+p);
+        }
+
+        protected String doInBackground(String... param) {
+
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", u));
+            params.add(new BasicNameValuePair("p", p));
+            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken")));
+            json = jsonParser.makeHttpRequest(MyConstants.url_create_firebase, "GET", params);
+            Log.d("TAG", "CreateFirebaseUser json : "+json);
+            try {
+                resultofop = json.getString("info");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return resultofop;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            Log.d("TAG", "CreateFirebaseUser onPostExecute: "+resultofop);
+
+            String plainusername = null;
+            String plainPassword = null;
+
+            try {
+                plainusername = AES4all.Decrypt(encUsername,digest1,digest2);
+                plainPassword = AES4all.Decrypt(encPassword,digest1,digest2);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            String hash=md5(plainPassword + MySharedPreferencesManager.getDigest3(WelcomeGenrateCodeActivity.this));
+
+            loginFirebase(plainusername, hash);
+            Toast.makeText(WelcomeGenrateCodeActivity.this, "fire "+resultofop, Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+
+    void loginFirebase(String username, String hash) {
+
+        FirebaseAuth.getInstance()
+                .signInWithEmailAndPassword(username, hash)
+                .addOnCompleteListener(WelcomeGenrateCodeActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+
+                        if (task.isSuccessful()) {
+                            Toast.makeText(WelcomeGenrateCodeActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(WelcomeGenrateCodeActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+
+    public static String md5(String input) {
+
+        String md5 = null;
+
+        if (null == input) return null;
+
+        try {
+
+            //Create MessageDigest object for MD5
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+
+            //Update input string in message digest
+            digest.update(input.getBytes(), 0, input.length());
+
+            //Converts message digest value in base 16 (hex)
+            md5 = new BigInteger(1, digest.digest()).toString(16);
+
+        } catch (NoSuchAlgorithmException e) {
+
+            e.printStackTrace();
+        }
+        return md5;
     }
 
 

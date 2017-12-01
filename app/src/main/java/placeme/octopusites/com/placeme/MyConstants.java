@@ -1,10 +1,14 @@
 package placeme.octopusites.com.placeme;
 
+import android.app.Activity;
+import android.graphics.Typeface;
+
 /**
  * Created by admin on 9/27/2017.
  */
 
 public class MyConstants {
+
 
     public static final int USER_DATA_CHANGE_RESULT_CODE=888;
     public static final String USERNAME_KEY = "nameKey";
@@ -15,7 +19,7 @@ public class MyConstants {
 
     public static final String url_savesessiondetails = "http://192.168.100.100/PlaceMe/SaveSessionDetails";
     public static final String url_create_firebase= "http://192.168.100.100/PlaceMe/RegisterFirebaseUser";
-    public static final String url_UpdateFirebaseToken= "http://192.168.100.100:8080/PlaceMe/UpdateFirebaseToken";
+    public static final String url_UpdateFirebaseToken= "http://192.168.100.100/PlaceMe/UpdateFirebaseToken";
     public static final String url_ChangeUsernameFireBase= "http://192.168.100.100/PlaceMe/ChangeUsername";
 
 
@@ -125,6 +129,34 @@ public static String savepersonalinfo = "http://192.168.100.10:8080/ProfileObjec
     public static final String url_SaveAndGenrateInstituteCode = "http://192.168.100.100/AESTest/SaveAndGenrateInstituteCode";
     public static final String url_SaveAndGenrateCompanyCode = "http://192.168.100.100/AESTest/SaveAndGenrateCompanyCode";
     public static final String url_checkUcode = "http://192.168.100.100/AESTest/checkUcode";
+    public static final String url_ClearOTP = "http://192.168.100.100/AESTest/ClearOTP";
+    public static final String url_AddStudentUnderAdmin = "http://192.168.100.100/AESTest/AddStudentUnderAdmin";
+
+
+    public static Typeface getFA(Activity activity)
+    {
+        return Typeface.createFromAsset(activity.getAssets(),  "fonts/fa.ttf");
+    }
+    public static Typeface getBold(Activity activity)
+    {
+        return Typeface.createFromAsset(activity.getAssets(),  "fonts/nunitobold.ttf");
+    }
+    public static Typeface getLight(Activity activity)
+    {
+        return Typeface.createFromAsset(activity.getAssets(),  "fonts/nunitolight.ttf");
+    }
+    public static Typeface getItalic(Activity activity)
+    {
+        return Typeface.createFromAsset(activity.getAssets(),  "fonts/nunitoitalic.ttf");
+    }
+    public static Typeface getBoldItalic(Activity activity)
+    {
+        return Typeface.createFromAsset(activity.getAssets(),  "fonts/nunitobolditalic.ttf");
+    }
+    public static Typeface getRighteous(Activity activity)
+    {
+        return Typeface.createFromAsset(activity.getAssets(),  "fonts/righteous.ttf");
+    }
 
     //--
 

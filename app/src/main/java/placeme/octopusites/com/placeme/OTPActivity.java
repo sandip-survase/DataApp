@@ -131,7 +131,6 @@ public class OTPActivity extends AppCompatActivity {
             String data = new String(demo2DecryptedBytes1);
             hash = md5(data + MySharedPreferencesManager.getDigest3(OTPActivity.this));
 
-
         } catch (Exception e) {
         }
 
@@ -198,6 +197,10 @@ public class OTPActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             if (resultofop.equals("success")) {
+                //clear expired otp
+                new ClearOTPTask().execute();
+
+
                 if (activationMessageflag == false) {
                     Log.d("TAG", "onPostExecute: activation 1 flag" + activationMessageflag);
                     //create new firebase user
@@ -210,23 +213,22 @@ public class OTPActivity extends AppCompatActivity {
                     String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
                     String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
 
-                    new CreateFirebaseUser(u, p).execute();
+//                    new CreateFirebaseUser(u, p).execute();
 
                     Toast.makeText(OTPActivity.this, "Successfully Registered..!", Toast.LENGTH_LONG).show();
 
 
                     if (role.equals("student")) {
-
+                        new CreateFirebaseUser(u, p).execute();
+                        new AddStudentUnderAdmin().execute();
                         startActivity(new Intent(OTPActivity.this, MainActivity.class));
                         finish();
                     } else if (role.equals("admin")) {
-
-
+                        new AddStudentUnderAdmin().execute();
                         startActivity(new Intent(OTPActivity.this, AdminActivity.class));
                         finish();
                     } else if (role.equals("alumni")) {
-
-
+                        new CreateFirebaseUser(u, p).execute();
                         startActivity(new Intent(OTPActivity.this, AlumniActivity.class));
                         finish();
                     } else if (role.equals("hr")) {
@@ -249,10 +251,10 @@ public class OTPActivity extends AppCompatActivity {
                 String role = MySharedPreferencesManager.getRole(OTPActivity.this);
                 Log.d("TAG", "OTP onPostExecute: sahrd role ^^^^ "+role);
 
-                String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
-                String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
-
-                new CreateFirebaseUser(u, p).execute();
+//                String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
+//                String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
+//
+//                new CreateFirebaseUser(u, p).execute();
 
                 startActivity(new Intent(OTPActivity.this, WelcomeGenrateCodeActivity.class));
                 finish();
@@ -265,18 +267,12 @@ public class OTPActivity extends AppCompatActivity {
             verify.setVisibility(View.VISIBLE);
             otpprogress.setVisibility(View.GONE);
 
-            // clearing expired otp
-            try {
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                json = jParser.makeHttpRequest(url_verifyotp, "GET", params);
-            } catch (Exception e) {
-            }
-
         }
 
     }
 
     void loginFirebase(String username, String hash) {
+
         FirebaseAuth.getInstance()
                 .signInWithEmailAndPassword(username, hash)
                 .addOnCompleteListener(OTPActivity.this, new OnCompleteListener<AuthResult>() {
@@ -327,6 +323,41 @@ public class OTPActivity extends AppCompatActivity {
             }
 
             resendotp.setVisibility(View.VISIBLE);
+
+        }
+    }
+
+    class ClearOTPTask extends AsyncTask<String, String, String> {
+        protected String doInBackground(String... param) {
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            jParser.makeHttpRequest(MyConstants.url_ClearOTP, "GET", params);
+            return "";
+        }
+        @Override
+        protected void onPostExecute(String result) {
+        }
+    }
+
+    class AddStudentUnderAdmin extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("ud", encUsername));
+
+            json = jParser.makeHttpRequest(MyConstants.url_AddStudentUnderAdmin, "GET", params);
+            try {
+                resultofop = json.getString("info");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
 
         }
     }

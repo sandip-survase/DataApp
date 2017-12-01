@@ -62,7 +62,7 @@
         <activity
             android:name=".Welcome"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppFullScreenTheme" />
         <activity
             android:name=".SignupActivity"
             android:screenOrientation="portrait"
@@ -405,8 +405,7 @@
         <activity
             android:name=".UserSelection"
             android:label="@string/title_activity_user_selection" />
-        <activity android:name=".NewsFeedWebView"
-            ></activity>
+        <activity android:name=".NewsFeedWebView" />
     </application>
 
 </manifest>
