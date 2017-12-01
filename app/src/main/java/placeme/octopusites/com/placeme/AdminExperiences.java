@@ -16,6 +16,7 @@ import android.support.v7.widget.SwitchCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -64,7 +65,7 @@ public class AdminExperiences extends AppCompatActivity {
     TextInputLayout todateinput1,todateinput2,todateinput3,todateinput4,todateinput5,todateinput6,todateinput7,todateinput8,todateinput9,todateinput10;
     SwitchCompat expsw1,expsw2,expsw3,expsw4,expsw5,expsw6,expsw7,expsw8,expsw9,expsw10;
 
-    String username;
+    String username,role;
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
@@ -73,12 +74,9 @@ public class AdminExperiences extends AppCompatActivity {
 
     String  spost1="",sinst1="",spost2="",sinst2="",spost3="",sinst3="",spost4="",sinst4="",spost5="",sinst5="", spost6="",sinst6="",spost7="",sinst7="",spost8="",sinst8="",spost9="",sinst9="",spost10="",sinst10="";
     String  sfromdate1="",stodate1="",sfromdate2="",stodate2="",sfromdate3="",stodate3="",sfromdate4="",stodate4="",sfromdate5="",stodate5="",sfromdate6="",stodate6="",sfromdate7="",stodate7="",sfromdate8="",stodate8="",sfromdate9="",stodate9="",sfromdate10="",stodate10="";
-    String encpost1,encpost2,encpost3,encpost4,encpost5,encpost6,encpost7,encpost8,encpost9,encpost10;
-    String encinst1,encinst2,encinst3,encinst4,encinst5,encinst6,encinst7,encinst8,encinst9,encinst10;
-    String encfromdate1,encfromdate2,encfromdate3,encfromdate4,encfromdate5,encfromdate6,encfromdate7,encfromdate8,encfromdate9,encfromdate10;
-    String enctodate1,enctodat2,enctodate3,enctodate4,enctodate5,enctodate6,enctodate7,enctodate8,enctodate9,enctodate10;
+
     AdminData a = new AdminData();
-    private static String url_SaveExperiences= "http://192.168.100.20:1234/ProfileObjects/SaveExperiences";
+
 
     int todateflag1=0,todateflag2=0,todateflag3=0,todateflag4=0,todateflag5=0,todateflag6=0,todateflag7=0,todateflag8=0,todateflag9=0,todateflag10=0;
 
@@ -94,7 +92,7 @@ public class AdminExperiences extends AppCompatActivity {
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
         username=MySharedPreferencesManager.getUsername(this);
-        String role=MySharedPreferencesManager.getRole(this);
+        role=MySharedPreferencesManager.getRole(this);
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Experiences");
@@ -302,6 +300,8 @@ public class AdminExperiences extends AppCompatActivity {
 
 //getters
         try {
+
+            Log.d("TAG", "onCreate: getters() ");
 
             spost1 = a.getPost1e();
             sinst1 = a.getInst1e();
@@ -6739,7 +6739,7 @@ public class AdminExperiences extends AppCompatActivity {
             params.add(new BasicNameValuePair("d",param[0]));      //1
 
 
-            json = jParser.makeHttpRequest(url_SaveExperiences, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_SaveExperiences, "GET", params);
 
             try {
                 r = json.getString("info");
@@ -6757,9 +6757,18 @@ public class AdminExperiences extends AppCompatActivity {
             {
                 Toast.makeText(AdminExperiences.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
-                if(edittedFlag!=0) {
-                    setResult(111);
-                }
+                if(role.equals("hr"))
+                    setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
+                else if(role.equals("alumni"))
+                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+                else if(role.equals("admin"))
+                    setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
+
+
+//                if(edittedFlag!=0) {
+//                    setResult(111);
+//                    setResult();
+//                }
 
                 AdminExperiences.super.onBackPressed();
             }

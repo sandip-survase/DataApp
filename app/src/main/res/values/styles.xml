@@ -53,7 +53,6 @@
     </style>
 
 
-
     <style name="TextLabel" parent="AppTheme.NoActionBar">
         <item name="android:textColorHint">#eeeeee</item>
         <item name="android:textSize">20sp</item>

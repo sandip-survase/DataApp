@@ -96,6 +96,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
     public static String url_savedata_diploma = "http://192.168.100.30:8080/ProfileObjects/SaveDiploma";
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -331,21 +332,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=dmarkssem2.getText().toString();
-//                    String s2=doutofsem2.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            dpercentsem2.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
                 doutofsem2.setError(null);
 
                 try {
@@ -390,22 +377,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
 
-//                try {
-//
-//                    String s1=dmarkssem3.getText().toString();
-//                    String s2=doutofsem3.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            dpercentsem3.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
                 doutofsem3.setError(null);
 
                 try {
@@ -448,22 +419,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=dmarkssem3.getText().toString();
-//                    String s2=doutofsem3.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            dpercentsem3.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
                 doutofsem3.setError(null);
 
                 try {
@@ -506,22 +462,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
-
-//                try {
-//
-//                    String s1=dmarkssem4.getText().toString();
-//                    String s2=doutofsem4.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            dpercentsem4.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
                 doutofsem4.setError(null);
 
@@ -570,21 +510,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=dmarkssem4.getText().toString();
-//                    String s2=doutofsem4.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            dpercentsem4.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
 
                 doutofsem4.setError(null);
 
@@ -629,24 +555,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-
-//
-//                try {
-//
-//                    String s1=dmarkssem5.getText().toString();
-//                    String s2=doutofsem5.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            dpercentsem5.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
                 doutofsem5.setError(null);
 
                 try {
@@ -689,22 +597,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=dmarkssem5.getText().toString();
-//                    String s2=doutofsem5.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            dpercentsem5.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
                 doutofsem5.setError(null);
 
                 try {
@@ -749,23 +642,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
 
-//
-//                try {
-//
-//                    String s1=dmarkssem6.getText().toString();
-//                    String s2=doutofsem6.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            dpercentsem6.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
                 doutofsem6.setError(null);
 
                 try {
@@ -808,22 +684,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=dmarkssem6.getText().toString();
-//                    String s2=doutofsem6.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            dpercentsem6.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
                 doutofsem6.setError(null);
 
                 try {
@@ -896,22 +757,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
 
-//                try {
-//
-//                    String s1=marks12.getText().toString();
-//                    String s2=outof12.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            percent12.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
                 outof12.setError(null);
 
                 try {
@@ -957,22 +802,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-//                try {
 //
-//                    String s1=marks12.getText().toString();
-//                    String s2=outof12.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            percent12.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
                 percent12.setError(null);
 
                 try {
@@ -1500,6 +1330,9 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 otherboard.setText(selectedBoard12);
             }
         }
+        else
+            selectedBoard12="-Select Board - ";
+
         if (selectedStream12 != null) {
             int foundstream = 0;
             for (int i = 1; i < streams.length - 1; i++)
@@ -1515,6 +1348,8 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 otherstream12.setText(selectedStream12);
             }
         }
+        else
+            selectedStream12="-Select Board -";
 
         if (s.getMarkssem1diploma() != null)
             markssem1 = s.getMarkssem1diploma();
@@ -1651,23 +1486,8 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 otherboardd.setText(selectedBoarddiploma);
             }
         }
-
-//        if (selectedCourse != null) {
-//            int foundcourse = 0;
-//            for (int i = 1; i < courses.length - 1; i++)
-//                if (selectedCourse.equals(courses[i])) {
-//                    foundcourse = 1;
-//                    break;
-//                }
-//            if (foundcourse == 1)
-//                dcourse.setSelection(dataAdapter3.getPosition(selectedCourse));
-//            else {
-//                dcourse.setSelection(dataAdapter3.getPosition("Other"));
-//                otherboardd.setVisibility(View.VISIBLE);
-//                otherboardd.setText(selectedBoarddiploma);
-//            }
-//        }
-
+        else
+            selectedBoarddiploma="-Select Board - ";
 
 
         edittedFlag = 0;
@@ -1687,7 +1507,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             try {
                 String s = json.getString("count");
                 coursecount = Integer.parseInt(s);
-
                 courses = new String[coursecount];
                 for (int i = 0; i < coursecount; i++) {
                     courses[i] = json.getString("course" + i);
@@ -2247,7 +2066,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         aggregate = "";
         schoolnamediploma = "";
         selectedBoarddiploma="";
-        selectedCourse="";
+        selectedCourse="- Select Course -";
 
 
         dmarkssem1.setText("");

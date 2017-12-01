@@ -40,6 +40,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import placeme.octopusites.com.placeme.modal.Experiences;
+
+import static placeme.octopusites.com.placeme.AES4all.OtoString;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 import static placeme.octopusites.com.placeme.HrCompanyDetailsTabFragment.HRlog;
 
@@ -69,7 +72,8 @@ public class HrExperiencesTabFragment extends Fragment {
     String encfromdate1 = "", encfromdate2 = "", encfromdate3 = "", encfromdate4 = "", encfromdate5 = "", encfromdate6 = "", encfromdate7 = "", encfromdate8 = "", encfromdate9 = "", encfromdate10 = "";
     String enctodate1 = "", enctodate2 = "", enctodate3 = "", enctodate4 = "", enctodate5 = "", enctodate6 = "", enctodate7 = "", enctodate8 = "", enctodate9 = "", enctodate10 = "";
 //    Button savepersonal;
-    String status = "false";
+    String status = "false",encObjString="";
+    AdminData a = new AdminData();
     SwitchCompat switch1, switch2, switch3, switch4, switch5, switch6, switch7, switch8, switch9, switch10;
     boolean blnswitch1, blnswitch2, blnswitch3, blnswitch4, blnswitch5, blnswitch6, blnswitch7, blnswitch8, blnswitch9, blnswitch10;
     private String username = "";
@@ -79,7 +83,7 @@ public class HrExperiencesTabFragment extends Fragment {
     String sPadding;
     String role;
     HrData hr = new HrData();
-
+    ArrayList<Experiences> experiencesList=new ArrayList<>();
     View rootView;
 
 
@@ -1761,54 +1765,195 @@ public class HrExperiencesTabFragment extends Fragment {
                 showDateDialog(todate10, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
-        posts1 = hr.getPosts1();
-        posts2 = hr.getPosts2();
-        posts3 = hr.getPosts3();
-        posts4 = hr.getPosts4();
-        posts5 = hr.getPosts5();
-        posts6 = hr.getPosts6();
-        posts7 = hr.getPosts7();
-        posts8 = hr.getPosts8();
-        posts9 = hr.getPosts9();
-        posts10 = hr.getPosts10();
 
-        inst1s1 = hr.getInst1s1();
-        inst1s2 = hr.getInst1s2();
+        posts1 = a.getPost1e();
+        posts2 = a.getPost2e();
+        posts3 = a.getPost3e();
+        posts4 = a.getPost4e();
+        posts5 = a.getPost5e();
+        posts6 = a.getPost6e();
+        posts7 = a.getPost7e();
+        posts8 = a.getPost8e();
+        posts9 = a.getPost9e();
+        posts10 = a.getPost10e();
 
-        inst1s3 = hr.getInst1s3();
-        inst1s4 = hr.getInst1s4();
-        inst1s5 = hr.getInst1s5();
-        inst1s6 = hr.getInst1s6();
+        inst1s1 = a.getInst1e();
+        inst1s2 = a.getInst2e();
+        inst1s3 = a.getInst3e();
+        inst1s4 = a.getInst4e();
+        inst1s5 = a.getInst5e();
+        inst1s6 = a.getInst6e();
+        inst1s7 = a.getInst7e();
+        inst1s8 = a.getInst8e();
+        inst1s9 = a.getInst9e();
+        inst1s10 = a.getInst10e();
 
-        inst1s7 = hr.getInst1s7();
-        inst1s8 = hr.getInst1s8();
-        inst1s9 = hr.getInst1s9();
-        inst1s10 = hr.getInst1s10();
+        fromdates1 = a.getFromdate1e();
+        fromdates2 = a.getFromdate2e();
+        fromdates3 = a.getFromdate3e();
+        fromdates4 = a.getFromdate4e();
+        fromdates5 = a.getFromdate5e();
+        fromdates6 = a.getFromdate6e();
+        fromdates7 = a.getFromdate7e();
+        fromdates8 = a.getFromdate8e();
+        fromdates9 = a.getFromdate9e();
+        fromdates10 = a.getFromdate10e();
 
-        fromdates1 = hr.getFromdates1();
-        fromdates2 = hr.getFromdates2();
-        fromdates3 = hr.getFromdates3();
-        fromdates4 = hr.getFromdates4();
-        fromdates5 = hr.getFromdates5();
-        fromdates6 = hr.getFromdates6();
+        todates1 = a.getTodate1e();
+        todates2 = a.getTodate2e();
+        todates3 = a.getTodate3e();
+        todates4 = a.getTodate4e();
+        todates5 = a.getTodate5e();
+        todates6 = a.getTodate6e();
+        todates7 = a.getTodate7e();
+        todates8 = a.getTodate8e();
+        todates9 = a.getTodate9e();
+        todates10 = a.getTodate10e();
 
 
-        fromdates7 = hr.getFromdates7();
-        fromdates8 = hr.getFromdates8();
-        fromdates9 = hr.getFromdates9();
-        fromdates10 = hr.getFromdates10();
+        if(posts1==null)
+           posts1="";
+        if(inst1s1==null)
+            inst1s1="";
+        if(fromdates1==null)
+            fromdates1="";
+        if(todates1==null)
+            todates1="";
 
-        todates1 = hr.getTodates1();
-        todates2 = hr.getTodates2();
-        todates3 = hr.getTodates3();
-        todates4 = hr.getTodates4();
-        todates5 = hr.getTodates5();
-        todates6 = hr.getTodates6();
-        todates7 = hr.getTodates7();
-        todates8 = hr.getTodates8();
-        todates9 = hr.getTodates9();
-        todates10 = hr.getTodates10();
+        if(posts2==null)
+            posts2="";
+        if(inst1s2==null)
+            inst1s2="";
+        if(fromdates2==null)
+            fromdates2="";
+        if(todates2==null)
+            todates2="";
+
+        if(posts3==null)
+            posts3="";
+        if(inst1s3==null)
+            inst1s3="";
+        if(fromdates3==null)
+            fromdates3="";
+        if(todates3==null)
+            todates3="";
+
+        if(posts4==null)
+            posts4="";
+        if(inst1s4==null)
+            inst1s4="";
+        if(fromdates4==null)
+            fromdates4="";
+        if(todates4==null)
+            todates4="";
+
+        if(posts5==null)
+            posts5="";
+        if(inst1s5==null)
+            inst1s5="";
+        if(fromdates5==null)
+            fromdates5="";
+        if(todates5==null)
+            todates5="";
+
+        if(posts6==null)
+            posts6="";
+        if(inst1s6==null)
+            inst1s6="";
+        if(fromdates6==null)
+            fromdates6="";
+        if(todates6==null)
+            todates6="";
+
+        if(posts7==null)
+            posts7="";
+        if(inst1s7==null)
+            inst1s7="";
+        if(fromdates7==null)
+            fromdates7="";
+        if(todates7==null)
+            todates7="";
+
+        if(posts8==null)
+            posts8="";
+        if(inst1s8==null)
+            inst1s8="";
+        if(fromdates8==null)
+            fromdates8="";
+        if(todates8==null)
+            todates8="";
+
+        if(posts9==null)
+            posts9="";
+        if(inst1s9==null)
+            inst1s9="";
+        if(fromdates9==null)
+            fromdates9="";
+        if(todates9==null)
+            todates9="";
+
+        if(posts10==null)
+            posts10="";
+        if(inst1s10==null)
+            inst1s10="";
+        if(fromdates10==null)
+            fromdates10="";
+        if(todates10==null)
+            todates10="";
+
+
+
+//        posts1 = hr.getPosts1();
+//        posts2 = hr.getPosts2();
+//        posts3 = hr.getPosts3();
+//        posts4 = hr.getPosts4();
+//        posts5 = hr.getPosts5();
+//        posts6 = hr.getPosts6();
+//        posts7 = hr.getPosts7();
+//        posts8 = hr.getPosts8();
+//        posts9 = hr.getPosts9();
+//        posts10 = hr.getPosts10();
+//
+//        inst1s1 = hr.getInst1s1();
+//        inst1s2 = hr.getInst1s2();
+//
+//        inst1s3 = hr.getInst1s3();
+//        inst1s4 = hr.getInst1s4();
+//        inst1s5 = hr.getInst1s5();
+//        inst1s6 = hr.getInst1s6();
+//
+//        inst1s7 = hr.getInst1s7();
+//        inst1s8 = hr.getInst1s8();
+//        inst1s9 = hr.getInst1s9();
+//        inst1s10 = hr.getInst1s10();
+//
+//        fromdates1 = hr.getFromdates1();
+//        fromdates2 = hr.getFromdates2();
+//        fromdates3 = hr.getFromdates3();
+//        fromdates4 = hr.getFromdates4();
+//        fromdates5 = hr.getFromdates5();
+//        fromdates6 = hr.getFromdates6();
+//
+//
+//        fromdates7 = hr.getFromdates7();
+//        fromdates8 = hr.getFromdates8();
+//        fromdates9 = hr.getFromdates9();
+//        fromdates10 = hr.getFromdates10();
+//
+//        todates1 = hr.getTodates1();
+//        todates2 = hr.getTodates2();
+//        todates3 = hr.getTodates3();
+//        todates4 = hr.getTodates4();
+//        todates5 = hr.getTodates5();
+//        todates6 = hr.getTodates6();
+//        todates7 = hr.getTodates7();
+//        todates8 = hr.getTodates8();
+//        todates9 = hr.getTodates9();
+//        todates10 = hr.getTodates10();
+
         // if posts1 is not equal ""  i.e  inst,fromdate,todate has some value from hr object
+
+
         if (!posts1.equals("")) {
             post1.setText(posts1);
             inst11.setText(inst1s1);
@@ -3975,161 +4120,45 @@ public class HrExperiencesTabFragment extends Fragment {
         }
         return true;
     }
-//
-//    public void validateAndSaveData() {
-//
-//
-//        if(validate())
-//        {
-//            save();
-//        }
-//
-//    }
+
 
     public void save() {
 
         try {
 
-            byte[] posts1Bytes1 = posts1.getBytes("UTF-8");
-            byte[] insts1Bytes1 = inst1s1.getBytes("UTF-8");
-            byte[] fromDateBytes1 = fromdates1.getBytes("UTF-8");
-            byte[] toDateBytes1 = todates1.getBytes("UTF-8");
 
-            byte[] posts1Bytes2 = posts2.getBytes("UTF-8");
-            byte[] insts1Bytes2 = inst1s2.getBytes("UTF-8");
-            byte[] fromDateBytes2 = fromdates2.getBytes("UTF-8");
-            byte[] toDateBytes2 = todates2.getBytes("UTF-8");
-
-            byte[] posts1Bytes3 = posts3.getBytes("UTF-8");
-            byte[] insts1Bytes3 = inst1s3.getBytes("UTF-8");
-            byte[] fromDateBytes3 = fromdates3.getBytes("UTF-8");
-            byte[] toDateBytes3 = todates3.getBytes("UTF-8");
-
-            byte[] posts1Bytes4 = posts4.getBytes("UTF-8");
-            byte[] insts1Bytes4 = inst1s4.getBytes("UTF-8");
-            byte[] fromDateBytes4 = fromdates4.getBytes("UTF-8");
-            byte[] toDateBytes4 = todates4.getBytes("UTF-8");
-
-            byte[] posts1Bytes5 = posts5.getBytes("UTF-8");
-            byte[] insts1Bytes5 = inst1s5.getBytes("UTF-8");
-            byte[] fromDateBytes5 = fromdates5.getBytes("UTF-8");
-            byte[] toDateBytes5 = todates5.getBytes("UTF-8");
-
-            byte[] posts1Bytes6 = posts6.getBytes("UTF-8");
-            byte[] insts1Bytes6 = inst1s6.getBytes("UTF-8");
-            byte[] fromDateBytes6 = fromdates6.getBytes("UTF-8");
-            byte[] toDateBytes6 = todates6.getBytes("UTF-8");
-
-            byte[] posts1Bytes7 = posts7.getBytes("UTF-8");
-            byte[] insts1Bytes7 = inst1s7.getBytes("UTF-8");
-            byte[] fromDateBytes7 = fromdates7.getBytes("UTF-8");
-            byte[] toDateBytes7 = todates7.getBytes("UTF-8");
-
-            byte[] posts1Bytes8 = posts8.getBytes("UTF-8");
-            byte[] insts1Bytes8 = inst1s8.getBytes("UTF-8");
-            byte[] fromDateBytes8 = fromdates8.getBytes("UTF-8");
-            byte[] toDateBytes8 = todates8.getBytes("UTF-8");
-
-            byte[] posts1Bytes9 = posts9.getBytes("UTF-8");
-            byte[] insts1Bytes9 = inst1s9.getBytes("UTF-8");
-            byte[] fromDateBytes9 = fromdates9.getBytes("UTF-8");
-            byte[] toDateBytes9 = todates9.getBytes("UTF-8");
-
-            byte[] posts1Bytes10 = posts10.getBytes("UTF-8");
-            byte[] insts1Bytes10 = inst1s10.getBytes("UTF-8");
-            byte[] fromDateBytes10 = fromdates10.getBytes("UTF-8");
-            byte[] toDateBytes10 = todates10.getBytes("UTF-8");
+            Experiences obj1=new Experiences(posts1,inst1s1,fromdates1,todates1);
+            Experiences obj2=new Experiences(posts2,inst1s2,fromdates2,todates2);
+            Experiences obj3=new Experiences(posts3,inst1s3,fromdates3,todates3);
+            Experiences obj4=new Experiences(posts4,inst1s4,fromdates4,todates4);
+            Experiences obj5=new Experiences(posts5,inst1s5,fromdates5,todates5);
+            Experiences obj6=new Experiences(posts6,inst1s6,fromdates6,todates6);
+            Experiences obj7=new Experiences(posts7,inst1s7,fromdates7,todates7);
+            Experiences obj8=new Experiences(posts8,inst1s8,fromdates8,todates8);
+            Experiences obj9=new Experiences(posts9,inst1s9,fromdates9,todates9);
+            Experiences obj10=new Experiences(posts10,inst1s10,fromdates10,todates10);
 
 
-            byte[] post1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes1);
-            encpost1 = new String(SimpleBase64Encoder.encode(post1EncryptedBytes));
-            byte[] post2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes2);
-            encpost2 = new String(SimpleBase64Encoder.encode(post2EncryptedBytes));
-            byte[] post3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes3);
-            encpost3 = new String(SimpleBase64Encoder.encode(post3EncryptedBytes));
-            byte[] post4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes4);
-            encpost4 = new String(SimpleBase64Encoder.encode(post4EncryptedBytes));
-            byte[] post5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes5);
-            encpost5 = new String(SimpleBase64Encoder.encode(post5EncryptedBytes));
-            byte[] post6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes6);
-            encpost6 = new String(SimpleBase64Encoder.encode(post6EncryptedBytes));
-            byte[] post7EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes7);
-            encpost7 = new String(SimpleBase64Encoder.encode(post7EncryptedBytes));
-            byte[] post8EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes8);
-            encpost8 = new String(SimpleBase64Encoder.encode(post8EncryptedBytes));
-            byte[] post9EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes9);
-            encpost9 = new String(SimpleBase64Encoder.encode(post9EncryptedBytes));
-            byte[] post10EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes10);
-            encpost10 = new String(SimpleBase64Encoder.encode(post10EncryptedBytes));
+            experiencesList.add(obj1);
+            experiencesList.add(obj2);
+            experiencesList.add(obj3);
+            experiencesList.add(obj4);
+            experiencesList.add(obj5);
+            experiencesList.add(obj6);
+            experiencesList.add(obj7);
+            experiencesList.add(obj8);
+            experiencesList.add(obj9);
+            experiencesList.add(obj10);
 
-            byte[] instEncryptedBytes1 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes1);
-            encinst1 = new String(SimpleBase64Encoder.encode(instEncryptedBytes1));
-            byte[] instEncryptedBytes2 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes2);
-            encinst2 = new String(SimpleBase64Encoder.encode(instEncryptedBytes2));
-            byte[] instEncryptedBytes3 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes3);
-            encinst3 = new String(SimpleBase64Encoder.encode(instEncryptedBytes3));
-            byte[] instEncryptedBytes4 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes4);
-            encinst4 = new String(SimpleBase64Encoder.encode(instEncryptedBytes4));
-            byte[] instEncryptedBytes5 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes5);
-            encinst5 = new String(SimpleBase64Encoder.encode(instEncryptedBytes5));
-            byte[] instEncryptedBytes6 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes6);
-            encinst6 = new String(SimpleBase64Encoder.encode(instEncryptedBytes6));
-            byte[] instEncryptedBytes7 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes7);
-            encinst7 = new String(SimpleBase64Encoder.encode(instEncryptedBytes7));
-            byte[] instEncryptedBytes8 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes8);
-            encinst8 = new String(SimpleBase64Encoder.encode(instEncryptedBytes8));
-            byte[] instEncryptedBytes9 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes9);
-            encinst9 = new String(SimpleBase64Encoder.encode(instEncryptedBytes9));
-            byte[] instEncryptedBytes10 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes10);
-            encinst10 = new String(SimpleBase64Encoder.encode(instEncryptedBytes10));
+             encObjString=OtoString(experiencesList,MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
 
-            byte[] fromDateEncryptedBytes1 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes1);
-            encfromdate1 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes1));
-            byte[] fromDateEncryptedBytes2 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes2);
-            encfromdate2 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes2));
-            byte[] fromDateEncryptedBytes3 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes3);
-            encfromdate3 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes3));
-            byte[] fromDateEncryptedBytes4 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes4);
-            encfromdate4 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes4));
-            byte[] fromDateEncryptedBytes5 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes5);
-            encfromdate5 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes5));
-            byte[] fromDateEncryptedBytes6 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes6);
-            encfromdate6 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes6));
-            byte[] fromDateEncryptedBytes7 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes7);
-            encfromdate7 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes7));
-            byte[] fromDateEncryptedBytes8 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes8);
-            encfromdate8 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes8));
-            byte[] fromDateEncryptedBytes9 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes9);
-            encfromdate9 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes9));
-            byte[] fromDateEncryptedBytes10 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes10);
-            encfromdate10 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes10));
 
-            byte[] toDateEncryptedBytes1 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes1);
-            enctodate1 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes1));
-            byte[] toDateEncryptedBytes2 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes2);
-            enctodate2 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes2));
-            byte[] toDateEncryptedBytes3 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes3);
-            enctodate3 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes3));
-            byte[] toDateEncryptedBytes4 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes4);
-            enctodate4 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes4));
-            byte[] toDateEncryptedBytes5 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes5);
-            enctodate5 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes5));
-            byte[] toDateEncryptedBytes6 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes6);
-            enctodate6 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes6));
-            byte[] toDateEncryptedBytes7 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes7);
-            enctodate7 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes7));
-            byte[] toDateEncryptedBytes8 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes8);
-            enctodate8 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes8));
-            byte[] toDateEncryptedBytes9 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes9);
-            enctodate9 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes9));
-            byte[] toDateEncryptedBytes10 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes10);
-            enctodate10 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes10));
-
+            new saveHrExperienceTask().execute();
 
         } catch (Exception e) {
             Log.d(HRlog," "+e.getMessage());
         }
-        new saveHrExperienceTask().execute();
+//        new saveHrExperienceTask().execute();
     }
     public boolean validate()
     {
@@ -4362,78 +4391,26 @@ public class HrExperiencesTabFragment extends Fragment {
 
     class saveHrExperienceTask extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
-
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("p1", encpost1));
-            params.add(new BasicNameValuePair("i1", encinst1));
-            params.add(new BasicNameValuePair("f1", encfromdate1));
-            params.add(new BasicNameValuePair("t1", enctodate1));
 
-            params.add(new BasicNameValuePair("p2", encpost2));
-            params.add(new BasicNameValuePair("i2", encinst2));
-            params.add(new BasicNameValuePair("f2", encfromdate2));
-            params.add(new BasicNameValuePair("t2", enctodate2));
-
-            params.add(new BasicNameValuePair("p3", encpost3));
-            params.add(new BasicNameValuePair("i3", encinst3));
-            params.add(new BasicNameValuePair("f3", encfromdate3));
-            params.add(new BasicNameValuePair("t3", enctodate3));
-
-            params.add(new BasicNameValuePair("p4", encpost4));
-            params.add(new BasicNameValuePair("i4", encinst4));
-            params.add(new BasicNameValuePair("f4", encfromdate4));
-            params.add(new BasicNameValuePair("t4", enctodate4));
-
-            params.add(new BasicNameValuePair("p5", encpost5));
-            params.add(new BasicNameValuePair("i5", encinst5));
-            params.add(new BasicNameValuePair("f5", encfromdate5));
-            params.add(new BasicNameValuePair("t5", enctodate5));
-            //5
-            params.add(new BasicNameValuePair("p6", encpost6));
-            params.add(new BasicNameValuePair("i6", encinst6));
-            params.add(new BasicNameValuePair("f6", encfromdate6));
-            params.add(new BasicNameValuePair("t6", enctodate6));
-
-            params.add(new BasicNameValuePair("p7", encpost7));
-            params.add(new BasicNameValuePair("i7", encinst7));
-            params.add(new BasicNameValuePair("f7", encfromdate7));
-            params.add(new BasicNameValuePair("t7", enctodate7));
-
-            params.add(new BasicNameValuePair("p8", encpost8));
-            params.add(new BasicNameValuePair("i8", encinst8));
-            params.add(new BasicNameValuePair("f8", encfromdate8));
-            params.add(new BasicNameValuePair("t8", enctodate8));
-
-            params.add(new BasicNameValuePair("p9", encpost9));
-            params.add(new BasicNameValuePair("i9", encinst9));
-            params.add(new BasicNameValuePair("f9", encfromdate9));
-            params.add(new BasicNameValuePair("t9", enctodate9));
-
-            params.add(new BasicNameValuePair("p10", encpost10));
-            params.add(new BasicNameValuePair("i10", encinst10));
-            params.add(new BasicNameValuePair("f10", encfromdate10));
-            params.add(new BasicNameValuePair("t10", enctodate10));
-
-
-            json = jParser.makeHttpRequest(MyConstants.url_saveHrExperience, "GET", params);
+            params.add(new BasicNameValuePair("u",username));      //0
+            params.add(new BasicNameValuePair("d",encObjString));      //1
+            json = jParser.makeHttpRequest(MyConstants.url_SaveExperiences, "GET", params);
 
             try {
                 r = json.getString("info");
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
+            }catch (Exception e){e.printStackTrace();}
             return r;
         }
 
         @Override
         protected void onPostExecute(String result) {
-//            savepersonal.setVisibility(View.VISIBLE);
-//            personalprogress1.setVisibility(View.GONE);
             if (result.equals("success")) {
-//                Toast.makeText(getActivity(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(getActivity(),"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
                 if (role.equals("alumni"))
                     getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);

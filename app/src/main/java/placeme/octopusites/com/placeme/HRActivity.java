@@ -892,21 +892,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             }
         });
 
-
-//        editnotificationrl.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(notificationorplacementflag==0)
-//                    startActivity(new Intent(HRActivity.this,EditNotification.class).putExtra("username",username));
-//                else
-//                    startActivity(new Intent(HRActivity.this,EditPlacement.class).putExtra("username",username));
-//            }
-//        });
-
-
-// our coding here
-
-
         try {
 
             demoKeyBytes = SimpleBase64Encoder.decode(digest1);
@@ -1223,6 +1208,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     }
 
     // thumbanail
+
+
     public class GetProfileImage extends AsyncTask<String, Void, Bitmap> {
         @Override
         protected Bitmap doInBackground(String... urls) {
@@ -1286,6 +1273,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     }
 
     void addTempPlacements() {
+
         Log.d("tag", "addTempPlacements:Accessed ");
         for (int i = 0; i < 10; i++) {
             RecyclerItemHrPlacement item2 = new RecyclerItemHrPlacement(i, "Cognizant", "17-FEB-2017 5:20 PM", "201 Candidates Registered", "57 Candidates Placed", "20-FEB-2017");

@@ -102,6 +102,9 @@ public class AdminAccomplishments extends AppCompatActivity {
         {
             setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
         }
+        else
+            setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
+
         Log.d("TAG", "AdminAccomplishments: editprofile "+resultCode);
     }
 }

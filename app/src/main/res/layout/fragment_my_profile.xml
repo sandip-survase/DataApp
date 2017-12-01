@@ -1,8 +1,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyProfileFragment">
- <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".MyProfileFragment"
+    android:background="#fcfdfd"
+    >
+ <android.support.v4.widget.SwipeRefreshLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -10,7 +14,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#282f35"
+        android:background="#fcfdfd"
         android:id="@+id/profilepreviewscrollview"
 
         >
@@ -23,15 +27,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="My Profile Preview"
+                android:text="Institute/Company Code"
                 android:textStyle="bold"
-                android:textColor="#fff"
+                android:textColor="#03353e"
                 android:id="@+id/myprofilepreview"
-                android:textSize="25dp"
+                android:textSize="16dp"
                 android:layout_marginTop="10dp"
                 />
-
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -43,15 +45,16 @@
                 android:id="@+id/box1"
                 android:layout_marginBottom="10dp"
                 android:paddingBottom="10dp"
+                android:elevation="8dp"
                 >
 
 
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/pencil"
+                android:src="@drawable/pencil_icon"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
                 />
@@ -75,8 +78,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="Your Name"
-                android:textSize="20dp"
-                android:textColor="#282f35"
+                android:textSize="16dp"
+                android:textColor="#03353e"
                 android:textStyle="bold"
                 android:layout_marginTop="70dp"
                 />
@@ -87,8 +90,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="Role"
-                android:textSize="15dp"
-                android:textColor="#282f35"
+                android:textSize="12dp"
+                android:textAllCaps="true"
+                android:textColor="#00bcd4"
                 android:layout_marginTop="5dp"
                 android:layout_below="@+id/myprofilename"
                 />
@@ -104,7 +108,7 @@
                 android:layout_marginRight="20dp"
                 android:ellipsize="start"
                 android:gravity="center_horizontal"
-                android:textColor="#282f35"
+                android:textColor="#03353e"
                 android:layout_marginTop="3dp"
                 android:layout_below="@+id/myprofilrole"
                 />
@@ -118,7 +122,7 @@
                 android:text="Location"
                 android:layout_toLeftOf="@+id/myprofilbar"
                 android:textSize="10dp"
-                android:textColor="#282f35"
+                android:textColor="#03353e"
                 android:ellipsize="start"
                 android:gravity="center_horizontal"
                 android:layout_alignParentLeft="true"
@@ -133,7 +137,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="|"
                 android:textSize="13dp"
-                android:textColor="#282f35"
+                android:textColor="#03353e"
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/myprofiledu"
                 />
@@ -156,7 +160,7 @@
                     android:layout_marginLeft="10dp"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:layout_marginTop="10dp"
                     />
             </RelativeLayout>
@@ -171,6 +175,7 @@
                 android:id="@+id/box2"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:elevation="8dp"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -183,15 +188,17 @@
                 android:textStyle="italic"
                 android:textSize="11dp"
                 android:id="@+id/myprofilepercenttxt"
+                android:elevation="10dp"
                 />
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="50dp"
-                android:background="#fff"
+                android:background="#fcfdfd"
                 android:layout_below="@+id/box1"
                 android:id="@+id/box2section"
                 android:layout_centerHorizontal="true"
+                android:elevation="10dp"
                 />
 
             <ProgressBar
@@ -209,6 +216,7 @@
                 android:progressDrawable="@drawable/progressbarblue"
                 android:indeterminate="false"
                 android:id="@+id/profileprogress"
+                android:elevation="10dp"
                 />
 
             <RelativeLayout
@@ -218,6 +226,7 @@
                 android:layout_below="@+id/box1"
                 android:layout_above="@+id/box3"
                 android:id="@+id/editprofilerl"
+                android:elevation="10dp"
                 >
                 <TextView
                     android:id="@+id/editprofiletxt"
@@ -225,19 +234,14 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:textColor="#00BFFF"
+                    android:textColor="#00bcd4"
                     android:text="EDIT PROFILE"
                     android:layout_marginTop="13dp"
+                    android:textSize="12dp"
                     />
 
             </RelativeLayout>
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/imgborder"
-                />
+
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="135dp"
@@ -246,6 +250,7 @@
                 android:src="@drawable/profile_icon"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="57dp"
+                android:elevation="10dp"
                 />
             <ProgressBar
                 android:layout_width="wrap_content"
@@ -264,6 +269,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:id="@+id/box3"
+                android:elevation="8dp"
                 >
 
 
@@ -277,20 +283,21 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:textStyle="bold"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:textColor="#282f35"
+                android:textColor="#fcfdfd"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/textviewborder"
+                android:elevation="6dp"
                 />
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/pencil"
+                android:src="@drawable/pencil_icon"
                 android:layout_alignParentRight="true"
                 />
 
@@ -305,7 +312,7 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/institute"
+                    android:src="@drawable/institute_icon"
                     android:layout_below="@+id/eduboxtxt"
                     android:id="@+id/insti4"
                     android:layout_marginTop="25dp"
@@ -331,8 +338,9 @@
                         android:ellipsize="start"
                         android:layout_centerHorizontal="true"
                         android:gravity="center_horizontal"
-                        android:textColor="#282f35"
+                        android:textColor="#03353e"
                         android:textStyle="bold"
+                        android:textSize="14dp"
                         />
 
                     <TextView
@@ -342,11 +350,11 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="3dp"
                         android:layout_marginRight="20dp"
-                        android:textSize="12dp"
+                        android:textSize="13dp"
                         android:layout_below="@+id/myprofilecource4"
                         android:layout_centerHorizontal="true"
                         android:text="Institute Name"
-                        android:textColor="#282f35"
+                        android:textColor="#03353e"
                         android:ellipsize="start"
                         android:gravity="center_horizontal"
                         />
@@ -359,8 +367,8 @@
                         android:layout_marginTop="3dp"
                         android:layout_marginRight="20dp"
                         android:layout_centerHorizontal="true"
-                        android:textSize="12dp"
-                        android:textColor="#282f35"
+                        android:textSize="13dp"
+                        android:textColor="#03353e"
                         android:text="Year Of Passing"
                         android:ellipsize="start"
                         android:gravity="center_horizontal"
@@ -369,7 +377,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#282f35"
+                        android:background="#00bcd4"
                         android:layout_below="@+id/myprofileclgyearofpassing4"
                         android:layout_marginTop="20dp"
                         android:layout_marginRight="20dp"
@@ -380,7 +388,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/institute"
+                android:src="@drawable/institute_icon"
                 android:layout_below="@+id/edutab4"
                 android:id="@+id/insti1"
                 android:layout_marginTop="25dp"
@@ -404,9 +412,11 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="10dp"
                     android:ellipsize="start"
+                    android:textSize="14dp"
+
                     android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:textStyle="bold"
                     />
 
@@ -417,11 +427,11 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="20dp"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:layout_below="@+id/myprofilecource"
                     android:layout_centerHorizontal="true"
                     android:text="Institute Name"
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
@@ -434,8 +444,8 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="20dp"
                     android:layout_centerHorizontal="true"
-                    android:textSize="12dp"
-                    android:textColor="#282f35"
+                    android:textSize="13dp"
+                    android:textColor="#03353e"
                     android:text="Year Of Passing"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
@@ -444,7 +454,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#282f35"
+                    android:background="#00bcd4"
                     android:layout_below="@+id/myprofileclgyearofpassing"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
@@ -457,7 +467,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/institute"
+                android:src="@drawable/institute_icon"
                 android:layout_below="@+id/edutab1"
                 android:id="@+id/insti2"
                 android:layout_marginTop="25dp"
@@ -483,9 +493,11 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="10dp"
                     android:ellipsize="start"
+                    android:textSize="14dp"
+
                     android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:textStyle="bold"
                     />
 
@@ -496,8 +508,8 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="20dp"
-                    android:textColor="#282f35"
-                    android:textSize="12dp"
+                    android:textColor="#03353e"
+                    android:textSize="13dp"
                     android:layout_below="@+id/myprofilecource2"
                     android:layout_centerHorizontal="true"
                     android:text="Institute Name"
@@ -514,9 +526,9 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="20dp"
                     android:layout_centerHorizontal="true"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:text="Year Of Passing"
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
@@ -524,7 +536,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#282f35"
+                    android:background="#00bcd4"
                     android:layout_below="@+id/myprofileclgyearofpassing2"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
@@ -536,7 +548,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/institute"
+                android:src="@drawable/institute_icon"
                 android:layout_below="@+id/edutab2"
                 android:id="@+id/insti3"
                 android:layout_marginTop="25dp"
@@ -562,9 +574,11 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="10dp"
                     android:ellipsize="start"
+                    android:textSize="14dp"
+
                     android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:textStyle="bold"
                     />
 
@@ -575,10 +589,10 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="20dp"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:layout_below="@+id/myprofilecource3"
                     android:layout_centerHorizontal="true"
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:text="Institute Name"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
@@ -596,9 +610,9 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="20dp"
                     android:layout_centerHorizontal="true"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:text="Year Of Passing"
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
@@ -606,7 +620,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#282f35"
+                    android:background="@color/transparent"
                     android:layout_below="@+id/myprofileclgyearofpassing3"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
@@ -618,12 +632,13 @@
            <RelativeLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:background="@drawable/boxborderwhite"
+               android:background="@drawable/boxborder"
                android:layout_below="@+id/box3"
                android:id="@+id/box4"
                android:layout_marginLeft="10dp"
                android:layout_marginRight="10dp"
                android:layout_marginTop="10dp"
+               android:elevation="8dp"
                >
 
 
@@ -635,29 +650,31 @@
                 android:id="@+id/projboxtxt"
                 android:text="Projects"
                 android:textStyle="bold"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:textColor="#fff"
+                android:textColor="#fcfdfd"
+                android:elevation="6dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/textviewborder2"
+                android:background="@drawable/textviewborder"
                 />
 
 
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/pencilwhite"
-                android:layout_alignParentRight="true"/>
+                android:src="@drawable/pencil_icon"
+                android:layout_alignParentRight="true"
+                android:elevation="10dp"/>
 
             <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="5dp"
                 android:id="@+id/projectsedit"
@@ -665,13 +682,14 @@
 
 
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/gears"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/projects_new"
                 android:layout_below="@+id/projboxtxt"
                 android:id="@+id/gear1"
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="20dp"
+                android:elevation="10dp"
                 />
 
             <RelativeLayout
@@ -681,6 +699,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_below="@+id/projboxtxt"
                 android:id="@+id/projtab1"
+                android:elevation="10dp"
                 >
 
                 <TextView
@@ -694,8 +713,9 @@
                     android:ellipsize="start"
                     android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
-                    android:textColor="#fff"
+                    android:textColor="#03353e"
                     android:textStyle="bold"
+                    android:textSize="14dp"
                     />
 
                 <TextView
@@ -703,13 +723,13 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/myprofiledomain1"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="1dp"
                     android:layout_marginRight="20dp"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:layout_below="@+id/myprofileproj1"
                     android:layout_centerHorizontal="true"
                     android:text="Project Domain"
-                    android:textColor="#fff"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
@@ -723,12 +743,12 @@
                     android:id="@+id/myprofileduration1"
                     android:layout_below="@+id/myprofiledomain1"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="1dp"
                     android:layout_marginRight="20dp"
                     android:layout_centerHorizontal="true"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:text="Project Duration"
-                    android:textColor="#fff"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
@@ -736,7 +756,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#fff"
+                    android:background="#00bcd4"
                     android:layout_below="@+id/myprofileduration1"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
@@ -747,11 +767,12 @@
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/gears"
+                android:src="@drawable/projects_icon"
                 android:layout_below="@+id/projtab1"
                 android:id="@+id/gear2"
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="20dp"
+                android:elevation="10dp"
                 />
 
             <RelativeLayout
@@ -761,6 +782,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_below="@+id/projtab1"
                 android:id="@+id/projtab2"
+                android:elevation="10dp"
                 >
 
                 <TextView
@@ -772,9 +794,10 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="10dp"
                     android:ellipsize="start"
+                    android:textSize="14dp"
                     android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
-                    android:textColor="#fff"
+                    android:textColor="#03353e"
                     android:textStyle="bold"
                     />
 
@@ -783,13 +806,13 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/myprofiledomain2"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="1dp"
                     android:layout_marginRight="20dp"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:layout_below="@+id/myprofileproj2"
                     android:layout_centerHorizontal="true"
                     android:text="Project Domain"
-                    android:textColor="#fff"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
@@ -799,12 +822,12 @@
                     android:id="@+id/myprofileduration2"
                     android:layout_below="@+id/myprofiledomain2"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="1dp"
                     android:layout_marginRight="20dp"
                     android:layout_centerHorizontal="true"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:text="Project Duration"
-                    android:textColor="#fff"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
@@ -812,7 +835,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#fff"
+                    android:background="#00bcd4"
                     android:layout_below="@+id/myprofileduration2"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
@@ -824,11 +847,12 @@
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/gears"
+                android:src="@drawable/projects_icon"
                 android:layout_below="@+id/projtab2"
                 android:id="@+id/gear3"
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="20dp"
+                android:elevation="10dp"
                 />
 
             <RelativeLayout
@@ -838,6 +862,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_below="@+id/projtab2"
                 android:id="@+id/projtab3"
+                android:elevation="10dp"
                 >
 
                 <TextView
@@ -849,9 +874,10 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="10dp"
                     android:ellipsize="start"
+                    android:textSize="14dp"
                     android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
-                    android:textColor="#fff"
+                    android:textColor="#03353e"
                     android:textStyle="bold"
                     />
 
@@ -860,13 +886,13 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/myprofiledomain3"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="1dp"
                     android:layout_marginRight="20dp"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:layout_below="@+id/myprofileproj3"
                     android:layout_centerHorizontal="true"
                     android:text="Project Domain"
-                    android:textColor="#fff"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
@@ -876,12 +902,12 @@
                     android:id="@+id/myprofileduration3"
                     android:layout_below="@+id/myprofiledomain3"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="1dp"
                     android:layout_marginRight="20dp"
                     android:layout_centerHorizontal="true"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:text="Project Duration"
-                    android:textColor="#fff"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
@@ -889,7 +915,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#fff"
+                    android:background="@color/transparent"
                     android:layout_below="@+id/myprofileduration3"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
@@ -908,6 +934,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:id="@+id/box5"
+                android:elevation="8dp"
                 >
 
 
@@ -919,22 +946,23 @@
                 android:id="@+id/accomplishmentsboxtxt"
                 android:text="Accomplishments"
                 android:textStyle="bold"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:textColor="#282f35"
+                android:textColor="#fcfdfd"
+                android:elevation="6dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/textviewborder"
                 />
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/pencil"
+                android:src="@drawable/pencil_icon"
                 android:layout_alignParentRight="true"
                 />
 
@@ -948,9 +976,9 @@
                 />
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/language"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/known_languages_icon"
                 android:layout_below="@+id/accomplishmentsboxtxt"
                 android:id="@+id/acc1"
                 android:layout_marginTop="20dp"
@@ -975,9 +1003,10 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="10dp"
                     android:ellipsize="start"
+                    android:textSize="14dp"
                     android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:textStyle="bold"
                     />
 
@@ -990,9 +1019,9 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_centerHorizontal="true"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:text="Language1, Language 2."
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
@@ -1000,7 +1029,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#282f35"
+                    android:background="#00bcd4"
                     android:layout_below="@+id/acc1txttxt"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
@@ -1009,9 +1038,9 @@
 
             </RelativeLayout>
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/certification"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/certificate_icon"
                 android:layout_below="@+id/acctab1"
                 android:id="@+id/acc2"
                 android:layout_marginTop="20dp"
@@ -1035,9 +1064,10 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="10dp"
                     android:ellipsize="start"
+                    android:textSize="14dp"
                     android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:textStyle="bold"
                     />
                 <TextView
@@ -1049,9 +1079,9 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_centerHorizontal="true"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:text="Certificate 1, Certificate 2."
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
@@ -1059,7 +1089,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#282f35"
+                    android:background="#00bcd4"
                     android:layout_below="@+id/acc2txttxt"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
@@ -1068,9 +1098,9 @@
 
             </RelativeLayout>
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/courses"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/courses_icon"
                 android:layout_below="@+id/acctab2"
                 android:id="@+id/acc3"
                 android:layout_marginTop="20dp"
@@ -1095,9 +1125,10 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="10dp"
                     android:ellipsize="start"
+                    android:textSize="14dp"
                     android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:textStyle="bold"
                     />
 
@@ -1110,16 +1141,16 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_centerHorizontal="true"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:text="Certificate 1, Certificate 2."
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#282f35"
+                    android:background="#00bcd4"
                     android:layout_below="@+id/acc3txttxt"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
@@ -1128,9 +1159,9 @@
 
             </RelativeLayout>
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/skill"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/skills_icon"
                 android:layout_below="@+id/acctab3"
                 android:id="@+id/acc4"
                 android:layout_marginTop="20dp"
@@ -1155,9 +1186,10 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="10dp"
                     android:ellipsize="start"
+                    android:textSize="14dp"
                     android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:textStyle="bold"
                     />
                 <TextView
@@ -1169,9 +1201,9 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_centerHorizontal="true"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:text="Skill 1, Skill 2."
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
@@ -1179,7 +1211,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#282f35"
+                    android:background="#00bcd4"
                     android:layout_below="@+id/acc4txttxt"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
@@ -1188,9 +1220,9 @@
 
             </RelativeLayout>
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/honor"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/honors_icon"
                 android:layout_below="@+id/acctab4"
                 android:id="@+id/acc5"
                 android:layout_marginTop="20dp"
@@ -1215,9 +1247,10 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="10dp"
                     android:ellipsize="start"
+                    android:textSize="14dp"
                     android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:textStyle="bold"
                     />
 
@@ -1230,16 +1263,16 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_centerHorizontal="true"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:text="Honor 1, Award 2."
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#282f35"
+                    android:background="#00bcd4"
                     android:layout_below="@+id/acc5txttxt"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
@@ -1248,9 +1281,9 @@
 
             </RelativeLayout>
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/patent"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/patents_icon"
                 android:layout_below="@+id/acctab5"
                 android:id="@+id/acc6"
                 android:layout_marginTop="20dp"
@@ -1271,13 +1304,14 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/acc6txt"
                     android:text="Patents"
+                    android:textSize="14dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="10dp"
                     android:ellipsize="start"
                     android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:textStyle="bold"
                     />
                 <TextView
@@ -1289,16 +1323,16 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_centerHorizontal="true"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:text="Patent 1, Patent 2."
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#282f35"
+                    android:background="#00bcd4"
                     android:layout_below="@+id/acc6txttxt"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
@@ -1307,9 +1341,9 @@
 
             </RelativeLayout>
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/publication"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/publications_icon"
                 android:layout_below="@+id/acctab6"
                 android:id="@+id/acc7"
                 android:layout_marginTop="20dp"
@@ -1330,13 +1364,14 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/acc7txt"
                     android:text="Publications"
+                    android:textSize="14dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="10dp"
                     android:ellipsize="start"
                     android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:textStyle="bold"
                     />
                 <TextView
@@ -1348,9 +1383,9 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="10dp"
                     android:layout_centerHorizontal="true"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:text="Publication 1, Publication 2."
-                    android:textColor="#282f35"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
@@ -1358,7 +1393,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#282f35"
+                    android:background="@color/transparent"
                     android:layout_below="@+id/acc7txttxt"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
@@ -1370,39 +1405,39 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/boxborderwhite"
+                android:background="@drawable/boxborder"
                 android:layout_below="@+id/box5"
                 android:id="@+id/box6"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
+                android:elevation="8dp"
                 >
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/careerboxtxt"
+                    android:text="Career Details"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="#fcfdfd"
+                    android:elevation="6dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/textviewborder"
+                    />
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/careerboxtxt"
-                android:text="Career Details"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:textColor="#fff"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/textviewborder2"
-                />
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/pencilwhite"
+                android:src="@drawable/pencil_icon"
                 android:layout_alignParentRight="true"/>
 
             <ImageView
@@ -1432,9 +1467,10 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="10dp"
                     android:ellipsize="start"
+                    android:textSize="14dp"
                     android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
-                    android:textColor="#fff"
+                    android:textColor="#03353e"
                     android:textStyle="bold"
                     />
 
@@ -1448,9 +1484,9 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="20dp"
                     android:layout_centerHorizontal="true"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:text="Your Career Objective"
-                    android:textColor="#fff"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
@@ -1458,7 +1494,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#fff"
+                    android:background="#00bcd4"
                     android:layout_below="@+id/careerobj"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
@@ -1487,9 +1523,10 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="10dp"
                     android:ellipsize="start"
+                    android:textSize="14dp"
                     android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
-                    android:textColor="#fff"
+                    android:textColor="#03353e"
                     android:textStyle="bold"
                     />
 
@@ -1503,9 +1540,9 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="20dp"
                     android:layout_centerHorizontal="true"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:text="Your Strengths"
-                    android:textColor="#fff"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
@@ -1513,7 +1550,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#fff"
+                    android:background="#00bcd4"
                     android:layout_below="@+id/strengths"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="20dp"
@@ -1541,9 +1578,10 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="10dp"
                     android:ellipsize="start"
+                    android:textSize="14dp"
                     android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
-                    android:textColor="#fff"
+                    android:textColor="#03353e"
                     android:textStyle="bold"
                     />
 
@@ -1557,9 +1595,9 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="20dp"
                     android:layout_centerHorizontal="true"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:text="Your Weaknesses"
-                    android:textColor="#fff"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
@@ -1567,7 +1605,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#fff"
+                    android:background="#00bcd4"
                     android:layout_below="@+id/weaknesses"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
@@ -1596,9 +1634,10 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="10dp"
                     android:ellipsize="start"
+                    android:textSize="14dp"
                     android:layout_centerHorizontal="true"
                     android:gravity="center_horizontal"
-                    android:textColor="#fff"
+                    android:textColor="#03353e"
                     android:textStyle="bold"
                     />
 
@@ -1612,9 +1651,9 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="20dp"
                     android:layout_centerHorizontal="true"
-                    android:textSize="12dp"
+                    android:textSize="13dp"
                     android:text="Your Location Preferences"
-                    android:textColor="#fff"
+                    android:textColor="#03353e"
                     android:ellipsize="start"
                     android:gravity="center_horizontal"
                     />
@@ -1622,7 +1661,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#fff"
+                    android:background="@color/transparent"
                     android:layout_below="@+id/locationpreferences"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
@@ -1640,6 +1679,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:id="@+id/box7"
+                android:elevation="10dp"
                 >
 
                 <TextView
@@ -1649,21 +1689,22 @@
                     android:id="@+id/contactboxtxt"
                     android:text="Contact Details"
                     android:textStyle="bold"
-                    android:textSize="18dp"
+                    android:textSize="16dp"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:textColor="#282f35"
+                    android:textColor="#fcfdfd"
+                    android:elevation="6dp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/textviewborder"
                     />
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
-                    android:src="@drawable/pencil"
+                    android:src="@drawable/pencil_icon"
                     android:layout_alignParentRight="true"
                     />
 
@@ -1677,9 +1718,9 @@
                     />
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/location"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/location_icon"
                     android:layout_below="@+id/contactboxtxt"
                     android:id="@+id/contact1"
                     android:layout_marginTop="30dp"
@@ -1705,9 +1746,10 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginLeft="20dp"
                         android:ellipsize="start"
+                        android:textSize="14dp"
                         android:layout_centerHorizontal="true"
                         android:gravity="center_horizontal"
-                        android:textColor="#282f35"
+                        android:textColor="#03353e"
                         android:textStyle="bold"
                         />
 
@@ -1720,9 +1762,9 @@
                         android:layout_marginTop="3dp"
                         android:layout_marginRight="10dp"
                         android:layout_centerHorizontal="true"
-                        android:textSize="12dp"
+                        android:textSize="13dp"
                         android:text="Address line1, Address line2, Address line3."
-                        android:textColor="#282f35"
+                        android:textColor="#03353e"
                         android:ellipsize="start"
                         android:gravity="center_horizontal"
                         />
@@ -1730,7 +1772,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#282f35"
+                        android:background="#00bcd4"
                         android:layout_below="@+id/contactaddr"
                         android:layout_marginTop="20dp"
                         android:layout_marginRight="20dp"
@@ -1739,10 +1781,9 @@
                 </RelativeLayout>
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/email"
-                    android:tint="#282f35"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/email_icon"
                     android:layout_below="@+id/contacttab1"
                     android:id="@+id/contact2"
                     android:layout_marginTop="30dp"
@@ -1767,9 +1808,10 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginLeft="10dp"
                         android:ellipsize="start"
+                        android:textSize="14dp"
                         android:layout_centerHorizontal="true"
                         android:gravity="center_horizontal"
-                        android:textColor="#282f35"
+                        android:textColor="#03353e"
                         android:textStyle="bold"
                         />
 
@@ -1782,9 +1824,9 @@
                         android:layout_marginTop="3dp"
                         android:layout_marginRight="10dp"
                         android:layout_centerHorizontal="true"
-                        android:textSize="12dp"
+                        android:textSize="13dp"
                         android:text="Your Email Address"
-                        android:textColor="#282f35"
+                        android:textColor="#03353e"
                         android:ellipsize="start"
                         android:gravity="center_horizontal"
                         />
@@ -1792,7 +1834,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#282f35"
+                        android:background="#00bcd4"
                         android:layout_below="@+id/contactemail"
                         android:layout_marginTop="20dp"
                         android:layout_marginRight="20dp"
@@ -1800,10 +1842,9 @@
                         />
                     </RelativeLayout>
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/mobile"
-                    android:tint="#282f35"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/mobile_icon"
                     android:layout_below="@+id/contacttab2"
                     android:id="@+id/contact3"
                     android:layout_marginTop="30dp"
@@ -1828,9 +1869,10 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginLeft="10dp"
                         android:ellipsize="start"
+                        android:textSize="14dp"
                         android:layout_centerHorizontal="true"
                         android:gravity="center_horizontal"
-                        android:textColor="#282f35"
+                        android:textColor="#03353e"
                         android:textStyle="bold"
                         />
 
@@ -1843,9 +1885,9 @@
                         android:layout_marginTop="3dp"
                         android:layout_marginRight="10dp"
                         android:layout_centerHorizontal="true"
-                        android:textSize="12dp"
+                        android:textSize="13dp"
                         android:text="Your Mobile Number"
-                        android:textColor="#282f35"
+                        android:textColor="#03353e"
                         android:ellipsize="start"
                         android:gravity="center_horizontal"
                         />
@@ -1853,13 +1895,15 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#282f35"
+                        android:background="@color/transparent"
                         android:layout_below="@+id/contactmobile"
                         android:layout_marginTop="20dp"
                         android:layout_marginRight="20dp"
                         android:id="@+id/contactline3"
                         />
                 </RelativeLayout>
+
+
 
 
             </RelativeLayout>
@@ -1876,44 +1920,19 @@
                     android:id="@+id/trytxt"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:textColor="@android:color/holo_blue_bright"
+                    android:textColor="#03353e"
                     android:textSize="20dp"
-                    android:text="TRY PLACE ME"
-                    android:background="#282f35"
+                    android:text="Try Place Me Pro for Free"
                     android:layout_marginTop="20dp"
                     android:gravity="bottom"
                     />
-                <TextView
-                    android:id="@+id/protxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:textColor="@android:color/holo_blue_bright"
-                    android:textSize="12dp"
-                    android:text="Pro"
-                    android:background="#282f35"
-                    android:layout_marginTop="13dp"
-                    android:layout_toRightOf="@+id/trytxt"
-                    android:layout_marginRight="10dp"
-                    android:gravity="bottom"
-                    />
-                <TextView
-                    android:id="@+id/freetxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:textColor="@android:color/holo_blue_bright"
-                    android:textSize="20dp"
-                    android:text="FOR FREE"
-                    android:background="#282f35"
-                    android:layout_marginTop="20dp"
-                    android:layout_toRightOf="@+id/protxt"
-                    android:gravity="bottom"
-                    />
+
 
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#c59a6d"
+                android:background="#00bcd4"
                 android:id="@+id/proview"
                 android:layout_below="@+id/prorl"
                 />

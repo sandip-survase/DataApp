@@ -68,7 +68,7 @@ public class AdminIntro extends AppCompatActivity {
     private static String url_getcities= "http://192.168.100.100/AESTest/GetCities";
 
 
-    private static String url_savedata= "http://192.168.100.30:8080/ProfileObjects/SaveAdminIntro";
+
 
     int countrycount=0,statecount=0,citycount=0;
     String firstname="",lastname="",instname="",CityStateCountry="";
@@ -281,305 +281,6 @@ public class AdminIntro extends AppCompatActivity {
     }
 
 
-//    class GetCountries extends AsyncTask<String, String, String> {
-//
-//
-//        protected String doInBackground(String... param) {
-//
-//
-//            List<NameValuePair> params = new ArrayList<NameValuePair>();
-//
-//            json = jParser.makeHttpRequest(url_getcountries, "GET", params);
-//            try {
-//                String s = json.getString("count");
-//                countrycount=Integer.parseInt(s);
-//                countries=new String[countrycount];
-//                for(int i=0;i<countrycount;i++)
-//                {
-//                    countries[i]=json.getString("country"+i);
-//                }
-//
-//
-//
-//
-//            }catch (Exception e){e.printStackTrace();}
-//            return "";
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//
-//            countrieslist.clear();
-//            countrieslist.add("- Select Country -");
-//            for(int i=0;i<countrycount;i++)
-//            {
-//                countrieslist.add(countries[i]);
-//            }
-//            populateCountries();
-//        }
-//    }
-//
-//    void populateCountries() {
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, countrieslist) {
-//            @Override
-//            public boolean isEnabled(int position) {
-//
-//                if (position == 0) {
-//
-//                    return false;
-//                } else {
-//                    return true;
-//                }
-//            }
-//
-//            @Override
-//            public View getDropDownView(int position, View convertView,
-//                                        ViewGroup parent) {
-//                View view = super.getDropDownView(position, convertView, parent);
-//                TextView tv = (TextView) view;
-//                Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
-//                tv.setTypeface(custom_font3);
-//
-//                if (position == 0) {
-//                    // Set the hint text color gray
-//                    tv.setTextColor(Color.GRAY);
-//                } else {
-//                    tv.setTextColor(Color.parseColor("#eeeeee"));
-//                }
-//                return view;
-//            }
-//        };
-//
-//        country.setAdapter(dataAdapter);
-//
-//        country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                selectedCountry = (String) parent.getItemAtPosition(position);
-//
-//                new GetStates().execute();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//
-//        if (isCountrySet == 0) {
-//            isCountrySet = 1;
-//            if (a.getCountry() != null) {
-//                country.setSelection(dataAdapter.getPosition(a.getCountry()));
-//                selectedCountry = a.getCountry();
-//                oldCountry = a.getCountry();
-//            } else
-//                oldCountry = "- Select Country -";
-//
-//
-//        }
-//    }
-//
-//    class GetStates extends AsyncTask<String, String, String> {
-//
-//
-//        protected String doInBackground(String... param) {
-//
-//
-//            List<NameValuePair> params = new ArrayList<NameValuePair>();
-//            params.add(new BasicNameValuePair("country",selectedCountry));
-//            json = jParser.makeHttpRequest(url_getstates, "GET", params);
-//            try {
-//                String s = json.getString("count");
-//                statecount=Integer.parseInt(s);
-//                states=new String[statecount];
-//                for(int i=0;i<statecount;i++)
-//                {
-//                    states[i]=json.getString("state"+i);
-//                }
-//
-//
-//
-//
-//            }catch (Exception e){e.printStackTrace();}
-//            return "";
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//            stateslist.clear();
-//            stateslist.add("- Select State -");
-//            for(int i=0;i<statecount;i++)
-//            {
-//                stateslist.add(states[i]);
-//            }
-//            populateStates();
-//        }
-//    }
-//
-//    void populateStates()
-//    {
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, stateslist)
-//        {
-//            @Override
-//            public boolean isEnabled(int position){
-//
-//                if(position == 0)
-//                {
-//
-//                    return false;
-//                }
-//                else
-//                {
-//                    return true;
-//                }
-//            }
-//            @Override
-//            public View getDropDownView(int position, View convertView,
-//                                        ViewGroup parent) {
-//                View view = super.getDropDownView(position, convertView, parent);
-//                TextView tv = (TextView) view;
-//                Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/abz.ttf");
-//                tv.setTypeface(custom_font3);
-//
-//                if(position == 0){
-//                    // Set the hint text color gray
-//                    tv.setTextColor(Color.GRAY);
-//                }
-//                else {
-//                    tv.setTextColor(Color.parseColor("#eeeeee"));
-//                }
-//                return view;
-//            }
-//        };;
-//        state.setAdapter(dataAdapter);
-//
-//        state.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                selectedState = (String) parent.getItemAtPosition(position);
-//
-//                new GetCities().execute();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//
-//        if(isStateSet==0) {
-//            isStateSet=1;
-//            if(a.getState()!=null) {
-//                state.setSelection(dataAdapter.getPosition(a.getState()));
-//                selectedState = a.getState();
-//                oldState = a.getState();
-//            }
-//            else
-//                oldState = "- Select State -" ;
-//        }
-//
-//    }
-//    class GetCities extends AsyncTask<String, String, String> {
-//
-//
-//        protected String doInBackground(String... param) {
-//
-//
-//            List<NameValuePair> params = new ArrayList<NameValuePair>();
-//            params.add(new BasicNameValuePair("state",selectedState));
-//            json = jParser.makeHttpRequest(url_getcities, "GET", params);
-//            try {
-//                String s = json.getString("count");
-//                citycount=Integer.parseInt(s);
-//                cities=new String[citycount];
-//                for(int i=0;i<citycount;i++)
-//                {
-//                    cities[i]=json.getString("city"+i);
-//                }
-//
-//
-//
-//
-//            }catch (Exception e){e.printStackTrace();}
-//            return "";
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//            citieslist.clear();
-//            citieslist.add("- Select City -");
-//            for(int i=0;i<citycount;i++)
-//            {
-//                citieslist.add(cities[i]);
-//            }
-//            populateCities();
-//        }
-//    }
-//
-//    void populateCities()
-//    {
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, citieslist)
-//        {
-//            @Override
-//            public boolean isEnabled(int position){
-//
-//                if(position == 0)
-//                {
-//
-//                    return false;
-//                }
-//                else
-//                {
-//                    return true;
-//                }
-//            }
-//            @Override
-//            public View getDropDownView(int position, View convertView,
-//                                        ViewGroup parent) {
-//                View view = super.getDropDownView(position, convertView, parent);
-//                TextView tv = (TextView) view;
-//                Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/abz.ttf");
-//                tv.setTypeface(custom_font3);
-//
-//                if(position == 0){
-//                    // Set the hint text color gray
-//                    tv.setTextColor(Color.GRAY);
-//                }
-//                else {
-//                    tv.setTextColor(Color.parseColor("#eeeeee"));
-//                }
-//                return view;
-//            }
-//        };;
-//        city.setAdapter(dataAdapter);
-//
-//        city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                selectedCity = (String) parent.getItemAtPosition(position);
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//
-//        if(isCitySet==0) {
-//            isCitySet=1;
-//            if(a.getCity()!=null) {
-//                city.setSelection(dataAdapter.getPosition(a.getCity()));
-//                selectedCity = a.getCity();
-//                oldCity = a.getCity();
-//            }
-//            else
-//                oldCity = "- Select City -" ;
-//        }
-//
-//    }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.savemenu, menu);
@@ -645,62 +346,66 @@ public class AdminIntro extends AppCompatActivity {
     void validateandSave()
     {
 
-
-
         int errorflag1=0,errorflag2=0,errorflag3=0,errorflag4=0, errorflag5=0;
-
-
 
         firstname = fname.getText().toString();
         lastname = lname.getText().toString();
         instname = inst.getText().toString();
         CityStateCountry = citystaecountry.getText().toString();
 
-
-        if(CityStateCountry.length()<2)
-        {
-            citystaecountry.setError("Incorrect City Name");
-            errorflagfirstname=1;
-        }
-        else
-        {
-            citystaecountry.setError(null);
-
-            String[] parts = CityStateCountry.split(" , ");
-            if(parts.length==3) {
-                selectedCity = parts[0];
-                selectedState = parts[1];
-                selectedCountry = parts[2];
-            }
-        }
-
         if (firstname.length() < 2) {
             fname.setError("Incorrect First Name");
-            errorflag4 = 1;
+            errorflag1 = 1;
         } else {
-            if (instname.length() < 2) {
-                inst.setError("Incorrect Institute Name");
-                errorflag5 = 1;
+            fname.setError(null);
+            if (lastname.length() < 2) {
+                lname.setError("Incorrect Last Name");
+                errorflag2 = 1;
             } else {
-                fname.setError(null);
-                inst.setError(null);
-                if (selectedCountry.contains("Select")) {
-                    Toast.makeText(AdminIntro.this, "Select Country", Toast.LENGTH_SHORT).show();
-                    errorflag1 = 1;
+                lname.setError(null);
+                if (instname.length() < 2) {
+                    inst.setError("Incorrect Institute Name");
+                    errorflag3 = 1;
                 } else {
-                    if (selectedState.contains("Select")) {
-                        Toast.makeText(AdminIntro.this, "Select State", Toast.LENGTH_SHORT).show();
-                        errorflag2 = 1;
-                    } else if (selectedCity.contains("Select")) {
-                        Toast.makeText(AdminIntro.this, "Select City", Toast.LENGTH_SHORT).show();
-                        errorflag3 = 1;
-                    }
-                }
+                    inst.setError(null);
 
+                    if(CityStateCountry.length()<2)
+                    {
+                        citystaecountry.setError("Incorrect City Name");
+                        errorflagfirstname=1;
+                    }
+                    else
+                    {
+                        citystaecountry.setError(null);
+
+                        String[] parts = CityStateCountry.split(" , ");
+                        if(parts.length==3) {
+                            selectedCity = parts[0];
+                            selectedState = parts[1];
+                            selectedCountry = parts[2];
+                        }
+                    }
+
+//                if (selectedCountry.contains("Select")) {
+//                    Toast.makeText(AdminIntro.this, "Select Country", Toast.LENGTH_SHORT).show();
+//                    errorflag1 = 1;
+//                } else {
+//                    if (selectedState.contains("Select")) {
+//                        Toast.makeText(AdminIntro.this, "Select State", Toast.LENGTH_SHORT).show();
+//                        errorflag2 = 1;
+//                    } else if (selectedCity.contains("Select")) {
+//                        Toast.makeText(AdminIntro.this, "Select City", Toast.LENGTH_SHORT).show();
+//                        errorflag3 = 1;
+//                    }
+//                }
+
+                }
             }
 
+        }
 
-            if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag5 == 0) {
+
+            if (errorflagfirstname == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag1 == 0  ) {
                 try {
 //
                      String mname = a.getMname();
@@ -727,7 +432,7 @@ public class AdminIntro extends AppCompatActivity {
 
                 }
             }
-        }
+
     }
 
 
@@ -745,14 +450,10 @@ public class AdminIntro extends AppCompatActivity {
             Log.d("TAG", "encUsername: "+encUsername);
             params.add(new BasicNameValuePair("obj",strobj));       //1
             Log.d("TAG", "strobj: "+encobj);
-
-
-
-
-            json = jParser.makeHttpRequest(url_savedata, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_SaveAdminIntro, "GET", params);
             try {
                 r = json.getString("info");
-
+                Log.d("TAG", " result r:-: "+r);
 
             }catch (Exception e){e.printStackTrace();}
             return r;
@@ -763,12 +464,9 @@ public class AdminIntro extends AppCompatActivity {
 
             if(result.equals("success"))
             {
-
                 MySharedPreferencesManager.save(AdminIntro.this,"institute",instname);
                 Toast.makeText(AdminIntro.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
-//                Intent returnIntent = new Intent();
-//                returnIntent.putExtra("result", result);
                 if(edittedFlag==1){
                     setResult(111);
                 }
