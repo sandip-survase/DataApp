@@ -3,7 +3,6 @@ package placeme.octopusites.com.placeme;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -57,9 +56,6 @@ public class HR_Experiences extends AppCompatActivity {
     JSONObject json;
     JSONParser jParser = new JSONParser();
     String digest1, digest2;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
     View trash1selectionview, trash2selectionview, trash3selectionview, trash4selectionview, trash5selectionview, trash6selectionview, trash7selectionview, trash8selectionview, trash9selectionview, trash10selectionview;
     EditText fromdate1, todate1, fromdate2, todate2, fromdate3, todate3, fromdate4, todate4, fromdate5, todate5, fromdate6, todate6, fromdate7, todate7, fromdate8, todate8, fromdate9, todate9, fromdate10, todate10;
     EditText post1, post2, post3, post4, post5, post6, post7, post8, post9, post10;
@@ -79,7 +75,7 @@ public class HR_Experiences extends AppCompatActivity {
     //    private final String url_saveHrExperience = "http://192.168.100.10/AESTest/SaveAlumniExperience";
     int errorflag = 0;
     byte[] demoKeyBytes, demoIVBytes;
-    String sPadding;
+    String sPadding,role;
     HrData hr = new HrData();
 
     @Override
@@ -92,24 +88,10 @@ public class HR_Experiences extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, null);
-        String role = sharedpreferences.getString("role", null);
-
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest digest = new Digest();
-        digest1 = digest.getDigest1();
-        digest2 = digest.getDigest2();
-
-        if (digest1 == null || digest2 == null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            digest.setDigest1(digest1);
-            digest.setDigest2(digest2);
-        }
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        role=MySharedPreferencesManager.getRole(this);
 
         demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -4211,8 +4193,8 @@ public class HR_Experiences extends AppCompatActivity {
                 Toast.makeText(HR_Experiences.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
 
 
-                ProfileRole r=new ProfileRole();
-                String role=r.getRole();
+//                ProfileRole r=new ProfileRole();
+//                String role=r.getRole();
                 if(role.equals("alumni"))
                     setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("hr"))

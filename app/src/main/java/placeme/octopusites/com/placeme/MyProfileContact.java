@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -37,8 +36,10 @@ public class MyProfileContact extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
-    SharedPreferences sharedpreferences;
-    String username;
+
+
+    private static String url_savedata = "http://192.168.100.10:8080/ProfileObjects/SaveAdminContact";
+    String username,role;
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
@@ -54,6 +55,11 @@ public class MyProfileContact extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_contact);
+
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        role=MySharedPreferencesManager.getRole(this);
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Contact Details");
@@ -256,24 +262,6 @@ public class MyProfileContact extends AppCompatActivity {
         addresstxt.setTypeface(custom_font1);
         contactnotxt.setTypeface(custom_font1);
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = MySharedPreferencesManager.getUsername(this);
-        String role = sharedpreferences.getString("role", null);
-
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
-
-        if (digest1 == null || digest2 == null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
 
         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -470,8 +458,6 @@ public class MyProfileContact extends AppCompatActivity {
 //            json = jParser.makeHttpRequest(MyConstants.url_SaveAdminContact, "GET", params);
 
 
-            ProfileRole obj = new ProfileRole();
-            String role = obj.getRole();
             if (role.equals("hr"))
                 json = jParser.makeHttpRequest(MyConstants.url_SaveHrContact, "GET", params);
 
@@ -498,9 +484,9 @@ public class MyProfileContact extends AppCompatActivity {
             if (result.equals("success")) {
                 Toast.makeText(MyProfileContact.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
 
-                ProfileRole r = new ProfileRole();
-                String role = r.getRole();
                 if (role.equals("student"))
+                if(role.equals("student"))
+
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if (role.equals("alumni"))
                     setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);

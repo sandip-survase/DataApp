@@ -76,10 +76,11 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.MyViewHolder
 
         }
         if (item.getThumbnail() != null) {
-            Glide.with(holder.img.getContext())
+
+            GlideApp.with(holder.img.getContext())
                     .load(item.getThumbnail())
-                    .crossFade()
                     .into(holder.img);
+
             holder.img.setVisibility(View.VISIBLE);
         }
         else {

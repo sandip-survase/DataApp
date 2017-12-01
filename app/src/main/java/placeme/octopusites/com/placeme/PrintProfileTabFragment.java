@@ -3,7 +3,6 @@ package placeme.octopusites.com.placeme;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -55,9 +54,7 @@ public class PrintProfileTabFragment extends Fragment {
     int count=0;
     int resumeIds[];
     String resumeNames[];
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
+
     private static String load_resume_ids = "http://192.168.100.100/AESTest/GetMyResumeIds";
     String username;
     RadioGroup radioGroupFormat;
@@ -73,8 +70,7 @@ public class PrintProfileTabFragment extends Fragment {
 
         final View rootView = inflater.inflate(R.layout.fragment_edit_profile_printprofile, container, false);
 
-        sharedpreferences=getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
+        username=MySharedPreferencesManager.getUsername(getActivity());
 
         radioGroupFormat=(RadioGroup)rootView.findViewById(R.id.radioGroupFormat);
         radioButtonWord=(RadioButton)rootView.findViewById(R.id.radioButtonWord);

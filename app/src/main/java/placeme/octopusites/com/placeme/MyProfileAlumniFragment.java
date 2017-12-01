@@ -6,7 +6,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -32,7 +31,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.signature.StringSignature;
+import com.bumptech.glide.signature.ObjectKey;
+
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -143,7 +143,7 @@ public class MyProfileAlumniFragment extends Fragment {
     int found_certificates = 0, found_courses = 0, found_skills = 0, found_honors = 0, found_patents = 0, found_publications = 0, found_lang = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_locationpreferences = 0;
     private String signature = "";
     private String mname = "";
-    private SharedPreferences sharedpreferences;
+
     private ProgressBar updateProgress;
 
     public MyProfileAlumniFragment() {
@@ -172,6 +172,11 @@ public class MyProfileAlumniFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_my_profile_alumni, container, false);
 
+        username = MySharedPreferencesManager.getUsername(getActivity());
+        String pass=MySharedPreferencesManager.getPassword(getActivity());
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
+        role = MySharedPreferencesManager.getRole(getActivity());
 
         myprofileimg = (CircleImageView) rootView.findViewById(R.id.myprofileimg);
         myprofilename = (TextView) rootView.findViewById(R.id.myprofilename);
@@ -382,16 +387,7 @@ public class MyProfileAlumniFragment extends Fragment {
         updateProgress = (ProgressBar) rootView.findViewById(R.id.updateProgressmain);
 
 
-        sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        username = sharedpreferences.getString(Username, "username not found");
-
-        digest1 = sharedpreferences.getString("digest1", null);
-        digest2 = sharedpreferences.getString("digest2", null);
-        role = sharedpreferences.getString("role", "role not found");
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
 
         demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -1936,7 +1932,7 @@ public class MyProfileAlumniFragment extends Fragment {
             }
 
 
-            }
+        }
         // from-to exp ----------------------------
 
         if (!todates1.equals("") && !fromdates1.equals("")) {
@@ -2634,13 +2630,6 @@ public class MyProfileAlumniFragment extends Fragment {
                     startActivity(new Intent(getContext(), ViewProfileImage.class));
                 } else if (which == 1) {
 
-                    sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                    editor.putString("digest1", digest1);
-                    editor.putString("digest2", digest2);
-                    editor.putString("plain", plainusername);
-                    editor.commit();
                     dialog.cancel();
                     ((AlumniActivity) getActivity()).requestCropImage();
                 } else if (which == 2) {
@@ -2717,10 +2706,10 @@ public class MyProfileAlumniFragment extends Fragment {
                 .appendQueryParameter("u", username)
                 .build();
 
-        Glide.with(getContext())
+
+        GlideApp.with(getContext())
                 .load(uri)
-                .crossFade()
-                .signature(new StringSignature(System.currentTimeMillis() + ""))
+                .signature(new ObjectKey(System.currentTimeMillis() + ""))
                 .into(myprofileimg);
 
     }

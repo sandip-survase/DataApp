@@ -1,7 +1,6 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
@@ -34,10 +33,7 @@ public class LastSession extends AppCompatActivity {
     String username;
     JSONParser jParser = new JSONParser();
     private static String url_getsession= "http://192.168.100.100/AESTest/GetSessionDetails";
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
-    String digest1,digest2;
+
     int found_current=0,found_last=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,24 +44,10 @@ public class LastSession extends AppCompatActivity {
         ab.setTitle("Login Sessions");
         ab.setDisplayHomeAsUpEnabled(true);
 
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        String role=sharedpreferences.getString("role",null);
-
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
+//        digest1 = MySharedPreferencesManager.getDigest1(this);
+//        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+//        String role=MySharedPreferencesManager.getRole(this);
 
         countrytxt=(TextView)findViewById(R.id.countrytxt);
         platformtxt=(TextView)findViewById(R.id.platformtxt);

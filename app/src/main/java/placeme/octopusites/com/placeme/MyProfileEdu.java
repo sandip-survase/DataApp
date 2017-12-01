@@ -15,7 +15,7 @@ import android.widget.Toast;
 public class MyProfileEdu extends AppCompatActivity {
 
     View tenth,twelth,ug,pg;
-    String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

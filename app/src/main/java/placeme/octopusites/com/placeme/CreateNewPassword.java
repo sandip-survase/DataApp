@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
@@ -38,9 +37,6 @@ public class CreateNewPassword extends AppCompatActivity {
     Button changepassbutton;
     String digest1,digest2;
     public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
-    public static final String Password = "passKey";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,14 +46,10 @@ public class CreateNewPassword extends AppCompatActivity {
         ab.setTitle("Create New Password");
         ab.setDisplayHomeAsUpEnabled(true);
 
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        encUsername=sharedpreferences.getString(Username,null);
-        role=sharedpreferences.getString("role",null);
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        encUsername=MySharedPreferencesManager.getUsername(this);
+        String role=MySharedPreferencesManager.getRole(this);
 
         newpassedittetx=(EditText)findViewById(R.id.new_password);
         newpassaedittext=(EditText)findViewById(R.id.new_password_again);
@@ -156,16 +148,9 @@ public class CreateNewPassword extends AppCompatActivity {
 
             if(resultofop.equals("success")) {
                 Toast.makeText(CreateNewPassword.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
-                ProfileRole r=new ProfileRole();
-                r.setUsername(encUsername);
-                r.setRole(role);
 
-                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                editor.putString(Username, encUsername);
-                editor.putString(Password, encpassword);
-                editor.commit();
+                MySharedPreferencesManager.save(CreateNewPassword.this,"nameKey",encUsername);
+                MySharedPreferencesManager.save(CreateNewPassword.this,"passKey",encpassword);
 
                 if(role.equals("student"))
                 {

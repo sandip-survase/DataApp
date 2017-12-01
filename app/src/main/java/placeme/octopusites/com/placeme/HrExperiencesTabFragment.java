@@ -3,7 +3,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -61,9 +60,6 @@ public class HrExperiencesTabFragment extends Fragment {
     JSONObject json;
     JSONParser jParser = new JSONParser();
     String digest1, digest2;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
     View trash1selectionview, trash2selectionview, trash3selectionview, trash4selectionview, trash5selectionview, trash6selectionview, trash7selectionview, trash8selectionview, trash9selectionview, trash10selectionview;
     EditText fromdate1, todate1, fromdate2, todate2, fromdate3, todate3, fromdate4, todate4, fromdate5, todate5, fromdate6, todate6, fromdate7, todate7, fromdate8, todate8, fromdate9, todate9, fromdate10, todate10;
     EditText post1, post2, post3, post4, post5, post6, post7, post8, post9, post10;
@@ -85,6 +81,7 @@ public class HrExperiencesTabFragment extends Fragment {
     int errorflag = 0;
     byte[] demoKeyBytes, demoIVBytes;
     String sPadding;
+    String role;
     HrData hr = new HrData();
     ArrayList<Experiences> experiencesList=new ArrayList<>();
     View rootView;
@@ -94,24 +91,11 @@ public class HrExperiencesTabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_hr_experiences_tab, container, false);
-        sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, null);
-        String role = sharedpreferences.getString("role", null);
 
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest digest = new Digest();
-        digest1 = digest.getDigest1();
-        digest2 = digest.getDigest2();
-
-        if (digest1 == null || digest2 == null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            digest.setDigest1(digest1);
-            digest.setDigest2(digest2);
-        }
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
+        username=MySharedPreferencesManager.getUsername(getActivity());
+        role=MySharedPreferencesManager.getRole(getActivity());
 
         demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -4428,8 +4412,6 @@ public class HrExperiencesTabFragment extends Fragment {
 
                 Toast.makeText(getActivity(),"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
-                ProfileRole r = new ProfileRole();
-                String role = r.getRole();
                 if (role.equals("alumni"))
                     getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("hr"))

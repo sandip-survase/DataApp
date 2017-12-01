@@ -22,6 +22,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+
 //import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 //import cat.ereza.customactivityoncrash.config.CaocConfig;
 
@@ -29,7 +30,7 @@ import java.util.List;
 
 public class MyCustomErrorActivity extends AppCompatActivity {
 
-    SharedPreferences sharedpreferences;
+
     private String plainusername, username = "";
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
@@ -50,9 +51,12 @@ public class MyCustomErrorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_custom_error);
 
-//        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-//        username = sharedpreferences.getString(Username, null);
-//        error=getlogcat();
+
+
+
+        username = MySharedPreferencesManager.getUsername(this);
+        error=getlogcat();
+
 //        abd=error+CustomActivityOnCrash.getAllErrorDetailsFromIntent(this, getIntent());
 //        new ask().execute();
 //

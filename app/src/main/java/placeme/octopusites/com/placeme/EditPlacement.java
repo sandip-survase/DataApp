@@ -3,7 +3,6 @@ package placeme.octopusites.com.placeme;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -64,10 +63,7 @@ public class EditPlacement extends AppCompatActivity {
     Vibrator myVib;
     View[] selectedViews;
 
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
     CircleImageView profile;
-    public static final String Username = "nameKey";
 
     JSONParser jParser = new JSONParser();
     String digest1,digest2;
@@ -135,42 +131,28 @@ public class EditPlacement extends AppCompatActivity {
 
         myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
-
-
-
-
         //init
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        String role=sharedpreferences.getString("role",null);
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
 
-        try
-        {
-            demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-            demoIVBytes = SimpleBase64Encoder.decode(digest2);
-            sPadding = "ISO10126Padding";
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        String role=MySharedPreferencesManager.getRole(this);
 
-            byte[] demo1EncryptedBytes1=SimpleBase64Encoder.decode(username);
-
-            byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
-
-            String  plainusername=new String(demo1DecryptedBytes1);
-
-            r.setPlainusername(plainusername);
-
-        }catch (Exception e){}
+//        try
+//        {
+//            demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+//            demoIVBytes = SimpleBase64Encoder.decode(digest2);
+//            sPadding = "ISO10126Padding";
+//
+//            byte[] demo1EncryptedBytes1=SimpleBase64Encoder.decode(username);
+//
+//            byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
+//
+//            String  plainusername=new String(demo1DecryptedBytes1);
+//
+//            r.setPlainusername(plainusername);
+//
+//        }catch (Exception e){}
 
         recyclerViewPlacement = (RecyclerView) findViewById(R.id.recycler_view);
         mAdapterPlacement = new RecyclerItemAdapterPlacement(itemListPlacement);

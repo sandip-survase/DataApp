@@ -1,8 +1,5 @@
 package placeme.octopusites.com.placeme;
 
-
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -55,6 +52,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
     JSONParser jsonParser = new JSONParser();
     //    private static String url_savedata = "http://192.168.100.10/AESTest/SaveHrCompany";
     JSONObject json;
+
     String userName;
     //    Button savepersonal;
     HrData h = new HrData();
@@ -62,7 +60,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
     int flag1 = 0, flag2 = 0, flag3 = 0, flag4 = 0, flag5 = 0, flag6 = 0, flag7 = 0, flag8 = 0, flag9 = 0, flag10 = 0;
     int errorflag1 = 0;
     //    ProgressBar personalprogress;
-    private SharedPreferences sharedPreferences;
+
 
     public HrCompanyDetailsTabFragment() {
         // Required empty public constructor
@@ -73,13 +71,12 @@ public class HrCompanyDetailsTabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.fragment_hr_company_details_tab, container, false);
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
 
-        sharedPreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        userName = sharedPreferences.getString(USERNAME, null);
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
+        userName = MySharedPreferencesManager.getUsername(getActivity());
         encUsername = userName;
+
         CompanyName = (EditText) rootView.findViewById(R.id.instname);
         CompanyEmail = (EditText) rootView.findViewById(R.id.instemail);
         CompanyWebsite = (EditText) rootView.findViewById(R.id.instweb);
@@ -90,6 +87,17 @@ public class HrCompanyDetailsTabFragment extends Fragment {
         CompanyAddressLine1 = (EditText) rootView.findViewById(R.id.compaddressline1);
         CompanyAddressLine2 = (EditText) rootView.findViewById(R.id.compaddressline2);
         CompanyAddressLine3 = (EditText) rootView.findViewById(R.id.compaddressline3);
+
+        CompanyName = (EditText)rootView.findViewById(R.id.instname);
+        CompanyEmail = (EditText)rootView.findViewById(R.id.instemail);
+        CompanyWebsite = (EditText)rootView.findViewById(R.id.instweb);
+        CompanyPhone = (EditText)rootView.findViewById(R.id.instphone);
+        CompanyAlternatePhone = (EditText)rootView.findViewById(R.id.instphonea);
+        CompanyCIN = (EditText)rootView.findViewById(R.id.instreg);
+
+        CompanyAddressLine1 = (EditText)rootView.findViewById(R.id.compaddressline1);
+        CompanyAddressLine2 = (EditText)rootView.findViewById(R.id.compaddressline2);
+        CompanyAddressLine3 = (EditText)rootView.findViewById(R.id.compaddressline3);
 //        savepersonal = (Button)rootView.findViewById(R.id.savepersonal);
 //        personalprogress = (ProgressBar)rootView.findViewById(R.id.personalprogress);
         Company_Nature = (Spinner) rootView.findViewById(R.id.board10);

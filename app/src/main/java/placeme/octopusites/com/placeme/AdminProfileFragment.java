@@ -5,7 +5,6 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
@@ -101,9 +100,6 @@ String experiencesataobject="";
     private static String remove_profile = "http://192.168.100.100/AESTest/RemoveImage";
 
     String digest1,digest2;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
     String username = "", resultofop;
 
     int found_lang=0, found_AdminIntro = 0,found_institute=0,found_box2=0,found_skills=0,found_honors=0,found_patents=0,found_publications=0;
@@ -137,9 +133,10 @@ String experiencesataobject="";
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_admin_profile, container, false);
 
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
+        username =MySharedPreferencesManager.getUsername(getActivity());
+        role =MySharedPreferencesManager.getRole(getActivity());
 
         hashMap = new HashMap<>();
         hashMap.put("Jan", 1);
@@ -386,14 +383,6 @@ String experiencesataobject="";
             }
         });
 
-//        sharedpreferences=getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username =MySharedPreferencesManager.getUsername(getActivity());
-        role =MySharedPreferencesManager.getRole(getActivity());
-        digest1 =MySharedPreferencesManager.getDigest1(getActivity());
-        digest2 =MySharedPreferencesManager.getDigest2(getActivity());
-
-
-
 
         myprofilrole.setText(role.toUpperCase());
 
@@ -465,13 +454,7 @@ String experiencesataobject="";
                     startActivity(new Intent(getContext(), ViewProfileImage.class));
                 } else if (which == 1) {
                     try {
-                        sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedpreferences.edit();
 
-                        editor.putString("digest1", digest1);
-                        editor.putString("digest2", digest2);
-                        editor.putString("plain", plainusername);
-                        editor.commit();
                         dialog.cancel();
                         ((AdminActivity) getActivity()).requestCropImage();
                     }catch (Exception e){Toast.makeText(getActivity()," error" + e.getMessage(),Toast.LENGTH_LONG).show();}

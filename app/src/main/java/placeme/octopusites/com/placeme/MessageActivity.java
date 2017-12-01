@@ -3,7 +3,6 @@ package placeme.octopusites.com.placeme;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -24,7 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.signature.StringSignature;
+
+import com.bumptech.glide.signature.ObjectKey;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -75,7 +75,6 @@ public class MessageActivity extends AppCompatActivity {
     TextView name;
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String Username = "nameKey";
-    SharedPreferences sharedpreferences;
     String digest1,digest2;
 
     int tempflag=0;
@@ -83,6 +82,9 @@ public class MessageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
+
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
 
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -120,20 +122,7 @@ public class MessageActivity extends AppCompatActivity {
 
         helper.setCurrentChatRoom(senderUID,recieverUID);
 
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
-
-
-        new ChangeMessageReadStatus(sharedpreferences.getString(Username, null),encusername).execute();
+        new ChangeMessageReadStatus(MySharedPreferencesManager.getUsername(MessageActivity.this),encusername).execute();
 
         name.setText(fname+" "+lname);
 
@@ -144,10 +133,10 @@ public class MessageActivity extends AppCompatActivity {
                 .appendQueryParameter("u", encusername)
                 .build();
 
-        Glide.with(this)
+
+        GlideApp.with(this)
                 .load(uri)
-                .crossFade()
-                .signature(new StringSignature(signature))
+                .signature(new ObjectKey(signature))
                 .into(profile);
 
 

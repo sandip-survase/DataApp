@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -61,10 +60,7 @@ public class AdminIntro extends AppCompatActivity {
     EditText fname,lname,role,email,inst;
     JSONObject json;
     JSONParser jParser = new JSONParser();
-    SharedPreferences sharedpreferences;
     private String username="";
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Username = "nameKey";
 
 
     private static String url_getcountries = "http://192.168.100.100/AESTest/GetCountries";
@@ -97,20 +93,8 @@ public class AdminIntro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_intro);
 
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-//        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-//        username=sharedpreferences.getString(Username,null);
-////        String role=sharedpreferences.getString("role",null);
-//
-//        if(digest1==null||digest2==null) {
-//            digest1 = sharedpreferences.getString("digest1", null);
-//            digest2 = sharedpreferences.getString("digest2", null);
-//            d.setDigest1(digest1);
-//            d.setDigest2(digest2);
-//        }
+        digest1=MySharedPreferencesManager.getDigest1(this);
+        digest2=MySharedPreferencesManager.getDigest2(this);
 
 
         ActionBar ab = getSupportActionBar();
@@ -429,10 +413,6 @@ public class AdminIntro extends AppCompatActivity {
 
                     Log.d("TAG", "mname: - "+mname);
                     Log.d("TAG", "phone: - "+phone);
-
-                    digest1=MySharedPreferencesManager.getDigest1(this);
-                    digest2=MySharedPreferencesManager.getDigest2(this);
-
 
                     obj = new AdminIntroModal(firstname,mname,lastname,selectedCountry,selectedState,selectedCity,phone,instname);
                     try{

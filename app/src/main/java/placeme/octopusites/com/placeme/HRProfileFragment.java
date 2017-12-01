@@ -7,7 +7,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
@@ -34,7 +33,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.signature.StringSignature;
+import com.bumptech.glide.signature.ObjectKey;
+
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -125,7 +125,6 @@ public class HRProfileFragment extends Fragment {
     String fromdates1 = "", todates1 = "", fromdates2 = "", todates2 = "", fromdates3 = "", todates3 = "", fromdates4 = "", todates4 = "", fromdates5 = "", todates5 = "", fromdates6 = "", todates6 = "", fromdates7 = "", todates7 = "", fromdates8 = "", todates8 = "", fromdates9 = "", todates9 = "", fromdates10 = "", todates10 = "";
     boolean hrinfobox1 = false, hrinfobox2 = false, hrinfobox3 = false;
 
-    private SharedPreferences sharedpreferences;
     HrData hrData = new HrData();
     AdminData a = new AdminData();
     StudentData studentData = new StudentData();
@@ -320,15 +319,10 @@ public class HRProfileFragment extends Fragment {
 //        contactedit=(ImageView)rootView.findViewById(R.id.contactedit);
 
 
-        sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, "username not found");
-
-        digest1 = sharedpreferences.getString("digest1", null);
-        digest2 = sharedpreferences.getString("digest2", null);
-        role = sharedpreferences.getString("role", "role not found");
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
+        username=MySharedPreferencesManager.getUsername(getActivity());
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
+        role = MySharedPreferencesManager.getRole(getActivity());
 
         demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -514,14 +508,7 @@ public class HRProfileFragment extends Fragment {
                 if (which == 0) {
                     startActivity(new Intent(getContext(), ViewProfileImage.class));
                 } else if (which == 1) {
-
-                    sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                    editor.putString("digest1", digest1);
-                    editor.putString("digest2", digest2);
-                    editor.putString("plain", plainusername);
-                    editor.commit();
+                    
                     dialog.cancel();
                     ((HRActivity) getActivity()).requestCropImage();
 
@@ -3292,11 +3279,11 @@ public class HRProfileFragment extends Fragment {
                 .appendQueryParameter("u", username)
                 .build();
 
-        Glide.with(getContext())
+        GlideApp.with(getContext())
                 .load(uri)
-                .crossFade()
-                .signature(new StringSignature(System.currentTimeMillis() + ""))
+                .signature(new ObjectKey(System.currentTimeMillis() + ""))
                 .into(myprofileimg);
+
 
     }
 

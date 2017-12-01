@@ -7,7 +7,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +26,8 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -33,6 +44,12 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,7 +71,6 @@ public class MessagesFragment extends Fragment {
     int index=0;
     String usernameenc,role,plainusername;
     public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
     public static final String Username = "nameKey";
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
@@ -109,11 +125,13 @@ public class MessagesFragment extends Fragment {
             }
         };
 
-        sharedpreferences =getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        usernameenc=sharedpreferences.getString(Username,null);
-        role=sharedpreferences.getString("role",null);
-        digest1 = sharedpreferences.getString("digest1", null);
-        digest2 = sharedpreferences.getString("digest2", null);
+
+        usernameenc=MySharedPreferencesManager.getUsername(getActivity());
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
+        role = MySharedPreferencesManager.getRole(getActivity());
+
+
 
         try {
             byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
@@ -142,8 +160,6 @@ public class MessagesFragment extends Fragment {
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-
-                ProfileRole r=new ProfileRole();
 
                 RecyclerItemMessages item = itemList.get(position);
 
@@ -219,7 +235,7 @@ public class MessagesFragment extends Fragment {
         itemList.addAll(tempList);
         mAdapter.notifyDataSetChanged();
     }
-    void addMessages()
+    public void addMessages()
     {
 
         DatabaseHelper helper = new DatabaseHelper(getContext());
@@ -242,7 +258,7 @@ public class MessagesFragment extends Fragment {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", usernameenc));
             json = jParser.makeHttpRequest(url_get_chatrooms, "GET", params);
-
+            Bitmap map = null;
             try {
 
                 count = Integer.parseInt(json.getString("count"));
@@ -269,10 +285,14 @@ public class MessagesFragment extends Fragment {
                     reciever_signature[i]=json.getString("signature"+i);
                     reciever_token[i]=json.getString("token"+i);
                     reciever_uid[i]=json.getString("uid"+i);
+
+                    Log.d("TAG", "reciever_username[i]: "+reciever_username[i]);
+
                 }
 
             } catch (Exception ex) {
 
+                Log.e("TAG", "error: "+ex.getMessage());
             }
 
             return "";
@@ -300,15 +320,93 @@ public class MessagesFragment extends Fragment {
 
 
                     } catch (Exception e) {
+
                     }
 
                     new GetMessagesReadStatus(usernameenc,tempusername,sender_uid, reciever_uid[i],i).execute();
+                    new GetProfileImageAndSaveToPref(reciever_username[i],tempusername).execute();
                 }
 
             }
 
 
         }
+    }
+    public class GetProfileImageAndSaveToPref extends AsyncTask<String, Void, Bitmap> {
+
+        String uname,enc;
+
+        GetProfileImageAndSaveToPref(String uname,String enc) {
+            this.uname=uname;
+            this.enc=enc;
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+
+            Bitmap map = downloadImage(enc);
+
+            return map;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                result.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] b = baos.toByteArray();
+                String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+                MySharedPreferencesManager.save(getActivity(),uname,encodedImage);
+                Log.d("TAG", "image saved in preferences: "+uname);
+
+        }
+    }
+    private Bitmap downloadImage(String uname) {
+
+        Uri uri = new Uri.Builder()
+                .scheme("http")
+                .authority("192.168.100.100")
+                .path("AESTest/GetImageThumbnail")
+                .appendQueryParameter("u", uname)
+                .build();
+
+        String url=uri.toString();
+
+        Bitmap bitmap = null;
+        InputStream stream = null;
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inSampleSize = 1;
+
+        try {
+            stream = getHttpConnection(url);
+            bitmap = BitmapFactory.
+                    decodeStream(stream, null, bmOptions);
+
+            stream.close();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        return bitmap;
+    }
+
+    private InputStream getHttpConnection(String urlString)
+            throws IOException {
+        InputStream stream = null;
+        URL url = new URL(urlString);
+        URLConnection connection = url.openConnection();
+
+        try {
+            HttpURLConnection httpConnection = (HttpURLConnection) connection;
+            httpConnection.setRequestMethod("GET");
+            httpConnection.connect();
+
+            if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                stream = httpConnection.getInputStream();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return stream;
     }
     class GetMessagesReadStatus extends AsyncTask<String, String, String> {
 

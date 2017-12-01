@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -72,14 +71,17 @@ import java.util.TreeSet;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
 public class AdminActivity extends AppCompatActivity implements ImagePickerCallback {
 
+
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
     public static final int ADMIN_DATA_CHANGE_RESULT_CODE =111;
+
     private static String url = "http://192.168.100.100/AESTest/GetImage";
     private static String upload_profile = "http://192.168.100.100/AESTest/UploadProfile";
     private static String load_student_image = "http://192.168.100.100/AESTest/GetImage";
@@ -96,7 +98,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     private static String url_changenotificationsreadstatus = "http://192.168.100.30/CreateNotificationTemp/ChangeNotificationReadStatusAdmin";
     public static String url_getlastupdated = "http://192.168.100.30/CreateNotificationTemp/GetLastUpdatedAdmin";
 
-    SharedPreferences sharedpreferences;
+
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
     JSONParser jParser = new JSONParser();
@@ -227,33 +229,17 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         imagePicker.shouldGenerateThumbnails(false); // Default is true
 
 
-
-
         crop_layout = (FrameLayout) findViewById(R.id.crop_layout);
         resultView = (ImageView) findViewById(R.id.result_image);
         tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 
 
 
-        MySharedPreferencesManager.save(AdminActivity.this,"intro",null);
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, null);
-        String pass=sharedpreferences.getString(Password,null);
-        String role = sharedpreferences.getString("role", null);
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
-
-        if (digest1 == null || digest2 == null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
+        username = MySharedPreferencesManager.getUsername(this);
+        String pass=MySharedPreferencesManager.getPassword(this);
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        String role = MySharedPreferencesManager.getRole(this);
 
 
         MySharedPreferencesManager.save(AdminActivity.this,"intro","yes");
@@ -266,15 +252,12 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             demoIVBytes = SimpleBase64Encoder.decode(digest2);
             sPadding = "ISO10126Padding";
 
-            byte[] demo1EncryptedBytes1 = SimpleBase64Encoder.decode(username);
-            byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
-            String plainusername = new String(demo1DecryptedBytes1);
-            r.setPlainusername(plainusername);
+            String plainusername=Decrypt(username,digest1,digest2);
 
             byte[] demo2EncryptedBytes1=SimpleBase64Encoder.decode(pass);
             byte[] demo2DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo2EncryptedBytes1);
             String data=new String(demo2DecryptedBytes1);
-            String hash=md5(data + sharedpreferences.getString("digest3",null));
+            String hash=md5(data + MySharedPreferencesManager.getDigest3(this));
 
             loginFirebase(plainusername,hash);
 
@@ -293,13 +276,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 //            recyclerViewNotification.setVisibility(View.GONE);
 //            recyclerViewPlacement.setVisibility(View.VISIBLE);
 //        }
-
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-
-        editor.putString("otp", "no");
-        editor.commit();
 
         createnotificationrl = (RelativeLayout) findViewById(R.id.createnotificationrl);
         editnotificationrl = (RelativeLayout) findViewById(R.id.editnotificationrl);
@@ -536,7 +512,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         final View hView = navigationView.getHeaderView(0);
         profile = (CircleImageView) hView.findViewById(R.id.profile_image);
         new GetProfileImage().execute();
@@ -1428,14 +1403,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     public void requestCropImage() {
         resultView.setImageDrawable(null);
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString("digest1", digest1);
-        editor.putString("digest2", digest2);
-        editor.putString("plain", plainusername);
-        editor.putString("crop", "yes");
 
-        editor.commit();
+        MySharedPreferencesManager.save(AdminActivity.this,"crop", "yes");
         chooseImage();
 
     }
@@ -1448,76 +1417,59 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString("digest1", digest1);
-        editor.putString("digest2", digest2);
-        editor.putString("plain", plainusername);
-        editor.commit();
-    }
-//ssss
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        plainusername = sharedpreferences.getString("plain", null);
-        digest1 = sharedpreferences.getString("digest1", null);
-        digest2 = sharedpreferences.getString("digest2", null);
-        username = sharedpreferences.getString(Username, null);
-        String role = sharedpreferences.getString("role", null);
 
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setPlainusername(plainusername);
-        r.setRole(role);
 
-        Digest d = new Digest();
-        d.setDigest1(digest1);
-        d.setDigest2(digest2);
         if (resultCode == ADMIN_DATA_CHANGE_RESULT_CODE) {
-            Log.d("TAG", "onActivityResult: result code "+ADMIN_DATA_CHANGE_RESULT_CODE);
-            AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-            fragment.refreshContent();
-        }
-        else if (requestCode == Picker.PICK_IMAGE_DEVICE) {
+            Log.d("TAG", "onActivityResult: result code " + ADMIN_DATA_CHANGE_RESULT_CODE);
 
+            username = MySharedPreferencesManager.getUsername(AdminActivity.this);
             try {
-
-
-                if (imagePicker == null) {
-                    imagePicker = new ImagePicker(this);
-                    imagePicker.setImagePickerCallback(this);
-                }
-                imagePicker.submit(result);
-                crop_layout.setVisibility(View.VISIBLE);
-                tswipe_refresh_layout.setVisibility(View.GONE);
-                mainfragment.setVisibility(View.GONE);
-                crop_flag = 1;
-                beginCrop(result.getData());
-                // Toast.makeText(this, "crop initiated", Toast.LENGTH_SHORT).show();
+                plainusername = Decrypt(username, digest1, digest2);
             } catch (Exception e) {
-                crop_layout.setVisibility(View.GONE);
-                tswipe_refresh_layout.setVisibility(View.GONE);
-                tswipe_refresh_layout.setVisibility(View.GONE);
-                mainfragment.setVisibility(View.VISIBLE);
+                e.printStackTrace();
+            }
+
+            if (resultCode == 111) {
+                AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+                fragment.refreshContent();
+            } else if (requestCode == Picker.PICK_IMAGE_DEVICE) {
+
+                try {
+                    if (imagePicker == null) {
+                        imagePicker = new ImagePicker(this);
+                        imagePicker.setImagePickerCallback(this);
+                    }
+                    imagePicker.submit(result);
+                    crop_layout.setVisibility(View.VISIBLE);
+                    tswipe_refresh_layout.setVisibility(View.GONE);
+                    mainfragment.setVisibility(View.GONE);
+                    crop_flag = 1;
+                    beginCrop(result.getData());
+                    // Toast.makeText(this, "crop initiated", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    crop_layout.setVisibility(View.GONE);
+                    tswipe_refresh_layout.setVisibility(View.GONE);
+                    tswipe_refresh_layout.setVisibility(View.GONE);
+                    mainfragment.setVisibility(View.VISIBLE);
 //                 Toast.makeText(this, "here", Toast.LENGTH_SHORT).show();
 
+                }
+            } else if (resultCode == RESULT_CANCELED) {
+                crop_layout.setVisibility(View.GONE);
+                tswipe_refresh_layout.setVisibility(View.GONE);
+                mainfragment.setVisibility(View.VISIBLE);
+                crop_flag = 0;
+            } else if (requestCode == Crop.REQUEST_CROP) {
+
+                // Toast.makeText(this, "cropped", Toast.LENGTH_SHORT).show();
+                handleCrop(resultCode, result);
             }
-        } else if (resultCode == RESULT_CANCELED) {
-            crop_layout.setVisibility(View.GONE);
-            tswipe_refresh_layout.setVisibility(View.GONE);
-            mainfragment.setVisibility(View.VISIBLE);
-            crop_flag = 0;
-        } else if (requestCode == Crop.REQUEST_CROP) {
 
-            // Toast.makeText(this, "cropped", Toast.LENGTH_SHORT).show();
-            handleCrop(resultCode, result);
+
         }
-
-
     }
 
     private void beginCrop(Uri source) {
@@ -2747,10 +2699,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             mainfragment.setVisibility(View.VISIBLE);
 
             if (response.get(0).contains("success")) {
-                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString("crop", "no");
-                editor.commit();
+                MySharedPreferencesManager.save(AdminActivity.this,"crop", "no");
                 Toast.makeText(AdminActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 requestProfileImage();
                 AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);

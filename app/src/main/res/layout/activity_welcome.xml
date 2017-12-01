@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:showIn="@layout/activity_welcome">
+    tools:showIn="@layout/activity_welcome"
+    android:background="#fcfdfd">
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -12,14 +13,6 @@
         android:visibility="gone"
         android:id="@+id/crop_layout"
         >
-
-        <ImageView
-            android:id="@+id/result_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerInside"
-            android:background="#000" />
-
     </FrameLayout>
 
     <android.support.v4.view.ViewPager
@@ -30,18 +23,11 @@
     <LinearLayout
         android:id="@+id/layoutDots"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dots_height"
+        android:layout_height="30dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/dots_margin_bottom"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:orientation="horizontal"></LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:alpha=".5"
-        android:layout_above="@id/layoutDots"
-        android:background="@android:color/white" />
 
     <ProgressBar
         android:layout_width="30dp"
@@ -54,21 +40,24 @@
         android:id="@+id/nextProgress"
         />
     <Button
+        android:id="@+id/btnPrev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:textColor="#03353e"
+        android:text="BACK"
+        android:visibility="gone"
+        />
+    <Button
         android:id="@+id/btn_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:background="@null"
+        android:textColor="#03353e"
         android:text="NEXT"
         />
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/mainfragment"
-        android:layout_above="@+id/bottompanel">
-
-    </FrameLayout>
 
 </RelativeLayout>

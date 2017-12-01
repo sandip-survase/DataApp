@@ -15,7 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.signature.StringSignature;
+import com.bumptech.glide.signature.ObjectKey;
+
 
 import java.text.Normalizer;
 import java.util.List;
@@ -73,11 +74,11 @@ public class RecyclerItemAdapterPlacement extends RecyclerView.Adapter<RecyclerI
                 .appendQueryParameter("u", item.getUploadedby())
                 .build();
 
-        Glide.with(item.getContext())
+        GlideApp.with(item.getContext())
                 .load(uri)
-                .crossFade()
-                .signature(new StringSignature(item.getSignature()))
+                .signature(new ObjectKey(item.getSignature()))
                 .into(holder.uploadedbyprofile);
+
 
         if(searchText!=null) {
             if (searchText.length() > 0) {

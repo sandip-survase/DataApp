@@ -113,6 +113,8 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, countrieslist);
         countryAutoBox.setAdapter(adapter);
+
+
     }
 
 
@@ -213,6 +215,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"otp","no");
         MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","yes");
         ROLE = MySharedPreferencesManager.getRole(WelcomeGenrateCodeActivity.this);
+        Log.d("TAG", "WelcomeGenrateCodeActivity shared role ---------  "+ROLE);
 
         digest1=MySharedPreferencesManager.getDigest1(WelcomeGenrateCodeActivity.this);
         digest2=MySharedPreferencesManager.getDigest2(WelcomeGenrateCodeActivity.this);
@@ -312,7 +315,10 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                             institutewebsite.setError("Enter valid Website url");
                         } else if (sInstitutephone.length() < 8) {
                             errorFlagInstitute = true;
-                            institutephone.setError("Invalid phone");
+                            institutephone.setError("Invalid phone number");
+                        }else if(instituteAlternatephone.length()>0 && instituteAlternatephone.length()<8){
+                            errorFlagInstitute = true;
+                            instituteAlternatephone.setError("Invalid phone number");
                         } else if (sUniversity.length() < 2) {
                             errorFlagInstitute = true;
                             university.setError("Enter Valid University Name");
@@ -346,7 +352,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 } else if (ROLE != null && ROLE.equals("hr")) {            // OR  Hr
 
                     if (currentPosition == 0) {
-                        errorFlagCompany = false;
                         sCompanyName = companyName.getText().toString();
                         sCompanyAddress = companyAddress.getText().toString();
                         sCompanyEmail = companyEmail.getText().toString();
@@ -376,7 +381,10 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                             companyWebsite.setError("Enter valid website url");
                         } else if (sCompanyPhone.length() < 8) {
                             errorFlagCompany = true;
-                            companyPhone.setError("Invalid phone");
+                            companyPhone.setError("Invalid phone number");
+                        }else if(companyAlternatephone.length()>0 && companyAlternatephone.length()<8){
+                            errorFlagCompany = true;
+                            companyAlternatephone.setError("Invalid phone number");
                         } else if (sCIN.length() < 3) {
                             errorFlagCompany = true;
                             CIN.setError("Invalid CIN");
@@ -427,20 +435,20 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
     private void addBottomDots(int currentPage, int totalPages) {
         dots = new TextView[totalPages];
 
-        int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
-        int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
+        int colorsActive = getResources().getColor(R.color.array_dot_active);
+        int colorsInactive = getResources().getColor(R.color.array_dot_inactive);
 
         dotsLayout.removeAllViews();
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new TextView(this);
             dots[i].setText(Html.fromHtml("&#8226;"));
             dots[i].setTextSize(35);
-            dots[i].setTextColor(colorsInactive[currentPage]);
+            dots[i].setTextColor(colorsInactive);
             dotsLayout.addView(dots[i]);
         }
 
         if (dots.length > 0)
-            dots[currentPage].setTextColor(colorsActive[currentPage]);
+            dots[currentPage].setTextColor(colorsActive);
     }
 
     private int getItem(int i) {
@@ -639,7 +647,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             if (result.equals("success")) {
                 Toast.makeText(WelcomeGenrateCodeActivity.this, CODE, Toast.LENGTH_SHORT).show();
-                Log.d("TAG", "code ===============================   " + CODE);
+                Log.d("TAG", "admin code ===============================   " + CODE);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
                 viewPager.setCurrentItem(1);
@@ -647,7 +655,10 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 helloMsgcode.setText("Hello Admin!");
                 genratedCode.setText(CODE);
                 headerMsgcode.setText("This is your Institute Code provided by PlaceMe..!!");
-                //start show code activity
+
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"intro","yes");
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","no");
+
             }
         }
     }
@@ -770,7 +781,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
             if (result!=null && result.equals("success")) {
                 Toast.makeText(WelcomeGenrateCodeActivity.this, CODE, Toast.LENGTH_SHORT).show();
-                Log.d("TAG", "comp code ===============================   " + CODE);
+                Log.d("TAG", "hr comp code ===============================   " + CODE);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
                 viewPager.setCurrentItem(1);
@@ -778,6 +789,10 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 helloMsgcode.setText("Hello Hr!");
                 genratedCode.setText(CODE);
                 headerMsgcode.setText("This is your Company Code provided by PlaceMe..!!");
+                // back press next will move to base activity
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"intro","yes");
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","no");
+
             }
         }
     }

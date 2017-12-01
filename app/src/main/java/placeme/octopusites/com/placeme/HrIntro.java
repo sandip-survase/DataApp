@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -35,11 +34,17 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import placeme.octopusites.com.placeme.modal.ModalHrIntro;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
+
+import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
-import static placeme.octopusites.com.placeme.ProfileRole.plainusername;
+import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
+//import static placeme.octopusites.com.placeme.ProfileRole.plainusername;
+//import static placeme.octopusites.com.placeme.R.id.myprofilemail;
+
 
 public class HrIntro extends AppCompatActivity {
 
@@ -59,10 +64,9 @@ public class HrIntro extends AppCompatActivity {
     String userName, roleValue;
     String encUsername, encRole, encFname, encLname, encCountry, encState, encCity, encdesignation;
     HrData hr = new HrData();
+
     private EditText fname, lname, role, email, designation;
     private String digest1, digest2;
-    private SharedPreferences sharedPreferences;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,9 +88,8 @@ public class HrIntro extends AppCompatActivity {
 
         //-----------------
 
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
 
         fname = (EditText) findViewById(R.id.fname);
         lname = (EditText) findViewById(R.id.sname);
@@ -98,27 +101,21 @@ public class HrIntro extends AppCompatActivity {
         ScrollView myprofileintroscrollview = (ScrollView) findViewById(R.id.myprofileintroscrollview);
         disableScrollbars(myprofileintroscrollview);
 
-        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        userName = sharedPreferences.getString(USERNAME, null);
+        userName = MySharedPreferencesManager.getUsername(this);
         encUsername = userName;
-        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-        String sPadding = "ISO10126Padding";
 
         try {
-            byte[] usernameEncryptedBytes = SimpleBase64Encoder.decode(userName);
-            byte[] usernameDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, usernameEncryptedBytes);
-            plainusername = new String(usernameDecryptedBytes);
+            String plainusername=Decrypt(userName,digest1,digest2);
             email.setText(plainusername);
         } catch (Exception e) {
         }
 
-
-        roleValue = sharedPreferences.getString("role", null);
+        roleValue = MySharedPreferencesManager.getRole(this);
         role.setText(roleValue.toUpperCase());
 
 
         citystaecountry = (AutoCompleteTextView) findViewById(R.id.citystaecountry);
+        citystaecountry=(AutoCompleteTextView)findViewById(R.id.citystaecountry);
 
 
         selectedCountry = hr.getCountry();

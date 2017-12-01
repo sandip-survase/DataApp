@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 import placeme.octopusites.com.placeme.modal.Modelmyprofileintro;
 
+import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 public class MyProfileIntro extends AppCompatActivity {
@@ -74,6 +75,7 @@ public class MyProfileIntro extends AppCompatActivity {
 
         digest1=MySharedPreferencesManager.getDigest1(this);
         digest2=MySharedPreferencesManager.getDigest2(this);
+
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Personal Info");
@@ -114,11 +116,17 @@ public class MyProfileIntro extends AppCompatActivity {
             citystaecountry.setText(CityStateCountry);
         }
 
-
-        ProfileRole r=new ProfileRole();
-        role.setText(r.getRole().substring(0, 1).toUpperCase()+ r.getRole().substring(1));
-        email.setText(r.getPlainusername());
-        encUsername=r.getUsername();
+        String plainUsername=null;
+        String username=MySharedPreferencesManager.getUsername(this);
+        String rolestr=MySharedPreferencesManager.getRole(this);
+        try {
+            plainUsername=Decrypt(username,digest1,digest2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        role.setText(rolestr.substring(0, 1).toUpperCase()+ rolestr.substring(1));
+        email.setText(plainUsername);
+        encUsername=username;
 //        encUsername=MySharedPreferencesManager.getUsername(this);
         Log.d("TAG", "encUsername: "+encUsername);
 

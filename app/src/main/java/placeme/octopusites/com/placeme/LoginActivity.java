@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -46,10 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     Button login, signup;
     ProgressBar loginprogress;
     TextView forgotpassword;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
-    public static final String Password = "passKey";
+
     private String EmailCred = "";
     JSONParser jParser = new JSONParser();
 
@@ -67,10 +63,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
 
         usernameedittext = (EditText) findViewById(R.id.email);
         passwordedittext = (EditText) findViewById(R.id.password);
@@ -97,9 +91,7 @@ public class LoginActivity extends AppCompatActivity {
         usernameedittext.setTypeface(custom_font3);
         passwordedittext.setTypeface(custom_font3);
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-
-        String otp = sharedpreferences.getString("otp", null);
+        String otp = MySharedPreferencesManager.getData(LoginActivity.this,"otp");
 
         if (otp != null) {
             if (otp.equals("yes")) {
@@ -161,13 +153,8 @@ public class LoginActivity extends AppCompatActivity {
                         String plainusername = new String(demo1DecryptedBytes1);
                         Log.d("login", "onClick: plain " + plainusername);
                         //
-                        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                        editor.putString(Username, usernameenc);
-                        editor.putString(Password, passwordenc);
-
-                        editor.commit();
+                        MySharedPreferencesManager.save(LoginActivity.this,MyConstants.USERNAME_KEY, usernameenc);
+                        MySharedPreferencesManager.save(LoginActivity.this,MyConstants.PASSWORD_KEY, passwordenc);
 
                         attemptLogin(usernameenc, passwordenc);
                     } catch (Exception e) {
@@ -225,11 +212,7 @@ public class LoginActivity extends AppCompatActivity {
                     resultofop = s;
                     Log.d("Msg", json.getString("info"));
 
-                    sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                    editor.putString("role", s);
-                    editor.commit();
+                    MySharedPreferencesManager.save(LoginActivity.this,"role", s);
 
                     if (s.equals("student")) {
 
@@ -258,14 +241,8 @@ public class LoginActivity extends AppCompatActivity {
 
                         String role = json.getString("role");
                         Log.d("Msg role ", role);
-                        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                        editor = sharedpreferences.edit();
 
-                        editor.putString("role", role);
-                        editor.commit();
-
-                        ProfileRole r = new ProfileRole();
-                        r.setRole(role);
+                        MySharedPreferencesManager.save(LoginActivity.this,"role", role);
                         EmailCred = mEmail;
 
                         return 6;
@@ -299,30 +276,39 @@ public class LoginActivity extends AppCompatActivity {
                     public void run() {
                         if (success == 1) {
                             new SaveSessionDetails().execute();
-                            ProfileRole r = new ProfileRole();
-                            r.setRole("student");
-                            r.setUsername(EmailCred);
+                            MySharedPreferencesManager.save(LoginActivity.this,"role","student");
+                            MySharedPreferencesManager.save(LoginActivity.this,"nameKey",EmailCred);
+//                            ProfileRole r = new ProfileRole();
+//                            r.setRole("student");
+//                            r.setUsername(EmailCred);
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             finish();
                         } else if (success == 3) {
                             new SaveSessionDetails().execute();
-                            ProfileRole r = new ProfileRole();
-                            r.setRole("admin");
-                            r.setUsername(EmailCred);
+                            MySharedPreferencesManager.save(LoginActivity.this,"role","admin");
+                            MySharedPreferencesManager.save(LoginActivity.this,"nameKey",EmailCred);
+//                            ProfileRole r = new ProfileRole();
+//                            r.setRole("admin");
+//                            r.setUsername(EmailCred);
                             startActivity(new Intent(LoginActivity.this, AdminActivity.class));
                             finish();
                         } else if (success == 4) {
                             new SaveSessionDetails().execute();
-                            ProfileRole r = new ProfileRole();
-                            r.setRole("hr");
-                            r.setUsername(EmailCred);
+                            MySharedPreferencesManager.save(LoginActivity.this,"role","hr");
+                            MySharedPreferencesManager.save(LoginActivity.this,"nameKey",EmailCred);
+//                            ProfileRole r = new ProfileRole();
+//                            r.setRole("hr");
+//                            r.setUsername(EmailCred);
                             startActivity(new Intent(LoginActivity.this, HRActivity.class));
                             finish();
                         } else if (success == 5) {
                             new SaveSessionDetails().execute();
-                            ProfileRole r = new ProfileRole();
-                            r.setRole("alumni");
-                            r.setUsername(EmailCred);
+                            MySharedPreferencesManager.save(LoginActivity.this,"role","alumni");
+                            MySharedPreferencesManager.save(LoginActivity.this,"nameKey",EmailCred);
+
+//                            ProfileRole r = new ProfileRole();
+//                            r.setRole("alumni");
+//                            r.setUsername(EmailCred);
                             startActivity(new Intent(LoginActivity.this, AlumniActivity.class));
                             finish();
                         }

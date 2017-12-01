@@ -49,7 +49,7 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
     public static final String MyPREFERENCES = "MyPrefs";
     SharedPreferences sharedpreferences;
     public static final String Username = "nameKey";
-    String username;
+    String username,role;
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
@@ -74,6 +74,11 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_edit_profile_projects, container, false);
+
+        username = MySharedPreferencesManager.getUsername(getActivity());
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
+        role = MySharedPreferencesManager.getRole(getActivity());
 
         TextView projtxt = (TextView) rootView.findViewById(R.id.projtxt);
         Typeface custom_font1 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/arba.ttf");
@@ -436,24 +441,7 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
 //            }
 //        });
 
-        sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, null);
-        String role = sharedpreferences.getString("role", null);
 
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
-
-        if (digest1 == null || digest2 == null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
 
         demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -2100,8 +2088,6 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
             if (result.equals("success")) {
 //                Toast.makeText(getActivity(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
 
-                ProfileRole r = new ProfileRole();
-                String role = r.getRole();
                 if (role.equals("student"))
                     getActivity().setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if (role.equals("alumni"))

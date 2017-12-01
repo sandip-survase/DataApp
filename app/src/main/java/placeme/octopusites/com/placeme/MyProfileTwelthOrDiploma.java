@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -62,10 +61,8 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
     Spinner stream12, board12;
     EditText dmarkssem1, doutofsem1, dpercentsem1, dmarkssem2, doutofsem2, dpercentsem2, dmarkssem3, doutofsem3, dpercentsem3, dmarkssem4, doutofsem4, dpercentsem4, dmarkssem5, doutofsem5, dpercentsem5, dmarkssem6, doutofsem6, dpercentsem6, daggregate, schoolnamed, othercourse, otherboardd;
     Spinner dcourse, duniversity;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
-    String username;
+
+    String username,role;
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
@@ -95,8 +92,10 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
     String strobj,strobj2;
 
-    public static String url_savedata_twelth = "http://192.168.100.10:8080/ProfileObjects/SaveTwelth";
-    public static String url_savedata_diploma = "http://192.168.100.10:8080/ProfileObjects/SaveDiploma";
+    public static String url_savedata_twelth = "http://192.168.100.30:8080/ProfileObjects/SaveTwelth";
+    public static String url_savedata_diploma = "http://192.168.100.30:8080/ProfileObjects/SaveDiploma";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,11 +111,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         username =MySharedPreferencesManager.getUsername(this);
-        String role = MySharedPreferencesManager.getRole(this);
-
-
-
-
+        role = MySharedPreferencesManager.getRole(this);
 
         dmarkssem1 = (EditText) findViewById(R.id.dmarkssem1);
         doutofsem1 = (EditText) findViewById(R.id.doutofsem1);
@@ -2197,8 +2192,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 Toast.makeText(MyProfileTwelthOrDiploma.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
 
 
-                ProfileRole r = new ProfileRole();
-                String role = r.getRole();
                 if (role.equals("student"))
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if (role.equals("alumni"))
@@ -2268,8 +2261,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             if (result.equals("success")) {
 
 
-                ProfileRole r = new ProfileRole();
-                String role = r.getRole();
+                String role=MySharedPreferencesManager.getRole(MyProfileTwelthOrDiploma.this);
                 if (role.equals("student"))
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if (role.equals("alumni"))

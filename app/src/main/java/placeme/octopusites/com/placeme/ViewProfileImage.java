@@ -1,9 +1,6 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,7 +12,8 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.signature.StringSignature;
+import com.bumptech.glide.signature.ObjectKey;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,9 +24,7 @@ import java.net.URLConnection;
 public class ViewProfileImage extends AppCompatActivity {
     ImageView profile_image;
     private static String load_student_image = "http://192.168.100.10/AESTest/GetImage";
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
+
     String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +35,8 @@ public class ViewProfileImage extends AppCompatActivity {
         ab.setTitle("Profile Image");
         ab.setDisplayHomeAsUpEnabled(true);
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
+
+        username=MySharedPreferencesManager.getUsername(this);
 
         profile_image=(ImageView)findViewById(R.id.profile_image);
 //        new GetProfileImage().execute();
@@ -71,11 +67,11 @@ public class ViewProfileImage extends AppCompatActivity {
                 .appendQueryParameter("u", username)
                 .build();
 
-        Glide.with(this)
+        GlideApp.with(this)
                 .load(uri)
-                .crossFade()
-                .signature(new StringSignature(System.currentTimeMillis() + ""))
+                .signature(new ObjectKey(System.currentTimeMillis() + ""))
                 .into(profile_image);
+
 
     }
 

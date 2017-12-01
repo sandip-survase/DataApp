@@ -23,7 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.signature.StringSignature;
+import com.bumptech.glide.signature.ObjectKey;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -92,11 +93,9 @@ public class RecyclerItemAdapter extends RecyclerView.Adapter<RecyclerItemAdapte
                 .build();
 
 
-
-        Glide.with(item.getContext())
+        GlideApp.with(item.getContext())
                 .load(uri)
-                .crossFade()
-                .signature(new StringSignature(item.getSignature()))
+                .signature(new ObjectKey(item.getSignature()))
                 .into(holder.uploadedbyprofile);
 
 

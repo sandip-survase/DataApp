@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -50,10 +49,7 @@ public class MyProfileAchievements extends AppCompatActivity {
 
     int honorcount=0;
     View addmorehonor;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
-    String username;
+    String username,role;
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
@@ -76,6 +72,11 @@ public class MyProfileAchievements extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Honors and Awards Info");
         ab.setDisplayHomeAsUpEnabled(true);
+
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        role=MySharedPreferencesManager.getRole(this);
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
@@ -1221,26 +1222,6 @@ public class MyProfileAchievements extends AppCompatActivity {
 
         ScrollView myprofileintroscrollview=(ScrollView)findViewById(R.id.myprofilehonorsandawards);
         disableScrollbars(myprofileintroscrollview);
-
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        String role=sharedpreferences.getString("role",null);
-
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
-
 
         stitle1=s.getHtitle1();
         sissuer1=s.getHissuer1();
@@ -4366,8 +4347,6 @@ public class MyProfileAchievements extends AppCompatActivity {
             {
                 Toast.makeText(MyProfileAchievements.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
-                ProfileRole r=new ProfileRole();
-                String role=r.getRole();
                 if(role.equals("student"))
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("alumni"))

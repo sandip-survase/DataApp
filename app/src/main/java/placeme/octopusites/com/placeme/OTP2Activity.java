@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -37,9 +36,7 @@ public class OTP2Activity extends AppCompatActivity {
     private static String url_resendotp= "http://192.168.0.100/AESTest/ResendOTP";
     String digest1,digest2;
     public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
-    public static final String Password = "passKey";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,9 +47,9 @@ public class OTP2Activity extends AppCompatActivity {
 
         otpprogress=(ProgressBar)findViewById(R.id.otpprogress);
 
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        encUsername=MySharedPreferencesManager.getUsername(this);
 
         Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/button.ttf");
         verify.setTypeface(custom_font);
@@ -70,8 +67,7 @@ public class OTP2Activity extends AppCompatActivity {
             }
         });
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        encUsername=sharedpreferences.getString(Username,null);
+
 
 
         verify.setOnClickListener(new View.OnClickListener() {

@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.design.widget.TextInputLayout;
@@ -33,9 +32,7 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 public class EditEmail extends AppCompatActivity {
 
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
+
     String username,plainusername;
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
@@ -61,6 +58,13 @@ public class EditEmail extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Email");
         ab.setDisplayHomeAsUpEnabled(true);
+
+
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        String role=MySharedPreferencesManager.getRole(this);
+
 
         otpinput=(TextInputLayout)findViewById(R.id.otpinput);
         emailinput=(TextInputLayout)findViewById(R.id.emailinput);
@@ -99,26 +103,7 @@ public class EditEmail extends AppCompatActivity {
         Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/button.ttf");
         changeemailbutton.setTypeface(custom_font3);
 
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        String role=sharedpreferences.getString("role",null);
 
-
-
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
         String sPadding = "ISO10126Padding";
@@ -195,8 +180,6 @@ public class EditEmail extends AppCompatActivity {
 
         protected String doInBackground(String... param) {
 
-            //TODO get fname lname and send it
-
             String r="";
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",username));       //0
@@ -215,8 +198,6 @@ public class EditEmail extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-
-            //TODO chage in all tables username | firebase update email id auth
 
             editemailprogress.setVisibility(View.GONE);
             changeemailbutton.setVisibility(View.VISIBLE);
@@ -270,11 +251,8 @@ public class EditEmail extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             if(result!=null && result.equals("success")){
-                //change email and save it in the sharedpreference
-                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString(Username, encnewemail);
-                editor.commit();
+
+                MySharedPreferencesManager.save(EditEmail.this,MyConstants.USERNAME_KEY,encnewemail);
                 primaryemail.setText(snewemail);
                 Toast.makeText(EditEmail.this, "Username successfully changed from "+plainusername+" to " +snewemail , Toast.LENGTH_SHORT).show();
                 otpflag=0;

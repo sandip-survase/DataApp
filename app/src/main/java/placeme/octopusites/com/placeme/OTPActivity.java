@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -53,10 +52,6 @@ public class OTPActivity extends AppCompatActivity {
     private static String url_resendotp = "http://192.168.100.100/AESTest/ResendOTP";
 
     String digest1, digest2;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
-    public static final String Password = "passKey";
     byte[] demoKeyBytes;
     byte[] demoIVBytes;
     String sPadding = "ISO10126Padding";
@@ -82,16 +77,10 @@ public class OTPActivity extends AppCompatActivity {
                 finish();
             }
         });
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
 
-        if (digest1 == null || digest2 == null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+
 
         entertxt = (TextView) findViewById(R.id.entertxt);
         otptxt = (TextView) findViewById(R.id.otptxt);
@@ -125,12 +114,8 @@ public class OTPActivity extends AppCompatActivity {
             }
         });
 
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-
-
-        encUsername = sharedpreferences.getString(Username, null);
-        encpassword = sharedpreferences.getString(Password, null);
+        encUsername=MySharedPreferencesManager.getUsername(this);
+        encpassword=MySharedPreferencesManager.getPassword(this);
 
         try {
             demoKeyBytes = SimpleBase64Encoder.decode(digest1);
@@ -144,18 +129,12 @@ public class OTPActivity extends AppCompatActivity {
             byte[] demo2EncryptedBytes1 = SimpleBase64Encoder.decode(encpassword);
             byte[] demo2DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo2EncryptedBytes1);
             String data = new String(demo2DecryptedBytes1);
-            hash = md5(data + sharedpreferences.getString("digest3", null));
-
+            hash = md5(data + MySharedPreferencesManager.getDigest3(OTPActivity.this));
 
         } catch (Exception e) {
         }
 
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-
-        editor.putString("otp", "yes");
-        editor.commit();
+        MySharedPreferencesManager.save(this,"otp", "yes");
 
 
         verify.setOnClickListener(new View.OnClickListener() {
@@ -221,22 +200,14 @@ public class OTPActivity extends AppCompatActivity {
                 if (activationMessageflag == false) {
                     Log.d("TAG", "onPostExecute: activation 1 flag" + activationMessageflag);
                     //create new firebase user
-                    sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                    String role = sharedpreferences.getString("role", null);
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
 
-                    editor.putString(Username, encUsername);
-                    editor.putString(Password, encpassword);
-                    editor.putString("otp", "no");
-                    editor.commit();
+                    MySharedPreferencesManager.save(OTPActivity.this,MyConstants.USERNAME_KEY,encUsername);
+                    MySharedPreferencesManager.save(OTPActivity.this,MyConstants.PASSWORD_KEY,encpassword);
+                    MySharedPreferencesManager.save(OTPActivity.this,"otp", "no");
 
-
-//                ProfileRole r=new ProfileRole();
-//                r.setUsername(encUsername);
-//                r.setRole(role);
-
-                    String u = sharedpreferences.getString(Username, null);
-                    String p = sharedpreferences.getString(Password, null);
+                    String role = MySharedPreferencesManager.getRole(OTPActivity.this);
+                    String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
+                    String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
 
                     new CreateFirebaseUser(u, p).execute();
 
@@ -275,10 +246,13 @@ public class OTPActivity extends AppCompatActivity {
             if (resultofop.equals("success") && activationMessageflag == true) {
                 Log.d("TAG", "onPostExecute: activation 2 flag" + activationMessageflag);
                 String role = MySharedPreferencesManager.getRole(OTPActivity.this);
-                MySharedPreferencesManager.save(OTPActivity.this, "activatedCode", "yes");
-                String u = sharedpreferences.getString(Username, null);
-                String p = sharedpreferences.getString(Password, null);
+                Log.d("TAG", "OTP onPostExecute: sahrd role ^^^^ "+role);
+
+                String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
+                String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
+
                 new CreateFirebaseUser(u, p).execute();
+
                 startActivity(new Intent(OTPActivity.this, WelcomeGenrateCodeActivity.class));
                 finish();
             } else if (resultofop.equals("fail") && activationMessageflag == true) {
@@ -302,6 +276,7 @@ public class OTPActivity extends AppCompatActivity {
     }
 
     void loginFirebase(String username, String hash) {
+
         FirebaseAuth.getInstance()
                 .signInWithEmailAndPassword(username, hash)
                 .addOnCompleteListener(OTPActivity.this, new OnCompleteListener<AuthResult>() {

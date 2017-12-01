@@ -30,6 +30,8 @@ import static placeme.octopusites.com.placeme.R.id.toolbar;
 
 public class NewsFeedFragment extends Fragment {
 
+    // create news link - http://192.168.100.100/CreateNewsFeed/CreateNews
+
     private List<NewsFeedItem> itemList= new ArrayList<>();
     private RecyclerView recyclerView;
     private NewsFeedAdapter mAdapter;
@@ -92,6 +94,7 @@ public class NewsFeedFragment extends Fragment {
 
                 json = jParser.makeHttpRequest(load_news,"GET", params);
                 count = Integer.parseInt(json.getString("count"));
+                Log.d("TAG", "news count  "+count);
 
                 id=new int[count];
                 uploadername=new String[count];
@@ -115,8 +118,6 @@ public class NewsFeedFragment extends Fragment {
                     NewsFeedItem item=new NewsFeedItem(id[i],uploadername[i],image[i],status[i],uploaderprofile[i],timestamp[i],url[i]);
                     itemList.add(item);
                 }
-
-
 
             } catch (Exception e) {
                 e.printStackTrace();

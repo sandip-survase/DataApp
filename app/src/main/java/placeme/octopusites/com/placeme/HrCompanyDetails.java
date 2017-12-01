@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -48,7 +47,6 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 public class HrCompanyDetails extends AppCompatActivity {
 
     public int pos;
-    String digest1, digest2;
     String CompanyType="",strobj="";
     String encobj="";
     public static String HRlog = "HRlog";
@@ -60,9 +58,6 @@ public class HrCompanyDetails extends AppCompatActivity {
     JSONParser jsonParser = new JSONParser();
     //    private static String url_savedata = "http://192.168.100.10/AESTest/SaveHrCompany";
     JSONObject json;
-    private SharedPreferences sharedPreferences;
-    public static final String USERNAME = "nameKey";
-    public static final String MyPREFERENCES = "MyPrefs";
     String userName;
     HrData h = new HrData();
     ArrayAdapter<String> dataAdapter;
@@ -73,16 +68,11 @@ public class HrCompanyDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hr_company_details);
 
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
-
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Company Details");
         ab.setDisplayHomeAsUpEnabled(true);
 
-        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        userName = sharedPreferences.getString(USERNAME, null);
+        userName = MySharedPreferencesManager.getUsername(HrCompanyDetails.this);
         encUsername = userName;
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);

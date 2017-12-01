@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -45,6 +44,7 @@ public class AdminContactDetails extends AppCompatActivity {
     JSONObject json;
 
     private static String url_savedata= "http://192.168.100.30:8080/ProfileObjects/SaveAdminContact";
+    public static final String url_SaveAdminContac= "http://192.168.100.30:8080/ProfileObjects/SaveAdminContact";
 
     int edittedFlag=0;
     AdminData a= new AdminData();
@@ -65,6 +65,10 @@ public class AdminContactDetails extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Contact Details");
         ab.setDisplayHomeAsUpEnabled(true);
+
+        digest1 =MySharedPreferencesManager.getDigest1(this);
+        digest2 =MySharedPreferencesManager.getDigest2(this);
+        username =MySharedPreferencesManager.getUsername(this);
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
@@ -93,9 +97,7 @@ public class AdminContactDetails extends AppCompatActivity {
         addresstxt.setTypeface(custom_font1);
         contactnotxt.setTypeface(custom_font1);
 
-        digest1 =MySharedPreferencesManager.getDigest1(this);
-        digest2 =MySharedPreferencesManager.getDigest2(this);
-        username =MySharedPreferencesManager.getUsername(this);
+
 
 
 
@@ -435,7 +437,7 @@ public class AdminContactDetails extends AppCompatActivity {
             params.add(new BasicNameValuePair("u",username));       //0
             params.add(new BasicNameValuePair("obj",strobj));               //1
 
-            json = jParser.makeHttpRequest(url_savedata, "GET", params);
+            json = jParser.makeHttpRequest(url_SaveAdminContac, "GET", params);
             try {
                 r = json.getString("info");
 

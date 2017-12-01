@@ -2,7 +2,11 @@ package placeme.octopusites.com.placeme;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.SharedPreferences;
+
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -59,7 +63,12 @@ public class AdminPersonalTabFragment extends Fragment {
     RadioGroup radioGroupGender;
     JSONObject json;
     JSONParser jParser = new JSONParser();
-    SharedPreferences sharedpreferences;
+
+
+    private static String url_savedata = "http://192.168.100.100/AESTest/SaveAdminPersonal";
+
+
+
     int countrycount = 0, statecount = 0, citycount = 0;
     String firstname = "", lastname = "", instname = "";
     String oldCountry = "", oldState = "", oldCity = "";
@@ -118,27 +127,14 @@ public class AdminPersonalTabFragment extends Fragment {
 //        save = (Button) rootView.findViewById(R.id.savepersonal);
 //        personalprogress = (ProgressBar) rootView.findViewById(R.id.personalprogress);
 
-        sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, null);
-        srole = sharedpreferences.getString("role", null);
 
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setRole(srole);
+
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
+        username=MySharedPreferencesManager.getUsername(getActivity());
+        srole=MySharedPreferencesManager.getRole(getActivity());
+        encUsername =username;
         role.setText(srole.toUpperCase());
-        encUsername = r.getUsername();
-
-
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
-
-        if (digest1 == null || digest2 == null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
 
         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -577,7 +573,7 @@ public class AdminPersonalTabFragment extends Fragment {
         fname = fnameedittext.getText().toString();
         mname = mnameedittext.getText().toString();
         sname = snameedittext.getText().toString();
-        srole = role.getText().toString();
+//        srole = role.getText().toString();
         semail = emailedittext.getText().toString();
         alternateemail = profileaemail.getText().toString();
         sinst = inst.getText().toString();

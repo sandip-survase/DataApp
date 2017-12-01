@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -52,10 +51,8 @@ public class MyProfileCertifications extends AppCompatActivity {
 
     int certicount = 0;
     View addmorecerti;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
-    String username;
+
+    String username,role;
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
@@ -80,6 +77,11 @@ public class MyProfileCertifications extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_certifications);
+
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        role=MySharedPreferencesManager.getRole(this);
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Certification Info");
@@ -1747,24 +1749,7 @@ public class MyProfileCertifications extends AppCompatActivity {
         ScrollView myprofileintroscrollview = (ScrollView) findViewById(R.id.myprofilecertification);
         disableScrollbars(myprofileintroscrollview);
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, null);
-        String role = sharedpreferences.getString("role", null);
 
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
-
-        if (digest1 == null || digest2 == null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
 
         stitle1 = s.getTitle1();
         sissuer1 = s.getIssuer1();
@@ -3859,8 +3844,6 @@ public class MyProfileCertifications extends AppCompatActivity {
             if (result.equals("success")) {
                 Toast.makeText(MyProfileCertifications.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
 
-                ProfileRole r=new ProfileRole();
-                String role=r.getRole();
                 if(role.equals("student"))
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("alumni"))
