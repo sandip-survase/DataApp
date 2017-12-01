@@ -259,7 +259,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             String data=new String(demo2DecryptedBytes1);
             String hash=md5(data + MySharedPreferencesManager.getDigest3(this));
 
-            loginFirebase(plainusername,hash);
+            new LoginFirebaseTask().execute(plainusername,hash);
+
 
         } catch (Exception e) {
         }
@@ -393,13 +394,13 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             }
         });
 
-//        RelativeLayout bottompanel=(RelativeLayout)findViewById(R.id.bottompanel);
-//        bottompanel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(AdminActivity.this,ShowUsers.class));
-//            }
-//        });
+        RelativeLayout bottompanel=(RelativeLayout)findViewById(R.id.bottompanel);
+        bottompanel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AdminActivity.this,ShowUsers.class));
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
@@ -1141,25 +1142,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 //        new GetUnreadMessagesCount().execute();
 
 
-    }
-    void loginFirebase(String username,String hash)
-    {
-        FirebaseAuth.getInstance()
-                .signInWithEmailAndPassword(username,hash)
-                .addOnCompleteListener(AdminActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-
-
-                        if (task.isSuccessful()) {
-                            Toast.makeText(AdminActivity.this, "Successfully logged in to Firebase from mainactivity", Toast.LENGTH_SHORT).show();
-
-
-                        } else {
-                            Toast.makeText(AdminActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
     }
 
     void filterNotifications(String text) {
@@ -3139,6 +3121,33 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         @Override
         protected void onPostExecute(String result) {
 
+        }
+    }
+
+    class LoginFirebaseTask extends AsyncTask<String, String, String> {
+        protected String doInBackground(String... param) {
+            String user=param[0];
+            String hash=param[1];
+            FirebaseAuth.getInstance()
+                    .signInWithEmailAndPassword(user,hash)
+                    .addOnCompleteListener(AdminActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                MySharedPreferencesManager.save(AdminActivity.this,"fireLoginStatus","Successfully logged in to Firebase");
+                            } else {
+                                MySharedPreferencesManager.save(AdminActivity.this,"fireLoginStatus","Failed to login to Firebase");
+                            }
+                        }
+                    });
+            return null;
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            String status=MySharedPreferencesManager.getData(AdminActivity.this,"fireLoginStatus");
+            Toast.makeText(AdminActivity.this, status, Toast.LENGTH_SHORT).show();
+            // remove value from shared
+            MySharedPreferencesManager.removeKey(AdminActivity.this,"fireLoginStatus");
         }
     }
 }

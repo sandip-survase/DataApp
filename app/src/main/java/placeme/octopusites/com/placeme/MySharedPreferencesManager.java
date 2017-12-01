@@ -59,6 +59,11 @@ public class MySharedPreferencesManager {
         return getSharedPreferences(context).getString("institute", null);
     }
 
+    public static void removeKey(Context context,String key) {
+         getSharedPreferences(context).edit().remove(key).commit();
+
+    }
+
 
 
 }

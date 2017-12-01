@@ -96,13 +96,15 @@ public class MyConstants {
 
 //    private static String url = "http://192.168.100.100/HandleMobileRequests/getimg.jsp?username=";
     public static final String url_SendActivationCode = "http://192.168.100.100/AESTest/SendActivationCode";
-    public static final String url_SaveAndGenrateInstituteCode = "http://192.168.100.20:8080/AESTest/SaveAndGenrateInstituteCode";
+    public static final String url_SaveAndGenrateInstituteCode = "http://192.168.100.100/AESTest/SaveAndGenrateInstituteCode";
     public static final String url_SaveAndGenrateCompanyCode = "http://192.168.100.100/AESTest/SaveAndGenrateCompanyCode";
 
     public static String url_getcountries = "http://192.168.100.100/AESTest/GetCountries";
     public static String url_getstates = "http://192.168.100.100/AESTest/GetStates";
     public static String url_getcities = "http://192.168.100.100/AESTest/GetCities";
     public static final String url_checkUcode = "http://192.168.100.100/AESTest/checkUcode";
+    public static final String url_ClearOTP = "http://192.168.100.100/AESTest/ClearOTP";
+    public static final String url_AddStudentUnderAdmin = "http://192.168.100.100/AESTest/AddStudentUnderAdmin";
 
 
     public static Typeface getFA(Activity activity)
@@ -116,6 +118,18 @@ public class MyConstants {
     public static Typeface getLight(Activity activity)
     {
         return Typeface.createFromAsset(activity.getAssets(),  "fonts/nunitolight.ttf");
+    }
+    public static Typeface getItalic(Activity activity)
+    {
+        return Typeface.createFromAsset(activity.getAssets(),  "fonts/nunitoitalic.ttf");
+    }
+    public static Typeface getBoldItalic(Activity activity)
+    {
+        return Typeface.createFromAsset(activity.getAssets(),  "fonts/nunitobolditalic.ttf");
+    }
+    public static Typeface getRighteous(Activity activity)
+    {
+        return Typeface.createFromAsset(activity.getAssets(),  "fonts/righteous.ttf");
     }
 
     //--

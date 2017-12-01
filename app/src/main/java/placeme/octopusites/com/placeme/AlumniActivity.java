@@ -1150,7 +1150,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             String data=new String(demo2DecryptedBytes1);
             String hash=md5(data + MySharedPreferencesManager.getDigest3(AlumniActivity.this));
 
-           loginFirebase(plainusername,hash);
+            new LoginFirebaseTask().execute(plainusername,hash);
 
         }catch (Exception e){Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();}
 
@@ -1188,25 +1188,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
 
     }
-    void loginFirebase(String username,String hash)
-    {
-        FirebaseAuth.getInstance()
-                .signInWithEmailAndPassword(username,hash)
-                .addOnCompleteListener(AlumniActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
 
-
-                        if (task.isSuccessful()) {
-                            Toast.makeText(AlumniActivity.this, "Successfully logged in to Firebase from mainactivity", Toast.LENGTH_SHORT).show();
-
-
-                        } else {
-                            Toast.makeText(AlumniActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
     void filterNotifications(String text)
     {
         tempListNotification = new ArrayList();
@@ -3058,64 +3040,32 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
 
     }
-//    public class GetProfileImage extends AsyncTask<String, Void, Bitmap> {
-//        @Override
-//        protected Bitmap doInBackground(String... urls) {
-//            Bitmap map = null;
-//            map = downloadImage(load_student_image);
-//            return map;
-//        }
-//        @Override
-//        protected void onPostExecute(Bitmap result) {
-//            profile.setImageBitmap(result);
-//        }
-//        private Bitmap downloadImage(String url) {
-//            Uri uri = new Uri.Builder()
-//                    .scheme("http")
-//                    .authority("192.168.100.100")
-//                    .path("AESTest/GetImage")
-//                    .appendQueryParameter("u", username)
-//                    .build();
-//
-//            url=uri.toString();
-//
-//            Bitmap bitmap = null;
-//            InputStream stream = null;
-//            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-//            bmOptions.inSampleSize = 1;
-//
-//            try {
-//                stream = getHttpConnection(url);
-//                bitmap = BitmapFactory.
-//                        decodeStream(stream, null, bmOptions);
-//                stream.close();
-//            } catch (IOException e1) {
-//                e1.printStackTrace();
-//            }
-//            return bitmap;
-//        }
-//
-//        // Makes HttpURLConnection and returns InputStream
-//        private InputStream getHttpConnection(String urlString)
-//                throws IOException {
-//            InputStream stream = null;
-//            URL url = new URL(urlString);
-//            URLConnection connection = url.openConnection();
-//
-//            try {
-//                HttpURLConnection httpConnection = (HttpURLConnection) connection;
-//                httpConnection.setRequestMethod("GET");
-//                httpConnection.connect();
-//
-//                if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-//                    stream = httpConnection.getInputStream();
-//                }
-//            } catch (Exception ex) {
-//                ex.printStackTrace();
-//            }
-//            return stream;
-//        }
-//
-//    }
 
+
+    class LoginFirebaseTask extends AsyncTask<String, String, String> {
+        protected String doInBackground(String... param) {
+            String user=param[0];
+            String hash=param[1];
+            FirebaseAuth.getInstance()
+                    .signInWithEmailAndPassword(user,hash)
+                    .addOnCompleteListener(AlumniActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                MySharedPreferencesManager.save(AlumniActivity.this,"fireLoginStatus","Successfully logged in to Firebase");
+                            } else {
+                                MySharedPreferencesManager.save(AlumniActivity.this,"fireLoginStatus","Failed to login to Firebase");
+                            }
+                        }
+                    });
+            return null;
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            String status=MySharedPreferencesManager.getData(AlumniActivity.this,"fireLoginStatus");
+            Toast.makeText(AlumniActivity.this, status, Toast.LENGTH_SHORT).show();
+            // remove value from shared
+            MySharedPreferencesManager.removeKey(AlumniActivity.this,"fireLoginStatus");
+        }
+    }
 }
