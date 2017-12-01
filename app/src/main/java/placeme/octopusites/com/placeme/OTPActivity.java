@@ -197,6 +197,10 @@ public class OTPActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             if (resultofop.equals("success")) {
+                //clear expired otp
+                new ClearOTPTask().execute();
+
+
                 if (activationMessageflag == false) {
                     Log.d("TAG", "onPostExecute: activation 1 flag" + activationMessageflag);
                     //create new firebase user
@@ -263,13 +267,6 @@ public class OTPActivity extends AppCompatActivity {
             verify.setVisibility(View.VISIBLE);
             otpprogress.setVisibility(View.GONE);
 
-            // clearing expired otp
-            try {
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                json = jParser.makeHttpRequest(url_verifyotp, "GET", params);
-            } catch (Exception e) {
-            }
-
         }
 
     }
@@ -327,6 +324,17 @@ public class OTPActivity extends AppCompatActivity {
 
             resendotp.setVisibility(View.VISIBLE);
 
+        }
+    }
+
+    class ClearOTPTask extends AsyncTask<String, String, String> {
+        protected String doInBackground(String... param) {
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            jParser.makeHttpRequest(MyConstants.url_ClearOTP, "GET", params);
+            return "";
+        }
+        @Override
+        protected void onPostExecute(String result) {
         }
     }
 
