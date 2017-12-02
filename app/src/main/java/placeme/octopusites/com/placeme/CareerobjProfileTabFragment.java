@@ -122,11 +122,11 @@ public class CareerobjProfileTabFragment extends Fragment {
         TextView strengthtxt=(TextView)rootView.findViewById(R.id.strengthtxt);
         TextView weaktxt=(TextView)rootView.findViewById(R.id.weaktxt);
         TextView locationtxt=(TextView)rootView.findViewById(R.id.locationtxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/arba.ttf");
-        careerobjtxt.setTypeface(custom_font1);
-        strengthtxt.setTypeface(custom_font1);
-        weaktxt.setTypeface(custom_font1);
-        locationtxt.setTypeface(custom_font1);
+
+        careerobjtxt.setTypeface(MyConstants.getBold(getActivity()));
+        strengthtxt.setTypeface(MyConstants.getBold(getActivity()));
+        weaktxt.setTypeface(MyConstants.getBold(getActivity()));
+        locationtxt.setTypeface(MyConstants.getBold(getActivity()));
 
         careerobjbutton=(View)rootView.findViewById(R.id.careerobjbutton);
         strengthbutton=(View)rootView.findViewById(R.id.strengthbutton);

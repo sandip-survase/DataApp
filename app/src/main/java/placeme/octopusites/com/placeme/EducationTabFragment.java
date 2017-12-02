@@ -26,11 +26,12 @@ public class EducationTabFragment extends Fragment {
         TextView twelthtxt=(TextView)rootView.findViewById(R.id.twelthtxt);
         TextView ugtxt=(TextView)rootView.findViewById(R.id.ugtxt);
         TextView pgtxt=(TextView)rootView.findViewById(R.id.pgtxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/arba.ttf");
-        tenthtxt.setTypeface(custom_font1);
-        twelthtxt.setTypeface(custom_font1);
-        ugtxt.setTypeface(custom_font1);
-        pgtxt.setTypeface(custom_font1);
+
+
+        tenthtxt.setTypeface(MyConstants.getBold(getActivity()));
+        twelthtxt.setTypeface(MyConstants.getBold(getActivity()));
+        ugtxt.setTypeface(MyConstants.getBold(getActivity()));
+        pgtxt.setTypeface(MyConstants.getBold(getActivity()));
 
 
         tenth=(View)rootView.findViewById(R.id.tenthbutton);
