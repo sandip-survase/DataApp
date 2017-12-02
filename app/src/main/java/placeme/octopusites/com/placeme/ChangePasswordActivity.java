@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -42,6 +44,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     ProgressBar progressBar;
     Button changepassbutton;
     String digest1,digest2;
+    TextInputLayout currentinput,newinput,newainput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +59,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
         digest2 = MySharedPreferencesManager.getDigest2(this);
         username=MySharedPreferencesManager.getUsername(this);
         String role=MySharedPreferencesManager.getRole(this);
-
-
-
 
         currentedittext=(EditText)findViewById(R.id.current_password);
         newpassedittetx=(EditText)findViewById(R.id.new_password);
@@ -114,6 +114,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         });
 
         TextView forgotpassword=(TextView)findViewById(R.id.forgot);
+        forgotpassword.setTypeface(MyConstants.getBold(this));
         forgotpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,44 +124,53 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         TextView createpasstxt=(TextView)findViewById(R.id.createpasstxt);
         TextView passsenstxt=(TextView)findViewById(R.id.passsenstxt);
-
+         currentinput=(TextInputLayout)findViewById(R.id.currentinput);
+         newinput=(TextInputLayout)findViewById(R.id.newinput);
+         newainput=(TextInputLayout)findViewById(R.id.newainput);
+        AppCompatEditText current_password=(AppCompatEditText)findViewById(R.id.current_password);
+        AppCompatEditText new_password=(AppCompatEditText)findViewById(R.id.new_password);
+        AppCompatEditText new_password_again=(AppCompatEditText)findViewById(R.id.new_password_again);
         progressBar=(ProgressBar)findViewById(R.id.changepassprogress);
         changepassbutton=(Button)findViewById(R.id.change_password_button);
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/button.ttf");
-        Typeface custom_font2 = Typeface.createFromAsset(getAssets(),  "fonts/hint.ttf");
-        Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/cabinsemibold.ttf");
-        Typeface custom_font4 = Typeface.createFromAsset(getAssets(),  "fonts/maven.ttf");
-        forgotpassword.setTypeface(custom_font2);
-        changepassbutton.setTypeface(custom_font);
-        createpasstxt.setTypeface(custom_font3);
-        passsenstxt.setTypeface(custom_font4);
+
+        changepassbutton.setTypeface(MyConstants.getBold(this));
+        createpasstxt.setTypeface(MyConstants.getBold(this));
+        passsenstxt.setTypeface(MyConstants.getLight(this));
+        currentinput.setTypeface(MyConstants.getLight(this));
+        newinput.setTypeface(MyConstants.getLight(this));
+        newainput.setTypeface(MyConstants.getLight(this));
+        current_password.setTypeface(MyConstants.getBold(this));
+        new_password.setTypeface(MyConstants.getBold(this));
+        new_password_again.setTypeface(MyConstants.getBold(this));
+
+
         changepassbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
 
-                    currentedittext.setError(null);
-                    newpassedittetx.setError(null);
-                    newpassaedittext.setError(null);
+                    currentinput.setError(null);
+                    newinput.setError(null);
+                    newainput.setError(null);
 
                     currentpass=currentedittext.getText().toString();
                     newpass=newpassedittetx.getText().toString();
                     newpassa=newpassaedittext.getText().toString();
                     int flag1=0,flag2=0,flag3=0;
-                    if(currentpass.length()<3)
+                    if(currentpass.length()<6)
                     {
                         flag1=1;
-                        currentedittext.setError("Invalid Password");
+                        currentinput.setError("Kindly enter valid password");
                     }
-                    if(newpass.length()<6)
+                    else if(newpass.length()<6)
                     {
                         flag2=1;
-                        newpassedittetx.setError("Minimum 6 Characters");
+                        newinput.setError("New password must be of at least 6 characters");
                     }
-                    if(newpassa.length()<6)
+                    else if(newpassa.length()<6)
                     {
                         flag3=1;
-                        newpassaedittext.setError("Minimum 6 Characters");
+                        newainput.setError("New password must be of at least 6 characters");
                     }
                     if(flag1==0&&flag2==0&&flag3==0)
                     {
@@ -195,7 +205,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(ChangePasswordActivity.this,"Passwords didn't match",Toast.LENGTH_LONG).show();
+                            Toast.makeText(ChangePasswordActivity.this,"Passwords didn't match !",Toast.LENGTH_LONG).show();
                         }
                     }
 

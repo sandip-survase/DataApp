@@ -104,7 +104,7 @@ public class EditEmail extends AppCompatActivity {
         otp.setTypeface(MyConstants.getBold(this));
         passpasstxt.setTypeface(MyConstants.getBold(this));
 
-        changeemailbutton.setTypeface(MyConstants.getLight(this));
+        changeemailbutton.setTypeface(MyConstants.getBold(this));
         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
         String sPadding = "ISO10126Padding";

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -27,6 +28,7 @@ public class ForgotPasswordDialog extends AppCompatActivity {
     EditText forgotedittext;
     Button reset;
     JSONParser jParser = new JSONParser();
+    TextView forgottxt,forgotetxt;
     JSONObject json;
     String enteredemailorphone,encemailorphone;
     ProgressBar forgotprogress;
@@ -47,16 +49,18 @@ public class ForgotPasswordDialog extends AppCompatActivity {
 
         android_id = Settings.Secure.getString(getApplication().getContentResolver(), Settings.Secure.ANDROID_ID);
 
+
+        forgottxt=(TextView)findViewById(R.id.forgottxt);
+        forgotetxt=(TextView)findViewById(R.id.forgotetxt);
         forgotedittext=(EditText)findViewById(R.id.forgotedittext);
         reset=(Button)findViewById(R.id.submitforgot);
-
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/button.ttf");
-        reset.setTypeface(custom_font);
-
-        Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/abz.ttf");
-        forgotedittext.setTypeface(custom_font3);
-
         forgotprogress=(ProgressBar)findViewById(R.id.forgotprogress);
+
+        forgottxt.setTypeface(MyConstants.getBold(this));
+        forgotetxt.setTypeface(MyConstants.getLight(this));
+        forgotedittext.setTypeface(MyConstants.getBold(this));
+        reset.setTypeface(MyConstants.getBold(this));
+
 
 
 
@@ -64,23 +68,34 @@ public class ForgotPasswordDialog extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                reset.setVisibility(View.GONE);
-                forgotprogress.setVisibility(View.VISIBLE);
+                boolean flag=false;
+
+
                 enteredemailorphone=forgotedittext.getText().toString();
+                if(enteredemailorphone.length()<5 && !enteredemailorphone.contains("@")){
+                    forgotedittext.setError("Kindly enter your email address");
+                    flag=true;
+                }
+                    if(flag==false) {
 
-                try {
-                    byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                    byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                    String sPadding = "ISO10126Padding";
 
-                    byte[] emailorphoneBytes = enteredemailorphone.getBytes("UTF-8");
+                        try {
+                            byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+                            byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
+                            String sPadding = "ISO10126Padding";
 
-                    byte[] emailorphoneEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, emailorphoneBytes);
-                    encemailorphone=new String(SimpleBase64Encoder.encode(emailorphoneEncryptedBytes));
+                            byte[] emailorphoneBytes = enteredemailorphone.getBytes("UTF-8");
 
-                }catch (Exception e){}
+                            byte[] emailorphoneEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, emailorphoneBytes);
+                            encemailorphone = new String(SimpleBase64Encoder.encode(emailorphoneEncryptedBytes));
+                            forgotprogress.setVisibility(View.VISIBLE);
+                            reset.setVisibility(View.GONE);
 
-                new ForgotPassword().execute();
+                        } catch (Exception e) {
+                        }
+
+                        new ForgotPassword().execute();
+                    }
             }
         });
     }

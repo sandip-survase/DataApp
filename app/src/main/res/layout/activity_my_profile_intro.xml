@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/myprofileintroscrollview"
-    android:background="#fcfdfd">
+    android:background="@color/while_color">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_my_profile_intro"
@@ -36,10 +36,11 @@
                 android:layout_height="wrap_content"
                 android:hint="First Name"
                 android:textSize="16dp"
-                android:textColor="#03353e"
+                android:textColor="@color/dark_color"
                 android:maxLength="50"
                 android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:inputType="textCapWords"
+                android:imeOptions="actionNext"
                 android:singleLine="true"
                 android:id="@+id/fname"
                 />
@@ -59,11 +60,13 @@
                 android:layout_height="wrap_content"
                 android:hint="Last Name"
                 android:textSize="16dp"
-                android:textColor="#03353e"
+                android:textColor="@color/dark_color"
                 android:maxLength="50"
                 android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:inputType="textCapWords"
                 android:singleLine="true"
+                android:imeOptions="actionNext"
+
                 android:id="@+id/lname"
                 />
 
@@ -84,10 +87,7 @@
                 android:hint="Role"
                 android:textSize="16dp"
                 android:focusable="false"
-                android:textColor="#03353e"
-                android:maxLength="50"
-                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                android:inputType="textCapWords"
+                android:textColor="@color/dark_color"
                 android:singleLine="true"
                 android:id="@+id/role"
                 />
@@ -111,10 +111,7 @@
                 android:hint="Email"
                 android:textSize="16dp"
                 android:focusable="false"
-                android:textColor="#03353e"
-                android:maxLength="50"
-                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                android:inputType="textCapWords"
+                android:textColor="@color/dark_color"
                 android:singleLine="true"
                 android:id="@+id/email"
                 />
@@ -156,11 +153,12 @@
                 android:layout_height="wrap_content"
                 android:hint="City / District"
                 android:textSize="16dp"
-                android:textColor="#03353e"
-                android:maxLength="50"
-                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                android:textColor="@color/dark_color"
+                android:maxLength="100"
                 android:inputType="textCapWords"
                 android:singleLine="true"
+                android:imeOptions="actionNext"
+
                 android:id="@+id/citystaecountry"
                 />
 

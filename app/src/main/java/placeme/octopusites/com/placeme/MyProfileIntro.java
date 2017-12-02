@@ -87,9 +87,7 @@ public class MyProfileIntro extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         TextView loctxt = (TextView) findViewById(R.id.loctxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/arba.ttf");
-        loctxt.setTypeface(custom_font1);
-
+        loctxt.setTypeface(MyConstants.getBold(this));
         ScrollView myprofileintroscrollview = (ScrollView) findViewById(R.id.myprofileintroscrollview);
         disableScrollbars(myprofileintroscrollview);
 

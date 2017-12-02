@@ -9,8 +9,8 @@
     </style>
 
     <style name="MyEditTextTheme">
-        <item name="android:textColorHint">#eeeeee</item>
-        <item name="colorControlNormal">#eeeeee</item>
+        <item name="android:textColorHint">#fcfdfd</item>
+        <item name="colorControlNormal">#fcfdfd</item>
         <item name="colorControlActivated">@color/sky_blue_color</item>
         <item name="colorControlHighlight">@color/sky_blue_color</item>
     </style>
