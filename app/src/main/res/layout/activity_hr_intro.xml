@@ -116,7 +116,6 @@
                 android:layout_height="wrap_content"
                 android:hint="Designation"
                 android:textSize="15dp"
-                android:focusable="false"
                 android:singleLine="true"
                 android:textColor="#eee"
                 android:id="@+id/inst"/>

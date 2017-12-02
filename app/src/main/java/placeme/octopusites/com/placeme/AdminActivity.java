@@ -77,9 +77,15 @@ import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
 public class AdminActivity extends AppCompatActivity implements ImagePickerCallback {
 
+
+    public static final String MyPREFERENCES = "MyPrefs";
+    public static final String Username = "nameKey";
+    public static final int ADMIN_DATA_CHANGE_RESULT_CODE =111;
+
     private static String url = "http://192.168.100.100/AESTest/GetImage";
     private static String upload_profile = "http://192.168.100.100/AESTest/UploadProfile";
     private static String load_student_image = "http://192.168.100.100/AESTest/GetImage";
+
     //placement urls
     private static String url_getplacementsmetadata = "http://192.168.100.30/CreateNotificationTemp/GetPlacementsAdminMetaData";
     private static String url_getplacementsreadstatus = "http://192.168.100.30/CreateNotificationTemp/GetReadStatusOfPlacementsForAdmin";
@@ -1396,50 +1402,56 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
-        username=MySharedPreferencesManager.getUsername(AdminActivity.this);
-        try {
-            plainusername=Decrypt(username,digest1,digest2);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-        if (resultCode == 111) {
-            AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-            fragment.refreshContent();
-        } else if (requestCode == Picker.PICK_IMAGE_DEVICE) {
 
+        if (resultCode == ADMIN_DATA_CHANGE_RESULT_CODE) {
+            Log.d("TAG", "onActivityResult: result code " + ADMIN_DATA_CHANGE_RESULT_CODE);
+
+            username = MySharedPreferencesManager.getUsername(AdminActivity.this);
             try {
-                if (imagePicker == null) {
-                    imagePicker = new ImagePicker(this);
-                    imagePicker.setImagePickerCallback(this);
-                }
-                imagePicker.submit(result);
-                crop_layout.setVisibility(View.VISIBLE);
-                tswipe_refresh_layout.setVisibility(View.GONE);
-                mainfragment.setVisibility(View.GONE);
-                crop_flag = 1;
-                beginCrop(result.getData());
-                // Toast.makeText(this, "crop initiated", Toast.LENGTH_SHORT).show();
+                plainusername = Decrypt(username, digest1, digest2);
             } catch (Exception e) {
-                crop_layout.setVisibility(View.GONE);
-                tswipe_refresh_layout.setVisibility(View.GONE);
-                tswipe_refresh_layout.setVisibility(View.GONE);
-                mainfragment.setVisibility(View.VISIBLE);
+                e.printStackTrace();
+            }
+
+            if (resultCode == 111) {
+                AdminProfileFragment fragment = (AdminProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+                fragment.refreshContent();
+            } else if (requestCode == Picker.PICK_IMAGE_DEVICE) {
+
+                try {
+                    if (imagePicker == null) {
+                        imagePicker = new ImagePicker(this);
+                        imagePicker.setImagePickerCallback(this);
+                    }
+                    imagePicker.submit(result);
+                    crop_layout.setVisibility(View.VISIBLE);
+                    tswipe_refresh_layout.setVisibility(View.GONE);
+                    mainfragment.setVisibility(View.GONE);
+                    crop_flag = 1;
+                    beginCrop(result.getData());
+                    // Toast.makeText(this, "crop initiated", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    crop_layout.setVisibility(View.GONE);
+                    tswipe_refresh_layout.setVisibility(View.GONE);
+                    tswipe_refresh_layout.setVisibility(View.GONE);
+                    mainfragment.setVisibility(View.VISIBLE);
 //                 Toast.makeText(this, "here", Toast.LENGTH_SHORT).show();
 
+                }
+            } else if (resultCode == RESULT_CANCELED) {
+                crop_layout.setVisibility(View.GONE);
+                tswipe_refresh_layout.setVisibility(View.GONE);
+                mainfragment.setVisibility(View.VISIBLE);
+                crop_flag = 0;
+            } else if (requestCode == Crop.REQUEST_CROP) {
+
+                // Toast.makeText(this, "cropped", Toast.LENGTH_SHORT).show();
+                handleCrop(resultCode, result);
             }
-        } else if (resultCode == RESULT_CANCELED) {
-            crop_layout.setVisibility(View.GONE);
-            tswipe_refresh_layout.setVisibility(View.GONE);
-            mainfragment.setVisibility(View.VISIBLE);
-            crop_flag = 0;
-        } else if (requestCode == Crop.REQUEST_CROP) {
 
-            // Toast.makeText(this, "cropped", Toast.LENGTH_SHORT).show();
-            handleCrop(resultCode, result);
+
         }
-
-
     }
 
     private void beginCrop(Uri source) {

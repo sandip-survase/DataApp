@@ -1,76 +1,75 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35"
+    android:background="@color/while_color"
     tools:context=".AboutFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        >
+        android:layout_marginTop="100dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Place Me"
-            android:textColor="#eee"
-            android:textSize="30dp"
-            android:layout_centerHorizontal="true"
             android:id="@+id/aboutplacemetxt"
-            />
-
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#bbb"
-            android:layout_below="@+id/aboutplacemetxt"
+            android:layout_centerHorizontal="true"
+            android:text="Place Me"
+            android:textColor="@color/dark_color"
+            android:textSize="30dp" />
+
+        <TextView
             android:id="@+id/versiontxt"
-            android:text="Version 0.0.1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aboutplacemetxt"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            />
+            android:text="Version 0.0.1"
+            android:textColor="@color/dark_color" />
 
         <ImageView
+            android:id="@+id/placemelogo"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@mipmap/ic_launcher"
             android:layout_below="@+id/versiontxt"
-            android:id="@+id/placemelogo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            />
+            android:src="@drawable/logo" />
 
         <TextView
+            android:id="@+id/copyrighttxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#bbb"
             android:layout_below="@id/placemelogo"
-            android:id="@+id/copyrighttxt"
-            android:text="\u00A9 2017 Octopus ITES Pvt. Ltd."
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            />
+            android:text="\u00A9 2017 Octopus ITES Pvt. Ltd."
+            android:textColor="@color/dark_color" />
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/copyrighttxt"
-            android:textColor="#bbb"
-            android:text="All rights reserved."
             android:id="@+id/allrightstxt"
-            />
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:textColor="@android:color/holo_blue_bright"
+            android:layout_below="@+id/copyrighttxt"
+            android:layout_centerHorizontal="true"
+            android:text="All rights reserved."
+            android:textColor="@color/dark_color" />
+
+        <TextView
+            android:id="@+id/licensetxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/allrightstxt"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:text="LICENSES"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/licensetxt"
-            />
+            android:elevation="8dp"
+            android:padding="6dp"
+            android:background="@drawable/textviewborder"
+            android:textColor="@color/while_color"
+            android:textSize="20dp" />
 
     </RelativeLayout>
 

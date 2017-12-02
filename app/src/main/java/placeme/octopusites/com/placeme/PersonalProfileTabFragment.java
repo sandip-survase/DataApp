@@ -1461,8 +1461,12 @@ public class PersonalProfileTabFragment extends Fragment {
 
 
             if (Myrole.equals("student")) {
+
+
                 Log.d("student", "onCreateView: " + Myrole);
                 json = jParser.makeHttpRequest(MyConstants.savepersonalinfo, "GET", params);
+
+
             }
             if (Myrole.equals("alumni")) {
                 json = jParser.makeHttpRequest(MyConstants.savepersonalinfoAlumni, "GET", params);
@@ -1488,7 +1492,7 @@ public class PersonalProfileTabFragment extends Fragment {
                 else if (role.equals("alumni"))
                     getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
 
-//                Toast.makeText(getContext(), "Successfully Updated..!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 edittedFlag = 0;
             } else {
                 Toast.makeText(getContext(), "try again", Toast.LENGTH_SHORT).show();

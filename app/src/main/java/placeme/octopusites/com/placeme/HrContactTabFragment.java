@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +25,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import placeme.octopusites.com.placeme.modal.AdminContactDetailsModal;
+
+import static placeme.octopusites.com.placeme.AES4all.OtoString;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
@@ -39,18 +43,18 @@ public class HrContactTabFragment extends Fragment {
 
 //    private static String   URL_SAVE_HR_CONTACT_DETAILS = "http://192.168.100.10/AESTest/SaveHrContact1";
 
-    String username;
+    String username,role;
     String digest1, digest2;
 
     String hrfname = "", hrlname = "", hremail2 = "", hraddressline1 = "", hraddressline2 = "", hraddressline3 = "", hrphone = "", hrmobile = "", hrmobile2 = "";
     String encfname,enclname,encemail2,encaddressline1,encaddressline2,encaddressline3,encphone,encmobile,encmobile2;
     String plainusername = "";
-
+    String strobj="";
     int edittedFlag=0;
 
     JSONParser jParser = new JSONParser();
     JSONObject json;
-
+    StudentData s = new StudentData();
     HrData hrData = new HrData();
 
     public HrContactTabFragment() {
@@ -68,7 +72,7 @@ public class HrContactTabFragment extends Fragment {
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
         digest2 = MySharedPreferencesManager.getDigest2(getActivity());
         username=MySharedPreferencesManager.getUsername(getActivity());
-        String role=MySharedPreferencesManager.getRole(getActivity());
+        role=MySharedPreferencesManager.getRole(getActivity());
 
 
         fname = (EditText) rootView.findViewById(R.id.fname);
@@ -111,15 +115,26 @@ public class HrContactTabFragment extends Fragment {
         }
 
 
-        hrfname = hrData.getFname();
-        hrlname = hrData.getLname();
-        hrmobile = hrData.getMobile();
-        hremail2 = hrData.getEmail2();
-        hraddressline1 = hrData.getAddressline1();
-        hraddressline2 = hrData.getAddressline2();
-        hraddressline3 = hrData.getAddressline3();
-        hrphone = hrData.getPhone();
-        hrmobile2 = hrData.getMobile2();
+        hrfname = s.getFname();
+        hrlname = s.getLname();
+        hrmobile = s.getPhone();
+        hremail2 = s.getEmail2();
+        hraddressline1 = s.getAddressline1();
+        hraddressline2 = s.getAddressline2();
+        hraddressline3 = s.getAddressline3();
+        hrphone = s.getTelephone();
+        hrmobile2 = s.getMobile2();
+
+
+//        hrfname = hrData.getFname();
+//        hrlname = hrData.getLname();
+//        hrmobile = hrData.getMobile();
+//        hremail2 = hrData.getEmail2();
+//        hraddressline1 = hrData.getAddressline1();
+//        hraddressline2 = hrData.getAddressline2();
+//        hraddressline3 = hrData.getAddressline3();
+//        hrphone = hrData.getPhone();
+//        hrmobile2 = hrData.getMobile2();
 
         if(hrfname!=null) {
             if (hrfname.length() > 1) {
@@ -444,42 +459,13 @@ public class HrContactTabFragment extends Fragment {
 
     public void save()
     {
+
+
         try {
-            byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-            byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-            String sPadding = "ISO10126Padding";
 
-
-            byte[] fnameBytes = hrfname.getBytes("UTF-8");
-            byte[] lnameBytes = hrlname.getBytes("UTF-8");
-            byte[] email2Bytes = hremail2.getBytes("UTF-8");
-            byte[] addressline1Bytes = hraddressline1.getBytes("UTF-8");
-            byte[] addressline2Bytes = hraddressline2.getBytes("UTF-8");
-            byte[] addressline3Bytes = hraddressline3.getBytes("UTF-8");
-            byte[] phoneBytes = hrphone.getBytes("UTF-8");
-            byte[] mobileBytes = hrmobile.getBytes("UTF-8");
-            byte[] mobile2Bytes = hrmobile2.getBytes("UTF-8");
-
-            byte[] fnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fnameBytes);
-            encfname=new String(SimpleBase64Encoder.encode(fnameEncryptedBytes));
-            byte[] lnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, lnameBytes);
-            enclname=new String(SimpleBase64Encoder.encode(lnameEncryptedBytes));
-            byte[] email2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, email2Bytes);
-            encemail2=new String(SimpleBase64Encoder.encode(email2EncryptedBytes));
-            byte[] addressline1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, addressline1Bytes);
-            encaddressline1=new String(SimpleBase64Encoder.encode(addressline1EncryptedBytes));
-            byte[] addressline2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, addressline2Bytes);
-            encaddressline2=new String(SimpleBase64Encoder.encode(addressline2EncryptedBytes));
-            byte[] addressline3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, addressline3Bytes);
-            encaddressline3=new String(SimpleBase64Encoder.encode(addressline3EncryptedBytes));
-            byte[] phoneEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, phoneBytes);
-            encphone=new String(SimpleBase64Encoder.encode(phoneEncryptedBytes));
-            byte[] mobileEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, mobileBytes);
-            encmobile=new String(SimpleBase64Encoder.encode(mobileEncryptedBytes));
-            byte[] mobile2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, mobile2Bytes);
-            encmobile2=new String(SimpleBase64Encoder.encode(mobile2EncryptedBytes));
-
-
+            AdminContactDetailsModal obj = new AdminContactDetailsModal(hrfname, hrlname, plainusername, hremail2, hraddressline1, hraddressline2, hraddressline3, hrphone, hrmobile, hrmobile2);
+            strobj = OtoString(obj, digest1, digest2);
+            Log.d("encstrobj", "strobj: " + strobj);
             new SaveHrContactDetailsTask().execute();
 
         }catch (Exception e){
@@ -491,45 +477,45 @@ public class HrContactTabFragment extends Fragment {
 
 
         protected String doInBackground(String... param) {
-
-            String r=null;
+            String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u",username));               //0
-            params.add(new BasicNameValuePair("f",encfname));               //1
-            params.add(new BasicNameValuePair("l",enclname));               //2
-            params.add(new BasicNameValuePair("e",encemail2));              //3
-            params.add(new BasicNameValuePair("ad1",encaddressline1));      //4
-            params.add(new BasicNameValuePair("ad2",encaddressline2));      //5
-            params.add(new BasicNameValuePair("ad3",encaddressline3));      //6
-            params.add(new BasicNameValuePair("p",encphone));               //7
-            params.add(new BasicNameValuePair("m1",encmobile));             //8
-            params.add(new BasicNameValuePair("m2",encmobile2));            //9
-            json = jParser.makeHttpRequest(MyConstants.URL_SAVE_HR_CONTACT_DETAILS , "GET", params);
+            params.add(new BasicNameValuePair("u", username));       //0
+            params.add(new BasicNameValuePair("obj", strobj));               //1
+//            json = jParser.makeHttpRequest(MyConstants.url_SaveAdminContact, "GET", params);
+
+
+            if (role.equals("hr"))
+                json = jParser.makeHttpRequest(MyConstants.url_SaveHrContact, "GET", params);
+            else
+                json = jParser.makeHttpRequest(MyConstants.url_SaveAdminContact, "GET", params);
+
             try {
                 r = json.getString("info");
-            }catch (Exception e){e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return r;
         }
 
         @Override
         protected void onPostExecute(String result) {
-
-//            contactDetailsProgress.setVisibility(View.GONE);
-//            saveContactDetailsButton.setVisibility(View.VISIBLE);
-
             if(result.equals("success"))
             {
                 edittedFlag=0;
+                Toast.makeText(getActivity(),"Successfully Saved..!",Toast.LENGTH_SHORT).show();
+
+                if (role.equals("hr"))
+                    getActivity().setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
+                else
+                    getActivity().setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
 
 
-//                Toast.makeText(getActivity(),"Successfully Saved..!",Toast.LENGTH_SHORT).show();
-//                HrContactDetails.super.onBackPressed();
+
             }
             else
                 Toast.makeText(getActivity(),result,Toast.LENGTH_SHORT).show();
 
 
-            getActivity().setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
         }
     }
 

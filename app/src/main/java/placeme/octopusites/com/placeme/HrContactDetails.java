@@ -42,7 +42,7 @@ public class HrContactDetails extends AppCompatActivity {
 
 //    private static String   URL_SAVE_HR_CONTACT_DETAILS = "http://192.168.100.10/AESTest/SaveHrContact1";
 
-    String username;
+    String username,role;
     String digest1, digest2;
 
     String hrfname = "", hrlname = "", hremail2 = "", hraddressline1 = "", hraddressline2 = "", hraddressline3 = "", hrphone = "", hrmobile = "", hrmobile2 = "";
@@ -56,7 +56,7 @@ public class HrContactDetails extends AppCompatActivity {
 
     HrData hrData = new HrData();
     String strobj;
-    private static String url_savedata= "http://192.168.100.30:8080/ProfileObjects/SaveAdminContact";
+
 
 
 
@@ -72,6 +72,12 @@ public class HrContactDetails extends AppCompatActivity {
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
+
+        username = MySharedPreferencesManager.getUsername(this);
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        role = MySharedPreferencesManager.getRole(this);
 
 
 
@@ -96,12 +102,6 @@ public class HrContactDetails extends AppCompatActivity {
         Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/arba.ttf");
         addresstxt.setTypeface(custom_font1);
         contactnotxt.setTypeface(custom_font1);
-
-        digest1 = MySharedPreferencesManager.getDigest1(this);
-        digest2 = MySharedPreferencesManager.getDigest2(this);
-        username=MySharedPreferencesManager.getUsername(this);
-        String role=MySharedPreferencesManager.getRole(this);
-
 
         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -419,15 +419,9 @@ public class HrContactDetails extends AppCompatActivity {
                 try {
 
                     AdminContactDetailsModal obj = new AdminContactDetailsModal(hrfname, hrlname, plainusername, hremail2, hraddressline1, hraddressline2, hraddressline3, hrphone, hrmobile, hrmobile2);
-                    try{
                         strobj =OtoString(obj,digest1,digest2);
                         Log.d("encstrobj", "strobj: "+strobj);
-
-                    }
-                    catch (Exception e){
-                        Log.d("TAG", "validateandSave: - "+e.getMessage());
-                    }
-                    new SaveDetails().execute();
+                                  new SaveDetails().execute();
 
                 }catch (Exception e){Toast.makeText(HrContactDetails.this,e.getMessage(),Toast.LENGTH_LONG).show();}
 
@@ -444,7 +438,7 @@ public class HrContactDetails extends AppCompatActivity {
             params.add(new BasicNameValuePair("u",username));       //0
             params.add(new BasicNameValuePair("obj",strobj));               //1
 
-            json = jParser.makeHttpRequest(url_savedata, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_SaveHrContact, "GET", params);
             try {
                 r = json.getString("info");
 
@@ -468,9 +462,11 @@ public class HrContactDetails extends AppCompatActivity {
             {
                 Toast.makeText(HrContactDetails.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
-                if(edittedFlag!=0){
-                    setResult(111);
-                }
+                 if(role.equals("hr"))
+                    setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
+                else if(role.equals("admin"))
+                    setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
+
 
                 HrContactDetails.super.onBackPressed();
             }

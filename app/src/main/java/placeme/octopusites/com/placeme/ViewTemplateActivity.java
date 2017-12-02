@@ -47,24 +47,33 @@ public class ViewTemplateActivity extends AppCompatActivity {
 
         id=getIntent().getIntExtra("key",0);
 
+        Window window = ViewTemplateActivity.this.getWindow();
+        int sdklevel=Integer.valueOf(android.os.Build.VERSION.SDK);
+        if(sdklevel>=21) {
+
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ViewTemplateActivity.this.getResources().getColor(R.color.background));
+        }
+
         main=(ImageView)findViewById(R.id.main);
 
         main.setOnTouchListener(new OnSwipeTouchListener(ViewTemplateActivity.this) {
 
             public void onSwipeLeft() {
 
-                    int i=0;
-                    for(i=0;i<count;i++) {
-                        if (setFlag == resumePages[i])
-                            break;
-                    }
-                    if(i<count-1)
-                    {
-                        i=i+1;
-                        setFlag=resumePages[i];
-                        progressbar.setVisibility(View.VISIBLE);
-                        new GetResumePage().execute();
-                    }
+                int i=0;
+                for(i=0;i<count;i++) {
+                    if (setFlag == resumePages[i])
+                        break;
+                }
+                if(i<count-1)
+                {
+                    i=i+1;
+                    setFlag=resumePages[i];
+                    progressbar.setVisibility(View.VISIBLE);
+                    new GetResumePage().execute();
+                }
             }
             public void onSwipeRight() {
                 int i=0;

@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -28,15 +29,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import placeme.octopusites.com.placeme.modal.Modelmyprofileintro;
 
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
@@ -44,28 +41,31 @@ import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 public class MyProfileIntro extends AppCompatActivity {
 
-    String digest1,digest2;
-    EditText fname,lname,role,email;
+    String digest1, digest2;
+    EditText fname, lname, role, email;
+    TextInputLayout fnameTextInputLayout, lnameTextInputLayout, roleinputlayout, emailinputlayout, citystaecountryinputlayout;
+
+
     AutoCompleteTextView citystaecountry;
     JSONObject json;
     JSONParser jParser = new JSONParser();
 
-    String strobj="";
+    String strobj = "";
     Modelmyprofileintro obj;
-    ArrayList<String> listAll=new ArrayList<String>();
-    int countrycount=0,statecount=0,citycount=0;
-    String firstname="",lastname="",CityStateCountry="";
+    ArrayList<String> listAll = new ArrayList<String>();
+    int countrycount = 0, statecount = 0, citycount = 0;
+    String firstname = "", lastname = "", CityStateCountry = "";
 
-    String oldCountry="",oldState="",oldCity="";
-    String countries[],states[],cities[];
+    String oldCountry = "", oldState = "", oldCity = "";
+    String countries[], states[], cities[];
     //    Spinner country,state,city;
     List<String> countrieslist = new ArrayList<String>();
     List<String> stateslist = new ArrayList<String>();
     List<String> citieslist = new ArrayList<String>();
-    String selectedCountry="",selectedState="",selectedCity="";
-    String encUsername,encRole,encFname,encLname,encCountry,encState,encCity,encobj;
-    int edittedFlag=0,isCountrySet=0,isStateSet=0,isCitySet=0;
-    StudentData s=new StudentData();
+    String selectedCountry = "", selectedState = "", selectedCity = "";
+    String encUsername, encRole, encFname, encLname, encCountry, encState, encCity, encobj;
+    int edittedFlag = 0, isCountrySet = 0, isStateSet = 0, isCitySet = 0;
+    StudentData s = new StudentData();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +73,8 @@ public class MyProfileIntro extends AppCompatActivity {
         setContentView(R.layout.activity_my_profile_intro);
 
 
-        digest1=MySharedPreferencesManager.getDigest1(this);
-        digest2=MySharedPreferencesManager.getDigest2(this);
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
 
 
         ActionBar ab = getSupportActionBar();
@@ -86,76 +86,88 @@ public class MyProfileIntro extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-        TextView loctxt=(TextView)findViewById(R.id.loctxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");
+        TextView loctxt = (TextView) findViewById(R.id.loctxt);
+        Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/arba.ttf");
         loctxt.setTypeface(custom_font1);
 
-        ScrollView myprofileintroscrollview=(ScrollView)findViewById(R.id.myprofileintroscrollview);
+        ScrollView myprofileintroscrollview = (ScrollView) findViewById(R.id.myprofileintroscrollview);
         disableScrollbars(myprofileintroscrollview);
 
-        fname=(EditText)findViewById(R.id.fname);
-        lname=(EditText)findViewById(R.id.lname);
-        role=(EditText)findViewById(R.id.role);
-        email=(EditText)findViewById(R.id.email);
-        citystaecountry=(AutoCompleteTextView)findViewById(R.id.citystaecountry);
+        fname = (EditText) findViewById(R.id.fname);
+        lname = (EditText) findViewById(R.id.lname);
+        role = (EditText) findViewById(R.id.role);
+        email = (EditText) findViewById(R.id.email);
+        citystaecountry = (AutoCompleteTextView) findViewById(R.id.citystaecountry);
 
-        firstname=s.getFname();
-        lastname=s.getLname();
+        fnameTextInputLayout = (TextInputLayout) findViewById(R.id.fnameTextInputLayout);
+        lnameTextInputLayout = (TextInputLayout) findViewById(R.id.lnameTextInputLayout);
+        roleinputlayout = (TextInputLayout) findViewById(R.id.roleinputlayout);
+        emailinputlayout = (TextInputLayout) findViewById(R.id.emailinputlayout);
+        citystaecountryinputlayout = (TextInputLayout) findViewById(R.id.citystaecountryinputlayout);
+
+        fname.setTypeface(MyConstants.getBold(this));
+        lname.setTypeface(MyConstants.getBold(this));
+        role.setTypeface(MyConstants.getBold(this));
+        email.setTypeface(MyConstants.getBold(this));
+        citystaecountry.setTypeface(MyConstants.getBold(this));
+
+        fnameTextInputLayout.setTypeface(MyConstants.getLight(this));
+        lnameTextInputLayout.setTypeface(MyConstants.getLight(this));
+        roleinputlayout.setTypeface(MyConstants.getLight(this));
+        emailinputlayout.setTypeface(MyConstants.getLight(this));
+        citystaecountryinputlayout.setTypeface(MyConstants.getLight(this));
+
+
+        firstname = s.getFname();
+        lastname = s.getLname();
         selectedCountry = s.getCountry();
         selectedState = s.getState();
         selectedCity = s.getCity();
 
-        if(firstname!=null)
+        if (firstname != null)
             fname.setText(firstname);
-        if(lastname!=null)
+        if (lastname != null)
             lname.setText(lastname);
 
-        if(selectedCountry!=null && selectedState!=null && selectedCity!=null)
-        {
-            CityStateCountry = selectedCity+" , "+selectedState+" , "+selectedCountry;
+        if (selectedCountry != null && selectedState != null && selectedCity != null) {
+            CityStateCountry = selectedCity + " , " + selectedState + " , " + selectedCountry;
             citystaecountry.setText(CityStateCountry);
         }
 
-        String plainUsername=null;
-        String username=MySharedPreferencesManager.getUsername(this);
-        String rolestr=MySharedPreferencesManager.getRole(this);
+        String plainUsername = null;
+        String username = MySharedPreferencesManager.getUsername(this);
+        String rolestr = MySharedPreferencesManager.getRole(this);
         try {
-            plainUsername=Decrypt(username,digest1,digest2);
+            plainUsername = Decrypt(username, digest1, digest2);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        role.setText(rolestr.substring(0, 1).toUpperCase()+ rolestr.substring(1));
+        role.setText(rolestr.substring(0, 1).toUpperCase() + rolestr.substring(1));
         email.setText(plainUsername);
-        encUsername=username;
+        encUsername = username;
 //        encUsername=MySharedPreferencesManager.getUsername(this);
-        Log.d("TAG", "encUsername: "+encUsername);
+        Log.d("TAG", "encUsername: " + encUsername);
 
 
+        try {
+            JSONObject jsonObject = new JSONObject(getJson());
+            JSONArray array = jsonObject.getJSONArray("array");
+            for (int i = 0; i < array.length(); i++) {
+
+                JSONObject object = array.getJSONObject(i);
+                String city = object.getString("city");
+                String state = object.getString("state");
+                String country = object.getString("country");
 
 
-        try
-        {
-            JSONObject jsonObject=new JSONObject(getJson());
-            JSONArray array=jsonObject.getJSONArray("array");
-            for(int i=0;i<array.length();i++)
-            {
-
-                JSONObject object=array.getJSONObject(i);
-                String city=object.getString("city");
-                String state=object.getString("state");
-                String country=object.getString("country");
-
-
-                listAll.add(city+" , "+state+" , "+country);
+                listAll.add(city + " , " + state + " , " + country);
 
             }
-        }
-        catch (JSONException e)
-        {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,listAll);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, listAll);
         citystaecountry.setAdapter(adapter);
 
         citystaecountry.addTextChangedListener(new TextWatcher() {
@@ -166,7 +178,8 @@ public class MyProfileIntro extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                edittedFlag=1;
+                edittedFlag = 1;
+                citystaecountryinputlayout.setError(null);
             }
 
             @Override
@@ -176,12 +189,11 @@ public class MyProfileIntro extends AppCompatActivity {
         });
 
 
-
         fname.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                fname.setError(null);
-                edittedFlag=1;
+                fnameTextInputLayout.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -199,8 +211,10 @@ public class MyProfileIntro extends AppCompatActivity {
         lname.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                lname.setError(null);
-                edittedFlag=1;
+
+                lnameTextInputLayout.setError(null);
+
+                edittedFlag = 1;
             }
 
             @Override
@@ -216,48 +230,20 @@ public class MyProfileIntro extends AppCompatActivity {
 
         });
 
-        edittedFlag=0;
-
-    }
-//    encrpt code
-
-    private static String toString( Serializable o ) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream( baos );
-        oos.writeObject( o );
-        oos.close();
-
-
-        return  new String(SimpleBase64Encoder.encode(baos.toByteArray()));
+        edittedFlag = 0;
 
     }
 
-    private static Object fromString( String s ) throws IOException ,
-            ClassNotFoundException {
-
-        byte[] data = SimpleBase64Encoder.decode(s);
-        ObjectInputStream ois = new ObjectInputStream(
-                new ByteArrayInputStream(  data ) );
-        Object o  = ois.readObject();
-        ois.close();
-        return o;
-    }
-//  encrypt  code end
-
-    public String getJson()
-    {
-        String json=null;
-        try
-        {
+    public String getJson() {
+        String json = null;
+        try {
             InputStream is = getAssets().open("citystatecountrydb/array.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
             is.close();
             json = new String(buffer, "UTF-8");
-        }
-        catch (IOException ex)
-        {
+        } catch (IOException ex) {
             ex.printStackTrace();
             return json;
         }
@@ -273,117 +259,60 @@ public class MyProfileIntro extends AppCompatActivity {
         }
     }
 
-    void validateandSave()
-    {
-        int errorflag1=0,errorflag2=0,errorflag3=0,errorflag4=0;
+    void validateandSave() {
+        int errorflag1 = 0, errorflag2 = 0, errorflag3 = 0, errorflag4 = 0;
 
-        firstname=fname.getText().toString();
-        lastname=lname.getText().toString();
+        firstname = fname.getText().toString();
+        lastname = lname.getText().toString();
         CityStateCountry = citystaecountry.getText().toString();
 
+        if (firstname.length() < 1) {
+            fnameTextInputLayout.setError("Kindly enter valid first name");
+            errorflag4 = 1;
+        } else {
+            fnameTextInputLayout.setError(null);
+            if (lastname.length() < 1) {
+                lnameTextInputLayout.setError("Kindly enter valid last name");
+                errorflag4 = 1;
+            } else {
+                lnameTextInputLayout.setError(null);
 
-        if(CityStateCountry.length()<2)
-        {
-            citystaecountry.setError("Incorrect City Name");
-            errorflag4=1;
-        }
-        else
-        {
-            citystaecountry.setError(null);
+                if (CityStateCountry.length() < 1) {
+                    citystaecountryinputlayout.setError("Please select your city");
+                    errorflag4 = 1;
+                } else {
+                    citystaecountryinputlayout.setError(null);
 
-            String[] parts = CityStateCountry.split(" , ");
-            if(parts.length==3) {
-                selectedCity = parts[0];
-                selectedState = parts[1];
-                selectedCountry = parts[2];
+                    String[] parts = CityStateCountry.split(" , ");
+                    if (parts.length == 3) {
+                        selectedCity = parts[0];
+                        selectedState = parts[1];
+                        selectedCountry = parts[2];
+                    }
+                }
+
             }
-        }
 
-
-
-
-        if(firstname.length()<2)
-        {
-            fname.setError("Incorrect First Name");
-            errorflag4=1;
-        }
-        else {
-            fname.setError(null);
 
         }
 
 
+        if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0) {
+            try {
 
-        if(errorflag1==0&&errorflag2==0&&errorflag3==0&&errorflag4==0)
-        {
-            try
-            {
+                Modelmyprofileintro obj2 = new Modelmyprofileintro(firstname, lastname, selectedCity, selectedState, selectedCountry);
 
-                Modelmyprofileintro obj2 = new Modelmyprofileintro(firstname, lastname,selectedCity,selectedState,selectedCountry);
-
-                encobj =OtoString(obj2,digest1,digest2);
-                Log.d("TAG", "validateandSave: encobj - "+encobj);
+                encobj = OtoString(obj2, digest1, digest2);
+                Log.d("TAG", "validateandSave: encobj - " + encobj);
 
                 new SaveData().execute(encobj);
 
-            }catch (Exception e){
-                Log.d("TAG", "validateandSave: Exception -  "+e.getMessage());
+            } catch (Exception e) {
+                Log.d("TAG", "validateandSave: Exception -  " + e.getMessage());
             }
         }
 
     }
-
-
-
-    class SaveData extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            String r=null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u",encUsername));//0
-            Log.d("TAG", "encUsername: "+encUsername);
-            params.add(new BasicNameValuePair("ci",encobj));       //1
-            Log.d("TAG", "encobj: "+encobj);
-
-
-            json = jParser.makeHttpRequest(MyConstants.url_savedata_SaveIntro, "GET", params);
-            try {
-
-                r = json.getString("info");
-
-//                String user  = json.getString("username");
-
-                Log.d("TAG", "doInBackground: r -"+r);
-//                Log.d("TAG", "doInBackground: r -"+r);
-            }catch (Exception e){e.printStackTrace();}
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            if(result.equals("success"))
-            {
-                Toast.makeText(MyProfileIntro.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
-
-                setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
-
-                s.setFname(firstname);
-                s.setLname(lastname);
-                s.setCountry(selectedCountry);
-                s.setState(selectedState);
-                s.setCity(selectedCity);
-
-                MyProfileIntro.super.onBackPressed();
-            }else
-                Toast.makeText(MyProfileIntro.this,result,Toast.LENGTH_SHORT).show();
-
-
-        }
-    }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -395,15 +324,17 @@ public class MyProfileIntro extends AppCompatActivity {
 
             case android.R.id.home:
                 onBackPressed();
-                return(true);
+                return (true);
         }
 
-        return(super.onOptionsItemSelected(item));
+        return (super.onOptionsItemSelected(item));
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.savemenu, menu);
+
+
         return super.onCreateOptionsMenu(menu);
 
     }
@@ -412,8 +343,7 @@ public class MyProfileIntro extends AppCompatActivity {
     public void onBackPressed() {
 
 
-        if(edittedFlag==1)
-        {
+        if (edittedFlag == 1) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
             alertDialogBuilder
@@ -444,8 +374,60 @@ public class MyProfileIntro extends AppCompatActivity {
             });
 
             alertDialog.show();
-        }
-        else
+        } else
             MyProfileIntro.super.onBackPressed();
+    }
+
+    class SaveData extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", encUsername));//0
+            Log.d("TAG", "encUsername: " + encUsername);
+            params.add(new BasicNameValuePair("ci", encobj));       //1
+            Log.d("TAG", "encobj: " + encobj);
+
+
+            json = jParser.makeHttpRequest(MyConstants.url_savedata_SaveIntro, "GET", params);
+            try {
+                r = json.getString("info");
+                Log.d("TAG", "doInBackground: r -" + r);
+//                Log.d("TAG", "doInBackground: r -"+r);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (result.equals("success")) {
+                Toast.makeText(MyProfileIntro.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+
+
+                String role = MySharedPreferencesManager.getRole(MyProfileIntro.this);
+                if (role.equals("student"))
+                    setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+                else if (role.equals("alumni"))
+                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+
+                MyProfileIntro.super.onBackPressed();
+
+                s.setFname(firstname);
+                s.setLname(lastname);
+                s.setCountry(selectedCountry);
+                s.setState(selectedState);
+                s.setCity(selectedCity);
+
+                MyProfileIntro.super.onBackPressed();
+            } else
+                Toast.makeText(MyProfileIntro.this, result, Toast.LENGTH_SHORT).show();
+
+
+        }
     }
 }
