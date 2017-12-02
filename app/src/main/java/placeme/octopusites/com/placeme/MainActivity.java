@@ -521,7 +521,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         getSupportActionBar().setTitle("");
                         toolbar_title.setText("Blog");
                         tswipe_refresh_layout.setVisibility(View.GONE);
-
                         mainfragment.setVisibility(View.GONE);
                         mViewPager.setVisibility(View.VISIBLE);
                         tabLayout.setVisibility(View.VISIBLE);

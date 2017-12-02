@@ -92,18 +92,19 @@ public class EditEmail extends AppCompatActivity {
 
         changeemailbutton=(Button)findViewById(R.id.changeemailbutton);
 
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/cabinsemibold.ttf");
-        asstxt.setTypeface(custom_font);
-        ass2txt.setTypeface(custom_font);
+        asstxt.setTypeface(MyConstants.getLight(this));
+        primaryemail.setTypeface(MyConstants.getBold(this));
+        emailemailtxt.setTypeface(MyConstants.getLight(this));
+        ass2txt.setTypeface(MyConstants.getBold(this));
+        emailinput.setTypeface(MyConstants.getLight(this));
+        newemail.setTypeface(MyConstants.getBold(this));
+        passinput.setTypeface(MyConstants.getLight(this));
+        accountpassword.setTypeface(MyConstants.getBold(this));
+        otpinput.setTypeface(MyConstants.getLight(this));
+        otp.setTypeface(MyConstants.getBold(this));
+        passpasstxt.setTypeface(MyConstants.getBold(this));
 
-        Typeface custom_fon2 = Typeface.createFromAsset(getAssets(),  "fonts/maven.ttf");
-        emailemailtxt.setTypeface(custom_fon2);
-        passpasstxt.setTypeface(custom_fon2);
-
-        Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/button.ttf");
-        changeemailbutton.setTypeface(custom_font3);
-
-
+        changeemailbutton.setTypeface(MyConstants.getLight(this));
         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
         String sPadding = "ISO10126Padding";
@@ -139,13 +140,13 @@ public class EditEmail extends AppCompatActivity {
                     snewemail = newemail.getText().toString();
                     saccountpassword = accountpassword.getText().toString();
                     int errotflag = 0;
-                    if (snewemail.length() < 10 || !snewemail.contains("@")) {
+                    if (snewemail.length() < 5 || !snewemail.contains("@")) {
                         errotflag = 1;
-                        newemail.setError("Enter Valid Email");
+                        emailinput.setError("Kindly enter valid email address");
                     } else {
-                        if (saccountpassword.length() < 3) {
+                        if (saccountpassword.length() < 6) {
                             errotflag = 1;
-                            accountpassword.setError("Invalid Password");
+                            passinput.setError("Kindly enter valid account password");
                         }
                     }
                     if (errotflag == 0) {
@@ -166,7 +167,7 @@ public class EditEmail extends AppCompatActivity {
                                 changeemailbutton.setVisibility(View.GONE);
                                 new SaveEditedEmail().execute();
                             } else
-                                Toast.makeText(EditEmail.this, plainusername + " is your current username, please enter another email", Toast.LENGTH_LONG).show();
+                                Toast.makeText(EditEmail.this, plainusername + " is your current email address. Kindly enter new email address to which you want to switch your account.", Toast.LENGTH_LONG).show();
                         } catch (Exception e) {
                         }
                     }
@@ -208,11 +209,11 @@ public class EditEmail extends AppCompatActivity {
 
             } else if (result.equals("fail")) {
                 otpflag=0;
-                Toast.makeText(EditEmail.this, "Incorrect OTP..!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditEmail.this, "Your entered OTP is incorrect. Kindly enter valid OTP.", Toast.LENGTH_SHORT).show();
             }
             else if (result.equals("expired")) {
                 otpflag=0;
-                Toast.makeText(EditEmail.this, "OTP expired.Please try again.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditEmail.this, "OTP Expired. Click on Resend OTP.", Toast.LENGTH_SHORT).show();
             }
 
 
@@ -292,7 +293,7 @@ public class EditEmail extends AppCompatActivity {
                 otpinput.setVisibility(View.VISIBLE);
                 otpflag=1;
                 TextView passpasstxt=(TextView)findViewById(R.id.passpasstxt);
-                passpasstxt.setText("A confirmation link has been sent to "+snewemail);
+                passpasstxt.setText("Enter One Time Password (OTP) sent on "+snewemail);
             } else if (result.equals("wrong")) {
                 otpflag=0;
                 Toast.makeText(EditEmail.this, "Incorrect account's password", Toast.LENGTH_LONG).show();

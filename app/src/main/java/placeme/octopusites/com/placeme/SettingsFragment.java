@@ -78,52 +78,37 @@ public class SettingsFragment extends Fragment {
 
 
         TextView trytxt=(TextView)rootView.findViewById(R.id.trytxt);
-        TextView protxt=(TextView)rootView.findViewById(R.id.protxt);
-        TextView freetxt=(TextView)rootView.findViewById(R.id.freetxt);
-
+//
         role=MySharedPreferencesManager.getRole(getActivity());
 
         if(role.equals("hr"))
         {
             proselectionview.setVisibility(View.GONE);
             trytxt.setVisibility(View.GONE);
-            protxt.setVisibility(View.GONE);
-            freetxt.setVisibility(View.GONE);
             proprotxt.setVisibility(View.GONE);
             View settingsline4=(View)rootView.findViewById(R.id.settingsline4);
             settingsline4.setVisibility(View.GONE);
         }
 
 
-        Typeface custom_font = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/cabinsemibold.ttf");
-        emailtxt.setTypeface(custom_font);
-        notiftxt.setTypeface(custom_font);
-        passtxt.setTypeface(custom_font);
-        logintxt.setTypeface(custom_font);
-        reporttxt.setTypeface(custom_font);
-
-        Typeface custom_font2 = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/maven.ttf");
-        emailemailtxt.setTypeface(custom_font2);
-        notifnotiftxt.setTypeface(custom_font2);
-        passpasstxt.setTypeface(custom_font2);
-        proprotxt.setTypeface(custom_font2);
-        loginlogintxt.setTypeface(custom_font2);
-        reportreporttxt.setTypeface(custom_font2);
-
-        Typeface custom_font3 = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/algeriya.ttf");
-        faqtxt.setTypeface(custom_font3);
-        helptxt.setTypeface(custom_font3);
-        privacytxt.setTypeface(custom_font3);
-        termstxt.setTypeface(custom_font3);
-        agreementtxt.setTypeface(custom_font3);
-        signouttxt.setTypeface(custom_font3);
-
-        Typeface custom_font10 = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/hint.ttf");
-        Typeface custom_font11 = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/hamm.ttf");
-
-        protxt.setTypeface(custom_font10);
-        trytxt.setTypeface(custom_font11);
-        freetxt.setTypeface(custom_font11);
+        emailtxt.setTypeface(MyConstants.getBold(getActivity()));
+        emailemailtxt.setTypeface(MyConstants.getLight(getActivity()));
+        notiftxt.setTypeface(MyConstants.getBold(getActivity()));
+        notifnotiftxt.setTypeface(MyConstants.getLight(getActivity()));
+        passtxt.setTypeface(MyConstants.getBold(getActivity()));
+        passpasstxt.setTypeface(MyConstants.getLight(getActivity()));
+        trytxt.setTypeface(MyConstants.getBold(getActivity()));
+        proprotxt.setTypeface(MyConstants.getLight(getActivity()));
+        logintxt.setTypeface(MyConstants.getBold(getActivity()));
+        loginlogintxt.setTypeface(MyConstants.getLight(getActivity()));
+        reporttxt.setTypeface(MyConstants.getBold(getActivity()));
+        reportreporttxt.setTypeface(MyConstants.getLight(getActivity()));
+        faqtxt.setTypeface(MyConstants.getBold(getActivity()));
+        helptxt.setTypeface(MyConstants.getBold(getActivity()));
+        privacytxt.setTypeface(MyConstants.getBold(getActivity()));
+        termstxt.setTypeface(MyConstants.getBold(getActivity()));
+        agreementtxt.setTypeface(MyConstants.getBold(getActivity()));
+        signouttxt.setTypeface(MyConstants.getBold(getActivity()));
 
         proselectionview.setOnClickListener(new View.OnClickListener() {
             @Override

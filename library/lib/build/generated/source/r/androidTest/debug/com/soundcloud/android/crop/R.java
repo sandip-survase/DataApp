@@ -20,6 +20,9 @@ public final class R {
         public static final int crop__button_text = 0x7f020002;
         public static final int crop__selector_focused = 0x7f020003;
         public static final int crop__selector_pressed = 0x7f020004;
+        public static final int dark_color = 0x7f020005;
+        public static final int sky_blue_color = 0x7f020006;
+        public static final int while_color = 0x7f020007;
     }
     public static final class dimen {
         public static final int crop__bar_height = 0x7f030000;
@@ -36,9 +39,11 @@ public final class R {
         public static final int btn_cancel = 0x7f050001;
         public static final int btn_done = 0x7f050002;
         public static final int changing = 0x7f050003;
-        public static final int crop_image = 0x7f050004;
-        public static final int done_cancel_bar = 0x7f050005;
-        public static final int never = 0x7f050006;
+        public static final int crop_cancel = 0x7f050004;
+        public static final int crop_done = 0x7f050005;
+        public static final int crop_image = 0x7f050006;
+        public static final int done_cancel_bar = 0x7f050007;
+        public static final int never = 0x7f050008;
     }
     public static final class layout {
         public static final int crop__activity_crop = 0x7f060000;
