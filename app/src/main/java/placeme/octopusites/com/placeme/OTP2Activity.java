@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,17 +25,18 @@ import java.util.List;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 public class OTP2Activity extends AppCompatActivity {
-    EditText otpedittext;
+    AppCompatEditText otpedittext;
+    TextInputLayout otplayout;
     Button verify;
     String enteredOTP,encOTP;
     String encUsername,encpassword;
     JSONParser jParser = new JSONParser();
     JSONObject json;
     String resultofop="";
-    TextView resendotp;
+    TextView resendotp,entertxt,otptxt;
     ProgressBar otpprogress;
-    private static String url_verifyotp= "http://192.168.0.100/AESTest/VerifyOTP";
-    private static String url_resendotp= "http://192.168.0.100/AESTest/ResendOTP";
+    private static String url_verifyotp= "http://192.168.100.100/AESTest/VerifyOTP";
+    private static String url_resendotp= "http://192.168.100.100/AESTest/ResendOTP";
     String digest1,digest2;
     public static final String MyPREFERENCES = "MyPrefs" ;
 
@@ -42,8 +45,19 @@ public class OTP2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp2);
 
-        otpedittext=(EditText)findViewById(R.id.otp);
+        otplayout=(TextInputLayout)findViewById(R.id.otplayout);
+        entertxt=(TextView)findViewById(R.id.entertxt);
+        resendotp=(TextView)findViewById(R.id.resend);
+        otptxt=(TextView)findViewById(R.id.otptxt);
+        otpedittext=(AppCompatEditText)findViewById(R.id.otp);
         verify=(Button)findViewById(R.id.submitotp);
+
+        entertxt.setTypeface(MyConstants.getBold(this));
+        otptxt.setTypeface(MyConstants.getLight(this));
+        resendotp.setTypeface(MyConstants.getBold(this));
+        otplayout.setTypeface(MyConstants.getLight(this));
+        otpedittext.setTypeface(MyConstants.getBold(this));
+        verify.setTypeface(MyConstants.getBold(this));
 
         otpprogress=(ProgressBar)findViewById(R.id.otpprogress);
 
@@ -51,13 +65,9 @@ public class OTP2Activity extends AppCompatActivity {
         digest2 = MySharedPreferencesManager.getDigest2(this);
         encUsername=MySharedPreferencesManager.getUsername(this);
 
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/button.ttf");
-        verify.setTypeface(custom_font);
 
-        Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/abz.ttf");
-        otpedittext.setTypeface(custom_font3);
 
-        resendotp=(TextView)findViewById(R.id.resend);
+
         resendotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

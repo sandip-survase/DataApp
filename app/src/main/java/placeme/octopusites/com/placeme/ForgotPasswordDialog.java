@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +30,7 @@ public class ForgotPasswordDialog extends AppCompatActivity {
     Button reset;
     JSONParser jParser = new JSONParser();
     TextView forgottxt,forgotetxt;
+    TextInputLayout forgotemailinput;
     JSONObject json;
     String enteredemailorphone,encemailorphone;
     ProgressBar forgotprogress;
@@ -50,6 +52,7 @@ public class ForgotPasswordDialog extends AppCompatActivity {
         android_id = Settings.Secure.getString(getApplication().getContentResolver(), Settings.Secure.ANDROID_ID);
 
 
+        forgotemailinput=(TextInputLayout)findViewById(R.id.forgotemailinput);
         forgottxt=(TextView)findViewById(R.id.forgottxt);
         forgotetxt=(TextView)findViewById(R.id.forgotetxt);
         forgotedittext=(EditText)findViewById(R.id.forgotedittext);
@@ -57,6 +60,7 @@ public class ForgotPasswordDialog extends AppCompatActivity {
         forgotprogress=(ProgressBar)findViewById(R.id.forgotprogress);
 
         forgottxt.setTypeface(MyConstants.getBold(this));
+        forgotemailinput.setTypeface(MyConstants.getLight(this));
         forgotetxt.setTypeface(MyConstants.getLight(this));
         forgotedittext.setTypeface(MyConstants.getBold(this));
         reset.setTypeface(MyConstants.getBold(this));
@@ -72,10 +76,26 @@ public class ForgotPasswordDialog extends AppCompatActivity {
 
 
                 enteredemailorphone=forgotedittext.getText().toString();
-                if(enteredemailorphone.length()<5 && !enteredemailorphone.contains("@")){
-                    forgotedittext.setError("Kindly enter your email address");
+                if(enteredemailorphone.length()>4 && enteredemailorphone.contains("@")){
+                    String checkemail=MySharedPreferencesManager.getUsername(ForgotPasswordDialog.this);
+                    try {
+                        checkemail=AES4all.Decrypt(checkemail,digest1,digest2);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    if(!checkemail.equals(enteredemailorphone)) {
+                        flag = true;
+                        forgotemailinput.setError("Kindly enter your valid email address");
+                    }
+
+                }
+                else
+                {
+                    forgotemailinput.setError("Kindly enter your email address");
                     flag=true;
                 }
+
+
                     if(flag==false) {
 
 

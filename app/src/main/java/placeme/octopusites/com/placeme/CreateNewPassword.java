@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -28,7 +30,8 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 public class CreateNewPassword extends AppCompatActivity {
 
-    EditText newpassedittetx,newpassaedittext;
+    AppCompatEditText newpassedittetx,newpassaedittext;
+    TextInputLayout newinput,newainput;
     String encUsername,role,newpass,newpassa,encpassword,resultofop="";
     JSONObject json;
     JSONParser jParser = new JSONParser();
@@ -49,23 +52,28 @@ public class CreateNewPassword extends AppCompatActivity {
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
         encUsername=MySharedPreferencesManager.getUsername(this);
-        String role=MySharedPreferencesManager.getRole(this);
+        role=MySharedPreferencesManager.getRole(this);
 
-        newpassedittetx=(EditText)findViewById(R.id.new_password);
-        newpassaedittext=(EditText)findViewById(R.id.new_password_again);
+        newinput=(TextInputLayout)findViewById(R.id.newinput);
+        newainput=(TextInputLayout)findViewById(R.id.newainput);
+        newpassedittetx=(AppCompatEditText)findViewById(R.id.new_password);
+        newpassaedittext=(AppCompatEditText)findViewById(R.id.new_password_again);
 
         TextView createpasstxt=(TextView)findViewById(R.id.createpasstxt);
         TextView passsenstxt=(TextView)findViewById(R.id.passsenstxt);
-
         progressBar=(ProgressBar)findViewById(R.id.changepassprogress);
         changepassbutton=(Button)findViewById(R.id.change_password_button);
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/button.ttf");
-        Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/cabinsemibold.ttf");
-        Typeface custom_font4 = Typeface.createFromAsset(getAssets(),  "fonts/maven.ttf");
 
-        changepassbutton.setTypeface(custom_font);
-        createpasstxt.setTypeface(custom_font3);
-        passsenstxt.setTypeface(custom_font4);
+        createpasstxt.setTypeface(MyConstants.getBold(this));
+        passsenstxt.setTypeface(MyConstants.getLight(this));
+        newinput.setTypeface(MyConstants.getLight(this));
+        newainput.setTypeface(MyConstants.getLight(this));
+        newpassedittetx.setTypeface(MyConstants.getBold(this));
+        newpassaedittext.setTypeface(MyConstants.getBold(this));
+        changepassbutton.setTypeface(MyConstants.getBold(this));
+
+
+
 
         changepassbutton.setOnClickListener(new View.OnClickListener() {
             @Override
