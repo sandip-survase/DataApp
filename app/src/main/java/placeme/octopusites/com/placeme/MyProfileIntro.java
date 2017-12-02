@@ -128,9 +128,17 @@ public class MyProfileIntro extends AppCompatActivity {
             lname.setText(lastname);
 
         if (selectedCountry != null && selectedState != null && selectedCity != null) {
-            CityStateCountry = selectedCity + " , " + selectedState + " , " + selectedCountry;
-            citystaecountry.setText(CityStateCountry);
+            if(!selectedCountry.equals("") && !selectedState.equals("") && !selectedCity.equals("")) {
+                CityStateCountry = selectedCity + " , " + selectedState + " , " + selectedCountry;
+                citystaecountry.setText(CityStateCountry);
+            }
+            else
+                citystaecountry.setText("City/District");
+
         }
+        else
+            citystaecountry.setText("City/District");
+
 
         String plainUsername = null;
         String username = MySharedPreferencesManager.getUsername(this);

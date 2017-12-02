@@ -34,7 +34,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="First Name"
+                android:hint="First Name *"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
                 android:maxLength="50"
@@ -48,27 +48,27 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/lnameTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/section"
             android:layout_toRightOf="@+id/section"
-            android:theme="@style/TextLabel"
-            android:id="@+id/lnameTextInputLayout"
-            >
+            android:theme="@style/TextLabel">
 
             <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/lname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Last Name"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
-                android:maxLength="50"
                 android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                android:inputType="textCapWords"
-                android:singleLine="true"
+                android:hint="Last Name *"
                 android:imeOptions="actionNext"
+                android:inputType="textCapWords"
+                android:maxLength="50"
+                android:singleLine="true"
+                android:textColor="@color/dark_color"
 
-                android:id="@+id/lname"
-                />
+                android:textSize="16dp" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -84,7 +84,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Role"
+                android:hint="Role *"
                 android:textSize="16dp"
                 android:focusable="false"
                 android:textColor="@color/dark_color"
@@ -108,7 +108,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
+                android:hint="Email *"
                 android:textSize="16dp"
                 android:focusable="false"
                 android:textColor="@color/dark_color"
@@ -121,7 +121,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Location Details"
+            android:text="Location Details "
             android:layout_below="@+id/emailinputlayout"
             android:textSize="20dp"
             android:textColor="@color/while_color"
@@ -151,7 +151,7 @@
             <AutoCompleteTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="City / District"
+                android:hint="City / District *"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
                 android:maxLength="100"

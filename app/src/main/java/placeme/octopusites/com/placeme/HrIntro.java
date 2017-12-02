@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -50,7 +51,7 @@ public class HrIntro extends AppCompatActivity {
 
 
     public static final String USERNAME = "nameKey";
-//    private Spinner country, state, city;
+    //    private Spinner country, state, city;
     public static final String MyPREFERENCES = "MyPrefs";
     String strobj = "";
     String encobj = "";
@@ -64,7 +65,7 @@ public class HrIntro extends AppCompatActivity {
     String userName, roleValue;
     String encUsername, encRole, encFname, encLname, encCountry, encState, encCity, encdesignation;
     HrData hr = new HrData();
-
+    TextInputLayout fnameTextInputLayout, lnameTextInputLayout, roleinputlayout,designinputlayout, emailinputlayout, citystaecountryinputlayout;
     private EditText fname, lname, role, email, designation;
     private String digest1, digest2;
 
@@ -81,21 +82,34 @@ public class HrIntro extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-
         TextView loctxt = (TextView) findViewById(R.id.loctxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/arba.ttf");
-        loctxt.setTypeface(custom_font1);
-
-        //-----------------
+        loctxt.setTypeface(MyConstants.getBold(this));
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
 
         fname = (EditText) findViewById(R.id.fname);
-        lname = (EditText) findViewById(R.id.sname);
+        lname = (EditText) findViewById(R.id.lname);
         role = (EditText) findViewById(R.id.role);
         email = (EditText) findViewById(R.id.email);
         designation = (EditText) findViewById(R.id.inst);
+        citystaecountry = (AutoCompleteTextView) findViewById(R.id.citystaecountry);
+
+        fname.setTypeface(MyConstants.getBold(this));
+        lname.setTypeface(MyConstants.getBold(this));
+        role.setTypeface(MyConstants.getBold(this));
+        email.setTypeface(MyConstants.getBold(this));
+        designation.setTypeface(MyConstants.getBold(this));
+        citystaecountry.setTypeface(MyConstants.getBold(this));
+
+
+
+        fnameTextInputLayout = (TextInputLayout) findViewById(R.id.fnameTextInputLayout);
+        lnameTextInputLayout = (TextInputLayout) findViewById(R.id.lnameTextInputLayout);
+        roleinputlayout = (TextInputLayout) findViewById(R.id.roleinputlayout);
+        emailinputlayout = (TextInputLayout) findViewById(R.id.emailinputlayout);
+        designinputlayout = (TextInputLayout) findViewById(R.id.instinputlayout);
+        citystaecountryinputlayout = (TextInputLayout) findViewById(R.id.citystaecountryinputlayout);
 
 
         ScrollView myprofileintroscrollview = (ScrollView) findViewById(R.id.myprofileintroscrollview);
@@ -113,11 +127,6 @@ public class HrIntro extends AppCompatActivity {
         roleValue = MySharedPreferencesManager.getRole(this);
         role.setText(roleValue.toUpperCase());
 
-
-        citystaecountry = (AutoCompleteTextView) findViewById(R.id.citystaecountry);
-        citystaecountry=(AutoCompleteTextView)findViewById(R.id.citystaecountry);
-
-
         selectedCountry = hr.getCountry();
         selectedState = hr.getState();
         selectedCity = hr.getCity();
@@ -132,19 +141,34 @@ public class HrIntro extends AppCompatActivity {
             if (firstname.length() > 1)
                 fname.setText(firstname);
         }
+        else
+            firstname="";
 
         if (lastname != null) {
             if (lastname.length() > 1)
                 lname.setText(lastname);
         }
+        else
+            lastname="";
+
         if (designationValue != null) {
             if (designationValue.length() > 1)
                 designation.setText(designationValue);
         }
+        else
+            designationValue="";
+
         if (selectedCountry != null && selectedState != null && selectedCity != null) {
-            CityStateCountry = selectedCity + " , " + selectedState + " , " + selectedCountry;
-            citystaecountry.setText(CityStateCountry);
+            if(!selectedCountry.equals("") && !selectedState.equals("") && !selectedCity.equals("")) {
+                CityStateCountry = selectedCity + " , " + selectedState + " , " + selectedCountry;
+                citystaecountry.setText(CityStateCountry);
+            }
+            else
+                citystaecountry.setText("City/District");
+
         }
+        else
+            citystaecountry.setText("City/District");
 
         try {
             JSONObject jsonObject = new JSONObject(getJson());
@@ -176,6 +200,7 @@ public class HrIntro extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                citystaecountryinputlayout.setError("");
             }
 
             @Override
@@ -187,13 +212,13 @@ public class HrIntro extends AppCompatActivity {
         fname.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                fname.setError(null);
-                edittedFlag = 1;
+
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                fnameTextInputLayout.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -205,13 +230,14 @@ public class HrIntro extends AppCompatActivity {
         lname.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                lname.setError(null);
-                edittedFlag = 1;
+
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+                lnameTextInputLayout.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -223,13 +249,13 @@ public class HrIntro extends AppCompatActivity {
         designation.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                designation.setError(null);
-                edittedFlag = 1;
+
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                designinputlayout.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -266,42 +292,28 @@ public class HrIntro extends AppCompatActivity {
         CityStateCountry = citystaecountry.getText().toString();
 
 
-        if (CityStateCountry.length() < 2) {
-            citystaecountry.setError("Incorrect City Name");
-            errorflagfirstname = 1;
-        } else {
-            citystaecountry.setError(null);
-
-            String[] parts = CityStateCountry.split(" , ");
-            if (parts.length == 3) {
-                selectedCity = parts[0];
-                selectedState = parts[1];
-                selectedCountry = parts[2];
-            }
-        }
-
-
         if (firstname.length() < 2) {
-            fname.setError("Incorrect First Name");
+            fnameTextInputLayout.setError("Kindly enter valid first name");
             errorflagfirstname = 1;
         } else if (lastname.length() < 2) {
-            lname.setError("Incorrect Last Name");
+            lnameTextInputLayout.setError("Kindly enter valid last name");
             errorflaglastname = 1;
         } else if (designation.length() < 2) {
-            designation.setError("Incorrect designation");
+            designinputlayout.setError("Kindly enter valid designation");
             errorflagdesignation = 1;
         } else {
             //fname.setError(null);
-            if (selectedCountry.contains("Select")) {
-                Toast.makeText(HrIntro.this, "Select Country", Toast.LENGTH_SHORT).show();
-                errorflagCountry = 1;
+            if (CityStateCountry.length() < 2) {
+                citystaecountryinputlayout.setError("Please select your city");
+                errorflagfirstname = 1;
             } else {
-                if (selectedState.contains("Select")) {
-                    Toast.makeText(HrIntro.this, "Select State", Toast.LENGTH_SHORT).show();
-                    errorflagState = 1;
-                } else if (selectedCity.contains("Select")) {
-                    Toast.makeText(HrIntro.this, "Select City", Toast.LENGTH_SHORT).show();
-                    errorflagCity = 1;
+                citystaecountry.setError(null);
+
+                String[] parts = CityStateCountry.split(" , ");
+                if (parts.length == 3) {
+                    selectedCity = parts[0];
+                    selectedState = parts[1];
+                    selectedCountry = parts[2];
                 }
             }
 

@@ -3,6 +3,7 @@ package placeme.octopusites.com.placeme;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -58,19 +59,21 @@ public class ReportBug extends AppCompatActivity {
 
         TextView createreporttxt=(TextView)findViewById(R.id.createreporttxt);
         TextView reportsenstxt=(TextView)findViewById(R.id.reportsenstxt);
-
+        TextInputLayout titleinput=(TextInputLayout)findViewById(R.id.titleinput);
+        TextInputLayout commentsinput=(TextInputLayout)findViewById(R.id.commentsinput);
         reportbug_button=(Button)findViewById(R.id.reportbug_button);
-
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/cabinsemibold.ttf");
-        createreporttxt.setTypeface(custom_font);
-        Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/button.ttf");
-        reportbug_button.setTypeface(custom_font3);
-        Typeface custom_fon2 = Typeface.createFromAsset(getAssets(),  "fonts/maven.ttf");
-        reportsenstxt.setTypeface(custom_fon2);
-
         title=(EditText)findViewById(R.id.title);
         comments=(EditText)findViewById(R.id.comments);
         reportprogress=(ProgressBar)findViewById(R.id.reportprogress);
+
+        createreporttxt.setTypeface(MyConstants.getBold(this));
+        reportsenstxt.setTypeface(MyConstants.getBold(this));
+        titleinput.setTypeface(MyConstants.getLight(this));
+        commentsinput.setTypeface(MyConstants.getLight(this));
+        title.setTypeface(MyConstants.getBold(this));
+        comments.setTypeface(MyConstants.getBold(this));
+        reportbug_button.setTypeface(MyConstants.getBold(this));
+
 
         title.addTextChangedListener(new TextWatcher() {
             @Override

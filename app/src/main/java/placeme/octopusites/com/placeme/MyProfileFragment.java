@@ -2080,695 +2080,695 @@ public class MyProfileFragment extends Fragment {
 
     }
 
-        void populateData() {
-            Log.d("TAG", "populateData: welcome to populate");
+    void populateData() {
+        Log.d("TAG", "populateData: welcome to populate");
 
-            if (found_contact_details == 1) {
-                if (!addressline1.equals("")) {
-                    contactaddr1.setText(addressline1 + " " + addressline2 + " " + addressline3);
-                    percentProfile++;
-                }
-                if (phone != null) {
-                    if (!phone.equals("")) {
-                        contactmobile.setText(phone);
-                    }
+        if (found_contact_details == 1) {
+            if (!addressline1.equals("")) {
+                contactaddr1.setText(addressline1 + " " + addressline2 + " " + addressline3);
+                percentProfile++;
+            }
+            if (phone != null) {
+                if (!phone.equals("")) {
+                    contactmobile.setText(phone);
                 }
             }
+        }
 
-            if (found_box1 == 1) {
-                if (!fname.equals("") && !lname.equals("")) {
-                    myprofilename.setText(fname + " " + lname);
-                    nametxt.setText(fname + " " + lname);
-                    percentProfile++;
-                }
-
-                if (!fname.equals("") && lname.equals("")) {
-                    myprofilename.setText(fname);
-                    percentProfile++;
-                }
-                if (!country.equals("") && !state.equals("") && !city.equals("")) {
-                    myprofilloc.setText(city + ", " + state + ", " + country);
-                    percentProfile++;
-                }
+        if (found_box1 == 1) {
+            if (!fname.equals("") && !lname.equals("")) {
+                myprofilename.setText(fname + " " + lname);
+                nametxt.setText(fname + " " + lname);
+                percentProfile++;
             }
-            if (found_tenth == 1) {
-                if (!board10.equals("")) {
 
-                    Hashtable<String, Integer> source = new Hashtable<String, Integer>();
-                    HashMap<String, Integer> map = new HashMap(source);
+            if (!fname.equals("") && lname.equals("")) {
+                myprofilename.setText(fname);
+                percentProfile++;
+            }
+            if (!country.equals("") && !state.equals("") && !city.equals("")) {
+                myprofilloc.setText(city + ", " + state + ", " + country);
+                percentProfile++;
+            }
+        }
+        if (found_tenth == 1) {
+            if (!board10.equals("")) {
 
-                    map.put("Jan", 1);
-                    map.put("Feb", 2);
-                    map.put("Mar", 3);
-                    map.put("Apr", 4);
-                    map.put("May", 5);
-                    map.put("Jun", 6);
-                    map.put("Jul", 7);
-                    map.put("Aug", 8);
-                    map.put("Sep", 9);
-                    map.put("Oct", 10);
-                    map.put("Nov", 11);
-                    map.put("Dec", 12);
+                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
+                HashMap<String, Integer> map = new HashMap(source);
 
-                    Date date = new Date();
+                map.put("Jan", 1);
+                map.put("Feb", 2);
+                map.put("Mar", 3);
+                map.put("Apr", 4);
+                map.put("May", 5);
+                map.put("Jun", 6);
+                map.put("Jul", 7);
+                map.put("Aug", 8);
+                map.put("Sep", 9);
+                map.put("Oct", 10);
+                map.put("Nov", 11);
+                map.put("Dec", 12);
 
-                    SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
-                    SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+                Date date = new Date();
 
-                    String currentMonth = sdfm.format(date);
-                    String currentYears = sdfy.format(date);
+                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
+                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
 
-                    String month = "", years = "";
+                String currentMonth = sdfm.format(date);
+                String currentYears = sdfy.format(date);
 
-                    for (int i = 0; i < yearofpassing10.length() - 6; i++) {
-                        month += yearofpassing10.charAt(i);
-                    }
-                    for (int i = 5; i < yearofpassing10.length(); i++) {
-                        years += yearofpassing10.charAt(i);
-                    }
+                String month = "", years = "";
 
-                    int currentYear = Integer.parseInt(currentYears);
-                    int year = Integer.parseInt(years);
+                for (int i = 0; i < yearofpassing10.length() - 6; i++) {
+                    month += yearofpassing10.charAt(i);
+                }
+                for (int i = 5; i < yearofpassing10.length(); i++) {
+                    years += yearofpassing10.charAt(i);
+                }
 
-                    if (currentYear > year)
+                int currentYear = Integer.parseInt(currentYears);
+                int year = Integer.parseInt(years);
+
+                if (currentYear > year)
+                    myprofilecource3.setText("Attended Std. X in " + board10 + "  at");
+                else if (currentYear == year) {
+                    if (map.get(currentMonth) > map.get(month)) {
                         myprofilecource3.setText("Attended Std. X in " + board10 + "  at");
-                    else if (currentYear == year) {
-                        if (map.get(currentMonth) > map.get(month)) {
-                            myprofilecource3.setText("Attended Std. X in " + board10 + "  at");
-                        } else {
-                            myprofilecource3.setText("Attending Std. X in " + board10 + "  at");
-                            myprofiledu.setText("Std. X  (" + board10 + ")");
-                        }
                     } else {
                         myprofilecource3.setText("Attending Std. X in " + board10 + "  at");
                         myprofiledu.setText("Std. X  (" + board10 + ")");
                     }
-
-                    if (!schoolname10.equals(""))
-                        myprofileclgname3.setText(schoolname10);
-                    if (!yearofpassing10.equals(""))
-                        myprofileclgyearofpassing3.setText(yearofpassing10);
-                    percentProfile++;
+                } else {
+                    myprofilecource3.setText("Attending Std. X in " + board10 + "  at");
+                    myprofiledu.setText("Std. X  (" + board10 + ")");
                 }
+
+                if (!schoolname10.equals(""))
+                    myprofileclgname3.setText(schoolname10);
+                if (!yearofpassing10.equals(""))
+                    myprofileclgyearofpassing3.setText(yearofpassing10);
+                percentProfile++;
             }
-            if (found_twelth == 1) {
-                Log.d("TAG", "populateData: welcome to twelth");
+        }
+        if (found_twelth == 1) {
+            Log.d("TAG", "populateData: welcome to twelth");
 
-                if (!schoolname12.equals("")) {
+            if (!schoolname12.equals("")) {
 
-                    Hashtable<String, Integer> source = new Hashtable<String, Integer>();
-                    HashMap<String, Integer> map = new HashMap(source);
+                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
+                HashMap<String, Integer> map = new HashMap(source);
 
-                    map.put("Jan", 1);
-                    map.put("Feb", 2);
-                    map.put("Mar", 3);
-                    map.put("Apr", 4);
-                    map.put("May", 5);
-                    map.put("Jun", 6);
-                    map.put("Jul", 7);
-                    map.put("Aug", 8);
-                    map.put("Sep", 9);
-                    map.put("Oct", 10);
-                    map.put("Nov", 11);
-                    map.put("Dec", 12);
+                map.put("Jan", 1);
+                map.put("Feb", 2);
+                map.put("Mar", 3);
+                map.put("Apr", 4);
+                map.put("May", 5);
+                map.put("Jun", 6);
+                map.put("Jul", 7);
+                map.put("Aug", 8);
+                map.put("Sep", 9);
+                map.put("Oct", 10);
+                map.put("Nov", 11);
+                map.put("Dec", 12);
 
-                    Date date = new Date();
+                Date date = new Date();
 
-                    SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
-                    SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
+                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
 
-                    String currentMonth = sdfm.format(date);
-                    String currentYears = sdfy.format(date);
+                String currentMonth = sdfm.format(date);
+                String currentYears = sdfy.format(date);
 
-                    String month = "", years = "";
+                String month = "", years = "";
 
-                    for (int i = 0; i < yearofpassing12.length() - 6; i++) {
-                        month += yearofpassing12.charAt(i);
-                    }
-                    for (int i = 5; i < yearofpassing12.length(); i++) {
-                        years += yearofpassing12.charAt(i);
-                    }
+                for (int i = 0; i < yearofpassing12.length() - 6; i++) {
+                    month += yearofpassing12.charAt(i);
+                }
+                for (int i = 5; i < yearofpassing12.length(); i++) {
+                    years += yearofpassing12.charAt(i);
+                }
 
-                    int currentYear = Integer.parseInt(currentYears);
-                    int year = Integer.parseInt(years);
+                int currentYear = Integer.parseInt(currentYears);
+                int year = Integer.parseInt(years);
 
-                    if (currentYear > year)
+                if (currentYear > year)
+                    myprofilecource2.setText("Attended Std. XII in " + board12 + "  at");
+                else if (currentYear == year) {
+                    if (map.get(currentMonth) > map.get(month)) {
                         myprofilecource2.setText("Attended Std. XII in " + board12 + "  at");
-                    else if (currentYear == year) {
-                        if (map.get(currentMonth) > map.get(month)) {
-                            myprofilecource2.setText("Attended Std. XII in " + board12 + "  at");
-                        } else {
-                            myprofilecource2.setText("Attending Std. XII in " + board12 + "  at");
-                            myprofiledu.setText("Std. XII (" + board12 + ")");
-                        }
                     } else {
                         myprofilecource2.setText("Attending Std. XII in " + board12 + "  at");
                         myprofiledu.setText("Std. XII (" + board12 + ")");
                     }
-
-                    if (!schoolname12.equals(""))
-                        myprofileclgname2.setText(schoolname12);
-                    if (!yearofpassing12.equals(""))
-                        myprofileclgyearofpassing2.setText(yearofpassing12);
-                    percentProfile++;
+                } else {
+                    myprofilecource2.setText("Attending Std. XII in " + board12 + "  at");
+                    myprofiledu.setText("Std. XII (" + board12 + ")");
                 }
+
+                if (!schoolname12.equals(""))
+                    myprofileclgname2.setText(schoolname12);
+                if (!yearofpassing12.equals(""))
+                    myprofileclgyearofpassing2.setText(yearofpassing12);
+                percentProfile++;
             }
-            if (found_diploma == 1) {
-                Log.d("TAG", "populateData: welcome to diploma");
-                if (!collegenamediploma.equals("")) {
+        }
+        if (found_diploma == 1) {
+            Log.d("TAG", "populateData: welcome to diploma");
+            if (!collegenamediploma.equals("")) {
 
-                    Hashtable<String, Integer> source = new Hashtable<String, Integer>();
-                    HashMap<String, Integer> map = new HashMap(source);
+                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
+                HashMap<String, Integer> map = new HashMap(source);
 
-                    map.put("Jan", 1);
-                    map.put("Feb", 2);
-                    map.put("Mar", 3);
-                    map.put("Apr", 4);
-                    map.put("May", 5);
-                    map.put("Jun", 6);
-                    map.put("Jul", 7);
-                    map.put("Aug", 8);
-                    map.put("Sep", 9);
-                    map.put("Oct", 10);
-                    map.put("Nov", 11);
-                    map.put("Dec", 12);
+                map.put("Jan", 1);
+                map.put("Feb", 2);
+                map.put("Mar", 3);
+                map.put("Apr", 4);
+                map.put("May", 5);
+                map.put("Jun", 6);
+                map.put("Jul", 7);
+                map.put("Aug", 8);
+                map.put("Sep", 9);
+                map.put("Oct", 10);
+                map.put("Nov", 11);
+                map.put("Dec", 12);
 
-                    Date date = new Date();
+                Date date = new Date();
 
-                    SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
-                    SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
+                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
 
-                    String currentMonth = sdfm.format(date);
-                    String currentYears = sdfy.format(date);
+                String currentMonth = sdfm.format(date);
+                String currentYears = sdfy.format(date);
 
-                    String month = "", years = "";
+                String month = "", years = "";
 
-                    for (int i = 0; i < yearofpassingdiploma.length() - 6; i++) {
-                        month += yearofpassingdiploma.charAt(i);
-                    }
-                    for (int i = 5; i < yearofpassingdiploma.length(); i++) {
-                        years += yearofpassingdiploma.charAt(i);
-                    }
+                for (int i = 0; i < yearofpassingdiploma.length() - 6; i++) {
+                    month += yearofpassingdiploma.charAt(i);
+                }
+                for (int i = 5; i < yearofpassingdiploma.length(); i++) {
+                    years += yearofpassingdiploma.charAt(i);
+                }
 
-                    int currentYear = Integer.parseInt(currentYears);
-                    int year = Integer.parseInt(years);
-                    if (currentYear > year)
+                int currentYear = Integer.parseInt(currentYears);
+                int year = Integer.parseInt(years);
+                if (currentYear > year)
+                    myprofilecource2.setText("Attended Diploma in " + coursediploma + "  at");
+                else if (currentYear == year) {
+                    if (map.get(currentMonth) > map.get(month)) {
                         myprofilecource2.setText("Attended Diploma in " + coursediploma + "  at");
-                    else if (currentYear == year) {
-                        if (map.get(currentMonth) > map.get(month)) {
-                            myprofilecource2.setText("Attended Diploma in " + coursediploma + "  at");
-                        } else {
-                            myprofilecource2.setText("Attending Diploma in " + coursediploma + "  at");
-                            myprofiledu.setText("Diploma (" + coursediploma + ")");
-                        }
                     } else {
                         myprofilecource2.setText("Attending Diploma in " + coursediploma + "  at");
                         myprofiledu.setText("Diploma (" + coursediploma + ")");
                     }
-
-                    if (!collegenamediploma.equals(""))
-                        myprofileclgname2.setText(collegenamediploma);
-                    if (!yearofpassingdiploma.equals(""))
-                        myprofileclgyearofpassing2.setText(yearofpassingdiploma);
+                } else {
+                    myprofilecource2.setText("Attending Diploma in " + coursediploma + "  at");
+                    myprofiledu.setText("Diploma (" + coursediploma + ")");
                 }
-                percentProfile++;
-            }
-            if (found_careerobj == 1) {
-                if (!careerobj.equals(""))
-                    careerobjtxttxt.setText(careerobj);
-                percentProfile++;
-            }
-            if (found_strengths == 1) {
-                if (!strength1.equals(""))
-                    strengthstxt.setText(strength1);
-                if (!strength1.equals("") && !strength2.equals(""))
-                    strengthstxt.setText(strength1 + ", " + strength2);
-                if (!strength1.equals("") && !strength2.equals("") && !strength3.equals(""))
-                    strengthstxt.setText(strength1 + ", " + strength2 + ", " + strength3);
-                if (!strength1.equals("") && !strength2.equals("") && !strength3.equals("") && !strength4.equals(""))
-                    strengthstxt.setText(strength1 + ", " + strength2 + ", " + strength3 + " ...");
-                percentProfile++;
-            }
-            if (found_weaknesses == 1) {
-                if (!weak1.equals(""))
-                    weaknessestxt.setText(weak1);
-                if (!weak1.equals("") && !weak2.equals(""))
-                    weaknessestxt.setText(weak1 + ", " + weak2);
-                if (!weak1.equals("") && !weak2.equals("") && !weak3.equals(""))
-                    weaknessestxt.setText(weak1 + ", " + weak2 + ", " + weak3);
-                if (!weak1.equals("") && !weak2.equals("") && !weak3.equals("") && !weak4.equals(""))
-                    weaknessestxt.setText(weak1 + ", " + weak2 + ", " + weak3 + " ...");
-                percentProfile++;
-            }
-            if (found_locationpreferences == 1) {
-                if (!location1.equals(""))
-                    locationpreferences.setText(location1);
-                if (!location1.equals("") && !location2.equals(""))
-                    locationpreferences.setText(location1 + ", " + location2);
-                if (!location1.equals("") && !location2.equals("") && !location3.equals(""))
-                    locationpreferences.setText(location1 + ", " + location2 + ", " + location3);
-                if (!location1.equals("") && !location2.equals("") && !location3.equals("") && !location4.equals(""))
-                    locationpreferences.setText(location1 + ", " + location2 + ", " + location3 + " ...");
-                percentProfile++;
-            }
-            if (found_lang == 1) {
-                if (!lang1.equals("") && !lang1.equals("- Select Language -"))
-                    acc1txttxt.setText(lang1);
-                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
-                    acc1txttxt.setText(lang1 + ", " + lang2);
-                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -"))
-                    acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3);
-                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -") && !lang4.equals("") && !lang4.equals("- Select Language -"))
-                    acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " ...");
-                percentProfile++;
-            }
-            if (found_certificates == 1) {
-                if (!title1.equals(""))
-                    acc2txttxt.setText(title1);
-                if (!title1.equals("") && !title2.equals(""))
-                    acc2txttxt.setText(title1 + ", " + title2);
-                if (!title1.equals("") && !title2.equals("") && !title3.equals(""))
-                    acc2txttxt.setText(title1 + ", " + title2 + ", " + title3);
-                if (!title1.equals("") && !title2.equals("") && !title3.equals("") && !title4.equals(""))
-                    acc2txttxt.setText(title1 + ", " + title2 + ", " + title3 + " ...");
-            }
-            if (found_courses == 1) {
-                if (!course1.equals(""))
-                    acc3txttxt.setText(course1);
-                if (!course1.equals("") && !course2.equals(""))
-                    acc3txttxt.setText(course1 + ", " + course2);
-                if (!course1.equals("") && !course2.equals("") && !course3.equals(""))
-                    acc3txttxt.setText(course1 + ", " + course2 + ", " + course3);
-                if (!course1.equals("") && !course2.equals("") && !course3.equals("") && !course4.equals(""))
-                    acc3txttxt.setText(course1 + ", " + course2 + ", " + course3 + " ...");
-            }
-            if (found_skills == 1) {
-                if (!skill1.equals(""))
-                    acc4txttxt.setText(skill1);
-                if (!skill1.equals("") && !skill2.equals(""))
-                    acc4txttxt.setText(skill1 + ", " + skill2);
-                if (!skill1.equals("") && !skill2.equals("") && !skill3.equals(""))
-                    acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3);
-                if (!skill1.equals("") && !skill2.equals("") && !skill3.equals("") && !skill4.equals(""))
-                    acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " ...");
-                percentProfile++;
-            }
-            if (found_honors == 1) {
-                if (!htitle1.equals(""))
-                    acc5txttxt.setText(htitle1);
-                if (!htitle1.equals("") && !htitle2.equals(""))
-                    acc5txttxt.setText(htitle1 + ", " + htitle2);
-                if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals(""))
-                    acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3);
-                if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals("") && !htitle4.equals(""))
-                    acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3 + " ...");
-            }
-            if (found_patents == 1) {
-                if (!ptitle1.equals(""))
-                    acc6txttxt.setText(ptitle1);
-                if (!ptitle1.equals("") && !ptitle2.equals(""))
-                    acc6txttxt.setText(ptitle1 + ", " + ptitle2);
-                if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals(""))
-                    acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3);
-                if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals("") && !ptitle4.equals(""))
-                    acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3 + " ...");
-            }
-            if (found_publications == 1) {
-                if (!pubtitle1.equals(""))
-                    acc7txttxt.setText(pubtitle1);
-                if (!pubtitle1.equals("") && !pubtitle2.equals(""))
-                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2);
-                if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals(""))
-                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3);
-                if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals("") && !pubtitle4.equals(""))
-                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3 + " ...");
-            }
 
-            if (found_projects == 1) {
+                if (!collegenamediploma.equals(""))
+                    myprofileclgname2.setText(collegenamediploma);
+                if (!yearofpassingdiploma.equals(""))
+                    myprofileclgyearofpassing2.setText(yearofpassingdiploma);
+            }
+            percentProfile++;
+        }
+        if (found_careerobj == 1) {
+            if (!careerobj.equals(""))
+                careerobjtxttxt.setText(careerobj);
+            percentProfile++;
+        }
+        if (found_strengths == 1) {
+            if (!strength1.equals(""))
+                strengthstxt.setText(strength1);
+            if (!strength1.equals("") && !strength2.equals(""))
+                strengthstxt.setText(strength1 + ", " + strength2);
+            if (!strength1.equals("") && !strength2.equals("") && !strength3.equals(""))
+                strengthstxt.setText(strength1 + ", " + strength2 + ", " + strength3);
+            if (!strength1.equals("") && !strength2.equals("") && !strength3.equals("") && !strength4.equals(""))
+                strengthstxt.setText(strength1 + ", " + strength2 + ", " + strength3 + " ...");
+            percentProfile++;
+        }
+        if (found_weaknesses == 1) {
+            if (!weak1.equals(""))
+                weaknessestxt.setText(weak1);
+            if (!weak1.equals("") && !weak2.equals(""))
+                weaknessestxt.setText(weak1 + ", " + weak2);
+            if (!weak1.equals("") && !weak2.equals("") && !weak3.equals(""))
+                weaknessestxt.setText(weak1 + ", " + weak2 + ", " + weak3);
+            if (!weak1.equals("") && !weak2.equals("") && !weak3.equals("") && !weak4.equals(""))
+                weaknessestxt.setText(weak1 + ", " + weak2 + ", " + weak3 + " ...");
+            percentProfile++;
+        }
+        if (found_locationpreferences == 1) {
+            if (!location1.equals(""))
+                locationpreferences.setText(location1);
+            if (!location1.equals("") && !location2.equals(""))
+                locationpreferences.setText(location1 + ", " + location2);
+            if (!location1.equals("") && !location2.equals("") && !location3.equals(""))
+                locationpreferences.setText(location1 + ", " + location2 + ", " + location3);
+            if (!location1.equals("") && !location2.equals("") && !location3.equals("") && !location4.equals(""))
+                locationpreferences.setText(location1 + ", " + location2 + ", " + location3 + " ...");
+            percentProfile++;
+        }
+        if (found_lang == 1) {
+            if (!lang1.equals("") && !lang1.equals("- Select Language -"))
+                acc1txttxt.setText(lang1);
+            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
+                acc1txttxt.setText(lang1 + ", " + lang2);
+            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -"))
+                acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3);
+            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -") && !lang4.equals("") && !lang4.equals("- Select Language -"))
+                acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " ...");
+            percentProfile++;
+        }
+        if (found_certificates == 1) {
+            if (!title1.equals(""))
+                acc2txttxt.setText(title1);
+            if (!title1.equals("") && !title2.equals(""))
+                acc2txttxt.setText(title1 + ", " + title2);
+            if (!title1.equals("") && !title2.equals("") && !title3.equals(""))
+                acc2txttxt.setText(title1 + ", " + title2 + ", " + title3);
+            if (!title1.equals("") && !title2.equals("") && !title3.equals("") && !title4.equals(""))
+                acc2txttxt.setText(title1 + ", " + title2 + ", " + title3 + " ...");
+        }
+        if (found_courses == 1) {
+            if (!course1.equals(""))
+                acc3txttxt.setText(course1);
+            if (!course1.equals("") && !course2.equals(""))
+                acc3txttxt.setText(course1 + ", " + course2);
+            if (!course1.equals("") && !course2.equals("") && !course3.equals(""))
+                acc3txttxt.setText(course1 + ", " + course2 + ", " + course3);
+            if (!course1.equals("") && !course2.equals("") && !course3.equals("") && !course4.equals(""))
+                acc3txttxt.setText(course1 + ", " + course2 + ", " + course3 + " ...");
+        }
+        if (found_skills == 1) {
+            if (!skill1.equals(""))
+                acc4txttxt.setText(skill1);
+            if (!skill1.equals("") && !skill2.equals(""))
+                acc4txttxt.setText(skill1 + ", " + skill2);
+            if (!skill1.equals("") && !skill2.equals("") && !skill3.equals(""))
+                acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3);
+            if (!skill1.equals("") && !skill2.equals("") && !skill3.equals("") && !skill4.equals(""))
+                acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " ...");
+            percentProfile++;
+        }
+        if (found_honors == 1) {
+            if (!htitle1.equals(""))
+                acc5txttxt.setText(htitle1);
+            if (!htitle1.equals("") && !htitle2.equals(""))
+                acc5txttxt.setText(htitle1 + ", " + htitle2);
+            if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals(""))
+                acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3);
+            if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals("") && !htitle4.equals(""))
+                acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3 + " ...");
+        }
+        if (found_patents == 1) {
+            if (!ptitle1.equals(""))
+                acc6txttxt.setText(ptitle1);
+            if (!ptitle1.equals("") && !ptitle2.equals(""))
+                acc6txttxt.setText(ptitle1 + ", " + ptitle2);
+            if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals(""))
+                acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3);
+            if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals("") && !ptitle4.equals(""))
+                acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3 + " ...");
+        }
+        if (found_publications == 1) {
+            if (!pubtitle1.equals(""))
+                acc7txttxt.setText(pubtitle1);
+            if (!pubtitle1.equals("") && !pubtitle2.equals(""))
+                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2);
+            if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals(""))
+                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3);
+            if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals("") && !pubtitle4.equals(""))
+                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3 + " ...");
+        }
+
+        if (found_projects == 1) {
+            percentProfile++;
+            if (!proj1.equals("")) {
+                myprofileproj1.setText(proj1);
+                myprofiledomain1.setText(domain1);
+                myprofileduration1.setText(duration1 + " Months");
+
+                ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
+                RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
+                ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
+                RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+
+                gear2.setVisibility(View.GONE);
+                projtab2.setVisibility(View.GONE);
+                gear3.setVisibility(View.GONE);
+                projtab3.setVisibility(View.GONE);
+            }
+            if (!proj2.equals("")) {
+                myprofileproj2.setText(proj2);
+                myprofiledomain2.setText(domain2);
+                myprofileduration2.setText(duration2 + " Months");
+
+                ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
+                RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
+                ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
+                RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+
+                gear2.setVisibility(View.VISIBLE);
+                projtab2.setVisibility(View.VISIBLE);
+                gear3.setVisibility(View.GONE);
+                projtab3.setVisibility(View.GONE);
+            }
+            if (!proj3.equals("")) {
+                myprofileproj3.setText(proj3);
+                myprofiledomain3.setText(domain3);
+                myprofileduration3.setText(duration3 + " Months");
+
+                ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
+                RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
+                ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
+                RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+
+                gear2.setVisibility(View.VISIBLE);
+                projtab2.setVisibility(View.VISIBLE);
+                gear3.setVisibility(View.VISIBLE);
+                projtab3.setVisibility(View.VISIBLE);
+            }
+        }
+        if (found_ug == 1) {
+            if (!universityug.equals("")) {
                 percentProfile++;
-                if (!proj1.equals("")) {
-                    myprofileproj1.setText(proj1);
-                    myprofiledomain1.setText(domain1);
-                    myprofileduration1.setText(duration1 + " Months");
+                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
+                HashMap<String, Integer> map = new HashMap(source);
 
-                    ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
-                    RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
-                    ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
-                    RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+                map.put("Jan", 1);
+                map.put("Feb", 2);
+                map.put("Mar", 3);
+                map.put("Apr", 4);
+                map.put("May", 5);
+                map.put("Jun", 6);
+                map.put("Jul", 7);
+                map.put("Aug", 8);
+                map.put("Sep", 9);
+                map.put("Oct", 10);
+                map.put("Nov", 11);
+                map.put("Dec", 12);
 
-                    gear2.setVisibility(View.GONE);
-                    projtab2.setVisibility(View.GONE);
-                    gear3.setVisibility(View.GONE);
-                    projtab3.setVisibility(View.GONE);
+                Date date = new Date();
+
+                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
+                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+
+                String currentMonth = sdfm.format(date);
+                String currentYears = sdfy.format(date);
+
+                String month = "", years = "";
+
+                for (int i = 0; i < yearofpassingug.length() - 6; i++) {
+                    month += yearofpassingug.charAt(i);
                 }
-                if (!proj2.equals("")) {
-                    myprofileproj2.setText(proj2);
-                    myprofiledomain2.setText(domain2);
-                    myprofileduration2.setText(duration2 + " Months");
-
-                    ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
-                    RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
-                    ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
-                    RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
-
-                    gear2.setVisibility(View.VISIBLE);
-                    projtab2.setVisibility(View.VISIBLE);
-                    gear3.setVisibility(View.GONE);
-                    projtab3.setVisibility(View.GONE);
+                for (int i = 5; i < yearofpassingug.length(); i++) {
+                    years += yearofpassingug.charAt(i);
                 }
-                if (!proj3.equals("")) {
-                    myprofileproj3.setText(proj3);
-                    myprofiledomain3.setText(domain3);
-                    myprofileduration3.setText(duration3 + " Months");
 
-                    ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
-                    RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
-                    ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
-                    RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+                int currentYear = Integer.parseInt(currentYears);
+                int year = Integer.parseInt(years);
 
-                    gear2.setVisibility(View.VISIBLE);
-                    projtab2.setVisibility(View.VISIBLE);
-                    gear3.setVisibility(View.VISIBLE);
-                    projtab3.setVisibility(View.VISIBLE);
-                }
-            }
-            if (found_ug == 1) {
-                if (!universityug.equals("")) {
-                    percentProfile++;
-                    Hashtable<String, Integer> source = new Hashtable<String, Integer>();
-                    HashMap<String, Integer> map = new HashMap(source);
-
-                    map.put("Jan", 1);
-                    map.put("Feb", 2);
-                    map.put("Mar", 3);
-                    map.put("Apr", 4);
-                    map.put("May", 5);
-                    map.put("Jun", 6);
-                    map.put("Jul", 7);
-                    map.put("Aug", 8);
-                    map.put("Sep", 9);
-                    map.put("Oct", 10);
-                    map.put("Nov", 11);
-                    map.put("Dec", 12);
-
-                    Date date = new Date();
-
-                    SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
-                    SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
-
-                    String currentMonth = sdfm.format(date);
-                    String currentYears = sdfy.format(date);
-
-                    String month = "", years = "";
-
-                    for (int i = 0; i < yearofpassingug.length() - 6; i++) {
-                        month += yearofpassingug.charAt(i);
-                    }
-                    for (int i = 5; i < yearofpassingug.length(); i++) {
-                        years += yearofpassingug.charAt(i);
-                    }
-
-                    int currentYear = Integer.parseInt(currentYears);
-                    int year = Integer.parseInt(years);
-
-                    if (currentYear > year) {
+                if (currentYear > year) {
+                    myprofilecource.setText("Attended " + courseug + "  in " + streamug + " at");
+                } else if (currentYear == year) {
+                    if (map.get(currentMonth) > map.get(month)) {
                         myprofilecource.setText("Attended " + courseug + "  in " + streamug + " at");
-                    } else if (currentYear == year) {
-                        if (map.get(currentMonth) > map.get(month)) {
-                            myprofilecource.setText("Attended " + courseug + "  in " + streamug + " at");
-                        } else {
-                            myprofilecource.setText("Attending " + courseug + "  in " + streamug + " at");
-                            myprofiledu.setText(courseug + " (" + streamug + ")");
-                        }
-
                     } else {
                         myprofilecource.setText("Attending " + courseug + "  in " + streamug + " at");
                         myprofiledu.setText(courseug + " (" + streamug + ")");
                     }
 
-                    myprofileclgname.setText(collegenameug);
-                    myprofileclgyearofpassing.setText(yearofpassingug);
-
-
-                    ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
-                    RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
-                    insti4.setVisibility(View.GONE);
-                    edutab4.setVisibility(View.GONE);
+                } else {
+                    myprofilecource.setText("Attending " + courseug + "  in " + streamug + " at");
+                    myprofiledu.setText(courseug + " (" + streamug + ")");
                 }
+
+                myprofileclgname.setText(collegenameug);
+                myprofileclgyearofpassing.setText(yearofpassingug);
+
+
+                ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
+                RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
+                insti4.setVisibility(View.GONE);
+                edutab4.setVisibility(View.GONE);
             }
-            if (found_pgsem == 1) {
-                Log.d("TAG", "populateData: universitypgsem"+universitypgsem);
-                if (!collegenamepgsem.equals("")) {
+        }
+        if (found_pgsem == 1) {
+            Log.d("TAG", "populateData: universitypgsem"+universitypgsem);
+            if (!collegenamepgsem.equals("")) {
 
-                    Hashtable<String, Integer> source = new Hashtable<String, Integer>();
-                    HashMap<String, Integer> map = new HashMap(source);
+                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
+                HashMap<String, Integer> map = new HashMap(source);
 
-                    map.put("Jan", 1);
-                    map.put("Feb", 2);
-                    map.put("Mar", 3);
-                    map.put("Apr", 4);
-                    map.put("May", 5);
-                    map.put("Jun", 6);
-                    map.put("Jul", 7);
-                    map.put("Aug", 8);
-                    map.put("Sep", 9);
-                    map.put("Oct", 10);
-                    map.put("Nov", 11);
-                    map.put("Dec", 12);
+                map.put("Jan", 1);
+                map.put("Feb", 2);
+                map.put("Mar", 3);
+                map.put("Apr", 4);
+                map.put("May", 5);
+                map.put("Jun", 6);
+                map.put("Jul", 7);
+                map.put("Aug", 8);
+                map.put("Sep", 9);
+                map.put("Oct", 10);
+                map.put("Nov", 11);
+                map.put("Dec", 12);
 
-                    Date date = new Date();
+                Date date = new Date();
 
-                    SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
-                    SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
+                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
 
-                    String currentMonth = sdfm.format(date);
-                    String currentYears = sdfy.format(date);
+                String currentMonth = sdfm.format(date);
+                String currentYears = sdfy.format(date);
 
-                    String month = "", years = "";
+                String month = "", years = "";
 
-                    for (int i = 0; i < yearofpassingpgsem.length() - 6; i++) {
-                        month += yearofpassingpgsem.charAt(i);
-                    }
-                    for (int i = 5; i < yearofpassingpgsem.length(); i++) {
-                        years += yearofpassingpgsem.charAt(i);
-                    }
-                    int currentYear = Integer.parseInt(currentYears);
-                    int year = Integer.parseInt(years);
+                for (int i = 0; i < yearofpassingpgsem.length() - 6; i++) {
+                    month += yearofpassingpgsem.charAt(i);
+                }
+                for (int i = 5; i < yearofpassingpgsem.length(); i++) {
+                    years += yearofpassingpgsem.charAt(i);
+                }
+                int currentYear = Integer.parseInt(currentYears);
+                int year = Integer.parseInt(years);
 
 
-                    if (currentYear > year)
+                if (currentYear > year)
+                    myprofilecource4.setText("Attended " + coursepgsem + " at");
+
+                else if (currentYear == year) {
+                    if (map.get(currentMonth) > map.get(month)) {
                         myprofilecource4.setText("Attended " + coursepgsem + " at");
-
-                    else if (currentYear == year) {
-                        if (map.get(currentMonth) > map.get(month)) {
-                            myprofilecource4.setText("Attended " + coursepgsem + " at");
-                        } else {
-                            myprofilecource4.setText("Attending " + coursepgsem + " at");
-                            myprofiledu.setText(coursepgsem);
-                        }
                     } else {
                         myprofilecource4.setText("Attending " + coursepgsem + " at");
                         myprofiledu.setText(coursepgsem);
                     }
-
-                    myprofileclgname4.setText(collegenamepgsem);
-                    myprofileclgyearofpassing4.setText(yearofpassingpgsem);
-
-                    ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
-                    RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
-                    insti4.setVisibility(View.VISIBLE);
-                    edutab4.setVisibility(View.VISIBLE);
+                } else {
+                    myprofilecource4.setText("Attending " + coursepgsem + " at");
+                    myprofiledu.setText(coursepgsem);
                 }
+
+                myprofileclgname4.setText(collegenamepgsem);
+                myprofileclgyearofpassing4.setText(yearofpassingpgsem);
+
+                ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
+                RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
+                insti4.setVisibility(View.VISIBLE);
+                edutab4.setVisibility(View.VISIBLE);
             }
+        }
 
-            if (found_pgyear == 1) {
-                Log.d("TAG", "populateData: universitypgyear"+universitypgyear);
-                if (!collegenamepgyear.equals("")) {
+        if (found_pgyear == 1) {
+            Log.d("TAG", "populateData: universitypgyear"+universitypgyear);
+            if (!collegenamepgyear.equals("")) {
 
-                    Hashtable<String, Integer> source = new Hashtable<String, Integer>();
-                    HashMap<String, Integer> map = new HashMap(source);
+                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
+                HashMap<String, Integer> map = new HashMap(source);
 
-                    map.put("Jan", 1);
-                    map.put("Feb", 2);
-                    map.put("Mar", 3);
-                    map.put("Apr", 4);
-                    map.put("May", 5);
-                    map.put("Jun", 6);
-                    map.put("Jul", 7);
-                    map.put("Aug", 8);
-                    map.put("Sep", 9);
-                    map.put("Oct", 10);
-                    map.put("Nov", 11);
-                    map.put("Dec", 12);
+                map.put("Jan", 1);
+                map.put("Feb", 2);
+                map.put("Mar", 3);
+                map.put("Apr", 4);
+                map.put("May", 5);
+                map.put("Jun", 6);
+                map.put("Jul", 7);
+                map.put("Aug", 8);
+                map.put("Sep", 9);
+                map.put("Oct", 10);
+                map.put("Nov", 11);
+                map.put("Dec", 12);
 
-                    Date date = new Date();
+                Date date = new Date();
 
-                    SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
-                    SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
+                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
 
-                    String currentMonth = sdfm.format(date);
-                    String currentYears = sdfy.format(date);
+                String currentMonth = sdfm.format(date);
+                String currentYears = sdfy.format(date);
 
-                    String month = "", years = "";
+                String month = "", years = "";
 
-                    for (int i = 0; i < yearofpassingpgyear.length() - 6; i++) {
-                        month += yearofpassingpgyear.charAt(i);
-                    }
-                    for (int i = 5; i < yearofpassingpgyear.length(); i++) {
-                        years += yearofpassingpgyear.charAt(i);
-                    }
-                    int currentYear = Integer.parseInt(currentYears);
-                    int year = Integer.parseInt(years);
+                for (int i = 0; i < yearofpassingpgyear.length() - 6; i++) {
+                    month += yearofpassingpgyear.charAt(i);
+                }
+                for (int i = 5; i < yearofpassingpgyear.length(); i++) {
+                    years += yearofpassingpgyear.charAt(i);
+                }
+                int currentYear = Integer.parseInt(currentYears);
+                int year = Integer.parseInt(years);
 
-                    if (currentYear > year)
+                if (currentYear > year)
+                    myprofilecource4.setText("Attended " + coursepgyear + " at");
+                else if (currentYear == year) {
+                    if (map.get(currentMonth) > map.get(month)) {
                         myprofilecource4.setText("Attended " + coursepgyear + " at");
-                    else if (currentYear == year) {
-                        if (map.get(currentMonth) > map.get(month)) {
-                            myprofilecource4.setText("Attended " + coursepgyear + " at");
-                        } else {
-                            myprofilecource4.setText("Attending " + coursepgyear + " at");
-                            myprofiledu.setText(coursepgyear);
-                        }
                     } else {
-                        myprofilecource4.setText("Attending " + coursepgsem + " at");
+                        myprofilecource4.setText("Attending " + coursepgyear + " at");
                         myprofiledu.setText(coursepgyear);
                     }
-
-                    myprofileclgname4.setText(collegenamepgyear);
-                    myprofileclgyearofpassing4.setText(yearofpassingpgyear);
-
-                    ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
-                    RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
-                    insti4.setVisibility(View.VISIBLE);
-                    edutab4.setVisibility(View.VISIBLE);
+                } else {
+                    myprofilecource4.setText("Attending " + coursepgsem + " at");
+                    myprofiledu.setText(coursepgyear);
                 }
+
+                myprofileclgname4.setText(collegenamepgyear);
+                myprofileclgyearofpassing4.setText(yearofpassingpgyear);
+
+                ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
+                RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
+                insti4.setVisibility(View.VISIBLE);
+                edutab4.setVisibility(View.VISIBLE);
             }
-
-            if (myprofiledu.getText().toString().equals("Current Education"))
-                myprofiledu.setVisibility(View.GONE);
-            else
-                myprofiledu.setVisibility(View.VISIBLE);
-
-
-            float R = (1000 - 0) / (15 - 0);
-            float y = (percentProfile - 0) * R + 0;
-            int val = Math.round(y);
-
-            ObjectAnimator progressAnimator = ObjectAnimator.ofInt(profileprogress, "progress", 0, val);
-            progressAnimator.setDuration(700);
-            progressAnimator.setInterpolator(new LinearInterpolator());
-            progressAnimator.start();
         }
 
-
-        public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
-            Animation animation = super.onCreateAnimation(transit, enter, nextAnim);
-
-            // HW layer support only exists on API 11+
-            if (Build.VERSION.SDK_INT >= 11) {
-                if (animation == null && nextAnim != 0) {
-                    animation = AnimationUtils.loadAnimation(getActivity(), nextAnim);
-                }
-
-                if (animation != null) {
-                    getView().setLayerType(View.LAYER_TYPE_HARDWARE, null);
-
-                    animation.setAnimationListener(new Animation.AnimationListener() {
-                        @Override
-                        public void onAnimationStart(Animation animation) {
-
-                        }
-
-                        public void onAnimationEnd(Animation animation) {
-                            getView().setLayerType(View.LAYER_TYPE_NONE, null);
-                        }
-
-                        @Override
-                        public void onAnimationRepeat(Animation animation) {
-
-                        }
+        if (myprofiledu.getText().toString().equals("Current Education"))
+            myprofiledu.setVisibility(View.GONE);
+        else
+            myprofiledu.setVisibility(View.VISIBLE);
 
 
-                    });
-                }
+        float R = (1000 - 0) / (15 - 0);
+        float y = (percentProfile - 0) * R + 0;
+        int val = Math.round(y);
+
+        ObjectAnimator progressAnimator = ObjectAnimator.ofInt(profileprogress, "progress", 0, val);
+        progressAnimator.setDuration(700);
+        progressAnimator.setInterpolator(new LinearInterpolator());
+        progressAnimator.start();
+    }
+
+
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        Animation animation = super.onCreateAnimation(transit, enter, nextAnim);
+
+        // HW layer support only exists on API 11+
+        if (Build.VERSION.SDK_INT >= 11) {
+            if (animation == null && nextAnim != 0) {
+                animation = AnimationUtils.loadAnimation(getActivity(), nextAnim);
             }
 
-            return animation;
+            if (animation != null) {
+                getView().setLayerType(View.LAYER_TYPE_HARDWARE, null);
+
+                animation.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    public void onAnimationEnd(Animation animation) {
+                        getView().setLayerType(View.LAYER_TYPE_NONE, null);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+
+
+                });
+            }
         }
 
-        class DeleteProfile extends AsyncTask<String, String, String> {
+        return animation;
+    }
+
+    class DeleteProfile extends AsyncTask<String, String, String> {
 
 
-            protected String doInBackground(String... param) {
+        protected String doInBackground(String... param) {
 
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u", username));
-                json = jParser.makeHttpRequest(MyConstants.remove_profile, "GET", params);
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            json = jParser.makeHttpRequest(MyConstants.remove_profile, "GET", params);
 
-                try {
+            try {
 
-                    resultofop = json.getString("info");
+                resultofop = json.getString("info");
 
-                } catch (Exception ex) {
-                    Log.d("TAG", "DeleteProfile " + ex.getMessage());
-                }
-
-                return resultofop;
+            } catch (Exception ex) {
+                Log.d("TAG", "DeleteProfile " + ex.getMessage());
             }
 
-            @Override
-            protected void onPostExecute(String result) {
-
-                if (resultofop.equals("success")) {
-                    Toast.makeText(getActivity(), "Profile Picture removed..!", Toast.LENGTH_LONG).show();
-                    refreshContent();
-                    ((MainActivity) getActivity()).requestProfileImage();
-                } else if (resultofop.equals("fail"))
-                    Toast.makeText(getActivity(), "Failed..!", Toast.LENGTH_LONG).show();
-
-                else if (resultofop.equals("notfound"))
-                    Toast.makeText(getActivity(), "No Profile Picture..!", Toast.LENGTH_LONG).show();
-
-
-            }
+            return resultofop;
         }
 
         @Override
-        public void onAttach(final Activity activity) {
+        protected void onPostExecute(String result) {
 
-            super.onAttach(activity);
+            if (resultofop.equals("success")) {
+                Toast.makeText(getActivity(), "Profile Picture removed..!", Toast.LENGTH_LONG).show();
+                refreshContent();
+                ((MainActivity) getActivity()).requestProfileImage();
+            } else if (resultofop.equals("fail"))
+                Toast.makeText(getActivity(), "Failed..!", Toast.LENGTH_LONG).show();
 
-            setHasOptionsMenu(true);
-        }
-
-        @Override
-        public void onPrepareOptionsMenu(final Menu menu) {
-
-            super.onPrepareOptionsMenu(menu);
-
-            menu.clear();
-        }
-
-
-        private void downloadImage() {
-
-            String t = String.valueOf(System.currentTimeMillis());
-
-            Uri uri = new Uri.Builder()
-                    .scheme("http")
-                    .authority("192.168.100.100")
-                    .path("AESTest/GetImage")
-                    .appendQueryParameter("u", username)
-                    .build();
-
-            GlideApp.with(this)
-                    .load(uri)
-                    .signature(new ObjectKey(System.currentTimeMillis() + ""))
-                    .into(myprofileimg);
+            else if (resultofop.equals("notfound"))
+                Toast.makeText(getActivity(), "No Profile Picture..!", Toast.LENGTH_LONG).show();
 
 
         }
+    }
+
+    @Override
+    public void onAttach(final Activity activity) {
+
+        super.onAttach(activity);
+
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(final Menu menu) {
+
+        super.onPrepareOptionsMenu(menu);
+
+        menu.clear();
+    }
 
 
- }
+    private void downloadImage() {
+
+        String t = String.valueOf(System.currentTimeMillis());
+
+        Uri uri = new Uri.Builder()
+                .scheme("http")
+                .authority("192.168.100.100")
+                .path("AESTest/GetImage")
+                .appendQueryParameter("u", username)
+                .build();
+
+        GlideApp.with(this)
+                .load(uri)
+                .signature(new ObjectKey(System.currentTimeMillis() + ""))
+                .into(myprofileimg);
+
+
+    }
+
+
+}
 

@@ -9,6 +9,7 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -61,6 +62,7 @@ public class AdminIntro extends AppCompatActivity {
     JSONObject json;
     JSONParser jParser = new JSONParser();
     private String username="";
+    TextInputLayout fnameTextInputLayout, lnameTextInputLayout, roleinputlayout,instinputlayout, emailinputlayout, citystaecountryinputlayout;
 
 
     private static String url_getcountries = "http://192.168.100.100/AESTest/GetCountries";
@@ -106,9 +108,7 @@ public class AdminIntro extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         TextView loctxt=(TextView)findViewById(R.id.loctxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");
-        loctxt.setTypeface(custom_font1);
-
+        loctxt.setTypeface(MyConstants.getBold(this));
 //        country=(Spinner)findViewById(R.id.country);
 //        state=(Spinner)findViewById(R.id.state);
 //        city=(Spinner)findViewById(R.id.city);
@@ -117,45 +117,79 @@ public class AdminIntro extends AppCompatActivity {
 
 
         fname=(EditText)findViewById(R.id.fname);
-        lname=(EditText)findViewById(R.id.sname);
+        lname=(EditText)findViewById(R.id.lname);
         role=(EditText)findViewById(R.id.role);
         email=(EditText)findViewById(R.id.email);
         inst=(EditText)findViewById(R.id.inst);
 
         citystaecountry=(AutoCompleteTextView)findViewById(R.id.citystaecountry);
 
+        fnameTextInputLayout = (TextInputLayout) findViewById(R.id.fnameTextInputLayout);
+        lnameTextInputLayout = (TextInputLayout) findViewById(R.id.lnameTextInputLayout);
+        roleinputlayout = (TextInputLayout) findViewById(R.id.roleinputlayout);
+        emailinputlayout = (TextInputLayout) findViewById(R.id.emailinputlayout);
+        instinputlayout = (TextInputLayout) findViewById(R.id.instinputlayout);
+        citystaecountryinputlayout = (TextInputLayout) findViewById(R.id.citystaecountryinputlayout);
+
+        fname.setTypeface(MyConstants.getBold(this));
+        lname.setTypeface(MyConstants.getBold(this));
+        role.setTypeface(MyConstants.getBold(this));
+        email.setTypeface(MyConstants.getBold(this));
+        inst.setTypeface(MyConstants.getBold(this));
+        citystaecountry.setTypeface(MyConstants.getBold(this));
+
+        fnameTextInputLayout.setTypeface(MyConstants.getLight(this));
+        lnameTextInputLayout.setTypeface(MyConstants.getLight(this));
+        roleinputlayout.setTypeface(MyConstants.getLight(this));
+        emailinputlayout.setTypeface(MyConstants.getLight(this));
+        instinputlayout.setTypeface(MyConstants.getLight(this));
+        citystaecountryinputlayout.setTypeface(MyConstants.getLight(this));
+
         firstname=a.getFname();
         lastname=a.getLname();
         instname = a.getInstitute();
-
         selectedCountry = a.getCountry();
         selectedState = a.getState();
         selectedCity = a.getCity();
 
-
-
         if(firstname!=null)
             fname.setText(firstname);
+        else
+            firstname="";
+
         if(lastname!=null)
             lname.setText(lastname);
+        else
+            lastname="";
+
         if (instname != null)
             inst.setText(instname);
+        else
+            instname="";
 
 
-    try{
-        role.setText(MySharedPreferencesManager.getRole(this));
-     email.setText(Decrypt(MySharedPreferencesManager.getUsername(this),digest1,digest2));
 
-    } catch (Exception e)
-    {
-    e.printStackTrace();
-    }
+        try{
+            role.setText(MySharedPreferencesManager.getRole(this));
+            email.setText(Decrypt(MySharedPreferencesManager.getUsername(this),digest1,digest2));
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         encUsername=MySharedPreferencesManager.getUsername(this);
         if(selectedCountry!=null && selectedState!=null && selectedCity!=null)
         {
-            CityStateCountry = selectedCity+" , "+selectedState+" , "+selectedCountry;
-            citystaecountry.setText(CityStateCountry);
+            if(!selectedCountry.equals("") && !selectedState.equals("") && !selectedCity.equals("")) {
+                CityStateCountry = selectedCity + " , " + selectedState + " , " + selectedCountry;
+                citystaecountry.setText(CityStateCountry);
+            }
+            else
+                citystaecountry.setText("City/District");
+
         }
+        else
+            citystaecountry.setText("City/District");
 
         try
         {
@@ -168,7 +202,6 @@ public class AdminIntro extends AppCompatActivity {
                 String city=object.getString("city");
                 String state=object.getString("state");
                 String country=object.getString("country");
-
 
                 listAll.add(city+" , "+state+" , "+country);
 
@@ -191,6 +224,7 @@ public class AdminIntro extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                citystaecountryinputlayout.setError(null);
             }
 
             @Override
@@ -210,7 +244,7 @@ public class AdminIntro extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-
+                fnameTextInputLayout.setError(null);
             }
 
             @Override
@@ -221,7 +255,7 @@ public class AdminIntro extends AppCompatActivity {
         lname.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                lname.setError(null);
+                lnameTextInputLayout.setError(null);
                 edittedFlag=1;
             }
 
@@ -246,6 +280,7 @@ public class AdminIntro extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                instinputlayout.setError(null);
             }
 
             @Override
@@ -354,30 +389,29 @@ public class AdminIntro extends AppCompatActivity {
         CityStateCountry = citystaecountry.getText().toString();
 
         if (firstname.length() < 2) {
-            fname.setError("Incorrect First Name");
+            fnameTextInputLayout.setError("Kindly enter valid first name");
             errorflag1 = 1;
         } else {
-            fname.setError(null);
+            fnameTextInputLayout.setError(null);
             if (lastname.length() < 2) {
-                lname.setError("Incorrect Last Name");
+                lnameTextInputLayout.setError("Kindly enter valid last name");
                 errorflag2 = 1;
             } else {
-                lname.setError(null);
+                lnameTextInputLayout.setError(null);
                 if (instname.length() < 2) {
-                    inst.setError("Incorrect Institute Name");
+                    lnameTextInputLayout.setError("Kindly enter valid last name");
                     errorflag3 = 1;
                 } else {
-                    inst.setError(null);
+                    instinputlayout.setError(null);
 
                     if(CityStateCountry.length()<2)
                     {
-                        citystaecountry.setError("Incorrect City Name");
+                        citystaecountryinputlayout.setError("Please select your city");
                         errorflagfirstname=1;
                     }
                     else
                     {
-                        citystaecountry.setError(null);
-
+                        citystaecountryinputlayout.setError(null);
                         String[] parts = CityStateCountry.split(" , ");
                         if(parts.length==3) {
                             selectedCity = parts[0];
@@ -405,33 +439,33 @@ public class AdminIntro extends AppCompatActivity {
         }
 
 
-            if (errorflagfirstname == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag1 == 0  ) {
-                try {
+        if (errorflagfirstname == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag1 == 0  ) {
+            try {
 //
-                     String mname = a.getMname();
-                     String phone = a.getPhone();
+                String mname = a.getMname();
+                String phone = a.getPhone();
 
-                    Log.d("TAG", "mname: - "+mname);
-                    Log.d("TAG", "phone: - "+phone);
+                Log.d("TAG", "mname: - "+mname);
+                Log.d("TAG", "phone: - "+phone);
 
-                    obj = new AdminIntroModal(firstname,mname,lastname,selectedCountry,selectedState,selectedCity,phone,instname);
-                    try{
-                        strobj =OtoString(obj,digest1,digest2);
-                        Log.d("encstrobj", "strobj: "+strobj);
-
-                    }
-                    catch (Exception e){
-                        Log.d("TAG", "validateandSave: - "+e.getMessage());
-                    }
-
-
-                    new SaveData().execute();
-
-                } catch (Exception e) {
-                    Log.d("TAG", "validateandSave: - "+e.getMessage());
+                obj = new AdminIntroModal(firstname,mname,lastname,selectedCountry,selectedState,selectedCity,phone,instname);
+                try{
+                    strobj =OtoString(obj,digest1,digest2);
+                    Log.d("encstrobj", "strobj: "+strobj);
 
                 }
+                catch (Exception e){
+                    Log.d("TAG", "validateandSave: - "+e.getMessage());
+                }
+
+
+                new SaveData().execute();
+
+            } catch (Exception e) {
+                Log.d("TAG", "validateandSave: - "+e.getMessage());
+
             }
+        }
 
     }
 
