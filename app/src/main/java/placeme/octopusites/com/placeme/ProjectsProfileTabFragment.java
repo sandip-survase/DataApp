@@ -2212,7 +2212,6 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
 
     void showDeletDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-
         alertDialogBuilder
                 .setMessage("Do you want to delete this project ?")
                 .setCancelable(false)
@@ -2236,8 +2235,10 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialogInterface) {
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(getActivity()));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(getActivity()));
             }
         });
 
