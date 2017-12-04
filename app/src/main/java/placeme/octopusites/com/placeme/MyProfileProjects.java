@@ -55,6 +55,7 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
     String sproj1="",sdomain1="",steam1="",sduration1="",sproj2="",sdomain2="",steam2="",sduration2="",sproj3="",sdomain3="",steam3="",sduration3="",sproj4="",sdomain4="",steam4="",sduration4="",sproj5="",sdomain5="",steam5="",sduration5="",sproj6="",sdomain6="",steam6="",sduration6="",sproj7="",sdomain7="",steam7="",sduration7="",sproj8="",sdomain8="",steam8="",sduration8="",sproj9="",sdomain9="",steam9="",sduration9="",sproj10="",sdomain10="",steam10="",sduration10="";
     String encproj1,encdomain1,encteam1,encduration1,encproj2,encdomain2,encteam2,encduration2,encproj3,encdomain3,encteam3,encduration3,encproj4,encdomain4,encteam4,encduration4,encproj5,encdomain5,encteam5,encduration5,encproj6,encdomain6,encteam6,encduration6,encproj7,encdomain7,encteam7,encduration7,encproj8,encdomain8,encteam8,encduration8,encproj9,encdomain9,encteam9,encduration9,encproj10,encdomain10,encteam10,encduration10;
     View trash1selectionview,trash2selectionview,trash3selectionview,trash4selectionview,trash5selectionview,trash6selectionview,trash7selectionview,trash8selectionview,trash9selectionview,trash10selectionview;
+    TextView addmoreprojecttxt;
     int edittedFlag=0;;
     int d=0;
     StudentData s=new StudentData();
@@ -80,10 +81,10 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
 
-
+        TextView addmoreprojecttxt=(TextView)findViewById(R.id.addmoreprojecttxt);
+        addmoreprojecttxt.setTypeface(MyConstants.getBold(this));
         TextView projtxt=(TextView)findViewById(R.id.projtxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");
-        projtxt.setTypeface(custom_font1);
+        projtxt.setTypeface(MyConstants.getBold(this));
 
         trash1selectionview=(View)findViewById(R.id.trash1selectionview);
         trash2selectionview=(View)findViewById(R.id.trash2selectionview);
@@ -208,6 +209,50 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
         domain10=(EditText)findViewById(R.id.domain10);
         team10=(EditText)findViewById(R.id.team10);
         duration10=(EditText)findViewById(R.id.duration10);
+
+        proj1.setTypeface(MyConstants.getBold(this));
+        domain1.setTypeface(MyConstants.getBold(this));
+        team1.setTypeface(MyConstants.getBold(this));
+        duration1.setTypeface(MyConstants.getBold(this));
+        proj2.setTypeface(MyConstants.getBold(this));
+        domain2.setTypeface(MyConstants.getBold(this));
+        team2.setTypeface(MyConstants.getBold(this));
+        duration2.setTypeface(MyConstants.getBold(this));
+        proj3.setTypeface(MyConstants.getBold(this));
+        domain3.setTypeface(MyConstants.getBold(this));
+        team3.setTypeface(MyConstants.getBold(this));
+        duration3.setTypeface(MyConstants.getBold(this));
+        proj4.setTypeface(MyConstants.getBold(this));
+        domain4.setTypeface(MyConstants.getBold(this));
+        team4.setTypeface(MyConstants.getBold(this));
+        duration4.setTypeface(MyConstants.getBold(this));
+        proj5.setTypeface(MyConstants.getBold(this));
+        domain5.setTypeface(MyConstants.getBold(this));
+        team5.setTypeface(MyConstants.getBold(this));
+        duration5.setTypeface(MyConstants.getBold(this));
+        proj6.setTypeface(MyConstants.getBold(this));
+        domain6.setTypeface(MyConstants.getBold(this));
+        team6.setTypeface(MyConstants.getBold(this));
+        duration6.setTypeface(MyConstants.getBold(this));
+        proj7.setTypeface(MyConstants.getBold(this));
+        domain7.setTypeface(MyConstants.getBold(this));
+        team7.setTypeface(MyConstants.getBold(this));
+        duration7.setTypeface(MyConstants.getBold(this));
+        proj8.setTypeface(MyConstants.getBold(this));
+        domain8.setTypeface(MyConstants.getBold(this));
+        team8.setTypeface(MyConstants.getBold(this));
+        duration8.setTypeface(MyConstants.getBold(this));
+        proj9.setTypeface(MyConstants.getBold(this));
+        domain9.setTypeface(MyConstants.getBold(this));
+        team9.setTypeface(MyConstants.getBold(this));
+        duration9.setTypeface(MyConstants.getBold(this));
+        proj10.setTypeface(MyConstants.getBold(this));
+        domain10.setTypeface(MyConstants.getBold(this));
+        team10.setTypeface(MyConstants.getBold(this));
+        duration10.setTypeface(MyConstants.getBold(this));
+
+
+
 
         proj1.addTextChangedListener(this);
         domain1.addTextChangedListener(this);

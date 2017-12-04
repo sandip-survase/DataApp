@@ -78,8 +78,9 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         role = MySharedPreferencesManager.getRole(getActivity());
 
         TextView projtxt = (TextView) rootView.findViewById(R.id.projtxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/arba.ttf");
-        projtxt.setTypeface(custom_font1);
+        projtxt.setTypeface(MyConstants.getBold(getActivity()));
+        TextView addmoreprojecttxt=(TextView) rootView.findViewById(R.id.addmoreprojecttxt);
+        addmoreprojecttxt.setTypeface(MyConstants.getBold(getActivity()));
         Log.d("dfgs", "onCreateView:COUNT2 " + projectscount2);
 
 
@@ -1096,16 +1097,16 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         if (projectscount == 0) {
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                projinput1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domaininput1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                teaminput1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                durationinput1.setError("Invalid Duration");
+                durationinput1.setError("Kindly enter valid duration in months");
 
             }
         } else if (projectscount == 1) {
@@ -1113,685 +1114,685 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
 
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                projinput1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domaininput1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                teaminput1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                durationinput1.setError("Invalid Duration");
+                durationinput1.setError("Kindly enter valid duration in months");
 
             } else if (sproj2.length() < 3) {
                 errorflag = 1;
-                projinput2.setError("Invalid Project Name");
+                projinput2.setError("Kindly enter valid project name");
             } else if (sdomain2.length() < 3) {
                 errorflag = 1;
-                domaininput2.setError("Invalid Domain");
+                domaininput2.setError("Kindly enter valid domain");
             } else if (steam2.length() < 1) {
                 errorflag = 1;
-                teaminput2.setError("Invalid Teamsize");
+                teaminput2.setError("Kindly enter valid team size");
             } else if (sduration2.length() < 1) {
                 errorflag = 1;
-                durationinput2.setError("Invalid Duration");
+                durationinput2.setError("Kindly enter valid duration in months");
             }
         } else if (projectscount == 2) {
 
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                projinput1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domaininput1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                teaminput1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                durationinput1.setError("Invalid Duration");
+                durationinput1.setError("Kindly enter valid duration in months");
 
             } else if (sproj2.length() < 3) {
                 errorflag = 1;
-                projinput2.setError("Invalid Project Name");
+                projinput2.setError("Kindly enter valid project name");
             } else if (sdomain2.length() < 3) {
                 errorflag = 1;
-                domaininput2.setError("Invalid Domain");
+                domaininput2.setError("Kindly enter valid domain");
             } else if (steam2.length() < 1) {
                 errorflag = 1;
-                teaminput2.setError("Invalid Teamsize");
+                teaminput2.setError("Kindly enter valid team size");
             } else if (sduration2.length() < 1) {
                 errorflag = 1;
-                durationinput2.setError("Invalid Duration");
+                durationinput2.setError("Kindly enter valid duration in months");
             } else if (sproj3.length() < 3) {
                 errorflag = 1;
-                projinput3.setError("Invalid Project Name");
+                projinput3.setError("Kindly enter valid project name");
             } else if (sdomain3.length() < 3) {
                 errorflag = 1;
-                domaininput3.setError("Invalid Domain");
+                domaininput3.setError("Kindly enter valid domain");
             } else if (steam3.length() < 1) {
                 errorflag = 1;
-                teaminput3.setError("Invalid Teamsize");
+                teaminput3.setError("Kindly enter valid team size");
             } else if (sduration3.length() < 1) {
                 errorflag = 1;
-                durationinput3.setError("Invalid Duration");
+                durationinput3.setError("Kindly enter valid duration in months");
             }
         } else if (projectscount == 3) {
 
 
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                projinput1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domaininput1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                teaminput1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                durationinput1.setError("Invalid Duration");
+                durationinput1.setError("Kindly enter valid duration in months");
 
             } else if (sproj2.length() < 3) {
                 errorflag = 1;
-                projinput2.setError("Invalid Project Name");
+                projinput2.setError("Kindly enter valid project name");
             } else if (sdomain2.length() < 3) {
                 errorflag = 1;
-                domaininput2.setError("Invalid Domain");
+                domaininput2.setError("Kindly enter valid domain");
             } else if (steam2.length() < 1) {
                 errorflag = 1;
-                teaminput2.setError("Invalid Teamsize");
+                teaminput2.setError("Kindly enter valid team size");
             } else if (sduration2.length() < 1) {
                 errorflag = 1;
-                durationinput2.setError("Invalid Duration");
+                durationinput2.setError("Kindly enter valid duration in months");
             } else if (sproj3.length() < 3) {
                 errorflag = 1;
-                projinput3.setError("Invalid Project Name");
+                projinput3.setError("Kindly enter valid project name");
             } else if (sdomain3.length() < 3) {
                 errorflag = 1;
-                domaininput3.setError("Invalid Domain");
+                domaininput3.setError("Kindly enter valid domain");
             } else if (steam3.length() < 1) {
                 errorflag = 1;
-                teaminput3.setError("Invalid Teamsize");
+                teaminput3.setError("Kindly enter valid team size");
             } else if (sduration3.length() < 1) {
                 errorflag = 1;
-                durationinput3.setError("Invalid Duration");
+                durationinput3.setError("Kindly enter valid duration in months");
             } else if (sproj4.length() < 3) {
                 errorflag = 1;
-                projinput4.setError("Invalid Project Name");
+                projinput4.setError("Kindly enter valid project name");
             } else if (sdomain4.length() < 3) {
                 errorflag = 1;
-                domaininput4.setError("Invalid Domain");
+                domaininput4.setError("Kindly enter valid domain");
             } else if (steam4.length() < 1) {
                 errorflag = 1;
-                teaminput4.setError("Invalid Teamsize");
+                teaminput4.setError("Kindly enter valid team size");
             } else if (sduration4.length() < 1) {
                 errorflag = 1;
-                durationinput4.setError("Invalid Duration");
+                durationinput4.setError("Kindly enter valid duration in months");
             }
         } else if (projectscount == 4) {
 
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                projinput1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domaininput1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                teaminput1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                durationinput1.setError("Invalid Duration");
+                durationinput1.setError("Kindly enter valid duration in months");
 
             } else if (sproj2.length() < 3) {
                 errorflag = 1;
-                projinput2.setError("Invalid Project Name");
+                projinput2.setError("Kindly enter valid project name");
             } else if (sdomain2.length() < 3) {
                 errorflag = 1;
-                domaininput2.setError("Invalid Domain");
+                domaininput2.setError("Kindly enter valid domain");
             } else if (steam2.length() < 1) {
                 errorflag = 1;
-                teaminput2.setError("Invalid Teamsize");
+                teaminput2.setError("Kindly enter valid team size");
             } else if (sduration2.length() < 1) {
                 errorflag = 1;
-                durationinput2.setError("Invalid Duration");
+                durationinput2.setError("Kindly enter valid duration in months");
             } else if (sproj3.length() < 3) {
                 errorflag = 1;
-                projinput3.setError("Invalid Project Name");
+                projinput3.setError("Kindly enter valid project name");
             } else if (sdomain3.length() < 3) {
                 errorflag = 1;
-                domaininput3.setError("Invalid Domain");
+                domaininput3.setError("Kindly enter valid domain");
             } else if (steam3.length() < 1) {
                 errorflag = 1;
-                teaminput3.setError("Invalid Teamsize");
+                teaminput3.setError("Kindly enter valid team size");
             } else if (sduration3.length() < 1) {
                 errorflag = 1;
-                durationinput3.setError("Invalid Duration");
+                durationinput3.setError("Kindly enter valid duration in months");
             } else if (sproj4.length() < 3) {
                 errorflag = 1;
-                projinput4.setError("Invalid Project Name");
+                projinput4.setError("Kindly enter valid project name");
             } else if (sdomain4.length() < 3) {
                 errorflag = 1;
-                domaininput4.setError("Invalid Domain");
+                domaininput4.setError("Kindly enter valid domain");
             } else if (steam4.length() < 1) {
                 errorflag = 1;
-                teaminput4.setError("Invalid Teamsize");
+                teaminput4.setError("Kindly enter valid team size");
             } else if (sduration4.length() < 1) {
                 errorflag = 1;
-                durationinput4.setError("Invalid Duration");
+                durationinput4.setError("Kindly enter valid duration in months");
             } else if (sproj5.length() < 3) {
                 errorflag = 1;
-                projinput5.setError("Invalid Project Name");
+                projinput5.setError("Kindly enter valid project name");
             } else if (sdomain5.length() < 3) {
                 errorflag = 1;
-                domaininput5.setError("Invalid Domain");
+                domaininput5.setError("Kindly enter valid domain");
             } else if (steam5.length() < 1) {
                 errorflag = 1;
-                teaminput5.setError("Invalid Teamsize");
+                teaminput5.setError("Kindly enter valid team size");
             } else if (sduration5.length() < 1) {
                 errorflag = 1;
-                durationinput5.setError("Invalid Duration");             //
+                durationinput5.setError("Kindly enter valid duration in months");             //
             }
         } else if (projectscount == 5) {
 
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                projinput1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domaininput1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                teaminput1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                durationinput1.setError("Invalid Duration");
+                durationinput1.setError("Kindly enter valid duration in months");
 
             } else if (sproj2.length() < 3) {
                 errorflag = 1;
-                projinput2.setError("Invalid Project Name");
+                projinput2.setError("Kindly enter valid project name");
             } else if (sdomain2.length() < 3) {
                 errorflag = 1;
-                domaininput2.setError("Invalid Domain");
+                domaininput2.setError("Kindly enter valid domain");
             } else if (steam2.length() < 1) {
                 errorflag = 1;
-                teaminput2.setError("Invalid Teamsize");
+                teaminput2.setError("Kindly enter valid team size");
             } else if (sduration2.length() < 1) {
                 errorflag = 1;
-                durationinput2.setError("Invalid Duration");
+                durationinput2.setError("Kindly enter valid duration in months");
             } else if (sproj3.length() < 3) {
                 errorflag = 1;
-                projinput3.setError("Invalid Project Name");
+                projinput3.setError("Kindly enter valid project name");
             } else if (sdomain3.length() < 3) {
                 errorflag = 1;
-                domaininput3.setError("Invalid Domain");
+                domaininput3.setError("Kindly enter valid domain");
             } else if (steam3.length() < 1) {
                 errorflag = 1;
-                teaminput3.setError("Invalid Teamsize");
+                teaminput3.setError("Kindly enter valid team size");
             } else if (sduration3.length() < 1) {
                 errorflag = 1;
-                durationinput3.setError("Invalid Duration");
+                durationinput3.setError("Kindly enter valid duration in months");
             } else if (sproj4.length() < 3) {
                 errorflag = 1;
-                projinput4.setError("Invalid Project Name");
+                projinput4.setError("Kindly enter valid project name");
             } else if (sdomain4.length() < 3) {
                 errorflag = 1;
-                domaininput4.setError("Invalid Domain");
+                domaininput4.setError("Kindly enter valid domain");
             } else if (steam4.length() < 1) {
                 errorflag = 1;
-                teaminput4.setError("Invalid Teamsize");
+                teaminput4.setError("Kindly enter valid team size");
             } else if (sduration4.length() < 1) {
                 errorflag = 1;
-                durationinput4.setError("Invalid Duration");
+                durationinput4.setError("Kindly enter valid duration in months");
             } else if (sproj5.length() < 3) {
                 errorflag = 1;
-                projinput5.setError("Invalid Project Name");
+                projinput5.setError("Kindly enter valid project name");
             } else if (sdomain5.length() < 3) {
                 errorflag = 1;
-                domaininput5.setError("Invalid Domain");
+                domaininput5.setError("Kindly enter valid domain");
             } else if (steam5.length() < 1) {
                 errorflag = 1;
-                teaminput5.setError("Invalid Teamsize");
+                teaminput5.setError("Kindly enter valid team size");
             } else if (sduration5.length() < 1) {
                 errorflag = 1;
-                durationinput5.setError("Invalid Duration");             //
+                durationinput5.setError("Kindly enter valid duration in months");             //
             } else if (sproj6.length() < 3) {
                 errorflag = 1;
-                projinput6.setError("Invalid Project Name");
+                projinput6.setError("Kindly enter valid project name");
             } else if (sdomain6.length() < 3) {
                 errorflag = 1;
-                domaininput6.setError("Invalid Domain");
+                domaininput6.setError("Kindly enter valid domain");
             } else if (steam6.length() < 1) {
                 errorflag = 1;
-                teaminput6.setError("Invalid Teamsize");
+                teaminput6.setError("Kindly enter valid team size");
             } else if (sduration6.length() < 1) {
                 errorflag = 1;
-                durationinput6.setError("Invalid Duration");
+                durationinput6.setError("Kindly enter valid duration in months");
             }
 
         } else if (projectscount == 6) {
 
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                projinput1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domaininput1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                teaminput1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                durationinput1.setError("Invalid Duration");
+                durationinput1.setError("Kindly enter valid duration in months");
             } else if (sproj2.length() < 3) {
                 errorflag = 1;
-                projinput2.setError("Invalid Project Name");
+                projinput2.setError("Kindly enter valid project name");
             } else if (sdomain2.length() < 3) {
                 errorflag = 1;
-                domaininput2.setError("Invalid Domain");
+                domaininput2.setError("Kindly enter valid domain");
             } else if (steam2.length() < 1) {
                 errorflag = 1;
-                teaminput2.setError("Invalid Teamsize");
+                teaminput2.setError("Kindly enter valid team size");
             } else if (sduration2.length() < 1) {
                 errorflag = 1;
-                durationinput2.setError("Invalid Duration");
+                durationinput2.setError("Kindly enter valid duration in months");
             } else if (sproj3.length() < 3) {
                 errorflag = 1;
-                projinput3.setError("Invalid Project Name");
+                projinput3.setError("Kindly enter valid project name");
             } else if (sdomain3.length() < 3) {
                 errorflag = 1;
-                domaininput3.setError("Invalid Domain");
+                domaininput3.setError("Kindly enter valid domain");
             } else if (steam3.length() < 1) {
                 errorflag = 1;
-                teaminput3.setError("Invalid Teamsize");
+                teaminput3.setError("Kindly enter valid team size");
             } else if (sduration3.length() < 1) {
                 errorflag = 1;
-                durationinput3.setError("Invalid Duration");
+                durationinput3.setError("Kindly enter valid duration in months");
             } else if (sproj4.length() < 3) {
                 errorflag = 1;
-                projinput4.setError("Invalid Project Name");
+                projinput4.setError("Kindly enter valid project name");
             } else if (sdomain4.length() < 3) {
                 errorflag = 1;
-                domaininput4.setError("Invalid Domain");
+                domaininput4.setError("Kindly enter valid domain");
             } else if (steam4.length() < 1) {
                 errorflag = 1;
-                teaminput4.setError("Invalid Teamsize");
+                teaminput4.setError("Kindly enter valid team size");
             } else if (sduration4.length() < 1) {
                 errorflag = 1;
-                durationinput4.setError("Invalid Duration");
+                durationinput4.setError("Kindly enter valid duration in months");
             } else if (sproj5.length() < 3) {
                 errorflag = 1;
-                projinput5.setError("Invalid Project Name");
+                projinput5.setError("Kindly enter valid project name");
             } else if (sdomain5.length() < 3) {
                 errorflag = 1;
-                domaininput5.setError("Invalid Domain");
+                domaininput5.setError("Kindly enter valid domain");
             } else if (steam5.length() < 1) {
                 errorflag = 1;
-                teaminput5.setError("Invalid Teamsize");
+                teaminput5.setError("Kindly enter valid team size");
             } else if (sduration5.length() < 1) {
                 errorflag = 1;
-                durationinput5.setError("Invalid Duration");             //
+                durationinput5.setError("Kindly enter valid duration in months");             //
             } else if (sproj6.length() < 3) {
                 errorflag = 1;
-                projinput6.setError("Invalid Project Name");
+                projinput6.setError("Kindly enter valid project name");
             } else if (sdomain6.length() < 3) {
                 errorflag = 1;
-                domaininput6.setError("Invalid Domain");
+                domaininput6.setError("Kindly enter valid domain");
             } else if (steam6.length() < 1) {
                 errorflag = 1;
-                teaminput6.setError("Invalid Teamsize");
+                teaminput6.setError("Kindly enter valid team size");
             } else if (sduration6.length() < 1) {
                 errorflag = 1;
-                durationinput6.setError("Invalid Duration");
+                durationinput6.setError("Kindly enter valid duration in months");
             } else if (sproj7.length() < 3) {
                 errorflag = 1;
-                projinput7.setError("Invalid Project Name");
+                projinput7.setError("Kindly enter valid project name");
             } else if (sdomain7.length() < 3) {
                 errorflag = 1;
-                domaininput7.setError("Invalid Domain");
+                domaininput7.setError("Kindly enter valid domain");
             } else if (steam7.length() < 1) {
                 errorflag = 1;
-                teaminput7.setError("Invalid Teamsize");
+                teaminput7.setError("Kindly enter valid team size");
             } else if (sduration7.length() < 1) {
                 errorflag = 1;
-                durationinput7.setError("Invalid Duration");
+                durationinput7.setError("Kindly enter valid duration in months");
             }
 
         } else if (projectscount == 7) {
 
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                projinput1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domaininput1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                teaminput1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                durationinput1.setError("Invalid Duration");
+                durationinput1.setError("Kindly enter valid duration in months");
             } else if (sproj2.length() < 3) {
                 errorflag = 1;
-                projinput2.setError("Invalid Project Name");
+                projinput2.setError("Kindly enter valid project name");
             } else if (sdomain2.length() < 3) {
                 errorflag = 1;
-                domaininput2.setError("Invalid Domain");
+                domaininput2.setError("Kindly enter valid domain");
             } else if (steam2.length() < 1) {
                 errorflag = 1;
-                teaminput2.setError("Invalid Teamsize");
+                teaminput2.setError("Kindly enter valid team size");
             } else if (sduration2.length() < 1) {
                 errorflag = 1;
-                durationinput2.setError("Invalid Duration");
+                durationinput2.setError("Kindly enter valid duration in months");
             } else if (sproj3.length() < 3) {
                 errorflag = 1;
-                projinput3.setError("Invalid Project Name");
+                projinput3.setError("Kindly enter valid project name");
             } else if (sdomain3.length() < 3) {
                 errorflag = 1;
-                domaininput3.setError("Invalid Domain");
+                domaininput3.setError("Kindly enter valid domain");
             } else if (steam3.length() < 1) {
                 errorflag = 1;
-                teaminput3.setError("Invalid Teamsize");
+                teaminput3.setError("Kindly enter valid team size");
             } else if (sduration3.length() < 1) {
                 errorflag = 1;
-                durationinput3.setError("Invalid Duration");
+                durationinput3.setError("Kindly enter valid duration in months");
             } else if (sproj4.length() < 3) {
                 errorflag = 1;
-                projinput4.setError("Invalid Project Name");
+                projinput4.setError("Kindly enter valid project name");
             } else if (sdomain4.length() < 3) {
                 errorflag = 1;
-                domaininput4.setError("Invalid Domain");
+                domaininput4.setError("Kindly enter valid domain");
             } else if (steam4.length() < 1) {
                 errorflag = 1;
-                teaminput4.setError("Invalid Teamsize");
+                teaminput4.setError("Kindly enter valid team size");
             } else if (sduration4.length() < 1) {
                 errorflag = 1;
-                durationinput4.setError("Invalid Duration");
+                durationinput4.setError("Kindly enter valid duration in months");
             } else if (sproj5.length() < 3) {
                 errorflag = 1;
-                projinput5.setError("Invalid Project Name");
+                projinput5.setError("Kindly enter valid project name");
             } else if (sdomain5.length() < 3) {
                 errorflag = 1;
-                domaininput5.setError("Invalid Domain");
+                domaininput5.setError("Kindly enter valid domain");
             } else if (steam5.length() < 1) {
                 errorflag = 1;
-                teaminput5.setError("Invalid Teamsize");
+                teaminput5.setError("Kindly enter valid team size");
             } else if (sduration5.length() < 1) {
                 errorflag = 1;
-                durationinput5.setError("Invalid Duration");             //
+                durationinput5.setError("Kindly enter valid duration in months");             //
             } else if (sproj6.length() < 3) {
                 errorflag = 1;
-                projinput6.setError("Invalid Project Name");
+                projinput6.setError("Kindly enter valid project name");
             } else if (sdomain6.length() < 3) {
                 errorflag = 1;
-                domaininput6.setError("Invalid Domain");
+                domaininput6.setError("Kindly enter valid domain");
             } else if (steam6.length() < 1) {
                 errorflag = 1;
-                teaminput6.setError("Invalid Teamsize");
+                teaminput6.setError("Kindly enter valid team size");
             } else if (sduration6.length() < 1) {
                 errorflag = 1;
-                durationinput6.setError("Invalid Duration");
+                durationinput6.setError("Kindly enter valid duration in months");
             } else if (sproj7.length() < 3) {
                 errorflag = 1;
-                projinput7.setError("Invalid Project Name");
+                projinput7.setError("Kindly enter valid project name");
             } else if (sdomain7.length() < 3) {
                 errorflag = 1;
-                domaininput7.setError("Invalid Domain");
+                domaininput7.setError("Kindly enter valid domain");
             } else if (steam7.length() < 1) {
                 errorflag = 1;
-                teaminput7.setError("Invalid Teamsize");
+                teaminput7.setError("Kindly enter valid team size");
             } else if (sduration7.length() < 1) {
                 errorflag = 1;
-                durationinput7.setError("Invalid Duration");
+                durationinput7.setError("Kindly enter valid duration in months");
             } else if (sproj8.length() < 3) {
                 errorflag = 1;
-                projinput8.setError("Invalid Project Name");
+                projinput8.setError("Kindly enter valid project name");
             } else if (sdomain8.length() < 3) {
                 errorflag = 1;
-                domaininput8.setError("Invalid Domain");
+                domaininput8.setError("Kindly enter valid domain");
             } else if (steam8.length() < 1) {
                 errorflag = 1;
-                teaminput8.setError("Invalid Teamsize");
+                teaminput8.setError("Kindly enter valid team size");
             } else if (sduration8.length() < 1) {
                 errorflag = 1;
-                durationinput8.setError("Invalid Duration");
+                durationinput8.setError("Kindly enter valid duration in months");
             }
 //
         } else if (projectscount == 8) {
 
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                projinput1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domaininput1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                teaminput1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                durationinput1.setError("Invalid Duration");
+                durationinput1.setError("Kindly enter valid duration in months");
             } else if (sproj2.length() < 3) {
                 errorflag = 1;
-                projinput2.setError("Invalid Project Name");
+                projinput2.setError("Kindly enter valid project name");
             } else if (sdomain2.length() < 3) {
                 errorflag = 1;
-                domaininput2.setError("Invalid Domain");
+                domaininput2.setError("Kindly enter valid domain");
             } else if (steam2.length() < 1) {
                 errorflag = 1;
-                teaminput2.setError("Invalid Teamsize");
+                teaminput2.setError("Kindly enter valid team size");
             } else if (sduration2.length() < 1) {
                 errorflag = 1;
-                durationinput2.setError("Invalid Duration");
+                durationinput2.setError("Kindly enter valid duration in months");
             } else if (sproj3.length() < 3) {
                 errorflag = 1;
-                projinput3.setError("Invalid Project Name");
+                projinput3.setError("Kindly enter valid project name");
             } else if (sdomain3.length() < 3) {
                 errorflag = 1;
-                domaininput3.setError("Invalid Domain");
+                domaininput3.setError("Kindly enter valid domain");
             } else if (steam3.length() < 1) {
                 errorflag = 1;
-                teaminput3.setError("Invalid Teamsize");
+                teaminput3.setError("Kindly enter valid team size");
             } else if (sduration3.length() < 1) {
                 errorflag = 1;
-                durationinput3.setError("Invalid Duration");
+                durationinput3.setError("Kindly enter valid duration in months");
             } else if (sproj4.length() < 3) {
                 errorflag = 1;
-                projinput4.setError("Invalid Project Name");
+                projinput4.setError("Kindly enter valid project name");
             } else if (sdomain4.length() < 3) {
                 errorflag = 1;
-                domaininput4.setError("Invalid Domain");
+                domaininput4.setError("Kindly enter valid domain");
             } else if (steam4.length() < 1) {
                 errorflag = 1;
-                teaminput4.setError("Invalid Teamsize");
+                teaminput4.setError("Kindly enter valid team size");
             } else if (sduration4.length() < 1) {
                 errorflag = 1;
-                durationinput4.setError("Invalid Duration");
+                durationinput4.setError("Kindly enter valid duration in months");
             } else if (sproj5.length() < 3) {
                 errorflag = 1;
-                projinput5.setError("Invalid Project Name");
+                projinput5.setError("Kindly enter valid project name");
             } else if (sdomain5.length() < 3) {
                 errorflag = 1;
-                domaininput5.setError("Invalid Domain");
+                domaininput5.setError("Kindly enter valid domain");
             } else if (steam5.length() < 1) {
                 errorflag = 1;
-                teaminput5.setError("Invalid Teamsize");
+                teaminput5.setError("Kindly enter valid team size");
             } else if (sduration5.length() < 1) {
                 errorflag = 1;
-                durationinput5.setError("Invalid Duration");             //
+                durationinput5.setError("Kindly enter valid duration in months");             //
             } else if (sproj6.length() < 3) {
                 errorflag = 1;
-                projinput6.setError("Invalid Project Name");
+                projinput6.setError("Kindly enter valid project name");
             } else if (sdomain6.length() < 3) {
                 errorflag = 1;
-                domaininput6.setError("Invalid Domain");
+                domaininput6.setError("Kindly enter valid domain");
             } else if (steam6.length() < 1) {
                 errorflag = 1;
-                teaminput6.setError("Invalid Teamsize");
+                teaminput6.setError("Kindly enter valid team size");
             } else if (sduration6.length() < 1) {
                 errorflag = 1;
-                durationinput6.setError("Invalid Duration");
+                durationinput6.setError("Kindly enter valid duration in months");
             } else if (sproj7.length() < 3) {
                 errorflag = 1;
-                projinput7.setError("Invalid Project Name");
+                projinput7.setError("Kindly enter valid project name");
             } else if (sdomain7.length() < 3) {
                 errorflag = 1;
-                domaininput7.setError("Invalid Domain");
+                domaininput7.setError("Kindly enter valid domain");
             } else if (steam7.length() < 1) {
                 errorflag = 1;
-                teaminput7.setError("Invalid Teamsize");
+                teaminput7.setError("Kindly enter valid team size");
             } else if (sduration7.length() < 1) {
                 errorflag = 1;
-                durationinput7.setError("Invalid Duration");
+                durationinput7.setError("Kindly enter valid duration in months");
             } else if (sproj8.length() < 3) {
                 errorflag = 1;
-                projinput8.setError("Invalid Project Name");
+                projinput8.setError("Kindly enter valid project name");
             } else if (sdomain8.length() < 3) {
                 errorflag = 1;
-                domaininput8.setError("Invalid Domain");
+                domaininput8.setError("Kindly enter valid domain");
             } else if (steam8.length() < 1) {
                 errorflag = 1;
-                teaminput8.setError("Invalid Teamsize");
+                teaminput8.setError("Kindly enter valid team size");
             } else if (sduration8.length() < 1) {
                 errorflag = 1;
-                durationinput8.setError("Invalid Duration");
+                durationinput8.setError("Kindly enter valid duration in months");
             } else if (sproj9.length() < 3) {
                 errorflag = 1;
-                projinput9.setError("Invalid Project Name");
+                projinput9.setError("Kindly enter valid project name");
             } else if (sdomain9.length() < 3) {
                 errorflag = 1;
-                domaininput9.setError("Invalid Domain");
+                domaininput9.setError("Kindly enter valid domain");
             } else if (steam9.length() < 1) {
                 errorflag = 1;
-                teaminput9.setError("Invalid Teamsize");
+                teaminput9.setError("Kindly enter valid team size");
             } else if (sduration9.length() < 1) {
                 errorflag = 1;
-                durationinput9.setError("Invalid Duration");
+                durationinput9.setError("Kindly enter valid duration in months");
             }
 
         } else if (projectscount == 9) {
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                projinput1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domaininput1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                teaminput1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                durationinput1.setError("Invalid Duration");
+                durationinput1.setError("Kindly enter valid duration in months");
             } else if (sproj2.length() < 3) {
                 errorflag = 1;
-                projinput2.setError("Invalid Project Name");
+                projinput2.setError("Kindly enter valid project name");
             } else if (sdomain2.length() < 3) {
                 errorflag = 1;
-                domaininput2.setError("Invalid Domain");
+                domaininput2.setError("Kindly enter valid domain");
             } else if (steam2.length() < 1) {
                 errorflag = 1;
-                teaminput2.setError("Invalid Teamsize");
+                teaminput2.setError("Kindly enter valid team size");
             } else if (sduration2.length() < 1) {
                 errorflag = 1;
-                durationinput2.setError("Invalid Duration");
+                durationinput2.setError("Kindly enter valid duration in months");
             } else if (sproj3.length() < 3) {
                 errorflag = 1;
-                projinput3.setError("Invalid Project Name");
+                projinput3.setError("Kindly enter valid project name");
             } else if (sdomain3.length() < 3) {
                 errorflag = 1;
-                domaininput3.setError("Invalid Domain");
+                domaininput3.setError("Kindly enter valid domain");
             } else if (steam3.length() < 1) {
                 errorflag = 1;
-                teaminput3.setError("Invalid Teamsize");
+                teaminput3.setError("Kindly enter valid team size");
             } else if (sduration3.length() < 1) {
                 errorflag = 1;
-                durationinput3.setError("Invalid Duration");
+                durationinput3.setError("Kindly enter valid duration in months");
             } else if (sproj4.length() < 3) {
                 errorflag = 1;
-                projinput4.setError("Invalid Project Name");
+                projinput4.setError("Kindly enter valid project name");
             } else if (sdomain4.length() < 3) {
                 errorflag = 1;
-                domaininput4.setError("Invalid Domain");
+                domaininput4.setError("Kindly enter valid domain");
             } else if (steam4.length() < 1) {
                 errorflag = 1;
-                teaminput4.setError("Invalid Teamsize");
+                teaminput4.setError("Kindly enter valid team size");
             } else if (sduration4.length() < 1) {
                 errorflag = 1;
-                durationinput4.setError("Invalid Duration");
+                durationinput4.setError("Kindly enter valid duration in months");
             } else if (sproj5.length() < 3) {
                 errorflag = 1;
-                projinput5.setError("Invalid Project Name");
+                projinput5.setError("Kindly enter valid project name");
             } else if (sdomain5.length() < 3) {
                 errorflag = 1;
-                domaininput5.setError("Invalid Domain");
+                domaininput5.setError("Kindly enter valid domain");
             } else if (steam5.length() < 1) {
                 errorflag = 1;
-                teaminput5.setError("Invalid Teamsize");
+                teaminput5.setError("Kindly enter valid team size");
             } else if (sduration5.length() < 1) {
                 errorflag = 1;
-                durationinput5.setError("Invalid Duration");             //
+                durationinput5.setError("Kindly enter valid duration in months");             //
             } else if (sproj6.length() < 3) {
                 errorflag = 1;
-                projinput6.setError("Invalid Project Name");
+                projinput6.setError("Kindly enter valid project name");
             } else if (sdomain6.length() < 3) {
                 errorflag = 1;
-                domaininput6.setError("Invalid Domain");
+                domaininput6.setError("Kindly enter valid domain");
             } else if (steam6.length() < 1) {
                 errorflag = 1;
-                teaminput6.setError("Invalid Teamsize");
+                teaminput6.setError("Kindly enter valid team size");
             } else if (sduration6.length() < 1) {
                 errorflag = 1;
-                durationinput6.setError("Invalid Duration");
+                durationinput6.setError("Kindly enter valid duration in months");
             } else if (sproj7.length() < 3) {
                 errorflag = 1;
-                projinput7.setError("Invalid Project Name");
+                projinput7.setError("Kindly enter valid project name");
             } else if (sdomain7.length() < 3) {
                 errorflag = 1;
-                domaininput7.setError("Invalid Domain");
+                domaininput7.setError("Kindly enter valid domain");
             } else if (steam7.length() < 1) {
                 errorflag = 1;
-                teaminput7.setError("Invalid Teamsize");
+                teaminput7.setError("Kindly enter valid team size");
             } else if (sduration7.length() < 1) {
                 errorflag = 1;
-                durationinput7.setError("Invalid Duration");
+                durationinput7.setError("Kindly enter valid duration in months");
             } else if (sproj8.length() < 3) {
                 errorflag = 1;
-                projinput8.setError("Invalid Project Name");
+                projinput8.setError("Kindly enter valid project name");
             } else if (sdomain8.length() < 3) {
                 errorflag = 1;
-                domaininput8.setError("Invalid Domain");
+                domaininput8.setError("Kindly enter valid domain");
             } else if (steam8.length() < 1) {
                 errorflag = 1;
-                teaminput8.setError("Invalid Teamsize");
+                teaminput8.setError("Kindly enter valid team size");
             } else if (sduration8.length() < 1) {
                 errorflag = 1;
-                durationinput8.setError("Invalid Duration");
+                durationinput8.setError("Kindly enter valid duration in months");
             } else if (sproj9.length() < 3) {
                 errorflag = 1;
-                projinput9.setError("Invalid Project Name");
+                projinput9.setError("Kindly enter valid project name");
             } else if (sdomain9.length() < 3) {
                 errorflag = 1;
-                domaininput9.setError("Invalid Domain");
+                domaininput9.setError("Kindly enter valid domain");
             } else if (steam9.length() < 1) {
                 errorflag = 1;
-                teaminput9.setError("Invalid Teamsize");
+                teaminput9.setError("Kindly enter valid team size");
             } else if (sduration9.length() < 1) {
                 errorflag = 1;
-                durationinput9.setError("Invalid Duration");
+                durationinput9.setError("Kindly enter valid duration in months");
             } else if (sproj10.length() < 3) {
                 errorflag = 1;
-                projinput10.setError("Invalid Project Name");
+                projinput10.setError("Kindly enter valid project name");
             } else if (sdomain10.length() < 3) {
                 errorflag = 1;
-                domaininput10.setError("Invalid Domain");
+                domaininput10.setError("Kindly enter valid domain");
             } else if (steam10.length() < 1) {
                 errorflag = 1;
-                teaminput10.setError("Invalid Teamsize");
+                teaminput10.setError("Kindly enter valid team size");
             } else if (sduration10.length() < 1) {
                 errorflag = 1;
-                durationinput10.setError("Invalid Duration");
+                durationinput10.setError("Kindly enter valid duration in months");
             }
         }
 
@@ -1894,22 +1895,22 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         if (projectscount == 0) {
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                proj1.setError("Invalid Project Name");
+                proj1.setError("Kindly enter valid project name");
             } else {
                 errorflag = 0;
                 if (sdomain1.length() < 3) {
                     errorflag = 1;
-                    domain1.setError("Invalid Domain");
+                    domain1.setError("Kindly enter valid domain");
                 } else {
                     errorflag = 0;
                     if (steam1.length() < 1) {
                         errorflag = 1;
-                        team1.setError("Invalid Teamsize");
+                        team1.setError("Kindly enter valid team size");
                     } else {
                         errorflag = 0;
                         if (sduration1.length() < 1) {
                             errorflag = 1;
-                            duration1.setError("Invalid Duration");
+                            duration1.setError("Kindly enter valid duration in months");
                         }
                     }
                 }
@@ -1918,42 +1919,42 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         if (projectscount == 1) {
 //            if (sproj1.length() < 3) {
 //                errorflag = 1;
-//                proj1.setError("Invalid Project Name");
+//                proj1.setError("Kindly enter valid project name");
 //            } else {
 //                errorflag = 0;
 //                if (sdomain1.length() < 3) {
 //                    errorflag = 1;
-//                    domain1.setError("Invalid Domain");
+//                    domain1.setError("Kindly enter valid domain");
 //                } else {
 //                    errorflag = 0;
 //                    if (steam1.length() < 1) {
 //                        errorflag = 1;
-//                        team1.setError("Invalid Teamsize");
+//                        team1.setError("Kindly enter valid team size");
 //                    } else {
 //                        errorflag = 0;
 //                        if (sduration1.length() < 1) {
 //                            errorflag = 1;
-//                            duration1.setError("Invalid Duration");
+//                            duration1.setError("Kindly enter valid duration in months");
 //                        } else {
 //                            errorflag = 0;
             if (sproj2.length() < 3) {
                 errorflag = 1;
-                proj2.setError("Invalid Project Name");
+                proj2.setError("Kindly enter valid project name");
             } else {
                 errorflag = 0;
                 if (sdomain2.length() < 3) {
                     errorflag = 1;
-                    domain2.setError("Invalid Domain");
+                    domain2.setError("Kindly enter valid domain");
                 } else {
                     errorflag = 0;
                     if (steam2.length() < 1) {
                         errorflag = 1;
-                        team2.setError("Invalid Teamsize");
+                        team2.setError("Kindly enter valid team size");
                     } else {
                         errorflag = 0;
                         if (sduration2.length() < 1) {
                             errorflag = 1;
-                            duration2.setError("Invalid Duration");
+                            duration2.setError("Kindly enter valid duration in months");
                         }
 
                     }
@@ -1969,22 +1970,22 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         if (projectscount == 2) {
             if (sproj3.length() < 3) {
                 errorflag = 1;
-                proj3.setError("Invalid Project Name");
+                proj3.setError("Kindly enter valid project name");
             } else {
                 errorflag = 0;
                 if (sdomain3.length() < 3) {
                     errorflag = 1;
-                    domain3.setError("Invalid Domain");
+                    domain3.setError("Kindly enter valid domain");
                 } else {
                     errorflag = 0;
                     if (steam3.length() < 1) {
                         errorflag = 1;
-                        team3.setError("Invalid Teamsize");
+                        team3.setError("Kindly enter valid team size");
                     } else {
                         errorflag = 0;
                         if (sduration3.length() < 1) {
                             errorflag = 1;
-                            duration3.setError("Invalid Duration");
+                            duration3.setError("Kindly enter valid duration in months");
                         }
 
                     }
@@ -1994,22 +1995,22 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         if (projectscount == 3) {
             if (sproj4.length() < 3) {
                 errorflag = 1;
-                proj4.setError("Invalid Project Name");
+                proj4.setError("Kindly enter valid project name");
             } else {
                 errorflag = 0;
                 if (sdomain4.length() < 3) {
                     errorflag = 1;
-                    domain4.setError("Invalid Domain");
+                    domain4.setError("Kindly enter valid domain");
                 } else {
                     errorflag = 0;
                     if (steam4.length() < 1) {
                         errorflag = 1;
-                        team4.setError("Invalid Teamsize");
+                        team4.setError("Kindly enter valid team size");
                     } else {
                         errorflag = 0;
                         if (sduration4.length() < 1) {
                             errorflag = 1;
-                            duration4.setError("Invalid Duration");
+                            duration4.setError("Kindly enter valid duration in months");
                         }
 
                     }
@@ -2019,22 +2020,22 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         if (projectscount == 4) {
             if (sproj5.length() < 3) {
                 errorflag = 1;
-                proj5.setError("Invalid Project Name");
+                proj5.setError("Kindly enter valid project name");
             } else {
                 errorflag = 0;
                 if (sdomain5.length() < 3) {
                     errorflag = 1;
-                    domain5.setError("Invalid Domain");
+                    domain5.setError("Kindly enter valid domain");
                 } else {
                     errorflag = 0;
                     if (steam5.length() < 1) {
                         errorflag = 1;
-                        team5.setError("Invalid Teamsize");
+                        team5.setError("Kindly enter valid team size");
                     } else {
                         errorflag = 0;
                         if (sduration5.length() < 1) {
                             errorflag = 1;
-                            duration5.setError("Invalid Duration");
+                            duration5.setError("Kindly enter valid duration in months");
                         }
 
                     }
@@ -2044,22 +2045,22 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         if (projectscount == 5) {
             if (sproj6.length() < 3) {
                 errorflag = 1;
-                proj6.setError("Invalid Project Name");
+                proj6.setError("Kindly enter valid project name");
             } else {
                 errorflag = 0;
                 if (sdomain6.length() < 3) {
                     errorflag = 1;
-                    domain6.setError("Invalid Domain");
+                    domain6.setError("Kindly enter valid domain");
                 } else {
                     errorflag = 0;
                     if (steam6.length() < 1) {
                         errorflag = 1;
-                        team6.setError("Invalid Teamsize");
+                        team6.setError("Kindly enter valid team size");
                     } else {
                         errorflag = 0;
                         if (sduration6.length() < 1) {
                             errorflag = 1;
-                            duration6.setError("Invalid Duration");
+                            duration6.setError("Kindly enter valid duration in months");
                         }
 
                     }
@@ -2069,22 +2070,22 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         if (projectscount == 6) {
             if (sproj7.length() < 3) {
                 errorflag = 1;
-                proj7.setError("Invalid Project Name");
+                proj7.setError("Kindly enter valid project name");
             } else {
                 errorflag = 0;
                 if (sdomain7.length() < 3) {
                     errorflag = 1;
-                    domain7.setError("Invalid Domain");
+                    domain7.setError("Kindly enter valid domain");
                 } else {
                     errorflag = 0;
                     if (steam7.length() < 1) {
                         errorflag = 1;
-                        team7.setError("Invalid Teamsize");
+                        team7.setError("Kindly enter valid team size");
                     } else {
                         errorflag = 0;
                         if (sduration7.length() < 1) {
                             errorflag = 1;
-                            duration7.setError("Invalid Duration");
+                            duration7.setError("Kindly enter valid duration in months");
                         }
 
                     }
@@ -2094,22 +2095,22 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         if (projectscount == 7) {
             if (sproj8.length() < 3) {
                 errorflag = 1;
-                proj8.setError("Invalid Project Name");
+                proj8.setError("Kindly enter valid project name");
             } else {
                 errorflag = 0;
                 if (sdomain8.length() < 3) {
                     errorflag = 1;
-                    domain8.setError("Invalid Domain");
+                    domain8.setError("Kindly enter valid domain");
                 } else {
                     errorflag = 0;
                     if (steam8.length() < 1) {
                         errorflag = 1;
-                        team8.setError("Invalid Teamsize");
+                        team8.setError("Kindly enter valid team size");
                     } else {
                         errorflag = 0;
                         if (sduration8.length() < 1) {
                             errorflag = 1;
-                            duration8.setError("Invalid Duration");
+                            duration8.setError("Kindly enter valid duration in months");
                         }
 
                     }
@@ -2119,22 +2120,22 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         if (projectscount == 8) {
             if (sproj9.length() < 3) {
                 errorflag = 1;
-                proj9.setError("Invalid Project Name");
+                proj9.setError("Kindly enter valid project name");
             } else {
                 errorflag = 0;
                 if (sdomain9.length() < 3) {
                     errorflag = 1;
-                    domain9.setError("Invalid Domain");
+                    domain9.setError("Kindly enter valid domain");
                 } else {
                     errorflag = 0;
                     if (steam9.length() < 1) {
                         errorflag = 1;
-                        team9.setError("Invalid Teamsize");
+                        team9.setError("Kindly enter valid team size");
                     } else {
                         errorflag = 0;
                         if (sduration9.length() < 1) {
                             errorflag = 1;
-                            duration9.setError("Invalid Duration");
+                            duration9.setError("Kindly enter valid duration in months");
                         }
 
                     }
@@ -2144,22 +2145,22 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         if (projectscount == 9) {
             if (sproj10.length() < 3) {
                 errorflag = 1;
-                proj10.setError("Invalid Project Name");
+                proj10.setError("Kindly enter valid project name");
             } else {
                 errorflag = 0;
                 if (sdomain10.length() < 3) {
                     errorflag = 1;
-                    domain10.setError("Invalid Domain");
+                    domain10.setError("Kindly enter valid domain");
                 } else {
                     errorflag = 0;
                     if (steam10.length() < 1) {
                         errorflag = 1;
-                        team10.setError("Invalid Teamsize");
+                        team10.setError("Kindly enter valid team size");
                     } else {
                         errorflag = 0;
                         if (sduration10.length() < 1) {
                             errorflag = 1;
-                            duration10.setError("Invalid Duration");
+                            duration10.setError("Kindly enter valid duration in months");
                         }
 
                     }
