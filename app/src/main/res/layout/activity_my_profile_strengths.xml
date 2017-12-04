@@ -3,579 +3,608 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/while_color">
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_my_profile_strengths"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
         android:focusableInTouchMode="true"
+        android:padding="16dp"
         tools:context="com.octopusites.placeme.MyProfileStrengths">
+
         <TextView
+            android:id="@+id/strengthtxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Strengths"
-            android:textSize="20dp"
-            android:textColor="@color/dark_color"
-            android:id="@+id/strengthtxt"
             android:layout_centerHorizontal="true"
-            android:paddingTop="10dp"
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp"
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:background="@drawable/textviewborder2"
-            />
+            android:paddingTop="10dp"
+            android:text="Strengths"
+            android:textColor="@color/while_color"
+            android:textSize="18dp" />
+
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_below="@+id/strengthtxt"
-            android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="35dp"
             android:id="@+id/trashstrength1"
-            />
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/strengthtxt"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/delete_icon" />
+
         <View
+            android:id="@+id/trash1selectionview"
             android:layout_width="50dp"
             android:layout_height="50dp"
-
             android:layout_below="@+id/strengthtxt"
-            android:layout_marginTop="20dp"
-            android:id="@+id/trash1selectionview"
-            />
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/strengthrl1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/strengthtxt"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            >
+            android:layout_marginTop="20dp">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/strengthinput1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/strengthinput1"
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/strength1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
-                    android:id="@+id/strength1"/>
+                    android:maxLength="100"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
+
         <View
+            android:id="@+id/strengthline1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
             android:layout_below="@+id/strengthrl1"
-            android:id="@+id/strengthline1"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashstrength2"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/strengthline1"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:layout_below="@+id/strengthline1"
             android:layout_marginTop="35dp"
-            android:id="@+id/trashstrength2"
-            />
+            android:src="@drawable/delete_icon" />
+
         <View
+            android:id="@+id/trash2selectionview"
             android:layout_width="50dp"
             android:layout_height="50dp"
-
             android:layout_below="@+id/strengthline1"
-            android:layout_marginTop="20dp"
-            android:id="@+id/trash2selectionview"
-            />
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/strengthrl2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/strengthline1"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/strengthinput2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/strengthinput2"
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/strength2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
-                    android:singleLine="true"
-                    android:textSize="15dp"
                     android:inputType="textCapWords"
-                    android:textColor="#eee"
-                    android:id="@+id/strength2"/>
+                    android:maxLength="100"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
+
         <View
+            android:id="@+id/strengthline2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
             android:layout_below="@+id/strengthrl2"
-            android:id="@+id/strengthline2"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashstrength3"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/strengthline2"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashstrength3"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/strengthline2"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash3selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/strengthline2"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/strengthrl3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/strengthline2"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/strengthinput3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/strengthinput3"
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/strength3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
-                    android:id="@+id/strength3"/>
+                    android:maxLength="100"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
+
         <View
+            android:id="@+id/strengthline3"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
             android:layout_below="@+id/strengthrl3"
-            android:id="@+id/strengthline3"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashstrength4"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/strengthline3"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashstrength4"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/strengthline3"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash4selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/strengthline3"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/strengthrl4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/strengthline3"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/strengthinput4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/strengthinput4"
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/strength4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
-                    android:id="@+id/strength4"/>
+                    android:maxLength="100"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
+
         <View
+            android:id="@+id/strengthline4"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
             android:layout_below="@+id/strengthrl4"
-            android:id="@+id/strengthline4"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashstrength5"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/strengthline4"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashstrength5"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/strengthline4"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash5selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/strengthline4"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/strengthrl5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/strengthline4"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/strengthinput5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/strengthinput5"
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/strength5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
-                    android:id="@+id/strength5"/>
+                    android:maxLength="100"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
+
         <View
+            android:id="@+id/strengthline5"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
             android:layout_below="@+id/strengthrl5"
-            android:id="@+id/strengthline5"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashstrength6"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/strengthline5"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashstrength6"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/strengthline5"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash6selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/strengthline5"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/strengthrl6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/strengthline5"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/strengthinput6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/strengthinput6"
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/strength6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
-                    android:id="@+id/strength6"/>
+                    android:maxLength="100"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
+
         <View
+            android:id="@+id/strengthline6"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
             android:layout_below="@+id/strengthrl6"
-            android:id="@+id/strengthline6"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashstrength7"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/strengthline6"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashstrength7"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/strengthline6"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash7selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/strengthline6"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/strengthrl7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/strengthline6"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/strengthinput7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/strengthinput7"
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/strength7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
-                    android:id="@+id/strength7"/>
+                    android:maxLength="100"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
+
         <View
+            android:id="@+id/strengthline7"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
             android:layout_below="@+id/strengthrl7"
-            android:id="@+id/strengthline7"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashstrength8"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/strengthline7"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashstrength8"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/strengthline7"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash8selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/strengthline7"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/strengthrl8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/strengthline7"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/strengthinput8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/strengthinput8"
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/strength8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
-                    android:id="@+id/strength8"/>
+                    android:maxLength="100"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
+
         <View
+            android:id="@+id/strengthline8"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
             android:layout_below="@+id/strengthrl8"
-            android:id="@+id/strengthline8"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashstrength9"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/strengthline8"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashstrength9"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/strengthline8"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash9selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/strengthline8"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/strengthrl9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/strengthline8"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/strengthinput9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/strengthinput9"
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/strength9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
-                    android:id="@+id/strength9"/>
+                    android:maxLength="100"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
+
         <View
+            android:id="@+id/strengthline9"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
             android:layout_below="@+id/strengthrl9"
-            android:id="@+id/strengthline9"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashstrength10"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/strengthline9"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:layout_below="@+id/strengthline9"
             android:layout_marginTop="35dp"
-            android:id="@+id/trashstrength10"
-            />
+            android:src="@drawable/delete_icon" />
+
         <View
+            android:id="@+id/trash10selectionview"
             android:layout_width="50dp"
             android:layout_height="50dp"
-
             android:layout_below="@+id/strengthline9"
-            android:layout_marginTop="20dp"
-            android:id="@+id/trash10selectionview"
-            />
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/strengthrl10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/strengthline9"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/strengthinput10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/strengthinput10"
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/strength10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
-                    android:id="@+id/strength10"/>
+                    android:maxLength="100"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
         <View
+            android:id="@+id/addmorestrength"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/boxborderwhite"
             android:layout_below="@+id/strengthrl10"
-            android:id="@+id/addmorestrength"
             android:layout_marginTop="20dp"
-            />
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp" />
 
         <TextView
+            android:id="@+id/addmorestrengthtxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/strengthrl10"
-            android:text="Add Another Strength"
-            android:textColor="#eee"
-            android:textSize="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            android:id="@+id/addmorestrengthtxt"
-            />
+            android:elevation="8dp"
+            android:text="Add Another Strength"
+            android:textColor="@color/while_color"
+            android:textSize="20dp" />
+
         <ImageView
+            android:id="@+id/addmorestrengthimg"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_below="@+id/strengthrl10"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:layout_below="@+id/strengthrl10"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:id="@+id/addmorestrengthimg"
-            />
+            android:elevation="8dp"
+            android:src="@drawable/add_icon_white" />
+
+        <View
+            android:id="@+id/dummpy_view_for_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@+id/addmorestrengthimg"
+            android:layout_marginTop="20dp" />
 
     </RelativeLayout>
+
+
 </ScrollView>

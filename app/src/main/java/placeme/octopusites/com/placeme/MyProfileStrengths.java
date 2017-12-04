@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -52,6 +53,8 @@ public class MyProfileStrengths extends AppCompatActivity {
     int d=0;
     StudentData s=new StudentData();
     EditText strength1,strength2,strength3,strength4,strength5,strength6,strength7,strength8,strength9,strength10;
+    TextInputLayout strengthinput1,strengthinput2,strengthinput3,strengthinput4,strengthinput5,strengthinput6,strengthinput7,strengthinput8,strengthinput9,strengthinput10;
+
     String sstrength1,sstrength2,sstrength3,sstrength4,sstrength5,sstrength6,sstrength7,sstrength8,sstrength9,sstrength10,encobj="";
     String encstrength1,encstrength2,encstrength3,encstrength4,encstrength5,encstrength6,encstrength7,encstrength8,encstrength9,encstrength10;
     @Override
@@ -68,6 +71,31 @@ public class MyProfileStrengths extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Strengths");
         ab.setDisplayHomeAsUpEnabled(true);
+
+
+
+        strengthinput1= (TextInputLayout) findViewById(R.id.strengthinput1);
+        strengthinput2= (TextInputLayout) findViewById(R.id.strengthinput2);
+        strengthinput3= (TextInputLayout) findViewById(R.id.strengthinput3);
+        strengthinput4= (TextInputLayout) findViewById(R.id.strengthinput4);
+        strengthinput5= (TextInputLayout) findViewById(R.id.strengthinput5);
+        strengthinput6= (TextInputLayout) findViewById(R.id.strengthinput6);
+        strengthinput7= (TextInputLayout) findViewById(R.id.strengthinput7);
+        strengthinput8= (TextInputLayout) findViewById(R.id.strengthinput8);
+        strengthinput9= (TextInputLayout) findViewById(R.id.strengthinput9);
+        strengthinput10= (TextInputLayout) findViewById(R.id.strengthinput10);
+
+        strength1=(EditText)findViewById(R.id.strength1);
+        strength2=(EditText)findViewById(R.id.strength2);
+        strength3=(EditText)findViewById(R.id.strength3);
+        strength4=(EditText)findViewById(R.id.strength4);
+        strength5=(EditText)findViewById(R.id.strength5);
+        strength6=(EditText)findViewById(R.id.strength6);
+        strength7=(EditText)findViewById(R.id.strength7);
+        strength8=(EditText)findViewById(R.id.strength8);
+        strength9=(EditText)findViewById(R.id.strength9);
+        strength10=(EditText)findViewById(R.id.strength10);
+
 
         trash1selectionview=(View)findViewById(R.id.trash1selectionview);
         trash2selectionview=(View)findViewById(R.id.trash2selectionview);
@@ -152,16 +180,28 @@ public class MyProfileStrengths extends AppCompatActivity {
             }
         });
 
-        strength1=(EditText)findViewById(R.id.strength1);
-        strength2=(EditText)findViewById(R.id.strength2);
-        strength3=(EditText)findViewById(R.id.strength3);
-        strength4=(EditText)findViewById(R.id.strength4);
-        strength5=(EditText)findViewById(R.id.strength5);
-        strength6=(EditText)findViewById(R.id.strength6);
-        strength7=(EditText)findViewById(R.id.strength7);
-        strength8=(EditText)findViewById(R.id.strength8);
-        strength9=(EditText)findViewById(R.id.strength9);
-        strength10=(EditText)findViewById(R.id.strength10);
+        strengthinput1.setTypeface(MyConstants.getLight(this));
+        strengthinput2.setTypeface(MyConstants.getLight(this));
+        strengthinput3.setTypeface(MyConstants.getLight(this));
+        strengthinput4.setTypeface(MyConstants.getLight(this));
+        strengthinput5.setTypeface(MyConstants.getLight(this));
+        strengthinput6.setTypeface(MyConstants.getLight(this));
+        strengthinput7.setTypeface(MyConstants.getLight(this));
+        strengthinput8.setTypeface(MyConstants.getLight(this));
+        strengthinput9.setTypeface(MyConstants.getLight(this));
+        strengthinput10.setTypeface(MyConstants.getLight(this));
+
+        strength1.setTypeface(MyConstants.getBold(this));
+        strength2.setTypeface(MyConstants.getBold(this));
+        strength3.setTypeface(MyConstants.getBold(this));
+        strength4.setTypeface(MyConstants.getBold(this));
+        strength5.setTypeface(MyConstants.getBold(this));
+        strength6.setTypeface(MyConstants.getBold(this));
+        strength7.setTypeface(MyConstants.getBold(this));
+        strength8.setTypeface(MyConstants.getBold(this));
+        strength9.setTypeface(MyConstants.getBold(this));
+        strength10.setTypeface(MyConstants.getBold(this));
+
 
         strength1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -172,7 +212,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                strength1.setError(null);
+                strengthinput1.setError(null);
             }
 
             @Override
@@ -189,7 +229,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                strength2.setError(null);
+                strengthinput2.setError(null);
             }
 
             @Override
@@ -206,7 +246,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                strength3.setError(null);
+                strengthinput3.setError(null);
             }
 
             @Override
@@ -223,7 +263,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                strength4.setError(null);
+                strengthinput4.setError(null);
             }
 
             @Override
@@ -240,7 +280,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                strength5.setError(null);
+                strengthinput5.setError(null);
             }
 
             @Override
@@ -257,7 +297,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                strength6.setError(null);
+                strengthinput6.setError(null);
             }
 
             @Override
@@ -274,7 +314,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                strength7.setError(null);
+                strengthinput7.setError(null);
             }
 
             @Override
@@ -291,7 +331,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                strength8.setError(null);
+                strengthinput8.setError(null);
             }
 
             @Override
@@ -308,7 +348,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                strength9.setError(null);
+                strengthinput9.setError(null);
             }
 
             @Override
@@ -325,7 +365,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                strength10.setError(null);
+                strengthinput10.setError(null);
             }
 
             @Override
@@ -338,8 +378,10 @@ public class MyProfileStrengths extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         TextView strengthtxt=(TextView)findViewById(R.id.strengthtxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");
-        strengthtxt.setTypeface(custom_font1);
+        strengthtxt.setTypeface(MyConstants.getBold(this));
+
+        TextView addmorestrengthtxt=(TextView)findViewById(R.id.addmorestrengthtxt);
+        addmorestrengthtxt.setTypeface(MyConstants.getBold(this));
 
         addmorestrength=(View)findViewById(R.id.addmorestrength);
 
@@ -1107,16 +1149,16 @@ public class MyProfileStrengths extends AppCompatActivity {
     }
     void validateandSave()
     {
-        strength1.setError(null);
-        strength2.setError(null);
-        strength3.setError(null);
-        strength4.setError(null);
-        strength5.setError(null);
-        strength6.setError(null);
-        strength7.setError(null);
-        strength8.setError(null);
-        strength9.setError(null);
-        strength10.setError(null);
+//        strength1.setError(null);
+//        strength2.setError(null);
+//        strength3.setError(null);
+//        strength4.setError(null);
+//        strength5.setError(null);
+//        strength6.setError(null);
+//        strength7.setError(null);
+//        strength8.setError(null);
+//        strength9.setError(null);
+//        strength10.setError(null);
 
         sstrength1=strength1.getText().toString();
         sstrength2=strength2.getText().toString();
@@ -1129,9 +1171,9 @@ public class MyProfileStrengths extends AppCompatActivity {
         sstrength9=strength9.getText().toString();
         sstrength10=strength10.getText().toString();
 
-        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-        String sPadding = "ISO10126Padding";
+//        byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+//        byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
+//        String sPadding = "ISO10126Padding";
 
         int errorflag=0;
 
@@ -1140,7 +1182,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             if(sstrength1.length()<2)
             {
                 errorflag=1;
-                strength1.setError("Invalid Strength");
+                strengthinput1.setError("Kindly enter valid strength.");
             }
         }
         else if(strengthcount==1)
@@ -1148,7 +1190,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             if(sstrength1.length()<2)
             {
                 errorflag=1;
-                strength1.setError("Invalid Strength");
+                strengthinput1.setError("Kindly enter valid strength.");
             }
             else
             {
@@ -1156,7 +1198,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                 if(sstrength2.length()<2)
                 {
                     errorflag=1;
-                    strength2.setError("Invalid Strength");
+                    strengthinput2.setError("Kindly enter valid strength.");
                 }
             }
         }
@@ -1165,7 +1207,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             if(sstrength1.length()<2)
             {
                 errorflag=1;
-                strength1.setError("Invalid Strength");
+                strengthinput2.setError("Kindly enter valid strength.");
             }
             else
             {
@@ -1173,7 +1215,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                 if(sstrength2.length()<2)
                 {
                     errorflag=1;
-                    strength2.setError("Invalid Strength");
+                    strengthinput2.setError("Kindly enter valid strength.");
                 }
                 else
                 {
@@ -1181,7 +1223,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                     if(sstrength3.length()<2)
                     {
                         errorflag=1;
-                        strength3.setError("Invalid Strength");
+                        strengthinput3.setError("Kindly enter valid strength.");
                     }
                 }
             }
@@ -1191,7 +1233,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             if(sstrength1.length()<2)
             {
                 errorflag=1;
-                strength1.setError("Invalid Strength");
+                strengthinput1.setError("Kindly enter valid strength.");
             }
             else
             {
@@ -1199,7 +1241,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                 if(sstrength2.length()<2)
                 {
                     errorflag=1;
-                    strength2.setError("Invalid Strength");
+                    strengthinput2.setError("Kindly enter valid strength.");
                 }
                 else
                 {
@@ -1207,7 +1249,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                     if(sstrength3.length()<2)
                     {
                         errorflag=1;
-                        strength3.setError("Invalid Strength");
+                        strengthinput3.setError("Kindly enter valid strength.");
                     }
                     else
                     {
@@ -1215,7 +1257,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                         if(sstrength4.length()<2)
                         {
                             errorflag=1;
-                            strength4.setError("Invalid Strength");
+                            strengthinput4.setError("Kindly enter valid strength.");
                         }
                     }
                 }
@@ -1226,7 +1268,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             if(sstrength1.length()<2)
             {
                 errorflag=1;
-                strength1.setError("Invalid Strength");
+                strengthinput1.setError("Kindly enter valid strength.");
             }
             else
             {
@@ -1234,7 +1276,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                 if(sstrength2.length()<2)
                 {
                     errorflag=1;
-                    strength2.setError("Invalid Strength");
+                    strengthinput2.setError("Kindly enter valid strength.");
                 }
                 else
                 {
@@ -1242,7 +1284,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                     if(sstrength3.length()<2)
                     {
                         errorflag=1;
-                        strength3.setError("Invalid Strength");
+                        strengthinput3.setError("Kindly enter valid strength.");
                     }
                     else
                     {
@@ -1250,7 +1292,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                         if(sstrength4.length()<2)
                         {
                             errorflag=1;
-                            strength4.setError("Invalid Strength");
+                            strengthinput4.setError("Kindly enter valid strength.");
                         }
                         else
                         {
@@ -1258,7 +1300,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                             if(sstrength5.length()<2)
                             {
                                 errorflag=1;
-                                strength5.setError("Invalid Strength");
+                                strengthinput5.setError("Kindly enter valid strength.");
                             }
                         }
                     }
@@ -1270,7 +1312,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             if(sstrength1.length()<2)
             {
                 errorflag=1;
-                strength1.setError("Invalid Strength");
+                strengthinput1.setError("Kindly enter valid strength.");
             }
             else
             {
@@ -1278,7 +1320,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                 if(sstrength2.length()<2)
                 {
                     errorflag=1;
-                    strength2.setError("Invalid Strength");
+                    strengthinput2.setError("Kindly enter valid strength.");
                 }
                 else
                 {
@@ -1286,7 +1328,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                     if(sstrength3.length()<2)
                     {
                         errorflag=1;
-                        strength3.setError("Invalid Strength");
+                        strengthinput3.setError("Kindly enter valid strength.");
                     }
                     else
                     {
@@ -1294,7 +1336,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                         if(sstrength4.length()<2)
                         {
                             errorflag=1;
-                            strength4.setError("Invalid Strength");
+                            strengthinput4.setError("Kindly enter valid strength.");
                         }
                         else
                         {
@@ -1302,7 +1344,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                             if(sstrength5.length()<2)
                             {
                                 errorflag=1;
-                                strength5.setError("Invalid Strength");
+                                strengthinput5.setError("Kindly enter valid strength.");
                             }
                             else
                             {
@@ -1310,7 +1352,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                                 if(sstrength6.length()<2)
                                 {
                                     errorflag=1;
-                                    strength6.setError("Invalid Strength");
+                                    strengthinput6.setError("Kindly enter valid strength.");
                                 }
                             }
                         }
@@ -1323,7 +1365,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             if(sstrength1.length()<2)
             {
                 errorflag=1;
-                strength1.setError("Invalid Strength");
+                strengthinput1.setError("Kindly enter valid strength.");
             }
             else
             {
@@ -1331,7 +1373,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                 if(sstrength2.length()<2)
                 {
                     errorflag=1;
-                    strength2.setError("Invalid Strength");
+                    strengthinput2.setError("Kindly enter valid strength.");
                 }
                 else
                 {
@@ -1339,7 +1381,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                     if(sstrength3.length()<2)
                     {
                         errorflag=1;
-                        strength3.setError("Invalid Strength");
+                        strengthinput3.setError("Kindly enter valid strength.");
                     }
                     else
                     {
@@ -1347,7 +1389,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                         if(sstrength4.length()<2)
                         {
                             errorflag=1;
-                            strength4.setError("Invalid Strength");
+                            strengthinput4.setError("Kindly enter valid strength.");
                         }
                         else
                         {
@@ -1355,7 +1397,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                             if(sstrength5.length()<2)
                             {
                                 errorflag=1;
-                                strength5.setError("Invalid Strength");
+                                strengthinput5.setError("Kindly enter valid strength.");
                             }
                             else
                             {
@@ -1363,7 +1405,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                                 if(sstrength6.length()<2)
                                 {
                                     errorflag=1;
-                                    strength6.setError("Invalid Strength");
+                                    strengthinput6.setError("Kindly enter valid strength.");
                                 }
                                 else
                                 {
@@ -1371,7 +1413,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                                     if(sstrength7.length()<2)
                                     {
                                         errorflag=1;
-                                        strength7.setError("Invalid Strength");
+                                        strengthinput7.setError("Kindly enter valid strength.");
                                     }
                                 }
                             }
@@ -1385,7 +1427,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             if(sstrength1.length()<2)
             {
                 errorflag=1;
-                strength1.setError("Invalid Strength");
+                strengthinput1.setError("Kindly enter valid strength.");
             }
             else
             {
@@ -1393,7 +1435,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                 if(sstrength2.length()<2)
                 {
                     errorflag=1;
-                    strength2.setError("Invalid Strength");
+                    strengthinput2.setError("Kindly enter valid strength.");
                 }
                 else
                 {
@@ -1401,7 +1443,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                     if(sstrength3.length()<2)
                     {
                         errorflag=1;
-                        strength3.setError("Invalid Strength");
+                        strengthinput3.setError("Kindly enter valid strength.");
                     }
                     else
                     {
@@ -1409,7 +1451,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                         if(sstrength4.length()<2)
                         {
                             errorflag=1;
-                            strength4.setError("Invalid Strength");
+                            strengthinput4.setError("Kindly enter valid strength.");
                         }
                         else
                         {
@@ -1417,7 +1459,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                             if(sstrength5.length()<2)
                             {
                                 errorflag=1;
-                                strength5.setError("Invalid Strength");
+                                strengthinput5.setError("Kindly enter valid strength.");
                             }
                             else
                             {
@@ -1425,7 +1467,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                                 if(sstrength6.length()<2)
                                 {
                                     errorflag=1;
-                                    strength6.setError("Invalid Strength");
+                                    strengthinput6.setError("Kindly enter valid strength.");
                                 }
                                 else
                                 {
@@ -1433,7 +1475,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                                     if(sstrength7.length()<2)
                                     {
                                         errorflag=1;
-                                        strength7.setError("Invalid Strength");
+                                        strengthinput7.setError("Kindly enter valid strength.");
                                     }
                                     else
                                     {
@@ -1441,7 +1483,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                                         if(sstrength8.length()<2)
                                         {
                                             errorflag=1;
-                                            strength8.setError("Invalid Strength");
+                                            strengthinput8.setError("Kindly enter valid strength.");
                                         }
                                     }
                                 }
@@ -1456,7 +1498,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             if(sstrength1.length()<2)
             {
                 errorflag=1;
-                strength1.setError("Invalid Strength");
+                strengthinput1.setError("Kindly enter valid strength.");
             }
             else
             {
@@ -1464,7 +1506,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                 if(sstrength2.length()<2)
                 {
                     errorflag=1;
-                    strength2.setError("Invalid Strength");
+                    strengthinput2.setError("Kindly enter valid strength.");
                 }
                 else
                 {
@@ -1472,7 +1514,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                     if(sstrength3.length()<2)
                     {
                         errorflag=1;
-                        strength3.setError("Invalid Strength");
+                        strengthinput3.setError("Kindly enter valid strength.");
                     }
                     else
                     {
@@ -1480,7 +1522,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                         if(sstrength4.length()<2)
                         {
                             errorflag=1;
-                            strength4.setError("Invalid Strength");
+                            strengthinput4.setError("Kindly enter valid strength.");
                         }
                         else
                         {
@@ -1488,7 +1530,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                             if(sstrength5.length()<2)
                             {
                                 errorflag=1;
-                                strength5.setError("Invalid Strength");
+                                strengthinput5.setError("Kindly enter valid strength.");
                             }
                             else
                             {
@@ -1496,7 +1538,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                                 if(sstrength6.length()<2)
                                 {
                                     errorflag=1;
-                                    strength6.setError("Invalid Strength");
+                                    strengthinput6.setError("Kindly enter valid strength.");
                                 }
                                 else
                                 {
@@ -1504,7 +1546,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                                     if(sstrength7.length()<2)
                                     {
                                         errorflag=1;
-                                        strength7.setError("Invalid Strength");
+                                        strengthinput7.setError("Kindly enter valid strength.");
                                     }
                                     else
                                     {
@@ -1512,7 +1554,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                                         if(sstrength8.length()<2)
                                         {
                                             errorflag=1;
-                                            strength8.setError("Invalid Strength");
+                                            strengthinput8.setError("Kindly enter valid strength.");
                                         }
                                         else
                                         {
@@ -1520,7 +1562,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                                             if(sstrength9.length()<2)
                                             {
                                                 errorflag=1;
-                                                strength9.setError("Invalid Strength");
+                                                strengthinput9.setError("Kindly enter valid strength.");
                                             }
                                         }
                                     }
@@ -1536,7 +1578,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             if(sstrength1.length()<2)
             {
                 errorflag=1;
-                strength1.setError("Invalid Strength");
+                strengthinput1.setError("Kindly enter valid strength.");
             }
             else
             {
@@ -1544,7 +1586,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                 if(sstrength2.length()<2)
                 {
                     errorflag=1;
-                    strength2.setError("Invalid Strength");
+                    strengthinput2.setError("Kindly enter valid strength.");
                 }
                 else
                 {
@@ -1552,7 +1594,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                     if(sstrength3.length()<2)
                     {
                         errorflag=1;
-                        strength3.setError("Invalid Strength");
+                        strengthinput3.setError("Kindly enter valid strength.");
                     }
                     else
                     {
@@ -1560,7 +1602,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                         if(sstrength4.length()<2)
                         {
                             errorflag=1;
-                            strength4.setError("Invalid Strength");
+                            strengthinput4.setError("Kindly enter valid strength.");
                         }
                         else
                         {
@@ -1568,7 +1610,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                             if(sstrength5.length()<2)
                             {
                                 errorflag=1;
-                                strength5.setError("Invalid Strength");
+                                strengthinput5.setError("Kindly enter valid strength.");
                             }
                             else
                             {
@@ -1576,7 +1618,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                                 if(sstrength6.length()<2)
                                 {
                                     errorflag=1;
-                                    strength6.setError("Invalid Strength");
+                                    strengthinput6.setError("Kindly enter valid strength.");
                                 }
                                 else
                                 {
@@ -1584,7 +1626,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                                     if(sstrength7.length()<2)
                                     {
                                         errorflag=1;
-                                        strength7.setError("Invalid Strength");
+                                        strengthinput7.setError("Kindly enter valid strength.");
                                     }
                                     else
                                     {
@@ -1592,7 +1634,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                                         if(sstrength8.length()<2)
                                         {
                                             errorflag=1;
-                                            strength8.setError("Invalid Strength");
+                                            strengthinput8.setError("Kindly enter valid strength.");
                                         }
                                         else
                                         {
@@ -1600,7 +1642,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                                             if(sstrength9.length()<2)
                                             {
                                                 errorflag=1;
-                                                strength9.setError("Invalid Strength");
+                                                strengthinput9.setError("Kindly enter valid strength.");
                                             }
                                             else
                                             {
@@ -1608,7 +1650,7 @@ public class MyProfileStrengths extends AppCompatActivity {
                                                 if(sstrength10.length()<2)
                                                 {
                                                     errorflag=1;
-                                                    strength10.setError("Invalid Strength");
+                                                    strengthinput10.setError("Kindly enter valid strength.");
                                                 }
                                             }
                                         }
