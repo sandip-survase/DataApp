@@ -828,8 +828,10 @@ public class PrintProfileTabFragment extends Fragment {
     void setThumnails()
     {
 
-        setFlag=resumeIds[0];
-        new GetResumeThumbnail().execute();
+        //getting error ---------------------------------------------------------- here
+
+//        setFlag=resumeIds[0];
+//        new GetResumeThumbnail().execute();
 
     }
 

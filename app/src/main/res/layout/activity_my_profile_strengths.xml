@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35">
+    android:background="@color/while_color">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_my_profile_strengths"
@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:text="Strengths"
             android:textSize="20dp"
-            android:textColor="#eee"
+            android:textColor="@color/dark_color"
             android:id="@+id/strengthtxt"
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"

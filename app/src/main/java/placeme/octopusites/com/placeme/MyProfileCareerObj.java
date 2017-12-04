@@ -2,12 +2,14 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -45,8 +47,10 @@ public class MyProfileCareerObj extends AppCompatActivity {
     //    private static String url_savecareerobj= "http://192.168.100.100/AESTest/SaveCareerObj";
     int edittedFlag=0,currentsetFlag=1;
     RadioGroup radioGroupCareerobj;
+    TextView careerobjtxt;
     RadioButton radioButtonObj1,radioButtonObj2,radioButtonObj3,radioButtonObj4,radioButtonObj5,radioButtonObj6;
     EditText otherobj;
+    TextInputLayout otherobjinput;
     String careerobj="To secure a promising position in the company of repute that offers both a challenging assignments and ample opportunity for growth in terms of due recognition and added responsibilities.";
     String enccareerobj,encobj="";
     int otherFlag=0;
@@ -67,8 +71,10 @@ public class MyProfileCareerObj extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         otherobj=(EditText)findViewById(R.id.otherobj);
+        careerobjtxt=(TextView)findViewById(R.id.careerobjtxt);
 
         radioGroupCareerobj=(RadioGroup)findViewById(R.id.radioGroupCareerobj);
+        otherobjinput= (TextInputLayout) findViewById(R.id.otherobjinput);
 
         radioButtonObj1=(RadioButton)findViewById(R.id.radioButtonObj1);
         radioButtonObj2=(RadioButton)findViewById(R.id.radioButtonObj2);
@@ -77,65 +83,139 @@ public class MyProfileCareerObj extends AppCompatActivity {
         radioButtonObj5=(RadioButton)findViewById(R.id.radioButtonObj5);
         radioButtonObj6=(RadioButton)findViewById(R.id.radioButtonObj6);
 
+        radioButtonObj1.setTypeface(MyConstants.getBold(this));
+        radioButtonObj2.setTypeface(MyConstants.getBold(this));
+        radioButtonObj3.setTypeface(MyConstants.getBold(this));
+        radioButtonObj4.setTypeface(MyConstants.getBold(this));
+        radioButtonObj5.setTypeface(MyConstants.getBold(this));
+        radioButtonObj6.setTypeface(MyConstants.getBold(this));
+
+        careerobjtxt.setTypeface(MyConstants.getBold(this));
+        otherobjinput.setTypeface(MyConstants.getLight(this));
+        otherobj.setTypeface(MyConstants.getBold(this));
+
+
         radioGroupCareerobj.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
+
                 switch(i) {
                     case R.id.radioButtonObj1:
                         otherFlag=0;
+                        otherobj.setVisibility(View.GONE);
                         otherobj.setText("");
                         otherobj.setFocusable(false);
                         otherobj.setFocusableInTouchMode(false);
                         otherobj.setClickable(false);
                         careerobj="To secure a promising position in the company of repute that offers both a challenging assignments and ample opportunity for growth in terms of due recognition and added responsibilities.";
+
+                        radioButtonObj1.setTextColor(getResources().getColor(R.color.sky_blue_color));
+
+                        radioButtonObj2.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj3.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj4.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj5.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj6.setTextColor(getResources().getColor(R.color.dark_color));
+
+
                         if(currentsetFlag!=1)
                             edittedFlag=1;
                         break;
                     case R.id.radioButtonObj2:
                         otherFlag=0;
                         otherobj.setText("");
+                        otherobj.setVisibility(View.GONE);
                         otherobj.setFocusable(false);
                         otherobj.setFocusableInTouchMode(false);
                         otherobj.setClickable(false);
                         careerobj="To work with the company, belonging to professionally managed group, that is offering enough opportunities for career advancement and professional growth of an individual.";
+
+                        radioButtonObj2.setTextColor(getResources().getColor(R.color.sky_blue_color));
+
+                        radioButtonObj1.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj3.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj4.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj5.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj6.setTextColor(getResources().getColor(R.color.dark_color));
+
+
                         if(currentsetFlag!=2)
                             edittedFlag=1;
                         break;
                     case R.id.radioButtonObj3:
                         otherFlag=0;
                         otherobj.setText("");
+                        otherobj.setVisibility(View.GONE);
                         otherobj.setFocusable(false);
                         otherobj.setFocusableInTouchMode(false);
                         otherobj.setClickable(false);
                         careerobj="To work in a stimulating work culture and environment where I am allowed to freely apply the management principles learned to the best interest of the company and gain rich experience thereby enhancing my knowledge.";
+
+                        radioButtonObj3.setTextColor(getResources().getColor(R.color.sky_blue_color));
+
+                        radioButtonObj1.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj2.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj4.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj5.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj6.setTextColor(getResources().getColor(R.color.dark_color));
+
                         if(currentsetFlag!=3)
                             edittedFlag=1;
                         break;
                     case R.id.radioButtonObj4:
                         otherFlag=0;
                         otherobj.setText("");
+                        otherobj.setVisibility(View.GONE);
                         otherobj.setFocusable(false);
                         otherobj.setFocusableInTouchMode(false);
                         otherobj.setClickable(false);
                         careerobj="To achieve success in competitive environment of the corporate world and making a mark by my hard work, passion for the job and strong will to fulfill management expectations following ethical values.";
+
+                        radioButtonObj4.setTextColor(getResources().getColor(R.color.sky_blue_color));
+
+                        radioButtonObj1.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj2.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj3.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj5.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj6.setTextColor(getResources().getColor(R.color.dark_color));
+
                         if(currentsetFlag!=4)
                             edittedFlag=1;
                         break;
                     case R.id.radioButtonObj5:
                         otherFlag=0;
                         otherobj.setText("");
+                        otherobj.setVisibility(View.GONE);
                         otherobj.setFocusable(false);
                         otherobj.setFocusableInTouchMode(false);
                         otherobj.setClickable(false);
                         careerobj="To represent myself as one of the important members of the team and driving my team towards fulfillment of company's goals and objectives and make long lasting impression of my team on senior management.";
+
+                        radioButtonObj5.setTextColor(getResources().getColor(R.color.sky_blue_color));
+
+                        radioButtonObj1.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj2.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj3.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj4.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj6.setTextColor(getResources().getColor(R.color.dark_color));
                         if(currentsetFlag!=5)
                             edittedFlag=1;
                         break;
                     case R.id.radioButtonObj6:
                         otherFlag=1;
                         otherobj.setFocusable(true);
+                        otherobj.setVisibility(View.VISIBLE);
                         otherobj.setFocusableInTouchMode(true);
                         otherobj.setClickable(true);
+
+                        radioButtonObj6.setTextColor(getResources().getColor(R.color.sky_blue_color));
+
+                        radioButtonObj1.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj2.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj3.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj4.setTextColor(getResources().getColor(R.color.dark_color));
+                        radioButtonObj5.setTextColor(getResources().getColor(R.color.dark_color));
+
                         if(currentsetFlag!=6)
                             edittedFlag=1;
                         break;
@@ -150,8 +230,7 @@ public class MyProfileCareerObj extends AppCompatActivity {
 
 
         TextView careerobjtxt=(TextView)findViewById(R.id.careerobjtxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");
-        careerobjtxt.setTypeface(custom_font1);
+        careerobjtxt.setTypeface(MyConstants.getBold(this));
 
 
 
@@ -215,29 +294,30 @@ public class MyProfileCareerObj extends AppCompatActivity {
                 MyProfileCareerObjModal obj2 = new MyProfileCareerObjModal(careerobj);;
 
                 encobj =OtoString(obj2,MySharedPreferencesManager.getDigest1(MyProfileCareerObj.this),MySharedPreferencesManager.getDigest2(MyProfileCareerObj.this));
+                Log.d("TAG", "doInBackground: user : "+username);
                 Log.d("TAG", "validateandSave: encobj - "+encobj);
 
-
-                new SaveCareerObj().execute();
+                new SaveCareerObj2().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
             }catch (Exception e){Toast.makeText(MyProfileCareerObj.this,e.getMessage(),Toast.LENGTH_LONG).show();}
         }
 
     }
-    class SaveCareerObj extends AsyncTask<String, String, String> {
+    class SaveCareerObj2 extends AsyncTask<String, String, String> {
 
 
         protected String doInBackground(String... param) {
 
+            Log.d("TAG", "inside doInBackground: ");
             String r=null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",username));       //0
             params.add(new BasicNameValuePair("c",encobj));
-            //1
+
             json = jParser.makeHttpRequest(MyConstants.url_savecareerobj, "GET", params);
+            Log.d("TAG", "SaveCareerObj json : "+json);
             try {
                 r = json.getString("info");
-
 
             }catch (Exception e){e.printStackTrace();}
             return r;
