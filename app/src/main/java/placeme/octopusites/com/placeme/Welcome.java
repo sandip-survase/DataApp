@@ -1299,6 +1299,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 nextProgress.setVisibility(View.GONE);
                 Intent loginintent = new Intent(Welcome.this, LoginActivity.class);
                 loginintent.putExtra("showOTP", "yes");
+                loginintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(loginintent);
             }
         }
@@ -1371,7 +1372,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
                 new CreateFirebaseUser(encUsersName, encPassword).execute();
 
-                startActivity(new Intent(Welcome.this, MainActivity.class));
+                startActivity(new Intent(Welcome.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
 //                Intent loginintent = new Intent(Welcome.this, LoginActivity.class);
 //                loginintent.putExtra("newUser", "yes");
 //                startActivity(loginintent);
@@ -1949,7 +1950,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                             MySharedPreferencesManager.save(Welcome.this, "nameKey", EmailCred);
                             MySharedPreferencesManager.save(Welcome.this, "role", "student");
                             Log.d("TAG", "launching mainactivity..");
-                            startActivity(new Intent(Welcome.this, MainActivity.class));
+                            startActivity(new Intent(Welcome.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                             finish();
                         } else if (success == 3) {
                             new SaveSessionDetails().execute();
@@ -1958,7 +1959,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 //                            ProfileRole r = new ProfileRole();
 //                            r.setRole("admin");
 //                            r.setUsername(EmailCred);
-                            startActivity(new Intent(Welcome.this, AdminActivity.class));
+                            startActivity(new Intent(Welcome.this, AdminActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                             finish();
                         } else if (success == 4) {
                             new SaveSessionDetails().execute();
@@ -1968,7 +1969,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 //                            ProfileRole r = new ProfileRole();
 //                            r.setRole("hr");
 //                            r.setUsername(EmailCred);
-                            startActivity(new Intent(Welcome.this, HRActivity.class));
+                            startActivity(new Intent(Welcome.this, HRActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                             finish();
                         } else if (success == 5) {
                             new SaveSessionDetails().execute();
@@ -1978,7 +1979,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 //                            ProfileRole r = new ProfileRole();
 //                            r.setRole("alumni");
 //                            r.setUsername(EmailCred);
-                            startActivity(new Intent(Welcome.this, AlumniActivity.class));
+                            startActivity(new Intent(Welcome.this, AlumniActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                             finish();
                         }
                     }
