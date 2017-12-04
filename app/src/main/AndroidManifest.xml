@@ -399,13 +399,27 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AdminSingleUserViewDialog" />
-        <activity android:name=".WelcomeGenrateCodeActivity" />
+        <activity android:name=".WelcomeGenrateCodeActivity"
+            android:theme="@style/AppFullScreenTheme"
+            />
         <activity android:name=".MyCustomErrorActivity" />
         <activity android:name=".NoInternet" />
         <activity
             android:name=".UserSelection"
             android:label="@string/title_activity_user_selection" />
         <activity android:name=".NewsFeedWebView" />
+        <activity
+            android:name=".StudentRoleSelected"
+            android:theme="@style/Theme.Transparent" />
+        <activity android:name=".AlumniRoleSelected"
+            android:theme="@style/Theme.Transparent"
+            />
+        <activity android:name=".TPORoleSelected"
+            android:theme="@style/Theme.Transparent"
+            />
+        <activity android:name=".HRRoleSelected"
+            android:theme="@style/Theme.Transparent"
+            ></activity>
     </application>
 
 </manifest>

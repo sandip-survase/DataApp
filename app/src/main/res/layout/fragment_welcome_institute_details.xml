@@ -1,54 +1,105 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    tools:context="placeme.octopusites.com.placeme.WelcomePasswordFragment">
+    android:background="#fcfdfd"
+    android:focusableInTouchMode="true"
+    >
 
-    <TextView
-        android:id="@+id/headerMsg"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="Enter Institute Details"
-        android:textSize="20dp" />
+        android:padding="16dp"
+        >
+        <TextView
+            android:id="@+id/welcometextviewcontext1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="Enter Institute Details"
+            android:textColor="#03353e"
+            android:textSize="16dp" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/welcometextviewcontext1"
+            android:src="@drawable/logo"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/logo"
+            />
+
+        <TextView
+            android:id="@+id/welcometextviewcontext2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/sky_blue_color"
+            android:textSize="14dp" />
+        <ImageView
+            android:id="@+id/enterinstdetailsimage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/welcometextviewcontext2"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/enterinstdetailsimage"
+            />
+
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/instituteNameTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/headerMsg"
-        android:theme="@style/TextLabelNew">
+        android:layout_below="@id/enterinstdetailsimage"
+        android:layout_marginTop="20dp"
+        android:theme="@style/TextLabelNew"
+        android:layout_centerInParent="true"
+        app:errorEnabled="true"
+        >
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/instituteName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Full Institute Name"
-            android:gravity=""
-            android:imeOptions="actionNext"
+            android:hint="Enter full institute name"
             android:singleLine="true"
-            android:textSize="15sp" />
+            android:textColor="#03353e"
+            android:maxLength="500"
+            android:inputType="textCapWords"
+            android:imeOptions="actionNext"
+            android:textSize="16dp" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/countryinputlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/countryinputlayout"
         android:layout_below="@+id/instituteNameTextInputLayout"
-        android:layout_marginTop="20dp"
-        android:theme="@style/TextLabelNew">
+        android:theme="@style/TextLabelNew"
+        app:errorEnabled="true"
+        >
 
         <AutoCompleteTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="select country"
-            android:textSize="15dp"
+            android:hint="Eneter country"
             android:singleLine="true"
             android:maxLines="1"
-            android:textColor="#000"
+            android:textColor="#03353e"
+            android:inputType="textCapWords"
+            android:maxLength="50"
+            android:imeOptions="actionNext"
+            android:textSize="16dp"
             android:id="@+id/countryAutoBox"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -58,34 +109,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/countryinputlayout"
-        android:theme="@style/TextLabelNew">
+        android:theme="@style/TextLabelNew"
+        app:errorEnabled="true"
+        >
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/instituteAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Institute Address"
-            android:imeOptions="actionNext"
+            android:hint="Enter institute address"
             android:singleLine="true"
-            android:textSize="15sp" />
+            android:inputType="textCapWords"
+            android:textColor="#03353e"
+            android:maxLength="500"
+            android:imeOptions="actionNext"
+            android:textSize="16dp" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/emailTextInputLayout"
+        android:id="@+id/instituteEmailTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/addressTextInputLayout"
-        android:theme="@style/TextLabelNew">
+        android:theme="@style/TextLabelNew"
+        app:errorEnabled="true"
+        >
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/instituteEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Institute Email"
-            android:imeOptions="actionNext"
+            android:hint="Enter institute email"
             android:singleLine="true"
-            android:textSize="15sp" />
+            android:textColor="#03353e"
+            android:digits="abcdefghijklmnopqrstuvwxyz0123456789@._"
+            android:inputType="textEmailAddress"
+            android:maxLength="100"
+            android:imeOptions="actionNext"
+            android:textSize="16dp"
+            />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -93,17 +156,22 @@
         android:id="@+id/websiteTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/emailTextInputLayout"
-        android:theme="@style/TextLabelNew">
+        android:layout_below="@id/instituteEmailTextInputLayout"
+        android:theme="@style/TextLabelNew"
+        app:errorEnabled="true"
+        >
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/institutewebsite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Institute Website"
-            android:imeOptions="actionNext"
+            android:hint="Enter institute website"
             android:singleLine="true"
-            android:textSize="15sp" />
+            android:inputType="textWebEmailAddress"
+            android:textColor="#03353e"
+            android:maxLength="100"
+            android:imeOptions="actionNext"
+            android:textSize="16dp" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -112,17 +180,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/websiteTextInputLayout"
-        android:theme="@style/TextLabelNew">
+        android:theme="@style/TextLabelNew"
+        app:errorEnabled="true"
+        >
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/institutephone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:hint="Institute Phone"
-            android:imeOptions="actionNext"
+            android:hint="Enter institute phone"
             android:singleLine="true"
-            android:textSize="15sp" />
+            android:textColor="#03353e"
+            android:maxLength="11"
+            android:imeOptions="actionNext"
+            android:textSize="16dp"
+            />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -131,17 +204,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/phoneTextInputLayout"
-        android:theme="@style/TextLabelNew">
+        android:theme="@style/TextLabelNew"
+        app:errorEnabled="true"
+        >
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/instituteAlternatephone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:hint="Institute Alternate phone"
-            android:imeOptions="actionNext"
+            android:hint="Enter institute alternate phone"
             android:singleLine="true"
-            android:textSize="15sp" />
+            android:textColor="#03353e"
+            android:maxLength="11"
+            android:imeOptions="actionNext"
+            android:textSize="16dp" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -150,16 +227,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/alternatePhoneTextInputLayout"
-        android:theme="@style/TextLabelNew">
+        android:theme="@style/TextLabelNew"
+        app:errorEnabled="true"
+        >
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/university"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="University Name"
-            android:imeOptions="actionNext"
+            android:hint="Enter university name"
             android:singleLine="true"
-            android:textSize="15sp" />
+            android:inputType="textCapWords"
+            android:textColor="#03353e"
+            android:maxLength="100"
+            android:imeOptions="actionNext"
+            android:textSize="16dp" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -168,17 +250,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/univercityTextInputLayout"
-        android:theme="@style/TextLabelNew">
+        android:theme="@style/TextLabelNew"
+        app:errorEnabled="true"
+        >
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/regNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Registration number provided by university"
-            android:imeOptions="actionNext"
+            android:hint="Enter registration number provided by university"
             android:singleLine="true"
-            android:textSize="15sp" />
+            android:textColor="#03353e"
+            android:inputType="textCapCharacters"
+            android:maxLength="20"
+            android:imeOptions="actionDone"
+            android:textSize="16dp"/>
 
     </android.support.design.widget.TextInputLayout>
 
 </RelativeLayout>
+</ScrollView>

@@ -252,7 +252,7 @@ public class OTPActivity extends AppCompatActivity {
 //
 //                new CreateFirebaseUser(u, p).execute();
 
-                startActivity(new Intent(OTPActivity.this, WelcomeGenrateCodeActivity.class));
+                startActivity(new Intent(OTPActivity.this, WelcomeGenrateCodeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 finish();
             } else if (resultofop.equals("fail") && activationMessageflag == true) {
                 Toast.makeText(OTPActivity.this, "Incorrect OTP..!", Toast.LENGTH_LONG).show();
