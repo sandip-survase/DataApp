@@ -1,42 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:padding="20dp"
-tools:context="placeme.octopusites.com.placeme.WelcomeShowGeneratedCodeFragment">
+<ScrollView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fcfdfd"
+    >
 
-`<TextView
-    android:id="@+id/helloMsgcode"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_centerHorizontal="true"
-    android:gravity="center"
-    android:layout_marginTop="10dp"
-    android:text="Hello!"
-    android:textSize="25sp" />
-
-    <TextView
-        android:id="@+id/headerMsgcode"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:layout_below="@+id/helloMsgcode"
-        android:layout_marginTop="15dp"
-        android:textSize="25sp" />
-
-
-    `<TextView
-    android:id="@+id/genratedCode"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/headerMsgcode"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="55dp"
-    android:text="INST000029"
-    android:textSize="40sp" />
+        android:padding="16dp"
+        android:id="@+id/introrl"
+        >
+        <TextView
+            android:id="@+id/helloMsgcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:textColor="#03353e"
+            android:textSize="16dp"
+            />
+        <TextView
+            android:id="@+id/headerMsgcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/helloMsgcode"
+            android:textSize="16dp"
+            android:textColor="#03353e"
+            />
+        <ImageView
+            android:id="@+id/ucodeicon"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_below="@+id/headerMsgcode"
+            android:src="@drawable/ucodeicon"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:id="@+id/genratedCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ucodeicon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:textSize="40sp"
+            android:textColor="@color/sky_blue_color"
+            android:layout_centerVertical="true"
+        />
 
 
 
 </RelativeLayout>
+</ScrollView>

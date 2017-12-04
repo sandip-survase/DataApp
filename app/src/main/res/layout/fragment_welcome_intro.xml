@@ -112,7 +112,6 @@
                 android:id="@+id/fnameTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/profilePicture"
                 android:layout_weight="1"
                 android:theme="@style/TextLabelNew"
                 app:errorEnabled="true"

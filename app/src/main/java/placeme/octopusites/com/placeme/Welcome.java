@@ -27,6 +27,8 @@ import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -36,6 +38,7 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
+import android.view.animation.AnticipateOvershootInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
@@ -73,6 +76,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 import static placeme.octopusites.com.placeme.OTPActivity.md5;
@@ -102,7 +106,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     private Button btnNext,btnPrev;
     ProgressBar nextProgress;
     Boolean errorFlagIntro = false, genrateCodeFlag = false;
-    View WelcomeEmailView, WelcomePasswordView, WelComeIntroView, WelcomeRoleView, WelcomeCreatePasswordView, WelComeIntroThroughAdminView;
+    View WelcomeEmailView, WelcomePasswordView, WelComeIntroView, WelcomeRoleView, WelcomeCreatePasswordView, WelComeIntroThroughAdminView,StudentRoleSelectedView;
     EditText passwordedittext;
     TextInputEditText usernameedittext;
     TextInputLayout usernameTextInputLayout,fnameTextInputLayout,lnameTextInputLayout,mobileTextInputLayout;
@@ -133,6 +137,17 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     CardView alumnirl;
     CardView tporl;
     CardView hrrl;
+    ImageView cancel;
+    ImageView enterpasswordimage;
+    TextView createpasswordwelcometextviewcontext1,createpasswordwelcometextviewcontext2;
+    TextInputLayout passwordTextInputLayout,confirmPasswordTextInputLayout;
+
+    String foundFname;
+
+    TextInputLayout welcomepasswordTextInputLayout;
+    TextView welcomepasswordwelcometextviewcontext1,welcomepasswordwelcometextviewcontext2;
+    ImageView welcomepasswordenterpasswordimage;
+
     public void setWelComeEmailView(View v) {
         WelcomeEmailView = v;
         usernameedittext = (TextInputEditText) WelcomeEmailView.findViewById(R.id.welcomeusername);
@@ -166,28 +181,78 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         });
 
     }
-    public void animateStudentRl(){
 
-        RelativeLayout student_selected_rl=(RelativeLayout)WelcomeRoleView.findViewById(R.id.student_selected_rl);
-        TextInputLayout instcodeTextInputLayout=(TextInputLayout)WelcomeRoleView.findViewById(R.id.instcodeTextInputLayout);
-        ImageView cancel=(ImageView) WelcomeRoleView.findViewById(R.id.cancel);
+    void animateAllViews()
+    {
+        studentrl.setVisibility(View.VISIBLE);
+        alumnirl.setVisibility(View.VISIBLE);
+        tporl.setVisibility(View.VISIBLE);
+        hrrl.setVisibility(View.VISIBLE);
+        slideinleft1(rolewelcometextviewcontext1);
+        slideinleft2(rolewelcometextviewcontext2);
+        fade(rolewelcometextviewcontext3);
+        scale1(studentrl);
+        scale2(alumnirl);
+        scale3(tporl);
+        scale4(hrrl);
+    }
+   public void animateStudentRl(){
 
-        rolewelcometextviewcontext2.setVisibility(View.GONE);
-        rolewelcometextviewcontext3.setVisibility(View.GONE);
-        student_selected_rl.setVisibility(View.VISIBLE);
-        instcodeTextInputLayout.setVisibility(View.VISIBLE);
-        cancel.setVisibility(View.VISIBLE);
+           Intent intent = new Intent(Welcome.this, StudentRoleSelected.class);
 
-        Animation animation1 =
-                AnimationUtils.loadAnimation(getApplicationContext(),
-                        R.anim.fadein);
+           EasyTransitionOptions options =
+                   EasyTransitionOptions.makeTransitionOptions(
+                           Welcome.this,
+                           WelcomeRoleView.findViewById(R.id.iv_icon_student)
 
+                   );
 
-        student_selected_rl.startAnimation(animation1);
-        instcodeTextInputLayout.startAnimation(animation1);
-        cancel.startAnimation(animation1);
+           // start transition
+           EasyTransition.startActivityForResult(intent,1111, options);
 
 
+    }
+    void animateAlumniRl()
+    {
+        Intent intent = new Intent(Welcome.this, AlumniRoleSelected.class);
+
+        EasyTransitionOptions options =
+                EasyTransitionOptions.makeTransitionOptions(
+                        Welcome.this,
+                        WelcomeRoleView.findViewById(R.id.iv_icon_alumni)
+
+                );
+
+        // start transition
+        EasyTransition.startActivityForResult(intent,2222, options);
+    }
+    void animateTPORl()
+    {
+        Intent intent = new Intent(Welcome.this, TPORoleSelected.class);
+
+        EasyTransitionOptions options =
+                EasyTransitionOptions.makeTransitionOptions(
+                        Welcome.this,
+                        WelcomeRoleView.findViewById(R.id.iv_icon_tpo)
+
+                );
+
+        // start transition
+        EasyTransition.startActivityForResult(intent,3333, options);
+    }
+    void animateHRRl()
+    {
+        Intent intent = new Intent(Welcome.this, HRRoleSelected.class);
+
+        EasyTransitionOptions options =
+                EasyTransitionOptions.makeTransitionOptions(
+                        Welcome.this,
+                        WelcomeRoleView.findViewById(R.id.iv_icon_hr)
+
+                );
+
+        // start transition
+        EasyTransition.startActivityForResult(intent,4444, options);
     }
     public void slideoutleft2(View view){
 
@@ -313,6 +378,43 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     public void setWelComePasswordView(View v) {
         WelcomePasswordView = v;
         passwordedittext = (EditText) WelcomePasswordView.findViewById(R.id.welcomepassword);
+        passwordedittext.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                welcomepasswordTextInputLayout.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        welcomepasswordwelcometextviewcontext1=(TextView)WelcomePasswordView.findViewById(R.id.welcometextviewcontext1);
+        welcomepasswordwelcometextviewcontext2=(TextView)WelcomePasswordView.findViewById(R.id.welcometextviewcontext2);
+        welcomepasswordenterpasswordimage=(ImageView)WelcomePasswordView.findViewById(R.id.enterpasswordimage);
+        welcomepasswordTextInputLayout=(TextInputLayout)WelcomePasswordView.findViewById(R.id.passwordTextInputLayout);
+
+        welcomepasswordwelcometextviewcontext1.setTypeface(bold);
+        welcomepasswordwelcometextviewcontext2.setTypeface(light);
+        passwordedittext.setTypeface(MyConstants.getBold(this));
+        welcomepasswordTextInputLayout.setTypeface(MyConstants.getLight(this));
+
+        try {
+            welcomepasswordwelcometextviewcontext1.setText("Welcome back "+Decrypt(foundFname,digest1,digest2)+" !");
+        } catch (Exception e) {
+            Log.d("TAG", "fname: "+e.getMessage());
+        }
+
+
+        fade(welcomepasswordenterpasswordimage);
+        fadeandmove(welcomepasswordTextInputLayout);
+        slideinleft1(welcomepasswordwelcometextviewcontext1);
+        slideinleft2(welcomepasswordwelcometextviewcontext2);
     }
 
     public void setWelComeCreatePasswordView(View v) {
@@ -321,6 +423,52 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         enterPassword = (EditText) WelcomeCreatePasswordView.findViewById(R.id.enterPassword);
         confirmPassword = (EditText) WelcomeCreatePasswordView.findViewById(R.id.confirmPassword);
 
+        enterPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                passwordTextInputLayout.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        confirmPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                confirmPasswordTextInputLayout.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        createpasswordwelcometextviewcontext1=(TextView)WelcomeCreatePasswordView.findViewById(R.id.welcometextviewcontext1);
+        createpasswordwelcometextviewcontext2=(TextView)WelcomeCreatePasswordView.findViewById(R.id.welcometextviewcontext2);
+        passwordTextInputLayout=(TextInputLayout)WelcomeCreatePasswordView.findViewById(R.id.passwordTextInputLayout);
+        confirmPasswordTextInputLayout=(TextInputLayout)WelcomeCreatePasswordView.findViewById(R.id.confirmPasswordTextInputLayout);
+
+        passwordTextInputLayout.setTypeface(light);
+        confirmPasswordTextInputLayout.setTypeface(light);
+
+        createpasswordwelcometextviewcontext2.setText("\"Treat your password like your toothbrush. Don't let anybody else use it, and get a new one every six months\" - Clifford Stoll");
+        createpasswordwelcometextviewcontext1.setTypeface(MyConstants.getBold(this));
+        createpasswordwelcometextviewcontext2.setTypeface(MyConstants.getBoldItalic(this));
+
+        enterpasswordimage=(ImageView) WelcomeCreatePasswordView.findViewById(R.id.enterpasswordimage);
 
     }
 
@@ -430,28 +578,108 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         fnameEditText = (EditText) WelComeIntroThroughAdminView.findViewById(R.id.fname);
         lnameEditText = (EditText) WelComeIntroThroughAdminView.findViewById(R.id.lname);
         mobileEditText = (EditText) WelComeIntroThroughAdminView.findViewById(R.id.mobile);
-        adminInfo = (TextView) WelComeIntroThroughAdminView.findViewById(R.id.adminInfo);
-        profilePicture = (CircleImageView) WelComeIntroThroughAdminView.findViewById(R.id.profilePicture);
+        profilePicture = (CircleImageView) WelComeIntroThroughAdminView.findViewById(R.id.profilePic);
+        ImageButton iv_camera = (ImageButton) WelComeIntroThroughAdminView.findViewById(R.id.iv_camera);
 
-//        profilePicture.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                requestCropImage();
-//            }
-//        });
+        fnameEditText.setTypeface(MyConstants.getBold(this));
+        lnameEditText.setTypeface(MyConstants.getBold(this));
+        mobileEditText.setTypeface(MyConstants.getBold(this));
+
+        TextView getProfilePictureMsg=(TextView)WelComeIntroThroughAdminView.findViewById(R.id.getProfilePictureMsg);
+        adminInfo = (TextView) WelComeIntroThroughAdminView.findViewById(R.id.adminInfo);
+        TextView welcometextviewcontext3=(TextView)WelComeIntroThroughAdminView.findViewById(R.id.welcometextviewcontext3);
+
+        getProfilePictureMsg.setTypeface(MyConstants.getBold(this));
+        adminInfo.setTypeface(MyConstants.getBoldItalic(this));
+
+        fnameTextInputLayout=(TextInputLayout)WelComeIntroThroughAdminView.findViewById(R.id.fnameTextInputLayout);
+        lnameTextInputLayout=(TextInputLayout)WelComeIntroThroughAdminView.findViewById(R.id.lnameTextInputLayout);
+        mobileTextInputLayout=(TextInputLayout)WelComeIntroThroughAdminView.findViewById(R.id.mobileTextInputLayout);
+
+        slideinleft1(getProfilePictureMsg);
+        slideinleft2(adminInfo);
+        fade(welcometextviewcontext3);
+        fade(profilePicture);
+        fade(iv_camera);
+        fadeandmove(fnameTextInputLayout);
+        fadeandmove(lnameTextInputLayout);
+        fadeandmove(mobileTextInputLayout);
+
+        fnameTextInputLayout.setTypeface(MyConstants.getLight(this));
+        lnameTextInputLayout.setTypeface(MyConstants.getLight(this));
+        mobileTextInputLayout.setTypeface(MyConstants.getLight(this));
+
+        iv_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestCropImage();
+            }
+        });
+        fnameEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                fnameTextInputLayout.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        lnameEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                lnameTextInputLayout.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        mobileEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mobileTextInputLayout.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
     }
 
     public void setWelComeRoleView(View v) {
 
         WelcomeRoleView = v;
 
+        AnimationModal animationModal=new AnimationModal();
+        animationModal.setRoleView(WelcomeRoleView);
+
         rolewelcometextviewcontext1=(TextView)WelcomeRoleView.findViewById(R.id.welcometextviewcontext1);
         rolewelcometextviewcontext2=(TextView)WelcomeRoleView.findViewById(R.id.welcometextviewcontext2);
         rolewelcometextviewcontext3=(TextView)WelcomeRoleView.findViewById(R.id.welcometextviewcontext3);
-        TextView studentrole=(TextView)WelcomeRoleView.findViewById(R.id.studentrole);
-        TextView alumnirole=(TextView)WelcomeRoleView.findViewById(R.id.alumnirole);
-        TextView tporole=(TextView)WelcomeRoleView.findViewById(R.id.tporole);
-        TextView hrrole=(TextView)WelcomeRoleView.findViewById(R.id.hrrole);
+        TextView studentrole=(TextView)WelcomeRoleView.findViewById(R.id.tv_name_student);
+        TextView alumnirole=(TextView)WelcomeRoleView.findViewById(R.id.tv_name_alumni);
+        TextView tporole=(TextView)WelcomeRoleView.findViewById(R.id.tv_name_tpo);
+        TextView hrrole=(TextView)WelcomeRoleView.findViewById(R.id.tv_name_hr);
 
         rolewelcometextviewcontext2.setText("\"There are many roles you can play in life, but you know there is one role you must play: TO BE YOURSELF !\"");
 
@@ -477,7 +705,17 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         student_rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                scaledown(studentrl);
+
+                SELECTED_ROLE="student";
+
+                WelcomeRoleModal obj=new WelcomeRoleModal();
+                obj.setCode(null);
+
+                studentrl.setVisibility(View.GONE);
+                alumnirl.setVisibility(View.VISIBLE);
+                tporl.setVisibility(View.VISIBLE);
+                hrrl.setVisibility(View.VISIBLE);
+
                 scaledown(alumnirl);
                 scaledown(tporl);
                 scaledown(hrrl);
@@ -485,10 +723,79 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 fadeout(rolewelcometextviewcontext3);
                 animateStudentRl();
 
-//                slideandscale(studentrl);
+            }
+        });
+
+        alumni_rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                SELECTED_ROLE="alumni";
+
+                WelcomeRoleModal obj=new WelcomeRoleModal();
+                obj.setCode(null);
+
+                studentrl.setVisibility(View.VISIBLE);
+                alumnirl.setVisibility(View.GONE);
+                tporl.setVisibility(View.VISIBLE);
+                hrrl.setVisibility(View.VISIBLE);
+
+                scaledown(studentrl);
+                scaledown(tporl);
+                scaledown(hrrl);
+                slideoutleft2(rolewelcometextviewcontext2);
+                fadeout(rolewelcometextviewcontext3);
+                animateAlumniRl();
 
             }
         });
+        tpo_rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                SELECTED_ROLE="admin";
+
+                WelcomeRoleModal obj=new WelcomeRoleModal();
+                obj.setCode(null);
+
+                studentrl.setVisibility(View.VISIBLE);
+                alumnirl.setVisibility(View.VISIBLE);
+                tporl.setVisibility(View.GONE);
+                hrrl.setVisibility(View.VISIBLE);
+
+                scaledown(studentrl);
+                scaledown(alumnirl);
+                scaledown(hrrl);
+                slideoutleft2(rolewelcometextviewcontext2);
+                fadeout(rolewelcometextviewcontext3);
+                animateTPORl();
+
+            }
+        });
+        hr_rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                SELECTED_ROLE="hr";
+
+                WelcomeRoleModal obj=new WelcomeRoleModal();
+                obj.setCode(null);
+
+                studentrl.setVisibility(View.VISIBLE);
+                alumnirl.setVisibility(View.VISIBLE);
+                tporl.setVisibility(View.VISIBLE);
+                hrrl.setVisibility(View.GONE);
+
+                scaledown(studentrl);
+                scaledown(alumnirl);
+                scaledown(tporl);
+                slideoutleft2(rolewelcometextviewcontext2);
+                fadeout(rolewelcometextviewcontext3);
+                animateHRRl();
+
+            }
+        });
+
 
 //        studentBlock = WelcomeRoleView.findViewById(R.id.studentBlock);
 //        alumniBlock = WelcomeRoleView.findViewById(R.id.alumniBlock);
@@ -606,7 +913,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         // adding bottom dots
 
         // making notification bar transparent
-        changeStatusBarColor();
 
 //        setupViewPagerNewUser(viewPager);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
@@ -637,13 +943,15 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
                 if(currentPosition==2&&path==2)
                 {
-                    slideinleft1(rolewelcometextviewcontext1);
-                    slideinleft2(rolewelcometextviewcontext2);
-                    fade(rolewelcometextviewcontext3);
-                    scale1(studentrl);
-                    scale2(alumnirl);
-                    scale3(tporl);
-                    scale4(hrrl);
+                    animateAllViews();
+                }
+                if(currentPosition==3&&path==2)
+                {
+                    fade(enterpasswordimage);
+                    slideinleft1(createpasswordwelcometextviewcontext1);
+                    slideinleft2(createpasswordwelcometextviewcontext2);
+                    fadeandmove(passwordTextInputLayout);
+                    fadeandmove(confirmPasswordTextInputLayout);
                 }
             }
 
@@ -691,10 +999,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                         usernameTextInputLayout.setError("Kindly provide your email address");
                     } else if (plainUsername.length() < 5) {
                         usernameflag = true;
-                        usernameTextInputLayout.setError("Please enter valid email address");
+                        usernameTextInputLayout.setError("Kindly provide valid email address");
                     } else if (!plainUsername.contains("@")) {
                         usernameflag = true;
-                        usernameTextInputLayout.setError("Please enter valid email address");
+                        usernameTextInputLayout.setError("Kindly provide valid email address");
                     }
 
                     if (usernameflag == false) {
@@ -709,7 +1017,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                         passwordstr = passwordedittext.getText().toString();
                         Log.d("TAG", "onClick: plain password : " + passwordstr);
                         if (passwordstr.equals("")) {
-                            passwordedittext.setError("Field can not be empty");
+                            welcomepasswordTextInputLayout.setError("Kindly provide your password");
                         } else {
                             try {
                                 byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
@@ -787,63 +1095,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 {
                     if(path==2)
                     {
-                        instOrEmailstr = instOrEmail.getText().toString();
-                        if (SELECTED_ROLE != null) {
-                            if (SELECTED_ROLE.equals("student") || SELECTED_ROLE.equals("alumni")) {
-                                instOrEmailstr = instOrEmailstr.toUpperCase();
-                            }
-                        }
-                        instOrEmail.setError(null);
+                        Toast.makeText(Welcome.this, "Please select your role !", Toast.LENGTH_SHORT).show();
+                    }
 
-                        if (SELECTED_ROLE != null) {
-                            if (SELECTED_ROLE.equals("student") || SELECTED_ROLE.equals("alumni")) {
-                                if (instOrEmailstr.length() != 8) {
-                                    instoremailerror = true;
-                                    instOrEmail.setError("Incorrect Institute code");
-                                }
-                            }
-                            if (SELECTED_ROLE.equals("admin")) {
-                                genrateCodeFlag = true;
-                                // for testing validation in comment  *****
-
-                                if (!instOrEmailstr.contains("@")) {
-                                    instoremailerror = true;
-                                    instOrEmail.setError("Incorrect Email");
-                                }
-//                                    else if (!instOrEmailstr.contains(".edu")) {
-//                                        instoremaileror = true;
-//                                        instOrEmail.setError("Incorrect professional Email");
-//                                    }
-
-                            }
-                            if (SELECTED_ROLE.equals("hr")) {
-                                genrateCodeFlag = true;
-                                String email = instOrEmail.getText().toString().trim();
-                                if (!email.contains("@")) {
-                                    instoremailerror = true;
-                                    instOrEmail.setError("Incorrect Email");
-                                }
-//                                    else if (email.contains("gmail") || email.contains("yahoo") || email.contains("ymail") || email.contains("rediffmail") || email.contains("outlook") || email.contains("hotmail")) {
-//                                        instoremaileror = true;
-//                                        instOrEmail.setError("Incorrect professional Email");
-//                                    }
-                            }
-
-                            if (!instoremailerror) {
-                                if (SELECTED_ROLE.equals("student") || SELECTED_ROLE.equals("alumni")) {
-
-                                    new checkUcode().execute(instOrEmailstr);
-
-                                } else {
-                                    viewPager.setCurrentItem(3);
-                                    addBottomDots(3, 4);
-                                }
-                            }
-
-                        } else
-                            Toast.makeText(Welcome.this, "select role", Toast.LENGTH_SHORT).show();
-
-                    }else if (path == 3) {
+                        if (path == 3) {
 
                         errorFlagThroughAdminIntro = false;
                         fname = fnameEditText.getText().toString().trim();
@@ -852,12 +1107,12 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
                         if (fname.length() < 2) {
                             errorFlagThroughAdminIntro = true;
-                            fnameEditText.setError("Enter minimum 2 characters");
+                            fnameEditText.setError("Kindly provide your first name");
                         } else if (lname.length() < 2) {
-                            lnameEditText.setError("Enter minimum 2 characters");
+                            lnameEditText.setError("Kindly provide your last name");
                             errorFlagThroughAdminIntro = true;
                         } else if (mobile.length() != 10) {
-                            mobileEditText.setError("Incorrect mobile number");
+                            mobileEditText.setError("Kindly provide your correct mobile number");
                             errorFlagThroughAdminIntro = true;
                         }
 
@@ -872,18 +1127,21 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 {
                     if(path==2)
                     {
-                        confirmPassword.setError(null);
+                        passwordTextInputLayout.setError(null);
+                        confirmPasswordTextInputLayout.setError(null);
 
                         boolean errorflag = false;
                         String enterpass = enterPassword.getText().toString();
                         confrimpass = confirmPassword.getText().toString();
 
-                        if (!enterpass.equals(confrimpass)) {
+                        if(enterpass.length() < 6 ) {
                             errorflag = true;
-                            confirmPassword.setError("confirm password not matched");
-                        } else if (enterpass.length() < 6 || confrimpass.length() < 6) {
+                            passwordTextInputLayout.setError("Password must be at least 6 characters long");
+                        }
+                        else if(!enterpass.equals(confrimpass))
+                        {
                             errorflag = true;
-                            confirmPassword.setError("Passwords must be at least 6 characters long");
+                            confirmPasswordTextInputLayout.setError("Passwords did not match");
                         }
                         if (errorflag == false) {
 
@@ -1072,8 +1330,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 viewPager.setCurrentItem(3);
                 addBottomDots(3, 4);
             } else {
-                Toast.makeText(Welcome.this, "Invalid Institute Code\nplease contact your TPO", Toast.LENGTH_LONG).show();
-                instOrEmail.setError("Invalid Institute Code\nplease contact your TPO");
+//                Toast.makeText(Welcome.this, "Invalid Institute Code\nplease contact your TPO", Toast.LENGTH_LONG).show();
+                instOrEmail.setError("Invalid Institute Code. Please contact your Training and placement officer");
             }
         }
     }
@@ -1253,13 +1511,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     /**
      * Making notification bar transparent
      */
-    private void changeStatusBarColor() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-        }
-    }
+
 
     public void onError(String s) {
         crop_layout.setVisibility(View.GONE);
@@ -1437,6 +1689,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             try {
 
                 s = json.getString("info");
+                if(s!=null)
+                    if(s.equals("found"))
+                        foundFname=json.getString("fname");
 
                 Log.d("TAG", "ValidateUser json: " + json);
 
@@ -1661,7 +1916,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             } else if (success == 7) { // through admin
                 path = 3;
 
-                String MSG = adminfname + " " + adminlname + " from " + adminInstitute;
+                String MSG = "Your account has already been created by "+adminfname + " " + adminlname + " from " + adminInstitute;
 
                 if (myViewPagerAdapter.getCount() > 2) {
                     //clear the adapter first and then add all the fragments
@@ -1828,20 +2083,49 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         Log.d("TAG", "onActivityResult: hr activity " + resultCode);
 
-        try {
-
-        } catch (Exception e) {
+        if(requestCode==1111)
+        {
+            WelcomeRoleModal obj=new WelcomeRoleModal();
+            instOrEmailstr=obj.getCode();
+            if(resultCode==1111&&instOrEmailstr!=null)
+            {
+                viewPager.setCurrentItem(3);
+                addBottomDots(3, 4);
+            }
         }
-//        plainusername=sharedpreferences.getString("plain",null);
-//        byte[] skill1EncryptedBytes = SimpleBase64Encoder.decode(skill1);
-//        skill1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, skill1EncryptedBytes);
-//        skill1 = new String(skill1DecryptedBytes);
-//        s.setSkill1(skill1);
-
-//        String role
-
-
-        if (requestCode == Picker.PICK_IMAGE_DEVICE) {
+        else if(requestCode==2222)
+        {
+            WelcomeRoleModal obj=new WelcomeRoleModal();
+            instOrEmailstr=obj.getCode();
+            if(resultCode==2222&&instOrEmailstr!=null)
+            {
+                viewPager.setCurrentItem(3);
+                addBottomDots(3, 4);
+            }
+        }
+        else if(requestCode==3333)
+        {
+            WelcomeRoleModal obj=new WelcomeRoleModal();
+            instOrEmailstr=obj.getCode();
+            if(resultCode==3333&&instOrEmailstr!=null)
+            {
+                genrateCodeFlag = true;
+                viewPager.setCurrentItem(3);
+                addBottomDots(3, 4);
+            }
+        }
+        else if(requestCode==4444)
+        {
+            WelcomeRoleModal obj=new WelcomeRoleModal();
+            instOrEmailstr=obj.getCode();
+            if(resultCode==4444&&instOrEmailstr!=null)
+            {
+                genrateCodeFlag = true;
+                viewPager.setCurrentItem(3);
+                addBottomDots(3, 4);
+            }
+        }
+        else if (requestCode == Picker.PICK_IMAGE_DEVICE) {
 
             try {
 
@@ -2005,6 +2289,15 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     @Override
     public void onBackPressed() {
 
+        if(path==2&&currentPosition==3)
+        {
+            enterPassword.setText("");
+            confirmPassword.setText("");
+            enterPassword.setError(null);
+            confirmPassword.setError(null);
+            passwordTextInputLayout.setError(null);
+            confirmPasswordTextInputLayout.setError(null);
+        }
 
         if (path == 3 && currentPosition == 2)
             path = 1;

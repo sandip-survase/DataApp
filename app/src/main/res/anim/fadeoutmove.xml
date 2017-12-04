@@ -8,7 +8,12 @@
     <alpha
         android:fromAlpha="1"
         android:toAlpha="0"
-        android:duration="300" >
+        android:duration="800" >
     </alpha>
+
+    <translate
+        android:fromYDelta="0%p"
+        android:toYDelta="-10%p"
+        android:duration="800" />
 
 </set>

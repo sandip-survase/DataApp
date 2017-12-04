@@ -80,7 +80,7 @@
             android:inputType="textEmailAddress"
             android:singleLine="true"
             android:id="@+id/welcomeusername"
-
+            android:imeOptions="actionDone"
 
             android:text="abcds@"
             />
