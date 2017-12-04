@@ -80,10 +80,8 @@
             android:inputType="textEmailAddress"
             android:singleLine="true"
             android:id="@+id/welcomeusername"
-
-
-            android:text="abcds@"
-            />
+            android:imeOptions="actionDone"
+        />
 
     </android.support.design.widget.TextInputLayout>
 

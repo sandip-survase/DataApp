@@ -51,7 +51,11 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
-
+    <style name="Theme.Transparent" parent="AppFullScreenTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
 
     <style name="TextLabel" parent="AppTheme.NoActionBar">
         <item name="android:textColorHint">#03353e</item>

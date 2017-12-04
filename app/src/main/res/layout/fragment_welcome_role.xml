@@ -14,14 +14,6 @@
         android:padding="16dp"
         >
 
-        <ImageView
-            android:id="@+id/cancel"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/cancel"
-            android:layout_alignParentRight="true"
-            android:visibility="gone"
-            />
         <TextView
             android:id="@+id/welcometextviewcontext1"
             android:layout_width="wrap_content"
@@ -68,65 +60,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/welcometextviewcontext3"
-            android:id="@+id/student_selected_rl"
-            android:layout_marginTop="20dp"
-            android:visibility="gone"
-            >
-
-                <ImageView
-                    android:id="@+id/student_role_selected"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/student_role"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    />
-
-                <TextView
-                    android:id="@+id/student_role_selected_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/student_role_selected"
-                    android:text="Student"
-                    android:layout_marginTop="20dp"
-                    android:textSize="16dp"
-                    android:textColor="#03353e"
-                    android:layout_centerHorizontal="true"
-                    android:textAlignment="center"
-                    android:gravity="center"
-                    />
-
-        </RelativeLayout>
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/instcodeTextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/student_selected_rl"
-            android:layout_marginTop="20dp"
-            android:theme="@style/TextLabelNew"
-            app:errorEnabled="true"
-            android:visibility="gone"
-            >
-
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/instcode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-                android:hint="Enter Institute Code"
-                android:imeOptions="actionDone"
-                android:inputType="textCapCharacters"
-                android:maxLength="50"
-                android:singleLine="true"
-                android:textSize="16dp"
-                android:textColor="#03353e" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/welcometextviewcontext3"
             android:id="@+id/rolesrl"
             >
 
@@ -146,15 +79,7 @@
                 android:layout_marginRight="5dp"
                 app:cardCornerRadius="0dp"
                 >
-                <com.andexert.library.RippleView
-                    android:id="@+id/studentripple"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    app:rv_rippleDuration="150"
-                    app:rv_color="#00bcd4"
-                    app:rv_centered="true"
-                    app:rv_alpha="200"
-                    >
+
                 <RelativeLayout
                     android:id="@+id/student_rl"
                     android:layout_width="match_parent"
@@ -167,18 +92,19 @@
                     android:background="@drawable/role_background"
                     >
                     <ImageView
-                        android:id="@+id/student_role"
+                        android:id="@+id/iv_icon_student"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:src="@drawable/student_role"
                         android:layout_centerHorizontal="true"
+                        android:transitionName="student_transition"
                         />
 
                     <TextView
-                        android:id="@+id/studentrole"
+                        android:id="@+id/tv_name_student"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/student_role"
+                        android:layout_below="@+id/iv_icon_student"
                         android:layout_marginTop="5dp"
                         android:text="Student"
                         android:textSize="12dp"
@@ -189,7 +115,7 @@
                         />
 
                 </RelativeLayout>
-                </com.andexert.library.RippleView>
+
 
             </android.support.v7.widget.CardView>
 
@@ -203,14 +129,6 @@
                 app:cardCornerRadius="0dp"
                 android:id="@+id/alumnirl"
                 >
-            <com.andexert.library.RippleView
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                app:rv_rippleDuration="150"
-                app:rv_color="#00bcd4"
-                app:rv_centered="true"
-                app:rv_alpha="200"
-                >
 
             <RelativeLayout
                 android:id="@+id/alumni_rl"
@@ -223,17 +141,17 @@
                 android:paddingRight="5dp"
                 >
                 <ImageView
+                    android:id="@+id/iv_icon_alumni"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:src="@drawable/alumni_role"
-                    android:id="@+id/alumni_role"
                     android:layout_centerHorizontal="true"
                     />
                 <TextView
-                    android:id="@+id/alumnirole"
+                    android:id="@+id/tv_name_alumni"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/alumni_role"
+                    android:layout_below="@+id/iv_icon_alumni"
                     android:layout_marginTop="5dp"
                     android:text="Alumni / Current Working Employee"
                     android:textSize="12dp"
@@ -243,7 +161,7 @@
                     android:gravity="center"
                     />
             </RelativeLayout>
-            </com.andexert.library.RippleView>
+
             </android.support.v7.widget.CardView>
 
 
@@ -251,21 +169,13 @@
                 android:id="@+id/tporl"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_below="@+id/alumnirl"
                 android:layout_toLeftOf="@+id/section"
                 app:cardElevation="8dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="160dp"
                 android:layout_marginRight="5dp"
                 app:cardCornerRadius="0dp"
                 >
-                <com.andexert.library.RippleView
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    app:rv_rippleDuration="150"
-                    app:rv_color="#00bcd4"
-                    app:rv_centered="true"
-                    app:rv_alpha="200"
-                    >
+
                     <RelativeLayout
                         android:id="@+id/tpo_rl"
                         android:layout_width="match_parent"
@@ -277,7 +187,7 @@
                         android:paddingRight="5dp"
                         >
                         <ImageView
-                            android:id="@+id/tpo_role"
+                            android:id="@+id/iv_icon_tpo"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:src="@drawable/tpo_role"
@@ -285,10 +195,10 @@
                             />
 
                         <TextView
-                            android:id="@+id/tporole"
+                            android:id="@+id/tv_name_tpo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/tpo_role"
+                            android:layout_below="@+id/iv_icon_tpo"
                             android:layout_marginTop="5dp"
                             android:text="Training and Placement Officer"
                             android:textSize="12dp"
@@ -298,7 +208,7 @@
                             android:gravity="center"
                             />
                     </RelativeLayout>
-                </com.andexert.library.RippleView>
+
             </android.support.v7.widget.CardView>
 
 
@@ -307,20 +217,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_toRightOf="@+id/section"
-                android:layout_below="@+id/alumnirl"
                 app:cardElevation="8dp"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="160dp"
                 app:cardCornerRadius="0dp"
                 >
-                <com.andexert.library.RippleView
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    app:rv_rippleDuration="150"
-                    app:rv_color="#00bcd4"
-                    app:rv_centered="true"
-                    app:rv_alpha="200"
-                    >
+
                     <RelativeLayout
                         android:id="@+id/hr_rl"
                         android:layout_width="match_parent"
@@ -332,17 +234,17 @@
                         android:paddingRight="5dp"
                         >
                         <ImageView
+                            android:id="@+id/iv_icon_hr"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:src="@drawable/hr_role"
-                            android:id="@+id/hr_role"
                             android:layout_centerHorizontal="true"
                             />
                         <TextView
-                            android:id="@+id/hrrole"
+                            android:id="@+id/tv_name_hr"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/hr_role"
+                            android:layout_below="@+id/iv_icon_hr"
                             android:layout_marginTop="5dp"
                             android:text="HR Manager / Recruiter"
                             android:textSize="12dp"
@@ -352,7 +254,7 @@
                             android:gravity="center"
                             />
                     </RelativeLayout>
-                </com.andexert.library.RippleView>
+
             </android.support.v7.widget.CardView>
 
 
