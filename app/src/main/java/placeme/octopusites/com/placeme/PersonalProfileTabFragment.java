@@ -1,19 +1,14 @@
 package placeme.octopusites.com.placeme;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -24,7 +19,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
@@ -41,11 +35,6 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -58,7 +47,6 @@ import placeme.octopusites.com.placeme.modal.MyProfilePersonal;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 import static placeme.octopusites.com.placeme.AES4all.fromString;
 
 
@@ -76,11 +64,11 @@ public class PersonalProfileTabFragment extends Fragment {
     JSONParser jParser = new JSONParser();
 
     JSONObject json;
-    String resultofop = "",encobj="";
+    String resultofop = "", encobj = "";
     ProgressBar personalprogress;
     ImageView editknownlang;
 
-    String username, plainusername, Myrole,role;
+    String username, plainusername, Myrole, role;
     String digest1, digest2;
     int edittedFlag = 0;
     StudentData s = new StudentData();
@@ -93,8 +81,19 @@ public class PersonalProfileTabFragment extends Fragment {
     int errorflag = 0;
 
     CheckBox CheckBoxPSC;
+    TextInputLayout fnameinput, mnameinput, snameinput, nameas10input, profileemailinput, profileaemailinput, mothernameinput, dobinput, phoneinput, mobileinput, amobileinput, mothertongueinput, hobbiesinput, castinput, prninput, knownlanginput, caddrline1input, caddrline2input, caddrline3input, paddrline1input, paddrline2input, paddrline3input;
+    TextView gendertxt, paddrtxt, handicappedtxt, sportstxt, defencetxt, caddrtxt;
 
     View rootView;
+    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
+
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+
+            dobedittext.setText(String.valueOf(dayOfMonth) + "/" + String.valueOf(monthOfYear + 1)
+                    + "/" + String.valueOf(year));
+        }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -103,8 +102,8 @@ public class PersonalProfileTabFragment extends Fragment {
 
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
         digest2 = MySharedPreferencesManager.getDigest2(getActivity());
-        username=MySharedPreferencesManager.getUsername(getActivity());
-        role=MySharedPreferencesManager.getRole(getActivity());
+        username = MySharedPreferencesManager.getUsername(getActivity());
+        role = MySharedPreferencesManager.getRole(getActivity());
         Myrole = role;
 
 
@@ -133,6 +132,7 @@ public class PersonalProfileTabFragment extends Fragment {
         prnedittext = (EditText) rootView.findViewById(R.id.prn);
         languagesknownedittext = (EditText) rootView.findViewById(R.id.knownlang);
 
+
 //        save=(Button)rootView.findViewById(R.id.savepersonal);
         personalprogress = (ProgressBar) rootView.findViewById(R.id.personalprogress);
 
@@ -159,6 +159,105 @@ public class PersonalProfileTabFragment extends Fragment {
         radioButtonDefenceNo = (RadioButton) rootView.findViewById(R.id.radioButtonDefenceNo);
         radioButtonDefence = (RadioButton) rootView.findViewById(R.id.radioButtonDefence);
         radioButtonExserviceman = (RadioButton) rootView.findViewById(R.id.radioButtonExserviceman);
+        editknownlang = (ImageView) rootView.findViewById(R.id.editknownlang);
+
+        gendertxt = (TextView) rootView.findViewById(R.id.gendertxt);
+        paddrtxt = (TextView) rootView.findViewById(R.id.paddrtxt);
+        handicappedtxt = (TextView) rootView.findViewById(R.id.handicappedtxt);
+        sportstxt = (TextView) rootView.findViewById(R.id.sportstxt);
+        defencetxt = (TextView) rootView.findViewById(R.id.defencetxt);
+        caddrtxt = (TextView) rootView.findViewById(R.id.caddrtxt);
+
+
+        CheckBoxPSC.setTypeface(MyConstants.getBold(getActivity()));
+        radioButtonMale.setTypeface(MyConstants.getBold(getActivity()));
+        radioButtonFemale.setTypeface(MyConstants.getBold(getActivity()));
+        radioButtonHandicappedNo.setTypeface(MyConstants.getBold(getActivity()));
+        radioButtonHandicappedYes.setTypeface(MyConstants.getBold(getActivity()));
+        radioButtonSportsNo.setTypeface(MyConstants.getBold(getActivity()));
+        radioButtonSportsState.setTypeface(MyConstants.getBold(getActivity()));
+        radioButtonSportsNational.setTypeface(MyConstants.getBold(getActivity()));
+        radioButtonSportsInternational.setTypeface(MyConstants.getBold(getActivity()));
+        radioButtonDefenceNo.setTypeface(MyConstants.getBold(getActivity()));
+        radioButtonDefence.setTypeface(MyConstants.getBold(getActivity()));
+        radioButtonExserviceman.setTypeface(MyConstants.getBold(getActivity()));
+
+        gendertxt.setTypeface(MyConstants.getLight(getActivity()));
+        paddrtxt.setTypeface(MyConstants.getLight(getActivity()));
+        handicappedtxt.setTypeface(MyConstants.getLight(getActivity()));
+        sportstxt.setTypeface(MyConstants.getLight(getActivity()));
+        defencetxt.setTypeface(MyConstants.getLight(getActivity()));
+        caddrtxt.setTypeface(MyConstants.getLight(getActivity()));
+
+        fnameinput = (TextInputLayout) rootView.findViewById(R.id.fnameinput);
+        mnameinput = (TextInputLayout) rootView.findViewById(R.id.mnameinput);
+        snameinput = (TextInputLayout) rootView.findViewById(R.id.snameinput);
+        nameas10input = (TextInputLayout) rootView.findViewById(R.id.nameas10input);
+        profileemailinput = (TextInputLayout) rootView.findViewById(R.id.profileemailinput);
+        profileaemailinput = (TextInputLayout) rootView.findViewById(R.id.profileaemailinput);
+        mothernameinput = (TextInputLayout) rootView.findViewById(R.id.mothernameinput);
+        dobinput = (TextInputLayout) rootView.findViewById(R.id.dobinput);
+        phoneinput = (TextInputLayout) rootView.findViewById(R.id.phoneinput);
+        mobileinput = (TextInputLayout) rootView.findViewById(R.id.mobileinput);
+        amobileinput = (TextInputLayout) rootView.findViewById(R.id.amobileinput);
+        mothertongueinput = (TextInputLayout) rootView.findViewById(R.id.mothertongueinput);
+        hobbiesinput = (TextInputLayout) rootView.findViewById(R.id.hobbiesinput);
+        castinput = (TextInputLayout) rootView.findViewById(R.id.castinput);
+        prninput = (TextInputLayout) rootView.findViewById(R.id.prninput);
+        knownlanginput = (TextInputLayout) rootView.findViewById(R.id.knownlanginput);
+        caddrline1input = (TextInputLayout) rootView.findViewById(R.id.caddrline1input);
+        caddrline2input = (TextInputLayout) rootView.findViewById(R.id.caddrline2input);
+        caddrline3input = (TextInputLayout) rootView.findViewById(R.id.caddrline3input);
+        paddrline1input = (TextInputLayout) rootView.findViewById(R.id.paddrline1input);
+        paddrline2input = (TextInputLayout) rootView.findViewById(R.id.paddrline2input);
+        paddrline3input = (TextInputLayout) rootView.findViewById(R.id.paddrline3input);
+
+        fnameinput.setTypeface(MyConstants.getLight(getActivity()));
+        mnameinput.setTypeface(MyConstants.getLight(getActivity()));
+        snameinput.setTypeface(MyConstants.getLight(getActivity()));
+        nameas10input.setTypeface(MyConstants.getLight(getActivity()));
+        profileemailinput.setTypeface(MyConstants.getLight(getActivity()));
+        profileaemailinput.setTypeface(MyConstants.getLight(getActivity()));
+        mothernameinput.setTypeface(MyConstants.getLight(getActivity()));
+        dobinput.setTypeface(MyConstants.getLight(getActivity()));
+        phoneinput.setTypeface(MyConstants.getLight(getActivity()));
+        mobileinput.setTypeface(MyConstants.getLight(getActivity()));
+        amobileinput.setTypeface(MyConstants.getLight(getActivity()));
+        mothertongueinput.setTypeface(MyConstants.getLight(getActivity()));
+        hobbiesinput.setTypeface(MyConstants.getLight(getActivity()));
+        castinput.setTypeface(MyConstants.getLight(getActivity()));
+        prninput.setTypeface(MyConstants.getLight(getActivity()));
+        knownlanginput.setTypeface(MyConstants.getLight(getActivity()));
+        caddrline1input.setTypeface(MyConstants.getLight(getActivity()));
+        caddrline2input.setTypeface(MyConstants.getLight(getActivity()));
+        caddrline3input.setTypeface(MyConstants.getLight(getActivity()));
+        paddrline1input.setTypeface(MyConstants.getLight(getActivity()));
+        paddrline2input.setTypeface(MyConstants.getLight(getActivity()));
+        paddrline3input.setTypeface(MyConstants.getLight(getActivity()));
+
+        fnameedittext.setTypeface(MyConstants.getBold(getActivity()));
+        mnameedittext.setTypeface(MyConstants.getBold(getActivity()));
+        snameedittext.setTypeface(MyConstants.getBold(getActivity()));
+        nameastenedittext.setTypeface(MyConstants.getBold(getActivity()));
+        caddrline1.setTypeface(MyConstants.getBold(getActivity()));
+        caddrline2.setTypeface(MyConstants.getBold(getActivity()));
+        caddrline3.setTypeface(MyConstants.getBold(getActivity()));
+        paddrline1.setTypeface(MyConstants.getBold(getActivity()));
+        paddrline2.setTypeface(MyConstants.getBold(getActivity()));
+        paddrline3.setTypeface(MyConstants.getBold(getActivity()));
+        emailedittext.setTypeface(MyConstants.getBold(getActivity()));
+        phoneedittext.setTypeface(MyConstants.getBold(getActivity()));
+        profileaemail.setTypeface(MyConstants.getBold(getActivity()));
+        mothernameedittext.setTypeface(MyConstants.getBold(getActivity()));
+        dobedittext.setTypeface(MyConstants.getBold(getActivity()));
+        mobileedittext.setTypeface(MyConstants.getBold(getActivity()));
+        alternatemobileedittext.setTypeface(MyConstants.getBold(getActivity()));
+        mothertongueedittext.setTypeface(MyConstants.getBold(getActivity()));
+        hobbiesedittext.setTypeface(MyConstants.getBold(getActivity()));
+        casteedittext.setTypeface(MyConstants.getBold(getActivity()));
+        prnedittext.setTypeface(MyConstants.getBold(getActivity()));
+        languagesknownedittext.setTypeface(MyConstants.getBold(getActivity()));
+
 
         radioGroupHandicapped.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -189,7 +288,7 @@ public class PersonalProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                fnameedittext.setError(null);
+                fnameinput.setError(null);
                 edittedFlag = 1;
             }
 
@@ -206,7 +305,7 @@ public class PersonalProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mnameedittext.setError(null);
+                mnameinput.setError(null);
                 edittedFlag = 1;
             }
 
@@ -223,7 +322,7 @@ public class PersonalProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                snameedittext.setError(null);
+                snameinput.setError(null);
                 edittedFlag = 1;
             }
 
@@ -240,7 +339,7 @@ public class PersonalProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                nameastenedittext.setError(null);
+                nameas10input.setError(null);
                 edittedFlag = 1;
             }
 
@@ -257,7 +356,7 @@ public class PersonalProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                profileaemail.setError(null);
+                profileaemailinput.setError(null);
                 edittedFlag = 1;
             }
 
@@ -274,7 +373,7 @@ public class PersonalProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mothernameedittext.setError(null);
+                mothernameinput.setError(null);
                 edittedFlag = 1;
             }
 
@@ -291,7 +390,7 @@ public class PersonalProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                dobedittext.setError(null);
+                dobinput.setError(null);
                 edittedFlag = 1;
             }
 
@@ -308,7 +407,7 @@ public class PersonalProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                phoneedittext.setError(null);
+                phoneinput.setError(null);
                 edittedFlag = 1;
             }
 
@@ -325,7 +424,7 @@ public class PersonalProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mobileedittext.setError(null);
+                mobileinput.setError(null);
                 edittedFlag = 1;
             }
 
@@ -342,7 +441,7 @@ public class PersonalProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                alternatemobileedittext.setError(null);
+                amobileinput.setError(null);
                 edittedFlag = 1;
             }
 
@@ -359,7 +458,7 @@ public class PersonalProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mothertongueedittext.setError(null);
+                mothertongueinput.setError(null);
                 edittedFlag = 1;
             }
 
@@ -376,7 +475,7 @@ public class PersonalProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                hobbiesedittext.setError(null);
+                hobbiesinput.setError(null);
                 edittedFlag = 1;
             }
 
@@ -393,7 +492,7 @@ public class PersonalProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                prnedittext.setError(null);
+                prninput.setError(null);
                 edittedFlag = 1;
             }
 
@@ -410,19 +509,18 @@ public class PersonalProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                caddrline1.setError(null);
-                String Editvalue ="";
+                caddrline1input.setError(null);
+                String Editvalue = "";
                 Editvalue = caddrline1.getText().toString();
-                Log.d("TAG", "onTextChanged: Editvalue- "+Editvalue);
-                Log.d("TAG", "onTextChanged: addrline1c -"+addrline1c);
-                if(addrline1c!=null) {
+                Log.d("TAG", "onTextChanged: Editvalue- " + Editvalue);
+                Log.d("TAG", "onTextChanged: addrline1c -" + addrline1c);
+                if (addrline1c != null) {
                     if (!addrline1c.equals(Editvalue)) {
 
                         edittedFlag = 1;
                         CheckBoxPSC.setChecked(false);
                     }
-                }
-                else{
+                } else {
                     addrline1c = "";
                 }
 
@@ -442,16 +540,15 @@ public class PersonalProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                caddrline2.setError(null);
+                caddrline2input.setError(null);
 
                 String Editvalue = caddrline2.getText().toString();
-                if(addrline2c!=null) {
+                if (addrline2c != null) {
                     if (!addrline2c.equals(Editvalue)) {
                         edittedFlag = 1;
                         CheckBoxPSC.setChecked(false);
                     }
-                }
-                else{
+                } else {
                     addrline2c = "";
                 }
 
@@ -470,15 +567,14 @@ public class PersonalProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                caddrline3.setError(null);
+                caddrline3input.setError(null);
                 String Editvalue = caddrline3.getText().toString();
-                if(addrline3c!=null) {
+                if (addrline3c != null) {
                     if (!addrline3c.equals(Editvalue)) {
                         edittedFlag = 1;
                         CheckBoxPSC.setChecked(false);
                     }
-                }
-                else{
+                } else {
                     addrline3c = "";
                 }
 
@@ -498,7 +594,7 @@ public class PersonalProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                paddrline1.setError(null);
+                paddrline1input.setError(null);
                 edittedFlag = 1;
             }
 
@@ -515,7 +611,7 @@ public class PersonalProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                paddrline2.setError(null);
+                paddrline2input.setError(null);
                 edittedFlag = 1;
             }
 
@@ -532,7 +628,7 @@ public class PersonalProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                paddrline3.setError(null);
+                paddrline3input.setError(null);
                 edittedFlag = 1;
             }
 
@@ -542,8 +638,6 @@ public class PersonalProfileTabFragment extends Fragment {
             }
         });
 
-
-        editknownlang = (ImageView) rootView.findViewById(R.id.editknownlang);
 
         editknownlang.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -586,11 +680,12 @@ public class PersonalProfileTabFragment extends Fragment {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(getActivity()));
                 if (position == 0) {
                     // Set the hint text color gray
                     tv.setTextColor(Color.GRAY);
                 } else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -614,11 +709,12 @@ public class PersonalProfileTabFragment extends Fragment {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(getActivity()));
                 if (position == 0) {
                     // Set the hint text color gray
                     tv.setTextColor(Color.GRAY);
                 } else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -649,11 +745,12 @@ public class PersonalProfileTabFragment extends Fragment {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(getActivity()));
                 if (position == 0) {
                     // Set the hint text color gray
                     tv.setTextColor(Color.GRAY);
                 } else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -905,12 +1002,10 @@ public class PersonalProfileTabFragment extends Fragment {
                     dob = outputDateStrlastdateofreg;
                     dobedittext.setText(dob);
                 } catch (Exception e) {
-                    Toast.makeText(getContext(), "Enter Date of Birth Correctly..!", Toast.LENGTH_SHORT).show();
-                    dobedittext.setError("Invalid Date");
+//                    Toast.makeText(getContext(), "Enter Date of Birth Correctly..!", Toast.LENGTH_SHORT).show();
+//                    dobedittext.setError("Invalid Date");
                 }
             }
-
-
         }
         if (gender != null) {
             if (gender.equalsIgnoreCase("male")) {
@@ -1145,7 +1240,6 @@ public class PersonalProfileTabFragment extends Fragment {
         }
     }
 
-
     public Boolean validate() {
 
         errorflag = 0;
@@ -1178,7 +1272,7 @@ public class PersonalProfileTabFragment extends Fragment {
 
         bloodgroup = bloodgrpspinner.getSelectedItem().toString();
         if (bloodgroup.equals("- Select Bloodgroup -")) {
-            errorflag = 1;
+//            errorflag = 1;
 //                    Toast.makeText(getActivity(), "Select Bloodgroup", Toast.LENGTH_LONG).show();
         }
         category = categoryspinner.getSelectedItem().toString();
@@ -1191,8 +1285,8 @@ public class PersonalProfileTabFragment extends Fragment {
             tempradiobutton = (RadioButton) rootView.findViewById(selectedId);
             gender = tempradiobutton.getText().toString().trim();
         } catch (Exception e) {
-            errorflag = 1;
-            Toast.makeText(getActivity(), "Select Gender", Toast.LENGTH_LONG).show();
+//            errorflag = 1;
+//            Toast.makeText(getActivity(), "Select Gender", Toast.LENGTH_LONG).show();
         }
 
         selectedId = radioGroupHandicapped.getCheckedRadioButtonId();
@@ -1249,97 +1343,76 @@ public class PersonalProfileTabFragment extends Fragment {
             outputDateStrlastdateofreg = outputFormat.format(date);
             dob = outputDateStrlastdateofreg;
         } catch (Exception e) {
-            Toast.makeText(getContext(), "Enter Date of Birth Correctly..!", Toast.LENGTH_SHORT).show();
-            dobedittext.setError("Invalid Date");
+//            Toast.makeText(getContext(), "Enter Date of Birth Correctly..!", Toast.LENGTH_SHORT).show();
+//            dobedittext.setError("Invalid Date");
         }
+
+
+        errorflag=0;
 
         if (fname.length() < 2) {
             errorflag = 1;
-            fnameedittext.setError("Invalid Name");
-        } else {
-            errorflag = 0;
-            if (mname.length() < 2) {
+            fnameinput.setError("Kindly enter valid name.");
+        } else if (mname.length() < 2) {
+            errorflag = 1;
+            mnameinput.setError("Kindly enter valid name.");
+        } else if (sname.length() < 2) {
+            errorflag = 1;
+            snameinput.setError("Kindly enter valid name.");
+        }else if (nameasten.length()!=0 && nameasten.length() < 2 ) {
+            errorflag = 1;
+            nameas10input.setError("Kindly enter valid name.");
+        }  else if (alternateemail.length()!=0){
+            if(alternateemail.length() < 6 || !alternateemail.contains("@")){
                 errorflag = 1;
-                mnameedittext.setError("Invalid Name");
-            } else {
-                errorflag = 0;
-                if (nameasten.length() < 2) {
-                    errorflag = 1;
-                    nameastenedittext.setError("Invalid Name");
-                } else {
-                    errorflag = 0;
-                    if (sname.length() < 2) {
-                        errorflag = 1;
-                        snameedittext.setError("Invalid Name");
-                    } else {
-                        errorflag = 0;
-
-
-                        if (alternateemail.length() < 2 || !alternateemail.contains("@")) {
-                            errorflag = 1;
-                            profileaemail.setError("Invalid Email");
-                        } else {
-                            errorflag = 0;
-                            if (mothername.length() < 2) {
-                                errorflag = 1;
-                                mothernameedittext.setError("Invalid Name");
-                            } else {
-                                errorflag = 0;
-                                if (dob.length() < 2) {
-                                    errorflag = 1;
-                                    dobedittext.setError("Invalid Name");
-                                } else {
-                                    errorflag = 0;
-                                    if (mobile.length() < 10 || mobile.length() > 10) {
-                                        errorflag = 1;
-                                        mobileedittext.setError("Mobile Number Should Have 10 Digits");
-                                    } else {
-                                        errorflag = 0;
-                                        if (mothertongue.length() < 2) {
-                                            errorflag = 1;
-                                            mothertongueedittext.setError("Invalid Mothertongue");
-                                        } else if (hobbies.length() < 2) {
-                                            errorflag = 1;
-                                            hobbiesedittext.setError("Invalid hobbies");
-                                        } else if (caste.length() < 2) {
-                                            errorflag = 1;
-                                            casteedittext.setError("Invalid caste");
-                                        } else if (prn.length() < 2) {
-                                            errorflag = 1;
-                                            prnedittext.setError("Invalid PRN");
-                                        } else if (addrline1c.length() < 2) {
-                                            errorflag = 1;
-                                            caddrline1.setError("Invalid addrline1");
-                                        } else if (addrline2c.length() < 2) {
-                                            errorflag = 1;
-                                            caddrline2.setError("Invalid addrline2");
-                                        } else if (addrline3c.length() < 2) {
-                                            errorflag = 1;
-                                            caddrline3.setError("Invalid addrline3");
-                                        } else if (addrline1p.length() < 2) {
-                                            errorflag = 1;
-                                            paddrline1.setError("Invalid addrline1");
-                                            paddrline1.requestFocus();
-                                        } else if (addrline2p.length() < 2) {
-                                            errorflag = 1;
-                                            paddrline2.setError("Invalid addrline2");
-                                            paddrline2.requestFocus();
-                                        } else if (addrline3p.length() < 2) {
-                                            errorflag = 1;
-                                            paddrline3.setError("Invalid addrline3");
-                                            paddrline3.requestFocus();
-                                        }
-
-
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                profileaemailinput.setError("Kindly enter valid Email");
             }
-
+        } else if (mothername.length()!=0 && mothername.length() < 2) {
+            errorflag = 1;
+            mothernameinput.setError("Kindly enter valid name");
+        } else if (dob.length() < 2) {
+            errorflag = 1;
+            dobinput.setError("Kindly enter valid date of birth");
+        } else if (mobile.length() < 8 || mobile.length() > 11) {
+            errorflag = 1;
+            amobileinput.setError("Kindly enter valid phone number");
+        } else if (mothertongue.length()!=0 && mothertongue.length() < 2) {
+            errorflag = 1;
+            mothertongueinput.setError("Kindly enter valid Mothertongue");
+        } else if (hobbies.length() < 2) {
+            errorflag = 1;
+            hobbiesinput.setError("Kindly enter valid hobbies");
+        } else if (caste.length()!=0 && caste.length() < 2) {
+            errorflag = 1;
+            castinput.setError("Kindly enter valid caste");
+        } else if (prn.length()!=0 && prn.length() < 2) {
+            errorflag = 1;
+            prninput.setError("Kindly enter valid PRN");
+        } else if (addrline1c.length() < 2) {
+            errorflag = 1;
+            caddrline1input.setError("Kindly enter valid addrline 1");
+        } else if (addrline2c.length() < 2) {
+            errorflag = 1;
+            caddrline2input.setError("Kindly enter valid addrline 2");
+        } else if (addrline3c.length() < 2) {
+            errorflag = 1;
+            caddrline3input.setError("Kindly enter valid addrline 3");
         }
+// else if (addrline1p.length()!=0 && addrline1p.length() < 2) {
+//            errorflag = 1;
+//            paddrline1.setError("Invalid addrline1");
+//            paddrline1.requestFocus();
+//        } else if (addrline2p.length()!=0 && addrline2p.length() < 2) {
+//            errorflag = 1;
+//            paddrline2.setError("Invalid addrline2");
+//            paddrline2.requestFocus();
+//        } else if (addrline3p.length()!=0 && addrline3p.length() < 2) {
+//            errorflag = 1;
+//            paddrline3.setError("Invalid addrline3");
+//            paddrline3.requestFocus();
+//        }
+
+
         if (errorflag == 0)
             return true;
         else
@@ -1350,21 +1423,21 @@ public class PersonalProfileTabFragment extends Fragment {
 
         try {
 
-            Log.d("TAG", "save: fname - "+fname);
-            Log.d("TAG", "save: mname - "+mname);
-            Log.d("TAG", "save: sname - "+sname);
-            Log.d("TAG", "save: digest1 - "+digest1);
-            Log.d("TAG", "save: digest2 - "+digest2);
+            Log.d("TAG", "save: fname - " + fname);
+            Log.d("TAG", "save: mname - " + mname);
+            Log.d("TAG", "save: sname - " + sname);
+            Log.d("TAG", "save: digest1 - " + digest1);
+            Log.d("TAG", "save: digest2 - " + digest2);
 
-            MyProfilePersonal obj=new MyProfilePersonal(fname,mname,sname,nameasten,alternateemail,mothername,dob,gender,phone,mobile,alternatemobile,mothertongue,hobbies,bloodgroup,category,religion,caste,prn,addrline1c,addrline2c,addrline3c,addrline1p,addrline2p,addrline3p,handicapped,sports,defenceex);
-            encobj =OtoString(obj,digest1,digest2);
+            MyProfilePersonal obj = new MyProfilePersonal(fname, mname, sname, nameasten, alternateemail, mothername, dob, gender, phone, mobile, alternatemobile, mothertongue, hobbies, bloodgroup, category, religion, caste, prn, addrline1c, addrline2c, addrline3c, addrline1p, addrline2p, addrline3p, handicapped, sports, defenceex);
+            encobj = OtoString(obj, digest1, digest2);
 
 
 //             encobj =OtoString(obj,MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
 
-            MyProfilePersonal obj2 = (MyProfilePersonal) fromString(encobj,digest1,digest2);
+            MyProfilePersonal obj2 = (MyProfilePersonal) fromString(encobj, digest1, digest2);
 
-            Log.d("TAG", "save: "+obj2.fname +" "+obj2.sname);
+            Log.d("TAG", "save: " + obj2.fname + " " + obj2.sname);
 
             new MyAsyncTask().execute(encobj);
 
@@ -1404,16 +1477,6 @@ public class PersonalProfileTabFragment extends Fragment {
         date.setCallBack(ondate);
         date.show(getFragmentManager(), "Date Picker");
     }
-
-    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
-
-        public void onDateSet(DatePicker view, int year, int monthOfYear,
-                              int dayOfMonth) {
-
-            dobedittext.setText(String.valueOf(dayOfMonth) + "/" + String.valueOf(monthOfYear + 1)
-                    + "/" + String.valueOf(year));
-        }
-    };
 
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         Animation animation = super.onCreateAnimation(transit, enter, nextAnim);
@@ -1461,8 +1524,12 @@ public class PersonalProfileTabFragment extends Fragment {
 
 
             if (Myrole.equals("student")) {
+
+
                 Log.d("student", "onCreateView: " + Myrole);
                 json = jParser.makeHttpRequest(MyConstants.savepersonalinfo, "GET", params);
+
+
             }
             if (Myrole.equals("alumni")) {
                 json = jParser.makeHttpRequest(MyConstants.savepersonalinfoAlumni, "GET", params);
@@ -1488,10 +1555,10 @@ public class PersonalProfileTabFragment extends Fragment {
                 else if (role.equals("alumni"))
                     getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
 
-//                Toast.makeText(getContext(), "Successfully Updated..!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Data successfully updated !", Toast.LENGTH_SHORT).show();
                 edittedFlag = 0;
             } else {
-                Toast.makeText(getContext(), "try again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Try again", Toast.LENGTH_SHORT).show();
             }
 
 //            save.setVisibility(View.VISIBLE);

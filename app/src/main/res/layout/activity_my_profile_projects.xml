@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/myprofileprojects"
-    android:background="#282f35">
+    android:background="@color/while_color">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_my_profile_projects"
@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Project Details"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:textColor="#eee"
             android:id="@+id/projtxt"
             android:layout_centerHorizontal="true"
@@ -28,14 +28,15 @@
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:background="@drawable/textviewborder2"
+            android:elevation="6dp"
+            android:background="@drawable/textviewborder"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projtxt"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject1"
             />
@@ -44,7 +45,7 @@
             android:layout_height="50dp"
 
             android:layout_below="@+id/projtxt"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash1selectionview"
             />
         <RelativeLayout
@@ -71,10 +72,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Project Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/proj1"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -91,10 +93,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Project Domain"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:maxLength="200"
                     android:singleLine="true"
                     android:inputType="textCapWords"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/domain1"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -113,10 +116,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Team Size"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:maxLength="3"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/team1"
                     android:imeOptions="actionNext"
                     />
@@ -136,10 +140,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Duration(Months)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:maxLength="3"
                     android:singleLine="true"
                     android:inputType="number"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/duration1"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -147,18 +152,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/projectrl1"
             android:id="@+id/projectline1"
             android:layout_marginTop="20dp"
             android:visibility="gone"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projectline1"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject2"
             />
@@ -166,7 +171,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/projectline1"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash2selectionview"
             />
         <RelativeLayout
@@ -195,10 +200,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Project Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="textCapWords"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:id="@+id/proj2"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -215,10 +221,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Project Domain"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="textCapWords"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:imeOptions="actionNext"
                     android:id="@+id/domain2"/>
 
@@ -238,10 +245,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Team Size"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="number"
-                    android:textColor="#eee"
+                    android:maxLength="3"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/team2"
                     android:imeOptions="actionNext"
                     />
@@ -261,10 +269,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Duration(Months)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:maxLength="3"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/duration2"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -273,18 +282,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/projectrl2"
             android:id="@+id/projectline2"
             android:layout_marginTop="20dp"
             android:visibility="gone"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projectline2"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject3"
             />
@@ -293,7 +302,7 @@
             android:layout_height="50dp"
 
             android:layout_below="@+id/projectline2"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash3selectionview"
             />
         <RelativeLayout
@@ -322,10 +331,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Project Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="textCapWords"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:id="@+id/proj3"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -342,10 +352,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Project Domain"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="textCapWords"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:imeOptions="actionNext"
                     android:id="@+id/domain3"/>
 
@@ -365,10 +376,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Team Size"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="3"
                     android:id="@+id/team3"
                     android:imeOptions="actionNext"
                     />
@@ -388,10 +400,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Duration(Months)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="number"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="3"
                     android:id="@+id/duration3"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -399,18 +412,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/projectrl3"
             android:id="@+id/projectline3"
             android:layout_marginTop="20dp"
             android:visibility="gone"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projectline3"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject4"
             />
@@ -419,7 +432,7 @@
             android:layout_height="50dp"
 
             android:layout_below="@+id/projectline3"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash4selectionview"
             />
         <RelativeLayout
@@ -448,10 +461,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Project Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:id="@+id/proj4"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -468,11 +482,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Project Domain"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:imeOptions="actionNext"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:id="@+id/domain4"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -491,10 +506,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Team Size"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="number"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="3"
                     android:id="@+id/team4"
                     android:imeOptions="actionNext"
                     />
@@ -514,10 +530,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Duration(Months)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="3"
                     android:id="@+id/duration4"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -525,18 +542,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/projectrl4"
             android:id="@+id/projectline4"
             android:layout_marginTop="20dp"
             android:visibility="gone"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projectline4"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject5"
             />
@@ -545,7 +562,7 @@
             android:layout_height="50dp"
 
             android:layout_below="@+id/projectline4"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash5selectionview"
             />
         <RelativeLayout
@@ -574,10 +591,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Project Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="textCapWords"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:id="@+id/proj5"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -594,11 +612,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Project Domain"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:imeOptions="actionNext"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:id="@+id/domain5"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -617,10 +636,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Team Size"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="3"
                     android:id="@+id/team5"
                     android:imeOptions="actionNext"
                     />
@@ -640,10 +660,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Duration(Months)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="3"
                     android:id="@+id/duration5"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -651,18 +672,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/projectrl5"
             android:id="@+id/projectline5"
             android:layout_marginTop="20dp"
             android:visibility="gone"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projectline5"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject6"
             />
@@ -671,7 +692,7 @@
             android:layout_height="50dp"
 
             android:layout_below="@+id/projectline5"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash6selectionview"
             />
         <RelativeLayout
@@ -700,9 +721,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Project Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/proj6"/>
 
@@ -720,11 +742,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Project Domain"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:imeOptions="actionNext"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:id="@+id/domain6"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -743,10 +766,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Team Size"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="number"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="3"
                     android:id="@+id/team6"
                     android:imeOptions="actionNext"
                     />
@@ -766,10 +790,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Duration(Months)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="number"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="3"
                     android:id="@+id/duration6"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -777,18 +802,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/projectrl6"
             android:id="@+id/projectline6"
             android:layout_marginTop="20dp"
             android:visibility="gone"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projectline6"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject7"
             />
@@ -797,7 +822,7 @@
             android:layout_height="50dp"
 
             android:layout_below="@+id/projectline6"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash7selectionview"
             />
         <RelativeLayout
@@ -826,10 +851,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Project Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="textCapWords"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:id="@+id/proj7"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -846,11 +872,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Project Domain"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:imeOptions="actionNext"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:id="@+id/domain7"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -869,10 +896,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Team Size"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="number"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="3"
                     android:id="@+id/team7"
                     android:imeOptions="actionNext"
                     />
@@ -892,10 +920,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Duration(Months)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="3"
                     android:id="@+id/duration7"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -903,18 +932,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/projectrl7"
             android:id="@+id/projectline7"
             android:layout_marginTop="20dp"
             android:visibility="gone"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projectline7"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject8"
             />
@@ -923,7 +952,7 @@
             android:layout_height="50dp"
 
             android:layout_below="@+id/projectline7"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash8selectionview"
             />
         <RelativeLayout
@@ -952,9 +981,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Project Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/proj8"/>
 
@@ -972,11 +1002,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Project Domain"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:imeOptions="actionNext"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:id="@+id/domain8"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -995,10 +1026,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Team Size"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="3"
                     android:id="@+id/team8"
                     android:imeOptions="actionNext"
                     />
@@ -1018,10 +1050,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Duration(Months)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="number"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="3"
                     android:id="@+id/duration8"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1029,18 +1062,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/projectrl8"
             android:id="@+id/projectline8"
             android:layout_marginTop="20dp"
             android:visibility="gone"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projectline8"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject9"
             />
@@ -1049,7 +1082,7 @@
             android:layout_height="50dp"
 
             android:layout_below="@+id/projectline8"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash9selectionview"
             />
         <RelativeLayout
@@ -1078,9 +1111,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Project Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/proj9"/>
 
@@ -1098,11 +1132,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Project Domain"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:imeOptions="actionNext"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:id="@+id/domain9"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1121,10 +1156,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Team Size"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="3"
                     android:id="@+id/team9"
                     android:imeOptions="actionNext"
                     />
@@ -1144,10 +1180,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Duration(Months)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="number"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="3"
                     android:id="@+id/duration9"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1155,18 +1192,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/projectrl9"
             android:id="@+id/projectline9"
             android:layout_marginTop="20dp"
             android:visibility="gone"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projectline9"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject10"
             />
@@ -1175,7 +1212,7 @@
             android:layout_height="50dp"
 
             android:layout_below="@+id/projectline9"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash10selectionview"
             />
         <RelativeLayout
@@ -1204,10 +1241,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Project Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:id="@+id/proj10"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1225,10 +1263,11 @@
                     android:layout_height="wrap_content"
                     android:hint="Project Domain"
                     android:imeOptions="actionNext"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:id="@+id/domain10"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1247,9 +1286,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Team Size"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="3"
                     android:inputType="number"
                     android:id="@+id/team10"
                     android:imeOptions="actionNext"
@@ -1270,10 +1310,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Duration(Months)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="number"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="3"
                     android:id="@+id/duration10"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1281,7 +1322,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/boxborderwhite"
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp"
             android:layout_below="@+id/projectrl10"
             android:id="@+id/addmoreproject"
             android:layout_marginTop="20dp"
@@ -1292,8 +1334,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/projectrl10"
             android:text="Add Another Project"
-            android:textColor="#eee"
-            android:textSize="20dp"
+            android:textColor="@color/while_color"
+            android:textSize="18dp"
+            android:elevation="8dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
             android:id="@+id/addmoreprojecttxt"
@@ -1301,9 +1344,10 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:elevation="8dp"
             android:layout_below="@+id/projectrl10"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:src="@drawable/add_icon_white"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
             android:id="@+id/addmoreprojectimg"

@@ -97,13 +97,13 @@ import static placeme.octopusites.com.placeme.AES4all.fromString;
 public class MyProfileFragment extends Fragment {
     CircleImageView myprofileimg;
     TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt, editprofiletxt, eduboxtxt, projboxtxt, accomplishmentsboxtxt, careerboxtxt, contactboxtxt, myprofilecource, myprofilecource2, myprofilecource3, myprofilecource4, myprofileproj1, myprofileproj2, myprofileproj3, acc1txt, acc2txt, acc3txt, acc4txt, acc5txt, acc6txt, acc7txt, careerobjtxt, strengthtxt, weaktxt, locpretxt, nametxt, mobiletxt, emailtxt, myprofileclgname, myprofileclgyearofpassing, myprofileclgname2, myprofileclgyearofpassing2, myprofileclgname3, myprofileclgname4, myprofileclgyearofpassing3, myprofileclgyearofpassing4, myprofiledomain1, myprofileduration1, myprofiledomain2, myprofileduration2, myprofiledomain3, myprofileduration3, careerobjtxttxt, strengthstxt, weaknessestxt, locationpreferences, contactaddr1, contactmobile, contactemail, myprofilepreview, acc1txttxt, acc2txttxt, acc3txttxt, acc4txttxt, acc5txttxt, acc6txttxt, acc7txttxt;
-    TextView trytxt, protxt, freetxt;
+    TextView trytxt;
     ImageView introedit, eduedit, projectsedit, accomplishmentsedit, careeredit, contactedit;
     final static CharSequence[] items = {"View Profile Picture", "Update Profile Picture", "Delete Profile Picture"};
     RelativeLayout editprofilerl;
-    String username = "", resultofop,dataobject="",careerdataobject="",strengthdataobject="",weaknessesdataobject="",locationpreferencesdataobject="",tenthdataobject="",ugdataobject="";
+    String username = "", resultofop,dataobject="",careerdataobject="",strengthdataobject="",weaknessesdataobject="",locationpreferencesdataobject="",tenthdataobject="",ugdataobject="",personaldataobject="",contact_details_dataobject="";
     String fname = "", mname = "", lname = "", country = "", state = "", city = "", role = "", plainusername = "", phone = "";
-    String marks10 = "", outof10 = "", percentage10 = "", schoolname10 = "", board10 = "", yearofpassing10 = "", marks12 = "", outof12 = "", percentage12 = "", schoolname12 = "", board12 = "", stream12 = "", yearofpassing12 = "", markssem1diploma = "", outofsem1diploma = "", percentagesem1diploma = "", markssem2diploma = "", outofsem2diploma = "", percentagesem2diploma = "", markssem3diploma = "", outofsem3diploma = "", percentagesem3diploma = "", markssem4diploma = "", outofsem4diploma = "", percentagesem4diploma = "", markssem5diploma = "", outofsem5diploma = "", percentagesem5diploma = "", markssem6diploma = "", outofsem6diploma = "", percentagesem6diploma = "", aggregatediploma = "", coursediploma = "", streamdiploma = "", universitydiploma = "", collegenamediploma = "", yearofpassingdiploma = "",personaldataobject="",contact_details_dataobject="";
+    String marks10 = "", outof10 = "", percentage10 = "", schoolname10 = "", board10 = "", yearofpassing10 = "", marks12 = "", outof12 = "", percentage12 = "", schoolname12 = "", board12 = "", stream12 = "", yearofpassing12 = "", markssem1diploma = "", outofsem1diploma = "", percentagesem1diploma = "", markssem2diploma = "", outofsem2diploma = "", percentagesem2diploma = "", markssem3diploma = "", outofsem3diploma = "", percentagesem3diploma = "", markssem4diploma = "", outofsem4diploma = "", percentagesem4diploma = "", markssem5diploma = "", outofsem5diploma = "", percentagesem5diploma = "", markssem6diploma = "", outofsem6diploma = "", percentagesem6diploma = "", aggregatediploma = "", coursediploma = "", streamdiploma = "", universitydiploma = "", collegenamediploma = "", yearofpassingdiploma = "";
     String markssem1ug = "", outofsem1ug = "", percentagesem1ug = "", markssem2ug = "", outofsem2ug = "", percentagesem2ug = "", markssem3ug = "", outofsem3ug = "", percentagesem3ug = "", markssem4ug = "", outofsem4ug = "", percentagesem4ug = "", markssem5ug = "", outofsem5ug = "", percentagesem5ug = "", markssem6ug = "", outofsem6ug = "", percentagesem6ug = "", markssem7ug = "", outofsem7ug = "", percentagesem7ug = "", markssem8ug = "", outofsem8ug = "", percentagesem8ug = "", aggregateug = "", courseug = "", streamug = "", universityug = "", collegenameug = "", yearofpassingug = "";
     String markssem1pgsem = "", outofsem1pgsem = "", percentagesem1pgsem = "", markssem2pgsem = "", outofsem2pgsem = "", percentagesem2pgsem = "", markssem3pgsem = "", outofsem3pgsem = "", percentagesem3pgsem = "", markssem4pgsem = "", outofsem4pgsem = "", percentagesem4pgsem = "", markssem5pgsem = "", outofsem5pgsem = "", percentagesem5pgsem = "", markssem6pgsem = "", outofsem6pgsem = "", percentagesem6pgsem = "", aggregatepgsem = "", coursepgsem = "", streampgsem = "", universitypgsem = "", collegenamepgsem = "", yearofpassingpgsem = "";
     String marksyear1pgyear = "", outofyear1pgyear = "", percentageyear1pgyear = "", marksyear2pgyear = "", outofyear2pgyear = "", percentageyear2pgyear = "", marksyear3pgyear = "", outofyear3pgyear = "", percentageyear3pgyear = "", aggregatepgyear = "", coursepgyear = "", streampgyear = "", universitypgyear = "", collegenamepgyear = "", yearofpassingpgyear = "";
@@ -219,85 +219,75 @@ public class MyProfileFragment extends Fragment {
 
 
         trytxt = (TextView) rootView.findViewById(R.id.trytxt);
-        protxt = (TextView) rootView.findViewById(R.id.protxt);
-        freetxt = (TextView) rootView.findViewById(R.id.freetxt);
+        trytxt.setTypeface(MyConstants.getBold(getActivity()));
 
-        Typeface custom_font1 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/arba.ttf");
-        Typeface custom_font2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/ubuntu.ttf");
-        Typeface custom_font3 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/arimo.ttf");
-        Typeface custom_font4 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/meriitalic.ttf");
-        Typeface custom_font5 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/righteous.ttf");
-        Typeface custom_font6 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/rockitbold.ttf");
-        Typeface custom_font7 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/portano.ttf");
-        Typeface custom_font8 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/montbold.ttf");
-        Typeface custom_font10 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/hint.ttf");
-        Typeface custom_font11 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/hamm.ttf");
-        myprofilename.setTypeface(custom_font1);
-        myprofilrole.setTypeface(custom_font2);
-        myprofiledu.setTypeface(custom_font3);
-        myprofilloc.setTypeface(custom_font3);
-        myprofilemail.setTypeface(custom_font3);
-        myprofilepercenttxt.setTypeface(custom_font4);
-        editprofiletxt.setTypeface(custom_font5);
-        eduboxtxt.setTypeface(custom_font1);
-        projboxtxt.setTypeface(custom_font1);
-        accomplishmentsboxtxt.setTypeface(custom_font1);
-        careerboxtxt.setTypeface(custom_font1);
-        contactboxtxt.setTypeface(custom_font1);
-        myprofilecource.setTypeface(custom_font6);
-        myprofilecource2.setTypeface(custom_font6);
-        myprofilecource3.setTypeface(custom_font6);
-        myprofilecource4.setTypeface(custom_font6);
-        myprofileproj1.setTypeface(custom_font6);
-        myprofileproj2.setTypeface(custom_font6);
-        myprofileproj3.setTypeface(custom_font6);
-        acc1txt.setTypeface(custom_font6);
-        acc2txt.setTypeface(custom_font6);
-        acc3txt.setTypeface(custom_font6);
-        acc4txt.setTypeface(custom_font6);
-        acc5txt.setTypeface(custom_font6);
-        acc6txt.setTypeface(custom_font6);
-        acc7txt.setTypeface(custom_font6);
-        careerobjtxt.setTypeface(custom_font6);
-        strengthtxt.setTypeface(custom_font6);
-        weaktxt.setTypeface(custom_font6);
-        locpretxt.setTypeface(custom_font6);
-        nametxt.setTypeface(custom_font6);
-        mobiletxt.setTypeface(custom_font6);
-        emailtxt.setTypeface(custom_font6);
-        myprofileclgname.setTypeface(custom_font7);
-        myprofileclgyearofpassing.setTypeface(custom_font7);
-        myprofileclgname2.setTypeface(custom_font7);
-        myprofileclgyearofpassing2.setTypeface(custom_font7);
-        myprofileclgname3.setTypeface(custom_font7);
-        myprofileclgname4.setTypeface(custom_font7);
-        myprofileclgyearofpassing3.setTypeface(custom_font7);
-        myprofileclgyearofpassing4.setTypeface(custom_font7);
-        myprofiledomain1.setTypeface(custom_font7);
-        myprofileduration1.setTypeface(custom_font7);
-        myprofiledomain2.setTypeface(custom_font7);
-        myprofileduration2.setTypeface(custom_font7);
-        myprofiledomain3.setTypeface(custom_font7);
-        myprofileduration3.setTypeface(custom_font7);
-        careerobjtxttxt.setTypeface(custom_font7);
-        strengthstxt.setTypeface(custom_font7);
-        weaknessestxt.setTypeface(custom_font7);
-        locationpreferences.setTypeface(custom_font7);
-        contactaddr1.setTypeface(custom_font7);
-        acc1txttxt.setTypeface(custom_font7);
-        acc2txttxt.setTypeface(custom_font7);
-        acc3txttxt.setTypeface(custom_font7);
-        acc4txttxt.setTypeface(custom_font7);
-        acc5txttxt.setTypeface(custom_font7);
-        acc6txttxt.setTypeface(custom_font7);
-        acc7txttxt.setTypeface(custom_font7);
+        myprofilepreview.setTypeface(MyConstants.getBold(getActivity()));
+        myprofilename.setTypeface(MyConstants.getBold(getActivity()));
+        myprofilrole.setTypeface(MyConstants.getBold(getActivity()));
 
-        contactmobile.setTypeface(custom_font7);
-        contactemail.setTypeface(custom_font7);
-        myprofilepreview.setTypeface(custom_font8);
-        protxt.setTypeface(custom_font10);
-        trytxt.setTypeface(custom_font11);
-        freetxt.setTypeface(custom_font11);
+        myprofilloc.setTypeface(MyConstants.getLight(getActivity()));
+        myprofilemail.setTypeface(MyConstants.getLight(getActivity()));
+        myprofilepercenttxt.setTypeface(MyConstants.getItalic(getActivity()));
+        editprofiletxt.setTypeface(MyConstants.getBold(getActivity()));
+        myprofilecource4.setTypeface(MyConstants.getBold(getActivity()));
+        eduboxtxt.setTypeface(MyConstants.getBold(getActivity()));
+        myprofileclgname4.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileclgyearofpassing4.setTypeface(MyConstants.getLight(getActivity()));
+        myprofilecource.setTypeface(MyConstants.getBold(getActivity()));
+        myprofileclgname.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileclgyearofpassing.setTypeface(MyConstants.getLight(getActivity()));
+        myprofilecource2.setTypeface(MyConstants.getBold(getActivity()));
+        myprofileclgname2.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileclgyearofpassing2.setTypeface(MyConstants.getLight(getActivity()));
+        myprofilecource3.setTypeface(MyConstants.getBold(getActivity()));
+        myprofileclgname3.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileclgyearofpassing3.setTypeface(MyConstants.getLight(getActivity()));
+
+        projboxtxt.setTypeface(MyConstants.getBold(getActivity()));
+        myprofileproj1.setTypeface(MyConstants.getBold(getActivity()));
+        myprofiledomain1.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileduration1.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileproj2.setTypeface(MyConstants.getBold(getActivity()));
+        myprofiledomain2.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileduration2.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileproj3.setTypeface(MyConstants.getBold(getActivity()));
+        myprofiledomain3.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileduration3.setTypeface(MyConstants.getLight(getActivity()));
+
+        accomplishmentsboxtxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc1txt.setTypeface(MyConstants.getBold(getActivity()));
+        acc1txttxt.setTypeface(MyConstants.getLight(getActivity()));
+        acc2txt.setTypeface(MyConstants.getBold(getActivity()));
+        acc2txttxt.setTypeface(MyConstants.getLight(getActivity()));
+        acc3txt.setTypeface(MyConstants.getBold(getActivity()));
+        acc3txttxt.setTypeface(MyConstants.getLight(getActivity()));
+        acc4txt.setTypeface(MyConstants.getBold(getActivity()));
+        acc4txttxt.setTypeface(MyConstants.getLight(getActivity()));
+        acc5txt.setTypeface(MyConstants.getBold(getActivity()));
+        acc5txttxt.setTypeface(MyConstants.getLight(getActivity()));
+        acc6txt.setTypeface(MyConstants.getBold(getActivity()));
+        acc6txttxt.setTypeface(MyConstants.getLight(getActivity()));
+        acc7txt.setTypeface(MyConstants.getBold(getActivity()));
+        acc7txttxt.setTypeface(MyConstants.getLight(getActivity()));
+        careerboxtxt.setTypeface(MyConstants.getBold(getActivity()));
+        careerobjtxt.setTypeface(MyConstants.getBold(getActivity()));
+        careerobjtxttxt.setTypeface(MyConstants.getLight(getActivity()));
+        strengthtxt.setTypeface(MyConstants.getBold(getActivity()));
+        strengthstxt.setTypeface(MyConstants.getLight(getActivity()));
+        weaktxt.setTypeface(MyConstants.getBold(getActivity()));
+        weaknessestxt.setTypeface(MyConstants.getLight(getActivity()));
+        locpretxt.setTypeface(MyConstants.getBold(getActivity()));
+        locationpreferences.setTypeface(MyConstants.getLight(getActivity()));
+        contactboxtxt.setTypeface(MyConstants.getBold(getActivity()));
+        nametxt.setTypeface(MyConstants.getBold(getActivity()));
+        contactaddr1.setTypeface(MyConstants.getLight(getActivity()));
+        emailtxt.setTypeface(MyConstants.getBold(getActivity()));
+        contactemail.setTypeface(MyConstants.getLight(getActivity()));
+        mobiletxt.setTypeface(MyConstants.getBold(getActivity()));
+        contactmobile.setTypeface(MyConstants.getLight(getActivity()));
+
+
+
 
 
         swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -744,6 +734,12 @@ public class MyProfileFragment extends Fragment {
                         studentData.setYearofpassing12(obj2.monthandyearofpassing12);
 
                         Log.d("TAG", "twelthdataobject===: " + twelthdataobject);
+                        Log.d("TAG", " twelthdataobject yearofpassing12===: " + yearofpassing12);
+                        Log.d("TAG", " twelthdataobject schoolname12===: " + schoolname12);
+                        Log.d("TAG", " twelthdataobject board12===: " + board12);
+
+
+
                     }
 
                     s = json.getString("diploma");
@@ -819,6 +815,11 @@ public class MyProfileFragment extends Fragment {
                         collegenamepgsem=obj.getSchoolnamepgsemester();
                         yearofpassingpgsem=obj.getMonthandyearofpassingpgsem();
 
+
+                        Log.d("TAG", "doInBackground: universitypgsem - "+universitypgsem);
+                        Log.d("TAG", "doInBackground: collegenamepgsem - "+collegenamepgsem);
+
+
                         studentData.setMarkssem1pgsem(markssem1pgsem);
                         studentData.setOutofsem1pgsem(outofsem1pgsem);
                         studentData.setPercentagesem1pgsem(percentagesem1pgsem);
@@ -867,6 +868,11 @@ public class MyProfileFragment extends Fragment {
                         universitypgyear=obj.getSelectedUniversitypgyear();
                         collegenamepgyear=obj.getSchoolnamepgyears();
                         yearofpassingpgyear=obj.getMonthandyearofpassingpgyear();
+
+                        Log.d("TAG", "doInBackground: coursepgyear - "+coursepgyear);
+                        Log.d("TAG", "doInBackground: streampgyear - "+streampgyear);
+                        Log.d("TAG", "doInBackground: collegenamepgyear - "+collegenamepgyear);
+                        Log.d("TAG", "doInBackground: yearofpassingpgyear - "+yearofpassingpgyear);
 
                         studentData.setMarksyear1pgyear(marksyear1pgyear);
                         studentData.setOutofyear1pgyear(outofyear1pgyear);
@@ -1857,7 +1863,65 @@ public class MyProfileFragment extends Fragment {
                         puburl10 = obj10.getUrl();
                         pubdescription10= obj10.getDescription();
 
-
+                        studentData.setPubtitle1(pubtitle1);
+                        studentData.setPublication1(publication1);
+                        studentData.setAuthor1(author1);
+                        studentData.setPublicationdate1(publicationdate1);
+                        studentData.setPuburl1(puburl1);
+                        studentData.setPubdescription1(pubdescription1);
+                        studentData.setPubtitle2(pubtitle2);
+                        studentData.setPublication2(publication2);
+                        studentData.setAuthor2(author2);
+                        studentData.setPublicationdate2(publicationdate2);
+                        studentData.setPubdescription2(pubdescription2);
+                        studentData.setPubtitle3(pubtitle3);
+                        studentData.setPublication3(publication3);
+                        studentData.setAuthor3(author3);
+                        studentData.setPublicationdate3(publicationdate3);
+                        studentData.setPuburl3(puburl3);
+                        studentData.setPubdescription3(pubdescription3);
+                        studentData.setPubtitle4(pubtitle4);
+                        studentData.setPublication4(publication4);
+                        studentData.setAuthor4(author4);
+                        studentData.setPublicationdate4(publicationdate4);
+                        studentData.setPuburl4(puburl4);
+                        studentData.setPubdescription4(pubdescription4);
+                        studentData.setPubtitle5(pubtitle5);
+                        studentData.setPublication5(publication5);
+                        studentData.setAuthor5(author5);
+                        studentData.setPublicationdate5(publicationdate5);
+                        studentData.setPuburl5(puburl5);
+                        studentData.setPubdescription5(pubdescription5);
+                        studentData.setPubtitle6(pubtitle6);
+                        studentData.setPublication6(publication6);
+                        studentData.setAuthor6(author6);
+                        studentData.setPublicationdate6(publicationdate6);
+                        studentData.setPuburl6(puburl6);
+                        studentData.setPubdescription6(pubdescription6);
+                        studentData.setPubtitle7(pubtitle7);
+                        studentData.setPublication7(publication7);
+                        studentData.setAuthor7(author7);
+                        studentData.setPublicationdate7(publicationdate7);
+                        studentData.setPuburl7(puburl7);
+                        studentData.setPubdescription7(pubdescription7);
+                        studentData.setPubtitle8(pubtitle8);
+                        studentData.setPublication8(publication8);
+                        studentData.setAuthor8(author8);
+                        studentData.setPublicationdate8(publicationdate8);
+                        studentData.setPuburl8(puburl8);
+                        studentData.setPubdescription8(pubdescription8);
+                        studentData.setPubtitle9(pubtitle9);
+                        studentData.setPublication9(publication9);
+                        studentData.setAuthor9(author9);
+                        studentData.setPublicationdate9(publicationdate9);
+                        studentData.setPuburl9(puburl9);
+                        studentData.setPubdescription9(pubdescription9);
+                        studentData.setPubtitle10(pubtitle10);
+                        studentData.setPublication10(publication10);
+                        studentData.setAuthor10(author10);
+                        studentData.setPublicationdate10(publicationdate10);
+                        studentData.setPuburl10(puburl10);
+                        studentData.setPubdescription10(pubdescription10);
                     }
                     s = json.getString("personal");
                     if (s.equals("found")) {
@@ -1949,7 +2013,6 @@ public class MyProfileFragment extends Fragment {
 
                         fname = obj2.getFname();
                         lname = obj2.getLname();
-
                         email2 = obj2.getEmail2();
                         telephone = obj2.getPhone();
                         phone = obj2.getMobile();
@@ -1957,6 +2020,18 @@ public class MyProfileFragment extends Fragment {
                         addressline1 = obj2.getAddressline1();
                         addressline2 = obj2.getAddressline2();
                         addressline3 = obj2.getAddressline3();
+
+
+                        Log.d("TAG", "doInBackground: personal contact_detailsdata- "+fname);
+                        Log.d("TAG", "doInBackground: personal contact_detailsdata- "+lname);
+                        Log.d("TAG", "doInBackground: telephone -"+telephone);
+                        Log.d("TAG", "doInBackground: phone -"+phone);
+                        Log.d("TAG", "doInBackground: mobile2 -"+mobile2);
+                        Log.d("TAG", "doInBackground: addressline1 -"+addressline1);
+                        Log.d("TAG", "doInBackground: addressline2 -"+addressline2);
+                        Log.d("TAG", "doInBackground: addressline3 -"+addressline3);
+
+
 
                         studentData.setFname(fname);
                         studentData.setLname(lname);
@@ -2001,2277 +2076,699 @@ public class MyProfileFragment extends Fragment {
 //                Toast.makeText(getActivity(), "exp " + e.getMessage(), Toast.LENGTH_LONG).show();
                 Log.d("TAG", "onPostExecute: exp = " + e.getMessage());
             }
-
-
-//        @Override
-//        protected Bitmap doInBackground(String... urls) {
-//            Bitmap map = null;
-//
-//
-//            try {
-//                percentProfile=0;
-//
-//                List<NameValuePair> params = new ArrayList<NameValuePair>();
-//                params.add(new BasicNameValuePair("u",username));
-//                json = jParser.makeHttpRequest(MyConstants.load_student_data, "GET", params);
-//
-//
-//                resultofop=json.getString("info");
-//                if(resultofop.equals("found"))
-//                {
-//                    phone=json.getString("phone");
-//
-//                    String s=json.getString("box1");
-
-//                    if(s.equals("found"))
-//                    {
-//                        found_box1=1;
-//                        fname=json.getString("fname");
-//                        mname=json.getString("mname");
-//                        lname=json.getString("lname");
-//                        country=json.getString("country");
-//                        state=json.getString("state");
-//                        city=json.getString("city");
-//                    }
-//                    s=json.getString("tenth");
-//                    if(s.equals("found"))
-//                    {
-//                        found_tenth=1;
-//                        marks10=json.getString("marks10");
-//                        outof10=json.getString("outof10");
-//                        percentage10=json.getString("percentage10");
-//                        schoolname10=json.getString("schoolname10");
-//                        board10=json.getString("board10");
-//                        yearofpassing10=json.getString("yearofpassing10");
-//                    }
-//                    s=json.getString("twelth");
-//                    if(s.equals("found"))
-//                    {
-//                        found_twelth=1;
-//                        marks12=json.getString("marks12");
-//                        outof12=json.getString("outof12");
-//                        percentage12=json.getString("percentage12");
-//                        schoolname12=json.getString("schoolname12");
-//                        board12=json.getString("board12");
-//                        stream12=json.getString("stream12");
-//                        yearofpassing12=json.getString("yearofpassing12");
-//                    }
-//                    s=json.getString("diploma");
-//                    if(s.equals("found"))
-//                    {
-//                        found_diploma=1;
-//                        markssem1diploma=json.getString("markssem1diploma");
-//                        outofsem1diploma=json.getString("outofsem1diploma");
-//                        percentagesem1diploma=json.getString("percentagesem1diploma");
-//                        markssem2diploma=json.getString("markssem2diploma");
-//                        outofsem2diploma=json.getString("outofsem2diploma");
-//                        percentagesem2diploma=json.getString("percentagesem2diploma");
-//                        markssem3diploma=json.getString("markssem3diploma");
-//                        outofsem3diploma=json.getString("outofsem3diploma");
-//                        percentagesem3diploma=json.getString("percentagesem3diploma");
-//                        markssem4diploma=json.getString("markssem4diploma");
-//                        outofsem4diploma=json.getString("outofsem4diploma");
-//                        percentagesem4diploma=json.getString("percentagesem4diploma");
-//                        markssem5diploma=json.getString("markssem5diploma");
-//                        outofsem5diploma=json.getString("outofsem5diploma");
-//                        percentagesem5diploma=json.getString("percentagesem5diploma");
-//                        markssem6diploma=json.getString("markssem6diploma");
-//                        outofsem6diploma=json.getString("outofsem6diploma");
-//                        percentagesem6diploma=json.getString("percentagesem6diploma");
-//                        aggregatediploma=json.getString("aggregatediploma");
-//                        coursediploma=json.getString("coursediploma");
-//                        streamdiploma=json.getString("streamdiploma");
-//                        universitydiploma=json.getString("universitydiploma");
-//                        collegenamediploma=json.getString("collegenamediploma");
-//                        yearofpassingdiploma=json.getString("yearofpassingdiploma");
-//                    }
-//                    s=json.getString("ug");
-//                    if(s.equals("found"))
-//                    {
-//                        found_ug=1;
-//                        markssem1ug=json.getString("markssem1ug");
-//                        outofsem1ug=json.getString("outofsem1ug");
-//                        percentagesem1ug=json.getString("percentagesem1ug");
-//                        markssem2ug=json.getString("markssem2ug");
-//                        outofsem2ug=json.getString("outofsem2ug");
-//                        percentagesem2ug=json.getString("percentagesem2ug");
-//                        markssem3ug=json.getString("markssem3ug");
-//                        outofsem3ug=json.getString("outofsem3ug");
-//                        percentagesem3ug=json.getString("percentagesem3ug");
-//                        markssem4ug=json.getString("markssem4ug");
-//                        outofsem4ug=json.getString("outofsem4ug");
-//                        percentagesem4ug=json.getString("percentagesem4ug");
-//                        markssem5ug=json.getString("markssem5ug");
-//                        outofsem5ug=json.getString("outofsem5ug");
-//                        percentagesem5ug=json.getString("percentagesem5ug");
-//                        markssem6ug=json.getString("markssem6ug");
-//                        outofsem6ug=json.getString("outofsem6ug");
-//                        percentagesem6ug=json.getString("percentagesem6ug");
-//                        markssem7ug=json.getString("markssem7ug");
-//                        outofsem7ug=json.getString("outofsem7ug");
-//                        percentagesem7ug=json.getString("percentagesem7ug");
-//                        markssem8ug=json.getString("markssem8ug");
-//                        outofsem8ug=json.getString("outofsem8ug");
-//                        percentagesem8ug=json.getString("percentagesem8ug");
-//                        aggregateug=json.getString("aggregateug");
-//                        courseug=json.getString("courseug");
-//                        streamug=json.getString("streamug");
-//                        universityug=json.getString("universityug");
-//                        collegenameug=json.getString("collegenameug");
-//                        yearofpassingug=json.getString("yearofpassingug");
-//                    }
-//                    s=json.getString("pgsem");
-//                    if(s.equals("found"))
-//                    {
-//                        found_pgsem=1;
-//                        markssem1pgsem=json.getString("markssem1pgsem");
-//                        outofsem1pgsem=json.getString("outofsem1pgsem");
-//                        percentagesem1pgsem=json.getString("percentagesem1pgsem");
-//                        markssem2pgsem=json.getString("markssem2pgsem");
-//                        outofsem2pgsem=json.getString("outofsem2pgsem");
-//                        percentagesem2pgsem=json.getString("percentagesem2pgsem");
-//                        markssem3pgsem=json.getString("markssem3pgsem");
-//                        outofsem3pgsem=json.getString("outofsem3pgsem");
-//                        percentagesem3pgsem=json.getString("percentagesem3pgsem");
-//                        markssem4pgsem=json.getString("markssem4pgsem");
-//                        outofsem4pgsem=json.getString("outofsem4pgsem");
-//                        percentagesem4pgsem=json.getString("percentagesem4pgsem");
-//                        markssem5pgsem=json.getString("markssem5pgsem");
-//                        outofsem5pgsem=json.getString("outofsem5pgsem");
-//                        percentagesem5pgsem=json.getString("percentagesem5pgsem");
-//                        markssem6pgsem=json.getString("markssem6pgsem");
-//                        outofsem6pgsem=json.getString("outofsem6pgsem");
-//                        percentagesem6pgsem=json.getString("percentagesem6pgsem");
-//                        aggregatepgsem=json.getString("aggregatepgsem");
-//                        coursepgsem=json.getString("coursepgsem");
-//                        streampgsem=json.getString("streampgsem");
-//                        universitypgsem=json.getString("universitypgsem");
-//                        collegenamepgsem=json.getString("collegenamepgsem");
-//                        yearofpassingpgsem=json.getString("yearofpassingpgsem");
-//                    }
-//                    s=json.getString("pgyear");
-//                    if(s.equals("found"))
-//                    {
-//                        found_pgyear=1;
-//                        marksyear1pgyear=json.getString("marksyear1pgyear");
-//                        outofyear1pgyear=json.getString("outofyear1pgyear");
-//                        percentageyear1pgyear=json.getString("percentageyear1pgyear");
-//                        marksyear2pgyear=json.getString("marksyear2pgyear");
-//                        outofyear2pgyear=json.getString("outofyear2pgyear");
-//                        percentageyear2pgyear=json.getString("percentageyear2pgyear");
-//                        marksyear3pgyear=json.getString("marksyear3pgyear");
-//                        outofyear3pgyear=json.getString("outofyear3pgyear");
-//                        percentageyear3pgyear=json.getString("percentageyear3pgyear");
-//                        aggregatepgyear=json.getString("aggregatepgyear");
-//                        coursepgyear=json.getString("coursepgyear");
-//                        streampgyear=json.getString("streampgyear");
-//                        universitypgyear=json.getString("universitypgyear");
-//                        collegenamepgyear=json.getString("collegenamepgyear");
-//                        yearofpassingpgyear=json.getString("yearofpassingpgyear");
-//                    }
-//                    s=json.getString("projects");
-//                    if(s.equals("found")) {
-//                        found_projects=1;
-//                        proj1 = json.getString("name1");
-//                        domain1 = json.getString("domain1");
-//                        team1 = json.getString("teamsize1");
-//                        duration1 = json.getString("duration1");
-//                        proj2 = json.getString("name2");
-//                        domain2 = json.getString("domain2");
-//                        team2 = json.getString("teamsize2");
-//                        duration2 = json.getString("duration2");
-//                        proj3 = json.getString("name3");
-//                        domain3 = json.getString("domain3");
-//                        team3 = json.getString("teamsize3");
-//                        duration3 = json.getString("duration3");
-//                        proj4 = json.getString("name4");
-//                        domain4 = json.getString("domain4");
-//                        team4 = json.getString("teamsize4");
-//                        duration4 = json.getString("duration4");
-//                        proj5 = json.getString("name5");
-//                        domain5 = json.getString("domain5");
-//                        team5 = json.getString("teamsize5");
-//                        duration5 = json.getString("duration5");
-//                        proj6 = json.getString("name6");
-//                        domain6 = json.getString("domain6");
-//                        team6 = json.getString("teamsize6");
-//                        duration6 = json.getString("duration6");
-//                        proj7 = json.getString("name7");
-//                        domain7 = json.getString("domain7");
-//                        team7 = json.getString("teamsize7");
-//                        duration7 = json.getString("duration7");
-//                        proj8 = json.getString("name8");
-//                        domain8 = json.getString("domain8");
-//                        team8 = json.getString("teamsize8");
-//                        duration8 = json.getString("duration8");
-//                        proj9 = json.getString("name9");
-//                        domain9 = json.getString("domain9");
-//                        team9 = json.getString("teamsize9");
-//                        duration9 = json.getString("duration9");
-//                        proj10 = json.getString("name10");
-//                        domain10 = json.getString("domain10");
-//                        team10 = json.getString("teamsize10");
-//                        duration10 = json.getString("duration10");
-//                    }
-//                    s=json.getString("knownlang");
-//                    if(s.equals("found")) {
-//                        found_lang=1;
-//                        lang1 = json.getString("lang1");
-//                        proficiency1 = json.getString("proficiency1");
-//                        lang2 = json.getString("lang2");
-//                        proficiency2 = json.getString("proficiency2");
-//                        lang3 = json.getString("lang3");
-//                        proficiency3 = json.getString("proficiency3");
-//                        lang4 = json.getString("lang4");
-//                        proficiency4 = json.getString("proficiency4");
-//                        lang5 = json.getString("lang5");
-//                        proficiency5 = json.getString("proficiency5");
-//                        lang6 = json.getString("lang6");
-//                        proficiency6 = json.getString("proficiency6");
-//                        lang7 = json.getString("lang7");
-//                        proficiency7 = json.getString("proficiency7");
-//                        lang8 = json.getString("lang8");
-//                        proficiency8 = json.getString("proficiency8");
-//                        lang9 = json.getString("lang9");
-//                        proficiency9 = json.getString("proficiency9");
-//                        lang10 = json.getString("lang10");
-//                        proficiency10 = json.getString("proficiency10");
-//
-//                    }
-//                    s=json.getString("certificates");
-//                    if(s.equals("found")) {
-//                        found_certificates=1;
-//                        title1=json.getString("title1certi");
-//                        issuer1=json.getString("issuer1certi");
-//                        license1=json.getString("license1certi");
-//                        startdate1certificate=json.getString("startdate1certi");
-//                        enddate1certificate=json.getString("enddate1certi");
-//                        willexpire1certificate=json.getString("willexpire1certi");
-//
-//                        title2=json.getString("title2certi");
-//                        issuer2=json.getString("issuer2certi");
-//                        license2=json.getString("license2certi");
-//                        startdate2certificate=json.getString("startdate2certi");
-//                        enddate2certificate=json.getString("enddate2certi");
-//                        willexpire2certificate=json.getString("willexpire2certi");
-//
-//                        title3=json.getString("title3certi");
-//                        issuer3=json.getString("issuer3certi");
-//                        license3=json.getString("license3certi");
-//                        startdate3certificate=json.getString("startdate3certi");
-//                        enddate3certificate=json.getString("enddate3certi");
-//                        willexpire3certificate=json.getString("willexpire3certi");
-//
-//                        title4=json.getString("title4certi");
-//                        issuer4=json.getString("issuer4certi");
-//                        license4=json.getString("license4certi");
-//                        startdate4certificate=json.getString("startdate4certi");
-//                        enddate4certificate=json.getString("enddate4certi");
-//                        willexpire4certificate=json.getString("willexpire4certi");
-//
-//                        title5=json.getString("title5certi");
-//                        issuer5=json.getString("issuer5certi");
-//                        license5=json.getString("license5certi");
-//                        startdate5certificate=json.getString("startdate5certi");
-//                        enddate5certificate=json.getString("enddate5certi");
-//                        willexpire5certificate=json.getString("willexpire5certi");
-//
-//                        title6=json.getString("title6certi");
-//                        issuer6=json.getString("issuer6certi");
-//                        license6=json.getString("license6certi");
-//                        startdate6certificate=json.getString("startdate6certi");
-//                        enddate6certificate=json.getString("enddate6certi");
-//                        willexpire6certificate=json.getString("willexpire6certi");
-//
-//                        title7=json.getString("title7certi");
-//                        issuer7=json.getString("issuer7certi");
-//                        license7=json.getString("license7certi");
-//                        startdate7certificate=json.getString("startdate7certi");
-//                        enddate7certificate=json.getString("enddate7certi");
-//                        willexpire7certificate=json.getString("willexpire7certi");
-//
-//                        title8=json.getString("title8certi");
-//                        issuer8=json.getString("issuer8certi");
-//                        license8=json.getString("license8certi");
-//                        startdate8certificate=json.getString("startdate8certi");
-//                        enddate8certificate=json.getString("enddate8certi");
-//                        willexpire8certificate=json.getString("willexpire8certi");
-//
-//                        title9=json.getString("title9certi");
-//                        issuer9=json.getString("issuer9certi");
-//                        license9=json.getString("license9certi");
-//                        startdate9certificate=json.getString("startdate9certi");
-//                        enddate9certificate=json.getString("enddate9certi");
-//                        willexpire9certificate=json.getString("willexpire9certi");
-//
-//                        title10=json.getString("title10certi");
-//                        issuer10=json.getString("issuer10certi");
-//                        license10=json.getString("license10certi");
-//                        startdate10certificate=json.getString("startdate10certi");
-//                        enddate10certificate=json.getString("enddate10certi");
-//                        willexpire10certificate=json.getString("willexpire10certi");
-//                    }
-//                    s=json.getString("courses");
-//                    if(s.equals("found")) {
-//                        found_courses=1;
-//                        course1 = json.getString("coursename1");
-//                        inst1 = json.getString("inst1");
-//                        fromdate1 = json.getString("fromdate1");
-//                        todate1 = json.getString("todate1");
-//                        course2 = json.getString("coursename2");
-//                        inst2 = json.getString("inst2");
-//                        fromdate2 = json.getString("fromdate2");
-//                        todate2 = json.getString("todate2");
-//                        course3 = json.getString("coursename3");
-//                        inst3 = json.getString("inst3");
-//                        fromdate3 = json.getString("fromdate3");
-//                        todate3 = json.getString("todate3");
-//                        course4 = json.getString("coursename4");
-//                        inst4 = json.getString("inst4");
-//                        fromdate4 = json.getString("fromdate4");
-//                        todate4 = json.getString("todate4");
-//                        course5 = json.getString("coursename5");
-//                        inst5 = json.getString("inst5");
-//                        fromdate5 = json.getString("fromdate5");
-//                        todate5 = json.getString("todate5");
-//                        course6 = json.getString("coursename6");
-//                        inst6 = json.getString("inst6");
-//                        fromdate6 = json.getString("fromdate6");
-//                        todate6 = json.getString("todate6");
-//                        course7 = json.getString("coursename7");
-//                        inst7 = json.getString("inst7");
-//                        fromdate7 = json.getString("fromdate7");
-//                        todate7 = json.getString("todate7");
-//                        course8 = json.getString("coursename8");
-//                        inst8 = json.getString("inst8");
-//                        fromdate8 = json.getString("fromdate8");
-//                        todate8 = json.getString("todate8");
-//                        course9 = json.getString("coursename9");
-//                        inst9 = json.getString("inst9");
-//                        fromdate9 = json.getString("fromdate9");
-//                        todate9 = json.getString("todate9");
-//                        course10 = json.getString("coursename10");
-//                        inst10 = json.getString("inst10");
-//                        fromdate10 = json.getString("fromdate10");
-//                        todate10 = json.getString("todate10");
-//
-//                    }
-//                    s=json.getString("skills");
-//                    if(s.equals("found")) {
-//                        found_skills=1;
-//                        skill1 = json.getString("skill1");
-//                        sproficiency1= json.getString("sproficiency1");
-//                        skill2 = json.getString("skill2");
-//                        sproficiency2= json.getString("sproficiency2");
-//                        skill3 = json.getString("skill3");
-//                        sproficiency3= json.getString("sproficiency3");
-//                        skill4 = json.getString("skill4");
-//                        sproficiency4= json.getString("sproficiency4");
-//                        skill5 = json.getString("skill5");
-//                        sproficiency5= json.getString("sproficiency5");
-//                        skill6 = json.getString("skill6");
-//                        sproficiency6= json.getString("sproficiency6");
-//                        skill7 = json.getString("skill7");
-//                        sproficiency7= json.getString("sproficiency7");
-//                        skill8 = json.getString("skill8");
-//                        sproficiency8= json.getString("sproficiency8");
-//                        skill9 = json.getString("skill9");
-//                        sproficiency9= json.getString("sproficiency9");
-//                        skill10 = json.getString("skill10");
-//                        sproficiency10= json.getString("sproficiency10");
-//                        skill11 = json.getString("skill11");
-//                        sproficiency11= json.getString("sproficiency11");
-//                        skill12 = json.getString("skill12");
-//                        sproficiency12= json.getString("sproficiency12");
-//                        skill13 = json.getString("skill13");
-//                        sproficiency13= json.getString("sproficiency13");
-//                        skill14 = json.getString("skill14");
-//                        sproficiency14= json.getString("sproficiency14");
-//                        skill15 = json.getString("skill15");
-//                        sproficiency15= json.getString("sproficiency15");
-//                        skill16 = json.getString("skill16");
-//                        sproficiency16= json.getString("sproficiency16");
-//                        skill17 = json.getString("skill17");
-//                        sproficiency17= json.getString("sproficiency17");
-//                        skill18 = json.getString("skill18");
-//                        sproficiency18= json.getString("sproficiency18");
-//                        skill19 = json.getString("skill19");
-//                        sproficiency19= json.getString("sproficiency19");
-//                        skill20 = json.getString("skill20");
-//                        sproficiency20= json.getString("sproficiency20");
-//                    }
-//                    s=json.getString("honors");
-//                    if(s.equals("found")) {
-//                        found_honors=1;
-//                        htitle1 = json.getString("title1honor");
-//                        hissuer1= json.getString("issuer1honor");
-//                        hdescription1= json.getString("description1honor");
-//                        yearofhonor1= json.getString("yearofhonor1");
-//                        htitle2 = json.getString("title2honor");
-//                        hissuer2= json.getString("issuer2honor");
-//                        hdescription2= json.getString("description2honor");
-//                        yearofhonor2= json.getString("yearofhonor2");
-//                        htitle3 = json.getString("title3honor");
-//                        hissuer3= json.getString("issuer3honor");
-//                        hdescription3= json.getString("description3honor");
-//                        yearofhonor3= json.getString("yearofhonor3");
-//                        htitle4 = json.getString("title4honor");
-//                        hissuer4= json.getString("issuer4honor");
-//                        hdescription4= json.getString("description4honor");
-//                        yearofhonor4= json.getString("yearofhonor4");
-//                        htitle5 = json.getString("title5honor");
-//                        hissuer5= json.getString("issuer5honor");
-//                        hdescription5= json.getString("description5honor");
-//                        yearofhonor5= json.getString("yearofhonor5");
-//                        htitle6 = json.getString("title6honor");
-//                        hissuer6= json.getString("issuer6honor");
-//                        hdescription6= json.getString("description6honor");
-//                        yearofhonor6= json.getString("yearofhonor6");
-//                        htitle7 = json.getString("title7honor");
-//                        hissuer7= json.getString("issuer7honor");
-//                        hdescription7= json.getString("description7honor");
-//                        yearofhonor7= json.getString("yearofhonor7");
-//                        htitle8 = json.getString("title8honor");
-//                        hissuer8= json.getString("issuer8honor");
-//                        hdescription8= json.getString("description8honor");
-//                        yearofhonor8= json.getString("yearofhonor8");
-//                        htitle9 = json.getString("title9honor");
-//                        hissuer9= json.getString("issuer9honor");
-//                        hdescription9= json.getString("description9honor");
-//                        yearofhonor9= json.getString("yearofhonor9");
-//                        htitle10 = json.getString("title10honor");
-//                        hissuer10= json.getString("issuer10honor");
-//                        hdescription10= json.getString("description10honor");
-//                        yearofhonor10= json.getString("yearofhonor10");
-//                    }
-//
-//                    s=json.getString("patents");
-//                    if(s.equals("found")) {
-//                        found_patents=1;
-//
-//                        ptitle1 = json.getString("title1patent");
-//                        pappno1 = json.getString("appno1patent");
-//                        pselectedcountry1 = json.getString("selectedcountry1patent");
-//                        pinventor1= json.getString("inventor1patent");
-//                        issuedorpending1= json.getString("issuedorpending1patent");
-//                        pissue1= json.getString("issue1patent");
-//                        pfiling1= json.getString("filing1patent");
-//                        purl1= json.getString("url1patent");
-//                        pdescription1= json.getString("description1patent");
-//
-//                        ptitle2 = json.getString("title2patent");
-//                        pappno2 = json.getString("appno2patent");
-//                        pselectedcountry2 = json.getString("selectedcountry2patent");
-//                        pinventor2= json.getString("inventor2patent");
-//                        issuedorpending2= json.getString("issuedorpending2patent");
-//                        pissue2= json.getString("issue2patent");
-//                        pfiling2= json.getString("filing2patent");
-//                        purl2= json.getString("url2patent");
-//                        pdescription2= json.getString("description2patent");
-//                        ptitle3 = json.getString("title3patent");
-//                        pappno3 = json.getString("appno3patent");
-//                        pselectedcountry3 = json.getString("selectedcountry3patent");
-//                        pinventor3= json.getString("inventor3patent");
-//                        issuedorpending3= json.getString("issuedorpending3patent");
-//                        pissue3= json.getString("issue3patent");
-//                        pfiling3= json.getString("filing3patent");
-//                        purl3= json.getString("url3patent");
-//                        pdescription3= json.getString("description3patent");
-//                        ptitle4 = json.getString("title4patent");
-//                        pappno4 = json.getString("appno4patent");
-//                        pselectedcountry4 = json.getString("selectedcountry4patent");
-//                        pinventor4= json.getString("inventor4patent");
-//                        issuedorpending4= json.getString("issuedorpending4patent");
-//                        pissue4= json.getString("issue4patent");
-//                        pfiling4= json.getString("filing4patent");
-//                        purl4= json.getString("url4patent");
-//                        pdescription4= json.getString("description4patent");
-//                        ptitle5 = json.getString("title5patent");
-//                        pappno5 = json.getString("appno5patent");
-//                        pselectedcountry5 = json.getString("selectedcountry5patent");
-//                        pinventor5= json.getString("inventor5patent");
-//                        issuedorpending5= json.getString("issuedorpending5patent");
-//                        pissue5= json.getString("issue5patent");
-//                        pfiling5= json.getString("filing5patent");
-//                        purl5= json.getString("url5patent");
-//                        pdescription5= json.getString("description5patent");
-//                        ptitle6 = json.getString("title6patent");
-//                        pappno6 = json.getString("appno6patent");
-//                        pselectedcountry6 = json.getString("selectedcountry6patent");
-//                        pinventor6= json.getString("inventor6patent");
-//                        issuedorpending6= json.getString("issuedorpending6patent");
-//                        pissue6= json.getString("issue6patent");
-//                        pfiling6= json.getString("filing6patent");
-//                        purl6= json.getString("url6patent");
-//                        pdescription6= json.getString("description6patent");
-//                        ptitle7 = json.getString("title7patent");
-//                        pappno7 = json.getString("appno7patent");
-//                        pselectedcountry7 = json.getString("selectedcountry7patent");
-//                        pinventor7= json.getString("inventor7patent");
-//                        issuedorpending7= json.getString("issuedorpending7patent");
-//                        pissue7= json.getString("issue7patent");
-//                        pfiling7= json.getString("filing7patent");
-//                        purl7= json.getString("url7patent");
-//                        pdescription7= json.getString("description7patent");
-//                        ptitle8 = json.getString("title8patent");
-//                        pappno8 = json.getString("appno8patent");
-//                        pselectedcountry8 = json.getString("selectedcountry8patent");
-//                        pinventor8= json.getString("inventor8patent");
-//                        issuedorpending8= json.getString("issuedorpending8patent");
-//                        pissue8= json.getString("issue8patent");
-//                        pfiling8= json.getString("filing8patent");
-//                        purl8= json.getString("url8patent");
-//                        pdescription8= json.getString("description8patent");
-//                        ptitle9 = json.getString("title9patent");
-//                        pappno9 = json.getString("appno9patent");
-//                        pselectedcountry9 = json.getString("selectedcountry9patent");
-//                        pinventor9= json.getString("inventor9patent");
-//                        issuedorpending9= json.getString("issuedorpending9patent");
-//                        pissue9= json.getString("issue9patent");
-//                        pfiling9= json.getString("filing9patent");
-//                        purl9= json.getString("url9patent");
-//                        pdescription9= json.getString("description9patent");
-//                        ptitle10 = json.getString("title10patent");
-//                        pappno10 = json.getString("appno10patent");
-//                        pselectedcountry10 = json.getString("selectedcountry10patent");
-//                        pinventor10= json.getString("inventor10patent");
-//                        issuedorpending10= json.getString("issuedorpending10patent");
-//                        pissue10= json.getString("issue10patent");
-//                        pfiling10= json.getString("filing10patent");
-//                        purl10= json.getString("url10patent");
-//                        pdescription10= json.getString("description10patent");
-//
-//                    }
-//                    s=json.getString("publications");
-//                    if(s.equals("found")) {
-//                        found_publications=1;
-//                        pubtitle1 = json.getString("title1publication");
-//                        publication1 = json.getString("publication1");
-//                        author1 = json.getString("author1");
-//                        publicationdate1 = json.getString("publicationdate1");
-//                        puburl1 = json.getString("url1publication");
-//                        pubdescription1= json.getString("description1publication");
-//                        pubtitle2 = json.getString("title2publication");
-//                        publication2 = json.getString("publication2");
-//                        author2 = json.getString("author2");
-//                        publicationdate2 = json.getString("publicationdate2");
-//                        puburl2 = json.getString("url2publication");
-//                        pubdescription2= json.getString("description2publication");
-//                        pubtitle3 = json.getString("title3publication");
-//                        publication3 = json.getString("publication3");
-//                        author3 = json.getString("author3");
-//                        publicationdate3 = json.getString("publicationdate3");
-//                        puburl3 = json.getString("url3publication");
-//                        pubdescription3= json.getString("description3publication");
-//                        pubtitle4 = json.getString("title4publication");
-//                        publication4 = json.getString("publication4");
-//                        author4 = json.getString("author4");
-//                        publicationdate4 = json.getString("publicationdate4");
-//                        puburl4 = json.getString("url4publication");
-//                        pubdescription4= json.getString("description4publication");
-//                        pubtitle5 = json.getString("title5publication");
-//                        publication5 = json.getString("publication5");
-//                        author5 = json.getString("author5");
-//                        publicationdate5 = json.getString("publicationdate5");
-//                        puburl5 = json.getString("url5publication");
-//                        pubdescription5= json.getString("description5publication");
-//                        pubtitle6 = json.getString("title6publication");
-//                        publication6 = json.getString("publication6");
-//                        author6 = json.getString("author6");
-//                        publicationdate6 = json.getString("publicationdate6");
-//                        puburl6 = json.getString("url6publication");
-//                        pubdescription6= json.getString("description6publication");
-//                        pubtitle7 = json.getString("title7publication");
-//                        publication7 = json.getString("publication7");
-//                        author7 = json.getString("author7");
-//                        publicationdate7 = json.getString("publicationdate7");
-//                        puburl7 = json.getString("url7publication");
-//                        pubdescription7= json.getString("description7publication");
-//                        pubtitle8 = json.getString("title8publication");
-//                        publication8 = json.getString("publication8");
-//                        author8 = json.getString("author8");
-//                        publicationdate8 = json.getString("publicationdate8");
-//                        puburl8 = json.getString("url8publication");
-//                        pubdescription8= json.getString("description8publication");
-//                        pubtitle9 = json.getString("title9publication");
-//                        publication9 = json.getString("publication9");
-//                        author9 = json.getString("author9");
-//                        publicationdate9 = json.getString("publicationdate9");
-//                        puburl9 = json.getString("url9publication");
-//                        pubdescription9= json.getString("description9publication");
-//                        pubtitle10 = json.getString("title10publication");
-//                        publication10 = json.getString("publication10");
-//                        author10 = json.getString("author10");
-//                        publicationdate10 = json.getString("publicationdate10");
-//                        puburl10 = json.getString("url10publication");
-//                        pubdescription10= json.getString("description10publication");
-//                    }
-//                    s=json.getString("careerobj");
-//                    if(s.equals("found")) {
-//                        found_careerobj=1;
-//                        careerobj = json.getString("careerobjective");
-//                    }
-//                    s=json.getString("strengths");
-//                    if(s.equals("found")) {
-//                        found_strengths=1;
-//                        strength1 = json.getString("strength1");
-//                        strength2 = json.getString("strength2");
-//                        strength3 = json.getString("strength3");
-//                        strength4 = json.getString("strength4");
-//                        strength5 = json.getString("strength5");
-//                        strength6 = json.getString("strength6");
-//                        strength7 = json.getString("strength7");
-//                        strength8 = json.getString("strength8");
-//                        strength9 = json.getString("strength9");
-//                        strength10 = json.getString("strength10");
-//                    }
-//                    s=json.getString("weaknesses");
-//                    if(s.equals("found")) {
-//                        found_weaknesses=1;
-//                        weak1 = json.getString("weak1");
-//                        weak2 = json.getString("weak2");
-//                        weak3 = json.getString("weak3");
-//                        weak4 = json.getString("weak4");
-//                        weak5 = json.getString("weak5");
-//                        weak6 = json.getString("weak6");
-//                        weak7 = json.getString("weak7");
-//                        weak8 = json.getString("weak8");
-//                        weak9 = json.getString("weak9");
-//                        weak10 = json.getString("weak10");
-//                    }
-//                    s=json.getString("locationpreferences");
-//                    if(s.equals("found")) {
-//                        found_locationpreferences=1;
-//                        location1 = json.getString("location1");
-//                        location2 = json.getString("location2");
-//                        location3 = json.getString("location3");
-//                        location4 = json.getString("location4");
-//                        location5 = json.getString("location5");
-//                    }
-//                    s=json.getString("contact_details");
-//                    if(s.equals("found")) {
-//                        found_contact_details=1;
-//                        email2 = json.getString("alternateemail");
-//                        addressline1 = json.getString("addrline1");
-//                        addressline2 = json.getString("addrline2");
-//                        addressline3 = json.getString("addrline3");
-//                        telephone = json.getString("telephone");
-//                        mobile2 = json.getString("alternatemobile");
-//                    }
-//                    s=json.getString("personal");
-//                    if(s.equals("found")) {
-//                        found_personal= 1;
-//                        nameasten = json.getString("nameasten");
-//                        mothername = json.getString("mothername");
-//                        dob = json.getString("dob");
-//                        gender = json.getString("gender");
-//                        mothertongue = json.getString("mothertongue");
-//                        hobbies = json.getString("hobbies");
-//                        bloodgroup = json.getString("bloodgroup");
-//                        category = json.getString("category");
-//                        religion = json.getString("religion");
-//                        caste = json.getString("caste");
-//                        prn = json.getString("prn");
-//                        paddrline1 = json.getString("paddrline1");
-//                        paddrline2 = json.getString("paddrline2");
-//                        paddrline3 = json.getString("paddrline3");
-//                        handicapped = json.getString("handicapped");
-//                        sports = json.getString("sports");
-//                        defenceex = json.getString("defenceex");
-//                    }
-//
-//
-//                    }
-//
-//
-//            }catch (Exception e){e.printStackTrace();
-//                Log.d("TAG", "doInBackground: "+e.getMessage());
-//            }
-//
-//            return map;
-//        }
-//
-//        // Sets the Bitmap returned by doInBackground
-//        @Override
-//        protected void onPostExecute(Bitmap result)
-//        {
-//
-//           // Toast.makeText(getActivity(),domain1+team1+duration1,Toast.LENGTH_LONG).show();
-//
-//            myprofileimg.setImageBitmap(result);
-//            swipe_refresh_layout.setVisibility(View.VISIBLE);
-//            swipe_refresh_layout.setRefreshing(false);
-//            updateProgress.setVisibility(View.GONE);
-//            byte[] mnameDecryptedBytes=null,lnameDecryptedBytes=null,fnameDecryptedBytes=null,demo1DecryptedBytes=null;
-//            byte[] countryDecryptedBytes=null,stateDecryptedBytes=null,cityDecryptedBytes=null;
-//            byte[] marks10DecryptedBytes,outof10DecryptedBytes,percentage10DecryptedBytes,schoolname10DecryptedBytes,board10DecryptedBytes,yearofpassing10DecryptedBytes,marks12DecryptedBytes,outof12DecryptedBytes,percentage12DecryptedBytes,schoolname12DecryptedBytes,board12DecryptedBytes,stream12DecryptedBytes,yearofpassing12DecryptedBytes,markssem1diplomaDecryptedBytes,outofsem1diplomaDecryptedBytes,percentagesem1diplomaDecryptedBytes,markssem2diplomaDecryptedBytes,outofsem2diplomaDecryptedBytes,percentagesem2diplomaDecryptedBytes,markssem3diplomaDecryptedBytes,outofsem3diplomaDecryptedBytes,percentagesem3diplomaDecryptedBytes,markssem4diplomaDecryptedBytes,outofsem4diplomaDecryptedBytes,percentagesem4diplomaDecryptedBytes,markssem5diplomaDecryptedBytes,outofsem5diplomaDecryptedBytes,percentagesem5diplomaDecryptedBytes,markssem6diplomaDecryptedBytes,outofsem6diplomaDecryptedBytes,percentagesem6diplomaDecryptedBytes,aggregatediplomaDecryptedBytes,coursediplomaDecryptedBytes,streamdiplomaDecryptedBytes,universitydiplomaDecryptedBytes,collegenamediplomaDecryptedBytes,yearofpassingdiplomaDecryptedBytes;
-//            byte[] markssem1ugDecryptedBytes,outofsem1ugDecryptedBytes,percentagesem1ugDecryptedBytes,markssem2ugDecryptedBytes,outofsem2ugDecryptedBytes,percentagesem2ugDecryptedBytes,markssem3ugDecryptedBytes,outofsem3ugDecryptedBytes,percentagesem3ugDecryptedBytes,markssem4ugDecryptedBytes,outofsem4ugDecryptedBytes,percentagesem4ugDecryptedBytes,markssem5ugDecryptedBytes,outofsem5ugDecryptedBytes,percentagesem5ugDecryptedBytes,markssem6ugDecryptedBytes,outofsem6ugDecryptedBytes,percentagesem6ugDecryptedBytes,markssem7ugDecryptedBytes,outofsem7ugDecryptedBytes,percentagesem7ugDecryptedBytes,markssem8ugDecryptedBytes,outofsem8ugDecryptedBytes,percentagesem8ugDecryptedBytes,aggregateugDecryptedBytes,courseugDecryptedBytes,streamugDecryptedBytes,universityugDecryptedBytes,collegenameugDecryptedBytes,yearofpassingugDecryptedBytes;
-//            byte[] markssem1pgsemDecryptedBytes,outofsem1pgsemDecryptedBytes,percentagesem1pgsemDecryptedBytes,markssem2pgsemDecryptedBytes,outofsem2pgsemDecryptedBytes,percentagesem2pgsemDecryptedBytes,markssem3pgsemDecryptedBytes,outofsem3pgsemDecryptedBytes,percentagesem3pgsemDecryptedBytes,markssem4pgsemDecryptedBytes,outofsem4pgsemDecryptedBytes,percentagesem4pgsemDecryptedBytes,markssem5pgsemDecryptedBytes,outofsem5pgsemDecryptedBytes,percentagesem5pgsemDecryptedBytes,markssem6pgsemDecryptedBytes,outofsem6pgsemDecryptedBytes,percentagesem6pgsemDecryptedBytes,aggregatepgsemDecryptedBytes,coursepgsemDecryptedBytes,streampgsemDecryptedBytes,universitypgsemDecryptedBytes,collegenamepgsemDecryptedBytes,yearofpassingpgsemDecryptedBytes;
-//            byte[] marksyear1pgyearDecryptedBytes,outofyear1pgyearDecryptedBytes,percentageyear1pgyearDecryptedBytes,marksyear2pgyearDecryptedBytes,outofyear2pgyearDecryptedBytes,percentageyear2pgyearDecryptedBytes,marksyear3pgyearDecryptedBytes,outofyear3pgyearDecryptedBytes,percentageyear3pgyearDecryptedBytes,marksyear4pgyearDecryptedBytes,outofyear4pgyearDecryptedBytes,percentageyear4pgyearDecryptedBytes,marksyear5pgyearDecryptedBytes,outofyear5pgyearDecryptedBytes,percentageyear5pgyearDecryptedBytes,marksyear6pgyearDecryptedBytes,outofyear6pgyearDecryptedBytes,percentageyear6pgyearDecryptedBytes,aggregatepgyearDecryptedBytes,coursepgyearDecryptedBytes,streampgyearDecryptedBytes,universitypgyearDecryptedBytes,collegenamepgyearDecryptedBytes,yearofpassingpgyearDecryptedBytes;
-//            byte[] nameastenDecryptedBytes,mothernameDecryptedBytes,dobDecryptedBytes,genderDecryptedBytes,mothertongueDecryptedBytes,hobbiesDecryptedBytes,bloodgroupDecryptedBytes,categoryDecryptedBytes,religionDecryptedBytes,casteDecryptedBytes,prnDecryptedBytes,paddrline1DecryptedBytes,paddrline2DecryptedBytes,paddrline3DecryptedBytes,handicappedDecryptedBytes,sportsDecryptedBytes,defenceexDecryptedBytes;
-//            try {
-//                byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-//                byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-//                String sPadding = "ISO10126Padding";
-//
-//                if(found_box1==1) {
-//                    if (!phone.equals("null")) {
-//                        byte[] demo1EncryptedBytes = SimpleBase64Encoder.decode(phone);
-//                        demo1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes);
-//                        s.setPhone(new String(demo1DecryptedBytes));
-//                        phone = "+" + GetCountryZipCode() + " " + new String(demo1DecryptedBytes);
-//                        contactmobile.setText(phone);
-//                    }
-//                    if (!fname.equals("null")) {
-//                        byte[] fnameEncryptedBytes = SimpleBase64Encoder.decode(fname);
-//                        fnameDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, fnameEncryptedBytes);
-//                        fname = new String(fnameDecryptedBytes);
-//                        s.setFname(fname);
-//                    }
-//                    if (!mname.equals("null")) {
-//                        byte[] mnameEncryptedBytes = SimpleBase64Encoder.decode(mname);
-//                        mnameDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, mnameEncryptedBytes);
-//                        mname = new String(mnameDecryptedBytes);
-//                        s.setMname(mname);
-//                    }
-//                    if (!lname.equals("null")) {
-//                        byte[] lnameEncryptedBytes = SimpleBase64Encoder.decode(lname);
-//                        lnameDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, lnameEncryptedBytes);
-//                        lname = new String(lnameDecryptedBytes);
-//                        s.setLname(lname);
-//                    }
-//                    if (!country.equals("null")) {
-//                        byte[] countryEncryptedBytes = SimpleBase64Encoder.decode(country);
-//                        countryDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, countryEncryptedBytes);
-//                        country = new String(countryDecryptedBytes);
-//                        s.setCountry(country);
-//                    }
-//                    if (!state.equals("null")) {
-//                        byte[] stateEncryptedBytes = SimpleBase64Encoder.decode(state);
-//                        stateDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, stateEncryptedBytes);
-//                        state = new String(stateDecryptedBytes);
-//                        s.setState(state);
-//                    }
-//                    if (!city.equals("null")) {
-//                        byte[] cityEncryptedBytes = SimpleBase64Encoder.decode(city);
-//                        cityDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, cityEncryptedBytes);
-//                        city = new String(cityDecryptedBytes);
-//                        s.setCity(city);
-//                    }
-//                    Log.d("TAG", "onPostExecute:  intro done");
-//                }
-//                if(found_tenth==1) {
-//                    if (!marks10.equals("null")) {
-//                        byte[] marks10EncryptedBytes = SimpleBase64Encoder.decode(marks10);
-//                        marks10DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, marks10EncryptedBytes);
-//                        marks10 = new String(marks10DecryptedBytes);
-//                        s.setMarks10(marks10);
-//                    }
-//                    if (!outof10.equals("null")) {
-//                        byte[] outof10EncryptedBytes = SimpleBase64Encoder.decode(outof10);
-//                        outof10DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outof10EncryptedBytes);
-//                        outof10 = new String(outof10DecryptedBytes);
-//                        s.setOutof10(outof10);
-//                    }
-//                    if (!percentage10.equals("null")) {
-//                        byte[] percentage10EncryptedBytes = SimpleBase64Encoder.decode(percentage10);
-//                        percentage10DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentage10EncryptedBytes);
-//                        percentage10 = new String(percentage10DecryptedBytes);
-//                        s.setPercentage10(percentage10);
-//                    }
-//                    if (!schoolname10.equals("null")) {
-//                        byte[] schoolname10EncryptedBytes = SimpleBase64Encoder.decode(schoolname10);
-//                        schoolname10DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, schoolname10EncryptedBytes);
-//                        schoolname10 = new String(schoolname10DecryptedBytes);
-//                        s.setSchoolname10(schoolname10);
-//                    }
-//                    if (!board10.equals("null")) {
-//                        byte[] board10EncryptedBytes = SimpleBase64Encoder.decode(board10);
-//                        board10DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, board10EncryptedBytes);
-//                        board10 = new String(board10DecryptedBytes);
-//                        s.setBoard10(board10);
-//                    }
-//                    if (!yearofpassing10.equals("null")) {
-//                        byte[] yearofpassing10EncryptedBytes = SimpleBase64Encoder.decode(yearofpassing10);
-//                        yearofpassing10DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, yearofpassing10EncryptedBytes);
-//                        yearofpassing10 = new String(yearofpassing10DecryptedBytes);
-//                        s.setYearofpassing10(yearofpassing10);
-//                    }
-//                    Log.d("TAG", "onPostExecute:  tenth  done");
-//                }
-//                if(found_twelth==1) {
-//
-////                    Log.d("TAG", "twelth enc data="+"\n"+marks12+"\n"+outof12+"\n"+percentage12+"\n"+schoolname12+"\n"+board12+"\n"+stream12+"\n"+yearofpassing12);
-//                    if (!marks12.equals("null")) {
-//                        byte[] marks12EncryptedBytes = SimpleBase64Encoder.decode(marks12);
-//                        marks12DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, marks12EncryptedBytes);
-//                        marks12 = new String(marks12DecryptedBytes);
-//                        s.setMarks12(marks12);
-//                    }
-//                    if (!outof12.equals("null")) {
-//                        byte[] outof12EncryptedBytes = SimpleBase64Encoder.decode(outof12);
-//                        outof12DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outof12EncryptedBytes);
-//                        outof12 = new String(outof12DecryptedBytes);
-//                        s.setOutof12(outof12);
-//                    }
-//                    if (!percentage12.equals("null")) {
-//                        byte[] percentage12EncryptedBytes = SimpleBase64Encoder.decode(percentage12);
-//                        percentage12DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentage12EncryptedBytes);
-//                        percentage12 = new String(percentage12DecryptedBytes);
-//                        s.setPercentage12(percentage12);
-//                    }
-//                    if (!schoolname12.equals("null")) {
-//                        byte[] schoolname12EncryptedBytes = SimpleBase64Encoder.decode(schoolname12);
-//                        schoolname12DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, schoolname12EncryptedBytes);
-//                        schoolname12 = new String(schoolname12DecryptedBytes);
-//                        s.setSchoolname12(schoolname12);
-//                    }
-//                    if (!board12.equals("null")) {
-//                        byte[] board12EncryptedBytes = SimpleBase64Encoder.decode(board12);
-//                        board12DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, board12EncryptedBytes);
-//                        board12 = new String(board12DecryptedBytes);
-//                        s.setBoard12(board12);
-//                    }
-//                    if (!stream12.equals("null")) {
-//                        byte[] stream12EncryptedBytes = SimpleBase64Encoder.decode(stream12);
-//                        stream12DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, stream12EncryptedBytes);
-//                        stream12 = new String(stream12DecryptedBytes);
-//                        s.setStream12(stream12);
-//                    }
-//                    if (!yearofpassing12.equals("null")) {
-//                        byte[] yearofpassing12EncryptedBytes = SimpleBase64Encoder.decode(yearofpassing12);
-//                        yearofpassing12DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, yearofpassing12EncryptedBytes);
-//                        yearofpassing12 = new String(yearofpassing12DecryptedBytes);
-//                        s.setYearofpassing12(yearofpassing12);
-//                    }
-//                    Log.d("TAG", "onPostExecute:  twelth done");
-//                }
-//                if(found_diploma==1) {
-//
-////                    Log.d("TAG", "onPostExecute: "+markssem1diploma+"\n"+outofsem1diploma+"\n"+percentagesem1diploma+"\n"+markssem2diploma+"\n"+outofsem2diploma+"\n"+percentagesem2diploma+"\n"+markssem3diploma+"\n"+outofsem3diploma+"\n"+percentagesem3diploma+"\n"+markssem4diploma+"\n"+outofsem4diploma+"\n"+percentagesem4diploma+"\n"+markssem5diploma+"\n"+outofsem5diploma+"\n"+percentagesem5diploma+"\n"+markssem6diploma+"\n"+outofsem6diploma+"\n"+percentagesem6diploma+""+aggregatediploma+"\n"+coursediploma+"\n"+streamdiploma+"\n"+universitydiploma+"\n"+collegenamediploma+"\n"+yearofpassingdiploma);
-//
-//                    if (!markssem1diploma.equals("null")) {
-//                        byte[] markssem1diplomaEncryptedBytes = SimpleBase64Encoder.decode(markssem1diploma);
-//                        markssem1diplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem1diplomaEncryptedBytes);
-//                        markssem1diploma = new String(markssem1diplomaDecryptedBytes);
-//                        s.setMarkssem1diploma(markssem1diploma);
-//                    }
-//                    if (!outofsem1diploma.equals("null")) {
-//                        byte[] outofsem1diplomaEncryptedBytes = SimpleBase64Encoder.decode(outofsem1diploma);
-//                        outofsem1diplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem1diplomaEncryptedBytes);
-//                        outofsem1diploma = new String(outofsem1diplomaDecryptedBytes);
-//                        s.setOutofsem1diploma(outofsem1diploma);
-//                    }
-//                    if (!percentagesem1diploma.equals("null")) {
-//                        byte[] percentagesem1diplomaEncryptedBytes = SimpleBase64Encoder.decode(percentagesem1diploma);
-//                        percentagesem1diplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem1diplomaEncryptedBytes);
-//                        percentagesem1diploma = new String(percentagesem1diplomaDecryptedBytes);
-//                        s.setPercentagesem1diploma(percentagesem1diploma);
-//                    }
-//                    if (!markssem2diploma.equals("null")) {
-//                        byte[] markssem2diplomaEncryptedBytes = SimpleBase64Encoder.decode(markssem2diploma);
-//                        markssem2diplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem2diplomaEncryptedBytes);
-//                        markssem2diploma = new String(markssem2diplomaDecryptedBytes);
-//                        s.setMarkssem2diploma(markssem2diploma);
-//                    }
-//                    if (!outofsem2diploma.equals("null")) {
-//                        byte[] outofsem2diplomaEncryptedBytes = SimpleBase64Encoder.decode(outofsem2diploma);
-//                        outofsem2diplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem2diplomaEncryptedBytes);
-//                        outofsem2diploma = new String(outofsem2diplomaDecryptedBytes);
-//                        s.setOutofsem2diploma(outofsem2diploma);
-//                    }
-//                    if (!percentagesem2diploma.equals("null")) {
-//                        byte[] percentagesem2diplomaEncryptedBytes = SimpleBase64Encoder.decode(percentagesem2diploma);
-//                        percentagesem2diplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem2diplomaEncryptedBytes);
-//                        percentagesem2diploma = new String(percentagesem2diplomaDecryptedBytes);
-//                        s.setPercentagesem2diploma(percentagesem2diploma);
-//                    }
-//                    if (!markssem3diploma.equals("null")) {
-//                        byte[] markssem3diplomaEncryptedBytes = SimpleBase64Encoder.decode(markssem3diploma);
-//                        markssem3diplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem3diplomaEncryptedBytes);
-//                        markssem3diploma = new String(markssem3diplomaDecryptedBytes);
-//                        s.setMarkssem3diploma(markssem3diploma);
-//                    }
-//                    if (!outofsem3diploma.equals("null")) {
-//                        byte[] outofsem3diplomaEncryptedBytes = SimpleBase64Encoder.decode(outofsem3diploma);
-//                        outofsem3diplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem3diplomaEncryptedBytes);
-//                        outofsem3diploma = new String(outofsem3diplomaDecryptedBytes);
-//                        s.setOutofsem3diploma(outofsem3diploma);
-//                    }
-//                    if (!percentagesem3diploma.equals("null")) {
-//                        byte[] percentagesem3diplomaEncryptedBytes = SimpleBase64Encoder.decode(percentagesem3diploma);
-//                        percentagesem3diplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem3diplomaEncryptedBytes);
-//                        percentagesem3diploma = new String(percentagesem3diplomaDecryptedBytes);
-//                        s.setPercentagesem3diploma(percentagesem3diploma);
-//                    }
-//                    if (!markssem4diploma.equals("null")) {
-//                        byte[] markssem4diplomaEncryptedBytes = SimpleBase64Encoder.decode(markssem4diploma);
-//                        markssem4diplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem4diplomaEncryptedBytes);
-//                        markssem4diploma = new String(markssem4diplomaDecryptedBytes);
-//                        s.setMarkssem4diploma(markssem4diploma);
-//                    }
-//                    if (!outofsem4diploma.equals("null")) {
-//                        byte[] outofsem4diplomaEncryptedBytes = SimpleBase64Encoder.decode(outofsem4diploma);
-//                        outofsem4diplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem4diplomaEncryptedBytes);
-//                        outofsem4diploma = new String(outofsem4diplomaDecryptedBytes);
-//                        s.setOutofsem4diploma(outofsem4diploma);
-//                    }
-//                    if (!percentagesem4diploma.equals("null")) {
-//                        byte[] percentagesem4diplomaEncryptedBytes = SimpleBase64Encoder.decode(percentagesem4diploma);
-//                        percentagesem4diplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem4diplomaEncryptedBytes);
-//                        percentagesem4diploma = new String(percentagesem4diplomaDecryptedBytes);
-//                        s.setPercentagesem4diploma(percentagesem4diploma);
-//                    }
-//                    if (!markssem5diploma.equals("null")) {
-//                        byte[] markssem5diplomaEncryptedBytes = SimpleBase64Encoder.decode(markssem5diploma);
-//                        markssem5diplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem5diplomaEncryptedBytes);
-//                        markssem5diploma = new String(markssem5diplomaDecryptedBytes);
-//                        s.setMarkssem5diploma(markssem5diploma);
-//                    }
-//                    if (!outofsem5diploma.equals("null")) {
-//                        byte[] outofsem5diplomaEncryptedBytes = SimpleBase64Encoder.decode(outofsem5diploma);
-//                        outofsem5diplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem5diplomaEncryptedBytes);
-//                        outofsem5diploma = new String(outofsem5diplomaDecryptedBytes);
-//                        s.setOutofsem5diploma(outofsem5diploma);
-//                    }
-//                    if (!percentagesem5diploma.equals("null")) {
-//                        byte[] percentagesem5diplomaEncryptedBytes = SimpleBase64Encoder.decode(percentagesem5diploma);
-//                        percentagesem5diplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem5diplomaEncryptedBytes);
-//                        percentagesem5diploma = new String(percentagesem5diplomaDecryptedBytes);
-//                        s.setPercentagesem5diploma(percentagesem5diploma);
-//                    }
-//                    if (!markssem6diploma.equals("null")) {
-//                        byte[] markssem6diplomaEncryptedBytes = SimpleBase64Encoder.decode(markssem6diploma);
-//                        markssem6diplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem6diplomaEncryptedBytes);
-//                        markssem6diploma = new String(markssem6diplomaDecryptedBytes);
-//                        s.setMarkssem6diploma(markssem6diploma);
-//                    }
-//                    if (!outofsem6diploma.equals("null")) {
-//                        byte[] outofsem6diplomaEncryptedBytes = SimpleBase64Encoder.decode(outofsem6diploma);
-//                        outofsem6diplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem6diplomaEncryptedBytes);
-//                        outofsem6diploma = new String(outofsem6diplomaDecryptedBytes);
-//                        s.setOutofsem6diploma(outofsem6diploma);
-//                    }
-//                    if (!percentagesem6diploma.equals("null")) {
-//                        byte[] percentagesem6diplomaEncryptedBytes = SimpleBase64Encoder.decode(percentagesem6diploma);
-//                        percentagesem6diplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem6diplomaEncryptedBytes);
-//                        percentagesem6diploma = new String(percentagesem6diplomaDecryptedBytes);
-//                        s.setPercentagesem6diploma(percentagesem6diploma);
-//                    }
-//                    if (!aggregatediploma.equals("null")) {
-//                        byte[] aggregatediplomaEncryptedBytes = SimpleBase64Encoder.decode(aggregatediploma);
-//                        aggregatediplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, aggregatediplomaEncryptedBytes);
-//                        aggregatediploma = new String(aggregatediplomaDecryptedBytes);
-//                        s.setAggregatediploma(aggregatediploma);
-//                    }
-//                    if (!coursediploma.equals("null")) {
-//                        byte[] coursediplomaEncryptedBytes = SimpleBase64Encoder.decode(coursediploma);
-//                        coursediplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, coursediplomaEncryptedBytes);
-//                        coursediploma = new String(coursediplomaDecryptedBytes);
-//                        s.setCoursediploma(coursediploma);
-//                    }
-//                    if (!streamdiploma.equals("null")) {
-//                        byte[] streamdiplomaEncryptedBytes = SimpleBase64Encoder.decode(streamdiploma);
-//                        streamdiplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, streamdiplomaEncryptedBytes);
-//                        streamdiploma = new String(streamdiplomaDecryptedBytes);
-//                        s.setStreamdiploma(streamdiploma);
-//                    }
-//                    if (!universitydiploma.equals("null")) {
-//                        byte[] universitydiplomaEncryptedBytes = SimpleBase64Encoder.decode(universitydiploma);
-//                        universitydiplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, universitydiplomaEncryptedBytes);
-//                        universitydiploma = new String(universitydiplomaDecryptedBytes);
-//                        s.setUniversitydiploma(universitydiploma);
-//                    }
-//                    if (!collegenamediploma.equals("null")) {
-//                        byte[] collegenamediplomaEncryptedBytes = SimpleBase64Encoder.decode(collegenamediploma);
-//                        collegenamediplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, collegenamediplomaEncryptedBytes);
-//                        collegenamediploma = new String(collegenamediplomaDecryptedBytes);
-//                        s.setCollegenamediploma(collegenamediploma);
-//                    }
-//                    if (!yearofpassingdiploma.equals("null")) {
-//                        byte[] yearofpassingdiplomaEncryptedBytes = SimpleBase64Encoder.decode(yearofpassingdiploma);
-//                        yearofpassingdiplomaDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, yearofpassingdiplomaEncryptedBytes);
-//                        yearofpassingdiploma = new String(yearofpassingdiplomaDecryptedBytes);
-//                        s.setYearofpassingdiploma(yearofpassingdiploma);
-//
-//                    }
-//                    Log.d("TAG", "onPostExecute:  diploma done");
-//                }
-//                if(found_ug==1) {
-//                    if (!markssem1ug.equals("null")) {
-//                        byte[] markssem1ugEncryptedBytes = SimpleBase64Encoder.decode(markssem1ug);
-//                        markssem1ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem1ugEncryptedBytes);
-//                        markssem1ug = new String(markssem1ugDecryptedBytes);
-//                        s.setMarkssem1ug(markssem1ug);
-//                    }
-//                    if (!outofsem1ug.equals("null")) {
-//                        byte[] outofsem1ugEncryptedBytes = SimpleBase64Encoder.decode(outofsem1ug);
-//                        outofsem1ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem1ugEncryptedBytes);
-//                        outofsem1ug = new String(outofsem1ugDecryptedBytes);
-//                        s.setOutofsem1ug(outofsem1ug);
-//                    }
-//                    if (!percentagesem1ug.equals("null")) {
-//                        byte[] percentagesem1ugEncryptedBytes = SimpleBase64Encoder.decode(percentagesem1ug);
-//                        percentagesem1ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem1ugEncryptedBytes);
-//                        percentagesem1ug = new String(percentagesem1ugDecryptedBytes);
-//                        s.setPercentagesem1ug(percentagesem1ug);
-//                    }
-//                    if (!markssem2ug.equals("null")) {
-//                        byte[] markssem2ugEncryptedBytes = SimpleBase64Encoder.decode(markssem2ug);
-//                        markssem2ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem2ugEncryptedBytes);
-//                        markssem2ug = new String(markssem2ugDecryptedBytes);
-//                        s.setMarkssem2ug(markssem2ug);
-//                    }
-//                    if (!outofsem2ug.equals("null")) {
-//                        byte[] outofsem2ugEncryptedBytes = SimpleBase64Encoder.decode(outofsem2ug);
-//                        outofsem2ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem2ugEncryptedBytes);
-//                        outofsem2ug = new String(outofsem2ugDecryptedBytes);
-//                        s.setOutofsem2ug(outofsem2ug);
-//                    }
-//                    if (!percentagesem2ug.equals("null")) {
-//                        byte[] percentagesem2ugEncryptedBytes = SimpleBase64Encoder.decode(percentagesem2ug);
-//                        percentagesem2ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem2ugEncryptedBytes);
-//                        percentagesem2ug = new String(percentagesem2ugDecryptedBytes);
-//                        s.setPercentagesem2ug(percentagesem2ug);
-//                    }
-//                    if (!markssem3ug.equals("null")) {
-//                        byte[] markssem3ugEncryptedBytes = SimpleBase64Encoder.decode(markssem3ug);
-//                        markssem3ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem3ugEncryptedBytes);
-//                        markssem3ug = new String(markssem3ugDecryptedBytes);
-//                        s.setMarkssem3ug(markssem3ug);
-//                    }
-//                    if (!outofsem3ug.equals("null")) {
-//                        byte[] outofsem3ugEncryptedBytes = SimpleBase64Encoder.decode(outofsem3ug);
-//                        outofsem3ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem3ugEncryptedBytes);
-//                        outofsem3ug = new String(outofsem3ugDecryptedBytes);
-//                        s.setOutofsem3ug(outofsem3ug);
-//                    }
-//                    if (!percentagesem3ug.equals("null")) {
-//                        byte[] percentagesem3ugEncryptedBytes = SimpleBase64Encoder.decode(percentagesem3ug);
-//                        percentagesem3ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem3ugEncryptedBytes);
-//                        percentagesem3ug = new String(percentagesem3ugDecryptedBytes);
-//                        s.setPercentagesem3ug(percentagesem3ug);
-//                    }
-//                    if (!markssem4ug.equals("null")) {
-//                        byte[] markssem4ugEncryptedBytes = SimpleBase64Encoder.decode(markssem4ug);
-//                        markssem4ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem4ugEncryptedBytes);
-//                        markssem4ug = new String(markssem4ugDecryptedBytes);
-//                        s.setMarkssem4ug(markssem4ug);
-//                    }
-//                    if (!outofsem4ug.equals("null")) {
-//                        byte[] outofsem4ugEncryptedBytes = SimpleBase64Encoder.decode(outofsem4ug);
-//                        outofsem4ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem4ugEncryptedBytes);
-//                        outofsem4ug = new String(outofsem4ugDecryptedBytes);
-//                        s.setOutofsem4ug(outofsem4ug);
-//                    }
-//                    if (!percentagesem4ug.equals("null")) {
-//                        byte[] percentagesem4ugEncryptedBytes = SimpleBase64Encoder.decode(percentagesem4ug);
-//                        percentagesem4ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem4ugEncryptedBytes);
-//                        percentagesem4ug = new String(percentagesem4ugDecryptedBytes);
-//                        s.setPercentagesem4ug(percentagesem4ug);
-//                    }
-//                    if (!markssem5ug.equals("null")) {
-//                        byte[] markssem5ugEncryptedBytes = SimpleBase64Encoder.decode(markssem5ug);
-//                        markssem5ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem5ugEncryptedBytes);
-//                        markssem5ug = new String(markssem5ugDecryptedBytes);
-//                        s.setMarkssem5ug(markssem5ug);
-//                    }
-//                    if (!outofsem5ug.equals("null")) {
-//                        byte[] outofsem5ugEncryptedBytes = SimpleBase64Encoder.decode(outofsem5ug);
-//                        outofsem5ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem5ugEncryptedBytes);
-//                        outofsem5ug = new String(outofsem5ugDecryptedBytes);
-//                        s.setOutofsem5ug(outofsem5ug);
-//                    }
-//                    if (!percentagesem5ug.equals("null")) {
-//                        byte[] percentagesem5ugEncryptedBytes = SimpleBase64Encoder.decode(percentagesem5ug);
-//                        percentagesem5ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem5ugEncryptedBytes);
-//                        percentagesem5ug = new String(percentagesem5ugDecryptedBytes);
-//                        s.setPercentagesem5ug(percentagesem5ug);
-//                    }
-//                    if (!markssem6ug.equals("null")) {
-//                        byte[] markssem6ugEncryptedBytes = SimpleBase64Encoder.decode(markssem6ug);
-//                        markssem6ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem6ugEncryptedBytes);
-//                        markssem6ug = new String(markssem6ugDecryptedBytes);
-//                        s.setMarkssem6ug(markssem6ug);
-//                    }
-//                    if (!outofsem6ug.equals("null")) {
-//                        byte[] outofsem6ugEncryptedBytes = SimpleBase64Encoder.decode(outofsem6ug);
-//                        outofsem6ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem6ugEncryptedBytes);
-//                        outofsem6ug = new String(outofsem6ugDecryptedBytes);
-//                        s.setOutofsem6ug(outofsem6ug);
-//                    }
-//                    if (!percentagesem6ug.equals("null")) {
-//                        byte[] percentagesem6ugEncryptedBytes = SimpleBase64Encoder.decode(percentagesem6ug);
-//                        percentagesem6ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem6ugEncryptedBytes);
-//                        percentagesem6ug = new String(percentagesem6ugDecryptedBytes);
-//                        s.setPercentagesem6ug(percentagesem6ug);
-//                    }
-//                    if (!markssem7ug.equals("null")) {
-//                        byte[] markssem7ugEncryptedBytes = SimpleBase64Encoder.decode(markssem7ug);
-//                        markssem7ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem7ugEncryptedBytes);
-//                        markssem7ug = new String(markssem7ugDecryptedBytes);
-//                        s.setMarkssem7ug(markssem7ug);
-//                    }
-//                    if (!outofsem7ug.equals("null")) {
-//                        byte[] outofsem7ugEncryptedBytes = SimpleBase64Encoder.decode(outofsem7ug);
-//                        outofsem7ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem7ugEncryptedBytes);
-//                        outofsem7ug = new String(outofsem7ugDecryptedBytes);
-//                        s.setOutofsem7ug(outofsem7ug);
-//                    }
-//                    if (!percentagesem7ug.equals("null")) {
-//                        byte[] percentagesem7ugEncryptedBytes = SimpleBase64Encoder.decode(percentagesem7ug);
-//                        percentagesem7ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem7ugEncryptedBytes);
-//                        percentagesem7ug = new String(percentagesem7ugDecryptedBytes);
-//                        s.setPercentagesem7ug(percentagesem7ug);
-//                    }
-//                    if (!markssem8ug.equals("null")) {
-//                        byte[] markssem8ugEncryptedBytes = SimpleBase64Encoder.decode(markssem8ug);
-//                        markssem8ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem8ugEncryptedBytes);
-//                        markssem8ug = new String(markssem8ugDecryptedBytes);
-//                        s.setMarkssem8ug(markssem8ug);
-//                    }
-//                    if (!outofsem8ug.equals("null")) {
-//                        byte[] outofsem8ugEncryptedBytes = SimpleBase64Encoder.decode(outofsem8ug);
-//                        outofsem8ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem8ugEncryptedBytes);
-//                        outofsem8ug = new String(outofsem8ugDecryptedBytes);
-//                        s.setOutofsem8ug(outofsem8ug);
-//                    }
-//                    if (!percentagesem8ug.equals("null")) {
-//                        byte[] percentagesem8ugEncryptedBytes = SimpleBase64Encoder.decode(percentagesem8ug);
-//                        percentagesem8ugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem8ugEncryptedBytes);
-//                        percentagesem8ug = new String(percentagesem8ugDecryptedBytes);
-//                        s.setPercentagesem8ug(percentagesem8ug);
-//                    }
-//                    if (!aggregateug.equals("null")) {
-//                        byte[] aggregateugEncryptedBytes = SimpleBase64Encoder.decode(aggregateug);
-//                        aggregateugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, aggregateugEncryptedBytes);
-//                        aggregateug = new String(aggregateugDecryptedBytes);
-//                        s.setAggregateug(aggregateug);
-//                    }
-//                    if (!courseug.equals("null")) {
-//                        byte[] courseugEncryptedBytes = SimpleBase64Encoder.decode(courseug);
-//                        courseugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, courseugEncryptedBytes);
-//                        courseug = new String(courseugDecryptedBytes);
-//                        s.setCourseug(courseug);
-//                    }
-//                    if (!streamug.equals("null")) {
-//                        byte[] streamugEncryptedBytes = SimpleBase64Encoder.decode(streamug);
-//                        streamugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, streamugEncryptedBytes);
-//                        streamug = new String(streamugDecryptedBytes);
-//                        s.setStreamug(streamug);
-//                    }
-//                    if (!universityug.equals("null")) {
-//                        byte[] universityugEncryptedBytes = SimpleBase64Encoder.decode(universityug);
-//                        universityugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, universityugEncryptedBytes);
-//                        universityug = new String(universityugDecryptedBytes);
-//                        s.setUniversityug(universityug);
-//                    }
-//                    if (!collegenameug.equals("null")) {
-//                        byte[] collegenameugEncryptedBytes = SimpleBase64Encoder.decode(collegenameug);
-//                        collegenameugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, collegenameugEncryptedBytes);
-//                        collegenameug = new String(collegenameugDecryptedBytes);
-//                        s.setCollegenameug(collegenameug);
-//                    }
-//                    if (!yearofpassingug.equals("null")) {
-//                        byte[] yearofpassingugEncryptedBytes = SimpleBase64Encoder.decode(yearofpassingug);
-//                        yearofpassingugDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, yearofpassingugEncryptedBytes);
-//                        yearofpassingug = new String(yearofpassingugDecryptedBytes);
-//                        s.setYearofpassingug(yearofpassingug);
-//                    }
-//                    Log.d("TAG", "onPostExecute: ug done");
-//                }
-//                if(found_pgsem==1) {
-//                    if (!markssem1pgsem.equals("null")) {
-//                        byte[] markssem1pgsemEncryptedBytes = SimpleBase64Encoder.decode(markssem1pgsem);
-//                        markssem1pgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem1pgsemEncryptedBytes);
-//                        markssem1pgsem = new String(markssem1pgsemDecryptedBytes);
-
-//                    }
-//                    if (!outofsem1pgsem.equals("null")) {
-//                        byte[] outofsem1pgsemEncryptedBytes = SimpleBase64Encoder.decode(outofsem1pgsem);
-//                        outofsem1pgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem1pgsemEncryptedBytes);
-//                        outofsem1pgsem = new String(outofsem1pgsemDecryptedBytes);
-
-//                    }
-//                    if (!percentagesem1pgsem.equals("null")) {
-//                        byte[] percentagesem1pgsemEncryptedBytes = SimpleBase64Encoder.decode(percentagesem1pgsem);
-//                        percentagesem1pgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem1pgsemEncryptedBytes);
-//                        percentagesem1pgsem = new String(percentagesem1pgsemDecryptedBytes);
-
-//                    }
-//                    if (!markssem2pgsem.equals("null")) {
-//                        byte[] markssem2pgsemEncryptedBytes = SimpleBase64Encoder.decode(markssem2pgsem);
-//                        markssem2pgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem2pgsemEncryptedBytes);
-//                        markssem2pgsem = new String(markssem2pgsemDecryptedBytes);
-//                        s.setMarkssem2pgsem(markssem2pgsem);
-//                    }
-//                    if (!outofsem2pgsem.equals("null")) {
-//                        byte[] outofsem2pgsemEncryptedBytes = SimpleBase64Encoder.decode(outofsem2pgsem);
-//                        outofsem2pgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem2pgsemEncryptedBytes);
-//                        outofsem2pgsem = new String(outofsem2pgsemDecryptedBytes);
-//                        s.setOutofsem2pgsem(outofsem2pgsem);
-//                    }
-//                    if (!percentagesem2pgsem.equals("null")) {
-//                        byte[] percentagesem2pgsemEncryptedBytes = SimpleBase64Encoder.decode(percentagesem2pgsem);
-//                        percentagesem2pgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem2pgsemEncryptedBytes);
-//                        percentagesem2pgsem = new String(percentagesem2pgsemDecryptedBytes);
-//                        s.setPercentagesem2pgsem(percentagesem2pgsem);
-//                    }
-//                    if (!markssem3pgsem.equals("null")) {
-//                        byte[] markssem3pgsemEncryptedBytes = SimpleBase64Encoder.decode(markssem3pgsem);
-//                        markssem3pgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem3pgsemEncryptedBytes);
-//                        markssem3pgsem = new String(markssem3pgsemDecryptedBytes);
-//                        s.setMarkssem3pgsem(markssem3pgsem);
-//                    }
-//                    if (!outofsem3pgsem.equals("null")) {
-//                        byte[] outofsem3pgsemEncryptedBytes = SimpleBase64Encoder.decode(outofsem3pgsem);
-//                        outofsem3pgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem3pgsemEncryptedBytes);
-//                        outofsem3pgsem = new String(outofsem3pgsemDecryptedBytes);
-//                        s.setOutofsem3pgsem(outofsem3pgsem);
-//                    }
-//                    if (!percentagesem3pgsem.equals("null")) {
-//                        byte[] percentagesem3pgsemEncryptedBytes = SimpleBase64Encoder.decode(percentagesem3pgsem);
-//                        percentagesem3pgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem3pgsemEncryptedBytes);
-//                        percentagesem3pgsem = new String(percentagesem3pgsemDecryptedBytes);
-//                        s.setPercentagesem3pgsem(percentagesem3pgsem);
-//                    }
-//                    if (!markssem4pgsem.equals("null")) {
-//                        byte[] markssem4pgsemEncryptedBytes = SimpleBase64Encoder.decode(markssem4pgsem);
-//                        markssem4pgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem4pgsemEncryptedBytes);
-//                        markssem4pgsem = new String(markssem4pgsemDecryptedBytes);
-//                        s.setMarkssem4pgsem(markssem4pgsem);
-//                    }
-//                    if (!outofsem4pgsem.equals("null")) {
-//                        byte[] outofsem4pgsemEncryptedBytes = SimpleBase64Encoder.decode(outofsem4pgsem);
-//                        outofsem4pgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem4pgsemEncryptedBytes);
-//                        outofsem4pgsem = new String(outofsem4pgsemDecryptedBytes);
-//                        s.setOutofsem4pgsem(outofsem4pgsem);
-//                    }
-//                    if (!percentagesem4pgsem.equals("null")) {
-//                        byte[] percentagesem4pgsemEncryptedBytes = SimpleBase64Encoder.decode(percentagesem4pgsem);
-//                        percentagesem4pgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem4pgsemEncryptedBytes);
-//                        percentagesem4pgsem = new String(percentagesem4pgsemDecryptedBytes);
-//                        s.setPercentagesem4pgsem(percentagesem4pgsem);
-//                    }
-//                    if (!markssem5pgsem.equals("null")) {
-//                        byte[] markssem5pgsemEncryptedBytes = SimpleBase64Encoder.decode(markssem5pgsem);
-//                        markssem5pgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem5pgsemEncryptedBytes);
-//                        markssem5pgsem = new String(markssem5pgsemDecryptedBytes);
-//                        s.setMarkssem5pgsem(markssem5pgsem);
-//                    }
-//                    if (!outofsem5pgsem.equals("null")) {
-//                        byte[] outofsem5pgsemEncryptedBytes = SimpleBase64Encoder.decode(outofsem5pgsem);
-//                        outofsem5pgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem5pgsemEncryptedBytes);
-//                        outofsem5pgsem = new String(outofsem5pgsemDecryptedBytes);
-//                        s.setOutofsem5pgsem(outofsem5pgsem);
-//                    }
-//                    if (!percentagesem5pgsem.equals("null")) {
-//                        byte[] percentagesem5pgsemEncryptedBytes = SimpleBase64Encoder.decode(percentagesem5pgsem);
-//                        percentagesem5pgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem5pgsemEncryptedBytes);
-//                        percentagesem5pgsem = new String(percentagesem5pgsemDecryptedBytes);
-//                        s.setPercentagesem5pgsem(percentagesem5pgsem);
-//                    }
-//                    if (!markssem6pgsem.equals("null")) {
-//                        byte[] markssem6pgsemEncryptedBytes = SimpleBase64Encoder.decode(markssem6pgsem);
-//                        markssem6pgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, markssem6pgsemEncryptedBytes);
-//                        markssem6pgsem = new String(markssem6pgsemDecryptedBytes);
-//                        s.setMarkssem6pgsem(markssem6pgsem);
-//                    }
-//                    if (!outofsem6pgsem.equals("null")) {
-//                        byte[] outofsem6pgsemEncryptedBytes = SimpleBase64Encoder.decode(outofsem6pgsem);
-//                        outofsem6pgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem6pgsemEncryptedBytes);
-//                        outofsem6pgsem = new String(outofsem6pgsemDecryptedBytes);
-//                        s.setOutofsem6pgsem(outofsem6pgsem);
-//                    }
-//                    if (!percentagesem6pgsem.equals("null")) {
-//                        byte[] percentagesem6pgsemEncryptedBytes = SimpleBase64Encoder.decode(percentagesem6pgsem);
-//                        percentagesem6pgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentagesem6pgsemEncryptedBytes);
-//                        percentagesem6pgsem = new String(percentagesem6pgsemDecryptedBytes);
-//                        s.setPercentagesem6pgsem(percentagesem6pgsem);
-//                    }
-//                    if (!aggregatepgsem.equals("null")) {
-//                        byte[] aggregatepgsemEncryptedBytes = SimpleBase64Encoder.decode(aggregatepgsem);
-//                        aggregatepgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, aggregatepgsemEncryptedBytes);
-//                        aggregatepgsem = new String(aggregatepgsemDecryptedBytes);
-
-//                    }
-//                    if (!coursepgsem.equals("null")) {
-//                        byte[] coursepgsemEncryptedBytes = SimpleBase64Encoder.decode(coursepgsem);
-//                        coursepgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, coursepgsemEncryptedBytes);
-//                        coursepgsem = new String(coursepgsemDecryptedBytes);
-
-//                    }
-//                    if (!streampgsem.equals("null")) {
-//                        byte[] streampgsemEncryptedBytes = SimpleBase64Encoder.decode(streampgsem);
-//                        streampgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, streampgsemEncryptedBytes);
-//                        streampgsem = new String(streampgsemDecryptedBytes);
-
-//                    }
-//                    if (!universitypgsem.equals("null")) {
-//                        byte[] universitypgsemEncryptedBytes = SimpleBase64Encoder.decode(universitypgsem);
-//                        universitypgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, universitypgsemEncryptedBytes);
-//                        universitypgsem = new String(universitypgsemDecryptedBytes);
-
-//                    }
-//                    if (!collegenamepgsem.equals("null")) {
-//                        byte[] collegenamepgsemEncryptedBytes = SimpleBase64Encoder.decode(collegenamepgsem);
-//                        collegenamepgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, collegenamepgsemEncryptedBytes);
-//                        collegenamepgsem = new String(collegenamepgsemDecryptedBytes);
-
-//                    }
-//                    if (!yearofpassingpgsem.equals("null")) {
-//                        byte[] yearofpassingpgsemEncryptedBytes = SimpleBase64Encoder.decode(yearofpassingpgsem);
-//                        yearofpassingpgsemDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, yearofpassingpgsemEncryptedBytes);
-//                        yearofpassingpgsem = new String(yearofpassingpgsemDecryptedBytes);
-
-//                    }
-//                }
-//                if(found_pgyear==1) {
-//                    if (!marksyear1pgyear.equals("null")) {
-//                        byte[] marksyear1pgyearEncryptedBytes = SimpleBase64Encoder.decode(marksyear1pgyear);
-//                        marksyear1pgyearDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, marksyear1pgyearEncryptedBytes);
-//                        marksyear1pgyear = new String(marksyear1pgyearDecryptedBytes);
-
-//                    }
-//                    if (!outofyear1pgyear.equals("null")) {
-//                        byte[] outofyear1pgyearEncryptedBytes = SimpleBase64Encoder.decode(outofyear1pgyear);
-//                        outofyear1pgyearDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofyear1pgyearEncryptedBytes);
-//                        outofyear1pgyear = new String(outofyear1pgyearDecryptedBytes);
-
-//                    }
-//                    if (!percentageyear1pgyear.equals("null")) {
-//                        byte[] percentageyear1pgyearEncryptedBytes = SimpleBase64Encoder.decode(percentageyear1pgyear);
-//                        percentageyear1pgyearDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentageyear1pgyearEncryptedBytes);
-//                        percentageyear1pgyear = new String(percentageyear1pgyearDecryptedBytes);
-
-//                    }
-//                    if (!marksyear2pgyear.equals("null")) {
-//                        byte[] marksyear2pgyearEncryptedBytes = SimpleBase64Encoder.decode(marksyear2pgyear);
-//                        marksyear2pgyearDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, marksyear2pgyearEncryptedBytes);
-//                        marksyear2pgyear = new String(marksyear2pgyearDecryptedBytes);
-//                        s.setMarksyear2pgyear(marksyear2pgyear);
-//                    }
-//                    if (!outofyear2pgyear.equals("null")) {
-//                        byte[] outofyear2pgyearEncryptedBytes = SimpleBase64Encoder.decode(outofyear2pgyear);
-//                        outofyear2pgyearDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofyear2pgyearEncryptedBytes);
-//                        outofyear2pgyear = new String(outofyear2pgyearDecryptedBytes);
-//                        s.setOutofyear2pgyear(outofyear2pgyear);
-//                    }
-//                    if (!percentageyear2pgyear.equals("null")) {
-//                        byte[] percentageyear2pgyearEncryptedBytes = SimpleBase64Encoder.decode(percentageyear2pgyear);
-//                        percentageyear2pgyearDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentageyear2pgyearEncryptedBytes);
-//                        percentageyear2pgyear = new String(percentageyear2pgyearDecryptedBytes);
-//                        s.setPercentageyear2pgyear(percentageyear2pgyear);
-//                    }
-//                    if (!marksyear3pgyear.equals("null")) {
-//                        byte[] marksyear3pgyearEncryptedBytes = SimpleBase64Encoder.decode(marksyear3pgyear);
-//                        marksyear3pgyearDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, marksyear3pgyearEncryptedBytes);
-//                        marksyear3pgyear = new String(marksyear3pgyearDecryptedBytes);
-//                        s.setMarksyear3pgyear(marksyear3pgyear);
-//                    }
-//                    if (!outofyear3pgyear.equals("null")) {
-//                        byte[] outofyear3pgyearEncryptedBytes = SimpleBase64Encoder.decode(outofyear3pgyear);
-//                        outofyear3pgyearDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, outofyear3pgyearEncryptedBytes);
-//                        outofyear3pgyear = new String(outofyear3pgyearDecryptedBytes);
-//                        s.setOutofyear3pgyear(outofyear3pgyear);
-//                    }
-//                    if (!percentageyear3pgyear.equals("null")) {
-//                        byte[] percentageyear3pgyearEncryptedBytes = SimpleBase64Encoder.decode(percentageyear3pgyear);
-//                        percentageyear3pgyearDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, percentageyear3pgyearEncryptedBytes);
-//                        percentageyear3pgyear = new String(percentageyear3pgyearDecryptedBytes);
-//                        s.setPercentageyear3pgyear(percentageyear3pgyear);
-//                    }
-//                    if (!aggregatepgyear.equals("null")) {
-//                        byte[] aggregatepgyearEncryptedBytes = SimpleBase64Encoder.decode(aggregatepgyear);
-//                        aggregatepgyearDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, aggregatepgyearEncryptedBytes);
-//                        aggregatepgyear = new String(aggregatepgyearDecryptedBytes);
-
-//                    }
-//                    if (!coursepgyear.equals("null")) {
-//                        byte[] coursepgyearEncryptedBytes = SimpleBase64Encoder.decode(coursepgyear);
-//                        coursepgyearDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, coursepgyearEncryptedBytes);
-//                        coursepgyear = new String(coursepgyearDecryptedBytes);
-
-//                    }
-//                    if (!streampgyear.equals("null")) {
-//                        byte[] streampgyearEncryptedBytes = SimpleBase64Encoder.decode(streampgyear);
-//                        streampgyearDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, streampgyearEncryptedBytes);
-//                        streampgyear = new String(streampgyearDecryptedBytes);
-
-//                    }
-//                    if (!universitypgyear.equals("null")) {
-//                        byte[] universitypgyearEncryptedBytes = SimpleBase64Encoder.decode(universitypgyear);
-//                        universitypgyearDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, universitypgyearEncryptedBytes);
-//                        universitypgyear = new String(universitypgyearDecryptedBytes);
-
-//                    }
-//                    if (!collegenamepgyear.equals("null")) {
-//                        byte[] collegenamepgyearEncryptedBytes = SimpleBase64Encoder.decode(collegenamepgyear);
-//                        collegenamepgyearDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, collegenamepgyearEncryptedBytes);
-//                        collegenamepgyear = new String(collegenamepgyearDecryptedBytes);
-
-//                    }
-//                    if (!yearofpassingpgyear.equals("null")) {
-//                        byte[] yearofpassingpgyearEncryptedBytes = SimpleBase64Encoder.decode(yearofpassingpgyear);
-//                        yearofpassingpgyearDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, yearofpassingpgyearEncryptedBytes);
-//                        yearofpassingpgyear = new String(yearofpassingpgyearDecryptedBytes);
-
-//                    }
-//                }
-//
-//                task1();
-//                task2();
-//                task3();
-//
-//
-//                if(found_personal==1)
-//                {
-//                    if (!nameasten.equals("null")) {
-//                        byte[] nameastenEncryptedBytes = SimpleBase64Encoder.decode(nameasten);
-//                        nameastenDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, nameastenEncryptedBytes);
-//                        nameasten = new String(nameastenDecryptedBytes);
-//                        s.setNameasten(nameasten);
-//                    }
-//                    if (!mothername.equals("null")) {
-//                        byte[] mothernameEncryptedBytes = SimpleBase64Encoder.decode(mothername);
-//                        mothernameDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, mothernameEncryptedBytes);
-//                        mothername = new String(mothernameDecryptedBytes);
-//                        s.setMothername(mothername);
-//                    }
-//                    if (!dob.equals("null")) {
-//                        byte[] dobEncryptedBytes = SimpleBase64Encoder.decode(dob);
-//                        dobDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, dobEncryptedBytes);
-//                        dob = new String(dobDecryptedBytes);
-//                        s.setDob(dob);
-//                    }
-//                    if (!gender.equals("null")) {
-//                        byte[] genderEncryptedBytes = SimpleBase64Encoder.decode(gender);
-//                        genderDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, genderEncryptedBytes);
-//                        gender = new String(genderDecryptedBytes);
-//                        s.setGender(gender);
-//                    }
-//                    if (!mothertongue.equals("null")) {
-//                        byte[] mothertongueEncryptedBytes = SimpleBase64Encoder.decode(mothertongue);
-//                        mothertongueDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, mothertongueEncryptedBytes);
-//                        mothertongue = new String(mothertongueDecryptedBytes);
-//                        s.setMothertongue(mothertongue);
-//                    }
-//                    if (!hobbies.equals("null")) {
-//                        byte[] hobbiesEncryptedBytes = SimpleBase64Encoder.decode(hobbies);
-//                        hobbiesDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, hobbiesEncryptedBytes);
-//                        hobbies = new String(hobbiesDecryptedBytes);
-//                        s.setHobbies(hobbies);
-//                    }
-//                    if (!bloodgroup.equals("null")) {
-//                        byte[] bloodgroupEncryptedBytes = SimpleBase64Encoder.decode(bloodgroup);
-//                        bloodgroupDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, bloodgroupEncryptedBytes);
-//                        bloodgroup = new String(bloodgroupDecryptedBytes);
-//                        s.setBloodgroup(bloodgroup);
-//                    }
-//                    if (!category.equals("null")) {
-//                        byte[] categoryEncryptedBytes = SimpleBase64Encoder.decode(category);
-//                        categoryDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, categoryEncryptedBytes);
-//                        category = new String(categoryDecryptedBytes);
-//                        s.setCategory(category);
-//                    }
-//                    if (!religion.equals("null")) {
-//                        byte[] religionEncryptedBytes = SimpleBase64Encoder.decode(religion);
-//                        religionDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, religionEncryptedBytes);
-//                        religion = new String(religionDecryptedBytes);
-//                        s.setReligion(religion);
-//                    }
-//                    if (!caste.equals("null")) {
-//                        byte[] casteEncryptedBytes = SimpleBase64Encoder.decode(caste);
-//                        casteDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, casteEncryptedBytes);
-//                        caste = new String(casteDecryptedBytes);
-//                        s.setCaste(caste);
-//                    }
-//                    if (!prn.equals("null")) {
-//                        byte[] prnEncryptedBytes = SimpleBase64Encoder.decode(prn);
-//                        prnDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, prnEncryptedBytes);
-//                        prn = new String(prnDecryptedBytes);
-//                        s.setPrn(prn);
-//                    }
-//                    if (!paddrline1.equals("null")) {
-//                        byte[] paddrline1EncryptedBytes = SimpleBase64Encoder.decode(paddrline1);
-//                        paddrline1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, paddrline1EncryptedBytes);
-//                        paddrline1 = new String(paddrline1DecryptedBytes);
-//                        s.setPaddrline1(paddrline1);
-//                    }
-//                    if (!paddrline2.equals("null")) {
-//                        byte[] paddrline2EncryptedBytes = SimpleBase64Encoder.decode(paddrline2);
-//                        paddrline2DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, paddrline2EncryptedBytes);
-//                        paddrline2 = new String(paddrline2DecryptedBytes);
-//                        s.setPaddrline2(paddrline2);
-//                    }
-//                    if (!paddrline3.equals("null")) {
-//                        byte[] paddrline3EncryptedBytes = SimpleBase64Encoder.decode(paddrline3);
-//                        paddrline3DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, paddrline3EncryptedBytes);
-//                        paddrline3 = new String(paddrline3DecryptedBytes);
-//                        s.setPaddrline3(paddrline3);
-//                    }
-//                    if (!handicapped.equals("null")) {
-//                        byte[] handicappedEncryptedBytes = SimpleBase64Encoder.decode(handicapped);
-//                        handicappedDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, handicappedEncryptedBytes);
-//                        handicapped = new String(handicappedDecryptedBytes);
-//                        s.setHandicapped(handicapped);
-//                    }
-//                    if (!sports.equals("null")) {
-//                        byte[] sportsEncryptedBytes = SimpleBase64Encoder.decode(sports);
-//                        sportsDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, sportsEncryptedBytes);
-//                        sports = new String(sportsDecryptedBytes);
-//                        s.setSports(sports);
-//                    }
-//                    if (!defenceex.equals("null")) {
-//                        byte[] defenceexEncryptedBytes = SimpleBase64Encoder.decode(defenceex);
-//                        defenceexDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, defenceexEncryptedBytes);
-//                        defenceex = new String(defenceexDecryptedBytes);
-//                        s.setDefenceex(defenceex);
-//                    }
-//                    Log.d("TAG", "onPostExecute:  personal done");
-//                }
-//
-//                downloadImage();
-//                populateData();
-//
-//            }catch (Exception e)
-//            {
-//                Toast.makeText(getActivity(), "exp "+e.getMessage(), Toast.LENGTH_LONG).show();
-//                Log.d("TAG", "onPostExecute: exp = "+e.getMessage());
-//            }
         }
 
-        //
-//        // Creates Bitmap from InputStream and returns it
-////        private Bitmap downloadImage(String url) {
-////            Uri uri = new Uri.Builder()
-////                    .scheme("http")
-////                    .authority("192.168.100.100")
-////                    .path("AESTest/GetImage")
-////                    .appendQueryParameter("u", username)
-////                    .build();
-////
-////            url=uri.toString();
-////
-////            Bitmap bitmap = null;
-////            InputStream stream = null;
-////            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-////            bmOptions.inSampleSize = 1;
-////
-////            try {
-////                stream = getHttpConnection(url);
-////                bitmap = BitmapFactory.
-////                        decodeStream(stream, null, bmOptions);
-////                stream.close();
-////            } catch (IOException e1) {
-////                e1.printStackTrace();
-////            }
-////            return bitmap;
-////        }
-//
-//        // Makes HttpURLConnection and returns InputStream
-//        private InputStream getHttpConnection(String urlString)
-//                throws IOException {
-//            InputStream stream = null;
-//            URL url = new URL(urlString);
-//            URLConnection connection = url.openConnection();
-//
-//            try {
-//                HttpURLConnection httpConnection = (HttpURLConnection) connection;
-//                httpConnection.setRequestMethod("GET");
-//                httpConnection.connect();
-//
-//                if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-//                    stream = httpConnection.getInputStream();
-//                }
-//            } catch (Exception ex) {
-//                ex.printStackTrace();
-//                Log.d("TAG", "getHttpConnection: "+ ex.getMessage());
-//            }
-//            return stream;
-//        }
     }
 
-        void populateData() {
-            Log.d("TAG", "populateData: welcome to populate");
+    void populateData() {
+        Log.d("TAG", "populateData: welcome to populate");
+
+        if (found_contact_details == 1) {
             if (!addressline1.equals("")) {
                 contactaddr1.setText(addressline1 + " " + addressline2 + " " + addressline3);
                 percentProfile++;
             }
-            if (found_box1 == 1) {
-                if (!fname.equals("") && !lname.equals("")) {
-                    myprofilename.setText(fname + " " + lname);
-                    nametxt.setText(fname + " " + lname);
-                    percentProfile++;
-                }
-
-                if (!fname.equals("") && lname.equals("")) {
-                    myprofilename.setText(fname);
-                    percentProfile++;
-                }
-                if (!country.equals("") && !state.equals("") && !city.equals("")) {
-                    myprofilloc.setText(city + ", " + state + ", " + country);
-                    percentProfile++;
+            if (phone != null) {
+                if (!phone.equals("")) {
+                    contactmobile.setText(phone);
                 }
             }
-            if (found_tenth == 1) {
-                if (!board10.equals("")) {
+        }
 
-                    Hashtable<String, Integer> source = new Hashtable<String, Integer>();
-                    HashMap<String, Integer> map = new HashMap(source);
+        if (found_box1 == 1) {
+            if (!fname.equals("") && !lname.equals("")) {
+                myprofilename.setText(fname + " " + lname);
+                nametxt.setText(fname + " " + lname);
+                percentProfile++;
+            }
 
-                    map.put("Jan", 1);
-                    map.put("Feb", 2);
-                    map.put("Mar", 3);
-                    map.put("Apr", 4);
-                    map.put("May", 5);
-                    map.put("Jun", 6);
-                    map.put("Jul", 7);
-                    map.put("Aug", 8);
-                    map.put("Sep", 9);
-                    map.put("Oct", 10);
-                    map.put("Nov", 11);
-                    map.put("Dec", 12);
+            if (!fname.equals("") && lname.equals("")) {
+                myprofilename.setText(fname);
+                percentProfile++;
+            }
+            if (!country.equals("") && !state.equals("") && !city.equals("")) {
+                myprofilloc.setText(city + ", " + state + ", " + country);
+                percentProfile++;
+            }
+        }
+        if (found_tenth == 1) {
+            if (!board10.equals("")) {
 
-                    Date date = new Date();
+                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
+                HashMap<String, Integer> map = new HashMap(source);
 
-                    SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
-                    SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+                map.put("Jan", 1);
+                map.put("Feb", 2);
+                map.put("Mar", 3);
+                map.put("Apr", 4);
+                map.put("May", 5);
+                map.put("Jun", 6);
+                map.put("Jul", 7);
+                map.put("Aug", 8);
+                map.put("Sep", 9);
+                map.put("Oct", 10);
+                map.put("Nov", 11);
+                map.put("Dec", 12);
 
-                    String currentMonth = sdfm.format(date);
-                    String currentYears = sdfy.format(date);
+                Date date = new Date();
 
-                    String month = "", years = "";
+                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
+                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
 
-                    for (int i = 0; i < yearofpassing10.length() - 6; i++) {
-                        month += yearofpassing10.charAt(i);
-                    }
-                    for (int i = 5; i < yearofpassing10.length(); i++) {
-                        years += yearofpassing10.charAt(i);
-                    }
+                String currentMonth = sdfm.format(date);
+                String currentYears = sdfy.format(date);
 
-                    int currentYear = Integer.parseInt(currentYears);
-                    int year = Integer.parseInt(years);
+                String month = "", years = "";
 
-                    if (currentYear > year)
+                for (int i = 0; i < yearofpassing10.length() - 6; i++) {
+                    month += yearofpassing10.charAt(i);
+                }
+                for (int i = 5; i < yearofpassing10.length(); i++) {
+                    years += yearofpassing10.charAt(i);
+                }
+
+                int currentYear = Integer.parseInt(currentYears);
+                int year = Integer.parseInt(years);
+
+                if (currentYear > year)
+                    myprofilecource3.setText("Attended Std. X in " + board10 + "  at");
+                else if (currentYear == year) {
+                    if (map.get(currentMonth) > map.get(month)) {
                         myprofilecource3.setText("Attended Std. X in " + board10 + "  at");
-                    else if (currentYear == year) {
-                        if (map.get(currentMonth) > map.get(month)) {
-                            myprofilecource3.setText("Attended Std. X in " + board10 + "  at");
-                        } else {
-                            myprofilecource3.setText("Attending Std. X in " + board10 + "  at");
-                            myprofiledu.setText("Std. X  (" + board10 + ")");
-                        }
                     } else {
                         myprofilecource3.setText("Attending Std. X in " + board10 + "  at");
                         myprofiledu.setText("Std. X  (" + board10 + ")");
                     }
-
-                    if (!schoolname10.equals(""))
-                        myprofileclgname3.setText(schoolname10);
-                    if (!yearofpassing10.equals(""))
-                        myprofileclgyearofpassing3.setText(yearofpassing10);
-                    percentProfile++;
+                } else {
+                    myprofilecource3.setText("Attending Std. X in " + board10 + "  at");
+                    myprofiledu.setText("Std. X  (" + board10 + ")");
                 }
+
+                if (!schoolname10.equals(""))
+                    myprofileclgname3.setText(schoolname10);
+                if (!yearofpassing10.equals(""))
+                    myprofileclgyearofpassing3.setText(yearofpassing10);
+                percentProfile++;
             }
-            if (found_twelth == 1) {
-                Log.d("TAG", "populateData: welcome to twelth");
+        }
+        if (found_twelth == 1) {
+            Log.d("TAG", "populateData: welcome to twelth");
 
-                if (!board12.equals("")) {
+            if (!schoolname12.equals("")) {
 
-                    Hashtable<String, Integer> source = new Hashtable<String, Integer>();
-                    HashMap<String, Integer> map = new HashMap(source);
+                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
+                HashMap<String, Integer> map = new HashMap(source);
 
-                    map.put("Jan", 1);
-                    map.put("Feb", 2);
-                    map.put("Mar", 3);
-                    map.put("Apr", 4);
-                    map.put("May", 5);
-                    map.put("Jun", 6);
-                    map.put("Jul", 7);
-                    map.put("Aug", 8);
-                    map.put("Sep", 9);
-                    map.put("Oct", 10);
-                    map.put("Nov", 11);
-                    map.put("Dec", 12);
+                map.put("Jan", 1);
+                map.put("Feb", 2);
+                map.put("Mar", 3);
+                map.put("Apr", 4);
+                map.put("May", 5);
+                map.put("Jun", 6);
+                map.put("Jul", 7);
+                map.put("Aug", 8);
+                map.put("Sep", 9);
+                map.put("Oct", 10);
+                map.put("Nov", 11);
+                map.put("Dec", 12);
 
-                    Date date = new Date();
+                Date date = new Date();
 
-                    SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
-                    SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
+                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
 
-                    String currentMonth = sdfm.format(date);
-                    String currentYears = sdfy.format(date);
+                String currentMonth = sdfm.format(date);
+                String currentYears = sdfy.format(date);
 
-                    String month = "", years = "";
+                String month = "", years = "";
 
-                    for (int i = 0; i < yearofpassing12.length() - 6; i++) {
-                        month += yearofpassing12.charAt(i);
-                    }
-                    for (int i = 5; i < yearofpassing12.length(); i++) {
-                        years += yearofpassing12.charAt(i);
-                    }
+                for (int i = 0; i < yearofpassing12.length() - 6; i++) {
+                    month += yearofpassing12.charAt(i);
+                }
+                for (int i = 5; i < yearofpassing12.length(); i++) {
+                    years += yearofpassing12.charAt(i);
+                }
 
-                    int currentYear = Integer.parseInt(currentYears);
-                    int year = Integer.parseInt(years);
+                int currentYear = Integer.parseInt(currentYears);
+                int year = Integer.parseInt(years);
 
-                    if (currentYear > year)
+                if (currentYear > year)
+                    myprofilecource2.setText("Attended Std. XII in " + board12 + "  at");
+                else if (currentYear == year) {
+                    if (map.get(currentMonth) > map.get(month)) {
                         myprofilecource2.setText("Attended Std. XII in " + board12 + "  at");
-                    else if (currentYear == year) {
-                        if (map.get(currentMonth) > map.get(month)) {
-                            myprofilecource2.setText("Attended Std. XII in " + board12 + "  at");
-                        } else {
-                            myprofilecource2.setText("Attending Std. XII in " + board12 + "  at");
-                            myprofiledu.setText("Std. XII (" + board12 + ")");
-                        }
                     } else {
                         myprofilecource2.setText("Attending Std. XII in " + board12 + "  at");
                         myprofiledu.setText("Std. XII (" + board12 + ")");
                     }
-
-                    if (!schoolname12.equals(""))
-                        myprofileclgname2.setText(schoolname12);
-                    if (!yearofpassing12.equals(""))
-                        myprofileclgyearofpassing2.setText(yearofpassing12);
-                    percentProfile++;
+                } else {
+                    myprofilecource2.setText("Attending Std. XII in " + board12 + "  at");
+                    myprofiledu.setText("Std. XII (" + board12 + ")");
                 }
+
+                if (!schoolname12.equals(""))
+                    myprofileclgname2.setText(schoolname12);
+                if (!yearofpassing12.equals(""))
+                    myprofileclgyearofpassing2.setText(yearofpassing12);
+                percentProfile++;
             }
-            if (found_diploma == 1) {
-                Log.d("TAG", "populateData: welcome to diploma");
-                if (!universitydiploma.equals("")) {
+        }
+        if (found_diploma == 1) {
+            Log.d("TAG", "populateData: welcome to diploma");
+            if (!collegenamediploma.equals("")) {
 
-                    Hashtable<String, Integer> source = new Hashtable<String, Integer>();
-                    HashMap<String, Integer> map = new HashMap(source);
+                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
+                HashMap<String, Integer> map = new HashMap(source);
 
-                    map.put("Jan", 1);
-                    map.put("Feb", 2);
-                    map.put("Mar", 3);
-                    map.put("Apr", 4);
-                    map.put("May", 5);
-                    map.put("Jun", 6);
-                    map.put("Jul", 7);
-                    map.put("Aug", 8);
-                    map.put("Sep", 9);
-                    map.put("Oct", 10);
-                    map.put("Nov", 11);
-                    map.put("Dec", 12);
+                map.put("Jan", 1);
+                map.put("Feb", 2);
+                map.put("Mar", 3);
+                map.put("Apr", 4);
+                map.put("May", 5);
+                map.put("Jun", 6);
+                map.put("Jul", 7);
+                map.put("Aug", 8);
+                map.put("Sep", 9);
+                map.put("Oct", 10);
+                map.put("Nov", 11);
+                map.put("Dec", 12);
 
-                    Date date = new Date();
+                Date date = new Date();
 
-                    SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
-                    SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
+                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
 
-                    String currentMonth = sdfm.format(date);
-                    String currentYears = sdfy.format(date);
+                String currentMonth = sdfm.format(date);
+                String currentYears = sdfy.format(date);
 
-                    String month = "", years = "";
+                String month = "", years = "";
 
-                    for (int i = 0; i < yearofpassingdiploma.length() - 6; i++) {
-                        month += yearofpassingdiploma.charAt(i);
-                    }
-                    for (int i = 5; i < yearofpassingdiploma.length(); i++) {
-                        years += yearofpassingdiploma.charAt(i);
-                    }
+                for (int i = 0; i < yearofpassingdiploma.length() - 6; i++) {
+                    month += yearofpassingdiploma.charAt(i);
+                }
+                for (int i = 5; i < yearofpassingdiploma.length(); i++) {
+                    years += yearofpassingdiploma.charAt(i);
+                }
 
-                    int currentYear = Integer.parseInt(currentYears);
-                    int year = Integer.parseInt(years);
-                    if (currentYear > year)
+                int currentYear = Integer.parseInt(currentYears);
+                int year = Integer.parseInt(years);
+                if (currentYear > year)
+                    myprofilecource2.setText("Attended Diploma in " + coursediploma + "  at");
+                else if (currentYear == year) {
+                    if (map.get(currentMonth) > map.get(month)) {
                         myprofilecource2.setText("Attended Diploma in " + coursediploma + "  at");
-                    else if (currentYear == year) {
-                        if (map.get(currentMonth) > map.get(month)) {
-                            myprofilecource2.setText("Attended Diploma in " + coursediploma + "  at");
-                        } else {
-                            myprofilecource2.setText("Attending Diploma in " + coursediploma + "  at");
-                            myprofiledu.setText("Diploma (" + coursediploma + ")");
-                        }
                     } else {
                         myprofilecource2.setText("Attending Diploma in " + coursediploma + "  at");
                         myprofiledu.setText("Diploma (" + coursediploma + ")");
                     }
-
-                    if (!collegenamediploma.equals(""))
-                        myprofileclgname2.setText(collegenamediploma);
-                    if (!yearofpassingdiploma.equals(""))
-                        myprofileclgyearofpassing2.setText(yearofpassingdiploma);
+                } else {
+                    myprofilecource2.setText("Attending Diploma in " + coursediploma + "  at");
+                    myprofiledu.setText("Diploma (" + coursediploma + ")");
                 }
-                percentProfile++;
-            }
-            if (found_careerobj == 1) {
-                if (!careerobj.equals(""))
-                    careerobjtxttxt.setText(careerobj);
-                percentProfile++;
-            }
-            if (found_strengths == 1) {
-                if (!strength1.equals(""))
-                    strengthstxt.setText(strength1);
-                if (!strength1.equals("") && !strength2.equals(""))
-                    strengthstxt.setText(strength1 + ", " + strength2);
-                if (!strength1.equals("") && !strength2.equals("") && !strength3.equals(""))
-                    strengthstxt.setText(strength1 + ", " + strength2 + ", " + strength3);
-                if (!strength1.equals("") && !strength2.equals("") && !strength3.equals("") && !strength4.equals(""))
-                    strengthstxt.setText(strength1 + ", " + strength2 + ", " + strength3 + " ...");
-                percentProfile++;
-            }
-            if (found_weaknesses == 1) {
-                if (!weak1.equals(""))
-                    weaknessestxt.setText(weak1);
-                if (!weak1.equals("") && !weak2.equals(""))
-                    weaknessestxt.setText(weak1 + ", " + weak2);
-                if (!weak1.equals("") && !weak2.equals("") && !weak3.equals(""))
-                    weaknessestxt.setText(weak1 + ", " + weak2 + ", " + weak3);
-                if (!weak1.equals("") && !weak2.equals("") && !weak3.equals("") && !weak4.equals(""))
-                    weaknessestxt.setText(weak1 + ", " + weak2 + ", " + weak3 + " ...");
-                percentProfile++;
-            }
-            if (found_locationpreferences == 1) {
-                if (!location1.equals(""))
-                    locationpreferences.setText(location1);
-                if (!location1.equals("") && !location2.equals(""))
-                    locationpreferences.setText(location1 + ", " + location2);
-                if (!location1.equals("") && !location2.equals("") && !location3.equals(""))
-                    locationpreferences.setText(location1 + ", " + location2 + ", " + location3);
-                if (!location1.equals("") && !location2.equals("") && !location3.equals("") && !location4.equals(""))
-                    locationpreferences.setText(location1 + ", " + location2 + ", " + location3 + " ...");
-                percentProfile++;
-            }
-            if (found_lang == 1) {
-                if (!lang1.equals("") && !lang1.equals("- Select Language -"))
-                    acc1txttxt.setText(lang1);
-                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
-                    acc1txttxt.setText(lang1 + ", " + lang2);
-                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -"))
-                    acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3);
-                if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -") && !lang4.equals("") && !lang4.equals("- Select Language -"))
-                    acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " ...");
-                percentProfile++;
-            }
-            if (found_certificates == 1) {
-                if (!title1.equals(""))
-                    acc2txttxt.setText(title1);
-                if (!title1.equals("") && !title2.equals(""))
-                    acc2txttxt.setText(title1 + ", " + title2);
-                if (!title1.equals("") && !title2.equals("") && !title3.equals(""))
-                    acc2txttxt.setText(title1 + ", " + title2 + ", " + title3);
-                if (!title1.equals("") && !title2.equals("") && !title3.equals("") && !title4.equals(""))
-                    acc2txttxt.setText(title1 + ", " + title2 + ", " + title3 + " ...");
-            }
-            if (found_courses == 1) {
-                if (!course1.equals(""))
-                    acc3txttxt.setText(course1);
-                if (!course1.equals("") && !course2.equals(""))
-                    acc3txttxt.setText(course1 + ", " + course2);
-                if (!course1.equals("") && !course2.equals("") && !course3.equals(""))
-                    acc3txttxt.setText(course1 + ", " + course2 + ", " + course3);
-                if (!course1.equals("") && !course2.equals("") && !course3.equals("") && !course4.equals(""))
-                    acc3txttxt.setText(course1 + ", " + course2 + ", " + course3 + " ...");
-            }
-            if (found_skills == 1) {
-                if (!skill1.equals(""))
-                    acc4txttxt.setText(skill1);
-                if (!skill1.equals("") && !skill2.equals(""))
-                    acc4txttxt.setText(skill1 + ", " + skill2);
-                if (!skill1.equals("") && !skill2.equals("") && !skill3.equals(""))
-                    acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3);
-                if (!skill1.equals("") && !skill2.equals("") && !skill3.equals("") && !skill4.equals(""))
-                    acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " ...");
-                percentProfile++;
-            }
-            if (found_honors == 1) {
-                if (!htitle1.equals(""))
-                    acc5txttxt.setText(htitle1);
-                if (!htitle1.equals("") && !htitle2.equals(""))
-                    acc5txttxt.setText(htitle1 + ", " + htitle2);
-                if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals(""))
-                    acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3);
-                if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals("") && !htitle4.equals(""))
-                    acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3 + " ...");
-            }
-            if (found_patents == 1) {
-                if (!ptitle1.equals(""))
-                    acc6txttxt.setText(ptitle1);
-                if (!ptitle1.equals("") && !ptitle2.equals(""))
-                    acc6txttxt.setText(ptitle1 + ", " + ptitle2);
-                if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals(""))
-                    acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3);
-                if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals("") && !ptitle4.equals(""))
-                    acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3 + " ...");
-            }
-            if (found_publications == 1) {
-                if (!pubtitle1.equals(""))
-                    acc7txttxt.setText(pubtitle1);
-                if (!pubtitle1.equals("") && !pubtitle2.equals(""))
-                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2);
-                if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals(""))
-                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3);
-                if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals("") && !pubtitle4.equals(""))
-                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3 + " ...");
-            }
 
-            if (found_projects == 1) {
+                if (!collegenamediploma.equals(""))
+                    myprofileclgname2.setText(collegenamediploma);
+                if (!yearofpassingdiploma.equals(""))
+                    myprofileclgyearofpassing2.setText(yearofpassingdiploma);
+            }
+            percentProfile++;
+        }
+        if (found_careerobj == 1) {
+            if (!careerobj.equals(""))
+                careerobjtxttxt.setText(careerobj);
+            percentProfile++;
+        }
+        if (found_strengths == 1) {
+            if (!strength1.equals(""))
+                strengthstxt.setText(strength1);
+            if (!strength1.equals("") && !strength2.equals(""))
+                strengthstxt.setText(strength1 + ", " + strength2);
+            if (!strength1.equals("") && !strength2.equals("") && !strength3.equals(""))
+                strengthstxt.setText(strength1 + ", " + strength2 + ", " + strength3);
+            if (!strength1.equals("") && !strength2.equals("") && !strength3.equals("") && !strength4.equals(""))
+                strengthstxt.setText(strength1 + ", " + strength2 + ", " + strength3 + " ...");
+            percentProfile++;
+        }
+        if (found_weaknesses == 1) {
+            if (!weak1.equals(""))
+                weaknessestxt.setText(weak1);
+            if (!weak1.equals("") && !weak2.equals(""))
+                weaknessestxt.setText(weak1 + ", " + weak2);
+            if (!weak1.equals("") && !weak2.equals("") && !weak3.equals(""))
+                weaknessestxt.setText(weak1 + ", " + weak2 + ", " + weak3);
+            if (!weak1.equals("") && !weak2.equals("") && !weak3.equals("") && !weak4.equals(""))
+                weaknessestxt.setText(weak1 + ", " + weak2 + ", " + weak3 + " ...");
+            percentProfile++;
+        }
+        if (found_locationpreferences == 1) {
+            if (!location1.equals(""))
+                locationpreferences.setText(location1);
+            if (!location1.equals("") && !location2.equals(""))
+                locationpreferences.setText(location1 + ", " + location2);
+            if (!location1.equals("") && !location2.equals("") && !location3.equals(""))
+                locationpreferences.setText(location1 + ", " + location2 + ", " + location3);
+            if (!location1.equals("") && !location2.equals("") && !location3.equals("") && !location4.equals(""))
+                locationpreferences.setText(location1 + ", " + location2 + ", " + location3 + " ...");
+            percentProfile++;
+        }
+        if (found_lang == 1) {
+            if (!lang1.equals("") && !lang1.equals("- Select Language -"))
+                acc1txttxt.setText(lang1);
+            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
+                acc1txttxt.setText(lang1 + ", " + lang2);
+            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -"))
+                acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3);
+            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -") && !lang4.equals("") && !lang4.equals("- Select Language -"))
+                acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " ...");
+            percentProfile++;
+        }
+        if (found_certificates == 1) {
+            if (!title1.equals(""))
+                acc2txttxt.setText(title1);
+            if (!title1.equals("") && !title2.equals(""))
+                acc2txttxt.setText(title1 + ", " + title2);
+            if (!title1.equals("") && !title2.equals("") && !title3.equals(""))
+                acc2txttxt.setText(title1 + ", " + title2 + ", " + title3);
+            if (!title1.equals("") && !title2.equals("") && !title3.equals("") && !title4.equals(""))
+                acc2txttxt.setText(title1 + ", " + title2 + ", " + title3 + " ...");
+        }
+        if (found_courses == 1) {
+            if (!course1.equals(""))
+                acc3txttxt.setText(course1);
+            if (!course1.equals("") && !course2.equals(""))
+                acc3txttxt.setText(course1 + ", " + course2);
+            if (!course1.equals("") && !course2.equals("") && !course3.equals(""))
+                acc3txttxt.setText(course1 + ", " + course2 + ", " + course3);
+            if (!course1.equals("") && !course2.equals("") && !course3.equals("") && !course4.equals(""))
+                acc3txttxt.setText(course1 + ", " + course2 + ", " + course3 + " ...");
+        }
+        if (found_skills == 1) {
+            if (!skill1.equals(""))
+                acc4txttxt.setText(skill1);
+            if (!skill1.equals("") && !skill2.equals(""))
+                acc4txttxt.setText(skill1 + ", " + skill2);
+            if (!skill1.equals("") && !skill2.equals("") && !skill3.equals(""))
+                acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3);
+            if (!skill1.equals("") && !skill2.equals("") && !skill3.equals("") && !skill4.equals(""))
+                acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " ...");
+            percentProfile++;
+        }
+        if (found_honors == 1) {
+            if (!htitle1.equals(""))
+                acc5txttxt.setText(htitle1);
+            if (!htitle1.equals("") && !htitle2.equals(""))
+                acc5txttxt.setText(htitle1 + ", " + htitle2);
+            if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals(""))
+                acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3);
+            if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals("") && !htitle4.equals(""))
+                acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3 + " ...");
+        }
+        if (found_patents == 1) {
+            if (!ptitle1.equals(""))
+                acc6txttxt.setText(ptitle1);
+            if (!ptitle1.equals("") && !ptitle2.equals(""))
+                acc6txttxt.setText(ptitle1 + ", " + ptitle2);
+            if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals(""))
+                acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3);
+            if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals("") && !ptitle4.equals(""))
+                acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3 + " ...");
+        }
+        if (found_publications == 1) {
+            if (!pubtitle1.equals(""))
+                acc7txttxt.setText(pubtitle1);
+            if (!pubtitle1.equals("") && !pubtitle2.equals(""))
+                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2);
+            if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals(""))
+                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3);
+            if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals("") && !pubtitle4.equals(""))
+                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3 + " ...");
+        }
+
+        if (found_projects == 1) {
+            percentProfile++;
+            if (!proj1.equals("")) {
+                myprofileproj1.setText(proj1);
+                myprofiledomain1.setText(domain1);
+                myprofileduration1.setText(duration1 + " Months");
+
+                ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
+                RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
+                ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
+                RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+
+                gear2.setVisibility(View.GONE);
+                projtab2.setVisibility(View.GONE);
+                gear3.setVisibility(View.GONE);
+                projtab3.setVisibility(View.GONE);
+            }
+            if (!proj2.equals("")) {
+                myprofileproj2.setText(proj2);
+                myprofiledomain2.setText(domain2);
+                myprofileduration2.setText(duration2 + " Months");
+
+                ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
+                RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
+                ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
+                RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+
+                gear2.setVisibility(View.VISIBLE);
+                projtab2.setVisibility(View.VISIBLE);
+                gear3.setVisibility(View.GONE);
+                projtab3.setVisibility(View.GONE);
+            }
+            if (!proj3.equals("")) {
+                myprofileproj3.setText(proj3);
+                myprofiledomain3.setText(domain3);
+                myprofileduration3.setText(duration3 + " Months");
+
+                ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
+                RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
+                ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
+                RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+
+                gear2.setVisibility(View.VISIBLE);
+                projtab2.setVisibility(View.VISIBLE);
+                gear3.setVisibility(View.VISIBLE);
+                projtab3.setVisibility(View.VISIBLE);
+            }
+        }
+        if (found_ug == 1) {
+            if (!universityug.equals("")) {
                 percentProfile++;
-                if (!proj1.equals("")) {
-                    myprofileproj1.setText(proj1);
-                    myprofiledomain1.setText(domain1);
-                    myprofileduration1.setText(duration1 + " Months");
+                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
+                HashMap<String, Integer> map = new HashMap(source);
 
-                    ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
-                    RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
-                    ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
-                    RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+                map.put("Jan", 1);
+                map.put("Feb", 2);
+                map.put("Mar", 3);
+                map.put("Apr", 4);
+                map.put("May", 5);
+                map.put("Jun", 6);
+                map.put("Jul", 7);
+                map.put("Aug", 8);
+                map.put("Sep", 9);
+                map.put("Oct", 10);
+                map.put("Nov", 11);
+                map.put("Dec", 12);
 
-                    gear2.setVisibility(View.GONE);
-                    projtab2.setVisibility(View.GONE);
-                    gear3.setVisibility(View.GONE);
-                    projtab3.setVisibility(View.GONE);
+                Date date = new Date();
+
+                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
+                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+
+                String currentMonth = sdfm.format(date);
+                String currentYears = sdfy.format(date);
+
+                String month = "", years = "";
+
+                for (int i = 0; i < yearofpassingug.length() - 6; i++) {
+                    month += yearofpassingug.charAt(i);
                 }
-                if (!proj2.equals("")) {
-                    myprofileproj2.setText(proj2);
-                    myprofiledomain2.setText(domain2);
-                    myprofileduration2.setText(duration2 + " Months");
-
-                    ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
-                    RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
-                    ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
-                    RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
-
-                    gear2.setVisibility(View.VISIBLE);
-                    projtab2.setVisibility(View.VISIBLE);
-                    gear3.setVisibility(View.GONE);
-                    projtab3.setVisibility(View.GONE);
+                for (int i = 5; i < yearofpassingug.length(); i++) {
+                    years += yearofpassingug.charAt(i);
                 }
-                if (!proj3.equals("")) {
-                    myprofileproj3.setText(proj3);
-                    myprofiledomain3.setText(domain3);
-                    myprofileduration3.setText(duration3 + " Months");
 
-                    ImageView gear2 = (ImageView) rootView.findViewById(R.id.gear2);
-                    RelativeLayout projtab2 = (RelativeLayout) rootView.findViewById(R.id.projtab2);
-                    ImageView gear3 = (ImageView) rootView.findViewById(R.id.gear3);
-                    RelativeLayout projtab3 = (RelativeLayout) rootView.findViewById(R.id.projtab3);
+                int currentYear = Integer.parseInt(currentYears);
+                int year = Integer.parseInt(years);
 
-                    gear2.setVisibility(View.VISIBLE);
-                    projtab2.setVisibility(View.VISIBLE);
-                    gear3.setVisibility(View.VISIBLE);
-                    projtab3.setVisibility(View.VISIBLE);
-                }
-            }
-            if (found_ug == 1) {
-                if (!universityug.equals("")) {
-                    percentProfile++;
-                    Hashtable<String, Integer> source = new Hashtable<String, Integer>();
-                    HashMap<String, Integer> map = new HashMap(source);
-
-                    map.put("Jan", 1);
-                    map.put("Feb", 2);
-                    map.put("Mar", 3);
-                    map.put("Apr", 4);
-                    map.put("May", 5);
-                    map.put("Jun", 6);
-                    map.put("Jul", 7);
-                    map.put("Aug", 8);
-                    map.put("Sep", 9);
-                    map.put("Oct", 10);
-                    map.put("Nov", 11);
-                    map.put("Dec", 12);
-
-                    Date date = new Date();
-
-                    SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
-                    SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
-
-                    String currentMonth = sdfm.format(date);
-                    String currentYears = sdfy.format(date);
-
-                    String month = "", years = "";
-
-                    for (int i = 0; i < yearofpassingug.length() - 6; i++) {
-                        month += yearofpassingug.charAt(i);
-                    }
-                    for (int i = 5; i < yearofpassingug.length(); i++) {
-                        years += yearofpassingug.charAt(i);
-                    }
-
-                    int currentYear = Integer.parseInt(currentYears);
-                    int year = Integer.parseInt(years);
-
-                    if (currentYear > year) {
+                if (currentYear > year) {
+                    myprofilecource.setText("Attended " + courseug + "  in " + streamug + " at");
+                } else if (currentYear == year) {
+                    if (map.get(currentMonth) > map.get(month)) {
                         myprofilecource.setText("Attended " + courseug + "  in " + streamug + " at");
-                    } else if (currentYear == year) {
-                        if (map.get(currentMonth) > map.get(month)) {
-                            myprofilecource.setText("Attended " + courseug + "  in " + streamug + " at");
-                        } else {
-                            myprofilecource.setText("Attending " + courseug + "  in " + streamug + " at");
-                            myprofiledu.setText(courseug + " (" + streamug + ")");
-                        }
-
                     } else {
                         myprofilecource.setText("Attending " + courseug + "  in " + streamug + " at");
                         myprofiledu.setText(courseug + " (" + streamug + ")");
                     }
 
-                    myprofileclgname.setText(collegenameug);
-                    myprofileclgyearofpassing.setText(yearofpassingug);
-
-
-                    ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
-                    RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
-                    insti4.setVisibility(View.GONE);
-                    edutab4.setVisibility(View.GONE);
+                } else {
+                    myprofilecource.setText("Attending " + courseug + "  in " + streamug + " at");
+                    myprofiledu.setText(courseug + " (" + streamug + ")");
                 }
+
+                myprofileclgname.setText(collegenameug);
+                myprofileclgyearofpassing.setText(yearofpassingug);
+
+
+                ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
+                RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
+                insti4.setVisibility(View.GONE);
+                edutab4.setVisibility(View.GONE);
             }
-            if (found_pgsem == 1) {
-                Log.d("TAG", "populateData: universitypgsem"+universitypgsem);
-                if (!universitypgsem.equals("")) {
+        }
+        if (found_pgsem == 1) {
+            Log.d("TAG", "populateData: universitypgsem"+universitypgsem);
+            if (!collegenamepgsem.equals("")) {
 
-                    Hashtable<String, Integer> source = new Hashtable<String, Integer>();
-                    HashMap<String, Integer> map = new HashMap(source);
+                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
+                HashMap<String, Integer> map = new HashMap(source);
 
-                    map.put("Jan", 1);
-                    map.put("Feb", 2);
-                    map.put("Mar", 3);
-                    map.put("Apr", 4);
-                    map.put("May", 5);
-                    map.put("Jun", 6);
-                    map.put("Jul", 7);
-                    map.put("Aug", 8);
-                    map.put("Sep", 9);
-                    map.put("Oct", 10);
-                    map.put("Nov", 11);
-                    map.put("Dec", 12);
+                map.put("Jan", 1);
+                map.put("Feb", 2);
+                map.put("Mar", 3);
+                map.put("Apr", 4);
+                map.put("May", 5);
+                map.put("Jun", 6);
+                map.put("Jul", 7);
+                map.put("Aug", 8);
+                map.put("Sep", 9);
+                map.put("Oct", 10);
+                map.put("Nov", 11);
+                map.put("Dec", 12);
 
-                    Date date = new Date();
+                Date date = new Date();
 
-                    SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
-                    SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
+                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
 
-                    String currentMonth = sdfm.format(date);
-                    String currentYears = sdfy.format(date);
+                String currentMonth = sdfm.format(date);
+                String currentYears = sdfy.format(date);
 
-                    String month = "", years = "";
+                String month = "", years = "";
 
-                    for (int i = 0; i < yearofpassingpgsem.length() - 6; i++) {
-                        month += yearofpassingpgsem.charAt(i);
-                    }
-                    for (int i = 5; i < yearofpassingpgsem.length(); i++) {
-                        years += yearofpassingpgsem.charAt(i);
-                    }
-                    int currentYear = Integer.parseInt(currentYears);
-                    int year = Integer.parseInt(years);
+                for (int i = 0; i < yearofpassingpgsem.length() - 6; i++) {
+                    month += yearofpassingpgsem.charAt(i);
+                }
+                for (int i = 5; i < yearofpassingpgsem.length(); i++) {
+                    years += yearofpassingpgsem.charAt(i);
+                }
+                int currentYear = Integer.parseInt(currentYears);
+                int year = Integer.parseInt(years);
 
 
-                    if (currentYear > year)
+                if (currentYear > year)
+                    myprofilecource4.setText("Attended " + coursepgsem + " at");
+
+                else if (currentYear == year) {
+                    if (map.get(currentMonth) > map.get(month)) {
                         myprofilecource4.setText("Attended " + coursepgsem + " at");
-
-                    else if (currentYear == year) {
-                        if (map.get(currentMonth) > map.get(month)) {
-                            myprofilecource4.setText("Attended " + coursepgsem + " at");
-                        } else {
-                            myprofilecource4.setText("Attending " + coursepgsem + " at");
-                            myprofiledu.setText(coursepgsem);
-                        }
                     } else {
                         myprofilecource4.setText("Attending " + coursepgsem + " at");
                         myprofiledu.setText(coursepgsem);
                     }
-
-                    myprofileclgname4.setText(collegenamepgsem);
-                    myprofileclgyearofpassing4.setText(yearofpassingpgsem);
-
-                    ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
-                    RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
-                    insti4.setVisibility(View.VISIBLE);
-                    edutab4.setVisibility(View.VISIBLE);
+                } else {
+                    myprofilecource4.setText("Attending " + coursepgsem + " at");
+                    myprofiledu.setText(coursepgsem);
                 }
+
+                myprofileclgname4.setText(collegenamepgsem);
+                myprofileclgyearofpassing4.setText(yearofpassingpgsem);
+
+                ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
+                RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
+                insti4.setVisibility(View.VISIBLE);
+                edutab4.setVisibility(View.VISIBLE);
             }
+        }
 
-            if (found_pgyear == 1) {
-                Log.d("TAG", "populateData: universitypgyear"+universitypgyear);
-                if (!universitypgyear.equals("")) {
+        if (found_pgyear == 1) {
+            Log.d("TAG", "populateData: universitypgyear"+universitypgyear);
+            if (!collegenamepgyear.equals("")) {
 
-                    Hashtable<String, Integer> source = new Hashtable<String, Integer>();
-                    HashMap<String, Integer> map = new HashMap(source);
+                Hashtable<String, Integer> source = new Hashtable<String, Integer>();
+                HashMap<String, Integer> map = new HashMap(source);
 
-                    map.put("Jan", 1);
-                    map.put("Feb", 2);
-                    map.put("Mar", 3);
-                    map.put("Apr", 4);
-                    map.put("May", 5);
-                    map.put("Jun", 6);
-                    map.put("Jul", 7);
-                    map.put("Aug", 8);
-                    map.put("Sep", 9);
-                    map.put("Oct", 10);
-                    map.put("Nov", 11);
-                    map.put("Dec", 12);
+                map.put("Jan", 1);
+                map.put("Feb", 2);
+                map.put("Mar", 3);
+                map.put("Apr", 4);
+                map.put("May", 5);
+                map.put("Jun", 6);
+                map.put("Jul", 7);
+                map.put("Aug", 8);
+                map.put("Sep", 9);
+                map.put("Oct", 10);
+                map.put("Nov", 11);
+                map.put("Dec", 12);
 
-                    Date date = new Date();
+                Date date = new Date();
 
-                    SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
-                    SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
+                SimpleDateFormat sdfm = new SimpleDateFormat("MMM");
+                SimpleDateFormat sdfy = new SimpleDateFormat("yyyy");
 
-                    String currentMonth = sdfm.format(date);
-                    String currentYears = sdfy.format(date);
+                String currentMonth = sdfm.format(date);
+                String currentYears = sdfy.format(date);
 
-                    String month = "", years = "";
+                String month = "", years = "";
 
-                    for (int i = 0; i < yearofpassingpgyear.length() - 6; i++) {
-                        month += yearofpassingpgyear.charAt(i);
-                    }
-                    for (int i = 5; i < yearofpassingpgyear.length(); i++) {
-                        years += yearofpassingpgyear.charAt(i);
-                    }
-                    int currentYear = Integer.parseInt(currentYears);
-                    int year = Integer.parseInt(years);
+                for (int i = 0; i < yearofpassingpgyear.length() - 6; i++) {
+                    month += yearofpassingpgyear.charAt(i);
+                }
+                for (int i = 5; i < yearofpassingpgyear.length(); i++) {
+                    years += yearofpassingpgyear.charAt(i);
+                }
+                int currentYear = Integer.parseInt(currentYears);
+                int year = Integer.parseInt(years);
 
-                    if (currentYear > year)
+                if (currentYear > year)
+                    myprofilecource4.setText("Attended " + coursepgyear + " at");
+                else if (currentYear == year) {
+                    if (map.get(currentMonth) > map.get(month)) {
                         myprofilecource4.setText("Attended " + coursepgyear + " at");
-                    else if (currentYear == year) {
-                        if (map.get(currentMonth) > map.get(month)) {
-                            myprofilecource4.setText("Attended " + coursepgyear + " at");
-                        } else {
-                            myprofilecource4.setText("Attending " + coursepgyear + " at");
-                            myprofiledu.setText(coursepgyear);
-                        }
                     } else {
-                        myprofilecource4.setText("Attending " + coursepgsem + " at");
+                        myprofilecource4.setText("Attending " + coursepgyear + " at");
                         myprofiledu.setText(coursepgyear);
                     }
-
-                    myprofileclgname4.setText(collegenamepgyear);
-                    myprofileclgyearofpassing4.setText(yearofpassingpgyear);
-
-                    ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
-                    RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
-                    insti4.setVisibility(View.VISIBLE);
-                    edutab4.setVisibility(View.VISIBLE);
+                } else {
+                    myprofilecource4.setText("Attending " + coursepgsem + " at");
+                    myprofiledu.setText(coursepgyear);
                 }
+
+                myprofileclgname4.setText(collegenamepgyear);
+                myprofileclgyearofpassing4.setText(yearofpassingpgyear);
+
+                ImageView insti4 = (ImageView) rootView.findViewById(R.id.insti4);
+                RelativeLayout edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
+                insti4.setVisibility(View.VISIBLE);
+                edutab4.setVisibility(View.VISIBLE);
             }
-
-            if (myprofiledu.getText().toString().equals("Current Education"))
-                myprofiledu.setVisibility(View.GONE);
-            else
-                myprofiledu.setVisibility(View.VISIBLE);
-
-
-            float R = (1000 - 0) / (15 - 0);
-            float y = (percentProfile - 0) * R + 0;
-            int val = Math.round(y);
-
-            ObjectAnimator progressAnimator = ObjectAnimator.ofInt(profileprogress, "progress", 0, val);
-            progressAnimator.setDuration(700);
-            progressAnimator.setInterpolator(new LinearInterpolator());
-            progressAnimator.start();
         }
 
-
-        public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
-            Animation animation = super.onCreateAnimation(transit, enter, nextAnim);
-
-            // HW layer support only exists on API 11+
-            if (Build.VERSION.SDK_INT >= 11) {
-                if (animation == null && nextAnim != 0) {
-                    animation = AnimationUtils.loadAnimation(getActivity(), nextAnim);
-                }
-
-                if (animation != null) {
-                    getView().setLayerType(View.LAYER_TYPE_HARDWARE, null);
-
-                    animation.setAnimationListener(new Animation.AnimationListener() {
-                        @Override
-                        public void onAnimationStart(Animation animation) {
-
-                        }
-
-                        public void onAnimationEnd(Animation animation) {
-                            getView().setLayerType(View.LAYER_TYPE_NONE, null);
-                        }
-
-                        @Override
-                        public void onAnimationRepeat(Animation animation) {
-
-                        }
+        if (myprofiledu.getText().toString().equals("Current Education"))
+            myprofiledu.setVisibility(View.GONE);
+        else
+            myprofiledu.setVisibility(View.VISIBLE);
 
 
-                    });
-                }
+        float R = (1000 - 0) / (15 - 0);
+        float y = (percentProfile - 0) * R + 0;
+        int val = Math.round(y);
+
+        ObjectAnimator progressAnimator = ObjectAnimator.ofInt(profileprogress, "progress", 0, val);
+        progressAnimator.setDuration(700);
+        progressAnimator.setInterpolator(new LinearInterpolator());
+        progressAnimator.start();
+    }
+
+
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        Animation animation = super.onCreateAnimation(transit, enter, nextAnim);
+
+        // HW layer support only exists on API 11+
+        if (Build.VERSION.SDK_INT >= 11) {
+            if (animation == null && nextAnim != 0) {
+                animation = AnimationUtils.loadAnimation(getActivity(), nextAnim);
             }
 
-            return animation;
+            if (animation != null) {
+                getView().setLayerType(View.LAYER_TYPE_HARDWARE, null);
+
+                animation.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    public void onAnimationEnd(Animation animation) {
+                        getView().setLayerType(View.LAYER_TYPE_NONE, null);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+
+
+                });
+            }
         }
 
-        class DeleteProfile extends AsyncTask<String, String, String> {
+        return animation;
+    }
+
+    class DeleteProfile extends AsyncTask<String, String, String> {
 
 
-            protected String doInBackground(String... param) {
+        protected String doInBackground(String... param) {
 
-                List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("u", username));
-                json = jParser.makeHttpRequest(MyConstants.remove_profile, "GET", params);
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));
+            json = jParser.makeHttpRequest(MyConstants.remove_profile, "GET", params);
 
-                try {
+            try {
 
-                    resultofop = json.getString("info");
+                resultofop = json.getString("info");
 
-                } catch (Exception ex) {
-                    Log.d("TAG", "DeleteProfile " + ex.getMessage());
-                }
-
-                return resultofop;
+            } catch (Exception ex) {
+                Log.d("TAG", "DeleteProfile " + ex.getMessage());
             }
 
-            @Override
-            protected void onPostExecute(String result) {
-
-                if (resultofop.equals("success")) {
-                    Toast.makeText(getActivity(), "Profile Picture removed..!", Toast.LENGTH_LONG).show();
-                    refreshContent();
-                    ((MainActivity) getActivity()).requestProfileImage();
-                } else if (resultofop.equals("fail"))
-                    Toast.makeText(getActivity(), "Failed..!", Toast.LENGTH_LONG).show();
-
-                else if (resultofop.equals("notfound"))
-                    Toast.makeText(getActivity(), "No Profile Picture..!", Toast.LENGTH_LONG).show();
-
-
-            }
+            return resultofop;
         }
 
         @Override
-        public void onAttach(final Activity activity) {
+        protected void onPostExecute(String result) {
 
-            super.onAttach(activity);
+            if (resultofop.equals("success")) {
+                Toast.makeText(getActivity(), "Profile Picture removed..!", Toast.LENGTH_LONG).show();
+                refreshContent();
+                ((MainActivity) getActivity()).requestProfileImage();
+            } else if (resultofop.equals("fail"))
+                Toast.makeText(getActivity(), "Failed..!", Toast.LENGTH_LONG).show();
 
-            setHasOptionsMenu(true);
-        }
-
-        @Override
-        public void onPrepareOptionsMenu(final Menu menu) {
-
-            super.onPrepareOptionsMenu(menu);
-
-            menu.clear();
-        }
-
-
-        private void downloadImage() {
-
-            String t = String.valueOf(System.currentTimeMillis());
-
-            Uri uri = new Uri.Builder()
-                    .scheme("http")
-                    .authority("192.168.100.100")
-                    .path("AESTest/GetImage")
-                    .appendQueryParameter("u", username)
-                    .build();
-
-            GlideApp.with(this)
-                    .load(uri)
-                    .signature(new ObjectKey(System.currentTimeMillis() + ""))
-                    .into(myprofileimg);
+            else if (resultofop.equals("notfound"))
+                Toast.makeText(getActivity(), "No Profile Picture..!", Toast.LENGTH_LONG).show();
 
 
         }
+    }
+
+    @Override
+    public void onAttach(final Activity activity) {
+
+        super.onAttach(activity);
+
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(final Menu menu) {
+
+        super.onPrepareOptionsMenu(menu);
+
+        menu.clear();
+    }
 
 
- }
+    private void downloadImage() {
+
+        String t = String.valueOf(System.currentTimeMillis());
+
+        Uri uri = new Uri.Builder()
+                .scheme("http")
+                .authority("192.168.100.100")
+                .path("AESTest/GetImage")
+                .appendQueryParameter("u", username)
+                .build();
+
+        GlideApp.with(this)
+                .load(uri)
+                .signature(new ObjectKey(System.currentTimeMillis() + ""))
+                .into(myprofileimg);
+
+
+    }
+
+
+}
 

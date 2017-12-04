@@ -43,6 +43,7 @@ public class AdminContactDetails extends AppCompatActivity {
     JSONParser jParser = new JSONParser();
     JSONObject json;
 
+    private static String url_savedata= "http://192.168.100.30:8080/ProfileObjects/SaveAdminContact";
     public static final String url_SaveAdminContac= "http://192.168.100.30:8080/ProfileObjects/SaveAdminContact";
 
     int edittedFlag=0;
@@ -55,7 +56,6 @@ public class AdminContactDetails extends AppCompatActivity {
 
     AdminContactDetailsModal obj;
     String strobj;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,6 @@ public class AdminContactDetails extends AppCompatActivity {
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
-
 
 
         fname=(EditText)findViewById(R.id.fname);

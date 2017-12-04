@@ -31,7 +31,7 @@
             android:id="@+id/profiletabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#282f35"
+            android:background="@color/dark_color"
             app:tabMode="scrollable"/>
     </android.support.design.widget.AppBarLayout>
 
@@ -48,8 +48,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/save"
-        app:backgroundTint="#fff"
+        app:srcCompat="@drawable/save_icon"
+        app:backgroundTint="@color/dark_color"
         />
 
 </android.support.design.widget.CoordinatorLayout>

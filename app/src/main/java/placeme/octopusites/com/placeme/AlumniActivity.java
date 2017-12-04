@@ -2843,8 +2843,8 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         if(resultCode==ALUMNI_DATA_CHANGE_RESULT_CODE){
 
-//            MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-//            fragment.refreshContent();
+            MyProfileAlumniFragment fragment = (MyProfileAlumniFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+            fragment.refreshContent();
 
         }
         if(requestCode== Picker.PICK_IMAGE_DEVICE) {

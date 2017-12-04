@@ -484,11 +484,7 @@ public class HrCompanyDetails extends AppCompatActivity {
         protected void onPostExecute(String result) {
             if (result.equals("success")) {
                 Toast.makeText(HrCompanyDetails.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
-//                Intent returnIntent = new Intent();
-                if (flag1 == 1) {
                     setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
-                }
-
                 HrCompanyDetails.super.onBackPressed();
 
             }

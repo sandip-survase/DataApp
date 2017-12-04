@@ -9,10 +9,10 @@
     </style>
 
     <style name="MyEditTextTheme">
-        <item name="android:textColorHint">#eeeeee</item>
-        <item name="colorControlNormal">#eeeeee</item>
-        <item name="colorControlActivated">#c59a6d</item>
-        <item name="colorControlHighlight">#c59a6d</item>
+        <item name="android:textColorHint">#fcfdfd</item>
+        <item name="colorControlNormal">#fcfdfd</item>
+        <item name="colorControlActivated">@color/sky_blue_color</item>
+        <item name="colorControlHighlight">@color/sky_blue_color</item>
     </style>
 
     <style name="MaterialSearchViewStyle">
@@ -23,7 +23,7 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="actionMenuTextColor">#c59a6d</item>
+        <item name="actionMenuTextColor">@color/sky_blue_color</item>
     </style>
 
     <style name="AppTheme.Dialog" parent="Theme.AppCompat.Dialog">
@@ -37,7 +37,7 @@
 
     <style name="MyFormTheme" parent="AppTheme">
         <item name="android:homeAsUpIndicator">@drawable/close</item>
-        <item name="actionMenuTextColor">#c59a6d</item>
+        <item name="android:actionMenuTextColor">@color/sky_blue_color</item>
     </style>
 
     <style name="ProTheme" parent="Theme.AppCompat.Light">
@@ -58,11 +58,11 @@
     </style>
 
     <style name="TextLabel" parent="AppTheme.NoActionBar">
-        <item name="android:textColorHint">#eeeeee</item>
+        <item name="android:textColorHint">#03353e</item>
         <item name="android:textSize">20sp</item>
-        <item name="colorAccent">#eeeeee</item>
-        <item name="colorControlNormal">#eeeeee</item>
-        <item name="colorControlActivated">#c59a6d</item>
+        <item name="colorAccent">#03353e</item>
+        <item name="colorControlNormal">#03353e</item>
+        <item name="colorControlActivated">@color/sky_blue_color</item>
     </style>
 
     <style name="TextLabelNew" parent="AppTheme.NoActionBar">
@@ -73,9 +73,9 @@
     </style>
 
     <style name="SCBSwitch" parent="AppTheme">
-        <item name="colorControlActivated">#c59a6d</item>
+        <item name="colorControlActivated">@color/sky_blue_color</item>
         <item name="colorSwitchThumbNormal">#f1f1f1</item>
-        <item name="android:colorForeground">#c59a6d</item>
+        <item name="android:colorForeground">@color/sky_blue_color</item>
     </style>
 
     <style name="MyCheckBox" parent="Theme.AppCompat.Light">

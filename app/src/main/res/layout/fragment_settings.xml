@@ -7,603 +7,585 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/settingsscrollview"
-        android:background="#122222"
+        android:background="@color/while_color"
         >
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#282f35"
-            android:id="@+id/settingsrl1"
-            >
-
-            <View
-                android:id="@+id/emailselectionview"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_above="@+id/notificon"
+                android:layout_height="match_parent"
+                android:background="@color/while_color"
+                android:id="@+id/settingsrl1"
+                >
 
-            />
-            <View
-                android:id="@+id/pushselectionview"
+                <View
+                    android:id="@+id/emailselectionview"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_above="@+id/notificon"
+
+                    />
+                <View
+                    android:id="@+id/pushselectionview"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_below="@+id/emailselectionview"
+                    android:layout_above="@+id/passicon"
+
+                    />
+                <View
+                    android:id="@+id/changepassselectionview"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_below="@+id/pushselectionview"
+                    android:layout_above="@+id/proicon"
+
+                    />
+
+                <View
+                    android:id="@+id/proselectionview"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_below="@+id/changepassselectionview"
+                    android:layout_above="@+id/lastloginicon"
+
+                    />
+                <View
+                    android:id="@+id/lastloginselectionview"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_below="@+id/proselectionview"
+                    android:layout_above="@+id/reporticon"
+                    />
+                <View
+                    android:id="@+id/reportselectionview"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_below="@+id/lastloginselectionview"
+                    android:layout_above="@+id/settingsline15"
+                    />
+
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/email_icon"
+                    android:id="@+id/emailicon"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email Address"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:id="@+id/emailtxt"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/emailicon"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit email address for your account"
+                    android:layout_below="@+id/emailtxt"
+                    android:id="@+id/emailemailtxt"
+                    android:textSize="12dp"
+                    android:textColor="@color/dark_color"
+                    android:paddingTop="3dp"
+                    android:layout_toRightOf="@+id/emailicon"
+                    />
+
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/sky_blue_color"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/emailemailtxt"
+                    android:id="@+id/settingsline1"
+                    />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/notification_settings_icon"
+                    android:id="@+id/notificon"
+                    android:layout_below="@+id/settingsline1"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Push Notifications"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+
+                    android:id="@+id/notiftxt"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/notificon"
+                    android:layout_below="@id/settingsline1"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Manage your push notification preferences"
+                    android:layout_below="@+id/notiftxt"
+                    android:id="@+id/notifnotiftxt"
+                    android:textSize="12dp"
+
+                    android:textColor="@color/dark_color"
+                    android:paddingTop="3dp"
+                    android:layout_toRightOf="@+id/notificon"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/sky_blue_color"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/notifnotiftxt"
+                    android:id="@+id/settingsline2"
+                    />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/password_icon"
+                    android:id="@+id/passicon"
+                    android:layout_below="@+id/settingsline2"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Change Password"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:id="@+id/passtxt"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/passicon"
+                    android:layout_below="@+id/settingsline2"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Choose a unique password to protect your account"
+                    android:layout_below="@+id/passtxt"
+                    android:id="@+id/passpasstxt"
+                    android:textSize="12dp"
+                    android:textColor="@color/dark_color"
+                    android:paddingTop="3dp"
+                    android:layout_toRightOf="@+id/emailicon"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/sky_blue_color"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/passpasstxt"
+                    android:id="@+id/settingsline3"
+                    />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/pro_settings_icon"
+                    android:id="@+id/proicon"
+                    android:layout_below="@+id/settingsline3"
+
+                    />
+
+                <TextView
+                    android:id="@+id/trytxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp"
+                    android:text="Try Place Me Pro for Free"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/proicon"
+                    android:layout_below="@+id/settingsline3"
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Explore what place me pro can do for you"
+                    android:layout_below="@+id/trytxt"
+                    android:id="@+id/proprotxt"
+                    android:textColor="@color/dark_color"
+                    android:textSize="12dp"
+                    android:paddingTop="3dp"
+                    android:layout_toRightOf="@+id/emailicon"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/sky_blue_color"
+
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/proprotxt"
+                    android:id="@+id/settingsline4"
+                    />
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/login_session_icon"
+                    android:id="@+id/lastloginicon"
+                    android:layout_below="@+id/settingsline4"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Login Sessions"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:id="@+id/logintxt"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/passicon"
+                    android:layout_below="@+id/settingsline4"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Check out your last login sessions"
+                    android:layout_below="@+id/logintxt"
+                    android:id="@+id/loginlogintxt"
+                    android:textColor="@color/dark_color"
+                    android:paddingTop="3dp"
+                    android:textSize="12dp"
+                    android:layout_toRightOf="@+id/emailicon"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/sky_blue_color"
+
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/loginlogintxt"
+                    android:id="@+id/settingsline5"
+                    />
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/report_bug_icon"
+                    android:id="@+id/reporticon"
+                    android:layout_below="@+id/settingsline5"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Report Bug / Feedback"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:id="@+id/reporttxt"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/passicon"
+                    android:layout_below="@+id/settingsline5"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Submit bug reports and request enhancements to Place Me "
+                    android:layout_below="@+id/reporttxt"
+                    android:id="@+id/reportreporttxt"
+                    android:textSize="12dp"
+                    android:textColor="@color/dark_color"
+                    android:paddingTop="3dp"
+                    android:layout_toRightOf="@+id/emailicon"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/sky_blue_color"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/reportreporttxt"
+                    android:id="@+id/settingsline6"
+                    />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/settingsline6"
+                    android:id="@+id/settingsline15"
+                    />
+
+            </RelativeLayout>
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_below="@+id/emailselectionview"
-                android:layout_above="@+id/passicon"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/settingsrl1"
+                android:id="@+id/settingsrl2"
+                android:background="@color/while_color"
+                >
 
-                />
-            <View
-                android:id="@+id/changepassselectionview"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_below="@+id/pushselectionview"
-                android:layout_above="@+id/proicon"
+                <View
+                    android:id="@+id/faqselectionview"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_above="@+id/helpselectionview"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+                <View
+                    android:id="@+id/helpselectionview"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_above="@+id/privacyicon"
+                    android:layout_below="@+id/settingsline7"
 
-                />
+                    />
+                <View
+                    android:id="@+id/privacyselectionview"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_above="@+id/termsicon"
+                    android:layout_below="@+id/settingsline8"
 
-            <View
-                android:id="@+id/proselectionview"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_below="@+id/changepassselectionview"
-                android:layout_above="@+id/lastloginicon"
+                    />
+                <View
+                    android:id="@+id/termsselectionview"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_above="@+id/agreementicon"
+                    android:layout_below="@+id/settingsline9"
 
-                />
-            <View
-                android:id="@+id/lastloginselectionview"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_below="@+id/proselectionview"
-                android:layout_above="@+id/reporticon"
-                />
-            <View
-                android:id="@+id/reportselectionview"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_below="@+id/lastloginselectionview"
-                android:layout_above="@+id/settingsline15"
-                />
+                    />
+                <View
+                    android:id="@+id/agreementselectionview"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_above="@+id/signouticon"
+                    android:layout_below="@+id/settingsline10"
 
+                    />
 
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginTop="22dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/email"
-                android:id="@+id/emailicon"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email Address"
-                android:textSize="20dp"
-                android:textColor="#eee"
-                android:id="@+id/emailtxt"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/emailicon"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Edit email address for your account"
-                android:layout_below="@+id/emailtxt"
-                android:id="@+id/emailemailtxt"
-                android:textColor="#bbb"
-                android:paddingTop="3dp"
-                android:layout_toRightOf="@+id/emailicon"
-                />
+                <View
+                    android:id="@+id/signoutselectionview"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_below="@+id/settingsline11"
+                    android:layout_above="@+id/settingsline13"
+                    />
 
 
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/faq_icon"
+                    android:id="@+id/faqicon"
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#c59a6d"
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/emailemailtxt"
-                android:id="@+id/settingsline1"
-                />
+                    />
 
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginTop="22dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/notification"
-                android:id="@+id/notificon"
-                android:layout_below="@+id/settingsline1"
+                <TextView
+                    android:id="@+id/faqtxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/settingsline7"
+                    android:layout_toEndOf="@+id/faqicon"
+                    android:layout_toRightOf="@+id/faqicon"
 
-                />
+                    android:text="FAQs"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/sky_blue_color"                android:layout_marginTop="13dp"
+                    android:layout_below="@+id/faqicon"
+                    android:id="@+id/settingsline7"
+                    />
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/help_center_icon"
+                    android:id="@+id/helpicon"
+                    android:layout_below="@+id/settingsline7"
+                    />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Push Notifications"
-                android:textSize="20dp"
-                android:textColor="#eee"
-                android:id="@+id/notiftxt"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/notificon"
-                android:layout_below="@id/settingsline1"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Manage your push notification preferences"
-                android:layout_below="@+id/notiftxt"
-                android:id="@+id/notifnotiftxt"
-                android:textColor="#bbb"
-                android:paddingTop="3dp"
-                android:layout_toRightOf="@+id/notificon"
-                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Help Center"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:id="@+id/helptxt"
+                    android:layout_marginTop="13dp"
+                    android:layout_toRightOf="@+id/faqicon"
+                    android:layout_below="@+id/settingsline7"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/sky_blue_color"                android:layout_marginTop="13dp"
+                    android:layout_below="@+id/helpicon"
+                    android:id="@+id/settingsline8"
+                    />
 
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/privacy_policy_icon"
+                    android:id="@+id/privacyicon"
+                    android:layout_below="@+id/settingsline8"
+                    />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Privacy Policy"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:id="@+id/privacytxt"
+                    android:layout_marginTop="13dp"
+                    android:layout_toRightOf="@+id/faqicon"
+                    android:layout_below="@+id/settingsline8"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/sky_blue_color"                android:layout_marginTop="13dp"
+                    android:layout_below="@+id/privacyicon"
+                    android:id="@+id/settingsline9"
+                    />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#c59a6d"
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/notifnotiftxt"
-                android:id="@+id/settingsline2"
-                />
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/terms_icon"
+                    android:id="@+id/termsicon"
+                    android:layout_below="@+id/settingsline9"
+                    />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Terms and Conditions"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:id="@+id/termstxt"
+                    android:layout_marginTop="13dp"
+                    android:layout_toRightOf="@+id/faqicon"
+                    android:layout_below="@+id/settingsline9"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/sky_blue_color"
+                    android:layout_marginTop="13dp"
+                    android:layout_below="@+id/termsicon"
+                    android:id="@+id/settingsline10"
+                    />
 
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/user_agreement_icon"
+                    android:id="@+id/agreementicon"
+                    android:layout_below="@+id/settingsline10"
+                    />
 
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/changepassword"
-                android:id="@+id/passicon"
-                android:layout_below="@+id/settingsline2"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="User Agreement"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:id="@+id/agreementtxt"
+                    android:layout_marginTop="13dp"
+                    android:layout_toRightOf="@+id/faqicon"
+                    android:layout_below="@+id/settingsline10"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/sky_blue_color"
+                    android:layout_marginTop="13dp"
+                    android:layout_below="@+id/agreementicon"
+                    android:id="@+id/settingsline11"/>
 
-                />
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/sign_out_icon"
+                    android:id="@+id/signouticon"
+                    android:layout_below="@+id/settingsline11"
+                    />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Change Password"
-                android:textSize="20dp"
-                android:textColor="#eee"
-                android:id="@+id/passtxt"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/passicon"
-                android:layout_below="@+id/settingsline2"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Choose a unique password to protect your account"
-                android:layout_below="@+id/passtxt"
-                android:id="@+id/passpasstxt"
-                android:textColor="#bbb"
-                android:paddingTop="3dp"
-                android:layout_toRightOf="@+id/emailicon"
-                />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#c59a6d"
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/passpasstxt"
-                android:id="@+id/settingsline3"
-                />
-
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginTop="22dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/paper"
-                android:id="@+id/proicon"
-                android:layout_below="@+id/settingsline3"
-
-                />
-
-            <TextView
-                android:id="@+id/trytxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_blue_bright"
-                android:textSize="20dp"
-                android:text="Try Place Me"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/proicon"
-                android:layout_below="@+id/settingsline3"
-                />
-            <TextView
-                android:id="@+id/protxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_blue_bright"
-                android:textSize="12dp"
-                android:text="Pro"
-                android:layout_marginTop="4dp"
-                android:layout_toRightOf="@+id/trytxt"
-                android:layout_marginRight="10dp"
-                android:layout_below="@+id/settingsline3"
-                />
-            <TextView
-                android:id="@+id/freetxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/holo_blue_bright"
-                android:textSize="20dp"
-                android:text="For Free"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/protxt"
-                android:layout_below="@+id/settingsline3"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Explore what place me pro can do for you"
-                android:layout_below="@+id/freetxt"
-                android:id="@+id/proprotxt"
-                android:textColor="#bbb"
-                android:paddingTop="3dp"
-                android:layout_toRightOf="@+id/emailicon"
-                />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#c59a6d"
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/proprotxt"
-                android:id="@+id/settingsline4"
-                />
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginTop="22dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/loginsession"
-                android:id="@+id/lastloginicon"
-                android:layout_below="@+id/settingsline4"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Login Sessions"
-                android:textSize="20dp"
-                android:textColor="#eee"
-                android:id="@+id/logintxt"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/passicon"
-                android:layout_below="@+id/settingsline4"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Check out your last login sessions"
-                android:layout_below="@+id/logintxt"
-                android:id="@+id/loginlogintxt"
-                android:textColor="#bbb"
-                android:paddingTop="3dp"
-                android:layout_toRightOf="@+id/emailicon"
-                />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#c59a6d"
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/loginlogintxt"
-                android:id="@+id/settingsline5"
-                />
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/reportbug"
-                android:id="@+id/reporticon"
-                android:layout_below="@+id/settingsline5"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Report Bug / Feedback"
-                android:textSize="20dp"
-                android:textColor="#eee"
-                android:id="@+id/reporttxt"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/passicon"
-                android:layout_below="@+id/settingsline5"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Submit bug reports and request enhancements to Place Me "
-                android:layout_below="@+id/reporttxt"
-                android:id="@+id/reportreporttxt"
-                android:textColor="#bbb"
-                android:paddingTop="3dp"
-                android:layout_toRightOf="@+id/emailicon"
-                />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#c59a6d"
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/reportreporttxt"
-                android:id="@+id/settingsline6"
-                />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_below="@+id/settingsline6"
-                android:id="@+id/settingsline15"
-                />
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sign Out"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:id="@+id/signouttxt"
+                    android:layout_marginTop="13dp"
+                    android:layout_toRightOf="@+id/faqicon"
+                    android:layout_below="@+id/settingsline11"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_below="@+id/signouticon"
+                    android:id="@+id/settingsline13"
+                    />
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/settingsline11"
+                    android:id="@+id/settingsline14"
+                    />
+            </RelativeLayout>
         </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/settingsrl1"
-            android:id="@+id/settingsrl2"
-            android:background="#122222"
-            >
-            <View
-                android:id="@+id/faqselectionview"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_above="@+id/helpicon"
-                />
-            <View
-                android:id="@+id/helpselectionview"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_above="@+id/privacyicon"
-                android:layout_below="@+id/settingsline7"
-
-                />
-            <View
-                android:id="@+id/privacyselectionview"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_above="@+id/termsicon"
-                android:layout_below="@+id/settingsline8"
-
-                />
-            <View
-                android:id="@+id/termsselectionview"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_above="@+id/agreementicon"
-                android:layout_below="@+id/settingsline9"
-
-                />
-            <View
-                android:id="@+id/agreementselectionview"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_above="@+id/signouticon"
-                android:layout_below="@+id/settingsline10"
-
-                />
-
-            <View
-                android:id="@+id/signoutselectionview"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_below="@+id/settingsline11"
-                android:layout_above="@+id/settingsline13"
-                />
-
-
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/faq"
-                android:id="@+id/faqicon"
-
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="FAQs"
-                android:textSize="16dp"
-                android:textColor="#eee"
-                android:id="@+id/faqtxt"
-                android:layout_marginTop="15dp"
-                android:layout_toRightOf="@+id/faqicon"
-
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#c59a6d"
-                android:layout_marginTop="13dp"
-                android:layout_below="@+id/faqicon"
-                android:id="@+id/settingsline7"
-                />
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/help"
-                android:id="@+id/helpicon"
-                android:layout_below="@+id/settingsline7"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Help Center"
-                android:textSize="16dp"
-                android:textColor="#eee"
-                android:id="@+id/helptxt"
-                android:layout_marginTop="13dp"
-                android:layout_toRightOf="@+id/faqicon"
-                android:layout_below="@+id/settingsline7"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#c59a6d"
-                android:layout_marginTop="13dp"
-                android:layout_below="@+id/helpicon"
-                android:id="@+id/settingsline8"
-                />
-
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/privacypolicy"
-                android:id="@+id/privacyicon"
-                android:layout_below="@+id/settingsline8"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Privacy Policy"
-                android:textSize="16dp"
-                android:textColor="#eee"
-                android:id="@+id/privacytxt"
-                android:layout_marginTop="13dp"
-                android:layout_toRightOf="@+id/faqicon"
-                android:layout_below="@+id/settingsline8"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#c59a6d"
-                android:layout_marginTop="13dp"
-                android:layout_below="@+id/privacyicon"
-                android:id="@+id/settingsline9"
-                />
-
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/termsnconditions"
-                android:id="@+id/termsicon"
-                android:layout_below="@+id/settingsline9"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Terms and Conditions"
-                android:textSize="16dp"
-                android:textColor="#eee"
-                android:id="@+id/termstxt"
-                android:layout_marginTop="13dp"
-                android:layout_toRightOf="@+id/faqicon"
-                android:layout_below="@+id/settingsline9"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#c59a6d"
-                android:layout_marginTop="13dp"
-                android:layout_below="@+id/termsicon"
-                android:id="@+id/settingsline10"
-                />
-
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/useragreement"
-                android:id="@+id/agreementicon"
-                android:layout_below="@+id/settingsline10"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="User Agreement"
-                android:textSize="16dp"
-                android:textColor="#eee"
-                android:id="@+id/agreementtxt"
-                android:layout_marginTop="13dp"
-                android:layout_toRightOf="@+id/faqicon"
-                android:layout_below="@+id/settingsline10"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#c59a6d"
-                android:layout_marginTop="13dp"
-                android:layout_below="@+id/agreementicon"
-                android:id="@+id/settingsline11"/>
-
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/logout"
-                android:id="@+id/signouticon"
-                android:layout_below="@+id/settingsline11"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sign Out"
-                android:textSize="16dp"
-                android:textColor="#eee"
-                android:id="@+id/signouttxt"
-                android:layout_marginTop="13dp"
-                android:layout_toRightOf="@+id/faqicon"
-                android:layout_below="@+id/settingsline11"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="13dp"
-                android:layout_below="@+id/signouticon"
-                android:id="@+id/settingsline13"
-                />
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_below="@+id/settingsline11"
-                android:id="@+id/settingsline14"
-                />
-        </RelativeLayout>
-        </RelativeLayout>
-        </ScrollView>
+    </ScrollView>
 
 
 </RelativeLayout>

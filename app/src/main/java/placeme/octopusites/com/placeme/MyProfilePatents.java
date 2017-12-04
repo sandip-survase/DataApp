@@ -7927,6 +7927,9 @@ public class MyProfilePatents extends AppCompatActivity {
                     setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("hr"))
                 setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
+                else if(role.equals("admin"))
+                    setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
+
 
                 s.setPtitle1(stitle1);
                 s.setPappno1(sappno1);

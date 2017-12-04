@@ -12,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -117,7 +118,7 @@ public class EditProfileAdmin extends AppCompatActivity {
                     }
                 }
                 if(currentPosition==3){
-                    AdminExperiencesTabFragment ExperiencesTabFragment= (AdminExperiencesTabFragment) adapter.getItem(3);
+                    HrExperiencesTabFragment ExperiencesTabFragment= (HrExperiencesTabFragment) adapter.getItem(3);
                     if(ExperiencesTabFragment.edittedFlag==1){
                         Boolean project_success = ExperiencesTabFragment.validate();
                         if(project_success){
@@ -126,7 +127,7 @@ public class EditProfileAdmin extends AppCompatActivity {
                     }
                 }
                 if(currentPosition==4){
-                    AdminContactTabFragment ContactTabFragment= (AdminContactTabFragment) adapter.getItem(4);
+                    HrContactTabFragment ContactTabFragment= (HrContactTabFragment) adapter.getItem(4);
                     if(ContactTabFragment.edittedFlag==1){
                         Boolean project_success = ContactTabFragment.validate();
                         if(project_success){
@@ -169,8 +170,8 @@ public class EditProfileAdmin extends AppCompatActivity {
         adapter.addFrag(new AdminPersonalTabFragment(), "Personal");
         adapter.addFrag(new AdminInstituteTabFragment(), "Institute");
         adapter.addFrag(new AdminAccomplishmentsTabFragment(), "Accomplishments");
-        adapter.addFrag(new AdminExperiencesTabFragment(), "Experiences");
-        adapter.addFrag(new AdminContactTabFragment(), "Contact");
+        adapter.addFrag(new HrExperiencesTabFragment(), "Experiences");
+        adapter.addFrag(new HrContactTabFragment(), "Contact");
         viewPager.setOffscreenPageLimit(4);
         viewPager.setAdapter(adapter);
     }
@@ -224,8 +225,8 @@ public class EditProfileAdmin extends AppCompatActivity {
 
         AdminPersonalTabFragment fragment = (AdminPersonalTabFragment) adapter.getItem(0);
         AdminInstituteTabFragment adminInstituteTabFragment= (AdminInstituteTabFragment) adapter.getItem(1);
-        AdminExperiencesTabFragment ExperiencesTabFragment= (AdminExperiencesTabFragment) adapter.getItem(3);
-        AdminContactTabFragment ContactTabFragment= (AdminContactTabFragment) adapter.getItem(4);
+        HrExperiencesTabFragment ExperiencesTabFragment= (HrExperiencesTabFragment) adapter.getItem(3);
+        HrContactTabFragment ContactTabFragment= (HrContactTabFragment) adapter.getItem(4);
 
 
         if (fragment.edittedFlag == 1 || adminInstituteTabFragment.edittedFlag == 1 || ExperiencesTabFragment.edittedFlag == 1 || ContactTabFragment.edittedFlag == 1) {
@@ -241,9 +242,10 @@ public class EditProfileAdmin extends AppCompatActivity {
 
                                     AdminPersonalTabFragment fragment = (AdminPersonalTabFragment) adapter.getItem(0);
                                     AdminInstituteTabFragment adminInstituteTabFragment= (AdminInstituteTabFragment) adapter.getItem(1);
-                                    AdminExperiencesTabFragment ExperiencesTabFragment= (AdminExperiencesTabFragment) adapter.getItem(3);
-                                    AdminContactTabFragment ContactTabFragment= (AdminContactTabFragment) adapter.getItem(4);
+                                    HrExperiencesTabFragment ExperiencesTabFragment= (HrExperiencesTabFragment) adapter.getItem(3);
+                                    HrContactTabFragment ContactTabFragment= (HrContactTabFragment) adapter.getItem(4);
 
+                                    Log.d("TAG", "onClick: click save button");
 
                                     Boolean personal_success = true;
                                     Boolean institute_success = true;
@@ -338,87 +340,4 @@ public class EditProfileAdmin extends AppCompatActivity {
 
     }
 
-
-
-
-
-
-
-//    @Override
-//    public void onBackPressed() {
-//        AdminPersonalTabFragment fragment = (AdminPersonalTabFragment) adapter.getItem(0);
-//        AdminInstituteTabFragment adminInstituteTabFragment= (AdminInstituteTabFragment) adapter.getItem(1);
-//        AdminExperiencesTabFragment ExperiencesTabFragment= (AdminExperiencesTabFragment) adapter.getItem(3);
-//        AdminContactTabFragment ContactTabFragment= (AdminContactTabFragment) adapter.getItem(4);
-//
-//
-//        if(fragment.edittedFlag==1 || adminInstituteTabFragment.edittedFlag==1  || ExperiencesTabFragment.edittedFlag==1 || ContactTabFragment.edittedFlag==1) {
-//            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-//            alertDialogBuilder
-//                    .setMessage("Do you want to save all changes ?")
-//                    .setCancelable(false)
-//                    .setPositiveButton("save",
-//                            new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int id) {
-//                                    AdminPersonalTabFragment fragment = (AdminPersonalTabFragment) adapter.getItem(0);
-//                                    AdminInstituteTabFragment adminInstituteTabFragment= (AdminInstituteTabFragment) adapter.getItem(1);
-//                                    AdminExperiencesTabFragment ExperiencesTabFragment= (AdminExperiencesTabFragment) adapter.getItem(3);
-//                                    AdminContactTabFragment ContactTabFragment= (AdminContactTabFragment) adapter.getItem(4);
-//
-//                                    if(fragment.edittedFlag==1){
-//                                        Boolean personal_success = fragment.validate();
-//                                        if(personal_success){
-//                                            fragment.save();
-//                                        }
-//                                    }
-//                                    if(adminInstituteTabFragment.edittedFlag==1){
-//                                        Boolean project_success = adminInstituteTabFragment.validate();
-//                                        if(project_success){
-//                                            adminInstituteTabFragment.save();
-//                                        }
-//                                    }
-//
-//                                    if(ExperiencesTabFragment.edittedFlag==1){
-//                                        Boolean project_success = ExperiencesTabFragment.validate();
-//                                        if(project_success){
-//                                            ExperiencesTabFragment.save();
-//                                        }
-//                                    }
-//                                    if(ContactTabFragment.edittedFlag==1){
-//                                        Boolean project_success = ContactTabFragment.validate();
-//                                        if(project_success){
-//                                            ContactTabFragment.save();
-//                                        }
-//                                    }
-//
-//                                    setResult(111);
-//
-//                                    EditProfileAdmin.super.onBackPressed();
-//                                }
-//                            })
-//
-//                    .setNegativeButton("Discard", new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int id) {
-//
-//                            dialog.cancel();
-//                            EditProfileAdmin.super.onBackPressed();
-//                        }
-//                    });
-//
-//            final AlertDialog alertDialog = alertDialogBuilder.create();
-//
-//            alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-//                @Override
-//                public void onShow(DialogInterface dialogInterface) {
-//                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-//                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
-//                }
-//            });
-//
-//            alertDialog.show();
-//
-//        }
-//        else
-//            EditProfileAdmin.super.onBackPressed();
-//    }
 }

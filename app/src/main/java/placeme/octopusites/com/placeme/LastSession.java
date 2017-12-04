@@ -27,7 +27,7 @@ import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 
 public class LastSession extends AppCompatActivity {
 
-    TextView countrytxt,platformtxt,iptxt,countrylasttxt,platformlasttxt,iplasttxt,lastaccessedtxt;
+    TextView countrytxt,platformtxt,iptxt,ipiptxt,ipiplasttxt,countrylasttxt,platformlasttxt,iplasttxt,lastaccessedtxt,lastaccessedtxttxt,activetxt,lasttxt,detaildetailtxt,detaildetaillasttxt;
     String scountry,sregion,scity,sregionlast,scitylast,splatform,sip,scountrylast,splatformlast,siplast,slastaccessed;
     JSONObject json;
     String username;
@@ -52,26 +52,43 @@ public class LastSession extends AppCompatActivity {
         countrytxt=(TextView)findViewById(R.id.countrytxt);
         platformtxt=(TextView)findViewById(R.id.platformtxt);
         iptxt=(TextView)findViewById(R.id.iptxt);
+        ipiptxt=(TextView)findViewById(R.id.ipiptxt);
+        ipiplasttxt=(TextView)findViewById(R.id.ipiplasttxt);
         countrylasttxt=(TextView)findViewById(R.id.countrylasttxt);
         platformlasttxt=(TextView)findViewById(R.id.platformlasttxt);
         iplasttxt=(TextView)findViewById(R.id.iplasttxt);
+        lastaccessedtxttxt=(TextView)findViewById(R.id.lastaccessedtxttxt);
         lastaccessedtxt=(TextView)findViewById(R.id.lastaccessedtxt);
+        activetxt=(TextView)findViewById(R.id.activetxt);
+        lasttxt=(TextView)findViewById(R.id.lasttxt);
+        detaildetailtxt=(TextView)findViewById(R.id.detaildetailtxt);
+        detaildetaillasttxt=(TextView)findViewById(R.id.detaildetaillasttxt);
+
+        activetxt.setTypeface(MyConstants.getBold(this));
+        lasttxt.setTypeface(MyConstants.getBold(this));
+        detaildetailtxt.setTypeface(MyConstants.getLight(this));
+        detaildetaillasttxt.setTypeface(MyConstants.getLight(this));
+        countrytxt.setTypeface(MyConstants.getBold(this));
+        platformtxt.setTypeface(MyConstants.getBold(this));
+        countrylasttxt.setTypeface(MyConstants.getBold(this));
+        platformlasttxt.setTypeface(MyConstants.getBold(this));
+        iptxt.setTypeface(MyConstants.getBold(this));
+        iplasttxt.setTypeface(MyConstants.getBold(this));
+        ipiptxt.setTypeface(MyConstants.getLight(this));
+        ipiplasttxt.setTypeface(MyConstants.getLight(this));
+        lastaccessedtxttxt.setTypeface(MyConstants.getLight(this));
+        lastaccessedtxt.setTypeface(MyConstants.getBold(this));
+
+
+
+
+
 
         new GetSessionDetails().execute();
 
 
-        TextView activetxt=(TextView)findViewById(R.id.activetxt);
-        TextView lasttxt=(TextView)findViewById(R.id.lasttxt);
-        TextView detaildetailtxt=(TextView)findViewById(R.id.detaildetailtxt);
-        TextView detaildetaillasttxt=(TextView)findViewById(R.id.detaildetaillasttxt);
 
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/cabinsemibold.ttf");
-        activetxt.setTypeface(custom_font);
-        lasttxt.setTypeface(custom_font);
 
-        Typeface custom_fon2 = Typeface.createFromAsset(getAssets(),  "fonts/maven.ttf");
-        detaildetailtxt.setTypeface(custom_fon2);
-        detaildetaillasttxt.setTypeface(custom_fon2);
 
 
     }

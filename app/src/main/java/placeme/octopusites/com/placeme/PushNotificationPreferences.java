@@ -107,16 +107,14 @@ public class PushNotificationPreferences extends AppCompatActivity {
         TextView notifplacemetxt=(TextView)findViewById(R.id.notifplacemetxt);
         TextView blogtxt=(TextView)findViewById(R.id.blogtxt);
 
+        pushtxt.setTypeface(MyConstants.getLight(this));
+        placeinsttxt.setTypeface(MyConstants.getBold(this));
+        placeplacemetxt.setTypeface(MyConstants.getBold(this));
+        notiftxt.setTypeface(MyConstants.getBold(this));
+        notifplacemetxt.setTypeface(MyConstants.getBold(this));
+        blogtxt.setTypeface(MyConstants.getBold(this));
 
-        Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/cabinsemibold.ttf");
-        Typeface custom_font4 = Typeface.createFromAsset(getAssets(),  "fonts/maven.ttf");
 
-        pushtxt.setTypeface(custom_font4);
-        placeinsttxt.setTypeface(custom_font3);
-        placeplacemetxt.setTypeface(custom_font3);
-        notiftxt.setTypeface(custom_font3);
-        notifplacemetxt.setTypeface(custom_font3);
-        blogtxt.setTypeface(custom_font3);
 
         sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         username=sharedpreferences.getString(Username,null);

@@ -54,6 +54,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
     String digest1,digest2;
     JSONObject json;
     JSONParser jParser = new JSONParser();
+
     private static String url_savedata= "http://192.168.100.30:8080/ProfileObjects/SaveAdminInstituteData";
 
     AdminData a =new AdminData();
@@ -396,7 +397,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
 
 
 
-            json = jParser.makeHttpRequest(url_savedata, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_SaveAdminInstituteData, "GET", params);
             try {
 //                Log.d("Reversecheck", "doInBackground: "+json.getString("dataobj"));
                 r = json.getString("info");

@@ -2,6 +2,7 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -11,6 +12,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -38,21 +40,33 @@ public class ViewPlacement extends AppCompatActivity {
     JSONParser jParser = new JSONParser();
     private static String url_registerforplacement = "http://192.168.100.100/AESTest/RegisterForPlacement";
     private static String url_getstudentmarksinfo = "http://192.168.100.100/AESTest/GetStudentMarksInfo";
-    String username,resultofop;
-    String id,companyname,cpackage,post,forwhichcourse,forwhichstream,vacancies,lastdateofregistration,dateofarrival,bond,noofapti,nooftechtest,noofgd,noofti,noofhri,stdx,stdxiiordiploma,ug,pg,uploadtime,lastmodified,uploadedby,noofallowedliveatkt,noofalloweddeadatkt,studenttenthmarks,studenttwelthordiplomamarks,studentugmarks,studentpgmarks;
+    public static String url_SaveResume = "http://192.168.100.10/GenerateResumeWithJODConverter3/SaveResume";
+
+    String username, resultofop;
+    String id, companyname, cpackage, post, forwhichcourse, forwhichstream, vacancies, lastdateofregistration, dateofarrival, bond, noofapti, nooftechtest, noofgd, noofti, noofhri, stdx, stdxiiordiploma, ug, pg, uploadtime, lastmodified, uploadedby, noofallowedliveatkt, noofalloweddeadatkt, studenttenthmarks, studenttwelthordiplomamarks, studentugmarks, studentpgmarks;
     Button registerbutton;
     ProgressBar progressBar;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
-    String digest1,digest2;
+
+    int found_box1=0,found_tenth=0,found_twelth=0,found_diploma=0,found_ug=0,found_pgsem=0,found_pgyear=0,found_projects=0,found_lang=0,found_certificates=0;
+    int found_courses=0,found_skills=0,found_honors=0,found_patents=0,found_publications=0,found_careerobj=0,found_strengths=0,found_weaknesses=0,found_locationpreferences=0;
+    int found_contact_details=0,found_personal=0;
+
+
+    String digest1, digest2, role;
     byte[] demoKeyBytes;
     byte[] demoIVBytes;
     String sPadding = "ISO10126Padding";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_placement);
+
+
+        username = MySharedPreferencesManager.getUsername(this);
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        role = MySharedPreferencesManager.getRole(this);
 
         toolbar = (Toolbar) findViewById(R.id.placementtoolbar);
         setSupportActionBar(toolbar);
@@ -66,58 +80,53 @@ public class ViewPlacement extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.placementtabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        digest1=sharedpreferences.getString("digest1",null);
-        digest2=sharedpreferences.getString("digest2",null);
 
-        String uploadedby_enc=getIntent().getStringExtra("uploadedby");
-        try
-        {
+        String uploadedby_enc = getIntent().getStringExtra("uploadedby");
+        try {
             demoKeyBytes = SimpleBase64Encoder.decode(digest1);
             demoIVBytes = SimpleBase64Encoder.decode(digest2);
             sPadding = "ISO10126Padding";
 
-            byte[] demo1EncryptedBytes1=SimpleBase64Encoder.decode(uploadedby_enc);
+            byte[] demo1EncryptedBytes1 = SimpleBase64Encoder.decode(uploadedby_enc);
 
             byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
 
-            uploadedby=new String(demo1DecryptedBytes1);
+            uploadedby = new String(demo1DecryptedBytes1);
 
 
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
 
-        registerbutton=(Button)findViewById(R.id.registerforplacementbutton);
-        progressBar=(ProgressBar)findViewById(R.id.registerforplacementprogress);
-
-
-        id=getIntent().getStringExtra("id");
-        companyname=getIntent().getStringExtra("companyname");
-        cpackage=getIntent().getStringExtra("package");
-        post=getIntent().getStringExtra("post");
-        forwhichcourse=getIntent().getStringExtra("forwhichcourse");
-        forwhichstream=getIntent().getStringExtra("forwhichstream");
-        vacancies=getIntent().getStringExtra("vacancies");
-        lastdateofregistration=getIntent().getStringExtra("lastdateofregistration");
-        dateofarrival=getIntent().getStringExtra("dateofarrival");
-        bond=getIntent().getStringExtra("bond");
-        noofapti=getIntent().getStringExtra("noofapti");
-        nooftechtest=getIntent().getStringExtra("nooftechtest");
-        noofgd=getIntent().getStringExtra("noofgd");
-        noofti=getIntent().getStringExtra("noofti");
-        noofhri=getIntent().getStringExtra("noofhri");
-        stdx=getIntent().getStringExtra("stdx");
-        stdxiiordiploma=getIntent().getStringExtra("stdxiiordiploma");
-        ug=getIntent().getStringExtra("ug");
-        pg=getIntent().getStringExtra("pg");
-        uploadtime=getIntent().getStringExtra("uploadtime");
-        lastmodified=getIntent().getStringExtra("lastmodified");
-        noofallowedliveatkt=getIntent().getStringExtra("noofallowedliveatkt");
-        noofalloweddeadatkt=getIntent().getStringExtra("noofalloweddeadatkt");
+        registerbutton = (Button) findViewById(R.id.registerforplacementbutton);
+        progressBar = (ProgressBar) findViewById(R.id.registerforplacementprogress);
 
 
+        id = getIntent().getStringExtra("id");
+        companyname = getIntent().getStringExtra("companyname");
+        cpackage = getIntent().getStringExtra("package");
+        post = getIntent().getStringExtra("post");
+        forwhichcourse = getIntent().getStringExtra("forwhichcourse");
+        forwhichstream = getIntent().getStringExtra("forwhichstream");
+        vacancies = getIntent().getStringExtra("vacancies");
+        lastdateofregistration = getIntent().getStringExtra("lastdateofregistration");
+        dateofarrival = getIntent().getStringExtra("dateofarrival");
+        bond = getIntent().getStringExtra("bond");
+        noofapti = getIntent().getStringExtra("noofapti");
+        nooftechtest = getIntent().getStringExtra("nooftechtest");
+        noofgd = getIntent().getStringExtra("noofgd");
+        noofti = getIntent().getStringExtra("noofti");
+        noofhri = getIntent().getStringExtra("noofhri");
+        stdx = getIntent().getStringExtra("stdx");
+        stdxiiordiploma = getIntent().getStringExtra("stdxiiordiploma");
+        ug = getIntent().getStringExtra("ug");
+        pg = getIntent().getStringExtra("pg");
+        uploadtime = getIntent().getStringExtra("uploadtime");
+        lastmodified = getIntent().getStringExtra("lastmodified");
+        noofallowedliveatkt = getIntent().getStringExtra("noofallowedliveatkt");
+        noofalloweddeadatkt = getIntent().getStringExtra("noofalloweddeadatkt");
 
-        SavePlacementInfoForFragment save=new SavePlacementInfoForFragment();
+
+        SavePlacementInfoForFragment save = new SavePlacementInfoForFragment();
         save.setId(id);
         save.setCompanyname(companyname);
         save.setPackage(cpackage);
@@ -147,6 +156,7 @@ public class ViewPlacement extends AppCompatActivity {
         new getStudentMarksInfo().execute();
 
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -154,10 +164,11 @@ public class ViewPlacement extends AppCompatActivity {
 
                 onBackPressed();
 
-                return(true);
+                return (true);
         }
-        return(super.onOptionsItemSelected(item));
+        return (super.onOptionsItemSelected(item));
     }
+
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new PlacementTab1(), "Job Description");
@@ -165,8 +176,8 @@ public class ViewPlacement extends AppCompatActivity {
         adapter.addFragment(new PlacementTab3(), "Selection Criteria");
         viewPager.setAdapter(adapter);
     }
-    class ViewPagerAdapter extends FragmentPagerAdapter
-    {
+
+    class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
@@ -188,6 +199,7 @@ public class ViewPlacement extends AppCompatActivity {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }
+
         @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
@@ -197,8 +209,7 @@ public class ViewPlacement extends AppCompatActivity {
     private class registerforPlacementTask extends AsyncTask<String, Void, Integer> {
         @Override
         protected Integer doInBackground(String... urls) {
-            try
-            {
+            try {
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", username));
@@ -207,19 +218,22 @@ public class ViewPlacement extends AppCompatActivity {
                 String s = null;
                 resultofop = json.getString("info");
 
-            }catch (Exception e){e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             return 0;
         }
+
         @Override
         protected void onPostExecute(Integer result) {
 
-            if(resultofop.equals("success"))
-                Toast.makeText(ViewPlacement.this,"Successfully Registered", Toast.LENGTH_LONG).show();
-            else if(resultofop.equals("already"))
-                Toast.makeText(ViewPlacement.this,"Already Registered", Toast.LENGTH_LONG).show();
-            else if(resultofop.equals("date"))
-                Toast.makeText(ViewPlacement.this,"Registrations are closed..!", Toast.LENGTH_LONG).show();
+            if (resultofop.equals("success"))
+                Toast.makeText(ViewPlacement.this, "Successfully Registered", Toast.LENGTH_LONG).show();
+            else if (resultofop.equals("already"))
+                Toast.makeText(ViewPlacement.this, "Already Registered", Toast.LENGTH_LONG).show();
+            else if (resultofop.equals("date"))
+                Toast.makeText(ViewPlacement.this, "Registrations are closed..!", Toast.LENGTH_LONG).show();
             else
                 Toast.makeText(ViewPlacement.this, "Failed..!", Toast.LENGTH_LONG).show();
 
@@ -229,11 +243,11 @@ public class ViewPlacement extends AppCompatActivity {
         }
 
     }
+
     private class getStudentMarksInfo extends AsyncTask<String, Void, Integer> {
         @Override
         protected Integer doInBackground(String... urls) {
-            try
-            {
+            try {
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", username));
@@ -241,114 +255,346 @@ public class ViewPlacement extends AppCompatActivity {
                 json = jParser.makeHttpRequest(url_getstudentmarksinfo, "GET", params);
 
                 String s = json.getString("tenth");
-                if(s.equals("found"))
+                if (s.equals("found"))
                     studenttenthmarks = json.getString("tenthPercentage");
                 s = json.getString("twelth");
-                if(s.equals("found"))
-                    studenttwelthordiplomamarks= json.getString("twelthPercentage");
+                if (s.equals("found"))
+                    studenttwelthordiplomamarks = json.getString("twelthPercentage");
                 s = json.getString("diploma");
-                if(s.equals("found"))
-                    studenttwelthordiplomamarks=json.getString("diplomaPercentage");
+                if (s.equals("found"))
+                    studenttwelthordiplomamarks = json.getString("diplomaPercentage");
                 s = json.getString("ug");
-                if(s.equals("found"))
-                    studentugmarks=json.getString("ugPercentage");
+                if (s.equals("found"))
+                    studentugmarks = json.getString("ugPercentage");
                 s = json.getString("pgsem");
-                if(s.equals("found"))
-                    studentpgmarks=json.getString("pgsemPercentage");
+                if (s.equals("found"))
+                    studentpgmarks = json.getString("pgsemPercentage");
                 s = json.getString("pgyear");
-                if(s.equals("found"))
-                    studentpgmarks=json.getString("pgsemPercentage");
+                if (s.equals("found"))
+                    studentpgmarks = json.getString("pgsemPercentage");
 
-            }catch (Exception e){e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-        return 0;
+            return 0;
         }
+
         @Override
         protected void onPostExecute(Integer result) {
-        try
-            {
+            try {
                 demoKeyBytes = SimpleBase64Encoder.decode(digest1);
                 demoIVBytes = SimpleBase64Encoder.decode(digest2);
                 sPadding = "ISO10126Padding";
 
-                if(studenttenthmarks!=null) {
+                if (studenttenthmarks != null) {
                     byte[] studenttenthmarksEncryptedBytes = SimpleBase64Encoder.decode(studenttenthmarks);
                     byte[] studenttenthmarksDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, studenttenthmarksEncryptedBytes);
                     studenttenthmarks = new String(studenttenthmarksDecryptedBytes);
-                }
-                else
-                    studenttenthmarks="0";
-                if(studenttwelthordiplomamarks!=null)
-                {
+                } else
+                    studenttenthmarks = "0";
+                if (studenttwelthordiplomamarks != null) {
                     byte[] studenttwelthordiplomamarksEncryptedBytes = SimpleBase64Encoder.decode(studenttwelthordiplomamarks);
                     byte[] studenttwelthordiplomamarksDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, studenttwelthordiplomamarksEncryptedBytes);
                     studenttwelthordiplomamarks = new String(studenttwelthordiplomamarksDecryptedBytes);
-                }
-                else
-                    studenttwelthordiplomamarks="0";
-                if(studentugmarks!=null) {
+                } else
+                    studenttwelthordiplomamarks = "0";
+                if (studentugmarks != null) {
                     byte[] studentugmarksEncryptedBytes = SimpleBase64Encoder.decode(studentugmarks);
                     byte[] studentugmarksDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, studentugmarksEncryptedBytes);
                     studentugmarks = new String(studentugmarksDecryptedBytes);
-                }
-                else
-                    studentugmarks="0";
-                if(studentpgmarks!=null)
-                {
+                } else
+                    studentugmarks = "0";
+                if (studentpgmarks != null) {
                     byte[] studentpgmarksEncryptedBytes = SimpleBase64Encoder.decode(studentpgmarks);
                     byte[] studentpgmarksDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, studentpgmarksEncryptedBytes);
                     studentpgmarks = new String(studentpgmarksDecryptedBytes);
-                }
-                else
-                    studentpgmarks="0";
+                } else
+                    studentpgmarks = "0";
 
-                SavePlacementInfoForFragment save=new SavePlacementInfoForFragment();
+                SavePlacementInfoForFragment save = new SavePlacementInfoForFragment();
                 save.setStudenttenthmarks(studenttenthmarks);
                 save.setStudenttwelthordiplomamarks(studenttwelthordiplomamarks);
                 save.setStudentugmarks(studentugmarks);
                 save.setStudentpgmarks(studentpgmarks);
 
-                Float c10,s10,c12,s12,cu,su;
-                c10= Float.parseFloat(stdx);
-                c12= Float.parseFloat(stdxiiordiploma);
-                cu= Float.parseFloat(ug);
-                s10= Float.parseFloat(studenttenthmarks);
-                s12= Float.parseFloat(studenttwelthordiplomamarks);
-                su= Float.parseFloat(studentugmarks);
+                Float c10, s10, c12, s12, cu, su;
+                c10 = Float.parseFloat(stdx);
+                c12 = Float.parseFloat(stdxiiordiploma);
+                cu = Float.parseFloat(ug);
+                s10 = Float.parseFloat(studenttenthmarks);
+                s12 = Float.parseFloat(studenttwelthordiplomamarks);
+                su = Float.parseFloat(studentugmarks);
 
-                int tenthflag=0,twelthordiplomaflag=0,ugflag=0;
-                if(s10>=c10)
-                {
-                    tenthflag=1;
+                int tenthflag = 0, twelthordiplomaflag = 0, ugflag = 0;
+                if (s10 >= c10) {
+                    tenthflag = 1;
                 }
-                if(s12>=c12)
-                {
-                    twelthordiplomaflag=1;
+                if (s12 >= c12) {
+                    twelthordiplomaflag = 1;
                 }
-                if(su>=cu)
-                {
-                    ugflag=1;
+                if (su >= cu) {
+                    ugflag = 1;
                 }
-                LinearLayout registerbuttonlayout=(LinearLayout)findViewById(R.id.registerbuttonlayout);
-                if(tenthflag==1&&twelthordiplomaflag==1&&ugflag==1)
+                LinearLayout registerbuttonlayout = (LinearLayout) findViewById(R.id.registerbuttonlayout);
+                if (tenthflag == 1 && twelthordiplomaflag == 1 && ugflag == 1)
                     registerbuttonlayout.setVisibility(View.VISIBLE);
                 else
                     registerbuttonlayout.setVisibility(View.GONE);
                 registerbutton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
+                        // download resume in database
                         registerbutton.setVisibility(View.GONE);
                         progressBar.setVisibility(View.VISIBLE);
+//                        registerforPlacementTask task = new registerforPlacementTask();
+//                        task.execute();
 
-                        registerforPlacementTask task = new registerforPlacementTask();
-                        task.execute();
+                        new GetStudentData().execute();
 
                     }
                 });
 
-            }catch (Exception e){}
+            } catch (Exception e) {
+            }
 
+        }
+    }
+
+//    student data
+
+    private class GetStudentData extends AsyncTask<String, Void, Bitmap> {
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+            Bitmap map = null;
+            try {
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("u", username));
+                json = jParser.makeHttpRequest(MyConstants.load_student_data, "GET", params);
+
+                resultofop = json.getString("info");
+                if (resultofop.equals("found")) {
+                    String s = json.getString("intro");
+                    if (s.equals("found")) {
+                        found_box1 = 1;
+                    }
+                    s = json.getString("tenth");
+                    if (s.equals("found")) {
+                        found_tenth = 1;
+                    }
+                    s = json.getString("twelth");
+                    if (s.equals("found")) {
+                        found_twelth = 1;
+                    }
+                    s = json.getString("diploma");
+                    if (s.equals("found")) {
+                        found_diploma = 1;
+                    }
+                    s = json.getString("ug");
+                    if (s.equals("found")) {
+                        found_ug = 1;
+                    }
+                    s = json.getString("pgsem");
+                    if (s.equals("found")) {
+                        found_pgsem = 1;
+                    }
+
+                    s = json.getString("pgyear");
+                    if (s.equals("found")) {
+                        found_pgyear = 1;
+                    }
+
+                    s = json.getString("projects");
+                    if (s.equals("found")) {
+                        found_projects = 1;
+                    }
+                    s = json.getString("knownlang");
+                    if (s.equals("found")) {
+                        found_lang = 1;
+                    }
+                    s = json.getString("certificates");
+                    if (s.equals("found")) {
+                        found_certificates = 1;
+                    }
+                    s = json.getString("courses");
+                    if (s.equals("found")) {
+                        found_courses = 1;
+                    }
+                    s = json.getString("skills");
+                    if (s.equals("found")) {
+                        found_skills = 1;
+                    }
+                    s = json.getString("honors");
+                    if (s.equals("found")) {
+                        found_honors = 1;
+                    }
+                    s = json.getString("patents");
+                    if (s.equals("found")) {
+                        found_patents = 1;
+                    }
+                    s = json.getString("publications");
+                    if (s.equals("found")) {
+                        found_publications = 1;
+                    }
+                    s = json.getString("career");
+                    if (s.equals("found")) {
+                        found_careerobj = 1;
+                    }
+                    s = json.getString("strengths");
+                    if (s.equals("found")) {
+                        found_strengths = 1;
+                    }
+                    s = json.getString("weaknesses");
+                    if (s.equals("found")) {
+                        found_weaknesses = 1;
+                    }
+                    s = json.getString("locationpreferences");
+                    if (s.equals("found")) {
+                        found_locationpreferences = 1;
+                    }
+                    s = json.getString("contact_details");
+                    if (s.equals("found")) {
+                        found_contact_details = 1;
+                    }
+                    s = json.getString("personal");
+                    if (s.equals("found")) {
+                        found_personal = 1;
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return map;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+//            int found_box1=0,found_tenth=0,found_twelth=0,found_diploma=0,found_ug=0,found_pgsem=0,found_pgyear=0,found_projects=0,found_lang=0,found_certificates=0;
+//            int found_courses=0,found_skills=0,found_honors=0,found_patents=0,found_publications=0,found_careerobj=0,found_strengths=0,found_weaknesses=0,found_locationpreferences=0;
+//            int found_contact_details=0,found_personal=0;
+
+            if (found_box1 == 0) {
+//                    please fill intro information
+                Toast.makeText(ViewPlacement.this, " please fill introduction information", Toast.LENGTH_SHORT).show();
+            } else {
+                if (found_tenth == 0) {
+//                        please fill tenth information
+                    Toast.makeText(ViewPlacement.this, " please fill tenth information", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    if (found_twelth == 0 && found_diploma == 0) {
+//                        please fill twelth or diploma information
+                        Toast.makeText(ViewPlacement.this, " please fill twelth or diploma information", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        if (found_ug == 0) {
+//                        please fill ug information
+                            Toast.makeText(ViewPlacement.this, " please fill gradution information", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            if (found_projects == 0) {
+//                        please fill project information
+                                Toast.makeText(ViewPlacement.this, " please fill project information", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                if (found_lang == 0) {
+//                        please fill language information
+                                    Toast.makeText(ViewPlacement.this, " please fill language information", Toast.LENGTH_SHORT).show();
+
+                                } else {
+                                    if (found_skills == 0) {
+//                        please fill skill information
+                                        Toast.makeText(ViewPlacement.this, " please fill skill information", Toast.LENGTH_SHORT).show();
+
+                                    } else {
+                                        if (found_careerobj == 0) {
+//                        please fill career objective information
+                                            Toast.makeText(ViewPlacement.this, " please fill career objective information", Toast.LENGTH_SHORT).show();
+
+                                        } else {
+                                            if (found_strengths == 0) {
+//                        please fill strength information
+                                                Toast.makeText(ViewPlacement.this, " please fill strength information", Toast.LENGTH_SHORT).show();
+
+                                            } else {
+                                                if (found_weaknesses == 0) {
+//                        please fill weaknesses information
+                                                    Toast.makeText(ViewPlacement.this, " please fill weaknesses information", Toast.LENGTH_SHORT).show();
+
+                                                } else {
+                                                    if (found_contact_details == 0) {
+//                        please fill contact details information
+                                                        Toast.makeText(ViewPlacement.this, " please fill contact details information", Toast.LENGTH_SHORT).show();
+
+                                                    } else {
+                                                        if (found_personal == 0) {
+//                        please fill personal information
+                                                            Toast.makeText(ViewPlacement.this, " please fill personal information", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                }
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+            if (found_box1 == 1 && found_tenth == 1 && (found_diploma == 1 || found_twelth == 1) && found_ug == 1 && found_projects == 1 && found_lang == 1 && found_contact_details == 1 && found_skills == 1 && found_careerobj == 1 && found_strengths == 1 && found_weaknesses == 1 && found_personal == 1) {
+                new SaveResumedatabase().execute();
+
+            }
+            else{
+                registerbutton.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    private class SaveResumedatabase extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            String r="";
+            String format = "pdf";
+            try {
+                String template=MySharedPreferencesManager.getData(ViewPlacement.this,"template");
+                Log.d("TAG", "doInBackground: username -"+username);
+                Log.d("TAG", "doInBackground: format -"+format);
+                Log.d("TAG", "doInBackground: template -"+template);
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+                params.add(new BasicNameValuePair("username", username));
+                params.add(new BasicNameValuePair("format", format));
+                params.add(new BasicNameValuePair("template", template));
+
+                json = jParser.makeHttpRequest(url_SaveResume, "GET", params);
+
+                 r = json.getString("info");
+                Log.d("TAG", "doInBackground: result -"+r);
+
+            } catch (Exception e) {
+                Log.d("TAG", "doInBackground: exception - "+e.getMessage());
+            }
+            return r;
+        }
+
+        protected void onPostExecute(String result) {
+            try {
+
+                if (result.equals("found"))
+                    Toast.makeText(ViewPlacement.this, "Successfully Register..!", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(ViewPlacement.this, "Not Register..!", Toast.LENGTH_SHORT).show();
+
+                registerbutton.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
+
+            }catch (Exception e) {
+            }
         }
     }
 }

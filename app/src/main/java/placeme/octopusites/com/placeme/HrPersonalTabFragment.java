@@ -41,6 +41,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import placeme.octopusites.com.placeme.modal.ModalHrIntro;
+
+import static placeme.octopusites.com.placeme.AES4all.OtoString;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
@@ -58,7 +61,7 @@ public class HrPersonalTabFragment extends Fragment {
 //    Button savePersonal;
 //    ProgressBar personalprogress;
 
-    private String plainusername = "";
+    private String plainusername = "",encobj="";
     private String digest1, digest2;
     public static final String USERNAME = "nameKey";
     public static final String MyPREFERENCES = "MyPrefs";
@@ -383,64 +386,14 @@ public class HrPersonalTabFragment extends Fragment {
         }
 
 
-
-
-// else {
-//            //fname.setError(null);
-//            if (selectedCountry.contains("Select")) {
-//                Toast.makeText(getActivity(), "Select Country", Toast.LENGTH_SHORT).show();
-//                persnolerrorflag = 1;
-//            } else {
-//                if (selectedState.contains("Select")) {
-//                    Toast.makeText(getActivity(), "Select State", Toast.LENGTH_SHORT).show();
-//                    persnolerrorflag = 1;
-//                } else if (selectedCity.contains("Select")) {
-//                    Toast.makeText(getActivity(), "Select City", Toast.LENGTH_SHORT).show();
-//                    persnolerrorflag = 1;
-//                }
-//            }
-
-//        }
-
     }
 
     public void save()
     {
         try {
-            byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-            byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-            String sPadding = "ISO10126Padding";
-
-            byte[] roleBytes = role.getText().toString().getBytes("UTF-8");
-            byte[] fnameBytes = firstname.getBytes("UTF-8");
-            byte[] lnameBytes = lastname.getBytes("UTF-8");
-            byte[] designationBytes = designationValue.getBytes("UTF-8");
-            byte[] countryBytes = selectedCountry.getBytes("UTF-8");
-            byte[] stateBytes = selectedState.getBytes("UTF-8");
-            byte[] cityBytes = selectedCity.getBytes("UTF-8");
-
-
-            byte[] roleEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, roleBytes);
-            encRole = new String(SimpleBase64Encoder.encode(roleEncryptedBytes));
-
-            byte[] fnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fnameBytes);
-            encFname = new String(SimpleBase64Encoder.encode(fnameEncryptedBytes));
-
-            byte[] lnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, lnameBytes);
-            encLname = new String(SimpleBase64Encoder.encode(lnameEncryptedBytes));
-
-            byte[] designationEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, designationBytes);
-            encdesignation = new String(SimpleBase64Encoder.encode(designationEncryptedBytes));
-
-            byte[] countryEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, countryBytes);
-            encCountry = new String(SimpleBase64Encoder.encode(countryEncryptedBytes));
-
-            byte[] stateEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, stateBytes);
-            encState = new String(SimpleBase64Encoder.encode(stateEncryptedBytes));
-
-            byte[] cityEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, cityBytes);
-            encCity = new String(SimpleBase64Encoder.encode(cityEncryptedBytes));
-
+            ModalHrIntro obj2 = new ModalHrIntro(firstname, lastname, designationValue, selectedCity, selectedState, selectedCountry);
+            encobj = OtoString(obj2, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
+            Log.d("TAG", "validateandSave: encobj - " + encobj);
             new SaveData().execute();
 
         } catch (Exception e) {
@@ -455,18 +408,12 @@ public class HrPersonalTabFragment extends Fragment {
 
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", encUsername));    //0
-            params.add(new BasicNameValuePair("f", encFname));       //1
-            params.add(new BasicNameValuePair("l", encLname));       //2
-            params.add(new BasicNameValuePair("c", encCountry));     //3
-            params.add(new BasicNameValuePair("s", encState));       //4
-            params.add(new BasicNameValuePair("ci", encCity));       //5
-            params.add(new BasicNameValuePair("d", encdesignation)); //6
+            params.add(new BasicNameValuePair("u", encUsername));
+            params.add(new BasicNameValuePair("d", encobj));       //1
 
-            json = jParser.makeHttpRequest(MyConstants.url_savedata_SaveHrIntro1, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_savedata_SaveHrIntro, "GET", params);
             try {
                 r = json.getString("info");
-
 
             } catch (Exception e) {
                 e.printStackTrace();

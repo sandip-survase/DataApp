@@ -9,189 +9,203 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="placeme.octopusites.com.placeme.LicenseActivity">
+
     <ScrollView
+        android:id="@+id/profilepreviewscrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/profilepreviewscrollview"
 
         >
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="mainheading"
-                android:textStyle="bold"
-                android:textColor="#282f35"
                 android:id="@+id/mainheading"
-                android:textSize="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                />
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="subheading"
-                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="mainheading"
                 android:textColor="#282f35"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/subheading"
-                android:textSize="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mainheading"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="25dp"
+                android:text="subheading"
+                android:textColor="#282f35"
+                android:textSize="10dp"
 
-                android:layout_below="@+id/mainheading"
+                android:textStyle="bold"
 
                 />
 
             <TextView
+                android:id="@+id/license1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license1"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license1"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/subheading"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license1"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
+
             <RelativeLayout
+                android:id="@+id/licensebox1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/licensebox1"
-                android:background="#adadad"
-                android:layout_marginTop="15dp"
+                android:layout_below="@+id/license1"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_below="@+id/license1">
+                android:layout_marginTop="15dp"
+                android:background="@color/while_color"
+                android:elevation="6dp">
+
                 <TextView
                     android:id="@+id/content1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#282f35"
-                    android:text="content1"
-                    android:textSize="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginBottom="20dp"
-                    />
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="content1"
+                    android:textColor="#282f35"
+                    android:textSize="10dp" />
             </RelativeLayout>
+
             <TextView
+                android:id="@+id/license2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license2"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license2"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/licensebox1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license2"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
+
             <RelativeLayout
+                android:id="@+id/licensebox2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/licensebox2"
-                android:background="#adadad"
-                android:layout_marginTop="15dp"
+                android:layout_below="@+id/license2"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_below="@+id/license2">
+                android:layout_marginTop="15dp"
+                android:background="@color/while_color"
+                android:elevation="6dp">
+
                 <TextView
                     android:id="@+id/content2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#282f35"
-                    android:text="content1"
-                    android:textSize="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginBottom="20dp"
-                    />
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="content1"
+                    android:textColor="#282f35"
+                    android:textSize="10dp" />
             </RelativeLayout>
+
             <TextView
+                android:id="@+id/license3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license3"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license3"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/licensebox2"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license3"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
+
             <RelativeLayout
+                android:id="@+id/licensebox3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/licensebox3"
-                android:background="#adadad"
-                android:layout_marginTop="15dp"
+                android:layout_below="@+id/license3"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_below="@+id/license3">
+                android:layout_marginTop="15dp"
+                android:background="@color/while_color"
+                android:elevation="6dp">
+
                 <TextView
                     android:id="@+id/content3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#282f35"
-                    android:text="content1"
-                    android:textSize="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginBottom="20dp"
-                    />
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="content1"
+                    android:textColor="#282f35"
+                    android:textSize="10dp" />
             </RelativeLayout>
+
             <TextView
+                android:id="@+id/license4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license4"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license4"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/licensebox3"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license4"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
+
             <RelativeLayout
+                android:id="@+id/licensebox4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/licensebox4"
-                android:background="#adadad"
-                android:layout_marginTop="15dp"
+                android:layout_below="@+id/license4"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_below="@+id/license4">
+                android:layout_marginTop="15dp"
+                android:background="@color/while_color"
+                android:elevation="6dp">
+
                 <TextView
                     android:id="@+id/content4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#282f35"
-                    android:text="content4"
-                    android:textSize="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginBottom="20dp"
-                    />
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="content4"
+                    android:textColor="#282f35"
+                    android:textSize="10dp" />
             </RelativeLayout>
+
             <TextView
+                android:id="@+id/license5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license5"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license5"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/licensebox4"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license5"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
 
@@ -203,7 +217,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
-                android:background="#adadad">
+                android:background="@color/while_color"
+                android:elevation="6dp">
 
                 <TextView
                     android:id="@+id/content5"
@@ -216,17 +231,18 @@
                     android:textColor="#282f35"
                     android:textSize="10dp" />
             </RelativeLayout>
+
             <TextView
+                android:id="@+id/license6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license6"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license6"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/licensebox5"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license6"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
 
@@ -238,7 +254,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
-                android:background="#adadad">
+                android:background="@color/while_color"
+                android:elevation="6dp">
 
                 <TextView
                     android:id="@+id/content6"
@@ -253,16 +270,16 @@
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/license7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license7"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license7"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/licensebox6"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license7"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
 
@@ -274,7 +291,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
-                android:background="#adadad">
+                android:background="@color/while_color"
+                android:elevation="6dp">
 
                 <TextView
                     android:id="@+id/content7"
@@ -289,16 +307,16 @@
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/license8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license8"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license8"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/licensebox7"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license8"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
 
@@ -310,7 +328,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
-                android:background="#adadad">
+                android:background="@color/while_color"
+                android:elevation="6dp">
 
                 <TextView
                     android:id="@+id/content8"
@@ -323,17 +342,18 @@
                     android:textColor="#282f35"
                     android:textSize="10dp" />
             </RelativeLayout>
+
             <TextView
+                android:id="@+id/license9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license9"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license9"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/licensebox8"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license9"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
 
@@ -345,7 +365,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
-                android:background="#adadad">
+                android:background="@color/while_color"
+                android:elevation="6dp">
 
                 <TextView
                     android:id="@+id/content9"
@@ -360,16 +381,16 @@
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/license10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license10"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license10"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/licensebox9"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license10"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
 
@@ -381,7 +402,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
-                android:background="#adadad">
+                android:background="@color/while_color"
+                android:elevation="6dp">
 
                 <TextView
                     android:id="@+id/content10"
@@ -394,17 +416,18 @@
                     android:textColor="#282f35"
                     android:textSize="10dp" />
             </RelativeLayout>
+
             <TextView
+                android:id="@+id/license11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license11"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license11"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/licensebox10"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license11"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
 
@@ -416,7 +439,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
-                android:background="#adadad">
+                android:background="@color/while_color"
+                android:elevation="6dp">
 
                 <TextView
                     android:id="@+id/content11"
@@ -431,16 +455,16 @@
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/license12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license12"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license12"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/licensebox11"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license12"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
 
@@ -452,7 +476,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
-                android:background="#adadad">
+                android:background="@color/while_color"
+                android:elevation="6dp">
 
                 <TextView
                     android:id="@+id/content12"
@@ -465,17 +490,18 @@
                     android:textColor="#282f35"
                     android:textSize="10dp" />
             </RelativeLayout>
+
             <TextView
+                android:id="@+id/license13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license13"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license13"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/licensebox12"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license13"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
 
@@ -487,7 +513,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
-                android:background="#adadad">
+                android:background="@color/while_color"
+                android:elevation="6dp">
 
                 <TextView
                     android:id="@+id/content13"
@@ -500,17 +527,18 @@
                     android:textColor="#282f35"
                     android:textSize="10dp" />
             </RelativeLayout>
+
             <TextView
+                android:id="@+id/license14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license14"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license14"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/licensebox13"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license14"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
 
@@ -522,7 +550,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
-                android:background="#adadad">
+                android:background="@color/while_color"
+                android:elevation="6dp">
 
                 <TextView
                     android:id="@+id/content14"
@@ -535,17 +564,18 @@
                     android:textColor="#282f35"
                     android:textSize="10dp" />
             </RelativeLayout>
+
             <TextView
+                android:id="@+id/license15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license15"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license15"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/licensebox14"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license15"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
 
@@ -557,7 +587,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
-                android:background="#adadad">
+                android:background="@color/while_color"
+                android:elevation="6dp">
 
                 <TextView
                     android:id="@+id/content15"
@@ -570,17 +601,18 @@
                     android:textColor="#282f35"
                     android:textSize="10dp" />
             </RelativeLayout>
+
             <TextView
+                android:id="@+id/license16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license16"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license16"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/licensebox15"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license16"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
 
@@ -592,7 +624,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
-                android:background="#adadad">
+                android:background="@color/while_color"
+                android:elevation="6dp">
 
                 <TextView
                     android:id="@+id/content16"
@@ -607,16 +640,16 @@
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/license17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license17"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license17"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/licensebox16"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license17"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
 
@@ -628,7 +661,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
-                android:background="#adadad">
+                android:background="@color/while_color"
+                android:elevation="6dp">
 
                 <TextView
                     android:id="@+id/content17"
@@ -643,16 +677,16 @@
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/license18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license18"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license18"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/licensebox17"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license18"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
 
@@ -664,7 +698,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
-                android:background="#adadad">
+                android:background="@color/while_color"
+                android:elevation="6dp">
 
                 <TextView
                     android:id="@+id/content18"
@@ -677,17 +712,18 @@
                     android:textColor="#282f35"
                     android:textSize="10dp" />
             </RelativeLayout>
+
             <TextView
+                android:id="@+id/license19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license19"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license19"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/licensebox18"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license19"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
 
@@ -699,7 +735,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
-                android:background="#adadad">
+                android:background="@color/while_color"
+                android:elevation="6dp">
 
                 <TextView
                     android:id="@+id/content19"
@@ -712,17 +749,18 @@
                     android:textColor="#282f35"
                     android:textSize="10dp" />
             </RelativeLayout>
+
             <TextView
+                android:id="@+id/license20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="license20"
-                android:textStyle="bold"
-                android:textColor="#282f35"
-                android:id="@+id/license20"
-                android:textSize="15dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/licensebox19"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="license20"
+                android:textColor="#282f35"
+                android:textSize="15dp"
+                android:textStyle="bold"
 
                 />
 
@@ -734,7 +772,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="15dp"
-                android:background="#adadad">
+                android:background="@color/while_color"
+                android:elevation="6dp">
 
                 <TextView
                     android:id="@+id/content20"

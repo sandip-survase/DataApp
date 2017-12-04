@@ -5418,6 +5418,9 @@ public class MyProfilePublications extends AppCompatActivity {
                     setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("hr"))
                     setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
+                else if(role.equals("admin"))
+                    setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
+
 
                 s.setPubtitle1(stitle1);
                 s.setPublication1(spublication1);

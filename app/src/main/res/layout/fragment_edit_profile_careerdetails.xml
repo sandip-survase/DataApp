@@ -1,131 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="#282f35"
-   >
+    android:background="@color/while_color"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_my_profile_career_details"
-        android:focusableInTouchMode="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
-        >
+        android:focusableInTouchMode="true"
+        android:padding="16dp">
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
             android:id="@+id/careerobjbutton"
-            android:background="@drawable/boxborderwhite"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_marginTop="30dp"
-            />
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp" />
+
         <TextView
+            android:id="@+id/careerobjtxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Career Objective"
-            android:textColor="#eee"
-            android:textSize="20dp"
-            android:id="@+id/careerobjtxt"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="40dp"
+            android:elevation="8dp"
+            android:text="Career Objective"
+            android:textColor="@color/while_color"
+            android:textSize="18dp"
 
             />
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
             android:layout_marginRight="10dp"
             android:layout_marginTop="40dp"
-            />
+            android:elevation="8dp"
+            android:src="@drawable/add_icon_white" />
+
         <View
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/careerobjbutton"
             android:id="@+id/strengthbutton"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/boxborderwhite"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_below="@+id/careerobjbutton"
-            android:text="Strengths"
-            android:textColor="#eee"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp" />
+
+        <TextView
             android:id="@+id/strengthtxt"
-            android:textSize="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            />
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/careerobjbutton"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:elevation="8dp"
+            android:text="Strengths"
+            android:textColor="@color/while_color"
+            android:textSize="18dp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:layout_below="@+id/careerobjbutton"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            />
+            android:elevation="8dp"
+            android:src="@drawable/add_icon_white" />
+
         <View
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/strengthbutton"
             android:id="@+id/weakbutton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/strengthbutton"
             android:layout_marginTop="20dp"
-            android:background="@drawable/boxborderwhite"
-            />
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp" />
+
         <TextView
+            android:id="@+id/weaktxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/strengthbutton"
-            android:text="Weaknesses"
-            android:textColor="#eee"
-            android:textSize="20dp"
-            android:id="@+id/weaktxt"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            />
+            android:elevation="8dp"
+            android:text="Weaknesses"
+            android:textColor="@color/while_color"
+            android:textSize="18dp" />
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_below="@+id/strengthbutton"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:layout_below="@+id/strengthbutton"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            />
+            android:elevation="8dp"
+            android:src="@drawable/add_icon_white" />
+
         <View
+            android:id="@+id/locbutton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/weakbutton"
-            android:id="@+id/locbutton"
             android:layout_marginTop="20dp"
-            android:background="@drawable/boxborderwhite"
-            />
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp" />
+
         <TextView
+            android:id="@+id/locationtxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/weakbutton"
-            android:text="Location Preferences"
-            android:textColor="#eee"
-            android:id="@+id/locationtxt"
-            android:textSize="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            />
+            android:elevation="8dp"
+            android:text="Location Preferences"
+            android:textColor="@color/while_color"
+            android:textSize="18dp" />
+
         <ImageView
+
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_below="@+id/weakbutton"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:layout_below="@+id/weakbutton"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
+            android:elevation="8dp"
+            android:src="@drawable/add_icon_white" />
+
+        <View
+            android:id="@+id/dummy_view_for_shadow"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/locbutton"
+            android:layout_height="0dp"
+            android:layout_marginTop="50dp"
             />
+
     </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>

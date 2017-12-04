@@ -71,7 +71,6 @@ public class MessagesFragment extends Fragment {
     int index=0;
     String usernameenc,role,plainusername;
     public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
     public static final String Username = "nameKey";
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
@@ -126,11 +125,13 @@ public class MessagesFragment extends Fragment {
             }
         };
 
-        sharedpreferences =getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        usernameenc=sharedpreferences.getString(Username,null);
-        role=sharedpreferences.getString("role",null);
-        digest1 = sharedpreferences.getString("digest1", null);
-        digest2 = sharedpreferences.getString("digest2", null);
+
+        usernameenc=MySharedPreferencesManager.getUsername(getActivity());
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
+        role = MySharedPreferencesManager.getRole(getActivity());
+
+
 
         try {
             byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);

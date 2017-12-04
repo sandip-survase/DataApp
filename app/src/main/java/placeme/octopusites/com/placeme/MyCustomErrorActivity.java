@@ -22,16 +22,15 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-//import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
-//import cat.ereza.customactivityoncrash.config.CaocConfig;
 
 //import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 //import cat.ereza.customactivityoncrash.config.CaocConfig;
+
 
 
 public class MyCustomErrorActivity extends AppCompatActivity {
 
-    SharedPreferences sharedpreferences;
+
     private String plainusername, username = "";
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
@@ -42,23 +41,30 @@ public class MyCustomErrorActivity extends AppCompatActivity {
     String error = "";
 //    CaocConfig config;
     String abd="";
-    private static String url_save_error = "http://192.168.100.10:8080/ProfileObjects/Save_Error";
-    private static String url_save_bug = "http://192.168.100.10:8080/ProfileObjects/Save_Bug";
+
+//    private static String url_save_error = "http://192.168.100.10/ProfileObjects/Save_Error";
+
+    private static String url_save_bug = "http://192.168.100.10/ProfileObjects/Save_Bug";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_custom_error);
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, null);
+
+
+
+        username = MySharedPreferencesManager.getUsername(this);
         error=getlogcat();
+
 //        abd=error+CustomActivityOnCrash.getAllErrorDetailsFromIntent(this, getIntent());
-//        new ask().execute();
-//
+        Log.d("TAG", "onCreate: username -"+username);
+        Log.d("TAG", "onCreate: abd - "+abd);
+        new ask().execute();
+
 //        config = CustomActivityOnCrash.getConfigFromIntent(getIntent());
-//
-//        Button restartButton = (Button) findViewById(R.id.restart_button);
+
+        Button restartButton = (Button) findViewById(R.id.restart_button);
 //
 //        if (config.isShowRestartButton() && config.getRestartActivityClass() != null) {
 //            restartButton.setText("Restart app");
@@ -85,7 +91,6 @@ public class MyCustomErrorActivity extends AppCompatActivity {
     class ask extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
             String  r ="";
-//
             String str =abd;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
 

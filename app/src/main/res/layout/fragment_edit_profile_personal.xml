@@ -1,333 +1,355 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35"
+    android:background="@color/while_color"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
     >
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/activity_my_profile_intro"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:focusableInTouchMode="true"
-        >
+        android:focusableInTouchMode="true">
 
         <RelativeLayout
+            android:id="@+id/completepersonalrl"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:padding="16dp"
-            android:id="@+id/completepersonalrl"
-            >
+            android:padding="16dp">
 
             <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:theme="@style/TextLabel"
                 android:id="@+id/fnameinput"
-                android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/fname"
                     android:layout_width="match_parent"
-                    android:singleLine="true"
-                    android:textColor="#eee"
-                    android:textSize="16dp"
-                    android:maxLines="1"
                     android:layout_height="wrap_content"
-                    android:hint="First Name"
-                    />
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:hint="First Name*"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords|textNoSuggestions"
+                    android:maxLength="50"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:theme="@style/TextLabel"
                 android:id="@+id/mnameinput"
+                android:layout_width="match_parent"
+                android:imeOptions="actionNext"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/fnameinput"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/mname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Middle Name"
-                    android:textColor="#eee"
-                    android:inputType="textCapWords"
-                    android:textSize="16dp"
-                    android:singleLine="true"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:hint="Middle Name*"
+                    android:inputType="textCapWords|textNoSuggestions"
+                    android:maxLength="50"
                     android:maxLines="1"
-                    />
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:theme="@style/TextLabel"
-                android:layout_marginTop="10dp"
                 android:id="@+id/snameinput"
+                android:layout_width="match_parent"
+                android:imeOptions="actionNext"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/mnameinput"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/sname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:hint="Surname*"
+                    android:inputType="textCapWords|textNoSuggestions"
+                    android:maxLength="50"
                     android:maxLines="1"
-                    android:textColor="#eee"
-                    android:textSize="16dp"
-                    android:hint="Surname"
-                    />
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
                 android:id="@+id/nameas10input"
+                android:layout_width="match_parent"
+                android:imeOptions="actionNext"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/snameinput"
-                android:theme="@style/TextLabel"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/nameas10"
                     android:layout_width="match_parent"
-                    android:singleLine="true"
-                    android:textColor="#eee"
-                    android:textSize="16dp"
-                    android:inputType="textCapCharacters"
-                    android:maxLines="1"
                     android:layout_height="wrap_content"
                     android:hint="Name as it appears on 10th Marksheet"
-                    />
+                    android:inputType="textCapWords|textNoSuggestions"
+                    android:maxLength="250"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:theme="@style/TextLabel"
                 android:id="@+id/profileemailinput"
+                android:layout_width="match_parent"
+                android:imeOptions="actionNext"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/nameas10input"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/profileemail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
-                    android:textSize="16dp"
-                    android:textColor="#eee"
                     android:focusable="false"
+                    android:hint="Email"
                     android:inputType="textEmailAddress"
-                    android:singleLine="true"
                     android:maxLines="1"
-                    />
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:theme="@style/TextLabel"
                 android:id="@+id/profileaemailinput"
+                android:layout_width="match_parent"
+                android:imeOptions="actionNext"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/profileemailinput"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/profileaemail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Alternate Email"
-                    android:textSize="16dp"
-                    android:textColor="#eee"
                     android:inputType="textEmailAddress"
-                    android:singleLine="true"
+                    android:maxLength="100"
                     android:maxLines="1"
-                    />
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:theme="@style/TextLabel"
-                android:layout_marginTop="10dp"
                 android:id="@+id/mothernameinput"
+                android:layout_width="match_parent"
+                android:imeOptions="actionNext"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/profileaemailinput"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/mothername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:maxLines="1"
-                    android:inputType="textCapWords"
-                    android:textColor="#eee"
-                    android:textSize="16dp"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:hint="Mother's Name"
-                    />
+                    android:inputType="textCapWords|textNoSuggestions"
+                    android:maxLength="50"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:theme="@style/TextLabel"
-                android:layout_width="match_parent"
                 android:id="@+id/dobinput"
-                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:imeOptions="actionNext"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/mothernameinput"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/dob"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:maxLines="1"
-                    android:textColor="#eee"
-                    android:textSize="16dp"
+                    android:hint="Date of Birth*"
                     android:inputType="date"
-                    android:hint="Date of Birth(dd/mm/yyyy)"
-                    />
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
 
             <TextView
+                android:id="@+id/gendertxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gender"
                 android:layout_below="@+id/dobinput"
-                android:id="@+id/gendertxt"
-                android:textColor="#eee"
-                android:textSize="16dp"
-                android:layout_marginTop="12dp"
-                />
+                android:imeOptions="actionNext"
+                android:layout_marginTop="20dp"
+                android:text="Gender"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
             <RadioGroup
+                android:id="@+id/radioGroupGender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioGroupGender"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp"
                 android:layout_below="@+id/dobinput"
+                android:layout_marginTop="20dp"
                 android:layout_toRightOf="@+id/gendertxt"
-                >
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Male"
-                    app:buttonTint="#eee"
-                    android:textColor="#eee"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonMale"
-                    android:checked="false"
-                    android:layout_marginLeft="30dp"
-                    />
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:buttonTint="#eee"
-                    android:textColor="#eee"
-                    android:text="Female"
-                    android:id="@+id/radioButtonFemale"
-                    android:checked="false"
                     android:layout_marginLeft="30dp"
-                    />
+                    android:checked="false"
+                    android:text="Male"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/radioButtonFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:checked="false"
+                    android:text="Female"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color"/>
             </RadioGroup>
 
             <android.support.design.widget.TextInputLayout
-                android:theme="@style/TextLabel"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
                 android:id="@+id/phoneinput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/radioGroupGender"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:textColor="#eee"
-                    android:textSize="16dp"
+                    android:hint="Phone Number"
                     android:inputType="number"
                     android:maxLines="1"
-                    android:hint="Phone Number"
-                    />
+                    android:maxLength="11"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:theme="@style/TextLabel"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
                 android:id="@+id/mobileinput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/phoneinput"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/mobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:textColor="#eee"
-                    android:textSize="16dp"
+                    android:hint="Mobile Number"
                     android:inputType="number"
                     android:maxLines="1"
-                    android:hint="Mobile Number"
-                    />
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/amobileinput"
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/mobileinput"
-                android:theme="@style/TextLabel"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mobileinput"
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/amobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#eee"
-                    android:singleLine="true"
-                    android:textSize="16dp"
-                    android:inputType="number"
-                    android:maxLines="1"
                     android:hint="Alternate Mobile Number"
-                    />
+                    android:inputType="number"
+                    android:maxLength="11"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/mothertongueinput"
-                android:layout_below="@+id/amobileinput"
-                android:theme="@style/TextLabel"
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/amobileinput"
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/mothertongue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#eee"
-                    android:textSize="16dp"
-                    android:inputType="textCapWords"
-                    android:singleLine="true"
-                    android:maxLines="1"
                     android:hint="Mothertongue"
-                    />
+                    android:inputType="textCapWords|textNoSuggestions"
+                    android:maxLines="1"
+                    android:maxLength="25"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:theme="@style/TextLabel"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
                 android:id="@+id/hobbiesinput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/mothertongueinput"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/hobbies"
                     android:layout_width="match_parent"
-                    android:textColor="#eee"
-                    android:textSize="16dp"
-                    android:inputType="textCapWords"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
+                    android:hint="Hobbies(Comma Seperated)*"
+                    android:inputType="textCapWords|textNoSuggestions"
                     android:maxLines="1"
-                    android:hint="Hobbies(Comma Seperated)"
-                    />
+                    android:maxLength="500"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
             <RelativeLayout
+                android:id="@+id/bloodgrpspinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/hobbiesinput"
-                android:id="@+id/bloodgrpspinner"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="3dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -337,37 +359,37 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:gravity="center"
-                    android:popupBackground="#001111"
                     android:layout_marginLeft="5dp"
-                    android:spinnerMode="dropdown" />
+                    android:background="@color/while_color"
+                    android:gravity="center"
+                    android:popupBackground="@color/while_color"
+                    android:spinnerMode="dropdown"/>
 
                 <ImageView
+                    android:id="@+id/spinnerimg1"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:id="@+id/spinnerimg1"
-                    android:tint="#eee"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/drop"
+                    android:tint="@color/dark_color" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg1"
-                    android:background="#eee"
-                    />
+                    android:background="@color/dark_color" />
 
             </RelativeLayout>
+
             <RelativeLayout
+                android:id="@+id/categoryspinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/bloodgrpspinner"
-                android:id="@+id/categoryspinner"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="3dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -377,37 +399,37 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:gravity="center"
-                    android:popupBackground="#001111"
                     android:layout_marginLeft="5dp"
+                    android:background="@color/while_color"
+                    android:gravity="center"
+                    android:popupBackground="@color/while_color"
                     android:spinnerMode="dropdown" />
 
                 <ImageView
+                    android:id="@+id/spinnerimg2"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:id="@+id/spinnerimg2"
-                    android:tint="#eee"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/drop"
+                    android:tint="@color/dark_color" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg2"
-                    android:background="#eee"
-                    />
+                    android:background="@color/dark_color" />
 
             </RelativeLayout>
+
             <RelativeLayout
+                android:id="@+id/religionspinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/categoryspinner"
-                android:id="@+id/religionspinner"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="3dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -417,448 +439,448 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:gravity="center"
-                    android:popupBackground="#001111"
                     android:layout_marginLeft="5dp"
+                    android:background="@color/while_color"
+                    android:gravity="center"
+                    android:popupBackground="@color/while_color"
                     android:spinnerMode="dropdown" />
 
                 <ImageView
+                    android:id="@+id/spinnerimg3"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:id="@+id/spinnerimg3"
-                    android:tint="#eee"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/drop"
+                    android:tint="@color/dark_color" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg3"
-                    android:background="#eee"
-                    />
+                    android:background="@color/dark_color" />
             </RelativeLayout>
 
 
-
             <android.support.design.widget.TextInputLayout
-                android:theme="@style/TextLabel"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
                 android:id="@+id/castinput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/religionspinner"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/cast"
-                    android:textColor="#eee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:singleLine="true"
-                    android:inputType="textCapWords"
-                    android:maxLines="1"
                     android:hint="Caste"
-                    />
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
-                android:theme="@style/TextLabel"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:id="@+id/prninput"
-                android:layout_below="@+id/castinput"
-                android:layout_height="wrap_content">
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/prn"
-                    android:textColor="#eee"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:singleLine="true"
+                    android:inputType="textCapWords|textNoSuggestions"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:maxLines="1"
-                    android:hint="PRN/University Number"
-                    />
+                    android:maxLength="50"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:theme="@style/TextLabel"
+                android:id="@+id/prninput"
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/castinput"
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/prn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="PRN/University Number"
+                    android:textAllCaps="true"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
                 android:id="@+id/knownlanginput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/prninput"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/knownlang"
                     android:layout_width="match_parent"
-                    android:textColor="#eee"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:textSize="16dp"
-                    android:maxLines="1"
                     android:focusable="false"
-                    android:hint="Known Languages"
-                    />
+                    android:hint="Known Languages*"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
+
             <ImageView
+                android:id="@+id/editknownlang"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/prninput"
                 android:layout_marginTop="30dp"
-                android:src="@drawable/pencilwhite"
-                android:id="@+id/editknownlang"
-                />
+                android:src="@drawable/pencil_icon" />
 
             <TextView
+                android:id="@+id/caddrtxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Current Address"
                 android:layout_below="@+id/knownlanginput"
-                android:id="@+id/caddrtxt"
-                android:textColor="#eee"
-                android:textSize="16dp"
-                android:layout_marginTop="12dp"
-                />
+                android:layout_marginTop="20dp"
+                android:text="Current Address*"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
             <android.support.design.widget.TextInputLayout
-                android:theme="@style/TextLabel"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
                 android:id="@+id/caddrline1input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/caddrtxt"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/caddrline1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:textColor="#eee"
-                    android:singleLine="true"
-                    android:inputType="textCapWords"
-                    android:maxLines="1"
                     android:hint="House no/Flat no/Plot no, Name"
-                    />
+                    android:inputType="textCapWords|textNoSuggestions"
+                    android:maxLines="1"
+                    android:maxLength="500"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
-                android:theme="@style/TextLabel"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
                 android:id="@+id/caddrline2input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/caddrline1input"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/caddrline2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:textColor="#eee"
-                    android:singleLine="true"
-                    android:inputType="textCapWords"
-                    android:maxLines="1"
                     android:hint="Street Name/Landmark"
-                    />
+                    android:inputType="textCapWords|textNoSuggestions"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:maxLength="500"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
-                android:theme="@style/TextLabel"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
                 android:id="@+id/caddrline3input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/caddrline2input"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/caddrline3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:textColor="#eee"
-                    android:inputType="textCapWords"
-                    android:singleLine="true"
-                    android:maxLines="1"
                     android:hint="City, Pincode"
-                    />
+                    android:inputType="textCapWords|textNoSuggestions"
+                    android:maxLines="1"
+                    android:maxLength="500"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
 
-
             <TextView
+                android:id="@+id/paddrtxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Permanant Address"
                 android:layout_below="@+id/caddrline3input"
-                android:id="@+id/paddrtxt"
-                android:textColor="#eee"
-                android:textSize="16dp"
-                android:layout_marginTop="12dp"
-                />
+                android:layout_marginTop="20dp"
+                android:text="Permanant Address"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
             <CheckBox
                 android:id="@+id/CheckBoxPSC"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/paddrtxt"
-                android:text="Same as Current Address"
                 android:layout_marginTop="10dp"
-                android:theme="@style/MyCheckBox"
-                android:textColor="#eee"
-                android:layout_height="wrap_content" />
+                android:text="Same as Current Address"
+                android:textSize="14dp"
+                android:textColor="@color/dark_color"
+                android:theme="@style/MyCheckBox" />
 
             <android.support.design.widget.TextInputLayout
-                android:theme="@style/TextLabel"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
                 android:id="@+id/paddrline1input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/CheckBoxPSC"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/paddrline1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:textColor="#eee"
-                    android:inputType="textCapWords"
-                    android:singleLine="true"
-                    android:maxLines="1"
                     android:hint="House no/Flat no/Plot no, Name"
-                    />
+                    android:inputType="textCapWords|textNoSuggestions"
+                    android:maxLines="1"
+                    android:maxLength="500"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
-                android:theme="@style/TextLabel"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
                 android:id="@+id/paddrline2input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/paddrline1input"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/paddrline2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:textColor="#eee"
-                    android:inputType="textCapWords"
-                    android:singleLine="true"
-                    android:maxLines="1"
                     android:hint="Street Name/Landmark"
-                    />
+                    android:inputType="textCapWords|textNoSuggestions"
+                    android:maxLines="1"
+                    android:maxLength="500"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
-                android:theme="@style/TextLabel"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
                 android:id="@+id/paddrline3input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/paddrline2input"
-                android:layout_height="wrap_content">
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/paddrline3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:inputType="textCapWords"
-                    android:textColor="#eee"
-                    android:singleLine="true"
-                    android:maxLines="1"
                     android:hint="City, Pincode"
-                    />
+                    android:inputType="textCapWords|textNoSuggestions"
+                    android:maxLines="1"
+                    android:maxLength="500"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
+                android:id="@+id/handicappedtxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Handicapped"
                 android:layout_below="@+id/paddrline3input"
-                android:id="@+id/handicappedtxt"
-                android:textColor="#eee"
-                android:textSize="16dp"
-                android:layout_marginTop="12dp"
-                />
+                android:layout_marginTop="20dp"
+                android:text="Handicapped"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
+
             <RadioGroup
+                android:id="@+id/radioGroupHandicapped"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioGroupHandicapped"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp"
                 android:layout_below="@+id/paddrline3input"
+                android:layout_marginTop="20dp"
                 android:layout_toRightOf="@+id/handicappedtxt"
-                >
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NO"
-                    app:buttonTint="#eee"
-                    android:textColor="#eee"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonHandicappedNo"
-                    android:checked="true"
-                    android:layout_marginLeft="30dp"
-                    />
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:buttonTint="#eee"
-                    android:textColor="#eee"
-                    android:text="YES"
-                    android:id="@+id/radioButtonHandicappedYes"
-                    android:checked="false"
                     android:layout_marginLeft="30dp"
-                    />
+                    android:checked="true"
+                    android:text="NO"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/radioButtonHandicappedYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:checked="false"
+                    android:text="YES"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
             </RadioGroup>
+
             <View
-                android:layout_below="@+id/radioGroupHandicapped"
+                android:id="@+id/radioGroupHandicappedline"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_below="@+id/radioGroupHandicapped"
                 android:layout_marginTop="10dp"
-                android:background="@android:color/darker_gray"
-                android:id="@+id/radioGroupHandicappedline"
-                />
+                android:background="@android:color/darker_gray" />
+
             <TextView
+                android:id="@+id/sportstxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sports"
                 android:layout_below="@+id/radioGroupHandicappedline"
-                android:id="@+id/sportstxt"
-                android:textColor="#eee"
-                android:textSize="16dp"
                 android:layout_marginTop="12dp"
-                />
+                android:text="Sports"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
+
             <RadioGroup
+                android:id="@+id/radioGroupSports"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioGroupSports"
-                android:layout_marginTop="10dp"
                 android:layout_below="@+id/sportstxt"
-                >
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NA"
+                android:layout_marginTop="20dp">
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonSportsNo"
-                    app:buttonTint="#eee"
-                    android:textColor="#eee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:checked="true"
-                    />
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="State"
+                    android:text="NA"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonSportsState"
-                    app:buttonTint="#eee"
-                    android:textColor="#eee"
-                    android:checked="false"
-                    />
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="National"
+                    android:checked="false"
+                    android:text="State"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonSportsNational"
-                    app:buttonTint="#eee"
-                    android:textColor="#eee"
-                    android:checked="false"
-                    />
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="International"
-                    android:id="@+id/radioButtonSportsInternational"
-                    app:buttonTint="#eee"
-                    android:textColor="#eee"
                     android:checked="false"
-                    />
+                    android:text="National"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/radioButtonSportsInternational"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="International"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
             </RadioGroup>
+
             <View
-                android:layout_below="@+id/radioGroupSports"
                 android:id="@+id/radioGroupSportsline"
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
                 android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
+                android:layout_below="@+id/radioGroupSports"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/darker_gray" />
+
             <TextView
+                android:id="@+id/defencetxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Defence/Ex-Serviceman"
                 android:layout_below="@+id/radioGroupSportsline"
-                android:id="@+id/defencetxt"
-                android:textColor="#eee"
-                android:textSize="16dp"
                 android:layout_marginTop="12dp"
-                />
+                android:text="Defence/Ex-Serviceman"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
+
             <RadioGroup
+                android:id="@+id/radioGroupDefenceex"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioGroupDefenceex"
-                android:layout_marginTop="10dp"
                 android:layout_below="@+id/defencetxt"
-                >
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NA"
+                android:layout_marginTop="10dp">
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonDefenceNo"
-                    app:buttonTint="#eee"
-                    android:textColor="#eee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:checked="true"
-                    />
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Defence"
+                    android:text="NA"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonDefence"
-                    app:buttonTint="#eee"
-                    android:textColor="#eee"
-                    android:checked="false"
-                    />
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ex-Serviceman"
-                    android:id="@+id/radioButtonExserviceman"
-                    app:buttonTint="#eee"
-                    android:textColor="#eee"
                     android:checked="false"
-                    />
+                    android:text="Defence"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/radioButtonExserviceman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Ex-Serviceman"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
             </RadioGroup>
 
             <ProgressBar
                 android:id="@+id/personalprogress"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="60dp"
                 android:layout_width="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:visibility="gone"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/radioGroupDefenceex"
-                />
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="60dp"
+                android:layout_marginTop="20dp"
+                android:visibility="gone" />
 
         </RelativeLayout>
         <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:orientation="vertical"-->
-            <!--android:gravity="bottom"-->
-            <!--android:layout_below="@+id/completepersonalrl"-->
-            <!--android:layout_marginTop="20dp"-->
-            <!--&gt;-->
-            <!--<View-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:background="#fff"-->
-                <!--/>-->
-            <!--<Button-->
-                <!--android:id="@+id/savepersonal"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="50dp"-->
-                <!--android:textColor="@android:color/holo_blue_bright"-->
-                <!--android:textAllCaps="false"-->
-                <!--android:textSize="20dp"-->
-                <!--android:text="Save"-->
-                <!--android:background="#282f35"-->
-                <!--/>-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical"-->
+        <!--android:gravity="bottom"-->
+        <!--android:layout_below="@+id/completepersonalrl"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--&gt;-->
+        <!--<View-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:background="#fff"-->
+        <!--/>-->
+        <!--<Button-->
+        <!--android:id="@+id/savepersonal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:textColor="@android:color/holo_blue_bright"-->
+        <!--android:textAllCaps="false"-->
+        <!--android:textSize="20dp"-->
+        <!--android:text="Save"-->
+        <!--android:background="#282f35"-->
+        <!--/>-->
         <!--</LinearLayout>-->
     </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>
