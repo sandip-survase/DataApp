@@ -38,11 +38,11 @@
             android:background="@drawable/textviewborder"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projtxt"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject1"
             />
@@ -51,7 +51,7 @@
             android:layout_height="50dp"
 
             android:layout_below="@+id/projtxt"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash1selectionview"
             />
         <RelativeLayout
@@ -161,18 +161,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/projectrl1"
             android:id="@+id/projectline1"
             android:layout_marginTop="20dp"
             android:visibility="gone"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projectline1"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject2"
             />
@@ -180,7 +180,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/projectline1"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash2selectionview"
             />
         <RelativeLayout
@@ -294,18 +294,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/projectrl2"
             android:id="@+id/projectline2"
             android:layout_marginTop="20dp"
             android:visibility="gone"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projectline2"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject3"
             />
@@ -314,7 +314,7 @@
             android:layout_height="50dp"
 
             android:layout_below="@+id/projectline2"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash3selectionview"
             />
         <RelativeLayout
@@ -427,18 +427,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/projectrl3"
             android:id="@+id/projectline3"
             android:layout_marginTop="20dp"
             android:visibility="gone"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projectline3"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject4"
             />
@@ -447,7 +447,7 @@
             android:layout_height="50dp"
 
             android:layout_below="@+id/projectline3"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash4selectionview"
             />
         <RelativeLayout
@@ -560,18 +560,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/projectrl4"
             android:id="@+id/projectline4"
             android:layout_marginTop="20dp"
             android:visibility="gone"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projectline4"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject5"
             />
@@ -580,7 +580,7 @@
             android:layout_height="50dp"
 
             android:layout_below="@+id/projectline4"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash5selectionview"
             />
         <RelativeLayout
@@ -693,18 +693,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/projectrl5"
             android:id="@+id/projectline5"
             android:layout_marginTop="20dp"
             android:visibility="gone"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projectline5"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject6"
             />
@@ -713,7 +713,7 @@
             android:layout_height="50dp"
 
             android:layout_below="@+id/projectline5"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash6selectionview"
             />
         <RelativeLayout
@@ -826,18 +826,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/projectrl6"
             android:id="@+id/projectline6"
             android:layout_marginTop="20dp"
             android:visibility="gone"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projectline6"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject7"
             />
@@ -846,7 +846,7 @@
             android:layout_height="50dp"
 
             android:layout_below="@+id/projectline6"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash7selectionview"
             />
         <RelativeLayout
@@ -959,18 +959,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/projectrl7"
             android:id="@+id/projectline7"
             android:layout_marginTop="20dp"
             android:visibility="gone"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projectline7"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject8"
             />
@@ -979,7 +979,7 @@
             android:layout_height="50dp"
 
             android:layout_below="@+id/projectline7"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash8selectionview"
             />
         <RelativeLayout
@@ -1092,18 +1092,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/projectrl8"
             android:id="@+id/projectline8"
             android:layout_marginTop="20dp"
             android:visibility="gone"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projectline8"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject9"
             />
@@ -1112,7 +1112,7 @@
             android:layout_height="50dp"
 
             android:layout_below="@+id/projectline8"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash9selectionview"
             />
         <RelativeLayout
@@ -1225,18 +1225,18 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/projectrl9"
             android:id="@+id/projectline9"
             android:layout_marginTop="20dp"
             android:visibility="gone"
             />
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_below="@+id/projectline9"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashproject10"
             />
@@ -1245,7 +1245,7 @@
             android:layout_height="50dp"
 
             android:layout_below="@+id/projectline9"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/trash10selectionview"
             />
         <RelativeLayout
