@@ -7,6 +7,8 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -675,6 +677,17 @@ public class PersonalProfileTabFragment extends Fragment {
                 }
             }
 
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
+                View view =super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(getActivity()));
+                return view;
+            }
+
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
@@ -702,6 +715,16 @@ public class PersonalProfileTabFragment extends Fragment {
                 } else {
                     return true;
                 }
+            }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
+                View view =super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(getActivity()));
+                return view;
             }
 
             @Override
@@ -738,6 +761,16 @@ public class PersonalProfileTabFragment extends Fragment {
                 } else {
                     return true;
                 }
+            }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
+                View view =super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(getActivity()));
+                return view;
             }
 
             @Override
