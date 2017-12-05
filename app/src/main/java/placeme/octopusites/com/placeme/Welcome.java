@@ -423,7 +423,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         WelcomeCreatePasswordView = v;
         enterPassword = (EditText) WelcomeCreatePasswordView.findViewById(R.id.enterPassword);
         confirmPassword = (EditText) WelcomeCreatePasswordView.findViewById(R.id.confirmPassword);
-
+//minor
         enterPassword.setTypeface(MyConstants.getBold(this));
         confirmPassword.setTypeface(MyConstants.getBold(this));
         enterPassword.addTextChangedListener(new TextWatcher() {
