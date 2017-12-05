@@ -915,6 +915,9 @@ public class MyProfileFragment extends Fragment {
                         team1=obj1.getTeam1();
                         duration1=obj1.getDuration1();
 
+
+
+
                         proj2=obj2.getProj1();
                         domain2=obj2.getDomain1();
                         team2=obj2.getTeam1();
@@ -959,6 +962,21 @@ public class MyProfileFragment extends Fragment {
                         domain10=obj10.getDomain1();
                         team10=obj10.getTeam1();
                         duration10=obj10.getDuration1();
+
+
+                        Log.d("TAG", "doInBackground: proj1 - "+proj1);
+                        Log.d("TAG", "doInBackground: domain1 - "+domain1);
+                        Log.d("TAG", "doInBackground: team1 - "+team1);
+                        Log.d("TAG", "doInBackground: duration1 - "+duration1);
+
+                        Log.d("TAG", "doInBackground: proj1 - "+proj1);
+                        Log.d("TAG", "doInBackground: proj2 - "+proj2);
+                        Log.d("TAG", "doInBackground: proj3 - "+proj3);
+                        Log.d("TAG", "doInBackground: proj4 - "+proj4);
+                        Log.d("TAG", "doInBackground: proj5 - "+proj5);
+                        Log.d("TAG", "doInBackground: proj6 - "+proj6);
+                        Log.d("TAG", "doInBackground: proj7 - "+proj7);
+
 
                         studentData.setProj1(proj1);
                         studentData.setDomain1(domain1);
@@ -1804,6 +1822,9 @@ public class MyProfileFragment extends Fragment {
                         puburl2 = obj2.getUrl();
                         pubdescription2= obj2.getDescription();
 
+
+                        Log.d("TAG", "doInBackground: puburl2 - "+puburl2);
+
                         pubtitle3 = obj3.getTitle();
                         publication3 = obj3.getPublication();
                         author3 = obj3.getAuthor();
@@ -1870,7 +1891,11 @@ public class MyProfileFragment extends Fragment {
                         studentData.setPublication2(publication2);
                         studentData.setAuthor2(author2);
                         studentData.setPublicationdate2(publicationdate2);
+
+                        studentData.setPuburl2(puburl2);
                         studentData.setPubdescription2(pubdescription2);
+
+
                         studentData.setPubtitle3(pubtitle3);
                         studentData.setPublication3(publication3);
                         studentData.setAuthor3(author3);
