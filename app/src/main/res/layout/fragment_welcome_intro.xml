@@ -129,9 +129,7 @@
                     android:singleLine="true"
                     android:textSize="16dp"
                     android:textColor="#03353e"
-
-                    android:text="asdasd"
-                    />
+                />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -157,9 +155,7 @@
                     android:singleLine="true"
                     android:textSize="16dp"
                     android:textColor="#03353e"
-
-                    android:text="asdasd"
-                    />
+                />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -186,9 +182,7 @@
                 android:singleLine="true"
                 android:textSize="16dp"
                 android:textColor="#03353e"
-
-                android:text="9762245060"
-                />
+            />
 
         </android.support.design.widget.TextInputLayout>
 

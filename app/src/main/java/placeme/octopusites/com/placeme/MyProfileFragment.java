@@ -36,6 +36,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -96,10 +97,11 @@ import static placeme.octopusites.com.placeme.AES4all.fromString;
 
 public class MyProfileFragment extends Fragment {
     CircleImageView myprofileimg;
+    ImageButton iv_camera;
     TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt, editprofiletxt, eduboxtxt, projboxtxt, accomplishmentsboxtxt, careerboxtxt, contactboxtxt, myprofilecource, myprofilecource2, myprofilecource3, myprofilecource4, myprofileproj1, myprofileproj2, myprofileproj3, acc1txt, acc2txt, acc3txt, acc4txt, acc5txt, acc6txt, acc7txt, careerobjtxt, strengthtxt, weaktxt, locpretxt, nametxt, mobiletxt, emailtxt, myprofileclgname, myprofileclgyearofpassing, myprofileclgname2, myprofileclgyearofpassing2, myprofileclgname3, myprofileclgname4, myprofileclgyearofpassing3, myprofileclgyearofpassing4, myprofiledomain1, myprofileduration1, myprofiledomain2, myprofileduration2, myprofiledomain3, myprofileduration3, careerobjtxttxt, strengthstxt, weaknessestxt, locationpreferences, contactaddr1, contactmobile, contactemail, myprofilepreview, acc1txttxt, acc2txttxt, acc3txttxt, acc4txttxt, acc5txttxt, acc6txttxt, acc7txttxt;
     TextView trytxt;
     ImageView introedit, eduedit, projectsedit, accomplishmentsedit, careeredit, contactedit;
-    final static CharSequence[] items = {"View Profile Picture", "Update Profile Picture", "Delete Profile Picture"};
+    final static CharSequence[] items = {"Update Profile Picture", "Delete Profile Picture"};
     RelativeLayout editprofilerl;
     String username = "", resultofop,dataobject="",careerdataobject="",strengthdataobject="",weaknessesdataobject="",locationpreferencesdataobject="",tenthdataobject="",ugdataobject="",personaldataobject="",contact_details_dataobject="";
     String fname = "", mname = "", lname = "", country = "", state = "", city = "", role = "", plainusername = "", phone = "";
@@ -153,6 +155,7 @@ public class MyProfileFragment extends Fragment {
         SwipeRefreshLayout tswipe_refresh_layout = (SwipeRefreshLayout) getActivity().findViewById(R.id.swipe_refresh_layout);
         tswipe_refresh_layout.setVisibility(View.GONE);
         myprofileimg = (CircleImageView) rootView.findViewById(R.id.myprofileimg);
+        iv_camera=(ImageButton)  rootView.findViewById(R.id.iv_camera);
         myprofilename = (TextView) rootView.findViewById(R.id.myprofilename);
         myprofilrole = (TextView) rootView.findViewById(R.id.myprofilrole);
         myprofiledu = (TextView) rootView.findViewById(R.id.myprofiledu);
@@ -346,6 +349,12 @@ public class MyProfileFragment extends Fragment {
         myprofileimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(getContext(), ViewProfileImage.class));
+            }
+        });
+        iv_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 showDialog();
             }
         });
@@ -445,20 +454,9 @@ public class MyProfileFragment extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
 
                 if (which == 0) {
-                    startActivity(new Intent(getContext(), ViewProfileImage.class));
-                } else if (which == 1) {
-
-//                    sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-//                    SharedPreferences.Editor editor = sharedpreferences.edit();
-//
-//                    editor.putString("digest1", digest1);
-//                    editor.putString("digest2", digest2);
-//                    editor.putString("plain", plainusername);
-//                    editor.commit();
                     dialog.cancel();
                     ((MainActivity) getActivity()).requestCropImage();
-                } else if (which == 2) {
-
+                } else if (which == 1) {
                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -477,7 +475,6 @@ public class MyProfileFragment extends Fragment {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                     builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
                             .setNegativeButton("No", dialogClickListener).show();
-
                 }
             }
         });
