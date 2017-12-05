@@ -8,6 +8,8 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -56,10 +58,13 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
     EditText marks12, outof12, percent12, schoolname12, otherboard, otherstream12;
+    EditText dmarkssem1, doutofsem1, dpercentsem1, dmarkssem2, doutofsem2, dpercentsem2, dmarkssem3, doutofsem3, dpercentsem3, dmarkssem4, doutofsem4, dpercentsem4, dmarkssem5, doutofsem5, dpercentsem5, dmarkssem6, doutofsem6, dpercentsem6, daggregate, schoolnamed, othercourse, otherboardd;
+    TextInputLayout marks12input,outof12input,schoolname12input,otherstream12input,otherboardinput,yearofpassing12inpute,marksdsem1input,doutofsem1input,dpercentsem1input,marksdsem2input,doutofsem2input,dpercentsem2inpute,marksdsem3input,doutofsem3input,dpercentsem3input,marksdsem4input,doutofsem4inpute,dpercentsem4inpute,marksdsem5input,doutofsem5input,dpercentsem5input,marksdsem6input,doutofsem6input,dpercentsem6input,daggregateinput,othercourseinput,otherboarddinput,schoolnamedinput,yearofpassingdinput;
+    TextInputLayout percent12input;
     String selectedBoard12="", selectedBoarddiploma="", selectedStream12="", monthandyearofpassing12="", monthandyearofpassingdiploma="";
     String encselectedboard12="", encselectedboarddiploma="", encselectedstream12="", encmonthandyearofpassing12="", encmonthandyearofpassingdiploma="";
     Spinner stream12, board12;
-    EditText dmarkssem1, doutofsem1, dpercentsem1, dmarkssem2, doutofsem2, dpercentsem2, dmarkssem3, doutofsem3, dpercentsem3, dmarkssem4, doutofsem4, dpercentsem4, dmarkssem5, doutofsem5, dpercentsem5, dmarkssem6, doutofsem6, dpercentsem6, daggregate, schoolnamed, othercourse, otherboardd;
+
     Spinner dcourse, duniversity;
 
     String username,role;
@@ -137,6 +142,111 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         duniversity = (Spinner) findViewById(R.id.duniversity);
         othercourse = (EditText) findViewById(R.id.othercourse);
         otherboardd = (EditText) findViewById(R.id.otherboardd);
+        yearofpassingd = (EditText) findViewById(R.id.yearofpassingd);
+
+        marks12 = (EditText) findViewById(R.id.marks12);
+        outof12 = (EditText) findViewById(R.id.outof12);
+        percent12 = (EditText) findViewById(R.id.percent12);
+        schoolname12 = (EditText) findViewById(R.id.schoolname12);
+        yearofpassing12 = (EditText) findViewById(R.id.yearofpassing12);
+        otherboard = (EditText) findViewById(R.id.otherboard);
+        otherstream12 = (EditText) findViewById(R.id.otherstream12);
+        stream12 = (Spinner) findViewById(R.id.stream12);
+        board12 = (Spinner) findViewById(R.id.board12);
+
+        marks12input= (TextInputLayout) findViewById(R.id.marks12input);
+        outof12input= (TextInputLayout) findViewById(R.id.outof12input);
+        schoolname12input= (TextInputLayout) findViewById(R.id.schoolname12input);
+        otherstream12input= (TextInputLayout) findViewById(R.id.otherstream12input);
+        otherboardinput= (TextInputLayout) findViewById(R.id.otherboardinput);
+        yearofpassing12inpute= (TextInputLayout) findViewById(R.id.yearofpassing12inpute);
+        marksdsem1input= (TextInputLayout) findViewById(R.id.marksdsem1input);
+        doutofsem1input= (TextInputLayout) findViewById(R.id.doutofsem1input);
+        dpercentsem1input= (TextInputLayout) findViewById(R.id.dpercentsem1input);
+        marksdsem2input= (TextInputLayout) findViewById(R.id.marksdsem2input);
+        doutofsem2input= (TextInputLayout) findViewById(R.id.doutofsem2input);
+        dpercentsem2inpute= (TextInputLayout) findViewById(R.id.dpercentsem2inpute);
+        marksdsem3input= (TextInputLayout) findViewById(R.id.marksdsem3input);
+        doutofsem3input= (TextInputLayout) findViewById(R.id.doutofsem3input);
+        dpercentsem3input= (TextInputLayout) findViewById(R.id.dpercentsem3input);
+        marksdsem4input= (TextInputLayout) findViewById(R.id.marksdsem4input);
+        doutofsem4inpute= (TextInputLayout) findViewById(R.id.doutofsem4inpute);
+        dpercentsem4inpute= (TextInputLayout) findViewById(R.id.dpercentsem4inpute);
+        marksdsem5input= (TextInputLayout) findViewById(R.id.marksdsem5input);
+        doutofsem5input= (TextInputLayout) findViewById(R.id.doutofsem5input);
+        dpercentsem5input= (TextInputLayout) findViewById(R.id.dpercentsem5input);
+        marksdsem6input= (TextInputLayout) findViewById(R.id.marksdsem6input);
+        doutofsem6input= (TextInputLayout) findViewById(R.id.doutofsem6input);
+        dpercentsem6input= (TextInputLayout) findViewById(R.id.dpercentsem6input);
+        daggregateinput= (TextInputLayout) findViewById(R.id.daggregateinput);
+        othercourseinput= (TextInputLayout) findViewById(R.id.othercourseinput);
+        otherboarddinput= (TextInputLayout) findViewById(R.id.otherboarddinput);
+        schoolnamedinput= (TextInputLayout) findViewById(R.id.schoolnamedinput);
+        yearofpassingdinput= (TextInputLayout) findViewById(R.id.yearofpassingdinput);
+        percent12input= (TextInputLayout) findViewById(R.id.percent12input);
+
+
+        marks12.setTypeface(MyConstants.getBold(this));
+        outof12.setTypeface(MyConstants.getBold(this));
+        percent12.setTypeface(MyConstants.getBold(this));
+        schoolname12.setTypeface(MyConstants.getBold(this));
+        otherboard.setTypeface(MyConstants.getBold(this));
+        otherstream12.setTypeface(MyConstants.getBold(this));
+        dmarkssem1.setTypeface(MyConstants.getBold(this));
+        doutofsem1.setTypeface(MyConstants.getBold(this));
+        dpercentsem1.setTypeface(MyConstants.getBold(this));
+        dmarkssem2.setTypeface(MyConstants.getBold(this));
+        doutofsem2.setTypeface(MyConstants.getBold(this));
+        dpercentsem2.setTypeface(MyConstants.getBold(this));
+        dmarkssem3.setTypeface(MyConstants.getBold(this));
+        doutofsem3.setTypeface(MyConstants.getBold(this));
+        dpercentsem3.setTypeface(MyConstants.getBold(this));
+        dmarkssem4.setTypeface(MyConstants.getBold(this));
+        doutofsem4.setTypeface(MyConstants.getBold(this));
+        dpercentsem4.setTypeface(MyConstants.getBold(this));
+        dmarkssem5.setTypeface(MyConstants.getBold(this));
+        doutofsem5.setTypeface(MyConstants.getBold(this));
+        dpercentsem5.setTypeface(MyConstants.getBold(this));
+        dmarkssem6.setTypeface(MyConstants.getBold(this));
+        doutofsem6.setTypeface(MyConstants.getBold(this));
+        dpercentsem6.setTypeface(MyConstants.getBold(this));
+        daggregate.setTypeface(MyConstants.getBold(this));
+        schoolnamed.setTypeface(MyConstants.getBold(this));
+        othercourse.setTypeface(MyConstants.getBold(this));
+        otherboardd.setTypeface(MyConstants.getBold(this));
+        yearofpassing12.setTypeface(MyConstants.getBold(this));
+        yearofpassingd.setTypeface(MyConstants.getBold(this));
+
+        marks12input.setTypeface(MyConstants.getLight(this));
+        outof12input.setTypeface(MyConstants.getLight(this));
+        schoolname12input.setTypeface(MyConstants.getLight(this));
+        otherstream12input.setTypeface(MyConstants.getLight(this));
+        otherboardinput.setTypeface(MyConstants.getLight(this));
+        yearofpassing12inpute.setTypeface(MyConstants.getLight(this));
+        marksdsem1input.setTypeface(MyConstants.getLight(this));
+        doutofsem1input.setTypeface(MyConstants.getLight(this));
+        dpercentsem1input.setTypeface(MyConstants.getLight(this));
+        marksdsem2input.setTypeface(MyConstants.getLight(this));
+        doutofsem2input.setTypeface(MyConstants.getLight(this));
+        dpercentsem2inpute.setTypeface(MyConstants.getLight(this));
+        marksdsem3input.setTypeface(MyConstants.getLight(this));
+        doutofsem3input.setTypeface(MyConstants.getLight(this));
+        dpercentsem3input.setTypeface(MyConstants.getLight(this));
+        marksdsem4input.setTypeface(MyConstants.getLight(this));
+        doutofsem4inpute.setTypeface(MyConstants.getLight(this));
+        dpercentsem4inpute.setTypeface(MyConstants.getLight(this));
+        marksdsem5input.setTypeface(MyConstants.getLight(this));
+        doutofsem5input.setTypeface(MyConstants.getLight(this));
+        dpercentsem5input.setTypeface(MyConstants.getLight(this));
+        marksdsem6input.setTypeface(MyConstants.getLight(this));
+        doutofsem6input.setTypeface(MyConstants.getLight(this));
+        dpercentsem6input.setTypeface(MyConstants.getLight(this));
+        daggregateinput.setTypeface(MyConstants.getLight(this));
+        othercourseinput.setTypeface(MyConstants.getLight(this));
+        otherboarddinput.setTypeface(MyConstants.getLight(this));
+        schoolnamedinput.setTypeface(MyConstants.getLight(this));
+        yearofpassingdinput.setTypeface(MyConstants.getLight(this));
+        percent12input.setTypeface(MyConstants.getLight(this));
 
         new GetCourses().execute();
 
@@ -148,7 +258,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                dmarkssem1.setError(null);
+                marksdsem1input.setError(null);
                 edittedFlag = 1;
             }
 
@@ -169,7 +279,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 //                    }
 //                }catch (Exception e){}
 
-                doutofsem1.setError(null);
+                doutofsem1input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -186,7 +296,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                 dpercentsem1.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            doutofsem1.setError("Invalid Out Of Marks");
+                            doutofsem1input.setError("Kindly enter valid Out Of Marks");
                             dpercentsem1.setText("");
                         }
                     } else {
@@ -205,7 +315,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                doutofsem1.setError(null);
+                doutofsem1input.setError(null);
                 edittedFlag = 1;
             }
 
@@ -227,7 +337,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 //                }catch (Exception e){}
 
 
-                doutofsem1.setError(null);
+                doutofsem1input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -244,7 +354,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                 dpercentsem1.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            doutofsem1.setError("Invalid Out Of Marks");
+                            doutofsem1input.setError("Kindly enter valid Out Of Marks");
                             dpercentsem1.setText("");
                         }
                     } else {
@@ -264,7 +374,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                dmarkssem2.setError(null);
+                marksdsem2input.setError(null);
                 edittedFlag = 1;
             }
 
@@ -289,7 +399,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 //                }catch (Exception e){}
 
 
-                doutofsem2.setError(null);
+                doutofsem2input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -306,7 +416,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                 dpercentsem2.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            doutofsem2.setError("Invalid Out Of Marks");
+                            doutofsem2input.setError("Kindly enter valid Out Of Marks");
                             dpercentsem2.setText("");
                         }
                     } else {
@@ -326,14 +436,14 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                doutofsem2.setError(null);
+                doutofsem2input.setError(null);
                 edittedFlag = 1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 //
-                doutofsem2.setError(null);
+                doutofsem2input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -350,7 +460,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                 dpercentsem2.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            doutofsem2.setError("Invalid Out Of Marks");
+                            doutofsem2input.setError("Kindly enter valid Out Of Marks");
                             dpercentsem2.setText("");
                         }
                     } else {
@@ -369,7 +479,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                dmarkssem3.setError(null);
+                marksdsem3input.setError(null);
                 edittedFlag = 1;
             }
 
@@ -377,7 +487,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
 
-                doutofsem3.setError(null);
+                doutofsem3input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -394,7 +504,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                 dpercentsem3.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            doutofsem3.setError("Invalid Out Of Marks");
+                            doutofsem3input.setError("Kindly enter valid Out Of Marks");
                             dpercentsem3.setText("");
                         }
                     } else {
@@ -413,14 +523,14 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                doutofsem3.setError(null);
+                doutofsem3input.setError(null);
                 edittedFlag = 1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 //
-                doutofsem3.setError(null);
+                doutofsem3input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -437,7 +547,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                 dpercentsem3.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            doutofsem3.setError("Invalid Out Of Marks");
+                            doutofsem3input.setError("Kindly enter valid Out Of Marks");
                             dpercentsem3.setText("");
                         }
                     } else {
@@ -456,14 +566,14 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                dmarkssem4.setError(null);
+                marksdsem4input.setError(null);
                 edittedFlag = 1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
-                doutofsem4.setError(null);
+                doutofsem4inpute.setError(null);
 
                 try {
                     double percentage = 0;
@@ -485,7 +595,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                 dpercentsem4.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            doutofsem4.setError("Invalid Out Of Marks");
+                            doutofsem4inpute.setError("Kindly enter valid Out Of Marks");
                             dpercentsem4.setText("");
                         }
                     } else {
@@ -504,7 +614,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                doutofsem4.setError(null);
+                doutofsem4inpute.setError(null);
                 edittedFlag = 1;
             }
 
@@ -512,7 +622,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 //
 
-                doutofsem4.setError(null);
+                doutofsem4inpute.setError(null);
 
                 try {
                     double percentage = 0;
@@ -529,7 +639,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                 dpercentsem4.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            doutofsem4.setError("Invalid Out Of Marks");
+                            doutofsem4inpute.setError("Kindly enter valid out of marks");
                             dpercentsem4.setText("");
                         }
                     } else {
@@ -548,15 +658,14 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                dmarkssem5.setError(null);
+                marksdsem5input.setError(null);
                 edittedFlag = 1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
-                doutofsem5.setError(null);
-
+                doutofsem5input.setError(null);
                 try {
                     double percentage = 0;
                     String s1 = dmarkssem5.getText().toString();
@@ -572,7 +681,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                 dpercentsem5.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            doutofsem5.setError("Invalid Out Of Marks");
+                            doutofsem5input.setError("Kindly enter valid Out Of Marks");
                             dpercentsem5.setText("");
                         }
                     } else {
@@ -591,14 +700,14 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                doutofsem5.setError(null);
+                doutofsem5input.setError(null);
                 edittedFlag = 1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 //
-                doutofsem5.setError(null);
+                doutofsem5input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -615,7 +724,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                 dpercentsem5.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            doutofsem5.setError("Invalid Out Of Marks");
+                            doutofsem5input.setError("Kindly enter valid Out Of Marks");
                             dpercentsem5.setText("");
                         }
                     } else {
@@ -634,7 +743,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                dmarkssem6.setError(null);
+                marksdsem6input.setError(null);
                 edittedFlag = 1;
             }
 
@@ -642,7 +751,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
 
-                doutofsem6.setError(null);
+                doutofsem6input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -659,7 +768,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                 dpercentsem6.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            doutofsem6.setError("Invalid Out Of Marks");
+                            doutofsem6input.setError("Kindly enter valid Out Of Marks");
                             dpercentsem6.setText("");
                         }
                     } else {
@@ -678,14 +787,14 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                doutofsem6.setError(null);
+                doutofsem6input.setError(null);
                 edittedFlag = 1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 //
-                doutofsem6.setError(null);
+                doutofsem6input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -702,7 +811,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                 dpercentsem6.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            doutofsem6.setError("Invalid Out Of Marks");
+                            doutofsem6input.setError("Kindly enter valid Out Of Marks");
                             dpercentsem6.setText("");
                         }
                     } else {
@@ -722,6 +831,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                daggregateinput.setError(null);
             }
 
             @Override
@@ -731,15 +841,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         });
 
 
-        marks12 = (EditText) findViewById(R.id.marks12);
-        outof12 = (EditText) findViewById(R.id.outof12);
-        percent12 = (EditText) findViewById(R.id.percent12);
-        schoolname12 = (EditText) findViewById(R.id.schoolname12);
-        yearofpassing12 = (EditText) findViewById(R.id.yearofpassing12);
-        otherboard = (EditText) findViewById(R.id.otherboard);
-        otherstream12 = (EditText) findViewById(R.id.otherstream12);
-        stream12 = (Spinner) findViewById(R.id.stream12);
-        board12 = (Spinner) findViewById(R.id.board12);
+
 
         marks12.addTextChangedListener(new TextWatcher() {
             @Override
@@ -749,7 +851,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                marks12.setError(null);
+                marks12input.setError(null);
                 edittedFlag = 1;
             }
 
@@ -757,7 +859,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
 
-                outof12.setError(null);
+                outof12input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -775,7 +877,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                 percent12.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            outof12.setError("Invalid Out Of Marks");
+                            outof12input.setError("Kindly enter valid Out Of Marks");
                             percent12.setText("");
                         }
                     } else {
@@ -795,7 +897,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                outof12.setError(null);
+                outof12input.setError(null);
                 edittedFlag = 1;
             }
 
@@ -803,7 +905,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
 //
-                percent12.setError(null);
+                percent12input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -820,7 +922,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                 percent12.setText("" + (new DecimalFormat("##.##").format(percentage)));
 
                         } else {
-                            outof12.setError("Invalid Out Of Marks");
+                            outof12input.setError("Kindly enter valid Out Of Marks");
                             percent12.setText("");
                         }
                     } else {
@@ -840,7 +942,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                otherboard.setError(null);
+                otherboardinput.setError(null);
                 edittedFlag = 1;
             }
 
@@ -857,7 +959,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                otherstream12.setError(null);
+                otherstream12input.setError(null);
                 edittedFlag = 1;
             }
 
@@ -875,6 +977,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                schoolname12input.setError(null);
             }
 
             @Override
@@ -891,6 +994,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                schoolnamedinput.setError(null);
             }
 
             @Override
@@ -907,6 +1011,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                yearofpassing12inpute.setError(null);
             }
 
             @Override
@@ -933,19 +1038,27 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 }
             }
 
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view= super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
+                return view;
+            }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+                tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
 
                 if (position == 0) {
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 } else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -991,19 +1104,27 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 }
             }
 
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view= super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
+                return view;
+            }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+                tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
 
                 if (position == 0) {
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 } else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -1050,19 +1171,27 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 }
             }
 
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view= super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
+                return view;
+            }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+                tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
 
                 if (position == 0) {
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 } else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -1092,11 +1221,13 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             }
         });
 
-        yearofpassingd = (EditText) findViewById(R.id.yearofpassingd);
+
 
         yearofpassing12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                yearofpassing12inpute.setError(null);
 
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyProfileTwelthOrDiploma.this);
                 LayoutInflater inflater = MyProfileTwelthOrDiploma.this.getLayoutInflater();
@@ -1179,6 +1310,8 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         yearofpassingd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                yearofpassingdinput.setError(null);
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyProfileTwelthOrDiploma.this);
                 LayoutInflater inflater = MyProfileTwelthOrDiploma.this.getLayoutInflater();
                 View dialog = inflater.inflate(R.layout.monthyeardialog, null);
@@ -1261,8 +1394,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         radioButtonDiploma = (RadioButton) findViewById(R.id.radioButtonDiploma);
 
         TextView twelthtxt = (TextView) findViewById(R.id.twelthtxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/arba.ttf");
-        twelthtxt.setTypeface(custom_font1);
+        twelthtxt.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
 
         radioGrouptwelthdiploma.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -1545,19 +1677,26 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 }
             }
 
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view= super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
+                return view;
+            }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
-
+                tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
                 if (position == 0) {
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 } else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -1620,13 +1759,13 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         if (pattern.equals("twelth")) {
             setBlankDelpoma();
 
-            marks12.setError(null);
-            outof12.setError(null);
-            percent12.setError(null);
-            schoolname12.setError(null);
-            otherstream12.setError(null);
-            otherboard.setError(null);
-            yearofpassing12.setError(null);
+//            marks12.setError(null);
+//            outof12.setError(null);
+//            percent12.setError(null);
+//            schoolname12.setError(null);
+//            otherstream12.setError(null);
+//            otherboard.setError(null);
+//            yearofpassing12.setError(null);
 
             int errorflag1 = 0, errorflag2 = 0, errorflag3 = 0, errorflag4 = 0, errorflag5 = 0, errorflag6 = 0, errorflag7 = 0, errorflag8 = 0, errorflag9 = 0;
 
@@ -1638,43 +1777,30 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             if (marksobtained.length() < 1) {
                 errorflag1 = 1;
-                marks12.setError("Incorrect Marks");
+                marks12input.setError("Kindly enter valid marks");
             } else {
                 if (outofmarks.length() < 1) {
                     errorflag2 = 1;
-                    marks12.setError(null);
-                    outof12.setError("Incorrect Marks");
+
+                    outof12input.setError("Kindly enter valid marks");
                 } else {
                     if (percentage.length() < 1) {
                         errorflag3 = 1;
-                        marks12.setError(null);
-                        outof12.setError(null);
-                        percent12.setError("Incorrect Percentage");
+                        percent12input.setError("Incorrect Percentage");
                     } else {
                         if (schoolnametwelth.length() < 3) {
                             errorflag4 = 1;
-                            marks12.setError(null);
-                            outof12.setError(null);
-                            percent12.setError(null);
-                            schoolname12.setError("Invalid Schoolname");
+                            schoolname12input.setError("Kindly enter valid college name");
                         } else {
                             if (selectedStream12 == null || selectedStream12.equals("- Select Stream -")) {
                                 errorflag5 = 1;
-                                marks12.setError(null);
-                                outof12.setError(null);
-                                percent12.setError(null);
-                                schoolname12.setError(null);
                                 Toast.makeText(MyProfileTwelthOrDiploma.this, "Select Stream", Toast.LENGTH_LONG).show();
                             } else {
                                 if (selectedStream12.equals("Other")) {
                                     otherspecifiedstream = otherstream12.getText().toString();
                                     if (otherspecifiedstream.length() < 3) {
                                         errorflag6 = 1;
-                                        marks12.setError(null);
-                                        outof12.setError(null);
-                                        percent12.setError(null);
-                                        schoolname12.setError(null);
-                                        otherstream12.setError("Invalid Stream");
+                                         otherstream12input.setError("Kindly enter valid Stream");
                                     }
                                 }
 
@@ -1690,21 +1816,12 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                         otherspecifiedboard = otherboard.getText().toString();
                                         if (otherspecifiedboard.length() < 3) {
                                             errorflag8 = 1;
-                                            marks12.setError(null);
-                                            outof12.setError(null);
-                                            percent12.setError(null);
-                                            schoolname12.setError(null);
-                                            otherboard.setError("Invalid Board");
+                                            otherboardinput.setError("Kindly enter valid Board");
                                         }
                                     }
                                     if (monthandyearofpassing12.length() < 9 || monthandyearofpassing12.length() > 9) {
                                         errorflag9 = 1;
-                                        marks12.setError(null);
-                                        outof12.setError(null);
-                                        percent12.setError(null);
-                                        schoolname12.setError(null);
-                                        otherboard.setError(null);
-                                        yearofpassing12.setError("Invalid Month,Year");
+                                        yearofpassing12inpute.setError("Kindly select valid Month,Year");
                                     }
                                 }
 
@@ -1748,27 +1865,27 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             setBlankTwelth();
 
-            dmarkssem1.setError(null);
-            doutofsem1.setError(null);
-            dpercentsem1.setError(null);
-            dmarkssem2.setError(null);
-            doutofsem2.setError(null);
-            dpercentsem2.setError(null);
-            dmarkssem3.setError(null);
-            doutofsem3.setError(null);
-            dpercentsem3.setError(null);
-            dmarkssem4.setError(null);
-            doutofsem4.setError(null);
-            dpercentsem4.setError(null);
-            dmarkssem5.setError(null);
-            doutofsem5.setError(null);
-            dpercentsem5.setError(null);
-            dmarkssem6.setError(null);
-            doutofsem6.setError(null);
-            dpercentsem6.setError(null);
-            daggregate.setError(null);
-            schoolnamed.setError(null);
-            yearofpassingd.setError(null);
+//            dmarkssem1.setError(null);
+//            doutofsem1.setError(null);
+//            dpercentsem1.setError(null);
+//            dmarkssem2.setError(null);
+//            doutofsem2.setError(null);
+//            dpercentsem2.setError(null);
+//            dmarkssem3.setError(null);
+//            doutofsem3.setError(null);
+//            dpercentsem3.setError(null);
+//            dmarkssem4.setError(null);
+//            doutofsem4.setError(null);
+//            dpercentsem4.setError(null);
+//            dmarkssem5.setError(null);
+//            doutofsem5.setError(null);
+//            dpercentsem5.setError(null);
+//            dmarkssem6.setError(null);
+//            doutofsem6.setError(null);
+//            dpercentsem6.setError(null);
+//            daggregate.setError(null);
+//            schoolnamed.setError(null);
+//            yearofpassingd.setError(null);
 
             markssem1 = dmarkssem1.getText().toString();
             outofsem1 = doutofsem1.getText().toString();
@@ -1798,110 +1915,92 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             if (markssem1.length() < 1) {
                 errorflag1 = 1;
-                dmarkssem1.setError("Incorrect Marks");
+                marksdsem1input.setError("Kindly enter valid marks");
             } else {
                 errorflag1 = 0;
                 if (outofsem1.length() < 1) {
                     errorflag1 = 1;
-                    dmarkssem1.setError(null);
-                    doutofsem1.setError("Incorrect Marks");
+                    doutofsem1input.setError("Kindly enter valid marks");
                 } else {
                     errorflag1 = 0;
                     if (percentsem1.length() < 1) {
                         errorflag1 = 1;
-                        dmarkssem1.setError(null);
-                        doutofsem1.setError(null);
-                        doutofsem1.setError("Incorrect Percentage");
+                        doutofsem1input.setError("Incorrect Percentage");
                     } else {
                         errorflag1 = 0;
                         if (markssem2.length() < 1) {
                             errorflag1 = 1;
-                            dmarkssem2.setError("Incorrect Marks");
+                            marksdsem2input.setError("Kindly enter valid marks");
                         } else {
                             errorflag1 = 0;
                             if (outofsem2.length() < 1) {
                                 errorflag1 = 1;
-                                dmarkssem2.setError(null);
-                                doutofsem2.setError("Incorrect Marks");
+                                doutofsem2input.setError("Kindly enter valid marks");
                             } else {
                                 errorflag1 = 0;
                                 if (percentsem2.length() < 1) {
                                     errorflag1 = 1;
-                                    dmarkssem2.setError(null);
-                                    doutofsem2.setError(null);
-                                    doutofsem2.setError("Incorrect Percentage");
+                                    doutofsem2input.setError("Incorrect Percentage");
                                 } else {
                                     errorflag1 = 0;
                                     if (markssem3.length() < 1) {
                                         errorflag1 = 1;
-                                        dmarkssem3.setError("Incorrect Marks");
+                                        marksdsem3input.setError("Kindly enter valid marks");
                                     } else {
                                         errorflag1 = 0;
                                         if (outofsem3.length() < 1) {
                                             errorflag1 = 1;
-                                            dmarkssem3.setError(null);
-                                            doutofsem3.setError("Incorrect Marks");
+                                            doutofsem3input.setError("Kindly enter valid marks");
                                         } else {
                                             errorflag1 = 0;
                                             if (percentsem3.length() < 1) {
                                                 errorflag1 = 1;
-                                                dmarkssem3.setError(null);
-                                                doutofsem3.setError(null);
-                                                doutofsem3.setError("Incorrect Percentage");
+                                                doutofsem3input.setError("Incorrect Percentage");
                                             } else {
                                                 errorflag1 = 0;
                                                 if (markssem4.length() < 1) {
                                                     errorflag1 = 1;
-                                                    dmarkssem4.setError("Incorrect Marks");
+                                                    marksdsem4input.setError("Kindly enter valid marks");
                                                 } else {
                                                     errorflag1 = 0;
                                                     if (outofsem4.length() < 1) {
                                                         errorflag1 = 1;
-                                                        dmarkssem4.setError(null);
-                                                        doutofsem4.setError("Incorrect Marks");
+                                                        doutofsem4inpute.setError("Kindly enter valid marks");
                                                     } else {
                                                         errorflag1 = 0;
                                                         if (percentsem4.length() < 1) {
                                                             errorflag1 = 1;
-                                                            dmarkssem4.setError(null);
-                                                            doutofsem4.setError(null);
-                                                            doutofsem4.setError("Incorrect Percentage");
+                                                            doutofsem4inpute.setError("Incorrect Percentage");
                                                         } else {
                                                             errorflag1 = 0;
                                                             if (markssem5.length() < 1) {
                                                                 errorflag1 = 1;
-                                                                dmarkssem5.setError("Incorrect Marks");
+                                                                marksdsem5input.setError("Kindly enter valid marks");
                                                             } else {
                                                                 errorflag1 = 0;
                                                                 if (outofsem5.length() < 1) {
                                                                     errorflag1 = 1;
-                                                                    dmarkssem5.setError(null);
-                                                                    doutofsem5.setError("Incorrect Marks");
+                                                                    doutofsem5input.setError("Kindly enter valid marks");
                                                                 } else {
                                                                     errorflag1 = 0;
                                                                     if (percentsem5.length() < 1) {
                                                                         errorflag1 = 1;
-                                                                        dmarkssem5.setError(null);
-                                                                        doutofsem5.setError(null);
-                                                                        doutofsem5.setError("Incorrect Percentage");
+                                                                        doutofsem5input.setError("Incorrect Percentage");
                                                                     } else {
                                                                         errorflag1 = 0;
                                                                         if (markssem6.length() < 1) {
                                                                             errorflag1 = 1;
-                                                                            dmarkssem6.setError("Incorrect Marks");
+                                                                            marksdsem6input.setError("Kindly enter valid marks");
                                                                         } else {
                                                                             errorflag1 = 0;
                                                                             if (outofsem6.length() < 1) {
                                                                                 errorflag1 = 1;
-                                                                                dmarkssem6.setError(null);
-                                                                                doutofsem6.setError("Incorrect Marks");
+                                                                                doutofsem6input.setError("Kindly enter valid marks");
                                                                             } else {
                                                                                 errorflag1 = 0;
                                                                                 if (percentsem6.length() < 1) {
                                                                                     errorflag1 = 1;
-                                                                                    dmarkssem6.setError(null);
-                                                                                    doutofsem6.setError(null);
-                                                                                    doutofsem6.setError("Incorrect Percentage");
+                                                                                    doutofsem6input.setError("Incorrect Percentage");
                                                                                 } else {
                                                                                     errorflag1 = 0;
                                                                                     float aggg = 0;
@@ -1909,51 +2008,44 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                                                                         aggg = Float.parseFloat(aggregate);
                                                                                     } catch (NumberFormatException e) {
                                                                                         errorflag1 = 1;
-                                                                                        daggregate.setError("Incorrect Aggregate");
+                                                                                        daggregateinput.setError("Kindly enter valid Aggregate");
                                                                                     }
                                                                                     if (aggg < 0 || aggg > 100) {
                                                                                         errorflag1 = 1;
-                                                                                        dmarkssem6.setError(null);
-                                                                                        doutofsem6.setError(null);
-                                                                                        doutofsem6.setError(null);
-                                                                                        daggregate.setError("Incorrect Aggregate");
+                                                                                        daggregateinput.setError("Kindly enter valid Aggregate");
                                                                                     } else {
                                                                                         errorflag1 = 0;
                                                                                         if (selectedCourse == null || selectedCourse.equals("- Select Course -")) {
                                                                                             errorflag1 = 1;
-                                                                                            daggregate.setError(null);
+                                                                                            daggregateinput.setError(null);
                                                                                             Toast.makeText(MyProfileTwelthOrDiploma.this, "Select Course", Toast.LENGTH_LONG).show();
                                                                                         } else {
                                                                                             if (selectedCourse.equals("Other")) {
                                                                                                 otherspecifiedcourse = othercourse.getText().toString();
                                                                                                 if (otherspecifiedcourse.length() < 3) {
                                                                                                     errorflag2 = 1;
-                                                                                                    daggregate.setError(null);
-                                                                                                    othercourse.setError("Invalid Course");
+                                                                                                    othercourseinput.setError("Kindly enter valid Course");
                                                                                                 }
                                                                                             }
 
                                                                                             if (selectedBoarddiploma.equals("- Select Board -")) {
                                                                                                 errorflag3 = 1;
-                                                                                                daggregate.setError(null);
-                                                                                                othercourse.setError(null);
                                                                                                 Toast.makeText(MyProfileTwelthOrDiploma.this, "Select Board", Toast.LENGTH_LONG).show();
                                                                                             } else {
                                                                                                 if (schoolnamediploma.length() < 3) {
                                                                                                     errorflag4 = 1;
-                                                                                                    schoolnamed.setError("Invalid College Name");
+                                                                                                    schoolnamedinput.setError("Kindly enter valid College Name");
                                                                                                 } else if (selectedBoarddiploma.equals("Other")) {
                                                                                                     otherspecifiedboard = otherboardd.getText().toString();
                                                                                                     if (otherspecifiedboard.length() < 3) {
                                                                                                         errorflag4 = 1;
 
-                                                                                                        otherboardd.setError("Invalid Board");
+                                                                                                        otherboarddinput.setError("Invalid Board");
                                                                                                     }
                                                                                                 }
-                                                                                                if (monthandyearofpassingdiploma.length() < 9 || monthandyearofpassingdiploma.length() > 9) {
+                                                                                                else if (monthandyearofpassingdiploma.length() < 9 || monthandyearofpassingdiploma.length() > 9) {
                                                                                                     errorflag5 = 1;
-                                                                                                    otherboardd.setError(null);
-                                                                                                    yearofpassingd.setError("Invalid Month,Year");
+                                                                                                    yearofpassingdinput.setError("Kindly select valid Month,Year");
                                                                                                 }
                                                                                             }
 
@@ -1984,9 +2076,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             }
             if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag5 == 0) {
                 try {
-
-
-
 
                     if (selectedCourse.equals("Other"))
                         selectedcourseBytes1 = otherspecifiedcourse;
@@ -2355,8 +2444,12 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialogInterface) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
+
                 }
             });
 

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:id="@+id/myprofilecourses"
     android:layout_height="match_parent"
-    android:background="#282f35">
+    android:background="@color/while_color">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_my_profile_courses"
@@ -18,22 +18,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Courses"
-            android:textSize="20dp"
-            android:textColor="#eee"
+            android:textSize="18dp"
+            android:textColor="@color/while_color"
             android:id="@+id/coursetxt"
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:background="@drawable/textviewborder2"
+            android:elevation="6dp"
+            android:background="@drawable/textviewborder"
             />
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_below="@+id/coursetxt"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcourse1"
             />
@@ -64,8 +65,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Course Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapSentences"
                     android:singleLine="true"
                     android:id="@+id/name1"/>
@@ -83,8 +85,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization/Consultancy Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:singleLine="true"
                     android:id="@+id/inst1"/>
@@ -116,10 +119,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
                         android:id="@+id/fromdate1"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -148,10 +151,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
                         android:id="@+id/todate1"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -165,7 +168,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/courserl1"
             android:id="@+id/courseline1"
             android:layout_marginTop="20dp"
@@ -176,7 +179,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/courseline1"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcourse2"
             />
@@ -208,9 +211,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Course Name"
-                    android:textSize="15dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapSentences"
                     android:id="@+id/name2"/>
 
@@ -227,9 +231,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization/Consultancy Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
                     android:id="@+id/inst2"/>
 
@@ -262,8 +267,8 @@
                         android:hint="From Date"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:id="@+id/fromdate2"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -290,8 +295,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
                         android:id="@+id/todate2"/>
@@ -303,7 +308,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/courserl2"
             android:id="@+id/courseline2"
             android:layout_marginTop="20dp"
@@ -314,7 +319,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/courseline2"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcourse3"
             />
@@ -346,9 +351,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Course Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
-                    android:textColor="#eee"
                     android:inputType="textCapSentences"
                     android:id="@+id/name3"/>
 
@@ -365,9 +371,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization/Consultancy Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
                     android:id="@+id/inst3"/>
 
@@ -398,10 +405,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:id="@+id/fromdate3"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -428,10 +436,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/todate3"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -441,7 +450,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/courserl3"
             android:id="@+id/courseline3"
             android:layout_marginTop="20dp"
@@ -452,7 +461,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/courseline3"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcourse4"
             />
@@ -485,8 +494,9 @@
                     android:layout_height="wrap_content"
                     android:hint="Course Name"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapSentences"
                     android:id="@+id/name4"/>
 
@@ -503,8 +513,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization/Consultancy Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:singleLine="true"
                     android:id="@+id/inst4"/>
@@ -536,10 +547,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/fromdate4"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -566,10 +578,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/todate4"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -580,7 +593,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/courserl4"
             android:id="@+id/courseline4"
             android:layout_marginTop="20dp"
@@ -591,7 +604,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/courseline4"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcourse5"
             />
@@ -623,9 +636,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Course Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
-                    android:textColor="#eee"
                     android:inputType="textCapSentences"
                     android:id="@+id/name5"/>
 
@@ -642,8 +656,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization/Consultancy Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:id="@+id/inst5"/>
@@ -675,10 +690,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/fromdate5"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -705,8 +721,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
                         android:id="@+id/todate5"/>
@@ -719,7 +735,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/courserl5"
             android:id="@+id/courseline5"
             android:layout_marginTop="20dp"
@@ -730,7 +746,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/courseline5"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcourse6"
             />
@@ -762,9 +778,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Course Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
-                    android:textColor="#eee"
                     android:inputType="textCapSentences"
                     android:id="@+id/name6"/>
 
@@ -781,8 +798,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization/Consultancy Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:id="@+id/inst6"/>
@@ -816,8 +834,8 @@
                         android:hint="From Date"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:id="@+id/fromdate6"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -846,8 +864,8 @@
                         android:hint="To Date"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:id="@+id/todate6"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -857,7 +875,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/courserl6"
             android:id="@+id/courseline6"
             android:layout_marginTop="20dp"
@@ -868,7 +886,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/courseline6"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcourse7"
             />
@@ -900,9 +918,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Course Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
-                    android:textColor="#eee"
                     android:inputType="textCapSentences"
                     android:id="@+id/name7"/>
 
@@ -919,9 +938,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization/Consultancy Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
                     android:id="@+id/inst7"/>
 
@@ -952,10 +972,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/fromdate7"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -984,8 +1005,8 @@
                         android:hint="To Date"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:id="@+id/todate7"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -996,7 +1017,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/courserl7"
             android:id="@+id/courseline7"
             android:layout_marginTop="20dp"
@@ -1007,7 +1028,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/courseline7"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcourse8"
             />
@@ -1039,9 +1060,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Course Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
-                    android:textColor="#eee"
                     android:inputType="textCapSentences"
                     android:id="@+id/name8"/>
 
@@ -1058,8 +1080,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization/Consultancy Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:id="@+id/inst8"/>
@@ -1091,10 +1114,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/fromdate8"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1121,10 +1145,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/todate8"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1135,7 +1160,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/courserl8"
             android:id="@+id/courseline8"
             android:layout_marginTop="20dp"
@@ -1146,7 +1171,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/courseline8"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcourse9"
             />
@@ -1178,9 +1203,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Course Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
-                    android:textColor="#eee"
                     android:inputType="textCapSentences"
                     android:id="@+id/name9"/>
 
@@ -1197,8 +1223,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization/Consultancy Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:id="@+id/inst9"/>
@@ -1230,10 +1257,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/fromdate9"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1262,8 +1290,8 @@
                         android:hint="To Date"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:id="@+id/todate9"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1274,7 +1302,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/courserl9"
             android:id="@+id/courseline9"
             android:layout_marginTop="20dp"
@@ -1285,7 +1313,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/courseline9"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcourse10"
 
@@ -1319,8 +1347,9 @@
                     android:layout_height="wrap_content"
                     android:hint="Course Name"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapSentences"
                     android:id="@+id/name10"/>
 
@@ -1337,9 +1366,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization/Consultancy Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
                     android:id="@+id/inst10"/>
 
@@ -1372,8 +1402,8 @@
                         android:hint="From Date"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:id="@+id/fromdate10"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1402,8 +1432,8 @@
                         android:hint="To Date"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:id="@+id/todate10"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1413,7 +1443,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/boxborderwhite"
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp"
             android:layout_below="@+id/courserl10"
             android:id="@+id/addmorecourse"
             android:layout_marginTop="20dp"
@@ -1424,8 +1455,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/courserl10"
             android:text="Add Another Course"
-            android:textColor="#eee"
-            android:textSize="20dp"
+            android:textColor="@color/while_color"
+            android:elevation="8dp"
+            android:textSize="18dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
             android:id="@+id/addmorecoursetxt"
@@ -1435,7 +1467,8 @@
             android:layout_height="30dp"
             android:layout_below="@+id/courserl10"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:src="@drawable/add_icon_white"
+            android:elevation="8dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
             android:id="@+id/addmorecourseimg"

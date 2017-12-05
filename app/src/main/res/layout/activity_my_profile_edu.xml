@@ -2,8 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#282f35">
+    android:background="@color/while_color">
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_my_profile_intro"
@@ -14,116 +14,132 @@
         tools:context="com.octopusites.placeme.MyProfileEdu">
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
             android:id="@+id/tenthbutton"
-            android:background="@drawable/boxborderwhite"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp" />
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Std. X Details"
-            android:textColor="#eee"
-            android:textSize="20dp"
             android:id="@+id/tenthtxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            />
+            android:elevation="8dp"
+            android:text="Std. X Details"
+            android:textColor="@color/while_color"
+            android:textSize="20dp" />
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            />
+            android:elevation="8dp"
+            android:src="@drawable/add_icon_white" />
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/tenthbutton"
             android:id="@+id/twelfthbutton"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/boxborderwhite"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_below="@+id/tenthbutton"
-            android:text="Std. XII/Diploma Details"
-            android:textColor="#eee"
-            android:textSize="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp" />
+
+        <TextView
             android:id="@+id/twelthtxt"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            />
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/tenthbutton"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:elevation="8dp"
+            android:text="Std. XII/Diploma Details"
+            android:textColor="@color/while_color"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:layout_below="@+id/tenthbutton"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            />
+            android:elevation="8dp"
+            android:src="@drawable/add_icon_white" />
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/twelfthbutton"
             android:id="@+id/ugbutton"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/boxborderwhite"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/twelfthbutton"
-            android:text="UG Details"
-            android:textColor="#eee"
-            android:id="@+id/ugtxt"
-            android:textSize="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            />
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_below="@+id/twelfthbutton"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="30dp"
-            />
-
-        <View
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/boxborderwhite"
-            android:layout_below="@+id/ugbutton"
-            android:id="@+id/pgbutton"
+            android:layout_below="@+id/twelfthbutton"
             android:layout_marginTop="20dp"
-            />
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp" />
+
         <TextView
+            android:id="@+id/ugtxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ugbutton"
-            android:text="PG Details"
-            android:textColor="#eee"
-            android:textSize="20dp"
-            android:id="@+id/pgtxt"
+            android:layout_below="@+id/twelfthbutton"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            />
+            android:elevation="8dp"
+            android:text="UG Details"
+            android:textColor="@color/while_color"
+            android:textSize="20dp" />
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_below="@+id/ugbutton"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:layout_below="@+id/twelfthbutton"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            />
+            android:elevation="8dp"
+            android:src="@drawable/add_icon_white" />
+
+        <View
+            android:id="@+id/pgbutton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/ugbutton"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp" />
+
+        <View
+            android:id="@+id/dummpy_view_for_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@+id/pgbutton"
+            android:layout_marginTop="20dp"
+             />
+
+        <TextView
+            android:id="@+id/pgtxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ugbutton"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:elevation="8dp"
+            android:text="PG Details"
+            android:textColor="@color/while_color"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/ugbutton"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"
+            android:elevation="8dp"
+            android:src="@drawable/add_icon_white" />
 
 
     </RelativeLayout>

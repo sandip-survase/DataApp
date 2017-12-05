@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/myprofilecertification"
-    android:background="#282f35">
+    android:background="@color/while_color">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_my_profile_certifications"
@@ -17,15 +17,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Certifications"
-            android:textSize="20dp"
-            android:textColor="#eee"
+            android:textSize="18dp"
+            android:textColor="@color/while_color"
             android:id="@+id/certitxt"
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:background="@drawable/textviewborder2"
+            android:elevation="6dp"
+            android:background="@drawable/textviewborder"
             />
 
         <ImageView
@@ -33,7 +34,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/certitxt"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcerti1"
             />
@@ -63,8 +64,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Certification Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapSentences"
                     android:singleLine="true"
                     android:id="@+id/title1"/>
@@ -83,8 +85,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Certificate Issuer"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:inputType="textCapWords"
                     android:singleLine="true"
                     android:id="@+id/issuer1"/>
@@ -103,8 +106,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="License Number (If any)"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:imeOptions="actionDone"
                     android:singleLine="true"
                     android:id="@+id/license1"/>
@@ -137,10 +141,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+                        android:textColor="@color/dark_color"
                         android:id="@+id/startdate1"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -169,8 +173,8 @@
                         android:hint="To Date"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:id="@+id/enddate1"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -182,7 +186,7 @@
                 android:layout_marginRight="40dp"
                 android:text="This certificate will not expire"
                 android:layout_below="@+id/fromdaterl1"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch1"
@@ -215,7 +219,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/certiline1"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcerti2"
             />
@@ -248,8 +252,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Certification Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:inputType="textCapSentences"
                     android:id="@+id/title2"/>
@@ -268,9 +273,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Certificate Issuer"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:singleLine="true"
-                    android:textColor="#eee"
+
                     android:inputType="textCapWords"
                     android:id="@+id/issuer2"/>
 
@@ -288,10 +295,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="License Number (If any)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:imeOptions="actionDone"
-                    android:textColor="#eee"
+
                     android:id="@+id/license2"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -321,10 +330,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
                         android:id="@+id/startdate2"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -351,10 +360,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/enddate2"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -366,7 +376,7 @@
                 android:layout_marginRight="40dp"
                 android:text="This certificate will not expire"
                 android:layout_below="@+id/fromdaterl2"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch2"
@@ -399,7 +409,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/certiline2"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcerti3"
             />
@@ -432,8 +442,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Certification Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:inputType="textCapSentences"
                     android:id="@+id/title3"/>
@@ -453,8 +464,9 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:hint="Certificate Issuer"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:inputType="textCapWords"
                     android:id="@+id/issuer3"/>
 
@@ -472,10 +484,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="License Number (If any)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:imeOptions="actionDone"
-                    android:textColor="#eee"
+
                     android:id="@+id/license3"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -505,8 +519,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
                         android:id="@+id/startdate3"/>
@@ -535,10 +549,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/enddate3"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -550,7 +565,7 @@
                 android:layout_marginRight="40dp"
                 android:text="This certificate will not expire"
                 android:layout_below="@+id/fromdaterl3"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch3"
@@ -584,7 +599,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/certiline3"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcerti4"
             />
@@ -617,9 +632,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Certification Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
-                    android:textColor="#eee"
                     android:inputType="textCapSentences"
                     android:id="@+id/title4"/>
 
@@ -637,8 +653,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Certificate Issuer"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:id="@+id/issuer4"/>
@@ -657,8 +674,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="License Number (If any)"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:imeOptions="actionDone"
                     android:singleLine="true"
                     android:id="@+id/license4"/>
@@ -690,10 +708,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:focusable="false"
                         android:singleLine="true"
-                        android:textColor="#eee"
+
                         android:id="@+id/startdate4"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -720,10 +739,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:focusable="false"
                         android:singleLine="true"
-                        android:textColor="#eee"
+
                         android:id="@+id/enddate4"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -735,8 +755,8 @@
                 android:layout_marginRight="40dp"
                 android:text="This certificate will not expire"
                 android:layout_below="@+id/fromdaterl4"
-                android:textColor="#eee"
-                android:textSize="16dp"
+                android:textColor="@color/dark_color"
+                android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch4"
                 />
@@ -769,7 +789,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/certiline4"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcerti5"
             />
@@ -802,9 +822,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Certification Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
-                    android:textColor="#eee"
                     android:inputType="textCapSentences"
                     android:id="@+id/title5"/>
 
@@ -822,9 +843,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Certificate Issuer"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:singleLine="true"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
                     android:id="@+id/issuer5"/>
 
@@ -842,10 +864,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="License Number (If any)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:imeOptions="actionDone"
-                    android:textColor="#eee"
+
                     android:id="@+id/license5"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -875,10 +899,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/startdate5"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -905,10 +930,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/enddate5"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -920,7 +946,7 @@
                 android:layout_marginRight="40dp"
                 android:text="This certificate will not expire"
                 android:layout_below="@+id/fromdaterl5"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch5"
@@ -954,7 +980,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/certiline5"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcerti6"
             />
@@ -987,9 +1013,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Certification Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
-                    android:textColor="#eee"
                     android:inputType="textCapSentences"
                     android:id="@+id/title6"/>
 
@@ -1008,9 +1035,11 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:hint="Certificate Issuer"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:inputType="textCapWords"
-                    android:textColor="#eee"
+
                     android:id="@+id/issuer6"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1027,10 +1056,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="License Number (If any)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:imeOptions="actionDone"
-                    android:textColor="#eee"
+
                     android:id="@+id/license6"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1062,8 +1093,8 @@
                         android:hint="From Date"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:id="@+id/startdate6"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1090,8 +1121,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
                         android:id="@+id/enddate6"/>
@@ -1105,7 +1136,7 @@
                 android:layout_marginRight="40dp"
                 android:text="This certificate will not expire"
                 android:layout_below="@+id/fromdaterl6"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch6"
@@ -1139,7 +1170,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/certiline6"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcerti7"
 
@@ -1173,9 +1204,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Certification Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
-                    android:textColor="#eee"
+
                     android:inputType="textCapSentences"
                     android:id="@+id/title7"/>
 
@@ -1193,8 +1226,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Certificate Issuer"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:id="@+id/issuer7"/>
@@ -1213,8 +1247,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="License Number (If any)"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:imeOptions="actionDone"
                     android:singleLine="true"
                     android:id="@+id/license7"/>
@@ -1246,10 +1281,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/startdate7"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1276,10 +1312,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/enddate7"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1291,7 +1328,7 @@
                 android:layout_marginRight="40dp"
                 android:text="This certificate will not expire"
                 android:layout_below="@+id/fromdaterl7"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch7"
@@ -1325,7 +1362,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/certiline7"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcerti8"
             />
@@ -1359,8 +1396,9 @@
                     android:layout_height="wrap_content"
                     android:hint="Certification Name"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapSentences"
                     android:id="@+id/title8"/>
 
@@ -1379,8 +1417,9 @@
                     android:layout_height="wrap_content"
                     android:hint="Certificate Issuer"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:inputType="textCapWords"
                     android:id="@+id/issuer8"/>
 
@@ -1398,8 +1437,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="License Number (If any)"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:imeOptions="actionDone"
                     android:singleLine="true"
                     android:id="@+id/license8"/>
@@ -1431,10 +1471,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/startdate8"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1461,10 +1502,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/enddate8"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1476,7 +1518,7 @@
                 android:layout_marginRight="40dp"
                 android:text="This certificate will not expire"
                 android:layout_below="@+id/fromdaterl8"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch8"
@@ -1510,7 +1552,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/certiline8"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcerti9"
             />
@@ -1544,8 +1586,9 @@
                     android:layout_height="wrap_content"
                     android:hint="Certification Name"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapSentences"
                     android:id="@+id/title9"/>
 
@@ -1563,10 +1606,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Certificate Issuer"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:singleLine="true"
                     android:inputType="textCapWords"
-                    android:textColor="#eee"
+
                     android:id="@+id/issuer9"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1583,9 +1628,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="License Number (If any)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:singleLine="true"
-                    android:textColor="#eee"
+
                     android:imeOptions="actionDone"
                     android:id="@+id/license9"/>
 
@@ -1616,10 +1663,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/startdate9"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1646,10 +1694,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/enddate9"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1695,7 +1744,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/certiline9"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashcerti10"
             />
@@ -1728,8 +1777,9 @@
                     android:layout_height="wrap_content"
                     android:hint="Certification Name"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapSentences"
                     android:id="@+id/title10"/>
 
@@ -1747,8 +1797,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Certificate Issuer"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:inputType="textCapWords"
                     android:singleLine="true"
                     android:id="@+id/issuer10"/>
@@ -1767,9 +1818,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="License Number (If any)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:singleLine="true"
-                    android:textColor="#eee"
+
                     android:imeOptions="actionDone"
                     android:id="@+id/license10"/>
 
@@ -1800,10 +1853,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/startdate10"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1832,8 +1886,8 @@
                         android:hint="To Date"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
                         android:id="@+id/enddate10"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1845,7 +1899,7 @@
                 android:layout_marginRight="40dp"
                 android:text="This certificate will not expire"
                 android:layout_below="@+id/fromdaterl10"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch10"
@@ -1867,7 +1921,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/boxborderwhite"
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp"
             android:layout_below="@+id/certirl10"
             android:id="@+id/addmorecerti"
             android:layout_marginTop="20dp"
@@ -1878,8 +1933,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/certirl10"
             android:text="Add Another Certificate"
-            android:textColor="#eee"
-            android:textSize="20dp"
+            android:textColor="@color/while_color"
+            android:textSize="18dp"
+            android:elevation="8dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
             android:id="@+id/addmorecertitxt"
@@ -1889,7 +1945,8 @@
             android:layout_height="30dp"
             android:layout_below="@+id/certirl10"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:src="@drawable/add_icon_white"
+            android:elevation="8dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
             android:id="@+id/addmorecertiimg"

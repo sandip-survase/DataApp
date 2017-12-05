@@ -1011,6 +1011,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
                     if (usernameflag == false) {
                         new ValidateUser().execute();
+//                        new ValidateUser().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                     }
 
                 }
@@ -1674,7 +1675,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 MySharedPreferencesManager.save(Welcome.this, "nameKey", encUsersName);
 
             } catch (Exception e) {
-                Log.d("TAG", "ValidateUser doInBackground exp " + e.getMessage());
+                Log.d("TAG", "ValidateUser doInBackground enc exp " + e.getMessage());
             }
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -1691,7 +1692,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 Log.d("TAG", "ValidateUser json: " + json);
 
             } catch (Exception e) {
-                Log.d("TAG", "doInBackground 2 json  exp :  " + e.getMessage());
+                Log.d("TAG", "ValidateUser json  exp :  " + e.getMessage());
             }
 
             return s;
