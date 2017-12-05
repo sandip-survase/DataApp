@@ -1756,7 +1756,7 @@ public class MyProfileSkills extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sproficiency11 = (String) parent.getItemAtPosition(position);
-                if (!s.getSproficiency11().equals(sproficiency11)) {
+                if (s.getSproficiency11()!=null && !s.getSproficiency11().equals(sproficiency11)) {
                     proficiencyEdittedFlog = 1;
                 }
 
@@ -1771,7 +1771,7 @@ public class MyProfileSkills extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sproficiency12 = (String) parent.getItemAtPosition(position);
-                if (!s.getSproficiency12().equals(sproficiency12)) {
+                if (s.getSproficiency12()!=null && !s.getSproficiency12().equals(sproficiency12)) {
                     proficiencyEdittedFlog = 1;
                 }
 
@@ -1786,7 +1786,7 @@ public class MyProfileSkills extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sproficiency13 = (String) parent.getItemAtPosition(position);
-                if (!s.getSproficiency13().equals(sproficiency13)) {
+                if (s.getSproficiency13()!=null && !s.getSproficiency13().equals(sproficiency13)) {
                     proficiencyEdittedFlog = 1;
                 }
 
@@ -1801,7 +1801,7 @@ public class MyProfileSkills extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sproficiency14 = (String) parent.getItemAtPosition(position);
-                if (!s.getSproficiency14().equals(sproficiency14)) {
+                if (s.getSproficiency14()!=null && !s.getSproficiency14().equals(sproficiency14)) {
                     proficiencyEdittedFlog = 1;
                 }
 
@@ -1817,7 +1817,7 @@ public class MyProfileSkills extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sproficiency15 = (String) parent.getItemAtPosition(position);
-                if (!s.getSproficiency15().equals(sproficiency15)) {
+                if (s.getSproficiency15()!=null && !s.getSproficiency15().equals(sproficiency15)) {
                     proficiencyEdittedFlog = 1;
                 }
 
@@ -1833,7 +1833,7 @@ public class MyProfileSkills extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sproficiency16 = (String) parent.getItemAtPosition(position);
-                if (!s.getSproficiency16().equals(sproficiency16)) {
+                if (s.getSproficiency16()!=null && !s.getSproficiency16().equals(sproficiency16)) {
                     proficiencyEdittedFlog = 1;
                 }
 
@@ -1849,7 +1849,7 @@ public class MyProfileSkills extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sproficiency17 = (String) parent.getItemAtPosition(position);
-                if (!s.getSproficiency17().equals(sproficiency17)) {
+                if (s.getSproficiency17()!=null && !s.getSproficiency17().equals(sproficiency17)) {
                     proficiencyEdittedFlog = 1;
                 }
 
@@ -1865,7 +1865,7 @@ public class MyProfileSkills extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sproficiency18 = (String) parent.getItemAtPosition(position);
-                if (!s.getSproficiency18().equals(sproficiency18)) {
+                if (s.getSproficiency18()!=null && !s.getSproficiency18().equals(sproficiency18)) {
                     proficiencyEdittedFlog = 1;
                 }
 
@@ -1881,7 +1881,7 @@ public class MyProfileSkills extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sproficiency19 = (String) parent.getItemAtPosition(position);
-                if (!s.getSproficiency19().equals(sproficiency19)) {
+                if (s.getSproficiency19()!=null && !s.getSproficiency19().equals(sproficiency19)) {
                     proficiencyEdittedFlog = 1;
                 }
 
@@ -1897,7 +1897,7 @@ public class MyProfileSkills extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sproficiency20 = (String) parent.getItemAtPosition(position);
-                if (!s.getSproficiency20().equals(sproficiency20)) {
+                if (s.getSproficiency20()!=null && !s.getSproficiency20().equals(sproficiency20)) {
                     proficiencyEdittedFlog = 1;
                 }
 

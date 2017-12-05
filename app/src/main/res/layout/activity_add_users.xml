@@ -128,7 +128,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/dark_color"
             android:textSize="14dp"
-            android:text="2. The file must contain column named 'email' followed by list of email addresses of users to be created."
+            android:text="2. The file must contain one column named 'email' followed by list of email addresses of users to be created."
             android:layout_marginTop="10dp"
             android:layout_below="@+id/note1"
             android:id="@+id/note2"
@@ -160,13 +160,15 @@
                 android:layout_height="wrap_content"
                 android:text="a.txt"
                 android:id="@+id/filename"
+                android:singleLine="true"
                 android:layout_marginLeft="5dp"
                 android:layout_centerVertical="true"
-                android:textColor="#eee"
+                android:textColor="@color/while_color"
                 android:paddingTop="5dp"
-                android:paddingBottom="10dp"
-                android:textSize="12dp"
-                android:layout_marginRight="28dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:textSize="10dp"
+                android:layout_marginRight="10dp"
                 />
 
 
@@ -177,7 +179,8 @@
                 android:src="@drawable/close"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@+id/filename"
                 />
         </RelativeLayout>
 
@@ -192,8 +195,9 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_margin="@dimen/fab_margin"
-            app:srcCompat="@drawable/attachnoti"
-            app:backgroundTint="#fff"
+            app:srcCompat="@drawable/attachment_white_icon"
+            app:backgroundTint="@color/dark_color"
+            android:elevation="8dp"
             />
     </RelativeLayout>
 

@@ -9,10 +9,13 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -62,6 +65,7 @@ public class AddUsersActivity extends AppCompatActivity {
     RadioGroup radioGroupUsers;
     RadioButton radioButtonsinle, radioButtonmulti;
     EditText email;
+    TextInputLayout adduserinput;
     RelativeLayout multiusersrl;
     String param="single";
 
@@ -110,16 +114,39 @@ public class AddUsersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_users);
 
         email = (EditText) findViewById(R.id.email);
+        adduserinput=(TextInputLayout)findViewById(R.id.adduserinput);
         multiusersrl = (RelativeLayout) findViewById(R.id.multiusersrl);
         radioGroupUsers = (RadioGroup) findViewById(R.id.radioGroupUsers);
-        radioButtonsinle = (RadioButton) findViewById(R.id.radioButtonmulti);
+        radioButtonsinle = (RadioButton) findViewById(R.id.radioButtonsinle);
         radioButtonmulti = (RadioButton) findViewById(R.id.radioButtonmulti);
         fab= (FloatingActionButton) findViewById(R.id.fab);
+
+
+        adduserinput.setTypeface(MyConstants.getLight(this));
+        email.setTypeface(MyConstants.getBold(this));
 
         encadminUsername=MySharedPreferencesManager.getUsername(AddUsersActivity.this);
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
+
+        email.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adduserinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         radioGroupUsers.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -128,11 +155,14 @@ public class AddUsersActivity extends AppCompatActivity {
                     case R.id.radioButtonsinle:
                         multiusersrl.setVisibility(View.GONE);
                         email.setVisibility(View.VISIBLE);
+                        adduserinput.setVisibility(View.VISIBLE);
                         param="single";
                         break;
                     case R.id.radioButtonmulti:
+                        radioButtonsinle.setTextColor(getResources().getColor(R.color.dark_color));
                         multiusersrl.setVisibility(View.VISIBLE);
                         email.setVisibility(View.GONE);
+                        adduserinput.setVisibility(View.GONE);
                         param="multi";
                         break;
                 }
@@ -146,8 +176,6 @@ public class AddUsersActivity extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-        Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/cabinsemibold.ttf");
-        Typeface custom_font4 = Typeface.createFromAsset(getAssets(), "fonts/maven.ttf");
 
         TextView createpasstxt = (TextView) findViewById(R.id.createpasstxt);
         TextView passsenstxt = (TextView) findViewById(R.id.passsenstxt);
@@ -158,17 +186,17 @@ public class AddUsersActivity extends AppCompatActivity {
         attchrl1=(RelativeLayout)findViewById(R.id.file1);
         t1=(TextView)findViewById(R.id.filename) ;
 
+        createpasstxt.setTypeface(MyConstants.getBold(this));
+        passsenstxt.setTypeface(MyConstants.getLight(this));
+        passsens1txt.setTypeface(MyConstants.getLight(this));
+        radioButtonsinle.setTypeface(MyConstants.getBold(this));
+        radioButtonmulti.setTypeface(MyConstants.getBold(this));
+        note.setTypeface(MyConstants.getLight(this));
+        note1.setTypeface(MyConstants.getBold(this));
+        note2.setTypeface(MyConstants.getBold(this));
 
 
         prg1 = (ProgressBar) findViewById(R.id.PROGRESS_BAR);
-
-
-        createpasstxt.setTypeface(custom_font3);
-        passsenstxt.setTypeface(custom_font4);
-        passsens1txt.setTypeface(custom_font4);
-        note.setTypeface(custom_font4);
-        note1.setTypeface(custom_font4);
-        note2.setTypeface(custom_font4);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -343,10 +371,10 @@ public class AddUsersActivity extends AppCompatActivity {
                         Log.d("TAG", "validate: AddUsersActivity");
                     }
                 } else
-                    email.setError("Invalid email address");
+                    adduserinput.setError("Kindly enter valid email address");
             }
             else
-                email.setError("please Enter user's email address");
+                adduserinput.setError("Kindly enter valid email address");
         }
         if(param.equals("multi")){
             Toast.makeText(this, "mul", Toast.LENGTH_SHORT).show();

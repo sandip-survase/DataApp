@@ -539,51 +539,59 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                 navMenuFlag=1;
 
-                Drawable myDrawable1 = getResources().getDrawable(R.drawable.profile_icon_selected);
+                Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon_selected);
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
-                pt1.setTextColor(Color.parseColor("#4169e1"));
+                pt1.setTypeface(MyConstants.getBold(AlumniActivity.this));
+                pt1.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
-                Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification);
+                Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
-                pt2.setTextColor(Color.parseColor("#ffffff"));
+                pt2.setTypeface(MyConstants.getLight(AlumniActivity.this));
+                pt2.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement);
+                Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
-                pt3.setTextColor(Color.parseColor("#ffffff"));
+                pt3.setTypeface(MyConstants.getLight(AlumniActivity.this));
+                pt3.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable8 = getResources().getDrawable(R.drawable.chat);
+                Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
                 TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
-                pt8.setTextColor(Color.parseColor("#ffffff"));
+                pt8.setTypeface(MyConstants.getLight(AlumniActivity.this));
+                pt8.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable4 = getResources().getDrawable(R.drawable.paper);
+                Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
                 TextView pt4=(TextView)hView.findViewById(R.id.protxt);
-                pt4.setTextColor(Color.parseColor("#ffffff"));
+                pt4.setTypeface(MyConstants.getLight(AlumniActivity.this));
+                pt4.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings);
+                Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
-                pt5.setTextColor(Color.parseColor("#ffffff"));
+                pt5.setTypeface(MyConstants.getLight(AlumniActivity.this));
+                pt5.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog);
+                Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
-                pt6.setTextColor(Color.parseColor("#ffffff"));
+                pt6.setTypeface(MyConstants.getLight(AlumniActivity.this));
+                pt6.setTextColor(getResources().getColor(R.color.while_color));
 
 
                 TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
-                pt7.setTextColor(Color.parseColor("#ffffff"));
+                pt7.setTypeface(MyConstants.getLight(AlumniActivity.this));
+                pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
