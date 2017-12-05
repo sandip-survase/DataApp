@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text="Project Details"
             android:textSize="18dp"
-            android:textColor="#eee"
+            android:textColor="@color/while_color"
             android:id="@+id/projtxt"
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/myprofilepatents"
-    android:background="#282f35">
+    android:background="@color/while_color">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_my_profile_patents"
@@ -17,14 +17,15 @@
             android:layout_height="wrap_content"
             android:text="Patents"
             android:textSize="20dp"
-            android:textColor="#eee"
+            android:textColor="@color/while_color"
             android:id="@+id/patenttxt"
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:background="@drawable/textviewborder2"
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp"
             />
 
         <ImageView
@@ -32,7 +33,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/patenttxt"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashpatent1"
             />
@@ -64,8 +65,9 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:hint="Patent Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/title1"/>
 
@@ -83,9 +85,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:id="@+id/appno1"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -107,17 +110,16 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
+                    android:background="@color/while_color"
                     android:gravity="center"
-                    android:popupBackground="#001111"
-                    android:layout_marginLeft="5dp"
+                    android:popupBackground="@color/while_color"
                     android:spinnerMode="dropdown" />
 
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="#eee"
+                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:id="@+id/spinnerimg1"
@@ -127,7 +129,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg1"
-                    android:background="#eee"
+                    android:background="@color/dark_color"
                     />
 
             </RelativeLayout>
@@ -143,9 +145,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Inventors (Comma Seperated)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/inventor1"/>
 
@@ -156,7 +159,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:text="Status"
                 android:layout_below="@+id/inventorinput1"
                 android:layout_marginTop="20dp"
@@ -178,9 +181,9 @@
                     android:layout_height="wrap_content"
                     android:text="Issued"
                     android:id="@+id/radioButtonIssued1"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:checked="true"
                     />
                 <android.support.v7.widget.AppCompatRadioButton
@@ -188,9 +191,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pending"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/radioButtonPending1"
                     android:checked="false"
                     />
@@ -208,10 +211,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Issue Date"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:focusable="false"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/issue1"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -228,11 +231,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Filing Date"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:visibility="gone"
                     android:focusable="false"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/filing1"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -245,13 +248,17 @@
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/url1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_above="@+id/issueinput1"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:hint="URL"
+                    android:maxLength="1000"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
-                    android:id="@+id/url1"/>
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -270,8 +277,9 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/description1"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -279,7 +287,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/patentrl1"
             android:id="@+id/patentline1"
             android:layout_marginTop="20dp"
@@ -290,7 +298,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/patentline1"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashpatent2"
             />
@@ -321,9 +329,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/title2"/>
 
@@ -341,8 +350,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:id="@+id/appno2"/>
 
@@ -365,9 +375,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
+                    android:background="@color/while_color"
                     android:gravity="center"
-                    android:popupBackground="#001111"
+                    android:popupBackground="@color/while_color"
                     android:layout_marginLeft="5dp"
                     android:spinnerMode="dropdown" />
 
@@ -375,7 +385,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="#eee"
+                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:id="@+id/spinnerimg2"
@@ -385,7 +395,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg2"
-                    android:background="#eee"
+                    android:background="@color/dark_color"
                     />
 
             </RelativeLayout>
@@ -401,8 +411,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Inventors (Comma Seperated)"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:id="@+id/inventor2"/>
@@ -414,7 +425,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:text="Status"
                 android:layout_below="@+id/inventorinput2"
                 android:layout_marginTop="20dp"
@@ -436,9 +447,9 @@
                     android:layout_height="wrap_content"
                     android:text="Issued"
                     android:id="@+id/radioButtonIssued2"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:checked="true"
                     />
                 <android.support.v7.widget.AppCompatRadioButton
@@ -446,9 +457,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pending"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/radioButtonPending2"
                     android:checked="false"
                     />
@@ -468,8 +479,8 @@
                     android:hint="Issue Date"
                     android:singleLine="true"
                     android:focusable="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/issue2"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -486,11 +497,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Filing Date"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:focusable="false"
                     android:visibility="gone"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/filing2"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -510,8 +521,9 @@
                     android:layout_height="wrap_content"
                     android:hint="URL"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/url2"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -531,8 +543,9 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/description2"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -541,7 +554,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/patentrl2"
             android:id="@+id/patentline2"
             android:layout_marginTop="20dp"
@@ -552,7 +565,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/patentline2"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashpatent3"
 
@@ -584,9 +597,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/title3"/>
 
@@ -604,9 +618,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
                     android:singleLine="true"
+                    android:maxLength="20"
                     android:id="@+id/appno3"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -628,9 +643,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
+                    android:background="@color/while_color"
                     android:gravity="center"
-                    android:popupBackground="#001111"
+                    android:popupBackground="@color/while_color"
                     android:layout_marginLeft="5dp"
                     android:spinnerMode="dropdown" />
 
@@ -638,7 +653,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="#eee"
+                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:id="@+id/spinnerimg3"
@@ -648,7 +663,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg3"
-                    android:background="#eee"
+                    android:background="@color/dark_color"
                     />
 
             </RelativeLayout>
@@ -664,8 +679,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Inventors (Comma Seperated)"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:id="@+id/inventor3"/>
@@ -677,7 +693,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:text="Status"
                 android:layout_below="@+id/inventorinput3"
                 android:layout_marginTop="20dp"
@@ -699,9 +715,9 @@
                     android:layout_height="wrap_content"
                     android:text="Issued"
                     android:id="@+id/radioButtonIssued3"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:checked="true"
                     />
                 <android.support.v7.widget.AppCompatRadioButton
@@ -709,9 +725,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pending"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/radioButtonPending3"
                     android:checked="false"
                     />
@@ -729,10 +745,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Issue Date"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:focusable="false"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/issue3"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -752,8 +768,8 @@
                     android:singleLine="true"
                     android:focusable="false"
                     android:visibility="gone"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/filing3"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -772,9 +788,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/url3"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -794,8 +811,9 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/description3"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -803,7 +821,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/patentrl3"
             android:id="@+id/patentline3"
             android:layout_marginTop="20dp"
@@ -814,7 +832,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/patentline3"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashpatent4"
             />
@@ -845,9 +863,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/title4"/>
 
@@ -865,9 +884,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:id="@+id/appno4"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -889,9 +909,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
+                    android:background="@color/while_color"
                     android:gravity="center"
-                    android:popupBackground="#001111"
+                    android:popupBackground="@color/while_color"
                     android:layout_marginLeft="5dp"
                     android:spinnerMode="dropdown" />
 
@@ -899,7 +919,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="#eee"
+                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:id="@+id/spinnerimg4"
@@ -909,7 +929,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg4"
-                    android:background="#eee"
+                    android:background="@color/dark_color"
                     />
 
             </RelativeLayout>
@@ -925,8 +945,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Inventors (Comma Seperated)"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:id="@+id/inventor4"/>
@@ -938,7 +959,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:text="Status"
                 android:layout_below="@+id/inventorinput4"
                 android:layout_marginTop="20dp"
@@ -960,9 +981,9 @@
                     android:layout_height="wrap_content"
                     android:text="Issued"
                     android:id="@+id/radioButtonIssued4"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:checked="true"
                     />
                 <android.support.v7.widget.AppCompatRadioButton
@@ -970,9 +991,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pending"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/radioButtonPending4"
                     android:checked="false"
                     />
@@ -992,8 +1013,8 @@
                     android:hint="Issue Date"
                     android:singleLine="true"
                     android:focusable="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/issue4"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1012,9 +1033,9 @@
                     android:hint="Filing Date"
                     android:singleLine="true"
                     android:focusable="false"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:visibility="gone"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/filing4"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1034,8 +1055,9 @@
                     android:layout_height="wrap_content"
                     android:hint="URL"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/url4"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1055,8 +1077,9 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/description4"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1065,7 +1088,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/patentrl4"
             android:id="@+id/patentline4"
             android:layout_marginTop="20dp"
@@ -1076,7 +1099,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/patentline4"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashpatent5"
             />
@@ -1108,8 +1131,9 @@
                     android:layout_height="wrap_content"
                     android:hint="Patent Name"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/title5"/>
 
@@ -1127,9 +1151,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:id="@+id/appno5"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1151,9 +1176,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
+                    android:background="@color/while_color"
                     android:gravity="center"
-                    android:popupBackground="#001111"
+                    android:popupBackground="@color/while_color"
                     android:layout_marginLeft="5dp"
                     android:spinnerMode="dropdown" />
 
@@ -1161,7 +1186,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="#eee"
+                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:id="@+id/spinnerimg5"
@@ -1171,7 +1196,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg5"
-                    android:background="#eee"
+                    android:background="@color/dark_color"
                     />
 
             </RelativeLayout>
@@ -1187,9 +1212,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Inventors (Comma Seperated)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/inventor5"/>
 
@@ -1200,7 +1226,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:text="Status"
                 android:layout_below="@+id/inventorinput5"
                 android:layout_marginTop="20dp"
@@ -1222,9 +1248,9 @@
                     android:layout_height="wrap_content"
                     android:text="Issued"
                     android:id="@+id/radioButtonIssued5"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:checked="true"
                     />
                 <android.support.v7.widget.AppCompatRadioButton
@@ -1232,9 +1258,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pending"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/radioButtonPending5"
                     android:checked="false"
                     />
@@ -1254,8 +1280,8 @@
                     android:hint="Issue Date"
                     android:singleLine="true"
                     android:focusable="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/issue5"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1272,10 +1298,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Filing Date"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:focusable="false"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:visibility="gone"
                     android:id="@+id/filing5"/>
 
@@ -1296,8 +1322,9 @@
                     android:layout_height="wrap_content"
                     android:hint="URL"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/url5"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1317,8 +1344,9 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/description5"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1327,7 +1355,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/patentrl5"
             android:id="@+id/patentline5"
             android:layout_marginTop="20dp"
@@ -1338,7 +1366,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/patentline5"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashpatent6"
             />
@@ -1369,9 +1397,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/title6"/>
 
@@ -1389,9 +1418,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:id="@+id/appno6"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1413,9 +1443,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
+                    android:background="@color/while_color"
                     android:gravity="center"
-                    android:popupBackground="#001111"
+                    android:popupBackground="@color/while_color"
                     android:layout_marginLeft="5dp"
                     android:spinnerMode="dropdown" />
 
@@ -1423,7 +1453,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="#eee"
+                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:id="@+id/spinnerimg6"
@@ -1433,7 +1463,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg6"
-                    android:background="#eee"
+                    android:background="@color/dark_color"
                     />
 
             </RelativeLayout>
@@ -1449,9 +1479,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Inventors (Comma Seperated)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:inputType="textCapWords"
                     android:id="@+id/inventor6"/>
 
@@ -1462,7 +1492,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:text="Status"
                 android:layout_below="@+id/inventorinput6"
                 android:layout_marginTop="20dp"
@@ -1484,9 +1514,9 @@
                     android:layout_height="wrap_content"
                     android:text="Issued"
                     android:id="@+id/radioButtonIssued6"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:checked="true"
                     />
                 <android.support.v7.widget.AppCompatRadioButton
@@ -1494,9 +1524,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pending"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/radioButtonPending6"
                     android:checked="false"
                     />
@@ -1516,8 +1546,8 @@
                     android:singleLine="true"
                     android:focusable="false"
                     android:hint="Issue Date"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/issue6"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1536,9 +1566,9 @@
                     android:hint="Filing Date"
                     android:singleLine="true"
                     android:focusable="false"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:visibility="gone"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/filing6"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1558,8 +1588,9 @@
                     android:layout_height="wrap_content"
                     android:hint="URL"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/url6"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1579,8 +1610,9 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/description6"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1589,7 +1621,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/patentrl6"
             android:id="@+id/patentline6"
             android:layout_marginTop="20dp"
@@ -1600,7 +1632,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/patentline6"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashpatent7"
             />
@@ -1631,8 +1663,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:id="@+id/title7"/>
@@ -1651,8 +1684,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:id="@+id/appno7"/>
 
@@ -1675,9 +1709,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
+                    android:background="@color/while_color"
                     android:gravity="center"
-                    android:popupBackground="#001111"
+                    android:popupBackground="@color/while_color"
                     android:layout_marginLeft="5dp"
                     android:spinnerMode="dropdown" />
 
@@ -1685,7 +1719,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="#eee"
+                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:id="@+id/spinnerimg7"
@@ -1695,7 +1729,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg7"
-                    android:background="#eee"
+                    android:background="@color/dark_color"
                     />
 
             </RelativeLayout>
@@ -1713,7 +1747,8 @@
                     android:hint="Inventors (Comma Seperated)"
                     android:textSize="15dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/inventor7"/>
 
@@ -1724,7 +1759,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
+
                 android:text="Status"
                 android:layout_below="@+id/inventorinput7"
                 android:layout_marginTop="20dp"
@@ -1746,9 +1782,9 @@
                     android:layout_height="wrap_content"
                     android:text="Issued"
                     android:id="@+id/radioButtonIssued7"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:checked="true"
                     />
                 <android.support.v7.widget.AppCompatRadioButton
@@ -1756,9 +1792,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pending"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/radioButtonPending7"
                     android:checked="false"
                     />
@@ -1776,10 +1812,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Issue Date"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:focusable="false"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/issue7"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1798,8 +1834,8 @@
                     android:hint="Filing Date"
                     android:singleLine="true"
                     android:focusable="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
                     android:visibility="gone"
                     android:id="@+id/filing7"/>
 
@@ -1819,9 +1855,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/url7"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1841,8 +1878,9 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/description7"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1851,7 +1889,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/patentrl7"
             android:id="@+id/patentline7"
             android:layout_marginTop="20dp"
@@ -1893,9 +1931,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/title8"/>
 
@@ -1913,9 +1952,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:id="@+id/appno8"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1937,9 +1977,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
+                    android:background="@color/while_color"
                     android:gravity="center"
-                    android:popupBackground="#001111"
+                    android:popupBackground="@color/while_color"
                     android:layout_marginLeft="5dp"
                     android:spinnerMode="dropdown" />
 
@@ -1947,7 +1987,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="#eee"
+                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:id="@+id/spinnerimg8"
@@ -1957,7 +1997,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg8"
-                    android:background="#eee"
+                    android:background="@color/dark_color"
                     />
 
             </RelativeLayout>
@@ -1973,8 +2013,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Inventors (Comma Seperated)"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:id="@+id/inventor8"/>
@@ -1986,7 +2027,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:text="Status"
                 android:layout_below="@+id/inventorinput8"
                 android:layout_marginTop="20dp"
@@ -2008,9 +2049,9 @@
                     android:layout_height="wrap_content"
                     android:text="Issued"
                     android:id="@+id/radioButtonIssued8"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:checked="true"
                     />
                 <android.support.v7.widget.AppCompatRadioButton
@@ -2018,9 +2059,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pending"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/radioButtonPending8"
                     android:checked="false"
                     />
@@ -2040,8 +2081,8 @@
                     android:hint="Issue Date"
                     android:singleLine="true"
                     android:focusable="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/issue8"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -2058,10 +2099,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Filing Date"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:focusable="false"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:visibility="gone"
                     android:id="@+id/filing8"/>
 
@@ -2082,8 +2123,9 @@
                     android:layout_height="wrap_content"
                     android:hint="URL"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/url8"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -2103,8 +2145,9 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/description8"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -2113,7 +2156,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/patentrl8"
             android:id="@+id/patentline8"
             android:layout_marginTop="20dp"
@@ -2124,7 +2167,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/patentline8"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashpatent9"
             />
@@ -2155,9 +2198,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/title9"/>
 
@@ -2175,9 +2219,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:id="@+id/appno9"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -2199,9 +2244,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
+                    android:background="@color/while_color"
                     android:gravity="center"
-                    android:popupBackground="#001111"
+                    android:popupBackground="@color/while_color"
                     android:layout_marginLeft="5dp"
                     android:spinnerMode="dropdown" />
 
@@ -2209,7 +2254,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="#eee"
+                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:id="@+id/spinnerimg9"
@@ -2219,7 +2264,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg9"
-                    android:background="#eee"
+                    android:background="@color/dark_color"
                     />
 
             </RelativeLayout>
@@ -2235,8 +2280,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Inventors (Comma Seperated)"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:id="@+id/inventor9"/>
@@ -2248,7 +2294,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:text="Status"
                 android:layout_below="@+id/inventorinput9"
                 android:layout_marginTop="20dp"
@@ -2270,9 +2316,9 @@
                     android:layout_height="wrap_content"
                     android:text="Issued"
                     android:id="@+id/radioButtonIssued9"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:checked="true"
                     />
                 <android.support.v7.widget.AppCompatRadioButton
@@ -2280,9 +2326,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pending"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/radioButtonPending9"
                     android:checked="false"
                     />
@@ -2302,8 +2348,8 @@
                     android:hint="Issue Date"
                     android:singleLine="true"
                     android:focusable="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/issue9"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -2320,10 +2366,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Filing Date"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
                     android:focusable="false"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:visibility="gone"
                     android:id="@+id/filing9"/>
 
@@ -2344,8 +2390,9 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:hint="URL"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/url9"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -2365,8 +2412,9 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/description9"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -2375,7 +2423,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/patentrl9"
             android:id="@+id/patentline9"
             android:layout_marginTop="20dp"
@@ -2386,7 +2434,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/patentline9"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashpatent10"
             />
@@ -2417,9 +2465,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/title10"/>
 
@@ -2438,8 +2487,9 @@
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:id="@+id/appno10"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -2461,9 +2511,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
+                    android:background="@color/while_color"
                     android:gravity="center"
-                    android:popupBackground="#001111"
+                    android:popupBackground="@color/while_color"
                     android:layout_marginLeft="5dp"
                     android:spinnerMode="dropdown" />
 
@@ -2471,7 +2521,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="#eee"
+                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:id="@+id/spinnerimg10"
@@ -2481,7 +2531,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg10"
-                    android:background="#eee"
+                    android:background="@color/dark_color"
                     />
 
             </RelativeLayout>
@@ -2498,8 +2548,9 @@
                     android:layout_height="wrap_content"
                     android:hint="Inventors (Comma Seperated)"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/inventor10"/>
 
@@ -2510,7 +2561,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:text="Status"
                 android:layout_below="@+id/inventorinput10"
                 android:layout_marginTop="20dp"
@@ -2532,9 +2583,9 @@
                     android:layout_height="wrap_content"
                     android:text="Issued"
                     android:id="@+id/radioButtonIssued10"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:checked="true"
                     />
                 <android.support.v7.widget.AppCompatRadioButton
@@ -2542,9 +2593,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pending"
-                    app:buttonTint="#eee"
+                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/radioButtonPending10"
                     android:checked="false"
                     />
@@ -2562,8 +2613,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Issue Date"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
                     android:singleLine="true"
                     android:focusable="false"
                     android:id="@+id/issue10"/>
@@ -2584,9 +2635,9 @@
                     android:hint="Filing Date"
                     android:singleLine="true"
                     android:focusable="false"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:visibility="gone"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/filing10"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -2605,9 +2656,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/url10"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -2627,8 +2679,9 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/description10"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -2638,10 +2691,11 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/boxborderwhite"
+            android:background="@drawable/textviewborder"
             android:layout_below="@+id/patentrl10"
             android:id="@+id/addmorepatent"
             android:layout_marginTop="20dp"
+            android:elevation="6dp"
             />
 
         <TextView
@@ -2649,21 +2703,23 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/patentrl10"
             android:text="Add Another Patent"
-            android:textColor="#eee"
+            android:textColor="@color/while_color"
             android:textSize="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
             android:id="@+id/addmorepatenttxt"
+            android:elevation="6dp"
             />
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_below="@+id/patentrl10"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:src="@drawable/add_icon_white"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
             android:id="@+id/addmorepatentimg"
+            android:elevation="6dp"
             />
 
     </RelativeLayout>
