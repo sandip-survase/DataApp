@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/myprofileknownlang"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/myprofileknownlang"
-    android:background="#282f35">
+    android:background="@color/while_color">
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_my_profile_accomplishments"
@@ -13,55 +14,56 @@
         tools:context="com.octopusites.placeme.MyProfileKnownLang">
 
         <TextView
+            android:id="@+id/knowntxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Known Languages"
-            android:textSize="20dp"
-            android:textColor="#eee"
-            android:id="@+id/knowntxt"
             android:layout_centerHorizontal="true"
-            android:paddingTop="10dp"
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp"
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:background="@drawable/textviewborder2"
-            />
+            android:paddingTop="10dp"
+            android:text="Known Languages"
+            android:textColor="@color/while_color"
+            android:textSize="20dp" />
+
         <ImageView
+            android:id="@+id/trashlang1"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="30dp"
             android:layout_below="@+id/knowntxt"
-            android:id="@+id/trashlang1"
-            />
+            android:layout_marginTop="30dp"
+            android:src="@drawable/delete_icon" />
+
         <View
+            android:id="@+id/trash1selectionview"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/knowntxt"
-            android:layout_marginTop="20dp"
 
-            android:id="@+id/trash1selectionview"
-            />
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
+            android:id="@+id/langrl1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/knowntxt"
-            android:layout_marginTop="20dp"
-            android:id="@+id/langrl1"
-            >
+            android:layout_marginTop="20dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
+
                 <RelativeLayout
+                    android:id="@+id/knownspinner1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/knownspinner1"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:layout_marginLeft="40dp"
                     android:orientation="horizontal">
 
                     <Spinner
@@ -70,37 +72,36 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
 
                     <ImageView
                         android:id="@+id/spinnerimglang1"
                         android:layout_width="40dp"
-                        android:tint="#eee"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimglang1"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
 
 
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/proficiencyspinner1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/proficiencyspinner1"
                     android:layout_marginLeft="7dp"
                     android:layout_weight="1.5"
                     android:orientation="horizontal">
@@ -111,28 +112,27 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
                     <ImageView
+                        android:id="@+id/spinnerimgproficiency1"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:tint="#eee"
-                        android:id="@+id/spinnerimgproficiency1"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimgproficiency1"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -140,57 +140,52 @@
         </RelativeLayout>
 
         <View
-            android:layout_height="1dp"
-            android:layout_width="match_parent"
             android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_below="@+id/langrl1"
-            android:background="#c59a6d"
             android:layout_marginTop="10dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
 
         <ImageView
+            android:id="@+id/trashlang2"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="20dp"
             android:layout_below="@+id/line1"
-            android:id="@+id/trashlang2"
-            />
+            android:layout_marginTop="20dp"
+            android:src="@drawable/delete_icon" />
+
         <View
+            android:id="@+id/trash2selectionview"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/line1"
-            android:layout_marginTop="20dp"
 
-            android:id="@+id/trash2selectionview"
-            />
-
-
+            android:layout_marginTop="20dp" />
 
 
         <RelativeLayout
+            android:id="@+id/langrl2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/line1"
             android:layout_marginTop="10dp"
-            android:id="@+id/langrl2"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <RelativeLayout
+                    android:id="@+id/knownspinner2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/knownspinner2"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:layout_marginLeft="40dp"
                     android:orientation="horizontal">
 
                     <Spinner
@@ -199,37 +194,36 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
 
                     <ImageView
                         android:id="@+id/spinnerimglang2"
                         android:layout_width="40dp"
-                        android:tint="#eee"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimglang2"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
 
 
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/proficiencyspinner2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/proficiencyspinner2"
                     android:layout_marginLeft="7dp"
                     android:layout_weight="1.5"
                     android:orientation="horizontal">
@@ -240,83 +234,78 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
                     <ImageView
+                        android:id="@+id/spinnerimgproficiency2"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:tint="#eee"
-                        android:id="@+id/spinnerimgproficiency2"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimgproficiency2"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
 
 
-
-
         <View
-            android:layout_height="1dp"
-            android:layout_width="match_parent"
             android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_below="@+id/langrl2"
-            android:background="#c59a6d"
             android:layout_marginTop="10dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
 
         <ImageView
+            android:id="@+id/trashlang3"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="20dp"
             android:layout_below="@+id/line2"
-            android:id="@+id/trashlang3"
-            />
+            android:layout_marginTop="20dp"
+            android:src="@drawable/delete_icon" />
+
         <View
+            android:id="@+id/trash3selectionview"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/line2"
-            android:layout_marginTop="20dp"
 
-            android:id="@+id/trash3selectionview"
-            />
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
+            android:id="@+id/langrl3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/line2"
             android:layout_marginTop="10dp"
-            android:id="@+id/langrl3"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
+
                 <RelativeLayout
+                    android:id="@+id/knownspinner3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/knownspinner3"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:layout_marginLeft="40dp"
                     android:orientation="horizontal">
 
                     <Spinner
@@ -325,37 +314,36 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
 
                     <ImageView
                         android:id="@+id/spinnerimglang3"
                         android:layout_width="40dp"
-                        android:tint="#eee"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimglang3"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
 
 
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/proficiencyspinner3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/proficiencyspinner3"
                     android:layout_marginLeft="7dp"
                     android:layout_weight="1.5"
                     android:orientation="horizontal">
@@ -366,78 +354,77 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
                     <ImageView
+                        android:id="@+id/spinnerimgproficiency3"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:tint="#eee"
-                        android:id="@+id/spinnerimgproficiency3"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimgproficiency3"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
+
         <View
-            android:layout_height="1dp"
-            android:layout_width="match_parent"
             android:id="@+id/line3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_below="@+id/langrl3"
-            android:background="#c59a6d"
             android:layout_marginTop="10dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
 
         <ImageView
+            android:id="@+id/trashlang4"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="20dp"
             android:layout_below="@+id/line3"
-            android:id="@+id/trashlang4"
-            />
+            android:layout_marginTop="20dp"
+            android:src="@drawable/delete_icon" />
+
         <View
+            android:id="@+id/trash4selectionview"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/line3"
-            android:layout_marginTop="20dp"
 
-            android:id="@+id/trash4selectionview"
-            />
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
+            android:id="@+id/langrl4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/line3"
             android:layout_marginTop="10dp"
-            android:id="@+id/langrl4"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
+
                 <RelativeLayout
+                    android:id="@+id/knownspinner4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/knownspinner4"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:layout_marginLeft="40dp"
                     android:orientation="horizontal">
 
                     <Spinner
@@ -446,37 +433,36 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
 
                     <ImageView
                         android:id="@+id/spinnerimglang4"
                         android:layout_width="40dp"
-                        android:tint="#eee"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimglang4"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
 
 
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/proficiencyspinner4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/proficiencyspinner4"
                     android:layout_marginLeft="7dp"
                     android:layout_weight="1.5"
                     android:orientation="horizontal">
@@ -487,78 +473,77 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
                     <ImageView
+                        android:id="@+id/spinnerimgproficiency4"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:tint="#eee"
-                        android:id="@+id/spinnerimgproficiency4"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimgproficiency4"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
+
         <View
-            android:layout_height="1dp"
-            android:layout_width="match_parent"
             android:id="@+id/line4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_below="@+id/langrl4"
-            android:background="#c59a6d"
             android:layout_marginTop="10dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
 
         <ImageView
+            android:id="@+id/trashlang5"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="20dp"
             android:layout_below="@+id/line4"
-            android:id="@+id/trashlang5"
-            />
+            android:layout_marginTop="20dp"
+            android:src="@drawable/delete_icon" />
+
         <View
+            android:id="@+id/trash5selectionview"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/line4"
-            android:layout_marginTop="20dp"
 
-            android:id="@+id/trash5selectionview"
-            />
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
+            android:id="@+id/langrl5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/line4"
             android:layout_marginTop="10dp"
-            android:id="@+id/langrl5"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
+
                 <RelativeLayout
+                    android:id="@+id/knownspinner5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/knownspinner5"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:layout_marginLeft="40dp"
                     android:orientation="horizontal">
 
                     <Spinner
@@ -567,37 +552,36 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
 
                     <ImageView
                         android:id="@+id/spinnerimglang5"
                         android:layout_width="40dp"
-                        android:tint="#eee"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimglang5"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
 
 
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/proficiencyspinner5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/proficiencyspinner5"
                     android:layout_marginLeft="7dp"
                     android:layout_weight="1.5"
                     android:orientation="horizontal">
@@ -608,80 +592,77 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
                     <ImageView
+                        android:id="@+id/spinnerimgproficiency5"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:tint="#eee"
-                        android:id="@+id/spinnerimgproficiency5"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimgproficiency5"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
 
         <View
-            android:layout_height="1dp"
-            android:layout_width="match_parent"
             android:id="@+id/line5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_below="@+id/langrl5"
-            android:background="#c59a6d"
             android:layout_marginTop="10dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
 
         <ImageView
+            android:id="@+id/trashlang6"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="20dp"
             android:layout_below="@+id/line5"
-            android:id="@+id/trashlang6"
-            />
+            android:layout_marginTop="20dp"
+            android:src="@drawable/delete_icon" />
+
         <View
+            android:id="@+id/trash6selectionview"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/line5"
-            android:layout_marginTop="20dp"
 
-            android:id="@+id/trash6selectionview"
-            />
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
+            android:id="@+id/langrl6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/line5"
             android:layout_marginTop="10dp"
-            android:id="@+id/langrl6"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <RelativeLayout
+                    android:id="@+id/knownspinner6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/knownspinner6"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:layout_marginLeft="40dp"
                     android:orientation="horizontal">
 
                     <Spinner
@@ -690,39 +671,38 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
 
                     <ImageView
                         android:id="@+id/spinnerimglang6"
                         android:layout_width="40dp"
-                        android:tint="#eee"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimglang6"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
 
 
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/proficiencyspinner6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/section6"
-                    android:id="@+id/proficiencyspinner6"
                     android:layout_marginLeft="7dp"
+                    android:layout_toRightOf="@+id/section6"
                     android:layout_weight="1.5"
                     android:orientation="horizontal">
 
@@ -732,79 +712,77 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
                     <ImageView
+                        android:id="@+id/spinnerimgproficiency6"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:tint="#eee"
-                        android:id="@+id/spinnerimgproficiency6"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimgproficiency6"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
+
         <View
-            android:layout_height="1dp"
-            android:layout_width="match_parent"
             android:id="@+id/line6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_below="@+id/langrl6"
-            android:background="#c59a6d"
             android:layout_marginTop="10dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
 
         <ImageView
+            android:id="@+id/trashlang7"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="20dp"
             android:layout_below="@+id/line6"
-            android:id="@+id/trashlang7"
-            />
+            android:layout_marginTop="20dp"
+            android:src="@drawable/delete_icon" />
+
         <View
+            android:id="@+id/trash7selectionview"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/line6"
-            android:layout_marginTop="20dp"
 
-            android:id="@+id/trash7selectionview"
-            />
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
+            android:id="@+id/langrl7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/line6"
             android:layout_marginTop="10dp"
-            android:id="@+id/langrl7"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <RelativeLayout
+                    android:id="@+id/knownspinner7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/knownspinner7"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:layout_marginLeft="40dp"
                     android:orientation="horizontal">
 
                     <Spinner
@@ -813,37 +791,36 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
 
                     <ImageView
                         android:id="@+id/spinnerimglang7"
                         android:layout_width="40dp"
-                        android:tint="#eee"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimglang7"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
 
 
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/proficiencyspinner7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/proficiencyspinner7"
                     android:layout_marginLeft="7dp"
                     android:layout_weight="1.5"
                     android:orientation="horizontal">
@@ -854,80 +831,77 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
                     <ImageView
+                        android:id="@+id/spinnerimgproficiency7"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:tint="#eee"
-                        android:id="@+id/spinnerimgproficiency7"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimgproficiency7"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
 
         <View
-            android:layout_height="1dp"
-            android:layout_width="match_parent"
             android:id="@+id/line7"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_below="@+id/langrl7"
-            android:background="#c59a6d"
             android:layout_marginTop="10dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
 
         <ImageView
+            android:id="@+id/trashlang8"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="20dp"
             android:layout_below="@+id/line7"
-            android:id="@+id/trashlang8"
-            />
+            android:layout_marginTop="20dp"
+            android:src="@drawable/delete_icon" />
+
         <View
+            android:id="@+id/trash8selectionview"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/line7"
-            android:layout_marginTop="20dp"
 
-            android:id="@+id/trash8selectionview"
-            />
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
+            android:id="@+id/langrl8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/line7"
             android:layout_marginTop="10dp"
-            android:id="@+id/langrl8"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <RelativeLayout
+                    android:id="@+id/knownspinner8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/knownspinner8"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:layout_marginLeft="40dp"
                     android:orientation="horizontal">
 
                     <Spinner
@@ -936,37 +910,36 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
 
                     <ImageView
                         android:id="@+id/spinnerimglang8"
                         android:layout_width="40dp"
-                        android:tint="#eee"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimglang8"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
 
 
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/proficiencyspinner8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/proficiencyspinner8"
                     android:layout_marginLeft="7dp"
                     android:layout_weight="1.5"
                     android:orientation="horizontal">
@@ -977,78 +950,77 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
                     <ImageView
+                        android:id="@+id/spinnerimgproficiency8"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:tint="#eee"
-                        android:id="@+id/spinnerimgproficiency8"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimgproficiency8"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
+
         <View
-            android:layout_height="1dp"
-            android:layout_width="match_parent"
             android:id="@+id/line8"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_below="@+id/langrl8"
-            android:background="#c59a6d"
             android:layout_marginTop="10dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
 
         <ImageView
+            android:id="@+id/trashlang9"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="20dp"
             android:layout_below="@+id/line8"
-            android:id="@+id/trashlang9"
-            />
+            android:layout_marginTop="20dp"
+            android:src="@drawable/delete_icon" />
+
         <View
+            android:id="@+id/trash9selectionview"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/line8"
-            android:layout_marginTop="20dp"
 
-            android:id="@+id/trash9selectionview"
-            />
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
+            android:id="@+id/langrl9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/line8"
             android:layout_marginTop="10dp"
-            android:id="@+id/langrl9"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
+
                 <RelativeLayout
+                    android:id="@+id/knownspinner9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/knownspinner9"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:layout_marginLeft="40dp"
                     android:orientation="horizontal">
 
                     <Spinner
@@ -1057,39 +1029,38 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
 
                     <ImageView
                         android:id="@+id/spinnerimglang9"
                         android:layout_width="40dp"
-                        android:tint="#eee"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimglang9"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
 
 
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/proficiencyspinner9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/section9"
-                    android:id="@+id/proficiencyspinner9"
                     android:layout_marginLeft="7dp"
+                    android:layout_toRightOf="@+id/section9"
                     android:layout_weight="1.5"
                     android:orientation="horizontal">
 
@@ -1099,79 +1070,77 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
                     <ImageView
+                        android:id="@+id/spinnerimgproficiency9"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:tint="#eee"
-                        android:id="@+id/spinnerimgproficiency9"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimgproficiency9"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
 
         <View
-            android:layout_height="1dp"
-            android:layout_width="match_parent"
             android:id="@+id/line9"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_below="@+id/langrl9"
-            android:background="#c59a6d"
             android:layout_marginTop="10dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
 
         <ImageView
+            android:id="@+id/trashlang10"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="20dp"
             android:layout_below="@+id/line9"
-            android:id="@+id/trashlang10"
-            />
+            android:layout_marginTop="20dp"
+            android:src="@drawable/delete_icon" />
+
         <View
+            android:id="@+id/trash10selectionview"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/line9"
-            android:layout_marginTop="20dp"
 
-            android:id="@+id/trash10selectionview"
-            />
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
+            android:id="@+id/langrl10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/line9"
             android:layout_marginTop="10dp"
-            android:id="@+id/langrl10"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
+
                 <RelativeLayout
+                    android:id="@+id/knownspinner10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/knownspinner10"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:layout_marginLeft="40dp"
                     android:orientation="horizontal">
 
                     <Spinner
@@ -1180,37 +1149,36 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
 
                     <ImageView
                         android:id="@+id/spinnerimglang10"
                         android:layout_width="40dp"
-                        android:tint="#eee"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimglang10"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
 
 
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/proficiencyspinner10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/proficiencyspinner10"
                     android:layout_marginLeft="7dp"
                     android:layout_weight="1.5"
                     android:orientation="horizontal">
@@ -1221,63 +1189,70 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:popupBackground="#001111"
                         android:layout_marginLeft="5dp"
+                        android:background="@color/while_color"
+                        android:gravity="center"
+                        android:popupBackground="@color/while_color"
                         android:spinnerMode="dropdown" />
 
                     <ImageView
+                        android:id="@+id/spinnerimgproficiency10"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:tint="#eee"
-                        android:id="@+id/spinnerimgproficiency10"
-                        android:src="@drawable/drop" />
+                        android:src="@drawable/drop"
+                        android:tint="@color/dark_color" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/spinnerimgproficiency10"
-                        android:background="#eee"
-                        />
+                        android:background="@color/dark_color" />
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
 
 
         <View
+            android:id="@+id/addmorelang"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/boxborderwhite"
             android:layout_below="@+id/langrl10"
-            android:id="@+id/addmorelang"
             android:layout_marginTop="20dp"
-            />
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp" />
+
+        <View
+            android:id="@+id/dummpy_view_for_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@+id/addmorelang"
+            android:layout_marginTop="20dp" />
 
         <TextView
+            android:id="@+id/addmorelangtxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/langrl10"
-            android:text="Add Another Language"
-            android:textColor="#eee"
-            android:textSize="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            android:id="@+id/addmorelangtxt"
-            />
+            android:elevation="8dp"
+            android:text="Add Another Language"
+            android:textColor="@color/while_color"
+            android:textSize="20dp" />
+
         <ImageView
+            android:id="@+id/addmorelangimg"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_below="@+id/langrl10"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:layout_below="@+id/langrl10"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:id="@+id/addmorelangimg"
-            />
+            android:elevation="8dp"
+            android:src="@drawable/add_icon_white" />
     </RelativeLayout>
 </ScrollView>
 

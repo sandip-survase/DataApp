@@ -8,6 +8,8 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -53,10 +55,6 @@ public class MyProfileKnownLang extends AppCompatActivity {
     List<String> level = new ArrayList<String>();
     StudentData s=new StudentData();
 
-    public static final String MyPREFERENCES = "MyPrefs" ;
-
-    public static final String Username = "nameKey";
-
     String username,role,encObjString="";
 
     String digest1,digest2;
@@ -74,6 +72,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_known_lang);
+
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Known Languages");
         ab.setDisplayHomeAsUpEnabled(true);
@@ -83,6 +82,8 @@ public class MyProfileKnownLang extends AppCompatActivity {
         username=MySharedPreferencesManager.getUsername(this);
         role=MySharedPreferencesManager.getRole(this);
 
+        TextView addmorelangtxt=(TextView)findViewById(R.id.addmorelangtxt);
+        addmorelangtxt.setTypeface(MyConstants.getBold(this));
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
@@ -99,8 +100,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
 //        }
 
         TextView knowntxt=(TextView)findViewById(R.id.knowntxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");
-        knowntxt.setTypeface(custom_font1);
+        knowntxt.setTypeface(MyConstants.getBold(this));
 
         trash1selectionview=(View)findViewById(R.id.trash1selectionview);
         trash2selectionview=(View)findViewById(R.id.trash2selectionview);
@@ -416,19 +416,29 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     return true;
                 }
             }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view= super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfileKnownLang.this));
+                tv.setTextColor(getResources().getColor(R.color.dark_color));
+                return view;
+            }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+                tv.setTypeface(MyConstants.getBold(MyProfileKnownLang.this));
                 if(position == 0){
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 }
                 else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -1575,21 +1585,31 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     return true;
                 }
             }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view= super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfileKnownLang.this));
+                tv.setTextColor(getResources().getColor(R.color.dark_color));
+                return view;
+            }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+                tv.setTypeface(MyConstants.getBold(MyProfileKnownLang.this));
 
                 if(position == 0){
                     // Set the hint text color gray
 
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 }
                 else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -2759,8 +2779,11 @@ public class MyProfileKnownLang extends AppCompatActivity {
             alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialogInterface) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileKnownLang.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileKnownLang.this));
+
                 }
             });
 
