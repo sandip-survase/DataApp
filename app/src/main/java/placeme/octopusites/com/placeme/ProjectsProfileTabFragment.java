@@ -36,7 +36,7 @@ import placeme.octopusites.com.placeme.modal.Projects;
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 
-public class ProjectsProfileTabFragment extends Fragment implements TextWatcher {
+public class ProjectsProfileTabFragment extends Fragment {
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
     ArrayList<Projects> projectsList = new ArrayList<>();
@@ -267,46 +267,653 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         durationinput10 = (TextInputLayout) rootView.findViewById(R.id.duration10input);
 
 
-        proj1.addTextChangedListener(this);
-        domain1.addTextChangedListener(this);
-        team1.addTextChangedListener(this);
-        duration1.addTextChangedListener(this);
-        proj2.addTextChangedListener(this);
-        domain2.addTextChangedListener(this);
-        team2.addTextChangedListener(this);
-        duration2.addTextChangedListener(this);
-        proj3.addTextChangedListener(this);
-        domain3.addTextChangedListener(this);
-        team3.addTextChangedListener(this);
-        duration3.addTextChangedListener(this);
-        proj4.addTextChangedListener(this);
-        domain4.addTextChangedListener(this);
-        team4.addTextChangedListener(this);
-        duration4.addTextChangedListener(this);
-        proj5.addTextChangedListener(this);
-        domain5.addTextChangedListener(this);
-        team5.addTextChangedListener(this);
-        duration5.addTextChangedListener(this);
-        proj6.addTextChangedListener(this);
-        domain6.addTextChangedListener(this);
-        team6.addTextChangedListener(this);
-        duration6.addTextChangedListener(this);
-        proj7.addTextChangedListener(this);
-        domain7.addTextChangedListener(this);
-        team7.addTextChangedListener(this);
-        duration7.addTextChangedListener(this);
-        proj8.addTextChangedListener(this);
-        domain8.addTextChangedListener(this);
-        team8.addTextChangedListener(this);
-        duration8.addTextChangedListener(this);
-        proj9.addTextChangedListener(this);
-        domain9.addTextChangedListener(this);
-        team9.addTextChangedListener(this);
-        duration9.addTextChangedListener(this);
-        proj10.addTextChangedListener(this);
-        domain10.addTextChangedListener(this);
-        team10.addTextChangedListener(this);
-        duration10.addTextChangedListener(this);
+        proj1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput1.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+        domain1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                domaininput1.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                teaminput1.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                durationinput1.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        proj2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput2.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        domain2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                domaininput2 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                teaminput2.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                durationinput2.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+       proj3.addTextChangedListener(new TextWatcher() {
+             @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput3.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        domain3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                domaininput3.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                teaminput3 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                durationinput3 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        proj4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput4 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        domain4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                domaininput4 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                teaminput4 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                durationinput4.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        proj5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput5 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        domain5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                domaininput5 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                teaminput5.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                durationinput5 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        proj6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput6 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        domain6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                domaininput6 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                teaminput6 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                durationinput6 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        proj7.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput7.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        domain7.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                domaininput7 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team7.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                teaminput7.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration7.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                durationinput7 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        proj8.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput8.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        domain8.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                domaininput8.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team8.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                teaminput8 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration8.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                durationinput8  .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        proj9.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput9 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        domain9.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                domaininput9 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team9.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                teaminput9 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration9.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                durationinput9  .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        proj10.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput10.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        domain10.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                domaininput10 .setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team10.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                teaminput10.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration10.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                durationinput10.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
 
         proj1.setTypeface(MyConstants.getBold(getActivity()));
         domain1.setTypeface(MyConstants.getBold(getActivity()));
@@ -595,8 +1202,6 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         demoIVBytes = SimpleBase64Encoder.decode(digest2);
         sPadding = "ISO10126Padding";
-
-
         sproj1 = s.getProj1();
         sdomain1 = s.getDomain1();
         steam1 = s.getTeam1();
@@ -786,6 +1391,7 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
 
         return rootView;
     }
+
 /*
 
     @Override
@@ -1011,46 +1617,55 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
     public boolean myvalidate() {
         errorflag = 0;
 
-        proj1.setError(null);
-        domain1.setError(null);
-        team1.setError(null);
-        duration1.setError(null);
-        proj2.setError(null);
-        domain2.setError(null);
-        team2.setError(null);
-        duration2.setError(null);
-        proj3.setError(null);
-        domain3.setError(null);
-        team3.setError(null);
-        duration3.setError(null);
-        proj4.setError(null);
-        domain4.setError(null);
-        team4.setError(null);
-        duration4.setError(null);
-        proj5.setError(null);
-        domain5.setError(null);
-        team5.setError(null);
-        duration5.setError(null);
-        proj6.setError(null);
-        domain6.setError(null);
-        team6.setError(null);
-        duration6.setError(null);
-        proj7.setError(null);
-        domain7.setError(null);
-        team7.setError(null);
-        duration7.setError(null);
-        proj8.setError(null);
-        domain8.setError(null);
-        team8.setError(null);
-        duration8.setError(null);
-        proj9.setError(null);
-        domain9.setError(null);
-        team9.setError(null);
-        duration9.setError(null);
-        proj10.setError(null);
-        domain10.setError(null);
-        team10.setError(null);
-        duration10.setError(null);
+        projinput1.setError(null);
+        domaininput1.setError(null);
+        teaminput1.setError(null);
+        durationinput1.setError(null);
+
+        projinput2.setError(null);
+        domaininput2.setError(null);
+        teaminput2.setError(null);
+        durationinput2.setError(null);
+
+        projinput3.setError(null);
+        domaininput3.setError(null);
+        teaminput3.setError(null);
+        durationinput3.setError(null);
+
+        projinput4.setError(null);
+        domaininput4.setError(null);
+        teaminput4.setError(null);
+        durationinput4.setError(null);
+
+        projinput5.setError(null);
+        domaininput5.setError(null);
+        teaminput5.setError(null);
+        durationinput5.setError(null);
+
+        projinput6.setError(null);
+        domaininput6.setError(null);
+        teaminput6.setError(null);
+        durationinput6.setError(null);
+
+        projinput7.setError(null);
+        domaininput7.setError(null);
+        teaminput7.setError(null);
+        durationinput7.setError(null);
+
+        projinput8.setError(null);
+        domaininput8.setError(null);
+        teaminput8.setError(null);
+        durationinput8.setError(null);
+
+        projinput9.setError(null);
+        domaininput9.setError(null);
+        teaminput9.setError(null);
+        durationinput9.setError(null);
+
+        projinput10.setError(null);
+        domaininput10.setError(null);
+        teaminput10.setError(null);
+        durationinput10.setError(null);
 
         sproj1 = proj1.getText().toString();
         sdomain1 = domain1.getText().toString();
@@ -1107,8 +1722,8 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
                 durationinput1.setError("Kindly enter valid duration in months");
-
             }
+
         } else if (projectscount == 1) {
 
 
@@ -1802,8 +2417,8 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         else
             return false;
 
-
-    }//fun
+    }
+    //fun
 
 
     public Boolean validate() {
@@ -3266,20 +3881,7 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
 
     }
 
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-        edittedFlag = 1;
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-
-    }
 
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         Animation animation = super.onCreateAnimation(transit, enter, nextAnim);
