@@ -235,70 +235,61 @@ public class HRProfileFragment extends Fragment {
         myprofilepreview = (TextView) rootView.findViewById(R.id.myprofilepreview);
 
 
-        Typeface custom_font1 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/arba.ttf");
-        Typeface custom_font2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/ubuntu.ttf");
-        Typeface custom_font3 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/arimo.ttf");
-        Typeface custom_font4 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/meriitalic.ttf");
-        Typeface custom_font5 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/righteous.ttf");
-        Typeface custom_font6 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/rockitbold.ttf");
-        Typeface custom_font7 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/portano.ttf");
-        Typeface custom_font8 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/montbold.ttf");
 
-        myprofilepreview.setTypeface(custom_font8);
-        myprofilename.setTypeface(custom_font1);
-        myprofilrole.setTypeface(custom_font2);
-        myprofiledu.setTypeface(custom_font3);
-        myprofilloc.setTypeface(custom_font3);
-        myprofilemail.setTypeface(custom_font3);
-        myprofilepercenttxt.setTypeface(custom_font4);
-        editprofiletxt.setTypeface(custom_font5);
-        eduboxtxt.setTypeface(custom_font1);
-        expboxtxt.setTypeface(custom_font1);
-        accomplishmentsboxtxt.setTypeface(custom_font1);
-        contactboxtxt.setTypeface(custom_font1);
+        myprofilepreview.setTypeface(MyConstants.getBold(getActivity()));
+        myprofilename.setTypeface(MyConstants.getBold(getActivity()));
+        myprofilrole.setTypeface(MyConstants.getBold(getActivity()));
 
-        myprofilecource.setTypeface(custom_font6);
-        instemailtxt.setTypeface(custom_font6);
-        instwebtxt.setTypeface(custom_font6);
-        instteletxt.setTypeface(custom_font6);
+        myprofiledu.setTypeface(MyConstants.getBold(getActivity()));
+        myprofilloc.setTypeface(MyConstants.getLight(getActivity()));
+        myprofilemail.setTypeface(MyConstants.getLight(getActivity()));
+        myprofilepercenttxt.setTypeface(MyConstants.getItalic(getActivity()));
+        editprofiletxt.setTypeface(MyConstants.getBold(getActivity()));
+        eduboxtxt.setTypeface(MyConstants.getBold(getActivity()));
+        expboxtxt.setTypeface(MyConstants.getBold(getActivity()));
+        accomplishmentsboxtxt.setTypeface(MyConstants.getBold(getActivity()));
+        contactboxtxt.setTypeface(MyConstants.getBold(getActivity()));
 
-        acc2txt.setTypeface(custom_font6);
-        acc4txt.setTypeface(custom_font6);
-        acc5txt.setTypeface(custom_font6);
-        acc6txt.setTypeface(custom_font6);
-        acc7txt.setTypeface(custom_font6);
+        myprofilecource.setTypeface(MyConstants.getBold(getActivity()));
+        instemailtxt.setTypeface(MyConstants.getLight(getActivity()));
+        instwebtxt.setTypeface(MyConstants.getLight(getActivity()));
+        instteletxt.setTypeface(MyConstants.getLight(getActivity()));
 
-        myprofileclgname.setTypeface(custom_font7);
-        instcontactemail.setTypeface(custom_font7);
-        instwebsite.setTypeface(custom_font7);
-        insttelephone.setTypeface(custom_font7);
-        acc2txttxt.setTypeface(custom_font7);
-        acc4txttxt.setTypeface(custom_font7);
-        acc5txttxt.setTypeface(custom_font7);
-        acc6txttxt.setTypeface(custom_font7);
-        acc7txttxt.setTypeface(custom_font7);
+        acc2txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc4txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc5txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc6txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc7txt.setTypeface(MyConstants.getLight(getActivity()));
+//
+        myprofileclgname.setTypeface(MyConstants.getLight(getActivity()));
+        instcontactemail.setTypeface(MyConstants.getBold(getActivity()));
+        instwebsite.setTypeface(MyConstants.getBold(getActivity()));
+        insttelephone.setTypeface(MyConstants.getBold(getActivity()));
+        acc2txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc4txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc5txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc6txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc7txttxt.setTypeface(MyConstants.getBold(getActivity()));
 
-        exp1txt.setTypeface(custom_font6);
-        myprofileexp1name.setTypeface(custom_font7);
-        myprofileexpfromto.setTypeface(custom_font7);
+        exp1txt.setTypeface(MyConstants.getBold(getActivity()));
+        myprofileexp1name.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileexpfromto.setTypeface(MyConstants.getLight(getActivity()));
 
-        exp2txt.setTypeface(custom_font6);
-        myprofileexp2name.setTypeface(custom_font7);
-        myprofileexpfromto2.setTypeface(custom_font7);
+        exp2txt.setTypeface(MyConstants.getBold(getActivity()));
+        myprofileexp2name.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileexpfromto2.setTypeface(MyConstants.getLight(getActivity()));
 
-        exp3txt.setTypeface(custom_font6);
-        myprofileexp3name.setTypeface(custom_font7);
-        myprofileexpfromto3.setTypeface(custom_font7);
+        exp3txt.setTypeface(MyConstants.getBold(getActivity()));
+        myprofileexp3name.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileexpfromto3.setTypeface(MyConstants.getLight(getActivity()));
 
-        nametxt.setTypeface(custom_font6);
-        emailtxt.setTypeface(custom_font6);
-        mobiletxt.setTypeface(custom_font6);
-
-        contactaddr.setTypeface(custom_font7);
-        contactprofesionalemail.setTypeface(custom_font7);
-        contactpersonalemail.setTypeface(custom_font7);
-        contactmobile.setTypeface(custom_font7);
-
+        nametxt.setTypeface(MyConstants.getBold(getActivity()));
+        emailtxt.setTypeface(MyConstants.getLight(getActivity()));
+        mobiletxt.setTypeface(MyConstants.getLight(getActivity()));
+        contactaddr.setTypeface(MyConstants.getLight(getActivity()));
+        contactprofesionalemail.setTypeface(MyConstants.getBold(getActivity()));
+        contactpersonalemail.setTypeface(MyConstants.getBold(getActivity()));
+        contactmobile.setTypeface(MyConstants.getBold(getActivity()));
 
         introedit = (ImageView) rootView.findViewById(R.id.introedit);
         eduedit = (ImageView) rootView.findViewById(R.id.eduedit);

@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -82,10 +83,11 @@ public class MyProfileAlumniFragment extends Fragment {
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
     public static final String alumniLog = "alumniLog";
-    final static CharSequence[] items = {"View Profile Picture", "Update Profile Picture", "Delete Profile Picture"};
+    final static CharSequence[] items = {"Update Profile Picture", "Delete Profile Picture"};
     public String role = "";
     ImageView insti4, exp2, exp3;
     CircleImageView myprofileimg;
+    ImageButton iv_camera;
     ImageView introedit, eduedit, projectsedit, accomplishmentsedit, expedit, careeredit, contactedit;
     String dataobject = "", careerdataobject = "", strengthdataobject = "", weaknessesdataobject = "", locationpreferencesdataobject = "", tenthdataobject = "", ugdataobject = "", personaldataobject = "", contact_details_dataobject = "", twelthdataobject = "", diplomadataobject = "", experiencesataobject;
     String fname = "", lname = "", country = "", state = "", city = "";
@@ -179,6 +181,7 @@ public class MyProfileAlumniFragment extends Fragment {
         role = MySharedPreferencesManager.getRole(getActivity());
 
         myprofileimg = (CircleImageView) rootView.findViewById(R.id.myprofileimg);
+        iv_camera=(ImageButton)  rootView.findViewById(R.id.iv_camera);
         myprofilename = (TextView) rootView.findViewById(R.id.myprofilename);
         myprofilrole = (TextView) rootView.findViewById(R.id.myprofilrole);
         myprofiledu = (TextView) rootView.findViewById(R.id.myprofiledu);
@@ -251,11 +254,10 @@ public class MyProfileAlumniFragment extends Fragment {
 
         TextView expboxtxt = (TextView) rootView.findViewById(R.id.expboxtxt);
 
-        TextView trytxt, protxt, freetxt;
+        TextView trytxt;
 
         trytxt = (TextView) rootView.findViewById(R.id.trytxt);
-        protxt = (TextView) rootView.findViewById(R.id.protxt);
-        freetxt = (TextView) rootView.findViewById(R.id.freetxt);
+
 
 
         swipe_refresh_layout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
@@ -281,101 +283,90 @@ public class MyProfileAlumniFragment extends Fragment {
         myprofileclgyearofpassing4 = (TextView) rootView.findViewById(R.id.myprofileclgyearofpassing4);
 
 
-        Typeface custom_font1 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/arba.ttf");
-        Typeface custom_font2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/ubuntu.ttf");
-        Typeface custom_font3 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/arimo.ttf");
-        Typeface custom_font4 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/meriitalic.ttf");
-        Typeface custom_font5 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/righteous.ttf");
-        Typeface custom_font6 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/rockitbold.ttf");
-        Typeface custom_font7 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/portano.ttf");
-        Typeface custom_font8 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/montbold.ttf");
-        Typeface custom_font10 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/hint.ttf");
-        Typeface custom_font11 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/hamm.ttf");
+        exp1txt.setTypeface(MyConstants.getBold(getActivity()));
+        myprofileexp1name.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileexpfromto.setTypeface(MyConstants.getLight(getActivity()));
 
-        exp1txt.setTypeface(custom_font6);
-        myprofileexp1name.setTypeface(custom_font7);
-        myprofileexpfromto.setTypeface(custom_font7);
+        exp2txt.setTypeface(MyConstants.getBold(getActivity()));
+        myprofileexp2name.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileexpfromto2.setTypeface(MyConstants.getLight(getActivity()));
 
-        exp2txt.setTypeface(custom_font6);
-        myprofileexp2name.setTypeface(custom_font7);
-        myprofileexpfromto2.setTypeface(custom_font7);
-
-        exp3txt.setTypeface(custom_font6);
-        myprofileexp3name.setTypeface(custom_font7);
-        myprofileexpfromto3.setTypeface(custom_font7);
+        exp3txt.setTypeface(MyConstants.getBold(getActivity()));
+        myprofileexp3name.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileexpfromto3.setTypeface(MyConstants.getLight(getActivity()));
 
 
-        myprofilename.setTypeface(custom_font1);
-        myprofilrole.setTypeface(custom_font2);
-        myprofiledu.setTypeface(custom_font3);
-        myprofilloc.setTypeface(custom_font3);
-        myprofilemail.setTypeface(custom_font3);
-        myprofilepercenttxt.setTypeface(custom_font4);
-        editprofiletxt.setTypeface(custom_font5);
-        eduboxtxt.setTypeface(custom_font1);
-        projboxtxt.setTypeface(custom_font1);
-        accomplishmentsboxtxt.setTypeface(custom_font1);
-        careerboxtxt.setTypeface(custom_font1);
-        contactboxtxt.setTypeface(custom_font1);
-        expboxtxt.setTypeface(custom_font1);
-        myprofilecource.setTypeface(custom_font6);
-        myprofilecource2.setTypeface(custom_font6);
-        myprofilecource3.setTypeface(custom_font6);
-        myprofilecource4.setTypeface(custom_font6);
-        myprofileproj1.setTypeface(custom_font6);
-        myprofileproj2.setTypeface(custom_font6);
-        myprofileproj3.setTypeface(custom_font6);
+        myprofilename.setTypeface(MyConstants.getBold(getActivity()));
+        myprofilrole.setTypeface(MyConstants.getBold(getActivity()));
+        myprofiledu.setTypeface(MyConstants.getBold(getActivity()));
+        myprofilloc.setTypeface(MyConstants.getLight(getActivity()));
+        myprofilemail.setTypeface(MyConstants.getLight(getActivity()));
+        myprofilepercenttxt.setTypeface(MyConstants.getItalic(getActivity()));
+        editprofiletxt.setTypeface(MyConstants.getBold(getActivity()));
+        eduboxtxt.setTypeface(MyConstants.getBold(getActivity()));
+        projboxtxt.setTypeface(MyConstants.getBold(getActivity()));
+        accomplishmentsboxtxt.setTypeface(MyConstants.getBold(getActivity()));
+        careerboxtxt.setTypeface(MyConstants.getBold(getActivity()));
+        contactboxtxt.setTypeface(MyConstants.getBold(getActivity()));
+        expboxtxt.setTypeface(MyConstants.getBold(getActivity()));
+        myprofilecource.setTypeface(MyConstants.getBold(getActivity()));
+        myprofilecource2.setTypeface(MyConstants.getBold(getActivity()));
+        myprofilecource3.setTypeface(MyConstants.getBold(getActivity()));
+        myprofilecource4.setTypeface(MyConstants.getBold(getActivity()));
+        myprofileproj1.setTypeface(MyConstants.getBold(getActivity()));
+        myprofileproj2.setTypeface(MyConstants.getBold(getActivity()));
+        myprofileproj3.setTypeface(MyConstants.getBold(getActivity()));
 
-        acc1txt.setTypeface(custom_font6);
-        acc2txt.setTypeface(custom_font6);
-        acc3txt.setTypeface(custom_font6);
-        acc4txt.setTypeface(custom_font6);
-        acc5txt.setTypeface(custom_font6);
-        acc6txt.setTypeface(custom_font6);
-        acc7txt.setTypeface(custom_font6);
-        careerobjtxt.setTypeface(custom_font6);
-        strengthtxt.setTypeface(custom_font6);
-        weaktxt.setTypeface(custom_font6);
-        locpretxt.setTypeface(custom_font6);
-        nametxt.setTypeface(custom_font6);
-        mobiletxt.setTypeface(custom_font6);
-        emailtxt.setTypeface(custom_font6);
+        acc1txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc2txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc3txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc4txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc5txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc6txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc7txt.setTypeface(MyConstants.getLight(getActivity()));
+        careerobjtxt.setTypeface(MyConstants.getBold(getActivity()));
+        strengthtxt.setTypeface(MyConstants.getBold(getActivity()));
+        weaktxt.setTypeface(MyConstants.getBold(getActivity()));
+        locpretxt.setTypeface(MyConstants.getBold(getActivity()));
+        nametxt.setTypeface(MyConstants.getBold(getActivity()));
+        mobiletxt.setTypeface(MyConstants.getLight(getActivity()));
+        emailtxt.setTypeface(MyConstants.getLight(getActivity()));
 
 
-        myprofileclgname.setTypeface(custom_font7);
-        myprofileclgyearofpassing.setTypeface(custom_font7);
-        myprofileclgname2.setTypeface(custom_font7);
-        myprofileclgyearofpassing2.setTypeface(custom_font7);
-        myprofileclgname3.setTypeface(custom_font7);
-        myprofileclgyearofpassing3.setTypeface(custom_font7);
-        myprofileclgname4.setTypeface(custom_font7);
-        myprofileclgyearofpassing4.setTypeface(custom_font7);
+        myprofileclgname.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileclgyearofpassing.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileclgname2.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileclgyearofpassing2.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileclgname3.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileclgyearofpassing3.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileclgname4.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileclgyearofpassing4.setTypeface(MyConstants.getLight(getActivity()));
 
-        myprofiledomain1.setTypeface(custom_font7);
-        myprofileduration1.setTypeface(custom_font7);
-        myprofiledomain2.setTypeface(custom_font7);
-        myprofileduration2.setTypeface(custom_font7);
-        myprofiledomain3.setTypeface(custom_font7);
-        myprofileduration3.setTypeface(custom_font7);
-        careerobjtxttxt.setTypeface(custom_font7);
-        strengthstxt.setTypeface(custom_font7);
-        weaknessestxt.setTypeface(custom_font7);
-        locationpreferences.setTypeface(custom_font7);
-        contactaddr1.setTypeface(custom_font7);
-        acc1txttxt.setTypeface(custom_font7);
-        acc2txttxt.setTypeface(custom_font7);
-        acc3txttxt.setTypeface(custom_font7);
-        acc4txttxt.setTypeface(custom_font7);
-        acc5txttxt.setTypeface(custom_font7);
-        acc6txttxt.setTypeface(custom_font7);
-        acc7txttxt.setTypeface(custom_font7);
+        myprofiledomain1.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileduration1.setTypeface(MyConstants.getLight(getActivity()));
+        myprofiledomain2.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileduration2.setTypeface(MyConstants.getLight(getActivity()));
+        myprofiledomain3.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileduration3.setTypeface(MyConstants.getLight(getActivity()));
+        careerobjtxttxt.setTypeface(MyConstants.getLight(getActivity()));
+        strengthstxt.setTypeface(MyConstants.getLight(getActivity()));
+        weaknessestxt.setTypeface(MyConstants.getLight(getActivity()));
+        locationpreferences.setTypeface(MyConstants.getLight(getActivity()));
+        contactaddr1.setTypeface(MyConstants.getLight(getActivity()));
+        acc1txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc2txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc3txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc4txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc5txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc6txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc7txttxt.setTypeface(MyConstants.getBold(getActivity()));
 
-        contactmobile.setTypeface(custom_font7);
-        contactemail.setTypeface(custom_font7);
-        myprofilepreview.setTypeface(custom_font8);
-        protxt.setTypeface(custom_font10);
-        trytxt.setTypeface(custom_font11);
-        freetxt.setTypeface(custom_font11);
+        contactmobile.setTypeface(MyConstants.getBold(getActivity()));
+        contactemail.setTypeface(MyConstants.getBold(getActivity()));
+        myprofilepreview.setTypeface(MyConstants.getBold(getActivity()));
+
+        trytxt.setTypeface(MyConstants.getBold(getActivity()));
+
 
         introedit = (ImageView) rootView.findViewById(R.id.introedit);
         eduedit = (ImageView) rootView.findViewById(R.id.eduedit);
@@ -454,6 +445,12 @@ public class MyProfileAlumniFragment extends Fragment {
 
 
         myprofileimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), ViewProfileImage.class));
+            }
+        });
+        iv_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDialog();
@@ -2627,13 +2624,9 @@ public class MyProfileAlumniFragment extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
 
                 if (which == 0) {
-                    startActivity(new Intent(getContext(), ViewProfileImage.class));
-                } else if (which == 1) {
-
                     dialog.cancel();
-                    ((AlumniActivity) getActivity()).requestCropImage();
-                } else if (which == 2) {
-
+                    ((MainActivity) getActivity()).requestCropImage();
+                } else if (which == 1) {
                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -2652,7 +2645,6 @@ public class MyProfileAlumniFragment extends Fragment {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                     builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
                             .setNegativeButton("No", dialogClickListener).show();
-
                 }
             }
         });

@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -69,8 +70,9 @@ import static placeme.octopusites.com.placeme.HrCompanyDetails.HRlog;
 public class AdminProfileFragment extends Fragment {
 
     CircleImageView myprofileimg;
+    ImageButton iv_camera;
     TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt;
-    final static CharSequence[] items = {"View Profile Picture", "Update Profile Picture", "Delete Profile Picture"};
+    final static CharSequence[] items = {"Update Profile Picture", "Delete Profile Picture"};
     RelativeLayout editprofilerl;
     RelativeLayout exptab2,exptab3;
 String experiencesataobject="";
@@ -87,7 +89,7 @@ String experiencesataobject="";
     //sssss
     AdminData a = new AdminData();
     StudentData studentData=new StudentData();
-    ProgressBar mainloadingbar,updateProgress;
+    ProgressBar updateProgress;
     SwipeRefreshLayout swipe_refresh_layout;
     ProgressBar profileprogress;
     JSONParser jParser = new JSONParser();
@@ -153,7 +155,7 @@ String experiencesataobject="";
         hashMap.put("Dec", 12);
 
         profileprogress=(ProgressBar)rootView.findViewById(R.id.profileprogress);
-        mainloadingbar=(ProgressBar)rootView.findViewById(R.id.mainloadingbar);
+
         updateProgress=(ProgressBar)rootView.findViewById(R.id.updateProgress);
 
         swipe_refresh_layout=(SwipeRefreshLayout)rootView.findViewById(R.id.swipe_refresh_layout);
@@ -161,6 +163,7 @@ String experiencesataobject="";
         tswipe_refresh_layout.setVisibility(View.GONE);
 
         myprofileimg = (CircleImageView) rootView.findViewById(R.id.myprofileimg);
+        iv_camera=(ImageButton)  rootView.findViewById(R.id.iv_camera);
         myprofilename = (TextView) rootView.findViewById(R.id.myprofilename);
         myprofilrole = (TextView) rootView.findViewById(R.id.myprofilrole);
         myprofiledu = (TextView) rootView.findViewById(R.id.myprofiledu);
@@ -238,79 +241,71 @@ String experiencesataobject="";
         contactmobile = (TextView) rootView.findViewById(R.id.contactmobile);
         myprofilepreview = (TextView) rootView.findViewById(R.id.myprofilepreview);
 
-        TextView trytxt, protxt, freetxt;
+        TextView trytxt;
         trytxt = (TextView) rootView.findViewById(R.id.trytxt);
-        protxt = (TextView) rootView.findViewById(R.id.protxt);
-        freetxt = (TextView) rootView.findViewById(R.id.freetxt);
-
-        Typeface custom_font1 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/arba.ttf");
-        Typeface custom_font2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/ubuntu.ttf");
-        Typeface custom_font3 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/arimo.ttf");
-        Typeface custom_font4 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/meriitalic.ttf");
-        Typeface custom_font5 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/righteous.ttf");
-        Typeface custom_font6 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/rockitbold.ttf");
-        Typeface custom_font7 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/portano.ttf");
-        Typeface custom_font8 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/montbold.ttf");
-        Typeface custom_font10 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/hint.ttf");
-        Typeface custom_font11 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/hamm.ttf");
-        myprofilepreview.setTypeface(custom_font8);
-        myprofilename.setTypeface(custom_font1);
-        myprofilrole.setTypeface(custom_font2);
-        myprofiledu.setTypeface(custom_font3);
-        myprofilloc.setTypeface(custom_font3);
-        myprofilemail.setTypeface(custom_font3);
-        myprofilepercenttxt.setTypeface(custom_font4);
-        editprofiletxt.setTypeface(custom_font5);
-        eduboxtxt.setTypeface(custom_font1);
-        expboxtxt.setTypeface(custom_font1);
-        accomplishmentsboxtxt.setTypeface(custom_font1);
-        contactboxtxt.setTypeface(custom_font1);
-
-        myprofilecource.setTypeface(custom_font6);
-        instemailtxt.setTypeface(custom_font6);
-        instwebtxt.setTypeface(custom_font6);
-        instteletxt.setTypeface(custom_font6);
-
-        acc2txt.setTypeface(custom_font6);
-        acc4txt.setTypeface(custom_font6);
-        acc5txt.setTypeface(custom_font6);
-        acc6txt.setTypeface(custom_font6);
-        acc7txt.setTypeface(custom_font6);
-
-        myprofileclgname.setTypeface(custom_font7);
-        instcontactemail.setTypeface(custom_font7);
-        instwebsite.setTypeface(custom_font7);
-        insttelephone.setTypeface(custom_font7);
-        acc2txttxt.setTypeface(custom_font7);
-        acc4txttxt.setTypeface(custom_font7);
-        acc5txttxt.setTypeface(custom_font7);
-        acc6txttxt.setTypeface(custom_font7);
-        acc7txttxt.setTypeface(custom_font7);
-
-        exp1txt.setTypeface(custom_font6);
-        myprofileexp1name.setTypeface(custom_font7);
-        myprofileexpfromto.setTypeface(custom_font7);
-
-        exp2txt.setTypeface(custom_font6);
-        myprofileexp2name.setTypeface(custom_font7);
-        myprofileexpfromto2.setTypeface(custom_font7);
-
-        exp3txt.setTypeface(custom_font6);
-        myprofileexp3name.setTypeface(custom_font7);
-        myprofileexpfromto3.setTypeface(custom_font7);
+        trytxt.setTypeface(MyConstants.getBold(getActivity()));
 
 
-        nametxt.setTypeface(custom_font6);
-        emailtxt.setTypeface(custom_font6);
-        mobiletxt.setTypeface(custom_font6);
-        contactaddr.setTypeface(custom_font7);
-        contactprofesionalemail.setTypeface(custom_font7);
-        contactpersonalemail.setTypeface(custom_font7);
-        contactmobile.setTypeface(custom_font7);
 
-        protxt.setTypeface(custom_font10);
-        trytxt.setTypeface(custom_font11);
-        freetxt.setTypeface(custom_font11);
+        myprofilepreview.setTypeface(MyConstants.getBold(getActivity()));
+        myprofilename.setTypeface(MyConstants.getBold(getActivity()));
+        myprofilrole.setTypeface(MyConstants.getBold(getActivity()));
+
+        myprofiledu.setTypeface(MyConstants.getBold(getActivity()));
+        myprofilloc.setTypeface(MyConstants.getLight(getActivity()));
+        myprofilemail.setTypeface(MyConstants.getLight(getActivity()));
+        myprofilepercenttxt.setTypeface(MyConstants.getItalic(getActivity()));
+        editprofiletxt.setTypeface(MyConstants.getBold(getActivity()));
+        eduboxtxt.setTypeface(MyConstants.getBold(getActivity()));
+        expboxtxt.setTypeface(MyConstants.getBold(getActivity()));
+        accomplishmentsboxtxt.setTypeface(MyConstants.getBold(getActivity()));
+        contactboxtxt.setTypeface(MyConstants.getBold(getActivity()));
+
+        myprofilecource.setTypeface(MyConstants.getLight(getActivity()));
+        instemailtxt.setTypeface(MyConstants.getLight(getActivity()));
+        instwebtxt.setTypeface(MyConstants.getLight(getActivity()));
+        instteletxt.setTypeface(MyConstants.getLight(getActivity()));
+
+        acc2txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc4txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc5txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc6txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc7txt.setTypeface(MyConstants.getLight(getActivity()));
+//
+        myprofileclgname.setTypeface(MyConstants.getBold(getActivity()));
+        instcontactemail.setTypeface(MyConstants.getBold(getActivity()));
+        instwebsite.setTypeface(MyConstants.getBold(getActivity()));
+        insttelephone.setTypeface(MyConstants.getBold(getActivity()));
+        acc2txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc4txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc5txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc6txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc7txttxt.setTypeface(MyConstants.getBold(getActivity()));
+
+        exp1txt.setTypeface(MyConstants.getBold(getActivity()));
+        myprofileexp1name.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileexpfromto.setTypeface(MyConstants.getLight(getActivity()));
+
+        exp2txt.setTypeface(MyConstants.getBold(getActivity()));
+        myprofileexp2name.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileexpfromto2.setTypeface(MyConstants.getLight(getActivity()));
+
+        exp3txt.setTypeface(MyConstants.getBold(getActivity()));
+        myprofileexp3name.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileexpfromto3.setTypeface(MyConstants.getLight(getActivity()));
+//
+
+        nametxt.setTypeface(MyConstants.getBold(getActivity()));
+        emailtxt.setTypeface(MyConstants.getLight(getActivity()));
+        mobiletxt.setTypeface(MyConstants.getLight(getActivity()));
+        contactaddr.setTypeface(MyConstants.getLight(getActivity()));
+        contactprofesionalemail.setTypeface(MyConstants.getBold(getActivity()));
+        contactpersonalemail.setTypeface(MyConstants.getBold(getActivity()));
+        contactmobile.setTypeface(MyConstants.getBold(getActivity()));
+
+
+//        trytxt.setTypeface(custom_font11);
+
 
         introedit = (ImageView) rootView.findViewById(R.id.introedit);
         eduedit = (ImageView) rootView.findViewById(R.id.eduedit);
@@ -350,6 +345,12 @@ String experiencesataobject="";
 
 
         myprofileimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), ViewProfileImage.class));
+            }
+        });
+        iv_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDialog();
@@ -451,17 +452,13 @@ String experiencesataobject="";
             public void onClick(DialogInterface dialog, int which) {
 
                 if (which == 0) {
-                    startActivity(new Intent(getContext(), ViewProfileImage.class));
-                } else if (which == 1) {
                     try {
 
                         dialog.cancel();
                         ((AdminActivity) getActivity()).requestCropImage();
                     }catch (Exception e){Toast.makeText(getActivity()," error" + e.getMessage(),Toast.LENGTH_LONG).show();}
 
-
-                } else if (which == 2) {
-
+                } else if (which == 1) {
                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -485,9 +482,10 @@ String experiencesataobject="";
             }
         });
         builder.show();
-    }
 
-    private class GetImage extends AsyncTask<String, Void, Bitmap> {
+                }
+
+    class GetImage extends AsyncTask<String, Void, Bitmap> {
         @Override
         protected Bitmap doInBackground(String... urls) {
             Bitmap map = null;
@@ -1574,7 +1572,7 @@ String experiencesataobject="";
 //
 //            myprofileimg.setImageBitmap(result);
             swipe_refresh_layout.setVisibility(View.VISIBLE);
-            mainloadingbar.setVisibility(View.GONE);
+
 
             try {
 

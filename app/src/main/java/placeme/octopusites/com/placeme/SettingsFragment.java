@@ -139,11 +139,11 @@ public class SettingsFragment extends Fragment {
 
                 // removing all vlaues from sharedpreferences
                 SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.clear().commit();
+//                editor.clear().commit();
 
-//                editor.putString("nameKey", null);
-//                editor.putString("passKey", null);
-//                editor.commit();
+                editor.putString("nameKey", null);
+                editor.putString("passKey", null);
+                editor.commit();
 
                 startActivity(new Intent(getActivity(),LoginActivity.class));
                 getActivity().finish();
