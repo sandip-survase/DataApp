@@ -696,7 +696,7 @@ public class PersonalProfileTabFragment extends Fragment {
                 tv.setTypeface(MyConstants.getBold(getActivity()));
                 if (position == 0) {
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 } else {
                     tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
@@ -735,7 +735,7 @@ public class PersonalProfileTabFragment extends Fragment {
                 tv.setTypeface(MyConstants.getBold(getActivity()));
                 if (position == 0) {
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 } else {
                     tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
@@ -781,7 +781,7 @@ public class PersonalProfileTabFragment extends Fragment {
                 tv.setTypeface(MyConstants.getBold(getActivity()));
                 if (position == 0) {
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 } else {
                     tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }

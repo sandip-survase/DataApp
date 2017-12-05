@@ -422,7 +422,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
                         selectedMenuFlag=3;
                         params.setScrollFlags(0);
-
                         crop_layout.setVisibility(View.GONE);
                         MessagesFragment fragment = new MessagesFragment();
                         android.support.v4.app.FragmentTransaction fragmentTransaction =
