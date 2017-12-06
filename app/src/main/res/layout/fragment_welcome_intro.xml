@@ -73,7 +73,14 @@
                 android:layout_gravity="bottom|center_horizontal"
                 android:src="@drawable/profileimagescreen"
                 />
-
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:id="@+id/updateProgress"
+                android:visibility="gone"
+                />
             <com.andexert.library.RippleView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

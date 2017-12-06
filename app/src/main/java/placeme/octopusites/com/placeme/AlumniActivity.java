@@ -3123,7 +3123,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 .signature(new ObjectKey(System.currentTimeMillis() + ""))
                 .into(profile);
 
-
+        Log.d("TAG", "downloadImage: called from activity "+username);
     }
 
 
