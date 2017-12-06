@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -50,7 +51,7 @@ public class OTPActivity extends AppCompatActivity {
     ProgressBar otpprogress;
     private static String url_verifyotp = "http://192.168.100.100/AESTest/VerifyOTP";
     private static String url_resendotp = "http://192.168.100.100/AESTest/ResendOTP";
-
+    TextInputLayout otplayout;
     String digest1, digest2;
     byte[] demoKeyBytes;
     byte[] demoIVBytes;
@@ -65,6 +66,7 @@ public class OTPActivity extends AppCompatActivity {
 
         setFinishOnTouchOutside(false);
 
+        otplayout=(TextInputLayout)findViewById(R.id.otplayout);
         otpedittext = (EditText) findViewById(R.id.otp);
         otpClose = (ImageView) findViewById(R.id.otpClose);
         verify = (Button) findViewById(R.id.submitotp);
@@ -98,11 +100,6 @@ public class OTPActivity extends AppCompatActivity {
         Log.d("TAG", "onCreate : activationMessageflag " + activationMessageflag);
 
 
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/button.ttf");
-        verify.setTypeface(custom_font);
-
-        Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
-        otpedittext.setTypeface(custom_font3);
 
         resendotp = (TextView) findViewById(R.id.resend);
         resendotp.setOnClickListener(new View.OnClickListener() {
@@ -135,6 +132,13 @@ public class OTPActivity extends AppCompatActivity {
         }
 
         MySharedPreferencesManager.save(this,"otp", "yes");
+
+        entertxt.setTypeface(MyConstants.getBold(this));
+        otptxt.setTypeface(MyConstants.getLight(this));
+        resendotp.setTypeface(MyConstants.getBold(this));
+        otplayout.setTypeface(MyConstants.getLight(this));
+        otpedittext.setTypeface(MyConstants.getBold(this));
+        verify.setTypeface(MyConstants.getBold(this));
 
 
         verify.setOnClickListener(new View.OnClickListener() {
