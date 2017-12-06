@@ -30,11 +30,11 @@ public class MyProfileCareerDetails extends AppCompatActivity {
         TextView strengthtxt=(TextView)findViewById(R.id.strengthtxt);
         TextView weaktxt=(TextView)findViewById(R.id.weaktxt);
         TextView locationtxt=(TextView)findViewById(R.id.locationtxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");
-        careerobjtxt.setTypeface(custom_font1);
-        strengthtxt.setTypeface(custom_font1);
-        weaktxt.setTypeface(custom_font1);
-        locationtxt.setTypeface(custom_font1);
+
+        careerobjtxt.setTypeface(MyConstants.getBold(this));
+        strengthtxt.setTypeface(MyConstants.getBold(this));
+        weaktxt.setTypeface(MyConstants.getBold(this));
+        locationtxt.setTypeface(MyConstants.getBold(this));
 
         careerobjbutton=(View)findViewById(R.id.careerobjbutton);
         strengthbutton=(View)findViewById(R.id.strengthbutton);

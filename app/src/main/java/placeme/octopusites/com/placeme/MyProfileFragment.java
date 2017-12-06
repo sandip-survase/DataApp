@@ -493,13 +493,15 @@ public class MyProfileFragment extends Fragment {
                 percentProfile = 0;
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", username));
-                json = jParser.makeHttpRequest(MyConstants.load_student_data, "GET", params);
+                Log.d("TAG", "doInBackround: " + username);
+
+               json = jParser.makeHttpRequest(MyConstants.load_student_data, "GET", params);
 
                 String s = "";
-
+                Log.d("TAG", "doInBackround: after " + username);
                 resultofop = json.getString("info");
 
-                Log.d("TAG", "info " + resultofop);
+                Log.d("TAG", "info1 " + resultofop);
 
                 if (resultofop.equals("found")) {
 

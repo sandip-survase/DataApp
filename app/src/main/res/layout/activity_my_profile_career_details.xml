@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35">
+    android:background="@color/while_color">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_my_profile_career_details"
@@ -16,25 +16,28 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/careerobjbutton"
-        android:background="@drawable/boxborderwhite"
+        android:background="@drawable/textviewborder"
+        android:elevation="6dp"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Career Objective"
-        android:textColor="#eee"
-        android:textSize="20dp"
+        android:textColor="@color/while_color"
+        android:textSize="18dp"
         android:id="@+id/careerobjtxt"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
+        android:elevation="8dp"
         />
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentRight="true"
-        android:src="@drawable/plus"
+        android:src="@drawable/add_icon_white"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
+        android:elevation="8dp"
         />
     <View
         android:layout_width="match_parent"
@@ -42,27 +45,30 @@
         android:layout_below="@+id/careerobjbutton"
         android:id="@+id/strengthbutton"
         android:layout_marginTop="20dp"
-        android:background="@drawable/boxborderwhite"
+        android:background="@drawable/textviewborder"
+        android:elevation="6dp"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/careerobjbutton"
         android:text="Strengths"
-        android:textColor="#eee"
+        android:textColor="@color/while_color"
         android:id="@+id/strengthtxt"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
+        android:elevation="8dp"
         />
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_below="@+id/careerobjbutton"
         android:layout_alignParentRight="true"
-        android:src="@drawable/plus"
+        android:src="@drawable/add_icon_white"
         android:layout_marginRight="10dp"
         android:layout_marginTop="30dp"
+        android:elevation="8dp"
         />
     <View
         android:layout_width="match_parent"
@@ -70,27 +76,30 @@
         android:layout_below="@+id/strengthbutton"
         android:id="@+id/weakbutton"
         android:layout_marginTop="20dp"
-        android:background="@drawable/boxborderwhite"
+        android:background="@drawable/textviewborder"
+        android:elevation="6dp"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/strengthbutton"
         android:text="Weaknesses"
-        android:textColor="#eee"
-        android:textSize="20dp"
+        android:textColor="@color/while_color"
+        android:textSize="18dp"
         android:id="@+id/weaktxt"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
+        android:elevation="8dp"
         />
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_below="@+id/strengthbutton"
         android:layout_alignParentRight="true"
-        android:src="@drawable/plus"
+        android:src="@drawable/add_icon_white"
         android:layout_marginRight="10dp"
         android:layout_marginTop="30dp"
+        android:elevation="8dp"
         />
     <View
         android:layout_width="match_parent"
@@ -98,27 +107,30 @@
         android:layout_below="@+id/weakbutton"
         android:id="@+id/locbutton"
         android:layout_marginTop="20dp"
-        android:background="@drawable/boxborderwhite"
+        android:background="@drawable/textviewborder"
+        android:elevation="6dp"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/weakbutton"
         android:text="Location Preferences"
-        android:textColor="#eee"
+        android:textColor="@color/while_color"
         android:id="@+id/locationtxt"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
+        android:elevation="8dp"
         />
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_below="@+id/weakbutton"
         android:layout_alignParentRight="true"
-        android:src="@drawable/plus"
+        android:src="@drawable/add_icon_white"
         android:layout_marginRight="10dp"
         android:layout_marginTop="30dp"
+        android:elevation="8dp"
         />
 </RelativeLayout>
 </ScrollView>

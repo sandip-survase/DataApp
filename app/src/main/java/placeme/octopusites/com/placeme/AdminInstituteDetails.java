@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -46,7 +47,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
     EditText iname,iemail,iweb,iphone,ialtphone,uniname,ireg;
     String instname="",instemail="",instweb="",instphone="",instaltrphone="",universityname="",instreg="";
     String encUsername,enciname,encinstemail,encinstweb,encinstphone,encinstaltrphone,encuniversityname,encCinstreg;
-
+    TextInputLayout instnameinput,instemailinput,instwebinput,instphoneinput,instphoneainput,instuniversityinput,instreginput;
     private String username;
     int edittedFlag=0;
 
@@ -85,6 +86,15 @@ public class AdminInstituteDetails extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
+        instnameinput=(TextInputLayout)findViewById(R.id.instnameinput);
+        instemailinput=(TextInputLayout)findViewById(R.id.instemailinput);
+        instwebinput=(TextInputLayout)findViewById(R.id.instwebinput);
+        instphoneinput=(TextInputLayout)findViewById(R.id.instphoneinput);
+        instphoneainput=(TextInputLayout)findViewById(R.id.instphoneainput);
+        instuniversityinput=(TextInputLayout)findViewById(R.id.instuniversityinput);
+        instreginput=(TextInputLayout)findViewById(R.id.instreginput);
+
+
         iname=(EditText)findViewById(R.id.instname);
         iemail=(EditText)findViewById(R.id.instemail);
         iweb=(EditText)findViewById(R.id.instweb);
@@ -93,7 +103,21 @@ public class AdminInstituteDetails extends AppCompatActivity {
         uniname=(EditText)findViewById(R.id.instuniversity);
         ireg=(EditText)findViewById(R.id.instreg);
 
+        instnameinput.setTypeface(MyConstants.getLight(this));
+        instemailinput.setTypeface(MyConstants.getLight(this));
+        instwebinput.setTypeface(MyConstants.getLight(this));
+        instphoneinput.setTypeface(MyConstants.getLight(this));
+        instphoneainput.setTypeface(MyConstants.getLight(this));
+        instuniversityinput.setTypeface(MyConstants.getLight(this));
+        instreginput.setTypeface(MyConstants.getLight(this));
 
+        iname.setTypeface(MyConstants.getBold(this));
+        iemail.setTypeface(MyConstants.getBold(this));
+        iweb.setTypeface(MyConstants.getBold(this));
+        iphone.setTypeface(MyConstants.getBold(this));
+        ialtphone.setTypeface(MyConstants.getBold(this));
+        uniname.setTypeface(MyConstants.getBold(this));
+        ireg.setTypeface(MyConstants.getBold(this));
 
         instname = a.getInstitute();
         instemail= a.getInstemail();

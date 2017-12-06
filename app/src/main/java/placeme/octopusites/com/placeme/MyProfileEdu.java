@@ -27,11 +27,11 @@ public class MyProfileEdu extends AppCompatActivity {
         TextView twelthtxt=(TextView)findViewById(R.id.twelthtxt);
         TextView ugtxt=(TextView)findViewById(R.id.ugtxt);
         TextView pgtxt=(TextView)findViewById(R.id.pgtxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");
-        tenthtxt.setTypeface(custom_font1);
-        twelthtxt.setTypeface(custom_font1);
-        ugtxt.setTypeface(custom_font1);
-        pgtxt.setTypeface(custom_font1);
+
+        tenthtxt.setTypeface(MyConstants.getBold(this));
+        twelthtxt.setTypeface(MyConstants.getBold(this));
+        ugtxt.setTypeface(MyConstants.getBold(this));
+        pgtxt.setTypeface(MyConstants.getBold(this));
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Educational Info");
