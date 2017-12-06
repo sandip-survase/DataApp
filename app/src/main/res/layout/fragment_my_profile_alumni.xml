@@ -55,7 +55,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_gravity="center"
                         android:id="@+id/updateProgress"
-
+                        android:visibility="gone"
                         />
                     <com.andexert.library.RippleView
                         android:layout_width="wrap_content"
@@ -243,7 +243,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="50dp"
-                    android:background="#fff"
+                    android:background="@color/while_color"
                     android:layout_below="@+id/box1"
                     android:id="@+id/box2section"
                     android:layout_centerHorizontal="true"
@@ -264,7 +264,7 @@
                     android:layout_below="@+id/myprofilepercenttxt"
                     android:progressDrawable="@drawable/progressbarblue"
                     android:indeterminate="false"
-                    android:id="@+id/updateProgressmain"
+                    android:id="@+id/profileprogress"
                     android:elevation="10dp"
                     />
 
