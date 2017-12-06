@@ -283,7 +283,7 @@ public class MyProfileCareerObj extends AppCompatActivity {
             if(careerobj.length()<5)
             {
                 errorflag=1;
-                otherobj.setError("Invalid Objective");
+                otherobjinput.setError("Kindly enter your career objective");
             }
 
         }
