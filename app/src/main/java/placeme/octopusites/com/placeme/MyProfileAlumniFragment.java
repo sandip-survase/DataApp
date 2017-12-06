@@ -2629,7 +2629,7 @@ public class MyProfileAlumniFragment extends Fragment {
 
                 if (which == 0) {
                     dialog.cancel();
-                    ((MainActivity) getActivity()).requestCropImage();
+                    ((AlumniActivity) getActivity()).requestCropImage();
                 } else if (which == 1) {
                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                         @Override
@@ -2707,6 +2707,8 @@ public class MyProfileAlumniFragment extends Fragment {
                 .load(uri)
                 .signature(new ObjectKey(System.currentTimeMillis() + ""))
                 .into(myprofileimg);
+
+        Log.d("TAG", "downloadImage: called from fragment "+username);
 
     }
 
@@ -4450,7 +4452,7 @@ public class MyProfileAlumniFragment extends Fragment {
 
         protected void onPostExecute(Bitmap result) {
 
-            updateProgress.setVisibility(View.VISIBLE);
+            updateProgress.setVisibility(View.GONE);
             populateData();
 
             downloadImage();
