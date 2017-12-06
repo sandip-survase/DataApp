@@ -81,6 +81,7 @@ public class MyConstants {
     public static final String url_savedata_SaveIntro = "http://192.168.100.10/ProfileObjects/SaveIntro";
 
     public static final String load_student_data = "http://192.168.100.10/ProfileObjects/GetStudentData";
+
     public static final String url_SaveAdminContact = "http://192.168.100.10/ProfileObjects/SaveAdminContact";
     public static final String load_Admin_data = "http://192.168.100.10/ProfileObjects/GetAdminData";
     public static final String url_SaveExperiences_admin = "http://192.168.100.100/AESTest/SaveExperiences";
