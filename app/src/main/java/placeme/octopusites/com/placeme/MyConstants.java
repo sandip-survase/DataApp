@@ -50,7 +50,9 @@ public class MyConstants {
     public static final String url_saveskills = "http://192.168.100.10/ProfileObjects/SaveSkills";
     public static final String url_savehonors = "http://192.168.100.10/ProfileObjects/SaveHonors";
     public static final String url_savepatents = "http://192.168.100.10/ProfileObjects/SavePatents";
+
     public static final String url_savepublications = "http://192.168.100.10/ProfileObjects/SavePublications";
+
     public static final String url_saveprojects = "http://192.168.100.10/ProfileObjects/SaveProjects";
     public static final String url = "http://192.168.100.100/HandleMobileRequests/getimg.jsp?username=";
     public static final String load_student_image = "http://192.168.100.100/AESTest/GetImage";

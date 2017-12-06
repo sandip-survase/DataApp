@@ -72,7 +72,7 @@ import static placeme.octopusites.com.placeme.HrCompanyDetails.HRlog;
 public class HRProfileFragment extends Fragment {
 
     CircleImageView myprofileimg;
-    ProgressBar updateProgress;
+    ProgressBar profileprogress,updateProgress;
     SwipeRefreshLayout swipe_refresh_layout;
 
     String dataobject = "",companydataobject="", careerdataobject = "", strengthdataobject = "", weaknessesdataobject = "", locationpreferencesdataobject = "", tenthdataobject = "", ugdataobject = "", personaldataobject = "", contact_details_dataobject = "", twelthdataobject = "", diplomadataobject = "", experiencesataobject;
@@ -106,7 +106,7 @@ public class HRProfileFragment extends Fragment {
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
     int found_box1 = 0, found_lang = 0, found_exp = 0;
-//    private static String load_last_updated = "http://192.168.100.10/AESTest/GetLastUpdated";
+    //    private static String load_last_updated = "http://192.168.100.10/AESTest/GetLastUpdated";
 //    private static String load_HR_data = "http://192.168.100.10/AESTest/GetHrData";
 //    private static String url_getlanguages = "http://192.168.100.10/AESTest/GetLanguages";
 //    private static String remove_profile = "http://192.168.100.10/AESTest/RemoveImage";
@@ -174,7 +174,8 @@ public class HRProfileFragment extends Fragment {
         expboxtxt = (TextView) rootView.findViewById(R.id.expboxtxt);
         contactboxtxt = (TextView) rootView.findViewById(R.id.contactboxtxt);
 
-        updateProgress = (ProgressBar) rootView.findViewById(R.id.updateProgressmain);
+        profileprogress = (ProgressBar) rootView.findViewById(R.id.profileprogress);
+        updateProgress = (ProgressBar) rootView.findViewById(R.id.updateProgress);
 
 
         swipe_refresh_layout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
@@ -485,10 +486,14 @@ public class HRProfileFragment extends Fragment {
 
     public void refreshContent() {
         new GetHRData().execute();
-//        ((HRActivity)getActivity()).requestProfileImage();
-//        updateProgress.setVisibility(View.VISIBLE);
-//        updateProgress.setVisibility(View.GONE);
+        ((HRActivity)getActivity()).requestProfileImage();
+        updateProgress.setVisibility(View.VISIBLE);
+//        profileprogress.setVisibility(View.VISIBLE);
+//        profileprogress.setVisibility(View.GONE);
 
+    }
+    public void showUpdateProgress() {
+        updateProgress.setVisibility(View.VISIBLE);
     }
 
     void showDialog() {
@@ -499,7 +504,7 @@ public class HRProfileFragment extends Fragment {
                 if (which == 0) {
                     startActivity(new Intent(getContext(), ViewProfileImage.class));
                 } else if (which == 1) {
-                    
+
                     dialog.cancel();
                     ((HRActivity) getActivity()).requestCropImage();
 
@@ -654,10 +659,10 @@ public class HRProfileFragment extends Fragment {
         return animation;
     }
 
-    public void showUpdateProgress() {
-        updateProgress.setVisibility(View.VISIBLE);
+    public void showprofileprogress() {
+        profileprogress.setVisibility(View.VISIBLE);
     }
-// **********************************************************
+    // **********************************************************
     private class GetHRData extends AsyncTask<String, Void, Bitmap> {
 
         protected Bitmap doInBackground(String... urls) {
@@ -1760,7 +1765,7 @@ public class HRProfileFragment extends Fragment {
             float y = (percentProfile - 0) * R + 0;
             int val = Math.round(y);
 
-            ObjectAnimator progressAnimator = ObjectAnimator.ofInt(updateProgress, "progress", 0, val);
+            ObjectAnimator progressAnimator = ObjectAnimator.ofInt(profileprogress, "progress", 0, val);
             progressAnimator.setDuration(1000);
             progressAnimator.setInterpolator(new LinearInterpolator());
             progressAnimator.start();

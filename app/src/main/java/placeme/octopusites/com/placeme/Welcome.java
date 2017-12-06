@@ -148,6 +148,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     TextInputLayout welcomepasswordTextInputLayout;
     TextView welcomepasswordwelcometextviewcontext1,welcomepasswordwelcometextviewcontext2;
     ImageView welcomepasswordenterpasswordimage;
+    ProgressBar updateProgress;
 
     public void setWelComeEmailView(View v) {
         WelcomeEmailView = v;
@@ -482,6 +483,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         lnameEditText = (EditText) WelComeIntroView.findViewById(R.id.lname);
         mobileEditText = (EditText) WelComeIntroView.findViewById(R.id.mobile);
         profilePicture = (CircleImageView) WelComeIntroView.findViewById(R.id.profilePic);
+        updateProgress = (ProgressBar)  WelComeIntroView.findViewById(R.id.updateProgress);
         ImageButton iv_camera = (ImageButton) WelComeIntroView.findViewById(R.id.iv_camera);
 
         fnameEditText.setTypeface(MyConstants.getBold(this));
@@ -582,6 +584,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         lnameEditText = (EditText) WelComeIntroThroughAdminView.findViewById(R.id.lname);
         mobileEditText = (EditText) WelComeIntroThroughAdminView.findViewById(R.id.mobile);
         profilePicture = (CircleImageView) WelComeIntroThroughAdminView.findViewById(R.id.profilePic);
+        updateProgress = (ProgressBar)  WelComeIntroThroughAdminView.findViewById(R.id.updateProgress);
         ImageButton iv_camera = (ImageButton) WelComeIntroThroughAdminView.findViewById(R.id.iv_camera);
 
         fnameEditText.setTypeface(MyConstants.getBold(this));
@@ -1113,7 +1116,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
 
                         if (errorFlagThroughAdminIntro == false) {
-                            Toast.makeText(Welcome.this, "path 3", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(Welcome.this, "path 3", Toast.LENGTH_SHORT).show();
                             new SaveDataUserCreatedThroughAdmin().execute();
                         }
                     }
@@ -1282,7 +1285,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         protected void onPostExecute(String result) {
 
             if (result.equals("success")) {
-                Toast.makeText(Welcome.this, "Successfully Register Account..!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Welcome.this, "Thank you for submitting your information !", Toast.LENGTH_SHORT).show();
 
                 Log.d("TAG", "onPostExecute: SaveData role " + SELECTED_ROLE);
 
@@ -1414,7 +1417,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
             String hash = md5(passwordstr + salt);
             loginFirebase(plainUsername, hash);
-            Toast.makeText(Welcome.this, resultofop, Toast.LENGTH_LONG).show();
+//            Toast.makeText(Welcome.this, resultofop, Toast.LENGTH_LONG).show();
 
         }
 
@@ -1512,7 +1515,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     public void onError(String s) {
         crop_layout.setVisibility(View.GONE);
         // tswap       tswipe_refresh_layout.setVisibility(View.GONE);
-        Toast.makeText(Welcome.this, s, Toast.LENGTH_SHORT).show();
+        Toast.makeText(Welcome.this, "Try again !", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -1626,13 +1629,13 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
             Log.d("TAG", result);
             if (result.equals("success")) {
-                Toast.makeText(Welcome.this, "send activation code", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(Welcome.this, "send activation code", Toast.LENGTH_SHORT).show();
                 MySharedPreferencesManager.save(Welcome.this, "activationMessage", "yes");
                 MySharedPreferencesManager.save(Welcome.this, "proEmail", encProMail);
                 startActivity(new Intent(Welcome.this, OTPActivity.class));
 
             } else if (result.equals("exist")) {
-                Toast.makeText(Welcome.this, "Account already exist on PlaceMe", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Welcome.this, "Account already exists on PlaceMe", Toast.LENGTH_SHORT).show();
             } else {
                 if (instOrEmail != null) {
                     instOrEmail.setError("Incorrect Professional Email");
@@ -1982,16 +1985,16 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             }
 
             if (success == 6) {
-                Toast.makeText(Welcome.this, "You are already registered but not verified.Enter OTP sent on Email", Toast.LENGTH_LONG).show();
+                Toast.makeText(Welcome.this, "You are already registered but not verified.Enter OTP sent on email address", Toast.LENGTH_LONG).show();
                 Intent loginintent = new Intent(Welcome.this, LoginActivity.class);
                 loginintent.putExtra("showOTP", "yes");
                 startActivity(loginintent);
                 finish();
             } else if (resultofop.equals("notpresent")) {
-                Toast.makeText(Welcome.this, "Incorrect Username. If you are a new user, please Sign Up.", Toast.LENGTH_LONG).show();
+                Toast.makeText(Welcome.this, "Incorrect email address. If you are a new user, please Sign Up.", Toast.LENGTH_LONG).show();
 
             } else if (resultofop.equals("fail")) {
-                Toast.makeText(Welcome.this, "Incorrect Password..!", Toast.LENGTH_LONG).show();
+                Toast.makeText(Welcome.this, "Incorrect Password !", Toast.LENGTH_LONG).show();
                 WelcomePasswordFragment fragment = (WelcomePasswordFragment) myViewPagerAdapter.getItem(1);
                 passwordedittext.setText("");
             } else {
@@ -2200,6 +2203,12 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
     }
 
     class UploadProfile extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute() {
+            updateProgress.setVisibility(View.VISIBLE);
+        }
+
         protected String doInBackground(String... param) {
             try {
                 File sourceFile = new File(filepath);
@@ -2224,7 +2233,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         protected void onPostExecute(String result) {
 
             crop_layout.setVisibility(View.GONE);
-
+            updateProgress.setVisibility(View.GONE);
             if (response.get(0).contains("success")) {
 
                 MySharedPreferencesManager.save(Welcome.this, "crop", "no");

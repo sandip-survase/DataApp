@@ -146,7 +146,7 @@ public class MyProfileAlumniFragment extends Fragment {
     private String signature = "";
     private String mname = "";
 
-    private ProgressBar updateProgress;
+    private ProgressBar profileprogress,updateProgress;
 
     public MyProfileAlumniFragment() {
 
@@ -375,8 +375,8 @@ public class MyProfileAlumniFragment extends Fragment {
         expedit = (ImageView) rootView.findViewById(R.id.expedit);
         careeredit = (ImageView) rootView.findViewById(R.id.careeredit);
         contactedit = (ImageView) rootView.findViewById(R.id.contactedit);
-        updateProgress = (ProgressBar) rootView.findViewById(R.id.updateProgressmain);
-
+        profileprogress = (ProgressBar) rootView.findViewById(R.id.profileprogress);
+        updateProgress = (ProgressBar) rootView.findViewById(R.id.updateProgress);
 
 
 
@@ -1156,7 +1156,7 @@ public class MyProfileAlumniFragment extends Fragment {
         float y = (percentProfile - 0) * R + 0;
         int val = Math.round(y);
 
-        ObjectAnimator progressAnimator = ObjectAnimator.ofInt(updateProgress, "progress", 0, val);
+        ObjectAnimator progressAnimator = ObjectAnimator.ofInt(profileprogress, "progress", 0, val);
         progressAnimator.setDuration(1000);
         progressAnimator.setInterpolator(new LinearInterpolator());
         progressAnimator.start();
@@ -2607,15 +2607,19 @@ public class MyProfileAlumniFragment extends Fragment {
         return CountryZipCode;
     }
 
-    public void showUpdateProgress() {
-        updateProgress.setVisibility(View.VISIBLE);
+    public void showprofileprogress() {
+        profileprogress.setVisibility(View.VISIBLE);
     }
 
     public void refreshContent() {
 
         new GetAlumniData().execute();
+        ((AlumniActivity) getActivity()).requestProfileImage();
+        updateProgress.setVisibility(View.VISIBLE);
 
-
+    }
+    public void showUpdateProgress() {
+        updateProgress.setVisibility(View.VISIBLE);
     }
 
     void showDialog() {
@@ -2625,7 +2629,7 @@ public class MyProfileAlumniFragment extends Fragment {
 
                 if (which == 0) {
                     dialog.cancel();
-                    ((MainActivity) getActivity()).requestCropImage();
+                    ((AlumniActivity) getActivity()).requestCropImage();
                 } else if (which == 1) {
                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                         @Override
@@ -2703,6 +2707,8 @@ public class MyProfileAlumniFragment extends Fragment {
                 .load(uri)
                 .signature(new ObjectKey(System.currentTimeMillis() + ""))
                 .into(myprofileimg);
+
+        Log.d("TAG", "downloadImage: called from fragment "+username);
 
     }
 
@@ -4446,6 +4452,7 @@ public class MyProfileAlumniFragment extends Fragment {
 
         protected void onPostExecute(Bitmap result) {
 
+            updateProgress.setVisibility(View.GONE);
             populateData();
 
             downloadImage();
