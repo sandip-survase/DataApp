@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -65,7 +68,22 @@ public class ForgotPasswordDialog extends AppCompatActivity {
         forgotedittext.setTypeface(MyConstants.getBold(this));
         reset.setTypeface(MyConstants.getBold(this));
 
+        forgotedittext.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                forgotemailinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
 
         reset.setOnClickListener(new View.OnClickListener() {
@@ -73,20 +91,29 @@ public class ForgotPasswordDialog extends AppCompatActivity {
             public void onClick(View view) {
 
                 boolean flag=false;
-
+                Log.d("TAG", "flag1: "+flag);
 
                 enteredemailorphone=forgotedittext.getText().toString();
                 if(enteredemailorphone.length()>4 && enteredemailorphone.contains("@")){
                     String checkemail=MySharedPreferencesManager.getUsername(ForgotPasswordDialog.this);
                     try {
-                        checkemail=AES4all.Decrypt(checkemail,digest1,digest2);
+                        if(checkemail!=null) {
+                            checkemail = AES4all.Decrypt(checkemail, digest1, digest2);
+                            if(!checkemail.equals(enteredemailorphone)) {
+                                flag = true;
+                                forgotemailinput.setError("Kindly enter your valid email address");
+
+                            }
+
+                        }
+                        else
+                        {
+                            flag=false;
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    if(!checkemail.equals(enteredemailorphone)) {
-                        flag = true;
-                        forgotemailinput.setError("Kindly enter your valid email address");
-                    }
+
 
                 }
                 else
@@ -95,6 +122,7 @@ public class ForgotPasswordDialog extends AppCompatActivity {
                     flag=true;
                 }
 
+                Log.d("TAG", "flag: "+flag);
 
                     if(flag==false) {
 
@@ -129,6 +157,7 @@ public class ForgotPasswordDialog extends AppCompatActivity {
             params.add(new BasicNameValuePair("ud", encemailorphone));
             params.add(new BasicNameValuePair("aid", android_id));
             json = jParser.makeHttpRequest(url_forgotpassword, "GET", params);
+            Log.d("TAG", "json: "+json);
             try {
                 resultofop = json.getString("info");
                 encUsername=json.getString("info2");
