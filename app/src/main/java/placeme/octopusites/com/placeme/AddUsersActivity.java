@@ -176,7 +176,6 @@ public class AddUsersActivity extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-
         TextView createpasstxt = (TextView) findViewById(R.id.createpasstxt);
         TextView passsenstxt = (TextView) findViewById(R.id.passsenstxt);
         TextView passsens1txt = (TextView) findViewById(R.id.passsens1txt);

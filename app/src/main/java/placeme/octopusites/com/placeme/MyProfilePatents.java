@@ -1,6 +1,5 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -8,20 +7,22 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -48,39 +49,40 @@ import java.util.List;
 import placeme.octopusites.com.placeme.modal.Patents;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 public class MyProfilePatents extends AppCompatActivity {
 
-    int patentcount=0;
+    int patentcount = 0;
     View addmorepatent;
-    EditText title1,appno1,inventor1,issue1,filing1,url1,description1,title2,appno2,inventor2,issue2,filing2,url2,description2,title3,appno3,inventor3,issue3,filing3,url3,description3,title4,appno4,inventor4,issue4,filing4,url4,description4,title5,appno5,inventor5,issue5,filing5,url5,description5,title6,appno6,inventor6,issue6,filing6,url6,description6,title7,appno7,inventor7,issue7,filing7,url7,description7,title8,appno8,inventor8,issue8,filing8,url8,description8,title9,appno9,inventor9,issue9,filing9,url9,description9,title10,appno10,inventor10,issue10,filing10,url10,description10;
-    Spinner patoffice1,patoffice2,patoffice3,patoffice4,patoffice5,patoffice6,patoffice7,patoffice8,patoffice9,patoffice10;
-    RadioGroup radioGroupPatent1,radioGroupPatent2,radioGroupPatent3,radioGroupPatent4,radioGroupPatent5,radioGroupPatent6,radioGroupPatent7,radioGroupPatent8,radioGroupPatent9,radioGroupPatent10;
-    RadioButton radioButtonIssued1,radioButtonPending1,radioButtonIssued2,radioButtonPending2,radioButtonIssued3,radioButtonPending3,radioButtonIssued4,radioButtonPending4,radioButtonIssued5,radioButtonPending5,radioButtonIssued6,radioButtonPending6,radioButtonIssued7,radioButtonPending7,radioButtonIssued8,radioButtonPending8,radioButtonIssued9,radioButtonPending9,radioButtonIssued10,radioButtonPending10;
-    String stitle1="",sappno1="",sinventor1="",sissue1="",sfiling1="",surl1="",sdescription1="",stitle2="",sappno2="",sinventor2="",sissue2="",sfiling2="",surl2="",sdescription2="",stitle3="",sappno3="",sinventor3="",sissue3="",sfiling3="",surl3="",sdescription3="",stitle4="",sappno4="",sinventor4="",sissue4="",sfiling4="",surl4="",sdescription4="",stitle5="",sappno5="",sinventor5="",sissue5="",sfiling5="",surl5="",sdescription5="",stitle6="",sappno6="",sinventor6="",sissue6="",sfiling6="",surl6="",sdescription6="",stitle7="",sappno7="",sinventor7="",sissue7="",sfiling7="",surl7="",sdescription7="",stitle8="",sappno8="",sinventor8="",sissue8="",sfiling8="",surl8="",sdescription8="",stitle9="",sappno9="",sinventor9="",sissue9="",sfiling9="",surl9="",sdescription9="",stitle10="",sappno10="",sinventor10="",sissue10="",sfiling10="",surl10="",sdescription10="";
-    String  enctitle1,encappno1,encinventor1,encissue1,encfiling1,encurl1,encdescription1,enctitle2,encappno2,encinventor2,encissue2,encfiling2,encurl2,encdescription2,enctitle3,encappno3,encinventor3,encissue3,encfiling3,encurl3,encdescription3,enctitle4,encappno4,encinventor4,encissue4,encfiling4,encurl4,encdescription4,enctitle5,encappno5,encinventor5,encissue5,encfiling5,encurl5,encdescription5,enctitle6,encappno6,encinventor6,encissue6,encfiling6,encurl6,encdescription6,enctitle7,encappno7,encinventor7,encissue7,encfiling7,encurl7,encdescription7,enctitle8,encappno8,encinventor8,encissue8,encfiling8,encurl8,encdescription8,enctitle9,encappno9,encinventor9,encissue9,encfiling9,encurl9,encdescription9,enctitle10,encappno10,encinventor10,encissue10,encfiling10,encurl10,encdescription10;
-    String issuedorpending1="issued",issuedorpending2="issued",issuedorpending3="issued",issuedorpending4="issued",issuedorpending5="issued",issuedorpending6="issued",issuedorpending7="issued",issuedorpending8="issued",issuedorpending9="issued",issuedorpending10="issued";
-    String encselectedCountry1,encselectedCountry2,encselectedCountry3,encselectedCountry4,encselectedCountry5,encselectedCountry6,encselectedCountry7,encselectedCountry8,encselectedCountry9,encselectedCountry10;
-    String encissuedorpending1,encissuedorpending2,encissuedorpending3,encissuedorpending4,encissuedorpending5,encissuedorpending6,encissuedorpending7,encissuedorpending8,encissuedorpending9,encissuedorpending10;
+    EditText title1, appno1, inventor1, issue1, filing1, url1, description1, title2, appno2, inventor2, issue2, filing2, url2, description2, title3, appno3, inventor3, issue3, filing3, url3, description3, title4, appno4, inventor4, issue4, filing4, url4, description4, title5, appno5, inventor5, issue5, filing5, url5, description5, title6, appno6, inventor6, issue6, filing6, url6, description6, title7, appno7, inventor7, issue7, filing7, url7, description7, title8, appno8, inventor8, issue8, filing8, url8, description8, title9, appno9, inventor9, issue9, filing9, url9, description9, title10, appno10, inventor10, issue10, filing10, url10, description10;
+    Spinner patoffice1, patoffice2, patoffice3, patoffice4, patoffice5, patoffice6, patoffice7, patoffice8, patoffice9, patoffice10;
+    RadioGroup radioGroupPatent1, radioGroupPatent2, radioGroupPatent3, radioGroupPatent4, radioGroupPatent5, radioGroupPatent6, radioGroupPatent7, radioGroupPatent8, radioGroupPatent9, radioGroupPatent10;
+    RadioButton radioButtonIssued1, radioButtonPending1, radioButtonIssued2, radioButtonPending2, radioButtonIssued3, radioButtonPending3, radioButtonIssued4, radioButtonPending4, radioButtonIssued5, radioButtonPending5, radioButtonIssued6, radioButtonPending6, radioButtonIssued7, radioButtonPending7, radioButtonIssued8, radioButtonPending8, radioButtonIssued9, radioButtonPending9, radioButtonIssued10, radioButtonPending10;
+    String stitle1 = "", sappno1 = "", sinventor1 = "", sissue1 = "", sfiling1 = "", surl1 = "", sdescription1 = "", stitle2 = "", sappno2 = "", sinventor2 = "", sissue2 = "", sfiling2 = "", surl2 = "", sdescription2 = "", stitle3 = "", sappno3 = "", sinventor3 = "", sissue3 = "", sfiling3 = "", surl3 = "", sdescription3 = "", stitle4 = "", sappno4 = "", sinventor4 = "", sissue4 = "", sfiling4 = "", surl4 = "", sdescription4 = "", stitle5 = "", sappno5 = "", sinventor5 = "", sissue5 = "", sfiling5 = "", surl5 = "", sdescription5 = "", stitle6 = "", sappno6 = "", sinventor6 = "", sissue6 = "", sfiling6 = "", surl6 = "", sdescription6 = "", stitle7 = "", sappno7 = "", sinventor7 = "", sissue7 = "", sfiling7 = "", surl7 = "", sdescription7 = "", stitle8 = "", sappno8 = "", sinventor8 = "", sissue8 = "", sfiling8 = "", surl8 = "", sdescription8 = "", stitle9 = "", sappno9 = "", sinventor9 = "", sissue9 = "", sfiling9 = "", surl9 = "", sdescription9 = "", stitle10 = "", sappno10 = "", sinventor10 = "", sissue10 = "", sfiling10 = "", surl10 = "", sdescription10 = "";
+    TextInputLayout titleinput1, appnoinput1, inventorinput1, issueinput1, descinput1, urlinput1, titleinput2, appnoinput2, inventorinput2, issueinput2, descinput2, urlinput2, titleinput3, appnoinput3, inventorinput3, issueinput3, descinput3, urlinput3, titleinput4, appnoinput4, inventorinput4, issueinput4, descinput4, urlinput4, titleinput5, appnoinput5, inventorinput5, issueinput5, descinput5, urlinput5, titleinput6, appnoinput6, inventorinput6, issueinput6, descinput6, urlinput6, titleinput7, appnoinput7, inventorinput7, issueinput7, descinput7, urlinput7, titleinput8, appnoinput8, inventorinput8, issueinput8, descinput8, urlinput8, titleinput9, appnoinput9, inventorinput9, issueinput9, descinput9, urlinput9, titleinput10, appnoinput10, inventorinput10, issueinput10, descinput10, urlinput10;
+    TextInputLayout filinginput1,filinginput2,filinginput3,filinginput4,filinginput5,filinginput6,filinginput7,filinginput8,filinginput9,filinginput10;
+    String issuedorpending1 = "issued", issuedorpending2 = "issued", issuedorpending3 = "issued", issuedorpending4 = "issued", issuedorpending5 = "issued", issuedorpending6 = "issued", issuedorpending7 = "issued", issuedorpending8 = "issued", issuedorpending9 = "issued", issuedorpending10 = "issued";
+    String encselectedCountry1, encselectedCountry2, encselectedCountry3, encselectedCountry4, encselectedCountry5, encselectedCountry6, encselectedCountry7, encselectedCountry8, encselectedCountry9, encselectedCountry10;
+    String encissuedorpending1, encissuedorpending2, encissuedorpending3, encissuedorpending4, encissuedorpending5, encissuedorpending6, encissuedorpending7, encissuedorpending8, encissuedorpending9, encissuedorpending10;
 
-    String username,role;
-    String digest1,digest2;
+    String username, role;
+    String digest1, digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
     //    private static String url_savepatents= "http://192.168.100.10/AESTest/SavePatents";
-    View trash1selectionview,trash2selectionview,trash3selectionview,trash4selectionview,trash5selectionview,trash6selectionview,trash7selectionview,trash8selectionview,trash9selectionview,trash10selectionview;
-    int edittedFlag=0,isInvalidDate=0;
-    int d=0;
-    StudentData s=new StudentData();
-//    private static String url_getcountries = "http://192.168.100.10/AESTest/GetCountries";
-    int countrycount=0;
+    View trash1selectionview, trash2selectionview, trash3selectionview, trash4selectionview, trash5selectionview, trash6selectionview, trash7selectionview, trash8selectionview, trash9selectionview, trash10selectionview;
+    int edittedFlag = 0, isInvalidDate = 0;
+    int d = 0;
+    StudentData s = new StudentData();
+    //    private static String url_getcountries = "http://192.168.100.10/AESTest/GetCountries";
+    int countrycount = 0;
     String countries[];
     List<String> countrieslist = new ArrayList<String>();
-    String selectedCountry1="",selectedCountry2="",selectedCountry3="",selectedCountry4="",selectedCountry5="",selectedCountry6="",selectedCountry7="",selectedCountry8="",selectedCountry9="",selectedCountry10="";
+    String selectedCountry1 = "", selectedCountry2 = "", selectedCountry3 = "", selectedCountry4 = "", selectedCountry5 = "", selectedCountry6 = "", selectedCountry7 = "", selectedCountry8 = "", selectedCountry9 = "", selectedCountry10 = "";
     ArrayAdapter<String> dataAdapter;
 
-    ArrayList<Patents> patentsList=new ArrayList<>();
+    ArrayList<Patents> patentsList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,8 +91,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
-        username=MySharedPreferencesManager.getUsername(this);
-        role=MySharedPreferencesManager.getRole(this);
+        username = MySharedPreferencesManager.getUsername(this);
+        role = MySharedPreferencesManager.getRole(this);
 
 
         ActionBar ab = getSupportActionBar();
@@ -101,220 +103,453 @@ public class MyProfilePatents extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-        trash1selectionview=(View)findViewById(R.id.trash1selectionview);
-        trash2selectionview=(View)findViewById(R.id.trash2selectionview);
-        trash3selectionview=(View)findViewById(R.id.trash3selectionview);
-        trash4selectionview=(View)findViewById(R.id.trash4selectionview);
-        trash5selectionview=(View)findViewById(R.id.trash5selectionview);
-        trash6selectionview=(View)findViewById(R.id.trash6selectionview);
-        trash7selectionview=(View)findViewById(R.id.trash7selectionview);
-        trash8selectionview=(View)findViewById(R.id.trash8selectionview);
-        trash9selectionview=(View)findViewById(R.id.trash9selectionview);
-        trash10selectionview=(View)findViewById(R.id.trash10selectionview);
+        trash1selectionview = (View) findViewById(R.id.trash1selectionview);
+        trash2selectionview = (View) findViewById(R.id.trash2selectionview);
+        trash3selectionview = (View) findViewById(R.id.trash3selectionview);
+        trash4selectionview = (View) findViewById(R.id.trash4selectionview);
+        trash5selectionview = (View) findViewById(R.id.trash5selectionview);
+        trash6selectionview = (View) findViewById(R.id.trash6selectionview);
+        trash7selectionview = (View) findViewById(R.id.trash7selectionview);
+        trash8selectionview = (View) findViewById(R.id.trash8selectionview);
+        trash9selectionview = (View) findViewById(R.id.trash9selectionview);
+        trash10selectionview = (View) findViewById(R.id.trash10selectionview);
 
-        trash1selectionview.setOnClickListener(new View.OnClickListener() {
+        trash1selectionview.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                d=1;
+                d = 1;
                 showDeletDialog();
             }
         });
 
-        trash2selectionview.setOnClickListener(new View.OnClickListener() {
+        trash2selectionview.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                d=2;
+                d = 2;
                 showDeletDialog();
 
             }
         });
-        trash3selectionview.setOnClickListener(new View.OnClickListener() {
+        trash3selectionview.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                d=3;
+                d = 3;
                 showDeletDialog();
             }
         });
-        trash4selectionview.setOnClickListener(new View.OnClickListener() {
+        trash4selectionview.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                d=4;
+                d = 4;
                 showDeletDialog();
             }
         });
-        trash5selectionview.setOnClickListener(new View.OnClickListener() {
+        trash5selectionview.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                d=5;
+                d = 5;
                 showDeletDialog();
             }
         });
-        trash6selectionview.setOnClickListener(new View.OnClickListener() {
+        trash6selectionview.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                d=6;
+                d = 6;
                 showDeletDialog();
             }
         });
-        trash7selectionview.setOnClickListener(new View.OnClickListener() {
+        trash7selectionview.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                d=7;
+                d = 7;
                 showDeletDialog();
             }
         });
-        trash8selectionview.setOnClickListener(new View.OnClickListener() {
+        trash8selectionview.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                d=8;
+                d = 8;
                 showDeletDialog();
             }
         });
-        trash9selectionview.setOnClickListener(new View.OnClickListener() {
+        trash9selectionview.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                d=9;
+                d = 9;
                 showDeletDialog();
             }
         });
-        trash10selectionview.setOnClickListener(new View.OnClickListener() {
+        trash10selectionview.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                d=10;
+                d = 10;
                 showDeletDialog();
             }
         });
 
-        title1=(EditText)findViewById(R.id.title1);
-        appno1=(EditText)findViewById(R.id.appno1);
-        inventor1=(EditText)findViewById(R.id.inventor1);
-        url1=(EditText)findViewById(R.id.url1);
-        description1=(EditText)findViewById(R.id.description1);
-        title2=(EditText)findViewById(R.id.title2);
-        appno2=(EditText)findViewById(R.id.appno2);
-        inventor2=(EditText)findViewById(R.id.inventor2);
-        url2=(EditText)findViewById(R.id.url2);
-        description2=(EditText)findViewById(R.id.description2);
-        title3=(EditText)findViewById(R.id.title3);
-        appno3=(EditText)findViewById(R.id.appno3);
-        inventor3=(EditText)findViewById(R.id.inventor3);
-        url3=(EditText)findViewById(R.id.url3);
-        description3=(EditText)findViewById(R.id.description3);
-        title4=(EditText)findViewById(R.id.title4);
-        appno4=(EditText)findViewById(R.id.appno4);
-        inventor4=(EditText)findViewById(R.id.inventor4);
-        url4=(EditText)findViewById(R.id.url4);
-        description4=(EditText)findViewById(R.id.description4);
-        title5=(EditText)findViewById(R.id.title5);
-        appno5=(EditText)findViewById(R.id.appno5);
-        inventor5=(EditText)findViewById(R.id.inventor5);
-        url5=(EditText)findViewById(R.id.url5);
-        description5=(EditText)findViewById(R.id.description5);
-        title6=(EditText)findViewById(R.id.title6);
-        appno6=(EditText)findViewById(R.id.appno6);
-        inventor6=(EditText)findViewById(R.id.inventor6);
-        url6=(EditText)findViewById(R.id.url6);
-        description6=(EditText)findViewById(R.id.description6);
-        title7=(EditText)findViewById(R.id.title7);
-        appno7=(EditText)findViewById(R.id.appno7);
-        inventor7=(EditText)findViewById(R.id.inventor7);
-        url7=(EditText)findViewById(R.id.url7);
-        description7=(EditText)findViewById(R.id.description7);
-        title8=(EditText)findViewById(R.id.title8);
-        appno8=(EditText)findViewById(R.id.appno8);
-        inventor8=(EditText)findViewById(R.id.inventor8);
-        url8=(EditText)findViewById(R.id.url8);
-        description8=(EditText)findViewById(R.id.description8);
-        title9=(EditText)findViewById(R.id.title9);
-        appno9=(EditText)findViewById(R.id.appno9);
-        inventor9=(EditText)findViewById(R.id.inventor9);
-        url9=(EditText)findViewById(R.id.url9);
-        description9=(EditText)findViewById(R.id.description9);
-        title10=(EditText)findViewById(R.id.title10);
-        appno10=(EditText)findViewById(R.id.appno10);
-        inventor10=(EditText)findViewById(R.id.inventor10);
-        url10=(EditText)findViewById(R.id.url10);
-        description10=(EditText)findViewById(R.id.description10);
+        title1 = (EditText) findViewById(R.id.title1);
+        appno1 = (EditText) findViewById(R.id.appno1);
+        inventor1 = (EditText) findViewById(R.id.inventor1);
+        url1 = (EditText) findViewById(R.id.url1);
+        description1 = (EditText) findViewById(R.id.description1);
+        title2 = (EditText) findViewById(R.id.title2);
+        appno2 = (EditText) findViewById(R.id.appno2);
+        inventor2 = (EditText) findViewById(R.id.inventor2);
+        url2 = (EditText) findViewById(R.id.url2);
+        description2 = (EditText) findViewById(R.id.description2);
+        title3 = (EditText) findViewById(R.id.title3);
+        appno3 = (EditText) findViewById(R.id.appno3);
+        inventor3 = (EditText) findViewById(R.id.inventor3);
+        url3 = (EditText) findViewById(R.id.url3);
+        description3 = (EditText) findViewById(R.id.description3);
+        title4 = (EditText) findViewById(R.id.title4);
+        appno4 = (EditText) findViewById(R.id.appno4);
+        inventor4 = (EditText) findViewById(R.id.inventor4);
+        url4 = (EditText) findViewById(R.id.url4);
+        description4 = (EditText) findViewById(R.id.description4);
+        title5 = (EditText) findViewById(R.id.title5);
+        appno5 = (EditText) findViewById(R.id.appno5);
+        inventor5 = (EditText) findViewById(R.id.inventor5);
+        url5 = (EditText) findViewById(R.id.url5);
+        description5 = (EditText) findViewById(R.id.description5);
+        title6 = (EditText) findViewById(R.id.title6);
+        appno6 = (EditText) findViewById(R.id.appno6);
+        inventor6 = (EditText) findViewById(R.id.inventor6);
+        url6 = (EditText) findViewById(R.id.url6);
+        description6 = (EditText) findViewById(R.id.description6);
+        title7 = (EditText) findViewById(R.id.title7);
+        appno7 = (EditText) findViewById(R.id.appno7);
+        inventor7 = (EditText) findViewById(R.id.inventor7);
+        url7 = (EditText) findViewById(R.id.url7);
+        description7 = (EditText) findViewById(R.id.description7);
+        title8 = (EditText) findViewById(R.id.title8);
+        appno8 = (EditText) findViewById(R.id.appno8);
+        inventor8 = (EditText) findViewById(R.id.inventor8);
+        url8 = (EditText) findViewById(R.id.url8);
+        description8 = (EditText) findViewById(R.id.description8);
+        title9 = (EditText) findViewById(R.id.title9);
+        appno9 = (EditText) findViewById(R.id.appno9);
+        inventor9 = (EditText) findViewById(R.id.inventor9);
+        url9 = (EditText) findViewById(R.id.url9);
+        description9 = (EditText) findViewById(R.id.description9);
+        title10 = (EditText) findViewById(R.id.title10);
+        appno10 = (EditText) findViewById(R.id.appno10);
+        inventor10 = (EditText) findViewById(R.id.inventor10);
+        url10 = (EditText) findViewById(R.id.url10);
+        description10 = (EditText) findViewById(R.id.description10);
 
-        filing1=(EditText)findViewById(R.id.filing1);
-        filing2=(EditText)findViewById(R.id.filing2);
-        filing3=(EditText)findViewById(R.id.filing3);
-        filing4=(EditText)findViewById(R.id.filing4);
-        filing5=(EditText)findViewById(R.id.filing5);
-        filing6=(EditText)findViewById(R.id.filing6);
-        filing7=(EditText)findViewById(R.id.filing7);
-        filing8=(EditText)findViewById(R.id.filing8);
-        filing9=(EditText)findViewById(R.id.filing9);
-        filing10=(EditText)findViewById(R.id.filing10);
 
-        issue1=(EditText)findViewById(R.id.issue1);
-        issue2=(EditText)findViewById(R.id.issue2);
-        issue3=(EditText)findViewById(R.id.issue3);
-        issue4=(EditText)findViewById(R.id.issue4);
-        issue5=(EditText)findViewById(R.id.issue5);
-        issue6=(EditText)findViewById(R.id.issue6);
-        issue7=(EditText)findViewById(R.id.issue7);
-        issue8=(EditText)findViewById(R.id.issue8);
-        issue9=(EditText)findViewById(R.id.issue9);
-        issue10=(EditText)findViewById(R.id.issue10);
+        filing1 = (EditText) findViewById(R.id.filing1);
+        filing2 = (EditText) findViewById(R.id.filing2);
+        filing3 = (EditText) findViewById(R.id.filing3);
+        filing4 = (EditText) findViewById(R.id.filing4);
+        filing5 = (EditText) findViewById(R.id.filing5);
+        filing6 = (EditText) findViewById(R.id.filing6);
+        filing7 = (EditText) findViewById(R.id.filing7);
+        filing8 = (EditText) findViewById(R.id.filing8);
+        filing9 = (EditText) findViewById(R.id.filing9);
+        filing10 = (EditText) findViewById(R.id.filing10);
 
-        patoffice1=(Spinner)findViewById(R.id.patoffice1);
-        patoffice2=(Spinner)findViewById(R.id.patoffice2);
-        patoffice3=(Spinner)findViewById(R.id.patoffice3);
-        patoffice4=(Spinner)findViewById(R.id.patoffice4);
-        patoffice5=(Spinner)findViewById(R.id.patoffice5);
-        patoffice6=(Spinner)findViewById(R.id.patoffice6);
-        patoffice7=(Spinner)findViewById(R.id.patoffice7);
-        patoffice8=(Spinner)findViewById(R.id.patoffice8);
-        patoffice9=(Spinner)findViewById(R.id.patoffice9);
-        patoffice10=(Spinner)findViewById(R.id.patoffice10);
+        issue1 = (EditText) findViewById(R.id.issue1);
+        issue2 = (EditText) findViewById(R.id.issue2);
+        issue3 = (EditText) findViewById(R.id.issue3);
+        issue4 = (EditText) findViewById(R.id.issue4);
+        issue5 = (EditText) findViewById(R.id.issue5);
+        issue6 = (EditText) findViewById(R.id.issue6);
+        issue7 = (EditText) findViewById(R.id.issue7);
+        issue8 = (EditText) findViewById(R.id.issue8);
+        issue9 = (EditText) findViewById(R.id.issue9);
+        issue10 = (EditText) findViewById(R.id.issue10);
 
-        radioGroupPatent1=(RadioGroup)findViewById(R.id.radioGroupPatent1);
-        radioGroupPatent2=(RadioGroup)findViewById(R.id.radioGroupPatent2);
-        radioGroupPatent3=(RadioGroup)findViewById(R.id.radioGroupPatent3);
-        radioGroupPatent4=(RadioGroup)findViewById(R.id.radioGroupPatent4);
-        radioGroupPatent5=(RadioGroup)findViewById(R.id.radioGroupPatent5);
-        radioGroupPatent6=(RadioGroup)findViewById(R.id.radioGroupPatent6);
-        radioGroupPatent7=(RadioGroup)findViewById(R.id.radioGroupPatent7);
-        radioGroupPatent8=(RadioGroup)findViewById(R.id.radioGroupPatent8);
-        radioGroupPatent9=(RadioGroup)findViewById(R.id.radioGroupPatent9);
-        radioGroupPatent10=(RadioGroup)findViewById(R.id.radioGroupPatent10);
+        patoffice1 = (Spinner) findViewById(R.id.patoffice1);
+        patoffice2 = (Spinner) findViewById(R.id.patoffice2);
+        patoffice3 = (Spinner) findViewById(R.id.patoffice3);
+        patoffice4 = (Spinner) findViewById(R.id.patoffice4);
+        patoffice5 = (Spinner) findViewById(R.id.patoffice5);
+        patoffice6 = (Spinner) findViewById(R.id.patoffice6);
+        patoffice7 = (Spinner) findViewById(R.id.patoffice7);
+        patoffice8 = (Spinner) findViewById(R.id.patoffice8);
+        patoffice9 = (Spinner) findViewById(R.id.patoffice9);
+        patoffice10 = (Spinner) findViewById(R.id.patoffice10);
 
-        radioButtonIssued1=(RadioButton)findViewById(R.id.radioButtonIssued1) ;
-        radioButtonIssued2=(RadioButton)findViewById(R.id.radioButtonIssued2) ;
-        radioButtonIssued3=(RadioButton)findViewById(R.id.radioButtonIssued3) ;
-        radioButtonIssued4=(RadioButton)findViewById(R.id.radioButtonIssued4) ;
-        radioButtonIssued5=(RadioButton)findViewById(R.id.radioButtonIssued5) ;
-        radioButtonIssued6=(RadioButton)findViewById(R.id.radioButtonIssued6) ;
-        radioButtonIssued7=(RadioButton)findViewById(R.id.radioButtonIssued7) ;
-        radioButtonIssued8=(RadioButton)findViewById(R.id.radioButtonIssued8) ;
-        radioButtonIssued9=(RadioButton)findViewById(R.id.radioButtonIssued9) ;
-        radioButtonIssued10=(RadioButton)findViewById(R.id.radioButtonIssued10) ;
+        titleinput1 = (TextInputLayout) findViewById(R.id.titleinput1);
+        appnoinput1 = (TextInputLayout) findViewById(R.id.appnoinput1);
+        inventorinput1 = (TextInputLayout) findViewById(R.id.inventorinput1);
+        issueinput1 = (TextInputLayout) findViewById(R.id.issueinput1);
+        descinput1 = (TextInputLayout) findViewById(R.id.descinput1);
+        urlinput1 = (TextInputLayout) findViewById(R.id.urlinput1);
 
-        radioButtonPending1=(RadioButton)findViewById(R.id.radioButtonPending1) ;
-        radioButtonPending2=(RadioButton)findViewById(R.id.radioButtonPending2) ;
-        radioButtonPending3=(RadioButton)findViewById(R.id.radioButtonPending3) ;
-        radioButtonPending4=(RadioButton)findViewById(R.id.radioButtonPending4) ;
-        radioButtonPending5=(RadioButton)findViewById(R.id.radioButtonPending5) ;
-        radioButtonPending6=(RadioButton)findViewById(R.id.radioButtonPending6) ;
-        radioButtonPending7=(RadioButton)findViewById(R.id.radioButtonPending7) ;
-        radioButtonPending8=(RadioButton)findViewById(R.id.radioButtonPending8) ;
-        radioButtonPending9=(RadioButton)findViewById(R.id.radioButtonPending9) ;
-        radioButtonPending10=(RadioButton)findViewById(R.id.radioButtonPending10) ;
+        titleinput2 = (TextInputLayout) findViewById(R.id.titleinput2);
+        appnoinput2 = (TextInputLayout) findViewById(R.id.appnoinput2);
+        inventorinput2 = (TextInputLayout) findViewById(R.id.inventorinput2);
+        issueinput2 = (TextInputLayout) findViewById(R.id.issueinput2);
+        descinput2 = (TextInputLayout) findViewById(R.id.descinput2);
+        urlinput2 = (TextInputLayout) findViewById(R.id.urlinput2);
+
+        titleinput3 = (TextInputLayout) findViewById(R.id.titleinput3);
+        appnoinput3 = (TextInputLayout) findViewById(R.id.appnoinput3);
+        inventorinput3 = (TextInputLayout) findViewById(R.id.inventorinput3);
+        issueinput3 = (TextInputLayout) findViewById(R.id.issueinput3);
+        descinput3 = (TextInputLayout) findViewById(R.id.descinput3);
+        urlinput3 = (TextInputLayout) findViewById(R.id.urlinput3);
+
+        titleinput4 = (TextInputLayout) findViewById(R.id.titleinput4);
+        appnoinput4 = (TextInputLayout) findViewById(R.id.appnoinput4);
+        inventorinput4 = (TextInputLayout) findViewById(R.id.inventorinput4);
+        issueinput4 = (TextInputLayout) findViewById(R.id.issueinput4);
+        descinput4 = (TextInputLayout) findViewById(R.id.descinput4);
+        urlinput4 = (TextInputLayout) findViewById(R.id.urlinput4);
+
+        titleinput5 = (TextInputLayout) findViewById(R.id.titleinput5);
+        appnoinput5 = (TextInputLayout) findViewById(R.id.appnoinput5);
+        inventorinput5 = (TextInputLayout) findViewById(R.id.inventorinput5);
+        issueinput5 = (TextInputLayout) findViewById(R.id.issueinput5);
+        descinput5 = (TextInputLayout) findViewById(R.id.descinput5);
+        urlinput5 = (TextInputLayout) findViewById(R.id.urlinput5);
+
+        titleinput6 = (TextInputLayout) findViewById(R.id.titleinput6);
+        appnoinput6 = (TextInputLayout) findViewById(R.id.appnoinput6);
+        inventorinput6 = (TextInputLayout) findViewById(R.id.inventorinput6);
+        issueinput6 = (TextInputLayout) findViewById(R.id.issueinput6);
+        descinput6 = (TextInputLayout) findViewById(R.id.descinput6);
+        urlinput6 = (TextInputLayout) findViewById(R.id.urlinput6);
+
+        titleinput7 = (TextInputLayout) findViewById(R.id.titleinput7);
+        appnoinput7 = (TextInputLayout) findViewById(R.id.appnoinput7);
+        inventorinput7 = (TextInputLayout) findViewById(R.id.inventorinput7);
+        issueinput7 = (TextInputLayout) findViewById(R.id.issueinput7);
+        descinput7 = (TextInputLayout) findViewById(R.id.descinput7);
+        urlinput7 = (TextInputLayout) findViewById(R.id.urlinput7);
+
+        titleinput8 = (TextInputLayout) findViewById(R.id.titleinput8);
+        appnoinput8 = (TextInputLayout) findViewById(R.id.appnoinput8);
+        inventorinput8 = (TextInputLayout) findViewById(R.id.inventorinput8);
+        issueinput8 = (TextInputLayout) findViewById(R.id.issueinput8);
+        descinput8 = (TextInputLayout) findViewById(R.id.descinput8);
+        urlinput8 = (TextInputLayout) findViewById(R.id.urlinput8);
+
+        titleinput9 = (TextInputLayout) findViewById(R.id.titleinput9);
+        appnoinput9 = (TextInputLayout) findViewById(R.id.appnoinput9);
+        inventorinput9 = (TextInputLayout) findViewById(R.id.inventorinput9);
+        issueinput9 = (TextInputLayout) findViewById(R.id.issueinput9);
+        descinput9 = (TextInputLayout) findViewById(R.id.descinput9);
+        urlinput9 = (TextInputLayout) findViewById(R.id.urlinput9);
+
+        titleinput10 = (TextInputLayout) findViewById(R.id.titleinput10);
+        appnoinput10 = (TextInputLayout) findViewById(R.id.appnoinput10);
+        inventorinput10 = (TextInputLayout) findViewById(R.id.inventorinput10);
+        issueinput10 = (TextInputLayout) findViewById(R.id.issueinput10);
+        descinput10 = (TextInputLayout) findViewById(R.id.descinput10);
+        urlinput10 = (TextInputLayout) findViewById(R.id.urlinput10);
+
+        filinginput1 = (TextInputLayout) findViewById(R.id.filinginput1);
+        filinginput2 = (TextInputLayout) findViewById(R.id.filinginput2);
+        filinginput3 = (TextInputLayout) findViewById(R.id.filinginput3);
+        filinginput4 = (TextInputLayout) findViewById(R.id.filinginput4);
+        filinginput5 = (TextInputLayout) findViewById(R.id.filinginput5);
+        filinginput6 = (TextInputLayout) findViewById(R.id.filinginput6);
+        filinginput7 = (TextInputLayout) findViewById(R.id.filinginput7);
+        filinginput8 = (TextInputLayout) findViewById(R.id.filinginput8);
+        filinginput9 = (TextInputLayout) findViewById(R.id.filinginput9);
+        filinginput10 = (TextInputLayout) findViewById(R.id.filinginput10);
+
+
+                 title1.setTypeface(MyConstants.getBold(this));
+                 appno1.setTypeface(MyConstants.getBold(this));
+                 inventor1.setTypeface(MyConstants.getBold(this));
+                 issue1.setTypeface(MyConstants.getBold(this));
+                 filing1.setTypeface(MyConstants.getBold(this));
+                 url1.setTypeface(MyConstants.getBold(this));
+                 description1.setTypeface(MyConstants.getBold(this));
+                 title2.setTypeface(MyConstants.getBold(this));
+                 appno2.setTypeface(MyConstants.getBold(this));
+                 inventor2.setTypeface(MyConstants.getBold(this));
+                 issue2.setTypeface(MyConstants.getBold(this));
+                 filing2.setTypeface(MyConstants.getBold(this));
+                 url2.setTypeface(MyConstants.getBold(this));
+                 description2.setTypeface(MyConstants.getBold(this));
+                 title3.setTypeface(MyConstants.getBold(this));
+                 appno3.setTypeface(MyConstants.getBold(this));
+                 inventor3.setTypeface(MyConstants.getBold(this));
+                 issue3.setTypeface(MyConstants.getBold(this));
+                 filing3.setTypeface(MyConstants.getBold(this));
+                 url3.setTypeface(MyConstants.getBold(this));
+                 description3.setTypeface(MyConstants.getBold(this));
+                 title4.setTypeface(MyConstants.getBold(this));
+                 appno4.setTypeface(MyConstants.getBold(this));
+                 inventor4.setTypeface(MyConstants.getBold(this));
+                 issue4.setTypeface(MyConstants.getBold(this));
+                 filing4.setTypeface(MyConstants.getBold(this));
+                 url4.setTypeface(MyConstants.getBold(this));
+                 description4.setTypeface(MyConstants.getBold(this));
+                 title5.setTypeface(MyConstants.getBold(this));
+                 appno5.setTypeface(MyConstants.getBold(this));
+                 inventor5.setTypeface(MyConstants.getBold(this));
+                 issue5.setTypeface(MyConstants.getBold(this));
+                 filing5.setTypeface(MyConstants.getBold(this));
+                 url5.setTypeface(MyConstants.getBold(this));
+                 description5.setTypeface(MyConstants.getBold(this));
+                 title6.setTypeface(MyConstants.getBold(this));
+                 appno6.setTypeface(MyConstants.getBold(this));
+                 inventor6.setTypeface(MyConstants.getBold(this));
+                 issue6.setTypeface(MyConstants.getBold(this));
+                 filing6.setTypeface(MyConstants.getBold(this));
+                 url6.setTypeface(MyConstants.getBold(this));
+                 description6.setTypeface(MyConstants.getBold(this));
+                 title7.setTypeface(MyConstants.getBold(this));
+                 appno7.setTypeface(MyConstants.getBold(this));
+                 inventor7.setTypeface(MyConstants.getBold(this));
+                 issue7.setTypeface(MyConstants.getBold(this));
+                 filing7.setTypeface(MyConstants.getBold(this));
+                 url7.setTypeface(MyConstants.getBold(this));
+                 description7.setTypeface(MyConstants.getBold(this));
+                 title8.setTypeface(MyConstants.getBold(this));
+                 appno8.setTypeface(MyConstants.getBold(this));
+                 inventor8.setTypeface(MyConstants.getBold(this));
+                 issue8.setTypeface(MyConstants.getBold(this));
+                 filing8.setTypeface(MyConstants.getBold(this));
+                 url8.setTypeface(MyConstants.getBold(this));
+                 description8.setTypeface(MyConstants.getBold(this));
+                 title9.setTypeface(MyConstants.getBold(this));
+                 appno9.setTypeface(MyConstants.getBold(this));
+                 inventor9.setTypeface(MyConstants.getBold(this));
+                 issue9.setTypeface(MyConstants.getBold(this));
+                 filing9.setTypeface(MyConstants.getBold(this));
+                 url9.setTypeface(MyConstants.getBold(this));
+                 description9.setTypeface(MyConstants.getBold(this));
+                 title10.setTypeface(MyConstants.getBold(this));
+                 appno10.setTypeface(MyConstants.getBold(this));
+                 inventor10.setTypeface(MyConstants.getBold(this));
+                 issue10.setTypeface(MyConstants.getBold(this));
+                 filing10.setTypeface(MyConstants.getBold(this));
+                 url10.setTypeface(MyConstants.getBold(this));
+                 description10.setTypeface(MyConstants.getBold(this));
+
+
+        titleinput1.setTypeface(MyConstants.getLight(this));
+                 appnoinput1.setTypeface(MyConstants.getLight(this));
+                 inventorinput1.setTypeface(MyConstants.getLight(this));
+                 issueinput1.setTypeface(MyConstants.getLight(this));
+                 descinput1.setTypeface(MyConstants.getLight(this));
+                 urlinput1.setTypeface(MyConstants.getLight(this));
+                 titleinput2.setTypeface(MyConstants.getLight(this));
+                 appnoinput2.setTypeface(MyConstants.getLight(this));
+                inventorinput2.setTypeface(MyConstants.getLight(this));
+                 issueinput2.setTypeface(MyConstants.getLight(this));
+                 descinput2.setTypeface(MyConstants.getLight(this));
+                 urlinput2.setTypeface(MyConstants.getLight(this));
+                 titleinput3.setTypeface(MyConstants.getLight(this));
+                 appnoinput3.setTypeface(MyConstants.getLight(this));
+                 inventorinput3.setTypeface(MyConstants.getLight(this));
+                 issueinput3.setTypeface(MyConstants.getLight(this));
+                 descinput3.setTypeface(MyConstants.getLight(this));
+                 urlinput3.setTypeface(MyConstants.getLight(this));
+                 titleinput4.setTypeface(MyConstants.getLight(this));
+                 appnoinput4.setTypeface(MyConstants.getLight(this));
+                 inventorinput4.setTypeface(MyConstants.getLight(this));
+                 issueinput4.setTypeface(MyConstants.getLight(this));
+                 descinput4.setTypeface(MyConstants.getLight(this));
+                 urlinput4.setTypeface(MyConstants.getLight(this));
+                 titleinput5.setTypeface(MyConstants.getLight(this));
+                 appnoinput5.setTypeface(MyConstants.getLight(this));
+                 inventorinput5.setTypeface(MyConstants.getLight(this));
+                issueinput5.setTypeface(MyConstants.getLight(this));
+                 descinput5.setTypeface(MyConstants.getLight(this));
+                 urlinput5.setTypeface(MyConstants.getLight(this));
+                 titleinput6.setTypeface(MyConstants.getLight(this));
+                 appnoinput6.setTypeface(MyConstants.getLight(this));
+                 inventorinput6.setTypeface(MyConstants.getLight(this));
+                 issueinput6.setTypeface(MyConstants.getLight(this));
+                 descinput6.setTypeface(MyConstants.getLight(this));
+                 urlinput6.setTypeface(MyConstants.getLight(this));
+                 titleinput7.setTypeface(MyConstants.getLight(this));
+                 appnoinput7.setTypeface(MyConstants.getLight(this));
+                 inventorinput7.setTypeface(MyConstants.getLight(this));
+                 issueinput7.setTypeface(MyConstants.getLight(this));
+                 descinput7.setTypeface(MyConstants.getLight(this));
+                 urlinput7.setTypeface(MyConstants.getLight(this));
+                 titleinput8.setTypeface(MyConstants.getLight(this));
+                 appnoinput8.setTypeface(MyConstants.getLight(this));
+                 inventorinput8.setTypeface(MyConstants.getLight(this));
+                 issueinput8.setTypeface(MyConstants.getLight(this));
+
+                descinput8.setTypeface(MyConstants.getLight(this));
+                 urlinput8.setTypeface(MyConstants.getLight(this));
+                 titleinput9.setTypeface(MyConstants.getLight(this));
+                 appnoinput9.setTypeface(MyConstants.getLight(this));
+                 inventorinput9.setTypeface(MyConstants.getLight(this));
+                 issueinput9.setTypeface(MyConstants.getLight(this));
+                 descinput9.setTypeface(MyConstants.getLight(this));
+                 urlinput9.setTypeface(MyConstants.getLight(this));
+                 titleinput10.setTypeface(MyConstants.getLight(this));
+                 appnoinput10.setTypeface(MyConstants.getLight(this));
+                 inventorinput10.setTypeface(MyConstants.getLight(this));
+                 issueinput10.setTypeface(MyConstants.getLight(this));
+                 descinput10.setTypeface(MyConstants.getLight(this));
+                 urlinput10.setTypeface(MyConstants.getLight(this));
+
+                filinginput1.setTypeface(MyConstants.getLight(this));
+                filinginput2.setTypeface(MyConstants.getLight(this));
+                filinginput3.setTypeface(MyConstants.getLight(this));
+                filinginput4.setTypeface(MyConstants.getLight(this));
+                filinginput5.setTypeface(MyConstants.getLight(this));
+                filinginput6.setTypeface(MyConstants.getLight(this));
+                filinginput7.setTypeface(MyConstants.getLight(this));
+                filinginput8.setTypeface(MyConstants.getLight(this));
+                filinginput9.setTypeface(MyConstants.getLight(this));
+                filinginput10.setTypeface(MyConstants.getLight(this));
+
+
+
+        radioGroupPatent1 = (RadioGroup) findViewById(R.id.radioGroupPatent1);
+        radioGroupPatent2 = (RadioGroup) findViewById(R.id.radioGroupPatent2);
+        radioGroupPatent3 = (RadioGroup) findViewById(R.id.radioGroupPatent3);
+        radioGroupPatent4 = (RadioGroup) findViewById(R.id.radioGroupPatent4);
+        radioGroupPatent5 = (RadioGroup) findViewById(R.id.radioGroupPatent5);
+        radioGroupPatent6 = (RadioGroup) findViewById(R.id.radioGroupPatent6);
+        radioGroupPatent7 = (RadioGroup) findViewById(R.id.radioGroupPatent7);
+        radioGroupPatent8 = (RadioGroup) findViewById(R.id.radioGroupPatent8);
+        radioGroupPatent9 = (RadioGroup) findViewById(R.id.radioGroupPatent9);
+        radioGroupPatent10 = (RadioGroup) findViewById(R.id.radioGroupPatent10);
+
+        radioButtonIssued1 = (RadioButton) findViewById(R.id.radioButtonIssued1);
+        radioButtonIssued2 = (RadioButton) findViewById(R.id.radioButtonIssued2);
+        radioButtonIssued3 = (RadioButton) findViewById(R.id.radioButtonIssued3);
+        radioButtonIssued4 = (RadioButton) findViewById(R.id.radioButtonIssued4);
+        radioButtonIssued5 = (RadioButton) findViewById(R.id.radioButtonIssued5);
+        radioButtonIssued6 = (RadioButton) findViewById(R.id.radioButtonIssued6);
+        radioButtonIssued7 = (RadioButton) findViewById(R.id.radioButtonIssued7);
+        radioButtonIssued8 = (RadioButton) findViewById(R.id.radioButtonIssued8);
+        radioButtonIssued9 = (RadioButton) findViewById(R.id.radioButtonIssued9);
+        radioButtonIssued10 = (RadioButton) findViewById(R.id.radioButtonIssued10);
+
+        radioButtonPending1 = (RadioButton) findViewById(R.id.radioButtonPending1);
+        radioButtonPending2 = (RadioButton) findViewById(R.id.radioButtonPending2);
+        radioButtonPending3 = (RadioButton) findViewById(R.id.radioButtonPending3);
+        radioButtonPending4 = (RadioButton) findViewById(R.id.radioButtonPending4);
+        radioButtonPending5 = (RadioButton) findViewById(R.id.radioButtonPending5);
+        radioButtonPending6 = (RadioButton) findViewById(R.id.radioButtonPending6);
+        radioButtonPending7 = (RadioButton) findViewById(R.id.radioButtonPending7);
+        radioButtonPending8 = (RadioButton) findViewById(R.id.radioButtonPending8);
+        radioButtonPending9 = (RadioButton) findViewById(R.id.radioButtonPending9);
+        radioButtonPending10 = (RadioButton) findViewById(R.id.radioButtonPending10);
+
 
         radioGroupPatent1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch(i) {
+                switch (i) {
                     case R.id.radioButtonIssued1:
-                        issuedorpending1="issued";
-                        filing1.setVisibility(View.GONE);
-                        issue1.setVisibility(View.VISIBLE);
+                        issuedorpending1 = "issued";
+                        filinginput1.setVisibility(View.GONE);
+                        issueinput1.setVisibility(View.VISIBLE);
+                        filing1.setText("");
                         break;
                     case R.id.radioButtonPending1:
-                        filing1.setVisibility(View.VISIBLE);
-                        issue1.setVisibility(View.GONE);
-                        issuedorpending1="pending";
+                        filinginput1.setVisibility(View.VISIBLE);
+                        issueinput1.setVisibility(View.GONE);
+                        issuedorpending1 = "pending";
+                        issue1.setText("");
                         break;
 
                 }
@@ -323,16 +558,18 @@ public class MyProfilePatents extends AppCompatActivity {
         radioGroupPatent2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch(i) {
+                switch (i) {
                     case R.id.radioButtonIssued2:
-                        issuedorpending2="issued";
-                        filing2.setVisibility(View.GONE);
-                        issue2.setVisibility(View.VISIBLE);
+                        issuedorpending2 = "issued";
+                        filinginput2.setVisibility(View.GONE);
+                        issueinput2.setVisibility(View.VISIBLE);
+                        filing2.setText("");
                         break;
                     case R.id.radioButtonPending2:
-                        filing2.setVisibility(View.VISIBLE);
-                        issue2.setVisibility(View.GONE);
-                        issuedorpending2="pending";
+                        filinginput2.setVisibility(View.VISIBLE);
+                        issueinput2.setVisibility(View.GONE);
+                        issuedorpending2 = "pending";
+                        issue2.setText("");
                         break;
                 }
             }
@@ -340,16 +577,18 @@ public class MyProfilePatents extends AppCompatActivity {
         radioGroupPatent3.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch(i) {
+                switch (i) {
                     case R.id.radioButtonIssued3:
-                        issuedorpending3="issued";
-                        filing3.setVisibility(View.GONE);
-                        issue3.setVisibility(View.VISIBLE);
+                        issuedorpending3 = "issued";
+                        filinginput3.setVisibility(View.GONE);
+                        issueinput3.setVisibility(View.VISIBLE);
+                        filing3.setText("");
                         break;
                     case R.id.radioButtonPending3:
-                        filing3.setVisibility(View.VISIBLE);
-                        issue3.setVisibility(View.GONE);
-                        issuedorpending3="pending";
+                        filinginput3.setVisibility(View.VISIBLE);
+                        issueinput3.setVisibility(View.GONE);
+                        issuedorpending3 = "pending";
+                        issue3.setText("");
                         break;
                 }
             }
@@ -357,16 +596,18 @@ public class MyProfilePatents extends AppCompatActivity {
         radioGroupPatent4.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch(i) {
+                switch (i) {
                     case R.id.radioButtonIssued4:
-                        issuedorpending4="issued";
-                        filing4.setVisibility(View.GONE);
-                        issue4.setVisibility(View.VISIBLE);
+                        issuedorpending4 = "issued";
+                        filinginput4.setVisibility(View.GONE);
+                        issueinput4.setVisibility(View.VISIBLE);
+                        filing4.setText("");
                         break;
                     case R.id.radioButtonPending4:
-                        filing4.setVisibility(View.VISIBLE);
-                        issue4.setVisibility(View.GONE);
-                        issuedorpending4="pending";
+                        filinginput4.setVisibility(View.VISIBLE);
+                        issueinput4.setVisibility(View.GONE);
+                        issuedorpending4 = "pending";
+                        issue4.setText("");
                         break;
 
                 }
@@ -375,16 +616,18 @@ public class MyProfilePatents extends AppCompatActivity {
         radioGroupPatent5.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch(i) {
+                switch (i) {
                     case R.id.radioButtonIssued5:
-                        issuedorpending5="issued";
-                        filing5.setVisibility(View.GONE);
-                        issue5.setVisibility(View.VISIBLE);
+                        issuedorpending5 = "issued";
+                        filinginput5.setVisibility(View.GONE);
+                        issueinput5.setVisibility(View.VISIBLE);
+                        filing5.setText("");
                         break;
                     case R.id.radioButtonPending5:
-                        filing5.setVisibility(View.VISIBLE);
-                        issue5.setVisibility(View.GONE);
-                        issuedorpending5="pending";
+                        filinginput5.setVisibility(View.VISIBLE);
+                        issueinput5.setVisibility(View.GONE);
+                        issuedorpending5 = "pending";
+                        issue5.setText("");
                         break;
                 }
             }
@@ -392,16 +635,18 @@ public class MyProfilePatents extends AppCompatActivity {
         radioGroupPatent6.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch(i) {
+                switch (i) {
                     case R.id.radioButtonIssued6:
-                        issuedorpending6="issued";
-                        filing6.setVisibility(View.GONE);
-                        issue6.setVisibility(View.VISIBLE);
+                        issuedorpending6 = "issued";
+                        filinginput6.setVisibility(View.GONE);
+                        issueinput6.setVisibility(View.VISIBLE);
+                        filing6.setText("");
                         break;
                     case R.id.radioButtonPending6:
-                        filing6.setVisibility(View.VISIBLE);
-                        issue6.setVisibility(View.GONE);
-                        issuedorpending6="pending";
+                        filinginput6.setVisibility(View.VISIBLE);
+                        issueinput6.setVisibility(View.GONE);
+                        issuedorpending6 = "pending";
+                        issue6.setText("");
                         break;
                 }
             }
@@ -409,16 +654,18 @@ public class MyProfilePatents extends AppCompatActivity {
         radioGroupPatent7.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch(i) {
+                switch (i) {
                     case R.id.radioButtonIssued7:
-                        issuedorpending7="issued";
-                        filing7.setVisibility(View.GONE);
-                        issue7.setVisibility(View.VISIBLE);
+                        issuedorpending7 = "issued";
+                        filinginput7.setVisibility(View.GONE);
+                        issueinput7.setVisibility(View.VISIBLE);
+                        filing7.setText("");
                         break;
                     case R.id.radioButtonPending7:
-                        filing7.setVisibility(View.VISIBLE);
-                        issue7.setVisibility(View.GONE);
-                        issuedorpending7="pending";
+                        filinginput7.setVisibility(View.VISIBLE);
+                        issueinput7.setVisibility(View.GONE);
+                        issue7.setText("");
+                        issuedorpending7 = "pending";
                         break;
                 }
             }
@@ -426,16 +673,18 @@ public class MyProfilePatents extends AppCompatActivity {
         radioGroupPatent8.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch(i) {
+                switch (i) {
                     case R.id.radioButtonIssued8:
-                        issuedorpending8="issued";
-                        filing8.setVisibility(View.GONE);
-                        issue8.setVisibility(View.VISIBLE);
+                        issuedorpending8 = "issued";
+                        filinginput8.setVisibility(View.GONE);
+                        issueinput8.setVisibility(View.VISIBLE);
+                        filing8.setText("");
                         break;
                     case R.id.radioButtonPending8:
-                        filing8.setVisibility(View.VISIBLE);
-                        issue8.setVisibility(View.GONE);
-                        issuedorpending8="pending";
+                        filinginput8.setVisibility(View.VISIBLE);
+                        issueinput8.setVisibility(View.GONE);
+                        issue8.setText("");
+                        issuedorpending8 = "pending";
                         break;
                 }
             }
@@ -443,16 +692,18 @@ public class MyProfilePatents extends AppCompatActivity {
         radioGroupPatent9.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch(i) {
+                switch (i) {
                     case R.id.radioButtonIssued9:
-                        issuedorpending9="issued";
-                        filing9.setVisibility(View.GONE);
-                        issue9.setVisibility(View.VISIBLE);
+                        issuedorpending9 = "issued";
+                        filinginput9.setVisibility(View.GONE);
+                        issueinput9.setVisibility(View.VISIBLE);
+                        filing9.setText("");
                         break;
                     case R.id.radioButtonPending9:
-                        filing9.setVisibility(View.VISIBLE);
-                        issue9.setVisibility(View.GONE);
-                        issuedorpending9="pending";
+                        filinginput9.setVisibility(View.VISIBLE);
+                        issueinput9.setVisibility(View.GONE);
+                        issue9.setText("");
+                        issuedorpending9 = "pending";
                         break;
                 }
             }
@@ -460,16 +711,21 @@ public class MyProfilePatents extends AppCompatActivity {
         radioGroupPatent10.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch(i) {
+                switch (i) {
                     case R.id.radioButtonIssued10:
-                        issuedorpending10="issued";
-                        filing10.setVisibility(View.GONE);
-                        issue10.setVisibility(View.VISIBLE);
+                        issuedorpending10 = "issued";
+                        filinginput10.setVisibility(View.GONE);
+                        issueinput10.setVisibility(View.VISIBLE);
+                        filing10.setText("");
+                        Log.d("TAG", "onCheckedChanged: filinginput10.setVisibility(View.GONE)");
                         break;
                     case R.id.radioButtonPending10:
-                        filing10.setVisibility(View.VISIBLE);
-                        issue10.setVisibility(View.GONE);
-                        issuedorpending10="pending";
+                        issuedorpending10 = "pending";
+                        filinginput10.setVisibility(View.VISIBLE);
+//                        filing10.setVisibility(View.VISIBLE);
+                        issue10.setText("");
+                        issueinput10.setVisibility(View.GONE);
+                        Log.d("TAG", "onCheckedChanged: filinginput10.setVisibility(View.VISIBLE);");
                         break;
                 }
             }
@@ -485,8 +741,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                title1.setError(null);
-                edittedFlag=1;
+                titleinput1.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -502,8 +758,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                appno1.setError(null);
-                edittedFlag=1;
+                appnoinput1.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -519,8 +775,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inventor1.setError(null);
-                edittedFlag=1;
+                inventorinput1.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -536,8 +792,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                url1.setError(null);
-                edittedFlag=1;
+                urlinput1.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -553,8 +809,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                description1.setError(null);
-                edittedFlag=1;
+                descinput1.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -570,8 +826,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filing1.setError(null);
-                edittedFlag=1;
+                filinginput1.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -587,8 +843,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                issue1.setError(null);
-                edittedFlag=1;
+                issueinput1.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -604,8 +860,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                title2.setError(null);
-                edittedFlag=1;
+                titleinput2.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -621,8 +877,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                appno2.setError(null);
-                edittedFlag=1;
+                appnoinput2.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -638,8 +894,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inventor2.setError(null);
-                edittedFlag=1;
+                inventorinput2.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -655,8 +911,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                url2.setError(null);
-                edittedFlag=1;
+                urlinput2.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -672,8 +928,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                description2.setError(null);
-                edittedFlag=1;
+                descinput2.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -689,8 +945,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filing2.setError(null);
-                edittedFlag=1;
+                filinginput2.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -706,8 +962,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                issue2.setError(null);
-                edittedFlag=1;
+                issueinput2.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -723,8 +979,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                title3.setError(null);
-                edittedFlag=1;
+                titleinput3.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -740,8 +996,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                appno3.setError(null);
-                edittedFlag=1;
+                appnoinput3.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -757,8 +1013,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inventor3.setError(null);
-                edittedFlag=1;
+                inventorinput3.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -774,8 +1030,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                url3.setError(null);
-                edittedFlag=1;
+                urlinput3.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -791,8 +1047,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                description3.setError(null);
-                edittedFlag=1;
+                descinput3.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -808,8 +1064,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filing3.setError(null);
-                edittedFlag=1;
+                filinginput3.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -825,8 +1081,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                issue3.setError(null);
-                edittedFlag=1;
+                issueinput3.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -842,8 +1098,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                title4.setError(null);
-                edittedFlag=1;
+                titleinput4.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -859,8 +1115,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                appno4.setError(null);
-                edittedFlag=1;
+                appnoinput4.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -876,8 +1132,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inventor4.setError(null);
-                edittedFlag=1;
+                inventorinput4.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -893,8 +1149,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                url4.setError(null);
-                edittedFlag=1;
+                urlinput4.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -910,8 +1166,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                description4.setError(null);
-                edittedFlag=1;
+                descinput4.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -927,8 +1183,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filing4.setError(null);
-                edittedFlag=1;
+                filinginput4.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -944,8 +1200,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                issue4.setError(null);
-                edittedFlag=1;
+                issueinput4.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -961,8 +1217,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                title5.setError(null);
-                edittedFlag=1;
+                titleinput5.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -978,8 +1234,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                appno5.setError(null);
-                edittedFlag=1;
+                appnoinput5.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -995,8 +1251,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inventor5.setError(null);
-                edittedFlag=1;
+                inventorinput5.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1012,8 +1268,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                url5.setError(null);
-                edittedFlag=1;
+                urlinput5.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1029,8 +1285,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                description5.setError(null);
-                edittedFlag=1;
+                descinput5.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1046,8 +1302,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filing5.setError(null);
-                edittedFlag=1;
+                filinginput5.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1063,8 +1319,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                issue5.setError(null);
-                edittedFlag=1;
+                issueinput5.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1080,8 +1336,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                title6.setError(null);
-                edittedFlag=1;
+                titleinput6.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1097,8 +1353,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                appno6.setError(null);
-                edittedFlag=1;
+                appnoinput6.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1114,8 +1370,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inventor6.setError(null);
-                edittedFlag=1;
+                inventorinput6.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1131,8 +1387,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                url6.setError(null);
-                edittedFlag=1;
+                urlinput6.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1148,8 +1404,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                description6.setError(null);
-                edittedFlag=1;
+                descinput6.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1165,8 +1421,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filing6.setError(null);
-                edittedFlag=1;
+                filinginput6.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1182,8 +1438,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                issue6.setError(null);
-                edittedFlag=1;
+                issueinput6.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1199,8 +1455,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                title7.setError(null);
-                edittedFlag=1;
+                titleinput7.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1216,8 +1472,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                appno7.setError(null);
-                edittedFlag=1;
+                appnoinput7.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1233,8 +1489,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inventor7.setError(null);
-                edittedFlag=1;
+                inventorinput7.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1250,8 +1506,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                url7.setError(null);
-                edittedFlag=1;
+                urlinput7.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1267,8 +1523,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                description7.setError(null);
-                edittedFlag=1;
+                descinput7.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1284,8 +1540,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filing7.setError(null);
-                edittedFlag=1;
+                filinginput7.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1301,8 +1557,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                issue7.setError(null);
-                edittedFlag=1;
+                issueinput7.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1318,8 +1574,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                title8.setError(null);
-                edittedFlag=1;
+                titleinput8.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1335,8 +1591,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                appno8.setError(null);
-                edittedFlag=1;
+                appnoinput8.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1352,8 +1608,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inventor8.setError(null);
-                edittedFlag=1;
+                inventorinput8.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1369,8 +1625,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                url8.setError(null);
-                edittedFlag=1;
+                urlinput8.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1386,8 +1642,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                description8.setError(null);
-                edittedFlag=1;
+                descinput8.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1403,8 +1659,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filing8.setError(null);
-                edittedFlag=1;
+                filinginput8.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1420,8 +1676,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                issue8.setError(null);
-                edittedFlag=1;
+                issueinput8.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1437,8 +1693,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                title9.setError(null);
-                edittedFlag=1;
+                titleinput9.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1454,8 +1710,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                appno9.setError(null);
-                edittedFlag=1;
+                appnoinput9.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1471,8 +1727,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inventor9.setError(null);
-                edittedFlag=1;
+                inventorinput9.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1488,8 +1744,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                url9.setError(null);
-                edittedFlag=1;
+                urlinput9.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1505,8 +1761,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                description9.setError(null);
-                edittedFlag=1;
+                descinput9.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1522,8 +1778,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filing9.setError(null);
-                edittedFlag=1;
+                filinginput9.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1539,8 +1795,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                issue9.setError(null);
-                edittedFlag=1;
+                issueinput9.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1556,8 +1812,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                title10.setError(null);
-                edittedFlag=1;
+                titleinput10.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1573,8 +1829,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                appno10.setError(null);
-                edittedFlag=1;
+                appnoinput10.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1590,8 +1846,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inventor10.setError(null);
-                edittedFlag=1;
+                inventorinput10.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1607,8 +1863,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                url10.setError(null);
-                edittedFlag=1;
+                urlinput10.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1624,8 +1880,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                description10.setError(null);
-                edittedFlag=1;
+                descinput10.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1641,8 +1897,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filing10.setError(null);
-                edittedFlag=1;
+                filinginput10.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1658,8 +1914,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                issue10.setError(null);
-                edittedFlag=1;
+                issueinput10.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -1668,469 +1924,402 @@ public class MyProfilePatents extends AppCompatActivity {
             }
         });
 
-        filing1.setOnClickListener(new View.OnClickListener() {
+        filing1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(filing1);
             }
         });
-        filing2.setOnClickListener(new View.OnClickListener() {
+        
+        filing2.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(filing2);
             }
         });
-        filing3.setOnClickListener(new View.OnClickListener() {
+        filing3.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(filing3);
             }
         });
-        filing4.setOnClickListener(new View.OnClickListener() {
+        filing4.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(filing4);
             }
         });
-        filing5.setOnClickListener(new View.OnClickListener() {
+        filing5.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(filing5);
             }
         });
-        filing6.setOnClickListener(new View.OnClickListener() {
+        filing6.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(filing6);
             }
         });
-        filing7.setOnClickListener(new View.OnClickListener() {
+        filing7.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(filing7);
             }
         });
-        filing8.setOnClickListener(new View.OnClickListener() {
+        filing8.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(filing8);
             }
         });
-        filing9.setOnClickListener(new View.OnClickListener() {
+        filing9.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(filing9);
             }
         });
-        filing10.setOnClickListener(new View.OnClickListener() {
+        filing10.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(filing10);
             }
         });
 
-        issue1.setOnClickListener(new View.OnClickListener() {
+        issue1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(issue1);
             }
         });
-        issue2.setOnClickListener(new View.OnClickListener() {
+        issue2.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(issue2);
             }
         });
-        issue3.setOnClickListener(new View.OnClickListener() {
+        issue3.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(issue3);
             }
         });
-        issue4.setOnClickListener(new View.OnClickListener() {
+        issue4.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(issue4);
             }
         });
-        issue5.setOnClickListener(new View.OnClickListener() {
+        issue5.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(issue5);
             }
         });
-        issue6.setOnClickListener(new View.OnClickListener() {
+        issue6.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(issue6);
             }
         });
-        issue7.setOnClickListener(new View.OnClickListener() {
+        issue7.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(issue7);
             }
         });
-        issue8.setOnClickListener(new View.OnClickListener() {
+        issue8.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(issue8);
             }
         });
-        issue9.setOnClickListener(new View.OnClickListener() {
+        issue9.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(issue9);
             }
         });
-        issue10.setOnClickListener(new View.OnClickListener() {
+        issue10.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDateDialog(issue10);
             }
         });
 
-        TextView patenttxt=(TextView)findViewById(R.id.patenttxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");
-        patenttxt.setTypeface(custom_font1);
+        TextView patenttxt = (TextView) findViewById(R.id.patenttxt);
+        patenttxt .setTypeface(MyConstants.getBold(this));
 
-        addmorepatent=(View)findViewById(R.id.addmorepatent);
-        addmorepatent.setOnClickListener(new View.OnClickListener() {
+        TextView addmorepatenttxt=(TextView)findViewById(R.id.addmorepatenttxt);
+        addmorepatenttxt.setTypeface(MyConstants.getBold(this));
+
+        addmorepatent = (View) findViewById(R.id.addmorepatent);
+        addmorepatent.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(patentcount==0)
-                {
-                    if(title1.getText().toString()!=null && appno1.getText().toString()!=null  && inventor1.getText().toString()!=null && url1.getText().toString()!=null && description1.getText().toString()!=null && issue1.getText().toString()!=null )
-                    {
-                        if(!title1.getText().toString().equals("")&& !appno1.getText().toString().equals("")&& !inventor1.getText().toString().equals("") && !url1.getText().toString().equals("") && !description1.getText().toString().equals("") && !issue1.getText().toString().equals("") && !patoffice1.getSelectedItem().toString().equals("- Select Patent Office -"))
-                        {
-                            View v=(View)findViewById(R.id.patentline1);
+                if (patentcount == 0) {
+                    if (title1.getText().toString() != null && appno1.getText().toString() != null && inventor1.getText().toString() != null && (issue1.getText().toString() != null || filing1.getText().toString() != null)) {
+                        if (!title1.getText().toString().equals("") && !appno1.getText().toString().equals("") && !inventor1.getText().toString().equals("") && (!issue1.getText().toString().equals("") || !filing1.getText().toString().equals("")) && !patoffice1.getSelectedItem().toString().equals("- Select Patent Office -")) {
+                            View v = (View) findViewById(R.id.patentline1);
                             v.setVisibility(View.VISIBLE);
 
-                            RelativeLayout relativeLayout1=(RelativeLayout)findViewById(R.id.patentrl2);
+                            RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.patentrl2);
                             relativeLayout1.setVisibility(View.VISIBLE);
                             patentcount++;
-                        }
-                        else
-                        {
+                        } else {
                             Toast.makeText(MyProfilePatents.this, "Please fill the first Honors", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                    else
+                    } else
                         Toast.makeText(MyProfilePatents.this, "Please fill the first Honors", Toast.LENGTH_SHORT).show();
 
 
-                }
-                else if(patentcount==1)
-                {
-                    if(title2.getText().toString()!=null && appno2.getText().toString()!=null  && inventor2.getText().toString()!=null && url2.getText().toString()!=null && description2.getText().toString()!=null && issue2.getText().toString()!=null )
-                    {
-                        if(!title2.getText().toString().equals("")&& !appno2.getText().toString().equals("")&& !inventor2.getText().toString().equals("") && !url2.getText().toString().equals("") && !description2.getText().toString().equals("") && !issue2.getText().toString().equals("") &&  !patoffice2.getSelectedItem().toString().equals("- Select Patent Office -"))
-                        {
+                } else if (patentcount == 1) {
+                    if (title2.getText().toString() != null && appno2.getText().toString() != null && inventor2.getText().toString() != null && (issue2.getText().toString() != null || filing2.getText().toString() != null)) {
+                        if (!title2.getText().toString().equals("") && !appno2.getText().toString().equals("") && !inventor2.getText().toString().equals("")  &&  (!issue2.getText().toString().equals("") || !filing2.getText().toString().equals("")) && !patoffice2.getSelectedItem().toString().equals("- Select Patent Office -")) {
 
-                            View v=(View)findViewById(R.id.patentline2);
+                            View v = (View) findViewById(R.id.patentline2);
                             v.setVisibility(View.VISIBLE);
 
-                            RelativeLayout relativeLayout1=(RelativeLayout)findViewById(R.id.patentrl3);
+                            RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.patentrl3);
                             relativeLayout1.setVisibility(View.VISIBLE);
                             patentcount++;
-                        }
-                        else
-                        {
+                        } else {
                             Toast.makeText(MyProfilePatents.this, "Please fill the Second Honors", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                    else
+                    } else
                         Toast.makeText(MyProfilePatents.this, "Please fill the Second Honors", Toast.LENGTH_SHORT).show();
 
-                }
-                else if(patentcount==2)
-                {
-                    if(title3.getText().toString()!=null && appno3.getText().toString()!=null  && inventor3.getText().toString()!=null && url3.getText().toString()!=null && description3.getText().toString()!=null && issue3.getText().toString()!=null )
-                    {
-                        if(!title3.getText().toString().equals("")&& !appno3.getText().toString().equals("")&& !inventor3.getText().toString().equals("") && !url3.getText().toString().equals("") && !description3.getText().toString().equals("") && !issue3.getText().toString().equals("")&& !patoffice3.getSelectedItem().toString().equals("- Select Patent Office -"))
-                        {
+                } else if (patentcount == 2) {
+                    if (title3.getText().toString() != null && appno3.getText().toString() != null && inventor3.getText().toString() != null  && (issue3.getText().toString() != null || filing3.getText().toString() != null)) {
+                        if (!title3.getText().toString().equals("") && !appno3.getText().toString().equals("") && !inventor3.getText().toString().equals("")  &&  (!issue3.getText().toString().equals("") || !filing3.getText().toString().equals("")) && !patoffice3.getSelectedItem().toString().equals("- Select Patent Office -")) {
 
-                            View v=(View)findViewById(R.id.patentline3);
+                            View v = (View) findViewById(R.id.patentline3);
                             v.setVisibility(View.VISIBLE);
 
-                            RelativeLayout relativeLayout1=(RelativeLayout)findViewById(R.id.patentrl4);
+                            RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.patentrl4);
                             relativeLayout1.setVisibility(View.VISIBLE);
                             patentcount++;
-                        }
-                        else
-                        {
+                        } else {
                             Toast.makeText(MyProfilePatents.this, "Please fill the Third Honors", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                    else
+                    } else
                         Toast.makeText(MyProfilePatents.this, "Please fill the Third Honors", Toast.LENGTH_SHORT).show();
 
-                }
-                else  if(patentcount==3)
-                {
-                    if(title4.getText().toString()!=null && appno4.getText().toString()!=null  && inventor4.getText().toString()!=null && url4.getText().toString()!=null && description4.getText().toString()!=null && issue4.getText().toString()!=null )
-                    {
-                        if(!title4.getText().toString().equals("")&& !appno4.getText().toString().equals("")&& !inventor4.getText().toString().equals("") && !url4.getText().toString().equals("") && !description4.getText().toString().equals("") && !issue4.getText().toString().equals("")&& !patoffice4.getSelectedItem().toString().equals("- Select Patent Office -"))
-                        {
-                            View v=(View)findViewById(R.id.patentline4);
+                } else if (patentcount == 3) {
+                    if (title4.getText().toString() != null && appno4.getText().toString() != null && inventor4.getText().toString() != null  && (issue4.getText().toString() != null || filing4.getText().toString() != null)) {
+                        if (!title4.getText().toString().equals("") && !appno4.getText().toString().equals("") && !inventor4.getText().toString().equals("") &&  (!issue4.getText().toString().equals("") || !filing4.getText().toString().equals("")) && !patoffice4.getSelectedItem().toString().equals("- Select Patent Office -")) {
+                            View v = (View) findViewById(R.id.patentline4);
                             v.setVisibility(View.VISIBLE);
 
-                            RelativeLayout relativeLayout1=(RelativeLayout)findViewById(R.id.patentrl5);
+                            RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.patentrl5);
                             relativeLayout1.setVisibility(View.VISIBLE);
                             patentcount++;
-                        }
-                        else
-                        {
+                        } else {
                             Toast.makeText(MyProfilePatents.this, "Please fill the Fourth Honors", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                    else
+                    } else
                         Toast.makeText(MyProfilePatents.this, "Please fill the Fourth Honors", Toast.LENGTH_SHORT).show();
 
 
-                }
-                else if(patentcount==4)
-                {
-                    if(title5.getText().toString()!=null && appno5.getText().toString()!=null  && inventor5.getText().toString()!=null && url5.getText().toString()!=null && description5.getText().toString()!=null && issue5.getText().toString()!=null )
-                    {
-                        if(!title5.getText().toString().equals("")&& !appno5.getText().toString().equals("")&& !inventor5.getText().toString().equals("") && !url5.getText().toString().equals("") && !description5.getText().toString().equals("") && !issue5.getText().toString().equals("")&& !patoffice5.getSelectedItem().toString().equals("- Select Patent Office -"))
-                        {
-                            View v=(View)findViewById(R.id.patentline5);
+                } else if (patentcount == 4) {
+                    if (title5.getText().toString() != null && appno5.getText().toString() != null && inventor5.getText().toString() != null  && (issue5.getText().toString() != null || filing5.getText().toString() != null)) {
+                        if (!title5.getText().toString().equals("") && !appno5.getText().toString().equals("") && !inventor5.getText().toString().equals("")  &&  (!issue5.getText().toString().equals("") || !filing5.getText().toString().equals("")) && !patoffice5.getSelectedItem().toString().equals("- Select Patent Office -")) {
+                            View v = (View) findViewById(R.id.patentline5);
                             v.setVisibility(View.VISIBLE);
 
-                            RelativeLayout relativeLayout1=(RelativeLayout)findViewById(R.id.patentrl6);
+                            RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.patentrl6);
                             relativeLayout1.setVisibility(View.VISIBLE);
                             patentcount++;
-                        }
-                        else
-                        {
+                        } else {
                             Toast.makeText(MyProfilePatents.this, "Please fill the Fifth Honors", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                    else
+                    } else
                         Toast.makeText(MyProfilePatents.this, "Please fill the Fifth Honors", Toast.LENGTH_SHORT).show();
 
 
-
-                }
-                else if(patentcount==5)
-                {
-                    if(title6.getText().toString()!=null && appno6.getText().toString()!=null  && inventor6.getText().toString()!=null && url6.getText().toString()!=null && description6.getText().toString()!=null && issue6.getText().toString()!=null )
-                    {
-                        if(!title6.getText().toString().equals("")&& !appno6.getText().toString().equals("")&& !inventor6.getText().toString().equals("") && !url6.getText().toString().equals("") && !description6.getText().toString().equals("") && !issue6.getText().toString().equals("")&& !patoffice6.getSelectedItem().toString().equals("- Select Patent Office -"))
-                        {
-                            View v=(View)findViewById(R.id.patentline6);
+                } else if (patentcount == 5) {
+                    if (title6.getText().toString() != null && appno6.getText().toString() != null && inventor6.getText().toString() != null && (issue6.getText().toString() != null || filing6.getText().toString() != null)) {
+                        if (!title6.getText().toString().equals("") && !appno6.getText().toString().equals("") && !inventor6.getText().toString().equals("") &&  (!issue6.getText().toString().equals("") || !filing6.getText().toString().equals("")) && !patoffice6.getSelectedItem().toString().equals("- Select Patent Office -")) {
+                            View v = (View) findViewById(R.id.patentline6);
                             v.setVisibility(View.VISIBLE);
 
-                            RelativeLayout relativeLayout1=(RelativeLayout)findViewById(R.id.patentrl7);
+                            RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.patentrl7);
                             relativeLayout1.setVisibility(View.VISIBLE);
                             patentcount++;
 
-                        }
-                        else
-                        {
+                        } else {
                             Toast.makeText(MyProfilePatents.this, "Please fill the Sixth Honors", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                    else
+                    } else
                         Toast.makeText(MyProfilePatents.this, "Please fill the Sixth Honors", Toast.LENGTH_SHORT).show();
 
 
-                }
-                else if(patentcount==6)
-                {
-                    if(title7.getText().toString()!=null && appno7.getText().toString()!=null  && inventor7.getText().toString()!=null && url7.getText().toString()!=null && description7.getText().toString()!=null && issue7.getText().toString()!=null )
-                    {
-                        if(!title7.getText().toString().equals("")&& !appno7.getText().toString().equals("")&& !inventor7.getText().toString().equals("") && !url7.getText().toString().equals("") && !description7.getText().toString().equals("") && !issue7.getText().toString().equals("")&& !patoffice7.getSelectedItem().toString().equals("- Select Patent Office -"))
-                        {
-                            View v=(View)findViewById(R.id.patentline7);
+                } else if (patentcount == 6) {
+                    if (title7.getText().toString() != null && appno7.getText().toString() != null && inventor7.getText().toString() != null  && (issue7.getText().toString() != null || filing7.getText().toString() != null)) {
+                        if (!title7.getText().toString().equals("") && !appno7.getText().toString().equals("") && !inventor7.getText().toString().equals("")&&  (!issue7.getText().toString().equals("") || !filing7.getText().toString().equals("")) && !patoffice7.getSelectedItem().toString().equals("- Select Patent Office -")) {
+                            View v = (View) findViewById(R.id.patentline7);
                             v.setVisibility(View.VISIBLE);
 
-                            RelativeLayout relativeLayout1=(RelativeLayout)findViewById(R.id.patentrl8);
+                            RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.patentrl8);
                             relativeLayout1.setVisibility(View.VISIBLE);
                             patentcount++;
-                        }
-                        else
-                        {
+                        } else {
                             Toast.makeText(MyProfilePatents.this, "Please fill the Seventh Honors", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                    else
+                    } else
                         Toast.makeText(MyProfilePatents.this, "Please fill the Seventh Honors", Toast.LENGTH_SHORT).show();
 
 
-                }
-                else if(patentcount==7)
-                {
-                    if(title8.getText().toString()!=null && appno8.getText().toString()!=null  && inventor8.getText().toString()!=null && url8.getText().toString()!=null && description8.getText().toString()!=null && issue8.getText().toString()!=null )
-                    {
-                        if(!title8.getText().toString().equals("")&& !appno8.getText().toString().equals("")&& !inventor8.getText().toString().equals("") && !url8.getText().toString().equals("") && !description8.getText().toString().equals("") && !issue8.getText().toString().equals("")&& !patoffice8.getSelectedItem().toString().equals("- Select Patent Office -"))
-                        {
-                            View v=(View)findViewById(R.id.patentline8);
+                } else if (patentcount == 7) {
+                    if (title8.getText().toString() != null && appno8.getText().toString() != null && inventor8.getText().toString() != null && (issue8.getText().toString() != null || filing8.getText().toString() != null)) {
+                        if (!title8.getText().toString().equals("") && !appno8.getText().toString().equals("") && !inventor8.getText().toString().equals("") &&  (!issue8.getText().toString().equals("") || !filing8.getText().toString().equals("")) && !patoffice8.getSelectedItem().toString().equals("- Select Patent Office -")) {
+                            View v = (View) findViewById(R.id.patentline8);
                             v.setVisibility(View.VISIBLE);
 
-                            RelativeLayout relativeLayout1=(RelativeLayout)findViewById(R.id.patentrl9);
+                            RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.patentrl9);
                             relativeLayout1.setVisibility(View.VISIBLE);
                             patentcount++;
-                        }
-                        else
-                        {
+                        } else {
                             Toast.makeText(MyProfilePatents.this, "Please fill the Eighth Honors", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                    else
+                    } else
                         Toast.makeText(MyProfilePatents.this, "Please fill the Eighth Honors", Toast.LENGTH_SHORT).show();
 
 
-
-                }
-                else if(patentcount==8)
-                {
-                    if(title9.getText().toString()!=null && appno9.getText().toString()!=null  && inventor9.getText().toString()!=null && url9.getText().toString()!=null && description9.getText().toString()!=null && issue9.getText().toString()!=null )
-                    {
-                        if(!title9.getText().toString().equals("")&& !appno9.getText().toString().equals("")&& !inventor9.getText().toString().equals("") && !url9.getText().toString().equals("") && !description9.getText().toString().equals("") && !issue9.getText().toString().equals("") && !patoffice9.getSelectedItem().toString().equals("- Select Patent Office -"))
-                        {
-                            View v=(View)findViewById(R.id.patentline9);
+                } else if (patentcount == 8) {
+                    if (title9.getText().toString() != null && appno9.getText().toString() != null && inventor9.getText().toString() != null && (issue9.getText().toString() != null || filing9.getText().toString() != null)) {
+                        if (!title9.getText().toString().equals("") && !appno9.getText().toString().equals("") && !inventor9.getText().toString().equals("") &&  (!issue9.getText().toString().equals("") || !filing9.getText().toString().equals("")) && !patoffice9.getSelectedItem().toString().equals("- Select Patent Office -")) {
+                            View v = (View) findViewById(R.id.patentline9);
                             v.setVisibility(View.VISIBLE);
 
-                            RelativeLayout relativeLayout1=(RelativeLayout)findViewById(R.id.patentrl10);
+                            RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.patentrl10);
                             relativeLayout1.setVisibility(View.VISIBLE);
                             patentcount++;
 
 
-
-
-                            TextView t=(TextView)findViewById(R.id.addmorepatenttxt);
-                            ImageView i=(ImageView)findViewById(R.id.addmorepatentimg);
+                            TextView t = (TextView) findViewById(R.id.addmorepatenttxt);
+                            ImageView i = (ImageView) findViewById(R.id.addmorepatentimg);
                             addmorepatent.setVisibility(View.GONE);
                             t.setVisibility(View.GONE);
                             i.setVisibility(View.GONE);
-                        }
-                        else
-                        {
+                        } else {
                             Toast.makeText(MyProfilePatents.this, "Please fill the Nineth Honors", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                    else
+                    } else
                         Toast.makeText(MyProfilePatents.this, "Please fill the Nineth Honors", Toast.LENGTH_SHORT).show();
-
-
-
 
 
                 }
 
             }
         });
-        ScrollView myprofileintroscrollview=(ScrollView)findViewById(R.id.myprofilepatents);
+        ScrollView myprofileintroscrollview = (ScrollView) findViewById(R.id.myprofilepatents);
         disableScrollbars(myprofileintroscrollview);
 
 
+        stitle1 = s.getPtitle1();
+        sappno1 = s.getPappno1();
+        sinventor1 = s.getPinventor1();
+        sissue1 = s.getPissue1();
+        sfiling1 = s.getPfiling1();
+        surl1 = s.getPurl1();
+        sdescription1 = s.getPdescription1();
+        selectedCountry1 = s.getPselectedcountry1();
+        if (s.getIssuedorpending1() != null)
+            issuedorpending1 = s.getIssuedorpending1();
+        stitle2 = s.getPtitle2();
+        sappno2 = s.getPappno2();
+        sinventor2 = s.getPinventor2();
+        sissue2 = s.getPissue2();
+        sfiling2 = s.getPfiling2();
+        surl2 = s.getPurl2();
+        sdescription2 = s.getPdescription2();
+        selectedCountry2 = s.getPselectedcountry2();
+        if (s.getIssuedorpending2() != null)
+            issuedorpending2 = s.getIssuedorpending2();
+        stitle3 = s.getPtitle3();
+        sappno3 = s.getPappno3();
+        sinventor3 = s.getPinventor3();
+        sissue3 = s.getPissue3();
+        sfiling3 = s.getPfiling3();
+        surl3 = s.getPurl3();
+        sdescription3 = s.getPdescription3();
+        selectedCountry3 = s.getPselectedcountry3();
+        if (s.getIssuedorpending3() != null)
+            issuedorpending3 = s.getIssuedorpending3();
+        stitle4 = s.getPtitle4();
+        sappno4 = s.getPappno4();
+        sinventor4 = s.getPinventor4();
+        sissue4 = s.getPissue4();
+        sfiling4 = s.getPfiling4();
+        surl4 = s.getPurl4();
+        sdescription4 = s.getPdescription4();
+        selectedCountry4 = s.getPselectedcountry4();
+        if (s.getIssuedorpending4() != null)
+            issuedorpending4 = s.getIssuedorpending4();
+        stitle5 = s.getPtitle5();
+        sappno5 = s.getPappno5();
+        sinventor5 = s.getPinventor5();
+        sissue5 = s.getPissue5();
+        sfiling5 = s.getPfiling5();
+        surl5 = s.getPurl5();
+        sdescription5 = s.getPdescription5();
+        selectedCountry5 = s.getPselectedcountry5();
+        if (s.getIssuedorpending5() != null)
+            issuedorpending5 = s.getIssuedorpending5();
+        stitle6 = s.getPtitle6();
+        sappno6 = s.getPappno6();
+        sinventor6 = s.getPinventor6();
+        sissue6 = s.getPissue6();
+        sfiling6 = s.getPfiling6();
+        surl6 = s.getPurl6();
+        sdescription6 = s.getPdescription6();
+        selectedCountry6 = s.getPselectedcountry6();
+        if (s.getIssuedorpending6() != null)
+            issuedorpending6 = s.getIssuedorpending6();
+        stitle7 = s.getPtitle7();
+        sappno7 = s.getPappno7();
+        sinventor7 = s.getPinventor7();
+        sissue7 = s.getPissue7();
+        sfiling7 = s.getPfiling7();
+        surl7 = s.getPurl7();
+        sdescription7 = s.getPdescription7();
+        selectedCountry7 = s.getPselectedcountry7();
+        if (s.getIssuedorpending7() != null)
+            issuedorpending7 = s.getIssuedorpending7();
+        stitle8 = s.getPtitle8();
+        sappno8 = s.getPappno8();
+        sinventor8 = s.getPinventor8();
+        sissue8 = s.getPissue8();
+        sfiling8 = s.getPfiling8();
+        surl8 = s.getPurl8();
+        sdescription8 = s.getPdescription8();
+        selectedCountry8 = s.getPselectedcountry8();
+        if (s.getIssuedorpending8() != null)
+            issuedorpending8 = s.getIssuedorpending8();
+        stitle9 = s.getPtitle9();
+        sappno9 = s.getPappno9();
+        sinventor9 = s.getPinventor9();
+        sissue9 = s.getPissue9();
+        sfiling9 = s.getPfiling9();
+        surl9 = s.getPurl9();
+        sdescription9 = s.getPdescription9();
+        selectedCountry9 = s.getPselectedcountry9();
+        if (s.getIssuedorpending9() != null)
+            issuedorpending9 = s.getIssuedorpending9();
+        stitle10 = s.getPtitle10();
+        sappno10 = s.getPappno10();
+        sinventor10 = s.getPinventor10();
+        sissue10 = s.getPissue10();
+        sfiling10 = s.getPfiling10();
+        surl10 = s.getPurl10();
+        sdescription10 = s.getPdescription10();
+        selectedCountry10 = s.getPselectedcountry10();
+        if (s.getIssuedorpending10() != null)
+            issuedorpending10 = s.getIssuedorpending10();
 
-        stitle1=s.getPtitle1();
-        sappno1=s.getPappno1();
-        sinventor1=s.getPinventor1();
-        sissue1=s.getPissue1();
-        sfiling1=s.getPfiling1();
-        surl1=s.getPurl1();
-        sdescription1=s.getPdescription1();
-        selectedCountry1=s.getPselectedcountry1();
-        if(s.getIssuedorpending1()!=null)
-            issuedorpending1=s.getIssuedorpending1();
-        stitle2=s.getPtitle2();
-        sappno2=s.getPappno2();
-        sinventor2=s.getPinventor2();
-        sissue2=s.getPissue2();
-        sfiling2=s.getPfiling2();
-        surl2=s.getPurl2();
-        sdescription2=s.getPdescription2();
-        selectedCountry2=s.getPselectedcountry2();
-        if(s.getIssuedorpending2()!=null)
-            issuedorpending2=s.getIssuedorpending2();
-        stitle3=s.getPtitle3();
-        sappno3=s.getPappno3();
-        sinventor3=s.getPinventor3();
-        sissue3=s.getPissue3();
-        sfiling3=s.getPfiling3();
-        surl3=s.getPurl3();
-        sdescription3=s.getPdescription3();
-        selectedCountry3=s.getPselectedcountry3();
-        if(s.getIssuedorpending3()!=null)
-            issuedorpending3=s.getIssuedorpending3();
-        stitle4=s.getPtitle4();
-        sappno4=s.getPappno4();
-        sinventor4=s.getPinventor4();
-        sissue4=s.getPissue4();
-        sfiling4=s.getPfiling4();
-        surl4=s.getPurl4();
-        sdescription4=s.getPdescription4();
-        selectedCountry4=s.getPselectedcountry4();
-        if(s.getIssuedorpending4()!=null)
-            issuedorpending4=s.getIssuedorpending4();
-        stitle5=s.getPtitle5();
-        sappno5=s.getPappno5();
-        sinventor5=s.getPinventor5();
-        sissue5=s.getPissue5();
-        sfiling5=s.getPfiling5();
-        surl5=s.getPurl5();
-        sdescription5=s.getPdescription5();
-        selectedCountry5=s.getPselectedcountry5();
-        if(s.getIssuedorpending5()!=null)
-            issuedorpending5=s.getIssuedorpending5();
-        stitle6=s.getPtitle6();
-        sappno6=s.getPappno6();
-        sinventor6=s.getPinventor6();
-        sissue6=s.getPissue6();
-        sfiling6=s.getPfiling6();
-        surl6=s.getPurl6();
-        sdescription6=s.getPdescription6();
-        selectedCountry6=s.getPselectedcountry6();
-        if(s.getIssuedorpending6()!=null)
-            issuedorpending6=s.getIssuedorpending6();
-        stitle7=s.getPtitle7();
-        sappno7=s.getPappno7();
-        sinventor7=s.getPinventor7();
-        sissue7=s.getPissue7();
-        sfiling7=s.getPfiling7();
-        surl7=s.getPurl7();
-        sdescription7=s.getPdescription7();
-        selectedCountry7=s.getPselectedcountry7();
-        if(s.getIssuedorpending7()!=null)
-            issuedorpending7=s.getIssuedorpending7();
-        stitle8=s.getPtitle8();
-        sappno8=s.getPappno8();
-        sinventor8=s.getPinventor8();
-        sissue8=s.getPissue8();
-        sfiling8=s.getPfiling8();
-        surl8=s.getPurl8();
-        sdescription8=s.getPdescription8();
-        selectedCountry8=s.getPselectedcountry8();
-        if(s.getIssuedorpending8()!=null)
-            issuedorpending8=s.getIssuedorpending8();
-        stitle9=s.getPtitle9();
-        sappno9=s.getPappno9();
-        sinventor9=s.getPinventor9();
-        sissue9=s.getPissue9();
-        sfiling9=s.getPfiling9();
-        surl9=s.getPurl9();
-        sdescription9=s.getPdescription9();
-        selectedCountry9=s.getPselectedcountry9();
-        if(s.getIssuedorpending9()!=null)
-            issuedorpending9=s.getIssuedorpending9();
-        stitle10=s.getPtitle10();
-        sappno10=s.getPappno10();
-        sinventor10=s.getPinventor10();
-        sissue10=s.getPissue10();
-        sfiling10=s.getPfiling10();
-        surl10=s.getPurl10();
-        sdescription10=s.getPdescription10();
-        selectedCountry10=s.getPselectedcountry10();
-        if(s.getIssuedorpending10()!=null)
-            issuedorpending10=s.getIssuedorpending10();
-
-        if(stitle1!=null) {
+        if (stitle1 != null) {
             if (stitle1.length() > 2) {
                 title1.setText(stitle1);
                 appno1.setText(sappno1);
@@ -2146,7 +2335,7 @@ public class MyProfilePatents extends AppCompatActivity {
                 }
             }
         }
-        if(stitle2!=null) {
+        if (stitle2 != null) {
             if (stitle2.length() > 2) {
                 title2.setText(stitle2);
                 appno2.setText(sappno2);
@@ -2170,7 +2359,7 @@ public class MyProfilePatents extends AppCompatActivity {
 
             }
         }
-        if(stitle3!=null) {
+        if (stitle3 != null) {
             if (stitle3.length() > 2) {
                 title3.setText(stitle3);
                 appno3.setText(sappno3);
@@ -2193,7 +2382,7 @@ public class MyProfilePatents extends AppCompatActivity {
 
             }
         }
-        if(stitle4!=null) {
+        if (stitle4 != null) {
             if (stitle4.length() > 2) {
                 title4.setText(stitle4);
                 appno4.setText(sappno4);
@@ -2216,7 +2405,7 @@ public class MyProfilePatents extends AppCompatActivity {
 
             }
         }
-        if(stitle5!=null) {
+        if (stitle5 != null) {
             if (stitle5.length() > 2) {
                 title5.setText(stitle5);
                 appno5.setText(sappno5);
@@ -2239,7 +2428,7 @@ public class MyProfilePatents extends AppCompatActivity {
 
             }
         }
-        if(stitle6!=null) {
+        if (stitle6 != null) {
             if (stitle6.length() > 2) {
                 title6.setText(stitle6);
                 appno6.setText(sappno6);
@@ -2262,7 +2451,7 @@ public class MyProfilePatents extends AppCompatActivity {
 
             }
         }
-        if(stitle7!=null) {
+        if (stitle7 != null) {
             if (stitle7.length() > 2) {
                 title7.setText(stitle7);
                 appno7.setText(sappno7);
@@ -2285,7 +2474,7 @@ public class MyProfilePatents extends AppCompatActivity {
 
             }
         }
-        if(stitle8!=null) {
+        if (stitle8 != null) {
             if (stitle8.length() > 2) {
                 title8.setText(stitle8);
                 appno8.setText(sappno8);
@@ -2308,7 +2497,7 @@ public class MyProfilePatents extends AppCompatActivity {
 
             }
         }
-        if(stitle9!=null) {
+        if (stitle9 != null) {
             if (stitle9.length() > 2) {
                 title9.setText(stitle9);
                 appno9.setText(sappno9);
@@ -2331,7 +2520,7 @@ public class MyProfilePatents extends AppCompatActivity {
 
             }
         }
-        if(stitle10!=null) {
+        if (stitle10 != null) {
             if (stitle10.length() > 2) {
                 title10.setText(stitle10);
                 appno10.setText(sappno10);
@@ -2361,10 +2550,10 @@ public class MyProfilePatents extends AppCompatActivity {
             }
         }
 
-        edittedFlag=0;
+        edittedFlag = 0;
     }
-    void showDeletDialog()
-    {
+
+    void showDeletDialog() {
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
@@ -2374,7 +2563,7 @@ public class MyProfilePatents extends AppCompatActivity {
                 .setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                edittedFlag=1;
+                                edittedFlag = 1;
                                 deletePatent();
                             }
                         })
@@ -2399,6 +2588,7 @@ public class MyProfilePatents extends AppCompatActivity {
         alertDialog.show();
 
     }
+
     private void disableScrollbars(ScrollView scrollView) {
         if (scrollView != null) {
 
@@ -2406,8 +2596,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
         }
     }
-    void deletePatent()
-    {
+
+    void deletePatent() {
         View v = (View) findViewById(R.id.patentline9);
 
         if (v.getVisibility() == View.VISIBLE) {
@@ -2415,132 +2605,114 @@ public class MyProfilePatents extends AppCompatActivity {
             View v1 = (View) findViewById(R.id.patentline9);
             v1.setVisibility(View.GONE);
 
-            RelativeLayout relativeLayout=(RelativeLayout)findViewById(R.id.patentrl10);
+            RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.patentrl10);
             relativeLayout.setVisibility(View.GONE);
 
             patentcount--;
 
-            TextView t=(TextView)findViewById(R.id.addmorepatenttxt);
-            ImageView i=(ImageView)findViewById(R.id.addmorepatentimg);
+            TextView t = (TextView) findViewById(R.id.addmorepatenttxt);
+            ImageView i = (ImageView) findViewById(R.id.addmorepatentimg);
             addmorepatent.setVisibility(View.VISIBLE);
             t.setVisibility(View.VISIBLE);
             i.setVisibility(View.VISIBLE);
-        }
-        else
-        {
+        } else {
             v = (View) findViewById(R.id.patentline8);
             if (v.getVisibility() == View.VISIBLE) {
 
                 View v1 = (View) findViewById(R.id.patentline8);
                 v1.setVisibility(View.GONE);
 
-                RelativeLayout relativeLayout=(RelativeLayout)findViewById(R.id.patentrl9);
+                RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.patentrl9);
                 relativeLayout.setVisibility(View.GONE);
 
                 patentcount--;
 
 
-            }
-            else
-            {
+            } else {
                 v = (View) findViewById(R.id.patentline7);
                 if (v.getVisibility() == View.VISIBLE) {
 
                     View v1 = (View) findViewById(R.id.patentline7);
                     v1.setVisibility(View.GONE);
 
-                    RelativeLayout relativeLayout=(RelativeLayout)findViewById(R.id.patentrl8);
+                    RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.patentrl8);
                     relativeLayout.setVisibility(View.GONE);
 
                     patentcount--;
 
-                }
-                else
-                {
+                } else {
                     v = (View) findViewById(R.id.patentline6);
                     if (v.getVisibility() == View.VISIBLE) {
 
                         View v1 = (View) findViewById(R.id.patentline6);
                         v1.setVisibility(View.GONE);
 
-                        RelativeLayout relativeLayout=(RelativeLayout)findViewById(R.id.patentrl7);
+                        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.patentrl7);
                         relativeLayout.setVisibility(View.GONE);
 
                         patentcount--;
 
-                    }
-                    else
-                    {
+                    } else {
                         v = (View) findViewById(R.id.patentline5);
                         if (v.getVisibility() == View.VISIBLE) {
 
                             View v1 = (View) findViewById(R.id.patentline5);
                             v1.setVisibility(View.GONE);
 
-                            RelativeLayout relativeLayout=(RelativeLayout)findViewById(R.id.patentrl6);
+                            RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.patentrl6);
                             relativeLayout.setVisibility(View.GONE);
 
                             patentcount--;
 
-                        }
-                        else
-                        {
+                        } else {
                             v = (View) findViewById(R.id.patentline4);
                             if (v.getVisibility() == View.VISIBLE) {
 
                                 View v1 = (View) findViewById(R.id.patentline4);
                                 v1.setVisibility(View.GONE);
 
-                                RelativeLayout relativeLayout=(RelativeLayout)findViewById(R.id.patentrl5);
+                                RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.patentrl5);
                                 relativeLayout.setVisibility(View.GONE);
 
                                 patentcount--;
 
-                            }
-                            else
-                            {
+                            } else {
                                 v = (View) findViewById(R.id.patentline3);
                                 if (v.getVisibility() == View.VISIBLE) {
 
                                     View v1 = (View) findViewById(R.id.patentline3);
                                     v1.setVisibility(View.GONE);
 
-                                    RelativeLayout relativeLayout=(RelativeLayout)findViewById(R.id.patentrl4);
+                                    RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.patentrl4);
                                     relativeLayout.setVisibility(View.GONE);
 
                                     patentcount--;
 
-                                }
-                                else
-                                {
+                                } else {
                                     v = (View) findViewById(R.id.patentline2);
                                     if (v.getVisibility() == View.VISIBLE) {
 
                                         View v1 = (View) findViewById(R.id.patentline2);
                                         v1.setVisibility(View.GONE);
 
-                                        RelativeLayout relativeLayout=(RelativeLayout)findViewById(R.id.patentrl3);
+                                        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.patentrl3);
                                         relativeLayout.setVisibility(View.GONE);
 
                                         patentcount--;
 
-                                    }
-                                    else
-                                    {
+                                    } else {
                                         v = (View) findViewById(R.id.patentline1);
                                         if (v.getVisibility() == View.VISIBLE) {
 
                                             View v1 = (View) findViewById(R.id.patentline1);
                                             v1.setVisibility(View.GONE);
 
-                                            RelativeLayout relativeLayout=(RelativeLayout)findViewById(R.id.patentrl2);
+                                            RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.patentrl2);
                                             relativeLayout.setVisibility(View.GONE);
 
                                             patentcount--;
 
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             title1.setText("");
                                             appno1.setText("");
                                             patoffice1.setSelection(0);
@@ -2558,8 +2730,7 @@ public class MyProfilePatents extends AppCompatActivity {
                 }
             }
         }
-        if(d==10)
-        {
+        if (d == 10) {
             title10.setText("");
             appno10.setText("");
             patoffice10.setSelection(0);
@@ -2568,27 +2739,25 @@ public class MyProfilePatents extends AppCompatActivity {
             filing10.setText("");
             url10.setText("");
             description10.setText("");
-        }
-        else if(d==9)
-        {
-            stitle10=title10.getText().toString();
-            sappno10=appno10.getText().toString();
-            selectedCountry10=patoffice10.getSelectedItem().toString();
-            sinventor10=inventor10.getText().toString();
-            sissue10=issue10.getText().toString();
-            sfiling10=filing10.getText().toString();
-            surl10=url10.getText().toString();
-            sdescription10=description10.getText().toString();
+        } else if (d == 9) {
+            stitle10 = title10.getText().toString();
+            sappno10 = appno10.getText().toString();
+            selectedCountry10 = patoffice10.getSelectedItem().toString();
+            sinventor10 = inventor10.getText().toString();
+            sissue10 = issue10.getText().toString();
+            sfiling10 = filing10.getText().toString();
+            surl10 = url10.getText().toString();
+            sdescription10 = description10.getText().toString();
 
 
-            stitle9=stitle10;
-            sappno9=sappno10;
-            selectedCountry9=selectedCountry10;
-            sinventor9=sinventor10;
-            sissue9=sissue10;
-            sfiling9=sfiling10;
-            surl9=surl10;
-            sdescription9=sdescription10;
+            stitle9 = stitle10;
+            sappno9 = sappno10;
+            selectedCountry9 = selectedCountry10;
+            sinventor9 = sinventor10;
+            sissue9 = sissue10;
+            sfiling9 = sfiling10;
+            surl9 = surl10;
+            sdescription9 = sdescription10;
 
             title9.setText(stitle9);
             appno9.setText(sappno9);
@@ -2599,7 +2768,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url9.setText(surl9);
             description9.setText(sdescription9);
 
-            if(issuedorpending10.equals("pending"))
+            if (issuedorpending10.equals("pending"))
                 radioButtonPending9.setChecked(true);
             else
                 radioButtonIssued9.setChecked(true);
@@ -2616,38 +2785,34 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending10.setChecked(false);
 
 
+        } else if (d == 8) {
+            stitle10 = title10.getText().toString();
+            sappno10 = appno10.getText().toString();
+            selectedCountry10 = patoffice10.getSelectedItem().toString();
+            sinventor10 = inventor10.getText().toString();
+            sissue10 = issue10.getText().toString();
+            sfiling10 = filing10.getText().toString();
+            surl10 = url10.getText().toString();
+            sdescription10 = description10.getText().toString();
+
+            stitle9 = title9.getText().toString();
+            sappno9 = appno9.getText().toString();
+            selectedCountry9 = patoffice9.getSelectedItem().toString();
+            sinventor9 = inventor9.getText().toString();
+            sissue9 = issue9.getText().toString();
+            sfiling9 = filing9.getText().toString();
+            surl9 = url9.getText().toString();
+            sdescription9 = description9.getText().toString();
 
 
-        }
-        else if(d==8)
-        {
-            stitle10=title10.getText().toString();
-            sappno10=appno10.getText().toString();
-            selectedCountry10=patoffice10.getSelectedItem().toString();
-            sinventor10=inventor10.getText().toString();
-            sissue10=issue10.getText().toString();
-            sfiling10=filing10.getText().toString();
-            surl10=url10.getText().toString();
-            sdescription10=description10.getText().toString();
-
-            stitle9=title9.getText().toString();
-            sappno9=appno9.getText().toString();
-            selectedCountry9=patoffice9.getSelectedItem().toString();
-            sinventor9=inventor9.getText().toString();
-            sissue9=issue9.getText().toString();
-            sfiling9=filing9.getText().toString();
-            surl9=url9.getText().toString();
-            sdescription9=description9.getText().toString();
-
-
-            stitle8=stitle9;
-            sappno8=sappno9;
-            selectedCountry8=selectedCountry9;
-            sinventor8=sinventor9;
-            sissue8=sissue9;
-            sfiling8=sfiling9;
-            surl8=surl9;
-            sdescription8=sdescription9;
+            stitle8 = stitle9;
+            sappno8 = sappno9;
+            selectedCountry8 = selectedCountry9;
+            sinventor8 = sinventor9;
+            sissue8 = sissue9;
+            sfiling8 = sfiling9;
+            surl8 = surl9;
+            sdescription8 = sdescription9;
 
             title8.setText(stitle8);
             appno8.setText(sappno8);
@@ -2658,7 +2823,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url8.setText(surl8);
             description8.setText(sdescription8);
 
-            if(issuedorpending9.equals("pending"))
+            if (issuedorpending9.equals("pending"))
                 radioButtonPending8.setChecked(true);
             else
                 radioButtonIssued8.setChecked(true);
@@ -2675,16 +2840,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending9.setChecked(false);
 
 
-
-
-            stitle9=stitle10;
-            sappno9=sappno10;
-            selectedCountry9=selectedCountry10;
-            sinventor9=sinventor10;
-            sissue9=sissue10;
-            sfiling9=sfiling10;
-            surl9=surl10;
-            sdescription9=sdescription10;
+            stitle9 = stitle10;
+            sappno9 = sappno10;
+            selectedCountry9 = selectedCountry10;
+            sinventor9 = sinventor10;
+            sissue9 = sissue10;
+            sfiling9 = sfiling10;
+            surl9 = surl10;
+            sdescription9 = sdescription10;
 
 
             title9.setText(stitle9);
@@ -2696,7 +2859,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url9.setText(surl9);
             description9.setText(sdescription9);
 
-            if(issuedorpending10.equals("pending"))
+            if (issuedorpending10.equals("pending"))
                 radioButtonPending9.setChecked(true);
             else
                 radioButtonIssued9.setChecked(true);
@@ -2713,43 +2876,40 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending10.setChecked(false);
 
 
+        } else if (d == 7) {
+            stitle10 = title10.getText().toString();
+            sappno10 = appno10.getText().toString();
+            selectedCountry10 = patoffice10.getSelectedItem().toString();
+            sinventor10 = inventor10.getText().toString();
+            sissue10 = issue10.getText().toString();
+            sfiling10 = filing10.getText().toString();
+            surl10 = url10.getText().toString();
+            sdescription10 = description10.getText().toString();
+            stitle9 = title9.getText().toString();
+            sappno9 = appno9.getText().toString();
+            selectedCountry9 = patoffice9.getSelectedItem().toString();
+            sinventor9 = inventor9.getText().toString();
+            sissue9 = issue9.getText().toString();
+            sfiling9 = filing9.getText().toString();
+            surl9 = url9.getText().toString();
+            sdescription9 = description9.getText().toString();
+            stitle8 = title8.getText().toString();
+            sappno8 = appno8.getText().toString();
+            selectedCountry8 = patoffice8.getSelectedItem().toString();
+            sinventor8 = inventor8.getText().toString();
+            sissue8 = issue8.getText().toString();
+            sfiling8 = filing8.getText().toString();
+            surl8 = url8.getText().toString();
+            sdescription8 = description8.getText().toString();
 
-        }
-        else if(d==7)
-        {
-            stitle10=title10.getText().toString();
-            sappno10=appno10.getText().toString();
-            selectedCountry10=patoffice10.getSelectedItem().toString();
-            sinventor10=inventor10.getText().toString();
-            sissue10=issue10.getText().toString();
-            sfiling10=filing10.getText().toString();
-            surl10=url10.getText().toString();
-            sdescription10=description10.getText().toString();
-            stitle9=title9.getText().toString();
-            sappno9=appno9.getText().toString();
-            selectedCountry9=patoffice9.getSelectedItem().toString();
-            sinventor9=inventor9.getText().toString();
-            sissue9=issue9.getText().toString();
-            sfiling9=filing9.getText().toString();
-            surl9=url9.getText().toString();
-            sdescription9=description9.getText().toString();
-            stitle8=title8.getText().toString();
-            sappno8=appno8.getText().toString();
-            selectedCountry8=patoffice8.getSelectedItem().toString();
-            sinventor8=inventor8.getText().toString();
-            sissue8=issue8.getText().toString();
-            sfiling8=filing8.getText().toString();
-            surl8=url8.getText().toString();
-            sdescription8=description8.getText().toString();
-
-            stitle7=stitle8;
-            sappno7=sappno8;
-            selectedCountry7=selectedCountry8;
-            sinventor7=sinventor8;
-            sissue7=sissue8;
-            sfiling7=sfiling8;
-            surl7=surl8;
-            sdescription7=sdescription8;
+            stitle7 = stitle8;
+            sappno7 = sappno8;
+            selectedCountry7 = selectedCountry8;
+            sinventor7 = sinventor8;
+            sissue7 = sissue8;
+            sfiling7 = sfiling8;
+            surl7 = surl8;
+            sdescription7 = sdescription8;
 
 
             title7.setText(stitle7);
@@ -2761,7 +2921,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url7.setText(surl7);
             description7.setText(sdescription7);
 
-            if(issuedorpending8.equals("pending"))
+            if (issuedorpending8.equals("pending"))
                 radioButtonPending7.setChecked(true);
             else
                 radioButtonIssued7.setChecked(true);
@@ -2778,15 +2938,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending8.setChecked(false);
 
 
-
-            stitle8=stitle9;
-            sappno8=sappno9;
-            selectedCountry8=selectedCountry9;
-            sinventor8=sinventor9;
-            sissue8=sissue9;
-            sfiling8=sfiling9;
-            surl8=surl9;
-            sdescription8=sdescription9;
+            stitle8 = stitle9;
+            sappno8 = sappno9;
+            selectedCountry8 = selectedCountry9;
+            sinventor8 = sinventor9;
+            sissue8 = sissue9;
+            sfiling8 = sfiling9;
+            surl8 = surl9;
+            sdescription8 = sdescription9;
 
             title8.setText(stitle8);
             appno8.setText(sappno8);
@@ -2797,7 +2956,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url8.setText(surl8);
             description8.setText(sdescription8);
 
-            if(issuedorpending9.equals("pending"))
+            if (issuedorpending9.equals("pending"))
                 radioButtonPending8.setChecked(true);
             else
                 radioButtonIssued8.setChecked(true);
@@ -2814,16 +2973,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending9.setChecked(false);
 
 
-
-
-            stitle9=stitle10;
-            sappno9=sappno10;
-            selectedCountry9=selectedCountry10;
-            sinventor9=sinventor10;
-            sissue9=sissue10;
-            sfiling9=sfiling10;
-            surl9=surl10;
-            sdescription9=sdescription10;
+            stitle9 = stitle10;
+            sappno9 = sappno10;
+            selectedCountry9 = selectedCountry10;
+            sinventor9 = sinventor10;
+            sissue9 = sissue10;
+            sfiling9 = sfiling10;
+            surl9 = surl10;
+            sdescription9 = sdescription10;
 
 
             title9.setText(stitle9);
@@ -2835,7 +2992,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url9.setText(surl9);
             description9.setText(sdescription9);
 
-            if(issuedorpending10.equals("pending"))
+            if (issuedorpending10.equals("pending"))
                 radioButtonPending9.setChecked(true);
             else
                 radioButtonIssued9.setChecked(true);
@@ -2852,51 +3009,48 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending10.setChecked(false);
 
 
+        } else if (d == 6) {
+            stitle10 = title10.getText().toString();
+            sappno10 = appno10.getText().toString();
+            selectedCountry10 = patoffice10.getSelectedItem().toString();
+            sinventor10 = inventor10.getText().toString();
+            sissue10 = issue10.getText().toString();
+            sfiling10 = filing10.getText().toString();
+            surl10 = url10.getText().toString();
+            sdescription10 = description10.getText().toString();
+            stitle9 = title9.getText().toString();
+            sappno9 = appno9.getText().toString();
+            selectedCountry9 = patoffice9.getSelectedItem().toString();
+            sinventor9 = inventor9.getText().toString();
+            sissue9 = issue9.getText().toString();
+            sfiling9 = filing9.getText().toString();
+            surl9 = url9.getText().toString();
+            sdescription9 = description9.getText().toString();
+            stitle8 = title8.getText().toString();
+            sappno8 = appno8.getText().toString();
+            selectedCountry8 = patoffice8.getSelectedItem().toString();
+            sinventor8 = inventor8.getText().toString();
+            sissue8 = issue8.getText().toString();
+            sfiling8 = filing8.getText().toString();
+            surl8 = url8.getText().toString();
+            sdescription8 = description8.getText().toString();
+            stitle7 = title7.getText().toString();
+            sappno7 = appno7.getText().toString();
+            selectedCountry7 = patoffice7.getSelectedItem().toString();
+            sinventor7 = inventor7.getText().toString();
+            sissue7 = issue7.getText().toString();
+            sfiling7 = filing7.getText().toString();
+            surl7 = url7.getText().toString();
+            sdescription7 = description7.getText().toString();
 
-        }
-        else if(d==6)
-        {
-            stitle10=title10.getText().toString();
-            sappno10=appno10.getText().toString();
-            selectedCountry10=patoffice10.getSelectedItem().toString();
-            sinventor10=inventor10.getText().toString();
-            sissue10=issue10.getText().toString();
-            sfiling10=filing10.getText().toString();
-            surl10=url10.getText().toString();
-            sdescription10=description10.getText().toString();
-            stitle9=title9.getText().toString();
-            sappno9=appno9.getText().toString();
-            selectedCountry9=patoffice9.getSelectedItem().toString();
-            sinventor9=inventor9.getText().toString();
-            sissue9=issue9.getText().toString();
-            sfiling9=filing9.getText().toString();
-            surl9=url9.getText().toString();
-            sdescription9=description9.getText().toString();
-            stitle8=title8.getText().toString();
-            sappno8=appno8.getText().toString();
-            selectedCountry8=patoffice8.getSelectedItem().toString();
-            sinventor8=inventor8.getText().toString();
-            sissue8=issue8.getText().toString();
-            sfiling8=filing8.getText().toString();
-            surl8=url8.getText().toString();
-            sdescription8=description8.getText().toString();
-            stitle7=title7.getText().toString();
-            sappno7=appno7.getText().toString();
-            selectedCountry7=patoffice7.getSelectedItem().toString();
-            sinventor7=inventor7.getText().toString();
-            sissue7=issue7.getText().toString();
-            sfiling7=filing7.getText().toString();
-            surl7=url7.getText().toString();
-            sdescription7=description7.getText().toString();
-
-            stitle6=stitle7;
-            sappno6=sappno7;
-            selectedCountry6=selectedCountry7;
-            sinventor6=sinventor7;
-            sissue6=sissue7;
-            sfiling6=sfiling7;
-            surl6=surl7;
-            sdescription6=sdescription7;
+            stitle6 = stitle7;
+            sappno6 = sappno7;
+            selectedCountry6 = selectedCountry7;
+            sinventor6 = sinventor7;
+            sissue6 = sissue7;
+            sfiling6 = sfiling7;
+            surl6 = surl7;
+            sdescription6 = sdescription7;
 
 
             title6.setText(stitle6);
@@ -2908,7 +3062,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url6.setText(surl6);
             description6.setText(sdescription6);
 
-            if(issuedorpending7.equals("pending"))
+            if (issuedorpending7.equals("pending"))
                 radioButtonPending6.setChecked(true);
             else
                 radioButtonIssued6.setChecked(true);
@@ -2925,14 +3079,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending7.setChecked(false);
 
 
-            stitle7=stitle8;
-            sappno7=sappno8;
-            selectedCountry7=selectedCountry8;
-            sinventor7=sinventor8;
-            sissue7=sissue8;
-            sfiling7=sfiling8;
-            surl7=surl8;
-            sdescription7=sdescription8;
+            stitle7 = stitle8;
+            sappno7 = sappno8;
+            selectedCountry7 = selectedCountry8;
+            sinventor7 = sinventor8;
+            sissue7 = sissue8;
+            sfiling7 = sfiling8;
+            surl7 = surl8;
+            sdescription7 = sdescription8;
 
             title7.setText(stitle7);
             appno7.setText(sappno7);
@@ -2943,7 +3097,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url7.setText(surl7);
             description7.setText(sdescription7);
 
-            if(issuedorpending8.equals("pending"))
+            if (issuedorpending8.equals("pending"))
                 radioButtonPending7.setChecked(true);
             else
                 radioButtonIssued7.setChecked(true);
@@ -2960,16 +3114,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending8.setChecked(false);
 
 
-
-
-            stitle8=stitle9;
-            sappno8=sappno9;
-            selectedCountry8=selectedCountry9;
-            sinventor8=sinventor9;
-            sissue8=sissue9;
-            sfiling8=sfiling9;
-            surl8=surl9;
-            sdescription8=sdescription9;
+            stitle8 = stitle9;
+            sappno8 = sappno9;
+            selectedCountry8 = selectedCountry9;
+            sinventor8 = sinventor9;
+            sissue8 = sissue9;
+            sfiling8 = sfiling9;
+            surl8 = surl9;
+            sdescription8 = sdescription9;
 
 
             title8.setText(stitle8);
@@ -2981,7 +3133,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url8.setText(surl8);
             description8.setText(sdescription8);
 
-            if(issuedorpending9.equals("pending"))
+            if (issuedorpending9.equals("pending"))
                 radioButtonPending8.setChecked(true);
             else
                 radioButtonIssued8.setChecked(true);
@@ -2998,14 +3150,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending9.setChecked(false);
 
 
-            stitle9=stitle10;
-            sappno9=sappno10;
-            selectedCountry9=selectedCountry10;
-            sinventor9=sinventor10;
-            sissue9=sissue10;
-            sfiling9=sfiling10;
-            surl9=surl10;
-            sdescription9=sdescription10;
+            stitle9 = stitle10;
+            sappno9 = sappno10;
+            selectedCountry9 = selectedCountry10;
+            sinventor9 = sinventor10;
+            sissue9 = sissue10;
+            sfiling9 = sfiling10;
+            surl9 = surl10;
+            sdescription9 = sdescription10;
 
 
             title9.setText(stitle9);
@@ -3017,7 +3169,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url9.setText(surl9);
             description9.setText(sdescription9);
 
-            if(issuedorpending10.equals("pending"))
+            if (issuedorpending10.equals("pending"))
                 radioButtonPending9.setChecked(true);
             else
                 radioButtonIssued9.setChecked(true);
@@ -3034,60 +3186,57 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending10.setChecked(false);
 
 
-
-        }
-        else if(d==5)
-        {
-            stitle10=title10.getText().toString();
-            sappno10=appno10.getText().toString();
-            selectedCountry10=patoffice10.getSelectedItem().toString();
-            sinventor10=inventor10.getText().toString();
-            sissue10=issue10.getText().toString();
-            sfiling10=filing10.getText().toString();
-            surl10=url10.getText().toString();
-            sdescription10=description10.getText().toString();
-            stitle9=title9.getText().toString();
-            sappno9=appno9.getText().toString();
-            selectedCountry9=patoffice9.getSelectedItem().toString();
-            sinventor9=inventor9.getText().toString();
-            sissue9=issue9.getText().toString();
-            sfiling9=filing9.getText().toString();
-            surl9=url9.getText().toString();
-            sdescription9=description9.getText().toString();
-            stitle8=title8.getText().toString();
-            sappno8=appno8.getText().toString();
-            selectedCountry8=patoffice8.getSelectedItem().toString();
-            sinventor8=inventor8.getText().toString();
-            sissue8=issue8.getText().toString();
-            sfiling8=filing8.getText().toString();
-            surl8=url8.getText().toString();
-            sdescription8=description8.getText().toString();
-            stitle7=title7.getText().toString();
-            sappno7=appno7.getText().toString();
-            selectedCountry7=patoffice7.getSelectedItem().toString();
-            sinventor7=inventor7.getText().toString();
-            sissue7=issue7.getText().toString();
-            sfiling7=filing7.getText().toString();
-            surl7=url7.getText().toString();
-            sdescription7=description7.getText().toString();
-            stitle6=title6.getText().toString();
-            sappno6=appno6.getText().toString();
-            selectedCountry6=patoffice6.getSelectedItem().toString();
-            sinventor6=inventor6.getText().toString();
-            sissue6=issue6.getText().toString();
-            sfiling6=filing6.getText().toString();
-            surl6=url6.getText().toString();
-            sdescription6=description6.getText().toString();
+        } else if (d == 5) {
+            stitle10 = title10.getText().toString();
+            sappno10 = appno10.getText().toString();
+            selectedCountry10 = patoffice10.getSelectedItem().toString();
+            sinventor10 = inventor10.getText().toString();
+            sissue10 = issue10.getText().toString();
+            sfiling10 = filing10.getText().toString();
+            surl10 = url10.getText().toString();
+            sdescription10 = description10.getText().toString();
+            stitle9 = title9.getText().toString();
+            sappno9 = appno9.getText().toString();
+            selectedCountry9 = patoffice9.getSelectedItem().toString();
+            sinventor9 = inventor9.getText().toString();
+            sissue9 = issue9.getText().toString();
+            sfiling9 = filing9.getText().toString();
+            surl9 = url9.getText().toString();
+            sdescription9 = description9.getText().toString();
+            stitle8 = title8.getText().toString();
+            sappno8 = appno8.getText().toString();
+            selectedCountry8 = patoffice8.getSelectedItem().toString();
+            sinventor8 = inventor8.getText().toString();
+            sissue8 = issue8.getText().toString();
+            sfiling8 = filing8.getText().toString();
+            surl8 = url8.getText().toString();
+            sdescription8 = description8.getText().toString();
+            stitle7 = title7.getText().toString();
+            sappno7 = appno7.getText().toString();
+            selectedCountry7 = patoffice7.getSelectedItem().toString();
+            sinventor7 = inventor7.getText().toString();
+            sissue7 = issue7.getText().toString();
+            sfiling7 = filing7.getText().toString();
+            surl7 = url7.getText().toString();
+            sdescription7 = description7.getText().toString();
+            stitle6 = title6.getText().toString();
+            sappno6 = appno6.getText().toString();
+            selectedCountry6 = patoffice6.getSelectedItem().toString();
+            sinventor6 = inventor6.getText().toString();
+            sissue6 = issue6.getText().toString();
+            sfiling6 = filing6.getText().toString();
+            surl6 = url6.getText().toString();
+            sdescription6 = description6.getText().toString();
 
 
-            stitle5=stitle6;
-            sappno5=sappno6;
-            selectedCountry5=selectedCountry6;
-            sinventor5=sinventor6;
-            sissue5=sissue6;
-            sfiling5=sfiling6;
-            surl5=surl6;
-            sdescription5=sdescription6;
+            stitle5 = stitle6;
+            sappno5 = sappno6;
+            selectedCountry5 = selectedCountry6;
+            sinventor5 = sinventor6;
+            sissue5 = sissue6;
+            sfiling5 = sfiling6;
+            surl5 = surl6;
+            sdescription5 = sdescription6;
 
 
             title5.setText(stitle5);
@@ -3099,7 +3248,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url5.setText(surl5);
             description5.setText(sdescription5);
 
-            if(issuedorpending6.equals("pending"))
+            if (issuedorpending6.equals("pending"))
                 radioButtonPending5.setChecked(true);
             else
                 radioButtonIssued5.setChecked(true);
@@ -3116,15 +3265,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending6.setChecked(false);
 
 
-
-            stitle6=stitle7;
-            sappno6=sappno7;
-            selectedCountry6=selectedCountry7;
-            sinventor6=sinventor7;
-            sissue6=sissue7;
-            sfiling6=sfiling7;
-            surl6=surl7;
-            sdescription6=sdescription7;
+            stitle6 = stitle7;
+            sappno6 = sappno7;
+            selectedCountry6 = selectedCountry7;
+            sinventor6 = sinventor7;
+            sissue6 = sissue7;
+            sfiling6 = sfiling7;
+            surl6 = surl7;
+            sdescription6 = sdescription7;
 
             title6.setText(stitle6);
             appno6.setText(sappno6);
@@ -3135,7 +3283,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url6.setText(surl6);
             description6.setText(sdescription6);
 
-            if(issuedorpending7.equals("pending"))
+            if (issuedorpending7.equals("pending"))
                 radioButtonPending6.setChecked(true);
             else
                 radioButtonIssued6.setChecked(true);
@@ -3152,15 +3300,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending7.setChecked(false);
 
 
-
-            stitle7=stitle8;
-            sappno7=sappno8;
-            selectedCountry7=selectedCountry8;
-            sinventor7=sinventor8;
-            sissue7=sissue8;
-            sfiling7=sfiling8;
-            surl7=surl8;
-            sdescription7=sdescription8;
+            stitle7 = stitle8;
+            sappno7 = sappno8;
+            selectedCountry7 = selectedCountry8;
+            sinventor7 = sinventor8;
+            sissue7 = sissue8;
+            sfiling7 = sfiling8;
+            surl7 = surl8;
+            sdescription7 = sdescription8;
 
             title7.setText(stitle7);
             appno7.setText(sappno7);
@@ -3171,7 +3318,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url7.setText(surl7);
             description7.setText(sdescription7);
 
-            if(issuedorpending8.equals("pending"))
+            if (issuedorpending8.equals("pending"))
                 radioButtonPending7.setChecked(true);
             else
                 radioButtonIssued7.setChecked(true);
@@ -3188,16 +3335,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending8.setChecked(false);
 
 
-
-
-            stitle8=stitle9;
-            sappno8=sappno9;
-            selectedCountry8=selectedCountry9;
-            sinventor8=sinventor9;
-            sissue8=sissue9;
-            sfiling8=sfiling9;
-            surl8=surl9;
-            sdescription8=sdescription9;
+            stitle8 = stitle9;
+            sappno8 = sappno9;
+            selectedCountry8 = selectedCountry9;
+            sinventor8 = sinventor9;
+            sissue8 = sissue9;
+            sfiling8 = sfiling9;
+            surl8 = surl9;
+            sdescription8 = sdescription9;
 
             title8.setText(stitle8);
             appno8.setText(sappno8);
@@ -3208,7 +3353,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url8.setText(surl8);
             description8.setText(sdescription8);
 
-            if(issuedorpending9.equals("pending"))
+            if (issuedorpending9.equals("pending"))
                 radioButtonPending8.setChecked(true);
             else
                 radioButtonIssued8.setChecked(true);
@@ -3225,15 +3370,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending9.setChecked(false);
 
 
-
-            stitle9=stitle10;
-            sappno9=sappno10;
-            selectedCountry9=selectedCountry10;
-            sinventor9=sinventor10;
-            sissue9=sissue10;
-            sfiling9=sfiling10;
-            surl9=surl10;
-            sdescription9=sdescription10;
+            stitle9 = stitle10;
+            sappno9 = sappno10;
+            selectedCountry9 = selectedCountry10;
+            sinventor9 = sinventor10;
+            sissue9 = sissue10;
+            sfiling9 = sfiling10;
+            surl9 = surl10;
+            sdescription9 = sdescription10;
 
             title9.setText(stitle9);
             appno9.setText(sappno9);
@@ -3244,7 +3388,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url9.setText(surl9);
             description9.setText(sdescription9);
 
-            if(issuedorpending10.equals("pending"))
+            if (issuedorpending10.equals("pending"))
                 radioButtonPending9.setChecked(true);
             else
                 radioButtonIssued9.setChecked(true);
@@ -3261,68 +3405,64 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending10.setChecked(false);
 
 
+        } else if (d == 4) {
+            stitle10 = title10.getText().toString();
+            sappno10 = appno10.getText().toString();
+            selectedCountry10 = patoffice10.getSelectedItem().toString();
+            sinventor10 = inventor10.getText().toString();
+            sissue10 = issue10.getText().toString();
+            sfiling10 = filing10.getText().toString();
+            surl10 = url10.getText().toString();
+            sdescription10 = description10.getText().toString();
+            stitle9 = title9.getText().toString();
+            sappno9 = appno9.getText().toString();
+            selectedCountry9 = patoffice9.getSelectedItem().toString();
+            sinventor9 = inventor9.getText().toString();
+            sissue9 = issue9.getText().toString();
+            sfiling9 = filing9.getText().toString();
+            surl9 = url9.getText().toString();
+            sdescription9 = description9.getText().toString();
+            stitle8 = title8.getText().toString();
+            sappno8 = appno8.getText().toString();
+            selectedCountry8 = patoffice8.getSelectedItem().toString();
+            sinventor8 = inventor8.getText().toString();
+            sissue8 = issue8.getText().toString();
+            sfiling8 = filing8.getText().toString();
+            surl8 = url8.getText().toString();
+            sdescription8 = description8.getText().toString();
+            stitle7 = title7.getText().toString();
+            sappno7 = appno7.getText().toString();
+            selectedCountry7 = patoffice7.getSelectedItem().toString();
+            sinventor7 = inventor7.getText().toString();
+            sissue7 = issue7.getText().toString();
+            sfiling7 = filing7.getText().toString();
+            surl7 = url7.getText().toString();
+            sdescription7 = description7.getText().toString();
+            stitle6 = title6.getText().toString();
+            sappno6 = appno6.getText().toString();
+            selectedCountry6 = patoffice6.getSelectedItem().toString();
+            sinventor6 = inventor6.getText().toString();
+            sissue6 = issue6.getText().toString();
+            sfiling6 = filing6.getText().toString();
+            surl6 = url6.getText().toString();
+            sdescription6 = description6.getText().toString();
+            stitle5 = title5.getText().toString();
+            sappno5 = appno5.getText().toString();
+            selectedCountry5 = patoffice5.getSelectedItem().toString();
+            sinventor5 = inventor5.getText().toString();
+            sissue5 = issue5.getText().toString();
+            sfiling5 = filing5.getText().toString();
+            surl5 = url5.getText().toString();
+            sdescription5 = description5.getText().toString();
 
-
-        }
-        else if(d==4)
-        {
-            stitle10=title10.getText().toString();
-            sappno10=appno10.getText().toString();
-            selectedCountry10=patoffice10.getSelectedItem().toString();
-            sinventor10=inventor10.getText().toString();
-            sissue10=issue10.getText().toString();
-            sfiling10=filing10.getText().toString();
-            surl10=url10.getText().toString();
-            sdescription10=description10.getText().toString();
-            stitle9=title9.getText().toString();
-            sappno9=appno9.getText().toString();
-            selectedCountry9=patoffice9.getSelectedItem().toString();
-            sinventor9=inventor9.getText().toString();
-            sissue9=issue9.getText().toString();
-            sfiling9=filing9.getText().toString();
-            surl9=url9.getText().toString();
-            sdescription9=description9.getText().toString();
-            stitle8=title8.getText().toString();
-            sappno8=appno8.getText().toString();
-            selectedCountry8=patoffice8.getSelectedItem().toString();
-            sinventor8=inventor8.getText().toString();
-            sissue8=issue8.getText().toString();
-            sfiling8=filing8.getText().toString();
-            surl8=url8.getText().toString();
-            sdescription8=description8.getText().toString();
-            stitle7=title7.getText().toString();
-            sappno7=appno7.getText().toString();
-            selectedCountry7=patoffice7.getSelectedItem().toString();
-            sinventor7=inventor7.getText().toString();
-            sissue7=issue7.getText().toString();
-            sfiling7=filing7.getText().toString();
-            surl7=url7.getText().toString();
-            sdescription7=description7.getText().toString();
-            stitle6=title6.getText().toString();
-            sappno6=appno6.getText().toString();
-            selectedCountry6=patoffice6.getSelectedItem().toString();
-            sinventor6=inventor6.getText().toString();
-            sissue6=issue6.getText().toString();
-            sfiling6=filing6.getText().toString();
-            surl6=url6.getText().toString();
-            sdescription6=description6.getText().toString();
-            stitle5=title5.getText().toString();
-            sappno5=appno5.getText().toString();
-            selectedCountry5=patoffice5.getSelectedItem().toString();
-            sinventor5=inventor5.getText().toString();
-            sissue5=issue5.getText().toString();
-            sfiling5=filing5.getText().toString();
-            surl5=url5.getText().toString();
-            sdescription5=description5.getText().toString();
-
-            stitle4=stitle5;
-            sappno4=sappno5;
-            selectedCountry4=selectedCountry5;
-            sinventor4=sinventor5;
-            sissue4=sissue5;
-            sfiling4=sfiling5;
-            surl4=surl5;
-            sdescription4=sdescription5;
+            stitle4 = stitle5;
+            sappno4 = sappno5;
+            selectedCountry4 = selectedCountry5;
+            sinventor4 = sinventor5;
+            sissue4 = sissue5;
+            sfiling4 = sfiling5;
+            surl4 = surl5;
+            sdescription4 = sdescription5;
 
             title4.setText(stitle4);
             appno4.setText(sappno4);
@@ -3333,7 +3473,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url4.setText(surl4);
             description4.setText(sdescription4);
 
-            if(issuedorpending5.equals("pending"))
+            if (issuedorpending5.equals("pending"))
                 radioButtonPending4.setChecked(true);
             else
                 radioButtonIssued4.setChecked(true);
@@ -3350,16 +3490,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending5.setChecked(false);
 
 
-
-
-            stitle5=stitle6;
-            sappno5=sappno6;
-            selectedCountry5=selectedCountry6;
-            sinventor5=sinventor6;
-            sissue5=sissue6;
-            sfiling5=sfiling6;
-            surl5=surl6;
-            sdescription5=sdescription6;
+            stitle5 = stitle6;
+            sappno5 = sappno6;
+            selectedCountry5 = selectedCountry6;
+            sinventor5 = sinventor6;
+            sissue5 = sissue6;
+            sfiling5 = sfiling6;
+            surl5 = surl6;
+            sdescription5 = sdescription6;
 
 
             title5.setText(stitle5);
@@ -3371,7 +3509,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url5.setText(surl5);
             description5.setText(sdescription5);
 
-            if(issuedorpending6.equals("pending"))
+            if (issuedorpending6.equals("pending"))
                 radioButtonPending5.setChecked(true);
             else
                 radioButtonIssued5.setChecked(true);
@@ -3388,15 +3526,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending6.setChecked(false);
 
 
-
-            stitle6=stitle7;
-            sappno6=sappno7;
-            selectedCountry6=selectedCountry7;
-            sinventor6=sinventor7;
-            sissue6=sissue7;
-            sfiling6=sfiling7;
-            surl6=surl7;
-            sdescription6=sdescription7;
+            stitle6 = stitle7;
+            sappno6 = sappno7;
+            selectedCountry6 = selectedCountry7;
+            sinventor6 = sinventor7;
+            sissue6 = sissue7;
+            sfiling6 = sfiling7;
+            surl6 = surl7;
+            sdescription6 = sdescription7;
 
             title6.setText(stitle6);
             appno6.setText(sappno6);
@@ -3407,7 +3544,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url6.setText(surl6);
             description6.setText(sdescription6);
 
-            if(issuedorpending7.equals("pending"))
+            if (issuedorpending7.equals("pending"))
                 radioButtonPending6.setChecked(true);
             else
                 radioButtonIssued6.setChecked(true);
@@ -3424,16 +3561,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending7.setChecked(false);
 
 
-
-
-            stitle7=stitle8;
-            sappno7=sappno8;
-            selectedCountry7=selectedCountry8;
-            sinventor7=sinventor8;
-            sissue7=sissue8;
-            sfiling7=sfiling8;
-            surl7=surl8;
-            sdescription7=sdescription8;
+            stitle7 = stitle8;
+            sappno7 = sappno8;
+            selectedCountry7 = selectedCountry8;
+            sinventor7 = sinventor8;
+            sissue7 = sissue8;
+            sfiling7 = sfiling8;
+            surl7 = surl8;
+            sdescription7 = sdescription8;
 
             title7.setText(stitle7);
             appno7.setText(sappno7);
@@ -3444,7 +3579,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url7.setText(surl7);
             description7.setText(sdescription7);
 
-            if(issuedorpending8.equals("pending"))
+            if (issuedorpending8.equals("pending"))
                 radioButtonPending7.setChecked(true);
             else
                 radioButtonIssued7.setChecked(true);
@@ -3461,16 +3596,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending8.setChecked(false);
 
 
-
-
-            stitle8=stitle9;
-            sappno8=sappno9;
-            selectedCountry8=selectedCountry9;
-            sinventor8=sinventor9;
-            sissue8=sissue9;
-            sfiling8=sfiling9;
-            surl8=surl9;
-            sdescription8=sdescription9;
+            stitle8 = stitle9;
+            sappno8 = sappno9;
+            selectedCountry8 = selectedCountry9;
+            sinventor8 = sinventor9;
+            sissue8 = sissue9;
+            sfiling8 = sfiling9;
+            surl8 = surl9;
+            sdescription8 = sdescription9;
 
             title8.setText(stitle8);
             appno8.setText(sappno8);
@@ -3481,7 +3614,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url8.setText(surl8);
             description8.setText(sdescription8);
 
-            if(issuedorpending9.equals("pending"))
+            if (issuedorpending9.equals("pending"))
                 radioButtonPending8.setChecked(true);
             else
                 radioButtonIssued8.setChecked(true);
@@ -3498,16 +3631,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending9.setChecked(false);
 
 
-
-
-            stitle9=stitle10;
-            sappno9=sappno10;
-            selectedCountry9=selectedCountry10;
-            sinventor9=sinventor10;
-            sissue9=sissue10;
-            sfiling9=sfiling10;
-            surl9=surl10;
-            sdescription9=sdescription10;
+            stitle9 = stitle10;
+            sappno9 = sappno10;
+            selectedCountry9 = selectedCountry10;
+            sinventor9 = sinventor10;
+            sissue9 = sissue10;
+            sfiling9 = sfiling10;
+            surl9 = surl10;
+            sdescription9 = sdescription10;
 
             title9.setText(stitle9);
             appno9.setText(sappno9);
@@ -3518,7 +3649,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url9.setText(surl9);
             description9.setText(sdescription9);
 
-            if(issuedorpending10.equals("pending"))
+            if (issuedorpending10.equals("pending"))
                 radioButtonPending9.setChecked(true);
             else
                 radioButtonIssued9.setChecked(true);
@@ -3535,77 +3666,73 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending10.setChecked(false);
 
 
+        } else if (d == 3) {
+            stitle10 = title10.getText().toString();
+            sappno10 = appno10.getText().toString();
+            selectedCountry10 = patoffice10.getSelectedItem().toString();
+            sinventor10 = inventor10.getText().toString();
+            sissue10 = issue10.getText().toString();
+            sfiling10 = filing10.getText().toString();
+            surl10 = url10.getText().toString();
+            sdescription10 = description10.getText().toString();
+            stitle9 = title9.getText().toString();
+            sappno9 = appno9.getText().toString();
+            selectedCountry9 = patoffice9.getSelectedItem().toString();
+            sinventor9 = inventor9.getText().toString();
+            sissue9 = issue9.getText().toString();
+            sfiling9 = filing9.getText().toString();
+            surl9 = url9.getText().toString();
+            sdescription9 = description9.getText().toString();
+            stitle8 = title8.getText().toString();
+            sappno8 = appno8.getText().toString();
+            selectedCountry8 = patoffice8.getSelectedItem().toString();
+            sinventor8 = inventor8.getText().toString();
+            sissue8 = issue8.getText().toString();
+            sfiling8 = filing8.getText().toString();
+            surl8 = url8.getText().toString();
+            sdescription8 = description8.getText().toString();
+            stitle7 = title7.getText().toString();
+            sappno7 = appno7.getText().toString();
+            selectedCountry7 = patoffice7.getSelectedItem().toString();
+            sinventor7 = inventor7.getText().toString();
+            sissue7 = issue7.getText().toString();
+            sfiling7 = filing7.getText().toString();
+            surl7 = url7.getText().toString();
+            sdescription7 = description7.getText().toString();
+            stitle6 = title6.getText().toString();
+            sappno6 = appno6.getText().toString();
+            selectedCountry6 = patoffice6.getSelectedItem().toString();
+            sinventor6 = inventor6.getText().toString();
+            sissue6 = issue6.getText().toString();
+            sfiling6 = filing6.getText().toString();
+            surl6 = url6.getText().toString();
+            sdescription6 = description6.getText().toString();
+            stitle5 = title5.getText().toString();
+            sappno5 = appno5.getText().toString();
+            selectedCountry5 = patoffice5.getSelectedItem().toString();
+            sinventor5 = inventor5.getText().toString();
+            sissue5 = issue5.getText().toString();
+            sfiling5 = filing5.getText().toString();
+            surl5 = url5.getText().toString();
+            sdescription5 = description5.getText().toString();
+            stitle4 = title4.getText().toString();
+            sappno4 = appno4.getText().toString();
+            selectedCountry4 = patoffice4.getSelectedItem().toString();
+            sinventor4 = inventor4.getText().toString();
+            sissue4 = issue4.getText().toString();
+            sfiling4 = filing4.getText().toString();
+            surl4 = url4.getText().toString();
+            sdescription4 = description4.getText().toString();
 
 
-        }
-        else if(d==3)
-        {
-            stitle10=title10.getText().toString();
-            sappno10=appno10.getText().toString();
-            selectedCountry10=patoffice10.getSelectedItem().toString();
-            sinventor10=inventor10.getText().toString();
-            sissue10=issue10.getText().toString();
-            sfiling10=filing10.getText().toString();
-            surl10=url10.getText().toString();
-            sdescription10=description10.getText().toString();
-            stitle9=title9.getText().toString();
-            sappno9=appno9.getText().toString();
-            selectedCountry9=patoffice9.getSelectedItem().toString();
-            sinventor9=inventor9.getText().toString();
-            sissue9=issue9.getText().toString();
-            sfiling9=filing9.getText().toString();
-            surl9=url9.getText().toString();
-            sdescription9=description9.getText().toString();
-            stitle8=title8.getText().toString();
-            sappno8=appno8.getText().toString();
-            selectedCountry8=patoffice8.getSelectedItem().toString();
-            sinventor8=inventor8.getText().toString();
-            sissue8=issue8.getText().toString();
-            sfiling8=filing8.getText().toString();
-            surl8=url8.getText().toString();
-            sdescription8=description8.getText().toString();
-            stitle7=title7.getText().toString();
-            sappno7=appno7.getText().toString();
-            selectedCountry7=patoffice7.getSelectedItem().toString();
-            sinventor7=inventor7.getText().toString();
-            sissue7=issue7.getText().toString();
-            sfiling7=filing7.getText().toString();
-            surl7=url7.getText().toString();
-            sdescription7=description7.getText().toString();
-            stitle6=title6.getText().toString();
-            sappno6=appno6.getText().toString();
-            selectedCountry6=patoffice6.getSelectedItem().toString();
-            sinventor6=inventor6.getText().toString();
-            sissue6=issue6.getText().toString();
-            sfiling6=filing6.getText().toString();
-            surl6=url6.getText().toString();
-            sdescription6=description6.getText().toString();
-            stitle5=title5.getText().toString();
-            sappno5=appno5.getText().toString();
-            selectedCountry5=patoffice5.getSelectedItem().toString();
-            sinventor5=inventor5.getText().toString();
-            sissue5=issue5.getText().toString();
-            sfiling5=filing5.getText().toString();
-            surl5=url5.getText().toString();
-            sdescription5=description5.getText().toString();
-            stitle4=title4.getText().toString();
-            sappno4=appno4.getText().toString();
-            selectedCountry4=patoffice4.getSelectedItem().toString();
-            sinventor4=inventor4.getText().toString();
-            sissue4=issue4.getText().toString();
-            sfiling4=filing4.getText().toString();
-            surl4=url4.getText().toString();
-            sdescription4=description4.getText().toString();
-
-
-            stitle3=stitle4;
-            sappno3=sappno4;
-            selectedCountry3=selectedCountry4;
-            sinventor3=sinventor4;
-            sissue3=sissue4;
-            sfiling3=sfiling4;
-            surl3=surl4;
-            sdescription3=sdescription4;
+            stitle3 = stitle4;
+            sappno3 = sappno4;
+            selectedCountry3 = selectedCountry4;
+            sinventor3 = sinventor4;
+            sissue3 = sissue4;
+            sfiling3 = sfiling4;
+            surl3 = surl4;
+            sdescription3 = sdescription4;
 
             title3.setText(stitle3);
             appno3.setText(sappno3);
@@ -3616,7 +3743,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url3.setText(surl3);
             description3.setText(sdescription3);
 
-            if(issuedorpending4.equals("pending"))
+            if (issuedorpending4.equals("pending"))
                 radioButtonPending3.setChecked(true);
             else
                 radioButtonIssued3.setChecked(true);
@@ -3633,16 +3760,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending4.setChecked(false);
 
 
-
-
-            stitle4=stitle5;
-            sappno4=sappno5;
-            selectedCountry4=selectedCountry5;
-            sinventor4=sinventor5;
-            sissue4=sissue5;
-            sfiling4=sfiling5;
-            surl4=surl5;
-            sdescription4=sdescription5;
+            stitle4 = stitle5;
+            sappno4 = sappno5;
+            selectedCountry4 = selectedCountry5;
+            sinventor4 = sinventor5;
+            sissue4 = sissue5;
+            sfiling4 = sfiling5;
+            surl4 = surl5;
+            sdescription4 = sdescription5;
 
 
             title4.setText(stitle4);
@@ -3654,7 +3779,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url4.setText(surl4);
             description4.setText(sdescription4);
 
-            if(issuedorpending5.equals("pending"))
+            if (issuedorpending5.equals("pending"))
                 radioButtonPending4.setChecked(true);
             else
                 radioButtonIssued4.setChecked(true);
@@ -3671,15 +3796,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending5.setChecked(false);
 
 
-
-            stitle5=stitle6;
-            sappno5=sappno6;
-            selectedCountry5=selectedCountry6;
-            sinventor5=sinventor6;
-            sissue5=sissue6;
-            sfiling5=sfiling6;
-            surl5=surl6;
-            sdescription5=sdescription6;
+            stitle5 = stitle6;
+            sappno5 = sappno6;
+            selectedCountry5 = selectedCountry6;
+            sinventor5 = sinventor6;
+            sissue5 = sissue6;
+            sfiling5 = sfiling6;
+            surl5 = surl6;
+            sdescription5 = sdescription6;
 
 
             title5.setText(stitle5);
@@ -3691,7 +3815,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url5.setText(surl5);
             description5.setText(sdescription5);
 
-            if(issuedorpending6.equals("pending"))
+            if (issuedorpending6.equals("pending"))
                 radioButtonPending5.setChecked(true);
             else
                 radioButtonIssued5.setChecked(true);
@@ -3708,15 +3832,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending6.setChecked(false);
 
 
-
-            stitle6=stitle7;
-            sappno6=sappno7;
-            selectedCountry6=selectedCountry7;
-            sinventor6=sinventor7;
-            sissue6=sissue7;
-            sfiling6=sfiling7;
-            surl6=surl7;
-            sdescription6=sdescription7;
+            stitle6 = stitle7;
+            sappno6 = sappno7;
+            selectedCountry6 = selectedCountry7;
+            sinventor6 = sinventor7;
+            sissue6 = sissue7;
+            sfiling6 = sfiling7;
+            surl6 = surl7;
+            sdescription6 = sdescription7;
 
             title6.setText(stitle6);
             appno6.setText(sappno6);
@@ -3727,7 +3850,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url6.setText(surl6);
             description6.setText(sdescription6);
 
-            if(issuedorpending7.equals("pending"))
+            if (issuedorpending7.equals("pending"))
                 radioButtonPending6.setChecked(true);
             else
                 radioButtonIssued6.setChecked(true);
@@ -3744,14 +3867,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending7.setChecked(false);
 
 
-            stitle7=stitle8;
-            sappno7=sappno8;
-            selectedCountry7=selectedCountry8;
-            sinventor7=sinventor8;
-            sissue7=sissue8;
-            sfiling7=sfiling8;
-            surl7=surl8;
-            sdescription7=sdescription8;
+            stitle7 = stitle8;
+            sappno7 = sappno8;
+            selectedCountry7 = selectedCountry8;
+            sinventor7 = sinventor8;
+            sissue7 = sissue8;
+            sfiling7 = sfiling8;
+            surl7 = surl8;
+            sdescription7 = sdescription8;
 
             title7.setText(stitle7);
             appno7.setText(sappno7);
@@ -3762,7 +3885,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url7.setText(surl7);
             description7.setText(sdescription7);
 
-            if(issuedorpending8.equals("pending"))
+            if (issuedorpending8.equals("pending"))
                 radioButtonPending7.setChecked(true);
             else
                 radioButtonIssued7.setChecked(true);
@@ -3779,16 +3902,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending8.setChecked(false);
 
 
-
-
-            stitle8=stitle9;
-            sappno8=sappno9;
-            selectedCountry8=selectedCountry9;
-            sinventor8=sinventor9;
-            sissue8=sissue9;
-            sfiling8=sfiling9;
-            surl8=surl9;
-            sdescription8=sdescription9;
+            stitle8 = stitle9;
+            sappno8 = sappno9;
+            selectedCountry8 = selectedCountry9;
+            sinventor8 = sinventor9;
+            sissue8 = sissue9;
+            sfiling8 = sfiling9;
+            surl8 = surl9;
+            sdescription8 = sdescription9;
 
             title8.setText(stitle8);
             appno8.setText(sappno8);
@@ -3799,7 +3920,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url8.setText(surl8);
             description8.setText(sdescription8);
 
-            if(issuedorpending9.equals("pending"))
+            if (issuedorpending9.equals("pending"))
                 radioButtonPending8.setChecked(true);
             else
                 radioButtonIssued8.setChecked(true);
@@ -3815,14 +3936,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonIssued9.setChecked(true);
             radioButtonPending9.setChecked(false);
 
-            stitle9=stitle10;
-            sappno9=sappno10;
-            selectedCountry9=selectedCountry10;
-            sinventor9=sinventor10;
-            sissue9=sissue10;
-            sfiling9=sfiling10;
-            surl9=surl10;
-            sdescription9=sdescription10;
+            stitle9 = stitle10;
+            sappno9 = sappno10;
+            selectedCountry9 = selectedCountry10;
+            sinventor9 = sinventor10;
+            sissue9 = sissue10;
+            sfiling9 = sfiling10;
+            surl9 = surl10;
+            sdescription9 = sdescription10;
 
             title9.setText(stitle9);
             appno9.setText(sappno9);
@@ -3833,7 +3954,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url9.setText(surl9);
             description9.setText(sdescription9);
 
-            if(issuedorpending10.equals("pending"))
+            if (issuedorpending10.equals("pending"))
                 radioButtonPending9.setChecked(true);
             else
                 radioButtonIssued9.setChecked(true);
@@ -3850,85 +3971,81 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending10.setChecked(false);
 
 
+        } else if (d == 2) {
+            stitle10 = title10.getText().toString();
+            sappno10 = appno10.getText().toString();
+            selectedCountry10 = patoffice10.getSelectedItem().toString();
+            sinventor10 = inventor10.getText().toString();
+            sissue10 = issue10.getText().toString();
+            sfiling10 = filing10.getText().toString();
+            surl10 = url10.getText().toString();
+            sdescription10 = description10.getText().toString();
+            stitle9 = title9.getText().toString();
+            sappno9 = appno9.getText().toString();
+            selectedCountry9 = patoffice9.getSelectedItem().toString();
+            sinventor9 = inventor9.getText().toString();
+            sissue9 = issue9.getText().toString();
+            sfiling9 = filing9.getText().toString();
+            surl9 = url9.getText().toString();
+            sdescription9 = description9.getText().toString();
+            stitle8 = title8.getText().toString();
+            sappno8 = appno8.getText().toString();
+            selectedCountry8 = patoffice8.getSelectedItem().toString();
+            sinventor8 = inventor8.getText().toString();
+            sissue8 = issue8.getText().toString();
+            sfiling8 = filing8.getText().toString();
+            surl8 = url8.getText().toString();
+            sdescription8 = description8.getText().toString();
+            stitle7 = title7.getText().toString();
+            sappno7 = appno7.getText().toString();
+            selectedCountry7 = patoffice7.getSelectedItem().toString();
+            sinventor7 = inventor7.getText().toString();
+            sissue7 = issue7.getText().toString();
+            sfiling7 = filing7.getText().toString();
+            surl7 = url7.getText().toString();
+            sdescription7 = description7.getText().toString();
+            stitle6 = title6.getText().toString();
+            sappno6 = appno6.getText().toString();
+            selectedCountry6 = patoffice6.getSelectedItem().toString();
+            sinventor6 = inventor6.getText().toString();
+            sissue6 = issue6.getText().toString();
+            sfiling6 = filing6.getText().toString();
+            surl6 = url6.getText().toString();
+            sdescription6 = description6.getText().toString();
+            stitle5 = title5.getText().toString();
+            sappno5 = appno5.getText().toString();
+            selectedCountry5 = patoffice5.getSelectedItem().toString();
+            sinventor5 = inventor5.getText().toString();
+            sissue5 = issue5.getText().toString();
+            sfiling5 = filing5.getText().toString();
+            surl5 = url5.getText().toString();
+            sdescription5 = description5.getText().toString();
+            stitle4 = title4.getText().toString();
+            sappno4 = appno4.getText().toString();
+            selectedCountry4 = patoffice4.getSelectedItem().toString();
+            sinventor4 = inventor4.getText().toString();
+            sissue4 = issue4.getText().toString();
+            sfiling4 = filing4.getText().toString();
+            surl4 = url4.getText().toString();
+            sdescription4 = description4.getText().toString();
+            stitle3 = title3.getText().toString();
+            sappno3 = appno3.getText().toString();
+            selectedCountry3 = patoffice3.getSelectedItem().toString();
+            sinventor3 = inventor3.getText().toString();
+            sissue3 = issue3.getText().toString();
+            sfiling3 = filing3.getText().toString();
+            surl3 = url3.getText().toString();
+            sdescription3 = description3.getText().toString();
 
 
-        }
-        else if(d==2)
-        {
-            stitle10=title10.getText().toString();
-            sappno10=appno10.getText().toString();
-            selectedCountry10=patoffice10.getSelectedItem().toString();
-            sinventor10=inventor10.getText().toString();
-            sissue10=issue10.getText().toString();
-            sfiling10=filing10.getText().toString();
-            surl10=url10.getText().toString();
-            sdescription10=description10.getText().toString();
-            stitle9=title9.getText().toString();
-            sappno9=appno9.getText().toString();
-            selectedCountry9=patoffice9.getSelectedItem().toString();
-            sinventor9=inventor9.getText().toString();
-            sissue9=issue9.getText().toString();
-            sfiling9=filing9.getText().toString();
-            surl9=url9.getText().toString();
-            sdescription9=description9.getText().toString();
-            stitle8=title8.getText().toString();
-            sappno8=appno8.getText().toString();
-            selectedCountry8=patoffice8.getSelectedItem().toString();
-            sinventor8=inventor8.getText().toString();
-            sissue8=issue8.getText().toString();
-            sfiling8=filing8.getText().toString();
-            surl8=url8.getText().toString();
-            sdescription8=description8.getText().toString();
-            stitle7=title7.getText().toString();
-            sappno7=appno7.getText().toString();
-            selectedCountry7=patoffice7.getSelectedItem().toString();
-            sinventor7=inventor7.getText().toString();
-            sissue7=issue7.getText().toString();
-            sfiling7=filing7.getText().toString();
-            surl7=url7.getText().toString();
-            sdescription7=description7.getText().toString();
-            stitle6=title6.getText().toString();
-            sappno6=appno6.getText().toString();
-            selectedCountry6=patoffice6.getSelectedItem().toString();
-            sinventor6=inventor6.getText().toString();
-            sissue6=issue6.getText().toString();
-            sfiling6=filing6.getText().toString();
-            surl6=url6.getText().toString();
-            sdescription6=description6.getText().toString();
-            stitle5=title5.getText().toString();
-            sappno5=appno5.getText().toString();
-            selectedCountry5=patoffice5.getSelectedItem().toString();
-            sinventor5=inventor5.getText().toString();
-            sissue5=issue5.getText().toString();
-            sfiling5=filing5.getText().toString();
-            surl5=url5.getText().toString();
-            sdescription5=description5.getText().toString();
-            stitle4=title4.getText().toString();
-            sappno4=appno4.getText().toString();
-            selectedCountry4=patoffice4.getSelectedItem().toString();
-            sinventor4=inventor4.getText().toString();
-            sissue4=issue4.getText().toString();
-            sfiling4=filing4.getText().toString();
-            surl4=url4.getText().toString();
-            sdescription4=description4.getText().toString();
-            stitle3=title3.getText().toString();
-            sappno3=appno3.getText().toString();
-            selectedCountry3=patoffice3.getSelectedItem().toString();
-            sinventor3=inventor3.getText().toString();
-            sissue3=issue3.getText().toString();
-            sfiling3=filing3.getText().toString();
-            surl3=url3.getText().toString();
-            sdescription3=description3.getText().toString();
-
-
-            stitle2=stitle3;
-            sappno2=sappno3;
-            selectedCountry2=selectedCountry3;
-            sinventor2=sinventor3;
-            sissue2=sissue3;
-            sfiling2=sfiling3;
-            surl2=surl3;
-            sdescription2=sdescription3;
+            stitle2 = stitle3;
+            sappno2 = sappno3;
+            selectedCountry2 = selectedCountry3;
+            sinventor2 = sinventor3;
+            sissue2 = sissue3;
+            sfiling2 = sfiling3;
+            surl2 = surl3;
+            sdescription2 = sdescription3;
 
 
             title2.setText(stitle2);
@@ -3940,7 +4057,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url2.setText(surl2);
             description2.setText(sdescription2);
 
-            if(issuedorpending3.equals("pending"))
+            if (issuedorpending3.equals("pending"))
                 radioButtonPending2.setChecked(true);
             else
                 radioButtonIssued2.setChecked(true);
@@ -3957,15 +4074,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending3.setChecked(false);
 
 
-
-            stitle3=stitle4;
-            sappno3=sappno4;
-            selectedCountry3=selectedCountry4;
-            sinventor3=sinventor4;
-            sissue3=sissue4;
-            sfiling3=sfiling4;
-            surl3=surl4;
-            sdescription3=sdescription4;
+            stitle3 = stitle4;
+            sappno3 = sappno4;
+            selectedCountry3 = selectedCountry4;
+            sinventor3 = sinventor4;
+            sissue3 = sissue4;
+            sfiling3 = sfiling4;
+            surl3 = surl4;
+            sdescription3 = sdescription4;
 
             title3.setText(stitle3);
             appno3.setText(sappno3);
@@ -3976,7 +4092,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url3.setText(surl3);
             description3.setText(sdescription3);
 
-            if(issuedorpending4.equals("pending"))
+            if (issuedorpending4.equals("pending"))
                 radioButtonPending3.setChecked(true);
             else
                 radioButtonIssued3.setChecked(true);
@@ -3992,14 +4108,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonIssued4.setChecked(true);
             radioButtonPending4.setChecked(false);
 
-            stitle4=stitle5;
-            sappno4=sappno5;
-            selectedCountry4=selectedCountry5;
-            sinventor4=sinventor5;
-            sissue4=sissue5;
-            sfiling4=sfiling5;
-            surl4=surl5;
-            sdescription4=sdescription5;
+            stitle4 = stitle5;
+            sappno4 = sappno5;
+            selectedCountry4 = selectedCountry5;
+            sinventor4 = sinventor5;
+            sissue4 = sissue5;
+            sfiling4 = sfiling5;
+            surl4 = surl5;
+            sdescription4 = sdescription5;
 
             title4.setText(stitle4);
             appno4.setText(sappno4);
@@ -4010,7 +4126,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url4.setText(surl4);
             description4.setText(sdescription4);
 
-            if(issuedorpending5.equals("pending"))
+            if (issuedorpending5.equals("pending"))
                 radioButtonPending4.setChecked(true);
             else
                 radioButtonIssued4.setChecked(true);
@@ -4027,16 +4143,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending5.setChecked(false);
 
 
-
-
-            stitle5=stitle6;
-            sappno5=sappno6;
-            selectedCountry5=selectedCountry6;
-            sinventor5=sinventor6;
-            sissue5=sissue6;
-            sfiling5=sfiling6;
-            surl5=surl6;
-            sdescription5=sdescription6;
+            stitle5 = stitle6;
+            sappno5 = sappno6;
+            selectedCountry5 = selectedCountry6;
+            sinventor5 = sinventor6;
+            sissue5 = sissue6;
+            sfiling5 = sfiling6;
+            surl5 = surl6;
+            sdescription5 = sdescription6;
 
 
             title5.setText(stitle5);
@@ -4048,7 +4162,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url5.setText(surl5);
             description5.setText(sdescription5);
 
-            if(issuedorpending6.equals("pending"))
+            if (issuedorpending6.equals("pending"))
                 radioButtonPending5.setChecked(true);
             else
                 radioButtonIssued5.setChecked(true);
@@ -4065,15 +4179,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending6.setChecked(false);
 
 
-
-            stitle6=stitle7;
-            sappno6=sappno7;
-            selectedCountry6=selectedCountry7;
-            sinventor6=sinventor7;
-            sissue6=sissue7;
-            sfiling6=sfiling7;
-            surl6=surl7;
-            sdescription6=sdescription7;
+            stitle6 = stitle7;
+            sappno6 = sappno7;
+            selectedCountry6 = selectedCountry7;
+            sinventor6 = sinventor7;
+            sissue6 = sissue7;
+            sfiling6 = sfiling7;
+            surl6 = surl7;
+            sdescription6 = sdescription7;
 
             title6.setText(stitle6);
             appno6.setText(sappno6);
@@ -4084,7 +4197,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url6.setText(surl6);
             description6.setText(sdescription6);
 
-            if(issuedorpending7.equals("pending"))
+            if (issuedorpending7.equals("pending"))
                 radioButtonPending6.setChecked(true);
             else
                 radioButtonIssued6.setChecked(true);
@@ -4101,16 +4214,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending7.setChecked(false);
 
 
-
-
-            stitle7=stitle8;
-            sappno7=sappno8;
-            selectedCountry7=selectedCountry8;
-            sinventor7=sinventor8;
-            sissue7=sissue8;
-            sfiling7=sfiling8;
-            surl7=surl8;
-            sdescription7=sdescription8;
+            stitle7 = stitle8;
+            sappno7 = sappno8;
+            selectedCountry7 = selectedCountry8;
+            sinventor7 = sinventor8;
+            sissue7 = sissue8;
+            sfiling7 = sfiling8;
+            surl7 = surl8;
+            sdescription7 = sdescription8;
 
             title7.setText(stitle7);
             appno7.setText(sappno7);
@@ -4121,7 +4232,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url7.setText(surl7);
             description7.setText(sdescription7);
 
-            if(issuedorpending8.equals("pending"))
+            if (issuedorpending8.equals("pending"))
                 radioButtonPending7.setChecked(true);
             else
                 radioButtonIssued7.setChecked(true);
@@ -4138,16 +4249,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending8.setChecked(false);
 
 
-
-
-            stitle8=stitle9;
-            sappno8=sappno9;
-            selectedCountry8=selectedCountry9;
-            sinventor8=sinventor9;
-            sissue8=sissue9;
-            sfiling8=sfiling9;
-            surl8=surl9;
-            sdescription8=sdescription9;
+            stitle8 = stitle9;
+            sappno8 = sappno9;
+            selectedCountry8 = selectedCountry9;
+            sinventor8 = sinventor9;
+            sissue8 = sissue9;
+            sfiling8 = sfiling9;
+            surl8 = surl9;
+            sdescription8 = sdescription9;
 
             title8.setText(stitle8);
             appno8.setText(sappno8);
@@ -4158,7 +4267,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url8.setText(surl8);
             description8.setText(sdescription8);
 
-            if(issuedorpending9.equals("pending"))
+            if (issuedorpending9.equals("pending"))
                 radioButtonPending8.setChecked(true);
             else
                 radioButtonIssued8.setChecked(true);
@@ -4175,16 +4284,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending9.setChecked(false);
 
 
-
-
-            stitle9=stitle10;
-            sappno9=sappno10;
-            selectedCountry9=selectedCountry10;
-            sinventor9=sinventor10;
-            sissue9=sissue10;
-            sfiling9=sfiling10;
-            surl9=surl10;
-            sdescription9=sdescription10;
+            stitle9 = stitle10;
+            sappno9 = sappno10;
+            selectedCountry9 = selectedCountry10;
+            sinventor9 = sinventor10;
+            sissue9 = sissue10;
+            sfiling9 = sfiling10;
+            surl9 = surl10;
+            sdescription9 = sdescription10;
 
             title9.setText(stitle9);
             appno9.setText(sappno9);
@@ -4195,7 +4302,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url9.setText(surl9);
             description9.setText(sdescription9);
 
-            if(issuedorpending10.equals("pending"))
+            if (issuedorpending10.equals("pending"))
                 radioButtonPending9.setChecked(true);
             else
                 radioButtonIssued9.setChecked(true);
@@ -4212,93 +4319,89 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending10.setChecked(false);
 
 
+        } else if (d == 1) {
+            stitle10 = title10.getText().toString();
+            sappno10 = appno10.getText().toString();
+            selectedCountry10 = patoffice10.getSelectedItem().toString();
+            sinventor10 = inventor10.getText().toString();
+            sissue10 = issue10.getText().toString();
+            sfiling10 = filing10.getText().toString();
+            surl10 = url10.getText().toString();
+            sdescription10 = description10.getText().toString();
+            stitle9 = title9.getText().toString();
+            sappno9 = appno9.getText().toString();
+            selectedCountry9 = patoffice9.getSelectedItem().toString();
+            sinventor9 = inventor9.getText().toString();
+            sissue9 = issue9.getText().toString();
+            sfiling9 = filing9.getText().toString();
+            surl9 = url9.getText().toString();
+            sdescription9 = description9.getText().toString();
+            stitle8 = title8.getText().toString();
+            sappno8 = appno8.getText().toString();
+            selectedCountry8 = patoffice8.getSelectedItem().toString();
+            sinventor8 = inventor8.getText().toString();
+            sissue8 = issue8.getText().toString();
+            sfiling8 = filing8.getText().toString();
+            surl8 = url8.getText().toString();
+            sdescription8 = description8.getText().toString();
+            stitle7 = title7.getText().toString();
+            sappno7 = appno7.getText().toString();
+            selectedCountry7 = patoffice7.getSelectedItem().toString();
+            sinventor7 = inventor7.getText().toString();
+            sissue7 = issue7.getText().toString();
+            sfiling7 = filing7.getText().toString();
+            surl7 = url7.getText().toString();
+            sdescription7 = description7.getText().toString();
+            stitle6 = title6.getText().toString();
+            sappno6 = appno6.getText().toString();
+            selectedCountry6 = patoffice6.getSelectedItem().toString();
+            sinventor6 = inventor6.getText().toString();
+            sissue6 = issue6.getText().toString();
+            sfiling6 = filing6.getText().toString();
+            surl6 = url6.getText().toString();
+            sdescription6 = description6.getText().toString();
+            stitle5 = title5.getText().toString();
+            sappno5 = appno5.getText().toString();
+            selectedCountry5 = patoffice5.getSelectedItem().toString();
+            sinventor5 = inventor5.getText().toString();
+            sissue5 = issue5.getText().toString();
+            sfiling5 = filing5.getText().toString();
+            surl5 = url5.getText().toString();
+            sdescription5 = description5.getText().toString();
+            stitle4 = title4.getText().toString();
+            sappno4 = appno4.getText().toString();
+            selectedCountry4 = patoffice4.getSelectedItem().toString();
+            sinventor4 = inventor4.getText().toString();
+            sissue4 = issue4.getText().toString();
+            sfiling4 = filing4.getText().toString();
+            surl4 = url4.getText().toString();
+            sdescription4 = description4.getText().toString();
+            stitle3 = title3.getText().toString();
+            sappno3 = appno3.getText().toString();
+            selectedCountry3 = patoffice3.getSelectedItem().toString();
+            sinventor3 = inventor3.getText().toString();
+            sissue3 = issue3.getText().toString();
+            sfiling3 = filing3.getText().toString();
+            surl3 = url3.getText().toString();
+            sdescription3 = description3.getText().toString();
+            stitle2 = title2.getText().toString();
+            sappno2 = appno2.getText().toString();
+            selectedCountry2 = patoffice2.getSelectedItem().toString();
+            sinventor2 = inventor2.getText().toString();
+            sissue2 = issue2.getText().toString();
+            sfiling2 = filing2.getText().toString();
+            surl2 = url2.getText().toString();
+            sdescription2 = description2.getText().toString();
 
 
-        }
-        else if(d==1)
-        {
-            stitle10=title10.getText().toString();
-            sappno10=appno10.getText().toString();
-            selectedCountry10=patoffice10.getSelectedItem().toString();
-            sinventor10=inventor10.getText().toString();
-            sissue10=issue10.getText().toString();
-            sfiling10=filing10.getText().toString();
-            surl10=url10.getText().toString();
-            sdescription10=description10.getText().toString();
-            stitle9=title9.getText().toString();
-            sappno9=appno9.getText().toString();
-            selectedCountry9=patoffice9.getSelectedItem().toString();
-            sinventor9=inventor9.getText().toString();
-            sissue9=issue9.getText().toString();
-            sfiling9=filing9.getText().toString();
-            surl9=url9.getText().toString();
-            sdescription9=description9.getText().toString();
-            stitle8=title8.getText().toString();
-            sappno8=appno8.getText().toString();
-            selectedCountry8=patoffice8.getSelectedItem().toString();
-            sinventor8=inventor8.getText().toString();
-            sissue8=issue8.getText().toString();
-            sfiling8=filing8.getText().toString();
-            surl8=url8.getText().toString();
-            sdescription8=description8.getText().toString();
-            stitle7=title7.getText().toString();
-            sappno7=appno7.getText().toString();
-            selectedCountry7=patoffice7.getSelectedItem().toString();
-            sinventor7=inventor7.getText().toString();
-            sissue7=issue7.getText().toString();
-            sfiling7=filing7.getText().toString();
-            surl7=url7.getText().toString();
-            sdescription7=description7.getText().toString();
-            stitle6=title6.getText().toString();
-            sappno6=appno6.getText().toString();
-            selectedCountry6=patoffice6.getSelectedItem().toString();
-            sinventor6=inventor6.getText().toString();
-            sissue6=issue6.getText().toString();
-            sfiling6=filing6.getText().toString();
-            surl6=url6.getText().toString();
-            sdescription6=description6.getText().toString();
-            stitle5=title5.getText().toString();
-            sappno5=appno5.getText().toString();
-            selectedCountry5=patoffice5.getSelectedItem().toString();
-            sinventor5=inventor5.getText().toString();
-            sissue5=issue5.getText().toString();
-            sfiling5=filing5.getText().toString();
-            surl5=url5.getText().toString();
-            sdescription5=description5.getText().toString();
-            stitle4=title4.getText().toString();
-            sappno4=appno4.getText().toString();
-            selectedCountry4=patoffice4.getSelectedItem().toString();
-            sinventor4=inventor4.getText().toString();
-            sissue4=issue4.getText().toString();
-            sfiling4=filing4.getText().toString();
-            surl4=url4.getText().toString();
-            sdescription4=description4.getText().toString();
-            stitle3=title3.getText().toString();
-            sappno3=appno3.getText().toString();
-            selectedCountry3=patoffice3.getSelectedItem().toString();
-            sinventor3=inventor3.getText().toString();
-            sissue3=issue3.getText().toString();
-            sfiling3=filing3.getText().toString();
-            surl3=url3.getText().toString();
-            sdescription3=description3.getText().toString();
-            stitle2=title2.getText().toString();
-            sappno2=appno2.getText().toString();
-            selectedCountry2=patoffice2.getSelectedItem().toString();
-            sinventor2=inventor2.getText().toString();
-            sissue2=issue2.getText().toString();
-            sfiling2=filing2.getText().toString();
-            surl2=url2.getText().toString();
-            sdescription2=description2.getText().toString();
-
-
-            stitle1=stitle2;
-            sappno1=sappno2;
-            selectedCountry1=selectedCountry2;
-            sinventor1=sinventor2;
-            sissue1=sissue2;
-            sfiling1=sfiling2;
-            surl1=surl2;
-            sdescription1=sdescription2;
+            stitle1 = stitle2;
+            sappno1 = sappno2;
+            selectedCountry1 = selectedCountry2;
+            sinventor1 = sinventor2;
+            sissue1 = sissue2;
+            sfiling1 = sfiling2;
+            surl1 = surl2;
+            sdescription1 = sdescription2;
 
 
             title1.setText(stitle1);
@@ -4310,7 +4413,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url1.setText(surl1);
             description1.setText(sdescription1);
 
-            if(issuedorpending2.equals("pending"))
+            if (issuedorpending2.equals("pending"))
                 radioButtonPending1.setChecked(true);
             else
                 radioButtonIssued1.setChecked(true);
@@ -4327,15 +4430,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending2.setChecked(false);
 
 
-
-            stitle2=stitle3;
-            sappno2=sappno3;
-            selectedCountry2=selectedCountry3;
-            sinventor2=sinventor3;
-            sissue2=sissue3;
-            sfiling2=sfiling3;
-            surl2=surl3;
-            sdescription2=sdescription3;
+            stitle2 = stitle3;
+            sappno2 = sappno3;
+            selectedCountry2 = selectedCountry3;
+            sinventor2 = sinventor3;
+            sissue2 = sissue3;
+            sfiling2 = sfiling3;
+            surl2 = surl3;
+            sdescription2 = sdescription3;
 
             title2.setText(stitle2);
             appno2.setText(sappno2);
@@ -4346,7 +4448,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url2.setText(surl2);
             description2.setText(sdescription2);
 
-            if(issuedorpending3.equals("pending"))
+            if (issuedorpending3.equals("pending"))
                 radioButtonPending2.setChecked(true);
             else
                 radioButtonIssued2.setChecked(true);
@@ -4363,16 +4465,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending3.setChecked(false);
 
 
-
-
-            stitle3=stitle4;
-            sappno3=sappno4;
-            selectedCountry3=selectedCountry4;
-            sinventor3=sinventor4;
-            sissue3=sissue4;
-            sfiling3=sfiling4;
-            surl3=surl4;
-            sdescription3=sdescription4;
+            stitle3 = stitle4;
+            sappno3 = sappno4;
+            selectedCountry3 = selectedCountry4;
+            sinventor3 = sinventor4;
+            sissue3 = sissue4;
+            sfiling3 = sfiling4;
+            surl3 = surl4;
+            sdescription3 = sdescription4;
 
 
             title3.setText(stitle3);
@@ -4384,7 +4484,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url3.setText(surl3);
             description3.setText(sdescription3);
 
-            if(issuedorpending4.equals("pending"))
+            if (issuedorpending4.equals("pending"))
                 radioButtonPending3.setChecked(true);
             else
                 radioButtonIssued3.setChecked(true);
@@ -4401,15 +4501,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending4.setChecked(false);
 
 
-
-            stitle4=stitle5;
-            sappno4=sappno5;
-            selectedCountry4=selectedCountry5;
-            sinventor4=sinventor5;
-            sissue4=sissue5;
-            sfiling4=sfiling5;
-            surl4=surl5;
-            sdescription4=sdescription5;
+            stitle4 = stitle5;
+            sappno4 = sappno5;
+            selectedCountry4 = selectedCountry5;
+            sinventor4 = sinventor5;
+            sissue4 = sissue5;
+            sfiling4 = sfiling5;
+            surl4 = surl5;
+            sdescription4 = sdescription5;
 
             title4.setText(stitle4);
             appno4.setText(sappno4);
@@ -4420,7 +4519,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url4.setText(surl4);
             description4.setText(sdescription4);
 
-            if(issuedorpending5.equals("pending"))
+            if (issuedorpending5.equals("pending"))
                 radioButtonPending4.setChecked(true);
             else
                 radioButtonIssued4.setChecked(true);
@@ -4437,16 +4536,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending5.setChecked(false);
 
 
-
-
-            stitle5=stitle6;
-            sappno5=sappno6;
-            selectedCountry5=selectedCountry6;
-            sinventor5=sinventor6;
-            sissue5=sissue6;
-            sfiling5=sfiling6;
-            surl5=surl6;
-            sdescription5=sdescription6;
+            stitle5 = stitle6;
+            sappno5 = sappno6;
+            selectedCountry5 = selectedCountry6;
+            sinventor5 = sinventor6;
+            sissue5 = sissue6;
+            sfiling5 = sfiling6;
+            surl5 = surl6;
+            sdescription5 = sdescription6;
 
             title5.setText(stitle5);
             appno5.setText(sappno5);
@@ -4457,7 +4554,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url5.setText(surl5);
             description5.setText(sdescription5);
 
-            if(issuedorpending6.equals("pending"))
+            if (issuedorpending6.equals("pending"))
                 radioButtonPending5.setChecked(true);
             else
                 radioButtonIssued5.setChecked(true);
@@ -4474,15 +4571,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending6.setChecked(false);
 
 
-
-            stitle6=stitle7;
-            sappno6=sappno7;
-            selectedCountry6=selectedCountry7;
-            sinventor6=sinventor7;
-            sissue6=sissue7;
-            sfiling6=sfiling7;
-            surl6=surl7;
-            sdescription6=sdescription7;
+            stitle6 = stitle7;
+            sappno6 = sappno7;
+            selectedCountry6 = selectedCountry7;
+            sinventor6 = sinventor7;
+            sissue6 = sissue7;
+            sfiling6 = sfiling7;
+            surl6 = surl7;
+            sdescription6 = sdescription7;
 
 
             title6.setText(stitle6);
@@ -4494,7 +4590,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url6.setText(surl6);
             description6.setText(sdescription6);
 
-            if(issuedorpending7.equals("pending"))
+            if (issuedorpending7.equals("pending"))
                 radioButtonPending6.setChecked(true);
             else
                 radioButtonIssued6.setChecked(true);
@@ -4511,15 +4607,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending7.setChecked(false);
 
 
-
-            stitle7=stitle8;
-            sappno7=sappno8;
-            selectedCountry7=selectedCountry8;
-            sinventor7=sinventor8;
-            sissue7=sissue8;
-            sfiling7=sfiling8;
-            surl7=surl8;
-            sdescription7=sdescription8;
+            stitle7 = stitle8;
+            sappno7 = sappno8;
+            selectedCountry7 = selectedCountry8;
+            sinventor7 = sinventor8;
+            sissue7 = sissue8;
+            sfiling7 = sfiling8;
+            surl7 = surl8;
+            sdescription7 = sdescription8;
 
 
             title7.setText(stitle7);
@@ -4531,7 +4626,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url7.setText(surl7);
             description7.setText(sdescription7);
 
-            if(issuedorpending8.equals("pending"))
+            if (issuedorpending8.equals("pending"))
                 radioButtonPending7.setChecked(true);
             else
                 radioButtonIssued7.setChecked(true);
@@ -4548,15 +4643,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending8.setChecked(false);
 
 
-
-            stitle8=stitle9;
-            sappno8=sappno9;
-            selectedCountry8=selectedCountry9;
-            sinventor8=sinventor9;
-            sissue8=sissue9;
-            sfiling8=sfiling9;
-            surl8=surl9;
-            sdescription8=sdescription9;
+            stitle8 = stitle9;
+            sappno8 = sappno9;
+            selectedCountry8 = selectedCountry9;
+            sinventor8 = sinventor9;
+            sissue8 = sissue9;
+            sfiling8 = sfiling9;
+            surl8 = surl9;
+            sdescription8 = sdescription9;
 
             title8.setText(stitle8);
             appno8.setText(sappno8);
@@ -4567,7 +4661,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url8.setText(surl8);
             description8.setText(sdescription8);
 
-            if(issuedorpending9.equals("pending"))
+            if (issuedorpending9.equals("pending"))
                 radioButtonPending8.setChecked(true);
             else
                 radioButtonIssued8.setChecked(true);
@@ -4584,16 +4678,14 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending9.setChecked(false);
 
 
-
-
-            stitle9=stitle10;
-            sappno9=sappno10;
-            selectedCountry9=selectedCountry10;
-            sinventor9=sinventor10;
-            sissue9=sissue10;
-            sfiling9=sfiling10;
-            surl9=surl10;
-            sdescription9=sdescription10;
+            stitle9 = stitle10;
+            sappno9 = sappno10;
+            selectedCountry9 = selectedCountry10;
+            sinventor9 = sinventor10;
+            sissue9 = sissue10;
+            sfiling9 = sfiling10;
+            surl9 = surl10;
+            sdescription9 = sdescription10;
 
 
             title9.setText(stitle9);
@@ -4605,7 +4697,7 @@ public class MyProfilePatents extends AppCompatActivity {
             url9.setText(surl9);
             description9.setText(sdescription9);
 
-            if(issuedorpending10.equals("pending"))
+            if (issuedorpending10.equals("pending"))
                 radioButtonPending9.setChecked(true);
             else
                 radioButtonIssued9.setChecked(true);
@@ -4622,88 +4714,53 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending10.setChecked(false);
 
 
-
         }
     }
 
-    class GetCountries extends AsyncTask<String, String, String> {
+    void populateCountries() {
 
-
-        protected String doInBackground(String... param) {
-
-
-//            List<NameValuePair> params = new ArrayList<NameValuePair>();
-//
-//            json = jParser.makeHttpRequest(url_getcountries, "GET", params);
-//            try {
-//                String s = json.getString("count");
-//                countrycount=Integer.parseInt(s);
-//                countries=new String[countrycount];
-//                for(int i=0;i<countrycount;i++)
-//                {
-//                    countries[i]=json.getString("country"+i);
-//                }
-//
-//
-//
-//
-//            }catch (Exception e){e.printStackTrace();}
-
-            countrycount=getResources().getStringArray(R.array.countries_array).length;
-            countries=new String[countrycount];
-            countries=getResources().getStringArray(R.array.countries_array);
-
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            countrieslist.clear();
-            countrieslist.add("- Select Patent Office -");
-            for(int i=0;i<countrycount;i++)
-            {
-                countrieslist.add(countries[i]);
-            }
-            populateCountries();
-        }
-    }
-    void populateCountries()
-    {
-
-        dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, countrieslist)
-        {
+        dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, countrieslist) {
             @Override
-            public boolean isEnabled(int position){
+            public boolean isEnabled(int position) {
 
-                if(position == 0)
-                {
+                if (position == 0) {
 
                     return false;
-                }
-                else
-                {
+                } else {
                     return true;
                 }
             }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view= super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTextColor(getResources().getColor(R.color.dark_color));
+                tv.setTypeface(MyConstants.getBold(MyProfilePatents.this));
+                return view;
+            }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+                tv.setTypeface(MyConstants.getBold(MyProfilePatents.this));
 
-                if(position == 0){
+                if (position == 0) {
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
-                }
-                else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
+                } else {
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
-        };;
+        };
+
+
+
+
         patoffice1.setAdapter(dataAdapter);
         patoffice2.setAdapter(dataAdapter);
         patoffice3.setAdapter(dataAdapter);
@@ -4836,333 +4893,280 @@ public class MyProfilePatents extends AppCompatActivity {
             }
         });
 
-        if(selectedCountry1!=null)
+        if (selectedCountry1 != null)
             patoffice1.setSelection(dataAdapter.getPosition(selectedCountry1));
-        if(selectedCountry2!=null)
+        if (selectedCountry2 != null)
             patoffice2.setSelection(dataAdapter.getPosition(selectedCountry2));
-        if(selectedCountry3!=null)
+        if (selectedCountry3 != null)
             patoffice3.setSelection(dataAdapter.getPosition(selectedCountry3));
-        if(selectedCountry4!=null)
+        if (selectedCountry4 != null)
             patoffice4.setSelection(dataAdapter.getPosition(selectedCountry4));
-        if(selectedCountry5!=null)
+        if (selectedCountry5 != null)
             patoffice5.setSelection(dataAdapter.getPosition(selectedCountry5));
-        if(selectedCountry6!=null)
+        if (selectedCountry6 != null)
             patoffice6.setSelection(dataAdapter.getPosition(selectedCountry6));
-        if(selectedCountry7!=null)
+        if (selectedCountry7 != null)
             patoffice7.setSelection(dataAdapter.getPosition(selectedCountry7));
-        if(selectedCountry8!=null)
+        if (selectedCountry8 != null)
             patoffice8.setSelection(dataAdapter.getPosition(selectedCountry8));
-        if(selectedCountry9!=null)
+        if (selectedCountry9 != null)
             patoffice9.setSelection(dataAdapter.getPosition(selectedCountry9));
-        if(selectedCountry10!=null)
+        if (selectedCountry10 != null)
             patoffice10.setSelection(dataAdapter.getPosition(selectedCountry10));
 
     }
-    void validateandSave()
-    {
-        title1.setError(null);
-        appno1.setError(null);
-        inventor1.setError(null);
-        issue1.setError(null);
-        filing1.setError(null);
-        url1.setError(null);
-        description1.setError(null);
-        title2.setError(null);
-        appno2.setError(null);
-        inventor2.setError(null);
-        issue2.setError(null);
-        filing2.setError(null);
-        url2.setError(null);
-        description2.setError(null);
-        title3.setError(null);
-        appno3.setError(null);
-        inventor3.setError(null);
-        issue3.setError(null);
-        filing3.setError(null);
-        url3.setError(null);
-        description3.setError(null);
-        title4.setError(null);
-        appno4.setError(null);
-        inventor4.setError(null);
-        issue4.setError(null);
-        filing4.setError(null);
-        url4.setError(null);
-        description4.setError(null);
-        title5.setError(null);
-        appno5.setError(null);
-        inventor5.setError(null);
-        issue5.setError(null);
-        filing5.setError(null);
-        url5.setError(null);
-        description5.setError(null);
-        title6.setError(null);
-        appno6.setError(null);
-        inventor6.setError(null);
-        issue6.setError(null);
-        filing6.setError(null);
-        url6.setError(null);
-        description6.setError(null);
-        title7.setError(null);
-        appno7.setError(null);
-        inventor7.setError(null);
-        issue7.setError(null);
-        filing7.setError(null);
-        url7.setError(null);
-        description7.setError(null);
-        title8.setError(null);
-        appno8.setError(null);
-        inventor8.setError(null);
-        issue8.setError(null);
-        filing8.setError(null);
-        url8.setError(null);
-        description8.setError(null);
-        title9.setError(null);
-        appno9.setError(null);
-        inventor9.setError(null);
-        issue9.setError(null);
-        filing9.setError(null);
-        url9.setError(null);
-        description9.setError(null);
-        title10.setError(null);
-        appno10.setError(null);
-        inventor10.setError(null);
-        issue10.setError(null);
-        filing10.setError(null);
-        url10.setError(null);
-        description10.setError(null);
 
-        stitle1=title1.getText().toString();
-        sappno1=appno1.getText().toString();
-        selectedCountry1=patoffice1.getSelectedItem().toString();
-        sinventor1=inventor1.getText().toString();
-        sfiling1=filing1.getText().toString();
-        sissue1=issue1.getText().toString();
-        surl1=url1.getText().toString();
-        sdescription1=description1.getText().toString();
-        stitle2=title2.getText().toString();
-        sappno2=appno2.getText().toString();
-        selectedCountry2=patoffice2.getSelectedItem().toString();
-        sinventor2=inventor2.getText().toString();
-        sfiling2=filing2.getText().toString();
-        sissue2=issue2.getText().toString();
-        surl2=url2.getText().toString();
-        sdescription2=description2.getText().toString();
-        stitle3=title3.getText().toString();
-        sappno3=appno3.getText().toString();
-        selectedCountry3=patoffice3.getSelectedItem().toString();
-        sinventor3=inventor3.getText().toString();
-        sfiling3=filing3.getText().toString();
-        sissue3=issue3.getText().toString();
-        surl3=url3.getText().toString();
-        sdescription3=description3.getText().toString();
-        stitle4=title4.getText().toString();
-        sappno4=appno4.getText().toString();
-        selectedCountry4=patoffice4.getSelectedItem().toString();
-        sinventor4=inventor4.getText().toString();
-        sfiling4=filing4.getText().toString();
-        sissue4=issue4.getText().toString();
-        surl4=url4.getText().toString();
-        sdescription4=description4.getText().toString();
-        stitle5=title5.getText().toString();
-        sappno5=appno5.getText().toString();
-        selectedCountry5=patoffice5.getSelectedItem().toString();
-        sinventor5=inventor5.getText().toString();
-        sfiling5=filing5.getText().toString();
-        sissue5=issue5.getText().toString();
-        surl5=url5.getText().toString();
-        sdescription5=description5.getText().toString();
-        stitle6=title6.getText().toString();
-        sappno6=appno6.getText().toString();
-        selectedCountry6=patoffice6.getSelectedItem().toString();
-        sinventor6=inventor6.getText().toString();
-        sfiling6=filing6.getText().toString();
-        sissue6=issue6.getText().toString();
-        surl6=url6.getText().toString();
-        sdescription6=description6.getText().toString();
-        stitle7=title7.getText().toString();
-        sappno7=appno7.getText().toString();
-        selectedCountry7=patoffice7.getSelectedItem().toString();
-        sinventor7=inventor7.getText().toString();
-        sfiling7=filing7.getText().toString();
-        sissue7=issue7.getText().toString();
-        surl7=url7.getText().toString();
-        sdescription7=description7.getText().toString();
-        stitle8=title8.getText().toString();
-        sappno8=appno8.getText().toString();
-        selectedCountry8=patoffice8.getSelectedItem().toString();
-        sinventor8=inventor8.getText().toString();
-        sfiling8=filing8.getText().toString();
-        sissue8=issue8.getText().toString();
-        surl8=url8.getText().toString();
-        sdescription8=description8.getText().toString();
-        stitle9=title9.getText().toString();
-        sappno9=appno9.getText().toString();
-        selectedCountry9=patoffice9.getSelectedItem().toString();
-        sinventor9=inventor9.getText().toString();
-        sfiling9=filing9.getText().toString();
-        sissue9=issue9.getText().toString();
-        surl9=url9.getText().toString();
-        sdescription9=description9.getText().toString();
-        stitle10=title10.getText().toString();
-        sappno10=appno10.getText().toString();
-        selectedCountry10=patoffice10.getSelectedItem().toString();
-        sinventor10=inventor10.getText().toString();
-        sfiling10=filing10.getText().toString();
-        sissue10=issue10.getText().toString();
-        surl10=url10.getText().toString();
-        sdescription10=description10.getText().toString();
+    void validateandSave() {
+
+        titleinput1.setError(null);
+        appnoinput1.setError(null);
+        inventorinput1.setError(null);
+        issueinput1.setError(null);
+        filinginput1.setError(null);
+        urlinput1.setError(null);
+        descinput1.setError(null);
+        titleinput2.setError(null);
+        appnoinput2.setError(null);
+        inventorinput2.setError(null);
+        issueinput2.setError(null);
+        filinginput2.setError(null);
+        urlinput2.setError(null);
+        descinput2.setError(null);
+        titleinput3.setError(null);
+        appnoinput3.setError(null);
+        inventorinput3.setError(null);
+        issueinput3.setError(null);
+        filinginput3.setError(null);
+        urlinput3.setError(null);
+        descinput3.setError(null);
+        titleinput4.setError(null);
+        appnoinput4.setError(null);
+        inventorinput4.setError(null);
+        issueinput4.setError(null);
+        filinginput4.setError(null);
+        urlinput4.setError(null);
+        descinput4.setError(null);
+        titleinput5.setError(null);
+        appnoinput5.setError(null);
+        inventorinput5.setError(null);
+        issueinput5.setError(null);
+        filinginput5.setError(null);
+        urlinput5.setError(null);
+        descinput5.setError(null);
+        titleinput6.setError(null);
+        appnoinput6.setError(null);
+        inventorinput6.setError(null);
+        issueinput6.setError(null);
+        filinginput6.setError(null);
+        urlinput6.setError(null);
+        descinput6.setError(null);
+        titleinput7.setError(null);
+        appnoinput7.setError(null);
+        inventorinput7.setError(null);
+        issueinput7.setError(null);
+        filinginput7.setError(null);
+        urlinput7.setError(null);
+        descinput7.setError(null);
+        titleinput8.setError(null);
+        appnoinput8.setError(null);
+        inventorinput8.setError(null);
+        issueinput8.setError(null);
+        filinginput8.setError(null);
+        urlinput8.setError(null);
+        descinput8.setError(null);
+        titleinput9.setError(null);
+        appnoinput9.setError(null);
+        inventorinput9.setError(null);
+        issueinput9.setError(null);
+        filinginput9.setError(null);
+        urlinput9.setError(null);
+        descinput9.setError(null);
+        titleinput10.setError(null);
+        appnoinput10.setError(null);
+        inventorinput10.setError(null);
+        issueinput10.setError(null);
+        filinginput10.setError(null);
+        urlinput10.setError(null);
+        descinput10.setError(null);
+
+
+        stitle1 = title1.getText().toString();
+        sappno1 = appno1.getText().toString();
+        selectedCountry1 = patoffice1.getSelectedItem().toString();
+        sinventor1 = inventor1.getText().toString();
+        sfiling1 = filing1.getText().toString();
+        sissue1 = issue1.getText().toString();
+        surl1 = url1.getText().toString();
+        sdescription1 = description1.getText().toString();
+        stitle2 = title2.getText().toString();
+        sappno2 = appno2.getText().toString();
+        selectedCountry2 = patoffice2.getSelectedItem().toString();
+        sinventor2 = inventor2.getText().toString();
+        sfiling2 = filing2.getText().toString();
+        sissue2 = issue2.getText().toString();
+        surl2 = url2.getText().toString();
+        sdescription2 = description2.getText().toString();
+        stitle3 = title3.getText().toString();
+        sappno3 = appno3.getText().toString();
+        selectedCountry3 = patoffice3.getSelectedItem().toString();
+        sinventor3 = inventor3.getText().toString();
+        sfiling3 = filing3.getText().toString();
+        sissue3 = issue3.getText().toString();
+        surl3 = url3.getText().toString();
+        sdescription3 = description3.getText().toString();
+        stitle4 = title4.getText().toString();
+        sappno4 = appno4.getText().toString();
+        selectedCountry4 = patoffice4.getSelectedItem().toString();
+        sinventor4 = inventor4.getText().toString();
+        sfiling4 = filing4.getText().toString();
+        sissue4 = issue4.getText().toString();
+        surl4 = url4.getText().toString();
+        sdescription4 = description4.getText().toString();
+        stitle5 = title5.getText().toString();
+        sappno5 = appno5.getText().toString();
+        selectedCountry5 = patoffice5.getSelectedItem().toString();
+        sinventor5 = inventor5.getText().toString();
+        sfiling5 = filing5.getText().toString();
+        sissue5 = issue5.getText().toString();
+        surl5 = url5.getText().toString();
+        sdescription5 = description5.getText().toString();
+        stitle6 = title6.getText().toString();
+        sappno6 = appno6.getText().toString();
+        selectedCountry6 = patoffice6.getSelectedItem().toString();
+        sinventor6 = inventor6.getText().toString();
+        sfiling6 = filing6.getText().toString();
+        sissue6 = issue6.getText().toString();
+        surl6 = url6.getText().toString();
+        sdescription6 = description6.getText().toString();
+        stitle7 = title7.getText().toString();
+        sappno7 = appno7.getText().toString();
+        selectedCountry7 = patoffice7.getSelectedItem().toString();
+        sinventor7 = inventor7.getText().toString();
+        sfiling7 = filing7.getText().toString();
+        sissue7 = issue7.getText().toString();
+        surl7 = url7.getText().toString();
+        sdescription7 = description7.getText().toString();
+        stitle8 = title8.getText().toString();
+        sappno8 = appno8.getText().toString();
+        selectedCountry8 = patoffice8.getSelectedItem().toString();
+        sinventor8 = inventor8.getText().toString();
+        sfiling8 = filing8.getText().toString();
+        sissue8 = issue8.getText().toString();
+        surl8 = url8.getText().toString();
+        sdescription8 = description8.getText().toString();
+        stitle9 = title9.getText().toString();
+        sappno9 = appno9.getText().toString();
+        selectedCountry9 = patoffice9.getSelectedItem().toString();
+        sinventor9 = inventor9.getText().toString();
+        sfiling9 = filing9.getText().toString();
+        sissue9 = issue9.getText().toString();
+        surl9 = url9.getText().toString();
+        sdescription9 = description9.getText().toString();
+        stitle10 = title10.getText().toString();
+        sappno10 = appno10.getText().toString();
+        selectedCountry10 = patoffice10.getSelectedItem().toString();
+        sinventor10 = inventor10.getText().toString();
+        sfiling10 = filing10.getText().toString();
+        sissue10 = issue10.getText().toString();
+        surl10 = url10.getText().toString();
+        sdescription10 = description10.getText().toString();
 
         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
         String sPadding = "ISO10126Padding";
 
-        int errorflag=0;
+        int errorflag = 0;
+        if (patentcount == 0) {
+            if (stitle1.length() < 2) {
+                errorflag = 1;
+                titleinput1.setError("Kindly enter valid title");
+            } else {
+                errorflag = 0;
+                if (sappno1.length() < 2) {
+                    errorflag = 1;
+                    appnoinput1.setError("Kindly enter valid application number");
+                } else {
+                    errorflag = 0;
+                    if (selectedCountry1.equals("- Select Patent Office -")) {
+                        errorflag = 1;
+                        Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                    } else {
+                        errorflag = 0;
+                        if (sinventor1.length() < 2) {
+                            errorflag = 1;
+                            inventorinput1.setError("Kindly enter valid name");
+                        } else {
+                            errorflag = 0;
+                            if (issuedorpending1.equals("issued")) {
+                                if (sissue1.length() < 2) {
+                                    errorflag = 1;
+                                    issueinput1.setError("Kindly select valid date");
+                                }
 
-        if(patentcount==0)
-        {
-            if(stitle1.length()<2)
-            {
-                errorflag=1;
-                title1.setError("Invalid Patent Name");
-            }
-            else
-            {
-                errorflag=0;
-                if(sappno1.length()<2)
-                {
-                    errorflag=1;
-                    appno1.setError("Invalid Application Number");
-                }
-                else
-                {
-                    errorflag=0;
-                    if(selectedCountry1.equals("- Select Patent Office -"))
-                    {
-                        errorflag=1;
-                        Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                    }
-                    else
-                    {
-                        errorflag=0;
-                        if(sinventor1.length()<2)
-                        {
-                            errorflag=1;
-                            inventor1.setError("Invalid Name");
+                            } else {
+                                if (sfiling1.length() < 2) {
+                                    errorflag = 1;
+                                    filinginput1.setError("Kindly select valid date");
+                                }
+                            }
                         }
-                        else
-                        {
-                            errorflag=0;
-                            if(issuedorpending1.equals("issued")) {
+                    }
+                }
+            }
+        } else if (patentcount == 1) {
+            if (stitle1.length() < 2) {
+                errorflag = 1;
+                titleinput1.setError("Kindly enter valid title");
+            } else {
+                if (sappno1.length() < 2) {
+                    errorflag = 1;
+                    appnoinput1.setError("Kindly enter valid application number");
+                } else {
+                    if (selectedCountry1.equals("- Select Patent Office -")) {
+                        errorflag = 1;
+                        Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                    } else {
+                        if (sinventor1.length() < 2) {
+                            errorflag = 1;
+                            inventorinput1.setError("Kindly enter valid name");
+                        } else {
+                            if (issuedorpending1.equals("issued")) {
                                 if (sissue1.length() < 2) {
                                     errorflag = 1;
-                                    issue1.setError("Invalid Date");
+                                    issueinput1.setError("Kindly select valid date");
                                 }
-                            }
-                            else
-                            {
-                                if(sfiling1.length()<2)
-                                {
-                                    errorflag=1;
-                                    filing1.setError("Invalid Date");
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        else if(patentcount==1)
-        {
-            if(stitle1.length()<2)
-            {
-                errorflag=1;
-                title1.setError("Invalid Patent Name");
-            }
-            else
-            {
-                errorflag=0;
-                if(sappno1.length()<2)
-                {
-                    errorflag=1;
-                    appno1.setError("Invalid Application Number");
-                }
-                else
-                {
-                    errorflag=0;
-                    if(selectedCountry1.equals("- Select Patent Office -"))
-                    {
-                        errorflag=1;
-                        Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                    }
-                    else
-                    {
-                        errorflag=0;
-                        if(sinventor1.length()<2)
-                        {
-                            errorflag=1;
-                            inventor1.setError("Invalid Name");
-                        }
-                        else
-                        {
-                            errorflag=0;
-                            if(issuedorpending1.equals("issued")) {
-                                if (sissue1.length() < 2) {
+                            } else {
+                                if (sfiling1.length() < 2) {
                                     errorflag = 1;
-                                    issue1.setError("Invalid Date");
+                                    filinginput1.setError("Kindly select valid date");
                                 }
                             }
-                            else
-                            {
-                                if(sfiling1.length()<2)
-                                {
-                                    errorflag=1;
-                                    filing1.setError("Invalid Date");
-                                }
-                            }
-                            if(stitle2.length()<2)
-                            {
-                                errorflag=1;
-                                title2.setError("Invalid Patent Name");
-                            }
-                            else
-                            {
-                                errorflag=0;
-                                if(sappno2.length()<2)
-                                {
-                                    errorflag=1;
-                                    appno2.setError("Invalid Application Number");
-                                }
-                                else
-                                {
-                                    errorflag=0;
-                                    if(selectedCountry2.equals("- Select Patent Office -"))
-                                    {
-                                        errorflag=1;
-                                        Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                    }
-                                    else
-                                    {
-                                        errorflag=0;
-                                        if(sinventor2.length()<2)
-                                        {
-                                            errorflag=1;
-                                            inventor2.setError("Invalid Name");
-                                        }
-                                        else
-                                        {
-                                            errorflag=0;
-                                            if(issuedorpending2.equals("issued")) {
+
+                            if (stitle2.length() < 2) {
+                                errorflag = 1;
+                                titleinput2.setError("Kindly enter valid title");
+                            } else {
+                                if (sappno2.length() < 2) {
+                                    errorflag = 1;
+                                    appnoinput2.setError("Kindly enter valid application number");
+                                } else {
+                                    if (selectedCountry2.equals("- Select Patent Office -")) {
+                                        errorflag = 1;
+                                        Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        if (sinventor2.length() < 2) {
+                                            errorflag = 1;
+                                            inventorinput2.setError("Kindly enter valid name");
+                                        } else {
+                                            if (issuedorpending2.equals("issued")) {
                                                 if (sissue2.length() < 2) {
                                                     errorflag = 1;
-                                                    issue2.setError("Invalid Date");
+                                                    issueinput2.setError("Kindly select valid date");
                                                 }
-                                            }
-                                            else
-                                            {
-                                                if(sfiling2.length()<2)
-                                                {
-                                                    errorflag=1;
-                                                    filing2.setError("Invalid Date");
+                                            } else {
+                                                if (sfiling2.length() < 2) {
+                                                    errorflag = 1;
+                                                    filinginput2.setError("Kindly select valid date");
                                                 }
                                             }
                                         }
@@ -5174,146 +5178,93 @@ public class MyProfilePatents extends AppCompatActivity {
                     }
                 }
             }
-        }
-        else if(patentcount==2)
-        {
+        } else if (patentcount == 2) {
             {
-                if(stitle1.length()<2)
-                {
-                    errorflag=1;
-                    title1.setError("Invalid Patent Name");
-                }
-                else
-                {
-                    errorflag=0;
-                    if(sappno1.length()<2)
-                    {
-                        errorflag=1;
-                        appno1.setError("Invalid Application Number");
-                    }
-                    else
-                    {
-                        errorflag=0;
-                        if(selectedCountry1.equals("- Select Patent Office -"))
-                        {
-                            errorflag=1;
-                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            errorflag=0;
-                            if(sinventor1.length()<2)
-                            {
-                                errorflag=1;
-                                inventor1.setError("Invalid Name");
-                            }
-                            else
-                            {
-                                errorflag=0;
-                                if(issuedorpending1.equals("issued")) {
+                if (stitle1.length() < 2) {
+                    errorflag = 1;
+                    titleinput1.setError("Kindly enter valid title");
+                } else {
+                    errorflag = 0;
+                    if (sappno1.length() < 2) {
+                        errorflag = 1;
+                        appnoinput1.setError("Kindly enter valid application number");
+                    } else {
+                        errorflag = 0;
+                        if (selectedCountry1.equals("- Select Patent Office -")) {
+                            errorflag = 1;
+                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                        } else {
+                            errorflag = 0;
+                            if (sinventor1.length() < 2) {
+                                errorflag = 1;
+                                inventorinput1.setError("Kindly enter valid name");
+                            } else {
+
+                                errorflag = 0;
+                                if (issuedorpending1.equals("issued")) {
                                     if (sissue1.length() < 2) {
                                         errorflag = 1;
-                                        issue1.setError("Invalid Date");
+                                        issueinput1.setError("Kindly select valid date");
+                                    }
+                                } else {
+                                    if (sfiling1.length() < 2) {
+                                        errorflag = 1;
+                                        filinginput1.setError("Kindly select valid date");
                                     }
                                 }
-                                else
-                                {
-                                    if(sfiling1.length()<2)
-                                    {
-                                        errorflag=1;
-                                        filing1.setError("Invalid Date");
-                                    }
-                                }
-                                if(stitle2.length()<2)
-                                {
-                                    errorflag=1;
-                                    title2.setError("Invalid Patent Name");
-                                }
-                                else
-                                {
-                                    errorflag=0;
-                                    if(sappno2.length()<2)
-                                    {
-                                        errorflag=1;
-                                        appno2.setError("Invalid Application Number");
-                                    }
-                                    else
-                                    {
-                                        errorflag=0;
-                                        if(selectedCountry2.equals("- Select Patent Office -"))
-                                        {
-                                            errorflag=1;
-                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                        }
-                                        else
-                                        {
-                                            errorflag=0;
-                                            if(sinventor2.length()<2)
-                                            {
-                                                errorflag=1;
-                                                inventor2.setError("Invalid Name");
-                                            }
-                                            else
-                                            {
-                                                errorflag=0;
-                                                if(issuedorpending2.equals("issued")) {
+
+                                if (stitle2.length() < 2) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid title");
+                                } else {
+                                    if (sappno2.length() < 2) {
+                                        errorflag = 1;
+                                        appnoinput2.setError("Kindly enter valid application number");
+                                    } else {
+                                        if (selectedCountry2.equals("- Select Patent Office -")) {
+                                            errorflag = 1;
+                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                        } else {
+                                            if (sinventor2.length() < 2) {
+                                                errorflag = 1;
+                                                inventorinput2.setError("Kindly enter valid name");
+                                            } else {
+                                                if (issuedorpending2.equals("issued")) {
                                                     if (sissue2.length() < 2) {
                                                         errorflag = 1;
-                                                        issue2.setError("Invalid Date");
+                                                        issueinput2.setError("Kindly select valid date");
+                                                    }
+                                                } else {
+                                                    if (sfiling2.length() < 2) {
+                                                        errorflag = 1;
+                                                        filinginput2.setError("Kindly select valid date");
                                                     }
                                                 }
-                                                else
-                                                {
-                                                    if(sfiling2.length()<2)
-                                                    {
-                                                        errorflag=1;
-                                                        filing2.setError("Invalid Date");
-                                                    }
-                                                }
-                                                if(stitle3.length()<3)
-                                                {
-                                                    errorflag=1;
-                                                    title3.setError("Invalid Patent Name");
-                                                }
-                                                else
-                                                {
-                                                    errorflag=0;
-                                                    if(sappno3.length()<3)
-                                                    {
-                                                        errorflag=1;
-                                                        appno3.setError("Invalid Application Number");
-                                                    }
-                                                    else
-                                                    {
-                                                        errorflag=0;
-                                                        if(selectedCountry3.equals("- Select Patent Office -"))
-                                                        {
-                                                            errorflag=1;
-                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                        }
-                                                        else
-                                                        {
-                                                            errorflag=0;
-                                                            if(sinventor3.length()<3)
-                                                            {
-                                                                errorflag=1;
-                                                                inventor3.setError("Invalid Name");
-                                                            }
-                                                            else
-                                                            {
-                                                                errorflag=0;
-                                                                if(issuedorpending3.equals("issued")) {
-                                                                    if (sissue3.length() < 3) {
+                                                if (stitle3.length() < 2) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid title");
+                                                } else {
+                                                    if (sappno3.length() < 2) {
+                                                        errorflag = 1;
+                                                        appnoinput3.setError("Kindly enter valid application number");
+                                                    } else {
+                                                        if (selectedCountry3.equals("- Select Patent Office -")) {
+                                                            errorflag = 1;
+                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                        } else {
+                                                            if (sinventor3.length() < 2) {
+                                                                errorflag = 1;
+                                                                inventorinput3.setError("Kindly enter valid name");
+                                                            } else {
+                                                                if (issuedorpending3.equals("issued")) {
+                                                                    if (sissue3.length() < 2) {
                                                                         errorflag = 1;
-                                                                        issue3.setError("Invalid Date");
+                                                                        issueinput3.setError("Kindly select valid date");
                                                                     }
-                                                                }
-                                                                else
-                                                                {
-                                                                    if(sfiling3.length()<3)
-                                                                    {
-                                                                        errorflag=1;
-                                                                        filing3.setError("Invalid Date");
+                                                                } else {
+                                                                    if (sfiling3.length() < 2) {
+                                                                        errorflag = 1;
+                                                                        filinginput3.setError("Kindly select valid date");
                                                                     }
                                                                 }
                                                             }
@@ -5331,192 +5282,114 @@ public class MyProfilePatents extends AppCompatActivity {
                     }
                 }
             }
-        }
-        else if(patentcount==3)
-        {
+        } else if (patentcount == 3) {
             {
-                if(stitle1.length()<2)
-                {
-                    errorflag=1;
-                    title1.setError("Invalid Patent Name");
-                }
-                else
-                {
-                    errorflag=0;
-                    if(sappno1.length()<2)
-                    {
-                        errorflag=1;
-                        appno1.setError("Invalid Application Number");
-                    }
-                    else
-                    {
-                        errorflag=0;
-                        if(selectedCountry1.equals("- Select Patent Office -"))
-                        {
-                            errorflag=1;
-                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            errorflag=0;
-                            if(sinventor1.length()<2)
-                            {
-                                errorflag=1;
-                                inventor1.setError("Invalid Name");
-                            }
-                            else
-                            {
-                                errorflag=0;
-                                if(issuedorpending1.equals("issued")) {
+                if (stitle1.length() < 2) {
+                    errorflag = 1;
+                    titleinput1.setError("Kindly enter valid title");
+                } else {
+                    if (sappno1.length() < 2) {
+                        errorflag = 1;
+                        appnoinput1.setError("Kindly enter valid application number");
+                    } else {
+                        if (selectedCountry1.equals("- Select Patent Office -")) {
+                            errorflag = 1;
+                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                        } else {
+                            if (sinventor1.length() < 2) {
+                                errorflag = 1;
+                                inventorinput1.setError("Kindly enter valid name");
+                            } else {
+                                if (issuedorpending1.equals("issued")) {
                                     if (sissue1.length() < 2) {
                                         errorflag = 1;
-                                        issue1.setError("Invalid Date");
+                                        issueinput1.setError("Kindly select valid date");
+                                    }
+                                } else {
+                                    if (sfiling1.length() < 2) {
+                                        errorflag = 1;
+                                        filinginput1.setError("Kindly select valid date");
                                     }
                                 }
-                                else
-                                {
-                                    if(sfiling1.length()<2)
-                                    {
-                                        errorflag=1;
-                                        filing1.setError("Invalid Date");
-                                    }
-                                }
-                                if(stitle2.length()<2)
-                                {
-                                    errorflag=1;
-                                    title2.setError("Invalid Patent Name");
-                                }
-                                else
-                                {
-                                    errorflag=0;
-                                    if(sappno2.length()<2)
-                                    {
-                                        errorflag=1;
-                                        appno2.setError("Invalid Application Number");
-                                    }
-                                    else
-                                    {
-                                        errorflag=0;
-                                        if(selectedCountry2.equals("- Select Patent Office -"))
-                                        {
-                                            errorflag=1;
-                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                        }
-                                        else
-                                        {
-                                            errorflag=0;
-                                            if(sinventor2.length()<2)
-                                            {
-                                                errorflag=1;
-                                                inventor2.setError("Invalid Name");
-                                            }
-                                            else
-                                            {
-                                                errorflag=0;
-                                                if(issuedorpending2.equals("issued")) {
+                                if (stitle2.length() < 2) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid title");
+                                } else {
+                                    if (sappno2.length() < 2) {
+                                        errorflag = 1;
+                                        appnoinput2.setError("Kindly enter valid application number");
+                                    } else {
+                                        if (selectedCountry2.equals("- Select Patent Office -")) {
+                                            errorflag = 1;
+                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                        } else {
+                                            if (sinventor2.length() < 2) {
+                                                errorflag = 1;
+                                                inventorinput2.setError("Kindly enter valid name");
+                                            } else {
+                                                if (issuedorpending2.equals("issued")) {
                                                     if (sissue2.length() < 2) {
                                                         errorflag = 1;
-                                                        issue2.setError("Invalid Date");
+                                                        issueinput2.setError("Kindly select valid date");
+                                                    }
+                                                } else {
+                                                    if (sfiling2.length() < 2) {
+                                                        errorflag = 1;
+                                                        filinginput2.setError("Kindly select valid date");
                                                     }
                                                 }
-                                                else
-                                                {
-                                                    if(sfiling2.length()<2)
-                                                    {
-                                                        errorflag=1;
-                                                        filing2.setError("Invalid Date");
-                                                    }
-                                                }
-                                                if(stitle3.length()<3)
-                                                {
-                                                    errorflag=1;
-                                                    title3.setError("Invalid Patent Name");
-                                                }
-                                                else
-                                                {
-                                                    errorflag=0;
-                                                    if(sappno3.length()<3)
-                                                    {
-                                                        errorflag=1;
-                                                        appno3.setError("Invalid Application Number");
-                                                    }
-                                                    else
-                                                    {
-                                                        errorflag=0;
-                                                        if(selectedCountry3.equals("- Select Patent Office -"))
-                                                        {
-                                                            errorflag=1;
-                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                        }
-                                                        else
-                                                        {
-                                                            errorflag=0;
-                                                            if(sinventor3.length()<3)
-                                                            {
-                                                                errorflag=1;
-                                                                inventor3.setError("Invalid Name");
-                                                            }
-                                                            else
-                                                            {
-                                                                errorflag=0;
-                                                                if(issuedorpending3.equals("issued")) {
-                                                                    if (sissue3.length() < 3) {
+                                                if (stitle3.length() < 2) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid title");
+                                                } else {
+                                                    if (sappno3.length() < 2) {
+                                                        errorflag = 1;
+                                                        appnoinput3.setError("Kindly enter valid application number");
+                                                    } else {
+                                                        if (selectedCountry3.equals("- Select Patent Office -")) {
+                                                            errorflag = 1;
+                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                        } else {
+                                                            if (sinventor3.length() < 2) {
+                                                                errorflag = 1;
+                                                                inventorinput3.setError("Kindly enter valid name");
+                                                            } else {
+                                                                if (issuedorpending3.equals("issued")) {
+                                                                    if (sissue3.length() < 2) {
                                                                         errorflag = 1;
-                                                                        issue3.setError("Invalid Date");
+                                                                        issueinput3.setError("Kindly select valid date");
+                                                                    }
+                                                                } else {
+                                                                    if (sfiling3.length() < 2) {
+                                                                        errorflag = 1;
+                                                                        filinginput3.setError("Kindly select valid date");
                                                                     }
                                                                 }
-                                                                else
-                                                                {
-                                                                    if(sfiling3.length()<3)
-                                                                    {
-                                                                        errorflag=1;
-                                                                        filing3.setError("Invalid Date");
-                                                                    }
-                                                                }
-                                                                if(stitle4.length()<4)
-                                                                {
-                                                                    errorflag=1;
-                                                                    title4.setError("Invalid Patent Name");
-                                                                }
-                                                                else
-                                                                {
-                                                                    errorflag=0;
-                                                                    if(sappno4.length()<4)
-                                                                    {
-                                                                        errorflag=1;
-                                                                        appno4.setError("Invalid Application Number");
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        errorflag=0;
-                                                                        if(selectedCountry4.equals("- Select Patent Office -"))
-                                                                        {
-                                                                            errorflag=1;
-                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            errorflag=0;
-                                                                            if(sinventor4.length()<4)
-                                                                            {
-                                                                                errorflag=1;
-                                                                                inventor4.setError("Invalid Name");
-                                                                            }
-                                                                            else
-                                                                            {
-                                                                                errorflag=0;
-                                                                                if(issuedorpending4.equals("issued")) {
-                                                                                    if (sissue4.length() < 4) {
+                                                                if (stitle4.length() < 2) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid title");
+                                                                } else {
+                                                                    if (sappno4.length() < 2) {
+                                                                        errorflag = 1;
+                                                                        appnoinput4.setError("Kindly enter valid application number");
+                                                                    } else {
+                                                                        if (selectedCountry4.equals("- Select Patent Office -")) {
+                                                                            errorflag = 1;
+                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                        } else {
+                                                                            if (sinventor4.length() < 2) {
+                                                                                errorflag = 1;
+                                                                                inventorinput4.setError("Kindly enter valid name");
+                                                                            } else {
+                                                                                if (issuedorpending4.equals("issued")) {
+                                                                                    if (sissue4.length() < 2) {
                                                                                         errorflag = 1;
-                                                                                        issue4.setError("Invalid Date");
+                                                                                        issueinput4.setError("Kindly select valid date");
                                                                                     }
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                    if(sfiling4.length()<4)
-                                                                                    {
-                                                                                        errorflag=1;
-                                                                                        filing4.setError("Invalid Date");
+                                                                                } else {
+                                                                                    if (sfiling4.length() < 2) {
+                                                                                        errorflag = 1;
+                                                                                        filinginput4.setError("Kindly select valid date");
                                                                                     }
                                                                                 }
                                                                             }
@@ -5539,238 +5412,141 @@ public class MyProfilePatents extends AppCompatActivity {
                     }
                 }
             }
-        }
-        else if(patentcount==4)
-        {
+        } else if (patentcount == 4) {
             {
-                if(stitle1.length()<2)
-                {
-                    errorflag=1;
-                    title1.setError("Invalid Patent Name");
-                }
-                else
-                {
-                    errorflag=0;
-                    if(sappno1.length()<2)
-                    {
-                        errorflag=1;
-                        appno1.setError("Invalid Application Number");
-                    }
-                    else
-                    {
-                        errorflag=0;
-                        if(selectedCountry1.equals("- Select Patent Office -"))
-                        {
-                            errorflag=1;
-                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            errorflag=0;
-                            if(sinventor1.length()<2)
-                            {
-                                errorflag=1;
-                                inventor1.setError("Invalid Name");
-                            }
-                            else
-                            {
-                                errorflag=0;
-                                if(issuedorpending1.equals("issued")) {
+                if (stitle1.length() < 2) {
+                    errorflag = 1;
+                    titleinput1.setError("Kindly enter valid title");
+                } else {
+                    if (sappno1.length() < 2) {
+                        errorflag = 1;
+                        appnoinput1.setError("Kindly enter valid application number");
+                    } else {
+                        if (selectedCountry1.equals("- Select Patent Office -")) {
+                            errorflag = 1;
+                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                        } else {
+                            if (sinventor1.length() < 2) {
+                                errorflag = 1;
+                                inventorinput1.setError("Kindly enter valid name");
+                            } else {
+                                if (issuedorpending1.equals("issued")) {
                                     if (sissue1.length() < 2) {
                                         errorflag = 1;
-                                        issue1.setError("Invalid Date");
+                                        issueinput1.setError("Kindly select valid date");
+                                    }
+                                } else {
+                                    if (sfiling1.length() < 2) {
+                                        errorflag = 1;
+                                        filinginput1.setError("Kindly select valid date");
                                     }
                                 }
-                                else
-                                {
-                                    if(sfiling1.length()<2)
-                                    {
-                                        errorflag=1;
-                                        filing1.setError("Invalid Date");
-                                    }
-                                }
-                                if(stitle2.length()<2)
-                                {
-                                    errorflag=1;
-                                    title2.setError("Invalid Patent Name");
-                                }
-                                else
-                                {
-                                    errorflag=0;
-                                    if(sappno2.length()<2)
-                                    {
-                                        errorflag=1;
-                                        appno2.setError("Invalid Application Number");
-                                    }
-                                    else
-                                    {
-                                        errorflag=0;
-                                        if(selectedCountry2.equals("- Select Patent Office -"))
-                                        {
-                                            errorflag=1;
-                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                        }
-                                        else
-                                        {
-                                            errorflag=0;
-                                            if(sinventor2.length()<2)
-                                            {
-                                                errorflag=1;
-                                                inventor2.setError("Invalid Name");
-                                            }
-                                            else
-                                            {
-                                                errorflag=0;
-                                                if(issuedorpending2.equals("issued")) {
+                                if (stitle2.length() < 2) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid title");
+                                } else {
+                                    if (sappno2.length() < 2) {
+                                        errorflag = 1;
+                                        appnoinput2.setError("Kindly enter valid application number");
+                                    } else {
+                                        if (selectedCountry2.equals("- Select Patent Office -")) {
+                                            errorflag = 1;
+                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                        } else {
+                                            if (sinventor2.length() < 2) {
+                                                errorflag = 1;
+                                                inventorinput2.setError("Kindly enter valid name");
+                                            } else {
+                                                if (issuedorpending2.equals("issued")) {
                                                     if (sissue2.length() < 2) {
                                                         errorflag = 1;
-                                                        issue2.setError("Invalid Date");
+                                                        issueinput2.setError("Kindly select valid date");
+                                                    }
+                                                } else {
+                                                    if (sfiling2.length() < 2) {
+                                                        errorflag = 1;
+                                                        filinginput2.setError("Kindly select valid date");
                                                     }
                                                 }
-                                                else
-                                                {
-                                                    if(sfiling2.length()<2)
-                                                    {
-                                                        errorflag=1;
-                                                        filing2.setError("Invalid Date");
-                                                    }
-                                                }
-                                                if(stitle3.length()<3)
-                                                {
-                                                    errorflag=1;
-                                                    title3.setError("Invalid Patent Name");
-                                                }
-                                                else
-                                                {
-                                                    errorflag=0;
-                                                    if(sappno3.length()<3)
-                                                    {
-                                                        errorflag=1;
-                                                        appno3.setError("Invalid Application Number");
-                                                    }
-                                                    else
-                                                    {
-                                                        errorflag=0;
-                                                        if(selectedCountry3.equals("- Select Patent Office -"))
-                                                        {
-                                                            errorflag=1;
-                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                        }
-                                                        else
-                                                        {
-                                                            errorflag=0;
-                                                            if(sinventor3.length()<3)
-                                                            {
-                                                                errorflag=1;
-                                                                inventor3.setError("Invalid Name");
-                                                            }
-                                                            else
-                                                            {
-                                                                errorflag=0;
-                                                                if(issuedorpending3.equals("issued")) {
-                                                                    if (sissue3.length() < 3) {
+                                                if (stitle3.length() < 2) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid title");
+                                                } else {
+                                                    if (sappno3.length() < 2) {
+                                                        errorflag = 1;
+                                                        appnoinput3.setError("Kindly enter valid application number");
+                                                    } else {
+                                                        if (selectedCountry3.equals("- Select Patent Office -")) {
+                                                            errorflag = 1;
+                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                        } else {
+                                                            if (sinventor3.length() < 2) {
+                                                                errorflag = 1;
+                                                                inventorinput3.setError("Kindly enter valid name");
+                                                            } else {
+                                                                if (issuedorpending3.equals("issued")) {
+                                                                    if (sissue3.length() < 2) {
                                                                         errorflag = 1;
-                                                                        issue3.setError("Invalid Date");
+                                                                        issueinput3.setError("Kindly select valid date");
+                                                                    }
+                                                                } else {
+                                                                    if (sfiling3.length() < 2) {
+                                                                        errorflag = 1;
+                                                                        filinginput3.setError("Kindly select valid date");
                                                                     }
                                                                 }
-                                                                else
-                                                                {
-                                                                    if(sfiling3.length()<3)
-                                                                    {
-                                                                        errorflag=1;
-                                                                        filing3.setError("Invalid Date");
-                                                                    }
-                                                                }
-                                                                if(stitle4.length()<4)
-                                                                {
-                                                                    errorflag=1;
-                                                                    title4.setError("Invalid Patent Name");
-                                                                }
-                                                                else
-                                                                {
-                                                                    errorflag=0;
-                                                                    if(sappno4.length()<4)
-                                                                    {
-                                                                        errorflag=1;
-                                                                        appno4.setError("Invalid Application Number");
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        errorflag=0;
-                                                                        if(selectedCountry4.equals("- Select Patent Office -"))
-                                                                        {
-                                                                            errorflag=1;
-                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            errorflag=0;
-                                                                            if(sinventor4.length()<4)
-                                                                            {
-                                                                                errorflag=1;
-                                                                                inventor4.setError("Invalid Name");
-                                                                            }
-                                                                            else
-                                                                            {
-                                                                                errorflag=0;
-                                                                                if(issuedorpending4.equals("issued")) {
-                                                                                    if (sissue4.length() < 4) {
+                                                                if (stitle4.length() < 2) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid title");
+                                                                } else {
+                                                                    if (sappno4.length() < 2) {
+                                                                        errorflag = 1;
+                                                                        appnoinput4.setError("Kindly enter valid application number");
+                                                                    } else {
+                                                                        if (selectedCountry4.equals("- Select Patent Office -")) {
+                                                                            errorflag = 1;
+                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                        } else {
+                                                                            if (sinventor4.length() < 2) {
+                                                                                errorflag = 1;
+                                                                                inventorinput4.setError("Kindly enter valid name");
+                                                                            } else {
+                                                                                if (issuedorpending4.equals("issued")) {
+                                                                                    if (sissue4.length() < 2) {
                                                                                         errorflag = 1;
-                                                                                        issue4.setError("Invalid Date");
+                                                                                        issueinput4.setError("Kindly select valid date");
+                                                                                    }
+                                                                                } else {
+                                                                                    if (sfiling4.length() < 2) {
+                                                                                        errorflag = 1;
+                                                                                        filinginput4.setError("Kindly select valid date");
                                                                                     }
                                                                                 }
-                                                                                else
-                                                                                {
-                                                                                    if(sfiling4.length()<4)
-                                                                                    {
-                                                                                        errorflag=1;
-                                                                                        filing4.setError("Invalid Date");
-                                                                                    }
-                                                                                }
-                                                                                if(stitle5.length()<2)
-                                                                                {
-                                                                                    errorflag=1;
-                                                                                    title5.setError("Invalid Patent Name");
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                    errorflag=0;
-                                                                                    if(sappno5.length()<2)
-                                                                                    {
-                                                                                        errorflag=1;
-                                                                                        appno5.setError("Invalid Application Number");
-                                                                                    }
-                                                                                    else
-                                                                                    {
-                                                                                        errorflag=0;
-                                                                                        if(selectedCountry5.equals("- Select Patent Office -"))
-                                                                                        {
-                                                                                            errorflag=1;
-                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                        }
-                                                                                        else
-                                                                                        {
-                                                                                            errorflag=0;
-                                                                                            if(sinventor5.length()<2)
-                                                                                            {
-                                                                                                errorflag=1;
-                                                                                                inventor5.setError("Invalid Name");
-                                                                                            }
-                                                                                            else
-                                                                                            {
-                                                                                                errorflag=0;
-                                                                                                if(issuedorpending5.equals("issued")) {
-                                                                                                    if (sissue5.length() < 5) {
+                                                                                if (stitle5.length() < 2) {
+                                                                                    errorflag = 1;
+                                                                                    titleinput5.setError("Kindly enter valid title");
+                                                                                } else {
+                                                                                    if (sappno5.length() < 2) {
+                                                                                        errorflag = 1;
+                                                                                        appnoinput5.setError("Kindly enter valid application number");
+                                                                                    } else {
+                                                                                        if (selectedCountry5.equals("- Select Patent Office -")) {
+                                                                                            errorflag = 1;
+                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                        } else {
+                                                                                            if (sinventor5.length() < 2) {
+                                                                                                errorflag = 1;
+                                                                                                inventorinput5.setError("Kindly enter valid name");
+                                                                                            } else {
+                                                                                                if (issuedorpending5.equals("issued")) {
+                                                                                                    if (sissue5.length() < 2) {
                                                                                                         errorflag = 1;
-                                                                                                        issue5.setError("Invalid Date");
+                                                                                                        issueinput5.setError("Kindly select valid date");
                                                                                                     }
-                                                                                                }
-                                                                                                else
-                                                                                                {
-                                                                                                    if(sfiling5.length()<2)
-                                                                                                    {
-                                                                                                        errorflag=1;
-                                                                                                        filing5.setError("Invalid Date");
+                                                                                                } else {
+                                                                                                    if (sfiling5.length() < 2) {
+                                                                                                        errorflag = 1;
+                                                                                                        filinginput5.setError("Kindly select valid date");
                                                                                                     }
                                                                                                 }
                                                                                             }
@@ -5798,284 +5574,168 @@ public class MyProfilePatents extends AppCompatActivity {
                     }
                 }
             }
-        }
-        else if(patentcount==5)
-        {
+        } else if (patentcount == 5) {
             {
-                if(stitle1.length()<2)
-                {
-                    errorflag=1;
-                    title1.setError("Invalid Patent Name");
-                }
-                else
-                {
-                    errorflag=0;
-                    if(sappno1.length()<2)
-                    {
-                        errorflag=1;
-                        appno1.setError("Invalid Application Number");
-                    }
-                    else
-                    {
-                        errorflag=0;
-                        if(selectedCountry1.equals("- Select Patent Office -"))
-                        {
-                            errorflag=1;
-                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            errorflag=0;
-                            if(sinventor1.length()<2)
-                            {
-                                errorflag=1;
-                                inventor1.setError("Invalid Name");
-                            }
-                            else
-                            {
-                                errorflag=0;
-                                if(issuedorpending1.equals("issued")) {
+                if (stitle1.length() < 2) {
+                    errorflag = 1;
+                    titleinput1.setError("Kindly enter valid title");
+                } else {
+                    if (sappno1.length() < 2) {
+                        errorflag = 1;
+                        appnoinput1.setError("Kindly enter valid application number");
+                    } else {
+                        if (selectedCountry1.equals("- Select Patent Office -")) {
+                            errorflag = 1;
+                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                        } else {
+                            if (sinventor1.length() < 2) {
+                                errorflag = 1;
+                                inventorinput1.setError("Kindly enter valid name");
+                            } else {
+                                if (issuedorpending1.equals("issued")) {
                                     if (sissue1.length() < 2) {
                                         errorflag = 1;
-                                        issue1.setError("Invalid Date");
+                                        issueinput1.setError("Kindly select valid date");
+                                    }
+                                } else {
+                                    if (sfiling1.length() < 2) {
+                                        errorflag = 1;
+                                        filinginput1.setError("Kindly select valid date");
                                     }
                                 }
-                                else
-                                {
-                                    if(sfiling1.length()<2)
-                                    {
-                                        errorflag=1;
-                                        filing1.setError("Invalid Date");
-                                    }
-                                }
-                                if(stitle2.length()<2)
-                                {
-                                    errorflag=1;
-                                    title2.setError("Invalid Patent Name");
-                                }
-                                else
-                                {
-                                    errorflag=0;
-                                    if(sappno2.length()<2)
-                                    {
-                                        errorflag=1;
-                                        appno2.setError("Invalid Application Number");
-                                    }
-                                    else
-                                    {
-                                        errorflag=0;
-                                        if(selectedCountry2.equals("- Select Patent Office -"))
-                                        {
-                                            errorflag=1;
-                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                        }
-                                        else
-                                        {
-                                            errorflag=0;
-                                            if(sinventor2.length()<2)
-                                            {
-                                                errorflag=1;
-                                                inventor2.setError("Invalid Name");
-                                            }
-                                            else
-                                            {
-                                                errorflag=0;
-                                                if(issuedorpending2.equals("issued")) {
+                                if (stitle2.length() < 2) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid title");
+                                } else {
+                                    if (sappno2.length() < 2) {
+                                        errorflag = 1;
+                                        appnoinput2.setError("Kindly enter valid application number");
+                                    } else {
+                                        if (selectedCountry2.equals("- Select Patent Office -")) {
+                                            errorflag = 1;
+                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                        } else {
+                                            if (sinventor2.length() < 2) {
+                                                errorflag = 1;
+                                                inventorinput2.setError("Kindly enter valid name");
+                                            } else {
+                                                if (issuedorpending2.equals("issued")) {
                                                     if (sissue2.length() < 2) {
                                                         errorflag = 1;
-                                                        issue2.setError("Invalid Date");
+                                                        issueinput2.setError("Kindly select valid date");
+                                                    }
+                                                } else {
+                                                    if (sfiling2.length() < 2) {
+                                                        errorflag = 1;
+                                                        filinginput2.setError("Kindly select valid date");
                                                     }
                                                 }
-                                                else
-                                                {
-                                                    if(sfiling2.length()<2)
-                                                    {
-                                                        errorflag=1;
-                                                        filing2.setError("Invalid Date");
-                                                    }
-                                                }
-                                                if(stitle3.length()<3)
-                                                {
-                                                    errorflag=1;
-                                                    title3.setError("Invalid Patent Name");
-                                                }
-                                                else
-                                                {
-                                                    errorflag=0;
-                                                    if(sappno3.length()<3)
-                                                    {
-                                                        errorflag=1;
-                                                        appno3.setError("Invalid Application Number");
-                                                    }
-                                                    else
-                                                    {
-                                                        errorflag=0;
-                                                        if(selectedCountry3.equals("- Select Patent Office -"))
-                                                        {
-                                                            errorflag=1;
-                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                        }
-                                                        else
-                                                        {
-                                                            errorflag=0;
-                                                            if(sinventor3.length()<3)
-                                                            {
-                                                                errorflag=1;
-                                                                inventor3.setError("Invalid Name");
-                                                            }
-                                                            else
-                                                            {
-                                                                errorflag=0;
-                                                                if(issuedorpending3.equals("issued")) {
-                                                                    if (sissue3.length() < 3) {
+                                                if (stitle3.length() < 2) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid title");
+                                                } else {
+                                                    if (sappno3.length() < 2) {
+                                                        errorflag = 1;
+                                                        appnoinput3.setError("Kindly enter valid application number");
+                                                    } else {
+                                                        if (selectedCountry3.equals("- Select Patent Office -")) {
+                                                            errorflag = 1;
+                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                        } else {
+                                                            if (sinventor3.length() < 2) {
+                                                                errorflag = 1;
+                                                                inventorinput3.setError("Kindly enter valid name");
+                                                            } else {
+                                                                if (issuedorpending3.equals("issued")) {
+                                                                    if (sissue3.length() < 2) {
                                                                         errorflag = 1;
-                                                                        issue3.setError("Invalid Date");
+                                                                        issueinput3.setError("Kindly select valid date");
+                                                                    }
+                                                                } else {
+                                                                    if (sfiling3.length() < 2) {
+                                                                        errorflag = 1;
+                                                                        filinginput3.setError("Kindly select valid date");
                                                                     }
                                                                 }
-                                                                else
-                                                                {
-                                                                    if(sfiling3.length()<3)
-                                                                    {
-                                                                        errorflag=1;
-                                                                        filing3.setError("Invalid Date");
-                                                                    }
-                                                                }
-                                                                if(stitle4.length()<4)
-                                                                {
-                                                                    errorflag=1;
-                                                                    title4.setError("Invalid Patent Name");
-                                                                }
-                                                                else
-                                                                {
-                                                                    errorflag=0;
-                                                                    if(sappno4.length()<4)
-                                                                    {
-                                                                        errorflag=1;
-                                                                        appno4.setError("Invalid Application Number");
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        errorflag=0;
-                                                                        if(selectedCountry4.equals("- Select Patent Office -"))
-                                                                        {
-                                                                            errorflag=1;
-                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            errorflag=0;
-                                                                            if(sinventor4.length()<4)
-                                                                            {
-                                                                                errorflag=1;
-                                                                                inventor4.setError("Invalid Name");
-                                                                            }
-                                                                            else
-                                                                            {
-                                                                                errorflag=0;
-                                                                                if(issuedorpending4.equals("issued")) {
-                                                                                    if (sissue4.length() < 4) {
+                                                                if (stitle4.length() < 2) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid title");
+                                                                } else {
+                                                                    if (sappno4.length() < 2) {
+                                                                        errorflag = 1;
+                                                                        appnoinput4.setError("Kindly enter valid application number");
+                                                                    } else {
+                                                                        if (selectedCountry4.equals("- Select Patent Office -")) {
+                                                                            errorflag = 1;
+                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                        } else {
+                                                                            if (sinventor4.length() < 2) {
+                                                                                errorflag = 1;
+                                                                                inventorinput4.setError("Kindly enter valid name");
+                                                                            } else {
+                                                                                if (issuedorpending4.equals("issued")) {
+                                                                                    if (sissue4.length() < 2) {
                                                                                         errorflag = 1;
-                                                                                        issue4.setError("Invalid Date");
+                                                                                        issueinput4.setError("Kindly select valid date");
+                                                                                    }
+                                                                                } else {
+                                                                                    if (sfiling4.length() < 2) {
+                                                                                        errorflag = 1;
+                                                                                        filinginput4.setError("Kindly select valid date");
                                                                                     }
                                                                                 }
-                                                                                else
-                                                                                {
-                                                                                    if(sfiling4.length()<4)
-                                                                                    {
-                                                                                        errorflag=1;
-                                                                                        filing4.setError("Invalid Date");
-                                                                                    }
-                                                                                }
-                                                                                if(stitle5.length()<2)
-                                                                                {
-                                                                                    errorflag=1;
-                                                                                    title5.setError("Invalid Patent Name");
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                    errorflag=0;
-                                                                                    if(sappno5.length()<2)
-                                                                                    {
-                                                                                        errorflag=1;
-                                                                                        appno5.setError("Invalid Application Number");
-                                                                                    }
-                                                                                    else
-                                                                                    {
-                                                                                        errorflag=0;
-                                                                                        if(selectedCountry5.equals("- Select Patent Office -"))
-                                                                                        {
-                                                                                            errorflag=1;
-                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                        }
-                                                                                        else
-                                                                                        {
-                                                                                            errorflag=0;
-                                                                                            if(sinventor5.length()<2)
-                                                                                            {
-                                                                                                errorflag=1;
-                                                                                                inventor5.setError("Invalid Name");
-                                                                                            }
-                                                                                            else
-                                                                                            {
-                                                                                                errorflag=0;
-                                                                                                if(issuedorpending5.equals("issued")) {
-                                                                                                    if (sissue5.length() < 5) {
+                                                                                if (stitle5.length() < 2) {
+                                                                                    errorflag = 1;
+                                                                                    titleinput5.setError("Kindly enter valid title");
+                                                                                } else {
+                                                                                    if (sappno5.length() < 2) {
+                                                                                        errorflag = 1;
+                                                                                        appnoinput5.setError("Kindly enter valid application number");
+                                                                                    } else {
+                                                                                        if (selectedCountry5.equals("- Select Patent Office -")) {
+                                                                                            errorflag = 1;
+                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                        } else {
+                                                                                            if (sinventor5.length() < 2) {
+                                                                                                errorflag = 1;
+                                                                                                inventorinput5.setError("Kindly enter valid name");
+                                                                                            } else {
+                                                                                                if (issuedorpending5.equals("issued")) {
+                                                                                                    if (sissue5.length() < 2) {
                                                                                                         errorflag = 1;
-                                                                                                        issue5.setError("Invalid Date");
+                                                                                                        issueinput5.setError("Kindly select valid date");
+                                                                                                    }
+                                                                                                } else {
+                                                                                                    if (sfiling5.length() < 2) {
+                                                                                                        errorflag = 1;
+                                                                                                        filinginput5.setError("Kindly select valid date");
                                                                                                     }
                                                                                                 }
-                                                                                                else
-                                                                                                {
-                                                                                                    if(sfiling5.length()<2)
-                                                                                                    {
-                                                                                                        errorflag=1;
-                                                                                                        filing5.setError("Invalid Date");
-                                                                                                    }
-                                                                                                }
-                                                                                                if(stitle6.length()<2)
-                                                                                                {
-                                                                                                    errorflag=1;
-                                                                                                    title6.setError("Invalid Patent Name");
-                                                                                                }
-                                                                                                else
-                                                                                                {
-                                                                                                    errorflag=0;
-                                                                                                    if(sappno6.length()<2)
-                                                                                                    {
-                                                                                                        errorflag=1;
-                                                                                                        appno6.setError("Invalid Application Number");
-                                                                                                    }
-                                                                                                    else
-                                                                                                    {
-                                                                                                        errorflag=0;
-                                                                                                        if(selectedCountry6.equals("- Select Patent Office -"))
-                                                                                                        {
-                                                                                                            errorflag=1;
-                                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                                        }
-                                                                                                        else
-                                                                                                        {
-                                                                                                            errorflag=0;
-                                                                                                            if(sinventor6.length()<2)
-                                                                                                            {
-                                                                                                                errorflag=1;
-                                                                                                                inventor6.setError("Invalid Name");
-                                                                                                            }
-                                                                                                            else
-                                                                                                            {
-                                                                                                                errorflag=0;
-                                                                                                                if(issuedorpending6.equals("issued")) {
-                                                                                                                    if (sissue6.length() < 6) {
+                                                                                                if (stitle6.length() < 2) {
+                                                                                                    errorflag = 1;
+                                                                                                    titleinput6.setError("Kindly enter valid title");
+                                                                                                } else {
+                                                                                                    if (sappno6.length() < 2) {
+                                                                                                        errorflag = 1;
+                                                                                                        appnoinput6.setError("Kindly enter valid application number");
+                                                                                                    } else {
+                                                                                                        if (selectedCountry6.equals("- Select Patent Office -")) {
+                                                                                                            errorflag = 1;
+                                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                                        } else {
+                                                                                                            if (sinventor6.length() < 2) {
+                                                                                                                errorflag = 1;
+                                                                                                                inventorinput6.setError("Kindly enter valid name");
+                                                                                                            } else {
+                                                                                                                if (issuedorpending6.equals("issued")) {
+                                                                                                                    if (sissue6.length() < 2) {
                                                                                                                         errorflag = 1;
-                                                                                                                        issue6.setError("Invalid Date");
+                                                                                                                        issueinput6.setError("Kindly select valid date");
                                                                                                                     }
-                                                                                                                }
-                                                                                                                else
-                                                                                                                {
-                                                                                                                    if(sfiling6.length()<2)
-                                                                                                                    {
-                                                                                                                        errorflag=1;
-                                                                                                                        filing6.setError("Invalid Date");
+                                                                                                                } else {
+                                                                                                                    if (sfiling6.length() < 2) {
+                                                                                                                        errorflag = 1;
+                                                                                                                        filinginput6.setError("Kindly select valid date");
                                                                                                                     }
                                                                                                                 }
                                                                                                             }
@@ -6108,330 +5768,195 @@ public class MyProfilePatents extends AppCompatActivity {
                     }
                 }
             }
-        }
-        else if(patentcount==6)
-        {
+        } else if (patentcount == 6) {
             {
-                if(stitle1.length()<2)
-                {
-                    errorflag=1;
-                    title1.setError("Invalid Patent Name");
-                }
-                else
-                {
-                    errorflag=0;
-                    if(sappno1.length()<2)
-                    {
-                        errorflag=1;
-                        appno1.setError("Invalid Application Number");
-                    }
-                    else
-                    {
-                        errorflag=0;
-                        if(selectedCountry1.equals("- Select Patent Office -"))
-                        {
-                            errorflag=1;
-                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            errorflag=0;
-                            if(sinventor1.length()<2)
-                            {
-                                errorflag=1;
-                                inventor1.setError("Invalid Name");
-                            }
-                            else
-                            {
-                                errorflag=0;
-                                if(issuedorpending1.equals("issued")) {
+                if (stitle1.length() < 2) {
+                    errorflag = 1;
+                    titleinput1.setError("Kindly enter valid title");
+                } else {
+                    if (sappno1.length() < 2) {
+                        errorflag = 1;
+                        appnoinput1.setError("Kindly enter valid application number");
+                    } else {
+                        if (selectedCountry1.equals("- Select Patent Office -")) {
+                            errorflag = 1;
+                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                        } else {
+                            if (sinventor1.length() < 2) {
+                                errorflag = 1;
+                                inventorinput1.setError("Kindly enter valid name");
+                            } else {
+                                if (issuedorpending1.equals("issued")) {
                                     if (sissue1.length() < 2) {
                                         errorflag = 1;
-                                        issue1.setError("Invalid Date");
+                                        issueinput1.setError("Kindly select valid date");
+                                    }
+                                } else {
+                                    if (sfiling1.length() < 2) {
+                                        errorflag = 1;
+                                        filinginput1.setError("Kindly select valid date");
                                     }
                                 }
-                                else
-                                {
-                                    if(sfiling1.length()<2)
-                                    {
-                                        errorflag=1;
-                                        filing1.setError("Invalid Date");
-                                    }
-                                }
-                                if(stitle2.length()<2)
-                                {
-                                    errorflag=1;
-                                    title2.setError("Invalid Patent Name");
-                                }
-                                else
-                                {
-                                    errorflag=0;
-                                    if(sappno2.length()<2)
-                                    {
-                                        errorflag=1;
-                                        appno2.setError("Invalid Application Number");
-                                    }
-                                    else
-                                    {
-                                        errorflag=0;
-                                        if(selectedCountry2.equals("- Select Patent Office -"))
-                                        {
-                                            errorflag=1;
-                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                        }
-                                        else
-                                        {
-                                            errorflag=0;
-                                            if(sinventor2.length()<2)
-                                            {
-                                                errorflag=1;
-                                                inventor2.setError("Invalid Name");
-                                            }
-                                            else
-                                            {
-                                                errorflag=0;
-                                                if(issuedorpending2.equals("issued")) {
+                                if (stitle2.length() < 2) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid title");
+                                } else {
+                                    if (sappno2.length() < 2) {
+                                        errorflag = 1;
+                                        appnoinput2.setError("Kindly enter valid application number");
+                                    } else {
+                                        if (selectedCountry2.equals("- Select Patent Office -")) {
+                                            errorflag = 1;
+                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                        } else {
+                                            if (sinventor2.length() < 2) {
+                                                errorflag = 1;
+                                                inventorinput2.setError("Kindly enter valid name");
+                                            } else {
+                                                if (issuedorpending2.equals("issued")) {
                                                     if (sissue2.length() < 2) {
                                                         errorflag = 1;
-                                                        issue2.setError("Invalid Date");
+                                                        issueinput2.setError("Kindly select valid date");
+                                                    }
+                                                } else {
+                                                    if (sfiling2.length() < 2) {
+                                                        errorflag = 1;
+                                                        filinginput2.setError("Kindly select valid date");
                                                     }
                                                 }
-                                                else
-                                                {
-                                                    if(sfiling2.length()<2)
-                                                    {
-                                                        errorflag=1;
-                                                        filing2.setError("Invalid Date");
-                                                    }
-                                                }
-                                                if(stitle3.length()<3)
-                                                {
-                                                    errorflag=1;
-                                                    title3.setError("Invalid Patent Name");
-                                                }
-                                                else
-                                                {
-                                                    errorflag=0;
-                                                    if(sappno3.length()<3)
-                                                    {
-                                                        errorflag=1;
-                                                        appno3.setError("Invalid Application Number");
-                                                    }
-                                                    else
-                                                    {
-                                                        errorflag=0;
-                                                        if(selectedCountry3.equals("- Select Patent Office -"))
-                                                        {
-                                                            errorflag=1;
-                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                        }
-                                                        else
-                                                        {
-                                                            errorflag=0;
-                                                            if(sinventor3.length()<3)
-                                                            {
-                                                                errorflag=1;
-                                                                inventor3.setError("Invalid Name");
-                                                            }
-                                                            else
-                                                            {
-                                                                errorflag=0;
-                                                                if(issuedorpending3.equals("issued")) {
-                                                                    if (sissue3.length() < 3) {
+                                                if (stitle3.length() < 2) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid title");
+                                                } else {
+                                                    if (sappno3.length() < 2) {
+                                                        errorflag = 1;
+                                                        appnoinput3.setError("Kindly enter valid application number");
+                                                    } else {
+                                                        if (selectedCountry3.equals("- Select Patent Office -")) {
+                                                            errorflag = 1;
+                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                        } else {
+                                                            if (sinventor3.length() < 2) {
+                                                                errorflag = 1;
+                                                                inventorinput3.setError("Kindly enter valid name");
+                                                            } else {
+                                                                if (issuedorpending3.equals("issued")) {
+                                                                    if (sissue3.length() < 2) {
                                                                         errorflag = 1;
-                                                                        issue3.setError("Invalid Date");
+                                                                        issueinput3.setError("Kindly select valid date");
+                                                                    }
+                                                                } else {
+                                                                    if (sfiling3.length() < 2) {
+                                                                        errorflag = 1;
+                                                                        filinginput3.setError("Kindly select valid date");
                                                                     }
                                                                 }
-                                                                else
-                                                                {
-                                                                    if(sfiling3.length()<3)
-                                                                    {
-                                                                        errorflag=1;
-                                                                        filing3.setError("Invalid Date");
-                                                                    }
-                                                                }
-                                                                if(stitle4.length()<4)
-                                                                {
-                                                                    errorflag=1;
-                                                                    title4.setError("Invalid Patent Name");
-                                                                }
-                                                                else
-                                                                {
-                                                                    errorflag=0;
-                                                                    if(sappno4.length()<4)
-                                                                    {
-                                                                        errorflag=1;
-                                                                        appno4.setError("Invalid Application Number");
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        errorflag=0;
-                                                                        if(selectedCountry4.equals("- Select Patent Office -"))
-                                                                        {
-                                                                            errorflag=1;
-                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            errorflag=0;
-                                                                            if(sinventor4.length()<4)
-                                                                            {
-                                                                                errorflag=1;
-                                                                                inventor4.setError("Invalid Name");
-                                                                            }
-                                                                            else
-                                                                            {
-                                                                                errorflag=0;
-                                                                                if(issuedorpending4.equals("issued")) {
-                                                                                    if (sissue4.length() < 4) {
+                                                                if (stitle4.length() < 2) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid title");
+                                                                } else {
+                                                                    if (sappno4.length() < 2) {
+                                                                        errorflag = 1;
+                                                                        appnoinput4.setError("Kindly enter valid application number");
+                                                                    } else {
+                                                                        if (selectedCountry4.equals("- Select Patent Office -")) {
+                                                                            errorflag = 1;
+                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                        } else {
+                                                                            if (sinventor4.length() < 2) {
+                                                                                errorflag = 1;
+                                                                                inventorinput4.setError("Kindly enter valid name");
+                                                                            } else {
+                                                                                if (issuedorpending4.equals("issued")) {
+                                                                                    if (sissue4.length() < 2) {
                                                                                         errorflag = 1;
-                                                                                        issue4.setError("Invalid Date");
+                                                                                        issueinput4.setError("Kindly select valid date");
+                                                                                    }
+                                                                                } else {
+                                                                                    if (sfiling4.length() < 2) {
+                                                                                        errorflag = 1;
+                                                                                        filinginput4.setError("Kindly select valid date");
                                                                                     }
                                                                                 }
-                                                                                else
-                                                                                {
-                                                                                    if(sfiling4.length()<4)
-                                                                                    {
-                                                                                        errorflag=1;
-                                                                                        filing4.setError("Invalid Date");
-                                                                                    }
-                                                                                }
-                                                                                if(stitle5.length()<2)
-                                                                                {
-                                                                                    errorflag=1;
-                                                                                    title5.setError("Invalid Patent Name");
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                    errorflag=0;
-                                                                                    if(sappno5.length()<2)
-                                                                                    {
-                                                                                        errorflag=1;
-                                                                                        appno5.setError("Invalid Application Number");
-                                                                                    }
-                                                                                    else
-                                                                                    {
-                                                                                        errorflag=0;
-                                                                                        if(selectedCountry5.equals("- Select Patent Office -"))
-                                                                                        {
-                                                                                            errorflag=1;
-                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                        }
-                                                                                        else
-                                                                                        {
-                                                                                            errorflag=0;
-                                                                                            if(sinventor5.length()<2)
-                                                                                            {
-                                                                                                errorflag=1;
-                                                                                                inventor5.setError("Invalid Name");
-                                                                                            }
-                                                                                            else
-                                                                                            {
-                                                                                                errorflag=0;
-                                                                                                if(issuedorpending5.equals("issued")) {
-                                                                                                    if (sissue5.length() < 5) {
+                                                                                if (stitle5.length() < 2) {
+                                                                                    errorflag = 1;
+                                                                                    titleinput5.setError("Kindly enter valid title");
+                                                                                } else {
+                                                                                    if (sappno5.length() < 2) {
+                                                                                        errorflag = 1;
+                                                                                        appnoinput5.setError("Kindly enter valid application number");
+                                                                                    } else {
+                                                                                        if (selectedCountry5.equals("- Select Patent Office -")) {
+                                                                                            errorflag = 1;
+                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                        } else {
+                                                                                            if (sinventor5.length() < 2) {
+                                                                                                errorflag = 1;
+                                                                                                inventorinput5.setError("Kindly enter valid name");
+                                                                                            } else {
+                                                                                                if (issuedorpending5.equals("issued")) {
+                                                                                                    if (sissue5.length() < 2) {
                                                                                                         errorflag = 1;
-                                                                                                        issue5.setError("Invalid Date");
+                                                                                                        issueinput5.setError("Kindly select valid date");
+                                                                                                    }
+                                                                                                } else {
+                                                                                                    if (sfiling5.length() < 2) {
+                                                                                                        errorflag = 1;
+                                                                                                        filinginput5.setError("Kindly select valid date");
                                                                                                     }
                                                                                                 }
-                                                                                                else
-                                                                                                {
-                                                                                                    if(sfiling5.length()<2)
-                                                                                                    {
-                                                                                                        errorflag=1;
-                                                                                                        filing5.setError("Invalid Date");
-                                                                                                    }
-                                                                                                }
-                                                                                                if(stitle6.length()<2)
-                                                                                                {
-                                                                                                    errorflag=1;
-                                                                                                    title6.setError("Invalid Patent Name");
-                                                                                                }
-                                                                                                else
-                                                                                                {
-                                                                                                    errorflag=0;
-                                                                                                    if(sappno6.length()<2)
-                                                                                                    {
-                                                                                                        errorflag=1;
-                                                                                                        appno6.setError("Invalid Application Number");
-                                                                                                    }
-                                                                                                    else
-                                                                                                    {
-                                                                                                        errorflag=0;
-                                                                                                        if(selectedCountry6.equals("- Select Patent Office -"))
-                                                                                                        {
-                                                                                                            errorflag=1;
-                                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                                        }
-                                                                                                        else
-                                                                                                        {
-                                                                                                            errorflag=0;
-                                                                                                            if(sinventor6.length()<2)
-                                                                                                            {
-                                                                                                                errorflag=1;
-                                                                                                                inventor6.setError("Invalid Name");
-                                                                                                            }
-                                                                                                            else
-                                                                                                            {
-                                                                                                                errorflag=0;
-                                                                                                                if(issuedorpending6.equals("issued")) {
-                                                                                                                    if (sissue6.length() < 6) {
+                                                                                                if (stitle6.length() < 2) {
+                                                                                                    errorflag = 1;
+                                                                                                    titleinput6.setError("Kindly enter valid title");
+                                                                                                } else {
+                                                                                                    if (sappno6.length() < 2) {
+                                                                                                        errorflag = 1;
+                                                                                                        appnoinput6.setError("Kindly enter valid application number");
+                                                                                                    } else {
+                                                                                                        if (selectedCountry6.equals("- Select Patent Office -")) {
+                                                                                                            errorflag = 1;
+                                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                                        } else {
+                                                                                                            if (sinventor6.length() < 2) {
+                                                                                                                errorflag = 1;
+                                                                                                                inventorinput6.setError("Kindly enter valid name");
+                                                                                                            } else {
+                                                                                                                if (issuedorpending6.equals("issued")) {
+                                                                                                                    if (sissue6.length() < 2) {
                                                                                                                         errorflag = 1;
-                                                                                                                        issue6.setError("Invalid Date");
+                                                                                                                        issueinput6.setError("Kindly select valid date");
+                                                                                                                    }
+                                                                                                                } else {
+                                                                                                                    if (sfiling6.length() < 2) {
+                                                                                                                        errorflag = 1;
+                                                                                                                        filinginput6.setError("Kindly select valid date");
                                                                                                                     }
                                                                                                                 }
-                                                                                                                else
-                                                                                                                {
-                                                                                                                    if(sfiling6.length()<2)
-                                                                                                                    {
-                                                                                                                        errorflag=1;
-                                                                                                                        filing6.setError("Invalid Date");
-                                                                                                                    }
-                                                                                                                }
-                                                                                                                if(stitle7.length()<2)
-                                                                                                                {
-                                                                                                                    errorflag=1;
-                                                                                                                    title7.setError("Invalid Patent Name");
-                                                                                                                }
-                                                                                                                else
-                                                                                                                {
-                                                                                                                    errorflag=0;
-                                                                                                                    if(sappno7.length()<2)
-                                                                                                                    {
-                                                                                                                        errorflag=1;
-                                                                                                                        appno7.setError("Invalid Application Number");
-                                                                                                                    }
-                                                                                                                    else
-                                                                                                                    {
-                                                                                                                        errorflag=0;
-                                                                                                                        if(selectedCountry7.equals("- Select Patent Office -"))
-                                                                                                                        {
-                                                                                                                            errorflag=1;
-                                                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                                                        }
-                                                                                                                        else
-                                                                                                                        {
-                                                                                                                            errorflag=0;
-                                                                                                                            if(sinventor7.length()<2)
-                                                                                                                            {
-                                                                                                                                errorflag=1;
-                                                                                                                                inventor7.setError("Invalid Name");
-                                                                                                                            }
-                                                                                                                            else
-                                                                                                                            {
-                                                                                                                                errorflag=0;
-                                                                                                                                if(issuedorpending7.equals("issued")) {
-                                                                                                                                    if (sissue7.length() < 7) {
+                                                                                                                if (stitle7.length() < 2) {
+                                                                                                                    errorflag = 1;
+                                                                                                                    titleinput7.setError("Kindly enter valid title");
+                                                                                                                } else {
+                                                                                                                    if (sappno7.length() < 2) {
+                                                                                                                        errorflag = 1;
+                                                                                                                        appnoinput7.setError("Kindly enter valid application number");
+                                                                                                                    } else {
+                                                                                                                        if (selectedCountry7.equals("- Select Patent Office -")) {
+                                                                                                                            errorflag = 1;
+                                                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                                                        } else {
+                                                                                                                            if (sinventor7.length() < 2) {
+                                                                                                                                errorflag = 1;
+                                                                                                                                inventorinput7.setError("Kindly enter valid name");
+                                                                                                                            } else {
+                                                                                                                                if (issuedorpending7.equals("issued")) {
+                                                                                                                                    if (sissue7.length() < 2) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        issue7.setError("Invalid Date");
+                                                                                                                                        issueinput7.setError("Kindly select valid date");
                                                                                                                                     }
-                                                                                                                                }
-                                                                                                                                else
-                                                                                                                                {
-                                                                                                                                    if(sfiling7.length()<2)
-                                                                                                                                    {
-                                                                                                                                        errorflag=1;
-                                                                                                                                        filing7.setError("Invalid Date");
+                                                                                                                                } else {
+                                                                                                                                    if (sfiling7.length() < 2) {
+                                                                                                                                        errorflag = 1;
+                                                                                                                                        filinginput7.setError("Kindly select valid date");
                                                                                                                                     }
                                                                                                                                 }
                                                                                                                             }
@@ -6469,376 +5994,222 @@ public class MyProfilePatents extends AppCompatActivity {
                     }
                 }
             }
-        }
-        else if(patentcount==7)
-        {
+        } else if (patentcount == 7) {
             {
-                if(stitle1.length()<2)
-                {
-                    errorflag=1;
-                    title1.setError("Invalid Patent Name");
-                }
-                else
-                {
-                    errorflag=0;
-                    if(sappno1.length()<2)
-                    {
-                        errorflag=1;
-                        appno1.setError("Invalid Application Number");
-                    }
-                    else
-                    {
-                        errorflag=0;
-                        if(selectedCountry1.equals("- Select Patent Office -"))
-                        {
-                            errorflag=1;
-                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            errorflag=0;
-                            if(sinventor1.length()<2)
-                            {
-                                errorflag=1;
-                                inventor1.setError("Invalid Name");
-                            }
-                            else
-                            {
-                                errorflag=0;
-                                if(issuedorpending1.equals("issued")) {
+                if (stitle1.length() < 2) {
+                    errorflag = 1;
+                    titleinput1.setError("Kindly enter valid title");
+                } else {
+                    if (sappno1.length() < 2) {
+                        errorflag = 1;
+                        appnoinput1.setError("Kindly enter valid application number");
+                    } else {
+                        if (selectedCountry1.equals("- Select Patent Office -")) {
+                            errorflag = 1;
+                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                        } else {
+                            if (sinventor1.length() < 2) {
+                                errorflag = 1;
+                                inventorinput1.setError("Kindly enter valid name");
+                            } else {
+                                if (issuedorpending1.equals("issued")) {
                                     if (sissue1.length() < 2) {
                                         errorflag = 1;
-                                        issue1.setError("Invalid Date");
+                                        issueinput1.setError("Kindly select valid date");
+                                    }
+                                } else {
+                                    if (sfiling1.length() < 2) {
+                                        errorflag = 1;
+                                        filinginput1.setError("Kindly select valid date");
                                     }
                                 }
-                                else
-                                {
-                                    if(sfiling1.length()<2)
-                                    {
-                                        errorflag=1;
-                                        filing1.setError("Invalid Date");
-                                    }
-                                }
-                                if(stitle2.length()<2)
-                                {
-                                    errorflag=1;
-                                    title2.setError("Invalid Patent Name");
-                                }
-                                else
-                                {
-                                    errorflag=0;
-                                    if(sappno2.length()<2)
-                                    {
-                                        errorflag=1;
-                                        appno2.setError("Invalid Application Number");
-                                    }
-                                    else
-                                    {
-                                        errorflag=0;
-                                        if(selectedCountry2.equals("- Select Patent Office -"))
-                                        {
-                                            errorflag=1;
-                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                        }
-                                        else
-                                        {
-                                            errorflag=0;
-                                            if(sinventor2.length()<2)
-                                            {
-                                                errorflag=1;
-                                                inventor2.setError("Invalid Name");
-                                            }
-                                            else
-                                            {
-                                                errorflag=0;
-                                                if(issuedorpending2.equals("issued")) {
+                                if (stitle2.length() < 2) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid title");
+                                } else {
+                                    if (sappno2.length() < 2) {
+                                        errorflag = 1;
+                                        appnoinput2.setError("Kindly enter valid application number");
+                                    } else {
+                                        if (selectedCountry2.equals("- Select Patent Office -")) {
+                                            errorflag = 1;
+                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                        } else {
+                                            if (sinventor2.length() < 2) {
+                                                errorflag = 1;
+                                                inventorinput2.setError("Kindly enter valid name");
+                                            } else {
+                                                if (issuedorpending2.equals("issued")) {
                                                     if (sissue2.length() < 2) {
                                                         errorflag = 1;
-                                                        issue2.setError("Invalid Date");
+                                                        issueinput2.setError("Kindly select valid date");
+                                                    }
+                                                } else {
+                                                    if (sfiling2.length() < 2) {
+                                                        errorflag = 1;
+                                                        filinginput2.setError("Kindly select valid date");
                                                     }
                                                 }
-                                                else
-                                                {
-                                                    if(sfiling2.length()<2)
-                                                    {
-                                                        errorflag=1;
-                                                        filing2.setError("Invalid Date");
-                                                    }
-                                                }
-                                                if(stitle3.length()<3)
-                                                {
-                                                    errorflag=1;
-                                                    title3.setError("Invalid Patent Name");
-                                                }
-                                                else
-                                                {
-                                                    errorflag=0;
-                                                    if(sappno3.length()<3)
-                                                    {
-                                                        errorflag=1;
-                                                        appno3.setError("Invalid Application Number");
-                                                    }
-                                                    else
-                                                    {
-                                                        errorflag=0;
-                                                        if(selectedCountry3.equals("- Select Patent Office -"))
-                                                        {
-                                                            errorflag=1;
-                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                        }
-                                                        else
-                                                        {
-                                                            errorflag=0;
-                                                            if(sinventor3.length()<3)
-                                                            {
-                                                                errorflag=1;
-                                                                inventor3.setError("Invalid Name");
-                                                            }
-                                                            else
-                                                            {
-                                                                errorflag=0;
-                                                                if(issuedorpending3.equals("issued")) {
-                                                                    if (sissue3.length() < 3) {
+                                                if (stitle3.length() < 2) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid title");
+                                                } else {
+                                                    if (sappno3.length() < 2) {
+                                                        errorflag = 1;
+                                                        appnoinput3.setError("Kindly enter valid application number");
+                                                    } else {
+                                                        if (selectedCountry3.equals("- Select Patent Office -")) {
+                                                            errorflag = 1;
+                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                        } else {
+                                                            if (sinventor3.length() < 2) {
+                                                                errorflag = 1;
+                                                                inventorinput3.setError("Kindly enter valid name");
+                                                            } else {
+                                                                if (issuedorpending3.equals("issued")) {
+                                                                    if (sissue3.length() < 2) {
                                                                         errorflag = 1;
-                                                                        issue3.setError("Invalid Date");
+                                                                        issueinput3.setError("Kindly select valid date");
+                                                                    }
+                                                                } else {
+                                                                    if (sfiling3.length() < 2) {
+                                                                        errorflag = 1;
+                                                                        filinginput3.setError("Kindly select valid date");
                                                                     }
                                                                 }
-                                                                else
-                                                                {
-                                                                    if(sfiling3.length()<3)
-                                                                    {
-                                                                        errorflag=1;
-                                                                        filing3.setError("Invalid Date");
-                                                                    }
-                                                                }
-                                                                if(stitle4.length()<4)
-                                                                {
-                                                                    errorflag=1;
-                                                                    title4.setError("Invalid Patent Name");
-                                                                }
-                                                                else
-                                                                {
-                                                                    errorflag=0;
-                                                                    if(sappno4.length()<4)
-                                                                    {
-                                                                        errorflag=1;
-                                                                        appno4.setError("Invalid Application Number");
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        errorflag=0;
-                                                                        if(selectedCountry4.equals("- Select Patent Office -"))
-                                                                        {
-                                                                            errorflag=1;
-                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            errorflag=0;
-                                                                            if(sinventor4.length()<4)
-                                                                            {
-                                                                                errorflag=1;
-                                                                                inventor4.setError("Invalid Name");
-                                                                            }
-                                                                            else
-                                                                            {
-                                                                                errorflag=0;
-                                                                                if(issuedorpending4.equals("issued")) {
-                                                                                    if (sissue4.length() < 4) {
+                                                                if (stitle4.length() < 2) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid title");
+                                                                } else {
+                                                                    if (sappno4.length() < 2) {
+                                                                        errorflag = 1;
+                                                                        appnoinput4.setError("Kindly enter valid application number");
+                                                                    } else {
+                                                                        if (selectedCountry4.equals("- Select Patent Office -")) {
+                                                                            errorflag = 1;
+                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                        } else {
+                                                                            if (sinventor4.length() < 2) {
+                                                                                errorflag = 1;
+                                                                                inventorinput4.setError("Kindly enter valid name");
+                                                                            } else {
+                                                                                if (issuedorpending4.equals("issued")) {
+                                                                                    if (sissue4.length() < 2) {
                                                                                         errorflag = 1;
-                                                                                        issue4.setError("Invalid Date");
+                                                                                        issueinput4.setError("Kindly select valid date");
+                                                                                    }
+                                                                                } else {
+                                                                                    if (sfiling4.length() < 2) {
+                                                                                        errorflag = 1;
+                                                                                        filinginput4.setError("Kindly select valid date");
                                                                                     }
                                                                                 }
-                                                                                else
-                                                                                {
-                                                                                    if(sfiling4.length()<4)
-                                                                                    {
-                                                                                        errorflag=1;
-                                                                                        filing4.setError("Invalid Date");
-                                                                                    }
-                                                                                }
-                                                                                if(stitle5.length()<2)
-                                                                                {
-                                                                                    errorflag=1;
-                                                                                    title5.setError("Invalid Patent Name");
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                    errorflag=0;
-                                                                                    if(sappno5.length()<2)
-                                                                                    {
-                                                                                        errorflag=1;
-                                                                                        appno5.setError("Invalid Application Number");
-                                                                                    }
-                                                                                    else
-                                                                                    {
-                                                                                        errorflag=0;
-                                                                                        if(selectedCountry5.equals("- Select Patent Office -"))
-                                                                                        {
-                                                                                            errorflag=1;
-                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                        }
-                                                                                        else
-                                                                                        {
-                                                                                            errorflag=0;
-                                                                                            if(sinventor5.length()<2)
-                                                                                            {
-                                                                                                errorflag=1;
-                                                                                                inventor5.setError("Invalid Name");
-                                                                                            }
-                                                                                            else
-                                                                                            {
-                                                                                                errorflag=0;
-                                                                                                if(issuedorpending5.equals("issued")) {
-                                                                                                    if (sissue5.length() < 5) {
+                                                                                if (stitle5.length() < 2) {
+                                                                                    errorflag = 1;
+                                                                                    titleinput5.setError("Kindly enter valid title");
+                                                                                } else {
+                                                                                    if (sappno5.length() < 2) {
+                                                                                        errorflag = 1;
+                                                                                        appnoinput5.setError("Kindly enter valid application number");
+                                                                                    } else {
+                                                                                        if (selectedCountry5.equals("- Select Patent Office -")) {
+                                                                                            errorflag = 1;
+                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                        } else {
+                                                                                            if (sinventor5.length() < 2) {
+                                                                                                errorflag = 1;
+                                                                                                inventorinput5.setError("Kindly enter valid name");
+                                                                                            } else {
+                                                                                                if (issuedorpending5.equals("issued")) {
+                                                                                                    if (sissue5.length() < 2) {
                                                                                                         errorflag = 1;
-                                                                                                        issue5.setError("Invalid Date");
+                                                                                                        issueinput5.setError("Kindly select valid date");
+                                                                                                    }
+                                                                                                } else {
+                                                                                                    if (sfiling5.length() < 2) {
+                                                                                                        errorflag = 1;
+                                                                                                        filinginput5.setError("Kindly select valid date");
                                                                                                     }
                                                                                                 }
-                                                                                                else
-                                                                                                {
-                                                                                                    if(sfiling5.length()<2)
-                                                                                                    {
-                                                                                                        errorflag=1;
-                                                                                                        filing5.setError("Invalid Date");
-                                                                                                    }
-                                                                                                }
-                                                                                                if(stitle6.length()<2)
-                                                                                                {
-                                                                                                    errorflag=1;
-                                                                                                    title6.setError("Invalid Patent Name");
-                                                                                                }
-                                                                                                else
-                                                                                                {
-                                                                                                    errorflag=0;
-                                                                                                    if(sappno6.length()<2)
-                                                                                                    {
-                                                                                                        errorflag=1;
-                                                                                                        appno6.setError("Invalid Application Number");
-                                                                                                    }
-                                                                                                    else
-                                                                                                    {
-                                                                                                        errorflag=0;
-                                                                                                        if(selectedCountry6.equals("- Select Patent Office -"))
-                                                                                                        {
-                                                                                                            errorflag=1;
-                                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                                        }
-                                                                                                        else
-                                                                                                        {
-                                                                                                            errorflag=0;
-                                                                                                            if(sinventor6.length()<2)
-                                                                                                            {
-                                                                                                                errorflag=1;
-                                                                                                                inventor6.setError("Invalid Name");
-                                                                                                            }
-                                                                                                            else
-                                                                                                            {
-                                                                                                                errorflag=0;
-                                                                                                                if(issuedorpending6.equals("issued")) {
-                                                                                                                    if (sissue6.length() < 6) {
+                                                                                                if (stitle6.length() < 2) {
+                                                                                                    errorflag = 1;
+                                                                                                    titleinput6.setError("Kindly enter valid title");
+                                                                                                } else {
+                                                                                                    if (sappno6.length() < 2) {
+                                                                                                        errorflag = 1;
+                                                                                                        appnoinput6.setError("Kindly enter valid application number");
+                                                                                                    } else {
+                                                                                                        if (selectedCountry6.equals("- Select Patent Office -")) {
+                                                                                                            errorflag = 1;
+                                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                                        } else {
+                                                                                                            if (sinventor6.length() < 2) {
+                                                                                                                errorflag = 1;
+                                                                                                                inventorinput6.setError("Kindly enter valid name");
+                                                                                                            } else {
+                                                                                                                if (issuedorpending6.equals("issued")) {
+                                                                                                                    if (sissue6.length() < 2) {
                                                                                                                         errorflag = 1;
-                                                                                                                        issue6.setError("Invalid Date");
+                                                                                                                        issueinput6.setError("Kindly select valid date");
+                                                                                                                    }
+                                                                                                                } else {
+                                                                                                                    if (sfiling6.length() < 2) {
+                                                                                                                        errorflag = 1;
+                                                                                                                        filinginput6.setError("Kindly select valid date");
                                                                                                                     }
                                                                                                                 }
-                                                                                                                else
-                                                                                                                {
-                                                                                                                    if(sfiling6.length()<2)
-                                                                                                                    {
-                                                                                                                        errorflag=1;
-                                                                                                                        filing6.setError("Invalid Date");
-                                                                                                                    }
-                                                                                                                }
-                                                                                                                if(stitle7.length()<2)
-                                                                                                                {
-                                                                                                                    errorflag=1;
-                                                                                                                    title7.setError("Invalid Patent Name");
-                                                                                                                }
-                                                                                                                else
-                                                                                                                {
-                                                                                                                    errorflag=0;
-                                                                                                                    if(sappno7.length()<2)
-                                                                                                                    {
-                                                                                                                        errorflag=1;
-                                                                                                                        appno7.setError("Invalid Application Number");
-                                                                                                                    }
-                                                                                                                    else
-                                                                                                                    {
-                                                                                                                        errorflag=0;
-                                                                                                                        if(selectedCountry7.equals("- Select Patent Office -"))
-                                                                                                                        {
-                                                                                                                            errorflag=1;
-                                                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                                                        }
-                                                                                                                        else
-                                                                                                                        {
-                                                                                                                            errorflag=0;
-                                                                                                                            if(sinventor7.length()<2)
-                                                                                                                            {
-                                                                                                                                errorflag=1;
-                                                                                                                                inventor7.setError("Invalid Name");
-                                                                                                                            }
-                                                                                                                            else
-                                                                                                                            {
-                                                                                                                                errorflag=0;
-                                                                                                                                if(issuedorpending7.equals("issued")) {
-                                                                                                                                    if (sissue7.length() < 7) {
+                                                                                                                if (stitle7.length() < 2) {
+                                                                                                                    errorflag = 1;
+                                                                                                                    titleinput7.setError("Kindly enter valid title");
+                                                                                                                } else {
+                                                                                                                    if (sappno7.length() < 2) {
+                                                                                                                        errorflag = 1;
+                                                                                                                        appnoinput7.setError("Kindly enter valid application number");
+                                                                                                                    } else {
+                                                                                                                        if (selectedCountry7.equals("- Select Patent Office -")) {
+                                                                                                                            errorflag = 1;
+                                                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                                                        } else {
+                                                                                                                            if (sinventor7.length() < 2) {
+                                                                                                                                errorflag = 1;
+                                                                                                                                inventorinput7.setError("Kindly enter valid name");
+                                                                                                                            } else {
+                                                                                                                                if (issuedorpending7.equals("issued")) {
+                                                                                                                                    if (sissue7.length() < 2) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        issue7.setError("Invalid Date");
+                                                                                                                                        issueinput7.setError("Kindly select valid date");
+                                                                                                                                    }
+                                                                                                                                } else {
+                                                                                                                                    if (sfiling7.length() < 2) {
+                                                                                                                                        errorflag = 1;
+                                                                                                                                        filinginput7.setError("Kindly select valid date");
                                                                                                                                     }
                                                                                                                                 }
-                                                                                                                                else
-                                                                                                                                {
-                                                                                                                                    if(sfiling7.length()<2)
-                                                                                                                                    {
-                                                                                                                                        errorflag=1;
-                                                                                                                                        filing7.setError("Invalid Date");
-                                                                                                                                    }
-                                                                                                                                }
-                                                                                                                                if(stitle8.length()<2)
-                                                                                                                                {
-                                                                                                                                    errorflag=1;
-                                                                                                                                    title8.setError("Invalid Patent Name");
-                                                                                                                                }
-                                                                                                                                else
-                                                                                                                                {
-                                                                                                                                    errorflag=0;
-                                                                                                                                    if(sappno8.length()<2)
-                                                                                                                                    {
-                                                                                                                                        errorflag=1;
-                                                                                                                                        appno8.setError("Invalid Application Number");
-                                                                                                                                    }
-                                                                                                                                    else
-                                                                                                                                    {
-                                                                                                                                        errorflag=0;
-                                                                                                                                        if(selectedCountry8.equals("- Select Patent Office -"))
-                                                                                                                                        {
-                                                                                                                                            errorflag=1;
-                                                                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                                                                        }
-                                                                                                                                        else
-                                                                                                                                        {
-                                                                                                                                            errorflag=0;
-                                                                                                                                            if(sinventor8.length()<2)
-                                                                                                                                            {
-                                                                                                                                                errorflag=1;
-                                                                                                                                                inventor8.setError("Invalid Name");
-                                                                                                                                            }
-                                                                                                                                            else
-                                                                                                                                            {
-                                                                                                                                                errorflag=0;
-                                                                                                                                                if(issuedorpending8.equals("issued")) {
-                                                                                                                                                    if (sissue8.length() < 8) {
+                                                                                                                                if (stitle8.length() < 2) {
+                                                                                                                                    errorflag = 1;
+                                                                                                                                    titleinput8.setError("Kindly enter valid title");
+                                                                                                                                } else {
+                                                                                                                                    if (sappno8.length() < 2) {
+                                                                                                                                        errorflag = 1;
+                                                                                                                                        appnoinput8.setError("Kindly enter valid application number");
+                                                                                                                                    } else {
+                                                                                                                                        if (selectedCountry8.equals("- Select Patent Office -")) {
+                                                                                                                                            errorflag = 1;
+                                                                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                                                                        } else {
+                                                                                                                                            if (sinventor8.length() < 2) {
+                                                                                                                                                errorflag = 1;
+                                                                                                                                                inventorinput8.setError("Kindly enter valid name");
+                                                                                                                                            } else {
+                                                                                                                                                if (issuedorpending8.equals("issued")) {
+                                                                                                                                                    if (sissue8.length() < 2) {
                                                                                                                                                         errorflag = 1;
-                                                                                                                                                        issue8.setError("Invalid Date");
+                                                                                                                                                        issueinput8.setError("Kindly select valid date");
                                                                                                                                                     }
-                                                                                                                                                }
-                                                                                                                                                else
-                                                                                                                                                {
-                                                                                                                                                    if(sfiling8.length()<2)
-                                                                                                                                                    {
-                                                                                                                                                        errorflag=1;
-                                                                                                                                                        filing8.setError("Invalid Date");
+                                                                                                                                                } else {
+                                                                                                                                                    if (sfiling8.length() < 2) {
+                                                                                                                                                        errorflag = 1;
+                                                                                                                                                        filinginput8.setError("Kindly select valid date");
                                                                                                                                                     }
                                                                                                                                                 }
                                                                                                                                             }
@@ -6881,422 +6252,249 @@ public class MyProfilePatents extends AppCompatActivity {
                     }
                 }
             }
-        }
-        else if(patentcount==8)
-        {
+        } else if (patentcount == 8) {
             {
-                if(stitle1.length()<2)
-                {
-                    errorflag=1;
-                    title1.setError("Invalid Patent Name");
-                }
-                else
-                {
-                    errorflag=0;
-                    if(sappno1.length()<2)
-                    {
-                        errorflag=1;
-                        appno1.setError("Invalid Application Number");
-                    }
-                    else
-                    {
-                        errorflag=0;
-                        if(selectedCountry1.equals("- Select Patent Office -"))
-                        {
-                            errorflag=1;
-                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            errorflag=0;
-                            if(sinventor1.length()<2)
-                            {
-                                errorflag=1;
-                                inventor1.setError("Invalid Name");
-                            }
-                            else
-                            {
-                                errorflag=0;
-                                if(issuedorpending1.equals("issued")) {
+                if (stitle1.length() < 2) {
+                    errorflag = 1;
+                    titleinput1.setError("Kindly enter valid title");
+                } else {
+                    if (sappno1.length() < 2) {
+                        errorflag = 1;
+                        appnoinput1.setError("Kindly enter valid application number");
+                    } else {
+                        if (selectedCountry1.equals("- Select Patent Office -")) {
+                            errorflag = 1;
+                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                        } else {
+                            if (sinventor1.length() < 2) {
+                                errorflag = 1;
+                                inventorinput1.setError("Kindly enter valid name");
+                            } else {
+                                if (issuedorpending1.equals("issued")) {
                                     if (sissue1.length() < 2) {
                                         errorflag = 1;
-                                        issue1.setError("Invalid Date");
+                                        issueinput1.setError("Kindly select valid date");
+                                    }
+                                } else {
+                                    if (sfiling1.length() < 2) {
+                                        errorflag = 1;
+                                        filinginput1.setError("Kindly select valid date");
                                     }
                                 }
-                                else
-                                {
-                                    if(sfiling1.length()<2)
-                                    {
-                                        errorflag=1;
-                                        filing1.setError("Invalid Date");
-                                    }
-                                }
-                                if(stitle2.length()<2)
-                                {
-                                    errorflag=1;
-                                    title2.setError("Invalid Patent Name");
-                                }
-                                else
-                                {
-                                    errorflag=0;
-                                    if(sappno2.length()<2)
-                                    {
-                                        errorflag=1;
-                                        appno2.setError("Invalid Application Number");
-                                    }
-                                    else
-                                    {
-                                        errorflag=0;
-                                        if(selectedCountry2.equals("- Select Patent Office -"))
-                                        {
-                                            errorflag=1;
-                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                        }
-                                        else
-                                        {
-                                            errorflag=0;
-                                            if(sinventor2.length()<2)
-                                            {
-                                                errorflag=1;
-                                                inventor2.setError("Invalid Name");
-                                            }
-                                            else
-                                            {
-                                                errorflag=0;
-                                                if(issuedorpending2.equals("issued")) {
+                                if (stitle2.length() < 2) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid title");
+                                } else {
+                                    if (sappno2.length() < 2) {
+                                        errorflag = 1;
+                                        appnoinput2.setError("Kindly enter valid application number");
+                                    } else {
+                                        if (selectedCountry2.equals("- Select Patent Office -")) {
+                                            errorflag = 1;
+                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                        } else {
+                                            if (sinventor2.length() < 2) {
+                                                errorflag = 1;
+                                                inventorinput2.setError("Kindly enter valid name");
+                                            } else {
+                                                if (issuedorpending2.equals("issued")) {
                                                     if (sissue2.length() < 2) {
                                                         errorflag = 1;
-                                                        issue2.setError("Invalid Date");
+                                                        issueinput2.setError("Kindly select valid date");
+                                                    }
+                                                } else {
+                                                    if (sfiling2.length() < 2) {
+                                                        errorflag = 1;
+                                                        filinginput2.setError("Kindly select valid date");
                                                     }
                                                 }
-                                                else
-                                                {
-                                                    if(sfiling2.length()<2)
-                                                    {
-                                                        errorflag=1;
-                                                        filing2.setError("Invalid Date");
-                                                    }
-                                                }
-                                                if(stitle3.length()<3)
-                                                {
-                                                    errorflag=1;
-                                                    title3.setError("Invalid Patent Name");
-                                                }
-                                                else
-                                                {
-                                                    errorflag=0;
-                                                    if(sappno3.length()<3)
-                                                    {
-                                                        errorflag=1;
-                                                        appno3.setError("Invalid Application Number");
-                                                    }
-                                                    else
-                                                    {
-                                                        errorflag=0;
-                                                        if(selectedCountry3.equals("- Select Patent Office -"))
-                                                        {
-                                                            errorflag=1;
-                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                        }
-                                                        else
-                                                        {
-                                                            errorflag=0;
-                                                            if(sinventor3.length()<3)
-                                                            {
-                                                                errorflag=1;
-                                                                inventor3.setError("Invalid Name");
-                                                            }
-                                                            else
-                                                            {
-                                                                errorflag=0;
-                                                                if(issuedorpending3.equals("issued")) {
-                                                                    if (sissue3.length() < 3) {
+                                                if (stitle3.length() < 2) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid title");
+                                                } else {
+                                                    if (sappno3.length() < 2) {
+                                                        errorflag = 1;
+                                                        appnoinput3.setError("Kindly enter valid application number");
+                                                    } else {
+                                                        if (selectedCountry3.equals("- Select Patent Office -")) {
+                                                            errorflag = 1;
+                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                        } else {
+                                                            if (sinventor3.length() < 2) {
+                                                                errorflag = 1;
+                                                                inventorinput3.setError("Kindly enter valid name");
+                                                            } else {
+                                                                if (issuedorpending3.equals("issued")) {
+                                                                    if (sissue3.length() < 2) {
                                                                         errorflag = 1;
-                                                                        issue3.setError("Invalid Date");
+                                                                        issueinput3.setError("Kindly select valid date");
+                                                                    }
+                                                                } else {
+                                                                    if (sfiling3.length() < 2) {
+                                                                        errorflag = 1;
+                                                                        filinginput3.setError("Kindly select valid date");
                                                                     }
                                                                 }
-                                                                else
-                                                                {
-                                                                    if(sfiling3.length()<3)
-                                                                    {
-                                                                        errorflag=1;
-                                                                        filing3.setError("Invalid Date");
-                                                                    }
-                                                                }
-                                                                if(stitle4.length()<4)
-                                                                {
-                                                                    errorflag=1;
-                                                                    title4.setError("Invalid Patent Name");
-                                                                }
-                                                                else
-                                                                {
-                                                                    errorflag=0;
-                                                                    if(sappno4.length()<4)
-                                                                    {
-                                                                        errorflag=1;
-                                                                        appno4.setError("Invalid Application Number");
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        errorflag=0;
-                                                                        if(selectedCountry4.equals("- Select Patent Office -"))
-                                                                        {
-                                                                            errorflag=1;
-                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            errorflag=0;
-                                                                            if(sinventor4.length()<4)
-                                                                            {
-                                                                                errorflag=1;
-                                                                                inventor4.setError("Invalid Name");
-                                                                            }
-                                                                            else
-                                                                            {
-                                                                                errorflag=0;
-                                                                                if(issuedorpending4.equals("issued")) {
-                                                                                    if (sissue4.length() < 4) {
+                                                                if (stitle4.length() < 2) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid title");
+                                                                } else {
+                                                                    if (sappno4.length() < 2) {
+                                                                        errorflag = 1;
+                                                                        appnoinput4.setError("Kindly enter valid application number");
+                                                                    } else {
+                                                                        if (selectedCountry4.equals("- Select Patent Office -")) {
+                                                                            errorflag = 1;
+                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                        } else {
+                                                                            if (sinventor4.length() < 2) {
+                                                                                errorflag = 1;
+                                                                                inventorinput4.setError("Kindly enter valid name");
+                                                                            } else {
+                                                                                if (issuedorpending4.equals("issued")) {
+                                                                                    if (sissue4.length() < 2) {
                                                                                         errorflag = 1;
-                                                                                        issue4.setError("Invalid Date");
+                                                                                        issueinput4.setError("Kindly select valid date");
+                                                                                    }
+                                                                                } else {
+                                                                                    if (sfiling4.length() < 2) {
+                                                                                        errorflag = 1;
+                                                                                        filinginput4.setError("Kindly select valid date");
                                                                                     }
                                                                                 }
-                                                                                else
-                                                                                {
-                                                                                    if(sfiling4.length()<4)
-                                                                                    {
-                                                                                        errorflag=1;
-                                                                                        filing4.setError("Invalid Date");
-                                                                                    }
-                                                                                }
-                                                                                if(stitle5.length()<2)
-                                                                                {
-                                                                                    errorflag=1;
-                                                                                    title5.setError("Invalid Patent Name");
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                    errorflag=0;
-                                                                                    if(sappno5.length()<2)
-                                                                                    {
-                                                                                        errorflag=1;
-                                                                                        appno5.setError("Invalid Application Number");
-                                                                                    }
-                                                                                    else
-                                                                                    {
-                                                                                        errorflag=0;
-                                                                                        if(selectedCountry5.equals("- Select Patent Office -"))
-                                                                                        {
-                                                                                            errorflag=1;
-                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                        }
-                                                                                        else
-                                                                                        {
-                                                                                            errorflag=0;
-                                                                                            if(sinventor5.length()<2)
-                                                                                            {
-                                                                                                errorflag=1;
-                                                                                                inventor5.setError("Invalid Name");
-                                                                                            }
-                                                                                            else
-                                                                                            {
-                                                                                                errorflag=0;
-                                                                                                if(issuedorpending5.equals("issued")) {
-                                                                                                    if (sissue5.length() < 5) {
+                                                                                if (stitle5.length() < 2) {
+                                                                                    errorflag = 1;
+                                                                                    titleinput5.setError("Kindly enter valid title");
+                                                                                } else {
+                                                                                    if (sappno5.length() < 2) {
+                                                                                        errorflag = 1;
+                                                                                        appnoinput5.setError("Kindly enter valid application number");
+                                                                                    } else {
+                                                                                        if (selectedCountry5.equals("- Select Patent Office -")) {
+                                                                                            errorflag = 1;
+                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                        } else {
+                                                                                            if (sinventor5.length() < 2) {
+                                                                                                errorflag = 1;
+                                                                                                inventorinput5.setError("Kindly enter valid name");
+                                                                                            } else {
+                                                                                                if (issuedorpending5.equals("issued")) {
+                                                                                                    if (sissue5.length() < 2) {
                                                                                                         errorflag = 1;
-                                                                                                        issue5.setError("Invalid Date");
+                                                                                                        issueinput5.setError("Kindly select valid date");
+                                                                                                    }
+                                                                                                } else {
+                                                                                                    if (sfiling5.length() < 2) {
+                                                                                                        errorflag = 1;
+                                                                                                        filinginput5.setError("Kindly select valid date");
                                                                                                     }
                                                                                                 }
-                                                                                                else
-                                                                                                {
-                                                                                                    if(sfiling5.length()<2)
-                                                                                                    {
-                                                                                                        errorflag=1;
-                                                                                                        filing5.setError("Invalid Date");
-                                                                                                    }
-                                                                                                }
-                                                                                                if(stitle6.length()<2)
-                                                                                                {
-                                                                                                    errorflag=1;
-                                                                                                    title6.setError("Invalid Patent Name");
-                                                                                                }
-                                                                                                else
-                                                                                                {
-                                                                                                    errorflag=0;
-                                                                                                    if(sappno6.length()<2)
-                                                                                                    {
-                                                                                                        errorflag=1;
-                                                                                                        appno6.setError("Invalid Application Number");
-                                                                                                    }
-                                                                                                    else
-                                                                                                    {
-                                                                                                        errorflag=0;
-                                                                                                        if(selectedCountry6.equals("- Select Patent Office -"))
-                                                                                                        {
-                                                                                                            errorflag=1;
-                                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                                        }
-                                                                                                        else
-                                                                                                        {
-                                                                                                            errorflag=0;
-                                                                                                            if(sinventor6.length()<2)
-                                                                                                            {
-                                                                                                                errorflag=1;
-                                                                                                                inventor6.setError("Invalid Name");
-                                                                                                            }
-                                                                                                            else
-                                                                                                            {
-                                                                                                                errorflag=0;
-                                                                                                                if(issuedorpending6.equals("issued")) {
-                                                                                                                    if (sissue6.length() < 6) {
+                                                                                                if (stitle6.length() < 2) {
+                                                                                                    errorflag = 1;
+                                                                                                    titleinput6.setError("Kindly enter valid title");
+                                                                                                } else {
+                                                                                                    if (sappno6.length() < 2) {
+                                                                                                        errorflag = 1;
+                                                                                                        appnoinput6.setError("Kindly enter valid application number");
+                                                                                                    } else {
+                                                                                                        if (selectedCountry6.equals("- Select Patent Office -")) {
+                                                                                                            errorflag = 1;
+                                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                                        } else {
+                                                                                                            if (sinventor6.length() < 2) {
+                                                                                                                errorflag = 1;
+                                                                                                                inventorinput6.setError("Kindly enter valid name");
+                                                                                                            } else {
+                                                                                                                if (issuedorpending6.equals("issued")) {
+                                                                                                                    if (sissue6.length() < 2) {
                                                                                                                         errorflag = 1;
-                                                                                                                        issue6.setError("Invalid Date");
+                                                                                                                        issueinput6.setError("Kindly select valid date");
+                                                                                                                    }
+                                                                                                                } else {
+                                                                                                                    if (sfiling6.length() < 2) {
+                                                                                                                        errorflag = 1;
+                                                                                                                        filinginput6.setError("Kindly select valid date");
                                                                                                                     }
                                                                                                                 }
-                                                                                                                else
-                                                                                                                {
-                                                                                                                    if(sfiling6.length()<2)
-                                                                                                                    {
-                                                                                                                        errorflag=1;
-                                                                                                                        filing6.setError("Invalid Date");
-                                                                                                                    }
-                                                                                                                }
-                                                                                                                if(stitle7.length()<2)
-                                                                                                                {
-                                                                                                                    errorflag=1;
-                                                                                                                    title7.setError("Invalid Patent Name");
-                                                                                                                }
-                                                                                                                else
-                                                                                                                {
-                                                                                                                    errorflag=0;
-                                                                                                                    if(sappno7.length()<2)
-                                                                                                                    {
-                                                                                                                        errorflag=1;
-                                                                                                                        appno7.setError("Invalid Application Number");
-                                                                                                                    }
-                                                                                                                    else
-                                                                                                                    {
-                                                                                                                        errorflag=0;
-                                                                                                                        if(selectedCountry7.equals("- Select Patent Office -"))
-                                                                                                                        {
-                                                                                                                            errorflag=1;
-                                                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                                                        }
-                                                                                                                        else
-                                                                                                                        {
-                                                                                                                            errorflag=0;
-                                                                                                                            if(sinventor7.length()<2)
-                                                                                                                            {
-                                                                                                                                errorflag=1;
-                                                                                                                                inventor7.setError("Invalid Name");
-                                                                                                                            }
-                                                                                                                            else
-                                                                                                                            {
-                                                                                                                                errorflag=0;
-                                                                                                                                if(issuedorpending7.equals("issued")) {
-                                                                                                                                    if (sissue7.length() < 7) {
+                                                                                                                if (stitle7.length() < 2) {
+                                                                                                                    errorflag = 1;
+                                                                                                                    titleinput7.setError("Kindly enter valid title");
+                                                                                                                } else {
+                                                                                                                    if (sappno7.length() < 2) {
+                                                                                                                        errorflag = 1;
+                                                                                                                        appnoinput7.setError("Kindly enter valid application number");
+                                                                                                                    } else {
+                                                                                                                        if (selectedCountry7.equals("- Select Patent Office -")) {
+                                                                                                                            errorflag = 1;
+                                                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                                                        } else {
+                                                                                                                            if (sinventor7.length() < 2) {
+                                                                                                                                errorflag = 1;
+                                                                                                                                inventorinput7.setError("Kindly enter valid name");
+                                                                                                                            } else {
+                                                                                                                                if (issuedorpending7.equals("issued")) {
+                                                                                                                                    if (sissue7.length() < 2) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        issue7.setError("Invalid Date");
+                                                                                                                                        issueinput7.setError("Kindly select valid date");
+                                                                                                                                    }
+                                                                                                                                } else {
+                                                                                                                                    if (sfiling7.length() < 2) {
+                                                                                                                                        errorflag = 1;
+                                                                                                                                        filinginput7.setError("Kindly select valid date");
                                                                                                                                     }
                                                                                                                                 }
-                                                                                                                                else
-                                                                                                                                {
-                                                                                                                                    if(sfiling7.length()<2)
-                                                                                                                                    {
-                                                                                                                                        errorflag=1;
-                                                                                                                                        filing7.setError("Invalid Date");
-                                                                                                                                    }
-                                                                                                                                }
-                                                                                                                                if(stitle8.length()<2)
-                                                                                                                                {
-                                                                                                                                    errorflag=1;
-                                                                                                                                    title8.setError("Invalid Patent Name");
-                                                                                                                                }
-                                                                                                                                else
-                                                                                                                                {
-                                                                                                                                    errorflag=0;
-                                                                                                                                    if(sappno8.length()<2)
-                                                                                                                                    {
-                                                                                                                                        errorflag=1;
-                                                                                                                                        appno8.setError("Invalid Application Number");
-                                                                                                                                    }
-                                                                                                                                    else
-                                                                                                                                    {
-                                                                                                                                        errorflag=0;
-                                                                                                                                        if(selectedCountry8.equals("- Select Patent Office -"))
-                                                                                                                                        {
-                                                                                                                                            errorflag=1;
-                                                                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                                                                        }
-                                                                                                                                        else
-                                                                                                                                        {
-                                                                                                                                            errorflag=0;
-                                                                                                                                            if(sinventor8.length()<2)
-                                                                                                                                            {
-                                                                                                                                                errorflag=1;
-                                                                                                                                                inventor8.setError("Invalid Name");
-                                                                                                                                            }
-                                                                                                                                            else
-                                                                                                                                            {
-                                                                                                                                                errorflag=0;
-                                                                                                                                                if(issuedorpending8.equals("issued")) {
-                                                                                                                                                    if (sissue8.length() < 8) {
+                                                                                                                                if (stitle8.length() < 2) {
+                                                                                                                                    errorflag = 1;
+                                                                                                                                    titleinput8.setError("Kindly enter valid title");
+                                                                                                                                } else {
+                                                                                                                                    if (sappno8.length() < 2) {
+                                                                                                                                        errorflag = 1;
+                                                                                                                                        appnoinput8.setError("Kindly enter valid application number");
+                                                                                                                                    } else {
+                                                                                                                                        if (selectedCountry8.equals("- Select Patent Office -")) {
+                                                                                                                                            errorflag = 1;
+                                                                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                                                                        } else {
+                                                                                                                                            if (sinventor8.length() < 2) {
+                                                                                                                                                errorflag = 1;
+                                                                                                                                                inventorinput8.setError("Kindly enter valid name");
+                                                                                                                                            } else {
+                                                                                                                                                if (issuedorpending8.equals("issued")) {
+                                                                                                                                                    if (sissue8.length() < 2) {
                                                                                                                                                         errorflag = 1;
-                                                                                                                                                        issue8.setError("Invalid Date");
+                                                                                                                                                        issueinput8.setError("Kindly select valid date");
+                                                                                                                                                    }
+                                                                                                                                                } else {
+                                                                                                                                                    if (sfiling8.length() < 2) {
+                                                                                                                                                        errorflag = 1;
+                                                                                                                                                        filinginput8.setError("Kindly select valid date");
                                                                                                                                                     }
                                                                                                                                                 }
-                                                                                                                                                else
-                                                                                                                                                {
-                                                                                                                                                    if(sfiling8.length()<2)
-                                                                                                                                                    {
-                                                                                                                                                        errorflag=1;
-                                                                                                                                                        filing8.setError("Invalid Date");
-                                                                                                                                                    }
-                                                                                                                                                }
-                                                                                                                                                if(stitle9.length()<2)
-                                                                                                                                                {
-                                                                                                                                                    errorflag=1;
-                                                                                                                                                    title9.setError("Invalid Patent Name");
-                                                                                                                                                }
-                                                                                                                                                else
-                                                                                                                                                {
-                                                                                                                                                    errorflag=0;
-                                                                                                                                                    if(sappno9.length()<2)
-                                                                                                                                                    {
-                                                                                                                                                        errorflag=1;
-                                                                                                                                                        appno9.setError("Invalid Application Number");
-                                                                                                                                                    }
-                                                                                                                                                    else
-                                                                                                                                                    {
-                                                                                                                                                        errorflag=0;
-                                                                                                                                                        if(selectedCountry9.equals("- Select Patent Office -"))
-                                                                                                                                                        {
-                                                                                                                                                            errorflag=1;
-                                                                                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                                                                                        }
-                                                                                                                                                        else
-                                                                                                                                                        {
-                                                                                                                                                            errorflag=0;
-                                                                                                                                                            if(sinventor9.length()<2)
-                                                                                                                                                            {
-                                                                                                                                                                errorflag=1;
-                                                                                                                                                                inventor9.setError("Invalid Name");
-                                                                                                                                                            }
-                                                                                                                                                            else
-                                                                                                                                                            {
-                                                                                                                                                                errorflag=0;
-                                                                                                                                                                if(issuedorpending9.equals("issued")) {
-                                                                                                                                                                    if (sissue9.length() < 9) {
+                                                                                                                                                if (stitle9.length() < 2) {
+                                                                                                                                                    errorflag = 1;
+                                                                                                                                                    titleinput9.setError("Kindly enter valid title");
+                                                                                                                                                } else {
+                                                                                                                                                    if (sappno9.length() < 2) {
+                                                                                                                                                        errorflag = 1;
+                                                                                                                                                        appnoinput9.setError("Kindly enter valid application number");
+                                                                                                                                                    } else {
+                                                                                                                                                        if (selectedCountry9.equals("- Select Patent Office -")) {
+                                                                                                                                                            errorflag = 1;
+                                                                                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                                                                                        } else {
+                                                                                                                                                            if (sinventor9.length() < 2) {
+                                                                                                                                                                errorflag = 1;
+                                                                                                                                                                inventorinput9.setError("Kindly enter valid name");
+                                                                                                                                                            } else {
+                                                                                                                                                                if (issuedorpending9.equals("issued")) {
+                                                                                                                                                                    if (sissue9.length() < 2) {
                                                                                                                                                                         errorflag = 1;
-                                                                                                                                                                        issue9.setError("Invalid Date");
+                                                                                                                                                                        issueinput9.setError("Kindly select valid date");
                                                                                                                                                                     }
-                                                                                                                                                                }
-                                                                                                                                                                else
-                                                                                                                                                                {
-                                                                                                                                                                    if(sfiling9.length()<2)
-                                                                                                                                                                    {
-                                                                                                                                                                        errorflag=1;
-                                                                                                                                                                        filing9.setError("Invalid Date");
+                                                                                                                                                                } else {
+                                                                                                                                                                    if (sfiling9.length() < 2) {
+                                                                                                                                                                        errorflag = 1;
+                                                                                                                                                                        filinginput9.setError("Kindly select valid date");
                                                                                                                                                                     }
                                                                                                                                                                 }
                                                                                                                                                             }
@@ -7343,468 +6541,276 @@ public class MyProfilePatents extends AppCompatActivity {
                     }
                 }
             }
-        }
-        else if(patentcount==9)
-        {
+        } else if (patentcount == 9) {
             {
-                if(stitle1.length()<2)
-                {
-                    errorflag=1;
-                    title1.setError("Invalid Patent Name");
-                }
-                else
-                {
-                    errorflag=0;
-                    if(sappno1.length()<2)
-                    {
-                        errorflag=1;
-                        appno1.setError("Invalid Application Number");
-                    }
-                    else
-                    {
-                        errorflag=0;
-                        if(selectedCountry1.equals("- Select Patent Office -"))
-                        {
-                            errorflag=1;
-                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                        }
-                        else
-                        {
-                            errorflag=0;
-                            if(sinventor1.length()<2)
-                            {
-                                errorflag=1;
-                                inventor1.setError("Invalid Name");
-                            }
-                            else
-                            {
-                                errorflag=0;
-                                if(issuedorpending1.equals("issued")) {
+                if (stitle1.length() < 2) {
+                    errorflag = 1;
+                    titleinput1.setError("Kindly enter valid title");
+                } else {
+                    if (sappno1.length() < 2) {
+                        errorflag = 1;
+                        appnoinput1.setError("Kindly enter valid application number");
+                    } else {
+                        if (selectedCountry1.equals("- Select Patent Office -")) {
+                            errorflag = 1;
+                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                        } else {
+                            if (sinventor1.length() < 2) {
+                                errorflag = 1;
+                                inventorinput1.setError("Kindly enter valid name");
+                            } else {
+                                if (issuedorpending1.equals("issued")) {
                                     if (sissue1.length() < 2) {
                                         errorflag = 1;
-                                        issue1.setError("Invalid Date");
+                                        issueinput1.setError("Kindly select valid date");
+                                    }
+                                } else {
+                                    if (sfiling1.length() < 2) {
+                                        errorflag = 1;
+                                        filinginput1.setError("Kindly select valid date");
                                     }
                                 }
-                                else
-                                {
-                                    if(sfiling1.length()<2)
-                                    {
-                                        errorflag=1;
-                                        filing1.setError("Invalid Date");
-                                    }
-                                }
-                                if(stitle2.length()<2)
-                                {
-                                    errorflag=1;
-                                    title2.setError("Invalid Patent Name");
-                                }
-                                else
-                                {
-                                    errorflag=0;
-                                    if(sappno2.length()<2)
-                                    {
-                                        errorflag=1;
-                                        appno2.setError("Invalid Application Number");
-                                    }
-                                    else
-                                    {
-                                        errorflag=0;
-                                        if(selectedCountry2.equals("- Select Patent Office -"))
-                                        {
-                                            errorflag=1;
-                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                        }
-                                        else
-                                        {
-                                            errorflag=0;
-                                            if(sinventor2.length()<2)
-                                            {
-                                                errorflag=1;
-                                                inventor2.setError("Invalid Name");
-                                            }
-                                            else
-                                            {
-                                                errorflag=0;
-                                                if(issuedorpending2.equals("issued")) {
+                                if (stitle2.length() < 2) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid title");
+                                } else {
+                                    if (sappno2.length() < 2) {
+                                        errorflag = 1;
+                                        appnoinput2.setError("Kindly enter valid application number");
+                                    } else {
+                                        if (selectedCountry2.equals("- Select Patent Office -")) {
+                                            errorflag = 1;
+                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                        } else {
+                                            if (sinventor2.length() < 2) {
+                                                errorflag = 1;
+                                                inventorinput2.setError("Kindly enter valid name");
+                                            } else {
+                                                if (issuedorpending2.equals("issued")) {
                                                     if (sissue2.length() < 2) {
                                                         errorflag = 1;
-                                                        issue2.setError("Invalid Date");
+                                                        issueinput2.setError("Kindly select valid date");
+                                                    }
+                                                } else {
+                                                    if (sfiling2.length() < 2) {
+                                                        errorflag = 1;
+                                                        filinginput2.setError("Kindly select valid date");
                                                     }
                                                 }
-                                                else
-                                                {
-                                                    if(sfiling2.length()<2)
-                                                    {
-                                                        errorflag=1;
-                                                        filing2.setError("Invalid Date");
-                                                    }
-                                                }
-                                                if(stitle3.length()<3)
-                                                {
-                                                    errorflag=1;
-                                                    title3.setError("Invalid Patent Name");
-                                                }
-                                                else
-                                                {
-                                                    errorflag=0;
-                                                    if(sappno3.length()<3)
-                                                    {
-                                                        errorflag=1;
-                                                        appno3.setError("Invalid Application Number");
-                                                    }
-                                                    else
-                                                    {
-                                                        errorflag=0;
-                                                        if(selectedCountry3.equals("- Select Patent Office -"))
-                                                        {
-                                                            errorflag=1;
-                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                        }
-                                                        else
-                                                        {
-                                                            errorflag=0;
-                                                            if(sinventor3.length()<3)
-                                                            {
-                                                                errorflag=1;
-                                                                inventor3.setError("Invalid Name");
-                                                            }
-                                                            else
-                                                            {
-                                                                errorflag=0;
-                                                                if(issuedorpending3.equals("issued")) {
-                                                                    if (sissue3.length() < 3) {
+                                                if (stitle3.length() < 2) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid title");
+                                                } else {
+                                                    if (sappno3.length() < 2) {
+                                                        errorflag = 1;
+                                                        appnoinput3.setError("Kindly enter valid application number");
+                                                    } else {
+                                                        if (selectedCountry3.equals("- Select Patent Office -")) {
+                                                            errorflag = 1;
+                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                        } else {
+                                                            if (sinventor3.length() < 2) {
+                                                                errorflag = 1;
+                                                                inventorinput3.setError("Kindly enter valid name");
+                                                            } else {
+                                                                if (issuedorpending3.equals("issued")) {
+                                                                    if (sissue3.length() < 2) {
                                                                         errorflag = 1;
-                                                                        issue3.setError("Invalid Date");
+                                                                        issueinput3.setError("Kindly select valid date");
+                                                                    }
+                                                                } else {
+                                                                    if (sfiling3.length() < 2) {
+                                                                        errorflag = 1;
+                                                                        filinginput3.setError("Kindly select valid date");
                                                                     }
                                                                 }
-                                                                else
-                                                                {
-                                                                    if(sfiling3.length()<3)
-                                                                    {
-                                                                        errorflag=1;
-                                                                        filing3.setError("Invalid Date");
-                                                                    }
-                                                                }
-                                                                if(stitle4.length()<4)
-                                                                {
-                                                                    errorflag=1;
-                                                                    title4.setError("Invalid Patent Name");
-                                                                }
-                                                                else
-                                                                {
-                                                                    errorflag=0;
-                                                                    if(sappno4.length()<4)
-                                                                    {
-                                                                        errorflag=1;
-                                                                        appno4.setError("Invalid Application Number");
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        errorflag=0;
-                                                                        if(selectedCountry4.equals("- Select Patent Office -"))
-                                                                        {
-                                                                            errorflag=1;
-                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            errorflag=0;
-                                                                            if(sinventor4.length()<4)
-                                                                            {
-                                                                                errorflag=1;
-                                                                                inventor4.setError("Invalid Name");
-                                                                            }
-                                                                            else
-                                                                            {
-                                                                                errorflag=0;
-                                                                                if(issuedorpending4.equals("issued")) {
-                                                                                    if (sissue4.length() < 4) {
+                                                                if (stitle4.length() < 2) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid title");
+                                                                } else {
+                                                                    if (sappno4.length() < 2) {
+                                                                        errorflag = 1;
+                                                                        appnoinput4.setError("Kindly enter valid application number");
+                                                                    } else {
+                                                                        if (selectedCountry4.equals("- Select Patent Office -")) {
+                                                                            errorflag = 1;
+                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                        } else {
+                                                                            if (sinventor4.length() < 2) {
+                                                                                errorflag = 1;
+                                                                                inventorinput4.setError("Kindly enter valid name");
+                                                                            } else {
+                                                                                if (issuedorpending4.equals("issued")) {
+                                                                                    if (sissue4.length() < 2) {
                                                                                         errorflag = 1;
-                                                                                        issue4.setError("Invalid Date");
+                                                                                        issueinput4.setError("Kindly select valid date");
+                                                                                    }
+                                                                                } else {
+                                                                                    if (sfiling4.length() < 2) {
+                                                                                        errorflag = 1;
+                                                                                        filinginput4.setError("Kindly select valid date");
                                                                                     }
                                                                                 }
-                                                                                else
-                                                                                {
-                                                                                    if(sfiling4.length()<4)
-                                                                                    {
-                                                                                        errorflag=1;
-                                                                                        filing4.setError("Invalid Date");
-                                                                                    }
-                                                                                }
-                                                                                if(stitle5.length()<2)
-                                                                                {
-                                                                                    errorflag=1;
-                                                                                    title5.setError("Invalid Patent Name");
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                    errorflag=0;
-                                                                                    if(sappno5.length()<2)
-                                                                                    {
-                                                                                        errorflag=1;
-                                                                                        appno5.setError("Invalid Application Number");
-                                                                                    }
-                                                                                    else
-                                                                                    {
-                                                                                        errorflag=0;
-                                                                                        if(selectedCountry5.equals("- Select Patent Office -"))
-                                                                                        {
-                                                                                            errorflag=1;
-                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                        }
-                                                                                        else
-                                                                                        {
-                                                                                            errorflag=0;
-                                                                                            if(sinventor5.length()<2)
-                                                                                            {
-                                                                                                errorflag=1;
-                                                                                                inventor5.setError("Invalid Name");
-                                                                                            }
-                                                                                            else
-                                                                                            {
-                                                                                                errorflag=0;
-                                                                                                if(issuedorpending5.equals("issued")) {
-                                                                                                    if (sissue5.length() < 5) {
+                                                                                if (stitle5.length() < 2) {
+                                                                                    errorflag = 1;
+                                                                                    titleinput5.setError("Kindly enter valid title");
+                                                                                } else {
+                                                                                    if (sappno5.length() < 2) {
+                                                                                        errorflag = 1;
+                                                                                        appnoinput5.setError("Kindly enter valid application number");
+                                                                                    } else {
+                                                                                        if (selectedCountry5.equals("- Select Patent Office -")) {
+                                                                                            errorflag = 1;
+                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                        } else {
+                                                                                            if (sinventor5.length() < 2) {
+                                                                                                errorflag = 1;
+                                                                                                inventorinput5.setError("Kindly enter valid name");
+                                                                                            } else {
+                                                                                                if (issuedorpending5.equals("issued")) {
+                                                                                                    if (sissue5.length() < 2) {
                                                                                                         errorflag = 1;
-                                                                                                        issue5.setError("Invalid Date");
+                                                                                                        issueinput5.setError("Kindly select valid date");
+                                                                                                    }
+                                                                                                } else {
+                                                                                                    if (sfiling5.length() < 2) {
+                                                                                                        errorflag = 1;
+                                                                                                        filinginput5.setError("Kindly select valid date");
                                                                                                     }
                                                                                                 }
-                                                                                                else
-                                                                                                {
-                                                                                                    if(sfiling5.length()<2)
-                                                                                                    {
-                                                                                                        errorflag=1;
-                                                                                                        filing5.setError("Invalid Date");
-                                                                                                    }
-                                                                                                }
-                                                                                                if(stitle6.length()<2)
-                                                                                                {
-                                                                                                    errorflag=1;
-                                                                                                    title6.setError("Invalid Patent Name");
-                                                                                                }
-                                                                                                else
-                                                                                                {
-                                                                                                    errorflag=0;
-                                                                                                    if(sappno6.length()<2)
-                                                                                                    {
-                                                                                                        errorflag=1;
-                                                                                                        appno6.setError("Invalid Application Number");
-                                                                                                    }
-                                                                                                    else
-                                                                                                    {
-                                                                                                        errorflag=0;
-                                                                                                        if(selectedCountry6.equals("- Select Patent Office -"))
-                                                                                                        {
-                                                                                                            errorflag=1;
-                                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                                        }
-                                                                                                        else
-                                                                                                        {
-                                                                                                            errorflag=0;
-                                                                                                            if(sinventor6.length()<2)
-                                                                                                            {
-                                                                                                                errorflag=1;
-                                                                                                                inventor6.setError("Invalid Name");
-                                                                                                            }
-                                                                                                            else
-                                                                                                            {
-                                                                                                                errorflag=0;
-                                                                                                                if(issuedorpending6.equals("issued")) {
-                                                                                                                    if (sissue6.length() < 6) {
+                                                                                                if (stitle6.length() < 2) {
+                                                                                                    errorflag = 1;
+                                                                                                    titleinput6.setError("Kindly enter valid title");
+                                                                                                } else {
+                                                                                                    if (sappno6.length() < 2) {
+                                                                                                        errorflag = 1;
+                                                                                                        appnoinput6.setError("Kindly enter valid application number");
+                                                                                                    } else {
+                                                                                                        if (selectedCountry6.equals("- Select Patent Office -")) {
+                                                                                                            errorflag = 1;
+                                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                                        } else {
+                                                                                                            if (sinventor6.length() < 2) {
+                                                                                                                errorflag = 1;
+                                                                                                                inventorinput6.setError("Kindly enter valid name");
+                                                                                                            } else {
+                                                                                                                if (issuedorpending6.equals("issued")) {
+                                                                                                                    if (sissue6.length() < 2) {
                                                                                                                         errorflag = 1;
-                                                                                                                        issue6.setError("Invalid Date");
+                                                                                                                        issueinput6.setError("Kindly select valid date");
+                                                                                                                    }
+                                                                                                                } else {
+                                                                                                                    if (sfiling6.length() < 2) {
+                                                                                                                        errorflag = 1;
+                                                                                                                        filinginput6.setError("Kindly select valid date");
                                                                                                                     }
                                                                                                                 }
-                                                                                                                else
-                                                                                                                {
-                                                                                                                    if(sfiling6.length()<2)
-                                                                                                                    {
-                                                                                                                        errorflag=1;
-                                                                                                                        filing6.setError("Invalid Date");
-                                                                                                                    }
-                                                                                                                }
-                                                                                                                if(stitle7.length()<2)
-                                                                                                                {
-                                                                                                                    errorflag=1;
-                                                                                                                    title7.setError("Invalid Patent Name");
-                                                                                                                }
-                                                                                                                else
-                                                                                                                {
-                                                                                                                    errorflag=0;
-                                                                                                                    if(sappno7.length()<2)
-                                                                                                                    {
-                                                                                                                        errorflag=1;
-                                                                                                                        appno7.setError("Invalid Application Number");
-                                                                                                                    }
-                                                                                                                    else
-                                                                                                                    {
-                                                                                                                        errorflag=0;
-                                                                                                                        if(selectedCountry7.equals("- Select Patent Office -"))
-                                                                                                                        {
-                                                                                                                            errorflag=1;
-                                                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                                                        }
-                                                                                                                        else
-                                                                                                                        {
-                                                                                                                            errorflag=0;
-                                                                                                                            if(sinventor7.length()<2)
-                                                                                                                            {
-                                                                                                                                errorflag=1;
-                                                                                                                                inventor7.setError("Invalid Name");
-                                                                                                                            }
-                                                                                                                            else
-                                                                                                                            {
-                                                                                                                                errorflag=0;
-                                                                                                                                if(issuedorpending7.equals("issued")) {
-                                                                                                                                    if (sissue7.length() < 7) {
+                                                                                                                if (stitle7.length() < 2) {
+                                                                                                                    errorflag = 1;
+                                                                                                                    titleinput7.setError("Kindly enter valid title");
+                                                                                                                } else {
+                                                                                                                    if (sappno7.length() < 2) {
+                                                                                                                        errorflag = 1;
+                                                                                                                        appnoinput7.setError("Kindly enter valid application number");
+                                                                                                                    } else {
+                                                                                                                        if (selectedCountry7.equals("- Select Patent Office -")) {
+                                                                                                                            errorflag = 1;
+                                                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                                                        } else {
+                                                                                                                            if (sinventor7.length() < 2) {
+                                                                                                                                errorflag = 1;
+                                                                                                                                inventorinput7.setError("Kindly enter valid name");
+                                                                                                                            } else {
+                                                                                                                                if (issuedorpending7.equals("issued")) {
+                                                                                                                                    if (sissue7.length() < 2) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        issue7.setError("Invalid Date");
+                                                                                                                                        issueinput7.setError("Kindly select valid date");
+                                                                                                                                    }
+                                                                                                                                } else {
+                                                                                                                                    if (sfiling7.length() < 2) {
+                                                                                                                                        errorflag = 1;
+                                                                                                                                        filinginput7.setError("Kindly select valid date");
                                                                                                                                     }
                                                                                                                                 }
-                                                                                                                                else
-                                                                                                                                {
-                                                                                                                                    if(sfiling7.length()<2)
-                                                                                                                                    {
-                                                                                                                                        errorflag=1;
-                                                                                                                                        filing7.setError("Invalid Date");
-                                                                                                                                    }
-                                                                                                                                }
-                                                                                                                                if(stitle8.length()<2)
-                                                                                                                                {
-                                                                                                                                    errorflag=1;
-                                                                                                                                    title8.setError("Invalid Patent Name");
-                                                                                                                                }
-                                                                                                                                else
-                                                                                                                                {
-                                                                                                                                    errorflag=0;
-                                                                                                                                    if(sappno8.length()<2)
-                                                                                                                                    {
-                                                                                                                                        errorflag=1;
-                                                                                                                                        appno8.setError("Invalid Application Number");
-                                                                                                                                    }
-                                                                                                                                    else
-                                                                                                                                    {
-                                                                                                                                        errorflag=0;
-                                                                                                                                        if(selectedCountry8.equals("- Select Patent Office -"))
-                                                                                                                                        {
-                                                                                                                                            errorflag=1;
-                                                                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                                                                        }
-                                                                                                                                        else
-                                                                                                                                        {
-                                                                                                                                            errorflag=0;
-                                                                                                                                            if(sinventor8.length()<2)
-                                                                                                                                            {
-                                                                                                                                                errorflag=1;
-                                                                                                                                                inventor8.setError("Invalid Name");
-                                                                                                                                            }
-                                                                                                                                            else
-                                                                                                                                            {
-                                                                                                                                                errorflag=0;
-                                                                                                                                                if(issuedorpending8.equals("issued")) {
-                                                                                                                                                    if (sissue8.length() < 8) {
+                                                                                                                                if (stitle8.length() < 2) {
+                                                                                                                                    errorflag = 1;
+                                                                                                                                    titleinput8.setError("Kindly enter valid title");
+                                                                                                                                } else {
+                                                                                                                                    if (sappno8.length() < 2) {
+                                                                                                                                        errorflag = 1;
+                                                                                                                                        appnoinput8.setError("Kindly enter valid application number");
+                                                                                                                                    } else {
+                                                                                                                                        if (selectedCountry8.equals("- Select Patent Office -")) {
+                                                                                                                                            errorflag = 1;
+                                                                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                                                                        } else {
+                                                                                                                                            if (sinventor8.length() < 2) {
+                                                                                                                                                errorflag = 1;
+                                                                                                                                                inventorinput8.setError("Kindly enter valid name");
+                                                                                                                                            } else {
+                                                                                                                                                if (issuedorpending8.equals("issued")) {
+                                                                                                                                                    if (sissue8.length() < 2) {
                                                                                                                                                         errorflag = 1;
-                                                                                                                                                        issue8.setError("Invalid Date");
+                                                                                                                                                        issueinput8.setError("Kindly select valid date");
+                                                                                                                                                    }
+                                                                                                                                                } else {
+                                                                                                                                                    if (sfiling8.length() < 2) {
+                                                                                                                                                        errorflag = 1;
+                                                                                                                                                        filinginput8.setError("Kindly select valid date");
                                                                                                                                                     }
                                                                                                                                                 }
-                                                                                                                                                else
-                                                                                                                                                {
-                                                                                                                                                    if(sfiling8.length()<2)
-                                                                                                                                                    {
-                                                                                                                                                        errorflag=1;
-                                                                                                                                                        filing8.setError("Invalid Date");
-                                                                                                                                                    }
-                                                                                                                                                }
-                                                                                                                                                if(stitle9.length()<2)
-                                                                                                                                                {
-                                                                                                                                                    errorflag=1;
-                                                                                                                                                    title9.setError("Invalid Patent Name");
-                                                                                                                                                }
-                                                                                                                                                else
-                                                                                                                                                {
-                                                                                                                                                    errorflag=0;
-                                                                                                                                                    if(sappno9.length()<2)
-                                                                                                                                                    {
-                                                                                                                                                        errorflag=1;
-                                                                                                                                                        appno9.setError("Invalid Application Number");
-                                                                                                                                                    }
-                                                                                                                                                    else
-                                                                                                                                                    {
-                                                                                                                                                        errorflag=0;
-                                                                                                                                                        if(selectedCountry9.equals("- Select Patent Office -"))
-                                                                                                                                                        {
-                                                                                                                                                            errorflag=1;
-                                                                                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                                                                                        }
-                                                                                                                                                        else
-                                                                                                                                                        {
-                                                                                                                                                            errorflag=0;
-                                                                                                                                                            if(sinventor9.length()<2)
-                                                                                                                                                            {
-                                                                                                                                                                errorflag=1;
-                                                                                                                                                                inventor9.setError("Invalid Name");
-                                                                                                                                                            }
-                                                                                                                                                            else
-                                                                                                                                                            {
-                                                                                                                                                                errorflag=0;
-                                                                                                                                                                if(issuedorpending9.equals("issued")) {
-                                                                                                                                                                    if (sissue9.length() < 9) {
+                                                                                                                                                if (stitle9.length() < 2) {
+                                                                                                                                                    errorflag = 1;
+                                                                                                                                                    titleinput9.setError("Kindly enter valid title");
+                                                                                                                                                } else {
+                                                                                                                                                    if (sappno9.length() < 2) {
+                                                                                                                                                        errorflag = 1;
+                                                                                                                                                        appnoinput9.setError("Kindly enter valid application number");
+                                                                                                                                                    } else {
+                                                                                                                                                        if (selectedCountry9.equals("- Select Patent Office -")) {
+                                                                                                                                                            errorflag = 1;
+                                                                                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                                                                                        } else {
+                                                                                                                                                            if (sinventor9.length() < 2) {
+                                                                                                                                                                errorflag = 1;
+                                                                                                                                                                inventorinput9.setError("Kindly enter valid name");
+                                                                                                                                                            } else {
+                                                                                                                                                                if (issuedorpending9.equals("issued")) {
+                                                                                                                                                                    if (sissue9.length() < 2) {
                                                                                                                                                                         errorflag = 1;
-                                                                                                                                                                        issue9.setError("Invalid Date");
+                                                                                                                                                                        issueinput9.setError("Kindly select valid date");
+                                                                                                                                                                    }
+                                                                                                                                                                } else {
+                                                                                                                                                                    if (sfiling9.length() < 2) {
+                                                                                                                                                                        errorflag = 1;
+                                                                                                                                                                        filinginput9.setError("Kindly select valid date");
                                                                                                                                                                     }
                                                                                                                                                                 }
-                                                                                                                                                                else
-                                                                                                                                                                {
-                                                                                                                                                                    if(sfiling9.length()<2)
-                                                                                                                                                                    {
-                                                                                                                                                                        errorflag=1;
-                                                                                                                                                                        filing9.setError("Invalid Date");
-                                                                                                                                                                    }
-                                                                                                                                                                }
-                                                                                                                                                                if(stitle10.length()<2)
-                                                                                                                                                                {
-                                                                                                                                                                    errorflag=1;
-                                                                                                                                                                    title10.setError("Invalid Patent Name");
-                                                                                                                                                                }
-                                                                                                                                                                else
-                                                                                                                                                                {
-                                                                                                                                                                    errorflag=0;
-                                                                                                                                                                    if(sappno10.length()<2)
-                                                                                                                                                                    {
-                                                                                                                                                                        errorflag=1;
-                                                                                                                                                                        appno10.setError("Invalid Application Number");
-                                                                                                                                                                    }
-                                                                                                                                                                    else
-                                                                                                                                                                    {
-                                                                                                                                                                        errorflag=0;
-                                                                                                                                                                        if(selectedCountry10.equals("- Select Patent Office -"))
-                                                                                                                                                                        {
-                                                                                                                                                                            errorflag=1;
-                                                                                                                                                                            Toast.makeText(MyProfilePatents.this,"Select Patent Office",Toast.LENGTH_LONG).show();
-                                                                                                                                                                        }
-                                                                                                                                                                        else
-                                                                                                                                                                        {
-                                                                                                                                                                            errorflag=0;
-                                                                                                                                                                            if(sinventor10.length()<2)
-                                                                                                                                                                            {
-                                                                                                                                                                                errorflag=1;
-                                                                                                                                                                                inventor10.setError("Invalid Name");
-                                                                                                                                                                            }
-                                                                                                                                                                            else
-                                                                                                                                                                            {
-                                                                                                                                                                                errorflag=0;
-                                                                                                                                                                                if(issuedorpending10.equals("issued")) {
-                                                                                                                                                                                    if (sissue10.length() < 10) {
+                                                                                                                                                                if (stitle10.length() < 2) {
+                                                                                                                                                                    errorflag = 1;
+                                                                                                                                                                    titleinput10.setError("Kindly enter valid title");
+                                                                                                                                                                } else {
+                                                                                                                                                                    if (sappno10.length() < 2) {
+                                                                                                                                                                        errorflag = 1;
+                                                                                                                                                                        appnoinput10.setError("Kindly enter valid application number");
+                                                                                                                                                                    } else {
+                                                                                                                                                                        if (selectedCountry10.equals("- Select Patent Office -")) {
+                                                                                                                                                                            errorflag = 1;
+                                                                                                                                                                            Toast.makeText(MyProfilePatents.this, " Kindly select valid patent office", Toast.LENGTH_LONG).show();
+                                                                                                                                                                        } else {
+                                                                                                                                                                            if (sinventor10.length() < 2) {
+                                                                                                                                                                                errorflag = 1;
+                                                                                                                                                                                inventorinput10.setError("Kindly enter valid name");
+                                                                                                                                                                            } else {
+                                                                                                                                                                                if (issuedorpending10.equals("issued")) {
+                                                                                                                                                                                    if (sissue10.length() < 2) {
                                                                                                                                                                                         errorflag = 1;
-                                                                                                                                                                                        issue10.setError("Invalid Date");
+                                                                                                                                                                                        issueinput10.setError("Kindly select valid date");
                                                                                                                                                                                     }
-                                                                                                                                                                                }
-                                                                                                                                                                                else
-                                                                                                                                                                                {
-                                                                                                                                                                                    if(sfiling10.length()<2)
-                                                                                                                                                                                    {
-                                                                                                                                                                                        errorflag=1;
-                                                                                                                                                                                        filing10.setError("Invalid Date");
+                                                                                                                                                                                } else {
+                                                                                                                                                                                    if (sfiling10.length() < 2) {
+                                                                                                                                                                                        errorflag = 1;
+                                                                                                                                                                                        filinginput10.setError("Kindly select valid date");
                                                                                                                                                                                     }
                                                                                                                                                                                 }
                                                                                                                                                                             }
@@ -7857,20 +6863,20 @@ public class MyProfilePatents extends AppCompatActivity {
             }
         }
 
-        if(errorflag==0) {
-            try
-            {
 
-                Patents obj1=new Patents(stitle1,sappno1,selectedCountry1,sinventor1,issuedorpending1,sissue1,sfiling1,surl1,sdescription1);
-                Patents obj2=new Patents(stitle2,sappno2,selectedCountry2,sinventor2,issuedorpending2,sissue2,sfiling2,surl2,sdescription2);
-                Patents obj3=new Patents(stitle3,sappno3,selectedCountry3,sinventor3,issuedorpending3,sissue3,sfiling3,surl3,sdescription3);
-                Patents obj4=new Patents(stitle4,sappno4,selectedCountry4,sinventor4,issuedorpending4,sissue4,sfiling4,surl4,sdescription4);
-                Patents obj5=new Patents(stitle5,sappno5,selectedCountry5,sinventor5,issuedorpending5,sissue5,sfiling5,surl5,sdescription5);
-                Patents obj6=new Patents(stitle6,sappno6,selectedCountry6,sinventor6,issuedorpending6,sissue6,sfiling6,surl6,sdescription6);
-                Patents obj7=new Patents(stitle7,sappno7,selectedCountry7,sinventor7,issuedorpending7,sissue7,sfiling7,surl7,sdescription7);
-                Patents obj8=new Patents(stitle8,sappno8,selectedCountry8,sinventor8,issuedorpending8,sissue8,sfiling8,surl8,sdescription8);
-                Patents obj9=new Patents(stitle9,sappno9,selectedCountry9,sinventor9,issuedorpending9,sissue9,sfiling9,surl9,sdescription9);
-                Patents obj10=new Patents(stitle10,sappno10,selectedCountry10,sinventor10,issuedorpending10,sissue10,sfiling10,surl10,sdescription10);
+        if (errorflag == 0) {
+            try {
+
+                Patents obj1 = new Patents(stitle1, sappno1, selectedCountry1, sinventor1, issuedorpending1, sissue1, sfiling1, surl1, sdescription1);
+                Patents obj2 = new Patents(stitle2, sappno2, selectedCountry2, sinventor2, issuedorpending2, sissue2, sfiling2, surl2, sdescription2);
+                Patents obj3 = new Patents(stitle3, sappno3, selectedCountry3, sinventor3, issuedorpending3, sissue3, sfiling3, surl3, sdescription3);
+                Patents obj4 = new Patents(stitle4, sappno4, selectedCountry4, sinventor4, issuedorpending4, sissue4, sfiling4, surl4, sdescription4);
+                Patents obj5 = new Patents(stitle5, sappno5, selectedCountry5, sinventor5, issuedorpending5, sissue5, sfiling5, surl5, sdescription5);
+                Patents obj6 = new Patents(stitle6, sappno6, selectedCountry6, sinventor6, issuedorpending6, sissue6, sfiling6, surl6, sdescription6);
+                Patents obj7 = new Patents(stitle7, sappno7, selectedCountry7, sinventor7, issuedorpending7, sissue7, sfiling7, surl7, sdescription7);
+                Patents obj8 = new Patents(stitle8, sappno8, selectedCountry8, sinventor8, issuedorpending8, sissue8, sfiling8, surl8, sdescription8);
+                Patents obj9 = new Patents(stitle9, sappno9, selectedCountry9, sinventor9, issuedorpending9, sissue9, sfiling9, surl9, sdescription9);
+                Patents obj10 = new Patents(stitle10, sappno10, selectedCountry10, sinventor10, issuedorpending10, sissue10, sfiling10, surl10, sdescription10);
 
                 patentsList.add(obj1);
                 patentsList.add(obj2);
@@ -7883,25 +6889,236 @@ public class MyProfilePatents extends AppCompatActivity {
                 patentsList.add(obj9);
                 patentsList.add(obj10);
 
-                String encObjString=OtoString(patentsList,MySharedPreferencesManager.getDigest1(MyProfilePatents.this),MySharedPreferencesManager.getDigest2(MyProfilePatents.this));
+                String encObjString = OtoString(patentsList, MySharedPreferencesManager.getDigest1(MyProfilePatents.this), MySharedPreferencesManager.getDigest2(MyProfilePatents.this));
 
                 new SavePatents().execute(encObjString);
 
 
-
-            }catch (Exception e){Toast.makeText(MyProfilePatents.this,e.getMessage(),Toast.LENGTH_LONG).show();}
+            } catch (Exception e) {
+                Toast.makeText(MyProfilePatents.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
         }
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.action_save:
+
+                validateandSave();
+                break;
+
+            case android.R.id.home:
+
+                onBackPressed();
+
+                return (true);
+        }
+
+        return (super.onOptionsItemSelected(item));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.savemenu, menu);
+        return super.onCreateOptionsMenu(menu);
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (edittedFlag == 1) {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+            alertDialogBuilder
+                    .setMessage("Do you want to discard changes ?")
+                    .setCancelable(false)
+                    .setPositiveButton("Discard",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    MyProfilePatents.super.onBackPressed();
+                                }
+                            })
+
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            dialog.cancel();
+                        }
+                    });
+
+            final AlertDialog alertDialog = alertDialogBuilder.create();
+
+            alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialogInterface) {
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                }
+            });
+
+            alertDialog.show();
+        } else
+            MyProfilePatents.super.onBackPressed();
+
+    }
+
+    void showDateDialog(final EditText id) {
+
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyProfilePatents.this);
+        LayoutInflater inflater = MyProfilePatents.this.getLayoutInflater();
+        View dialog = inflater.inflate(R.layout.monthyeardialog, null);
+        dialogBuilder.setView(dialog);
+
+
+        final WheelView monthView, yearView;
+
+        final List<String> monthList = new ArrayList<String>();
+        final List<String> yearList = new ArrayList<String>();
+
+        monthView = (WheelView) dialog.findViewById(R.id.monthwheel);
+        yearView = (WheelView) dialog.findViewById(R.id.yearwheel);
+
+        monthList.add("Jan");
+        monthList.add("Feb");
+        monthList.add("Mar");
+        monthList.add("Apr");
+        monthList.add("May");
+        monthList.add("Jun");
+        monthList.add("Jul");
+        monthList.add("Aug");
+        monthList.add("Sep");
+        monthList.add("Oct");
+        monthList.add("Nov");
+        monthList.add("Dec");
+
+//        for(int i=1975;i<=2017;i++)
+//            yearList.add(""+i);
+
+        Calendar currentCalendar = Calendar.getInstance();
+        for (int i = 1975; i <= currentCalendar.get(Calendar.YEAR); i++)
+            yearList.add("" + i);
+
+
+        monthView.setWheelAdapter(new ArrayWheelAdapter(MyProfilePatents.this));
+        monthView.setWheelData(monthList);
+        yearView.setWheelAdapter(new ArrayWheelAdapter(MyProfilePatents.this));
+        yearView.setWheelData(yearList);
+
+
+        View setselectionview = (View) dialog.findViewById(R.id.setselectionview);
+        View cancelselectionview = (View) dialog.findViewById(R.id.cancelselectionview);
+
+
+        final AlertDialog alertDialog = dialogBuilder.create();
+
+
+        setselectionview.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int monthPosition = monthView.getCurrentPosition();
+                int yearPosition = yearView.getCurrentPosition();
+
+                String selectedMonth = monthList.get(monthPosition);
+                String selectedYear = yearList.get(yearPosition);
+
+
+                // date pick valication -- change setMonth method with last para
+                int isInvalidDate = 0;
+                Calendar currentDatecalendar = Calendar.getInstance();
+                int selectedYearInterger = Integer.parseInt(selectedYear);
+                if (selectedYearInterger > currentDatecalendar.get(Calendar.YEAR) || monthPosition > currentDatecalendar.get(Calendar.MONTH)) {
+                    isInvalidDate = 1;
+                }
+
+                setMonthYear(id, selectedMonth, selectedYear, isInvalidDate);
+
+                alertDialog.cancel();
+            }
+        });
+
+
+        cancelselectionview.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                alertDialog.cancel();
+            }
+        });
+
+        alertDialog.show();
+
+        int w = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 180, getResources().getDisplayMetrics());
+        int h = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 215, getResources().getDisplayMetrics());
+        alertDialog.getWindow().setLayout(w, h);
+
+    }
+
+    void setMonthYear(EditText id, String selectedMonth, String selectedYear, int isInvalidDate) {
+        if (isInvalidDate == 1) {
+            id.setText("");
+            id.setError("Kindly select valid date");
+            Toast.makeText(this, "Invalid Date", Toast.LENGTH_SHORT).show();
+        } else
+            id.setText(selectedMonth + ", " + selectedYear);
+    }
+
+    class GetCountries extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+
+//            List<NameValuePair> params = new ArrayList<NameValuePair>();
+//
+//            json = jParser.makeHttpRequest(url_getcountries, "GET", params);
+//            try {
+//                String s = json.getString("count");
+//                countrycount=Integer.parseInt(s);
+//                countries=new String[countrycount];
+//                for(int i=0;i<countrycount;i++)
+//                {
+//                    countries[i]=json.getString("country"+i);
+//                }
+//
+//
+//
+//
+//            }catch (Exception e){e.printStackTrace();}
+
+            countrycount = getResources().getStringArray(R.array.countries_array).length;
+            countries = new String[countrycount];
+            countries = getResources().getStringArray(R.array.countries_array);
+
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            countrieslist.clear();
+            countrieslist.add("- Select Patent Office -");
+            for (int i = 0; i < countrycount; i++) {
+                countrieslist.add(countries[i]);
+            }
+            populateCountries();
+        }
+    }
+
     class SavePatents extends AsyncTask<String, String, String> {
 
 
         protected String doInBackground(String... param) {
 
-            String r=null;
+            String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u",username));       //0
-            params.add(new BasicNameValuePair("d",param[0]));       //1
+            params.add(new BasicNameValuePair("u", username));       //0
+            params.add(new BasicNameValuePair("d", param[0]));       //1
 
 
             json = jParser.makeHttpRequest(MyConstants.url_savepatents, "GET", params);
@@ -7909,25 +7126,26 @@ public class MyProfilePatents extends AppCompatActivity {
                 r = json.getString("info");
 
 
-            }catch (Exception e){e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return r;
         }
 
         @Override
         protected void onPostExecute(String result) {
 
-            if(result.equals("success"))
-            {
-                Toast.makeText(MyProfilePatents.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
+            if (result.equals("success")) {
+                Toast.makeText(MyProfilePatents.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
 
 
-                if(role.equals("student"))
+                if (role.equals("student"))
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
-                else if(role.equals("alumni"))
+                else if (role.equals("alumni"))
                     setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
-                else if(role.equals("hr"))
-                setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
-                else if(role.equals("admin"))
+                else if (role.equals("hr"))
+                    setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
+                else if (role.equals("admin"))
                     setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
 
 
@@ -8025,182 +7243,10 @@ public class MyProfilePatents extends AppCompatActivity {
                 s.setIssuedorpending10(issuedorpending10);
 
                 MyProfilePatents.super.onBackPressed();
-            }
-            else
-                Toast.makeText(MyProfilePatents.this,result,Toast.LENGTH_SHORT).show();
+            } else
+                Toast.makeText(MyProfilePatents.this, result, Toast.LENGTH_SHORT).show();
 
         }
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-            case R.id.action_save:
-
-                validateandSave();
-                break;
-
-            case android.R.id.home:
-
-                onBackPressed();
-
-                return(true);
-        }
-
-        return(super.onOptionsItemSelected(item));
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.savemenu, menu);
-        return super.onCreateOptionsMenu(menu);
-
-
-    }
-    @Override
-    public void onBackPressed() {
-
-        if(edittedFlag==1) {
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-
-            alertDialogBuilder
-                    .setMessage("Do you want to discard changes ?")
-                    .setCancelable(false)
-                    .setPositiveButton("Discard",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    MyProfilePatents.super.onBackPressed();
-                                }
-                            })
-
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-
-                            dialog.cancel();
-                        }
-                    });
-
-            final AlertDialog alertDialog = alertDialogBuilder.create();
-
-            alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                @Override
-                public void onShow(DialogInterface dialogInterface) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
-                }
-            });
-
-            alertDialog.show();
-        }
-        else
-            MyProfilePatents.super.onBackPressed();
-
-    }
-
-    void showDateDialog(final EditText id)
-    {
-
-
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyProfilePatents.this);
-        LayoutInflater inflater = MyProfilePatents.this.getLayoutInflater();
-        View dialog = inflater.inflate(R.layout.monthyeardialog,null);
-        dialogBuilder.setView(dialog);
-
-
-
-        final WheelView monthView,yearView;
-
-        final List<String> monthList= new ArrayList<String>();
-        final List<String> yearList= new ArrayList<String>();
-
-        monthView= (WheelView)dialog.findViewById(R.id.monthwheel);
-        yearView= (WheelView)dialog.findViewById(R.id.yearwheel);
-
-        monthList.add("Jan");
-        monthList.add("Feb");
-        monthList.add("Mar");
-        monthList.add("Apr");
-        monthList.add("May");
-        monthList.add("Jun");
-        monthList.add("Jul");
-        monthList.add("Aug");
-        monthList.add("Sep");
-        monthList.add("Oct");
-        monthList.add("Nov");
-        monthList.add("Dec");
-
-//        for(int i=1975;i<=2017;i++)
-//            yearList.add(""+i);
-
-        Calendar currentCalendar=Calendar.getInstance();
-        for(int i=1975;i<=currentCalendar.get(Calendar.YEAR);i++)
-            yearList.add(""+i);
-
-
-        monthView.setWheelAdapter(new ArrayWheelAdapter(MyProfilePatents.this));
-        monthView.setWheelData(monthList);
-        yearView.setWheelAdapter(new ArrayWheelAdapter(MyProfilePatents.this));
-        yearView.setWheelData(yearList);
-
-
-
-        View setselectionview=(View)dialog.findViewById(R.id.setselectionview);
-        View cancelselectionview=(View)dialog.findViewById(R.id.cancelselectionview);
-
-
-        final AlertDialog alertDialog = dialogBuilder.create();
-
-
-
-        setselectionview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int monthPosition=monthView.getCurrentPosition();
-                int yearPosition=yearView.getCurrentPosition();
-
-                String selectedMonth=monthList.get(monthPosition);
-                String selectedYear=yearList.get(yearPosition);
-
-
-
-                // date pick valication -- change setMonth method with last para
-                int isInvalidDate=0;
-                Calendar currentDatecalendar=Calendar.getInstance();
-                int selectedYearInterger=Integer.parseInt(selectedYear);
-                if(selectedYearInterger > currentDatecalendar.get(Calendar.YEAR) || monthPosition > currentDatecalendar.get(Calendar.MONTH)){
-                    isInvalidDate=1;
-                }
-
-                setMonthYear(id,selectedMonth,selectedYear,isInvalidDate);
-
-                alertDialog.cancel();
-            }
-        });
-
-
-        cancelselectionview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                alertDialog.cancel();
-            }
-        });
-
-        alertDialog.show();
-
-        int w= (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 180, getResources().getDisplayMetrics());
-        int h= (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 215, getResources().getDisplayMetrics());
-        alertDialog.getWindow().setLayout(w, h);
-
-    }
-    void setMonthYear(EditText id,String selectedMonth,String selectedYear,int isInvalidDate)
-    {
-        if(isInvalidDate==1){
-            id.setText("");
-            id.setError("Invalid Date");
-            Toast.makeText(this, "Invalid Date", Toast.LENGTH_SHORT).show();
-        }
-        else
-            id.setText(selectedMonth+", "+selectedYear);
     }
 
 }

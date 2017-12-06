@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -55,6 +56,9 @@ public class MyProfileCourses extends AppCompatActivity {
     JSONObject json;
     EditText fromdate1,todate1,fromdate2,todate2,fromdate3,todate3,fromdate4,todate4,fromdate5,todate5,fromdate6,todate6,fromdate7,todate7,fromdate8,todate8,fromdate9,todate9,fromdate10,todate10;
     EditText name1,inst1,name2,inst2,name3,inst3,name4,inst4,name5,inst5,name6,inst6,name7,inst7,name8,inst8,name9,inst9,name10,inst10;
+    TextInputLayout nameinput1,instinput1,fromdateinput1,todateinput1,nameinput2,instinput2,fromdateinput2,todateinput2,nameinput3,instinput3,fromdateinput3,todateinput3,nameinput4,instinput4,fromdateinput4,todateinput4,nameinput5,instinput5,fromdateinput5,todateinput5,nameinput6,instinput6,fromdateinput6,todateinput6,nameinput7,instinput7,fromdateinput7,todateinput7,nameinput8,instinput8,fromdateinput8,todateinput8,nameinput9,instinput9,fromdateinput9,todateinput9,nameinput10,instinput10,fromdateinput10,todateinput10;
+
+
     String sname1="",sinst1="",sname2="",sinst2="",sname3="",sinst3="",sname4="",sinst4="",sname5="",sinst5="",sname6="",sinst6="",sname7="",sinst7="",sname8="",sinst8="",sname9="",sinst9="",sname10="",sinst10="",sfromdate1="",stodate1="",sfromdate2="",stodate2="",sfromdate3="",stodate3="",sfromdate4="",stodate4="",sfromdate5="",stodate5="",sfromdate6="",stodate6="",sfromdate7="",stodate7="",sfromdate8="",stodate8="",sfromdate9="",stodate9="",sfromdate10="",stodate10="";
     String encname1,encinst1,encname2,encinst2,encname3,encinst3,encname4,encinst4,encname5,encinst5,encname6,encinst6,encname7,encinst7,encname8,encinst8,encname9,encinst9,encname10,encinst10,encfromdate1,enctodate1,encfromdate2,enctodate2,encfromdate3,enctodate3,encfromdate4,enctodate4,encfromdate5,enctodate5,encfromdate6,enctodate6,encfromdate7,enctodate7,encfromdate8,enctodate8,encfromdate9,enctodate9,encfromdate10,enctodate10;;
     View trash1selectionview,trash2selectionview,trash3selectionview,trash4selectionview,trash5selectionview,trash6selectionview,trash7selectionview,trash8selectionview,trash9selectionview,trash10selectionview;
@@ -92,6 +96,181 @@ public class MyProfileCourses extends AppCompatActivity {
         trash8selectionview=(View)findViewById(R.id.trash8selectionview);
         trash9selectionview=(View)findViewById(R.id.trash9selectionview);
         trash10selectionview=(View)findViewById(R.id.trash10selectionview);
+
+        name1=(EditText)findViewById(R.id.name1);
+        inst1=(EditText)findViewById(R.id.inst1);
+        name2=(EditText)findViewById(R.id.name2);
+        inst2=(EditText)findViewById(R.id.inst2);
+        name3=(EditText)findViewById(R.id.name3);
+        inst3=(EditText)findViewById(R.id.inst3);
+        name4=(EditText)findViewById(R.id.name4);
+        inst4=(EditText)findViewById(R.id.inst4);
+        name5=(EditText)findViewById(R.id.name5);
+        inst5=(EditText)findViewById(R.id.inst5);
+        name6=(EditText)findViewById(R.id.name6);
+        inst6=(EditText)findViewById(R.id.inst6);
+        name7=(EditText)findViewById(R.id.name7);
+        inst7=(EditText)findViewById(R.id.inst7);
+        name8=(EditText)findViewById(R.id.name8);
+        inst8=(EditText)findViewById(R.id.inst8);
+        name9=(EditText)findViewById(R.id.name9);
+        inst9=(EditText)findViewById(R.id.inst9);
+        name10=(EditText)findViewById(R.id.name10);
+        inst10=(EditText)findViewById(R.id.inst10);
+
+        fromdate1=(EditText)findViewById(R.id.fromdate1);
+        todate1=(EditText)findViewById(R.id.todate1);
+        fromdate2=(EditText)findViewById(R.id.fromdate2);
+        todate2=(EditText)findViewById(R.id.todate2);
+        fromdate3=(EditText)findViewById(R.id.fromdate3);
+        todate3=(EditText)findViewById(R.id.todate3);
+        fromdate4=(EditText)findViewById(R.id.fromdate4);
+        todate4=(EditText)findViewById(R.id.todate4);
+        fromdate5=(EditText)findViewById(R.id.fromdate5);
+        todate5=(EditText)findViewById(R.id.todate5);
+        fromdate6=(EditText)findViewById(R.id.fromdate6);
+        todate6=(EditText)findViewById(R.id.todate6);
+        fromdate7=(EditText)findViewById(R.id.fromdate7);
+        todate7=(EditText)findViewById(R.id.todate7);
+        fromdate8=(EditText)findViewById(R.id.fromdate8);
+        todate8=(EditText)findViewById(R.id.todate8);
+        fromdate9=(EditText)findViewById(R.id.fromdate9);
+        todate9=(EditText)findViewById(R.id.todate9);
+        fromdate10=(EditText)findViewById(R.id.fromdate10);
+        todate10=(EditText)findViewById(R.id.todate10);
+
+
+
+        nameinput1= (TextInputLayout) findViewById(R.id.nameinput1);
+        instinput1= (TextInputLayout) findViewById(R.id.instinput1);
+        fromdateinput1= (TextInputLayout) findViewById(R.id.fromdateinput1);
+        todateinput1= (TextInputLayout) findViewById(R.id.todateinput1);
+        nameinput2= (TextInputLayout) findViewById(R.id.nameinput2);
+        instinput2= (TextInputLayout) findViewById(R.id.instinput2);
+        fromdateinput2= (TextInputLayout) findViewById(R.id.fromdateinput2);
+        todateinput2= (TextInputLayout) findViewById(R.id.todateinput2);
+        nameinput3= (TextInputLayout) findViewById(R.id.nameinput3);
+        instinput3= (TextInputLayout) findViewById(R.id.instinput3);
+        fromdateinput3= (TextInputLayout) findViewById(R.id.fromdateinput3);
+        todateinput3= (TextInputLayout) findViewById(R.id.todateinput3);
+        nameinput4= (TextInputLayout) findViewById(R.id.nameinput4);
+        instinput4= (TextInputLayout) findViewById(R.id.instinput4);
+        fromdateinput4= (TextInputLayout) findViewById(R.id.fromdateinput4);
+        todateinput4= (TextInputLayout) findViewById(R.id.todateinput4);
+        nameinput5= (TextInputLayout) findViewById(R.id.nameinput5);
+        instinput5= (TextInputLayout) findViewById(R.id.instinput5);
+        fromdateinput5= (TextInputLayout) findViewById(R.id.fromdateinput5);
+        todateinput5= (TextInputLayout) findViewById(R.id.todateinput5);
+        nameinput6= (TextInputLayout) findViewById(R.id.nameinput6);
+        instinput6= (TextInputLayout) findViewById(R.id.instinput6);
+        fromdateinput6= (TextInputLayout) findViewById(R.id.fromdateinput6);
+        todateinput6= (TextInputLayout) findViewById(R.id.todateinput6);
+        nameinput7= (TextInputLayout) findViewById(R.id.nameinput7);
+        instinput7= (TextInputLayout) findViewById(R.id.instinput7);
+        fromdateinput7= (TextInputLayout) findViewById(R.id.fromdateinput7);
+        todateinput7= (TextInputLayout) findViewById(R.id.todateinput7);
+        nameinput8= (TextInputLayout) findViewById(R.id.nameinput8);
+        instinput8= (TextInputLayout) findViewById(R.id.instinput8);
+        fromdateinput8= (TextInputLayout) findViewById(R.id.fromdateinput8);
+        todateinput8= (TextInputLayout) findViewById(R.id.todateinput8);
+        nameinput9= (TextInputLayout) findViewById(R.id.nameinput9);
+        instinput9= (TextInputLayout) findViewById(R.id.instinput9);
+        fromdateinput9= (TextInputLayout) findViewById(R.id.fromdateinput9);
+        todateinput9= (TextInputLayout) findViewById(R.id.todateinput9);
+        nameinput10= (TextInputLayout) findViewById(R.id.nameinput10);
+        instinput10= (TextInputLayout) findViewById(R.id.instinput10);
+        fromdateinput10= (TextInputLayout) findViewById(R.id.fromdateinput10);
+        todateinput10= (TextInputLayout) findViewById(R.id.todateinput10);
+
+
+        fromdate1.setTypeface(MyConstants.getBold(this));
+        todate1.setTypeface(MyConstants.getBold(this));
+        fromdate2.setTypeface(MyConstants.getBold(this));
+        todate2.setTypeface(MyConstants.getBold(this));
+        fromdate3.setTypeface(MyConstants.getBold(this));
+        todate3.setTypeface(MyConstants.getBold(this));
+        fromdate4.setTypeface(MyConstants.getBold(this));
+        todate4.setTypeface(MyConstants.getBold(this));
+        fromdate5.setTypeface(MyConstants.getBold(this));
+        todate5.setTypeface(MyConstants.getBold(this));
+        fromdate6.setTypeface(MyConstants.getBold(this));
+        todate6.setTypeface(MyConstants.getBold(this));
+        fromdate7.setTypeface(MyConstants.getBold(this));
+        todate7.setTypeface(MyConstants.getBold(this));
+        fromdate8.setTypeface(MyConstants.getBold(this));
+        todate8.setTypeface(MyConstants.getBold(this));
+        fromdate9.setTypeface(MyConstants.getBold(this));
+        todate9.setTypeface(MyConstants.getBold(this));
+        fromdate10.setTypeface(MyConstants.getBold(this));
+        todate10.setTypeface(MyConstants.getBold(this));
+        name1.setTypeface(MyConstants.getBold(this));
+        inst1.setTypeface(MyConstants.getBold(this));
+        name2.setTypeface(MyConstants.getBold(this));
+        inst2.setTypeface(MyConstants.getBold(this));
+        name3.setTypeface(MyConstants.getBold(this));
+        inst3.setTypeface(MyConstants.getBold(this));
+        name4.setTypeface(MyConstants.getBold(this));
+        inst4.setTypeface(MyConstants.getBold(this));
+        name5.setTypeface(MyConstants.getBold(this));
+        inst5.setTypeface(MyConstants.getBold(this));
+        name6.setTypeface(MyConstants.getBold(this));
+        inst6.setTypeface(MyConstants.getBold(this));
+        name7.setTypeface(MyConstants.getBold(this));
+        inst7.setTypeface(MyConstants.getBold(this));
+        name8.setTypeface(MyConstants.getBold(this));
+        inst8.setTypeface(MyConstants.getBold(this));
+        name9.setTypeface(MyConstants.getBold(this));
+        inst9.setTypeface(MyConstants.getBold(this));
+        name10.setTypeface(MyConstants.getBold(this));
+        inst10.setTypeface(MyConstants.getBold(this));
+
+
+        nameinput1.setTypeface(MyConstants.getLight(this));
+        instinput1.setTypeface(MyConstants.getLight(this));
+        fromdateinput1.setTypeface(MyConstants.getLight(this));
+        todateinput1.setTypeface(MyConstants.getLight(this));
+        nameinput2.setTypeface(MyConstants.getLight(this));
+        instinput2.setTypeface(MyConstants.getLight(this));
+        fromdateinput2.setTypeface(MyConstants.getLight(this));
+        todateinput2.setTypeface(MyConstants.getLight(this));
+        nameinput3.setTypeface(MyConstants.getLight(this));
+        instinput3.setTypeface(MyConstants.getLight(this));
+        fromdateinput3.setTypeface(MyConstants.getLight(this));
+        todateinput3.setTypeface(MyConstants.getLight(this));
+        nameinput4.setTypeface(MyConstants.getLight(this));
+        instinput4.setTypeface(MyConstants.getLight(this));
+        fromdateinput4.setTypeface(MyConstants.getLight(this));
+        todateinput4.setTypeface(MyConstants.getLight(this));
+        nameinput5.setTypeface(MyConstants.getLight(this));
+        instinput5.setTypeface(MyConstants.getLight(this));
+        fromdateinput5.setTypeface(MyConstants.getLight(this));
+        todateinput5.setTypeface(MyConstants.getLight(this));
+        nameinput6.setTypeface(MyConstants.getLight(this));
+        instinput6.setTypeface(MyConstants.getLight(this));
+        fromdateinput6.setTypeface(MyConstants.getLight(this));
+        todateinput6.setTypeface(MyConstants.getLight(this));
+        nameinput7.setTypeface(MyConstants.getLight(this));
+        instinput7.setTypeface(MyConstants.getLight(this));
+        fromdateinput7.setTypeface(MyConstants.getLight(this));
+        todateinput7.setTypeface(MyConstants.getLight(this));
+        nameinput8.setTypeface(MyConstants.getLight(this));
+        instinput8.setTypeface(MyConstants.getLight(this));
+        fromdateinput8.setTypeface(MyConstants.getLight(this));
+        todateinput8.setTypeface(MyConstants.getLight(this));
+        nameinput9.setTypeface(MyConstants.getLight(this));
+        instinput9.setTypeface(MyConstants.getLight(this));
+        fromdateinput9.setTypeface(MyConstants.getLight(this));
+        todateinput9.setTypeface(MyConstants.getLight(this));
+        nameinput10.setTypeface(MyConstants.getLight(this));
+        instinput10.setTypeface(MyConstants.getLight(this));
+        fromdateinput10.setTypeface(MyConstants.getLight(this));
+        todateinput10.setTypeface(MyConstants.getLight(this));
+
+
+        TextView coursetxt=(TextView)findViewById(R.id.coursetxt);
+        coursetxt.setTypeface(MyConstants.getBold(this));
+        TextView addmorecoursetxt=(TextView)findViewById(R.id.addmorecoursetxt);
+        addmorecoursetxt.setTypeface(MyConstants.getBold(this));
 
         trash1selectionview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,47 +344,6 @@ public class MyProfileCourses extends AppCompatActivity {
             }
         });
 
-        name1=(EditText)findViewById(R.id.name1);
-        inst1=(EditText)findViewById(R.id.inst1);
-        name2=(EditText)findViewById(R.id.name2);
-        inst2=(EditText)findViewById(R.id.inst2);
-        name3=(EditText)findViewById(R.id.name3);
-        inst3=(EditText)findViewById(R.id.inst3);
-        name4=(EditText)findViewById(R.id.name4);
-        inst4=(EditText)findViewById(R.id.inst4);
-        name5=(EditText)findViewById(R.id.name5);
-        inst5=(EditText)findViewById(R.id.inst5);
-        name6=(EditText)findViewById(R.id.name6);
-        inst6=(EditText)findViewById(R.id.inst6);
-        name7=(EditText)findViewById(R.id.name7);
-        inst7=(EditText)findViewById(R.id.inst7);
-        name8=(EditText)findViewById(R.id.name8);
-        inst8=(EditText)findViewById(R.id.inst8);
-        name9=(EditText)findViewById(R.id.name9);
-        inst9=(EditText)findViewById(R.id.inst9);
-        name10=(EditText)findViewById(R.id.name10);
-        inst10=(EditText)findViewById(R.id.inst10);
-
-        fromdate1=(EditText)findViewById(R.id.fromdate1);
-        todate1=(EditText)findViewById(R.id.todate1);
-        fromdate2=(EditText)findViewById(R.id.fromdate2);
-        todate2=(EditText)findViewById(R.id.todate2);
-        fromdate3=(EditText)findViewById(R.id.fromdate3);
-        todate3=(EditText)findViewById(R.id.todate3);
-        fromdate4=(EditText)findViewById(R.id.fromdate4);
-        todate4=(EditText)findViewById(R.id.todate4);
-        fromdate5=(EditText)findViewById(R.id.fromdate5);
-        todate5=(EditText)findViewById(R.id.todate5);
-        fromdate6=(EditText)findViewById(R.id.fromdate6);
-        todate6=(EditText)findViewById(R.id.todate6);
-        fromdate7=(EditText)findViewById(R.id.fromdate7);
-        todate7=(EditText)findViewById(R.id.todate7);
-        fromdate8=(EditText)findViewById(R.id.fromdate8);
-        todate8=(EditText)findViewById(R.id.todate8);
-        fromdate9=(EditText)findViewById(R.id.fromdate9);
-        todate9=(EditText)findViewById(R.id.todate9);
-        fromdate10=(EditText)findViewById(R.id.fromdate10);
-        todate10=(EditText)findViewById(R.id.todate10);
 
 
         name1.addTextChangedListener(new TextWatcher() {
@@ -217,7 +355,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                name1.setError(null);
+                nameinput1.setError(null);
             }
 
             @Override
@@ -234,7 +372,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                inst1.setError(null);
+                instinput1.setError(null);
             }
 
             @Override
@@ -251,7 +389,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                fromdate1.setError(null);
+                fromdateinput1.setError(null);
             }
 
             @Override
@@ -268,7 +406,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                todate1.setError(null);
+                todateinput1.setError(null);
             }
 
             @Override
@@ -285,7 +423,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                name2.setError(null);
+                nameinput2.setError(null);
             }
 
             @Override
@@ -302,7 +440,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                inst2.setError(null);
+                instinput2.setError(null);
             }
 
             @Override
@@ -319,7 +457,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                fromdate2.setError(null);
+                fromdateinput2.setError(null);
             }
 
             @Override
@@ -336,7 +474,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                todate2.setError(null);
+                todateinput2.setError(null);
             }
 
             @Override
@@ -353,7 +491,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                name3.setError(null);
+                nameinput3.setError(null);
             }
 
             @Override
@@ -370,7 +508,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                inst3.setError(null);
+                instinput3.setError(null);
             }
 
             @Override
@@ -387,7 +525,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                fromdate3.setError(null);
+                fromdateinput3.setError(null);
             }
 
             @Override
@@ -404,7 +542,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                todate3.setError(null);
+                todateinput3.setError(null);
             }
 
             @Override
@@ -421,7 +559,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                name4.setError(null);
+                nameinput4.setError(null);
             }
 
             @Override
@@ -438,7 +576,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                inst4.setError(null);
+                instinput4.setError(null);
             }
 
             @Override
@@ -455,7 +593,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                fromdate4.setError(null);
+                fromdateinput4.setError(null);
             }
 
             @Override
@@ -472,7 +610,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                todate4.setError(null);
+                todateinput4.setError(null);
             }
 
             @Override
@@ -489,7 +627,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                name5.setError(null);
+                nameinput5.setError(null);
             }
 
             @Override
@@ -506,7 +644,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                inst5.setError(null);
+                instinput5.setError(null);
             }
 
             @Override
@@ -523,7 +661,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                fromdate5.setError(null);
+                fromdateinput5.setError(null);
             }
 
             @Override
@@ -540,7 +678,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                todate5.setError(null);
+                todateinput5.setError(null);
             }
 
             @Override
@@ -557,7 +695,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                name6.setError(null);
+                nameinput6.setError(null);
             }
 
             @Override
@@ -574,7 +712,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                inst6.setError(null);
+                instinput6.setError(null);
             }
 
             @Override
@@ -591,7 +729,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                fromdate6.setError(null);
+                fromdateinput6.setError(null);
             }
 
             @Override
@@ -608,7 +746,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                todate6.setError(null);
+                todateinput6.setError(null);
             }
 
             @Override
@@ -625,7 +763,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                name7.setError(null);
+                nameinput7.setError(null);
             }
 
             @Override
@@ -642,7 +780,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                inst7.setError(null);
+                instinput7.setError(null);
             }
 
             @Override
@@ -659,7 +797,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                fromdate7.setError(null);
+                fromdateinput7.setError(null);
             }
 
             @Override
@@ -676,7 +814,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                todate7.setError(null);
+                todateinput7.setError(null);
             }
 
             @Override
@@ -693,7 +831,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                name8.setError(null);
+                nameinput8.setError(null);
             }
 
             @Override
@@ -710,7 +848,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                inst8.setError(null);
+                instinput8.setError(null);
             }
 
             @Override
@@ -727,7 +865,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                fromdate8.setError(null);
+                fromdateinput8.setError(null);
             }
 
             @Override
@@ -744,7 +882,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                todate8.setError(null);
+                todateinput8.setError(null);
             }
 
             @Override
@@ -761,7 +899,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                name9.setError(null);
+                nameinput9.setError(null);
             }
 
             @Override
@@ -778,7 +916,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                inst9.setError(null);
+                instinput9.setError(null);
             }
 
             @Override
@@ -795,7 +933,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                fromdate9.setError(null);
+                fromdateinput9.setError(null);
             }
 
             @Override
@@ -812,7 +950,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                todate9.setError(null);
+                todateinput9.setError(null);
             }
 
             @Override
@@ -829,7 +967,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                name10.setError(null);
+                nameinput10.setError(null);
             }
 
             @Override
@@ -846,7 +984,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                inst10.setError(null);
+                instinput10.setError(null);
             }
 
             @Override
@@ -863,7 +1001,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                fromdate10.setError(null);
+                fromdateinput10.setError(null);
             }
 
             @Override
@@ -880,7 +1018,7 @@ public class MyProfileCourses extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-                todate10.setError(null);
+                todateinput10.setError(null);
             }
 
             @Override
@@ -1211,9 +1349,6 @@ public class MyProfileCourses extends AppCompatActivity {
         });
 
 
-        TextView coursetxt=(TextView)findViewById(R.id.coursetxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");
-        coursetxt.setTypeface(custom_font1);
 
         addmorecourse=(View)findViewById(R.id.addmorecourse);
         addmorecourse.setOnClickListener(new View.OnClickListener() {
@@ -3024,46 +3159,45 @@ public class MyProfileCourses extends AppCompatActivity {
 
     void validateandSave()
     {
-        name1.setError(null);
-        inst1.setError(null);
-        fromdate1.setError(null);
-        todate1.setError(null);
-        name2.setError(null);
-        inst2.setError(null);
-        fromdate2.setError(null);
-        todate2.setError(null);
-        name3.setError(null);
-        inst3.setError(null);
-        fromdate3.setError(null);
-        todate3.setError(null);
-        name4.setError(null);
-        inst4.setError(null);
-        fromdate4.setError(null);
-        todate4.setError(null);
-        name5.setError(null);
-        inst5.setError(null);
-        fromdate5.setError(null);
-        todate5.setError(null);
-        name6.setError(null);
-        inst6.setError(null);
-        fromdate6.setError(null);
-        todate6.setError(null);
-        name7.setError(null);
-        inst7.setError(null);
-        fromdate7.setError(null);
-        todate7.setError(null);
-        name8.setError(null);
-        inst8.setError(null);
-        fromdate8.setError(null);
-        todate8.setError(null);
-        name9.setError(null);
-        inst9.setError(null);
-        fromdate9.setError(null);
-        todate9.setError(null);
-        name10.setError(null);
-        inst10.setError(null);
-        fromdate10.setError(null);
-        todate10.setError(null);
+        instinput1.setError(null);
+        fromdateinput1.setError(null);
+        todateinput1.setError(null);
+        nameinput2.setError(null);
+        instinput2.setError(null);
+        fromdateinput2.setError(null);
+        todateinput2.setError(null);
+        nameinput3.setError(null);
+        instinput3.setError(null);
+        fromdateinput3.setError(null);
+        todateinput3.setError(null);
+        nameinput4.setError(null);
+        instinput4.setError(null);
+        fromdateinput4.setError(null);
+        todateinput4.setError(null);
+        nameinput5.setError(null);
+        instinput5.setError(null);
+        fromdateinput5.setError(null);
+        todateinput5.setError(null);
+        nameinput6.setError(null);
+        instinput6.setError(null);
+        fromdateinput6.setError(null);
+        todateinput6.setError(null);
+        nameinput7.setError(null);
+        instinput7.setError(null);
+        fromdateinput7.setError(null);
+        todateinput7.setError(null);
+        nameinput8.setError(null);
+        instinput8.setError(null);
+        fromdateinput8.setError(null);
+        todateinput8.setError(null);
+        nameinput9.setError(null);
+        instinput9.setError(null);
+        fromdateinput9.setError(null);
+        todateinput9.setError(null);
+        nameinput10.setError(null);
+        instinput10.setError(null);
+        fromdateinput10.setError(null);
+        todateinput10.setError(null);
 
         sname1=name1.getText().toString();
         sinst1=inst1.getText().toString();
@@ -3116,28 +3250,28 @@ public class MyProfileCourses extends AppCompatActivity {
         {
             if(sname1.length()<3) {
                 errorflag=1;
-                name1.setError("Invalid Course Name");
+                nameinput1.setError("Invalid Course Name");
             }
             else
             {
                 errorflag=0;
                 if(sinst1.length()<3) {
                     errorflag=1;
-                    inst1.setError("Invalid Institute Name");
+                    instinput1.setError("Invalid Institute Name");
                 }
                 else
                 {
                     errorflag=0;
                     if(sfromdate1.length()<3) {
                         errorflag=1;
-                        fromdate1.setError("Invalid Date");
+                        fromdateinput1.setError("Invalid Date");
                     }
                     else
                     {
                         errorflag=0;
                         if(stodate1.length()<3) {
                             errorflag=1;
-                            todate1.setError("Invalid Date");
+                            todateinput1.setError("Invalid Date");
                         }
                     }
                 }
@@ -3147,56 +3281,56 @@ public class MyProfileCourses extends AppCompatActivity {
         {
             if(sname1.length()<3) {
                 errorflag=1;
-                name1.setError("Invalid Course Name");
+                nameinput1.setError("Invalid Course Name");
             }
             else
             {
                 errorflag=0;
                 if(sinst1.length()<3) {
                     errorflag=1;
-                    inst1.setError("Invalid Institute Name");
+                    instinput1.setError("Invalid Institute Name");
                 }
                 else
                 {
                     errorflag=0;
                     if(sfromdate1.length()<3) {
                         errorflag=1;
-                        fromdate1.setError("Invalid Date");
+                        fromdateinput1.setError("Invalid Date");
                     }
                     else
                     {
                         errorflag=0;
                         if(stodate1.length()<3) {
                             errorflag=1;
-                            todate1.setError("Invalid Date");
+                            todateinput1.setError("Invalid Date");
                         }
                         else
                         {
                             errorflag=0;
                             if(sname2.length()<3) {
                                 errorflag=1;
-                                name2.setError("Invalid Course Name");
+                                nameinput2.setError("Invalid Course Name");
                             }
                             else
                             {
                                 errorflag=0;
                                 if(sinst2.length()<3) {
                                     errorflag=1;
-                                    inst2.setError("Invalid Institute Name");
+                                    instinput2.setError("Invalid Institute Name");
                                 }
                                 else
                                 {
                                     errorflag=0;
                                     if(sfromdate2.length()<3) {
                                         errorflag=1;
-                                        fromdate2.setError("Invalid Date");
+                                        fromdateinput2.setError("Invalid Date");
                                     }
                                     else
                                     {
                                         errorflag=0;
                                         if(stodate2.length()<3) {
                                             errorflag=1;
-                                            todate2.setError("Invalid Date");
+                                            todateinput2.setError("Invalid Date");
                                         }
                                     }
                                 }
@@ -3210,84 +3344,84 @@ public class MyProfileCourses extends AppCompatActivity {
         {
             if(sname1.length()<3) {
                 errorflag=1;
-                name1.setError("Invalid Course Name");
+                nameinput1.setError("Invalid Course Name");
             }
             else
             {
                 errorflag=0;
                 if(sinst1.length()<3) {
                     errorflag=1;
-                    inst1.setError("Invalid Institute Name");
+                    instinput1.setError("Invalid Institute Name");
                 }
                 else
                 {
                     errorflag=0;
                     if(sfromdate1.length()<3) {
                         errorflag=1;
-                        fromdate1.setError("Invalid Date");
+                        fromdateinput1.setError("Invalid Date");
                     }
                     else
                     {
                         errorflag=0;
                         if(stodate1.length()<3) {
                             errorflag=1;
-                            todate1.setError("Invalid Date");
+                            todateinput1.setError("Invalid Date");
                         }
                         else
                         {
                             errorflag=0;
                             if(sname2.length()<3) {
                                 errorflag=1;
-                                name2.setError("Invalid Course Name");
+                                nameinput2.setError("Invalid Course Name");
                             }
                             else
                             {
                                 errorflag=0;
                                 if(sinst2.length()<3) {
                                     errorflag=1;
-                                    inst2.setError("Invalid Institute Name");
+                                    instinput2.setError("Invalid Institute Name");
                                 }
                                 else
                                 {
                                     errorflag=0;
                                     if(sfromdate2.length()<3) {
                                         errorflag=1;
-                                        fromdate2.setError("Invalid Date");
+                                        fromdateinput2.setError("Invalid Date");
                                     }
                                     else
                                     {
                                         errorflag=0;
                                         if(stodate2.length()<3) {
                                             errorflag=1;
-                                            todate2.setError("Invalid Date");
+                                            todateinput2.setError("Invalid Date");
                                         }
                                         else
                                         {
                                             errorflag=0;
                                             if(sname3.length()<3) {
                                                 errorflag=1;
-                                                name3.setError("Invalid Course Name");
+                                                nameinput3.setError("Invalid Course Name");
                                             }
                                             else
                                             {
                                                 errorflag=0;
                                                 if(sinst3.length()<3) {
                                                     errorflag=1;
-                                                    inst3.setError("Invalid Institute Name");
+                                                    instinput3.setError("Invalid Institute Name");
                                                 }
                                                 else
                                                 {
                                                     errorflag=0;
                                                     if(sfromdate3.length()<3) {
                                                         errorflag=1;
-                                                        fromdate3.setError("Invalid Date");
+                                                        fromdateinput3.setError("Invalid Date");
                                                     }
                                                     else
                                                     {
                                                         errorflag=0;
                                                         if(stodate3.length()<3) {
                                                             errorflag=1;
-                                                            todate3.setError("Invalid Date");
+                                                            todateinput3.setError("Invalid Date");
                                                         }
                                                     }
                                                 }
@@ -3305,112 +3439,112 @@ public class MyProfileCourses extends AppCompatActivity {
         {
             if(sname1.length()<3) {
                 errorflag=1;
-                name1.setError("Invalid Course Name");
+                nameinput1.setError("Invalid Course Name");
             }
             else
             {
                 errorflag=0;
                 if(sinst1.length()<3) {
                     errorflag=1;
-                    inst1.setError("Invalid Institute Name");
+                    instinput1.setError("Invalid Institute Name");
                 }
                 else
                 {
                     errorflag=0;
                     if(sfromdate1.length()<3) {
                         errorflag=1;
-                        fromdate1.setError("Invalid Date");
+                        fromdateinput1.setError("Invalid Date");
                     }
                     else
                     {
                         errorflag=0;
                         if(stodate1.length()<3) {
                             errorflag=1;
-                            todate1.setError("Invalid Date");
+                            todateinput1.setError("Invalid Date");
                         }
                         else
                         {
                             errorflag=0;
                             if(sname2.length()<3) {
                                 errorflag=1;
-                                name2.setError("Invalid Course Name");
+                                nameinput2.setError("Invalid Course Name");
                             }
                             else
                             {
                                 errorflag=0;
                                 if(sinst2.length()<3) {
                                     errorflag=1;
-                                    inst2.setError("Invalid Institute Name");
+                                    instinput2.setError("Invalid Institute Name");
                                 }
                                 else
                                 {
                                     errorflag=0;
                                     if(sfromdate2.length()<3) {
                                         errorflag=1;
-                                        fromdate2.setError("Invalid Date");
+                                        fromdateinput2.setError("Invalid Date");
                                     }
                                     else
                                     {
                                         errorflag=0;
                                         if(stodate2.length()<3) {
                                             errorflag=1;
-                                            todate2.setError("Invalid Date");
+                                            todateinput2.setError("Invalid Date");
                                         }
                                         else
                                         {
                                             errorflag=0;
                                             if(sname3.length()<3) {
                                                 errorflag=1;
-                                                name3.setError("Invalid Course Name");
+                                                nameinput3.setError("Invalid Course Name");
                                             }
                                             else
                                             {
                                                 errorflag=0;
                                                 if(sinst3.length()<3) {
                                                     errorflag=1;
-                                                    inst3.setError("Invalid Institute Name");
+                                                    instinput3.setError("Invalid Institute Name");
                                                 }
                                                 else
                                                 {
                                                     errorflag=0;
                                                     if(sfromdate3.length()<3) {
                                                         errorflag=1;
-                                                        fromdate3.setError("Invalid Date");
+                                                        fromdateinput3.setError("Invalid Date");
                                                     }
                                                     else
                                                     {
                                                         errorflag=0;
                                                         if(stodate3.length()<3) {
                                                             errorflag=1;
-                                                            todate3.setError("Invalid Date");
+                                                            todateinput3.setError("Invalid Date");
                                                         }
                                                         else
                                                         {
                                                             errorflag=0;
                                                             if(sname4.length()<3) {
                                                                 errorflag=1;
-                                                                name4.setError("Invalid Course Name");
+                                                                nameinput4.setError("Invalid Course Name");
                                                             }
                                                             else
                                                             {
                                                                 errorflag=0;
                                                                 if(sinst4.length()<3) {
                                                                     errorflag=1;
-                                                                    inst4.setError("Invalid Institute Name");
+                                                                    instinput4.setError("Invalid Institute Name");
                                                                 }
                                                                 else
                                                                 {
                                                                     errorflag=0;
                                                                     if(sfromdate4.length()<3) {
                                                                         errorflag=1;
-                                                                        fromdate4.setError("Invalid Date");
+                                                                        fromdateinput4.setError("Invalid Date");
                                                                     }
                                                                     else
                                                                     {
                                                                         errorflag=0;
                                                                         if(stodate4.length()<3) {
                                                                             errorflag=1;
-                                                                            todate4.setError("Invalid Date");
+                                                                            todateinput4.setError("Invalid Date");
                                                                         }
                                                                     }
                                                                 }
@@ -3432,140 +3566,140 @@ public class MyProfileCourses extends AppCompatActivity {
         {
             if(sname1.length()<3) {
                 errorflag=1;
-                name1.setError("Invalid Course Name");
+                nameinput1.setError("Invalid Course Name");
             }
             else
             {
                 errorflag=0;
                 if(sinst1.length()<3) {
                     errorflag=1;
-                    inst1.setError("Invalid Institute Name");
+                    instinput1.setError("Invalid Institute Name");
                 }
                 else
                 {
                     errorflag=0;
                     if(sfromdate1.length()<3) {
                         errorflag=1;
-                        fromdate1.setError("Invalid Date");
+                        fromdateinput1.setError("Invalid Date");
                     }
                     else
                     {
                         errorflag=0;
                         if(stodate1.length()<3) {
                             errorflag=1;
-                            todate1.setError("Invalid Date");
+                            todateinput1.setError("Invalid Date");
                         }
                         else
                         {
                             errorflag=0;
                             if(sname2.length()<3) {
                                 errorflag=1;
-                                name2.setError("Invalid Course Name");
+                                nameinput2.setError("Invalid Course Name");
                             }
                             else
                             {
                                 errorflag=0;
                                 if(sinst2.length()<3) {
                                     errorflag=1;
-                                    inst2.setError("Invalid Institute Name");
+                                    instinput2.setError("Invalid Institute Name");
                                 }
                                 else
                                 {
                                     errorflag=0;
                                     if(sfromdate2.length()<3) {
                                         errorflag=1;
-                                        fromdate2.setError("Invalid Date");
+                                        fromdateinput2.setError("Invalid Date");
                                     }
                                     else
                                     {
                                         errorflag=0;
                                         if(stodate2.length()<3) {
                                             errorflag=1;
-                                            todate2.setError("Invalid Date");
+                                            todateinput2.setError("Invalid Date");
                                         }
                                         else
                                         {
                                             errorflag=0;
                                             if(sname3.length()<3) {
                                                 errorflag=1;
-                                                name3.setError("Invalid Course Name");
+                                                nameinput3.setError("Invalid Course Name");
                                             }
                                             else
                                             {
                                                 errorflag=0;
                                                 if(sinst3.length()<3) {
                                                     errorflag=1;
-                                                    inst3.setError("Invalid Institute Name");
+                                                    instinput3.setError("Invalid Institute Name");
                                                 }
                                                 else
                                                 {
                                                     errorflag=0;
                                                     if(sfromdate3.length()<3) {
                                                         errorflag=1;
-                                                        fromdate3.setError("Invalid Date");
+                                                        fromdateinput3.setError("Invalid Date");
                                                     }
                                                     else
                                                     {
                                                         errorflag=0;
                                                         if(stodate3.length()<3) {
                                                             errorflag=1;
-                                                            todate3.setError("Invalid Date");
+                                                            todateinput3.setError("Invalid Date");
                                                         }
                                                         else
                                                         {
                                                             errorflag=0;
                                                             if(sname4.length()<3) {
                                                                 errorflag=1;
-                                                                name4.setError("Invalid Course Name");
+                                                                nameinput4.setError("Invalid Course Name");
                                                             }
                                                             else
                                                             {
                                                                 errorflag=0;
                                                                 if(sinst4.length()<3) {
                                                                     errorflag=1;
-                                                                    inst4.setError("Invalid Institute Name");
+                                                                    instinput4.setError("Invalid Institute Name");
                                                                 }
                                                                 else
                                                                 {
                                                                     errorflag=0;
                                                                     if(sfromdate4.length()<3) {
                                                                         errorflag=1;
-                                                                        fromdate4.setError("Invalid Date");
+                                                                        fromdateinput4.setError("Invalid Date");
                                                                     }
                                                                     else
                                                                     {
                                                                         errorflag=0;
                                                                         if(stodate4.length()<3) {
                                                                             errorflag=1;
-                                                                            todate4.setError("Invalid Date");
+                                                                            todateinput4.setError("Invalid Date");
                                                                         }
                                                                         else
                                                                         {
                                                                             errorflag=0;
                                                                             if(sname5.length()<3) {
                                                                                 errorflag=1;
-                                                                                name5.setError("Invalid Course Name");
+                                                                                nameinput5.setError("Invalid Course Name");
                                                                             }
                                                                             else
                                                                             {
                                                                                 errorflag=0;
                                                                                 if(sinst5.length()<3) {
                                                                                     errorflag=1;
-                                                                                    inst5.setError("Invalid Institute Name");
+                                                                                    instinput5.setError("Invalid Institute Name");
                                                                                 }
                                                                                 else
                                                                                 {
                                                                                     errorflag=0;
                                                                                     if(sfromdate5.length()<3) {
                                                                                         errorflag=1;
-                                                                                        fromdate5.setError("Invalid Date");
+                                                                                        fromdateinput5.setError("Invalid Date");
                                                                                     }
                                                                                     else
                                                                                     {
                                                                                         errorflag=0;
                                                                                         if(stodate5.length()<3) {
                                                                                             errorflag=1;
-                                                                                            todate5.setError("Invalid Date");
+                                                                                            todateinput5.setError("Invalid Date");
                                                                                         }
                                                                                     }
                                                                                 }
@@ -3591,168 +3725,168 @@ public class MyProfileCourses extends AppCompatActivity {
         {
             if(sname1.length()<3) {
                 errorflag=1;
-                name1.setError("Invalid Course Name");
+                nameinput1.setError("Invalid Course Name");
             }
             else
             {
                 errorflag=0;
                 if(sinst1.length()<3) {
                     errorflag=1;
-                    inst1.setError("Invalid Institute Name");
+                    instinput1.setError("Invalid Institute Name");
                 }
                 else
                 {
                     errorflag=0;
                     if(sfromdate1.length()<3) {
                         errorflag=1;
-                        fromdate1.setError("Invalid Date");
+                        fromdateinput1.setError("Invalid Date");
                     }
                     else
                     {
                         errorflag=0;
                         if(stodate1.length()<3) {
                             errorflag=1;
-                            todate1.setError("Invalid Date");
+                            todateinput1.setError("Invalid Date");
                         }
                         else
                         {
                             errorflag=0;
                             if(sname2.length()<3) {
                                 errorflag=1;
-                                name2.setError("Invalid Course Name");
+                                nameinput2.setError("Invalid Course Name");
                             }
                             else
                             {
                                 errorflag=0;
                                 if(sinst2.length()<3) {
                                     errorflag=1;
-                                    inst2.setError("Invalid Institute Name");
+                                    instinput2.setError("Invalid Institute Name");
                                 }
                                 else
                                 {
                                     errorflag=0;
                                     if(sfromdate2.length()<3) {
                                         errorflag=1;
-                                        fromdate2.setError("Invalid Date");
+                                        fromdateinput2.setError("Invalid Date");
                                     }
                                     else
                                     {
                                         errorflag=0;
                                         if(stodate2.length()<3) {
                                             errorflag=1;
-                                            todate2.setError("Invalid Date");
+                                            todateinput2.setError("Invalid Date");
                                         }
                                         else
                                         {
                                             errorflag=0;
                                             if(sname3.length()<3) {
                                                 errorflag=1;
-                                                name3.setError("Invalid Course Name");
+                                                nameinput3.setError("Invalid Course Name");
                                             }
                                             else
                                             {
                                                 errorflag=0;
                                                 if(sinst3.length()<3) {
                                                     errorflag=1;
-                                                    inst3.setError("Invalid Institute Name");
+                                                    instinput3.setError("Invalid Institute Name");
                                                 }
                                                 else
                                                 {
                                                     errorflag=0;
                                                     if(sfromdate3.length()<3) {
                                                         errorflag=1;
-                                                        fromdate3.setError("Invalid Date");
+                                                        fromdateinput3.setError("Invalid Date");
                                                     }
                                                     else
                                                     {
                                                         errorflag=0;
                                                         if(stodate3.length()<3) {
                                                             errorflag=1;
-                                                            todate3.setError("Invalid Date");
+                                                            todateinput3.setError("Invalid Date");
                                                         }
                                                         else
                                                         {
                                                             errorflag=0;
                                                             if(sname4.length()<3) {
                                                                 errorflag=1;
-                                                                name4.setError("Invalid Course Name");
+                                                                nameinput4.setError("Invalid Course Name");
                                                             }
                                                             else
                                                             {
                                                                 errorflag=0;
                                                                 if(sinst4.length()<3) {
                                                                     errorflag=1;
-                                                                    inst4.setError("Invalid Institute Name");
+                                                                    instinput4.setError("Invalid Institute Name");
                                                                 }
                                                                 else
                                                                 {
                                                                     errorflag=0;
                                                                     if(sfromdate4.length()<3) {
                                                                         errorflag=1;
-                                                                        fromdate4.setError("Invalid Date");
+                                                                        fromdateinput4.setError("Invalid Date");
                                                                     }
                                                                     else
                                                                     {
                                                                         errorflag=0;
                                                                         if(stodate4.length()<3) {
                                                                             errorflag=1;
-                                                                            todate4.setError("Invalid Date");
+                                                                            todateinput4.setError("Invalid Date");
                                                                         }
                                                                         else
                                                                         {
                                                                             errorflag=0;
                                                                             if(sname5.length()<3) {
                                                                                 errorflag=1;
-                                                                                name5.setError("Invalid Course Name");
+                                                                                nameinput5.setError("Invalid Course Name");
                                                                             }
                                                                             else
                                                                             {
                                                                                 errorflag=0;
                                                                                 if(sinst5.length()<3) {
                                                                                     errorflag=1;
-                                                                                    inst5.setError("Invalid Institute Name");
+                                                                                    instinput5.setError("Invalid Institute Name");
                                                                                 }
                                                                                 else
                                                                                 {
                                                                                     errorflag=0;
                                                                                     if(sfromdate5.length()<3) {
                                                                                         errorflag=1;
-                                                                                        fromdate5.setError("Invalid Date");
+                                                                                        fromdateinput5.setError("Invalid Date");
                                                                                     }
                                                                                     else
                                                                                     {
                                                                                         errorflag=0;
                                                                                         if(stodate5.length()<3) {
                                                                                             errorflag=1;
-                                                                                            todate5.setError("Invalid Date");
+                                                                                            todateinput5.setError("Invalid Date");
                                                                                         }
                                                                                         else
                                                                                         {
                                                                                             errorflag=0;
                                                                                             if(sname6.length()<3) {
                                                                                                 errorflag=1;
-                                                                                                name6.setError("Invalid Course Name");
+                                                                                                nameinput6.setError("Invalid Course Name");
                                                                                             }
                                                                                             else
                                                                                             {
                                                                                                 errorflag=0;
                                                                                                 if(sinst6.length()<3) {
                                                                                                     errorflag=1;
-                                                                                                    inst6.setError("Invalid Institute Name");
+                                                                                                    instinput6.setError("Invalid Institute Name");
                                                                                                 }
                                                                                                 else
                                                                                                 {
                                                                                                     errorflag=0;
                                                                                                     if(sfromdate6.length()<3) {
                                                                                                         errorflag=1;
-                                                                                                        fromdate6.setError("Invalid Date");
+                                                                                                        fromdateinput6.setError("Invalid Date");
                                                                                                     }
                                                                                                     else
                                                                                                     {
                                                                                                         errorflag=0;
                                                                                                         if(stodate6.length()<3) {
                                                                                                             errorflag=1;
-                                                                                                            todate6.setError("Invalid Date");
+                                                                                                            todateinput6.setError("Invalid Date");
                                                                                                         }
                                                                                                     }
                                                                                                 }
@@ -3782,28 +3916,28 @@ public class MyProfileCourses extends AppCompatActivity {
         {
             if(sname1.length()<3) {
                 errorflag=1;
-                name1.setError("Invalid Course Name");
+                nameinput1.setError("Invalid Course Name");
             }
             else
             {
                 errorflag=0;
                 if(sinst1.length()<3) {
                     errorflag=1;
-                    inst1.setError("Invalid Institute Name");
+                    instinput1.setError("Invalid Institute Name");
                 }
                 else
                 {
                     errorflag=0;
                     if(sfromdate1.length()<3) {
                         errorflag=1;
-                        fromdate1.setError("Invalid Date");
+                        fromdateinput1.setError("Invalid Date");
                     }
                     else
                     {
                         errorflag=0;
                         if(stodate1.length()<3) {
                             errorflag=1;
-                            todate1.setError("Invalid Date");
+                            todateinput1.setError("Invalid Date");
                         }
                         else
                         {
@@ -3838,56 +3972,56 @@ public class MyProfileCourses extends AppCompatActivity {
                                             errorflag=0;
                                             if(sname3.length()<3) {
                                                 errorflag=1;
-                                                name3.setError("Invalid Course Name");
+                                                nameinput3.setError("Invalid Course Name");
                                             }
                                             else
                                             {
                                                 errorflag=0;
                                                 if(sinst3.length()<3) {
                                                     errorflag=1;
-                                                    inst3.setError("Invalid Institute Name");
+                                                    instinput3.setError("Invalid Institute Name");
                                                 }
                                                 else
                                                 {
                                                     errorflag=0;
                                                     if(sfromdate3.length()<3) {
                                                         errorflag=1;
-                                                        fromdate3.setError("Invalid Date");
+                                                        fromdateinput3.setError("Invalid Date");
                                                     }
                                                     else
                                                     {
                                                         errorflag=0;
                                                         if(stodate3.length()<3) {
                                                             errorflag=1;
-                                                            todate3.setError("Invalid Date");
+                                                            todateinput3.setError("Invalid Date");
                                                         }
                                                         else
                                                         {
                                                             errorflag=0;
                                                             if(sname4.length()<3) {
                                                                 errorflag=1;
-                                                                name4.setError("Invalid Course Name");
+                                                                nameinput4.setError("Invalid Course Name");
                                                             }
                                                             else
                                                             {
                                                                 errorflag=0;
                                                                 if(sinst4.length()<3) {
                                                                     errorflag=1;
-                                                                    inst4.setError("Invalid Institute Name");
+                                                                    instinput4.setError("Invalid Institute Name");
                                                                 }
                                                                 else
                                                                 {
                                                                     errorflag=0;
                                                                     if(sfromdate4.length()<3) {
                                                                         errorflag=1;
-                                                                        fromdate4.setError("Invalid Date");
+                                                                        fromdateinput4.setError("Invalid Date");
                                                                     }
                                                                     else
                                                                     {
                                                                         errorflag=0;
                                                                         if(stodate4.length()<3) {
                                                                             errorflag=1;
-                                                                            todate4.setError("Invalid Date");
+                                                                            todateinput4.setError("Invalid Date");
                                                                         }
                                                                         else
                                                                         {
@@ -4005,28 +4139,28 @@ public class MyProfileCourses extends AppCompatActivity {
         {
             if(sname1.length()<3) {
                 errorflag=1;
-                name1.setError("Invalid Course Name");
+                nameinput1.setError("Invalid Course Name");
             }
             else
             {
                 errorflag=0;
                 if(sinst1.length()<3) {
                     errorflag=1;
-                    inst1.setError("Invalid Institute Name");
+                    instinput1.setError("Invalid Institute Name");
                 }
                 else
                 {
                     errorflag=0;
                     if(sfromdate1.length()<3) {
                         errorflag=1;
-                        fromdate1.setError("Invalid Date");
+                        fromdateinput1.setError("Invalid Date");
                     }
                     else
                     {
                         errorflag=0;
                         if(stodate1.length()<3) {
                             errorflag=1;
-                            todate1.setError("Invalid Date");
+                            todateinput1.setError("Invalid Date");
                         }
                         else
                         {
@@ -4061,56 +4195,56 @@ public class MyProfileCourses extends AppCompatActivity {
                                             errorflag=0;
                                             if(sname3.length()<3) {
                                                 errorflag=1;
-                                                name3.setError("Invalid Course Name");
+                                                nameinput3.setError("Invalid Course Name");
                                             }
                                             else
                                             {
                                                 errorflag=0;
                                                 if(sinst3.length()<3) {
                                                     errorflag=1;
-                                                    inst3.setError("Invalid Institute Name");
+                                                    instinput3.setError("Invalid Institute Name");
                                                 }
                                                 else
                                                 {
                                                     errorflag=0;
                                                     if(sfromdate3.length()<3) {
                                                         errorflag=1;
-                                                        fromdate3.setError("Invalid Date");
+                                                        fromdateinput3.setError("Invalid Date");
                                                     }
                                                     else
                                                     {
                                                         errorflag=0;
                                                         if(stodate3.length()<3) {
                                                             errorflag=1;
-                                                            todate3.setError("Invalid Date");
+                                                            todateinput3.setError("Invalid Date");
                                                         }
                                                         else
                                                         {
                                                             errorflag=0;
                                                             if(sname4.length()<3) {
                                                                 errorflag=1;
-                                                                name4.setError("Invalid Course Name");
+                                                                nameinput4.setError("Invalid Course Name");
                                                             }
                                                             else
                                                             {
                                                                 errorflag=0;
                                                                 if(sinst4.length()<3) {
                                                                     errorflag=1;
-                                                                    inst4.setError("Invalid Institute Name");
+                                                                    instinput4.setError("Invalid Institute Name");
                                                                 }
                                                                 else
                                                                 {
                                                                     errorflag=0;
                                                                     if(sfromdate4.length()<3) {
                                                                         errorflag=1;
-                                                                        fromdate4.setError("Invalid Date");
+                                                                        fromdateinput4.setError("Invalid Date");
                                                                     }
                                                                     else
                                                                     {
                                                                         errorflag=0;
                                                                         if(stodate4.length()<3) {
                                                                             errorflag=1;
-                                                                            todate4.setError("Invalid Date");
+                                                                            todateinput4.setError("Invalid Date");
                                                                         }
                                                                         else
                                                                         {
@@ -4260,28 +4394,28 @@ public class MyProfileCourses extends AppCompatActivity {
         {
             if(sname1.length()<3) {
                 errorflag=1;
-                name1.setError("Invalid Course Name");
+                nameinput1.setError("Invalid Course Name");
             }
             else
             {
                 errorflag=0;
                 if(sinst1.length()<3) {
                     errorflag=1;
-                    inst1.setError("Invalid Institute Name");
+                    instinput1.setError("Invalid Institute Name");
                 }
                 else
                 {
                     errorflag=0;
                     if(sfromdate1.length()<3) {
                         errorflag=1;
-                        fromdate1.setError("Invalid Date");
+                        fromdateinput1.setError("Invalid Date");
                     }
                     else
                     {
                         errorflag=0;
                         if(stodate1.length()<3) {
                             errorflag=1;
-                            todate1.setError("Invalid Date");
+                            todateinput1.setError("Invalid Date");
                         }
                         else
                         {
@@ -4316,84 +4450,84 @@ public class MyProfileCourses extends AppCompatActivity {
                                             errorflag=0;
                                             if(sname3.length()<3) {
                                                 errorflag=1;
-                                                name3.setError("Invalid Course Name");
+                                                nameinput3.setError("Invalid Course Name");
                                             }
                                             else
                                             {
                                                 errorflag=0;
                                                 if(sinst3.length()<3) {
                                                     errorflag=1;
-                                                    inst3.setError("Invalid Institute Name");
+                                                    instinput3.setError("Invalid Institute Name");
                                                 }
                                                 else
                                                 {
                                                     errorflag=0;
                                                     if(sfromdate3.length()<3) {
                                                         errorflag=1;
-                                                        fromdate3.setError("Invalid Date");
+                                                        fromdateinput3.setError("Invalid Date");
                                                     }
                                                     else
                                                     {
                                                         errorflag=0;
                                                         if(stodate3.length()<3) {
                                                             errorflag=1;
-                                                            todate3.setError("Invalid Date");
+                                                            todateinput3.setError("Invalid Date");
                                                         }
                                                         else
                                                         {
                                                             errorflag=0;
                                                             if(sname4.length()<3) {
                                                                 errorflag=1;
-                                                                name4.setError("Invalid Course Name");
+                                                                nameinput4.setError("Invalid Course Name");
                                                             }
                                                             else
                                                             {
                                                                 errorflag=0;
                                                                 if(sinst4.length()<3) {
                                                                     errorflag=1;
-                                                                    inst4.setError("Invalid Institute Name");
+                                                                    instinput4.setError("Invalid Institute Name");
                                                                 }
                                                                 else
                                                                 {
                                                                     errorflag=0;
                                                                     if(sfromdate4.length()<3) {
                                                                         errorflag=1;
-                                                                        fromdate4.setError("Invalid Date");
+                                                                        fromdateinput4.setError("Invalid Date");
                                                                     }
                                                                     else
                                                                     {
                                                                         errorflag=0;
                                                                         if(stodate4.length()<3) {
                                                                             errorflag=1;
-                                                                            todate4.setError("Invalid Date");
+                                                                            todateinput4.setError("Invalid Date");
                                                                         }
                                                                         else
                                                                         {
                                                                             errorflag=0;
                                                                             if(sname5.length()<3) {
                                                                                 errorflag=1;
-                                                                                name5.setError("Invalid Course Name");
+                                                                                nameinput5.setError("Invalid Course Name");
                                                                             }
                                                                             else
                                                                             {
                                                                                 errorflag=0;
                                                                                 if(sinst5.length()<3) {
                                                                                     errorflag=1;
-                                                                                    inst5.setError("Invalid Institute Name");
+                                                                                    instinput5.setError("Invalid Institute Name");
                                                                                 }
                                                                                 else
                                                                                 {
                                                                                     errorflag=0;
                                                                                     if(sfromdate5.length()<3) {
                                                                                         errorflag=1;
-                                                                                        fromdate5.setError("Invalid Date");
+                                                                                        fromdateinput5.setError("Invalid Date");
                                                                                     }
                                                                                     else
                                                                                     {
                                                                                         errorflag=0;
                                                                                         if(stodate5.length()<3) {
                                                                                             errorflag=1;
-                                                                                            todate5.setError("Invalid Date");
+                                                                                            todateinput5.setError("Invalid Date");
                                                                                         }
                                                                                         else
                                                                                         {
@@ -4547,196 +4681,196 @@ public class MyProfileCourses extends AppCompatActivity {
         {
             if(sname1.length()<3) {
                 errorflag=1;
-                name1.setError("Invalid Course Name");
+                nameinput1.setError("Invalid Course Name");
             }
             else
             {
                 errorflag=0;
                 if(sinst1.length()<3) {
                     errorflag=1;
-                    inst1.setError("Invalid Institute Name");
+                    instinput1.setError("Invalid Institute Name");
                 }
                 else
                 {
                     errorflag=0;
                     if(sfromdate1.length()<3) {
                         errorflag=1;
-                        fromdate1.setError("Invalid Date");
+                        fromdateinput1.setError("Invalid Date");
                     }
                     else
                     {
                         errorflag=0;
                         if(stodate1.length()<3) {
                             errorflag=1;
-                            todate1.setError("Invalid Date");
+                            todateinput1.setError("Invalid Date");
                         }
                         else
                         {
                             errorflag=0;
                             if(sname2.length()<3) {
                                 errorflag=1;
-                                name2.setError("Invalid Course Name");
+                                nameinput2.setError("Invalid Course Name");
                             }
                             else
                             {
                                 errorflag=0;
                                 if(sinst2.length()<3) {
                                     errorflag=1;
-                                    inst2.setError("Invalid Institute Name");
+                                    instinput2.setError("Invalid Institute Name");
                                 }
                                 else
                                 {
                                     errorflag=0;
                                     if(sfromdate2.length()<3) {
                                         errorflag=1;
-                                        fromdate2.setError("Invalid Date");
+                                        fromdateinput2.setError("Invalid Date");
                                     }
                                     else
                                     {
                                         errorflag=0;
                                         if(stodate2.length()<3) {
                                             errorflag=1;
-                                            todate2.setError("Invalid Date");
+                                            todateinput2.setError("Invalid Date");
                                         }
                                         else
                                         {
                                             errorflag=0;
                                             if(sname3.length()<3) {
                                                 errorflag=1;
-                                                name3.setError("Invalid Course Name");
+                                                nameinput3.setError("Invalid Course Name");
                                             }
                                             else
                                             {
                                                 errorflag=0;
                                                 if(sinst3.length()<3) {
                                                     errorflag=1;
-                                                    inst3.setError("Invalid Institute Name");
+                                                    instinput3.setError("Invalid Institute Name");
                                                 }
                                                 else
                                                 {
                                                     errorflag=0;
                                                     if(sfromdate3.length()<3) {
                                                         errorflag=1;
-                                                        fromdate3.setError("Invalid Date");
+                                                        fromdateinput3.setError("Invalid Date");
                                                     }
                                                     else
                                                     {
                                                         errorflag=0;
                                                         if(stodate3.length()<3) {
                                                             errorflag=1;
-                                                            todate3.setError("Invalid Date");
+                                                            todateinput3.setError("Invalid Date");
                                                         }
                                                         else
                                                         {
                                                             errorflag=0;
                                                             if(sname4.length()<3) {
                                                                 errorflag=1;
-                                                                name4.setError("Invalid Course Name");
+                                                                nameinput4.setError("Invalid Course Name");
                                                             }
                                                             else
                                                             {
                                                                 errorflag=0;
                                                                 if(sinst4.length()<3) {
                                                                     errorflag=1;
-                                                                    inst4.setError("Invalid Institute Name");
+                                                                    instinput4.setError("Invalid Institute Name");
                                                                 }
                                                                 else
                                                                 {
                                                                     errorflag=0;
                                                                     if(sfromdate4.length()<3) {
                                                                         errorflag=1;
-                                                                        fromdate4.setError("Invalid Date");
+                                                                        fromdateinput4.setError("Invalid Date");
                                                                     }
                                                                     else
                                                                     {
                                                                         errorflag=0;
                                                                         if(stodate4.length()<3) {
                                                                             errorflag=1;
-                                                                            todate4.setError("Invalid Date");
+                                                                            todateinput4.setError("Invalid Date");
                                                                         }
                                                                         else
                                                                         {
                                                                             errorflag=0;
                                                                             if(sname5.length()<3) {
                                                                                 errorflag=1;
-                                                                                name5.setError("Invalid Course Name");
+                                                                                nameinput5.setError("Invalid Course Name");
                                                                             }
                                                                             else
                                                                             {
                                                                                 errorflag=0;
                                                                                 if(sinst5.length()<3) {
                                                                                     errorflag=1;
-                                                                                    inst5.setError("Invalid Institute Name");
+                                                                                    instinput5.setError("Invalid Institute Name");
                                                                                 }
                                                                                 else
                                                                                 {
                                                                                     errorflag=0;
                                                                                     if(sfromdate5.length()<3) {
                                                                                         errorflag=1;
-                                                                                        fromdate5.setError("Invalid Date");
+                                                                                        fromdateinput5.setError("Invalid Date");
                                                                                     }
                                                                                     else
                                                                                     {
                                                                                         errorflag=0;
                                                                                         if(stodate5.length()<3) {
                                                                                             errorflag=1;
-                                                                                            todate5.setError("Invalid Date");
+                                                                                            todateinput5.setError("Invalid Date");
                                                                                         }
                                                                                         else
                                                                                         {
                                                                                             errorflag=0;
                                                                                             if(sname6.length()<3) {
                                                                                                 errorflag=1;
-                                                                                                name6.setError("Invalid Course Name");
+                                                                                                nameinput6.setError("Invalid Course Name");
                                                                                             }
                                                                                             else
                                                                                             {
                                                                                                 errorflag=0;
                                                                                                 if(sinst6.length()<3) {
                                                                                                     errorflag=1;
-                                                                                                    inst6.setError("Invalid Institute Name");
+                                                                                                    instinput6.setError("Invalid Institute Name");
                                                                                                 }
                                                                                                 else
                                                                                                 {
                                                                                                     errorflag=0;
                                                                                                     if(sfromdate6.length()<3) {
                                                                                                         errorflag=1;
-                                                                                                        fromdate6.setError("Invalid Date");
+                                                                                                        fromdateinput6.setError("Invalid Date");
                                                                                                     }
                                                                                                     else
                                                                                                     {
                                                                                                         errorflag=0;
                                                                                                         if(stodate6.length()<3) {
                                                                                                             errorflag=1;
-                                                                                                            todate6.setError("Invalid Date");
+                                                                                                            todateinput6.setError("Invalid Date");
                                                                                                         }
                                                                                                         else
                                                                                                         {
                                                                                                             errorflag=0;
                                                                                                             if(sname7.length()<3) {
                                                                                                                 errorflag=1;
-                                                                                                                name7.setError("Invalid Course Name");
+                                                                                                                nameinput7.setError("Invalid Course Name");
                                                                                                             }
                                                                                                             else
                                                                                                             {
                                                                                                                 errorflag=0;
                                                                                                                 if(sinst7.length()<3) {
                                                                                                                     errorflag=1;
-                                                                                                                    inst7.setError("Invalid Institute Name");
+                                                                                                                    instinput7.setError("Invalid Institute Name");
                                                                                                                 }
                                                                                                                 else
                                                                                                                 {
                                                                                                                     errorflag=0;
                                                                                                                     if(sfromdate7.length()<3) {
                                                                                                                         errorflag=1;
-                                                                                                                        fromdate7.setError("Invalid Date");
+                                                                                                                        fromdateinput7.setError("Invalid Date");
                                                                                                                     }
                                                                                                                     else
                                                                                                                     {
                                                                                                                         errorflag=0;
                                                                                                                         if(stodate7.length()<3) {
                                                                                                                             errorflag=1;
-                                                                                                                            todate7.setError("Invalid Date");
+                                                                                                                            todateinput7.setError("Invalid Date");
                                                                                                                         }
                                                                                                                         else
                                                                                                                         {
