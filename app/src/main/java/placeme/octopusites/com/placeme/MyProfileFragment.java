@@ -258,20 +258,20 @@ public class MyProfileFragment extends Fragment {
         myprofileduration3.setTypeface(MyConstants.getLight(getActivity()));
 
         accomplishmentsboxtxt.setTypeface(MyConstants.getBold(getActivity()));
-        acc1txt.setTypeface(MyConstants.getBold(getActivity()));
-        acc1txttxt.setTypeface(MyConstants.getLight(getActivity()));
-        acc2txt.setTypeface(MyConstants.getBold(getActivity()));
-        acc2txttxt.setTypeface(MyConstants.getLight(getActivity()));
-        acc3txt.setTypeface(MyConstants.getBold(getActivity()));
-        acc3txttxt.setTypeface(MyConstants.getLight(getActivity()));
-        acc4txt.setTypeface(MyConstants.getBold(getActivity()));
-        acc4txttxt.setTypeface(MyConstants.getLight(getActivity()));
-        acc5txt.setTypeface(MyConstants.getBold(getActivity()));
-        acc5txttxt.setTypeface(MyConstants.getLight(getActivity()));
-        acc6txt.setTypeface(MyConstants.getBold(getActivity()));
-        acc6txttxt.setTypeface(MyConstants.getLight(getActivity()));
-        acc7txt.setTypeface(MyConstants.getBold(getActivity()));
-        acc7txttxt.setTypeface(MyConstants.getLight(getActivity()));
+        acc1txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc1txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc2txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc2txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc3txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc3txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc4txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc4txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc5txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc5txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc6txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc6txttxt.setTypeface(MyConstants.getBold(getActivity()));
+        acc7txt.setTypeface(MyConstants.getLight(getActivity()));
+        acc7txttxt.setTypeface(MyConstants.getBold(getActivity()));
         careerboxtxt.setTypeface(MyConstants.getBold(getActivity()));
         careerobjtxt.setTypeface(MyConstants.getBold(getActivity()));
         careerobjtxttxt.setTypeface(MyConstants.getLight(getActivity()));
@@ -284,10 +284,10 @@ public class MyProfileFragment extends Fragment {
         contactboxtxt.setTypeface(MyConstants.getBold(getActivity()));
         nametxt.setTypeface(MyConstants.getBold(getActivity()));
         contactaddr1.setTypeface(MyConstants.getLight(getActivity()));
-        emailtxt.setTypeface(MyConstants.getBold(getActivity()));
-        contactemail.setTypeface(MyConstants.getLight(getActivity()));
-        mobiletxt.setTypeface(MyConstants.getBold(getActivity()));
-        contactmobile.setTypeface(MyConstants.getLight(getActivity()));
+        emailtxt.setTypeface(MyConstants.getLight(getActivity()));
+        contactemail.setTypeface(MyConstants.getBold(getActivity()));
+        mobiletxt.setTypeface(MyConstants.getLight(getActivity()));
+        contactmobile.setTypeface(MyConstants.getBold(getActivity()));
 
 
 

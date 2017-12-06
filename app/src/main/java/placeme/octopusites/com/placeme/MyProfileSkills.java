@@ -8,6 +8,9 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -56,6 +59,7 @@ public class MyProfileSkills extends AppCompatActivity {
     StudentData s = new StudentData();
     //    private static String url_saveskills = "http://192.168.100.10/AESTest/SaveSkills";
     EditText skill1, skill2, skill3, skill4, skill5, skill6, skill7, skill8, skill9, skill10, skill11, skill12, skill13, skill14, skill15, skill16, skill17, skill18, skill19, skill20;
+    TextInputLayout skillinput1,skillinput2,skillinput3,skillinput4,skillinput5,skillinput6,skillinput7,skillinput8,skillinput9,skillinput10,skillinput11,skillinput12,skillinput13,skillinput14,skillinput15,skillinput16,skillinput17,skillinput18,skillinput19,skillinput20;
     String sskill1 = "", sskill2 = "", sskill3 = "", sskill4 = "", sskill5 = "", sskill6 = "", sskill7 = "", sskill8 = "", sskill9 = "", sskill10 = "", sskill11 = "", sskill12 = "", sskill13 = "", sskill14 = "", sskill15 = "", sskill16 = "", sskill17 = "", sskill18 = "", sskill19 = "", sskill20 = "";
     String encskill1, encskill2, encskill3, encskill4, encskill5, encskill6, encskill7, encskill8, encskill9, encskill10, encskill11, encskill12, encskill13, encskill14, encskill15, encskill16, encskill17, encskill18, encskill19, encskill20;
     Spinner proficiency1, proficiency2, proficiency3, proficiency4, proficiency5, proficiency6, proficiency7, proficiency8, proficiency9, proficiency10, proficiency11, proficiency12, proficiency13, proficiency14, proficiency15, proficiency16, proficiency17, proficiency18, proficiency19, proficiency20;
@@ -88,8 +92,7 @@ public class MyProfileSkills extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         TextView skilltxt = (TextView) findViewById(R.id.skilltxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/arba.ttf");
-        skilltxt.setTypeface(custom_font1);
+        skilltxt.setTypeface(MyConstants.getBold(this));
 
         trash1selectionview = (View) findViewById(R.id.trash1selectionview);
         trash2selectionview = (View) findViewById(R.id.trash2selectionview);
@@ -111,6 +114,115 @@ public class MyProfileSkills extends AppCompatActivity {
         trash18selectionview = (View) findViewById(R.id.trash18selectionview);
         trash19selectionview = (View) findViewById(R.id.trash19selectionview);
         trash20selectionview = (View) findViewById(R.id.trash20selectionview);
+
+        skillinput1= (TextInputLayout) findViewById(R.id.skillinput1);
+        skillinput2= (TextInputLayout) findViewById(R.id.skillinput2);
+        skillinput3= (TextInputLayout) findViewById(R.id.skillinput3);
+        skillinput4= (TextInputLayout) findViewById(R.id.skillinput4);
+        skillinput5= (TextInputLayout) findViewById(R.id.skillinput5);
+        skillinput6= (TextInputLayout) findViewById(R.id.skillinput6);
+        skillinput7= (TextInputLayout) findViewById(R.id.skillinput7);
+        skillinput8= (TextInputLayout) findViewById(R.id.skillinput8);
+        skillinput9= (TextInputLayout) findViewById(R.id.skillinput9);
+        skillinput10= (TextInputLayout) findViewById(R.id.skillinput10);
+        skillinput11= (TextInputLayout) findViewById(R.id.skillinput11);
+        skillinput12= (TextInputLayout) findViewById(R.id.skillinput12);
+        skillinput13= (TextInputLayout) findViewById(R.id.skillinput13);
+        skillinput14= (TextInputLayout) findViewById(R.id.skillinput14);
+        skillinput15= (TextInputLayout) findViewById(R.id.skillinput15);
+        skillinput16= (TextInputLayout) findViewById(R.id.skillinput16);
+        skillinput17= (TextInputLayout) findViewById(R.id.skillinput17);
+        skillinput18= (TextInputLayout) findViewById(R.id.skillinput18);
+        skillinput19= (TextInputLayout) findViewById(R.id.skillinput19);
+        skillinput20= (TextInputLayout) findViewById(R.id.skillinput20);
+
+        skill1 = (EditText) findViewById(R.id.skill1);
+        skill2 = (EditText) findViewById(R.id.skill2);
+        skill3 = (EditText) findViewById(R.id.skill3);
+        skill4 = (EditText) findViewById(R.id.skill4);
+        skill5 = (EditText) findViewById(R.id.skill5);
+        skill6 = (EditText) findViewById(R.id.skill6);
+        skill7 = (EditText) findViewById(R.id.skill7);
+        skill8 = (EditText) findViewById(R.id.skill8);
+        skill9 = (EditText) findViewById(R.id.skill9);
+        skill10 = (EditText) findViewById(R.id.skill10);
+        skill11 = (EditText) findViewById(R.id.skill11);
+        skill12 = (EditText) findViewById(R.id.skill12);
+        skill13 = (EditText) findViewById(R.id.skill13);
+        skill14 = (EditText) findViewById(R.id.skill14);
+        skill15 = (EditText) findViewById(R.id.skill15);
+        skill16 = (EditText) findViewById(R.id.skill16);
+        skill17 = (EditText) findViewById(R.id.skill17);
+        skill18 = (EditText) findViewById(R.id.skill18);
+        skill19 = (EditText) findViewById(R.id.skill19);
+        skill20 = (EditText) findViewById(R.id.skill20);
+
+        proficiency1 = (Spinner) findViewById(R.id.proficiency1);
+        proficiency2 = (Spinner) findViewById(R.id.proficiency2);
+        proficiency3 = (Spinner) findViewById(R.id.proficiency3);
+        proficiency4 = (Spinner) findViewById(R.id.proficiency4);
+        proficiency5 = (Spinner) findViewById(R.id.proficiency5);
+        proficiency6 = (Spinner) findViewById(R.id.proficiency6);
+        proficiency7 = (Spinner) findViewById(R.id.proficiency7);
+        proficiency8 = (Spinner) findViewById(R.id.proficiency8);
+        proficiency9 = (Spinner) findViewById(R.id.proficiency9);
+        proficiency10 = (Spinner) findViewById(R.id.proficiency10);
+        proficiency11 = (Spinner) findViewById(R.id.proficiency11);
+        proficiency12 = (Spinner) findViewById(R.id.proficiency12);
+        proficiency13 = (Spinner) findViewById(R.id.proficiency13);
+        proficiency14 = (Spinner) findViewById(R.id.proficiency14);
+        proficiency15 = (Spinner) findViewById(R.id.proficiency15);
+        proficiency16 = (Spinner) findViewById(R.id.proficiency16);
+        proficiency17 = (Spinner) findViewById(R.id.proficiency17);
+        proficiency18 = (Spinner) findViewById(R.id.proficiency18);
+        proficiency19 = (Spinner) findViewById(R.id.proficiency19);
+        proficiency20 = (Spinner) findViewById(R.id.proficiency20);
+
+
+        skillinput1.setTypeface(MyConstants.getLight(this));
+        skillinput2.setTypeface(MyConstants.getLight(this));
+        skillinput3.setTypeface(MyConstants.getLight(this));
+        skillinput4.setTypeface(MyConstants.getLight(this));
+        skillinput5.setTypeface(MyConstants.getLight(this));
+        skillinput6.setTypeface(MyConstants.getLight(this));
+        skillinput7.setTypeface(MyConstants.getLight(this));
+        skillinput8.setTypeface(MyConstants.getLight(this));
+        skillinput9.setTypeface(MyConstants.getLight(this));
+        skillinput10.setTypeface(MyConstants.getLight(this));
+        skillinput11.setTypeface(MyConstants.getLight(this));
+        skillinput12.setTypeface(MyConstants.getLight(this));
+        skillinput13.setTypeface(MyConstants.getLight(this));
+        skillinput14.setTypeface(MyConstants.getLight(this));
+        skillinput15.setTypeface(MyConstants.getLight(this));
+        skillinput16.setTypeface(MyConstants.getLight(this));
+        skillinput17.setTypeface(MyConstants.getLight(this));
+        skillinput18.setTypeface(MyConstants.getLight(this));
+        skillinput19.setTypeface(MyConstants.getLight(this));
+        skillinput20.setTypeface(MyConstants.getLight(this));
+
+        skill1.setTypeface(MyConstants.getBold(this));
+        skill2.setTypeface(MyConstants.getBold(this));
+        skill3.setTypeface(MyConstants.getBold(this));
+        skill4.setTypeface(MyConstants.getBold(this));
+        skill5.setTypeface(MyConstants.getBold(this));
+        skill6.setTypeface(MyConstants.getBold(this));
+        skill7.setTypeface(MyConstants.getBold(this));
+        skill8.setTypeface(MyConstants.getBold(this));
+        skill9.setTypeface(MyConstants.getBold(this));
+        skill10.setTypeface(MyConstants.getBold(this));
+        skill11.setTypeface(MyConstants.getBold(this));
+        skill12.setTypeface(MyConstants.getBold(this));
+        skill13.setTypeface(MyConstants.getBold(this));
+        skill14.setTypeface(MyConstants.getBold(this));
+        skill15.setTypeface(MyConstants.getBold(this));
+        skill16.setTypeface(MyConstants.getBold(this));
+        skill17.setTypeface(MyConstants.getBold(this));
+        skill18.setTypeface(MyConstants.getBold(this));
+        skill19.setTypeface(MyConstants.getBold(this));
+        skill20.setTypeface(MyConstants.getBold(this));
+
+        TextView addmoreskilltxt = (TextView) findViewById(R.id.addmoreskilltxt);
+        addmoreskilltxt.setTypeface(MyConstants.getBold(this));
 
         trash1selectionview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -255,47 +367,7 @@ public class MyProfileSkills extends AppCompatActivity {
             }
         });
 
-        skill1 = (EditText) findViewById(R.id.skill1);
-        skill2 = (EditText) findViewById(R.id.skill2);
-        skill3 = (EditText) findViewById(R.id.skill3);
-        skill4 = (EditText) findViewById(R.id.skill4);
-        skill5 = (EditText) findViewById(R.id.skill5);
-        skill6 = (EditText) findViewById(R.id.skill6);
-        skill7 = (EditText) findViewById(R.id.skill7);
-        skill8 = (EditText) findViewById(R.id.skill8);
-        skill9 = (EditText) findViewById(R.id.skill9);
-        skill10 = (EditText) findViewById(R.id.skill10);
-        skill11 = (EditText) findViewById(R.id.skill11);
-        skill12 = (EditText) findViewById(R.id.skill12);
-        skill13 = (EditText) findViewById(R.id.skill13);
-        skill14 = (EditText) findViewById(R.id.skill14);
-        skill15 = (EditText) findViewById(R.id.skill15);
-        skill16 = (EditText) findViewById(R.id.skill16);
-        skill17 = (EditText) findViewById(R.id.skill17);
-        skill18 = (EditText) findViewById(R.id.skill18);
-        skill19 = (EditText) findViewById(R.id.skill19);
-        skill20 = (EditText) findViewById(R.id.skill20);
 
-        proficiency1 = (Spinner) findViewById(R.id.proficiency1);
-        proficiency2 = (Spinner) findViewById(R.id.proficiency2);
-        proficiency3 = (Spinner) findViewById(R.id.proficiency3);
-        proficiency4 = (Spinner) findViewById(R.id.proficiency4);
-        proficiency5 = (Spinner) findViewById(R.id.proficiency5);
-        proficiency6 = (Spinner) findViewById(R.id.proficiency6);
-        proficiency7 = (Spinner) findViewById(R.id.proficiency7);
-        proficiency8 = (Spinner) findViewById(R.id.proficiency8);
-        proficiency9 = (Spinner) findViewById(R.id.proficiency9);
-        proficiency10 = (Spinner) findViewById(R.id.proficiency10);
-        proficiency11 = (Spinner) findViewById(R.id.proficiency11);
-        proficiency12 = (Spinner) findViewById(R.id.proficiency12);
-        proficiency13 = (Spinner) findViewById(R.id.proficiency13);
-        proficiency14 = (Spinner) findViewById(R.id.proficiency14);
-        proficiency15 = (Spinner) findViewById(R.id.proficiency15);
-        proficiency16 = (Spinner) findViewById(R.id.proficiency16);
-        proficiency17 = (Spinner) findViewById(R.id.proficiency17);
-        proficiency18 = (Spinner) findViewById(R.id.proficiency18);
-        proficiency19 = (Spinner) findViewById(R.id.proficiency19);
-        proficiency20 = (Spinner) findViewById(R.id.proficiency20);
 
         addmoreskill = (View) findViewById(R.id.addmoreskill);
         addmoreskill.setOnClickListener(new View.OnClickListener() {
@@ -845,23 +917,32 @@ public class MyProfileSkills extends AppCompatActivity {
                 }
             }
 
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view= super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfileSkills.this));
+                tv.setTextColor(getResources().getColor(R.color.dark_color));
+                return view;
+            }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+                tv.setTypeface(MyConstants.getBold(MyProfileSkills.this));
                 if (position == 0) {
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 } else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
         };
-        ;
+        
         proficiency1.setAdapter(dataAdapter);
         proficiency2.setAdapter(dataAdapter);
         proficiency3.setAdapter(dataAdapter);
@@ -932,7 +1013,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill1.setError(null);
+                skillinput1.setError(null);
                 edittedFlag = 1;
 
             }
@@ -950,7 +1031,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill2.setError(null);
+                skillinput2.setError(null);
                 edittedFlag = 1;
             }
 
@@ -967,7 +1048,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill3.setError(null);
+                skillinput3.setError(null);
                 edittedFlag = 1;
             }
 
@@ -984,7 +1065,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill4.setError(null);
+                skillinput4.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1001,7 +1082,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill5.setError(null);
+                skillinput5.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1018,7 +1099,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill6.setError(null);
+                skillinput6.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1035,7 +1116,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill7.setError(null);
+                skillinput7.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1052,7 +1133,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill8.setError(null);
+                skillinput8.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1069,7 +1150,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill9.setError(null);
+                skillinput9.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1086,7 +1167,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill10.setError(null);
+                skillinput10.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1103,7 +1184,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill11.setError(null);
+                skillinput11.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1120,7 +1201,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill12.setError(null);
+                skillinput12.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1137,7 +1218,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill13.setError(null);
+                skillinput13.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1154,7 +1235,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill14.setError(null);
+                skillinput14.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1171,7 +1252,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill15.setError(null);
+                skillinput15.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1188,7 +1269,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill16.setError(null);
+                skillinput16.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1205,7 +1286,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill17.setError(null);
+                skillinput17.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1222,7 +1303,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill18.setError(null);
+                skillinput18.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1239,7 +1320,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill19.setError(null);
+                skillinput19.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1256,7 +1337,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                skill20.setError(null);
+                skillinput20.setError(null);
                 edittedFlag = 1;
             }
 
@@ -4438,26 +4519,26 @@ public class MyProfileSkills extends AppCompatActivity {
     }
 
     void validateandSave() {
-        skill1.setError(null);
-        skill2.setError(null);
-        skill3.setError(null);
-        skill4.setError(null);
-        skill5.setError(null);
-        skill6.setError(null);
-        skill7.setError(null);
-        skill8.setError(null);
-        skill9.setError(null);
-        skill10.setError(null);
-        skill11.setError(null);
-        skill12.setError(null);
-        skill13.setError(null);
-        skill14.setError(null);
-        skill15.setError(null);
-        skill16.setError(null);
-        skill17.setError(null);
-        skill18.setError(null);
-        skill19.setError(null);
-        skill20.setError(null);
+//        skill1.setError(null);
+//        skill2.setError(null);
+//        skill3.setError(null);
+//        skill4.setError(null);
+//        skill5.setError(null);
+//        skill6.setError(null);
+//        skill7.setError(null);
+//        skill8.setError(null);
+//        skill9.setError(null);
+//        skill10.setError(null);
+//        skill11.setError(null);
+//        skill12.setError(null);
+//        skill13.setError(null);
+//        skill14.setError(null);
+//        skill15.setError(null);
+//        skill16.setError(null);
+//        skill17.setError(null);
+//        skill18.setError(null);
+//        skill19.setError(null);
+//        skill20.setError(null);
 
         sskill1 = skill1.getText().toString();
         sskill2 = skill2.getText().toString();
@@ -4509,7 +4590,7 @@ public class MyProfileSkills extends AppCompatActivity {
         if (skillcount == 0) {
             if (sskill1.length() < 1) {
                 errorflag = 1;
-                skill1.setError("Invalid Skill");
+                skillinput1.setError("Invalid Skill");
 
             } else {
                 if (sproficiency1.equals("- Proficiency -")) {
@@ -4520,7 +4601,7 @@ public class MyProfileSkills extends AppCompatActivity {
         } else if (skillcount == 1) {
             if (sskill1.length() < 1) {
                 errorflag = 1;
-                skill1.setError("Invalid Skill");
+                skillinput1.setError("Invalid Skill");
 
             } else {
                 if (sproficiency1.equals("- Proficiency -")) {
@@ -4530,7 +4611,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     errorflag = 0;
                     if (sskill2.length() < 1) {
                         errorflag = 1;
-                        skill2.setError("Invalid Skill");
+                        skillinput2.setError("Invalid Skill");
 
                     } else {
                         if (sproficiency2.equals("- Proficiency -")) {
@@ -4543,7 +4624,7 @@ public class MyProfileSkills extends AppCompatActivity {
         } else if (skillcount == 2) {
             if (sskill1.length() < 1) {
                 errorflag = 1;
-                skill1.setError("Invalid Skill");
+                skillinput1.setError("Invalid Skill");
 
             } else {
                 if (sproficiency1.equals("- Proficiency -")) {
@@ -4553,7 +4634,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     errorflag = 0;
                     if (sskill2.length() < 1) {
                         errorflag = 1;
-                        skill2.setError("Invalid Skill");
+                        skillinput2.setError("Invalid Skill");
 
                     } else {
                         if (sproficiency2.equals("- Proficiency -")) {
@@ -4563,7 +4644,7 @@ public class MyProfileSkills extends AppCompatActivity {
                             errorflag = 0;
                             if (sskill3.length() < 1) {
                                 errorflag = 1;
-                                skill3.setError("Invalid Skill");
+                                skillinput3.setError("Invalid Skill");
 
                             } else {
                                 if (sproficiency3.equals("- Proficiency -")) {
@@ -4578,7 +4659,7 @@ public class MyProfileSkills extends AppCompatActivity {
         } else if (skillcount == 3) {
             if (sskill1.length() < 1) {
                 errorflag = 1;
-                skill1.setError("Invalid Skill");
+                skillinput1.setError("Invalid Skill");
 
             } else {
                 if (sproficiency1.equals("- Proficiency -")) {
@@ -4588,7 +4669,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     errorflag = 0;
                     if (sskill2.length() < 1) {
                         errorflag = 1;
-                        skill2.setError("Invalid Skill");
+                        skillinput2.setError("Invalid Skill");
 
                     } else {
                         if (sproficiency2.equals("- Proficiency -")) {
@@ -4598,7 +4679,7 @@ public class MyProfileSkills extends AppCompatActivity {
                             errorflag = 0;
                             if (sskill3.length() < 1) {
                                 errorflag = 1;
-                                skill3.setError("Invalid Skill");
+                                skillinput3.setError("Invalid Skill");
 
                             } else {
                                 if (sproficiency3.equals("- Proficiency -")) {
@@ -4608,7 +4689,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                     errorflag = 0;
                                     if (sskill4.length() < 1) {
                                         errorflag = 1;
-                                        skill4.setError("Invalid Skill");
+                                        skillinput4.setError("Invalid Skill");
 
                                     } else {
                                         if (sproficiency4.equals("- Proficiency -")) {
@@ -4625,7 +4706,7 @@ public class MyProfileSkills extends AppCompatActivity {
         } else if (skillcount == 4) {
             if (sskill1.length() < 1) {
                 errorflag = 1;
-                skill1.setError("Invalid Skill");
+                skillinput1.setError("Invalid Skill");
 
             } else {
                 if (sproficiency1.equals("- Proficiency -")) {
@@ -4635,7 +4716,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     errorflag = 0;
                     if (sskill2.length() < 1) {
                         errorflag = 1;
-                        skill2.setError("Invalid Skill");
+                        skillinput2.setError("Invalid Skill");
 
                     } else {
                         if (sproficiency2.equals("- Proficiency -")) {
@@ -4645,7 +4726,7 @@ public class MyProfileSkills extends AppCompatActivity {
                             errorflag = 0;
                             if (sskill3.length() < 1) {
                                 errorflag = 1;
-                                skill3.setError("Invalid Skill");
+                                skillinput3.setError("Invalid Skill");
 
                             } else {
                                 if (sproficiency3.equals("- Proficiency -")) {
@@ -4655,7 +4736,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                     errorflag = 0;
                                     if (sskill4.length() < 1) {
                                         errorflag = 1;
-                                        skill4.setError("Invalid Skill");
+                                        skillinput4.setError("Invalid Skill");
 
                                     } else {
                                         if (sproficiency4.equals("- Proficiency -")) {
@@ -4664,7 +4745,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                         } else {
                                             if (sskill5.length() < 1) {
                                                 errorflag = 1;
-                                                skill5.setError("Invalid Skill");
+                                                skillinput5.setError("Invalid Skill");
 
                                             } else {
                                                 if (sproficiency5.equals("- Proficiency -")) {
@@ -4693,7 +4774,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     errorflag = 0;
                     if (sskill2.length() < 1) {
                         errorflag = 1;
-                        skill2.setError("Invalid Skill");
+                        skillinput2.setError("Invalid Skill");
 
                     } else {
                         if (sproficiency2.equals("- Proficiency -")) {
@@ -4703,7 +4784,7 @@ public class MyProfileSkills extends AppCompatActivity {
                             errorflag = 0;
                             if (sskill3.length() < 1) {
                                 errorflag = 1;
-                                skill3.setError("Invalid Skill");
+                                skillinput3.setError("Invalid Skill");
 
                             } else {
                                 if (sproficiency3.equals("- Proficiency -")) {
@@ -4713,7 +4794,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                     errorflag = 0;
                                     if (sskill4.length() < 1) {
                                         errorflag = 1;
-                                        skill4.setError("Invalid Skill");
+                                        skillinput4.setError("Invalid Skill");
 
                                     } else {
                                         if (sproficiency4.equals("- Proficiency -")) {
@@ -4722,7 +4803,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                         } else {
                                             if (sskill5.length() < 1) {
                                                 errorflag = 1;
-                                                skill5.setError("Invalid Skill");
+                                                skillinput5.setError("Invalid Skill");
 
                                             } else {
                                                 if (sproficiency5.equals("- Proficiency -")) {
@@ -4732,7 +4813,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                     errorflag = 0;
                                                     if (sskill6.length() < 1) {
                                                         errorflag = 1;
-                                                        skill6.setError("Invalid Skill");
+                                                        skillinput6.setError("Invalid Skill");
 
                                                     } else {
                                                         if (sproficiency6.equals("- Proficiency -")) {
@@ -4763,7 +4844,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     errorflag = 0;
                     if (sskill2.length() < 1) {
                         errorflag = 1;
-                        skill2.setError("Invalid Skill");
+                        skillinput2.setError("Invalid Skill");
 
                     } else {
                         if (sproficiency2.equals("- Proficiency -")) {
@@ -4773,7 +4854,7 @@ public class MyProfileSkills extends AppCompatActivity {
                             errorflag = 0;
                             if (sskill3.length() < 1) {
                                 errorflag = 1;
-                                skill3.setError("Invalid Skill");
+                                skillinput3.setError("Invalid Skill");
 
                             } else {
                                 if (sproficiency3.equals("- Proficiency -")) {
@@ -4783,7 +4864,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                     errorflag = 0;
                                     if (sskill4.length() < 1) {
                                         errorflag = 1;
-                                        skill4.setError("Invalid Skill");
+                                        skillinput4.setError("Invalid Skill");
 
                                     } else {
                                         if (sproficiency4.equals("- Proficiency -")) {
@@ -4792,7 +4873,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                         } else {
                                             if (sskill5.length() < 1) {
                                                 errorflag = 1;
-                                                skill5.setError("Invalid Skill");
+                                                skillinput5.setError("Invalid Skill");
 
                                             } else {
                                                 if (sproficiency5.equals("- Proficiency -")) {
@@ -4802,7 +4883,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                     errorflag = 0;
                                                     if (sskill6.length() < 1) {
                                                         errorflag = 1;
-                                                        skill6.setError("Invalid Skill");
+                                                        skillinput6.setError("Invalid Skill");
 
                                                     } else {
                                                         if (sproficiency6.equals("- Proficiency -")) {
@@ -4812,7 +4893,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (sskill7.length() < 1) {
                                                                 errorflag = 1;
-                                                                skill7.setError("Invalid Skill");
+                                                                skillinput7.setError("Invalid Skill");
 
                                                             } else {
                                                                 if (sproficiency7.equals("- Proficiency -")) {
@@ -4845,7 +4926,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     errorflag = 0;
                     if (sskill2.length() < 1) {
                         errorflag = 1;
-                        skill2.setError("Invalid Skill");
+                        skillinput2.setError("Invalid Skill");
 
                     } else {
                         if (sproficiency2.equals("- Proficiency -")) {
@@ -4855,7 +4936,7 @@ public class MyProfileSkills extends AppCompatActivity {
                             errorflag = 0;
                             if (sskill3.length() < 1) {
                                 errorflag = 1;
-                                skill3.setError("Invalid Skill");
+                                skillinput3.setError("Invalid Skill");
 
                             } else {
                                 if (sproficiency3.equals("- Proficiency -")) {
@@ -4865,7 +4946,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                     errorflag = 0;
                                     if (sskill4.length() < 1) {
                                         errorflag = 1;
-                                        skill4.setError("Invalid Skill");
+                                        skillinput4.setError("Invalid Skill");
 
                                     } else {
                                         if (sproficiency4.equals("- Proficiency -")) {
@@ -4874,7 +4955,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                         } else {
                                             if (sskill5.length() < 1) {
                                                 errorflag = 1;
-                                                skill5.setError("Invalid Skill");
+                                                skillinput5.setError("Invalid Skill");
 
                                             } else {
                                                 if (sproficiency5.equals("- Proficiency -")) {
@@ -4884,7 +4965,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                     errorflag = 0;
                                                     if (sskill6.length() < 1) {
                                                         errorflag = 1;
-                                                        skill6.setError("Invalid Skill");
+                                                        skillinput6.setError("Invalid Skill");
 
                                                     } else {
                                                         if (sproficiency6.equals("- Proficiency -")) {
@@ -4894,7 +4975,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (sskill7.length() < 1) {
                                                                 errorflag = 1;
-                                                                skill7.setError("Invalid Skill");
+                                                                skillinput7.setError("Invalid Skill");
 
                                                             } else {
                                                                 if (sproficiency7.equals("- Proficiency -")) {
@@ -4904,7 +4985,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                     errorflag = 0;
                                                                     if (sskill8.length() < 1) {
                                                                         errorflag = 1;
-                                                                        skill8.setError("Invalid Skill");
+                                                                        skillinput8.setError("Invalid Skill");
 
                                                                     } else {
                                                                         if (sproficiency8.equals("- Proficiency -")) {
@@ -4939,7 +5020,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     errorflag = 0;
                     if (sskill2.length() < 1) {
                         errorflag = 1;
-                        skill2.setError("Invalid Skill");
+                        skillinput2.setError("Invalid Skill");
 
                     } else {
                         if (sproficiency2.equals("- Proficiency -")) {
@@ -4949,7 +5030,7 @@ public class MyProfileSkills extends AppCompatActivity {
                             errorflag = 0;
                             if (sskill3.length() < 1) {
                                 errorflag = 1;
-                                skill3.setError("Invalid Skill");
+                                skillinput3.setError("Invalid Skill");
 
                             } else {
                                 if (sproficiency3.equals("- Proficiency -")) {
@@ -4959,7 +5040,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                     errorflag = 0;
                                     if (sskill4.length() < 1) {
                                         errorflag = 1;
-                                        skill4.setError("Invalid Skill");
+                                        skillinput4.setError("Invalid Skill");
 
                                     } else {
                                         if (sproficiency4.equals("- Proficiency -")) {
@@ -4968,7 +5049,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                         } else {
                                             if (sskill5.length() < 1) {
                                                 errorflag = 1;
-                                                skill5.setError("Invalid Skill");
+                                                skillinput5.setError("Invalid Skill");
 
                                             } else {
                                                 if (sproficiency5.equals("- Proficiency -")) {
@@ -4978,7 +5059,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                     errorflag = 0;
                                                     if (sskill6.length() < 1) {
                                                         errorflag = 1;
-                                                        skill6.setError("Invalid Skill");
+                                                        skillinput6.setError("Invalid Skill");
 
                                                     } else {
                                                         if (sproficiency6.equals("- Proficiency -")) {
@@ -4988,7 +5069,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (sskill7.length() < 1) {
                                                                 errorflag = 1;
-                                                                skill7.setError("Invalid Skill");
+                                                                skillinput7.setError("Invalid Skill");
 
                                                             } else {
                                                                 if (sproficiency7.equals("- Proficiency -")) {
@@ -4998,7 +5079,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                     errorflag = 0;
                                                                     if (sskill8.length() < 1) {
                                                                         errorflag = 1;
-                                                                        skill8.setError("Invalid Skill");
+                                                                        skillinput8.setError("Invalid Skill");
 
                                                                     } else {
                                                                         if (sproficiency8.equals("- Proficiency -")) {
@@ -5008,7 +5089,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                             errorflag = 0;
                                                                             if (sskill9.length() < 1) {
                                                                                 errorflag = 1;
-                                                                                skill9.setError("Invalid Skill");
+                                                                                skillinput9.setError("Invalid Skill");
 
                                                                             } else {
                                                                                 if (sproficiency9.equals("- Proficiency -")) {
@@ -5045,7 +5126,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     errorflag = 0;
                     if (sskill2.length() < 1) {
                         errorflag = 1;
-                        skill2.setError("Invalid Skill");
+                        skillinput2.setError("Invalid Skill");
 
                     } else {
                         if (sproficiency2.equals("- Proficiency -")) {
@@ -5055,7 +5136,7 @@ public class MyProfileSkills extends AppCompatActivity {
                             errorflag = 0;
                             if (sskill3.length() < 1) {
                                 errorflag = 1;
-                                skill3.setError("Invalid Skill");
+                                skillinput3.setError("Invalid Skill");
 
                             } else {
                                 if (sproficiency3.equals("- Proficiency -")) {
@@ -5065,7 +5146,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                     errorflag = 0;
                                     if (sskill4.length() < 1) {
                                         errorflag = 1;
-                                        skill4.setError("Invalid Skill");
+                                        skillinput4.setError("Invalid Skill");
 
                                     } else {
                                         if (sproficiency4.equals("- Proficiency -")) {
@@ -5074,7 +5155,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                         } else {
                                             if (sskill5.length() < 1) {
                                                 errorflag = 1;
-                                                skill5.setError("Invalid Skill");
+                                                skillinput5.setError("Invalid Skill");
 
                                             } else {
                                                 if (sproficiency5.equals("- Proficiency -")) {
@@ -5084,7 +5165,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                     errorflag = 0;
                                                     if (sskill6.length() < 1) {
                                                         errorflag = 1;
-                                                        skill6.setError("Invalid Skill");
+                                                        skillinput6.setError("Invalid Skill");
 
                                                     } else {
                                                         if (sproficiency6.equals("- Proficiency -")) {
@@ -5094,7 +5175,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (sskill7.length() < 1) {
                                                                 errorflag = 1;
-                                                                skill7.setError("Invalid Skill");
+                                                                skillinput7.setError("Invalid Skill");
 
                                                             } else {
                                                                 if (sproficiency7.equals("- Proficiency -")) {
@@ -5104,7 +5185,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                     errorflag = 0;
                                                                     if (sskill8.length() < 1) {
                                                                         errorflag = 1;
-                                                                        skill8.setError("Invalid Skill");
+                                                                        skillinput8.setError("Invalid Skill");
 
                                                                     } else {
                                                                         if (sproficiency8.equals("- Proficiency -")) {
@@ -5114,7 +5195,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                             errorflag = 0;
                                                                             if (sskill9.length() < 1) {
                                                                                 errorflag = 1;
-                                                                                skill9.setError("Invalid Skill");
+                                                                                skillinput9.setError("Invalid Skill");
 
                                                                             } else {
                                                                                 if (sproficiency9.equals("- Proficiency -")) {
@@ -5124,7 +5205,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                     errorflag = 0;
                                                                                     if (sskill10.length() < 1) {
                                                                                         errorflag = 1;
-                                                                                        skill10.setError("Invalid Skill");
+                                                                                        skillinput10.setError("Invalid Skill");
 
                                                                                     } else {
                                                                                         if (sproficiency10.equals("- Proficiency -")) {
@@ -5163,7 +5244,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     errorflag = 0;
                     if (sskill2.length() < 1) {
                         errorflag = 1;
-                        skill2.setError("Invalid Skill");
+                        skillinput2.setError("Invalid Skill");
 
                     } else {
                         if (sproficiency2.equals("- Proficiency -")) {
@@ -5173,7 +5254,7 @@ public class MyProfileSkills extends AppCompatActivity {
                             errorflag = 0;
                             if (sskill3.length() < 1) {
                                 errorflag = 1;
-                                skill3.setError("Invalid Skill");
+                                skillinput3.setError("Invalid Skill");
 
                             } else {
                                 if (sproficiency3.equals("- Proficiency -")) {
@@ -5183,7 +5264,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                     errorflag = 0;
                                     if (sskill4.length() < 1) {
                                         errorflag = 1;
-                                        skill4.setError("Invalid Skill");
+                                        skillinput4.setError("Invalid Skill");
 
                                     } else {
                                         if (sproficiency4.equals("- Proficiency -")) {
@@ -5192,7 +5273,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                         } else {
                                             if (sskill5.length() < 1) {
                                                 errorflag = 1;
-                                                skill5.setError("Invalid Skill");
+                                                skillinput5.setError("Invalid Skill");
 
                                             } else {
                                                 if (sproficiency5.equals("- Proficiency -")) {
@@ -5202,7 +5283,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                     errorflag = 0;
                                                     if (sskill6.length() < 1) {
                                                         errorflag = 1;
-                                                        skill6.setError("Invalid Skill");
+                                                        skillinput6.setError("Invalid Skill");
 
                                                     } else {
                                                         if (sproficiency6.equals("- Proficiency -")) {
@@ -5212,7 +5293,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (sskill7.length() < 1) {
                                                                 errorflag = 1;
-                                                                skill7.setError("Invalid Skill");
+                                                                skillinput7.setError("Invalid Skill");
 
                                                             } else {
                                                                 if (sproficiency7.equals("- Proficiency -")) {
@@ -5222,7 +5303,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                     errorflag = 0;
                                                                     if (sskill8.length() < 1) {
                                                                         errorflag = 1;
-                                                                        skill8.setError("Invalid Skill");
+                                                                        skillinput8.setError("Invalid Skill");
 
                                                                     } else {
                                                                         if (sproficiency8.equals("- Proficiency -")) {
@@ -5232,7 +5313,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                             errorflag = 0;
                                                                             if (sskill9.length() < 1) {
                                                                                 errorflag = 1;
-                                                                                skill9.setError("Invalid Skill");
+                                                                                skillinput9.setError("Invalid Skill");
 
                                                                             } else {
                                                                                 if (sproficiency9.equals("- Proficiency -")) {
@@ -5242,7 +5323,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                     errorflag = 0;
                                                                                     if (sskill10.length() < 1) {
                                                                                         errorflag = 1;
-                                                                                        skill10.setError("Invalid Skill");
+                                                                                        skillinput10.setError("Invalid Skill");
 
                                                                                     } else {
                                                                                         if (sproficiency10.equals("- Proficiency -")) {
@@ -5252,7 +5333,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (sskill11.length() < 1) {
                                                                                                 errorflag = 1;
-                                                                                                skill11.setError("Invalid Skill");
+                                                                                                skillinput11.setError("Invalid Skill");
 
                                                                                             } else {
                                                                                                 if (sproficiency11.equals("- Proficiency -")) {
@@ -5293,7 +5374,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     errorflag = 0;
                     if (sskill2.length() < 1) {
                         errorflag = 1;
-                        skill2.setError("Invalid Skill");
+                        skillinput2.setError("Invalid Skill");
 
                     } else {
                         if (sproficiency2.equals("- Proficiency -")) {
@@ -5303,7 +5384,7 @@ public class MyProfileSkills extends AppCompatActivity {
                             errorflag = 0;
                             if (sskill3.length() < 1) {
                                 errorflag = 1;
-                                skill3.setError("Invalid Skill");
+                                skillinput3.setError("Invalid Skill");
 
                             } else {
                                 if (sproficiency3.equals("- Proficiency -")) {
@@ -5313,7 +5394,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                     errorflag = 0;
                                     if (sskill4.length() < 1) {
                                         errorflag = 1;
-                                        skill4.setError("Invalid Skill");
+                                        skillinput4.setError("Invalid Skill");
 
                                     } else {
                                         if (sproficiency4.equals("- Proficiency -")) {
@@ -5322,7 +5403,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                         } else {
                                             if (sskill5.length() < 1) {
                                                 errorflag = 1;
-                                                skill5.setError("Invalid Skill");
+                                                skillinput5.setError("Invalid Skill");
 
                                             } else {
                                                 if (sproficiency5.equals("- Proficiency -")) {
@@ -5332,7 +5413,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                     errorflag = 0;
                                                     if (sskill6.length() < 1) {
                                                         errorflag = 1;
-                                                        skill6.setError("Invalid Skill");
+                                                        skillinput6.setError("Invalid Skill");
 
                                                     } else {
                                                         if (sproficiency6.equals("- Proficiency -")) {
@@ -5342,7 +5423,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (sskill7.length() < 1) {
                                                                 errorflag = 1;
-                                                                skill7.setError("Invalid Skill");
+                                                                skillinput7.setError("Invalid Skill");
 
                                                             } else {
                                                                 if (sproficiency7.equals("- Proficiency -")) {
@@ -5352,7 +5433,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                     errorflag = 0;
                                                                     if (sskill8.length() < 1) {
                                                                         errorflag = 1;
-                                                                        skill8.setError("Invalid Skill");
+                                                                        skillinput8.setError("Invalid Skill");
 
                                                                     } else {
                                                                         if (sproficiency8.equals("- Proficiency -")) {
@@ -5362,7 +5443,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                             errorflag = 0;
                                                                             if (sskill9.length() < 1) {
                                                                                 errorflag = 1;
-                                                                                skill9.setError("Invalid Skill");
+                                                                                skillinput9.setError("Invalid Skill");
 
                                                                             } else {
                                                                                 if (sproficiency9.equals("- Proficiency -")) {
@@ -5372,7 +5453,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                     errorflag = 0;
                                                                                     if (sskill10.length() < 1) {
                                                                                         errorflag = 1;
-                                                                                        skill10.setError("Invalid Skill");
+                                                                                        skillinput10.setError("Invalid Skill");
 
                                                                                     } else {
                                                                                         if (sproficiency10.equals("- Proficiency -")) {
@@ -5382,7 +5463,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (sskill11.length() < 1) {
                                                                                                 errorflag = 1;
-                                                                                                skill11.setError("Invalid Skill");
+                                                                                                skillinput11.setError("Invalid Skill");
 
                                                                                             } else {
                                                                                                 if (sproficiency11.equals("- Proficiency -")) {
@@ -5392,7 +5473,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                     errorflag = 0;
                                                                                                     if (sskill12.length() < 1) {
                                                                                                         errorflag = 1;
-                                                                                                        skill12.setError("Invalid Skill");
+                                                                                                        skillinput12.setError("Invalid Skill");
 
                                                                                                     } else {
                                                                                                         if (sproficiency12.equals("- Proficiency -")) {
@@ -5435,7 +5516,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     errorflag = 0;
                     if (sskill2.length() < 1) {
                         errorflag = 1;
-                        skill2.setError("Invalid Skill");
+                        skillinput2.setError("Invalid Skill");
 
                     } else {
                         if (sproficiency2.equals("- Proficiency -")) {
@@ -5445,7 +5526,7 @@ public class MyProfileSkills extends AppCompatActivity {
                             errorflag = 0;
                             if (sskill3.length() < 1) {
                                 errorflag = 1;
-                                skill3.setError("Invalid Skill");
+                                skillinput3.setError("Invalid Skill");
 
                             } else {
                                 if (sproficiency3.equals("- Proficiency -")) {
@@ -5455,7 +5536,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                     errorflag = 0;
                                     if (sskill4.length() < 1) {
                                         errorflag = 1;
-                                        skill4.setError("Invalid Skill");
+                                        skillinput4.setError("Invalid Skill");
 
                                     } else {
                                         if (sproficiency4.equals("- Proficiency -")) {
@@ -5464,7 +5545,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                         } else {
                                             if (sskill5.length() < 1) {
                                                 errorflag = 1;
-                                                skill5.setError("Invalid Skill");
+                                                skillinput5.setError("Invalid Skill");
 
                                             } else {
                                                 if (sproficiency5.equals("- Proficiency -")) {
@@ -5474,7 +5555,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                     errorflag = 0;
                                                     if (sskill6.length() < 1) {
                                                         errorflag = 1;
-                                                        skill6.setError("Invalid Skill");
+                                                        skillinput6.setError("Invalid Skill");
 
                                                     } else {
                                                         if (sproficiency6.equals("- Proficiency -")) {
@@ -5484,7 +5565,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (sskill7.length() < 1) {
                                                                 errorflag = 1;
-                                                                skill7.setError("Invalid Skill");
+                                                                skillinput7.setError("Invalid Skill");
 
                                                             } else {
                                                                 if (sproficiency7.equals("- Proficiency -")) {
@@ -5494,7 +5575,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                     errorflag = 0;
                                                                     if (sskill8.length() < 1) {
                                                                         errorflag = 1;
-                                                                        skill8.setError("Invalid Skill");
+                                                                        skillinput8.setError("Invalid Skill");
 
                                                                     } else {
                                                                         if (sproficiency8.equals("- Proficiency -")) {
@@ -5504,7 +5585,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                             errorflag = 0;
                                                                             if (sskill9.length() < 1) {
                                                                                 errorflag = 1;
-                                                                                skill9.setError("Invalid Skill");
+                                                                                skillinput9.setError("Invalid Skill");
 
                                                                             } else {
                                                                                 if (sproficiency9.equals("- Proficiency -")) {
@@ -5514,7 +5595,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                     errorflag = 0;
                                                                                     if (sskill10.length() < 1) {
                                                                                         errorflag = 1;
-                                                                                        skill10.setError("Invalid Skill");
+                                                                                        skillinput10.setError("Invalid Skill");
 
                                                                                     } else {
                                                                                         if (sproficiency10.equals("- Proficiency -")) {
@@ -5524,7 +5605,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (sskill11.length() < 1) {
                                                                                                 errorflag = 1;
-                                                                                                skill11.setError("Invalid Skill");
+                                                                                                skillinput11.setError("Invalid Skill");
 
                                                                                             } else {
                                                                                                 if (sproficiency11.equals("- Proficiency -")) {
@@ -5534,7 +5615,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                     errorflag = 0;
                                                                                                     if (sskill12.length() < 1) {
                                                                                                         errorflag = 1;
-                                                                                                        skill12.setError("Invalid Skill");
+                                                                                                        skillinput12.setError("Invalid Skill");
 
                                                                                                     } else {
                                                                                                         if (sproficiency12.equals("- Proficiency -")) {
@@ -5544,7 +5625,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                             errorflag = 0;
                                                                                                             if (sskill13.length() < 1) {
                                                                                                                 errorflag = 1;
-                                                                                                                skill13.setError("Invalid Skill");
+                                                                                                                skillinput13.setError("Invalid Skill");
 
                                                                                                             } else {
                                                                                                                 if (sproficiency13.equals("- Proficiency -")) {
@@ -5589,7 +5670,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     errorflag = 0;
                     if (sskill2.length() < 1) {
                         errorflag = 1;
-                        skill2.setError("Invalid Skill");
+                        skillinput2.setError("Invalid Skill");
 
                     } else {
                         if (sproficiency2.equals("- Proficiency -")) {
@@ -5599,7 +5680,7 @@ public class MyProfileSkills extends AppCompatActivity {
                             errorflag = 0;
                             if (sskill3.length() < 1) {
                                 errorflag = 1;
-                                skill3.setError("Invalid Skill");
+                                skillinput3.setError("Invalid Skill");
 
                             } else {
                                 if (sproficiency3.equals("- Proficiency -")) {
@@ -5609,7 +5690,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                     errorflag = 0;
                                     if (sskill4.length() < 1) {
                                         errorflag = 1;
-                                        skill4.setError("Invalid Skill");
+                                        skillinput4.setError("Invalid Skill");
 
                                     } else {
                                         if (sproficiency4.equals("- Proficiency -")) {
@@ -5618,7 +5699,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                         } else {
                                             if (sskill5.length() < 1) {
                                                 errorflag = 1;
-                                                skill5.setError("Invalid Skill");
+                                                skillinput5.setError("Invalid Skill");
 
                                             } else {
                                                 if (sproficiency5.equals("- Proficiency -")) {
@@ -5628,7 +5709,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                     errorflag = 0;
                                                     if (sskill6.length() < 1) {
                                                         errorflag = 1;
-                                                        skill6.setError("Invalid Skill");
+                                                        skillinput6.setError("Invalid Skill");
 
                                                     } else {
                                                         if (sproficiency6.equals("- Proficiency -")) {
@@ -5638,7 +5719,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (sskill7.length() < 1) {
                                                                 errorflag = 1;
-                                                                skill7.setError("Invalid Skill");
+                                                                skillinput7.setError("Invalid Skill");
 
                                                             } else {
                                                                 if (sproficiency7.equals("- Proficiency -")) {
@@ -5648,7 +5729,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                     errorflag = 0;
                                                                     if (sskill8.length() < 1) {
                                                                         errorflag = 1;
-                                                                        skill8.setError("Invalid Skill");
+                                                                        skillinput8.setError("Invalid Skill");
 
                                                                     } else {
                                                                         if (sproficiency8.equals("- Proficiency -")) {
@@ -5658,7 +5739,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                             errorflag = 0;
                                                                             if (sskill9.length() < 1) {
                                                                                 errorflag = 1;
-                                                                                skill9.setError("Invalid Skill");
+                                                                                skillinput9.setError("Invalid Skill");
 
                                                                             } else {
                                                                                 if (sproficiency9.equals("- Proficiency -")) {
@@ -5668,7 +5749,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                     errorflag = 0;
                                                                                     if (sskill10.length() < 1) {
                                                                                         errorflag = 1;
-                                                                                        skill10.setError("Invalid Skill");
+                                                                                        skillinput10.setError("Invalid Skill");
 
                                                                                     } else {
                                                                                         if (sproficiency10.equals("- Proficiency -")) {
@@ -5678,7 +5759,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (sskill11.length() < 1) {
                                                                                                 errorflag = 1;
-                                                                                                skill11.setError("Invalid Skill");
+                                                                                                skillinput11.setError("Invalid Skill");
 
                                                                                             } else {
                                                                                                 if (sproficiency11.equals("- Proficiency -")) {
@@ -5688,7 +5769,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                     errorflag = 0;
                                                                                                     if (sskill12.length() < 1) {
                                                                                                         errorflag = 1;
-                                                                                                        skill12.setError("Invalid Skill");
+                                                                                                        skillinput12.setError("Invalid Skill");
 
                                                                                                     } else {
                                                                                                         if (sproficiency12.equals("- Proficiency -")) {
@@ -5698,7 +5779,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                             errorflag = 0;
                                                                                                             if (sskill13.length() < 1) {
                                                                                                                 errorflag = 1;
-                                                                                                                skill13.setError("Invalid Skill");
+                                                                                                                skillinput13.setError("Invalid Skill");
 
                                                                                                             } else {
                                                                                                                 if (sproficiency13.equals("- Proficiency -")) {
@@ -5708,7 +5789,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                     errorflag = 0;
                                                                                                                     if (sskill14.length() < 1) {
                                                                                                                         errorflag = 1;
-                                                                                                                        skill14.setError("Invalid Skill");
+                                                                                                                        skillinput14.setError("Invalid Skill");
 
                                                                                                                     } else {
                                                                                                                         if (sproficiency14.equals("- Proficiency -")) {
@@ -5755,7 +5836,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     errorflag = 0;
                     if (sskill2.length() < 1) {
                         errorflag = 1;
-                        skill2.setError("Invalid Skill");
+                        skillinput2.setError("Invalid Skill");
 
                     } else {
                         if (sproficiency2.equals("- Proficiency -")) {
@@ -5765,7 +5846,7 @@ public class MyProfileSkills extends AppCompatActivity {
                             errorflag = 0;
                             if (sskill3.length() < 1) {
                                 errorflag = 1;
-                                skill3.setError("Invalid Skill");
+                                skillinput3.setError("Invalid Skill");
 
                             } else {
                                 if (sproficiency3.equals("- Proficiency -")) {
@@ -5775,7 +5856,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                     errorflag = 0;
                                     if (sskill4.length() < 1) {
                                         errorflag = 1;
-                                        skill4.setError("Invalid Skill");
+                                        skillinput4.setError("Invalid Skill");
 
                                     } else {
                                         if (sproficiency4.equals("- Proficiency -")) {
@@ -5784,7 +5865,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                         } else {
                                             if (sskill5.length() < 1) {
                                                 errorflag = 1;
-                                                skill5.setError("Invalid Skill");
+                                                skillinput5.setError("Invalid Skill");
 
                                             } else {
                                                 if (sproficiency5.equals("- Proficiency -")) {
@@ -5794,7 +5875,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                     errorflag = 0;
                                                     if (sskill6.length() < 1) {
                                                         errorflag = 1;
-                                                        skill6.setError("Invalid Skill");
+                                                        skillinput6.setError("Invalid Skill");
 
                                                     } else {
                                                         if (sproficiency6.equals("- Proficiency -")) {
@@ -5804,7 +5885,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (sskill7.length() < 1) {
                                                                 errorflag = 1;
-                                                                skill7.setError("Invalid Skill");
+                                                                skillinput7.setError("Invalid Skill");
 
                                                             } else {
                                                                 if (sproficiency7.equals("- Proficiency -")) {
@@ -5814,7 +5895,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                     errorflag = 0;
                                                                     if (sskill8.length() < 1) {
                                                                         errorflag = 1;
-                                                                        skill8.setError("Invalid Skill");
+                                                                        skillinput8.setError("Invalid Skill");
 
                                                                     } else {
                                                                         if (sproficiency8.equals("- Proficiency -")) {
@@ -5824,7 +5905,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                             errorflag = 0;
                                                                             if (sskill9.length() < 1) {
                                                                                 errorflag = 1;
-                                                                                skill9.setError("Invalid Skill");
+                                                                                skillinput9.setError("Invalid Skill");
 
                                                                             } else {
                                                                                 if (sproficiency9.equals("- Proficiency -")) {
@@ -5834,7 +5915,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                     errorflag = 0;
                                                                                     if (sskill10.length() < 1) {
                                                                                         errorflag = 1;
-                                                                                        skill10.setError("Invalid Skill");
+                                                                                        skillinput10.setError("Invalid Skill");
 
                                                                                     } else {
                                                                                         if (sproficiency10.equals("- Proficiency -")) {
@@ -5844,7 +5925,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (sskill11.length() < 1) {
                                                                                                 errorflag = 1;
-                                                                                                skill11.setError("Invalid Skill");
+                                                                                                skillinput11.setError("Invalid Skill");
 
                                                                                             } else {
                                                                                                 if (sproficiency11.equals("- Proficiency -")) {
@@ -5854,7 +5935,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                     errorflag = 0;
                                                                                                     if (sskill12.length() < 1) {
                                                                                                         errorflag = 1;
-                                                                                                        skill12.setError("Invalid Skill");
+                                                                                                        skillinput12.setError("Invalid Skill");
 
                                                                                                     } else {
                                                                                                         if (sproficiency12.equals("- Proficiency -")) {
@@ -5864,7 +5945,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                             errorflag = 0;
                                                                                                             if (sskill13.length() < 1) {
                                                                                                                 errorflag = 1;
-                                                                                                                skill13.setError("Invalid Skill");
+                                                                                                                skillinput13.setError("Invalid Skill");
 
                                                                                                             } else {
                                                                                                                 if (sproficiency13.equals("- Proficiency -")) {
@@ -5874,7 +5955,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                     errorflag = 0;
                                                                                                                     if (sskill14.length() < 1) {
                                                                                                                         errorflag = 1;
-                                                                                                                        skill14.setError("Invalid Skill");
+                                                                                                                        skillinput14.setError("Invalid Skill");
 
                                                                                                                     } else {
                                                                                                                         if (sproficiency14.equals("- Proficiency -")) {
@@ -5884,7 +5965,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                             errorflag = 0;
                                                                                                                             if (sskill15.length() < 1) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                skill15.setError("Invalid Skill");
+                                                                                                                                skillinput15.setError("Invalid Skill");
 
                                                                                                                             } else {
                                                                                                                                 if (sproficiency15.equals("- Proficiency -")) {
@@ -5933,7 +6014,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     errorflag = 0;
                     if (sskill2.length() < 1) {
                         errorflag = 1;
-                        skill2.setError("Invalid Skill");
+                        skillinput2.setError("Invalid Skill");
 
                     } else {
                         if (sproficiency2.equals("- Proficiency -")) {
@@ -5943,7 +6024,7 @@ public class MyProfileSkills extends AppCompatActivity {
                             errorflag = 0;
                             if (sskill3.length() < 1) {
                                 errorflag = 1;
-                                skill3.setError("Invalid Skill");
+                                skillinput3.setError("Invalid Skill");
 
                             } else {
                                 if (sproficiency3.equals("- Proficiency -")) {
@@ -5953,7 +6034,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                     errorflag = 0;
                                     if (sskill4.length() < 1) {
                                         errorflag = 1;
-                                        skill4.setError("Invalid Skill");
+                                        skillinput4.setError("Invalid Skill");
 
                                     } else {
                                         if (sproficiency4.equals("- Proficiency -")) {
@@ -5962,7 +6043,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                         } else {
                                             if (sskill5.length() < 1) {
                                                 errorflag = 1;
-                                                skill5.setError("Invalid Skill");
+                                                skillinput5.setError("Invalid Skill");
 
                                             } else {
                                                 if (sproficiency5.equals("- Proficiency -")) {
@@ -5972,7 +6053,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                     errorflag = 0;
                                                     if (sskill6.length() < 1) {
                                                         errorflag = 1;
-                                                        skill6.setError("Invalid Skill");
+                                                        skillinput6.setError("Invalid Skill");
 
                                                     } else {
                                                         if (sproficiency6.equals("- Proficiency -")) {
@@ -5982,7 +6063,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (sskill7.length() < 1) {
                                                                 errorflag = 1;
-                                                                skill7.setError("Invalid Skill");
+                                                                skillinput7.setError("Invalid Skill");
 
                                                             } else {
                                                                 if (sproficiency7.equals("- Proficiency -")) {
@@ -5992,7 +6073,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                     errorflag = 0;
                                                                     if (sskill8.length() < 1) {
                                                                         errorflag = 1;
-                                                                        skill8.setError("Invalid Skill");
+                                                                        skillinput8.setError("Invalid Skill");
 
                                                                     } else {
                                                                         if (sproficiency8.equals("- Proficiency -")) {
@@ -6002,7 +6083,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                             errorflag = 0;
                                                                             if (sskill9.length() < 1) {
                                                                                 errorflag = 1;
-                                                                                skill9.setError("Invalid Skill");
+                                                                                skillinput9.setError("Invalid Skill");
 
                                                                             } else {
                                                                                 if (sproficiency9.equals("- Proficiency -")) {
@@ -6012,7 +6093,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                     errorflag = 0;
                                                                                     if (sskill10.length() < 1) {
                                                                                         errorflag = 1;
-                                                                                        skill10.setError("Invalid Skill");
+                                                                                        skillinput10.setError("Invalid Skill");
 
                                                                                     } else {
                                                                                         if (sproficiency10.equals("- Proficiency -")) {
@@ -6022,7 +6103,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (sskill11.length() < 1) {
                                                                                                 errorflag = 1;
-                                                                                                skill11.setError("Invalid Skill");
+                                                                                                skillinput11.setError("Invalid Skill");
 
                                                                                             } else {
                                                                                                 if (sproficiency11.equals("- Proficiency -")) {
@@ -6032,7 +6113,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                     errorflag = 0;
                                                                                                     if (sskill12.length() < 1) {
                                                                                                         errorflag = 1;
-                                                                                                        skill12.setError("Invalid Skill");
+                                                                                                        skillinput12.setError("Invalid Skill");
 
                                                                                                     } else {
                                                                                                         if (sproficiency12.equals("- Proficiency -")) {
@@ -6042,7 +6123,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                             errorflag = 0;
                                                                                                             if (sskill13.length() < 1) {
                                                                                                                 errorflag = 1;
-                                                                                                                skill13.setError("Invalid Skill");
+                                                                                                                skillinput13.setError("Invalid Skill");
 
                                                                                                             } else {
                                                                                                                 if (sproficiency13.equals("- Proficiency -")) {
@@ -6052,7 +6133,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                     errorflag = 0;
                                                                                                                     if (sskill14.length() < 1) {
                                                                                                                         errorflag = 1;
-                                                                                                                        skill14.setError("Invalid Skill");
+                                                                                                                        skillinput14.setError("Invalid Skill");
 
                                                                                                                     } else {
                                                                                                                         if (sproficiency14.equals("- Proficiency -")) {
@@ -6062,7 +6143,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                             errorflag = 0;
                                                                                                                             if (sskill15.length() < 1) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                skill15.setError("Invalid Skill");
+                                                                                                                                skillinput15.setError("Invalid Skill");
 
                                                                                                                             } else {
                                                                                                                                 if (sproficiency15.equals("- Proficiency -")) {
@@ -6072,7 +6153,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                                     errorflag = 0;
                                                                                                                                     if (sskill16.length() < 1) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        skill16.setError("Invalid Skill");
+                                                                                                                                        skillinput16.setError("Invalid Skill");
 
                                                                                                                                     } else {
                                                                                                                                         if (sproficiency16.equals("- Proficiency -")) {
@@ -6123,7 +6204,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     errorflag = 0;
                     if (sskill2.length() < 1) {
                         errorflag = 1;
-                        skill2.setError("Invalid Skill");
+                        skillinput2.setError("Invalid Skill");
 
                     } else {
                         if (sproficiency2.equals("- Proficiency -")) {
@@ -6133,7 +6214,7 @@ public class MyProfileSkills extends AppCompatActivity {
                             errorflag = 0;
                             if (sskill3.length() < 1) {
                                 errorflag = 1;
-                                skill3.setError("Invalid Skill");
+                                skillinput3.setError("Invalid Skill");
 
                             } else {
                                 if (sproficiency3.equals("- Proficiency -")) {
@@ -6143,7 +6224,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                     errorflag = 0;
                                     if (sskill4.length() < 1) {
                                         errorflag = 1;
-                                        skill4.setError("Invalid Skill");
+                                        skillinput4.setError("Invalid Skill");
 
                                     } else {
                                         if (sproficiency4.equals("- Proficiency -")) {
@@ -6152,7 +6233,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                         } else {
                                             if (sskill5.length() < 1) {
                                                 errorflag = 1;
-                                                skill5.setError("Invalid Skill");
+                                                skillinput5.setError("Invalid Skill");
 
                                             } else {
                                                 if (sproficiency5.equals("- Proficiency -")) {
@@ -6162,7 +6243,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                     errorflag = 0;
                                                     if (sskill6.length() < 1) {
                                                         errorflag = 1;
-                                                        skill6.setError("Invalid Skill");
+                                                        skillinput6.setError("Invalid Skill");
 
                                                     } else {
                                                         if (sproficiency6.equals("- Proficiency -")) {
@@ -6172,7 +6253,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (sskill7.length() < 1) {
                                                                 errorflag = 1;
-                                                                skill7.setError("Invalid Skill");
+                                                                skillinput7.setError("Invalid Skill");
 
                                                             } else {
                                                                 if (sproficiency7.equals("- Proficiency -")) {
@@ -6182,7 +6263,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                     errorflag = 0;
                                                                     if (sskill8.length() < 1) {
                                                                         errorflag = 1;
-                                                                        skill8.setError("Invalid Skill");
+                                                                        skillinput8.setError("Invalid Skill");
 
                                                                     } else {
                                                                         if (sproficiency8.equals("- Proficiency -")) {
@@ -6192,7 +6273,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                             errorflag = 0;
                                                                             if (sskill9.length() < 1) {
                                                                                 errorflag = 1;
-                                                                                skill9.setError("Invalid Skill");
+                                                                                skillinput9.setError("Invalid Skill");
 
                                                                             } else {
                                                                                 if (sproficiency9.equals("- Proficiency -")) {
@@ -6202,7 +6283,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                     errorflag = 0;
                                                                                     if (sskill10.length() < 1) {
                                                                                         errorflag = 1;
-                                                                                        skill10.setError("Invalid Skill");
+                                                                                        skillinput10.setError("Invalid Skill");
 
                                                                                     } else {
                                                                                         if (sproficiency10.equals("- Proficiency -")) {
@@ -6212,7 +6293,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (sskill11.length() < 1) {
                                                                                                 errorflag = 1;
-                                                                                                skill11.setError("Invalid Skill");
+                                                                                                skillinput11.setError("Invalid Skill");
 
                                                                                             } else {
                                                                                                 if (sproficiency11.equals("- Proficiency -")) {
@@ -6222,7 +6303,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                     errorflag = 0;
                                                                                                     if (sskill12.length() < 1) {
                                                                                                         errorflag = 1;
-                                                                                                        skill12.setError("Invalid Skill");
+                                                                                                        skillinput12.setError("Invalid Skill");
 
                                                                                                     } else {
                                                                                                         if (sproficiency12.equals("- Proficiency -")) {
@@ -6232,7 +6313,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                             errorflag = 0;
                                                                                                             if (sskill13.length() < 1) {
                                                                                                                 errorflag = 1;
-                                                                                                                skill13.setError("Invalid Skill");
+                                                                                                                skillinput13.setError("Invalid Skill");
 
                                                                                                             } else {
                                                                                                                 if (sproficiency13.equals("- Proficiency -")) {
@@ -6242,7 +6323,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                     errorflag = 0;
                                                                                                                     if (sskill14.length() < 1) {
                                                                                                                         errorflag = 1;
-                                                                                                                        skill14.setError("Invalid Skill");
+                                                                                                                        skillinput14.setError("Invalid Skill");
 
                                                                                                                     } else {
                                                                                                                         if (sproficiency14.equals("- Proficiency -")) {
@@ -6252,7 +6333,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                             errorflag = 0;
                                                                                                                             if (sskill15.length() < 1) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                skill15.setError("Invalid Skill");
+                                                                                                                                skillinput15.setError("Invalid Skill");
 
                                                                                                                             } else {
                                                                                                                                 if (sproficiency15.equals("- Proficiency -")) {
@@ -6262,7 +6343,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                                     errorflag = 0;
                                                                                                                                     if (sskill16.length() < 1) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        skill16.setError("Invalid Skill");
+                                                                                                                                        skillinput16.setError("Invalid Skill");
 
                                                                                                                                     } else {
                                                                                                                                         if (sproficiency16.equals("- Proficiency -")) {
@@ -6271,7 +6352,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                                         } else {
                                                                                                                                             if (sskill17.length() < 1) {
                                                                                                                                                 errorflag = 1;
-                                                                                                                                                skill17.setError("Invalid Skill");
+                                                                                                                                                skillinput17.setError("Invalid Skill");
 
                                                                                                                                             } else {
                                                                                                                                                 if (sproficiency17.equals("- Proficiency -")) {
@@ -6324,7 +6405,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     errorflag = 0;
                     if (sskill2.length() < 1) {
                         errorflag = 1;
-                        skill2.setError("Invalid Skill");
+                        skillinput2.setError("Invalid Skill");
 
                     } else {
                         if (sproficiency2.equals("- Proficiency -")) {
@@ -6334,7 +6415,7 @@ public class MyProfileSkills extends AppCompatActivity {
                             errorflag = 0;
                             if (sskill3.length() < 1) {
                                 errorflag = 1;
-                                skill3.setError("Invalid Skill");
+                                skillinput3.setError("Invalid Skill");
 
                             } else {
                                 if (sproficiency3.equals("- Proficiency -")) {
@@ -6344,7 +6425,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                     errorflag = 0;
                                     if (sskill4.length() < 1) {
                                         errorflag = 1;
-                                        skill4.setError("Invalid Skill");
+                                        skillinput4.setError("Invalid Skill");
 
                                     } else {
                                         if (sproficiency4.equals("- Proficiency -")) {
@@ -6353,7 +6434,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                         } else {
                                             if (sskill5.length() < 1) {
                                                 errorflag = 1;
-                                                skill5.setError("Invalid Skill");
+                                                skillinput5.setError("Invalid Skill");
 
                                             } else {
                                                 if (sproficiency5.equals("- Proficiency -")) {
@@ -6363,7 +6444,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                     errorflag = 0;
                                                     if (sskill6.length() < 1) {
                                                         errorflag = 1;
-                                                        skill6.setError("Invalid Skill");
+                                                        skillinput6.setError("Invalid Skill");
 
                                                     } else {
                                                         if (sproficiency6.equals("- Proficiency -")) {
@@ -6373,7 +6454,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (sskill7.length() < 1) {
                                                                 errorflag = 1;
-                                                                skill7.setError("Invalid Skill");
+                                                                skillinput7.setError("Invalid Skill");
 
                                                             } else {
                                                                 if (sproficiency7.equals("- Proficiency -")) {
@@ -6383,7 +6464,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                     errorflag = 0;
                                                                     if (sskill8.length() < 1) {
                                                                         errorflag = 1;
-                                                                        skill8.setError("Invalid Skill");
+                                                                        skillinput8.setError("Invalid Skill");
 
                                                                     } else {
                                                                         if (sproficiency8.equals("- Proficiency -")) {
@@ -6393,7 +6474,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                             errorflag = 0;
                                                                             if (sskill9.length() < 1) {
                                                                                 errorflag = 1;
-                                                                                skill9.setError("Invalid Skill");
+                                                                                skillinput9.setError("Invalid Skill");
 
                                                                             } else {
                                                                                 if (sproficiency9.equals("- Proficiency -")) {
@@ -6403,7 +6484,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                     errorflag = 0;
                                                                                     if (sskill10.length() < 1) {
                                                                                         errorflag = 1;
-                                                                                        skill10.setError("Invalid Skill");
+                                                                                        skillinput10.setError("Invalid Skill");
 
                                                                                     } else {
                                                                                         if (sproficiency10.equals("- Proficiency -")) {
@@ -6413,7 +6494,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (sskill11.length() < 1) {
                                                                                                 errorflag = 1;
-                                                                                                skill11.setError("Invalid Skill");
+                                                                                                skillinput11.setError("Invalid Skill");
 
                                                                                             } else {
                                                                                                 if (sproficiency11.equals("- Proficiency -")) {
@@ -6423,7 +6504,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                     errorflag = 0;
                                                                                                     if (sskill12.length() < 1) {
                                                                                                         errorflag = 1;
-                                                                                                        skill12.setError("Invalid Skill");
+                                                                                                        skillinput12.setError("Invalid Skill");
 
                                                                                                     } else {
                                                                                                         if (sproficiency12.equals("- Proficiency -")) {
@@ -6433,7 +6514,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                             errorflag = 0;
                                                                                                             if (sskill13.length() < 1) {
                                                                                                                 errorflag = 1;
-                                                                                                                skill13.setError("Invalid Skill");
+                                                                                                                skillinput13.setError("Invalid Skill");
 
                                                                                                             } else {
                                                                                                                 if (sproficiency13.equals("- Proficiency -")) {
@@ -6443,7 +6524,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                     errorflag = 0;
                                                                                                                     if (sskill14.length() < 1) {
                                                                                                                         errorflag = 1;
-                                                                                                                        skill14.setError("Invalid Skill");
+                                                                                                                        skillinput14.setError("Invalid Skill");
 
                                                                                                                     } else {
                                                                                                                         if (sproficiency14.equals("- Proficiency -")) {
@@ -6453,7 +6534,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                             errorflag = 0;
                                                                                                                             if (sskill15.length() < 1) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                skill15.setError("Invalid Skill");
+                                                                                                                                skillinput15.setError("Invalid Skill");
 
                                                                                                                             } else {
                                                                                                                                 if (sproficiency15.equals("- Proficiency -")) {
@@ -6463,7 +6544,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                                     errorflag = 0;
                                                                                                                                     if (sskill16.length() < 1) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        skill16.setError("Invalid Skill");
+                                                                                                                                        skillinput16.setError("Invalid Skill");
 
                                                                                                                                     } else {
                                                                                                                                         if (sproficiency16.equals("- Proficiency -")) {
@@ -6472,7 +6553,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                                         } else {
                                                                                                                                             if (sskill17.length() < 1) {
                                                                                                                                                 errorflag = 1;
-                                                                                                                                                skill17.setError("Invalid Skill");
+                                                                                                                                                skillinput17.setError("Invalid Skill");
 
                                                                                                                                             } else {
                                                                                                                                                 if (sproficiency17.equals("- Proficiency -")) {
@@ -6482,7 +6563,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                                                     errorflag = 0;
                                                                                                                                                     if (sskill18.length() < 1) {
                                                                                                                                                         errorflag = 1;
-                                                                                                                                                        skill18.setError("Invalid Skill");
+                                                                                                                                                        skillinput18.setError("Invalid Skill");
 
                                                                                                                                                     } else {
                                                                                                                                                         if (sproficiency18.equals("- Proficiency -")) {
@@ -6537,7 +6618,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     errorflag = 0;
                     if (sskill2.length() < 1) {
                         errorflag = 1;
-                        skill2.setError("Invalid Skill");
+                        skillinput2.setError("Invalid Skill");
 
                     } else {
                         if (sproficiency2.equals("- Proficiency -")) {
@@ -6547,7 +6628,7 @@ public class MyProfileSkills extends AppCompatActivity {
                             errorflag = 0;
                             if (sskill3.length() < 1) {
                                 errorflag = 1;
-                                skill3.setError("Invalid Skill");
+                                skillinput3.setError("Invalid Skill");
 
                             } else {
                                 if (sproficiency3.equals("- Proficiency -")) {
@@ -6557,7 +6638,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                     errorflag = 0;
                                     if (sskill4.length() < 1) {
                                         errorflag = 1;
-                                        skill4.setError("Invalid Skill");
+                                        skillinput4.setError("Invalid Skill");
 
                                     } else {
                                         if (sproficiency4.equals("- Proficiency -")) {
@@ -6566,7 +6647,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                         } else {
                                             if (sskill5.length() < 1) {
                                                 errorflag = 1;
-                                                skill5.setError("Invalid Skill");
+                                                skillinput5.setError("Invalid Skill");
 
                                             } else {
                                                 if (sproficiency5.equals("- Proficiency -")) {
@@ -6576,7 +6657,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                     errorflag = 0;
                                                     if (sskill6.length() < 1) {
                                                         errorflag = 1;
-                                                        skill6.setError("Invalid Skill");
+                                                        skillinput6.setError("Invalid Skill");
 
                                                     } else {
                                                         if (sproficiency6.equals("- Proficiency -")) {
@@ -6586,7 +6667,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (sskill7.length() < 1) {
                                                                 errorflag = 1;
-                                                                skill7.setError("Invalid Skill");
+                                                                skillinput7.setError("Invalid Skill");
 
                                                             } else {
                                                                 if (sproficiency7.equals("- Proficiency -")) {
@@ -6596,7 +6677,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                     errorflag = 0;
                                                                     if (sskill8.length() < 1) {
                                                                         errorflag = 1;
-                                                                        skill8.setError("Invalid Skill");
+                                                                        skillinput8.setError("Invalid Skill");
 
                                                                     } else {
                                                                         if (sproficiency8.equals("- Proficiency -")) {
@@ -6606,7 +6687,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                             errorflag = 0;
                                                                             if (sskill9.length() < 1) {
                                                                                 errorflag = 1;
-                                                                                skill9.setError("Invalid Skill");
+                                                                                skillinput9.setError("Invalid Skill");
 
                                                                             } else {
                                                                                 if (sproficiency9.equals("- Proficiency -")) {
@@ -6616,7 +6697,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                     errorflag = 0;
                                                                                     if (sskill10.length() < 1) {
                                                                                         errorflag = 1;
-                                                                                        skill10.setError("Invalid Skill");
+                                                                                        skillinput10.setError("Invalid Skill");
 
                                                                                     } else {
                                                                                         if (sproficiency10.equals("- Proficiency -")) {
@@ -6626,7 +6707,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (sskill11.length() < 1) {
                                                                                                 errorflag = 1;
-                                                                                                skill11.setError("Invalid Skill");
+                                                                                                skillinput11.setError("Invalid Skill");
 
                                                                                             } else {
                                                                                                 if (sproficiency11.equals("- Proficiency -")) {
@@ -6636,7 +6717,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                     errorflag = 0;
                                                                                                     if (sskill12.length() < 1) {
                                                                                                         errorflag = 1;
-                                                                                                        skill12.setError("Invalid Skill");
+                                                                                                        skillinput12.setError("Invalid Skill");
 
                                                                                                     } else {
                                                                                                         if (sproficiency12.equals("- Proficiency -")) {
@@ -6646,7 +6727,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                             errorflag = 0;
                                                                                                             if (sskill13.length() < 1) {
                                                                                                                 errorflag = 1;
-                                                                                                                skill13.setError("Invalid Skill");
+                                                                                                                skillinput13.setError("Invalid Skill");
 
                                                                                                             } else {
                                                                                                                 if (sproficiency13.equals("- Proficiency -")) {
@@ -6656,7 +6737,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                     errorflag = 0;
                                                                                                                     if (sskill14.length() < 1) {
                                                                                                                         errorflag = 1;
-                                                                                                                        skill14.setError("Invalid Skill");
+                                                                                                                        skillinput14.setError("Invalid Skill");
 
                                                                                                                     } else {
                                                                                                                         if (sproficiency14.equals("- Proficiency -")) {
@@ -6666,7 +6747,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                             errorflag = 0;
                                                                                                                             if (sskill15.length() < 1) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                skill15.setError("Invalid Skill");
+                                                                                                                                skillinput15.setError("Invalid Skill");
 
                                                                                                                             } else {
                                                                                                                                 if (sproficiency15.equals("- Proficiency -")) {
@@ -6676,7 +6757,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                                     errorflag = 0;
                                                                                                                                     if (sskill16.length() < 1) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        skill16.setError("Invalid Skill");
+                                                                                                                                        skillinput16.setError("Invalid Skill");
 
                                                                                                                                     } else {
                                                                                                                                         if (sproficiency16.equals("- Proficiency -")) {
@@ -6685,7 +6766,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                                         } else {
                                                                                                                                             if (sskill17.length() < 1) {
                                                                                                                                                 errorflag = 1;
-                                                                                                                                                skill17.setError("Invalid Skill");
+                                                                                                                                                skillinput17.setError("Invalid Skill");
 
                                                                                                                                             } else {
                                                                                                                                                 if (sproficiency17.equals("- Proficiency -")) {
@@ -6695,7 +6776,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                                                     errorflag = 0;
                                                                                                                                                     if (sskill18.length() < 1) {
                                                                                                                                                         errorflag = 1;
-                                                                                                                                                        skill18.setError("Invalid Skill");
+                                                                                                                                                        skillinput18.setError("Invalid Skill");
 
                                                                                                                                                     } else {
                                                                                                                                                         if (sproficiency18.equals("- Proficiency -")) {
@@ -6705,7 +6786,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                                                             errorflag = 0;
                                                                                                                                                             if (sskill19.length() < 1) {
                                                                                                                                                                 errorflag = 1;
-                                                                                                                                                                skill19.setError("Invalid Skill");
+                                                                                                                                                                skillinput19.setError("Invalid Skill");
 
                                                                                                                                                             } else {
                                                                                                                                                                 if (sproficiency19.equals("- Proficiency -")) {
@@ -6762,7 +6843,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     errorflag = 0;
                     if (sskill2.length() < 1) {
                         errorflag = 1;
-                        skill2.setError("Invalid Skill");
+                        skillinput2.setError("Invalid Skill");
 
                     } else {
                         if (sproficiency2.equals("- Proficiency -")) {
@@ -6772,7 +6853,7 @@ public class MyProfileSkills extends AppCompatActivity {
                             errorflag = 0;
                             if (sskill3.length() < 1) {
                                 errorflag = 1;
-                                skill3.setError("Invalid Skill");
+                                skillinput3.setError("Invalid Skill");
 
                             } else {
                                 if (sproficiency3.equals("- Proficiency -")) {
@@ -6782,7 +6863,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                     errorflag = 0;
                                     if (sskill4.length() < 1) {
                                         errorflag = 1;
-                                        skill4.setError("Invalid Skill");
+                                        skillinput4.setError("Invalid Skill");
 
                                     } else {
                                         if (sproficiency4.equals("- Proficiency -")) {
@@ -6791,7 +6872,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                         } else {
                                             if (sskill5.length() < 1) {
                                                 errorflag = 1;
-                                                skill5.setError("Invalid Skill");
+                                                skillinput5.setError("Invalid Skill");
 
                                             } else {
                                                 if (sproficiency5.equals("- Proficiency -")) {
@@ -6801,7 +6882,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                     errorflag = 0;
                                                     if (sskill6.length() < 1) {
                                                         errorflag = 1;
-                                                        skill6.setError("Invalid Skill");
+                                                        skillinput6.setError("Invalid Skill");
 
                                                     } else {
                                                         if (sproficiency6.equals("- Proficiency -")) {
@@ -6811,7 +6892,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (sskill7.length() < 1) {
                                                                 errorflag = 1;
-                                                                skill7.setError("Invalid Skill");
+                                                                skillinput7.setError("Invalid Skill");
 
                                                             } else {
                                                                 if (sproficiency7.equals("- Proficiency -")) {
@@ -6821,7 +6902,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                     errorflag = 0;
                                                                     if (sskill8.length() < 1) {
                                                                         errorflag = 1;
-                                                                        skill8.setError("Invalid Skill");
+                                                                        skillinput8.setError("Invalid Skill");
 
                                                                     } else {
                                                                         if (sproficiency8.equals("- Proficiency -")) {
@@ -6831,7 +6912,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                             errorflag = 0;
                                                                             if (sskill9.length() < 1) {
                                                                                 errorflag = 1;
-                                                                                skill9.setError("Invalid Skill");
+                                                                                skillinput9.setError("Invalid Skill");
 
                                                                             } else {
                                                                                 if (sproficiency9.equals("- Proficiency -")) {
@@ -6841,7 +6922,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                     errorflag = 0;
                                                                                     if (sskill10.length() < 1) {
                                                                                         errorflag = 1;
-                                                                                        skill10.setError("Invalid Skill");
+                                                                                        skillinput10.setError("Invalid Skill");
 
                                                                                     } else {
                                                                                         if (sproficiency10.equals("- Proficiency -")) {
@@ -6851,7 +6932,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (sskill11.length() < 1) {
                                                                                                 errorflag = 1;
-                                                                                                skill11.setError("Invalid Skill");
+                                                                                                skillinput11.setError("Invalid Skill");
 
                                                                                             } else {
                                                                                                 if (sproficiency11.equals("- Proficiency -")) {
@@ -6861,7 +6942,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                     errorflag = 0;
                                                                                                     if (sskill12.length() < 1) {
                                                                                                         errorflag = 1;
-                                                                                                        skill12.setError("Invalid Skill");
+                                                                                                        skillinput12.setError("Invalid Skill");
 
                                                                                                     } else {
                                                                                                         if (sproficiency12.equals("- Proficiency -")) {
@@ -6871,7 +6952,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                             errorflag = 0;
                                                                                                             if (sskill13.length() < 1) {
                                                                                                                 errorflag = 1;
-                                                                                                                skill13.setError("Invalid Skill");
+                                                                                                                skillinput13.setError("Invalid Skill");
 
                                                                                                             } else {
                                                                                                                 if (sproficiency13.equals("- Proficiency -")) {
@@ -6881,7 +6962,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                     errorflag = 0;
                                                                                                                     if (sskill14.length() < 1) {
                                                                                                                         errorflag = 1;
-                                                                                                                        skill14.setError("Invalid Skill");
+                                                                                                                        skillinput14.setError("Invalid Skill");
 
                                                                                                                     } else {
                                                                                                                         if (sproficiency14.equals("- Proficiency -")) {
@@ -6891,7 +6972,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                             errorflag = 0;
                                                                                                                             if (sskill15.length() < 1) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                skill15.setError("Invalid Skill");
+                                                                                                                                skillinput15.setError("Invalid Skill");
 
                                                                                                                             } else {
                                                                                                                                 if (sproficiency15.equals("- Proficiency -")) {
@@ -6901,7 +6982,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                                     errorflag = 0;
                                                                                                                                     if (sskill16.length() < 1) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        skill16.setError("Invalid Skill");
+                                                                                                                                        skillinput16.setError("Invalid Skill");
 
                                                                                                                                     } else {
                                                                                                                                         if (sproficiency16.equals("- Proficiency -")) {
@@ -6910,7 +6991,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                                         } else {
                                                                                                                                             if (sskill17.length() < 1) {
                                                                                                                                                 errorflag = 1;
-                                                                                                                                                skill17.setError("Invalid Skill");
+                                                                                                                                                skillinput17.setError("Invalid Skill");
 
                                                                                                                                             } else {
                                                                                                                                                 if (sproficiency17.equals("- Proficiency -")) {
@@ -6920,7 +7001,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                                                     errorflag = 0;
                                                                                                                                                     if (sskill18.length() < 1) {
                                                                                                                                                         errorflag = 1;
-                                                                                                                                                        skill18.setError("Invalid Skill");
+                                                                                                                                                        skillinput18.setError("Invalid Skill");
 
                                                                                                                                                     } else {
                                                                                                                                                         if (sproficiency18.equals("- Proficiency -")) {
@@ -6930,7 +7011,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                                                             errorflag = 0;
                                                                                                                                                             if (sskill19.length() < 1) {
                                                                                                                                                                 errorflag = 1;
-                                                                                                                                                                skill19.setError("Invalid Skill");
+                                                                                                                                                                skillinput19.setError("Invalid Skill");
 
                                                                                                                                                             } else {
                                                                                                                                                                 if (sproficiency19.equals("- Proficiency -")) {
@@ -6940,7 +7021,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                                                                                                                                                     errorflag = 0;
                                                                                                                                                                     if (sskill20.length() < 1) {
                                                                                                                                                                         errorflag = 1;
-                                                                                                                                                                        skill20.setError("Invalid Skill");
+                                                                                                                                                                        skillinput20.setError("Invalid Skill");
 
                                                                                                                                                                     } else {
                                                                                                                                                                         if (sproficiency20.equals("- Proficiency -")) {

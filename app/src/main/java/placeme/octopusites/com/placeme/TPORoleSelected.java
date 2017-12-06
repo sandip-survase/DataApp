@@ -65,7 +65,8 @@ public class TPORoleSelected extends AppCompatActivity {
         professionalemailTextInputLayout = (TextInputLayout)findViewById(R.id.professionalemailTextInputLayout);
         professionalemail = (EditText)findViewById(R.id.professionalemail);
         fadeandmove(professionalemailTextInputLayout);
-
+        professionalemail.setTypeface(MyConstants.getBold(this));
+        professionalemailTextInputLayout.setTypeface(MyConstants.getLight(this));
         professionalemail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

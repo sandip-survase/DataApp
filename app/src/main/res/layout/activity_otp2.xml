@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/while_color"
         android:textSize="14dp"
-        android:text="Enter the One Time Password(OTP) sent to your mobile number"
+        android:text="Enter the One Time Password(OTP) sent to your registered email address."
         />
 
 

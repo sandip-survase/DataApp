@@ -77,6 +77,7 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
+import static placeme.octopusites.com.placeme.AES4all.Encrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 import static placeme.octopusites.com.placeme.OTPActivity.md5;
@@ -422,7 +423,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         WelcomeCreatePasswordView = v;
         enterPassword = (EditText) WelcomeCreatePasswordView.findViewById(R.id.enterPassword);
         confirmPassword = (EditText) WelcomeCreatePasswordView.findViewById(R.id.confirmPassword);
-
+//minor
+        enterPassword.setTypeface(MyConstants.getBold(this));
+        confirmPassword.setTypeface(MyConstants.getBold(this));
         enterPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -993,6 +996,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 if (currentPosition == 0) {                       //---------------------------------  0
                     plainUsername = usernameedittext.getText().toString().trim();
 
+                    Log.d("TAG", "plainUsername: "+plainUsername);
                     boolean usernameflag = false;
                     if (plainUsername.equals("")) {
                         usernameflag = true;
@@ -1007,6 +1011,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
                     if (usernameflag == false) {
                         new ValidateUser().execute();
+//                        new ValidateUser().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                     }
 
                 }
@@ -1051,6 +1056,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                         lname = lnameEditText.getText().toString().trim();
                         mobile = mobileEditText.getText().toString().trim();
 
+
                         if (fname.length() < 1) {
                             errorFlagIntro = true;
                             fnameTextInputLayout.setError("Kindly provide your first name");
@@ -1067,20 +1073,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                             try {
 
 
-                                byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                                byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-                                String sPadding = "ISO10126Padding";
-
-                                byte[] fnameBytes = fname.getBytes("UTF-8");
-                                byte[] lnameBytes = lname.getBytes("UTF-8");
-                                byte[] mobileBytes = mobile.getBytes("UTF-8");
-
-                                byte[] fnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fnameBytes);
-                                encfname = new String(SimpleBase64Encoder.encode(fnameEncryptedBytes));
-                                byte[] lnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, lnameBytes);
-                                enclname = new String(SimpleBase64Encoder.encode(lnameEncryptedBytes));
-                                byte[] mobileEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, mobileBytes);
-                                encmobile = new String(SimpleBase64Encoder.encode(mobileEncryptedBytes));
+                                encfname=Encrypt(fname,digest1,digest2);
+                                enclname=Encrypt(fname,digest1,digest2);
+                                encmobile=Encrypt(fname,digest1,digest2);
 
                                 viewPager.setCurrentItem(2);
                                 addBottomDots(2, 4);
@@ -1680,7 +1675,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 MySharedPreferencesManager.save(Welcome.this, "nameKey", encUsersName);
 
             } catch (Exception e) {
-                Log.d("TAG", "ValidateUser doInBackground exp " + e.getMessage());
+                Log.d("TAG", "ValidateUser doInBackground enc exp " + e.getMessage());
             }
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -1697,7 +1692,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 Log.d("TAG", "ValidateUser json: " + json);
 
             } catch (Exception e) {
-                Log.d("TAG", "doInBackground 2 json  exp :  " + e.getMessage());
+                Log.d("TAG", "ValidateUser json  exp :  " + e.getMessage());
             }
 
             return s;

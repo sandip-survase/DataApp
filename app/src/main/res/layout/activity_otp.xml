@@ -15,11 +15,19 @@
         android:id="@+id/entertxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:text="Enter OTP"
-        android:textColor="#cccccc"
-        android:textSize="25dp" />
-
+        android:layout_centerHorizontal="true"
+        android:textSize="16dp"
+        android:textColor="@color/while_color"
+        />
+    <View
+        android:layout_below="@+id/entertxt"
+        android:id="@+id/viewv"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/sky_blue_color"
+        android:layout_marginTop="10dp"
+        />
     <ImageView
         android:id="@+id/otpClose"
         android:layout_width="15dp"
@@ -27,67 +35,70 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/close" />
-
-    <View
-        android:id="@+id/viewv"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/entertxt"
-        android:layout_marginTop="10dp"
-        android:background="#eeeeee" />
-
     <TextView
         android:id="@+id/otptxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/viewv"
         android:layout_marginTop="10dp"
-        android:text="Enter the One Time Password(OTP) sent to your mobile number"
-        android:textAlignment="center"
-        android:textColor="#eeeeee" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/while_color"
+        android:textSize="14dp"
+        android:text="Enter the One Time Password(OTP) sent to your registered email address."
+        />
 
-    <EditText
-        android:id="@+id/otp"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/otptxt"
-        android:ellipsize="start"
-        android:gravity="center_horizontal"
-        android:hint="OTP"
-        android:inputType="number"
-        android:textColor="#eeeeee"
-        android:theme="@style/MyEditTextTheme" />
+        android:id="@+id/otplayout"
+        android:layout_marginTop="20dp"
+        android:theme="@style/MyEditTextTheme"
+        >
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/otp"
+            android:hint="OTP"
+            android:layout_below="@+id/otptxt"
+            android:textColor="@color/while_color"
+            android:inputType="number"
+            android:textSize="16dp"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="start"
+            android:theme="@style/MyEditTextTheme"
+            />
+    </android.support.design.widget.TextInputLayout>
 
     <TextView
-        android:id="@+id/resend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/otp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="5dp"
         android:text="Resend OTP"
-        android:textColor="@android:color/holo_blue_bright"
-        android:textSize="15dp"
-        android:typeface="serif" />
-
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
+        android:id="@+id/resend"
+        android:layout_below="@+id/otplayout"
+        android:textSize="14dp"
+        android:textColor="@color/sky_blue_color"
+        />
     <ProgressBar
-        android:id="@+id/otpprogress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/resend"
         android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:id="@+id/otpprogress"
+        android:layout_below="@+id/resend"
         android:layout_marginTop="10dp"
-        android:visibility="gone" />
-
+        />
     <Button
         android:id="@+id/submitotp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Verify"
+        android:textSize="18dp"
+        android:textAllCaps="false"
         android:layout_below="@+id/resend"
         android:layout_marginTop="10dp"
-        android:background="@drawable/buttonborder"
-        android:text="Verify"
-        android:textAllCaps="false"
-        android:textSize="20dp" />
+        android:background="@drawable/textviewborder"
+        />
 </RelativeLayout>

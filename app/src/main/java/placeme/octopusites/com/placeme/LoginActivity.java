@@ -9,8 +9,11 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -57,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     String country = "", regionName = "", city = "", isp = "", countryCode = "", query = "";
     String enccountry, encregionName, enccity, encisp, enccountryCode, encquery;
     String digest1, digest2;
-
+    TextInputLayout usernameTextInputLayout,passwordTextInputLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,10 +71,53 @@ public class LoginActivity extends AppCompatActivity {
 
         usernameedittext = (EditText) findViewById(R.id.email);
         passwordedittext = (EditText) findViewById(R.id.password);
-        passwordedittext.setTypeface(Typeface.DEFAULT);
+        usernameTextInputLayout = (TextInputLayout) findViewById(R.id.usernameTextInputLayout);
+        passwordTextInputLayout = (TextInputLayout) findViewById(R.id.passwordTextInputLayout);
+
+        usernameedittext.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                usernameTextInputLayout.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        passwordedittext.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                passwordTextInputLayout.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        usernameedittext.setTypeface(MyConstants.getBold(this));
+        passwordedittext.setTypeface(MyConstants.getBold(this));
+        usernameTextInputLayout.setTypeface(MyConstants.getLight(this));
+        passwordTextInputLayout.setTypeface(MyConstants.getLight(this));
+
+
         login = (Button) findViewById(R.id.login);
+        login.setTypeface(MyConstants.getBold(this));
         loginprogress = (ProgressBar) findViewById(R.id.loginprogress);
         forgotpassword = (TextView) findViewById(R.id.forgot);
+        forgotpassword.setTypeface(MyConstants.getBold(this));
         forgotpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,17 +125,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         signup = (Button) findViewById(R.id.signup);
+        signup.setTypeface(MyConstants.getBold(this));
 
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/button.ttf");
-        signup.setTypeface(custom_font);
-        login.setTypeface(custom_font);
-
-        Typeface custom_font2 = Typeface.createFromAsset(getAssets(), "fonts/hint.ttf");
-        forgotpassword.setTypeface(custom_font2);
-
-        Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
-        usernameedittext.setTypeface(custom_font3);
-        passwordedittext.setTypeface(custom_font3);
+        TextView newp = (TextView)findViewById(R.id.newp);
+        newp.setTypeface(MyConstants.getBold(this));
 
         String otp = MySharedPreferencesManager.getData(LoginActivity.this,"otp");
 
@@ -114,19 +153,19 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (username.equals("")) {
                     flag1 = 1;
-                    usernameedittext.setError("Username cannot be blank");
+                    usernameTextInputLayout.setError("Kindly provide your email address");
                 }
                 if (!username.contains("@")) {
                     flag1 = 1;
-                    usernameedittext.setError("Invalid Username");
+                    usernameTextInputLayout.setError("Kindly provide valid email address");
                 }
                 if (password.equals("")) {
                     flag2 = 1;
-                    passwordedittext.setError("Password cannot be blank");
+                    passwordTextInputLayout.setError("Kindly provide your password");
                 }
                 if (password.length() < 4) {
                     flag2 = 1;
-                    passwordedittext.setError("Invalid Password");
+                    passwordTextInputLayout.setError("Kindly provide valid password");
                 }
                 if (flag1 == 0 && flag2 == 0) {
 
@@ -269,7 +308,7 @@ public class LoginActivity extends AppCompatActivity {
             if (success == 2) {
 
                 passwordedittext.setText("");
-                Toast.makeText(LoginActivity.this, "No Internet Connection..!", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "No internet connection ! Please check your internet connection", Toast.LENGTH_LONG).show();
             } else {
                 new Thread(new Runnable() {
                     @Override
@@ -316,13 +355,13 @@ public class LoginActivity extends AppCompatActivity {
                 }).start();
             }
             if (success == 6) {
-                Toast.makeText(LoginActivity.this, "You are already registered but not verified.Enter OTP sent on Email", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "You are already registered but not verified. Enter OTP sent on your registered email address", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(LoginActivity.this, OTPActivity.class));
             } else if (resultofop.equals("notpresent")) {
-                Toast.makeText(LoginActivity.this, "Incorrect Username. If you are a new user, please Sign Up.", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "Incorrect email address. If you are a new user, please Sign Up.", Toast.LENGTH_LONG).show();
                 passwordedittext.setText("");
             } else if (resultofop.equals("fail")) {
-                Toast.makeText(LoginActivity.this, "Incorrect Password..!", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "Incorrect Password !", Toast.LENGTH_LONG).show();
                 passwordedittext.setText("");
             } else {
                 passwordedittext.setText("");

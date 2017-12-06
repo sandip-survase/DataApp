@@ -75,7 +75,8 @@ public class StudentRoleSelected extends AppCompatActivity {
         instcodeTextInputLayout = (TextInputLayout)findViewById(R.id.instcodeTextInputLayout);
         instcode = (EditText)findViewById(R.id.instcode);
         fadeandmove(instcodeTextInputLayout);
-
+        instcode.setTypeface(MyConstants.getBold(this));
+        instcodeTextInputLayout.setTypeface(MyConstants.getLight(this));
         instcode.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -132,9 +133,9 @@ public class StudentRoleSelected extends AppCompatActivity {
                         new checkUcode().execute(instituteCode);
                     }
                     else
-                        instcodeTextInputLayout.setError("Kindly provide correct institute code provided by placeme.");
+                        instcodeTextInputLayout.setError("Kindly provide correct institute code provided by Place Me.");
                 else
-                    instcodeTextInputLayout.setError("Kindly provide your institute code provided by placeme.");
+                    instcodeTextInputLayout.setError("Kindly provide your institute code provided by Place Me.");
             }
         });
 

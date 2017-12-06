@@ -37,7 +37,7 @@
             android:background="#282f35"
             android:visibility="gone"
             app:tabMode="scrollable"
-            app:tabSelectedTextColor="#c5916d"
+            app:tabSelectedTextColor="@color/sky_blue_color"
             app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
             app:tabTextColor="@color/white" />
 
