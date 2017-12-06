@@ -54,7 +54,6 @@ public class MyProfileKnownLang extends AppCompatActivity {
     StudentData s=new StudentData();
 
     public static final String MyPREFERENCES = "MyPrefs" ;
-
     public static final String Username = "nameKey";
 
     String username,role,encObjString="";

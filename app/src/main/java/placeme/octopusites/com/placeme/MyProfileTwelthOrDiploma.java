@@ -640,8 +640,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
-
                 doutofsem6.setError(null);
 
                 try {
