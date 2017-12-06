@@ -4757,7 +4757,10 @@ public class MyProfilePatents extends AppCompatActivity {
                 return view;
             }
         };
-        ;
+
+
+
+
         patoffice1.setAdapter(dataAdapter);
         patoffice2.setAdapter(dataAdapter);
         patoffice3.setAdapter(dataAdapter);
