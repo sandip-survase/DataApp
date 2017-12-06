@@ -320,7 +320,7 @@
             android:layout_marginTop="30dp"
             android:text="Add Another Location"
             android:textColor="@color/while_color"
-            android:textSize="20dp" />
+            android:textSize="18dp" />
 
         <ImageView
             android:elevation="8dp"

@@ -584,7 +584,7 @@
             android:elevation="8dp"
             android:text="Add Another Strength"
             android:textColor="@color/while_color"
-            android:textSize="20dp" />
+            android:textSize="18dp" />
 
         <ImageView
             android:id="@+id/addmorestrengthimg"
