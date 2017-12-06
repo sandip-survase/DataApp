@@ -9,13 +9,9 @@ import android.graphics.Typeface;
 
 public class MyConstants {
 
-
-
     public static final int USER_DATA_CHANGE_RESULT_CODE=888;
     public static final String USERNAME_KEY = "nameKey";
     public static final String PASSWORD_KEY = "passKey";
-
-
 
     //-----------------------------------   PlaceMe   ---------------------------------
 
@@ -73,6 +69,8 @@ public class MyConstants {
 
     public static final String url_SaveStdalmContact= "http://192.168.100.10/ProfileObjects/SaveStdAlmContact";
     public static final String url_SaveHrContact= "http://192.168.100.10/ProfileObjects/SaveHrContact";
+    public static final String url_savedata_twelth = "http://192.168.100.10/ProfileObjects/SaveTwelth";
+    public static final String url_savedata_diploma = "http://192.168.100.10/ProfileObjects/SaveDiploma";
 
     public static final String URL_SAVE_HR_CONTACT_DETAILS = "http://192.168.100.100/AESTest/SaveHrContact";
     public static final String url_savedata = "http://192.168.100.10/ProfileObjects/SaveTenth";
@@ -146,7 +144,9 @@ public class MyConstants {
 
     public static String url_getstreams = "http://192.168.100.100/AESTest/GetUGStreams";
     public static String url_getuniversities = "http://192.168.100.100/AESTest/GetUGUniversities";
+
     public static String url_savedata_ug = "http://192.168.100.10/ProfileObjects/SaveUg";
+
     public static String url_getpgcourses = "http://192.168.100.100/AESTest/GetPGCourses";
     public static String url_getpgstreams = "http://192.168.100.100/AESTest/GetPGStreams";
     public static String url_getpguniversities = "http://192.168.100.100/AESTest/GetPGUniversities";

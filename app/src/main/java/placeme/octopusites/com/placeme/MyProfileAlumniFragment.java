@@ -384,9 +384,6 @@ public class MyProfileAlumniFragment extends Fragment {
         demoIVBytes = SimpleBase64Encoder.decode(digest2);
         sPadding = "ISO10126Padding";
         try {
-//
-
-
             byte[] usernameEncryptedBytes = SimpleBase64Encoder.decode(username);
             byte[] usernameDecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, usernameEncryptedBytes);
             plainusername = new String(usernameDecryptedBytes);

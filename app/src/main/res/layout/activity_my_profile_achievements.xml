@@ -104,6 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput1"
                 android:layout_marginTop="10dp"
+                android:id="@+id/decrinput1"
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
@@ -226,6 +227,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput2"
+
+                android:id="@+id/decrinput2"
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
@@ -348,6 +351,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput3"
                 android:layout_marginTop="10dp"
+                android:id="@+id/decrinput3"
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
@@ -469,6 +473,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput4"
                 android:layout_marginTop="10dp"
+                android:id="@+id/decrinput4"
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
@@ -590,6 +595,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput5"
                 android:layout_marginTop="10dp"
+                android:id="@+id/decrinput5"
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
@@ -711,6 +717,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput6"
                 android:layout_marginTop="10dp"
+                android:id="@+id/decrinput6"
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
@@ -832,6 +839,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput7"
                 android:layout_marginTop="10dp"
+                android:id="@+id/decrinput7"
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
@@ -953,6 +961,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput8"
                 android:layout_marginTop="10dp"
+                android:id="@+id/decrinput8"
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
@@ -1076,6 +1085,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput9"
                 android:layout_marginTop="10dp"
+                android:id="@+id/decrinput9"
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
@@ -1196,6 +1206,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput10"
                 android:layout_marginTop="10dp"
+                android:id="@+id/decrinput10"
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText

@@ -654,10 +654,10 @@ public class MyProfileFragment extends Fragment {
                         studentData.setYearofpassing10(obj2.monthandyearofpassing);
                         studentData.setBoard10(obj2.selectedBoard);
 
-
                     }
 
                     s = json.getString("ug");
+
                     if (s.equals("found")) {
                         found_ug = 1;
                         Log.d("TAG", "found_ug===:-" + found_ug);
@@ -1189,7 +1189,9 @@ public class MyProfileFragment extends Fragment {
                         studentData.setEnddate3certificate(enddate3certificate);
                         studentData.setWillexpire3certificate(willexpire3certificate);
                         studentData.setTitle4(title4);
+
                         studentData.setIssuer4(issuer4);
+                        Log.d("TAG", "doInBackground: issuer4 - "+issuer4);
                         studentData.setLicense4(license4);
                         studentData.setStartdate4certificate(startdate4certificate);
                         studentData.setEnddate4certificate(enddate4certificate);

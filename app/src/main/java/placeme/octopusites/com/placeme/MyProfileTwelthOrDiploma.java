@@ -97,8 +97,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
     String strobj,strobj2;
 
-    public static String url_savedata_twelth = "http://192.168.100.30:8080/ProfileObjects/SaveTwelth";
-    public static String url_savedata_diploma = "http://192.168.100.30:8080/ProfileObjects/SaveDiploma";
 
 
 
@@ -2263,7 +2261,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             params.add(new BasicNameValuePair("obj", strobj));        //1
 
 
-            json = jParser.makeHttpRequest(url_savedata_twelth, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_savedata_twelth, "GET", params);
             try {
                 r = json.getString("info");
 
@@ -2333,7 +2331,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", username));    //0
             params.add(new BasicNameValuePair("obj1", strobj2));        //1
 
-            json = jParser.makeHttpRequest(url_savedata_diploma, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_savedata_diploma, "GET", params);
             try {
                 r = json.getString("info");
 
