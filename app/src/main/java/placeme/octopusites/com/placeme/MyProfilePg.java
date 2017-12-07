@@ -351,20 +351,6 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=pmarkssem1.getText().toString();
-//                    String s2=poutofsem1.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem1.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
                 poutofsem1input.setError(null);
 
@@ -412,22 +398,6 @@ public class MyProfilePg extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-//                try {
-//
-//                    String s1=pmarkssem2.getText().toString();
-//                    String s2=poutofsem2.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem2.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
                 poutofsem2input.setError(null);
 
                 try {
@@ -473,21 +443,6 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=pmarkssem2.getText().toString();
-//                    String s2=poutofsem2.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem2.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
 
                 poutofsem2input.setError(null);
 
@@ -534,20 +489,6 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=pmarkssem3.getText().toString();
-//                    String s2=poutofsem3.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem3.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
                 poutofsem3input.setError(null);
 
@@ -594,22 +535,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=pmarkssem3.getText().toString();
-//                    String s2=poutofsem3.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem3.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
                 poutofsem3input.setError(null);
 
                 try {
@@ -655,21 +581,6 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=pmarkssem4.getText().toString();
-//                    String s2=poutofsem4.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem4.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
 
                 poutofsem4input.setError(null);
 
@@ -716,21 +627,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=pmarkssem4.getText().toString();
-//                    String s2=poutofsem4.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem4.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
 
                 poutofsem4input.setError(null);
 
@@ -777,21 +674,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=pmarkssem5.getText().toString();
-//                    String s2=poutofsem5.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem5.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
 
                 poutofsem5input.setError(null);
 
@@ -838,22 +721,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=pmarkssem5.getText().toString();
-//                    String s2=poutofsem5.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem5.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
                 poutofsem5input.setError(null);
 
                 try {
@@ -899,21 +767,6 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=pmarkssem6.getText().toString();
-//                    String s2=poutofsem6.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem6.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
 
                 poutofsem6input.setError(null);
 
@@ -960,22 +813,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=pmarkssem6.getText().toString();
-//                    String s2=poutofsem6.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem6.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
                 poutofsem6input.setError(null);
 
                 try {
@@ -1074,21 +912,6 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=pmarksyear1.getText().toString();
-//                    String s2=poutofyear1.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentyear1.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
 
                 poutofyear1input.setError(null);
 
@@ -1135,22 +958,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=pmarksyear1.getText().toString();
-//                    String s2=poutofyear1.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentyear1.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
                 poutofyear1input.setError(null);
 
                 try {
@@ -1196,20 +1004,6 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=pmarksyear2.getText().toString();
-//                    String s2=poutofyear2.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentyear2.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
 
                 poutofyear2input.setError(null);
@@ -1257,21 +1051,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=pmarksyear2.getText().toString();
-//                    String s2=poutofyear2.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentyear2.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
 
                 poutofyear2input.setError(null);
 
@@ -1318,21 +1098,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=pmarksyear3.getText().toString();
-//                    String s2=poutofyear3.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentyear3.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
 
                 poutofyear3input.setError(null);
 
@@ -1379,21 +1145,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=pmarksyear3.getText().toString();
-//                    String s2=poutofyear3.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentyear3.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
 
                 poutofyear3input.setError(null);
 
@@ -2434,27 +2186,6 @@ public class MyProfilePg extends AppCompatActivity {
             Log.d("TAG", "validateandSave: setBlankYear selectedStreampgyear - "+selectedStreampgyear);
             Log.d("TAG", "validateandSave: setBlankYear courseYear - "+selectedCoursepgyear);
 
-//            pmarkssem1.setError(null);
-//            poutofsem1.setError(null);
-//            ppercentsem1.setError(null);
-//            pmarkssem2.setError(null);
-//            poutofsem2.setError(null);
-//            ppercentsem2.setError(null);
-//            pmarkssem3.setError(null);
-//            poutofsem3.setError(null);
-//            ppercentsem3.setError(null);
-//            pmarkssem4.setError(null);
-//            poutofsem4.setError(null);
-//            ppercentsem4.setError(null);
-//            pmarkssem5.setError(null);
-//            poutofsem5.setError(null);
-//            ppercentsem5.setError(null);
-//            pmarkssem6.setError(null);
-//            poutofsem6.setError(null);
-//            ppercentsem6.setError(null);
-//            pgsemaggregate.setError(null);
-//            schoolnamepgsem.setError(null);
-//            yearofpassingpgsem.setError(null);
 
             markssem1 = pmarkssem1.getText().toString();
             outofsem1 = poutofsem1.getText().toString();

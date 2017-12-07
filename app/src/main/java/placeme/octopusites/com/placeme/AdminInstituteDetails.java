@@ -366,7 +366,6 @@ public class AdminInstituteDetails extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.savemenu, menu);
         return super.onCreateOptionsMenu(menu);
-
     }
 
     @Override
@@ -457,12 +456,6 @@ public class AdminInstituteDetails extends AppCompatActivity {
             }
         }
     }
-
-
-
-
-
-
 
 }
 

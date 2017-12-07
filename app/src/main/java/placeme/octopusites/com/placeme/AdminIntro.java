@@ -65,12 +65,6 @@ public class AdminIntro extends AppCompatActivity {
     TextInputLayout fnameTextInputLayout, lnameTextInputLayout, roleinputlayout,instinputlayout, emailinputlayout, citystaecountryinputlayout;
 
 
-    private static String url_getcountries = "http://192.168.100.100/AESTest/GetCountries";
-    private static String url_getstates= "http://192.168.100.100/AESTest/GetStates";
-    private static String url_getcities= "http://192.168.100.100/AESTest/GetCities";
-
-
-
 
     int countrycount=0,statecount=0,citycount=0;
     String firstname="",lastname="",instname="",CityStateCountry="";
@@ -399,7 +393,7 @@ public class AdminIntro extends AppCompatActivity {
             } else {
                 lnameTextInputLayout.setError(null);
                 if (instname.length() < 2) {
-                    lnameTextInputLayout.setError("Kindly enter valid last name");
+                    instinputlayout.setError("Kindly enter valid institute name");
                     errorflag3 = 1;
                 } else {
                     instinputlayout.setError(null);

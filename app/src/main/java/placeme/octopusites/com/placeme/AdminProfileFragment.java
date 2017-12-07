@@ -303,10 +303,6 @@ String experiencesataobject="";
         contactpersonalemail.setTypeface(MyConstants.getBold(getActivity()));
         contactmobile.setTypeface(MyConstants.getBold(getActivity()));
 
-
-//        trytxt.setTypeface(custom_font11);
-
-
         introedit = (ImageView) rootView.findViewById(R.id.introedit);
         eduedit = (ImageView) rootView.findViewById(R.id.eduedit);
         accomplishmentsedit = (ImageView) rootView.findViewById(R.id.accomplishmentsedit);
@@ -342,7 +338,6 @@ String experiencesataobject="";
                 startActivityForResult(new Intent(getActivity(), MyProfileContact.class),0);
             }
         });
-
 
         myprofileimg.setOnClickListener(new View.OnClickListener() {
             @Override

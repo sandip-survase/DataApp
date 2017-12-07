@@ -1843,12 +1843,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                     else
                         selectedboardBytes1 = selectedBoard12;
 
-
-                    // enc deploma blank
-
-
-
-
                     new SaveDataTwelth().execute();
 
                     new SaveDataDiploma().execute();

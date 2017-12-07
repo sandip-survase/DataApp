@@ -470,7 +470,7 @@ public class HrCompanyDetails extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", encUsername));
             params.add(new BasicNameValuePair("d", encobj));       //1
 
-            json = jsonParser.makeHttpRequest(MyConstants.url_savedata_SaveHrCompany, "GET", params);
+            json = jsonParser.makeHttpRequest(MyConstants.url_SaveHrCompany, "GET", params);
             try {
                 r = json.getString("info");
 

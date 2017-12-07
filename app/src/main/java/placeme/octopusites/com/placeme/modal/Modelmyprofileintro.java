@@ -49,7 +49,7 @@ public class Modelmyprofileintro implements Serializable {
 
     public String firstname,lastname,selectedCountry,selectedState,selectedCity ;
 
-    public Modelmyprofileintro(String firstname,String lastname,String selectedCountry,String selectedState,String selectedCity)
+    public Modelmyprofileintro(String firstname,String lastname,String selectedCity ,String selectedState,String selectedCountry)
     {
         this.firstname=firstname;
         this.lastname=lastname;

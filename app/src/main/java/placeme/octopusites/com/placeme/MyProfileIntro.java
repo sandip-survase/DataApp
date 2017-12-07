@@ -397,7 +397,7 @@ public class MyProfileIntro extends AppCompatActivity {
             Log.d("TAG", "encobj: " + encobj);
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_savedata_SaveIntro, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_SaveIntro, "GET", params);
             try {
                 r = json.getString("info");
                 Log.d("TAG", "doInBackground: r -" + r);

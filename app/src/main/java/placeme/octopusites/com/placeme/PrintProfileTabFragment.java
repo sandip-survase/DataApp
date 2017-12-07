@@ -52,7 +52,8 @@ public class PrintProfileTabFragment extends Fragment {
     ImageView template1,template2,template3,template4,template5,template6,template7,template8,template9,template10,template11,template12,template13,template14,template15,template16,template17,template18,template19,template20;
     int resumeIds[];
     int count=0,setFlag=0;
-    private static String load_resume_ids = "http://192.168.100.10:8080/AESTest/GetMyResumeIds";
+
+    private static String load_resume_ids = "http://192.168.100.10/AESTest/GetMyResumeIds";
     private static String load_resume_thumbnail= "http://192.168.100.10/AESTest/GetResumeThumbnail";
     private static String load_student_data = "http://192.168.100.10/ProfileObjects/GetStudentData";
 

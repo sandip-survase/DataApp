@@ -378,38 +378,6 @@ public class HRProfileFragment extends Fragment {
         });
 
 
-//        eduedit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(getActivity(),MyProfileEdu.class).putExtra("username",username));
-//            }
-//        });
-//        projectsedit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(getActivity(),MyProfileProjects.class).putExtra("username",username));
-//            }
-//        });
-//        accomplishmentsedit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(getActivity(),MyProfileAccomplishments.class).putExtra("username",username));
-//            }
-//        });
-//        careeredit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(getActivity(),MyProfileCareerDetails.class).putExtra("username",username));
-//            }
-//        });
-//        contactedit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(getActivity(),MyProfileContact.class).putExtra("username",username));
-//            }
-//        });
-//
-//
         myprofileimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
