@@ -1377,7 +1377,6 @@ public class MyProfilePg extends AppCompatActivity {
                     }
                 });
 
-
                 cancelselectionview.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -1394,12 +1393,14 @@ public class MyProfilePg extends AppCompatActivity {
             }
         });
 
-
-
-
         radioGroupPg=(RadioGroup)findViewById(R.id.radioGroupPg);
         radioButtonPgSem=(RadioButton)findViewById(R.id.radioButtonPgSem);
         radioButtonPgYear=(RadioButton)findViewById(R.id.radioButtonPgYear);
+
+
+        radioButtonPgSem.setTypeface(MyConstants.getBold(this));
+        radioButtonPgYear.setTypeface(MyConstants.getBold(this));
+
 
         radioGroupPg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
