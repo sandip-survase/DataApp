@@ -399,7 +399,7 @@ public class AdminIntro extends AppCompatActivity {
             } else {
                 lnameTextInputLayout.setError(null);
                 if (instname.length() < 2) {
-                    lnameTextInputLayout.setError("Kindly enter valid last name");
+                    instinputlayout.setError("Kindly enter valid institute name");
                     errorflag3 = 1;
                 } else {
                     instinputlayout.setError(null);
