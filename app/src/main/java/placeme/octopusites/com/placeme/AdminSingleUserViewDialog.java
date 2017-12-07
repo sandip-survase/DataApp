@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +40,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
     int flag = 0;
     CheckBox checkboxplaced, checkboxnotplaced, CheckBoxdebar, CheckBoxsnotdebar, checkboxstudent, checkboxalumni;
     EditText email, companyname;
+    TextInputLayout emailinput,companynameinput;
     String PLACED = "", DEBAR = "", ROLE = "";
     String username,strcompanyname,isactivated;
     String encUsername,encCompanyname,encPlaced,encdebar,encadminUsername;
@@ -50,6 +52,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
     String sPadding;
     ImageView trash2ImageView;
     Boolean changeFlag=false;
+    TextView ass2txt,passpasstxt,placementstatus2txt,debarstatus2txt,rolestatus2txt;
 
 
 
@@ -75,9 +78,38 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
         trash2ImageView= (ImageView) findViewById(R.id.trash2);
         //default
 
+        checkboxplaced.setTypeface(MyConstants.getBold(this));
+        checkboxnotplaced.setTypeface(MyConstants.getBold(this));
+        CheckBoxdebar.setTypeface(MyConstants.getBold(this));
+        CheckBoxsnotdebar.setTypeface(MyConstants.getBold(this));
+        checkboxstudent.setTypeface(MyConstants.getBold(this));
+        checkboxalumni.setTypeface(MyConstants.getBold(this));
 
+
+
+        ass2txt=(TextView)findViewById(R.id.ass2txt);
+        passpasstxt=(TextView)findViewById(R.id.passpasstxt);
+        placementstatus2txt=(TextView)findViewById(R.id.placementstatus2txt);
+        debarstatus2txt=(TextView)findViewById(R.id.debarstatus2txt);
+        rolestatus2txt=(TextView)findViewById(R.id.rolestatus2txt);
+
+        ass2txt.setTypeface(MyConstants.getBold(this));
+        passpasstxt.setTypeface(MyConstants.getLight(this));
+        placementstatus2txt.setTypeface(MyConstants.getLight(this));
+        debarstatus2txt.setTypeface(MyConstants.getLight(this));
+        rolestatus2txt.setTypeface(MyConstants.getLight(this));
+
+
+        emailinput=(TextInputLayout)findViewById(R.id.emailinput);
+        companynameinput=(TextInputLayout)findViewById(R.id.companynameinput);
         email = (EditText) findViewById(R.id.email);
         companyname = (EditText) findViewById(R.id.companyname);
+
+        emailinput.setTypeface(MyConstants.getLight(this));
+        companynameinput.setTypeface(MyConstants.getLight(this));
+
+        email.setTypeface(MyConstants.getBold(this));
+        companyname.setTypeface(MyConstants.getBold(this));
 
         demoKeyBytes = SimpleBase64Encoder.decode(MySharedPreferencesManager.getDigest1(AdminSingleUserViewDialog.this));
         demoIVBytes = SimpleBase64Encoder.decode(MySharedPreferencesManager.getDigest2(AdminSingleUserViewDialog.this));
@@ -140,20 +172,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
         });
 
 
-        TextView ass2txt = (TextView) findViewById(R.id.ass2txt);
-        TextView passpasstxt = (TextView) findViewById(R.id.passpasstxt);
-        TextView placementstatus2txt = (TextView) findViewById(R.id.placementstatus2txt);
-        TextView debarstatus2txt = (TextView) findViewById(R.id.debarstatus2txt);
-        TextView rolestatus2txt = (TextView) findViewById(R.id.rolestatus2txt);
 
-        Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/cabinsemibold.ttf");
-        Typeface custom_font4 = Typeface.createFromAsset(getAssets(), "fonts/maven.ttf");
-
-        ass2txt.setTypeface(custom_font4);
-        placementstatus2txt.setTypeface(custom_font4);
-        debarstatus2txt.setTypeface(custom_font4);
-        rolestatus2txt.setTypeface(custom_font4);
-        passpasstxt.setTypeface(custom_font4);
 
         checkboxplaced.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -403,7 +422,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
             if(checkboxplaced.isChecked()) {
                 if(strcompanyname.length()<1) {
                     errorflag=1;
-                    companyname.setError("If candidate is placed company name field can not be empty");
+                    companynameinput.setError("Kindly enter valid company name");
                 }
             }
 

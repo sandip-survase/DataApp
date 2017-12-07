@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35">
+    android:background="@color/while_color">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -18,14 +18,15 @@
             android:layout_height="match_parent"
             android:id="@+id/edituserrl"
             android:layout_marginTop="20dp"
-            android:background="@drawable/boxborderwhite"
+            android:background="@drawable/boxborder"
+            android:elevation="6dp"
             android:padding="16dp"
             >
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/trash"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/delete_icon"
                 android:id="@+id/trash2"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="5dp"
@@ -43,8 +44,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Edit email address"
-                android:textSize="12dp"
-                android:textColor="#bbb"
+                android:textSize="14dp"
+                android:textColor="@color/dark_color"
                 android:id="@+id/ass2txt"
                 />
 
@@ -61,11 +62,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter email address"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:textColor="#eee"
-                    android:id="@+id/email"/>
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
+                    android:inputType="textEmailAddress"
+                    android:digits="abcdefghijklmnopqrstuvwxyz0123456789@._"
+                    android:id="@+id/email"
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -75,7 +80,7 @@
                 android:text="An email will be sent to this email address containing link to download the app, their edited username and dynamically generated password."
                 android:layout_below="@+id/emailinput"
                 android:id="@+id/passpasstxt"
-                android:textColor="#bbb"
+                android:textColor="@color/dark_color"
                 android:textSize="12dp"
                 android:paddingTop="5dp"
                 />
@@ -83,7 +88,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#c59a6d"
+                android:background="@color/sky_blue_color"
                 android:layout_below="@+id/passpasstxt"
                 android:layout_marginTop="5dp"
                 android:id="@+id/line11"
@@ -96,7 +101,7 @@
                 android:layout_below="@+id/line11"
                 android:layout_marginTop="5dp"
                 android:textSize="12dp"
-                android:textColor="#bbb"
+                android:textColor="@color/dark_color"
                 android:id="@+id/placementstatus2txt"
                 />
 
@@ -108,7 +113,7 @@
                 android:text="Placed"
                 android:layout_marginTop="10dp"
                 android:theme="@style/MyCheckBox"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:layout_marginLeft="14dp"
                 />
             <CheckBox
@@ -120,7 +125,7 @@
                 android:text="Not Placed"
                 android:layout_marginTop="10dp"
                 android:theme="@style/MyCheckBox"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:layout_marginLeft="20dp"
                 />
 
@@ -136,9 +141,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Company Name"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#bbb"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:id="@+id/companyname"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -146,7 +152,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#c59a6d"
+                android:background="@color/sky_blue_color"
                 android:layout_below="@+id/companynameinput"
                 android:layout_marginTop="5dp"
                 android:id="@+id/line22"
@@ -158,7 +164,7 @@
                 android:text="Debar Status"
                 android:layout_below="@+id/line22"
                 android:textSize="12dp"
-                android:textColor="#bbb"
+                android:textColor="@color/dark_color"
                 android:layout_marginTop="5dp"
                 android:id="@+id/debarstatus2txt"
                 />
@@ -171,7 +177,7 @@
                 android:text="Debarred"
                 android:layout_marginTop="10dp"
                 android:theme="@style/MyCheckBox"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:layout_marginLeft="14dp"
                 />
             <CheckBox
@@ -183,13 +189,13 @@
                 android:text="Not Debarred"
                 android:layout_marginTop="10dp"
                 android:theme="@style/MyCheckBox"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:layout_marginLeft="20dp"
                 />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#c59a6d"
+                android:background="@color/sky_blue_color"
                 android:layout_below="@+id/CheckBoxsnotdebar"
                 android:layout_marginTop="5dp"
                 android:id="@+id/line33"
@@ -200,7 +206,7 @@
                 android:layout_height="wrap_content"
                 android:text="Change Role"
                 android:layout_below="@+id/line33"
-                android:textColor="#bbb"
+                android:textColor="@color/dark_color"
                 android:textSize="12dp"
                 android:layout_marginTop="5dp"
                 android:id="@+id/rolestatus2txt"
@@ -214,7 +220,7 @@
                 android:text="Student"
                 android:layout_marginTop="10dp"
                 android:theme="@style/MyCheckBox"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:layout_marginLeft="14dp"
                 />
             <CheckBox
@@ -226,7 +232,7 @@
                 android:text="Alumni"
                 android:layout_marginTop="10dp"
                 android:theme="@style/MyCheckBox"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:layout_marginLeft="20dp"
                 />
 

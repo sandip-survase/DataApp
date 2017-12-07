@@ -389,7 +389,10 @@
             android:name=".EditProfileAlumni"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AdminSingleUserViewDialog" />
+
+        <activity android:name=".AdminSingleUserViewDialog"
+            android:theme="@style/MyFormTheme"/>
+
         <activity android:name=".WelcomeGenrateCodeActivity"
             android:theme="@style/AppFullScreenTheme"
             />
