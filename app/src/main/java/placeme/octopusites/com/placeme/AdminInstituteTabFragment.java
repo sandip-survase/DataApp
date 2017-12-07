@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -34,6 +35,7 @@ public class AdminInstituteTabFragment extends Fragment {
     public static final String Username = "nameKey";
     EditText iname, iemail, iweb, iphone, ialtphone, uniname, ireg;
     String instname = "", instemail = "", instweb = "", instphone = "", instaltrphone = "", universityname = "", instreg = "", strobj = "";
+    TextInputLayout instnameinput,instemailinput,instwebinput,instphoneinput,instphoneainput,instuniversityinput,instreginput;
     String encUsername, enciname, encinstemail, encinstweb, encinstphone, encinstaltrphone, encuniversityname, encCinstreg;
     int errorflag1 = 0, errorflag2 = 0, errorflag3 = 0, errorflag4 = 0, errorflag5 = 0, errorflag6 = 0, errorflag7 = 0;
     String digest1, digest2;
@@ -58,6 +60,22 @@ public class AdminInstituteTabFragment extends Fragment {
         String role=MySharedPreferencesManager.getRole(getActivity());
         encUsername = username;
 
+        instnameinput=(TextInputLayout)rootView.findViewById(R.id.instnameinput);
+        instemailinput=(TextInputLayout)rootView.findViewById(R.id.instnameinput);
+        instwebinput=(TextInputLayout)rootView.findViewById(R.id.instnameinput);
+        instphoneinput=(TextInputLayout)rootView.findViewById(R.id.instnameinput);
+        instphoneainput=(TextInputLayout)rootView.findViewById(R.id.instnameinput);
+        instuniversityinput=(TextInputLayout)rootView.findViewById(R.id.instnameinput);
+        instreginput=(TextInputLayout)rootView.findViewById(R.id.instnameinput);
+
+        instnameinput.setTypeface(MyConstants.getLight(getActivity()));
+        instemailinput.setTypeface(MyConstants.getLight(getActivity()));
+        instwebinput.setTypeface(MyConstants.getLight(getActivity()));
+        instphoneinput.setTypeface(MyConstants.getLight(getActivity()));
+        instphoneainput.setTypeface(MyConstants.getLight(getActivity()));
+        instuniversityinput.setTypeface(MyConstants.getLight(getActivity()));
+        instreginput.setTypeface(MyConstants.getLight(getActivity()));
+
         iname = (EditText) rootView.findViewById(R.id.instname);
         iemail = (EditText) rootView.findViewById(R.id.instemail);
         iweb = (EditText) rootView.findViewById(R.id.instweb);
@@ -65,6 +83,15 @@ public class AdminInstituteTabFragment extends Fragment {
         ialtphone = (EditText) rootView.findViewById(R.id.instphonea);
         uniname = (EditText) rootView.findViewById(R.id.instuniversity);
         ireg = (EditText) rootView.findViewById(R.id.instreg);
+
+        iname.setTypeface(MyConstants.getBold(getActivity()));
+        iemail.setTypeface(MyConstants.getBold(getActivity()));
+        iweb.setTypeface(MyConstants.getBold(getActivity()));
+        iphone.setTypeface(MyConstants.getBold(getActivity()));
+        ialtphone.setTypeface(MyConstants.getBold(getActivity()));
+        uniname.setTypeface(MyConstants.getBold(getActivity()));
+        ireg.setTypeface(MyConstants.getBold(getActivity()));
+
 //        save=(Button)rootView.findViewById(R.id.savepersonal);
 //        saveprogress=(ProgressBar) rootView.findViewById(R.id.personalprogress);
 
@@ -100,6 +127,7 @@ public class AdminInstituteTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                instnameinput.setError(null);
             }
 
             @Override
@@ -116,6 +144,7 @@ public class AdminInstituteTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                instemailinput.setError(null);
             }
 
             @Override
@@ -132,6 +161,7 @@ public class AdminInstituteTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                instwebinput.setError(null);
             }
 
             @Override
@@ -148,6 +178,7 @@ public class AdminInstituteTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                instphoneinput.setError(null);
             }
 
             @Override
@@ -164,6 +195,7 @@ public class AdminInstituteTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                instphoneainput.setError(null);
             }
 
             @Override
@@ -180,6 +212,7 @@ public class AdminInstituteTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                instuniversityinput.setError(null);
             }
 
             @Override
@@ -196,6 +229,7 @@ public class AdminInstituteTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                instreginput.setError(null);
 
             }
 
@@ -227,33 +261,33 @@ public class AdminInstituteTabFragment extends Fragment {
         instreg = ireg.getText().toString();
 
         if (instname.length() < 2) {
-            iname.setError("Incorrect Institute Name");
+            instnameinput.setError("Kindly enter valid institute name");
 
             errorflag7 = 1;
 
         } else {
-            if (!instemail.contains("@")) {
-                iemail.setError("Incorrect Email Address");
+            if (!instemail.contains("@") || (!instemail.contains(".edu"))) {
+                instemailinput.setError("Kindly enter valid email address");
                 errorflag1 = 1;
             } else {
                 if (instweb.length() < 3 && !instweb.contains(".")) {
-                    iweb.setError("Incorrect Web Address");
+                    instwebinput.setError("Kindly enter valid website URL");
                     errorflag2 = 1;
                 } else {
                     if (instphone.length() < 6) {
-                        iphone.setError("Incorrect phone number ");
+                        instphoneinput.setError("Kindly enter valid phone number ");
                         errorflag3 = 1;
                     } else {
                         if (instaltrphone.length() < 6) {
-                            ialtphone.setError("Incorrect phone number ");
+                            instphoneainput.setError("Kindly enter valid phone number");
                             errorflag4 = 1;
                         } else {
                             if (universityname.length() < 2) {
-                                uniname.setError("Incorrect phone number ");
+                                instuniversityinput.setError("Kindly enter valid university name");
                                 errorflag5 = 1;
                             } else {
                                 if (instreg.length() < 2) {
-                                    ireg.setError("Incorrect Registration number ");
+                                    instreginput.setError("Kindly enter valid registration number");
                                     errorflag6 = 1;
                                 }
                             }
