@@ -33,12 +33,12 @@ public class AdminAccomplishments extends AppCompatActivity {
         TextView honortxt=(TextView)findViewById(R.id.honortxt);
         TextView patenttxt=(TextView)findViewById(R.id.patenttxt);
         TextView publicationtxt=(TextView)findViewById(R.id.publicationtxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");
-        knownlangtxt.setTypeface(custom_font1);
-        skillstxt.setTypeface(custom_font1);
-        honortxt.setTypeface(custom_font1);
-        patenttxt.setTypeface(custom_font1);
-        publicationtxt.setTypeface(custom_font1);
+
+        knownlangtxt.setTypeface(MyConstants.getBold(this));
+        skillstxt.setTypeface(MyConstants.getBold(this));
+        honortxt.setTypeface(MyConstants.getBold(this));
+        patenttxt.setTypeface(MyConstants.getBold(this));
+        publicationtxt.setTypeface(MyConstants.getBold(this));
 
         knownlang=(View)findViewById(R.id.studentBlock);
         skills=(View)findViewById(R.id.alumniBlock);

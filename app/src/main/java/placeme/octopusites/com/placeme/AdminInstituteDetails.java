@@ -56,7 +56,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
     JSONObject json;
     JSONParser jParser = new JSONParser();
 
-    private static String url_savedata= "http://192.168.100.30:8080/ProfileObjects/SaveAdminInstituteData";
+
 
     AdminData a =new AdminData();
     //
@@ -152,6 +152,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                instnameinput.setError(null);
             }
 
             @Override
@@ -168,6 +169,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                instemailinput.setError(null);
             }
 
             @Override
@@ -184,6 +186,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                instwebinput.setError(null);
             }
 
             @Override
@@ -200,6 +203,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                instphoneinput.setError(null);
             }
 
             @Override
@@ -216,6 +220,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                instphoneainput.setError(null);
             }
 
             @Override
@@ -232,6 +237,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                instuniversityinput.setError(null);
             }
 
             @Override
@@ -248,6 +254,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                instreginput.setError(null);
 
             }
 
@@ -276,33 +283,33 @@ public class AdminInstituteDetails extends AppCompatActivity {
 
 
         if (instname.length() < 2){
-            iname.setError("Incorrect Institute Name");
+            instnameinput.setError("Kindly enter valid institute name");
 
             errorflag7 = 1;
 
         }else {
-            if (!instemail.contains("@")) {
-                iemail.setError("Incorrect Email Address");
+            if (!instemail.contains("@") || (!instemail.contains(".edu"))) {
+                instemailinput.setError("Kindly enter valid email address (must contain .edu)");
                 errorflag1 = 1;
             } else {
                 if (instweb.length() < 3 && !instweb.contains(".")) {
-                    iweb.setError("Incorrect Web Address");
+                    instwebinput.setError("Kindly enter valid website URL");
                     errorflag2 = 1;
                 } else {
                     if (instphone.length() < 6) {
-                        iphone.setError("Incorrect phone number ");
+                        instphoneinput.setError("Kindly enter valid phone number");
                         errorflag3 = 1;
                     } else {
                         if (instaltrphone.length() < 6) {
-                            ialtphone.setError("Incorrect phone number ");
+                            instphoneainput.setError("Kindly enter valid phone number");
                             errorflag4 = 1;
                         } else {
                             if (universityname.length() < 2) {
-                                uniname.setError("Incorrect phone number ");
+                                instuniversityinput.setError("Kindly enter valid university name");
                                 errorflag5 = 1;
                             } else {
                                 if (instreg.length() < 2) {
-                                    ireg.setError("Incorrect Registration number ");
+                                    instreginput.setError("Kindly enter valid registration number");
                                     errorflag6 = 1;
                                 }
                             }
@@ -451,7 +458,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
                 AdminInstituteDetails.super.onBackPressed();
             }
             else {
-                Toast.makeText(AdminInstituteDetails.this,result,Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminInstituteDetails.this,"not saved"+result,Toast.LENGTH_SHORT).show();
 
             }
         }

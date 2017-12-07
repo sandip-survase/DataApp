@@ -56,13 +56,15 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 public class AdminExperiences extends AppCompatActivity {
     int expcount=0;
     View addmoreexp;
-    TextView t;
+    TextView t,work1,work2,work3,work4,work5,work6,work7,work8,work9,work10;
     ImageView i;
     View trash1selectionview,trash2selectionview,trash3selectionview,trash4selectionview,trash5selectionview,trash6selectionview,trash7selectionview,trash8selectionview,trash9selectionview,trash10selectionview;
     int del=0;
     int errorflag=0,edittedFlag=0;
     int workinghereflag1=0,workinghereflag2=0,workinghereflag3=0,workinghereflag4=0,workinghereflag5=0,workinghereflag6=0,workinghereflag7=0,workinghereflag8=0,workinghereflag9=0,workinghereflag10=0;
     TextInputLayout todateinput1,todateinput2,todateinput3,todateinput4,todateinput5,todateinput6,todateinput7,todateinput8,todateinput9,todateinput10;
+    TextInputLayout fromdateinput1,fromdateinput2,fromdateinput3,fromdateinput4,fromdateinput5,fromdateinput6,fromdateinput7,fromdateinput8,fromdateinput9,fromdateinput10;
+    TextInputLayout postinput1,instinput1,postinput2,instinput2,postinput3,instinput3,postinput4,instinput4,postinput5,instinput5,postinput6,instinput6,postinput7,instinput7,postinput8,instinput8,postinput9,instinput9,postinput10,instinput10;
     SwitchCompat expsw1,expsw2,expsw3,expsw4,expsw5,expsw6,expsw7,expsw8,expsw9,expsw10;
 
     String username,role;
@@ -102,7 +104,48 @@ public class AdminExperiences extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
+        postinput1=(TextInputLayout)findViewById(R.id.postinput1);
+        postinput2=(TextInputLayout)findViewById(R.id.postinput2);
+        postinput3=(TextInputLayout)findViewById(R.id.postinput3);
+        postinput4=(TextInputLayout)findViewById(R.id.postinput4);
+        postinput5=(TextInputLayout)findViewById(R.id.postinput5);
+        postinput6=(TextInputLayout)findViewById(R.id.postinput6);
+        postinput7=(TextInputLayout)findViewById(R.id.postinput7);
+        postinput8=(TextInputLayout)findViewById(R.id.postinput8);
+        postinput9=(TextInputLayout)findViewById(R.id.postinput9);
+        postinput10=(TextInputLayout)findViewById(R.id.postinput10);
 
+        instinput1=(TextInputLayout)findViewById(R.id.instinput1);
+        instinput2=(TextInputLayout)findViewById(R.id.instinput2);
+        instinput3=(TextInputLayout)findViewById(R.id.instinput3);
+        instinput4=(TextInputLayout)findViewById(R.id.instinput4);
+        instinput5=(TextInputLayout)findViewById(R.id.instinput5);
+        instinput6=(TextInputLayout)findViewById(R.id.instinput6);
+        instinput7=(TextInputLayout)findViewById(R.id.instinput7);
+        instinput8=(TextInputLayout)findViewById(R.id.instinput8);
+        instinput9=(TextInputLayout)findViewById(R.id.instinput9);
+        instinput10=(TextInputLayout)findViewById(R.id.instinput10);
+
+        postinput1.setTypeface(MyConstants.getLight(this));
+        postinput2.setTypeface(MyConstants.getLight(this));
+        postinput3.setTypeface(MyConstants.getLight(this));
+        postinput4.setTypeface(MyConstants.getLight(this));
+        postinput5.setTypeface(MyConstants.getLight(this));
+        postinput6.setTypeface(MyConstants.getLight(this));
+        postinput7.setTypeface(MyConstants.getLight(this));
+        postinput8.setTypeface(MyConstants.getLight(this));
+        postinput9.setTypeface(MyConstants.getLight(this));
+        postinput10.setTypeface(MyConstants.getLight(this));
+        instinput1.setTypeface(MyConstants.getLight(this));
+        instinput2.setTypeface(MyConstants.getLight(this));
+        instinput3.setTypeface(MyConstants.getLight(this));
+        instinput4.setTypeface(MyConstants.getLight(this));
+        instinput5.setTypeface(MyConstants.getLight(this));
+        instinput6.setTypeface(MyConstants.getLight(this));
+        instinput7.setTypeface(MyConstants.getLight(this));
+        instinput8.setTypeface(MyConstants.getLight(this));
+        instinput9.setTypeface(MyConstants.getLight(this));
+        instinput10.setTypeface(MyConstants.getLight(this));
 
         fromdate1=(EditText)findViewById(R.id.fromdate1);
         todate1=(EditText)findViewById(R.id.todate1);
@@ -125,6 +168,49 @@ public class AdminExperiences extends AppCompatActivity {
         fromdate10=(EditText)findViewById(R.id.fromdate10);
         todate10=(EditText)findViewById(R.id.todate10);
 
+        fromdate1.setTypeface(MyConstants.getBold(this));
+        todate1.setTypeface(MyConstants.getBold(this));
+        fromdate2.setTypeface(MyConstants.getBold(this));
+        todate2.setTypeface(MyConstants.getBold(this));
+        fromdate3.setTypeface(MyConstants.getBold(this));
+        todate3.setTypeface(MyConstants.getBold(this));
+        fromdate4.setTypeface(MyConstants.getBold(this));
+        todate4.setTypeface(MyConstants.getBold(this));
+        fromdate5.setTypeface(MyConstants.getBold(this));
+        todate5.setTypeface(MyConstants.getBold(this));
+        fromdate6.setTypeface(MyConstants.getBold(this));
+        todate6.setTypeface(MyConstants.getBold(this));
+        fromdate7.setTypeface(MyConstants.getBold(this));
+        todate7.setTypeface(MyConstants.getBold(this));
+        fromdate8.setTypeface(MyConstants.getBold(this));
+        todate8.setTypeface(MyConstants.getBold(this));
+        fromdate9.setTypeface(MyConstants.getBold(this));
+        todate9.setTypeface(MyConstants.getBold(this));
+        fromdate10.setTypeface(MyConstants.getBold(this));
+        todate10.setTypeface(MyConstants.getBold(this));
+
+        fromdateinput1 =(TextInputLayout)findViewById(R.id.fromdateinput1);
+        fromdateinput2 =(TextInputLayout)findViewById(R.id.fromdateinput2);
+        fromdateinput3 =(TextInputLayout)findViewById(R.id.fromdateinput3);
+        fromdateinput4 =(TextInputLayout)findViewById(R.id.fromdateinput4);
+        fromdateinput5 =(TextInputLayout)findViewById(R.id.fromdateinput5);
+        fromdateinput6 =(TextInputLayout)findViewById(R.id.fromdateinput6);
+        fromdateinput7 =(TextInputLayout)findViewById(R.id.fromdateinput7);
+        fromdateinput8 =(TextInputLayout)findViewById(R.id.fromdateinput8);
+        fromdateinput9 =(TextInputLayout)findViewById(R.id.fromdateinput9);
+        fromdateinput10=(TextInputLayout)findViewById(R.id.fromdateinput10);
+
+        fromdateinput1.setTypeface(MyConstants.getLight(this));
+        fromdateinput2.setTypeface(MyConstants.getLight(this));
+        fromdateinput3.setTypeface(MyConstants.getLight(this));
+        fromdateinput4.setTypeface(MyConstants.getLight(this));
+        fromdateinput5.setTypeface(MyConstants.getLight(this));
+        fromdateinput6.setTypeface(MyConstants.getLight(this));
+        fromdateinput7.setTypeface(MyConstants.getLight(this));
+        fromdateinput8.setTypeface(MyConstants.getLight(this));
+        fromdateinput9.setTypeface(MyConstants.getLight(this));
+        fromdateinput10.setTypeface(MyConstants.getLight(this));
+
         todateinput1 =(TextInputLayout)findViewById(R.id.todateinput1);
         todateinput2 =(TextInputLayout)findViewById(R.id.todateinput2);
         todateinput3 =(TextInputLayout)findViewById(R.id.todateinput3);
@@ -136,9 +222,19 @@ public class AdminExperiences extends AppCompatActivity {
         todateinput9 =(TextInputLayout)findViewById(R.id.todateinput9);
         todateinput10=(TextInputLayout)findViewById(R.id.todateinput10);
 
+        todateinput1.setTypeface(MyConstants.getLight(this));
+        todateinput2.setTypeface(MyConstants.getLight(this));
+        todateinput3.setTypeface(MyConstants.getLight(this));
+        todateinput4.setTypeface(MyConstants.getLight(this));
+        todateinput5.setTypeface(MyConstants.getLight(this));
+        todateinput6.setTypeface(MyConstants.getLight(this));
+        todateinput7.setTypeface(MyConstants.getLight(this));
+        todateinput8.setTypeface(MyConstants.getLight(this));
+        todateinput9.setTypeface(MyConstants.getLight(this));
+        todateinput10.setTypeface(MyConstants.getLight(this));
+
         TextView exptxt=(TextView)findViewById(R.id.exptxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");
-        exptxt.setTypeface(custom_font1);
+        exptxt.setTypeface(MyConstants.getBold(this));
 
         fromdate1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -262,6 +358,7 @@ public class AdminExperiences extends AppCompatActivity {
         });
 
         post1=(EditText)findViewById(R.id.post1);
+
         inst1 = (EditText)findViewById(R.id.inst1);
         post2=(EditText)findViewById(R.id.post2);
         inst2 = (EditText)findViewById(R.id.inst2);
@@ -293,8 +390,53 @@ public class AdminExperiences extends AppCompatActivity {
         expsw9=(SwitchCompat)findViewById(R.id.switch9);
         expsw10=(SwitchCompat)findViewById(R.id.switch10);
 
+        post1.setTypeface(MyConstants.getBold(this));
+        inst1.setTypeface(MyConstants.getBold(this));
+        post2.setTypeface(MyConstants.getBold(this));
+        inst2.setTypeface(MyConstants.getBold(this));
+        post3.setTypeface(MyConstants.getBold(this));
+        inst3.setTypeface(MyConstants.getBold(this));
+        post4.setTypeface(MyConstants.getBold(this));
+        inst4.setTypeface(MyConstants.getBold(this));
+        post5.setTypeface(MyConstants.getBold(this));
+        inst5.setTypeface(MyConstants.getBold(this));
+        post6.setTypeface(MyConstants.getBold(this));
+        inst6.setTypeface(MyConstants.getBold(this));
+        post7.setTypeface(MyConstants.getBold(this));
+        inst7.setTypeface(MyConstants.getBold(this));
+        post8.setTypeface(MyConstants.getBold(this));
+        inst8.setTypeface(MyConstants.getBold(this));
+        post9.setTypeface(MyConstants.getBold(this));
+        inst9.setTypeface(MyConstants.getBold(this));
+        post10.setTypeface(MyConstants.getBold(this));
+        inst10.setTypeface(MyConstants.getBold(this));
+
+
+        work1=(TextView)findViewById(R.id.work1);
+        work2=(TextView)findViewById(R.id.work2);
+        work3=(TextView)findViewById(R.id.work3);
+        work4=(TextView)findViewById(R.id.work4);
+        work5=(TextView)findViewById(R.id.work5);
+        work6=(TextView)findViewById(R.id.work6);
+        work7=(TextView)findViewById(R.id.work7);
+        work8=(TextView)findViewById(R.id.work8);
+        work9=(TextView)findViewById(R.id.work9);
+        work10=(TextView)findViewById(R.id.work10);
+
+        work1.setTypeface(MyConstants.getLight(this));
+        work2.setTypeface(MyConstants.getLight(this));
+        work3.setTypeface(MyConstants.getLight(this));
+        work4.setTypeface(MyConstants.getLight(this));
+        work5.setTypeface(MyConstants.getLight(this));
+        work6.setTypeface(MyConstants.getLight(this));
+        work7.setTypeface(MyConstants.getLight(this));
+        work8.setTypeface(MyConstants.getLight(this));
+        work9.setTypeface(MyConstants.getLight(this));
+        work10.setTypeface(MyConstants.getLight(this));
+
 
         t=(TextView)findViewById(R.id.addmoreexptxt);
+        t.setTypeface(MyConstants.getBold(this));
         i=(ImageView)findViewById(R.id.addmoreexpimg);
         addmoreexp=(View)findViewById(R.id.addmoreexp);
 
@@ -651,6 +793,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                postinput1.setError(null);
             }
 
             @Override
@@ -667,6 +810,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                postinput2.setError(null);
             }
 
             @Override
@@ -683,6 +827,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                postinput3.setError(null);
             }
 
             @Override
@@ -699,6 +844,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                postinput4.setError(null);
             }
 
             @Override
@@ -716,6 +862,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                postinput5.setError(null);
             }
 
             @Override
@@ -733,6 +880,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                postinput6.setError(null);
             }
 
             @Override
@@ -750,6 +898,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                postinput7.setError(null);
             }
 
             @Override
@@ -767,6 +916,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                postinput8.setError(null);
             }
 
             @Override
@@ -783,6 +933,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                postinput9.setError(null);
             }
 
             @Override
@@ -799,6 +950,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                postinput10.setError(null);
             }
 
             @Override
@@ -816,6 +968,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                instinput1.setError(null);
 
             }
 
@@ -833,6 +986,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                instinput2.setError(null);
 
             }
 
@@ -851,6 +1005,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                instinput3.setError(null);
 
             }
 
@@ -869,6 +1024,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                instinput4.setError(null);
 
             }
 
@@ -886,6 +1042,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                instinput5.setError(null);
 
             }
 
@@ -903,7 +1060,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-
+                instinput6.setError(null);
             }
 
             @Override
@@ -920,6 +1077,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                instinput7.setError(null);
 
             }
 
@@ -937,6 +1095,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                instinput8.setError(null);
 
             }
 
@@ -954,6 +1113,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                instinput9.setError(null);
 
             }
 
@@ -971,6 +1131,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                instinput10.setError(null);
 
             }
 
@@ -990,6 +1151,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                fromdateinput1.setError(null);
 
             }
 
@@ -1032,12 +1194,12 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            fromdate1.setError("Invalid date");
+                            fromdateinput1.setError("Kindly enter valid date");
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            fromdate1.setError(null);
-                            todate1.setError(null);
+                            fromdateinput1.setError(null);
+                            todateinput1.setError(null);
 
                         }
                     }
@@ -1057,6 +1219,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                fromdateinput2.setError(null);
 
             }
 
@@ -1096,12 +1259,12 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            fromdate2.setError("Invalid date");
+                            fromdateinput2.setError("Kindly enter valid date");
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            fromdate2.setError(null);
-                            todate2.setError(null);
+                            fromdateinput2.setError(null);
+                            todateinput2.setError(null);
 
                         }
                     }
@@ -1121,6 +1284,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                fromdateinput3.setError(null);
 
             }
 
@@ -1160,12 +1324,12 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            fromdate3.setError("Invalid date");
+                            fromdateinput3.setError("Kindly enter valid date");
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            fromdate3.setError(null);
-                            todate3.setError(null);
+                            fromdateinput3.setError(null);
+                            todateinput3.setError(null);
 
                         }
                     }
@@ -1186,6 +1350,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                fromdateinput4.setError(null);
 
             }
 
@@ -1225,12 +1390,12 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            fromdate4.setError("Invalid date");
+                            fromdateinput4.setError("Kindly enter valid date");
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            fromdate4.setError(null);
-                            todate4.setError(null);
+                            fromdateinput4.setError(null);
+                            todateinput4.setError(null);
 
                         }
                     }
@@ -1250,6 +1415,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                fromdateinput5.setError(null);
 
             }
 
@@ -1289,12 +1455,12 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            fromdate5.setError("Invalid date");
+                            fromdateinput5.setError("Kindly enter valid date");
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            fromdate5.setError(null);
-                            todate5.setError(null);
+                            fromdateinput5.setError(null);
+                            todateinput5.setError(null);
 
                         }
                     }
@@ -1314,6 +1480,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                fromdateinput6.setError(null);
 
             }
 
@@ -1353,12 +1520,12 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            fromdate6.setError("Invalid date");
+                            fromdateinput6.setError("Kindly enter valid date");
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            fromdate6.setError(null);
-                            todate6.setError(null);
+                            fromdateinput6.setError(null);
+                            todateinput6.setError(null);
 
                         }
                     }
@@ -1377,6 +1544,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                fromdateinput7.setError(null);
 
             }
 
@@ -1416,12 +1584,12 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            fromdate7.setError("Invalid date");
+                            fromdateinput7.setError("Kindly enter valid date");
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            fromdate7.setError(null);
-                            todate7.setError(null);
+                            fromdateinput7.setError(null);
+                            todateinput7.setError(null);
 
                         }
                     }
@@ -1439,6 +1607,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                fromdateinput8.setError(null);
 
             }
 
@@ -1478,12 +1647,12 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            fromdate8.setError("Invalid date");
+                            fromdateinput8.setError("Kindly enter valid date");
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            fromdate8.setError(null);
-                            todate8.setError(null);
+                            fromdateinput8.setError(null);
+                            todateinput8.setError(null);
 
                         }
                     }
@@ -1502,6 +1671,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                fromdateinput9.setError(null);
 
             }
 
@@ -1541,12 +1711,12 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            fromdate9.setError("Invalid date");
+                            fromdateinput9.setError("Kindly enter valid date");
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            fromdate9.setError(null);
-                            todate9.setError(null);
+                            fromdateinput9.setError(null);
+                            todateinput9.setError(null);
 
                         }
                     }
@@ -1566,6 +1736,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                fromdateinput10.setError(null);
 
             }
 
@@ -1608,12 +1779,12 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            fromdate10.setError("Invalid date");
+                            fromdateinput10.setError("Kindly enter valid date");
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            fromdate10.setError(null);
-                            todate10.setError(null);
+                            fromdateinput10.setError(null);
+                            todateinput10.setError(null);
 
                         }
                     }
@@ -1633,6 +1804,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                todateinput1.setError(null);
 
             }
 
@@ -1675,13 +1847,13 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            todate1.setError("invalid date");
+                            todateinput1.setError("Kindly enter valid date");
 
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            todate1.setError(null);
-                            fromdate1.setError(null);
+                            todateinput1.setError(null);
+                            fromdateinput1.setError(null);
 
                         }
                     }
@@ -1700,6 +1872,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                todateinput2.setError(null);
 
             }
 
@@ -1743,13 +1916,13 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            todate2.setError("invalid date");
+                            todateinput2.setError("Kindly enter valid date");
 
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            todate2.setError(null);
-                            fromdate2.setError(null);
+                            todateinput2.setError(null);
+                            fromdateinput2.setError(null);
 
                         }
                     }
@@ -1771,6 +1944,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                todateinput3.setError(null);
 
             }
 
@@ -1812,13 +1986,13 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            todate3.setError("invalid date");
+                            todateinput3.setError("Kindly enter valid date");
 
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            todate3.setError(null);
-                            fromdate3.setError(null);
+                            todateinput3.setError(null);
+                            fromdateinput3.setError(null);
 
                         }
                     }
@@ -1838,6 +2012,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                todateinput4.setError(null);
 
             }
 
@@ -1881,13 +2056,13 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            todate4.setError("invalid date");
+                            todateinput4.setError("Kindly enter valid date");
 
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            todate4.setError(null);
-                            fromdate4.setError(null);
+                            todateinput4.setError(null);
+                            fromdateinput4.setError(null);
 
                         }
                     }
@@ -1906,6 +2081,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                todateinput5.setError(null);
 
             }
 
@@ -1947,13 +2123,13 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            todate5.setError("invalid date");
+                            todateinput5.setError("Kindly enter valid date");
 
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            todate5.setError(null);
-                            fromdate5.setError(null);
+                            todateinput5.setError(null);
+                            fromdateinput5.setError(null);
 
                         }
                     }
@@ -1973,6 +2149,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                todateinput6.setError(null);
 
             }
 
@@ -2015,13 +2192,13 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            todate6.setError("invalid date");
+                            todateinput6.setError("Kindly enter valid date");
 
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            todate6.setError(null);
-                            fromdate6.setError(null);
+                            todateinput6.setError(null);
+                            fromdateinput6.setError(null);
 
                         }
                     }
@@ -2040,6 +2217,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                todateinput7.setError(null);
 
             }
 
@@ -2080,13 +2258,13 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            todate7.setError("invalid date");
+                            todateinput7.setError("Kindly enter valid date");
 
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            todate7.setError(null);
-                            fromdate7.setError(null);
+                            todateinput7.setError(null);
+                            fromdateinput7.setError(null);
 
                         }
                     }
@@ -2104,6 +2282,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                todateinput8.setError(null);
 
             }
 
@@ -2144,13 +2323,13 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            todate8.setError("invalid date");
+                            todateinput8.setError("Kindly enter valid date");
 
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            todate8.setError(null);
-                            fromdate8.setError(null);
+                            todateinput8.setError(null);
+                            fromdateinput8.setError(null);
 
                         }
                     }
@@ -2169,6 +2348,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                todateinput9.setError(null);
 
             }
 
@@ -2210,13 +2390,13 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            todate9.setError("invalid date");
+                            todateinput9.setError("Kindly enter valid date");
 
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            todate9.setError(null);
-                            fromdate9.setError(null);
+                            todateinput9.setError(null);
+                            fromdateinput9.setError(null);
 
                         }
                     }
@@ -2235,6 +2415,7 @@ public class AdminExperiences extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                todateinput10.setError(null);
 
             }
 
@@ -2276,13 +2457,13 @@ public class AdminExperiences extends AppCompatActivity {
                         if(exp_in_months2<1){
                             //not allow
                             todateflag1 = 1;
-                            todate10.setError("invalid date");
+                            todateinput10.setError("Kindly enter valid date");
 
                         } else {
                             //allowed
                             todateflag1 = 0;
-                            todate10.setError(null);
-                            fromdate10.setError(null);
+                            todateinput10.setError(null);
+                            fromdateinput10.setError(null);
 
                         }
                         Toast.makeText(AdminExperiences.this, ""+stodate10, Toast.LENGTH_SHORT).show();
@@ -2700,7 +2881,7 @@ public class AdminExperiences extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     todate4.setText("");
-                    todate4.setError(null);
+                    todateinput4.setError(null);
                     todateinput4.setVisibility(View.INVISIBLE);
                     workinghereflag4=1;
 
@@ -2734,7 +2915,7 @@ public class AdminExperiences extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     todate6.setText("");
-                    todate6.setError(null);
+                    todateinput6.setError(null);
                     todateinput6.setVisibility(View.INVISIBLE);
                     workinghereflag6=1;
 
@@ -2752,7 +2933,7 @@ public class AdminExperiences extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     todate7.setText("");
-                    todate7.setError(null);
+                    todateinput7.setError(null);
                     todateinput7.setVisibility(View.INVISIBLE);
                     workinghereflag7=1;
 
@@ -2769,7 +2950,7 @@ public class AdminExperiences extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     todate8.setText("");
-                    todate8.setError(null);
+                    todateinput8.setError(null);
                     todateinput8.setVisibility(View.INVISIBLE);
                     workinghereflag8=1;
 
@@ -2786,7 +2967,7 @@ public class AdminExperiences extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     todate9.setText("");
-                    todate9.setError(null);
+                    todateinput9.setError(null);
                     todateinput9.setVisibility(View.INVISIBLE);
                     workinghereflag9=1;
 
@@ -2804,7 +2985,7 @@ public class AdminExperiences extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     todate10.setText("");
-                    todate10.setError(null);
+                    todateinput10.setError(null);
                     todateinput10.setVisibility(View.INVISIBLE);
                     workinghereflag10=1;
 
@@ -2972,8 +3153,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw10.isChecked()==true){
                 expsw9.setChecked(true);
                 todate9.setText("");
-                fromdate9.setError(null);
-                todate9.setError(null);
+                fromdateinput9.setError(null);
+                todateinput9.setError(null);
             }
             else {
                 if(expsw9.isChecked()==true) {
@@ -3016,8 +3197,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw9.isChecked()==true){
                 expsw8.setChecked(true);
                 todate8.setText("");
-                fromdate8.setError(null);
-                todate8.setError(null);
+                fromdateinput8.setError(null);
+                todateinput8.setError(null);
 
             }
             else {
@@ -3049,8 +3230,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw10.isChecked()==true){
                 expsw9.setChecked(true);
                 todate9.setText("");
-                fromdate9.setError(null);
-                todate9.setError(null);
+                fromdateinput9.setError(null);
+                todateinput9.setError(null);
             }
             else {
                 if(expsw9.isChecked()==true) {
@@ -3098,8 +3279,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw8.isChecked()==true){
                 expsw7.setChecked(true);
                 todate7.setText("");
-                fromdate7.setError(null);
-                todate7.setError(null);
+                fromdateinput7.setError(null);
+                todateinput7.setError(null);
 
             }
             else {
@@ -3132,8 +3313,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw9.isChecked()==true){
                 expsw8.setChecked(true);
                 todate8.setText("");
-                fromdate8.setError(null);
-                todate8.setError(null);
+                fromdateinput8.setError(null);
+                todateinput8.setError(null);
 
             }
             else {
@@ -3165,8 +3346,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw10.isChecked()==true){
                 expsw9.setChecked(true);
                 todate9.setText("");
-                fromdate9.setError(null);
-                todate9.setError(null);
+                fromdateinput9.setError(null);
+                todateinput9.setError(null);
             }
             else {
                 if(expsw9.isChecked()==true) {
@@ -3219,8 +3400,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw7.isChecked()==true){
                 expsw6.setChecked(true);
                 todate6.setText("");
-                fromdate6.setError(null);
-                todate6.setError(null);
+                fromdateinput6.setError(null);
+                todateinput6.setError(null);
 
             }
             else {
@@ -3253,8 +3434,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw8.isChecked()==true){
                 expsw7.setChecked(true);
                 todate7.setText("");
-                fromdate7.setError(null);
-                todate7.setError(null);
+                fromdateinput7.setError(null);
+                todateinput7.setError(null);
 
             }
             else {
@@ -3287,8 +3468,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw9.isChecked()==true){
                 expsw8.setChecked(true);
                 todate8.setText("");
-                fromdate8.setError(null);
-                todate8.setError(null);
+                fromdateinput8.setError(null);
+                todateinput8.setError(null);
 
             }
             else {
@@ -3320,8 +3501,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw10.isChecked()==true){
                 expsw9.setChecked(true);
                 todate9.setText("");
-                fromdate9.setError(null);
-                todate9.setError(null);
+                fromdateinput9.setError(null);
+                todateinput9.setError(null);
             }
             else {
                 if(expsw9.isChecked()==true) {
@@ -3380,8 +3561,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw6.isChecked()==true){
                 expsw5.setChecked(true);
                 todate5.setText("");
-                fromdate5.setError(null);
-                todate5.setError(null);
+                fromdateinput5.setError(null);
+                todateinput5.setError(null);
 
             }
             else {
@@ -3415,8 +3596,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw7.isChecked()==true){
                 expsw6.setChecked(true);
                 todate6.setText("");
-                fromdate6.setError(null);
-                todate6.setError(null);
+                fromdateinput6.setError(null);
+                todateinput6.setError(null);
 
             }
             else {
@@ -3449,8 +3630,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw8.isChecked()==true){
                 expsw7.setChecked(true);
                 todate7.setText("");
-                fromdate7.setError(null);
-                todate7.setError(null);
+                fromdateinput7.setError(null);
+                todateinput7.setError(null);
 
             }
             else {
@@ -3483,8 +3664,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw9.isChecked()==true){
                 expsw8.setChecked(true);
                 todate8.setText("");
-                fromdate8.setError(null);
-                todate8.setError(null);
+                fromdateinput8.setError(null);
+                todateinput8.setError(null);
 
             }
             else {
@@ -3516,8 +3697,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw10.isChecked()==true){
                 expsw9.setChecked(true);
                 todate9.setText("");
-                fromdate9.setError(null);
-                todate9.setError(null);
+                fromdateinput9.setError(null);
+                todateinput9.setError(null);
             }
             else {
                 if(expsw9.isChecked()==true) {
@@ -3577,8 +3758,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw5.isChecked()==true){
                 expsw4.setChecked(true);
                 todate4.setText("");
-                fromdate4.setError(null);
-                todate4.setError(null);
+                fromdateinput4.setError(null);
+                todateinput4.setError(null);
 
             }
             else {
@@ -3611,8 +3792,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw6.isChecked()==true){
                 expsw5.setChecked(true);
                 todate5.setText("");
-                fromdate5.setError(null);
-                todate5.setError(null);
+                fromdateinput5.setError(null);
+                todateinput5.setError(null);
             }
             else {
                 if(expsw5.isChecked()==true) {
@@ -3641,8 +3822,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw7.isChecked()==true){
                 expsw6.setChecked(true);
                 todate6.setText("");
-                fromdate6.setError(null);
-                todate6.setError(null);
+                fromdateinput6.setError(null);
+                todateinput6.setError(null);
 
             }
             else {
@@ -3675,8 +3856,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw8.isChecked()==true){
                 expsw7.setChecked(true);
                 todate7.setText("");
-                fromdate7.setError(null);
-                todate7.setError(null);
+                fromdateinput7.setError(null);
+                todateinput7.setError(null);
 
             }
             else {
@@ -3709,8 +3890,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw9.isChecked()==true){
                 expsw8.setChecked(true);
                 todate8.setText("");
-                fromdate8.setError(null);
-                todate8.setError(null);
+                fromdateinput8.setError(null);
+                todateinput8.setError(null);
 
             }
             else {
@@ -3742,8 +3923,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw10.isChecked()==true){
                 expsw9.setChecked(true);
                 todate9.setText("");
-                fromdate9.setError(null);
-                todate9.setError(null);
+                fromdateinput9.setError(null);
+                todateinput9.setError(null);
             }
             else {
                 if(expsw9.isChecked()==true) {
@@ -3809,8 +3990,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw4.isChecked()==true){
                 expsw3.setChecked(true);
                 todate3.setText("");
-                fromdate3.setError(null);
-                todate3.setError(null);
+                fromdateinput3.setError(null);
+                todateinput3.setError(null);
 
             }
             else {
@@ -3841,8 +4022,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw5.isChecked()==true){
                 expsw4.setChecked(true);
                 todate4.setText("");
-                fromdate4.setError(null);
-                todate4.setError(null);
+                fromdateinput4.setError(null);
+                todateinput4.setError(null);
 
             }
             else {
@@ -3875,8 +4056,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw6.isChecked()==true){
                 expsw5.setChecked(true);
                 todate5.setText("");
-                fromdate5.setError(null);
-                todate5.setError(null);
+                fromdateinput5.setError(null);
+                todateinput5.setError(null);
             }
             else {
                 if(expsw5.isChecked()==true) {
@@ -3905,8 +4086,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw7.isChecked()==true){
                 expsw6.setChecked(true);
                 todate6.setText("");
-                fromdate6.setError(null);
-                todate6.setError(null);
+                fromdateinput6.setError(null);
+                todateinput6.setError(null);
 
             }
             else {
@@ -3939,8 +4120,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw8.isChecked()==true){
                 expsw7.setChecked(true);
                 todate7.setText("");
-                fromdate7.setError(null);
-                todate7.setError(null);
+                fromdateinput7.setError(null);
+                todateinput7.setError(null);
 
             }
             else {
@@ -3973,8 +4154,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw9.isChecked()==true){
                 expsw8.setChecked(true);
                 todate8.setText("");
-                fromdate8.setError(null);
-                todate8.setError(null);
+                fromdateinput8.setError(null);
+                todateinput8.setError(null);
 
             }
             else {
@@ -4006,8 +4187,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw10.isChecked()==true){
                 expsw9.setChecked(true);
                 todate9.setText("");
-                fromdate9.setError(null);
-                todate9.setError(null);
+                fromdateinput9.setError(null);
+                todateinput9.setError(null);
             }
             else {
                 if(expsw9.isChecked()==true) {
@@ -4073,8 +4254,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw3.isChecked()==true){
                 expsw2.setChecked(true);
                 todate2.setText("");
-                fromdate2.setError(null);
-                todate2.setError(null);
+                fromdateinput2.setError(null);
+                todateinput2.setError(null);
 
             }
             else {
@@ -4106,8 +4287,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw4.isChecked()==true){
                 expsw3.setChecked(true);
                 todate3.setText("");
-                fromdate3.setError(null);
-                todate3.setError(null);
+                fromdateinput3.setError(null);
+                todateinput3.setError(null);
 
             }
             else {
@@ -4138,8 +4319,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw5.isChecked()==true){
                 expsw4.setChecked(true);
                 todate4.setText("");
-                fromdate4.setError(null);
-                todate4.setError(null);
+                fromdateinput4.setError(null);
+                todateinput4.setError(null);
 
             }
             else {
@@ -4172,8 +4353,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw6.isChecked()==true){
                 expsw5.setChecked(true);
                 todate5.setText("");
-                fromdate5.setError(null);
-                todate5.setError(null);
+                fromdateinput5.setError(null);
+                todateinput5.setError(null);
             }
             else {
                 if(expsw5.isChecked()==true) {
@@ -4202,8 +4383,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw7.isChecked()==true){
                 expsw6.setChecked(true);
                 todate6.setText("");
-                fromdate6.setError(null);
-                todate6.setError(null);
+                fromdateinput6.setError(null);
+                todateinput6.setError(null);
 
             }
             else {
@@ -4236,8 +4417,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw8.isChecked()==true){
                 expsw7.setChecked(true);
                 todate7.setText("");
-                fromdate7.setError(null);
-                todate7.setError(null);
+                fromdateinput7.setError(null);
+                todateinput7.setError(null);
 
             }
             else {
@@ -4271,8 +4452,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw9.isChecked()==true){
                 expsw8.setChecked(true);
                 todate8.setText("");
-                fromdate8.setError(null);
-                todate8.setError(null);
+                fromdateinput8.setError(null);
+                todateinput8.setError(null);
 
             }
             else {
@@ -4304,8 +4485,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw10.isChecked()==true){
                 expsw9.setChecked(true);
                 todate9.setText("");
-                fromdate9.setError(null);
-                todate9.setError(null);
+                fromdateinput9.setError(null);
+                todateinput9.setError(null);
             }
             else {
                 if(expsw9.isChecked()==true) {
@@ -4379,8 +4560,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw2.isChecked()==true){
                 expsw1.setChecked(true);
                 todate1.setText("");
-                fromdate1.setError(null);
-                todate1.setError(null);
+                fromdateinput1.setError(null);
+                todateinput1.setError(null);
 
             }
             else {
@@ -4412,8 +4593,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw3.isChecked()==true){
                 expsw2.setChecked(true);
                 todate2.setText("");
-                fromdate2.setError(null);
-                todate2.setError(null);
+                fromdateinput2.setError(null);
+                todateinput2.setError(null);
 
             }
             else {
@@ -4445,8 +4626,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw4.isChecked()==true){
                 expsw3.setChecked(true);
                 todate3.setText("");
-                fromdate3.setError(null);
-                todate3.setError(null);
+                fromdateinput3.setError(null);
+                todateinput3.setError(null);
 
             }
             else {
@@ -4477,8 +4658,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw5.isChecked()==true){
                 expsw4.setChecked(true);
                 todate4.setText("");
-                fromdate4.setError(null);
-                todate4.setError(null);
+                fromdateinput4.setError(null);
+                todateinput4.setError(null);
 
             }
             else {
@@ -4511,8 +4692,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw6.isChecked()==true){
                 expsw5.setChecked(true);
                 todate5.setText("");
-                fromdate5.setError(null);
-                todate5.setError(null);
+                fromdateinput5.setError(null);
+                todateinput5.setError(null);
             }
             else {
                 if(expsw5.isChecked()==true) {
@@ -4541,8 +4722,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw7.isChecked()==true){
                 expsw6.setChecked(true);
                 todate6.setText("");
-                fromdate6.setError(null);
-                todate6.setError(null);
+                fromdateinput6.setError(null);
+                todateinput6.setError(null);
 
             }
             else {
@@ -4575,8 +4756,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw8.isChecked()==true){
                 expsw7.setChecked(true);
                 todate7.setText("");
-                fromdate7.setError(null);
-                todate7.setError(null);
+                fromdateinput7.setError(null);
+                todateinput7.setError(null);
 
             }
             else {
@@ -4609,8 +4790,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw9.isChecked()==true){
                 expsw8.setChecked(true);
                 todate8.setText("");
-                fromdate8.setError(null);
-                todate8.setError(null);
+                fromdateinput8.setError(null);
+                todateinput8.setError(null);
 
             }
             else {
@@ -4642,8 +4823,8 @@ public class AdminExperiences extends AppCompatActivity {
             if(expsw10.isChecked()==true){
                 expsw9.setChecked(true);
                 todate9.setText("");
-                fromdate9.setError(null);
-                todate9.setError(null);
+                fromdateinput9.setError(null);
+                todateinput9.setError(null);
             }
             else {
                 if(expsw9.isChecked()==true) {
@@ -4705,47 +4886,47 @@ public class AdminExperiences extends AppCompatActivity {
 
 
     void validate() {
-        post1.setError(null);
-        inst1.setError(null);
-        post2.setError(null);
-        inst2.setError(null);
-        post3.setError(null);
-        inst3.setError(null);
-        post4.setError(null);
-        inst4.setError(null);
-        post5.setError(null);
-        inst5.setError(null);
-        post6.setError(null);
-        inst6.setError(null);
-        post7.setError(null);
-        inst7.setError(null);
-        post8.setError(null);
-        inst8.setError(null);
-        post9.setError(null);
-        inst9.setError(null);
-        post10.setError(null);
-        inst10.setError(null);
+        postinput1.setError(null);
+        instinput1.setError(null);
+        postinput2.setError(null);
+        instinput2.setError(null);
+        postinput3.setError(null);
+        instinput3.setError(null);
+        postinput4.setError(null);
+        instinput4.setError(null);
+        postinput5.setError(null);
+        instinput5.setError(null);
+        postinput6.setError(null);
+        instinput6.setError(null);
+        postinput7.setError(null);
+        instinput7.setError(null);
+        postinput8.setError(null);
+        instinput8.setError(null);
+        postinput9.setError(null);
+        instinput9.setError(null);
+        postinput10.setError(null);
+        instinput10.setError(null);
 
-        fromdate1.setError(null);
-        todate1.setError(null);
-        fromdate2.setError(null);
-        todate2.setError(null);
-        fromdate3.setError(null);
-        todate3.setError(null);
-        fromdate4.setError(null);
-        todate4.setError(null);
-        fromdate5.setError(null);
-        todate5.setError(null);
-        fromdate6.setError(null);
-        todate6.setError(null);
-        fromdate7.setError(null);
-        todate7.setError(null);
-        fromdate8.setError(null);
-        todate8.setError(null);
-        fromdate9.setError(null);
-        todate9.setError(null);
-        fromdate10.setError(null);
-        todate10.setError(null);
+        fromdateinput1.setError(null);
+        todateinput1.setError(null);
+        fromdateinput2.setError(null);
+        todateinput2.setError(null);
+        fromdateinput3.setError(null);
+        todateinput3.setError(null);
+        fromdateinput4.setError(null);
+        todateinput4.setError(null);
+        fromdateinput5.setError(null);
+        todateinput5.setError(null);
+        fromdateinput6.setError(null);
+        todateinput6.setError(null);
+        fromdateinput7.setError(null);
+        todateinput7.setError(null);
+        fromdateinput8.setError(null);
+        todateinput8.setError(null);
+        fromdateinput9.setError(null);
+        todateinput9.setError(null);
+        fromdateinput10.setError(null);
+        todateinput10.setError(null);
 
 
         spost1 = post1.getText().toString();
@@ -4796,22 +4977,22 @@ public class AdminExperiences extends AppCompatActivity {
         if (expcount == 0) {
             if (spost1.length() < 2) {
                 errorflag = 1;
-                post1.setError("Inavalid post");
+                postinput1.setError("Kindly enter valid post");
             } else {
                 errorflag = 0;
                 if (sinst1.length() < 2) {
                     errorflag = 1;
-                    inst1.setError("Invalid institute");
+                    instinput1.setError("Kindly enter valid institute");
                 } else {
                     errorflag = 0;
                     if (sfromdate1.length() < 2) {
                         errorflag = 1;
-                        fromdate1.setError("Invalid Fromdate ");
+                        fromdateinput1.setError("Kindly enter valid date ");
                     } else {
                         errorflag = 0;
                         if (workinghereflag1 == 0 && stodate1.length() < 2) {
                             errorflag = 1;
-                            todate1.setError("Invalid date");
+                            todateinput1.setError("Kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (todateflag1 == 1) {
@@ -4833,22 +5014,22 @@ public class AdminExperiences extends AppCompatActivity {
         else if (expcount == 1) {
             if (spost1.length() < 2) {
                 errorflag = 1;
-                post1.setError("Inavalid post");
+                postinput1.setError("Kindly enter valid post");
             } else {
                 errorflag = 0;
                 if (sinst1.length() < 2) {
                     errorflag = 1;
-                    inst1.setError("Invalid institute");
+                    instinput1.setError("Kindly enter valid institute");
                 } else {
                     errorflag = 0;
                     if (sfromdate1.length() < 2) {
                         errorflag = 1;
-                        fromdate1.setError("Invalid Fromdate ");
+                        fromdateinput1.setError("Kindly enter valid date ");
                     } else {
                         errorflag = 0;
                         if (workinghereflag1 == 0 && stodate1.length() < 2) {
                             errorflag = 1;
-                            todate1.setError("Invalid date");
+                            todateinput1.setError("Kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (todateflag1 == 1) {
@@ -4861,22 +5042,22 @@ public class AdminExperiences extends AppCompatActivity {
                                 //2
                                 if (spost2.length() < 2) {
                                     errorflag = 1;
-                                    post2.setError("Inavalid post");
+                                    postinput2.setError("Kindly enter valid post");
                                 } else {
                                     errorflag = 0;
                                     if (sinst2.length() < 2) {
                                         errorflag = 1;
-                                        inst2.setError("Invalid institute");
+                                        instinput2.setError("Kindly enter valid institute");
                                     } else {
                                         errorflag = 0;
                                         if (sfromdate2.length() < 2) {
                                             errorflag = 1;
-                                            fromdate2.setError("Invalid Fromdate ");
+                                            fromdateinput2.setError("Kindly enter valid date ");
                                         } else {
                                             errorflag = 0;
                                             if (workinghereflag2 == 0 && stodate2.length() < 2) {
                                                 errorflag = 1;
-                                                todate2.setError("Invalid date");
+                                                todateinput2.setError("Kindly enter valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (todateflag1 == 1) {
@@ -4906,22 +5087,22 @@ public class AdminExperiences extends AppCompatActivity {
         } else if (expcount == 2) {
             if (spost1.length() < 2) {
                 errorflag = 1;
-                post1.setError("Inavalid post");
+                postinput1.setError("Kindly enter valid post");
             } else {
                 errorflag = 0;
                 if (sinst1.length() < 2) {
                     errorflag = 1;
-                    inst1.setError("Invalid institute");
+                    instinput1.setError("Kindly enter valid institute");
                 } else {
                     errorflag = 0;
                     if (sfromdate1.length() < 2) {
                         errorflag = 1;
-                        fromdate1.setError("Invalid Fromdate ");
+                        fromdateinput1.setError("Kindly enter valid date ");
                     } else {
                         errorflag = 0;
                         if (workinghereflag1 == 0 && stodate1.length() < 2) {
                             errorflag = 1;
-                            todate1.setError("Invalid date");
+                            todateinput1.setError("Kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (todateflag1 == 1) {
@@ -4933,22 +5114,22 @@ public class AdminExperiences extends AppCompatActivity {
                                 //2
                                 if (spost2.length() < 2) {
                                     errorflag = 1;
-                                    post2.setError("Inavalid post");
+                                    postinput2.setError("Kindly enter valid post");
                                 } else {
                                     errorflag = 0;
                                     if (sinst2.length() < 2) {
                                         errorflag = 1;
-                                        inst2.setError("Invalid institute");
+                                        instinput2.setError("Kindly enter valid institute");
                                     } else {
                                         errorflag = 0;
                                         if (sfromdate2.length() < 2) {
                                             errorflag = 1;
-                                            fromdate2.setError("Invalid Fromdate ");
+                                            fromdateinput2.setError("Kindly enter valid date ");
                                         } else {
                                             errorflag = 0;
                                             if (workinghereflag2 == 0 && stodate2.length() < 2) {
                                                 errorflag = 1;
-                                                todate2.setError("Invalid date");
+                                                todateinput2.setError("Kindly enter valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (todateflag1 == 1) {
@@ -4959,22 +5140,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                     //3
                                                     if (spost3.length() < 2) {
                                                         errorflag = 1;
-                                                        post3.setError("Inavalid post");
+                                                        postinput3.setError("Kindly enter valid post");
                                                     } else {
                                                         errorflag = 0;
                                                         if (sinst3.length() < 2) {
                                                             errorflag = 1;
-                                                            inst3.setError("Invalid institute");
+                                                            instinput3.setError("Kindly enter valid institute");
                                                         } else {
                                                             errorflag = 0;
                                                             if (sfromdate3.length() < 2) {
                                                                 errorflag = 1;
-                                                                fromdate3.setError("Invalid Fromdate ");
+                                                                fromdateinput3.setError("Kindly enter valid date ");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (workinghereflag3 == 0 && stodate3.length() < 2) {
                                                                     errorflag = 1;
-                                                                    todate3.setError("Invalid date");
+                                                                    todateinput3.setError("Kindly enter valid date");
                                                                 } else {
                                                                     errorflag = 0;
                                                                     if (todateflag1 == 1) {
@@ -5010,22 +5191,22 @@ public class AdminExperiences extends AppCompatActivity {
         else if (expcount == 3) {
             if (spost1.length() < 2) {
                 errorflag = 1;
-                post1.setError("Inavalid post");
+                postinput1.setError("Kindly enter valid post");
             } else {
                 errorflag = 0;
                 if (sinst1.length() < 2) {
                     errorflag = 1;
-                    inst1.setError("Invalid institute");
+                    instinput1.setError("Kindly enter valid institute");
                 } else {
                     errorflag = 0;
                     if (sfromdate1.length() < 2) {
                         errorflag = 1;
-                        fromdate1.setError("Invalid Fromdate ");
+                        fromdateinput1.setError("Kindly enter valid date ");
                     } else {
                         errorflag = 0;
                         if (workinghereflag1 == 0 && stodate1.length() < 2) {
                             errorflag = 1;
-                            todate1.setError("Invalid date");
+                            todateinput1.setError("Kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (todateflag1 == 1) {
@@ -5038,22 +5219,22 @@ public class AdminExperiences extends AppCompatActivity {
                                 //2
                                 if (spost2.length() < 2) {
                                     errorflag = 1;
-                                    post2.setError("Inavalid post");
+                                    postinput2.setError("Kindly enter valid post");
                                 } else {
                                     errorflag = 0;
                                     if (sinst2.length() < 2) {
                                         errorflag = 1;
-                                        inst2.setError("Invalid institute");
+                                        instinput2.setError("Kindly enter valid institute");
                                     } else {
                                         errorflag = 0;
                                         if (sfromdate2.length() < 2) {
                                             errorflag = 1;
-                                            fromdate2.setError("Invalid Fromdate ");
+                                            fromdateinput2.setError("Kindly enter valid date ");
                                         } else {
                                             errorflag = 0;
                                             if (workinghereflag2 == 0 && stodate2.length() < 2) {
                                                 errorflag = 1;
-                                                todate2.setError("Invalid date");
+                                                todateinput2.setError("Kindly enter valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (todateflag1 == 1) {
@@ -5066,22 +5247,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                     //3
                                                     if (spost3.length() < 2) {
                                                         errorflag = 1;
-                                                        post3.setError("Inavalid post");
+                                                        postinput3.setError("Kindly enter valid post");
                                                     } else {
                                                         errorflag = 0;
                                                         if (sinst3.length() < 2) {
                                                             errorflag = 1;
-                                                            inst3.setError("Invalid institute");
+                                                            instinput3.setError("Kindly enter valid institute");
                                                         } else {
                                                             errorflag = 0;
                                                             if (sfromdate3.length() < 2) {
                                                                 errorflag = 1;
-                                                                fromdate3.setError("Invalid Fromdate ");
+                                                                fromdateinput3.setError("Kindly enter valid date ");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (workinghereflag3 == 0 && stodate3.length() < 2) {
                                                                     errorflag = 1;
-                                                                    todate3.setError("Invalid date");
+                                                                    todateinput3.setError("Kindly enter valid date");
                                                                 } else {
                                                                     errorflag = 0;
                                                                     if (todateflag1 == 1) {
@@ -5093,22 +5274,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                         //4
                                                                         if (spost4.length() < 2) {
                                                                             errorflag = 1;
-                                                                            post4.setError("Inavalid post");
+                                                                            postinput4.setError("Kindly enter valid post");
                                                                         } else {
                                                                             errorflag = 0;
                                                                             if (sinst4.length() < 2) {
                                                                                 errorflag = 1;
-                                                                                inst4.setError("Invalid institute");
+                                                                                instinput4.setError("Kindly enter valid institute");
                                                                             } else {
                                                                                 errorflag = 0;
                                                                                 if (sfromdate4.length() < 2) {
                                                                                     errorflag = 1;
-                                                                                    fromdate4.setError("Invalid Fromdate ");
+                                                                                    fromdateinput4.setError("Kindly enter valid date ");
                                                                                 } else {
                                                                                     errorflag = 0;
                                                                                     if (workinghereflag4 == 0 && stodate4.length() < 2) {
                                                                                         errorflag = 1;
-                                                                                        todate4.setError("Invalid date");
+                                                                                        todateinput4.setError("Kindly enter valid date");
                                                                                     } else {
                                                                                         errorflag = 0;
                                                                                         if (todateflag1 == 1) {
@@ -5152,22 +5333,22 @@ public class AdminExperiences extends AppCompatActivity {
         else if (expcount == 4) {
             if (spost1.length() < 2) {
                 errorflag = 1;
-                post1.setError("Inavalid post");
+                postinput1.setError("Kindly enter valid post");
             } else {
                 errorflag = 0;
                 if (sinst1.length() < 2) {
                     errorflag = 1;
-                    inst1.setError("Invalid institute");
+                    instinput1.setError("Kindly enter valid institute");
                 } else {
                     errorflag = 0;
                     if (sfromdate1.length() < 2) {
                         errorflag = 1;
-                        fromdate1.setError("Invalid Fromdate ");
+                        fromdateinput1.setError("Kindly enter valid date ");
                     } else {
                         errorflag = 0;
                         if (workinghereflag1 == 0 && stodate1.length() < 2) {
                             errorflag = 1;
-                            todate1.setError("Invalid date");
+                            todateinput1.setError("Kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (todateflag1 == 1) {
@@ -5180,22 +5361,22 @@ public class AdminExperiences extends AppCompatActivity {
                                 //2
                                 if (spost2.length() < 2) {
                                     errorflag = 1;
-                                    post2.setError("Inavalid post");
+                                    postinput2.setError("Kindly enter valid post");
                                 } else {
                                     errorflag = 0;
                                     if (sinst2.length() < 2) {
                                         errorflag = 1;
-                                        inst2.setError("Invalid institute");
+                                        instinput2.setError("Kindly enter valid institute");
                                     } else {
                                         errorflag = 0;
                                         if (sfromdate2.length() < 2) {
                                             errorflag = 1;
-                                            fromdate2.setError("Invalid Fromdate ");
+                                            fromdateinput2.setError("Kindly enter valid date ");
                                         } else {
                                             errorflag = 0;
                                             if (workinghereflag2 == 0 && stodate2.length() < 2) {
                                                 errorflag = 1;
-                                                todate2.setError("Invalid date");
+                                                todateinput2.setError("Kindly enter valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (todateflag1 == 1) {
@@ -5208,22 +5389,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                     //3
                                                     if (spost3.length() < 2) {
                                                         errorflag = 1;
-                                                        post3.setError("Inavalid post");
+                                                        postinput3.setError("Kindly enter valid post");
                                                     } else {
                                                         errorflag = 0;
                                                         if (sinst3.length() < 2) {
                                                             errorflag = 1;
-                                                            inst3.setError("Invalid institute");
+                                                            instinput3.setError("Kindly enter valid institute");
                                                         } else {
                                                             errorflag = 0;
                                                             if (sfromdate3.length() < 2) {
                                                                 errorflag = 1;
-                                                                fromdate3.setError("Invalid Fromdate ");
+                                                                fromdateinput3.setError("Kindly enter valid date ");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (workinghereflag3 == 0 && stodate3.length() < 2) {
                                                                     errorflag = 1;
-                                                                    todate3.setError("Invalid date");
+                                                                    todateinput3.setError("Kindly enter valid date");
                                                                 } else {
                                                                     errorflag = 0;
                                                                     if (todateflag1 == 1) {
@@ -5235,22 +5416,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                         //4
                                                                         if (spost4.length() < 2) {
                                                                             errorflag = 1;
-                                                                            post4.setError("Inavalid post");
+                                                                            postinput4.setError("Kindly enter valid post");
                                                                         } else {
                                                                             errorflag = 0;
                                                                             if (sinst4.length() < 2) {
                                                                                 errorflag = 1;
-                                                                                inst4.setError("Invalid institute");
+                                                                                instinput4.setError("Kindly enter valid institute");
                                                                             } else {
                                                                                 errorflag = 0;
                                                                                 if (sfromdate4.length() < 2) {
                                                                                     errorflag = 1;
-                                                                                    fromdate4.setError("Invalid Fromdate ");
+                                                                                    fromdateinput4.setError("Kindly enter valid date ");
                                                                                 } else {
                                                                                     errorflag = 0;
                                                                                     if (workinghereflag4 == 0 && stodate4.length() < 2) {
                                                                                         errorflag = 1;
-                                                                                        todate4.setError("Invalid date");
+                                                                                        todateinput4.setError("Kindly enter valid date");
                                                                                     } else {
                                                                                         errorflag = 0;
                                                                                         if (todateflag1 == 1) {
@@ -5262,22 +5443,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (spost5.length() < 2) {
                                                                                                 errorflag = 1;
-                                                                                                post5.setError("Inavalid post");
+                                                                                                postinput5.setError("Kindly enter valid post");
                                                                                             } else {
                                                                                                 errorflag = 0;
                                                                                                 if (sinst5.length() < 2) {
                                                                                                     errorflag = 1;
-                                                                                                    inst5.setError("Invalid institute");
+                                                                                                    instinput5.setError("Kindly enter valid institute");
                                                                                                 } else {
                                                                                                     errorflag = 0;
                                                                                                     if (sfromdate5.length() < 2) {
                                                                                                         errorflag = 1;
-                                                                                                        fromdate5.setError("Invalid Fromdate ");
+                                                                                                        fromdateinput5.setError("Kindly enter valid date ");
                                                                                                     } else {
                                                                                                         errorflag = 0;
                                                                                                         if (workinghereflag5 == 0 && stodate5.length() < 2) {
                                                                                                             errorflag = 1;
-                                                                                                            todate5.setError("Invalid date");
+                                                                                                            todateinput5.setError("Kindly enter valid date");
                                                                                                         } else {
                                                                                                             errorflag = 0;
                                                                                                             if (todateflag1 == 1) {
@@ -5328,22 +5509,22 @@ public class AdminExperiences extends AppCompatActivity {
         else if (expcount == 5) {
             if (spost1.length() < 2) {
                 errorflag = 1;
-                post1.setError("Inavalid post");
+                postinput1.setError("Kindly enter valid post");
             } else {
                 errorflag = 0;
                 if (sinst1.length() < 2) {
                     errorflag = 1;
-                    inst1.setError("Invalid institute");
+                    instinput1.setError("Kindly enter valid institute");
                 } else {
                     errorflag = 0;
                     if (sfromdate1.length() < 2) {
                         errorflag = 1;
-                        fromdate1.setError("Invalid Fromdate ");
+                        fromdateinput1.setError("Kindly enter valid date ");
                     } else {
                         errorflag = 0;
                         if (workinghereflag1 == 0 && stodate1.length() < 2) {
                             errorflag = 1;
-                            todate1.setError("Invalid date");
+                            todateinput1.setError("Kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (todateflag1 == 1) {
@@ -5356,22 +5537,22 @@ public class AdminExperiences extends AppCompatActivity {
                                 //2
                                 if (spost2.length() < 2) {
                                     errorflag = 1;
-                                    post2.setError("Inavalid post");
+                                    postinput2.setError("Kindly enter valid post");
                                 } else {
                                     errorflag = 0;
                                     if (sinst2.length() < 2) {
                                         errorflag = 1;
-                                        inst2.setError("Invalid institute");
+                                        instinput2.setError("Kindly enter valid institute");
                                     } else {
                                         errorflag = 0;
                                         if (sfromdate2.length() < 2) {
                                             errorflag = 1;
-                                            fromdate2.setError("Invalid Fromdate ");
+                                            fromdateinput2.setError("Kindly enter valid date ");
                                         } else {
                                             errorflag = 0;
                                             if (workinghereflag2 == 0 && stodate2.length() < 2) {
                                                 errorflag = 1;
-                                                todate2.setError("Invalid date");
+                                                todateinput2.setError("Kindly enter valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (todateflag1 == 1) {
@@ -5384,22 +5565,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                     //3
                                                     if (spost3.length() < 2) {
                                                         errorflag = 1;
-                                                        post3.setError("Inavalid post");
+                                                        postinput3.setError("Kindly enter valid post");
                                                     } else {
                                                         errorflag = 0;
                                                         if (sinst3.length() < 2) {
                                                             errorflag = 1;
-                                                            inst3.setError("Invalid institute");
+                                                            instinput3.setError("Kindly enter valid institute");
                                                         } else {
                                                             errorflag = 0;
                                                             if (sfromdate3.length() < 2) {
                                                                 errorflag = 1;
-                                                                fromdate3.setError("Invalid Fromdate ");
+                                                                fromdateinput3.setError("Kindly enter valid date ");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (workinghereflag3 == 0 && stodate3.length() < 2) {
                                                                     errorflag = 1;
-                                                                    todate3.setError("Invalid date");
+                                                                    todateinput3.setError("Kindly enter valid date");
                                                                 } else {
                                                                     errorflag = 0;
                                                                     if (todateflag1 == 1) {
@@ -5411,22 +5592,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                         //4
                                                                         if (spost4.length() < 2) {
                                                                             errorflag = 1;
-                                                                            post4.setError("Inavalid post");
+                                                                            postinput4.setError("Kindly enter valid post");
                                                                         } else {
                                                                             errorflag = 0;
                                                                             if (sinst4.length() < 2) {
                                                                                 errorflag = 1;
-                                                                                inst4.setError("Invalid institute");
+                                                                                instinput4.setError("Kindly enter valid institute");
                                                                             } else {
                                                                                 errorflag = 0;
                                                                                 if (sfromdate4.length() < 2) {
                                                                                     errorflag = 1;
-                                                                                    fromdate4.setError("Invalid Fromdate ");
+                                                                                    fromdateinput4.setError("Kindly enter valid date ");
                                                                                 } else {
                                                                                     errorflag = 0;
                                                                                     if (workinghereflag4 == 0 && stodate4.length() < 2) {
                                                                                         errorflag = 1;
-                                                                                        todate4.setError("Invalid date");
+                                                                                        todateinput4.setError("Kindly enter valid date");
                                                                                     } else {
                                                                                         errorflag = 0;
                                                                                         if (todateflag1 == 1) {
@@ -5438,22 +5619,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (spost5.length() < 2) {
                                                                                                 errorflag = 1;
-                                                                                                post5.setError("Inavalid post");
+                                                                                                postinput5.setError("Kindly enter valid post");
                                                                                             } else {
                                                                                                 errorflag = 0;
                                                                                                 if (sinst5.length() < 2) {
                                                                                                     errorflag = 1;
-                                                                                                    inst5.setError("Invalid institute");
+                                                                                                    instinput5.setError("Kindly enter valid institute");
                                                                                                 } else {
                                                                                                     errorflag = 0;
                                                                                                     if (sfromdate5.length() < 2) {
                                                                                                         errorflag = 1;
-                                                                                                        fromdate5.setError("Invalid Fromdate ");
+                                                                                                        fromdateinput5.setError("Kindly enter valid date ");
                                                                                                     } else {
                                                                                                         errorflag = 0;
                                                                                                         if (workinghereflag5 == 0 && stodate5.length() < 2) {
                                                                                                             errorflag = 1;
-                                                                                                            todate5.setError("Invalid date");
+                                                                                                            todateinput5.setError("Kindly enter valid date");
                                                                                                         } else {
                                                                                                             errorflag = 0;
                                                                                                             if (todateflag1 == 1) {
@@ -5464,22 +5645,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                                                 errorflag = 0;
                                                                                                                 if (spost6.length() < 2) {
                                                                                                                     errorflag = 1;
-                                                                                                                    post6.setError("Inavalid post");
+                                                                                                                    postinput6.setError("Kindly enter valid post");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
                                                                                                                     if (sinst6.length() < 2) {
                                                                                                                         errorflag = 1;
-                                                                                                                        inst6.setError("Invalid institute");
+                                                                                                                        instinput6.setError("Kindly enter valid institute");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
                                                                                                                         if (sfromdate6.length() < 2) {
                                                                                                                             errorflag = 1;
-                                                                                                                            fromdate6.setError("Invalid Fromdate ");
+                                                                                                                            fromdateinput6.setError("Kindly enter valid date ");
                                                                                                                         } else {
                                                                                                                             errorflag = 0;
                                                                                                                             if (workinghereflag6 == 0 && stodate6.length() < 2) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                todate6.setError("Invalid date");
+                                                                                                                                todateinput6.setError("Kindly enter valid date");
                                                                                                                             } else {
                                                                                                                                 errorflag = 0;
                                                                                                                                 if (todateflag1 == 1) {
@@ -5534,22 +5715,22 @@ public class AdminExperiences extends AppCompatActivity {
         else if (expcount == 6) {
             if (spost1.length() < 2) {
                 errorflag = 1;
-                post1.setError("Inavalid post");
+                postinput1.setError("Kindly enter valid post");
             } else {
                 errorflag = 0;
                 if (sinst1.length() < 2) {
                     errorflag = 1;
-                    inst1.setError("Invalid institute");
+                    instinput1.setError("Kindly enter valid institute");
                 } else {
                     errorflag = 0;
                     if (sfromdate1.length() < 2) {
                         errorflag = 1;
-                        fromdate1.setError("Invalid Fromdate ");
+                        fromdateinput1.setError("Kindly enter valid date ");
                     } else {
                         errorflag = 0;
                         if (workinghereflag1 == 0 && stodate1.length() < 2) {
                             errorflag = 1;
-                            todate1.setError("Invalid date");
+                            todateinput1.setError("Kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (todateflag1 == 1) {
@@ -5562,22 +5743,22 @@ public class AdminExperiences extends AppCompatActivity {
                                 //2
                                 if (spost2.length() < 2) {
                                     errorflag = 1;
-                                    post2.setError("Inavalid post");
+                                    postinput2.setError("Kindly enter valid post");
                                 } else {
                                     errorflag = 0;
                                     if (sinst2.length() < 2) {
                                         errorflag = 1;
-                                        inst2.setError("Invalid institute");
+                                        instinput2.setError("Kindly enter valid institute");
                                     } else {
                                         errorflag = 0;
                                         if (sfromdate2.length() < 2) {
                                             errorflag = 1;
-                                            fromdate2.setError("Invalid Fromdate ");
+                                            fromdateinput2.setError("Kindly enter valid date ");
                                         } else {
                                             errorflag = 0;
                                             if (workinghereflag2 == 0 && stodate2.length() < 2) {
                                                 errorflag = 1;
-                                                todate2.setError("Invalid date");
+                                                todateinput2.setError("Kindly enter valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (todateflag1 == 1) {
@@ -5590,22 +5771,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                     //3
                                                     if (spost3.length() < 2) {
                                                         errorflag = 1;
-                                                        post3.setError("Inavalid post");
+                                                        postinput3.setError("Kindly enter valid post");
                                                     } else {
                                                         errorflag = 0;
                                                         if (sinst3.length() < 2) {
                                                             errorflag = 1;
-                                                            inst3.setError("Invalid institute");
+                                                            instinput3.setError("Kindly enter valid institute");
                                                         } else {
                                                             errorflag = 0;
                                                             if (sfromdate3.length() < 2) {
                                                                 errorflag = 1;
-                                                                fromdate3.setError("Invalid Fromdate ");
+                                                                fromdateinput3.setError("Kindly enter valid date ");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (workinghereflag3 == 0 && stodate3.length() < 2) {
                                                                     errorflag = 1;
-                                                                    todate3.setError("Invalid date");
+                                                                    todateinput3.setError("Kindly enter valid date");
                                                                 } else {
                                                                     errorflag = 0;
                                                                     if (todateflag1 == 1) {
@@ -5617,22 +5798,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                         //4
                                                                         if (spost4.length() < 2) {
                                                                             errorflag = 1;
-                                                                            post4.setError("Inavalid post");
+                                                                            postinput4.setError("Kindly enter valid post");
                                                                         } else {
                                                                             errorflag = 0;
                                                                             if (sinst4.length() < 2) {
                                                                                 errorflag = 1;
-                                                                                inst4.setError("Invalid institute");
+                                                                                instinput4.setError("Kindly enter valid institute");
                                                                             } else {
                                                                                 errorflag = 0;
                                                                                 if (sfromdate4.length() < 2) {
                                                                                     errorflag = 1;
-                                                                                    fromdate4.setError("Invalid Fromdate ");
+                                                                                    fromdateinput4.setError("Kindly enter valid date ");
                                                                                 } else {
                                                                                     errorflag = 0;
                                                                                     if (workinghereflag4 == 0 && stodate4.length() < 2) {
                                                                                         errorflag = 1;
-                                                                                        todate4.setError("Invalid date");
+                                                                                        todateinput4.setError("Kindly enter valid date");
                                                                                     } else {
                                                                                         errorflag = 0;
                                                                                         if (todateflag1 == 1) {
@@ -5644,22 +5825,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (spost5.length() < 2) {
                                                                                                 errorflag = 1;
-                                                                                                post5.setError("Inavalid post");
+                                                                                                postinput5.setError("Kindly enter valid post");
                                                                                             } else {
                                                                                                 errorflag = 0;
                                                                                                 if (sinst5.length() < 2) {
                                                                                                     errorflag = 1;
-                                                                                                    inst5.setError("Invalid institute");
+                                                                                                    instinput5.setError("Kindly enter valid institute");
                                                                                                 } else {
                                                                                                     errorflag = 0;
                                                                                                     if (sfromdate5.length() < 2) {
                                                                                                         errorflag = 1;
-                                                                                                        fromdate5.setError("Invalid Fromdate ");
+                                                                                                        fromdateinput5.setError("Kindly enter valid date ");
                                                                                                     } else {
                                                                                                         errorflag = 0;
                                                                                                         if (workinghereflag5 == 0 && stodate5.length() < 2) {
                                                                                                             errorflag = 1;
-                                                                                                            todate5.setError("Invalid date");
+                                                                                                            todateinput5.setError("Kindly enter valid date");
                                                                                                         } else {
                                                                                                             errorflag = 0;
                                                                                                             if (todateflag1 == 1) {
@@ -5670,22 +5851,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                                                 errorflag = 0;
                                                                                                                 if (spost6.length() < 2) {
                                                                                                                     errorflag = 1;
-                                                                                                                    post6.setError("Inavalid post");
+                                                                                                                    postinput6.setError("Kindly enter valid post");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
                                                                                                                     if (sinst6.length() < 2) {
                                                                                                                         errorflag = 1;
-                                                                                                                        inst6.setError("Invalid institute");
+                                                                                                                        instinput6.setError("Kindly enter valid institute");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
                                                                                                                         if (sfromdate6.length() < 2) {
                                                                                                                             errorflag = 1;
-                                                                                                                            fromdate6.setError("Invalid Fromdate ");
+                                                                                                                            fromdateinput6.setError("Kindly enter valid date ");
                                                                                                                         } else {
                                                                                                                             errorflag = 0;
                                                                                                                             if (workinghereflag6 == 0 && stodate6.length() < 2) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                todate6.setError("Invalid date");
+                                                                                                                                todateinput6.setError("Kindly enter valid date");
                                                                                                                             } else {
                                                                                                                                 errorflag = 0;
                                                                                                                                 if (todateflag1 == 1) {
@@ -5696,22 +5877,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                                                                     errorflag = 0;
                                                                                                                                     if (spost7.length() < 2) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        post7.setError("Inavalid post");
+                                                                                                                                        postinput7.setError("Kindly enter valid post");
                                                                                                                                     } else {
                                                                                                                                         errorflag = 0;
                                                                                                                                         if (sinst7.length() < 2) {
                                                                                                                                             errorflag = 1;
-                                                                                                                                            inst7.setError("Invalid institute");
+                                                                                                                                            instinput7.setError("Kindly enter valid institute");
                                                                                                                                         } else {
                                                                                                                                             errorflag = 0;
                                                                                                                                             if (sfromdate7.length() < 2) {
                                                                                                                                                 errorflag = 1;
-                                                                                                                                                fromdate7.setError("Invalid Fromdate ");
+                                                                                                                                                fromdateinput7.setError("Kindly enter valid date ");
                                                                                                                                             } else {
                                                                                                                                                 errorflag = 0;
                                                                                                                                                 if (workinghereflag7 == 0 && stodate7.length() < 2) {
                                                                                                                                                     errorflag = 1;
-                                                                                                                                                    todate7.setError("Invalid date");
+                                                                                                                                                    todateinput7.setError("Kindly enter valid date");
                                                                                                                                                 } else {
                                                                                                                                                     errorflag = 0;
                                                                                                                                                     if (todateflag1 == 1) {
@@ -5774,22 +5955,22 @@ public class AdminExperiences extends AppCompatActivity {
         else if (expcount == 7) {
             if (spost1.length() < 2) {
                 errorflag = 1;
-                post1.setError("Inavalid post");
+                postinput1.setError("Kindly enter valid post");
             } else {
                 errorflag = 0;
                 if (sinst1.length() < 2) {
                     errorflag = 1;
-                    inst1.setError("Invalid institute");
+                    instinput1.setError("Kindly enter valid institute");
                 } else {
                     errorflag = 0;
                     if (sfromdate1.length() < 2) {
                         errorflag = 1;
-                        fromdate1.setError("Invalid Fromdate ");
+                        fromdateinput1.setError("Kindly enter valid date ");
                     } else {
                         errorflag = 0;
                         if (workinghereflag1 == 0 && stodate1.length() < 2) {
                             errorflag = 1;
-                            todate1.setError("Invalid date");
+                            todateinput1.setError("Kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (todateflag1 == 1) {
@@ -5802,22 +5983,22 @@ public class AdminExperiences extends AppCompatActivity {
                                 //2
                                 if (spost2.length() < 2) {
                                     errorflag = 1;
-                                    post2.setError("Inavalid post");
+                                    postinput2.setError("Kindly enter valid post");
                                 } else {
                                     errorflag = 0;
                                     if (sinst2.length() < 2) {
                                         errorflag = 1;
-                                        inst2.setError("Invalid institute");
+                                        instinput2.setError("Kindly enter valid institute");
                                     } else {
                                         errorflag = 0;
                                         if (sfromdate2.length() < 2) {
                                             errorflag = 1;
-                                            fromdate2.setError("Invalid Fromdate ");
+                                            fromdateinput2.setError("Kindly enter valid date ");
                                         } else {
                                             errorflag = 0;
                                             if (workinghereflag2 == 0 && stodate2.length() < 2) {
                                                 errorflag = 1;
-                                                todate2.setError("Invalid date");
+                                                todateinput2.setError("Kindly enter valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (todateflag1 == 1) {
@@ -5830,22 +6011,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                     //3
                                                     if (spost3.length() < 2) {
                                                         errorflag = 1;
-                                                        post3.setError("Inavalid post");
+                                                        postinput3.setError("Kindly enter valid post");
                                                     } else {
                                                         errorflag = 0;
                                                         if (sinst3.length() < 2) {
                                                             errorflag = 1;
-                                                            inst3.setError("Invalid institute");
+                                                            instinput3.setError("Kindly enter valid institute");
                                                         } else {
                                                             errorflag = 0;
                                                             if (sfromdate3.length() < 2) {
                                                                 errorflag = 1;
-                                                                fromdate3.setError("Invalid Fromdate ");
+                                                                fromdateinput3.setError("Kindly enter valid date ");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (workinghereflag3 == 0 && stodate3.length() < 2) {
                                                                     errorflag = 1;
-                                                                    todate3.setError("Invalid date");
+                                                                    todateinput3.setError("Kindly enter valid date");
                                                                 } else {
                                                                     errorflag = 0;
                                                                     if (todateflag1 == 1) {
@@ -5857,22 +6038,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                         //4
                                                                         if (spost4.length() < 2) {
                                                                             errorflag = 1;
-                                                                            post4.setError("Inavalid post");
+                                                                            postinput4.setError("Kindly enter valid post");
                                                                         } else {
                                                                             errorflag = 0;
                                                                             if (sinst4.length() < 2) {
                                                                                 errorflag = 1;
-                                                                                inst4.setError("Invalid institute");
+                                                                                instinput4.setError("Kindly enter valid institute");
                                                                             } else {
                                                                                 errorflag = 0;
                                                                                 if (sfromdate4.length() < 2) {
                                                                                     errorflag = 1;
-                                                                                    fromdate4.setError("Invalid Fromdate ");
+                                                                                    fromdateinput4.setError("Kindly enter valid date ");
                                                                                 } else {
                                                                                     errorflag = 0;
                                                                                     if (workinghereflag4 == 0 && stodate4.length() < 2) {
                                                                                         errorflag = 1;
-                                                                                        todate4.setError("Invalid date");
+                                                                                        todateinput4.setError("Kindly enter valid date");
                                                                                     } else {
                                                                                         errorflag = 0;
                                                                                         if (todateflag1 == 1) {
@@ -5884,22 +6065,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (spost5.length() < 2) {
                                                                                                 errorflag = 1;
-                                                                                                post5.setError("Inavalid post");
+                                                                                                postinput5.setError("Kindly enter valid post");
                                                                                             } else {
                                                                                                 errorflag = 0;
                                                                                                 if (sinst5.length() < 2) {
                                                                                                     errorflag = 1;
-                                                                                                    inst5.setError("Invalid institute");
+                                                                                                    instinput5.setError("Kindly enter valid institute");
                                                                                                 } else {
                                                                                                     errorflag = 0;
                                                                                                     if (sfromdate5.length() < 2) {
                                                                                                         errorflag = 1;
-                                                                                                        fromdate5.setError("Invalid Fromdate ");
+                                                                                                        fromdateinput5.setError("Kindly enter valid date ");
                                                                                                     } else {
                                                                                                         errorflag = 0;
                                                                                                         if (workinghereflag5 == 0 && stodate5.length() < 2) {
                                                                                                             errorflag = 1;
-                                                                                                            todate5.setError("Invalid date");
+                                                                                                            todateinput5.setError("Kindly enter valid date");
                                                                                                         } else {
                                                                                                             errorflag = 0;
                                                                                                             if (todateflag1 == 1) {
@@ -5910,22 +6091,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                                                 errorflag = 0;
                                                                                                                 if (spost6.length() < 2) {
                                                                                                                     errorflag = 1;
-                                                                                                                    post6.setError("Inavalid post");
+                                                                                                                    postinput6.setError("Kindly enter valid post");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
                                                                                                                     if (sinst6.length() < 2) {
                                                                                                                         errorflag = 1;
-                                                                                                                        inst6.setError("Invalid institute");
+                                                                                                                        instinput6.setError("Kindly enter valid institute");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
                                                                                                                         if (sfromdate6.length() < 2) {
                                                                                                                             errorflag = 1;
-                                                                                                                            fromdate6.setError("Invalid Fromdate ");
+                                                                                                                            fromdateinput6.setError("Kindly enter valid date ");
                                                                                                                         } else {
                                                                                                                             errorflag = 0;
                                                                                                                             if (workinghereflag6 == 0 && stodate6.length() < 2) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                todate6.setError("Invalid date");
+                                                                                                                                todateinput6.setError("Kindly enter valid date");
                                                                                                                             } else {
                                                                                                                                 errorflag = 0;
                                                                                                                                 if (todateflag1 == 1) {
@@ -5936,22 +6117,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                                                                     errorflag = 0;
                                                                                                                                     if (spost7.length() < 2) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        post7.setError("Inavalid post");
+                                                                                                                                        postinput7.setError("Kindly enter valid post");
                                                                                                                                     } else {
                                                                                                                                         errorflag = 0;
                                                                                                                                         if (sinst7.length() < 2) {
                                                                                                                                             errorflag = 1;
-                                                                                                                                            inst7.setError("Invalid institute");
+                                                                                                                                            instinput7.setError("Kindly enter valid institute");
                                                                                                                                         } else {
                                                                                                                                             errorflag = 0;
                                                                                                                                             if (sfromdate7.length() < 2) {
                                                                                                                                                 errorflag = 1;
-                                                                                                                                                fromdate7.setError("Invalid Fromdate ");
+                                                                                                                                                fromdateinput7.setError("Kindly enter valid date ");
                                                                                                                                             } else {
                                                                                                                                                 errorflag = 0;
                                                                                                                                                 if (workinghereflag7 == 0 && stodate7.length() < 2) {
                                                                                                                                                     errorflag = 1;
-                                                                                                                                                    todate7.setError("Invalid date");
+                                                                                                                                                    todateinput7.setError("Kindly enter valid date");
                                                                                                                                                 } else {
                                                                                                                                                     errorflag = 0;
                                                                                                                                                     if (todateflag1 == 1) {
@@ -5963,22 +6144,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                                                                                         errorflag = 0;
                                                                                                                                                         if (spost8.length() < 2) {
                                                                                                                                                             errorflag = 1;
-                                                                                                                                                            post8.setError("Inavalid post");
+                                                                                                                                                            postinput8.setError("Kindly enter valid post");
                                                                                                                                                         } else {
                                                                                                                                                             errorflag = 0;
                                                                                                                                                             if (sinst8.length() < 2) {
                                                                                                                                                                 errorflag = 1;
-                                                                                                                                                                inst8.setError("Invalid institute");
+                                                                                                                                                                instinput8.setError("Kindly enter valid institute");
                                                                                                                                                             } else {
                                                                                                                                                                 errorflag = 0;
                                                                                                                                                                 if (sfromdate8.length() < 2) {
                                                                                                                                                                     errorflag = 1;
-                                                                                                                                                                    fromdate8.setError("Invalid Fromdate ");
+                                                                                                                                                                    fromdateinput8.setError("Kindly enter valid date ");
                                                                                                                                                                 } else {
                                                                                                                                                                     errorflag = 0;
                                                                                                                                                                     if (workinghereflag8 == 0 && stodate8.length() < 2) {
                                                                                                                                                                         errorflag = 1;
-                                                                                                                                                                        todate1.setError("Invalid date");
+                                                                                                                                                                        todateinput1.setError("Kindly enter valid date");
                                                                                                                                                                     } else {
                                                                                                                                                                         errorflag = 0;
                                                                                                                                                                         if (todateflag1 == 1) {
@@ -6046,22 +6227,22 @@ public class AdminExperiences extends AppCompatActivity {
         else if (expcount == 8) {
             if (spost1.length() < 2) {
                 errorflag = 1;
-                post1.setError("Inavalid post");
+                postinput1.setError("Kindly enter valid post");
             } else {
                 errorflag = 0;
                 if (sinst1.length() < 2) {
                     errorflag = 1;
-                    inst1.setError("Invalid institute");
+                    instinput1.setError("Kindly enter valid institute");
                 } else {
                     errorflag = 0;
                     if (sfromdate1.length() < 2) {
                         errorflag = 1;
-                        fromdate1.setError("Invalid Fromdate ");
+                        fromdateinput1.setError("Kindly enter valid date ");
                     } else {
                         errorflag = 0;
                         if (workinghereflag1 == 0 && stodate1.length() < 2) {
                             errorflag = 1;
-                            todate1.setError("Invalid date");
+                            todateinput1.setError("Kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (todateflag1 == 1) {
@@ -6074,22 +6255,22 @@ public class AdminExperiences extends AppCompatActivity {
                                 //2
                                 if (spost2.length() < 2) {
                                     errorflag = 1;
-                                    post2.setError("Inavalid post");
+                                    postinput2.setError("Kindly enter valid post");
                                 } else {
                                     errorflag = 0;
                                     if (sinst2.length() < 2) {
                                         errorflag = 1;
-                                        inst2.setError("Invalid institute");
+                                        instinput2.setError("Kindly enter valid institute");
                                     } else {
                                         errorflag = 0;
                                         if (sfromdate2.length() < 2) {
                                             errorflag = 1;
-                                            fromdate2.setError("Invalid Fromdate ");
+                                            fromdateinput2.setError("Kindly enter valid date ");
                                         } else {
                                             errorflag = 0;
                                             if (workinghereflag2 == 0 && stodate2.length() < 2) {
                                                 errorflag = 1;
-                                                todate2.setError("Invalid date");
+                                                todateinput2.setError("Kindly enter valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (todateflag1 == 1) {
@@ -6102,22 +6283,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                     //3
                                                     if (spost3.length() < 2) {
                                                         errorflag = 1;
-                                                        post3.setError("Inavalid post");
+                                                        postinput3.setError("Kindly enter valid post");
                                                     } else {
                                                         errorflag = 0;
                                                         if (sinst3.length() < 2) {
                                                             errorflag = 1;
-                                                            inst3.setError("Invalid institute");
+                                                            instinput3.setError("Kindly enter valid institute");
                                                         } else {
                                                             errorflag = 0;
                                                             if (sfromdate3.length() < 2) {
                                                                 errorflag = 1;
-                                                                fromdate3.setError("Invalid Fromdate ");
+                                                                fromdateinput3.setError("Kindly enter valid date ");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (workinghereflag3 == 0 && stodate3.length() < 2) {
                                                                     errorflag = 1;
-                                                                    todate3.setError("Invalid date");
+                                                                    todateinput3.setError("Kindly enter valid date");
                                                                 } else {
                                                                     errorflag = 0;
                                                                     if (todateflag1 == 1) {
@@ -6129,22 +6310,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                         //4
                                                                         if (spost4.length() < 2) {
                                                                             errorflag = 1;
-                                                                            post4.setError("Inavalid post");
+                                                                            postinput4.setError("Kindly enter valid post");
                                                                         } else {
                                                                             errorflag = 0;
                                                                             if (sinst4.length() < 2) {
                                                                                 errorflag = 1;
-                                                                                inst4.setError("Invalid institute");
+                                                                                instinput4.setError("Kindly enter valid institute");
                                                                             } else {
                                                                                 errorflag = 0;
                                                                                 if (sfromdate4.length() < 2) {
                                                                                     errorflag = 1;
-                                                                                    fromdate4.setError("Invalid Fromdate ");
+                                                                                    fromdateinput4.setError("Kindly enter valid date ");
                                                                                 } else {
                                                                                     errorflag = 0;
                                                                                     if (workinghereflag4 == 0 && stodate4.length() < 2) {
                                                                                         errorflag = 1;
-                                                                                        todate4.setError("Invalid date");
+                                                                                        todateinput4.setError("Kindly enter valid date");
                                                                                     } else {
                                                                                         errorflag = 0;
                                                                                         if (todateflag1 == 1) {
@@ -6156,22 +6337,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (spost5.length() < 2) {
                                                                                                 errorflag = 1;
-                                                                                                post5.setError("Inavalid post");
+                                                                                                postinput5.setError("Kindly enter valid post");
                                                                                             } else {
                                                                                                 errorflag = 0;
                                                                                                 if (sinst5.length() < 2) {
                                                                                                     errorflag = 1;
-                                                                                                    inst5.setError("Invalid institute");
+                                                                                                    instinput5.setError("Kindly enter valid institute");
                                                                                                 } else {
                                                                                                     errorflag = 0;
                                                                                                     if (sfromdate5.length() < 2) {
                                                                                                         errorflag = 1;
-                                                                                                        fromdate5.setError("Invalid Fromdate ");
+                                                                                                        fromdateinput5.setError("Kindly enter valid date ");
                                                                                                     } else {
                                                                                                         errorflag = 0;
                                                                                                         if (workinghereflag5 == 0 && stodate5.length() < 2) {
                                                                                                             errorflag = 1;
-                                                                                                            todate5.setError("Invalid date");
+                                                                                                            todateinput5.setError("Kindly enter valid date");
                                                                                                         } else {
                                                                                                             errorflag = 0;
                                                                                                             if (todateflag1 == 1) {
@@ -6182,22 +6363,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                                                 errorflag = 0;
                                                                                                                 if (spost6.length() < 2) {
                                                                                                                     errorflag = 1;
-                                                                                                                    post6.setError("Inavalid post");
+                                                                                                                    postinput6.setError("Kindly enter valid post");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
                                                                                                                     if (sinst6.length() < 2) {
                                                                                                                         errorflag = 1;
-                                                                                                                        inst6.setError("Invalid institute");
+                                                                                                                        instinput6.setError("Kindly enter valid institute");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
                                                                                                                         if (sfromdate6.length() < 2) {
                                                                                                                             errorflag = 1;
-                                                                                                                            fromdate6.setError("Invalid Fromdate ");
+                                                                                                                            fromdateinput6.setError("Kindly enter valid date ");
                                                                                                                         } else {
                                                                                                                             errorflag = 0;
                                                                                                                             if (workinghereflag6 == 0 && stodate6.length() < 2) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                todate6.setError("Invalid date");
+                                                                                                                                todateinput6.setError("Kindly enter valid date");
                                                                                                                             } else {
                                                                                                                                 errorflag = 0;
                                                                                                                                 if (todateflag1 == 1) {
@@ -6208,22 +6389,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                                                                     errorflag = 0;
                                                                                                                                     if (spost7.length() < 2) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        post7.setError("Inavalid post");
+                                                                                                                                        postinput7.setError("Kindly enter valid post");
                                                                                                                                     } else {
                                                                                                                                         errorflag = 0;
                                                                                                                                         if (sinst7.length() < 2) {
                                                                                                                                             errorflag = 1;
-                                                                                                                                            inst7.setError("Invalid institute");
+                                                                                                                                            instinput7.setError("Kindly enter valid institute");
                                                                                                                                         } else {
                                                                                                                                             errorflag = 0;
                                                                                                                                             if (sfromdate7.length() < 2) {
                                                                                                                                                 errorflag = 1;
-                                                                                                                                                fromdate7.setError("Invalid Fromdate ");
+                                                                                                                                                fromdateinput7.setError("Kindly enter valid date ");
                                                                                                                                             } else {
                                                                                                                                                 errorflag = 0;
                                                                                                                                                 if (workinghereflag7 == 0 && stodate7.length() < 2) {
                                                                                                                                                     errorflag = 1;
-                                                                                                                                                    todate7.setError("Invalid date");
+                                                                                                                                                    todateinput7.setError("Kindly enter valid date");
                                                                                                                                                 } else {
                                                                                                                                                     errorflag = 0;
                                                                                                                                                     if (todateflag1 == 1) {
@@ -6235,22 +6416,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                                                                                         errorflag = 0;
                                                                                                                                                         if (spost8.length() < 2) {
                                                                                                                                                             errorflag = 1;
-                                                                                                                                                            post8.setError("Inavalid post");
+                                                                                                                                                            postinput8.setError("Kindly enter valid post");
                                                                                                                                                         } else {
                                                                                                                                                             errorflag = 0;
                                                                                                                                                             if (sinst8.length() < 2) {
                                                                                                                                                                 errorflag = 1;
-                                                                                                                                                                inst8.setError("Invalid institute");
+                                                                                                                                                                instinput8.setError("Kindly enter valid institute");
                                                                                                                                                             } else {
                                                                                                                                                                 errorflag = 0;
                                                                                                                                                                 if (sfromdate8.length() < 2) {
                                                                                                                                                                     errorflag = 1;
-                                                                                                                                                                    fromdate8.setError("Invalid Fromdate ");
+                                                                                                                                                                    fromdateinput8.setError("Kindly enter valid date ");
                                                                                                                                                                 } else {
                                                                                                                                                                     errorflag = 0;
                                                                                                                                                                     if (workinghereflag8 == 0 && stodate8.length() < 2) {
                                                                                                                                                                         errorflag = 1;
-                                                                                                                                                                        todate1.setError("Invalid date");
+                                                                                                                                                                        todateinput1.setError("Kindly enter valid date");
                                                                                                                                                                     } else {
                                                                                                                                                                         errorflag = 0;
                                                                                                                                                                         if (todateflag1 == 1) {
@@ -6261,22 +6442,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                                                                                                             errorflag = 0;
                                                                                                                                                                             if (spost9.length() < 2) {
                                                                                                                                                                                 errorflag = 1;
-                                                                                                                                                                                post9.setError("Inavalid post");
+                                                                                                                                                                                postinput9.setError("Kindly enter valid post");
                                                                                                                                                                             } else {
                                                                                                                                                                                 errorflag = 0;
                                                                                                                                                                                 if (sinst9.length() < 2) {
                                                                                                                                                                                     errorflag = 1;
-                                                                                                                                                                                    inst9.setError("Invalid institute");
+                                                                                                                                                                                    instinput9.setError("Kindly enter valid institute");
                                                                                                                                                                                 } else {
                                                                                                                                                                                     errorflag = 0;
                                                                                                                                                                                     if (sfromdate9.length() < 2) {
                                                                                                                                                                                         errorflag = 1;
-                                                                                                                                                                                        fromdate9.setError("Invalid Fromdate ");
+                                                                                                                                                                                        fromdateinput9.setError("Kindly enter valid date ");
                                                                                                                                                                                     } else {
                                                                                                                                                                                         errorflag = 0;
                                                                                                                                                                                         if (workinghereflag9 == 0 && stodate9.length() < 2) {
                                                                                                                                                                                             errorflag = 1;
-                                                                                                                                                                                            todate9.setError("Invalid date");
+                                                                                                                                                                                            todateinput9.setError("Kindly enter valid date");
                                                                                                                                                                                         } else {
                                                                                                                                                                                             errorflag = 0;
                                                                                                                                                                                             if (todateflag1 == 1) {
@@ -6349,22 +6530,22 @@ public class AdminExperiences extends AppCompatActivity {
         else if (expcount == 9) {
             if (spost1.length() < 2) {
                 errorflag = 1;
-                post1.setError("Inavalid post");
+                postinput1.setError("Kindly enter valid post");
             } else {
                 errorflag = 0;
                 if (sinst1.length() < 2) {
                     errorflag = 1;
-                    inst1.setError("Invalid institute");
+                    instinput1.setError("Kindly enter valid institute");
                 } else {
                     errorflag = 0;
                     if (sfromdate1.length() < 2) {
                         errorflag = 1;
-                        fromdate1.setError("Invalid Fromdate ");
+                        fromdateinput1.setError("Kindly enter valid date ");
                     } else {
                         errorflag = 0;
                         if (workinghereflag1 == 0 && stodate1.length() < 2) {
                             errorflag = 1;
-                            todate1.setError("Invalid date");
+                            todateinput1.setError("Kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (todateflag1 == 1) {
@@ -6377,22 +6558,22 @@ public class AdminExperiences extends AppCompatActivity {
                                 //2
                                 if (spost2.length() < 2) {
                                     errorflag = 1;
-                                    post2.setError("Inavalid post");
+                                    postinput2.setError("Kindly enter valid post");
                                 } else {
                                     errorflag = 0;
                                     if (sinst2.length() < 2) {
                                         errorflag = 1;
-                                        inst2.setError("Invalid institute");
+                                        instinput2.setError("Kindly enter valid institute");
                                     } else {
                                         errorflag = 0;
                                         if (sfromdate2.length() < 2) {
                                             errorflag = 1;
-                                            fromdate2.setError("Invalid Fromdate ");
+                                            fromdateinput2.setError("Kindly enter valid date ");
                                         } else {
                                             errorflag = 0;
                                             if (workinghereflag2 == 0 && stodate2.length() < 2) {
                                                 errorflag = 1;
-                                                todate2.setError("Invalid date");
+                                                todateinput2.setError("Kindly enter valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (todateflag1 == 1) {
@@ -6405,22 +6586,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                     //3
                                                     if (spost3.length() < 2) {
                                                         errorflag = 1;
-                                                        post3.setError("Inavalid post");
+                                                        postinput3.setError("Kindly enter valid post");
                                                     } else {
                                                         errorflag = 0;
                                                         if (sinst3.length() < 2) {
                                                             errorflag = 1;
-                                                            inst3.setError("Invalid institute");
+                                                            instinput3.setError("Kindly enter valid institute");
                                                         } else {
                                                             errorflag = 0;
                                                             if (sfromdate3.length() < 2) {
                                                                 errorflag = 1;
-                                                                fromdate3.setError("Invalid Fromdate ");
+                                                                fromdateinput3.setError("Kindly enter valid date ");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (workinghereflag3 == 0 && stodate3.length() < 2) {
                                                                     errorflag = 1;
-                                                                    todate3.setError("Invalid date");
+                                                                    todateinput3.setError("Kindly enter valid date");
                                                                 } else {
                                                                     errorflag = 0;
                                                                     if (todateflag1 == 1) {
@@ -6432,22 +6613,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                         //4
                                                                         if (spost4.length() < 2) {
                                                                             errorflag = 1;
-                                                                            post4.setError("Inavalid post");
+                                                                            postinput4.setError("Kindly enter valid post");
                                                                         } else {
                                                                             errorflag = 0;
                                                                             if (sinst4.length() < 2) {
                                                                                 errorflag = 1;
-                                                                                inst4.setError("Invalid institute");
+                                                                                instinput4.setError("Kindly enter valid institute");
                                                                             } else {
                                                                                 errorflag = 0;
                                                                                 if (sfromdate4.length() < 2) {
                                                                                     errorflag = 1;
-                                                                                    fromdate4.setError("Invalid Fromdate ");
+                                                                                    fromdateinput4.setError("Kindly enter valid date ");
                                                                                 } else {
                                                                                     errorflag = 0;
                                                                                     if (workinghereflag4 == 0 && stodate4.length() < 2) {
                                                                                         errorflag = 1;
-                                                                                        todate4.setError("Invalid date");
+                                                                                        todateinput4.setError("Kindly enter valid date");
                                                                                     } else {
                                                                                         errorflag = 0;
                                                                                         if (todateflag1 == 1) {
@@ -6459,22 +6640,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (spost5.length() < 2) {
                                                                                                 errorflag = 1;
-                                                                                                post5.setError("Inavalid post");
+                                                                                                postinput5.setError("Kindly enter valid post");
                                                                                             } else {
                                                                                                 errorflag = 0;
                                                                                                 if (sinst5.length() < 2) {
                                                                                                     errorflag = 1;
-                                                                                                    inst5.setError("Invalid institute");
+                                                                                                    instinput5.setError("Kindly enter valid institute");
                                                                                                 } else {
                                                                                                     errorflag = 0;
                                                                                                     if (sfromdate5.length() < 2) {
                                                                                                         errorflag = 1;
-                                                                                                        fromdate5.setError("Invalid Fromdate ");
+                                                                                                        fromdateinput5.setError("Kindly enter valid date ");
                                                                                                     } else {
                                                                                                         errorflag = 0;
                                                                                                         if (workinghereflag5 == 0 && stodate5.length() < 2) {
                                                                                                             errorflag = 1;
-                                                                                                            todate5.setError("Invalid date");
+                                                                                                            todateinput5.setError("Kindly enter valid date");
                                                                                                         } else {
                                                                                                             errorflag = 0;
                                                                                                             if (todateflag1 == 1) {
@@ -6485,22 +6666,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                                                 errorflag = 0;
                                                                                                                 if (spost6.length() < 2) {
                                                                                                                     errorflag = 1;
-                                                                                                                    post6.setError("Inavalid post");
+                                                                                                                    postinput6.setError("Kindly enter valid post");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
                                                                                                                     if (sinst6.length() < 2) {
                                                                                                                         errorflag = 1;
-                                                                                                                        inst6.setError("Invalid institute");
+                                                                                                                        instinput6.setError("Kindly enter valid institute");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
                                                                                                                         if (sfromdate6.length() < 2) {
                                                                                                                             errorflag = 1;
-                                                                                                                            fromdate6.setError("Invalid Fromdate ");
+                                                                                                                            fromdateinput6.setError("Kindly enter valid date ");
                                                                                                                         } else {
                                                                                                                             errorflag = 0;
                                                                                                                             if (workinghereflag6 == 0 && stodate6.length() < 2) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                todate6.setError("Invalid date");
+                                                                                                                                todateinput6.setError("Kindly enter valid date");
                                                                                                                             } else {
                                                                                                                                 errorflag = 0;
                                                                                                                                 if (todateflag1 == 1) {
@@ -6511,22 +6692,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                                                                     errorflag = 0;
                                                                                                                                     if (spost7.length() < 2) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        post7.setError("Inavalid post");
+                                                                                                                                        postinput7.setError("Kindly enter valid post");
                                                                                                                                     } else {
                                                                                                                                         errorflag = 0;
                                                                                                                                         if (sinst7.length() < 2) {
                                                                                                                                             errorflag = 1;
-                                                                                                                                            inst7.setError("Invalid institute");
+                                                                                                                                            instinput7.setError("Kindly enter valid institute");
                                                                                                                                         } else {
                                                                                                                                             errorflag = 0;
                                                                                                                                             if (sfromdate7.length() < 2) {
                                                                                                                                                 errorflag = 1;
-                                                                                                                                                fromdate7.setError("Invalid Fromdate ");
+                                                                                                                                                fromdateinput7.setError("Kindly enter valid date ");
                                                                                                                                             } else {
                                                                                                                                                 errorflag = 0;
                                                                                                                                                 if (workinghereflag7 == 0 && stodate7.length() < 2) {
                                                                                                                                                     errorflag = 1;
-                                                                                                                                                    todate7.setError("Invalid date");
+                                                                                                                                                    todateinput7.setError("Kindly enter valid date");
                                                                                                                                                 } else {
                                                                                                                                                     errorflag = 0;
                                                                                                                                                     if (todateflag1 == 1) {
@@ -6538,22 +6719,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                                                                                         errorflag = 0;
                                                                                                                                                         if (spost8.length() < 2) {
                                                                                                                                                             errorflag = 1;
-                                                                                                                                                            post8.setError("Inavalid post");
+                                                                                                                                                            postinput8.setError("Kindly enter valid post");
                                                                                                                                                         } else {
                                                                                                                                                             errorflag = 0;
                                                                                                                                                             if (sinst8.length() < 2) {
                                                                                                                                                                 errorflag = 1;
-                                                                                                                                                                inst8.setError("Invalid institute");
+                                                                                                                                                                instinput8.setError("Kindly enter valid institute");
                                                                                                                                                             } else {
                                                                                                                                                                 errorflag = 0;
                                                                                                                                                                 if (sfromdate8.length() < 2) {
                                                                                                                                                                     errorflag = 1;
-                                                                                                                                                                    fromdate8.setError("Invalid Fromdate ");
+                                                                                                                                                                    fromdateinput8.setError("Kindly enter valid date ");
                                                                                                                                                                 } else {
                                                                                                                                                                     errorflag = 0;
                                                                                                                                                                     if (workinghereflag8 == 0 && stodate8.length() < 2) {
                                                                                                                                                                         errorflag = 1;
-                                                                                                                                                                        todate1.setError("Invalid date");
+                                                                                                                                                                        todateinput1.setError("Kindly enter valid date");
                                                                                                                                                                     } else {
                                                                                                                                                                         errorflag = 0;
                                                                                                                                                                         if (todateflag1 == 1) {
@@ -6564,22 +6745,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                                                                                                             errorflag = 0;
                                                                                                                                                                             if (spost9.length() < 2) {
                                                                                                                                                                                 errorflag = 1;
-                                                                                                                                                                                post9.setError("Inavalid post");
+                                                                                                                                                                                postinput9.setError("Kindly enter valid post");
                                                                                                                                                                             } else {
                                                                                                                                                                                 errorflag = 0;
                                                                                                                                                                                 if (sinst9.length() < 2) {
                                                                                                                                                                                     errorflag = 1;
-                                                                                                                                                                                    inst9.setError("Invalid institute");
+                                                                                                                                                                                    instinput9.setError("Kindly enter valid institute");
                                                                                                                                                                                 } else {
                                                                                                                                                                                     errorflag = 0;
                                                                                                                                                                                     if (sfromdate9.length() < 2) {
                                                                                                                                                                                         errorflag = 1;
-                                                                                                                                                                                        fromdate9.setError("Invalid Fromdate ");
+                                                                                                                                                                                        fromdateinput9.setError("Kindly enter valid date ");
                                                                                                                                                                                     } else {
                                                                                                                                                                                         errorflag = 0;
                                                                                                                                                                                         if (workinghereflag9 == 0 && stodate9.length() < 2) {
                                                                                                                                                                                             errorflag = 1;
-                                                                                                                                                                                            todate9.setError("Invalid date");
+                                                                                                                                                                                            todateinput9.setError("Kindly enter valid date");
                                                                                                                                                                                         } else {
                                                                                                                                                                                             errorflag = 0;
                                                                                                                                                                                             if (todateflag1 == 1) {
@@ -6590,22 +6771,22 @@ public class AdminExperiences extends AppCompatActivity {
                                                                                                                                                                                                 errorflag = 0;
                                                                                                                                                                                                 if (spost10.length() < 2) {
                                                                                                                                                                                                     errorflag = 1;
-                                                                                                                                                                                                    post10.setError("Inavalid post");
+                                                                                                                                                                                                    postinput10.setError("Kindly enter valid post");
                                                                                                                                                                                                 } else {
                                                                                                                                                                                                     errorflag = 0;
                                                                                                                                                                                                     if (sinst10.length() < 2) {
                                                                                                                                                                                                         errorflag = 1;
-                                                                                                                                                                                                        inst10.setError("Invalid institute");
+                                                                                                                                                                                                        instinput10.setError("Kindly enter valid institute");
                                                                                                                                                                                                     } else {
                                                                                                                                                                                                         errorflag = 0;
                                                                                                                                                                                                         if (sfromdate10.length() < 2) {
                                                                                                                                                                                                             errorflag = 1;
-                                                                                                                                                                                                            fromdate10.setError("Invalid Fromdate ");
+                                                                                                                                                                                                            fromdateinput10.setError("Kindly enter valid date ");
                                                                                                                                                                                                         } else {
                                                                                                                                                                                                             errorflag = 0;
                                                                                                                                                                                                             if (workinghereflag10 == 0 && stodate10.length() < 2) {
                                                                                                                                                                                                                 errorflag = 1;
-                                                                                                                                                                                                                todate1.setError("Invalid date");
+                                                                                                                                                                                                                todateinput1.setError("Kindly enter valid date");
                                                                                                                                                                                                             } else {
                                                                                                                                                                                                                 errorflag = 0;
                                                                                                                                                                                                                 if (todateflag1 == 1) {

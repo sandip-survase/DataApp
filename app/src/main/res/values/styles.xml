@@ -74,8 +74,8 @@
 
     <style name="SCBSwitch" parent="AppTheme">
         <item name="colorControlActivated">@color/sky_blue_color</item>
-        <item name="colorSwitchThumbNormal">#f1f1f1</item>
-        <item name="android:colorForeground">@color/sky_blue_color</item>
+        <item name="colorSwitchThumbNormal">@color/dark_color</item>
+        <item name="android:colorForeground">@color/dark_color</item>
     </style>
 
     <style name="MyCheckBox" parent="Theme.AppCompat.Light">

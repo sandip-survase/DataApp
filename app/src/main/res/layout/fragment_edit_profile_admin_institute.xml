@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35"
+    android:background="@color/while_color"
 
     >
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -32,10 +32,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute Name"
-                    android:text="sinhgad institute"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:maxLength="200"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/instname"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -52,11 +52,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute Email Address"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:maxLength="100"
                     android:text="sinhgadinstitute@edu.com"
                     android:inputType="textEmailAddress"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/instemail"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -72,11 +73,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute Website"
-                    android:text="www.sinhgad.com"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:inputType="textUri"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:id="@+id/instweb"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -92,11 +93,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute Phone Number (with STD code)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:inputType="phone"
-                    android:text="9856321478"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="11"
                     android:id="@+id/instphone"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -112,11 +113,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Alternate Phone Number (with STD code)"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:inputType="phone"
-                    android:text="0213654788"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="11"
                     android:id="@+id/instphonea"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -132,10 +133,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="University Name"
-                    android:text="savitribai phule"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:id="@+id/instuniversity"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -151,10 +152,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute Registration Number"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:text="7896541234655"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="20"
                     android:id="@+id/instreg"/>
 
             </android.support.design.widget.TextInputLayout>
