@@ -44,6 +44,12 @@ public class RecyclerItemUsersAdminAdapter extends RecyclerView.Adapter<Recycler
             role=(TextView) view.findViewById(R.id.role);
             isactivated=(TextView) view.findViewById(R.id.placed);      // changed place to isactivated
             uploadedbyprofile=(CircleImageView) view.findViewById(R.id.uploadedbyprofile);
+            name.setTypeface(MyConstants.getBold(name.getContext()));
+            email.setTypeface(MyConstants.getLight(email.getContext()));
+            role.setTypeface(MyConstants.getLight(role.getContext()));
+            isactivated.setTypeface(MyConstants.getLight(isactivated.getContext()));
+
+
         }
     }
     public void updateList(List<RecyclerItemUsersAdmin> list,String searchText){

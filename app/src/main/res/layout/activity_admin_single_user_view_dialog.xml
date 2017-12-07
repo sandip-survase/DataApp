@@ -19,7 +19,6 @@
             android:id="@+id/edituserrl"
             android:layout_marginTop="20dp"
             android:background="@drawable/boxborder"
-            android:elevation="6dp"
             android:padding="16dp"
             >
 
