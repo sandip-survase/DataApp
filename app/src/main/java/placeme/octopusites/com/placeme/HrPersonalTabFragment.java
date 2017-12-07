@@ -109,29 +109,6 @@ public class HrPersonalTabFragment extends Fragment {
         loctxt.setTypeface(custom_font1);
 
 
-//        ActionBar ab = getSupportActionBar();
-//        ab.setTitle("Edit Personal Info");
-//        ab.setDisplayHomeAsUpEnabled(true);
-//
-//        final Drawable upArrow = getResources().getDrawable(R.drawable.close);
-//        upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-//        getSupportActionBar().setHomeAsUpIndicator(upArrow);
-//
-//        Window window = HrIntro.this.getWindow();
-//
-//        int sdklevel = Integer.valueOf(android.os.Build.VERSION.SDK);
-//        if (sdklevel >= 21) {
-//
-//            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//            window.setStatusBarColor(HrIntro.this.getResources().getColor(R.color.background));
-//        }
-//        TextView loctxt = (TextView) findViewById(R.id.loctxt);
-//        Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/arba.ttf");
-//        loctxt.setTypeface(custom_font1);
-
-        //-----------------
-
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
         digest2 = MySharedPreferencesManager.getDigest2(getActivity());
 
@@ -166,12 +143,6 @@ public class HrPersonalTabFragment extends Fragment {
         roleValue = MySharedPreferencesManager.getRole(getActivity());
         role.setText(roleValue.toUpperCase());
 
-
-//        country = (Spinner) rootView.findViewById(R.id.country);
-//        state = (Spinner) rootView.findViewById(R.id.state);
-//        city = (Spinner) rootView.findViewById(R.id.city);
-
-//        new GetCountries().execute();
 
         selectedCountry = hr.getCountry();
         selectedState = hr.getState();
@@ -411,7 +382,7 @@ public class HrPersonalTabFragment extends Fragment {
             params.add(new BasicNameValuePair("u", encUsername));
             params.add(new BasicNameValuePair("d", encobj));       //1
 
-            json = jParser.makeHttpRequest(MyConstants.url_savedata_SaveHrIntro, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_SaveHrIntro, "GET", params);
             try {
                 r = json.getString("info");
 

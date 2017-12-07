@@ -3180,6 +3180,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         if(resultCode==STUDENT_DATA_CHANGE_RESULT_CODE)
         {
+            Log.d("TAG", "onActivityResult: personal save");
             MyProfileFragment fragment = (MyProfileFragment)getSupportFragmentManager().findFragmentById(R.id.mainfragment);
             fragment.refreshContent();
         }

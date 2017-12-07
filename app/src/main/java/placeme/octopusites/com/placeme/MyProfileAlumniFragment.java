@@ -2796,7 +2796,9 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setCountry(country);
                         studentData.setState(state);
                         studentData.setCity(city);
-
+                        Log.d("TAG", "doInBackground: country -"+country);
+                        Log.d("TAG", "doInBackground: state -"+state);
+                        Log.d("TAG", "doInBackground: city -"+city);
                         Log.d("TAG", "dataobject===: " + dataobject);
                     }
 
@@ -4428,7 +4430,6 @@ public class MyProfileAlumniFragment extends Fragment {
                         a.setFromdate10e(fromdates10);
                         a.setTodate10e(todates10);
 
-
                     }
 
 
@@ -4440,18 +4441,14 @@ public class MyProfileAlumniFragment extends Fragment {
                 e.printStackTrace();
 //                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.d(alumniLog, "exc msg " + e.getMessage());
-
-
             }
             return map;
-
         }
 
         protected void onPostExecute(Bitmap result) {
 
             updateProgress.setVisibility(View.GONE);
             populateData();
-
             downloadImage();
 
             swipe_refresh_layout.setRefreshing(false);

@@ -15,15 +15,8 @@ import android.widget.TextView;
 
 public class AchievementsProfileTabFragment extends Fragment {
 
-    //    String achievements;
-//    EditText achievementsedittext;
-//    ProgressBar achievementsprogress;
-//    Button save;
     String username;
-    //    JSONParser jParser = new JSONParser();
-//    private static String saveachievementsinfo = "http://192.168.0.6/HandleMobileRequests/SaveAchievementsData";
-//    JSONObject json;
-//    String resultofop="";
+
     View knownlang,certifications,courses,skills,honors,patents,publications;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

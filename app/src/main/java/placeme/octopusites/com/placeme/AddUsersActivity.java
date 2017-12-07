@@ -56,7 +56,6 @@ import java.util.regex.Pattern;
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 import static placeme.octopusites.com.placeme.JSONParser.json;
-import static placeme.octopusites.com.placeme.MyConstants.url_savedata;
 
 public class AddUsersActivity extends AppCompatActivity {
 

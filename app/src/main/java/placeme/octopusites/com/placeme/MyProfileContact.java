@@ -39,7 +39,6 @@ public class MyProfileContact extends AppCompatActivity {
     public static final String Username = "nameKey";
 
 
-    private static String url_savedata = "http://192.168.100.10:8080/ProfileObjects/SaveAdminContact";
     String username,role;
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
@@ -574,9 +573,6 @@ public class MyProfileContact extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("obj", strobj));               //1
 
-//            json = jParser.makeHttpRequest(MyConstants.url_SaveAdminContact, "GET", params);
-
-
             if (role.equals("hr"))
                 json = jParser.makeHttpRequest(MyConstants.url_SaveHrContact, "GET", params);
 
@@ -604,16 +600,15 @@ public class MyProfileContact extends AppCompatActivity {
                 Toast.makeText(MyProfileContact.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
 
                 if (role.equals("student"))
-                    if(role.equals("student"))
-
                         setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                     else if (role.equals("alumni"))
                         setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
                     else if (role.equals("hr"))
                         setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
-                    else if (role.equals("admin"))
+                    else  {
+                        Log.d("TAG", "onPostExecute: admin");
                         setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
-
+                    }
                 MyProfileContact.super.onBackPressed();
 
             } else

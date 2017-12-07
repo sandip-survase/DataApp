@@ -1391,6 +1391,9 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         radioButtonTwelth = (RadioButton) findViewById(R.id.radioButtonTwelth);
         radioButtonDiploma = (RadioButton) findViewById(R.id.radioButtonDiploma);
 
+        radioButtonTwelth.setTypeface(MyConstants.getBold(this));
+        radioButtonDiploma.setTypeface(MyConstants.getBold(this));
+
         TextView twelthtxt = (TextView) findViewById(R.id.twelthtxt);
         twelthtxt.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
 
@@ -1842,12 +1845,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                         selectedboardBytes1 = otherspecifiedboard;
                     else
                         selectedboardBytes1 = selectedBoard12;
-
-
-                    // enc deploma blank
-
-
-
 
                     new SaveDataTwelth().execute();
 

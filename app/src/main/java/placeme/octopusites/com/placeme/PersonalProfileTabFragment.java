@@ -1547,27 +1547,14 @@ public class PersonalProfileTabFragment extends Fragment {
     }
 
     class MyAsyncTask extends AsyncTask<String, String, String> {
-
-
         protected String doInBackground(String... param) {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));        //0
             params.add(new BasicNameValuePair("d", encobj));        //1
 
-
-            if (Myrole.equals("student")) {
-
-
                 Log.d("student", "onCreateView: " + Myrole);
                 json = jParser.makeHttpRequest(MyConstants.savepersonalinfo, "GET", params);
-
-
-            }
-            if (Myrole.equals("alumni")) {
-                json = jParser.makeHttpRequest(MyConstants.savepersonalinfoAlumni, "GET", params);
-            }
-
 
             try {
                 resultofop = json.getString("info");
@@ -1582,13 +1569,15 @@ public class PersonalProfileTabFragment extends Fragment {
         protected void onPostExecute(String result) {
 
             if (resultofop.equals("success")) {
-
-                if (role.equals("student"))
+                Log.d("TAG", "onPostExecute: role before- "+role);
+                if (role.equals("student")) {
+                    Log.d("TAG", "onPostExecute: role - "+role);
                     getActivity().setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
-                else if (role.equals("alumni"))
+                }
+                else {
+                    Log.d("TAG", "onPostExecute: role - "+role);
                     getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
-
-                Toast.makeText(getContext(), "Data successfully updated !", Toast.LENGTH_SHORT).show();
+                }
                 edittedFlag = 0;
             } else {
                 Toast.makeText(getContext(), "Try again", Toast.LENGTH_SHORT).show();

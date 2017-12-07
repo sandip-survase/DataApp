@@ -1403,7 +1403,6 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
 
-
         if (resultCode == ADMIN_DATA_CHANGE_RESULT_CODE) {
             Log.d("TAG", "onActivityResult: result code " + ADMIN_DATA_CHANGE_RESULT_CODE);
 

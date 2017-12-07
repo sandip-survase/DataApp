@@ -312,7 +312,6 @@ public class MyProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivityForResult(new Intent(getActivity(), MyProfileIntro.class), 0);
-                Log.d("MYTAG", "MyProfileIntro called: ");
             }
         });
         eduedit.setOnClickListener(new View.OnClickListener() {
@@ -363,8 +362,6 @@ public class MyProfileFragment extends Fragment {
         editprofilerl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 startActivityForResult(new Intent(getActivity(), EditProfile.class), 0);
             }
         });
@@ -482,8 +479,6 @@ public class MyProfileFragment extends Fragment {
     }
 
     private class GetStudentData extends AsyncTask<String, Void, Bitmap> {
-
-
         @Override
         protected Bitmap doInBackground(String... urls) {
             Bitmap map = null;
@@ -527,7 +522,9 @@ public class MyProfileFragment extends Fragment {
                         studentData.setCountry(country);
                         studentData.setState(state);
                         studentData.setCity(city);
-
+                        Log.d("TAG", "doInBackground: country -"+country);
+                        Log.d("TAG", "doInBackground: state -"+state);
+                        Log.d("TAG", "doInBackground: city -"+city);
                         Log.d("TAG", "dataobject===: " + dataobject);
                     }
 

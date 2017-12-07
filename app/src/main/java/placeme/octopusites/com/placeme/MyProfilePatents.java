@@ -2580,8 +2580,12 @@ public class MyProfilePatents extends AppCompatActivity {
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialogInterface) {
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfilePatents.this));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfilePatents.this));
+
+
             }
         });
 
@@ -7074,22 +7078,6 @@ public class MyProfilePatents extends AppCompatActivity {
         protected String doInBackground(String... param) {
 
 
-//            List<NameValuePair> params = new ArrayList<NameValuePair>();
-//
-//            json = jParser.makeHttpRequest(url_getcountries, "GET", params);
-//            try {
-//                String s = json.getString("count");
-//                countrycount=Integer.parseInt(s);
-//                countries=new String[countrycount];
-//                for(int i=0;i<countrycount;i++)
-//                {
-//                    countries[i]=json.getString("country"+i);
-//                }
-//
-//
-//
-//
-//            }catch (Exception e){e.printStackTrace();}
 
             countrycount = getResources().getStringArray(R.array.countries_array).length;
             countries = new String[countrycount];

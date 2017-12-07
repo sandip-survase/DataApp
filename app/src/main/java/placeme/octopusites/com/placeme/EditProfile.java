@@ -162,15 +162,8 @@ public class EditProfile extends AppCompatActivity {
     }
 
 
-//    public void showfab() {
-//        floatingActionButton.setVisibility(View.VISIBLE);
-//    }
-//
-//    public void gonefab() {
-//        floatingActionButton.setVisibility(View.GONE);
-//    }
-
     private void setupViewPager(ViewPager viewPager) {
+
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new PersonalProfileTabFragment(), "Personal");
         adapter.addFrag(new EducationTabFragment(), "Education");
@@ -178,6 +171,7 @@ public class EditProfile extends AppCompatActivity {
         adapter.addFrag(new AchievementsProfileTabFragment(), "Accomplishments");
         adapter.addFrag(new CareerobjProfileTabFragment(), "Career Objectives");
         adapter.addFrag(new PrintProfileTabFragment(), "Print Profile");
+
         viewPager.setOffscreenPageLimit(5);
         viewPager.setAdapter(adapter);
 
@@ -242,84 +236,9 @@ public class EditProfile extends AppCompatActivity {
 
     }
 
-//
-//    @Override
-//    public void onBackPressed() {
-//        PersonalProfileTabFragment fragment = (PersonalProfileTabFragment) adapter.getItem(0);
-//        ProjectsProfileTabFragment projFrag = (ProjectsProfileTabFragment) adapter.getItem(2);
-//
-//        if (fragment.edittedFlag == 1 || projFrag.edittedFlag == 1) {
-//            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-//            alertDialogBuilder
-//                    .setMessage("Do you want to save all changes ?")
-//                    .setCancelable(false)
-//                    .setPositiveButton("save",
-//                            new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int id) {
-//
-//                                    Boolean personal_success = false;
-//                                    Boolean project_success = false;
-//
-//                                    PersonalProfileTabFragment fragment = (PersonalProfileTabFragment) adapter.getItem(0);
-//                                    ProjectsProfileTabFragment projFrag = (ProjectsProfileTabFragment) adapter.getItem(2);
-//
-//                                    if (fragment.edittedFlag == 1) {
-//                                        personal_success = fragment.validate();
-//                                        if (personal_success) {
-//                                            fragment.save();
-//
-//                                        }
-//                                    }
-//                                    if (projFrag.edittedFlag == 1) {
-//                                        project_success = projFrag.validate();
-//                                        if (project_success) {
-//                                            projFrag.save();
-//
-//                                        }
-//                                    }
-//                                    setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
-//
-//                                    if (personal_success || project_success)
-//                                        Toast.makeText(EditProfile.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
-//
-//                                    EditProfile.super.onBackPressed();
-//                                }
-//                            })
-//
-//                    .setNegativeButton("Discard", new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int id) {
-//
-//                            dialog.cancel();
-//                            EditProfile.super.onBackPressed();
-//                        }
-//                    });
-//
-//            final AlertDialog alertDialog = alertDialogBuilder.create();
-//
-//            alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-//                @Override
-//                public void onShow(DialogInterface dialogInterface) {
-//                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-//                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
-//                }
-//            });
-//
-//            alertDialog.show();
-//
-//        } else
-//            EditProfile.super.onBackPressed();
-//    }
-
-
     // new
     @Override
     public void onBackPressed() {
-//    HrPersonalTabFragment fragment = (HrPersonalTabFragment) adapter.getItem(0);
-////        ProjectsProfileTabFragment projFrag = (ProjectsProfileTabFragment) adapter.getItem(2);
-//    HrCompanyDetailsTabFragment hrCompanyDetailsTabFragment = (HrCompanyDetailsTabFragment) adapter.getItem(1);
-//    HrExperiencesTabFragment hrExperiencesTabFragment = (HrExperiencesTabFragment) adapter.getItem(3);
-//    HrContactTabFragment hrContactTabFragment = (HrContactTabFragment) adapter.getItem(4);
-
 
         PersonalProfileTabFragment fragment = (PersonalProfileTabFragment) adapter.getItem(0);
         ProjectsProfileTabFragment projFrag = (ProjectsProfileTabFragment) adapter.getItem(2);

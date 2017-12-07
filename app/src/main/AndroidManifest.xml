@@ -266,10 +266,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/MyFormTheme" />
         <activity
-            android:name=".AdminContactDetails"
-            android:screenOrientation="portrait"
-            android:theme="@style/MyFormTheme" />
-        <activity
             android:name=".EditProfileAdmin"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -385,14 +381,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".GetMoreResumeTemplates" />
         <activity android:name=".HR_Experiences" />
-        <activity android:name=".HrContactDetails" />
         <activity
             android:name=".EditProfileHr"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AlumniIntro" />
-        <activity android:name=".AlumniContactDetails" />
-        <activity android:name=".AlumniProfileProjects" />
         <activity
             android:name=".EditProfileAlumni"
             android:screenOrientation="portrait"

@@ -415,7 +415,7 @@ public class HrIntro extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", encUsername));
             params.add(new BasicNameValuePair("d", encobj));       //1
 
-            json = jParser.makeHttpRequest(MyConstants.url_savedata_SaveHrIntro, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_SaveHrIntro, "GET", params);
             try {
                 r = json.getString("info");
 

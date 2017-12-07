@@ -59,12 +59,9 @@ public class MyProfileTenth extends AppCompatActivity {
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-    //    private static String url_savedata= "http://192.168.100.10/AESTest/SaveTenth";
     String selectedBoard = "";
     int edittedFlag = 0;
     String marksobtained = "", outofmarks = "", percentage = "", schoolname = "", monthandyearofpassing = "", otherspecifiedboard = "", encobj = "";
-    String encmarksobtained, encoutofmarks, encpercentage, encschoolname, encmonthandyearofpassing, encselectedboard;
-    //    StudentData s=new StudentData();
     String oldBoard = "";
     StudentData s = new StudentData();
 
@@ -124,50 +121,6 @@ public class MyProfileTenth extends AppCompatActivity {
         schoolname10.setTypeface(MyConstants.getBold(this));
         yearofpassing10.setTypeface(MyConstants.getBold(this));
         otherboard.setTypeface(MyConstants.getBold(this));
-
-
-//
-//        marksobtained= alumniDataset.getMarks();
-//        outofmarks=alumniDataset.getOutof();
-//        percentage=alumniDataset.getPercentage();
-//        schoolname=alumniDataset.getSchoolname();
-//        monthandyearofpassing=alumniDataset.getYearofpassing();
-//        board10=alumniDataset.getBoard();
-//
-//
-//        if (marksobtained != null) {
-//
-//            if (marksobtained.length() > 1)
-//                marks10.setText(marksobtained);
-//        }
-//
-//        if (outofmarks != null) {
-//            if (outofmarks.length() > 1)
-//                outof10.setText(outofmarks);
-//        }
-//
-//        if (percentage != null) {
-//
-//            if (percentage.length() > 1)
-//                percent10.setText(percentage);
-//        }
-//
-//        if (schoolname != null) {
-//            if (schoolname.length() > 1)
-//                schoolname10.setText(schoolname);
-//        }
-//        if (monthandyearofpassing != null) {
-//
-//            if (monthandyearofpassing.length() > 1)
-//                yearofpassing10.setText(monthandyearofpassing);
-//        }
-//
-//        if (board10 != null) {
-//            if (otherspecifiedboard.length() > 1)
-//                lname.setText(otherspecifiedboard);
-//        }
-//
-
 
         marks10.addTextChangedListener(new TextWatcher() {
             @Override
@@ -671,7 +624,7 @@ public class MyProfileTenth extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", username));    //0
             params.add(new BasicNameValuePair("m", encobj));        //1
 
-            json = jParser.makeHttpRequest(MyConstants.url_savedata, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_SaveTenth, "GET", params);
             try {
                 r = json.getString("info");
 
