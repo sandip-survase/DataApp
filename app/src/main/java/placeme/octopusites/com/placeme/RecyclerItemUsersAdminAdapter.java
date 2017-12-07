@@ -101,7 +101,11 @@ public class RecyclerItemUsersAdminAdapter extends RecyclerView.Adapter<Recycler
 
         holder.name.setText(item.getName());
         holder.role.setText(item.getRole());
-        holder.isactivated.setText(item.getIsactivated());
+        if(item.getIsactivated().equals("Not Activated")) {
+            holder.isactivated.setTextColor(Color.parseColor("#00bcd4"));
+            holder.isactivated.setTypeface(MyConstants.getBold(holder.isactivated.getContext()));
+        }
+            holder.isactivated.setText(item.getIsactivated());
 
 
     }
