@@ -207,7 +207,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/certirl1"
             android:id="@+id/certiline1"
             android:layout_marginTop="20dp"
@@ -397,7 +397,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/certirl2"
             android:id="@+id/certiline2"
             android:layout_marginTop="20dp"
@@ -587,7 +587,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/certirl3"
             android:id="@+id/certiline3"
             android:layout_marginTop="20dp"
@@ -777,7 +777,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/certirl4"
             android:id="@+id/certiline4"
             android:layout_marginTop="20dp"
@@ -968,7 +968,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/certirl5"
             android:id="@+id/certiline5"
             android:layout_marginTop="20dp"
@@ -1158,7 +1158,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/certirl6"
             android:id="@+id/certiline6"
             android:layout_marginTop="20dp"
@@ -1350,7 +1350,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/certirl7"
             android:id="@+id/certiline7"
             android:layout_marginTop="20dp"
@@ -1540,7 +1540,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/certirl8"
             android:id="@+id/certiline8"
             android:layout_marginTop="20dp"
@@ -1732,7 +1732,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/certirl9"
             android:id="@+id/certiline9"
             android:layout_marginTop="20dp"
