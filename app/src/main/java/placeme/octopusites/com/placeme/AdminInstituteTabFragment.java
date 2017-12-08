@@ -61,12 +61,12 @@ public class AdminInstituteTabFragment extends Fragment {
         encUsername = username;
 
         instnameinput=(TextInputLayout)rootView.findViewById(R.id.instnameinput);
-        instemailinput=(TextInputLayout)rootView.findViewById(R.id.instnameinput);
-        instwebinput=(TextInputLayout)rootView.findViewById(R.id.instnameinput);
-        instphoneinput=(TextInputLayout)rootView.findViewById(R.id.instnameinput);
-        instphoneainput=(TextInputLayout)rootView.findViewById(R.id.instnameinput);
-        instuniversityinput=(TextInputLayout)rootView.findViewById(R.id.instnameinput);
-        instreginput=(TextInputLayout)rootView.findViewById(R.id.instnameinput);
+        instemailinput=(TextInputLayout)rootView.findViewById(R.id.instemailinput);
+        instwebinput=(TextInputLayout)rootView.findViewById(R.id.instwebinput);
+        instphoneinput=(TextInputLayout)rootView.findViewById(R.id.instphoneinput);
+        instphoneainput=(TextInputLayout)rootView.findViewById(R.id.instphoneainput);
+        instuniversityinput=(TextInputLayout)rootView.findViewById(R.id.instuniversityinput);
+        instreginput=(TextInputLayout)rootView.findViewById(R.id.instreginput);
 
         instnameinput.setTypeface(MyConstants.getLight(getActivity()));
         instemailinput.setTypeface(MyConstants.getLight(getActivity()));
@@ -261,35 +261,44 @@ public class AdminInstituteTabFragment extends Fragment {
         instreg = ireg.getText().toString();
 
         if (instname.length() < 2) {
-            instnameinput.setError("Kindly enter valid institute name");
 
+            instnameinput.setError("Kindly enter valid institute name");
             errorflag7 = 1;
 
         } else {
+               instnameinput.setError(null);
             if (!instemail.contains("@") || (!instemail.contains(".edu"))) {
                 instemailinput.setError("Kindly enter valid email address");
                 errorflag1 = 1;
             } else {
+                instemailinput.setError(null);
                 if (instweb.length() < 3 && !instweb.contains(".")) {
                     instwebinput.setError("Kindly enter valid website URL");
                     errorflag2 = 1;
                 } else {
+                    instwebinput.setError(null);
                     if (instphone.length() < 6) {
                         instphoneinput.setError("Kindly enter valid phone number ");
                         errorflag3 = 1;
                     } else {
+                        instphoneinput.setError(null);
                         if (instaltrphone.length() < 6) {
                             instphoneainput.setError("Kindly enter valid phone number");
                             errorflag4 = 1;
                         } else {
+                            instphoneainput.setError(null);
                             if (universityname.length() < 2) {
                                 instuniversityinput.setError("Kindly enter valid university name");
                                 errorflag5 = 1;
                             } else {
+                                instuniversityinput.setError(null);
                                 if (instreg.length() < 2) {
                                     instreginput.setError("Kindly enter valid registration number");
                                     errorflag6 = 1;
                                 }
+                                else
+                                    instreginput.setError(null);
+
                             }
                         }
 
