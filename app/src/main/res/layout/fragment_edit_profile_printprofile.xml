@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/myprofilepatents"
-    android:background="#282f35">
+    android:background="@color/while_color">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#282f35"
+        android:background="@color/while_color"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
         <RelativeLayout
@@ -32,10 +32,9 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:typeface="serif"
                 android:id="@+id/getmore"
-                android:textSize="15dp"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textSize="16dp"
+                android:textColor="@color/sky_blue_color"
                 />
             <View
                 android:layout_below="@+id/recycler_view"
@@ -53,8 +52,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="Select Format"
-                android:textColor="#eee"
-                android:textSize="16dp"
+                android:textColor="@color/dark_color"
+                android:textSize="14dp"
                 android:id="@+id/selectformattxt"
                 android:layout_below="@+id/getmore"
                 android:layout_marginTop="15dp"
@@ -75,8 +74,8 @@
                     android:text="PDF"
                     android:id="@+id/radioButtonPdf"
                     android:checked="true"
-                    android:textColor="#eee"
-                    app:buttonTint="#eee"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     />
@@ -87,8 +86,8 @@
                     android:text="Word"
                     android:id="@+id/radioButtonWord"
                     android:checked="false"
-                    android:textColor="#eee"
-                    app:buttonTint="#eee"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     />
@@ -115,17 +114,17 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
-                android:background="#fff"
+                android:background="@color/sky_blue_color"
                 />
             <Button
                 android:id="@+id/downloadresume"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:textColor="@android:color/holo_blue_bright"
+                android:textColor="@color/sky_blue_color"
                 android:textAllCaps="false"
                 android:textSize="20dp"
                 android:text="Download"
-                android:background="#282f35"
+                android:background="@color/dark_color"
                 />
         </LinearLayout>
     </RelativeLayout>
