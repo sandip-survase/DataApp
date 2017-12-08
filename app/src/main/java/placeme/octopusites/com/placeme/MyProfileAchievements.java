@@ -164,6 +164,7 @@ public class MyProfileAchievements extends AppCompatActivity {
         title1 = (EditText) findViewById(R.id.title1);
         issuer1 = (EditText) findViewById(R.id.issuer1);
         description1 = (EditText) findViewById(R.id.description1);
+
         title2 = (EditText) findViewById(R.id.title2);
         issuer2 = (EditText) findViewById(R.id.issuer2);
         description2 = (EditText) findViewById(R.id.description2);
@@ -253,56 +254,104 @@ public class MyProfileAchievements extends AppCompatActivity {
         yearhonor9 = (TextInputLayout) findViewById(R.id.yearhonor9);
         yearhonor10 = (TextInputLayout) findViewById(R.id.yearhonor10);
 
+        title1.setTypeface(MyConstants.getBold(this));
+                issuer1.setTypeface(MyConstants.getBold(this));
+                 description1.setTypeface(MyConstants.getBold(this));
+                 title2.setTypeface(MyConstants.getBold(this));
+                 issuer2.setTypeface(MyConstants.getBold(this));
+                 description2.setTypeface(MyConstants.getBold(this));
+                 title3.setTypeface(MyConstants.getBold(this));
+                 issuer3.setTypeface(MyConstants.getBold(this));
+                 description3.setTypeface(MyConstants.getBold(this));
+                 title4.setTypeface(MyConstants.getBold(this));
+                 issuer4.setTypeface(MyConstants.getBold(this));
+                 description4.setTypeface(MyConstants.getBold(this));
+                 title5.setTypeface(MyConstants.getBold(this));
+                 issuer5.setTypeface(MyConstants.getBold(this));
+                 description5.setTypeface(MyConstants.getBold(this));
+                 title6.setTypeface(MyConstants.getBold(this));
+                 issuer6.setTypeface(MyConstants.getBold(this));
+                 description6.setTypeface(MyConstants.getBold(this));
+                 title7.setTypeface(MyConstants.getBold(this));
+
+                issuer7.setTypeface(MyConstants.getBold(this));
+                 description7.setTypeface(MyConstants.getBold(this));
+                 title8.setTypeface(MyConstants.getBold(this));
+                 issuer8.setTypeface(MyConstants.getBold(this));
+                 description8.setTypeface(MyConstants.getBold(this));
+                 title9.setTypeface(MyConstants.getBold(this));
+                 issuer9.setTypeface(MyConstants.getBold(this));
+                 description9.setTypeface(MyConstants.getBold(this));
+                 title10.setTypeface(MyConstants.getBold(this));
+                 issuer10.setTypeface(MyConstants.getBold(this));
+                 description10.setTypeface(MyConstants.getBold(this));
+        yearofhonor1.setTypeface(MyConstants.getBold(this));
+                 yearofhonor2.setTypeface(MyConstants.getBold(this));
+                 yearofhonor3.setTypeface(MyConstants.getBold(this));
+                 yearofhonor4.setTypeface(MyConstants.getBold(this));
+                 yearofhonor5.setTypeface(MyConstants.getBold(this));
+                 yearofhonor6.setTypeface(MyConstants.getBold(this));
+                 yearofhonor7.setTypeface(MyConstants.getBold(this));
+                 yearofhonor8.setTypeface(MyConstants.getBold(this));
+                 yearofhonor9.setTypeface(MyConstants.getBold(this));
+                 yearofhonor10.setTypeface(MyConstants.getBold(this));
+
+
+
+
+
+
 
         titleinput1.setTypeface(MyConstants.getLight(this));
         issuerinput1.setTypeface(MyConstants.getLight(this));
         decrinput1.setTypeface(MyConstants.getLight(this));
+        yearhonor1.setTypeface(MyConstants.getLight(this));
 
         titleinput2.setTypeface(MyConstants.getLight(this));
         issuerinput2.setTypeface(MyConstants.getLight(this));
         decrinput2.setTypeface(MyConstants.getLight(this));
+        yearhonor2.setTypeface(MyConstants.getLight(this));
 
         titleinput3.setTypeface(MyConstants.getLight(this));
         issuerinput3.setTypeface(MyConstants.getLight(this));
         decrinput3.setTypeface(MyConstants.getLight(this));
+        yearhonor3.setTypeface(MyConstants.getLight(this));
 
         titleinput4.setTypeface(MyConstants.getLight(this));
         issuerinput4.setTypeface(MyConstants.getLight(this));
         decrinput4.setTypeface(MyConstants.getLight(this));
+        yearhonor4.setTypeface(MyConstants.getLight(this));
+
         titleinput5.setTypeface(MyConstants.getLight(this));
         issuerinput5.setTypeface(MyConstants.getLight(this));
         decrinput5.setTypeface(MyConstants.getLight(this));
+        yearhonor5.setTypeface(MyConstants.getLight(this));
 
         titleinput6.setTypeface(MyConstants.getLight(this));
         issuerinput6.setTypeface(MyConstants.getLight(this));
         decrinput6.setTypeface(MyConstants.getLight(this));
+        yearhonor6.setTypeface(MyConstants.getLight(this));
 
         titleinput7.setTypeface(MyConstants.getLight(this));
         issuerinput7.setTypeface(MyConstants.getLight(this));
         decrinput7.setTypeface(MyConstants.getLight(this));
+        yearhonor7.setTypeface(MyConstants.getLight(this));
 
         titleinput8.setTypeface(MyConstants.getLight(this));
         issuerinput8.setTypeface(MyConstants.getLight(this));
         decrinput8.setTypeface(MyConstants.getLight(this));
+        yearhonor8.setTypeface(MyConstants.getLight(this));
 
         titleinput9.setTypeface(MyConstants.getLight(this));
         issuerinput9.setTypeface(MyConstants.getLight(this));
         decrinput9.setTypeface(MyConstants.getLight(this));
+        yearhonor9.setTypeface(MyConstants.getLight(this));
 
         titleinput10.setTypeface(MyConstants.getLight(this));
         issuerinput10.setTypeface(MyConstants.getLight(this));
         decrinput10.setTypeface(MyConstants.getLight(this));
-
-        yearhonor1.setTypeface(MyConstants.getLight(this));
-        yearhonor2.setTypeface(MyConstants.getLight(this));
-        yearhonor3.setTypeface(MyConstants.getLight(this));
-        yearhonor4.setTypeface(MyConstants.getLight(this));
-        yearhonor5.setTypeface(MyConstants.getLight(this));
-        yearhonor6.setTypeface(MyConstants.getLight(this));
-        yearhonor7.setTypeface(MyConstants.getLight(this));
-        yearhonor8.setTypeface(MyConstants.getLight(this));
-        yearhonor9.setTypeface(MyConstants.getLight(this));
         yearhonor10.setTypeface(MyConstants.getLight(this));
+
 
 
         title1.addTextChangedListener(new TextWatcher() {
