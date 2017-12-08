@@ -67,6 +67,7 @@ public class PrintProfileTabFragment extends Fragment {
     String format="pdf";
     Button downloadresume;
     View getmoreselectionview;
+    TextView getmore,selectformattxt;
     ProgressBar resumeprogress;
     int found_box1=0,found_tenth=0,found_twelth=0,found_diploma=0,found_ug=0,found_pgsem=0,found_pgyear=0,found_projects=0,found_lang=0,found_certificates=0;
     int found_courses=0,found_skills=0,found_honors=0,found_patents=0,found_publications=0,found_careerobj=0,found_strengths=0,found_weaknesses=0,found_locationpreferences=0;
@@ -78,6 +79,12 @@ public class PrintProfileTabFragment extends Fragment {
 
         final View rootView = inflater.inflate(R.layout.fragment_edit_profile_printprofile, container, false);
 
+
+        getmore=(TextView)rootView.findViewById(R.id.getmore);
+        selectformattxt=(TextView)rootView.findViewById(R.id.selectformattxt);
+
+        getmore.setTypeface(MyConstants.getBold(getActivity()));
+        selectformattxt.setTypeface(MyConstants.getLight(getActivity()));
         sharedpreferences=getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         username=sharedpreferences.getString(Username,null);
         MySharedPreferencesManager.save(getActivity(),"template",template+"");
@@ -85,6 +92,9 @@ public class PrintProfileTabFragment extends Fragment {
         radioGroupFormat=(RadioGroup)rootView.findViewById(R.id.radioGroupFormat);
         radioButtonWord=(RadioButton)rootView.findViewById(R.id.radioButtonWord);
         radioButtonPdf=(RadioButton)rootView.findViewById(R.id.radioButtonPdf);
+
+        radioButtonWord.setTypeface(MyConstants.getBold(getActivity()));
+        radioButtonPdf.setTypeface(MyConstants.getBold(getActivity()));
 
         radioGroupFormat.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
