@@ -46,6 +46,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
 
     int langcount=0;
     View addmorelang;
+    View addmorelangView;
     JSONObject json;
     JSONParser jParser = new JSONParser();
     //    private static String url_getlanguages = "http://192.168.100.10/AESTest/GetLanguages";
@@ -101,6 +102,8 @@ public class MyProfileKnownLang extends AppCompatActivity {
 
         TextView knowntxt=(TextView)findViewById(R.id.knowntxt);
         knowntxt.setTypeface(MyConstants.getBold(this));
+
+        addmorelangView = (View)findViewById(R.id.addmorelang);
 
         trash1selectionview=(View)findViewById(R.id.trash1selectionview);
         trash2selectionview=(View)findViewById(R.id.trash2selectionview);
@@ -369,7 +372,6 @@ public class MyProfileKnownLang extends AppCompatActivity {
 
                         RelativeLayout relativeLayout1=(RelativeLayout)findViewById(R.id.langrl10);
                         relativeLayout1.setVisibility(View.VISIBLE);
-
                         TextView t=(TextView)findViewById(R.id.addmorelangtxt);
                         ImageView i=(ImageView)findViewById(R.id.addmorelangimg);
                         addmorelang.setVisibility(View.GONE);
@@ -1538,33 +1540,27 @@ public class MyProfileKnownLang extends AppCompatActivity {
 
         protected String doInBackground(String... param) {
 
+            String[] langArray=getResources().getStringArray(R.array.languages_array);
+            languageslist.clear();
+            languageslist.add("- Select Language -");
+            for(String lang:langArray){
+                languageslist.add(lang);
+                Log.d("TAG", "doInBackground: languafge -"+lang);
+            }
 
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
 
-            json = jParser.makeHttpRequest(MyConstants.url_getlanguages, "GET", params);
-            try {
-                String s = json.getString("count");
-                count=Integer.parseInt(s);
-                languages=new String[count];
-                codes=new String[count];
-                for(int i=0;i<count;i++)
-                {
-                    languages[i]=json.getString("language"+i);
-                    codes[i]=json.getString("code"+i);
-                }
-            }catch (Exception e){e.printStackTrace();}
+            for(String lang:languageslist){
+                Log.d("TAG", "doInBackground: arraylist -"+lang);
+            }
+
+//            populateLanguages();
+
             return "";
         }
 
         @Override
         protected void onPostExecute(String result) {
 
-            languageslist.clear();
-            languageslist.add("- Select Language -");
-            for(int i=0;i<count;i++)
-            {
-                languageslist.add(languages[i]+" ("+codes[i]+")");
-            }
             populateLanguages();
         }
     }
@@ -1808,12 +1804,13 @@ public class MyProfileKnownLang extends AppCompatActivity {
         if(sknownlang10!=null && !sknownlang10.equals("")) {
             if (!sknownlang10.equals("- Select Language -")) {
                 knownlang10.setSelection(dataAdapter.getPosition(sknownlang10));
+
                 View v = (View) findViewById(R.id.line9);
                 v.setVisibility(View.VISIBLE);
-
                 RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.langrl10);
                 relativeLayout1.setVisibility(View.VISIBLE);
 
+                addmorelangView.setVisibility(View.GONE);
 
                 langcount++;
             }
