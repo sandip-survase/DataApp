@@ -133,11 +133,11 @@ public class MyProfileIntro extends AppCompatActivity {
                 citystaecountry.setText(CityStateCountry);
             }
             else
-                citystaecountry.setText("City/District");
+                citystaecountry.setText("");
 
         }
         else
-            citystaecountry.setText("City/District");
+            citystaecountry.setText("");
 
 
         String plainUsername = null;

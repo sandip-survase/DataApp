@@ -126,6 +126,7 @@ public class MyProfileFragment extends Fragment {
     String nameasten = "", mothername = "", dob = "", gender = "", mothertongue = "", hobbies = "", bloodgroup = "", category = "", religion = "", caste = "", prn = "", paddrline1 = "", paddrline2 = "", paddrline3 = "", handicapped = "", sports = "", defenceex = "";
     ProgressBar updateProgress;
     SwipeRefreshLayout swipe_refresh_layout;
+    RelativeLayout box1,edutab4,edutab1,edutab2,edutab3,projtab1,projtab2,projtab3,acctab1,acctab2,acctab3,acctab4,acctab5,acctab6,acctab7,careertab1,careertab2,careertab3,careertab4,contacttab1,contacttab2,contacttab3;
     int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0, found_pgsem = 0, found_pgyear = 0, found_projects = 0, found_lang = 0, found_certificates = 0;
     int found_courses = 0, found_skills = 0, found_honors = 0, found_patents = 0, found_publications = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_locationpreferences = 0;
     int found_contact_details = 0, found_personal = 0;
@@ -133,7 +134,7 @@ public class MyProfileFragment extends Fragment {
     JSONObject json;
 
     String digest1, digest2;
-    View rootView;
+    View rootView,box2;
     StudentData studentData = new StudentData();
     int percentProfile = 0;
     ProgressBar profileprogress;
@@ -142,6 +143,30 @@ public class MyProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_my_profile, container, false);
+
+        box1=(RelativeLayout)rootView.findViewById(R.id.box1);
+        box2=(View)rootView.findViewById(R.id.box2);
+        edutab4=(RelativeLayout)rootView.findViewById(R.id.edutab4);
+        edutab2=(RelativeLayout)rootView.findViewById(R.id.edutab2);
+        edutab1=(RelativeLayout)rootView.findViewById(R.id.edutab1);
+        edutab3=(RelativeLayout)rootView.findViewById(R.id.edutab3);
+        projtab1=(RelativeLayout)rootView.findViewById(R.id.projtab1);
+        projtab2=(RelativeLayout)rootView.findViewById(R.id.projtab2);
+        projtab3=(RelativeLayout)rootView.findViewById(R.id.projtab3);
+        acctab1=(RelativeLayout)rootView.findViewById(R.id.acctab1);
+        acctab2=(RelativeLayout)rootView.findViewById(R.id.acctab2);
+        acctab3=(RelativeLayout)rootView.findViewById(R.id.acctab3);
+        acctab4=(RelativeLayout)rootView.findViewById(R.id.acctab4);
+        acctab5=(RelativeLayout)rootView.findViewById(R.id.acctab5);
+        acctab6=(RelativeLayout)rootView.findViewById(R.id.acctab6);
+        acctab7=(RelativeLayout)rootView.findViewById(R.id.acctab7);
+        careertab1=(RelativeLayout)rootView.findViewById(R.id.careertab1);
+        careertab2=(RelativeLayout)rootView.findViewById(R.id.careertab2);
+        careertab3=(RelativeLayout)rootView.findViewById(R.id.careertab3);
+        careertab4=(RelativeLayout)rootView.findViewById(R.id.careertab4);
+        contacttab1=(RelativeLayout)rootView.findViewById(R.id.contacttab1);
+        contacttab2=(RelativeLayout)rootView.findViewById(R.id.contacttab2);
+        contacttab3=(RelativeLayout)rootView.findViewById(R.id.contacttab3);
 
         username=MySharedPreferencesManager.getUsername(getActivity());
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
@@ -288,6 +313,8 @@ public class MyProfileFragment extends Fragment {
         contactemail.setTypeface(MyConstants.getBold(getActivity()));
         mobiletxt.setTypeface(MyConstants.getLight(getActivity()));
         contactmobile.setTypeface(MyConstants.getBold(getActivity()));
+
+
 
 
 
@@ -2681,6 +2708,11 @@ public class MyProfileFragment extends Fragment {
         progressAnimator.setDuration(700);
         progressAnimator.setInterpolator(new LinearInterpolator());
         progressAnimator.start();
+
+
+
+
+
     }
 
 
