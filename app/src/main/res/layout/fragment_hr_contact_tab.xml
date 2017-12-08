@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35"
+    android:background="@color/while_color"
 
     >
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -41,15 +41,18 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    android:id="@+id/fnameinput"
+                    >
 
                     <android.support.v7.widget.AppCompatEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="First Name"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
                         android:singleLine="true"
-                        android:textColor="#eee"
+                        android:textColor="@color/dark_color"
+                        android:maxLength="50"
                         android:imeOptions="actionNext"
                         android:id="@+id/fname"/>
 
@@ -65,15 +68,18 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    android:id="@+id/lnameinput"
+                    >
 
                     <android.support.v7.widget.AppCompatEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Last Name"
                         android:singleLine="true"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
+                        android:maxLength="50"
                         android:id="@+id/lname"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -84,7 +90,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/emailinput"
                 android:layout_below="@+id/lnamerl"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                android:layout_marginTop="15dp"
+                >
 
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
@@ -92,8 +100,8 @@
                     android:hint="Personal Email"
                     android:singleLine="true"
                     android:focusable="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/email"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -108,9 +116,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Professional Email"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
+                    android:digits="abcdefghijklmnopqrstuvwxyz0123456789@._"
                     android:id="@+id/email2"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -119,8 +129,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Address"
-                android:textSize="20dp"
-                android:textColor="#eee"
+                android:textSize="18dp"
+                android:textColor="@color/while_color"
                 android:id="@+id/addresstxt"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
@@ -129,7 +139,8 @@
                 android:paddingBottom="10dp"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:background="@drawable/textviewborder2"
+                android:background="@drawable/textviewborder"
+                android:elevation="6dp"
                 />
 
             <RelativeLayout
@@ -150,9 +161,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="House no/Flat no/Plot no, Name"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
                         android:singleLine="true"
-                        android:textColor="#eee"
+                        android:textColor="@color/dark_color"
+                        android:maxLength="200"
                         android:id="@+id/addressline1"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -167,9 +179,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Street Name/Landmark"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
                         android:singleLine="true"
-                        android:textColor="#eee"
+                        android:textColor="@color/dark_color"
+                        android:maxLength="200"
                         android:id="@+id/addressline2"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -184,9 +197,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="City, Pincode"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
                         android:singleLine="true"
-                        android:textColor="#eee"
+                        android:textColor="@color/dark_color"
+                        android:maxLength="200"
                         android:id="@+id/addressline3"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -196,8 +210,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Contact Info"
-                android:textSize="20dp"
-                android:textColor="#eee"
+                android:textSize="18dp"
+                android:textColor="@color/while_color"
                 android:id="@+id/contactnotxt"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
@@ -206,7 +220,8 @@
                 android:paddingBottom="10dp"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:background="@drawable/textviewborder2"
+                android:background="@drawable/textviewborder"
+                android:elevation="6dp"
                 />
 
             <RelativeLayout
@@ -225,10 +240,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Phone Number"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
                         android:inputType="number"
                         android:singleLine="true"
-                        android:textColor="#eee"
+                        android:textColor="@color/dark_color"
+                        android:maxLength="11"
                         android:id="@+id/phone"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -243,10 +259,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Mobile Number"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
                         android:inputType="number"
                         android:singleLine="true"
-                        android:textColor="#eee"
+                        android:textColor="@color/dark_color"
+                        android:maxLength="10"
                         android:id="@+id/mobile"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -261,10 +278,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Alternate Mobile Number"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
                         android:inputType="number"
                         android:singleLine="true"
-                        android:textColor="#eee"
+                        android:textColor="@color/dark_color"
+                        android:maxLength="10"
                         android:id="@+id/mobile2"/>
 
                 </android.support.design.widget.TextInputLayout>

@@ -3,6 +3,7 @@ package placeme.octopusites.com.placeme;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -37,6 +38,7 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
  */
 public class HrContactTabFragment extends Fragment {
 
+    TextInputLayout fnameinput,lnameinput,emailinput,emai2input,addressline1input,addressline2input,addressline3input,phoneinput,mobileinput,mobile2input;
     EditText fname, lname, email, email2, addressline1, addressline2, addressline3, phone, mobile, mobile2;
 //    Button saveContactDetailsButton;
 //    ProgressBar contactDetailsProgress;
@@ -74,6 +76,27 @@ public class HrContactTabFragment extends Fragment {
         username=MySharedPreferencesManager.getUsername(getActivity());
         role=MySharedPreferencesManager.getRole(getActivity());
 
+        fnameinput=(TextInputLayout)rootView.findViewById(R.id.fnameinput);
+        lnameinput=(TextInputLayout)rootView.findViewById(R.id.lnameinput);
+        emailinput=(TextInputLayout)rootView.findViewById(R.id.emailinput);
+        emai2input=(TextInputLayout)rootView.findViewById(R.id.emai2input);
+        addressline1input=(TextInputLayout)rootView.findViewById(R.id.addressline1input);
+        addressline2input=(TextInputLayout)rootView.findViewById(R.id.addressline2input);
+        addressline3input=(TextInputLayout)rootView.findViewById(R.id.addressline3input);
+        phoneinput=(TextInputLayout)rootView.findViewById(R.id.phoneinput);
+        mobileinput=(TextInputLayout)rootView.findViewById(R.id.mobileinput);
+        mobile2input=(TextInputLayout)rootView.findViewById(R.id.mobile2input);
+
+        fnameinput.setTypeface(MyConstants.getLight(getActivity()));
+        lnameinput.setTypeface(MyConstants.getLight(getActivity()));
+        emailinput.setTypeface(MyConstants.getLight(getActivity()));
+        emai2input.setTypeface(MyConstants.getLight(getActivity()));
+        addressline1input.setTypeface(MyConstants.getLight(getActivity()));
+        addressline2input.setTypeface(MyConstants.getLight(getActivity()));
+        addressline3input.setTypeface(MyConstants.getLight(getActivity()));
+        phoneinput.setTypeface(MyConstants.getLight(getActivity()));
+        mobileinput.setTypeface(MyConstants.getLight(getActivity()));
+        mobile2input.setTypeface(MyConstants.getLight(getActivity()));
 
         fname = (EditText) rootView.findViewById(R.id.fname);
         lname = (EditText) rootView.findViewById(R.id.lname);
@@ -86,6 +109,17 @@ public class HrContactTabFragment extends Fragment {
         mobile = (EditText) rootView.findViewById(R.id.mobile);
         mobile2 = (EditText) rootView.findViewById(R.id.mobile2);
 
+        fname.setTypeface(MyConstants.getBold(getActivity()));
+        lname.setTypeface(MyConstants.getBold(getActivity()));
+        email.setTypeface(MyConstants.getBold(getActivity()));
+        email2.setTypeface(MyConstants.getBold(getActivity()));
+        addressline1.setTypeface(MyConstants.getBold(getActivity()));
+        addressline2.setTypeface(MyConstants.getBold(getActivity()));
+        addressline3.setTypeface(MyConstants.getBold(getActivity()));
+        phone.setTypeface(MyConstants.getBold(getActivity()));
+        mobile.setTypeface(MyConstants.getBold(getActivity()));
+        mobile2.setTypeface(MyConstants.getBold(getActivity()));
+
 //        saveContactDetailsButton= (Button) rootView.findViewById(R.id.saveContactDetailsButton);
 //        contactDetailsProgress= (ProgressBar) rootView.findViewById(R.id.contactDetailsProgress);
 
@@ -97,9 +131,9 @@ public class HrContactTabFragment extends Fragment {
 
         TextView addresstxt = (TextView) rootView.findViewById(R.id.addresstxt);
         TextView contactnotxt = (TextView) rootView.findViewById(R.id.contactnotxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/arba.ttf");
-        addresstxt.setTypeface(custom_font1);
-        contactnotxt.setTypeface(custom_font1);
+
+        addresstxt.setTypeface(MyConstants.getBold(getActivity()));
+        contactnotxt.setTypeface(MyConstants.getBold(getActivity()));
 
         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -193,7 +227,7 @@ public class HrContactTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                fname.setError(null);
+                fnameinput.setError(null);
             }
 
             @Override
@@ -210,7 +244,7 @@ public class HrContactTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                lname.setError(null);
+                lnameinput.setError(null);
             }
 
             @Override
@@ -227,7 +261,7 @@ public class HrContactTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                email.setError(null);
+                emailinput.setError(null);
             }
 
             @Override
@@ -244,7 +278,7 @@ public class HrContactTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                email2.setError(null);
+                emai2input.setError(null);
             }
 
             @Override
@@ -261,7 +295,7 @@ public class HrContactTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                addressline1.setError(null);
+                addressline1input.setError(null);
             }
 
             @Override
@@ -278,7 +312,7 @@ public class HrContactTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                addressline2.setError(null);
+                addressline2input.setError(null);
             }
 
             @Override
@@ -295,7 +329,7 @@ public class HrContactTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                addressline3.setError(null);
+                addressline3input.setError(null);
             }
 
             @Override
@@ -312,7 +346,7 @@ public class HrContactTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                phone.setError(null);
+                phoneinput.setError(null);
             }
 
             @Override
@@ -330,7 +364,7 @@ public class HrContactTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                mobile.setError(null);
+                mobileinput.setError(null);
             }
 
             @Override
@@ -347,7 +381,7 @@ public class HrContactTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                mobile2.setError(null);
+                mobile2input.setError(null);
             }
 
             @Override
@@ -400,44 +434,51 @@ public class HrContactTabFragment extends Fragment {
         if(hrfname.length()<2)
         {
             errorflag=1;
-            fname.setError("Invalid Name");
+            fnameinput.setError("Kindly enter valid first name");
         }
         else {
-            if (plainusername.equals(hremail2)) {
-                errorflag = 1;
-                email2.setError("Priamry and Alternate Email cannot be same");
-            } else {
-                if (!email2.getText().toString().contains("@")) {
+            if(hrlname.length()<2)
+            {
+                errorflag=1;
+                lnameinput.setError("Kindly enter valid last name");
+            }
+            else {
+                if (plainusername.equals(hremail2)) {
                     errorflag = 1;
-                    email2.setError("Incorrect Email");
+                    emai2input.setError("Personal and professional email cannot be same");
                 } else {
-                    if (hraddressline1.length() < 1) {
+                    if (!email2.getText().toString().contains("@") || !email2.getText().toString().contains(".edu")) {
                         errorflag = 1;
-                        addressline1.setError("Enter valid address");
+                        emai2input.setError("Kindly enter valid professional email address");
                     } else {
-                        if (hraddressline2.length() < 1) {
+                        if (hraddressline1.length() < 1) {
                             errorflag = 1;
-                            addressline2.setError("Enter valid address");
+                            addressline1input.setError("Kindly enter valid address");
                         } else {
-                            if (hraddressline3.length() < 1) {
+                            if (hraddressline2.length() < 1) {
                                 errorflag = 1;
-                                addressline3.setError("Enter valid address");
+                                addressline2input.setError("Kindly enter valid address");
                             } else {
-                                if (hrphone.length() < 6) {
-                                    phone.setError("Incorrect phone number ");
+                                if (hraddressline3.length() < 1) {
                                     errorflag = 1;
+                                    addressline3input.setError("Kindly enter valid address");
                                 } else {
-                                    if (hrmobile.length() < 10 || hrmobile.length() > 10) {
+                                    if (hrphone.length() < 6) {
+                                        phoneinput.setError("Kindly enter valid phone number");
                                         errorflag = 1;
-                                        mobile.setError("Mobile Number should have 10 digits");
                                     } else {
-                                        if (hrmobile2.length() < 10 || hrmobile2.length() > 10) {
-                                            mobile2.setError("Incorrect phone number ");
+                                        if (hrmobile.length() < 10 || hrmobile.length() > 10) {
                                             errorflag = 1;
+                                            mobileinput.setError("Kindly enter valid 10-digit mobile number");
+                                        } else {
+                                            if (hrmobile2.length() < 10 || hrmobile2.length() > 10) {
+                                                mobile2input.setError("Kindly enter valid 10-digit mobile number");
+                                                errorflag = 1;
+                                            }
                                         }
                                     }
-                                }
 
+                                }
                             }
                         }
                     }
