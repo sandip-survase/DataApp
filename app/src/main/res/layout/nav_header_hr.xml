@@ -2,20 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:background="@color/dark_color"
+    android:orientation="vertical">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/profile_image"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/profile_icon"
-        app:border_color="#FF000000"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"
-        />
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/profile_image_icon"
+        app:border_color="#FF000000" />
 
     <View
         android:id="@+id/prifileselectionview"
@@ -46,27 +44,10 @@
         />
 
     <View
-        android:id="@+id/chatselectionview"
-        android:layout_width="match_parent"
-        android:layout_height="53dp"
-        android:layout_below="@+id/placementtxt"
-        android:layout_marginTop="10dp"
-
-        />
-    <View
-        android:id="@+id/proselectionview"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_below="@+id/chattxt"
-        android:layout_marginTop="10dp"
-
-        />
-
-    <View
         android:id="@+id/settingselectionview"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@+id/protxt"
+        android:layout_below="@+id/placementselectionview"
         android:layout_marginTop="10dp"
 
         />
@@ -79,6 +60,7 @@
         android:layout_marginTop="5dp"
 
         />
+
     <View
         android:id="@+id/abtselectionview"
         android:layout_width="match_parent"
@@ -87,252 +69,205 @@
         android:layout_marginTop="12dp"
 
         />
+
     <ImageView
         android:id="@+id/profile"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/profile_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_image"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/profile_image" />
+        android:src="@drawable/my_profile_icon" />
 
     <TextView
         android:id="@+id/profiletxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Profile"
         android:layout_below="@+id/profile"
-        android:textColor="#fff"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="3dp"
-        android:textSize="11dp"
-        />
+        android:text="My Profile"
+        android:textColor="#fcfdfd"
+        android:textSize="11dp" />
 
     <RelativeLayout
+        android:id="@+id/notificationcountrl"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:background="@drawable/bubble"
-        android:layout_below="@+id/profiletxt"
-        android:layout_marginTop="6dp"
-        android:layout_marginRight="16dp"
         android:layout_alignParentRight="true"
-        android:id="@+id/notificationcountrl"
-        >
+        android:layout_below="@+id/profiletxt"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bubble">
+
         <TextView
+            android:id="@+id/notificationcount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="9dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="20"
-            android:id="@+id/notificationcount"
             android:textColor="#282f35"
-            />
+            android:textSize="9dp" />
     </RelativeLayout>
-
 
 
     <ImageView
         android:id="@+id/notification"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profiletxt"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/profiletxt"
-        />
-
+        android:src="@drawable/notification_icon" />
 
 
     <TextView
         android:id="@+id/notificationtxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Notifications"
         android:layout_below="@+id/notification"
-        android:textColor="#fff"
         android:layout_centerHorizontal="true"
-        android:textSize="11dp"
-        />
+        android:text="Notifications"
+        android:textColor="#fcfdfd"
+        android:textSize="11dp" />
 
     <RelativeLayout
+        android:id="@+id/placementcountrl"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:background="@drawable/bubble"
-        android:layout_below="@+id/notificationtxt"
-        android:layout_marginTop="6dp"
-        android:layout_marginRight="16dp"
         android:layout_alignParentRight="true"
-        android:id="@+id/placementcountrl"
-        >
+        android:layout_below="@+id/notificationtxt"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bubble">
+
         <TextView
+            android:id="@+id/placementcount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="9dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:id="@+id/placementcount"
             android:text="15"
             android:textColor="#282f35"
-            />
+            android:textSize="9dp" />
     </RelativeLayout>
 
     <ImageView
         android:id="@+id/placement"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/placement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/notificationtxt"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/notificationtxt"
-        />
+        android:src="@drawable/placement_icon" />
+
     <TextView
         android:id="@+id/placementtxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Placements"
         android:layout_below="@+id/placement"
-        android:textColor="#fff"
         android:layout_centerHorizontal="true"
-        android:textSize="11dp"
-        />
+        android:text="Placements"
+        android:textColor="#fcfdfd"
+        android:textSize="11dp" />
+
     <RelativeLayout
+        android:id="@+id/messagecountrl"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:background="@drawable/bubble"
-        android:layout_below="@+id/placementtxt"
-        android:layout_marginTop="6dp"
-        android:layout_marginRight="16dp"
         android:layout_alignParentRight="true"
-        android:id="@+id/messagecountrl"
-        >
+        android:layout_below="@+id/placementtxt"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bubble"
+        android:visibility="gone">
+
         <TextView
+            android:id="@+id/messagecount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="9dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:id="@+id/messagecount"
             android:textColor="#282f35"
-            />
+            android:textSize="9dp" />
     </RelativeLayout>
     <ImageView
-        android:id="@+id/chat"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/chat"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/placementtxt"
-        />
-    <TextView
-        android:id="@+id/chattxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Messages"
-        android:layout_below="@+id/chat"
-        android:textColor="#fff"
-        android:layout_centerHorizontal="true"
-        android:textSize="11dp"
-        />
-    <ImageView
-        android:id="@+id/pro"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/paper"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/chattxt"
-        />
-    <TextView
-        android:id="@+id/protxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Try Place Me Pro"
-        android:layout_below="@+id/pro"
-        android:textColor="#fff"
-        android:layout_centerHorizontal="true"
-        android:textSize="11dp"
-        android:gravity="center"
-        />
-    <ImageView
         android:id="@+id/settings"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/messagecountrl"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/protxt"
-        />
+        android:src="@drawable/settings_icon" />
+
     <TextView
         android:id="@+id/settingstxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Settings"
         android:layout_below="@+id/settings"
-        android:textColor="#fff"
-        android:textSize="11dp"
         android:layout_centerHorizontal="true"
-        />
+        android:text="Settings"
+        android:textColor="#fcfdfd"
+        android:textSize="11dp" />
 
     <RelativeLayout
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:background="@drawable/bubble"
-        android:layout_below="@+id/settingstxt"
-        android:layout_marginTop="6dp"
-        android:layout_marginRight="16dp"
         android:layout_alignParentRight="true"
-        >
+        android:layout_below="@+id/settingstxt"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bubble"
+        android:visibility="gone">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="9dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="25"
             android:textColor="#282f35"
-            />
+            android:textSize="9dp" />
     </RelativeLayout>
 
     <ImageView
 
         android:id="@+id/blog"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/blog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settingstxt"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/settingstxt"
-        />
+        android:src="@drawable/blog_icon" />
+
     <TextView
         android:id="@+id/blogtxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Blog"
         android:layout_below="@+id/blog"
-        android:textSize="11dp"
-        android:textColor="#fff"
         android:layout_centerHorizontal="true"
-        />
+        android:text="Blog"
+        android:textColor="#fcfdfd"
+        android:textSize="11dp" />
+
     <ImageView
         android:id="@+id/abt"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@mipmap/ic_launcher"
+        android:layout_below="@+id/blogtxt"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/blogtxt"
-        />
+        android:src="@drawable/about_icon" />
+
     <TextView
         android:id="@+id/abttxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="About"
         android:layout_below="@+id/abt"
-        android:textSize="11dp"
-        android:textColor="#fff"
         android:layout_centerHorizontal="true"
-        />
+        android:text="About"
+        android:textColor="#fcfdfd"
+        android:textSize="11dp" />
 </RelativeLayout>
 

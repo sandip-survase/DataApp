@@ -1,12 +1,8 @@
 package placeme.octopusites.com.placeme;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -15,30 +11,24 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenuView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
 
 import com.bumptech.glide.signature.ObjectKey;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -66,7 +56,6 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
-import static placeme.octopusites.com.placeme.HrCompanyDetails.HRlog;
 import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
 public class HRActivity extends AppCompatActivity implements ImagePickerCallback {
@@ -111,7 +100,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
     private List<RecyclerItemHrPlacement> itemList2 = new ArrayList<>();
     private RecyclerItemHrPlacementAdapter mAdapter2;
-
+    Toolbar toolbar;
+    private TextView toolbar_title;
 
     //
     @Override
@@ -122,8 +112,12 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hr);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        toolbar_title.setTypeface(MyConstants.getRighteous(HRActivity.this));
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
+        toolbar_title.setText("Notifications");
 
 //        username=getIntent().getStringExtra("username");
         username = MySharedPreferencesManager.getUsername(this);
@@ -200,14 +194,16 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         fragmentTransaction.replace(R.id.mainfragment, fragment);
                         fragmentTransaction.commit();
                         mainfragment.setVisibility(View.VISIBLE);
-                        getSupportActionBar().setTitle("My Profile");
+                        getSupportActionBar().setTitle("");
+                        toolbar_title.setText("My Profile");
 
                     } else if (navMenuFlag == 2) {
 
                         notificationorplacementflag = 1;
 
                         crop_layout.setVisibility(View.GONE);
-                        getSupportActionBar().setTitle("Notifications");
+                        getSupportActionBar().setTitle("");
+                        toolbar_title.setText("Notifications");
                         mainfragment.setVisibility(View.GONE);
 //                        tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
@@ -220,7 +216,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         notificationorplacementflag = 2;
 
                         crop_layout.setVisibility(View.GONE);
-                        getSupportActionBar().setTitle("Placements");
+                        getSupportActionBar().setTitle("");
+                        toolbar_title.setText("Placements");
                         mainfragment.setVisibility(View.GONE);
 //                        tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
@@ -228,18 +225,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         mainfragment.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.GONE);
                         recyclerViewPlacemetsHr.setVisibility(View.VISIBLE);
-                    } else if (navMenuFlag == 4) {
-                        crop_layout.setVisibility(View.GONE);
-                        MessagesFragment fragment = new MessagesFragment();
-                        android.support.v4.app.FragmentTransaction fragmentTransaction =
-                                getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.mainfragment, fragment);
-                        fragmentTransaction.commit();
-
-                        mainfragment.setVisibility(View.VISIBLE);
-                        getSupportActionBar().setTitle("Messages");
-//                        tswipe_refresh_layout.setVisibility(View.GONE);
-
                     } else if (navMenuFlag == 5) {
                         crop_layout.setVisibility(View.GONE);
                         SettingsFragment fragment = new SettingsFragment();
@@ -248,7 +233,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         fragmentTransaction.replace(R.id.mainfragment, fragment);
                         fragmentTransaction.commit();
                         mainfragment.setVisibility(View.VISIBLE);
-                        getSupportActionBar().setTitle("Settings");
+                        getSupportActionBar().setTitle("");
+                        toolbar_title.setText("Settings");
 //                        tswipe_refresh_layout.setVisibility(View.GONE);
                     } else if (navMenuFlag == 6) {
                         crop_layout.setVisibility(View.GONE);
@@ -258,7 +244,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         fragmentTransaction.replace(R.id.mainfragment, fragment);
                         fragmentTransaction.commit();
                         mainfragment.setVisibility(View.VISIBLE);
-                        getSupportActionBar().setTitle("Blog");
+                        getSupportActionBar().setTitle("");
+                        toolbar_title.setText("Blog");
 //                        tswipe_refresh_layout.setVisibility(View.GONE);
                     } else if (navMenuFlag == 7) {
                         crop_layout.setVisibility(View.GONE);
@@ -268,7 +255,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         fragmentTransaction.replace(R.id.mainfragment, fragment);
                         fragmentTransaction.commit();
                         mainfragment.setVisibility(View.VISIBLE);
-                        getSupportActionBar().setTitle("About");
+                        getSupportActionBar().setTitle("");
+                        toolbar_title.setText("About");
 //                        tswipe_refresh_layout.setVisibility(View.GONE);
                     }
                 }
@@ -318,11 +306,11 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         View v1 = (View) hView.findViewById(R.id.prifileselectionview);
         View v2 = (View) hView.findViewById(R.id.notificationselectionview);
         View v3 = (View) hView.findViewById(R.id.placementselectionview);
-        View v4 = (View) hView.findViewById(R.id.proselectionview);
+//        View v4 = (View) hView.findViewById(R.id.proselectionview);
         View v5 = (View) hView.findViewById(R.id.settingselectionview);
         View v6 = (View) hView.findViewById(R.id.blogselectionview);
         View v7 = (View) hView.findViewById(R.id.abtselectionview);
-        View v8 = (View) hView.findViewById(R.id.chatselectionview);
+//        View v8 = (View) hView.findViewById(R.id.chatselectionview);
 
         mainfragment = (FrameLayout) findViewById(R.id.mainfragment);
 
@@ -333,54 +321,50 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
                 navMenuFlag = 1;
 
-                Drawable myDrawable1 = getResources().getDrawable(R.drawable.profile_icon_selected);
+                Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon_selected);
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
-                pt1.setTextColor(Color.parseColor("#4169e1"));
+                pt1.setTypeface(MyConstants.getBold(HRActivity.this));
+                pt1.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
-                Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification);
+                Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
-                pt2.setTextColor(Color.parseColor("#ffffff"));
+                pt2.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt2.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement);
+                Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
-                pt3.setTextColor(Color.parseColor("#ffffff"));
+                pt3.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt3.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable8 = getResources().getDrawable(R.drawable.chat);
-                chati.setImageDrawable(myDrawable8);
 
-                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
-                pt8.setTextColor(Color.parseColor("#ffffff"));
-
-                Drawable myDrawable4 = getResources().getDrawable(R.drawable.paper);
-                proi.setImageDrawable(myDrawable4);
-
-                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
-                pt4.setTextColor(Color.parseColor("#ffffff"));
-
-                Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings);
+                Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
-                pt5.setTextColor(Color.parseColor("#ffffff"));
+                pt5.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt5.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog);
+                Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
-                pt6.setTextColor(Color.parseColor("#ffffff"));
+                pt6.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt6.setTextColor(getResources().getColor(R.color.while_color));
 
 
                 TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
-                pt7.setTextColor(Color.parseColor("#ffffff"));
+                pt7.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
+
 
             }
         });
@@ -393,50 +377,45 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
 //                tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
-                Drawable myDrawable1 = getResources().getDrawable(R.drawable.profile_icon);
+                Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
-                pt1.setTextColor(Color.parseColor("#ffffff"));
+                pt1.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt1.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_selected);
+                Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon_selected);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
-                pt2.setTextColor(Color.parseColor("#4169e1"));
+                pt2.setTypeface(MyConstants.getBold(HRActivity.this));
+                pt2.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
-                Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement);
+                Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
-                pt3.setTextColor(Color.parseColor("#ffffff"));
+                pt3.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt3.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable8 = getResources().getDrawable(R.drawable.chat);
-                chati.setImageDrawable(myDrawable8);
 
-                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
-                pt8.setTextColor(Color.parseColor("#ffffff"));
-
-                Drawable myDrawable4 = getResources().getDrawable(R.drawable.paper);
-                proi.setImageDrawable(myDrawable4);
-
-                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
-                pt4.setTextColor(Color.parseColor("#ffffff"));
-
-                Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings);
+                Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
-                pt5.setTextColor(Color.parseColor("#ffffff"));
+                pt5.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt5.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog);
+                Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
-                pt6.setTextColor(Color.parseColor("#ffffff"));
+                pt6.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt6.setTextColor(getResources().getColor(R.color.while_color));
 
                 TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
-                pt7.setTextColor(Color.parseColor("#ffffff"));
+                pt7.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
@@ -447,8 +426,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 recyclerViewPlacemetsHr.setVisibility(View.GONE);
                 RelativeLayout rl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
                 rl.setVisibility(View.VISIBLE);
-                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-                fab.setVisibility(View.VISIBLE);
+//                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//                fab.setVisibility(View.VISIBLE);
 
             }
         });
@@ -460,50 +439,44 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
 //                tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
-                Drawable myDrawable1 = getResources().getDrawable(R.drawable.profile_icon);
+                Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
-                pt1.setTextColor(Color.parseColor("#ffffff"));
+                pt1.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt1.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification);
+                Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
-                pt2.setTextColor(Color.parseColor("#ffffff"));
+                pt2.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt2.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_selected);
+                Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon_selected);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
-                pt3.setTextColor(Color.parseColor("#4169e1"));
+                pt3.setTypeface(MyConstants.getBold(HRActivity.this));
+                pt3.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
-                Drawable myDrawable8 = getResources().getDrawable(R.drawable.chat);
-                chati.setImageDrawable(myDrawable8);
-
-                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
-                pt8.setTextColor(Color.parseColor("#ffffff"));
-
-                Drawable myDrawable4 = getResources().getDrawable(R.drawable.paper);
-                proi.setImageDrawable(myDrawable4);
-
-                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
-                pt4.setTextColor(Color.parseColor("#ffffff"));
-
-                Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings);
+                Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
-                pt5.setTextColor(Color.parseColor("#ffffff"));
+                pt5.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt5.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog);
+                Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
-                pt6.setTextColor(Color.parseColor("#ffffff"));
+                pt6.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt6.setTextColor(getResources().getColor(R.color.while_color));
 
                 TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
-                pt7.setTextColor(Color.parseColor("#ffffff"));
+                pt7.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
@@ -513,136 +486,60 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 recyclerViewPlacemetsHr.setVisibility(View.VISIBLE);
                 RelativeLayout rl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
                 rl.setVisibility(View.VISIBLE);
-                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-                fab.setVisibility(View.VISIBLE);
+//                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//                fab.setVisibility(View.VISIBLE);
 
 
             }
         });
-        v8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                navMenuFlag = 4;
-
-                Drawable myDrawable1 = getResources().getDrawable(R.drawable.profile_icon);
-                profilei.setImageDrawable(myDrawable1);
-
-                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
-                pt1.setTextColor(Color.parseColor("#ffffff"));
-
-                Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification);
-                notificationi.setImageDrawable(myDrawable2);
-
-                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
-                pt2.setTextColor(Color.parseColor("#ffffff"));
-
-                Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement);
-                placementi.setImageDrawable(myDrawable3);
-
-                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
-                pt3.setTextColor(Color.parseColor("#ffffff"));
-
-                Drawable myDrawable8 = getResources().getDrawable(R.drawable.chat_selected);
-                chati.setImageDrawable(myDrawable8);
-
-                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
-                pt8.setTextColor(Color.parseColor("#4169e1"));
-
-                Drawable myDrawable4 = getResources().getDrawable(R.drawable.paper);
-                proi.setImageDrawable(myDrawable4);
-
-                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
-                pt4.setTextColor(Color.parseColor("#ffffff"));
-
-                Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings);
-                settingsi.setImageDrawable(myDrawable5);
-
-                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
-                pt5.setTextColor(Color.parseColor("#ffffff"));
-
-                Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog);
-                newsi.setImageDrawable(myDrawable6);
-
-                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
-                pt6.setTextColor(Color.parseColor("#ffffff"));
-
-                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
-                pt7.setTextColor(Color.parseColor("#ffffff"));
-
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                drawer.closeDrawer(GravityCompat.START);
-
-            }
-        });
-        v4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                crop_flag = 1;
-                startActivity(new Intent(HRActivity.this, ProSplashScreen.class));
-
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                drawer.closeDrawer(GravityCompat.START);
-
-
-            }
-        });
         v5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 navMenuFlag = 5;
 
-                Drawable myDrawable1 = getResources().getDrawable(R.drawable.profile_icon);
+                Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
-                pt1.setTextColor(Color.parseColor("#ffffff"));
+                pt1.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt1.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification);
+                Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
-                pt2.setTextColor(Color.parseColor("#ffffff"));
+                pt2.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt2.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement);
+                Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
-                pt3.setTextColor(Color.parseColor("#ffffff"));
+                pt3.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt3.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable8 = getResources().getDrawable(R.drawable.chat);
-                chati.setImageDrawable(myDrawable8);
-
-                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
-                pt8.setTextColor(Color.parseColor("#ffffff"));
-
-                Drawable myDrawable4 = getResources().getDrawable(R.drawable.paper);
-                proi.setImageDrawable(myDrawable4);
-
-                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
-                pt4.setTextColor(Color.parseColor("#ffffff"));
-
-                Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_selected);
+                Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon_selected);
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
-                pt5.setTextColor(Color.parseColor("#4169e1"));
+                pt5.setTypeface(MyConstants.getBold(HRActivity.this));
+                pt5.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
-                Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog);
+                Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
-                pt6.setTextColor(Color.parseColor("#ffffff"));
-
+                pt6.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt6.setTextColor(getResources().getColor(R.color.while_color));
 
                 TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
-                pt7.setTextColor(Color.parseColor("#ffffff"));
+                pt7.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
-
 
             }
         });
@@ -652,54 +549,47 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
                 navMenuFlag = 6;
 
-                Drawable myDrawable1 = getResources().getDrawable(R.drawable.profile_icon);
+                Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
-                pt1.setTextColor(Color.parseColor("#ffffff"));
+                pt1.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt1.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification);
+                Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
-                pt2.setTextColor(Color.parseColor("#ffffff"));
+                pt2.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt2.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement);
+                Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
-                pt3.setTextColor(Color.parseColor("#ffffff"));
+                pt3.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt3.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable8 = getResources().getDrawable(R.drawable.chat);
-                chati.setImageDrawable(myDrawable8);
-
-                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
-                pt8.setTextColor(Color.parseColor("#ffffff"));
-
-                Drawable myDrawable4 = getResources().getDrawable(R.drawable.paper);
-                proi.setImageDrawable(myDrawable4);
-
-                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
-                pt4.setTextColor(Color.parseColor("#ffffff"));
-
-                Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings);
+                Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
-                pt5.setTextColor(Color.parseColor("#ffffff"));
+                pt5.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt5.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_selected);
+                Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon_selected);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
-                pt6.setTextColor(Color.parseColor("#4169e1"));
+                pt6.setTypeface(MyConstants.getBold(HRActivity.this));
+                pt6.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
-                pt7.setTextColor(Color.parseColor("#ffffff"));
+                pt7.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
-
 
             }
         });
@@ -709,50 +599,44 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
                 navMenuFlag = 7;
 
-                Drawable myDrawable1 = getResources().getDrawable(R.drawable.profile_icon);
+                Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
-                pt1.setTextColor(Color.parseColor("#ffffff"));
+                pt1.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt1.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification);
+                Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
-                pt2.setTextColor(Color.parseColor("#ffffff"));
+                pt2.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt2.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement);
+                Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
-                pt3.setTextColor(Color.parseColor("#ffffff"));
+                pt3.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt3.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable8 = getResources().getDrawable(R.drawable.chat);
-                chati.setImageDrawable(myDrawable8);
-
-                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
-                pt8.setTextColor(Color.parseColor("#ffffff"));
-
-                Drawable myDrawable4 = getResources().getDrawable(R.drawable.paper);
-                proi.setImageDrawable(myDrawable4);
-
-                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
-                pt4.setTextColor(Color.parseColor("#ffffff"));
-
-                Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings);
+                Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
-                pt5.setTextColor(Color.parseColor("#ffffff"));
+                pt5.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt5.setTextColor(getResources().getColor(R.color.while_color));
 
-                Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog);
+                Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
-                pt6.setTextColor(Color.parseColor("#ffffff"));
+                pt6.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt6.setTextColor(getResources().getColor(R.color.while_color));
 
                 TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
-                pt7.setTextColor(Color.parseColor("#4169e1"));
+                pt7.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt7.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
@@ -761,13 +645,32 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             }
         });
 
-        Drawable myDrawable = getResources().getDrawable(R.drawable.notification_selected);
+        Drawable myDrawable = getResources().getDrawable(R.drawable.notification_icon_selected);
         notificationi.setImageDrawable(myDrawable);
 
         TextView pt = (TextView) hView.findViewById(R.id.notificationtxt);
-        pt.setTextColor(Color.parseColor("#4169e1"));
-        getSupportActionBar().setTitle("Notifications");
+        pt.setTypeface(MyConstants.getBold(HRActivity.this));
+        pt.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
+        TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
+        pt1.setTypeface(MyConstants.getLight(HRActivity.this));
+        pt1.setTextColor(getResources().getColor(R.color.while_color));
+
+        TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
+        pt3.setTypeface(MyConstants.getLight(HRActivity.this));
+        pt3.setTextColor(getResources().getColor(R.color.while_color));
+
+        TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
+        pt5.setTypeface(MyConstants.getLight(HRActivity.this));
+        pt5.setTextColor(getResources().getColor(R.color.while_color));
+
+        TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
+        pt6.setTypeface(MyConstants.getLight(HRActivity.this));
+        pt6.setTextColor(getResources().getColor(R.color.while_color));
+
+        TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
+        pt7.setTypeface(MyConstants.getLight(HRActivity.this));
+        pt7.setTextColor(getResources().getColor(R.color.while_color));
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerViewPlacemetsHr = (RecyclerView) findViewById(R.id.recyclerViewPlacemetsHr);
 
@@ -1279,7 +1182,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
 
                         if (task.isSuccessful()) {
-                            Toast.makeText(HRActivity.this, "Successfully logged in to Firebase from mainactivity", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(HRActivity.this, "Successfully logged in to Firebase from HRActivity", Toast.LENGTH_SHORT).show();
                             Log.d("TAG", "Fire onComplete: logged in");
 
                         } else {

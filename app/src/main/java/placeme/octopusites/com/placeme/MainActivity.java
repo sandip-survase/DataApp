@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -17,39 +15,33 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.AdapterView;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
 
 import com.bumptech.glide.signature.ObjectKey;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -62,32 +54,28 @@ import com.kbeanie.multipicker.api.callbacks.ImagePickerCallback;
 import com.kbeanie.multipicker.api.entity.ChosenImage;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.soundcloud.android.crop.Crop;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
+
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-//import cat.ereza.customactivityoncrash.config.CaocConfig;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static android.support.design.widget.AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 import static placeme.octopusites.com.placeme.LoginActivity.md5;
+
+//import cat.ereza.customactivityoncrash.config.CaocConfig;
 
 public class MainActivity extends AppCompatActivity implements ImagePickerCallback
 {
@@ -198,6 +186,8 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     String sPadding = "ISO10126Padding";
 
     Toolbar toolbar;
+    private TextView toolbar_title;
+
     ViewPager mViewPager;
     TabLayout tabLayout;
     private int[] tabIcons = {
@@ -208,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             R.drawable.tab_ebooks,
             R.drawable.tab_question_sets,
     };
-    private TextView toolbar_title;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -511,6 +501,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         tswipe_refresh_layout.setVisibility(View.GONE);
                         mViewPager.setVisibility(View.GONE);
                         tabLayout.setVisibility(View.GONE);
+
                     } else if (navMenuFlag == 6) {
 
                         selectedMenuFlag=5;
@@ -667,7 +658,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             public void onClick(View view) {
 
                 navMenuFlag=2;
-
 
                 tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
@@ -878,6 +868,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             public void onClick(View view) {
 
                 navMenuFlag=5;
+                Toast.makeText(MainActivity.this, "settings", Toast.LENGTH_SHORT).show();
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);
@@ -934,7 +925,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
-
 
             }
         });
