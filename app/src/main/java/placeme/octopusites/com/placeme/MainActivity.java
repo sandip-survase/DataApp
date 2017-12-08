@@ -223,6 +223,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         toolbar_title.setTypeface(MyConstants.getRighteous(MainActivity.this));
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
+        toolbar_title.setText("Notifications");
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -597,7 +598,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         v1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
                 navMenuFlag=1;
 
