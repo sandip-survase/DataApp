@@ -3,13 +3,15 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShowUsers">
+    tools:context=".ShowUsers"
+    >
 
     <include
         layout="@layout/users_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize" />
+        android:layout_marginTop="?attr/actionBarSize"
+        />
 
 
     <FrameLayout
@@ -41,8 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/adminplus"
-        app:backgroundTint="#fff"
+        app:srcCompat="@drawable/add_icon_white"
+        app:backgroundTint="@color/dark_color"
         />
 
 </FrameLayout>

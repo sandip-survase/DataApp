@@ -1,6 +1,7 @@
 package placeme.octopusites.com.placeme;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Typeface;
 
 /**
@@ -146,29 +147,29 @@ public class MyConstants {
     public static final String url_AddStudentUnderAdmin = "http://192.168.100.100/AESTest/AddStudentUnderAdmin";
 
 
-    public static Typeface getFA(Activity activity)
+    public static Typeface getFA(Context context)
     {
-        return Typeface.createFromAsset(activity.getAssets(),  "fonts/fa.ttf");
+        return Typeface.createFromAsset(context.getAssets(),  "fonts/fa.ttf");
     }
-    public static Typeface getBold(Activity activity)
+    public static Typeface getBold(Context context)
     {
-        return Typeface.createFromAsset(activity.getAssets(),  "fonts/nunitobold.ttf");
+        return Typeface.createFromAsset(context.getAssets(),  "fonts/nunitobold.ttf");
     }
-    public static Typeface getLight(Activity activity)
+    public static Typeface getLight(Context context)
     {
-        return Typeface.createFromAsset(activity.getAssets(),  "fonts/nunitolight.ttf");
+        return Typeface.createFromAsset(context.getAssets(),  "fonts/nunitolight.ttf");
     }
-    public static Typeface getItalic(Activity activity)
+    public static Typeface getItalic(Context context)
     {
-        return Typeface.createFromAsset(activity.getAssets(),  "fonts/nunitoitalic.ttf");
+        return Typeface.createFromAsset(context.getAssets(),  "fonts/nunitoitalic.ttf");
     }
-    public static Typeface getBoldItalic(Activity activity)
+    public static Typeface getBoldItalic(Context context)
     {
-        return Typeface.createFromAsset(activity.getAssets(),  "fonts/nunitobolditalic.ttf");
+        return Typeface.createFromAsset(context.getAssets(),  "fonts/nunitobolditalic.ttf");
     }
-    public static Typeface getRighteous(Activity activity)
+    public static Typeface getRighteous(Context context)
     {
-        return Typeface.createFromAsset(activity.getAssets(),  "fonts/righteous.ttf");
+        return Typeface.createFromAsset(context.getAssets(),  "fonts/righteous.ttf");
     }
 
     //--

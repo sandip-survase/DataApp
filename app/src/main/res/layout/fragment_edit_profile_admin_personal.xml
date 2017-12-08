@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35"
+    android:background="@color/while_color"
 
     >
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -35,13 +35,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="First Name"
-                    android:maxLines="1"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="50"
                     android:singleLine="true"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
 
-                    android:textSize="16dp" />
+                    />
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:theme="@style/TextLabel"
@@ -54,11 +56,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Middle Name"
-                    android:textColor="#eee"
-                    android:inputType="textCapWords"
                     android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="50"
+                    android:inputType="textCapWords"
+
                     android:singleLine="true"
-                    android:maxLines="1"
                     />
             </android.support.design.widget.TextInputLayout>
 
@@ -75,7 +78,8 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:maxLines="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="50"
                     android:inputType="textCapWords"
                     android:textSize="16dp"
                     android:hint="Surname"
@@ -93,10 +97,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Role"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:focusable="false"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/role"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -112,10 +116,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
                     android:focusable="false"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/email"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -136,8 +140,10 @@
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:textColor="#eee"
-                    android:textSize="16dp" />
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp"
+                    android:maxLength="100"
+                    />
             </android.support.design.widget.TextInputLayout>
 
 
@@ -156,8 +162,10 @@
                     android:layout_height="wrap_content"
                     android:hint="Full Institute Name"
                     android:singleLine="true"
-                    android:textColor="#eee"
-                    android:textSize="15dp" />
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp"
+                    android:maxLength="200"
+                    />
 
 
             </android.support.design.widget.TextInputLayout>
@@ -175,7 +183,7 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:maxLines="1"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:textSize="16dp"
                     android:inputType="date"
                     android:hint="Date of Birth(dd/mm/yyyy)"
@@ -188,8 +196,8 @@
                 android:text="Gender"
                 android:layout_below="@+id/dobinput"
                 android:id="@+id/gendertxt"
-                android:textColor="#eee"
-                android:textSize="16dp"
+                android:textColor="@color/dark_color"
+                android:textSize="14dp"
                 android:layout_marginTop="12dp"
                 />
 
@@ -207,8 +215,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Male"
-                    app:buttonTint="#eee"
-                    android:textColor="#eee"
+                    app:buttonTint="@color/sky_blue_color"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/radioButtonMale"
                     android:checked="false"
                     android:layout_marginLeft="30dp"
@@ -221,8 +229,8 @@
                     android:layout_marginLeft="30dp"
                     android:checked="false"
                     android:text="Female"
-                    android:textColor="#eee"
-                    app:buttonTint="#eee" />
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
             </RadioGroup>
 
 
@@ -231,7 +239,7 @@
                 android:layout_height="wrap_content"
                 android:text="Location Details"
                 android:layout_below="@+id/gendertxt"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:textColor="#eee"
                 android:id="@+id/loctxt"
                 android:layout_marginTop="25dp"
@@ -240,7 +248,8 @@
                 android:paddingBottom="10dp"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:background="@drawable/textviewborder2"
+                android:background="@drawable/textviewborder"
+                android:elevation="6dp"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -248,8 +257,8 @@
                 android:text="Current Address"
                 android:layout_below="@+id/loctxt"
                 android:id="@+id/caddrtxt"
-                android:textColor="#eee"
-                android:textSize="16dp"
+                android:textColor="@color/dark_color"
+                android:textSize="14dp"
                 android:layout_marginTop="12dp"
                 />
 
@@ -266,7 +275,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:maxLines="1"
@@ -285,7 +295,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:maxLines="1"
@@ -304,7 +315,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:inputType="textCapWords"
                     android:singleLine="true"
                     android:maxLines="1"
@@ -320,8 +332,8 @@
                 android:text="Permanant Address"
                 android:layout_below="@+id/caddrline3input"
                 android:id="@+id/paddrtxt"
-                android:textColor="#eee"
-                android:textSize="16dp"
+                android:textColor="@color/dark_color"
+                android:textSize="14dp"
                 android:layout_marginTop="12dp"
                 />
 
@@ -332,7 +344,7 @@
                 android:text="Same as Current Address"
                 android:layout_marginTop="10dp"
                 android:theme="@style/MyCheckBox"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:layout_height="wrap_content" />
 
             <android.support.design.widget.TextInputLayout
@@ -347,7 +359,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:inputType="textCapWords"
                     android:singleLine="true"
                     android:maxLines="1"
@@ -366,7 +379,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:inputType="textCapWords"
                     android:singleLine="true"
                     android:maxLines="1"
@@ -389,7 +403,8 @@
                     android:inputType="textCapWords"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
 

@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -26,6 +27,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -59,8 +61,10 @@ public class AdminPersonalTabFragment extends Fragment {
     String encfname, encmname, encsname, encnameasten, encalternateemail, encmothername, encdob, encgender, encmobile, encphone, encalternatemobile, encmothertongue, enchobbies, encbloodgroup, enccategory, encreligion, enccaste, encprn, enchandicapped, encsports, encdefenceex;
     String encaddrline1c, encaddrline2c, encaddrline3c, encaddrline1p, encaddrline2p, encaddrline3p;
     CheckBox CheckBoxPSC;
+    TextInputLayout fnameinput,mnameinput,snameinput,roleinputlayout,emailinputlayout,profileaemailinput,instinputlayout,dobinput,caddrline1input,caddrline2input,caddrline3input,paddrline1input,paddrline2input,paddrline3input;
     int errorflag1 = 0;
     RadioGroup radioGroupGender;
+    TextView gendertxt,caddrtxt,paddrtxt,loctxt;
     JSONObject json;
     JSONParser jParser = new JSONParser();
 
@@ -104,6 +108,15 @@ public class AdminPersonalTabFragment extends Fragment {
 
         rootView = inflater.inflate(R.layout.fragment_edit_profile_admin_personal, container, false);
 
+        gendertxt=(TextView)rootView.findViewById(R.id.gendertxt);
+        caddrtxt=(TextView)rootView.findViewById(R.id.caddrtxt);
+        paddrtxt=(TextView)rootView.findViewById(R.id.paddrtxt);
+        loctxt=(TextView)rootView.findViewById(R.id.loctxt);
+        gendertxt.setTypeface(MyConstants.getLight(getActivity()));
+        caddrtxt.setTypeface(MyConstants.getLight(getActivity()));
+        paddrtxt.setTypeface(MyConstants.getLight(getActivity()));
+        loctxt.setTypeface(MyConstants.getBold(getActivity()));
+
         fnameedittext = (EditText) rootView.findViewById(R.id.fname);
         mnameedittext = (EditText) rootView.findViewById(R.id.mname);
         snameedittext = (EditText) rootView.findViewById(R.id.sname);
@@ -126,6 +139,55 @@ public class AdminPersonalTabFragment extends Fragment {
         paddrline3 = (EditText) rootView.findViewById(R.id.paddrline3);
 //        save = (Button) rootView.findViewById(R.id.savepersonal);
 //        personalprogress = (ProgressBar) rootView.findViewById(R.id.personalprogress);
+
+        fnameedittext.setTypeface(MyConstants.getBold(getActivity()));
+        mnameedittext.setTypeface(MyConstants.getBold(getActivity()));
+        snameedittext.setTypeface(MyConstants.getBold(getActivity()));
+        role.setTypeface(MyConstants.getBold(getActivity()));
+        emailedittext.setTypeface(MyConstants.getBold(getActivity()));
+        profileaemail.setTypeface(MyConstants.getBold(getActivity()));
+        inst.setTypeface(MyConstants.getBold(getActivity()));
+        radioButtonMale.setTypeface(MyConstants.getBold(getActivity()));
+        radioButtonFemale.setTypeface(MyConstants.getBold(getActivity()));
+        caddrline1.setTypeface(MyConstants.getBold(getActivity()));
+        caddrline2.setTypeface(MyConstants.getBold(getActivity()));
+        caddrline3.setTypeface(MyConstants.getBold(getActivity()));
+        CheckBoxPSC.setTypeface(MyConstants.getBold(getActivity()));
+        fnameedittext.setTypeface(MyConstants.getBold(getActivity()));
+        paddrline1.setTypeface(MyConstants.getBold(getActivity()));
+        paddrline2.setTypeface(MyConstants.getBold(getActivity()));
+        paddrline3.setTypeface(MyConstants.getBold(getActivity()));
+
+
+        fnameinput=(TextInputLayout)rootView.findViewById(R.id.fnameinput);
+        mnameinput=(TextInputLayout)rootView.findViewById(R.id.mnameinput);
+        snameinput=(TextInputLayout)rootView.findViewById(R.id.snameinput);
+        roleinputlayout=(TextInputLayout)rootView.findViewById(R.id.roleinputlayout);
+        emailinputlayout=(TextInputLayout)rootView.findViewById(R.id.emailinputlayout);
+        profileaemailinput=(TextInputLayout)rootView.findViewById(R.id.profileaemailinput);
+        instinputlayout=(TextInputLayout)rootView.findViewById(R.id.instinputlayout);
+        dobinput=(TextInputLayout)rootView.findViewById(R.id.dobinput);
+        caddrline1input=(TextInputLayout)rootView.findViewById(R.id.caddrline1input);
+        caddrline2input=(TextInputLayout)rootView.findViewById(R.id.caddrline2input);
+        caddrline3input=(TextInputLayout)rootView.findViewById(R.id.caddrline3input);
+        paddrline1input=(TextInputLayout)rootView.findViewById(R.id.paddrline1input);
+        paddrline2input=(TextInputLayout)rootView.findViewById(R.id.paddrline2input);
+        paddrline3input=(TextInputLayout)rootView.findViewById(R.id.paddrline3input);
+
+        fnameinput.setTypeface(MyConstants.getLight(getActivity()));
+        mnameinput.setTypeface(MyConstants.getLight(getActivity()));
+        snameinput.setTypeface(MyConstants.getLight(getActivity()));
+        roleinputlayout.setTypeface(MyConstants.getLight(getActivity()));
+        emailinputlayout.setTypeface(MyConstants.getLight(getActivity()));
+        profileaemailinput.setTypeface(MyConstants.getLight(getActivity()));
+        instinputlayout.setTypeface(MyConstants.getLight(getActivity()));
+        dobinput.setTypeface(MyConstants.getLight(getActivity()));
+        caddrline1input.setTypeface(MyConstants.getLight(getActivity()));
+        caddrline2input.setTypeface(MyConstants.getLight(getActivity()));
+        caddrline3input.setTypeface(MyConstants.getLight(getActivity()));
+        paddrline1input.setTypeface(MyConstants.getLight(getActivity()));
+        paddrline2input.setTypeface(MyConstants.getLight(getActivity()));
+        paddrline3input.setTypeface(MyConstants.getLight(getActivity()));
 
 
 
@@ -267,7 +329,7 @@ public class AdminPersonalTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                fnameedittext.setError(null);
+                fnameinput.setError(null);
                 edittedFlag = 1;
             }
 
@@ -284,7 +346,7 @@ public class AdminPersonalTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mnameedittext.setError(null);
+                mnameinput.setError(null);
                 edittedFlag = 1;
             }
 
@@ -301,7 +363,7 @@ public class AdminPersonalTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                snameedittext.setError(null);
+                snameinput.setError(null);
                 edittedFlag = 1;
             }
 
@@ -334,7 +396,7 @@ public class AdminPersonalTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                dobedittext.setError(null);
+                dobinput.setError(null);
                 edittedFlag = 1;
             }
 
@@ -364,12 +426,12 @@ public class AdminPersonalTabFragment extends Fragment {
                 int old = Years.yearsBetween(dt11, dt22).getYears();
 //                    Toast.makeText(getContext(),"age years"+old, Toast.LENGTH_LONG).show();
                 if (old < 18) {
-                    dobedittext.setError("Invalid Date");
+                    dobinput.setError("Kindly enter valid date of birth (must be above 18 years)");
 //                        Toast.makeText(getContext(),"U Must Be 18 Years old,in Order use Place me...", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getContext(), "Please Enter Valid Date Of Birth", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Your age must be above 18 years", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    dobedittext.setError(null);
+                    dobinput.setError(null);
 
                 }
 
@@ -386,7 +448,7 @@ public class AdminPersonalTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                caddrline1.setError(null);
+                caddrline1input.setError(null);
                 String Editvalue = caddrline1.getText().toString();
                 if (addrline1c != null) {
                     if (!addrline1c.equals(Editvalue)) {
@@ -411,7 +473,7 @@ public class AdminPersonalTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                caddrline2.setError(null);
+                caddrline2input.setError(null);
                 String Editvalue = caddrline2.getText().toString();
                 if (addrline2c != null) {
                     if (!addrline2c.equals(Editvalue)) {
@@ -437,7 +499,7 @@ public class AdminPersonalTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                caddrline3.setError(null);
+                caddrline3input.setError(null);
                 String Editvalue = caddrline3.getText().toString();
                 if (addrline3c != null) {
 
@@ -463,7 +525,7 @@ public class AdminPersonalTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                paddrline1.setError(null);
+                paddrline1input.setError(null);
                 edittedFlag = 1;
             }
 
@@ -480,7 +542,7 @@ public class AdminPersonalTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                paddrline2.setError(null);
+                paddrline2input.setError(null);
                 edittedFlag = 1;
             }
 
@@ -594,8 +656,8 @@ public class AdminPersonalTabFragment extends Fragment {
             outputDateStrlastdateofreg = outputFormat.format(date);
             dob = outputDateStrlastdateofreg;
         } catch (Exception e) {
-            Toast.makeText(getContext(), "Enter Date of Birth Correctly..!", Toast.LENGTH_SHORT).show();
-            dobedittext.setError("Invalid Date");
+            Toast.makeText(getContext(), "Kindly enter vali date of birth", Toast.LENGTH_SHORT).show();
+            dobinput.setError("Kindly enter valid date of birth");
         }
 
         int selectedId;
@@ -611,40 +673,40 @@ public class AdminPersonalTabFragment extends Fragment {
 
 
         if (fname.length() < 2) {
-            fnameedittext.setError("Incorrect First Name");
+            fnameinput.setError("Kindly enter valid first name");
             errorflag1 = 1;
         } else if (mname.length() < 2) {
-            mnameedittext.setError("Incorrect Middle Name");
+            mnameinput.setError("Kindly enter valid last name");
             errorflag1 = 1;
         } else if (sname.length() < 2) {
-            snameedittext.setError("Incorrect Last Name");
+            snameinput.setError("Kindly enter valid surname");
             errorflag1 = 1;
         } else if (!alternateemail.contains("@")) {
-            profileaemail.setError("Incorrect Email Address");
+            profileaemailinput.setError("Kindly enter valid email address");
             errorflag1 = 1;
         } else if (sinst.length() < 2) {
-            inst.setError("Incorrect Institute name");
+            instinputlayout.setError("Kindly enter valid institute name");
             errorflag1 = 1;
         } else if (dob.length() < 2) {
-            Toast.makeText(getContext(), "Select date", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Kindly select date of birth", Toast.LENGTH_SHORT).show();
             errorflag1 = 1;
         } else if (addrline1c.length() < 2) {
-            caddrline1.setError("Incorrect Address");
+            caddrline1input.setError("Kindly enter valid address");
             errorflag1 = 1;
         } else if (addrline2c.length() < 2) {
-            caddrline2.setError("Incorrect Address");
+            caddrline2input.setError("Kindly enter valid address");
             errorflag1 = 1;
         } else if (addrline3c.length() < 2) {
-            caddrline3.setError("Incorrect Address");
+            caddrline3input.setError("Kindly enter valid address");
             errorflag1 = 1;
         } else if (addrline1p.length() < 2) {
-            paddrline1.setError("Incorrect Address");
+            paddrline1input.setError("Kindly enter valid address");
             errorflag1 = 1;
         } else if (addrline2p.length() < 2) {
-            paddrline2.setError("Incorrect Address");
+            paddrline2input.setError("Kindly enter valid address");
             errorflag1 = 1;
         } else if (addrline3p.length() < 2) {
-            paddrline3.setError("Incorrect Address");
+            paddrline3input.setError("Kindly enter valid address");
             errorflag1 = 1;
         }
         if (errorflag1 == 0)

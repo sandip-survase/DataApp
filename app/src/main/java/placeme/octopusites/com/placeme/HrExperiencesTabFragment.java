@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SwitchCompat;
@@ -64,6 +65,7 @@ public class HrExperiencesTabFragment extends Fragment {
     EditText fromdate1, todate1, fromdate2, todate2, fromdate3, todate3, fromdate4, todate4, fromdate5, todate5, fromdate6, todate6, fromdate7, todate7, fromdate8, todate8, fromdate9, todate9, fromdate10, todate10;
     EditText post1, post2, post3, post4, post5, post6, post7, post8, post9, post10;
     EditText inst11, inst12, inst13, inst14, inst15, inst16, inst17, inst18, inst19, inst110;
+    TextView addmoreexptxt,work1,work2,work3,work4,work5,work6,work7,work8,work9,work10;
     String posts1 = "", posts2 = "", posts3 = "", posts4 = "", posts5 = "", posts6 = "", posts7 = "", posts8 = "", posts9 = "", posts10 = "";
     String inst1s1 = "", inst1s2 = "", inst1s3 = "", inst1s4 = "", inst1s5 = "", inst1s6 = "", inst1s7 = "", inst1s8 = "", inst1s9 = "", inst1s10 = "";
     String fromdates1 = "", todates1 = "", fromdates2 = "", todates2 = "", fromdates3 = "", todates3 = "", fromdates4 = "", todates4 = "", fromdates5 = "", todates5 = "", fromdates6 = "", todates6 = "", fromdates7 = "", todates7 = "", fromdates8 = "", todates8 = "", fromdates9 = "", todates9 = "", fromdates10 = "", todates10 = "";
@@ -85,6 +87,9 @@ public class HrExperiencesTabFragment extends Fragment {
     HrData hr = new HrData();
     ArrayList<Experiences> experiencesList=new ArrayList<>();
     View rootView;
+    TextInputLayout postinput1,instinput1,fromdateinput1,todateinput1,postinput2,instinput2,fromdateinput2,todateinput2,postinput3,instinput3,fromdateinput3,todateinput3,postinput4,instinput4,fromdateinput4,todateinput4,postinput5,instinput5,fromdateinput5,todateinput5;
+    TextInputLayout postinput6,instinput6,fromdateinput6,todateinput6,postinput7,instinput7,fromdateinput7,todateinput7,postinput8,instinput8,fromdateinput8,todateinput8,postinput9,instinput9,fromdateinput9,todateinput9,postinput10,instinput10,fromdateinput10,todateinput10;
+
 
 
     @Override
@@ -115,6 +120,117 @@ public class HrExperiencesTabFragment extends Fragment {
         trash9selectionview = (View)rootView. findViewById(R.id.trashexp9);
         trash10selectionview = (View)rootView. findViewById(R.id.trashexp10);
 
+        addmoreexptxt=(TextView)rootView.findViewById(R.id.addmoreexptxt);
+        work1=(TextView)rootView.findViewById(R.id.work1);
+        work2=(TextView)rootView.findViewById(R.id.work2);
+        work3=(TextView)rootView.findViewById(R.id.work3);
+        work4=(TextView)rootView.findViewById(R.id.work4);
+        work5=(TextView)rootView.findViewById(R.id.work5);
+        work6=(TextView)rootView.findViewById(R.id.work6);
+        work7=(TextView)rootView.findViewById(R.id.work7);
+        work8=(TextView)rootView.findViewById(R.id.work8);
+        work9=(TextView)rootView.findViewById(R.id.work9);
+        work10=(TextView)rootView.findViewById(R.id.work10);
+
+        addmoreexptxt.setTypeface(MyConstants.getBold(getActivity()));
+        work1.setTypeface(MyConstants.getBold(getActivity()));
+        work2.setTypeface(MyConstants.getBold(getActivity()));
+        work3.setTypeface(MyConstants.getBold(getActivity()));
+        work4.setTypeface(MyConstants.getBold(getActivity()));
+        work5.setTypeface(MyConstants.getBold(getActivity()));
+        work6.setTypeface(MyConstants.getBold(getActivity()));
+        work7.setTypeface(MyConstants.getBold(getActivity()));
+        work8.setTypeface(MyConstants.getBold(getActivity()));
+        work9.setTypeface(MyConstants.getBold(getActivity()));
+        work10.setTypeface(MyConstants.getBold(getActivity()));
+
+        postinput1=(TextInputLayout)rootView.findViewById(R.id.postinput1);
+        postinput2=(TextInputLayout)rootView.findViewById(R.id.postinput2);
+        postinput3=(TextInputLayout)rootView.findViewById(R.id.postinput3);
+        postinput4=(TextInputLayout)rootView.findViewById(R.id.postinput4);
+        postinput5=(TextInputLayout)rootView.findViewById(R.id.postinput5);
+        postinput6=(TextInputLayout)rootView.findViewById(R.id.postinput6);
+        postinput7=(TextInputLayout)rootView.findViewById(R.id.postinput7);
+        postinput8=(TextInputLayout)rootView.findViewById(R.id.postinput8);
+        postinput9=(TextInputLayout)rootView.findViewById(R.id.postinput9);
+        postinput10=(TextInputLayout)rootView.findViewById(R.id.postinput10);
+
+        instinput1=(TextInputLayout)rootView.findViewById(R.id.instinput1);
+        instinput2=(TextInputLayout)rootView.findViewById(R.id.instinput2);
+        instinput3=(TextInputLayout)rootView.findViewById(R.id.instinput3);
+        instinput4=(TextInputLayout)rootView.findViewById(R.id.instinput4);
+        instinput5=(TextInputLayout)rootView.findViewById(R.id.instinput5);
+        instinput6=(TextInputLayout)rootView.findViewById(R.id.instinput6);
+        instinput7=(TextInputLayout)rootView.findViewById(R.id.instinput7);
+        instinput8=(TextInputLayout)rootView.findViewById(R.id.instinput8);
+        instinput9=(TextInputLayout)rootView.findViewById(R.id.instinput9);
+        instinput10=(TextInputLayout)rootView.findViewById(R.id.instinput10);
+
+        fromdateinput1=(TextInputLayout)rootView.findViewById(R.id.fromdateinput1);
+        fromdateinput2=(TextInputLayout)rootView.findViewById(R.id.fromdateinput2);
+        fromdateinput3=(TextInputLayout)rootView.findViewById(R.id.fromdateinput3);
+        fromdateinput4=(TextInputLayout)rootView.findViewById(R.id.fromdateinput4);
+        fromdateinput5=(TextInputLayout)rootView.findViewById(R.id.fromdateinput5);
+        fromdateinput6=(TextInputLayout)rootView.findViewById(R.id.fromdateinput6);
+        fromdateinput7=(TextInputLayout)rootView.findViewById(R.id.fromdateinput7);
+        fromdateinput8=(TextInputLayout)rootView.findViewById(R.id.fromdateinput8);
+        fromdateinput9=(TextInputLayout)rootView.findViewById(R.id.fromdateinput9);
+        fromdateinput10=(TextInputLayout)rootView.findViewById(R.id.fromdateinput10);
+
+        todateinput1=(TextInputLayout)rootView.findViewById(R.id.todateinput1);
+        todateinput2=(TextInputLayout)rootView.findViewById(R.id.todateinput2);
+        todateinput3=(TextInputLayout)rootView.findViewById(R.id.todateinput3);
+        todateinput4=(TextInputLayout)rootView.findViewById(R.id.todateinput4);
+        todateinput5=(TextInputLayout)rootView.findViewById(R.id.todateinput5);
+        todateinput6=(TextInputLayout)rootView.findViewById(R.id.todateinput6);
+        todateinput7=(TextInputLayout)rootView.findViewById(R.id.todateinput7);
+        todateinput8=(TextInputLayout)rootView.findViewById(R.id.todateinput8);
+        todateinput9=(TextInputLayout)rootView.findViewById(R.id.todateinput9);
+        todateinput10=(TextInputLayout)rootView.findViewById(R.id.todateinput10);
+
+        todateinput1.setTypeface(MyConstants.getLight(getActivity()));
+        todateinput2.setTypeface(MyConstants.getLight(getActivity()));
+        todateinput3.setTypeface(MyConstants.getLight(getActivity()));
+        todateinput4.setTypeface(MyConstants.getLight(getActivity()));
+        todateinput5.setTypeface(MyConstants.getLight(getActivity()));
+        todateinput6.setTypeface(MyConstants.getLight(getActivity()));
+        todateinput7.setTypeface(MyConstants.getLight(getActivity()));
+        todateinput8.setTypeface(MyConstants.getLight(getActivity()));
+        todateinput9.setTypeface(MyConstants.getLight(getActivity()));
+        todateinput10.setTypeface(MyConstants.getLight(getActivity()));
+
+        postinput1.setTypeface(MyConstants.getLight(getActivity()));
+        postinput2.setTypeface(MyConstants.getLight(getActivity()));
+        postinput3.setTypeface(MyConstants.getLight(getActivity()));
+        postinput4.setTypeface(MyConstants.getLight(getActivity()));
+        postinput5.setTypeface(MyConstants.getLight(getActivity()));
+        postinput6.setTypeface(MyConstants.getLight(getActivity()));
+        postinput7.setTypeface(MyConstants.getLight(getActivity()));
+        postinput8.setTypeface(MyConstants.getLight(getActivity()));
+        postinput9.setTypeface(MyConstants.getLight(getActivity()));
+        postinput10.setTypeface(MyConstants.getLight(getActivity()));
+
+        instinput1.setTypeface(MyConstants.getLight(getActivity()));
+        instinput2.setTypeface(MyConstants.getLight(getActivity()));
+        instinput3.setTypeface(MyConstants.getLight(getActivity()));
+        instinput4.setTypeface(MyConstants.getLight(getActivity()));
+        instinput5.setTypeface(MyConstants.getLight(getActivity()));
+        instinput6.setTypeface(MyConstants.getLight(getActivity()));
+        instinput7.setTypeface(MyConstants.getLight(getActivity()));
+        instinput8.setTypeface(MyConstants.getLight(getActivity()));
+        instinput9.setTypeface(MyConstants.getLight(getActivity()));
+        instinput10.setTypeface(MyConstants.getLight(getActivity()));
+
+        fromdateinput1.setTypeface(MyConstants.getLight(getActivity()));
+        fromdateinput2.setTypeface(MyConstants.getLight(getActivity()));
+        fromdateinput3.setTypeface(MyConstants.getLight(getActivity()));
+        fromdateinput4.setTypeface(MyConstants.getLight(getActivity()));
+        fromdateinput5.setTypeface(MyConstants.getLight(getActivity()));
+        fromdateinput6.setTypeface(MyConstants.getLight(getActivity()));
+        fromdateinput7.setTypeface(MyConstants.getLight(getActivity()));
+        fromdateinput8.setTypeface(MyConstants.getLight(getActivity()));
+        fromdateinput9.setTypeface(MyConstants.getLight(getActivity()));
+        fromdateinput10.setTypeface(MyConstants.getLight(getActivity()));
 
         //Edittext
         post1 = (EditText)rootView. findViewById(R.id.post1);
@@ -138,6 +254,29 @@ public class HrExperiencesTabFragment extends Fragment {
         inst18 = (EditText)rootView. findViewById(R.id.inst8);
         inst19 = (EditText)rootView. findViewById(R.id.inst9);
         inst110 = (EditText)rootView. findViewById(R.id.inst10);
+
+        post1.setTypeface(MyConstants.getBold(getActivity()));
+        post2.setTypeface(MyConstants.getBold(getActivity()));
+        post3.setTypeface(MyConstants.getBold(getActivity()));
+        post4.setTypeface(MyConstants.getBold(getActivity()));
+        post5.setTypeface(MyConstants.getBold(getActivity()));
+        post6.setTypeface(MyConstants.getBold(getActivity()));
+        post7.setTypeface(MyConstants.getBold(getActivity()));
+        post8.setTypeface(MyConstants.getBold(getActivity()));
+        post9.setTypeface(MyConstants.getBold(getActivity()));
+        post10.setTypeface(MyConstants.getBold(getActivity()));
+
+        inst11.setTypeface(MyConstants.getBold(getActivity()));
+        inst12.setTypeface(MyConstants.getBold(getActivity()));
+        inst13.setTypeface(MyConstants.getBold(getActivity()));
+        inst14.setTypeface(MyConstants.getBold(getActivity()));
+        inst15.setTypeface(MyConstants.getBold(getActivity()));
+        inst16.setTypeface(MyConstants.getBold(getActivity()));
+        inst17.setTypeface(MyConstants.getBold(getActivity()));
+        inst18.setTypeface(MyConstants.getBold(getActivity()));
+        inst19.setTypeface(MyConstants.getBold(getActivity()));
+        inst110.setTypeface(MyConstants.getBold(getActivity()));
+
 
         switch1 = (SwitchCompat)rootView. findViewById(R.id.switch1);
         switch2 = (SwitchCompat)rootView. findViewById(R.id.switch2);
@@ -173,9 +312,31 @@ public class HrExperiencesTabFragment extends Fragment {
         fromdate10=(EditText)rootView.findViewById(R.id.fromdate10);
         todate10=(EditText)rootView.findViewById(R.id.todate10);
 
+
+        fromdate1.setTypeface(MyConstants.getBold(getActivity()));
+        todate1.setTypeface(MyConstants.getBold(getActivity()));
+        fromdate2.setTypeface(MyConstants.getBold(getActivity()));
+        todate2.setTypeface(MyConstants.getBold(getActivity()));
+        fromdate3.setTypeface(MyConstants.getBold(getActivity()));
+        todate3.setTypeface(MyConstants.getBold(getActivity()));
+        fromdate4.setTypeface(MyConstants.getBold(getActivity()));
+        todate4.setTypeface(MyConstants.getBold(getActivity()));
+        fromdate5.setTypeface(MyConstants.getBold(getActivity()));
+        todate5.setTypeface(MyConstants.getBold(getActivity()));
+        fromdate6.setTypeface(MyConstants.getBold(getActivity()));
+        todate6.setTypeface(MyConstants.getBold(getActivity()));
+        fromdate7.setTypeface(MyConstants.getBold(getActivity()));
+        todate7.setTypeface(MyConstants.getBold(getActivity()));
+        fromdate8.setTypeface(MyConstants.getBold(getActivity()));
+        todate8.setTypeface(MyConstants.getBold(getActivity()));
+        fromdate9.setTypeface(MyConstants.getBold(getActivity()));
+        todate9.setTypeface(MyConstants.getBold(getActivity()));
+        fromdate10.setTypeface(MyConstants.getBold(getActivity()));
+        todate10.setTypeface(MyConstants.getBold(getActivity()));
+
         TextView exptxt=(TextView)rootView.findViewById(R.id.exptxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/arba.ttf");
-        exptxt.setTypeface(custom_font1);
+        exptxt.setTypeface(MyConstants.getBold(getActivity()));
+
         //my code
         trash1selectionview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -781,7 +942,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post1.setError(null);
+                postinput1.setError(null);
                 edittedFlag = 1;
             }
 
@@ -798,7 +959,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post2.setError(null);
+                postinput2.setError(null);
                 edittedFlag = 1;
             }
 
@@ -815,7 +976,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post3.setError(null);
+                postinput3.setError(null);
                 edittedFlag = 1;
             }
 
@@ -832,7 +993,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post4.setError(null);
+                postinput4.setError(null);
                 edittedFlag = 1;
             }
 
@@ -849,7 +1010,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post5.setError(null);
+                postinput5.setError(null);
                 edittedFlag = 1;
             }
 
@@ -867,7 +1028,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post6.setError(null);
+                postinput6.setError(null);
                 edittedFlag = 1;
             }
 
@@ -884,7 +1045,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post7.setError(null);
+                postinput7.setError(null);
                 edittedFlag = 1;
             }
 
@@ -902,7 +1063,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post8.setError(null);
+                postinput8.setError(null);
                 edittedFlag = 1;
             }
 
@@ -919,7 +1080,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post9.setError(null);
+                postinput9.setError(null);
                 edittedFlag = 1;
             }
 
@@ -936,7 +1097,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post10.setError(null);
+                postinput10.setError(null);
                 edittedFlag = 1;
             }
 
@@ -953,7 +1114,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst11.setError(null);
+                instinput1.setError(null);
                 edittedFlag = 1;
             }
 
@@ -970,7 +1131,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst12.setError(null);
+                instinput2.setError(null);
                 edittedFlag = 1;
             }
 
@@ -987,7 +1148,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst13.setError(null);
+                instinput3.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1004,7 +1165,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst14.setError(null);
+                instinput4.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1021,7 +1182,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst15.setError(null);
+                instinput5.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1038,7 +1199,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst16.setError(null);
+                instinput6.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1055,7 +1216,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst17.setError(null);
+                instinput7.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1072,7 +1233,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst18.setError(null);
+                instinput8.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1089,7 +1250,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst19.setError(null);
+                instinput9.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1106,7 +1267,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst110.setError(null);
+                instinput10.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1125,6 +1286,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput1.setError(null);
             }
 
             @Override
@@ -1141,6 +1303,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput2.setError(null);
             }
 
             @Override
@@ -1157,6 +1320,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput3.setError(null);
             }
 
             @Override
@@ -1174,6 +1338,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput4.setError(null);
             }
 
             @Override
@@ -1190,6 +1355,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput5.setError(null);
             }
 
             @Override
@@ -1207,6 +1373,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput6.setError(null);
             }
 
             @Override
@@ -1223,6 +1390,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput7.setError(null);
             }
 
             @Override
@@ -1239,6 +1407,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput8.setError(null);
             }
 
             @Override
@@ -1255,6 +1424,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput9.setError(null);
             }
 
             @Override
@@ -1271,6 +1441,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput10.setError(null);
             }
 
             @Override
@@ -1288,6 +1459,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput1.setError(null);
             }
 
             @Override
@@ -1306,6 +1478,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput2.setError(null);
             }
 
             @Override
@@ -1322,6 +1495,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput3.setError(null);
             }
 
             @Override
@@ -1339,6 +1513,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput4.setError(null);
             }
 
             @Override
@@ -1355,6 +1530,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput5.setError(null);
             }
 
             @Override
@@ -1372,6 +1548,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput6.setError(null);
             }
 
             @Override
@@ -1388,6 +1565,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput7.setError(null);
             }
 
             @Override
@@ -1404,6 +1582,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput8.setError(null);
             }
 
             @Override
@@ -1420,6 +1599,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput9.setError(null);
             }
 
             @Override
@@ -1436,6 +1616,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput10.setError(null);
             }
 
             @Override
@@ -2730,8 +2911,8 @@ public class HrExperiencesTabFragment extends Fragment {
         if (isValid == true) {
             id.setText(selectedMonth + ", " + selectedYear);
         } else {
-            id.setError("Choose valid date");
-            Toast.makeText(getActivity(), "Invalid date", Toast.LENGTH_SHORT).show();
+            id.setError("Kindly choose valid date");
+            Toast.makeText(getActivity(), "Kindly enter valid date", Toast.LENGTH_SHORT).show();
             id.setText("");
         }
     }
@@ -3823,23 +4004,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts1.equals("")) {
             errorflag = 1;
-            post1.setError("Field can not be Empty");
+            postinput1.setError("Kindly enter valid position");
         } else if (posts1.length() < 2) {
             errorflag = 1;
-            post1.setError("Invalid position");
+            postinput1.setError("Kindly enter valid position");
         } else if (inst1s1.equals("")) {
             errorflag = 1;
-            inst11.setError("Field can not be Empty");
+            instinput1.setError("Kindly enter valid institute");
         } else if (inst1s1.length() < 2) {
             errorflag = 1;
-            inst11.setError("Invalid Institute");
+            instinput1.setError("Kindly enter valid institute");
         } else if (fromdates1.equals("")) {
             errorflag = 1;
-            fromdate1.setError("Enter From date");
+            fromdateinput1.setError("Enter From date");
         } else if (blnswitch1 == false) {
             if (todates1.equals("")) {
                 errorflag = 1;
-                todate1.setError("Enter To date");
+                todateinput1.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -3856,23 +4037,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts2.equals("")) {
             errorflag = 1;
-            post2.setError("Field can not be Empty");
+            postinput2.setError("Kindly enter valid position");
         } else if (posts2.length() < 2) {
             errorflag = 1;
-            post2.setError("Invalid position");
+            postinput2.setError("Kindly enter valid position");
         } else if (inst1s2.equals("")) {
             errorflag = 1;
-            inst12.setError("Field can not be Empty");
+            instinput2.setError("Kindly enter valid institute");
         } else if (inst1s2.length() < 2) {
             errorflag = 1;
-            inst12.setError("Invalid Institute");
+            instinput2.setError("Kindly enter valid institute");
         } else if (fromdates2.equals("")) {
             errorflag = 1;
-            fromdate2.setError("Enter From date");
+            fromdateinput2.setError("Enter From date");
         } else if (blnswitch2 == false) {
             if (todates2.equals("")) {
                 errorflag = 1;
-                todate2.setError("Enter To date");
+                todateinput2.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -3889,23 +4070,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts3.equals("")) {
             errorflag = 1;
-            post3.setError("Field can not be Empty");
+            postinput3.setError("Kindly enter valid position");
         } else if (posts3.length() < 2) {
             errorflag = 1;
-            post3.setError("Invalid position");
+            postinput3.setError("Kindly enter valid position");
         } else if (inst1s3.equals("")) {
             errorflag = 1;
-            inst13.setError("Field can not be Empty");
+            instinput3.setError("Kindly enter valid institute");
         } else if (inst1s3.length() < 2) {
             errorflag = 1;
-            inst13.setError("Invalid Institute");
+            instinput3.setError("Kindly enter valid institute");
         } else if (fromdates3.equals("")) {
             errorflag = 1;
-            fromdate3.setError("Enter From date");
+            fromdateinput3.setError("Enter From date");
         } else if (blnswitch3 == false) {
             if (todates3.equals("")) {
                 errorflag = 1;
-                todate3.setError("Enter To date");
+                todateinput3.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -3922,23 +4103,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts4.equals("")) {
             errorflag = 1;
-            post4.setError("Field can not be Empty");
+            postinput4.setError("Kindly enter valid position");
         } else if (posts4.length() < 2) {
             errorflag = 1;
-            post4.setError("Invalid position");
+            postinput4.setError("Kindly enter valid position");
         } else if (inst1s4.equals("")) {
             errorflag = 1;
-            inst14.setError("Field can not be Empty");
+            instinput4.setError("Kindly enter valid institute");
         } else if (inst1s4.length() < 2) {
             errorflag = 1;
-            inst14.setError("Invalid Institute");
+            instinput4.setError("Kindly enter valid institute");
         } else if (fromdates4.equals("")) {
             errorflag = 1;
-            fromdate4.setError("Enter From date");
+            fromdateinput4.setError("Enter From date");
         } else if (blnswitch4 == false) {
             if (todates4.equals("")) {
                 errorflag = 1;
-                todate4.setError("Enter To date");
+                todateinput4.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -3951,23 +4132,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts5.equals("")) {
             errorflag = 1;
-            post5.setError("Field can not be Empty");
+            postinput5.setError("Kindly enter valid position");
         } else if (posts5.length() < 2) {
             errorflag = 1;
-            post5.setError("Invalid position");
+            postinput5.setError("Kindly enter valid position");
         } else if (inst1s5.equals("")) {
             errorflag = 1;
-            inst15.setError("Field can not be Empty");
+            instinput5.setError("Kindly enter valid institute");
         } else if (inst1s5.length() < 2) {
             errorflag = 1;
-            inst15.setError("Invalid Institute");
+            instinput5.setError("Kindly enter valid institute");
         } else if (fromdates5.equals("")) {
             errorflag = 1;
-            fromdate5.setError("Enter From date");
+            fromdateinput5.setError("Enter From date");
         } else if (blnswitch5 == false) {
             if (todates5.equals("")) {
                 errorflag = 1;
-                todate5.setError("Enter To date");
+                todateinput5.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -3980,23 +4161,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts6.equals("")) {
             errorflag = 1;
-            post6.setError("Field can not be Empty");
+            postinput6.setError("Kindly enter valid position");
         } else if (posts6.length() < 2) {
             errorflag = 1;
-            post6.setError("Invalid position");
+            postinput6.setError("Kindly enter valid position");
         } else if (inst1s6.equals("")) {
             errorflag = 1;
-            inst16.setError("Field can not be Empty");
+            instinput6.setError("Kindly enter valid institute");
         } else if (inst1s6.length() < 2) {
             errorflag = 1;
-            inst16.setError("Invalid Institute");
+            instinput6.setError("Kindly enter valid institute");
         } else if (fromdates6.equals("")) {
             errorflag = 1;
-            fromdate6.setError("Enter From date");
+            fromdateinput6.setError("Enter From date");
         } else if (blnswitch6 == false) {
             if (todates6.equals("")) {
                 errorflag = 1;
-                todate6.setError("Enter To date");
+                todateinput6.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -4009,23 +4190,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts7.equals("")) {
             errorflag = 1;
-            post7.setError("Field can not be Empty");
+            postinput7.setError("Kindly enter valid position");
         } else if (posts7.length() < 2) {
             errorflag = 1;
-            post7.setError("Invalid position");
+            postinput7.setError("Kindly enter valid position");
         } else if (inst1s7.equals("")) {
             errorflag = 1;
-            inst17.setError("Field can not be Empty");
+            instinput7.setError("Kindly enter valid institute");
         } else if (inst1s7.length() < 2) {
             errorflag = 1;
-            inst17.setError("Invalid Institute");
+            instinput7.setError("Kindly enter valid institute");
         } else if (fromdates7.equals("")) {
             errorflag = 1;
-            fromdate7.setError("Enter From date");
+            fromdateinput7.setError("Enter From date");
         } else if (blnswitch7 == false) {
             if (todates7.equals("")) {
                 errorflag = 1;
-                todate7.setError("Enter To date");
+                todateinput7.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -4038,23 +4219,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts8.equals("")) {
             errorflag = 1;
-            post8.setError("Field can not be Empty");
+            postinput8.setError("Kindly enter valid position");
         } else if (posts8.length() < 2) {
             errorflag = 1;
-            post8.setError("Invalid position");
+            postinput8.setError("Kindly enter valid position");
         } else if (inst1s8.equals("")) {
             errorflag = 1;
-            inst18.setError("Field can not be Empty");
+            instinput8.setError("Kindly enter valid institute");
         } else if (inst1s8.length() < 2) {
             errorflag = 1;
-            inst18.setError("Invalid Institute");
+            instinput8.setError("Kindly enter valid institute");
         } else if (fromdates8.equals("")) {
             errorflag = 1;
-            fromdate8.setError("Enter From date");
+            fromdateinput8.setError("Enter From date");
         } else if (blnswitch8 == false) {
             if (todates8.equals("")) {
                 errorflag = 1;
-                todate8.setError("Enter To date");
+                todateinput8.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -4067,23 +4248,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts9.equals("")) {
             errorflag = 1;
-            post9.setError("Field can not be Empty");
+            postinput9.setError("Kindly enter valid position");
         } else if (posts9.length() < 2) {
             errorflag = 1;
-            post9.setError("Invalid position");
+            postinput9.setError("Kindly enter valid position");
         } else if (inst1s9.equals("")) {
             errorflag = 1;
-            inst19.setError("Field can not be Empty");
+            instinput9.setError("Kindly enter valid institute");
         } else if (inst1s9.length() < 2) {
             errorflag = 1;
-            inst19.setError("Invalid Institute");
+            instinput9.setError("Kindly enter valid institute");
         } else if (fromdates9.equals("")) {
             errorflag = 1;
-            fromdate9.setError("Enter From date");
+            fromdateinput9.setError("Enter From date");
         } else if (blnswitch9 == false) {
             if (todates9.equals("")) {
                 errorflag = 1;
-                todate9.setError("Enter To date");
+                todateinput9.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -4096,23 +4277,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts10.equals("")) {
             errorflag = 1;
-            post10.setError("Field can not be Empty");
+            postinput10.setError("Kindly enter valid position");
         } else if (posts10.length() < 2) {
             errorflag = 1;
-            post10.setError("Invalid position");
+            postinput10.setError("Kindly enter valid position");
         } else if (inst1s10.equals("")) {
             errorflag = 1;
-            inst110.setError("Field can not be Empty");
+            instinput10.setError("Kindly enter valid institute");
         } else if (inst1s10.length() < 2) {
             errorflag = 1;
-            inst110.setError("Invalid Institute");
+            instinput10.setError("Kindly enter valid institute");
         } else if (fromdates10.equals("")) {
             errorflag = 1;
-            fromdate10.setError("Enter From date");
+            fromdateinput10.setError("Enter From date");
         } else if (blnswitch10 == false) {
             if (todates10.equals("")) {
                 errorflag = 1;
-                todate10.setError("Enter To date");
+                todateinput10.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -4410,7 +4591,7 @@ public class HrExperiencesTabFragment extends Fragment {
         protected void onPostExecute(String result) {
             if (result.equals("success")) {
 
-                Toast.makeText(getActivity(),"Successfully Saved..!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Successfully Saved !",Toast.LENGTH_SHORT).show();
 
                 if (role.equals("alumni"))
                     getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);

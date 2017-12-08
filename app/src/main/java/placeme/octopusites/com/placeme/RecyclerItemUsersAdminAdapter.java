@@ -44,6 +44,12 @@ public class RecyclerItemUsersAdminAdapter extends RecyclerView.Adapter<Recycler
             role=(TextView) view.findViewById(R.id.role);
             isactivated=(TextView) view.findViewById(R.id.placed);      // changed place to isactivated
             uploadedbyprofile=(CircleImageView) view.findViewById(R.id.uploadedbyprofile);
+            name.setTypeface(MyConstants.getBold(name.getContext()));
+            email.setTypeface(MyConstants.getLight(email.getContext()));
+            role.setTypeface(MyConstants.getLight(role.getContext()));
+            isactivated.setTypeface(MyConstants.getLight(isactivated.getContext()));
+
+
         }
     }
     public void updateList(List<RecyclerItemUsersAdmin> list,String searchText){
@@ -95,7 +101,11 @@ public class RecyclerItemUsersAdminAdapter extends RecyclerView.Adapter<Recycler
 
         holder.name.setText(item.getName());
         holder.role.setText(item.getRole());
-        holder.isactivated.setText(item.getIsactivated());
+        if(item.getIsactivated().equals("Not Activated")) {
+            holder.isactivated.setTextColor(Color.parseColor("#00bcd4"));
+            holder.isactivated.setTypeface(MyConstants.getBold(holder.isactivated.getContext()));
+        }
+            holder.isactivated.setText(item.getIsactivated());
 
 
     }
