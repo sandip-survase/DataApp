@@ -560,8 +560,16 @@ public class ViewPlacement extends AppCompatActivity {
         protected String doInBackground(String... urls) {
             String r="";
             String format = "pdf";
+
             try {
+
                 String template=MySharedPreferencesManager.getData(ViewPlacement.this,"template");
+                if(template==null){
+                    int temp = 1;
+                    template=temp+"";
+                }
+
+
                 Log.d("TAG", "doInBackground: username -"+username);
                 Log.d("TAG", "doInBackground: format -"+format);
                 Log.d("TAG", "doInBackground: template -"+template);

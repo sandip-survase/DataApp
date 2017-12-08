@@ -3,6 +3,7 @@ package placeme.octopusites.com.placeme;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -221,6 +222,10 @@ public class MyProfilePublications extends AppCompatActivity {
                  descriptioninput9= (TextInputLayout) findViewById(R.id.descriptioninput9);
                  urlinput10= (TextInputLayout) findViewById(R.id.urlinput10);
                  descriptioninput10= (TextInputLayout) findViewById(R.id.descriptioninput10);
+
+
+
+
 
 
 
@@ -1404,65 +1409,70 @@ public class MyProfilePublications extends AppCompatActivity {
         author1.setTypeface(MyConstants.getBold(this));
         url1.setTypeface(MyConstants.getBold(this));
         description1.setTypeface(MyConstants.getBold(this));
-
+        publicationdate1.setTypeface(MyConstants.getBold(this));
         title2.setTypeface(MyConstants.getBold(this));
         publication2.setTypeface(MyConstants.getBold(this));
         author2.setTypeface(MyConstants.getBold(this));
         url2.setTypeface(MyConstants.getBold(this));
         description2.setTypeface(MyConstants.getBold(this));
-
+        publicationdate2.setTypeface(MyConstants.getBold(this));
         title3.setTypeface(MyConstants.getBold(this));
         publication3.setTypeface(MyConstants.getBold(this));
         author3.setTypeface(MyConstants.getBold(this));
         url3.setTypeface(MyConstants.getBold(this));
         description3.setTypeface(MyConstants.getBold(this));
-
+        publicationdate3.setTypeface(MyConstants.getBold(this));
         title4.setTypeface(MyConstants.getBold(this));
         publication4.setTypeface(MyConstants.getBold(this));
         author4.setTypeface(MyConstants.getBold(this));
         url4.setTypeface(MyConstants.getBold(this));
         description4.setTypeface(MyConstants.getBold(this));
-
+        publicationdate4.setTypeface(MyConstants.getBold(this));
         title5.setTypeface(MyConstants.getBold(this));
         publication5.setTypeface(MyConstants.getBold(this));
         author5.setTypeface(MyConstants.getBold(this));
         url5.setTypeface(MyConstants.getBold(this));
         description5.setTypeface(MyConstants.getBold(this));
-
+        publicationdate5.setTypeface(MyConstants.getBold(this));
         title6.setTypeface(MyConstants.getBold(this));
         publication6.setTypeface(MyConstants.getBold(this));
         author6.setTypeface(MyConstants.getBold(this));
         url6.setTypeface(MyConstants.getBold(this));
         description6.setTypeface(MyConstants.getBold(this));
-
+        publicationdate6.setTypeface(MyConstants.getBold(this));
         title7.setTypeface(MyConstants.getBold(this));
         publication7.setTypeface(MyConstants.getBold(this));
         author7.setTypeface(MyConstants.getBold(this));
         url7.setTypeface(MyConstants.getBold(this));
         description7.setTypeface(MyConstants.getBold(this));
-
+        publicationdate7.setTypeface(MyConstants.getBold(this));
         title8.setTypeface(MyConstants.getBold(this));
         publication8.setTypeface(MyConstants.getBold(this));
         author8.setTypeface(MyConstants.getBold(this));
         url8.setTypeface(MyConstants.getBold(this));
         description8.setTypeface(MyConstants.getBold(this));
-
+        publicationdate8.setTypeface(MyConstants.getBold(this));
         title9.setTypeface(MyConstants.getBold(this));
         publication9.setTypeface(MyConstants.getBold(this));
         author9.setTypeface(MyConstants.getBold(this));
         url9.setTypeface(MyConstants.getBold(this));
         description9.setTypeface(MyConstants.getBold(this));
+        publicationdate9.setTypeface(MyConstants.getBold(this));
 
         title10.setTypeface(MyConstants.getBold(this));
         publication10.setTypeface(MyConstants.getBold(this));
         author10.setTypeface(MyConstants.getBold(this));
         url10.setTypeface(MyConstants.getBold(this));
         description10.setTypeface(MyConstants.getBold(this));
+        publicationdate10.setTypeface(MyConstants.getBold(this));
+
+
 
         titleinput1.setTypeface(MyConstants.getLight(this));
         publicationinput1.setTypeface(MyConstants.getLight(this));
         authorsinput1.setTypeface(MyConstants.getLight(this));
         publicationdateinput1.setTypeface(MyConstants.getLight(this));
+
         titleinput2.setTypeface(MyConstants.getLight(this));
         publicationinput2.setTypeface(MyConstants.getLight(this));
         authorsinput2.setTypeface(MyConstants.getLight(this));
@@ -1499,6 +1509,29 @@ public class MyProfilePublications extends AppCompatActivity {
         publicationinput10.setTypeface(MyConstants.getLight(this));
         authorsinput10.setTypeface(MyConstants.getLight(this));
         publicationdateinput10.setTypeface(MyConstants.getLight(this));
+        urlinput1.setTypeface(MyConstants.getLight(this));
+        descriptioninput1.setTypeface(MyConstants.getLight(this));
+        descriptioninput2.setTypeface(MyConstants.getLight(this));
+        urlinput3.setTypeface(MyConstants.getLight(this));
+        descriptioninput3.setTypeface(MyConstants.getLight(this));
+        urlinput4.setTypeface(MyConstants.getLight(this));
+        descriptioninput4.setTypeface(MyConstants.getLight(this));
+        urlinput5.setTypeface(MyConstants.getLight(this));
+        descriptioninput5.setTypeface(MyConstants.getLight(this));
+        urlinput6.setTypeface(MyConstants.getLight(this));
+        descriptioninput6.setTypeface(MyConstants.getLight(this));
+        urlinput7.setTypeface(MyConstants.getLight(this));
+        descriptioninput7.setTypeface(MyConstants.getLight(this));
+        urlinput8.setTypeface(MyConstants.getLight(this));
+        descriptioninput8.setTypeface(MyConstants.getLight(this));
+        urlinput9.setTypeface(MyConstants.getLight(this));
+        descriptioninput9.setTypeface(MyConstants.getLight(this));
+        urlinput10.setTypeface(MyConstants.getLight(this));
+        descriptioninput10.setTypeface(MyConstants.getLight(this));
+
+
+
+
 
 
         addmorepublication = (View) findViewById(R.id.addmorepublication);

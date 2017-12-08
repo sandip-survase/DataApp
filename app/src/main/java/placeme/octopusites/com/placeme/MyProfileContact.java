@@ -504,7 +504,6 @@ public class MyProfileContact extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_save:
-
                 validateandSave();
                 break;
 

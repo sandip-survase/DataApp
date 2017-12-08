@@ -3,7 +3,6 @@ package placeme.octopusites.com.placeme;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -60,7 +59,7 @@ public class MyProfilePatents extends AppCompatActivity {
     RadioButton radioButtonIssued1, radioButtonPending1, radioButtonIssued2, radioButtonPending2, radioButtonIssued3, radioButtonPending3, radioButtonIssued4, radioButtonPending4, radioButtonIssued5, radioButtonPending5, radioButtonIssued6, radioButtonPending6, radioButtonIssued7, radioButtonPending7, radioButtonIssued8, radioButtonPending8, radioButtonIssued9, radioButtonPending9, radioButtonIssued10, radioButtonPending10;
     String stitle1 = "", sappno1 = "", sinventor1 = "", sissue1 = "", sfiling1 = "", surl1 = "", sdescription1 = "", stitle2 = "", sappno2 = "", sinventor2 = "", sissue2 = "", sfiling2 = "", surl2 = "", sdescription2 = "", stitle3 = "", sappno3 = "", sinventor3 = "", sissue3 = "", sfiling3 = "", surl3 = "", sdescription3 = "", stitle4 = "", sappno4 = "", sinventor4 = "", sissue4 = "", sfiling4 = "", surl4 = "", sdescription4 = "", stitle5 = "", sappno5 = "", sinventor5 = "", sissue5 = "", sfiling5 = "", surl5 = "", sdescription5 = "", stitle6 = "", sappno6 = "", sinventor6 = "", sissue6 = "", sfiling6 = "", surl6 = "", sdescription6 = "", stitle7 = "", sappno7 = "", sinventor7 = "", sissue7 = "", sfiling7 = "", surl7 = "", sdescription7 = "", stitle8 = "", sappno8 = "", sinventor8 = "", sissue8 = "", sfiling8 = "", surl8 = "", sdescription8 = "", stitle9 = "", sappno9 = "", sinventor9 = "", sissue9 = "", sfiling9 = "", surl9 = "", sdescription9 = "", stitle10 = "", sappno10 = "", sinventor10 = "", sissue10 = "", sfiling10 = "", surl10 = "", sdescription10 = "";
     TextInputLayout titleinput1, appnoinput1, inventorinput1, issueinput1, descinput1, urlinput1, titleinput2, appnoinput2, inventorinput2, issueinput2, descinput2, urlinput2, titleinput3, appnoinput3, inventorinput3, issueinput3, descinput3, urlinput3, titleinput4, appnoinput4, inventorinput4, issueinput4, descinput4, urlinput4, titleinput5, appnoinput5, inventorinput5, issueinput5, descinput5, urlinput5, titleinput6, appnoinput6, inventorinput6, issueinput6, descinput6, urlinput6, titleinput7, appnoinput7, inventorinput7, issueinput7, descinput7, urlinput7, titleinput8, appnoinput8, inventorinput8, issueinput8, descinput8, urlinput8, titleinput9, appnoinput9, inventorinput9, issueinput9, descinput9, urlinput9, titleinput10, appnoinput10, inventorinput10, issueinput10, descinput10, urlinput10;
-    TextInputLayout filinginput1,filinginput2,filinginput3,filinginput4,filinginput5,filinginput6,filinginput7,filinginput8,filinginput9,filinginput10;
+    TextInputLayout filinginput1, filinginput2, filinginput3, filinginput4, filinginput5, filinginput6, filinginput7, filinginput8, filinginput9, filinginput10;
     String issuedorpending1 = "issued", issuedorpending2 = "issued", issuedorpending3 = "issued", issuedorpending4 = "issued", issuedorpending5 = "issued", issuedorpending6 = "issued", issuedorpending7 = "issued", issuedorpending8 = "issued", issuedorpending9 = "issued", issuedorpending10 = "issued";
     String encselectedCountry1, encselectedCountry2, encselectedCountry3, encselectedCountry4, encselectedCountry5, encselectedCountry6, encselectedCountry7, encselectedCountry8, encselectedCountry9, encselectedCountry10;
     String encissuedorpending1, encissuedorpending2, encissuedorpending3, encissuedorpending4, encissuedorpending5, encissuedorpending6, encissuedorpending7, encissuedorpending8, encissuedorpending9, encissuedorpending10;
@@ -354,151 +353,150 @@ public class MyProfilePatents extends AppCompatActivity {
         filinginput10 = (TextInputLayout) findViewById(R.id.filinginput10);
 
 
-                 title1.setTypeface(MyConstants.getBold(this));
-                 appno1.setTypeface(MyConstants.getBold(this));
-                 inventor1.setTypeface(MyConstants.getBold(this));
-                 issue1.setTypeface(MyConstants.getBold(this));
-                 filing1.setTypeface(MyConstants.getBold(this));
-                 url1.setTypeface(MyConstants.getBold(this));
-                 description1.setTypeface(MyConstants.getBold(this));
-                 title2.setTypeface(MyConstants.getBold(this));
-                 appno2.setTypeface(MyConstants.getBold(this));
-                 inventor2.setTypeface(MyConstants.getBold(this));
-                 issue2.setTypeface(MyConstants.getBold(this));
-                 filing2.setTypeface(MyConstants.getBold(this));
-                 url2.setTypeface(MyConstants.getBold(this));
-                 description2.setTypeface(MyConstants.getBold(this));
-                 title3.setTypeface(MyConstants.getBold(this));
-                 appno3.setTypeface(MyConstants.getBold(this));
-                 inventor3.setTypeface(MyConstants.getBold(this));
-                 issue3.setTypeface(MyConstants.getBold(this));
-                 filing3.setTypeface(MyConstants.getBold(this));
-                 url3.setTypeface(MyConstants.getBold(this));
-                 description3.setTypeface(MyConstants.getBold(this));
-                 title4.setTypeface(MyConstants.getBold(this));
-                 appno4.setTypeface(MyConstants.getBold(this));
-                 inventor4.setTypeface(MyConstants.getBold(this));
-                 issue4.setTypeface(MyConstants.getBold(this));
-                 filing4.setTypeface(MyConstants.getBold(this));
-                 url4.setTypeface(MyConstants.getBold(this));
-                 description4.setTypeface(MyConstants.getBold(this));
-                 title5.setTypeface(MyConstants.getBold(this));
-                 appno5.setTypeface(MyConstants.getBold(this));
-                 inventor5.setTypeface(MyConstants.getBold(this));
-                 issue5.setTypeface(MyConstants.getBold(this));
-                 filing5.setTypeface(MyConstants.getBold(this));
-                 url5.setTypeface(MyConstants.getBold(this));
-                 description5.setTypeface(MyConstants.getBold(this));
-                 title6.setTypeface(MyConstants.getBold(this));
-                 appno6.setTypeface(MyConstants.getBold(this));
-                 inventor6.setTypeface(MyConstants.getBold(this));
-                 issue6.setTypeface(MyConstants.getBold(this));
-                 filing6.setTypeface(MyConstants.getBold(this));
-                 url6.setTypeface(MyConstants.getBold(this));
-                 description6.setTypeface(MyConstants.getBold(this));
-                 title7.setTypeface(MyConstants.getBold(this));
-                 appno7.setTypeface(MyConstants.getBold(this));
-                 inventor7.setTypeface(MyConstants.getBold(this));
-                 issue7.setTypeface(MyConstants.getBold(this));
-                 filing7.setTypeface(MyConstants.getBold(this));
-                 url7.setTypeface(MyConstants.getBold(this));
-                 description7.setTypeface(MyConstants.getBold(this));
-                 title8.setTypeface(MyConstants.getBold(this));
-                 appno8.setTypeface(MyConstants.getBold(this));
-                 inventor8.setTypeface(MyConstants.getBold(this));
-                 issue8.setTypeface(MyConstants.getBold(this));
-                 filing8.setTypeface(MyConstants.getBold(this));
-                 url8.setTypeface(MyConstants.getBold(this));
-                 description8.setTypeface(MyConstants.getBold(this));
-                 title9.setTypeface(MyConstants.getBold(this));
-                 appno9.setTypeface(MyConstants.getBold(this));
-                 inventor9.setTypeface(MyConstants.getBold(this));
-                 issue9.setTypeface(MyConstants.getBold(this));
-                 filing9.setTypeface(MyConstants.getBold(this));
-                 url9.setTypeface(MyConstants.getBold(this));
-                 description9.setTypeface(MyConstants.getBold(this));
-                 title10.setTypeface(MyConstants.getBold(this));
-                 appno10.setTypeface(MyConstants.getBold(this));
-                 inventor10.setTypeface(MyConstants.getBold(this));
-                 issue10.setTypeface(MyConstants.getBold(this));
-                 filing10.setTypeface(MyConstants.getBold(this));
-                 url10.setTypeface(MyConstants.getBold(this));
-                 description10.setTypeface(MyConstants.getBold(this));
+        title1.setTypeface(MyConstants.getBold(this));
+        appno1.setTypeface(MyConstants.getBold(this));
+        inventor1.setTypeface(MyConstants.getBold(this));
+        issue1.setTypeface(MyConstants.getBold(this));
+        filing1.setTypeface(MyConstants.getBold(this));
+        url1.setTypeface(MyConstants.getBold(this));
+        description1.setTypeface(MyConstants.getBold(this));
+        title2.setTypeface(MyConstants.getBold(this));
+        appno2.setTypeface(MyConstants.getBold(this));
+        inventor2.setTypeface(MyConstants.getBold(this));
+        issue2.setTypeface(MyConstants.getBold(this));
+        filing2.setTypeface(MyConstants.getBold(this));
+        url2.setTypeface(MyConstants.getBold(this));
+        description2.setTypeface(MyConstants.getBold(this));
+        title3.setTypeface(MyConstants.getBold(this));
+        appno3.setTypeface(MyConstants.getBold(this));
+        inventor3.setTypeface(MyConstants.getBold(this));
+        issue3.setTypeface(MyConstants.getBold(this));
+        filing3.setTypeface(MyConstants.getBold(this));
+        url3.setTypeface(MyConstants.getBold(this));
+        description3.setTypeface(MyConstants.getBold(this));
+        title4.setTypeface(MyConstants.getBold(this));
+        appno4.setTypeface(MyConstants.getBold(this));
+        inventor4.setTypeface(MyConstants.getBold(this));
+        issue4.setTypeface(MyConstants.getBold(this));
+        filing4.setTypeface(MyConstants.getBold(this));
+        url4.setTypeface(MyConstants.getBold(this));
+        description4.setTypeface(MyConstants.getBold(this));
+        title5.setTypeface(MyConstants.getBold(this));
+        appno5.setTypeface(MyConstants.getBold(this));
+        inventor5.setTypeface(MyConstants.getBold(this));
+        issue5.setTypeface(MyConstants.getBold(this));
+        filing5.setTypeface(MyConstants.getBold(this));
+        url5.setTypeface(MyConstants.getBold(this));
+        description5.setTypeface(MyConstants.getBold(this));
+        title6.setTypeface(MyConstants.getBold(this));
+        appno6.setTypeface(MyConstants.getBold(this));
+        inventor6.setTypeface(MyConstants.getBold(this));
+        issue6.setTypeface(MyConstants.getBold(this));
+        filing6.setTypeface(MyConstants.getBold(this));
+        url6.setTypeface(MyConstants.getBold(this));
+        description6.setTypeface(MyConstants.getBold(this));
+        title7.setTypeface(MyConstants.getBold(this));
+        appno7.setTypeface(MyConstants.getBold(this));
+        inventor7.setTypeface(MyConstants.getBold(this));
+        issue7.setTypeface(MyConstants.getBold(this));
+        filing7.setTypeface(MyConstants.getBold(this));
+        url7.setTypeface(MyConstants.getBold(this));
+        description7.setTypeface(MyConstants.getBold(this));
+        title8.setTypeface(MyConstants.getBold(this));
+        appno8.setTypeface(MyConstants.getBold(this));
+        inventor8.setTypeface(MyConstants.getBold(this));
+        issue8.setTypeface(MyConstants.getBold(this));
+        filing8.setTypeface(MyConstants.getBold(this));
+        url8.setTypeface(MyConstants.getBold(this));
+        description8.setTypeface(MyConstants.getBold(this));
+        title9.setTypeface(MyConstants.getBold(this));
+        appno9.setTypeface(MyConstants.getBold(this));
+        inventor9.setTypeface(MyConstants.getBold(this));
+        issue9.setTypeface(MyConstants.getBold(this));
+        filing9.setTypeface(MyConstants.getBold(this));
+        url9.setTypeface(MyConstants.getBold(this));
+        description9.setTypeface(MyConstants.getBold(this));
+        title10.setTypeface(MyConstants.getBold(this));
+        appno10.setTypeface(MyConstants.getBold(this));
+        inventor10.setTypeface(MyConstants.getBold(this));
+        issue10.setTypeface(MyConstants.getBold(this));
+        filing10.setTypeface(MyConstants.getBold(this));
+        url10.setTypeface(MyConstants.getBold(this));
+        description10.setTypeface(MyConstants.getBold(this));
 
 
         titleinput1.setTypeface(MyConstants.getLight(this));
-                 appnoinput1.setTypeface(MyConstants.getLight(this));
-                 inventorinput1.setTypeface(MyConstants.getLight(this));
-                 issueinput1.setTypeface(MyConstants.getLight(this));
-                 descinput1.setTypeface(MyConstants.getLight(this));
-                 urlinput1.setTypeface(MyConstants.getLight(this));
-                 titleinput2.setTypeface(MyConstants.getLight(this));
-                 appnoinput2.setTypeface(MyConstants.getLight(this));
-                inventorinput2.setTypeface(MyConstants.getLight(this));
-                 issueinput2.setTypeface(MyConstants.getLight(this));
-                 descinput2.setTypeface(MyConstants.getLight(this));
-                 urlinput2.setTypeface(MyConstants.getLight(this));
-                 titleinput3.setTypeface(MyConstants.getLight(this));
-                 appnoinput3.setTypeface(MyConstants.getLight(this));
-                 inventorinput3.setTypeface(MyConstants.getLight(this));
-                 issueinput3.setTypeface(MyConstants.getLight(this));
-                 descinput3.setTypeface(MyConstants.getLight(this));
-                 urlinput3.setTypeface(MyConstants.getLight(this));
-                 titleinput4.setTypeface(MyConstants.getLight(this));
-                 appnoinput4.setTypeface(MyConstants.getLight(this));
-                 inventorinput4.setTypeface(MyConstants.getLight(this));
-                 issueinput4.setTypeface(MyConstants.getLight(this));
-                 descinput4.setTypeface(MyConstants.getLight(this));
-                 urlinput4.setTypeface(MyConstants.getLight(this));
-                 titleinput5.setTypeface(MyConstants.getLight(this));
-                 appnoinput5.setTypeface(MyConstants.getLight(this));
-                 inventorinput5.setTypeface(MyConstants.getLight(this));
-                issueinput5.setTypeface(MyConstants.getLight(this));
-                 descinput5.setTypeface(MyConstants.getLight(this));
-                 urlinput5.setTypeface(MyConstants.getLight(this));
-                 titleinput6.setTypeface(MyConstants.getLight(this));
-                 appnoinput6.setTypeface(MyConstants.getLight(this));
-                 inventorinput6.setTypeface(MyConstants.getLight(this));
-                 issueinput6.setTypeface(MyConstants.getLight(this));
-                 descinput6.setTypeface(MyConstants.getLight(this));
-                 urlinput6.setTypeface(MyConstants.getLight(this));
-                 titleinput7.setTypeface(MyConstants.getLight(this));
-                 appnoinput7.setTypeface(MyConstants.getLight(this));
-                 inventorinput7.setTypeface(MyConstants.getLight(this));
-                 issueinput7.setTypeface(MyConstants.getLight(this));
-                 descinput7.setTypeface(MyConstants.getLight(this));
-                 urlinput7.setTypeface(MyConstants.getLight(this));
-                 titleinput8.setTypeface(MyConstants.getLight(this));
-                 appnoinput8.setTypeface(MyConstants.getLight(this));
-                 inventorinput8.setTypeface(MyConstants.getLight(this));
-                 issueinput8.setTypeface(MyConstants.getLight(this));
+        appnoinput1.setTypeface(MyConstants.getLight(this));
+        inventorinput1.setTypeface(MyConstants.getLight(this));
+        issueinput1.setTypeface(MyConstants.getLight(this));
+        descinput1.setTypeface(MyConstants.getLight(this));
+        urlinput1.setTypeface(MyConstants.getLight(this));
+        titleinput2.setTypeface(MyConstants.getLight(this));
+        appnoinput2.setTypeface(MyConstants.getLight(this));
+        inventorinput2.setTypeface(MyConstants.getLight(this));
+        issueinput2.setTypeface(MyConstants.getLight(this));
+        descinput2.setTypeface(MyConstants.getLight(this));
+        urlinput2.setTypeface(MyConstants.getLight(this));
+        titleinput3.setTypeface(MyConstants.getLight(this));
+        appnoinput3.setTypeface(MyConstants.getLight(this));
+        inventorinput3.setTypeface(MyConstants.getLight(this));
+        issueinput3.setTypeface(MyConstants.getLight(this));
+        descinput3.setTypeface(MyConstants.getLight(this));
+        urlinput3.setTypeface(MyConstants.getLight(this));
+        titleinput4.setTypeface(MyConstants.getLight(this));
+        appnoinput4.setTypeface(MyConstants.getLight(this));
+        inventorinput4.setTypeface(MyConstants.getLight(this));
+        issueinput4.setTypeface(MyConstants.getLight(this));
+        descinput4.setTypeface(MyConstants.getLight(this));
+        urlinput4.setTypeface(MyConstants.getLight(this));
+        titleinput5.setTypeface(MyConstants.getLight(this));
+        appnoinput5.setTypeface(MyConstants.getLight(this));
+        inventorinput5.setTypeface(MyConstants.getLight(this));
+        issueinput5.setTypeface(MyConstants.getLight(this));
+        descinput5.setTypeface(MyConstants.getLight(this));
+        urlinput5.setTypeface(MyConstants.getLight(this));
+        titleinput6.setTypeface(MyConstants.getLight(this));
+        appnoinput6.setTypeface(MyConstants.getLight(this));
+        inventorinput6.setTypeface(MyConstants.getLight(this));
+        issueinput6.setTypeface(MyConstants.getLight(this));
+        descinput6.setTypeface(MyConstants.getLight(this));
+        urlinput6.setTypeface(MyConstants.getLight(this));
+        titleinput7.setTypeface(MyConstants.getLight(this));
+        appnoinput7.setTypeface(MyConstants.getLight(this));
+        inventorinput7.setTypeface(MyConstants.getLight(this));
+        issueinput7.setTypeface(MyConstants.getLight(this));
+        descinput7.setTypeface(MyConstants.getLight(this));
+        urlinput7.setTypeface(MyConstants.getLight(this));
+        titleinput8.setTypeface(MyConstants.getLight(this));
+        appnoinput8.setTypeface(MyConstants.getLight(this));
+        inventorinput8.setTypeface(MyConstants.getLight(this));
+        issueinput8.setTypeface(MyConstants.getLight(this));
 
-                descinput8.setTypeface(MyConstants.getLight(this));
-                 urlinput8.setTypeface(MyConstants.getLight(this));
-                 titleinput9.setTypeface(MyConstants.getLight(this));
-                 appnoinput9.setTypeface(MyConstants.getLight(this));
-                 inventorinput9.setTypeface(MyConstants.getLight(this));
-                 issueinput9.setTypeface(MyConstants.getLight(this));
-                 descinput9.setTypeface(MyConstants.getLight(this));
-                 urlinput9.setTypeface(MyConstants.getLight(this));
-                 titleinput10.setTypeface(MyConstants.getLight(this));
-                 appnoinput10.setTypeface(MyConstants.getLight(this));
-                 inventorinput10.setTypeface(MyConstants.getLight(this));
-                 issueinput10.setTypeface(MyConstants.getLight(this));
-                 descinput10.setTypeface(MyConstants.getLight(this));
-                 urlinput10.setTypeface(MyConstants.getLight(this));
+        descinput8.setTypeface(MyConstants.getLight(this));
+        urlinput8.setTypeface(MyConstants.getLight(this));
+        titleinput9.setTypeface(MyConstants.getLight(this));
+        appnoinput9.setTypeface(MyConstants.getLight(this));
+        inventorinput9.setTypeface(MyConstants.getLight(this));
+        issueinput9.setTypeface(MyConstants.getLight(this));
+        descinput9.setTypeface(MyConstants.getLight(this));
+        urlinput9.setTypeface(MyConstants.getLight(this));
+        titleinput10.setTypeface(MyConstants.getLight(this));
+        appnoinput10.setTypeface(MyConstants.getLight(this));
+        inventorinput10.setTypeface(MyConstants.getLight(this));
+        issueinput10.setTypeface(MyConstants.getLight(this));
+        descinput10.setTypeface(MyConstants.getLight(this));
+        urlinput10.setTypeface(MyConstants.getLight(this));
 
-                filinginput1.setTypeface(MyConstants.getLight(this));
-                filinginput2.setTypeface(MyConstants.getLight(this));
-                filinginput3.setTypeface(MyConstants.getLight(this));
-                filinginput4.setTypeface(MyConstants.getLight(this));
-                filinginput5.setTypeface(MyConstants.getLight(this));
-                filinginput6.setTypeface(MyConstants.getLight(this));
-                filinginput7.setTypeface(MyConstants.getLight(this));
-                filinginput8.setTypeface(MyConstants.getLight(this));
-                filinginput9.setTypeface(MyConstants.getLight(this));
-                filinginput10.setTypeface(MyConstants.getLight(this));
-
+        filinginput1.setTypeface(MyConstants.getLight(this));
+        filinginput2.setTypeface(MyConstants.getLight(this));
+        filinginput3.setTypeface(MyConstants.getLight(this));
+        filinginput4.setTypeface(MyConstants.getLight(this));
+        filinginput5.setTypeface(MyConstants.getLight(this));
+        filinginput6.setTypeface(MyConstants.getLight(this));
+        filinginput7.setTypeface(MyConstants.getLight(this));
+        filinginput8.setTypeface(MyConstants.getLight(this));
+        filinginput9.setTypeface(MyConstants.getLight(this));
+        filinginput10.setTypeface(MyConstants.getLight(this));
 
 
         radioGroupPatent1 = (RadioGroup) findViewById(R.id.radioGroupPatent1);
@@ -533,6 +531,27 @@ public class MyProfilePatents extends AppCompatActivity {
         radioButtonPending8 = (RadioButton) findViewById(R.id.radioButtonPending8);
         radioButtonPending9 = (RadioButton) findViewById(R.id.radioButtonPending9);
         radioButtonPending10 = (RadioButton) findViewById(R.id.radioButtonPending10);
+
+        radioButtonIssued1.setTypeface(MyConstants.getBold(this));
+        radioButtonPending1.setTypeface(MyConstants.getBold(this));
+        radioButtonIssued2.setTypeface(MyConstants.getBold(this));
+        radioButtonPending2.setTypeface(MyConstants.getBold(this));
+        radioButtonIssued3.setTypeface(MyConstants.getBold(this));
+        radioButtonPending3.setTypeface(MyConstants.getBold(this));
+        radioButtonIssued4.setTypeface(MyConstants.getBold(this));
+        radioButtonPending4.setTypeface(MyConstants.getBold(this));
+        radioButtonIssued5.setTypeface(MyConstants.getBold(this));
+        radioButtonPending5.setTypeface(MyConstants.getBold(this));
+        radioButtonIssued6.setTypeface(MyConstants.getBold(this));
+        radioButtonPending6.setTypeface(MyConstants.getBold(this));
+        radioButtonIssued7.setTypeface(MyConstants.getBold(this));
+        radioButtonPending7.setTypeface(MyConstants.getBold(this));
+        radioButtonIssued8.setTypeface(MyConstants.getBold(this));
+        radioButtonPending8.setTypeface(MyConstants.getBold(this));
+        radioButtonIssued9.setTypeface(MyConstants.getBold(this));
+        radioButtonPending9.setTypeface(MyConstants.getBold(this));
+        radioButtonIssued10.setTypeface(MyConstants.getBold(this));
+        radioButtonPending10.setTypeface(MyConstants.getBold(this));
 
 
         radioGroupPatent1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -695,6 +714,7 @@ public class MyProfilePatents extends AppCompatActivity {
                 switch (i) {
                     case R.id.radioButtonIssued9:
                         issuedorpending9 = "issued";
+
                         filinginput9.setVisibility(View.GONE);
                         issueinput9.setVisibility(View.VISIBLE);
                         filing9.setText("");
@@ -1930,7 +1950,7 @@ public class MyProfilePatents extends AppCompatActivity {
                 showDateDialog(filing1);
             }
         });
-        
+
         filing2.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -2048,9 +2068,9 @@ public class MyProfilePatents extends AppCompatActivity {
         });
 
         TextView patenttxt = (TextView) findViewById(R.id.patenttxt);
-        patenttxt .setTypeface(MyConstants.getBold(this));
+        patenttxt.setTypeface(MyConstants.getBold(this));
 
-        TextView addmorepatenttxt=(TextView)findViewById(R.id.addmorepatenttxt);
+        TextView addmorepatenttxt = (TextView) findViewById(R.id.addmorepatenttxt);
         addmorepatenttxt.setTypeface(MyConstants.getBold(this));
 
         addmorepatent = (View) findViewById(R.id.addmorepatent);
@@ -2076,7 +2096,7 @@ public class MyProfilePatents extends AppCompatActivity {
 
                 } else if (patentcount == 1) {
                     if (title2.getText().toString() != null && appno2.getText().toString() != null && inventor2.getText().toString() != null && (issue2.getText().toString() != null || filing2.getText().toString() != null)) {
-                        if (!title2.getText().toString().equals("") && !appno2.getText().toString().equals("") && !inventor2.getText().toString().equals("")  &&  (!issue2.getText().toString().equals("") || !filing2.getText().toString().equals("")) && !patoffice2.getSelectedItem().toString().equals("- Select Patent Office -")) {
+                        if (!title2.getText().toString().equals("") && !appno2.getText().toString().equals("") && !inventor2.getText().toString().equals("") && (!issue2.getText().toString().equals("") || !filing2.getText().toString().equals("")) && !patoffice2.getSelectedItem().toString().equals("- Select Patent Office -")) {
 
                             View v = (View) findViewById(R.id.patentline2);
                             v.setVisibility(View.VISIBLE);
@@ -2091,8 +2111,8 @@ public class MyProfilePatents extends AppCompatActivity {
                         Toast.makeText(MyProfilePatents.this, "Please fill the Second Honors", Toast.LENGTH_SHORT).show();
 
                 } else if (patentcount == 2) {
-                    if (title3.getText().toString() != null && appno3.getText().toString() != null && inventor3.getText().toString() != null  && (issue3.getText().toString() != null || filing3.getText().toString() != null)) {
-                        if (!title3.getText().toString().equals("") && !appno3.getText().toString().equals("") && !inventor3.getText().toString().equals("")  &&  (!issue3.getText().toString().equals("") || !filing3.getText().toString().equals("")) && !patoffice3.getSelectedItem().toString().equals("- Select Patent Office -")) {
+                    if (title3.getText().toString() != null && appno3.getText().toString() != null && inventor3.getText().toString() != null && (issue3.getText().toString() != null || filing3.getText().toString() != null)) {
+                        if (!title3.getText().toString().equals("") && !appno3.getText().toString().equals("") && !inventor3.getText().toString().equals("") && (!issue3.getText().toString().equals("") || !filing3.getText().toString().equals("")) && !patoffice3.getSelectedItem().toString().equals("- Select Patent Office -")) {
 
                             View v = (View) findViewById(R.id.patentline3);
                             v.setVisibility(View.VISIBLE);
@@ -2107,8 +2127,8 @@ public class MyProfilePatents extends AppCompatActivity {
                         Toast.makeText(MyProfilePatents.this, "Please fill the Third Honors", Toast.LENGTH_SHORT).show();
 
                 } else if (patentcount == 3) {
-                    if (title4.getText().toString() != null && appno4.getText().toString() != null && inventor4.getText().toString() != null  && (issue4.getText().toString() != null || filing4.getText().toString() != null)) {
-                        if (!title4.getText().toString().equals("") && !appno4.getText().toString().equals("") && !inventor4.getText().toString().equals("") &&  (!issue4.getText().toString().equals("") || !filing4.getText().toString().equals("")) && !patoffice4.getSelectedItem().toString().equals("- Select Patent Office -")) {
+                    if (title4.getText().toString() != null && appno4.getText().toString() != null && inventor4.getText().toString() != null && (issue4.getText().toString() != null || filing4.getText().toString() != null)) {
+                        if (!title4.getText().toString().equals("") && !appno4.getText().toString().equals("") && !inventor4.getText().toString().equals("") && (!issue4.getText().toString().equals("") || !filing4.getText().toString().equals("")) && !patoffice4.getSelectedItem().toString().equals("- Select Patent Office -")) {
                             View v = (View) findViewById(R.id.patentline4);
                             v.setVisibility(View.VISIBLE);
 
@@ -2123,8 +2143,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
 
                 } else if (patentcount == 4) {
-                    if (title5.getText().toString() != null && appno5.getText().toString() != null && inventor5.getText().toString() != null  && (issue5.getText().toString() != null || filing5.getText().toString() != null)) {
-                        if (!title5.getText().toString().equals("") && !appno5.getText().toString().equals("") && !inventor5.getText().toString().equals("")  &&  (!issue5.getText().toString().equals("") || !filing5.getText().toString().equals("")) && !patoffice5.getSelectedItem().toString().equals("- Select Patent Office -")) {
+                    if (title5.getText().toString() != null && appno5.getText().toString() != null && inventor5.getText().toString() != null && (issue5.getText().toString() != null || filing5.getText().toString() != null)) {
+                        if (!title5.getText().toString().equals("") && !appno5.getText().toString().equals("") && !inventor5.getText().toString().equals("") && (!issue5.getText().toString().equals("") || !filing5.getText().toString().equals("")) && !patoffice5.getSelectedItem().toString().equals("- Select Patent Office -")) {
                             View v = (View) findViewById(R.id.patentline5);
                             v.setVisibility(View.VISIBLE);
 
@@ -2140,7 +2160,7 @@ public class MyProfilePatents extends AppCompatActivity {
 
                 } else if (patentcount == 5) {
                     if (title6.getText().toString() != null && appno6.getText().toString() != null && inventor6.getText().toString() != null && (issue6.getText().toString() != null || filing6.getText().toString() != null)) {
-                        if (!title6.getText().toString().equals("") && !appno6.getText().toString().equals("") && !inventor6.getText().toString().equals("") &&  (!issue6.getText().toString().equals("") || !filing6.getText().toString().equals("")) && !patoffice6.getSelectedItem().toString().equals("- Select Patent Office -")) {
+                        if (!title6.getText().toString().equals("") && !appno6.getText().toString().equals("") && !inventor6.getText().toString().equals("") && (!issue6.getText().toString().equals("") || !filing6.getText().toString().equals("")) && !patoffice6.getSelectedItem().toString().equals("- Select Patent Office -")) {
                             View v = (View) findViewById(R.id.patentline6);
                             v.setVisibility(View.VISIBLE);
 
@@ -2156,8 +2176,8 @@ public class MyProfilePatents extends AppCompatActivity {
 
 
                 } else if (patentcount == 6) {
-                    if (title7.getText().toString() != null && appno7.getText().toString() != null && inventor7.getText().toString() != null  && (issue7.getText().toString() != null || filing7.getText().toString() != null)) {
-                        if (!title7.getText().toString().equals("") && !appno7.getText().toString().equals("") && !inventor7.getText().toString().equals("")&&  (!issue7.getText().toString().equals("") || !filing7.getText().toString().equals("")) && !patoffice7.getSelectedItem().toString().equals("- Select Patent Office -")) {
+                    if (title7.getText().toString() != null && appno7.getText().toString() != null && inventor7.getText().toString() != null && (issue7.getText().toString() != null || filing7.getText().toString() != null)) {
+                        if (!title7.getText().toString().equals("") && !appno7.getText().toString().equals("") && !inventor7.getText().toString().equals("") && (!issue7.getText().toString().equals("") || !filing7.getText().toString().equals("")) && !patoffice7.getSelectedItem().toString().equals("- Select Patent Office -")) {
                             View v = (View) findViewById(R.id.patentline7);
                             v.setVisibility(View.VISIBLE);
 
@@ -2173,7 +2193,7 @@ public class MyProfilePatents extends AppCompatActivity {
 
                 } else if (patentcount == 7) {
                     if (title8.getText().toString() != null && appno8.getText().toString() != null && inventor8.getText().toString() != null && (issue8.getText().toString() != null || filing8.getText().toString() != null)) {
-                        if (!title8.getText().toString().equals("") && !appno8.getText().toString().equals("") && !inventor8.getText().toString().equals("") &&  (!issue8.getText().toString().equals("") || !filing8.getText().toString().equals("")) && !patoffice8.getSelectedItem().toString().equals("- Select Patent Office -")) {
+                        if (!title8.getText().toString().equals("") && !appno8.getText().toString().equals("") && !inventor8.getText().toString().equals("") && (!issue8.getText().toString().equals("") || !filing8.getText().toString().equals("")) && !patoffice8.getSelectedItem().toString().equals("- Select Patent Office -")) {
                             View v = (View) findViewById(R.id.patentline8);
                             v.setVisibility(View.VISIBLE);
 
@@ -2189,7 +2209,7 @@ public class MyProfilePatents extends AppCompatActivity {
 
                 } else if (patentcount == 8) {
                     if (title9.getText().toString() != null && appno9.getText().toString() != null && inventor9.getText().toString() != null && (issue9.getText().toString() != null || filing9.getText().toString() != null)) {
-                        if (!title9.getText().toString().equals("") && !appno9.getText().toString().equals("") && !inventor9.getText().toString().equals("") &&  (!issue9.getText().toString().equals("") || !filing9.getText().toString().equals("")) && !patoffice9.getSelectedItem().toString().equals("- Select Patent Office -")) {
+                        if (!title9.getText().toString().equals("") && !appno9.getText().toString().equals("") && !inventor9.getText().toString().equals("") && (!issue9.getText().toString().equals("") || !filing9.getText().toString().equals("")) && !patoffice9.getSelectedItem().toString().equals("- Select Patent Office -")) {
                             View v = (View) findViewById(R.id.patentline9);
                             v.setVisibility(View.VISIBLE);
 
@@ -4738,7 +4758,7 @@ public class MyProfilePatents extends AppCompatActivity {
             @NonNull
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View view= super.getView(position, convertView, parent);
+                View view = super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
                 tv.setTextColor(getResources().getColor(R.color.dark_color));
                 tv.setTypeface(MyConstants.getBold(MyProfilePatents.this));
@@ -4761,8 +4781,6 @@ public class MyProfilePatents extends AppCompatActivity {
                 return view;
             }
         };
-
-
 
 
         patoffice1.setAdapter(dataAdapter);
@@ -7076,7 +7094,6 @@ public class MyProfilePatents extends AppCompatActivity {
 
 
         protected String doInBackground(String... param) {
-
 
 
             countrycount = getResources().getStringArray(R.array.countries_array).length;
