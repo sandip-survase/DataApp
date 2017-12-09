@@ -1,27 +1,23 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -45,7 +41,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
@@ -55,7 +50,6 @@ import java.util.regex.Pattern;
 
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
-import static placeme.octopusites.com.placeme.JSONParser.json;
 
 public class AddUsersActivity extends AppCompatActivity {
 
@@ -440,9 +434,10 @@ public class AddUsersActivity extends AppCompatActivity {
                     Log.d("TAG", "onActivityResult:  " + fileName[0] + " two " + fileName[1]);
                     if (fileName[1].equals("xls") || fileName[1].equals("xlsx")) {
                         filesame = 0;
+                    } else {
+                        filesame = 1;
+                        Toast.makeText(this, "File format must be .xls or .xlsx", Toast.LENGTH_SHORT).show();
                     }
-                    else
-                        filesame=1;
 
             }else
                 Toast.makeText(this, "File format must be .xls or .xlsx", Toast.LENGTH_SHORT).show();
@@ -727,8 +722,8 @@ public class AddUsersActivity extends AppCompatActivity {
 
             try {
                 result = json.getString("info");
-                Log.d("TAG", "multiple user  total = "+json.getString("totallistcount")+"\ncreate = "+json.getString("createduser")+"\nfail = "+json.getString("failuser"));
-                Log.d("TAG", " path"+json.getString("filepath"));
+//                Log.d("TAG", "multiple user  total = "+json.getString("totallistcount")+"\ncreate = "+json.getString("createduser")+"\nfail = "+json.getString("failuser"));
+//                Log.d("TAG", " path"+json.getString("filepath"));
 
             } catch (Exception e) {
                 e.printStackTrace();
