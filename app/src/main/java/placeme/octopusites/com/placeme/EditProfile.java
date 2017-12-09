@@ -121,7 +121,7 @@ public class EditProfile extends AppCompatActivity {
                     Boolean personal_success = fragment.validate();
                     if (personal_success) {
                         fragment.save();
-                        Toast.makeText(EditProfile.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfile.this, "Successfully Updated !", Toast.LENGTH_SHORT).show();
 
                     }
                 } else if (currentPosition == 2) {
@@ -129,7 +129,7 @@ public class EditProfile extends AppCompatActivity {
                     Boolean project_success = projFrag.myvalidate();
                     if (project_success) {
                         projFrag.save();
-                        Toast.makeText(EditProfile.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfile.this, "Successfully Updated !", Toast.LENGTH_SHORT).show();
                     }
                 }
 

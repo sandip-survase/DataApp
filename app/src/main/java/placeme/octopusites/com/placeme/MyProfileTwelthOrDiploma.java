@@ -1070,7 +1070,10 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 TextInputLayout otherboardinput = (TextInputLayout) findViewById(R.id.otherboarddinput);
                 if (selectedBoarddiploma.equals("Other")) {
 
+                    Log.d("TAG", "onItemSelected: other - "+selectedBoarddiploma);
                     otherboardinput.setVisibility(View.VISIBLE);
+                    otherboardd.setVisibility(View.VISIBLE);
+
                 } else {
 
                     otherboardinput.setVisibility(View.GONE);
@@ -1603,29 +1606,41 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         if (monthandyearofpassingdiploma != null)
             yearofpassingd.setText(monthandyearofpassingdiploma);
 
-
         if (selectedBoarddiploma != null) {
+
             int foundboard = 0;
+
             for (int i = 1; i < dboards.length - 1; i++)
                 if (selectedBoarddiploma.equals(dboards[i])) {
                     foundboard = 1;
+                    Log.d("TAG", "onCreate:  foundboard-"+foundboard);
                     break;
                 }
+
+            Log.d("TAG", "onCreate: selectedBoarddiploma -"+selectedBoarddiploma);
+
             if (foundboard == 1)
                 duniversity.setSelection(dataAdapter3.getPosition(selectedBoarddiploma));
             else {
-                duniversity.setSelection(dataAdapter3.getPosition("Other"));
-                otherboardd.setVisibility(View.VISIBLE);
-                otherboardd.setText(selectedBoarddiploma);
+
+                if(selectedBoarddiploma.equals("")){
+                    duniversity.setSelection(dataAdapter3.getPosition("- Select Board -"));
+                    otherboardd.setVisibility(View.GONE);
+//                    otherboardd.setText(selectedBoarddiploma);
+                }
+                else {
+                    duniversity.setSelection(dataAdapter3.getPosition("Other"));
+                    otherboardd.setVisibility(View.VISIBLE);
+                    otherboardd.setText(selectedBoarddiploma);
+                }
             }
         }
+
         else
-            selectedBoarddiploma="-Select Board - ";
+            selectedBoarddiploma="- Select Board - ";
 
 
         edittedFlag = 0;
-
-
     }
 
     class GetCourses extends AsyncTask<String, String, String> {
@@ -1998,20 +2013,27 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                                                                     doutofsem6input.setError("Incorrect Percentage");
                                                                                 } else {
                                                                                     errorflag1 = 0;
-                                                                                    float aggg = 0;
-                                                                                    try {
+                                                                                    float aggg=0;
+                                                                                    Log.d("TAG", "validateandSave: try  aggregate");
+                                                                                    if(!aggregate.equals(""))
                                                                                         aggg = Float.parseFloat(aggregate);
-                                                                                    } catch (NumberFormatException e) {
+
                                                                                         errorflag1 = 1;
+                                                                                        Log.d("TAG", "validateandSave: aggg  - "+aggg);
+                                                                                        Log.d("TAG", "validateandSave: catch  aggregate");
+
+//                                                                                        daggregateinput.setError("Kindly enter valid Aggregate");
+
+                                                                                    if (aggg <= 0 || aggg >= 100) {
+                                                                                        errorflag1 = 1;
+                                                                                        Log.d("TAG", "validateandSave: simple  aggregate");
                                                                                         daggregateinput.setError("Kindly enter valid Aggregate");
                                                                                     }
-                                                                                    if (aggg < 0 || aggg > 100) {
-                                                                                        errorflag1 = 1;
-                                                                                        daggregateinput.setError("Kindly enter valid Aggregate");
-                                                                                    } else {
+                                                                                    else {
                                                                                         errorflag1 = 0;
                                                                                         if (selectedCourse == null || selectedCourse.equals("- Select Course -")) {
                                                                                             errorflag1 = 1;
+                                                                                            Log.d("TAG", "validateandSave: selectedCourse ");
                                                                                             daggregateinput.setError(null);
                                                                                             Toast.makeText(MyProfileTwelthOrDiploma.this, "Select Course", Toast.LENGTH_LONG).show();
                                                                                         } else {

@@ -52,6 +52,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
     int skillcount = 0;
     View addmoreskill;
+    View addmoreskillView;
     String username,role;
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
@@ -136,6 +137,7 @@ public class MyProfileSkills extends AppCompatActivity {
         skillinput19= (TextInputLayout) findViewById(R.id.skillinput19);
         skillinput20= (TextInputLayout) findViewById(R.id.skillinput20);
 
+        addmoreskillView= (View) findViewById(R.id.addmoreskill);
         skill1 = (EditText) findViewById(R.id.skill1);
         skill2 = (EditText) findViewById(R.id.skill2);
         skill3 = (EditText) findViewById(R.id.skill3);
@@ -221,7 +223,7 @@ public class MyProfileSkills extends AppCompatActivity {
         skill19.setTypeface(MyConstants.getBold(this));
         skill20.setTypeface(MyConstants.getBold(this));
 
-        TextView addmoreskilltxt = (TextView) findViewById(R.id.addmoreskilltxt);
+        final TextView addmoreskilltxt = (TextView) findViewById(R.id.addmoreskilltxt);
         addmoreskilltxt.setTypeface(MyConstants.getBold(this));
 
         trash1selectionview.setOnClickListener(new View.OnClickListener() {
@@ -881,6 +883,7 @@ public class MyProfileSkills extends AppCompatActivity {
                             addmoreskill.setVisibility(View.GONE);
                             t.setVisibility(View.GONE);
                             i.setVisibility(View.GONE);
+                            addmoreskillView.setVisibility(View.GONE);
                         }
                         else
                         {
@@ -1660,6 +1663,7 @@ public class MyProfileSkills extends AppCompatActivity {
 
                 TextView t = (TextView) findViewById(R.id.addmoreskilltxt);
                 ImageView i = (ImageView) findViewById(R.id.addmoreskillimg);
+
                 addmoreskill.setVisibility(View.GONE);
                 t.setVisibility(View.GONE);
                 i.setVisibility(View.GONE);
@@ -1950,7 +1954,6 @@ public class MyProfileSkills extends AppCompatActivity {
                     proficiencyEdittedFlog = 1;
                 }
 
-
             }
 
             @Override
@@ -1964,6 +1967,7 @@ public class MyProfileSkills extends AppCompatActivity {
                 sproficiency19 = (String) parent.getItemAtPosition(position);
                 if (s.getSproficiency19()!=null && !s.getSproficiency19().equals(sproficiency19)) {
                     proficiencyEdittedFlog = 1;
+                    addmoreskillView.setVisibility(View.GONE);
                 }
 
 

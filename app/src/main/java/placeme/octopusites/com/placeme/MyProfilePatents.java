@@ -1,5 +1,6 @@
 package placeme.octopusites.com.placeme;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -22,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -40,6 +42,7 @@ import com.wx.wheelview.widget.WheelView;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -47,6 +50,7 @@ import java.util.List;
 
 import placeme.octopusites.com.placeme.modal.Patents;
 
+import static java.security.AccessController.getContext;
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 public class MyProfilePatents extends AppCompatActivity {
@@ -63,7 +67,7 @@ public class MyProfilePatents extends AppCompatActivity {
     String issuedorpending1 = "issued", issuedorpending2 = "issued", issuedorpending3 = "issued", issuedorpending4 = "issued", issuedorpending5 = "issued", issuedorpending6 = "issued", issuedorpending7 = "issued", issuedorpending8 = "issued", issuedorpending9 = "issued", issuedorpending10 = "issued";
     String encselectedCountry1, encselectedCountry2, encselectedCountry3, encselectedCountry4, encselectedCountry5, encselectedCountry6, encselectedCountry7, encselectedCountry8, encselectedCountry9, encselectedCountry10;
     String encissuedorpending1, encissuedorpending2, encissuedorpending3, encissuedorpending4, encissuedorpending5, encissuedorpending6, encissuedorpending7, encissuedorpending8, encissuedorpending9, encissuedorpending10;
-
+    TextView statusradiotxt1,statusradiotxt2,statusradiotxt3,statusradiotxt4,statusradiotxt5,statusradiotxt6,statusradiotxt7,statusradiotxt8,statusradiotxt9,statusradiotxt10;
     String username, role;
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
@@ -92,6 +96,7 @@ public class MyProfilePatents extends AppCompatActivity {
         digest2 = MySharedPreferencesManager.getDigest2(this);
         username = MySharedPreferencesManager.getUsername(this);
         role = MySharedPreferencesManager.getRole(this);
+
 
 
         ActionBar ab = getSupportActionBar();
@@ -271,6 +276,25 @@ public class MyProfilePatents extends AppCompatActivity {
         patoffice9 = (Spinner) findViewById(R.id.patoffice9);
         patoffice10 = (Spinner) findViewById(R.id.patoffice10);
 
+        statusradiotxt1= (TextView) findViewById(R.id.statusradiotxt1);
+                statusradiotxt2= (TextView) findViewById(R.id.statusradiotxt2);
+                statusradiotxt3= (TextView) findViewById(R.id.statusradiotxt3);
+                statusradiotxt4= (TextView) findViewById(R.id.statusradiotxt4);
+                statusradiotxt5= (TextView) findViewById(R.id.statusradiotxt5);
+                statusradiotxt6= (TextView) findViewById(R.id.statusradiotxt6);
+                statusradiotxt7= (TextView) findViewById(R.id.statusradiotxt7);
+                statusradiotxt8= (TextView) findViewById(R.id.statusradiotxt8);
+                statusradiotxt9= (TextView) findViewById(R.id.statusradiotxt9);
+                statusradiotxt10= (TextView) findViewById(R.id.statusradiotxt10);
+
+
+
+
+
+
+
+
+
         titleinput1 = (TextInputLayout) findViewById(R.id.titleinput1);
         appnoinput1 = (TextInputLayout) findViewById(R.id.appnoinput1);
         inventorinput1 = (TextInputLayout) findViewById(R.id.inventorinput1);
@@ -352,6 +376,16 @@ public class MyProfilePatents extends AppCompatActivity {
         filinginput9 = (TextInputLayout) findViewById(R.id.filinginput9);
         filinginput10 = (TextInputLayout) findViewById(R.id.filinginput10);
 
+        statusradiotxt1.setTypeface(MyConstants.getLight(this));
+                statusradiotxt2.setTypeface(MyConstants.getLight(this));
+                statusradiotxt3.setTypeface(MyConstants.getLight(this));
+                statusradiotxt4.setTypeface(MyConstants.getLight(this));
+                statusradiotxt5.setTypeface(MyConstants.getLight(this));
+                statusradiotxt6.setTypeface(MyConstants.getLight(this));
+                statusradiotxt7.setTypeface(MyConstants.getLight(this));
+                statusradiotxt8.setTypeface(MyConstants.getLight(this));
+                statusradiotxt9.setTypeface(MyConstants.getLight(this));
+                statusradiotxt10.setTypeface(MyConstants.getLight(this));
 
         title1.setTypeface(MyConstants.getBold(this));
         appno1.setTypeface(MyConstants.getBold(this));
@@ -899,10 +933,22 @@ public class MyProfilePatents extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 appnoinput2.setError(null);
                 edittedFlag = 1;
+
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+//                String temp = appno2.getText().toString();
+//                Log.d("TAG", "afterTextChanged: temp - "+temp);
+//
+//                Log.d("TAG", "afterTextChanged: appnoinput2 - "+appnoinput2.getError());
+//                if(appnoinput2.getError()!=null)
+//                if(appnoinput2.getError().equals("Kindly enter valid application number")){
+//                    appnoinput2.requestFocus();
+//                    appno2.requestFocus();
+//                    Log.d("TAG", "afterTextChanged: in if request");
+//                }
 
             }
         });
@@ -5102,6 +5148,8 @@ public class MyProfilePatents extends AppCompatActivity {
             if (stitle1.length() < 2) {
                 errorflag = 1;
                 titleinput1.setError("Kindly enter valid title");
+
+
             } else {
                 errorflag = 0;
                 if (sappno1.length() < 2) {
@@ -6883,7 +6931,15 @@ public class MyProfilePatents extends AppCompatActivity {
                     }
                 }
             }
+
         }
+
+        if(appnoinput2.getError()!=null)
+            if(appnoinput2.getError().equals("Kindly enter valid application number")){
+
+            }
+
+
 
 
         if (errorflag == 0) {

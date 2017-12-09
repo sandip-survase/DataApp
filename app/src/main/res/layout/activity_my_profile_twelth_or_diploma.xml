@@ -277,7 +277,9 @@
                 android:layout_below="@+id/board12spinner"
                 android:layout_marginTop="15dp"
                 android:theme="@style/TextLabel"
-                android:visibility="gone">
+
+
+                >
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/otherboard"
@@ -288,6 +290,7 @@
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
+
             </android.support.design.widget.TextInputLayout>
 
             <RelativeLayout
@@ -803,7 +806,7 @@
                     android:hint="Aggregate"
                     android:imeOptions="actionDone"
                     android:inputType="numberDecimal"
-                    android:maxLength="3"
+                    android:maxLength="5"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
