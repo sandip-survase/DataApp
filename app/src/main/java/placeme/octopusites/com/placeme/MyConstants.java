@@ -1,6 +1,5 @@
 package placeme.octopusites.com.placeme;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 
@@ -13,6 +12,7 @@ public class MyConstants {
     public static final int USER_DATA_CHANGE_RESULT_CODE=888;
     public static final String USERNAME_KEY = "nameKey";
     public static final String PASSWORD_KEY = "passKey";
+    public static final String users_under_your_supervision = " Users under your supervision. Click to view the list.";
 
     //-----------------------------------   PlaceMe   ---------------------------------
 
@@ -125,10 +125,10 @@ public class MyConstants {
     public static final String url_savedata_SaveContact = "http://192.168.100.100/AESTest/SaveContact";
     public static final String url_SaveExperiences_admin = "http://192.168.100.100/AESTest/SaveExperiences";
     public static final String url_createSingleUser_admin = "http://192.168.100.100/AESTest/CreateSingleUser";
-    public static final String url_createMultipleUser_admin = "http://192.168.100.100/AESTest/CreateMultipleUser";
-    public static final String url_delete_file = "http://192.168.100.100/AESTest/DeleteFile";
-    public static final String url_uploadSingleFile = "http://192.168.100.100/AESTest/UploadSingleFile";
-    public static final String url_GetRegisteredUsersUnderAdmin = "http://192.168.100.100/AESTest/GetRegisteredUsersUnderAdmin";
+    public static final String url_createMultipleUser_admin = "http://192.168.100.20:8080/AESTest/CreateMultipleUser";
+    public static final String url_delete_file = "http://192.168.100.20:8080/AESTest/DeleteFile";
+    public static final String url_uploadSingleFile = "http://192.168.100.20:8080/AESTest/UploadSingleFile";
+    public static final String url_GetRegisteredUsersUnderAdmin = "http://192.168.100.20:8080/AESTest/GetRegisteredUsersUnderAdmin";
     public static final String url_getlastupdated = "http://192.168.100.100/AESTest/GetLastUpdated";
     public static final String url_SavePlacedDebarInfo = "http://192.168.100.100/AESTest/SavePlacedDebarInfo";
     public static final String url_GetPlacedDebarInfo = "http://192.168.100.100/AESTest/GetPlacedDebarInfo";
@@ -147,7 +147,9 @@ public class MyConstants {
     public static final String url_checkUcode = "http://192.168.100.100/AESTest/checkUcode";
     public static final String url_ClearOTP = "http://192.168.100.100/AESTest/ClearOTP";
     public static final String url_AddStudentUnderAdmin = "http://192.168.100.100/AESTest/AddStudentUnderAdmin";
+    public static final String url_GetCountOfUsersUnderAdmin = "http://192.168.100.20:8080/AESTest/GetCountOfUsersUnderAdmin";
 
+//    --------------------------------- function --------------------------------------------------------------
 
     public static Typeface getFA(Context context)
     {

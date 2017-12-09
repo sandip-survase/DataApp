@@ -1,12 +1,10 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -31,8 +29,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -192,6 +188,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     private int current_page_placement = 1;
     private TextView toolbar_title;
     Toolbar toolbar;
+    TextView bluePanelTv;
 
 
     public static boolean containsIgnoreCase(String str, String searchStr) {
@@ -272,6 +269,8 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         } catch (Exception e) {
         }
 
+        bluePanelTv = (TextView) findViewById(R.id.bluePanelTv);
+        new GetCountOfUsersUnderAdmin().execute();
 
         recyclerViewNotification = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerViewPlacement = (RecyclerView) findViewById(R.id.recycler_view_placement);
@@ -3248,4 +3247,34 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
             MySharedPreferencesManager.removeKey(AdminActivity.this,"fireLoginStatus");
         }
     }
+
+
+    class GetCountOfUsersUnderAdmin extends AsyncTask<String, String, String> {
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            String username = MySharedPreferencesManager.getUsername(AdminActivity.this);
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+
+            json = jParser.makeHttpRequest(MyConstants.url_GetCountOfUsersUnderAdmin, "GET", params);
+            try {
+                r = json.getString("count");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (result.equals("0")) {
+                bluePanelTv.setText(MyConstants.users_under_your_supervision);
+            } else {
+                bluePanelTv.setText(result + MyConstants.users_under_your_supervision);
+            }
+        }
+    }
+
 }
