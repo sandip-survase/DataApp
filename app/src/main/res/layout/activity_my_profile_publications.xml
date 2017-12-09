@@ -184,7 +184,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl1"
             android:id="@+id/publicationline1"
             android:layout_marginTop="20dp"
@@ -346,7 +346,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl2"
             android:id="@+id/publicationline2"
             android:layout_marginTop="20dp"
@@ -511,7 +511,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl3"
             android:id="@+id/publicationline3"
             android:layout_marginTop="20dp"
@@ -675,7 +675,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl4"
             android:id="@+id/publicationline4"
             android:layout_marginTop="20dp"
@@ -839,7 +839,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl5"
             android:id="@+id/publicationline5"
             android:layout_marginTop="20dp"
@@ -1003,7 +1003,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl6"
             android:id="@+id/publicationline6"
             android:layout_marginTop="20dp"
@@ -1167,7 +1167,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl7"
             android:id="@+id/publicationline7"
             android:layout_marginTop="20dp"
@@ -1331,7 +1331,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl8"
             android:id="@+id/publicationline8"
             android:layout_marginTop="20dp"
@@ -1495,7 +1495,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl9"
             android:id="@+id/publicationline9"
             android:layout_marginTop="20dp"

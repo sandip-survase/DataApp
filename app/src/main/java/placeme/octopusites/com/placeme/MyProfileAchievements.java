@@ -1026,7 +1026,7 @@ titleinput10.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-yearhonor10.setError(null);
+                yearhonor10.setError(null);
             }
 
             @Override

@@ -290,21 +290,6 @@ public class MyProfilePg extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
 //
-//
-//                try {
-//
-//                    String s1=pmarkssem1.getText().toString();
-//                    String s2=poutofsem1.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem1.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
                 poutofsem1input.setError(null);
 
@@ -391,7 +376,8 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                pmarkssem1input.setError(null);
+                pmarksusem2input.setError(null);
+
                 edittedFlag=1;
             }
 
@@ -2302,9 +2288,10 @@ public class MyProfilePg extends AppCompatActivity {
                                                                                 } {
                                                                                     errorflag1 = 0;
                                                                                     float aggg=0;
-                                                                                    try{
-                                                                                        aggg=Float.parseFloat(aggregatepgsem);}catch (NumberFormatException e){errorflag1 = 1; pgsemaggregate.setError("Incorrect Aggregate");}
-                                                                                    if (aggg<0||aggg>100) {
+                                                                                    if(!aggregatepgsem.equals(""))
+                                                                                        aggg=Float.parseFloat(aggregatepgsem);
+
+                                                                                    if (aggg<=0||aggg>=100) {
                                                                                         errorflag1 = 1;
                                                                                         pgsemaggregateinput.setError("Incorrect Aggregate");
                                                                                     } else {
@@ -2487,13 +2474,12 @@ public class MyProfilePg extends AppCompatActivity {
                                             } else {
                                                 errorflag1 = 0;
                                                 float aggg = 0;
-                                                try {
+
+                                                if(!aggregatepgyear.equals(""))
                                                     aggg = Float.parseFloat(aggregatepgyear);
-                                                } catch (NumberFormatException e) {
-                                                    errorflag1 = 1;
-                                                    pgyearaggregateinput.setError("Incorrect Aggregate");
-                                                }
-                                                if (aggg < 0 || aggg > 100) {
+
+
+                                                if (aggg <= 0 || aggg >= 100) {
                                                     errorflag1 = 1;
                                                     pgyearaggregateinput.setError("Incorrect Aggregate");
                                                 } else {

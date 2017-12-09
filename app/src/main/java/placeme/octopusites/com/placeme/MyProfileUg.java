@@ -240,23 +240,6 @@ public class MyProfileUg extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-
-
-//                try {
-//
-//                    String s1=umarkssem1.getText().toString();
-//                    String s2=uoutofsem1.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem1.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
                 uoutofsem1input.setError(null);
 
                 try {
@@ -303,21 +286,6 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=umarkssem1.getText().toString();
-//                    String s2=uoutofsem1.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem1.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
 
                 uoutofsem1input.setError(null);
 
@@ -365,24 +333,6 @@ public class MyProfileUg extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-
-//
-//                try {
-//
-//                    String s1=umarkssem2.getText().toString();
-//                    String s2=uoutofsem2.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem2.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
                 uoutofsem2input.setError(null);
 
                 try {
@@ -428,24 +378,6 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=umarkssem2.getText().toString();
-//                    String s2=uoutofsem2.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem2.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
-
-
                 uoutofsem2input.setError(null);
 
                 try {
@@ -494,22 +426,6 @@ public class MyProfileUg extends AppCompatActivity {
 
 
 
-//                try {
-//
-//                    String s1=umarkssem3.getText().toString();
-//                    String s2=uoutofsem3.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem3.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
 
                 uoutofsem3input.setError(null);
 
@@ -556,21 +472,6 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=umarkssem3.getText().toString();
-//                    String s2=uoutofsem3.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem3.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
 
                 uoutofsem3input.setError(null);
 
@@ -620,20 +521,6 @@ public class MyProfileUg extends AppCompatActivity {
 
 
 
-//                try {
-//
-//                    String s1=umarkssem4.getText().toString();
-//                    String s2=uoutofsem4.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem4.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
 
                 uoutofsem4input.setError(null);
@@ -681,20 +568,7 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=umarkssem4.getText().toString();
-//                    String s2=uoutofsem4.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem4.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
                 uoutofsem4input.setError(null);
                 try {
                     double percentage = 0;
@@ -741,21 +615,6 @@ public class MyProfileUg extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
 //
-//
-//                try {
-//
-//                    String s1=umarkssem5.getText().toString();
-//                    String s2=uoutofsem5.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem5.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
                 uoutofsem5input.setError(null);
                 try {
                     double percentage = 0;
@@ -800,20 +659,6 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=umarkssem5.getText().toString();
-//                    String s2=uoutofsem5.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem5.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
 
                 uoutofsem5input.setError(null);
@@ -860,20 +705,6 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=umarkssem6.getText().toString();
-//                    String s2=uoutofsem6.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem6.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
 
                 uoutofsem6input.setError(null);
@@ -919,20 +750,6 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=umarkssem6.getText().toString();
-//                    String s2=uoutofsem6.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem6.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
                 uoutofsem6input.setError(null);
                 try {
@@ -981,22 +798,6 @@ public class MyProfileUg extends AppCompatActivity {
 
 
 
-//                try {
-//
-//                    String s1=umarkssem7.getText().toString();
-//                    String s2=uoutofsem7.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem7.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
                 uoutofsem7input.setError(null);
                 try {
                     double percentage = 0;
@@ -1041,20 +842,6 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=umarkssem7.getText().toString();
-//                    String s2=uoutofsem7.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem7.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
 
                 uoutofsem7input.setError(null);
@@ -1105,21 +892,6 @@ public class MyProfileUg extends AppCompatActivity {
 
 
 
-//                try {
-//
-//                    String s1=umarkssem8.getText().toString();
-//                    String s2=uoutofsem8.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem8.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
 
                 uoutofsem8input.setError(null);
                 try {
@@ -1165,20 +937,6 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=umarkssem8.getText().toString();
-//                    String s2=uoutofsem8.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem8.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
 
                 uoutofsem8input.setError(null);
@@ -2035,10 +1793,11 @@ public class MyProfileUg extends AppCompatActivity {
                                                                                                     } else {
                                                                                                         errorflag1 = 0;
                                                                                                         float aggg=0;
-                                                                                                        try{
-                                                                                                            aggg=Float.parseFloat(aggregate);}catch (NumberFormatException e){errorflag1 = 1;
-                                                                                                            uaggregateinput.setError("Incorrect Aggregate");}
-                                                                                                        if (aggg<0||aggg>100) {
+
+                                                                                                        Log.d("TAG", "validateandSave: try  aggregate");
+                                                                                                        if(!aggregate.equals(""))
+                                                                                                            aggg = Float.parseFloat(aggregate);
+                                                                                                        if (aggg<=0||aggg>=100) {
                                                                                                             errorflag1 = 1;
                                                                                                             uaggregateinput.setError("Kindly enter valid Aggregate");
                                                                                                         } else {

@@ -68,7 +68,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
+                    android:hint="Title*"
                     android:textSize="16dp"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
@@ -89,7 +89,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
+                    android:hint="Issuer*"
                     android:textSize="16dp"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
@@ -136,7 +136,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
+                android:hint="Month, Year*"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
                 android:singleLine="true"
@@ -192,7 +192,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
+                    android:hint="Title*"
                     android:singleLine="true"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
@@ -213,7 +213,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
+                    android:hint="Issuer*"
                     android:textSize="16dp"
                     android:singleLine="true"
                     android:inputType="textCapWords"
@@ -261,7 +261,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
+                android:hint="Month, Year*"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
                 android:focusable="false"
@@ -315,7 +315,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
+                    android:hint="Title*"
                     android:textSize="16dp"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
@@ -336,7 +336,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
+                    android:hint="Issuer*"
                     android:textSize="16dp"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
@@ -383,7 +383,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
+                android:hint="Month, Year*"
                 android:singleLine="true"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
@@ -437,7 +437,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
+                    android:hint="Title*"
                     android:textSize="16dp"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
@@ -458,7 +458,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
+                    android:hint="Issuer*"
                     android:singleLine="true"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
@@ -505,7 +505,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
+                android:hint="Month, Year*"
                 android:textSize="15dp"
                 android:singleLine="true"
                 android:textColor="@color/dark_color"
@@ -559,7 +559,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
+                    android:hint="Title*"
                     android:singleLine="true"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
@@ -580,7 +580,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
+                    android:hint="Issuer*"
                     android:singleLine="true"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
@@ -627,7 +627,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
+                android:hint="Month, Year*"
                 android:singleLine="true"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
@@ -681,7 +681,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
+                    android:hint="Title*"
                     android:textSize="16dp"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
@@ -702,7 +702,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
+                    android:hint="Issuer*"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
@@ -749,7 +749,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
+                android:hint="Month, Year*"
                 android:singleLine="true"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
@@ -803,7 +803,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
+                    android:hint="Title*"
                     android:singleLine="true"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
@@ -824,7 +824,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
+                    android:hint="Issuer*"
                     android:textSize="16dp"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
@@ -871,7 +871,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
+                android:hint="Month, Year*"
                 android:textSize="16dp"
                 android:singleLine="true"
                 android:textColor="@color/dark_color"
@@ -925,7 +925,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
+                    android:hint="Title*"
                     android:singleLine="true"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
@@ -946,7 +946,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
+                    android:hint="Issuer*"
                     android:singleLine="true"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
@@ -993,7 +993,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
+                android:hint="Month, Year*"
                 android:singleLine="true"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
@@ -1049,7 +1049,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
+                    android:hint="Title*"
                     android:textSize="16dp"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
@@ -1070,7 +1070,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
+                    android:hint="Issuer*"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
@@ -1117,7 +1117,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
+                android:hint="Month, Year*"
                 android:singleLine="true"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
@@ -1170,7 +1170,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
+                    android:hint="Title*"
                     android:singleLine="true"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
@@ -1191,7 +1191,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
+                    android:hint="Issuer*"
                     android:singleLine="true"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
@@ -1238,7 +1238,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
+                android:hint="Month, Year*"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
                 android:singleLine="true"

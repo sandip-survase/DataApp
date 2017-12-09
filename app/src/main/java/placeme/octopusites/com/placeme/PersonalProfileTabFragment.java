@@ -14,6 +14,7 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,7 @@ import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.fromString;
 
 
-public class PersonalProfileTabFragment extends Fragment {
+public class PersonalProfileTabFragment extends Fragment  {
 
     EditText fnameedittext, mnameedittext, snameedittext, nameastenedittext, caddrline1, caddrline2, caddrline3, paddrline1, paddrline2, paddrline3, emailedittext, phoneedittext, profileaemail, mothernameedittext, dobedittext, mobileedittext, alternatemobileedittext, mothertongueedittext, hobbiesedittext, casteedittext, prnedittext, languagesknownedittext;
     RadioButton radioButtonMale, radioButtonFemale, radioButtonHandicappedNo, radioButtonHandicappedYes, radioButtonSportsNo, radioButtonSportsState, radioButtonSportsNational, radioButtonSportsInternational, radioButtonDefenceNo, radioButtonDefence, radioButtonExserviceman;
@@ -162,14 +163,12 @@ public class PersonalProfileTabFragment extends Fragment {
         radioButtonDefence = (RadioButton) rootView.findViewById(R.id.radioButtonDefence);
         radioButtonExserviceman = (RadioButton) rootView.findViewById(R.id.radioButtonExserviceman);
         editknownlang = (ImageView) rootView.findViewById(R.id.editknownlang);
-
         gendertxt = (TextView) rootView.findViewById(R.id.gendertxt);
         paddrtxt = (TextView) rootView.findViewById(R.id.paddrtxt);
         handicappedtxt = (TextView) rootView.findViewById(R.id.handicappedtxt);
         sportstxt = (TextView) rootView.findViewById(R.id.sportstxt);
         defencetxt = (TextView) rootView.findViewById(R.id.defencetxt);
         caddrtxt = (TextView) rootView.findViewById(R.id.caddrtxt);
-
 
         CheckBoxPSC.setTypeface(MyConstants.getBold(getActivity()));
         radioButtonMale.setTypeface(MyConstants.getBold(getActivity()));
@@ -971,6 +970,8 @@ public class PersonalProfileTabFragment extends Fragment {
         religion = s.getReligion();
         caste = s.getCaste();
         prn = s.getPrn();
+
+
         lang1 = s.getLang1();
         lang2 = s.getLang2();
         lang3 = s.getLang3();
@@ -982,8 +983,13 @@ public class PersonalProfileTabFragment extends Fragment {
         lang9 = s.getLang9();
         lang10 = s.getLang10();
 
-        addrline1c = s.getAddressline1();
+        Log.d("TAG", "onCreateView: lang1 - "+lang1);
+        Log.d("TAG", "onCreateView: lang2 - "+lang2);
+        Log.d("TAG", "onCreateView: lang3 - "+lang3);
+        Log.d("TAG", "onCreateView: lang4 - "+lang4);
 
+
+        addrline1c = s.getAddressline1();
         addrline2c = s.getAddressline2();
         addrline3c = s.getAddressline3();
         addrline1p = s.getPaddrline1();
@@ -1097,43 +1103,94 @@ public class PersonalProfileTabFragment extends Fragment {
 
         if (lang1 != null) {
             if (!lang1.equals("- Select Language -"))
+                if(lang1.length()>1)
                 languagesknownedittext.setText(lang1);
+            else
+                languagesknownedittext.setText("");
+
         }
+
         if (lang1 != null && lang2 != null) {
             if (!lang1.equals("- Select Language -") && !lang2.equals("- Select Language -"))
-                languagesknownedittext.setText(lang1 + ", " + lang2);
+                if(lang1.length()>1)
+                    languagesknownedittext.setText(lang1 + ", " + lang2);
+            else
+                languagesknownedittext.setText("");
+
         }
+
         if (lang1 != null && lang2 != null && lang3 != null) {
             if (!lang1.equals("- Select Language -") && !lang2.equals("- Select Language -") && !lang3.equals("- Select Language -"))
+                if(lang1.length()>1)
                 languagesknownedittext.setText(lang1 + ", " + lang2 + ", " + lang3);
+            else
+                languagesknownedittext.setText("");
+
         }
+
         if (lang1 != null && lang2 != null && lang3 != null && lang4 != null) {
             if (!lang1.equals("- Select Language -") && !lang2.equals("- Select Language -") && !lang3.equals("- Select Language -") && !lang4.equals("- Select Language -"))
+                if(lang1.length()>1)
                 languagesknownedittext.setText(lang1 + ", " + lang2 + ", " + lang3 + ", " + lang4);
+            else
+                languagesknownedittext.setText("");
+
         }
+
         if (lang1 != null && lang2 != null && lang3 != null && lang4 != null && lang5 != null) {
             if (!lang1.equals("- Select Language -") && !lang2.equals("- Select Language -") && !lang3.equals("- Select Language -") && !lang4.equals("- Select Language -") && !lang5.equals("- Select Language -"))
+                if(lang1.length()>1)
                 languagesknownedittext.setText(lang1 + ", " + lang2 + ", " + lang3 + ", " + lang4 + ", " + lang5);
+            else
+                languagesknownedittext.setText("");
+
         }
+
         if (lang1 != null && lang2 != null && lang3 != null && lang4 != null && lang5 != null && lang6 != null) {
             if (!lang1.equals("- Select Language -") && !lang2.equals("- Select Language -") && !lang3.equals("- Select Language -") && !lang4.equals("- Select Language -") && !lang5.equals("- Select Language -") && !lang6.equals("- Select Language -"))
+                if(lang1.length()>1)
                 languagesknownedittext.setText(lang1 + ", " + lang2 + ", " + lang3 + ", " + lang4 + ", " + lang5 + ", " + lang6);
+            else
+                languagesknownedittext.setText("");
+
         }
+
+
         if (lang1 != null && lang2 != null && lang3 != null && lang4 != null && lang5 != null && lang6 != null && lang7 != null) {
             if (!lang1.equals("- Select Language -") && !lang2.equals("- Select Language -") && !lang3.equals("- Select Language -") && !lang4.equals("- Select Language -") && !lang5.equals("- Select Language -") && !lang6.equals("- Select Language -") && !lang7.equals("- Select Language -"))
+                if(lang1.length()>1)
                 languagesknownedittext.setText(lang1 + ", " + lang2 + ", " + lang3 + ", " + lang4 + ", " + lang5 + ", " + lang6 + ", " + lang7);
+            else
+                languagesknownedittext.setText("");
+
         }
+
         if (lang1 != null && lang2 != null && lang3 != null && lang4 != null && lang5 != null && lang6 != null && lang7 != null && lang8 != null) {
             if (!lang1.equals("- Select Language -") && !lang2.equals("- Select Language -") && !lang3.equals("- Select Language -") && !lang4.equals("- Select Language -") && !lang5.equals("- Select Language -") && !lang6.equals("- Select Language -") && !lang7.equals("- Select Language -") && !lang8.equals("- Select Language -"))
+                if(lang1.length()>1)
                 languagesknownedittext.setText(lang1 + ", " + lang2 + ", " + lang3 + ", " + lang4 + ", " + lang5 + ", " + lang6 + ", " + lang7 + ", " + lang8);
+            else
+                languagesknownedittext.setText("");
+
         }
+
         if (lang1 != null && lang2 != null && lang3 != null && lang4 != null && lang5 != null && lang6 != null && lang7 != null && lang8 != null && lang9 != null) {
             if (!lang1.equals("- Select Language -") && !lang2.equals("- Select Language -") && !lang3.equals("- Select Language -") && !lang4.equals("- Select Language -") && !lang5.equals("- Select Language -") && !lang6.equals("- Select Language -") && !lang7.equals("- Select Language -") && !lang8.equals("- Select Language -") && !lang9.equals("- Select Language -"))
+                if(lang1.length()>1)
                 languagesknownedittext.setText(lang1 + ", " + lang2 + ", " + lang3 + ", " + lang4 + ", " + lang5 + ", " + lang6 + ", " + lang7 + ", " + lang8 + ", " + lang9);
+            else
+                languagesknownedittext.setText("");
+
         }
+
         if (lang1 != null && lang2 != null && lang3 != null && lang4 != null && lang5 != null && lang6 != null && lang7 != null && lang8 != null && lang9 != null && lang10 != null) {
             if (!lang1.equals("- Select Language -") && !lang2.equals("- Select Language -") && !lang3.equals("- Select Language -") && !lang4.equals("- Select Language -") && !lang5.equals("- Select Language -") && !lang6.equals("- Select Language -") && !lang7.equals("- Select Language -") && !lang8.equals("- Select Language -") && !lang9.equals("- Select Language -") && !lang10.equals("- Select Language -"))
+                if(lang1.length()>1)
                 languagesknownedittext.setText(lang1 + ", " + lang2 + ", " + lang3 + ", " + lang4 + ", " + lang5 + ", " + lang6 + ", " + lang7 + ", " + lang8 + ", " + lang9 + ", " + lang10);
+            else
+            {
+                languagesknownedittext.setText("No languages");
+            }
         }
         if (addrline1c != null) {
             if (!addrline1c.equals(""))
@@ -1175,10 +1232,8 @@ public class PersonalProfileTabFragment extends Fragment {
                 radioButtonHandicappedYes.setChecked(true);
         }
 
-//        sports
         if (sports != null) {
 
-//            Toast.makeText(getActivity(), "sports "+sports, Toast.LENGTH_SHORT).show();
             if (sports.equals("NA")) {
                 sports = "notapplicable";
                 radioButtonSportsNo.setChecked(true);
@@ -1269,8 +1324,20 @@ public class PersonalProfileTabFragment extends Fragment {
 
         if (fnameedittext != null) {
             refreshKnowLang();
+            Log.d("TAG", "setUserVisibleHint: ");
 //            edittedFlag = 0;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (fnameedittext != null) {
+            refreshKnowLang();
+//            edittedFlag = 0;
+        }
+
+        Log.d("TAG", "onresume: ");
     }
 
     public Boolean validate() {
@@ -1386,64 +1453,39 @@ public class PersonalProfileTabFragment extends Fragment {
         if (fname.length() < 2) {
             errorflag = 1;
             fnameinput.setError("Kindly enter valid name.");
-        } else if (mname.length() < 2) {
-            errorflag = 1;
-            mnameinput.setError("Kindly enter valid name.");
-        } else if (sname.length() < 2) {
+        }
+        else if (sname.length() < 2) {
             errorflag = 1;
             snameinput.setError("Kindly enter valid name.");
-        }else if (nameasten.length()!=0 && nameasten.length() < 2 ) {
-            errorflag = 1;
-            nameas10input.setError("Kindly enter valid name.");
-        }  else if (alternateemail.length()!=0){
+        }
+          else if (alternateemail.length()!=0){
             if(alternateemail.length() < 6 || !alternateemail.contains("@")){
                 errorflag = 1;
                 profileaemailinput.setError("Kindly enter valid Email");
             }
-        } else if (mothername.length()!=0 && mothername.length() < 2) {
-            errorflag = 1;
-            mothernameinput.setError("Kindly enter valid name");
+
         } else if (dob.length() < 2) {
             errorflag = 1;
             dobinput.setError("Kindly enter valid date of birth");
-        } else if (mobile.length() < 8 || mobile.length() > 11) {
+        }
+        else if (mobile.length() < 10) {
             errorflag = 1;
-            amobileinput.setError("Kindly enter valid phone number");
-        } else if (mothertongue.length()!=0 && mothertongue.length() < 2) {
-            errorflag = 1;
-            mothertongueinput.setError("Kindly enter valid Mothertongue");
-        } else if (hobbies.length() < 2) {
+            mobileinput.setError("Kindly enter valid 10-digit mobile number");
+        }
+        else if (hobbies.length() < 2) {
             errorflag = 1;
             hobbiesinput.setError("Kindly enter valid hobbies");
-        } else if (caste.length()!=0 && caste.length() < 2) {
+        }
+         else if (addrline1c.length() < 2) {
             errorflag = 1;
-            castinput.setError("Kindly enter valid caste");
-        } else if (prn.length()!=0 && prn.length() < 2) {
-            errorflag = 1;
-            prninput.setError("Kindly enter valid PRN");
-        } else if (addrline1c.length() < 2) {
-            errorflag = 1;
-            caddrline1input.setError("Kindly enter valid addrline 1");
+            caddrline1input.setError("Kindly enter valid address ");
         } else if (addrline2c.length() < 2) {
             errorflag = 1;
-            caddrline2input.setError("Kindly enter valid addrline 2");
+            caddrline2input.setError("Kindly enter valid address ");
         } else if (addrline3c.length() < 2) {
             errorflag = 1;
-            caddrline3input.setError("Kindly enter valid addrline 3");
+            caddrline3input.setError("Kindly enter valid address ");
         }
-// else if (addrline1p.length()!=0 && addrline1p.length() < 2) {
-//            errorflag = 1;
-//            paddrline1.setError("Invalid addrline1");
-//            paddrline1.requestFocus();
-//        } else if (addrline2p.length()!=0 && addrline2p.length() < 2) {
-//            errorflag = 1;
-//            paddrline2.setError("Invalid addrline2");
-//            paddrline2.requestFocus();
-//        } else if (addrline3p.length()!=0 && addrline3p.length() < 2) {
-//            errorflag = 1;
-//            paddrline3.setError("Invalid addrline3");
-//            paddrline3.requestFocus();
-//        }
 
 
         if (errorflag == 0)

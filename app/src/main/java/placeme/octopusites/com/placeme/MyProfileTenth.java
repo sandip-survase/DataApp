@@ -52,6 +52,7 @@ import static placeme.octopusites.com.placeme.AES4all.OtoString;
 public class MyProfileTenth extends AppCompatActivity {
 
     EditText marks10, outof10, percent10, schoolname10, yearofpassing10, otherboard;
+    TextView tenthtxt;
     TextInputLayout marks10input, marks10_outOf, schoolname10input, yearofpassing10inpute,otherboardinput,marks10_percentage;
     Spinner board10;
 
@@ -98,6 +99,7 @@ public class MyProfileTenth extends AppCompatActivity {
         board10 = (Spinner) findViewById(R.id.board10);
         yearofpassing10 = (EditText) findViewById(R.id.yearofpassing10);
         otherboard = (EditText) findViewById(R.id.otherboard);
+        tenthtxt = (TextView) findViewById(R.id.tenthtxt);
 
         marks10input = (TextInputLayout) findViewById(R.id.marks10input);
         marks10_outOf = (TextInputLayout) findViewById(R.id.marks10_outOf);
@@ -121,6 +123,8 @@ public class MyProfileTenth extends AppCompatActivity {
         schoolname10.setTypeface(MyConstants.getBold(this));
         yearofpassing10.setTypeface(MyConstants.getBold(this));
         otherboard.setTypeface(MyConstants.getBold(this));
+        tenthtxt.setTypeface(MyConstants.getBold(this));
+
 
         marks10.addTextChangedListener(new TextWatcher() {
             @Override
