@@ -270,7 +270,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
 
         bluePanelTv = (TextView) findViewById(R.id.bluePanelTv);
-        new GetCountOfUsersUnderAdmin().execute();
+        refreshUserCount();
 
         recyclerViewNotification = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerViewPlacement = (RecyclerView) findViewById(R.id.recycler_view_placement);
@@ -1839,6 +1839,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     public void onResume() {
         super.onResume();
         LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mRegistrationBroadcastReceiver, new IntentFilter("pushNotification"));
+        refreshUserCount();
 
     }
 
@@ -3248,6 +3249,11 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         }
     }
 
+
+    public void refreshUserCount() {
+        new GetCountOfUsersUnderAdmin().execute();
+        Log.d("kun", "refreshUserCount: ");
+    }
 
     class GetCountOfUsersUnderAdmin extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {

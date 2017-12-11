@@ -23,8 +23,8 @@ public class MyConstants {
 
     //-----------------------------------   AESTest   ---------------------------------
 
-    public static final String url_Welcome = "http://192.168.100.100/AESTest/Welcome";
-    public static final String url_login = "http://192.168.100.100/AESTest/Auth";           // changed to AEStest.auth
+    public static final String url_Welcome = "http://192.168.100.100:8080/AESTest/Welcome";
+    public static final String url_login = "http://192.168.100.100:8080/AESTest/Auth";           // changed to AEStest.auth
 //    public static final String url_savesessiondetails = "http://192.168.100.100/PlaceMe/SaveSessionDetails";
 
 //    -----------------------------------ProfileObjects---------------------------------------------------------------------
@@ -124,15 +124,15 @@ public class MyConstants {
     public static final String URL_SAVE_HR_CONTACT_DETAILS = "http://192.168.100.100/AESTest/SaveHrContact";
     public static final String url_savedata_SaveContact = "http://192.168.100.100/AESTest/SaveContact";
     public static final String url_SaveExperiences_admin = "http://192.168.100.100/AESTest/SaveExperiences";
-    public static final String url_createSingleUser_admin = "http://192.168.100.100/AESTest/CreateSingleUser";
+    public static final String url_createSingleUser_admin = "http://192.168.100.20:8080/AESTest/CreateSingleUser";
     public static final String url_createMultipleUser_admin = "http://192.168.100.20:8080/AESTest/CreateMultipleUser";
     public static final String url_delete_file = "http://192.168.100.20:8080/AESTest/DeleteFile";
     public static final String url_uploadSingleFile = "http://192.168.100.20:8080/AESTest/UploadSingleFile";
     public static final String url_GetRegisteredUsersUnderAdmin = "http://192.168.100.20:8080/AESTest/GetRegisteredUsersUnderAdmin";
     public static final String url_getlastupdated = "http://192.168.100.100/AESTest/GetLastUpdated";
-    public static final String url_SavePlacedDebarInfo = "http://192.168.100.100/AESTest/SavePlacedDebarInfo";
-    public static final String url_GetPlacedDebarInfo = "http://192.168.100.100/AESTest/GetPlacedDebarInfo";
-    public static final String url_DeleteNonActiveUser = "http://192.168.100.100/AESTest/DeleteNonActiveUser";
+    public static final String url_SavePlacedDebarInfo = "http://192.168.100.20:8080/AESTest/SavePlacedDebarInfo";
+    public static final String url_GetPlacedDebarInfo = "http://192.168.100.20:8080/AESTest/GetPlacedDebarInfo";
+    public static final String url_DeleteNonActiveUser = "http://192.168.100.20:8080/AESTest/DeleteNonActiveUser";
     public static final String url_SaveWelcomeIntroData = "http://192.168.100.100/AESTest/SaveNewUserWelcomeIntroData";
     public static final String url_SaveStudentFnameLnameMobile = "http://192.168.100.100/AESTest/SaveStudentFnameLnameMobile";
 
