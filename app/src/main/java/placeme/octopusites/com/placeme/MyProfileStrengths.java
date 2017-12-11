@@ -40,7 +40,7 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 public class MyProfileStrengths extends AppCompatActivity {
 
-    int strengthcount=0;
+    int strengthcount=0,editstrength=0;
     View addmorestrength;
 
     String username,role;
@@ -388,6 +388,7 @@ public class MyProfileStrengths extends AppCompatActivity {
         addmorestrength.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                editstrength=0;
                 if(strengthcount==0)
                 {
                     if(strength1.getText().toString()!=null ){
@@ -679,7 +680,7 @@ public class MyProfileStrengths extends AppCompatActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
         alertDialogBuilder
-                .setMessage("Do you want to delete this patent ?")
+                .setMessage("Do you want to delete this strength ?")
                 .setCancelable(false)
                 .setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
@@ -701,8 +702,11 @@ public class MyProfileStrengths extends AppCompatActivity {
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialogInterface) {
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileStrengths.this));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileStrengths.this));
+
             }
         });
 
@@ -1145,6 +1149,21 @@ public class MyProfileStrengths extends AppCompatActivity {
                 strength9.setText(sstrength9);
                 strength10.setText("");
             }
+
+            Log.d("TAG", "deleteLang: strength1 1");
+
+            sstrength1 = strength1.getText().toString();
+
+            if(sstrength1.equals("")){
+                Log.d("TAG", "deleteLang: strength1 1");
+                editstrength =1;
+            }
+
+            if(editstrength==1){
+                Log.d("TAG", "deleteLang: strength1 - "+editstrength);
+                encstrength();
+            }
+
         }
     }
     void validateandSave()
@@ -1176,314 +1195,168 @@ public class MyProfileStrengths extends AppCompatActivity {
 //        String sPadding = "ISO10126Padding";
 
         int errorflag=0;
+        if(editstrength==1){
 
-        if(strengthcount==0)
-        {
-            if(sstrength1.length()<2)
-            {
-                errorflag=1;
-                strengthinput1.setError("Kindly enter valid strength.");
-            }
+            Log.d("TAG", "validateandSave: editstrength if - "+editstrength);
+            encstrength();
+
         }
-        else if(strengthcount==1)
-        {
-            if(sstrength1.length()<2)
-            {
-                errorflag=1;
-                strengthinput1.setError("Kindly enter valid strength.");
-            }
-            else
-            {
-                errorflag=0;
-                if(sstrength2.length()<2)
-                {
-                    errorflag=1;
-                    strengthinput2.setError("Kindly enter valid strength.");
+        else {
+            Log.d("TAG", "validateandSave: editstrength else - "+editstrength);
+            if (strengthcount == 0) {
+                if (sstrength1.length() < 2) {
+                    errorflag = 1;
+                    strengthinput1.setError("Kindly enter valid strength.");
                 }
-            }
-        }
-        else if(strengthcount==2)
-        {
-            if(sstrength1.length()<2)
-            {
-                errorflag=1;
-                strengthinput2.setError("Kindly enter valid strength.");
-            }
-            else
-            {
-                errorflag=0;
-                if(sstrength2.length()<2)
-                {
-                    errorflag=1;
-                    strengthinput2.setError("Kindly enter valid strength.");
-                }
-                else
-                {
-                    errorflag=0;
-                    if(sstrength3.length()<2)
-                    {
-                        errorflag=1;
-                        strengthinput3.setError("Kindly enter valid strength.");
+            } else if (strengthcount == 1) {
+                if (sstrength1.length() < 2) {
+                    errorflag = 1;
+                    strengthinput1.setError("Kindly enter valid strength.");
+                } else {
+                    errorflag = 0;
+                    if (sstrength2.length() < 2) {
+                        errorflag = 1;
+                        strengthinput2.setError("Kindly enter valid strength.");
                     }
                 }
-            }
-        }
-        else if(strengthcount==3)
-        {
-            if(sstrength1.length()<2)
-            {
-                errorflag=1;
-                strengthinput1.setError("Kindly enter valid strength.");
-            }
-            else
-            {
-                errorflag=0;
-                if(sstrength2.length()<2)
-                {
-                    errorflag=1;
+            } else if (strengthcount == 2) {
+                if (sstrength1.length() < 2) {
+                    errorflag = 1;
                     strengthinput2.setError("Kindly enter valid strength.");
-                }
-                else
-                {
-                    errorflag=0;
-                    if(sstrength3.length()<2)
-                    {
-                        errorflag=1;
-                        strengthinput3.setError("Kindly enter valid strength.");
-                    }
-                    else
-                    {
-                        errorflag=0;
-                        if(sstrength4.length()<2)
-                        {
-                            errorflag=1;
-                            strengthinput4.setError("Kindly enter valid strength.");
+                } else {
+                    errorflag = 0;
+                    if (sstrength2.length() < 2) {
+                        errorflag = 1;
+                        strengthinput2.setError("Kindly enter valid strength.");
+                    } else {
+                        errorflag = 0;
+                        if (sstrength3.length() < 2) {
+                            errorflag = 1;
+                            strengthinput3.setError("Kindly enter valid strength.");
                         }
                     }
                 }
-            }
-        }
-        else if(strengthcount==4)
-        {
-            if(sstrength1.length()<2)
-            {
-                errorflag=1;
-                strengthinput1.setError("Kindly enter valid strength.");
-            }
-            else
-            {
-                errorflag=0;
-                if(sstrength2.length()<2)
-                {
-                    errorflag=1;
-                    strengthinput2.setError("Kindly enter valid strength.");
-                }
-                else
-                {
-                    errorflag=0;
-                    if(sstrength3.length()<2)
-                    {
-                        errorflag=1;
-                        strengthinput3.setError("Kindly enter valid strength.");
-                    }
-                    else
-                    {
-                        errorflag=0;
-                        if(sstrength4.length()<2)
-                        {
-                            errorflag=1;
-                            strengthinput4.setError("Kindly enter valid strength.");
-                        }
-                        else
-                        {
-                            errorflag=0;
-                            if(sstrength5.length()<2)
-                            {
-                                errorflag=1;
-                                strengthinput5.setError("Kindly enter valid strength.");
+            } else if (strengthcount == 3) {
+                if (sstrength1.length() < 2) {
+                    errorflag = 1;
+                    strengthinput1.setError("Kindly enter valid strength.");
+                } else {
+                    errorflag = 0;
+                    if (sstrength2.length() < 2) {
+                        errorflag = 1;
+                        strengthinput2.setError("Kindly enter valid strength.");
+                    } else {
+                        errorflag = 0;
+                        if (sstrength3.length() < 2) {
+                            errorflag = 1;
+                            strengthinput3.setError("Kindly enter valid strength.");
+                        } else {
+                            errorflag = 0;
+                            if (sstrength4.length() < 2) {
+                                errorflag = 1;
+                                strengthinput4.setError("Kindly enter valid strength.");
                             }
                         }
                     }
                 }
-            }
-        }
-        else if(strengthcount==5)
-        {
-            if(sstrength1.length()<2)
-            {
-                errorflag=1;
-                strengthinput1.setError("Kindly enter valid strength.");
-            }
-            else
-            {
-                errorflag=0;
-                if(sstrength2.length()<2)
-                {
-                    errorflag=1;
-                    strengthinput2.setError("Kindly enter valid strength.");
-                }
-                else
-                {
-                    errorflag=0;
-                    if(sstrength3.length()<2)
-                    {
-                        errorflag=1;
-                        strengthinput3.setError("Kindly enter valid strength.");
-                    }
-                    else
-                    {
-                        errorflag=0;
-                        if(sstrength4.length()<2)
-                        {
-                            errorflag=1;
-                            strengthinput4.setError("Kindly enter valid strength.");
-                        }
-                        else
-                        {
-                            errorflag=0;
-                            if(sstrength5.length()<2)
-                            {
-                                errorflag=1;
-                                strengthinput5.setError("Kindly enter valid strength.");
-                            }
-                            else
-                            {
-                                errorflag=0;
-                                if(sstrength6.length()<2)
-                                {
-                                    errorflag=1;
-                                    strengthinput6.setError("Kindly enter valid strength.");
+            } else if (strengthcount == 4) {
+                if (sstrength1.length() < 2) {
+                    errorflag = 1;
+                    strengthinput1.setError("Kindly enter valid strength.");
+                } else {
+                    errorflag = 0;
+                    if (sstrength2.length() < 2) {
+                        errorflag = 1;
+                        strengthinput2.setError("Kindly enter valid strength.");
+                    } else {
+                        errorflag = 0;
+                        if (sstrength3.length() < 2) {
+                            errorflag = 1;
+                            strengthinput3.setError("Kindly enter valid strength.");
+                        } else {
+                            errorflag = 0;
+                            if (sstrength4.length() < 2) {
+                                errorflag = 1;
+                                strengthinput4.setError("Kindly enter valid strength.");
+                            } else {
+                                errorflag = 0;
+                                if (sstrength5.length() < 2) {
+                                    errorflag = 1;
+                                    strengthinput5.setError("Kindly enter valid strength.");
                                 }
                             }
                         }
                     }
                 }
-            }
-        }
-        else if(strengthcount==6)
-        {
-            if(sstrength1.length()<2)
-            {
-                errorflag=1;
-                strengthinput1.setError("Kindly enter valid strength.");
-            }
-            else
-            {
-                errorflag=0;
-                if(sstrength2.length()<2)
-                {
-                    errorflag=1;
-                    strengthinput2.setError("Kindly enter valid strength.");
-                }
-                else
-                {
-                    errorflag=0;
-                    if(sstrength3.length()<2)
-                    {
-                        errorflag=1;
-                        strengthinput3.setError("Kindly enter valid strength.");
-                    }
-                    else
-                    {
-                        errorflag=0;
-                        if(sstrength4.length()<2)
-                        {
-                            errorflag=1;
-                            strengthinput4.setError("Kindly enter valid strength.");
-                        }
-                        else
-                        {
-                            errorflag=0;
-                            if(sstrength5.length()<2)
-                            {
-                                errorflag=1;
-                                strengthinput5.setError("Kindly enter valid strength.");
-                            }
-                            else
-                            {
-                                errorflag=0;
-                                if(sstrength6.length()<2)
-                                {
-                                    errorflag=1;
-                                    strengthinput6.setError("Kindly enter valid strength.");
-                                }
-                                else
-                                {
-                                    errorflag=0;
-                                    if(sstrength7.length()<2)
-                                    {
-                                        errorflag=1;
-                                        strengthinput7.setError("Kindly enter valid strength.");
+            } else if (strengthcount == 5) {
+                if (sstrength1.length() < 2) {
+                    errorflag = 1;
+                    strengthinput1.setError("Kindly enter valid strength.");
+                } else {
+                    errorflag = 0;
+                    if (sstrength2.length() < 2) {
+                        errorflag = 1;
+                        strengthinput2.setError("Kindly enter valid strength.");
+                    } else {
+                        errorflag = 0;
+                        if (sstrength3.length() < 2) {
+                            errorflag = 1;
+                            strengthinput3.setError("Kindly enter valid strength.");
+                        } else {
+                            errorflag = 0;
+                            if (sstrength4.length() < 2) {
+                                errorflag = 1;
+                                strengthinput4.setError("Kindly enter valid strength.");
+                            } else {
+                                errorflag = 0;
+                                if (sstrength5.length() < 2) {
+                                    errorflag = 1;
+                                    strengthinput5.setError("Kindly enter valid strength.");
+                                } else {
+                                    errorflag = 0;
+                                    if (sstrength6.length() < 2) {
+                                        errorflag = 1;
+                                        strengthinput6.setError("Kindly enter valid strength.");
                                     }
                                 }
                             }
                         }
                     }
                 }
-            }
-        }
-        else if(strengthcount==7)
-        {
-            if(sstrength1.length()<2)
-            {
-                errorflag=1;
-                strengthinput1.setError("Kindly enter valid strength.");
-            }
-            else
-            {
-                errorflag=0;
-                if(sstrength2.length()<2)
-                {
-                    errorflag=1;
-                    strengthinput2.setError("Kindly enter valid strength.");
-                }
-                else
-                {
-                    errorflag=0;
-                    if(sstrength3.length()<2)
-                    {
-                        errorflag=1;
-                        strengthinput3.setError("Kindly enter valid strength.");
-                    }
-                    else
-                    {
-                        errorflag=0;
-                        if(sstrength4.length()<2)
-                        {
-                            errorflag=1;
-                            strengthinput4.setError("Kindly enter valid strength.");
-                        }
-                        else
-                        {
-                            errorflag=0;
-                            if(sstrength5.length()<2)
-                            {
-                                errorflag=1;
-                                strengthinput5.setError("Kindly enter valid strength.");
-                            }
-                            else
-                            {
-                                errorflag=0;
-                                if(sstrength6.length()<2)
-                                {
-                                    errorflag=1;
-                                    strengthinput6.setError("Kindly enter valid strength.");
-                                }
-                                else
-                                {
-                                    errorflag=0;
-                                    if(sstrength7.length()<2)
-                                    {
-                                        errorflag=1;
-                                        strengthinput7.setError("Kindly enter valid strength.");
-                                    }
-                                    else
-                                    {
-                                        errorflag=0;
-                                        if(sstrength8.length()<2)
-                                        {
-                                            errorflag=1;
-                                            strengthinput8.setError("Kindly enter valid strength.");
+            } else if (strengthcount == 6) {
+                if (sstrength1.length() < 2) {
+                    errorflag = 1;
+                    strengthinput1.setError("Kindly enter valid strength.");
+                } else {
+                    errorflag = 0;
+                    if (sstrength2.length() < 2) {
+                        errorflag = 1;
+                        strengthinput2.setError("Kindly enter valid strength.");
+                    } else {
+                        errorflag = 0;
+                        if (sstrength3.length() < 2) {
+                            errorflag = 1;
+                            strengthinput3.setError("Kindly enter valid strength.");
+                        } else {
+                            errorflag = 0;
+                            if (sstrength4.length() < 2) {
+                                errorflag = 1;
+                                strengthinput4.setError("Kindly enter valid strength.");
+                            } else {
+                                errorflag = 0;
+                                if (sstrength5.length() < 2) {
+                                    errorflag = 1;
+                                    strengthinput5.setError("Kindly enter valid strength.");
+                                } else {
+                                    errorflag = 0;
+                                    if (sstrength6.length() < 2) {
+                                        errorflag = 1;
+                                        strengthinput6.setError("Kindly enter valid strength.");
+                                    } else {
+                                        errorflag = 0;
+                                        if (sstrength7.length() < 2) {
+                                            errorflag = 1;
+                                            strengthinput7.setError("Kindly enter valid strength.");
                                         }
                                     }
                                 }
@@ -1491,78 +1364,45 @@ public class MyProfileStrengths extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        }
-        else if(strengthcount==8)
-        {
-            if(sstrength1.length()<2)
-            {
-                errorflag=1;
-                strengthinput1.setError("Kindly enter valid strength.");
-            }
-            else
-            {
-                errorflag=0;
-                if(sstrength2.length()<2)
-                {
-                    errorflag=1;
-                    strengthinput2.setError("Kindly enter valid strength.");
-                }
-                else
-                {
-                    errorflag=0;
-                    if(sstrength3.length()<2)
-                    {
-                        errorflag=1;
-                        strengthinput3.setError("Kindly enter valid strength.");
-                    }
-                    else
-                    {
-                        errorflag=0;
-                        if(sstrength4.length()<2)
-                        {
-                            errorflag=1;
-                            strengthinput4.setError("Kindly enter valid strength.");
-                        }
-                        else
-                        {
-                            errorflag=0;
-                            if(sstrength5.length()<2)
-                            {
-                                errorflag=1;
-                                strengthinput5.setError("Kindly enter valid strength.");
-                            }
-                            else
-                            {
-                                errorflag=0;
-                                if(sstrength6.length()<2)
-                                {
-                                    errorflag=1;
-                                    strengthinput6.setError("Kindly enter valid strength.");
-                                }
-                                else
-                                {
-                                    errorflag=0;
-                                    if(sstrength7.length()<2)
-                                    {
-                                        errorflag=1;
-                                        strengthinput7.setError("Kindly enter valid strength.");
-                                    }
-                                    else
-                                    {
-                                        errorflag=0;
-                                        if(sstrength8.length()<2)
-                                        {
-                                            errorflag=1;
-                                            strengthinput8.setError("Kindly enter valid strength.");
-                                        }
-                                        else
-                                        {
-                                            errorflag=0;
-                                            if(sstrength9.length()<2)
-                                            {
-                                                errorflag=1;
-                                                strengthinput9.setError("Kindly enter valid strength.");
+            } else if (strengthcount == 7) {
+                if (sstrength1.length() < 2) {
+                    errorflag = 1;
+                    strengthinput1.setError("Kindly enter valid strength.");
+                } else {
+                    errorflag = 0;
+                    if (sstrength2.length() < 2) {
+                        errorflag = 1;
+                        strengthinput2.setError("Kindly enter valid strength.");
+                    } else {
+                        errorflag = 0;
+                        if (sstrength3.length() < 2) {
+                            errorflag = 1;
+                            strengthinput3.setError("Kindly enter valid strength.");
+                        } else {
+                            errorflag = 0;
+                            if (sstrength4.length() < 2) {
+                                errorflag = 1;
+                                strengthinput4.setError("Kindly enter valid strength.");
+                            } else {
+                                errorflag = 0;
+                                if (sstrength5.length() < 2) {
+                                    errorflag = 1;
+                                    strengthinput5.setError("Kindly enter valid strength.");
+                                } else {
+                                    errorflag = 0;
+                                    if (sstrength6.length() < 2) {
+                                        errorflag = 1;
+                                        strengthinput6.setError("Kindly enter valid strength.");
+                                    } else {
+                                        errorflag = 0;
+                                        if (sstrength7.length() < 2) {
+                                            errorflag = 1;
+                                            strengthinput7.setError("Kindly enter valid strength.");
+                                        } else {
+                                            errorflag = 0;
+                                            if (sstrength8.length() < 2) {
+                                                errorflag = 1;
+                                                strengthinput8.setError("Kindly enter valid strength.");
                                             }
                                         }
                                     }
@@ -1571,86 +1411,109 @@ public class MyProfileStrengths extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        }
-        else if(strengthcount==9)
-        {
-            if(sstrength1.length()<2)
-            {
-                errorflag=1;
-                strengthinput1.setError("Kindly enter valid strength.");
-            }
-            else
-            {
-                errorflag=0;
-                if(sstrength2.length()<2)
-                {
-                    errorflag=1;
-                    strengthinput2.setError("Kindly enter valid strength.");
-                }
-                else
-                {
-                    errorflag=0;
-                    if(sstrength3.length()<2)
-                    {
-                        errorflag=1;
-                        strengthinput3.setError("Kindly enter valid strength.");
-                    }
-                    else
-                    {
-                        errorflag=0;
-                        if(sstrength4.length()<2)
-                        {
-                            errorflag=1;
-                            strengthinput4.setError("Kindly enter valid strength.");
-                        }
-                        else
-                        {
-                            errorflag=0;
-                            if(sstrength5.length()<2)
-                            {
-                                errorflag=1;
-                                strengthinput5.setError("Kindly enter valid strength.");
-                            }
-                            else
-                            {
-                                errorflag=0;
-                                if(sstrength6.length()<2)
-                                {
-                                    errorflag=1;
-                                    strengthinput6.setError("Kindly enter valid strength.");
-                                }
-                                else
-                                {
-                                    errorflag=0;
-                                    if(sstrength7.length()<2)
-                                    {
-                                        errorflag=1;
-                                        strengthinput7.setError("Kindly enter valid strength.");
-                                    }
-                                    else
-                                    {
-                                        errorflag=0;
-                                        if(sstrength8.length()<2)
-                                        {
-                                            errorflag=1;
-                                            strengthinput8.setError("Kindly enter valid strength.");
-                                        }
-                                        else
-                                        {
-                                            errorflag=0;
-                                            if(sstrength9.length()<2)
-                                            {
-                                                errorflag=1;
-                                                strengthinput9.setError("Kindly enter valid strength.");
+            } else if (strengthcount == 8) {
+                if (sstrength1.length() < 2) {
+                    errorflag = 1;
+                    strengthinput1.setError("Kindly enter valid strength.");
+                } else {
+                    errorflag = 0;
+                    if (sstrength2.length() < 2) {
+                        errorflag = 1;
+                        strengthinput2.setError("Kindly enter valid strength.");
+                    } else {
+                        errorflag = 0;
+                        if (sstrength3.length() < 2) {
+                            errorflag = 1;
+                            strengthinput3.setError("Kindly enter valid strength.");
+                        } else {
+                            errorflag = 0;
+                            if (sstrength4.length() < 2) {
+                                errorflag = 1;
+                                strengthinput4.setError("Kindly enter valid strength.");
+                            } else {
+                                errorflag = 0;
+                                if (sstrength5.length() < 2) {
+                                    errorflag = 1;
+                                    strengthinput5.setError("Kindly enter valid strength.");
+                                } else {
+                                    errorflag = 0;
+                                    if (sstrength6.length() < 2) {
+                                        errorflag = 1;
+                                        strengthinput6.setError("Kindly enter valid strength.");
+                                    } else {
+                                        errorflag = 0;
+                                        if (sstrength7.length() < 2) {
+                                            errorflag = 1;
+                                            strengthinput7.setError("Kindly enter valid strength.");
+                                        } else {
+                                            errorflag = 0;
+                                            if (sstrength8.length() < 2) {
+                                                errorflag = 1;
+                                                strengthinput8.setError("Kindly enter valid strength.");
+                                            } else {
+                                                errorflag = 0;
+                                                if (sstrength9.length() < 2) {
+                                                    errorflag = 1;
+                                                    strengthinput9.setError("Kindly enter valid strength.");
+                                                }
                                             }
-                                            else
-                                            {
-                                                errorflag=0;
-                                                if(sstrength10.length()<2)
-                                                {
-                                                    errorflag=1;
-                                                    strengthinput10.setError("Kindly enter valid strength.");
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } else if (strengthcount == 9) {
+                if (sstrength1.length() < 2) {
+                    errorflag = 1;
+                    strengthinput1.setError("Kindly enter valid strength.");
+                } else {
+                    errorflag = 0;
+                    if (sstrength2.length() < 2) {
+                        errorflag = 1;
+                        strengthinput2.setError("Kindly enter valid strength.");
+                    } else {
+                        errorflag = 0;
+                        if (sstrength3.length() < 2) {
+                            errorflag = 1;
+                            strengthinput3.setError("Kindly enter valid strength.");
+                        } else {
+                            errorflag = 0;
+                            if (sstrength4.length() < 2) {
+                                errorflag = 1;
+                                strengthinput4.setError("Kindly enter valid strength.");
+                            } else {
+                                errorflag = 0;
+                                if (sstrength5.length() < 2) {
+                                    errorflag = 1;
+                                    strengthinput5.setError("Kindly enter valid strength.");
+                                } else {
+                                    errorflag = 0;
+                                    if (sstrength6.length() < 2) {
+                                        errorflag = 1;
+                                        strengthinput6.setError("Kindly enter valid strength.");
+                                    } else {
+                                        errorflag = 0;
+                                        if (sstrength7.length() < 2) {
+                                            errorflag = 1;
+                                            strengthinput7.setError("Kindly enter valid strength.");
+                                        } else {
+                                            errorflag = 0;
+                                            if (sstrength8.length() < 2) {
+                                                errorflag = 1;
+                                                strengthinput8.setError("Kindly enter valid strength.");
+                                            } else {
+                                                errorflag = 0;
+                                                if (sstrength9.length() < 2) {
+                                                    errorflag = 1;
+                                                    strengthinput9.setError("Kindly enter valid strength.");
+                                                } else {
+                                                    errorflag = 0;
+                                                    if (sstrength10.length() < 2) {
+                                                        errorflag = 1;
+                                                        strengthinput10.setError("Kindly enter valid strength.");
+                                                    }
                                                 }
                                             }
                                         }
@@ -1663,23 +1526,22 @@ public class MyProfileStrengths extends AppCompatActivity {
             }
         }
         if(errorflag==0) {
-            try
-            {
+            encstrength();
 
-
-                MyProfileStrengthsModal obj2 = new MyProfileStrengthsModal(sstrength1,sstrength2,sstrength3,sstrength4,sstrength5,sstrength6,sstrength7,sstrength8,sstrength9,sstrength10);
-
-
-                encobj =OtoString(obj2,MySharedPreferencesManager.getDigest1(MyProfileStrengths.this),MySharedPreferencesManager.getDigest2(MyProfileStrengths.this));
-
-
-                Log.d("TAG", "validateandSave: encobj - "+encobj);
-
-
-                new SaveStrengths().execute();
-
-            }catch (Exception e){Toast.makeText(MyProfileStrengths.this,e.getMessage(),Toast.LENGTH_LONG).show();}
         }
+    }
+
+   public void encstrength()
+    {
+        try
+        {
+            MyProfileStrengthsModal obj2 = new MyProfileStrengthsModal(sstrength1,sstrength2,sstrength3,sstrength4,sstrength5,sstrength6,sstrength7,sstrength8,sstrength9,sstrength10);
+            encobj =OtoString(obj2,MySharedPreferencesManager.getDigest1(MyProfileStrengths.this),MySharedPreferencesManager.getDigest2(MyProfileStrengths.this));
+            Log.d("TAG", "validateandSave: encobj - "+encobj);
+            new SaveStrengths().execute();
+
+        }catch (Exception e){Toast.makeText(MyProfileStrengths.this,e.getMessage(),Toast.LENGTH_LONG).show();}
+
     }
     class SaveStrengths extends AsyncTask<String, String, String> {
 
@@ -1783,8 +1645,11 @@ public class MyProfileStrengths extends AppCompatActivity {
             alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialogInterface) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileStrengths.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileStrengths.this));
+
                 }
             });
 

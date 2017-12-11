@@ -308,7 +308,6 @@
         <View
             android:id="@+id/trash12selectionview"
             android:layout_width="50dp"
-
             android:layout_height="50dp"
             android:layout_below="@+id/skillline11"
             android:layout_marginTop="20dp" />
@@ -325,7 +324,6 @@
         <View
             android:id="@+id/trash13selectionview"
             android:layout_width="50dp"
-
             android:layout_height="50dp"
             android:layout_below="@+id/skillline12"
             android:layout_marginTop="20dp" />
@@ -2005,7 +2003,7 @@
             android:layout_height="0dp"
             android:layout_below="@+id/addmoreskill"
             android:layout_marginTop="20dp"
-           />
+            />
 
         <TextView
             android:id="@+id/addmoreskilltxt"

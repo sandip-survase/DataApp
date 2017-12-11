@@ -43,7 +43,7 @@ import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 public class MyProfilePublications extends AppCompatActivity {
 
-    int publicationcount = 0;
+    int publicationcount = 0,editpublic=0;
     View addmorepublication;
     String username, role;
     String digest1, digest2;
@@ -1538,6 +1538,9 @@ public class MyProfilePublications extends AppCompatActivity {
         addmorepublication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                editpublic=0;
+
                 if (publicationcount == 0) {
                     if (title1.getText().toString() != null && publication1.getText().toString() != null && author1.getText().toString() != null && publicationdate1.getText().toString() != null) {
                         if (!title1.getText().toString().equals("") && !publication1.getText().toString().equals("") && !author1.getText().toString().equals("")  && !publicationdate1.getText().toString().equals("")) {
@@ -3364,6 +3367,18 @@ public class MyProfilePublications extends AppCompatActivity {
             url10.setText("");
             description10.setText("");
 
+            if(stitle1.equals("") && spublication1.equals("") && sauthor1.equals("") && spublicationdate1.equals("")){
+                Log.d("TAG", "deleteLang: lang 1");
+                editpublic =1;
+            }
+
+            if(editpublic==1){
+                Log.d("TAG", "deleteLang: editcertfi - "+editpublic);
+                encpublic();
+            }
+
+
+
         }
     }
 
@@ -3496,69 +3511,75 @@ public class MyProfilePublications extends AppCompatActivity {
         String sPadding = "ISO10126Padding";
 
 
-        if (publicationcount == 0) {
+        if(editpublic==1)
+        {
+            encpublic();
+        }
+        else {
+            if (publicationcount == 0) {
 
-            if (stitle1.length() < 2) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (spublication1.length() < 2) {
+                if (stitle1.length() < 2) {
                     errorflag = 1;
-                    publicationinput1.setError("Kindly enter valid publication");
+                    titleinput1.setError("Kindly enter valid title");
                 } else {
                     errorflag = 0;
-                    if (sauthor1.length() < 2) {
+                    if (spublication1.length() < 2) {
                         errorflag = 1;
-                        authorsinput1.setError("Kindly enter valid author name");
+                        publicationinput1.setError("Kindly enter valid publication");
                     } else {
                         errorflag = 0;
-                        if (spublicationdate1.length() < 2) {
+                        if (sauthor1.length() < 2) {
                             errorflag = 1;
-                            publicationdateinput1.setError("Kindly select valid month,year");
+                            authorsinput1.setError("Kindly enter valid author name");
+                        } else {
+                            errorflag = 0;
+                            if (spublicationdate1.length() < 2) {
+                                errorflag = 1;
+                                publicationdateinput1.setError("Kindly select valid month,year");
+                            }
                         }
                     }
                 }
-            }
-        } else if (publicationcount == 1) {
-            if (stitle1.length() < 2) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (spublication1.length() < 2) {
+            } else if (publicationcount == 1) {
+                if (stitle1.length() < 2) {
                     errorflag = 1;
-                    publicationinput1.setError("Kindly enter valid publication");
+                    titleinput1.setError("Kindly enter valid title");
                 } else {
                     errorflag = 0;
-                    if (sauthor1.length() < 2) {
+                    if (spublication1.length() < 2) {
                         errorflag = 1;
-                        authorsinput1.setError("Kindly enter valid author name");
+                        publicationinput1.setError("Kindly enter valid publication");
                     } else {
                         errorflag = 0;
-                        if (spublicationdate1.length() < 2) {
+                        if (sauthor1.length() < 2) {
                             errorflag = 1;
-                            publicationdateinput1.setError("Kindly select valid month,year");
+                            authorsinput1.setError("Kindly enter valid author name");
                         } else {
                             errorflag = 0;
-                            if (stitle2.length() < 2) {
-                                errorflag = 2;
-                                titleinput2.setError("Kindly enter valid title");
+                            if (spublicationdate1.length() < 2) {
+                                errorflag = 1;
+                                publicationdateinput1.setError("Kindly select valid month,year");
                             } else {
                                 errorflag = 0;
-                                if (spublication2.length() < 2) {
+                                if (stitle2.length() < 2) {
                                     errorflag = 2;
-                                    publicationinput2.setError("Kindly enter valid publication");
+                                    titleinput2.setError("Kindly enter valid title");
                                 } else {
                                     errorflag = 0;
-                                    if (sauthor2.length() < 2) {
+                                    if (spublication2.length() < 2) {
                                         errorflag = 2;
-                                        authorsinput2.setError("Kindly enter valid author name");
+                                        publicationinput2.setError("Kindly enter valid publication");
                                     } else {
                                         errorflag = 0;
-                                        if (spublicationdate2.length() < 2) {
+                                        if (sauthor2.length() < 2) {
                                             errorflag = 2;
-                                            publicationdateinput2.setError("Kindly select valid month,year");
+                                            authorsinput2.setError("Kindly enter valid author name");
+                                        } else {
+                                            errorflag = 0;
+                                            if (spublicationdate2.length() < 2) {
+                                                errorflag = 2;
+                                                publicationdateinput2.setError("Kindly select valid month,year");
+                                            }
                                         }
                                     }
                                 }
@@ -3566,66 +3587,66 @@ public class MyProfilePublications extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (publicationcount == 2) {
-            if (stitle1.length() < 2) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (spublication1.length() < 2) {
+            } else if (publicationcount == 2) {
+                if (stitle1.length() < 2) {
                     errorflag = 1;
-                    publicationinput1.setError("Kindly enter valid publication");
+                    titleinput1.setError("Kindly enter valid title");
                 } else {
                     errorflag = 0;
-                    if (sauthor1.length() < 2) {
+                    if (spublication1.length() < 2) {
                         errorflag = 1;
-                        authorsinput1.setError("Kindly enter valid Author Name");
+                        publicationinput1.setError("Kindly enter valid publication");
                     } else {
                         errorflag = 0;
-                        if (spublicationdate1.length() < 2) {
+                        if (sauthor1.length() < 2) {
                             errorflag = 1;
-                            publicationdateinput1.setError("Kindly select valid month,year");
+                            authorsinput1.setError("Kindly enter valid Author Name");
                         } else {
                             errorflag = 0;
-                            if (stitle2.length() < 2) {
-                                errorflag = 2;
-                                titleinput2.setError("Kindly enter valid title");
+                            if (spublicationdate1.length() < 2) {
+                                errorflag = 1;
+                                publicationdateinput1.setError("Kindly select valid month,year");
                             } else {
                                 errorflag = 0;
-                                if (spublication2.length() < 2) {
+                                if (stitle2.length() < 2) {
                                     errorflag = 2;
-                                    publicationinput2.setError("Kindly enter valid publication");
+                                    titleinput2.setError("Kindly enter valid title");
                                 } else {
                                     errorflag = 0;
-                                    if (sauthor2.length() < 2) {
+                                    if (spublication2.length() < 2) {
                                         errorflag = 2;
-                                        authorsinput2.setError("Kindly enter valid author name");
+                                        publicationinput2.setError("Kindly enter valid publication");
                                     } else {
                                         errorflag = 0;
-                                        if (spublicationdate2.length() < 2) {
+                                        if (sauthor2.length() < 2) {
                                             errorflag = 2;
-                                            publicationdateinput2.setError("Kindly select valid month,year");
+                                            authorsinput2.setError("Kindly enter valid author name");
                                         } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 2) {
-                                                errorflag = 3;
-                                                titleinput3.setError("Kindly enter valid title");
+                                            if (spublicationdate2.length() < 2) {
+                                                errorflag = 2;
+                                                publicationdateinput2.setError("Kindly select valid month,year");
                                             } else {
                                                 errorflag = 0;
-                                                if (spublication3.length() < 2) {
+                                                if (stitle3.length() < 2) {
                                                     errorflag = 3;
-                                                    publicationinput3.setError("Kindly enter valid publication");
+                                                    titleinput3.setError("Kindly enter valid title");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sauthor3.length() < 2) {
+                                                    if (spublication3.length() < 2) {
                                                         errorflag = 3;
-                                                        authorsinput3.setError("Kindly enter valid author name");
+                                                        publicationinput3.setError("Kindly enter valid publication");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (spublicationdate3.length() < 2) {
+                                                        if (sauthor3.length() < 2) {
                                                             errorflag = 3;
-                                                            publicationdateinput3.setError("Kindly select valid month,year");
+                                                            authorsinput3.setError("Kindly enter valid author name");
+                                                        } else {
+                                                            errorflag = 0;
+                                                            if (spublicationdate3.length() < 2) {
+                                                                errorflag = 3;
+                                                                publicationdateinput3.setError("Kindly select valid month,year");
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -3637,86 +3658,86 @@ public class MyProfilePublications extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (publicationcount == 3) {
-            if (stitle1.length() < 2) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (spublication1.length() < 2) {
+            } else if (publicationcount == 3) {
+                if (stitle1.length() < 2) {
                     errorflag = 1;
-                    publicationinput1.setError("Kindly enter valid publication");
+                    titleinput1.setError("Kindly enter valid title");
                 } else {
                     errorflag = 0;
-                    if (sauthor1.length() < 2) {
+                    if (spublication1.length() < 2) {
                         errorflag = 1;
-                        authorsinput1.setError("Kindly enter valid author name");
+                        publicationinput1.setError("Kindly enter valid publication");
                     } else {
                         errorflag = 0;
-                        if (spublicationdate1.length() < 2) {
+                        if (sauthor1.length() < 2) {
                             errorflag = 1;
-                            publicationdateinput1.setError("Kindly select valid month,year");
+                            authorsinput1.setError("Kindly enter valid author name");
                         } else {
                             errorflag = 0;
-                            if (stitle2.length() < 2) {
-                                errorflag = 2;
-                                titleinput2.setError("Kindly enter valid title");
+                            if (spublicationdate1.length() < 2) {
+                                errorflag = 1;
+                                publicationdateinput1.setError("Kindly select valid month,year");
                             } else {
                                 errorflag = 0;
-                                if (spublication2.length() < 2) {
+                                if (stitle2.length() < 2) {
                                     errorflag = 2;
-                                    publicationinput2.setError("Kindly enter valid publication");
+                                    titleinput2.setError("Kindly enter valid title");
                                 } else {
                                     errorflag = 0;
-                                    if (sauthor2.length() < 2) {
+                                    if (spublication2.length() < 2) {
                                         errorflag = 2;
-                                        authorsinput2.setError("Kindly enter valid author name");
+                                        publicationinput2.setError("Kindly enter valid publication");
                                     } else {
                                         errorflag = 0;
-                                        if (spublicationdate2.length() < 2) {
+                                        if (sauthor2.length() < 2) {
                                             errorflag = 2;
-                                            publicationdateinput2.setError("Kindly select valid month,year");
+                                            authorsinput2.setError("Kindly enter valid author name");
                                         } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 2) {
-                                                errorflag = 3;
-                                                titleinput3.setError("Kindly enter valid title");
+                                            if (spublicationdate2.length() < 2) {
+                                                errorflag = 2;
+                                                publicationdateinput2.setError("Kindly select valid month,year");
                                             } else {
                                                 errorflag = 0;
-                                                if (spublication3.length() < 2) {
+                                                if (stitle3.length() < 2) {
                                                     errorflag = 3;
-                                                    publicationinput3.setError("Kindly enter valid publication");
+                                                    titleinput3.setError("Kindly enter valid title");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sauthor3.length() < 2) {
+                                                    if (spublication3.length() < 2) {
                                                         errorflag = 3;
-                                                        authorsinput3.setError("Kindly enter valid author name");
+                                                        publicationinput3.setError("Kindly enter valid publication");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (spublicationdate3.length() < 2) {
+                                                        if (sauthor3.length() < 2) {
                                                             errorflag = 3;
-                                                            publicationdateinput3.setError("Kindly select valid month,year");
+                                                            authorsinput3.setError("Kindly enter valid author name");
                                                         } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 2) {
-                                                                errorflag = 4;
-                                                                titleinput4.setError("Kindly enter valid title");
+                                                            if (spublicationdate3.length() < 2) {
+                                                                errorflag = 3;
+                                                                publicationdateinput3.setError("Kindly select valid month,year");
                                                             } else {
                                                                 errorflag = 0;
-                                                                if (spublication4.length() < 2) {
+                                                                if (stitle4.length() < 2) {
                                                                     errorflag = 4;
-                                                                    publicationinput4.setError("Kindly enter valid publication");
+                                                                    titleinput4.setError("Kindly enter valid title");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (sauthor4.length() < 2) {
+                                                                    if (spublication4.length() < 2) {
                                                                         errorflag = 4;
-                                                                        authorsinput4.setError("Kindly enter valid author name");
+                                                                        publicationinput4.setError("Kindly enter valid publication");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (spublicationdate4.length() < 2) {
+                                                                        if (sauthor4.length() < 2) {
                                                                             errorflag = 4;
-                                                                            publicationdateinput4.setError("Kindly select valid month,year");
+                                                                            authorsinput4.setError("Kindly enter valid author name");
+                                                                        } else {
+                                                                            errorflag = 0;
+                                                                            if (spublicationdate4.length() < 2) {
+                                                                                errorflag = 4;
+                                                                                publicationdateinput4.setError("Kindly select valid month,year");
+                                                                            }
                                                                         }
                                                                     }
                                                                 }
@@ -3732,106 +3753,106 @@ public class MyProfilePublications extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (publicationcount == 4) {
-            if (stitle1.length() < 2) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (spublication1.length() < 2) {
+            } else if (publicationcount == 4) {
+                if (stitle1.length() < 2) {
                     errorflag = 1;
-                    publicationinput1.setError("Kindly enter valid publication");
+                    titleinput1.setError("Kindly enter valid title");
                 } else {
                     errorflag = 0;
-                    if (sauthor1.length() < 2) {
+                    if (spublication1.length() < 2) {
                         errorflag = 1;
-                        authorsinput1.setError("Kindly enter valid author name");
+                        publicationinput1.setError("Kindly enter valid publication");
                     } else {
                         errorflag = 0;
-                        if (spublicationdate1.length() < 2) {
+                        if (sauthor1.length() < 2) {
                             errorflag = 1;
-                            publicationdateinput1.setError("Kindly select valid month,year");
+                            authorsinput1.setError("Kindly enter valid author name");
                         } else {
                             errorflag = 0;
-                            if (stitle2.length() < 2) {
-                                errorflag = 2;
-                                titleinput2.setError("Kindly enter valid title");
+                            if (spublicationdate1.length() < 2) {
+                                errorflag = 1;
+                                publicationdateinput1.setError("Kindly select valid month,year");
                             } else {
                                 errorflag = 0;
-                                if (spublication2.length() < 2) {
+                                if (stitle2.length() < 2) {
                                     errorflag = 2;
-                                    publicationinput2.setError("Kindly enter valid publication");
+                                    titleinput2.setError("Kindly enter valid title");
                                 } else {
                                     errorflag = 0;
-                                    if (sauthor2.length() < 2) {
+                                    if (spublication2.length() < 2) {
                                         errorflag = 2;
-                                        authorsinput2.setError("Kindly enter valid author name");
+                                        publicationinput2.setError("Kindly enter valid publication");
                                     } else {
                                         errorflag = 0;
-                                        if (spublicationdate2.length() < 2) {
+                                        if (sauthor2.length() < 2) {
                                             errorflag = 2;
-                                            publicationdateinput2.setError("Kindly select valid month,year");
+                                            authorsinput2.setError("Kindly enter valid author name");
                                         } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 2) {
-                                                errorflag = 3;
-                                                titleinput3.setError("Kindly enter valid title");
+                                            if (spublicationdate2.length() < 2) {
+                                                errorflag = 2;
+                                                publicationdateinput2.setError("Kindly select valid month,year");
                                             } else {
                                                 errorflag = 0;
-                                                if (spublication3.length() < 2) {
+                                                if (stitle3.length() < 2) {
                                                     errorflag = 3;
-                                                    publicationinput3.setError("Kindly enter valid publication");
+                                                    titleinput3.setError("Kindly enter valid title");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sauthor3.length() < 2) {
+                                                    if (spublication3.length() < 2) {
                                                         errorflag = 3;
-                                                        authorsinput3.setError("Kindly enter valid author name");
+                                                        publicationinput3.setError("Kindly enter valid publication");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (spublicationdate3.length() < 2) {
+                                                        if (sauthor3.length() < 2) {
                                                             errorflag = 3;
-                                                            publicationdateinput3.setError("Kindly select valid month,year");
+                                                            authorsinput3.setError("Kindly enter valid author name");
                                                         } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 2) {
-                                                                errorflag = 4;
-                                                                titleinput4.setError("Kindly enter valid title");
+                                                            if (spublicationdate3.length() < 2) {
+                                                                errorflag = 3;
+                                                                publicationdateinput3.setError("Kindly select valid month,year");
                                                             } else {
                                                                 errorflag = 0;
-                                                                if (spublication4.length() < 2) {
+                                                                if (stitle4.length() < 2) {
                                                                     errorflag = 4;
-                                                                    publicationinput4.setError("Kindly enter valid publication");
+                                                                    titleinput4.setError("Kindly enter valid title");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (sauthor4.length() < 2) {
+                                                                    if (spublication4.length() < 2) {
                                                                         errorflag = 4;
-                                                                        authorsinput4.setError("Kindly enter valid author name");
+                                                                        publicationinput4.setError("Kindly enter valid publication");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (spublicationdate4.length() < 2) {
+                                                                        if (sauthor4.length() < 2) {
                                                                             errorflag = 4;
-                                                                            publicationdateinput4.setError("Kindly select valid month,year");
+                                                                            authorsinput4.setError("Kindly enter valid author name");
                                                                         } else {
                                                                             errorflag = 0;
-                                                                            if (stitle5.length() < 2) {
-                                                                                errorflag = 5;
-                                                                                titleinput5.setError("Kindly enter valid title");
+                                                                            if (spublicationdate4.length() < 2) {
+                                                                                errorflag = 4;
+                                                                                publicationdateinput4.setError("Kindly select valid month,year");
                                                                             } else {
                                                                                 errorflag = 0;
-                                                                                if (spublication5.length() < 2) {
+                                                                                if (stitle5.length() < 2) {
                                                                                     errorflag = 5;
-                                                                                    publicationinput5.setError("Kindly enter valid publication");
+                                                                                    titleinput5.setError("Kindly enter valid title");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (sauthor5.length() < 2) {
+                                                                                    if (spublication5.length() < 2) {
                                                                                         errorflag = 5;
-                                                                                        authorsinput5.setError("Kindly enter valid author name");
+                                                                                        publicationinput5.setError("Kindly enter valid publication");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (spublicationdate5.length() < 2) {
+                                                                                        if (sauthor5.length() < 2) {
                                                                                             errorflag = 5;
-                                                                                            publicationdateinput5.setError("Kindly select valid month,year");
+                                                                                            authorsinput5.setError("Kindly enter valid author name");
+                                                                                        } else {
+                                                                                            errorflag = 0;
+                                                                                            if (spublicationdate5.length() < 2) {
+                                                                                                errorflag = 5;
+                                                                                                publicationdateinput5.setError("Kindly select valid month,year");
+                                                                                            }
                                                                                         }
                                                                                     }
                                                                                 }
@@ -3851,126 +3872,126 @@ public class MyProfilePublications extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (publicationcount == 5) {
-            if (stitle1.length() < 2) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (spublication1.length() < 2) {
+            } else if (publicationcount == 5) {
+                if (stitle1.length() < 2) {
                     errorflag = 1;
-                    publicationinput1.setError("Kindly enter valid publication");
+                    titleinput1.setError("Kindly enter valid title");
                 } else {
                     errorflag = 0;
-                    if (sauthor1.length() < 2) {
+                    if (spublication1.length() < 2) {
                         errorflag = 1;
-                        authorsinput1.setError("Kindly enter valid author name");
+                        publicationinput1.setError("Kindly enter valid publication");
                     } else {
                         errorflag = 0;
-                        if (spublicationdate1.length() < 2) {
+                        if (sauthor1.length() < 2) {
                             errorflag = 1;
-                            publicationdateinput1.setError("Kindly select valid month,year");
+                            authorsinput1.setError("Kindly enter valid author name");
                         } else {
                             errorflag = 0;
-                            if (stitle2.length() < 2) {
-                                errorflag = 2;
-                                titleinput2.setError("Kindly enter valid title");
+                            if (spublicationdate1.length() < 2) {
+                                errorflag = 1;
+                                publicationdateinput1.setError("Kindly select valid month,year");
                             } else {
                                 errorflag = 0;
-                                if (spublication2.length() < 2) {
+                                if (stitle2.length() < 2) {
                                     errorflag = 2;
-                                    publicationinput2.setError("Kindly enter valid publication");
+                                    titleinput2.setError("Kindly enter valid title");
                                 } else {
                                     errorflag = 0;
-                                    if (sauthor2.length() < 2) {
+                                    if (spublication2.length() < 2) {
                                         errorflag = 2;
-                                        authorsinput2.setError("Kindly enter valid author name");
+                                        publicationinput2.setError("Kindly enter valid publication");
                                     } else {
                                         errorflag = 0;
-                                        if (spublicationdate2.length() < 2) {
+                                        if (sauthor2.length() < 2) {
                                             errorflag = 2;
-                                            publicationdateinput2.setError("Kindly select valid month,year");
+                                            authorsinput2.setError("Kindly enter valid author name");
                                         } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 2) {
-                                                errorflag = 3;
-                                                titleinput3.setError("Kindly enter valid title");
+                                            if (spublicationdate2.length() < 2) {
+                                                errorflag = 2;
+                                                publicationdateinput2.setError("Kindly select valid month,year");
                                             } else {
                                                 errorflag = 0;
-                                                if (spublication3.length() < 2) {
+                                                if (stitle3.length() < 2) {
                                                     errorflag = 3;
-                                                    publicationinput3.setError("Kindly enter valid publication");
+                                                    titleinput3.setError("Kindly enter valid title");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sauthor3.length() < 2) {
+                                                    if (spublication3.length() < 2) {
                                                         errorflag = 3;
-                                                        authorsinput3.setError("Kindly enter valid author name");
+                                                        publicationinput3.setError("Kindly enter valid publication");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (spublicationdate3.length() < 2) {
+                                                        if (sauthor3.length() < 2) {
                                                             errorflag = 3;
-                                                            publicationdateinput3.setError("Kindly select valid month,year");
+                                                            authorsinput3.setError("Kindly enter valid author name");
                                                         } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 2) {
-                                                                errorflag = 4;
-                                                                titleinput4.setError("Kindly enter valid title");
+                                                            if (spublicationdate3.length() < 2) {
+                                                                errorflag = 3;
+                                                                publicationdateinput3.setError("Kindly select valid month,year");
                                                             } else {
                                                                 errorflag = 0;
-                                                                if (spublication4.length() < 2) {
+                                                                if (stitle4.length() < 2) {
                                                                     errorflag = 4;
-                                                                    publicationinput4.setError("Kindly enter valid publication");
+                                                                    titleinput4.setError("Kindly enter valid title");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (sauthor4.length() < 2) {
+                                                                    if (spublication4.length() < 2) {
                                                                         errorflag = 4;
-                                                                        authorsinput4.setError("Kindly enter valid author name");
+                                                                        publicationinput4.setError("Kindly enter valid publication");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (spublicationdate4.length() < 2) {
+                                                                        if (sauthor4.length() < 2) {
                                                                             errorflag = 4;
-                                                                            publicationdateinput4.setError("Kindly select valid month,year");
+                                                                            authorsinput4.setError("Kindly enter valid author name");
                                                                         } else {
                                                                             errorflag = 0;
-                                                                            if (stitle5.length() < 2) {
-                                                                                errorflag = 5;
-                                                                                titleinput5.setError("Kindly enter valid title");
+                                                                            if (spublicationdate4.length() < 2) {
+                                                                                errorflag = 4;
+                                                                                publicationdateinput4.setError("Kindly select valid month,year");
                                                                             } else {
                                                                                 errorflag = 0;
-                                                                                if (spublication5.length() < 2) {
+                                                                                if (stitle5.length() < 2) {
                                                                                     errorflag = 5;
-                                                                                    publicationinput5.setError("Kindly enter valid publication");
+                                                                                    titleinput5.setError("Kindly enter valid title");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (sauthor5.length() < 2) {
+                                                                                    if (spublication5.length() < 2) {
                                                                                         errorflag = 5;
-                                                                                        authorsinput5.setError("Kindly enter valid author name");
+                                                                                        publicationinput5.setError("Kindly enter valid publication");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (spublicationdate5.length() < 2) {
+                                                                                        if (sauthor5.length() < 2) {
                                                                                             errorflag = 5;
-                                                                                            publicationdateinput5.setError("Kindly select valid month,year");
+                                                                                            authorsinput5.setError("Kindly enter valid author name");
                                                                                         } else {
                                                                                             errorflag = 0;
-                                                                                            if (stitle6.length() < 2) {
-                                                                                                errorflag = 6;
-                                                                                                titleinput6.setError("Kindly enter valid title");
+                                                                                            if (spublicationdate5.length() < 2) {
+                                                                                                errorflag = 5;
+                                                                                                publicationdateinput5.setError("Kindly select valid month,year");
                                                                                             } else {
                                                                                                 errorflag = 0;
-                                                                                                if (spublication6.length() < 2) {
+                                                                                                if (stitle6.length() < 2) {
                                                                                                     errorflag = 6;
-                                                                                                    publicationinput6.setError("Kindly enter valid publication");
+                                                                                                    titleinput6.setError("Kindly enter valid title");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sauthor6.length() < 2) {
+                                                                                                    if (spublication6.length() < 2) {
                                                                                                         errorflag = 6;
-                                                                                                        authorsinput6.setError("Kindly enter valid author name");
+                                                                                                        publicationinput6.setError("Kindly enter valid publication");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (spublicationdate6.length() < 2) {
+                                                                                                        if (sauthor6.length() < 2) {
                                                                                                             errorflag = 6;
-                                                                                                            publicationdateinput6.setError("Kindly select valid month,year");
+                                                                                                            authorsinput6.setError("Kindly enter valid author name");
+                                                                                                        } else {
+                                                                                                            errorflag = 0;
+                                                                                                            if (spublicationdate6.length() < 2) {
+                                                                                                                errorflag = 6;
+                                                                                                                publicationdateinput6.setError("Kindly select valid month,year");
+                                                                                                            }
                                                                                                         }
                                                                                                     }
                                                                                                 }
@@ -3994,146 +4015,146 @@ public class MyProfilePublications extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (publicationcount == 6) {
-            if (stitle1.length() < 2) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (spublication1.length() < 2) {
+            } else if (publicationcount == 6) {
+                if (stitle1.length() < 2) {
                     errorflag = 1;
-                    publicationinput1.setError("Kindly enter valid publication");
+                    titleinput1.setError("Kindly enter valid title");
                 } else {
                     errorflag = 0;
-                    if (sauthor1.length() < 2) {
+                    if (spublication1.length() < 2) {
                         errorflag = 1;
-                        authorsinput1.setError("Kindly enter valid author name");
+                        publicationinput1.setError("Kindly enter valid publication");
                     } else {
                         errorflag = 0;
-                        if (spublicationdate1.length() < 2) {
+                        if (sauthor1.length() < 2) {
                             errorflag = 1;
-                            publicationdateinput1.setError("Kindly select valid month,year");
+                            authorsinput1.setError("Kindly enter valid author name");
                         } else {
                             errorflag = 0;
-                            if (stitle2.length() < 2) {
-                                errorflag = 2;
-                                titleinput2.setError("Kindly enter valid title");
+                            if (spublicationdate1.length() < 2) {
+                                errorflag = 1;
+                                publicationdateinput1.setError("Kindly select valid month,year");
                             } else {
                                 errorflag = 0;
-                                if (spublication2.length() < 2) {
+                                if (stitle2.length() < 2) {
                                     errorflag = 2;
-                                    publicationinput2.setError("Kindly enter valid publication");
+                                    titleinput2.setError("Kindly enter valid title");
                                 } else {
                                     errorflag = 0;
-                                    if (sauthor2.length() < 2) {
+                                    if (spublication2.length() < 2) {
                                         errorflag = 2;
-                                        authorsinput2.setError("Kindly enter valid author name");
+                                        publicationinput2.setError("Kindly enter valid publication");
                                     } else {
                                         errorflag = 0;
-                                        if (spublicationdate2.length() < 2) {
+                                        if (sauthor2.length() < 2) {
                                             errorflag = 2;
-                                            publicationdateinput2.setError("Kindly select valid month,year");
+                                            authorsinput2.setError("Kindly enter valid author name");
                                         } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 2) {
-                                                errorflag = 3;
-                                                titleinput3.setError("Kindly enter valid title");
+                                            if (spublicationdate2.length() < 2) {
+                                                errorflag = 2;
+                                                publicationdateinput2.setError("Kindly select valid month,year");
                                             } else {
                                                 errorflag = 0;
-                                                if (spublication3.length() < 2) {
+                                                if (stitle3.length() < 2) {
                                                     errorflag = 3;
-                                                    publicationinput3.setError("Kindly enter valid publication");
+                                                    titleinput3.setError("Kindly enter valid title");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sauthor3.length() < 2) {
+                                                    if (spublication3.length() < 2) {
                                                         errorflag = 3;
-                                                        authorsinput3.setError("Kindly enter valid author name");
+                                                        publicationinput3.setError("Kindly enter valid publication");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (spublicationdate3.length() < 2) {
+                                                        if (sauthor3.length() < 2) {
                                                             errorflag = 3;
-                                                            publicationdateinput3.setError("Kindly select valid month,year");
+                                                            authorsinput3.setError("Kindly enter valid author name");
                                                         } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 2) {
-                                                                errorflag = 4;
-                                                                titleinput4.setError("Kindly enter valid title");
+                                                            if (spublicationdate3.length() < 2) {
+                                                                errorflag = 3;
+                                                                publicationdateinput3.setError("Kindly select valid month,year");
                                                             } else {
                                                                 errorflag = 0;
-                                                                if (spublication4.length() < 2) {
+                                                                if (stitle4.length() < 2) {
                                                                     errorflag = 4;
-                                                                    publicationinput4.setError("Kindly enter valid publication");
+                                                                    titleinput4.setError("Kindly enter valid title");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (sauthor4.length() < 2) {
+                                                                    if (spublication4.length() < 2) {
                                                                         errorflag = 4;
-                                                                        authorsinput4.setError("Kindly enter valid author name");
+                                                                        publicationinput4.setError("Kindly enter valid publication");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (spublicationdate4.length() < 2) {
+                                                                        if (sauthor4.length() < 2) {
                                                                             errorflag = 4;
-                                                                            publicationdateinput4.setError("Kindly select valid month,year");
+                                                                            authorsinput4.setError("Kindly enter valid author name");
                                                                         } else {
                                                                             errorflag = 0;
-                                                                            if (stitle5.length() < 2) {
-                                                                                errorflag = 5;
-                                                                                titleinput5.setError("Kindly enter valid title");
+                                                                            if (spublicationdate4.length() < 2) {
+                                                                                errorflag = 4;
+                                                                                publicationdateinput4.setError("Kindly select valid month,year");
                                                                             } else {
                                                                                 errorflag = 0;
-                                                                                if (spublication5.length() < 2) {
+                                                                                if (stitle5.length() < 2) {
                                                                                     errorflag = 5;
-                                                                                    publicationinput5.setError("Kindly enter valid publication");
+                                                                                    titleinput5.setError("Kindly enter valid title");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (sauthor5.length() < 2) {
+                                                                                    if (spublication5.length() < 2) {
                                                                                         errorflag = 5;
-                                                                                        authorsinput5.setError("Kindly enter valid author name");
+                                                                                        publicationinput5.setError("Kindly enter valid publication");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (spublicationdate5.length() < 2) {
+                                                                                        if (sauthor5.length() < 2) {
                                                                                             errorflag = 5;
-                                                                                            publicationdateinput5.setError("Kindly select valid month,year");
+                                                                                            authorsinput5.setError("Kindly enter valid author name");
                                                                                         } else {
                                                                                             errorflag = 0;
-                                                                                            if (stitle6.length() < 2) {
-                                                                                                errorflag = 6;
-                                                                                                titleinput6.setError("Kindly enter valid title");
+                                                                                            if (spublicationdate5.length() < 2) {
+                                                                                                errorflag = 5;
+                                                                                                publicationdateinput5.setError("Kindly select valid month,year");
                                                                                             } else {
                                                                                                 errorflag = 0;
-                                                                                                if (spublication6.length() < 2) {
+                                                                                                if (stitle6.length() < 2) {
                                                                                                     errorflag = 6;
-                                                                                                    publicationinput6.setError("Kindly enter valid publication");
+                                                                                                    titleinput6.setError("Kindly enter valid title");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sauthor6.length() < 2) {
+                                                                                                    if (spublication6.length() < 2) {
                                                                                                         errorflag = 6;
-                                                                                                        authorsinput6.setError("Kindly enter valid author name");
+                                                                                                        publicationinput6.setError("Kindly enter valid publication");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (spublicationdate6.length() < 2) {
+                                                                                                        if (sauthor6.length() < 2) {
                                                                                                             errorflag = 6;
-                                                                                                            publicationdateinput6.setError("Kindly select valid month,year");
+                                                                                                            authorsinput6.setError("Kindly enter valid author name");
                                                                                                         } else {
                                                                                                             errorflag = 0;
-                                                                                                            if (stitle7.length() < 2) {
-                                                                                                                errorflag = 7;
-                                                                                                                titleinput7.setError("Kindly enter valid title");
+                                                                                                            if (spublicationdate6.length() < 2) {
+                                                                                                                errorflag = 6;
+                                                                                                                publicationdateinput6.setError("Kindly select valid month,year");
                                                                                                             } else {
                                                                                                                 errorflag = 0;
-                                                                                                                if (spublication7.length() < 2) {
+                                                                                                                if (stitle7.length() < 2) {
                                                                                                                     errorflag = 7;
-                                                                                                                    publicationinput7.setError("Kindly enter valid publication");
+                                                                                                                    titleinput7.setError("Kindly enter valid title");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
-                                                                                                                    if (sauthor7.length() < 2) {
+                                                                                                                    if (spublication7.length() < 2) {
                                                                                                                         errorflag = 7;
-                                                                                                                        authorsinput7.setError("Kindly enter valid author name");
+                                                                                                                        publicationinput7.setError("Kindly enter valid publication");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
-                                                                                                                        if (spublicationdate7.length() < 2) {
+                                                                                                                        if (sauthor7.length() < 2) {
                                                                                                                             errorflag = 7;
-                                                                                                                            publicationdateinput7.setError("Kindly select valid month,year");
+                                                                                                                            authorsinput7.setError("Kindly enter valid author name");
+                                                                                                                        } else {
+                                                                                                                            errorflag = 0;
+                                                                                                                            if (spublicationdate7.length() < 2) {
+                                                                                                                                errorflag = 7;
+                                                                                                                                publicationdateinput7.setError("Kindly select valid month,year");
+                                                                                                                            }
                                                                                                                         }
                                                                                                                     }
                                                                                                                 }
@@ -4161,166 +4182,166 @@ public class MyProfilePublications extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (publicationcount == 7) {
-            if (stitle1.length() < 2) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (spublication1.length() < 2) {
+            } else if (publicationcount == 7) {
+                if (stitle1.length() < 2) {
                     errorflag = 1;
-                    publicationinput1.setError("Kindly enter valid publication");
+                    titleinput1.setError("Kindly enter valid title");
                 } else {
                     errorflag = 0;
-                    if (sauthor1.length() < 2) {
+                    if (spublication1.length() < 2) {
                         errorflag = 1;
-                        authorsinput1.setError("Kindly enter valid author name");
+                        publicationinput1.setError("Kindly enter valid publication");
                     } else {
                         errorflag = 0;
-                        if (spublicationdate1.length() < 2) {
+                        if (sauthor1.length() < 2) {
                             errorflag = 1;
-                            publicationdateinput1.setError("Kindly select valid month,year");
+                            authorsinput1.setError("Kindly enter valid author name");
                         } else {
                             errorflag = 0;
-                            if (stitle2.length() < 2) {
-                                errorflag = 2;
-                                titleinput2.setError("Kindly enter valid title");
+                            if (spublicationdate1.length() < 2) {
+                                errorflag = 1;
+                                publicationdateinput1.setError("Kindly select valid month,year");
                             } else {
                                 errorflag = 0;
-                                if (spublication2.length() < 2) {
+                                if (stitle2.length() < 2) {
                                     errorflag = 2;
-                                    publicationinput2.setError("Kindly enter valid publication");
+                                    titleinput2.setError("Kindly enter valid title");
                                 } else {
                                     errorflag = 0;
-                                    if (sauthor2.length() < 2) {
+                                    if (spublication2.length() < 2) {
                                         errorflag = 2;
-                                        authorsinput2.setError("Kindly enter valid author name");
+                                        publicationinput2.setError("Kindly enter valid publication");
                                     } else {
                                         errorflag = 0;
-                                        if (spublicationdate2.length() < 2) {
+                                        if (sauthor2.length() < 2) {
                                             errorflag = 2;
-                                            publicationdateinput2.setError("Kindly select valid month,year");
+                                            authorsinput2.setError("Kindly enter valid author name");
                                         } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 2) {
-                                                errorflag = 3;
-                                                titleinput3.setError("Kindly enter valid title");
+                                            if (spublicationdate2.length() < 2) {
+                                                errorflag = 2;
+                                                publicationdateinput2.setError("Kindly select valid month,year");
                                             } else {
                                                 errorflag = 0;
-                                                if (spublication3.length() < 2) {
+                                                if (stitle3.length() < 2) {
                                                     errorflag = 3;
-                                                    publicationinput3.setError("Kindly enter valid publication");
+                                                    titleinput3.setError("Kindly enter valid title");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sauthor3.length() < 2) {
+                                                    if (spublication3.length() < 2) {
                                                         errorflag = 3;
-                                                        authorsinput3.setError("Kindly enter valid author name");
+                                                        publicationinput3.setError("Kindly enter valid publication");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (spublicationdate3.length() < 2) {
+                                                        if (sauthor3.length() < 2) {
                                                             errorflag = 3;
-                                                            publicationdateinput3.setError("Kindly select valid month,year");
+                                                            authorsinput3.setError("Kindly enter valid author name");
                                                         } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 2) {
-                                                                errorflag = 4;
-                                                                titleinput4.setError("Kindly enter valid title");
+                                                            if (spublicationdate3.length() < 2) {
+                                                                errorflag = 3;
+                                                                publicationdateinput3.setError("Kindly select valid month,year");
                                                             } else {
                                                                 errorflag = 0;
-                                                                if (spublication4.length() < 2) {
+                                                                if (stitle4.length() < 2) {
                                                                     errorflag = 4;
-                                                                    publicationinput4.setError("Kindly enter valid publication");
+                                                                    titleinput4.setError("Kindly enter valid title");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (sauthor4.length() < 2) {
+                                                                    if (spublication4.length() < 2) {
                                                                         errorflag = 4;
-                                                                        authorsinput4.setError("Kindly enter valid author name");
+                                                                        publicationinput4.setError("Kindly enter valid publication");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (spublicationdate4.length() < 2) {
+                                                                        if (sauthor4.length() < 2) {
                                                                             errorflag = 4;
-                                                                            publicationdateinput4.setError("Kindly select valid month,year");
+                                                                            authorsinput4.setError("Kindly enter valid author name");
                                                                         } else {
                                                                             errorflag = 0;
-                                                                            if (stitle5.length() < 2) {
-                                                                                errorflag = 5;
-                                                                                titleinput5.setError("Kindly enter valid title");
+                                                                            if (spublicationdate4.length() < 2) {
+                                                                                errorflag = 4;
+                                                                                publicationdateinput4.setError("Kindly select valid month,year");
                                                                             } else {
                                                                                 errorflag = 0;
-                                                                                if (spublication5.length() < 2) {
+                                                                                if (stitle5.length() < 2) {
                                                                                     errorflag = 5;
-                                                                                    publicationinput5.setError("Kindly enter valid publication");
+                                                                                    titleinput5.setError("Kindly enter valid title");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (sauthor5.length() < 2) {
+                                                                                    if (spublication5.length() < 2) {
                                                                                         errorflag = 5;
-                                                                                        authorsinput5.setError("Kindly enter valid author name");
+                                                                                        publicationinput5.setError("Kindly enter valid publication");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (spublicationdate5.length() < 2) {
+                                                                                        if (sauthor5.length() < 2) {
                                                                                             errorflag = 5;
-                                                                                            publicationdateinput5.setError("Kindly select valid month,year");
+                                                                                            authorsinput5.setError("Kindly enter valid author name");
                                                                                         } else {
                                                                                             errorflag = 0;
-                                                                                            if (stitle6.length() < 2) {
-                                                                                                errorflag = 6;
-                                                                                                titleinput6.setError("Kindly enter valid title");
+                                                                                            if (spublicationdate5.length() < 2) {
+                                                                                                errorflag = 5;
+                                                                                                publicationdateinput5.setError("Kindly select valid month,year");
                                                                                             } else {
                                                                                                 errorflag = 0;
-                                                                                                if (spublication6.length() < 2) {
+                                                                                                if (stitle6.length() < 2) {
                                                                                                     errorflag = 6;
-                                                                                                    publicationinput6.setError("Kindly enter valid publication");
+                                                                                                    titleinput6.setError("Kindly enter valid title");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sauthor6.length() < 2) {
+                                                                                                    if (spublication6.length() < 2) {
                                                                                                         errorflag = 6;
-                                                                                                        authorsinput6.setError("Kindly enter valid author name");
+                                                                                                        publicationinput6.setError("Kindly enter valid publication");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (spublicationdate6.length() < 2) {
+                                                                                                        if (sauthor6.length() < 2) {
                                                                                                             errorflag = 6;
-                                                                                                            publicationdateinput6.setError("Kindly select valid month,year");
+                                                                                                            authorsinput6.setError("Kindly enter valid author name");
                                                                                                         } else {
                                                                                                             errorflag = 0;
-                                                                                                            if (stitle7.length() < 2) {
-                                                                                                                errorflag = 7;
-                                                                                                                titleinput7.setError("Kindly enter valid title");
+                                                                                                            if (spublicationdate6.length() < 2) {
+                                                                                                                errorflag = 6;
+                                                                                                                publicationdateinput6.setError("Kindly select valid month,year");
                                                                                                             } else {
                                                                                                                 errorflag = 0;
-                                                                                                                if (spublication7.length() < 2) {
+                                                                                                                if (stitle7.length() < 2) {
                                                                                                                     errorflag = 7;
-                                                                                                                    publicationinput7.setError("Kindly enter valid publication");
+                                                                                                                    titleinput7.setError("Kindly enter valid title");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
-                                                                                                                    if (sauthor7.length() < 2) {
+                                                                                                                    if (spublication7.length() < 2) {
                                                                                                                         errorflag = 7;
-                                                                                                                        authorsinput7.setError("Kindly enter valid author name");
+                                                                                                                        publicationinput7.setError("Kindly enter valid publication");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
-                                                                                                                        if (spublicationdate7.length() < 2) {
+                                                                                                                        if (sauthor7.length() < 2) {
                                                                                                                             errorflag = 7;
-                                                                                                                            publicationdateinput7.setError("Kindly select valid month,year");
+                                                                                                                            authorsinput7.setError("Kindly enter valid author name");
                                                                                                                         } else {
                                                                                                                             errorflag = 0;
-                                                                                                                            if (stitle8.length() < 2) {
-                                                                                                                                errorflag = 8;
-                                                                                                                                titleinput8.setError("Kindly enter valid title");
+                                                                                                                            if (spublicationdate7.length() < 2) {
+                                                                                                                                errorflag = 7;
+                                                                                                                                publicationdateinput7.setError("Kindly select valid month,year");
                                                                                                                             } else {
                                                                                                                                 errorflag = 0;
-                                                                                                                                if (spublication8.length() < 2) {
+                                                                                                                                if (stitle8.length() < 2) {
                                                                                                                                     errorflag = 8;
-                                                                                                                                    publicationinput8.setError("Kindly enter valid publication");
+                                                                                                                                    titleinput8.setError("Kindly enter valid title");
                                                                                                                                 } else {
                                                                                                                                     errorflag = 0;
-                                                                                                                                    if (sauthor8.length() < 2) {
+                                                                                                                                    if (spublication8.length() < 2) {
                                                                                                                                         errorflag = 8;
-                                                                                                                                        authorsinput8.setError("Kindly enter valid author name");
+                                                                                                                                        publicationinput8.setError("Kindly enter valid publication");
                                                                                                                                     } else {
                                                                                                                                         errorflag = 0;
-                                                                                                                                        if (spublicationdate8.length() < 2) {
+                                                                                                                                        if (sauthor8.length() < 2) {
                                                                                                                                             errorflag = 8;
-                                                                                                                                            publicationdateinput8.setError("Kindly select valid month,year");
+                                                                                                                                            authorsinput8.setError("Kindly enter valid author name");
+                                                                                                                                        } else {
+                                                                                                                                            errorflag = 0;
+                                                                                                                                            if (spublicationdate8.length() < 2) {
+                                                                                                                                                errorflag = 8;
+                                                                                                                                                publicationdateinput8.setError("Kindly select valid month,year");
+                                                                                                                                            }
                                                                                                                                         }
                                                                                                                                     }
                                                                                                                                 }
@@ -4352,186 +4373,186 @@ public class MyProfilePublications extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (publicationcount == 8) {
-            if (stitle1.length() < 2) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (spublication1.length() < 2) {
+            } else if (publicationcount == 8) {
+                if (stitle1.length() < 2) {
                     errorflag = 1;
-                    publicationinput1.setError("Kindly enter valid publication");
+                    titleinput1.setError("Kindly enter valid title");
                 } else {
                     errorflag = 0;
-                    if (sauthor1.length() < 2) {
+                    if (spublication1.length() < 2) {
                         errorflag = 1;
-                        authorsinput1.setError("Kindly enter valid author name");
+                        publicationinput1.setError("Kindly enter valid publication");
                     } else {
                         errorflag = 0;
-                        if (spublicationdate1.length() < 2) {
+                        if (sauthor1.length() < 2) {
                             errorflag = 1;
-                            publicationdateinput1.setError("Kindly select valid month,year");
+                            authorsinput1.setError("Kindly enter valid author name");
                         } else {
                             errorflag = 0;
-                            if (stitle2.length() < 2) {
-                                errorflag = 2;
-                                titleinput2.setError("Kindly enter valid title");
+                            if (spublicationdate1.length() < 2) {
+                                errorflag = 1;
+                                publicationdateinput1.setError("Kindly select valid month,year");
                             } else {
                                 errorflag = 0;
-                                if (spublication2.length() < 2) {
+                                if (stitle2.length() < 2) {
                                     errorflag = 2;
-                                    publicationinput2.setError("Kindly enter valid publication");
+                                    titleinput2.setError("Kindly enter valid title");
                                 } else {
                                     errorflag = 0;
-                                    if (sauthor2.length() < 2) {
+                                    if (spublication2.length() < 2) {
                                         errorflag = 2;
-                                        authorsinput2.setError("Kindly enter valid author name");
+                                        publicationinput2.setError("Kindly enter valid publication");
                                     } else {
                                         errorflag = 0;
-                                        if (spublicationdate2.length() < 2) {
+                                        if (sauthor2.length() < 2) {
                                             errorflag = 2;
-                                            publicationdateinput2.setError("Kindly select valid month,year");
+                                            authorsinput2.setError("Kindly enter valid author name");
                                         } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 2) {
-                                                errorflag = 3;
-                                                titleinput3.setError("Kindly enter valid title");
+                                            if (spublicationdate2.length() < 2) {
+                                                errorflag = 2;
+                                                publicationdateinput2.setError("Kindly select valid month,year");
                                             } else {
                                                 errorflag = 0;
-                                                if (spublication3.length() < 2) {
+                                                if (stitle3.length() < 2) {
                                                     errorflag = 3;
-                                                    publicationinput3.setError("Kindly enter valid publication");
+                                                    titleinput3.setError("Kindly enter valid title");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sauthor3.length() < 2) {
+                                                    if (spublication3.length() < 2) {
                                                         errorflag = 3;
-                                                        authorsinput3.setError("Kindly enter valid author name");
+                                                        publicationinput3.setError("Kindly enter valid publication");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (spublicationdate3.length() < 2) {
+                                                        if (sauthor3.length() < 2) {
                                                             errorflag = 3;
-                                                            publicationdateinput3.setError("Kindly select valid month,year");
+                                                            authorsinput3.setError("Kindly enter valid author name");
                                                         } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 2) {
-                                                                errorflag = 4;
-                                                                titleinput4.setError("Kindly enter valid title");
+                                                            if (spublicationdate3.length() < 2) {
+                                                                errorflag = 3;
+                                                                publicationdateinput3.setError("Kindly select valid month,year");
                                                             } else {
                                                                 errorflag = 0;
-                                                                if (spublication4.length() < 2) {
+                                                                if (stitle4.length() < 2) {
                                                                     errorflag = 4;
-                                                                    publicationinput4.setError("Kindly enter valid publication");
+                                                                    titleinput4.setError("Kindly enter valid title");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (sauthor4.length() < 2) {
+                                                                    if (spublication4.length() < 2) {
                                                                         errorflag = 4;
-                                                                        authorsinput4.setError("Kindly enter valid author name");
+                                                                        publicationinput4.setError("Kindly enter valid publication");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (spublicationdate4.length() < 2) {
+                                                                        if (sauthor4.length() < 2) {
                                                                             errorflag = 4;
-                                                                            publicationdateinput4.setError("Kindly select valid month,year");
+                                                                            authorsinput4.setError("Kindly enter valid author name");
                                                                         } else {
                                                                             errorflag = 0;
-                                                                            if (stitle5.length() < 2) {
-                                                                                errorflag = 5;
-                                                                                titleinput5.setError("Kindly enter valid title");
+                                                                            if (spublicationdate4.length() < 2) {
+                                                                                errorflag = 4;
+                                                                                publicationdateinput4.setError("Kindly select valid month,year");
                                                                             } else {
                                                                                 errorflag = 0;
-                                                                                if (spublication5.length() < 2) {
+                                                                                if (stitle5.length() < 2) {
                                                                                     errorflag = 5;
-                                                                                    publicationinput5.setError("Kindly enter valid publication");
+                                                                                    titleinput5.setError("Kindly enter valid title");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (sauthor5.length() < 2) {
+                                                                                    if (spublication5.length() < 2) {
                                                                                         errorflag = 5;
-                                                                                        authorsinput5.setError("Kindly enter valid author name");
+                                                                                        publicationinput5.setError("Kindly enter valid publication");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (spublicationdate5.length() < 2) {
+                                                                                        if (sauthor5.length() < 2) {
                                                                                             errorflag = 5;
-                                                                                            publicationdateinput5.setError("Kindly select valid month,year");
+                                                                                            authorsinput5.setError("Kindly enter valid author name");
                                                                                         } else {
                                                                                             errorflag = 0;
-                                                                                            if (stitle6.length() < 2) {
-                                                                                                errorflag = 6;
-                                                                                                titleinput6.setError("Kindly enter valid title");
+                                                                                            if (spublicationdate5.length() < 2) {
+                                                                                                errorflag = 5;
+                                                                                                publicationdateinput5.setError("Kindly select valid month,year");
                                                                                             } else {
                                                                                                 errorflag = 0;
-                                                                                                if (spublication6.length() < 2) {
+                                                                                                if (stitle6.length() < 2) {
                                                                                                     errorflag = 6;
-                                                                                                    publicationinput6.setError("Kindly enter valid publication");
+                                                                                                    titleinput6.setError("Kindly enter valid title");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sauthor6.length() < 2) {
+                                                                                                    if (spublication6.length() < 2) {
                                                                                                         errorflag = 6;
-                                                                                                        authorsinput6.setError("Kindly enter valid author name");
+                                                                                                        publicationinput6.setError("Kindly enter valid publication");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (spublicationdate6.length() < 2) {
+                                                                                                        if (sauthor6.length() < 2) {
                                                                                                             errorflag = 6;
-                                                                                                            publicationdateinput6.setError("Kindly select valid month,year");
+                                                                                                            authorsinput6.setError("Kindly enter valid author name");
                                                                                                         } else {
                                                                                                             errorflag = 0;
-                                                                                                            if (stitle7.length() < 2) {
-                                                                                                                errorflag = 7;
-                                                                                                                titleinput7.setError("Kindly enter valid title");
+                                                                                                            if (spublicationdate6.length() < 2) {
+                                                                                                                errorflag = 6;
+                                                                                                                publicationdateinput6.setError("Kindly select valid month,year");
                                                                                                             } else {
                                                                                                                 errorflag = 0;
-                                                                                                                if (spublication7.length() < 2) {
+                                                                                                                if (stitle7.length() < 2) {
                                                                                                                     errorflag = 7;
-                                                                                                                    publicationinput7.setError("Kindly enter valid publication");
+                                                                                                                    titleinput7.setError("Kindly enter valid title");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
-                                                                                                                    if (sauthor7.length() < 2) {
+                                                                                                                    if (spublication7.length() < 2) {
                                                                                                                         errorflag = 7;
-                                                                                                                        authorsinput7.setError("Kindly enter valid author name");
+                                                                                                                        publicationinput7.setError("Kindly enter valid publication");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
-                                                                                                                        if (spublicationdate7.length() < 2) {
+                                                                                                                        if (sauthor7.length() < 2) {
                                                                                                                             errorflag = 7;
-                                                                                                                            publicationdateinput7.setError("Kindly select valid month,year");
+                                                                                                                            authorsinput7.setError("Kindly enter valid author name");
                                                                                                                         } else {
                                                                                                                             errorflag = 0;
-                                                                                                                            if (stitle8.length() < 2) {
-                                                                                                                                errorflag = 8;
-                                                                                                                                titleinput8.setError("Kindly enter valid title");
+                                                                                                                            if (spublicationdate7.length() < 2) {
+                                                                                                                                errorflag = 7;
+                                                                                                                                publicationdateinput7.setError("Kindly select valid month,year");
                                                                                                                             } else {
                                                                                                                                 errorflag = 0;
-                                                                                                                                if (spublication8.length() < 2) {
+                                                                                                                                if (stitle8.length() < 2) {
                                                                                                                                     errorflag = 8;
-                                                                                                                                    publicationinput8.setError("Kindly enter valid publication");
+                                                                                                                                    titleinput8.setError("Kindly enter valid title");
                                                                                                                                 } else {
                                                                                                                                     errorflag = 0;
-                                                                                                                                    if (sauthor8.length() < 2) {
+                                                                                                                                    if (spublication8.length() < 2) {
                                                                                                                                         errorflag = 8;
-                                                                                                                                        authorsinput8.setError("Kindly enter valid author name");
+                                                                                                                                        publicationinput8.setError("Kindly enter valid publication");
                                                                                                                                     } else {
                                                                                                                                         errorflag = 0;
-                                                                                                                                        if (spublicationdate8.length() < 2) {
+                                                                                                                                        if (sauthor8.length() < 2) {
                                                                                                                                             errorflag = 8;
-                                                                                                                                            publicationdateinput8.setError("Kindly select valid month,year");
+                                                                                                                                            authorsinput8.setError("Kindly enter valid author name");
                                                                                                                                         } else {
                                                                                                                                             errorflag = 0;
-                                                                                                                                            if (stitle9.length() < 2) {
-                                                                                                                                                errorflag = 9;
-                                                                                                                                                titleinput9.setError("Kindly enter valid title");
+                                                                                                                                            if (spublicationdate8.length() < 2) {
+                                                                                                                                                errorflag = 8;
+                                                                                                                                                publicationdateinput8.setError("Kindly select valid month,year");
                                                                                                                                             } else {
                                                                                                                                                 errorflag = 0;
-                                                                                                                                                if (spublication9.length() < 2) {
+                                                                                                                                                if (stitle9.length() < 2) {
                                                                                                                                                     errorflag = 9;
-                                                                                                                                                    publicationinput9.setError("Kindly enter valid publication");
+                                                                                                                                                    titleinput9.setError("Kindly enter valid title");
                                                                                                                                                 } else {
                                                                                                                                                     errorflag = 0;
-                                                                                                                                                    if (sauthor9.length() < 2) {
+                                                                                                                                                    if (spublication9.length() < 2) {
                                                                                                                                                         errorflag = 9;
-                                                                                                                                                        authorsinput9.setError("Kindly enter valid author name");
+                                                                                                                                                        publicationinput9.setError("Kindly enter valid publication");
                                                                                                                                                     } else {
                                                                                                                                                         errorflag = 0;
-                                                                                                                                                        if (spublicationdate9.length() < 2) {
+                                                                                                                                                        if (sauthor9.length() < 2) {
                                                                                                                                                             errorflag = 9;
-                                                                                                                                                            publicationdateinput9.setError("Kindly select valid month,year");
+                                                                                                                                                            authorsinput9.setError("Kindly enter valid author name");
+                                                                                                                                                        } else {
+                                                                                                                                                            errorflag = 0;
+                                                                                                                                                            if (spublicationdate9.length() < 2) {
+                                                                                                                                                                errorflag = 9;
+                                                                                                                                                                publicationdateinput9.setError("Kindly select valid month,year");
+                                                                                                                                                            }
                                                                                                                                                         }
                                                                                                                                                     }
                                                                                                                                                 }
@@ -4567,206 +4588,206 @@ public class MyProfilePublications extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (publicationcount == 9) {
-            if (stitle1.length() < 2) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (spublication1.length() < 2) {
+            } else if (publicationcount == 9) {
+                if (stitle1.length() < 2) {
                     errorflag = 1;
-                    publicationinput1.setError("Kindly enter valid publication");
+                    titleinput1.setError("Kindly enter valid title");
                 } else {
                     errorflag = 0;
-                    if (sauthor1.length() < 2) {
+                    if (spublication1.length() < 2) {
                         errorflag = 1;
-                        authorsinput1.setError("Kindly enter valid author name");
+                        publicationinput1.setError("Kindly enter valid publication");
                     } else {
                         errorflag = 0;
-                        if (spublicationdate1.length() < 2) {
+                        if (sauthor1.length() < 2) {
                             errorflag = 1;
-                            publicationdateinput1.setError("Kindly select valid month,year");
+                            authorsinput1.setError("Kindly enter valid author name");
                         } else {
                             errorflag = 0;
-                            if (stitle2.length() < 2) {
-                                errorflag = 2;
-                                titleinput2.setError("Kindly enter valid title");
+                            if (spublicationdate1.length() < 2) {
+                                errorflag = 1;
+                                publicationdateinput1.setError("Kindly select valid month,year");
                             } else {
                                 errorflag = 0;
-                                if (spublication2.length() < 2) {
+                                if (stitle2.length() < 2) {
                                     errorflag = 2;
-                                    publicationinput2.setError("Kindly enter valid publication");
+                                    titleinput2.setError("Kindly enter valid title");
                                 } else {
                                     errorflag = 0;
-                                    if (sauthor2.length() < 2) {
+                                    if (spublication2.length() < 2) {
                                         errorflag = 2;
-                                        authorsinput2.setError("Kindly enter valid author name");
+                                        publicationinput2.setError("Kindly enter valid publication");
                                     } else {
                                         errorflag = 0;
-                                        if (spublicationdate2.length() < 2) {
+                                        if (sauthor2.length() < 2) {
                                             errorflag = 2;
-                                            publicationdateinput2.setError("Kindly select valid month,year");
+                                            authorsinput2.setError("Kindly enter valid author name");
                                         } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 2) {
-                                                errorflag = 3;
-                                                titleinput3.setError("Kindly enter valid title");
+                                            if (spublicationdate2.length() < 2) {
+                                                errorflag = 2;
+                                                publicationdateinput2.setError("Kindly select valid month,year");
                                             } else {
                                                 errorflag = 0;
-                                                if (spublication3.length() < 2) {
+                                                if (stitle3.length() < 2) {
                                                     errorflag = 3;
-                                                    publicationinput3.setError("Kindly enter valid publication");
+                                                    titleinput3.setError("Kindly enter valid title");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sauthor3.length() < 2) {
+                                                    if (spublication3.length() < 2) {
                                                         errorflag = 3;
-                                                        authorsinput3.setError("Kindly enter valid author name");
+                                                        publicationinput3.setError("Kindly enter valid publication");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (spublicationdate3.length() < 2) {
+                                                        if (sauthor3.length() < 2) {
                                                             errorflag = 3;
-                                                            publicationdateinput3.setError("Kindly select valid month,year");
+                                                            authorsinput3.setError("Kindly enter valid author name");
                                                         } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 2) {
-                                                                errorflag = 4;
-                                                                titleinput4.setError("Kindly enter valid title");
+                                                            if (spublicationdate3.length() < 2) {
+                                                                errorflag = 3;
+                                                                publicationdateinput3.setError("Kindly select valid month,year");
                                                             } else {
                                                                 errorflag = 0;
-                                                                if (spublication4.length() < 2) {
+                                                                if (stitle4.length() < 2) {
                                                                     errorflag = 4;
-                                                                    publicationinput4.setError("Kindly enter valid publication");
+                                                                    titleinput4.setError("Kindly enter valid title");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (sauthor4.length() < 2) {
+                                                                    if (spublication4.length() < 2) {
                                                                         errorflag = 4;
-                                                                        authorsinput4.setError("Kindly enter valid author name");
+                                                                        publicationinput4.setError("Kindly enter valid publication");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (spublicationdate4.length() < 2) {
+                                                                        if (sauthor4.length() < 2) {
                                                                             errorflag = 4;
-                                                                            publicationdateinput4.setError("Kindly select valid month,year");
+                                                                            authorsinput4.setError("Kindly enter valid author name");
                                                                         } else {
                                                                             errorflag = 0;
-                                                                            if (stitle5.length() < 2) {
-                                                                                errorflag = 5;
-                                                                                titleinput5.setError("Kindly enter valid title");
+                                                                            if (spublicationdate4.length() < 2) {
+                                                                                errorflag = 4;
+                                                                                publicationdateinput4.setError("Kindly select valid month,year");
                                                                             } else {
                                                                                 errorflag = 0;
-                                                                                if (spublication5.length() < 2) {
+                                                                                if (stitle5.length() < 2) {
                                                                                     errorflag = 5;
-                                                                                    publicationinput5.setError("Kindly enter valid publication");
+                                                                                    titleinput5.setError("Kindly enter valid title");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (sauthor5.length() < 2) {
+                                                                                    if (spublication5.length() < 2) {
                                                                                         errorflag = 5;
-                                                                                        authorsinput5.setError("Kindly enter valid author name");
+                                                                                        publicationinput5.setError("Kindly enter valid publication");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (spublicationdate5.length() < 2) {
+                                                                                        if (sauthor5.length() < 2) {
                                                                                             errorflag = 5;
-                                                                                            publicationdateinput5.setError("Kindly select valid month,year");
+                                                                                            authorsinput5.setError("Kindly enter valid author name");
                                                                                         } else {
                                                                                             errorflag = 0;
-                                                                                            if (stitle6.length() < 2) {
-                                                                                                errorflag = 6;
-                                                                                                titleinput6.setError("Kindly enter valid title");
+                                                                                            if (spublicationdate5.length() < 2) {
+                                                                                                errorflag = 5;
+                                                                                                publicationdateinput5.setError("Kindly select valid month,year");
                                                                                             } else {
                                                                                                 errorflag = 0;
-                                                                                                if (spublication6.length() < 2) {
+                                                                                                if (stitle6.length() < 2) {
                                                                                                     errorflag = 6;
-                                                                                                    publicationinput6.setError("Kindly enter valid publication");
+                                                                                                    titleinput6.setError("Kindly enter valid title");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sauthor6.length() < 2) {
+                                                                                                    if (spublication6.length() < 2) {
                                                                                                         errorflag = 6;
-                                                                                                        authorsinput6.setError("Kindly enter valid author name");
+                                                                                                        publicationinput6.setError("Kindly enter valid publication");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (spublicationdate6.length() < 2) {
+                                                                                                        if (sauthor6.length() < 2) {
                                                                                                             errorflag = 6;
-                                                                                                            publicationdateinput6.setError("Kindly select valid month,year");
+                                                                                                            authorsinput6.setError("Kindly enter valid author name");
                                                                                                         } else {
                                                                                                             errorflag = 0;
-                                                                                                            if (stitle7.length() < 2) {
-                                                                                                                errorflag = 7;
-                                                                                                                titleinput7.setError("Kindly enter valid title");
+                                                                                                            if (spublicationdate6.length() < 2) {
+                                                                                                                errorflag = 6;
+                                                                                                                publicationdateinput6.setError("Kindly select valid month,year");
                                                                                                             } else {
                                                                                                                 errorflag = 0;
-                                                                                                                if (spublication7.length() < 2) {
+                                                                                                                if (stitle7.length() < 2) {
                                                                                                                     errorflag = 7;
-                                                                                                                    publicationinput7.setError("Kindly enter valid publication");
+                                                                                                                    titleinput7.setError("Kindly enter valid title");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
-                                                                                                                    if (sauthor7.length() < 2) {
+                                                                                                                    if (spublication7.length() < 2) {
                                                                                                                         errorflag = 7;
-                                                                                                                        authorsinput7.setError("Kindly enter valid author name");
+                                                                                                                        publicationinput7.setError("Kindly enter valid publication");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
-                                                                                                                        if (spublicationdate7.length() < 2) {
+                                                                                                                        if (sauthor7.length() < 2) {
                                                                                                                             errorflag = 7;
-                                                                                                                            publicationdateinput7.setError("Kindly select valid month,year");
+                                                                                                                            authorsinput7.setError("Kindly enter valid author name");
                                                                                                                         } else {
                                                                                                                             errorflag = 0;
-                                                                                                                            if (stitle8.length() < 2) {
-                                                                                                                                errorflag = 8;
-                                                                                                                                titleinput8.setError("Kindly enter valid title");
+                                                                                                                            if (spublicationdate7.length() < 2) {
+                                                                                                                                errorflag = 7;
+                                                                                                                                publicationdateinput7.setError("Kindly select valid month,year");
                                                                                                                             } else {
                                                                                                                                 errorflag = 0;
-                                                                                                                                if (spublication8.length() < 2) {
+                                                                                                                                if (stitle8.length() < 2) {
                                                                                                                                     errorflag = 8;
-                                                                                                                                    publicationinput8.setError("Kindly enter valid publication");
+                                                                                                                                    titleinput8.setError("Kindly enter valid title");
                                                                                                                                 } else {
                                                                                                                                     errorflag = 0;
-                                                                                                                                    if (sauthor8.length() < 2) {
+                                                                                                                                    if (spublication8.length() < 2) {
                                                                                                                                         errorflag = 8;
-                                                                                                                                        authorsinput8.setError("Kindly enter valid author name");
+                                                                                                                                        publicationinput8.setError("Kindly enter valid publication");
                                                                                                                                     } else {
                                                                                                                                         errorflag = 0;
-                                                                                                                                        if (spublicationdate8.length() < 2) {
+                                                                                                                                        if (sauthor8.length() < 2) {
                                                                                                                                             errorflag = 8;
-                                                                                                                                            publicationdateinput8.setError("Kindly select valid month,year");
+                                                                                                                                            authorsinput8.setError("Kindly enter valid author name");
                                                                                                                                         } else {
                                                                                                                                             errorflag = 0;
-                                                                                                                                            if (stitle9.length() < 2) {
-                                                                                                                                                errorflag = 9;
-                                                                                                                                                titleinput9.setError("Kindly enter valid title");
+                                                                                                                                            if (spublicationdate8.length() < 2) {
+                                                                                                                                                errorflag = 8;
+                                                                                                                                                publicationdateinput8.setError("Kindly select valid month,year");
                                                                                                                                             } else {
                                                                                                                                                 errorflag = 0;
-                                                                                                                                                if (spublication9.length() < 2) {
+                                                                                                                                                if (stitle9.length() < 2) {
                                                                                                                                                     errorflag = 9;
-                                                                                                                                                    publicationinput9.setError("Kindly enter valid publication");
+                                                                                                                                                    titleinput9.setError("Kindly enter valid title");
                                                                                                                                                 } else {
                                                                                                                                                     errorflag = 0;
-                                                                                                                                                    if (sauthor9.length() < 2) {
+                                                                                                                                                    if (spublication9.length() < 2) {
                                                                                                                                                         errorflag = 9;
-                                                                                                                                                        authorsinput9.setError("Kindly enter valid author name");
+                                                                                                                                                        publicationinput9.setError("Kindly enter valid publication");
                                                                                                                                                     } else {
                                                                                                                                                         errorflag = 0;
-                                                                                                                                                        if (spublicationdate9.length() < 2) {
+                                                                                                                                                        if (sauthor9.length() < 2) {
                                                                                                                                                             errorflag = 9;
-                                                                                                                                                            publicationdateinput9.setError("Kindly select valid month,year");
+                                                                                                                                                            authorsinput9.setError("Kindly enter valid author name");
                                                                                                                                                         } else {
                                                                                                                                                             errorflag = 0;
-                                                                                                                                                            if (stitle10.length() < 2) {
-                                                                                                                                                                errorflag = 10;
-                                                                                                                                                                titleinput10.setError("Kindly enter valid title");
+                                                                                                                                                            if (spublicationdate9.length() < 2) {
+                                                                                                                                                                errorflag = 9;
+                                                                                                                                                                publicationdateinput9.setError("Kindly select valid month,year");
                                                                                                                                                             } else {
                                                                                                                                                                 errorflag = 0;
-                                                                                                                                                                if (spublication10.length() < 2) {
+                                                                                                                                                                if (stitle10.length() < 2) {
                                                                                                                                                                     errorflag = 10;
-                                                                                                                                                                    publicationinput10.setError("Kindly enter valid publication");
+                                                                                                                                                                    titleinput10.setError("Kindly enter valid title");
                                                                                                                                                                 } else {
                                                                                                                                                                     errorflag = 0;
-                                                                                                                                                                    if (sauthor10.length() < 2) {
+                                                                                                                                                                    if (spublication10.length() < 2) {
                                                                                                                                                                         errorflag = 10;
-                                                                                                                                                                        authorsinput10.setError("Kindly enter valid author name");
+                                                                                                                                                                        publicationinput10.setError("Kindly enter valid publication");
                                                                                                                                                                     } else {
                                                                                                                                                                         errorflag = 0;
-                                                                                                                                                                        if (spublicationdate10.length() < 2) {
+                                                                                                                                                                        if (sauthor10.length() < 2) {
                                                                                                                                                                             errorflag = 10;
-                                                                                                                                                                            publicationdateinput10.setError("Kindly select valid month,year");
+                                                                                                                                                                            authorsinput10.setError("Kindly enter valid author name");
+                                                                                                                                                                        } else {
+                                                                                                                                                                            errorflag = 0;
+                                                                                                                                                                            if (spublicationdate10.length() < 2) {
+                                                                                                                                                                                errorflag = 10;
+                                                                                                                                                                                publicationdateinput10.setError("Kindly select valid month,year");
+                                                                                                                                                                            }
                                                                                                                                                                         }
                                                                                                                                                                     }
                                                                                                                                                                 }
@@ -4808,41 +4829,42 @@ public class MyProfilePublications extends AppCompatActivity {
                 }
             }
         }
-
         if (errorflag == 0) {
-            try {
-
-                Publications obj1 = new Publications(stitle1, spublication1, sauthor1, spublicationdate1, surl1, sdescription1);
-                Publications obj2 = new Publications(stitle2, spublication2, sauthor2, spublicationdate2, surl2, sdescription2);
-                Publications obj3 = new Publications(stitle3, spublication3, sauthor3, spublicationdate3, surl3, sdescription3);
-                Publications obj4 = new Publications(stitle4, spublication4, sauthor4, spublicationdate4, surl4, sdescription4);
-                Publications obj5 = new Publications(stitle5, spublication5, sauthor5, spublicationdate5, surl5, sdescription5);
-                Publications obj6 = new Publications(stitle6, spublication6, sauthor6, spublicationdate6, surl6, sdescription6);
-                Publications obj7 = new Publications(stitle7, spublication7, sauthor7, spublicationdate7, surl7, sdescription7);
-                Publications obj8 = new Publications(stitle8, spublication8, sauthor8, spublicationdate8, surl8, sdescription8);
-                Publications obj9 = new Publications(stitle9, spublication9, sauthor9, spublicationdate9, surl9, sdescription9);
-                Publications obj10 = new Publications(stitle10, spublication10, sauthor10, spublicationdate10, surl10, sdescription10);
-
-                publicationsList.add(obj1);
-                publicationsList.add(obj2);
-                publicationsList.add(obj3);
-                publicationsList.add(obj4);
-                publicationsList.add(obj5);
-                publicationsList.add(obj6);
-                publicationsList.add(obj7);
-                publicationsList.add(obj8);
-                publicationsList.add(obj9);
-                publicationsList.add(obj10);
-
-                String encObjString = OtoString(publicationsList, MySharedPreferencesManager.getDigest1(MyProfilePublications.this), MySharedPreferencesManager.getDigest2(MyProfilePublications.this));
-
-                new SavePublications().execute(encObjString);
-
-            } catch (Exception e) {
-                Toast.makeText(MyProfilePublications.this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
+            encpublic();
         }
 
+    }
+    public  void encpublic(){
+        try {
+            Publications obj1 = new Publications(stitle1, spublication1, sauthor1, spublicationdate1, surl1, sdescription1);
+            Publications obj2 = new Publications(stitle2, spublication2, sauthor2, spublicationdate2, surl2, sdescription2);
+            Publications obj3 = new Publications(stitle3, spublication3, sauthor3, spublicationdate3, surl3, sdescription3);
+            Publications obj4 = new Publications(stitle4, spublication4, sauthor4, spublicationdate4, surl4, sdescription4);
+            Publications obj5 = new Publications(stitle5, spublication5, sauthor5, spublicationdate5, surl5, sdescription5);
+            Publications obj6 = new Publications(stitle6, spublication6, sauthor6, spublicationdate6, surl6, sdescription6);
+            Publications obj7 = new Publications(stitle7, spublication7, sauthor7, spublicationdate7, surl7, sdescription7);
+            Publications obj8 = new Publications(stitle8, spublication8, sauthor8, spublicationdate8, surl8, sdescription8);
+            Publications obj9 = new Publications(stitle9, spublication9, sauthor9, spublicationdate9, surl9, sdescription9);
+            Publications obj10 = new Publications(stitle10, spublication10, sauthor10, spublicationdate10, surl10, sdescription10);
+
+            publicationsList.add(obj1);
+            publicationsList.add(obj2);
+            publicationsList.add(obj3);
+            publicationsList.add(obj4);
+            publicationsList.add(obj5);
+            publicationsList.add(obj6);
+            publicationsList.add(obj7);
+            publicationsList.add(obj8);
+            publicationsList.add(obj9);
+            publicationsList.add(obj10);
+
+            String encObjString = OtoString(publicationsList, MySharedPreferencesManager.getDigest1(MyProfilePublications.this), MySharedPreferencesManager.getDigest2(MyProfilePublications.this));
+
+            new SavePublications().execute(encObjString);
+
+        } catch (Exception e) {
+            Toast.makeText(MyProfilePublications.this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -4884,6 +4906,7 @@ public class MyProfilePublications extends AppCompatActivity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     MyProfilePublications.super.onBackPressed();
+                                    MyProfilePublications.super.onBackPressed();
                                 }
                             })
 
@@ -4899,8 +4922,11 @@ public class MyProfilePublications extends AppCompatActivity {
             alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialogInterface) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfilePublications.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfilePublications.this));
+
                 }
             });
 

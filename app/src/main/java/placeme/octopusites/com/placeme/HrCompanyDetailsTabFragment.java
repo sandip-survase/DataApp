@@ -5,6 +5,9 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -46,13 +49,14 @@ public class HrCompanyDetailsTabFragment extends Fragment {
     String CompanyType, encobj = "";
     String CompanyNamestr = "", CompanyEmailstr = "", CompanyWebstr = "", Companyphonestr = "", CompanyAltPhonestr = "", CompanyCIINstr = "", CompanyNaturestr = "", CompanyAddressLine1str = "", CompanyAddressLine2str = "", CompanyAddressLine3str = "";
     EditText CompanyName, CompanyEmail, CompanyWebsite, CompanyPhone, CompanyAlternatePhone, CompanyCIN, CompanyAddressLine1, CompanyAddressLine2, CompanyAddressLine3;
+    TextInputLayout instnameinput, addressline1input, addressline2input, addressline3input, instemailinput, instwebinput, instphoneinput, instphoneainput, instreginput;
     Spinner Company_Nature;
     String encComName, encUsername, encComMail, encComWeb, encComPhone, encComAlterPhone, encComCIIN, encComType, encComAddL1, encComAddL2, encComAddL3;
     String[] Nature = {"-Select Company Nature-", "Partnership", "Propietorship", "LLP (Limited Liability)", "Private Limited", "Public Limited", "Inc"};
     JSONParser jsonParser = new JSONParser();
     //    private static String url_savedata = "http://192.168.100.10/AESTest/SaveHrCompany";
     JSONObject json;
-
+    TextView loctxt;
     String userName;
     //    Button savepersonal;
     HrData h = new HrData();
@@ -76,7 +80,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
         digest2 = MySharedPreferencesManager.getDigest2(getActivity());
         userName = MySharedPreferencesManager.getUsername(getActivity());
         encUsername = userName;
-
+        loctxt=(TextView) rootView.findViewById(R.id.loctxt);
         CompanyName = (EditText) rootView.findViewById(R.id.instname);
         CompanyEmail = (EditText) rootView.findViewById(R.id.instemail);
         CompanyWebsite = (EditText) rootView.findViewById(R.id.instweb);
@@ -102,6 +106,43 @@ public class HrCompanyDetailsTabFragment extends Fragment {
 //        personalprogress = (ProgressBar)rootView.findViewById(R.id.personalprogress);
         Company_Nature = (Spinner) rootView.findViewById(R.id.board10);
 
+
+        instnameinput = (TextInputLayout) rootView.findViewById(R.id.instnameinput);
+        addressline1input = (TextInputLayout) rootView.findViewById(R.id.addressline1input);
+        addressline2input = (TextInputLayout) rootView.findViewById(R.id.addressline2input);
+        addressline3input = (TextInputLayout)rootView. findViewById(R.id.addressline3input);
+        instemailinput = (TextInputLayout) rootView.findViewById(R.id.instemailinput);
+        instwebinput = (TextInputLayout)rootView. findViewById(R.id.instwebinput);
+        instphoneinput = (TextInputLayout)rootView. findViewById(R.id.instphoneinput);
+        instphoneainput = (TextInputLayout)rootView. findViewById(R.id.instphoneainput);
+        instreginput = (TextInputLayout)rootView. findViewById(R.id.instreginput);
+
+        loctxt.setTypeface(MyConstants.getBold(getActivity()));
+        CompanyName.setTypeface(MyConstants.getBold(getActivity()));
+        CompanyEmail.setTypeface(MyConstants.getBold(getActivity()));
+        CompanyWebsite.setTypeface(MyConstants.getBold(getActivity()));
+        CompanyPhone.setTypeface(MyConstants.getBold(getActivity()));
+        CompanyAlternatePhone.setTypeface(MyConstants.getBold(getActivity()));
+        CompanyCIN.setTypeface(MyConstants.getBold(getActivity()));
+        CompanyAddressLine1.setTypeface(MyConstants.getBold(getActivity()));
+        CompanyAddressLine2.setTypeface(MyConstants.getBold(getActivity()));
+        CompanyAddressLine3.setTypeface(MyConstants.getBold(getActivity()));
+
+
+        instnameinput.setTypeface(MyConstants.getLight(getActivity()));
+        addressline1input.setTypeface(MyConstants.getLight(getActivity()));
+        addressline2input.setTypeface(MyConstants.getLight(getActivity()));
+        addressline3input.setTypeface(MyConstants.getLight(getActivity()));
+        instemailinput.setTypeface(MyConstants.getLight(getActivity()));
+        instwebinput.setTypeface(MyConstants.getLight(getActivity()));
+        instphoneinput.setTypeface(MyConstants.getLight(getActivity()));
+        instphoneainput.setTypeface(MyConstants.getLight(getActivity()));
+        instreginput.setTypeface(MyConstants.getLight(getActivity()));
+
+
+
+
+
         CompanyNamestr = h.getCompanyName();
         CompanyEmailstr = h.getCompanyEmail();
         CompanyWebstr = h.getCompanyWeb();
@@ -126,19 +167,28 @@ public class HrCompanyDetailsTabFragment extends Fragment {
                 }
             }
 
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view= super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTextColor(getResources().getColor(R.color.dark_color));
+                tv.setTypeface(MyConstants.getBold(getActivity()));
+                return view;
+            }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+                tv.setTypeface(MyConstants.getBold(getActivity()));
 
                 if (position == 0) {
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 } else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -229,7 +279,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                instnameinput.setError(null);
             }
 
             @Override
@@ -246,7 +296,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                addressline1input.setError(null);
             }
 
             @Override
@@ -263,7 +313,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                addressline2input.setError(null);
             }
 
             @Override
@@ -280,7 +330,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                addressline3input.setError(null);
             }
 
             @Override
@@ -297,7 +347,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                instemailinput.setError(null);
             }
 
             @Override
@@ -314,7 +364,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                instwebinput.setError(null);
             }
 
             @Override
@@ -322,6 +372,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
 
             }
         });
+
         CompanyPhone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -331,7 +382,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                instphoneinput.setError(null);
             }
 
             @Override
@@ -339,6 +390,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
 
             }
         });
+
         CompanyAlternatePhone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -348,7 +400,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                instphoneainput.setError(null);
             }
 
             @Override
@@ -356,6 +408,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
 
             }
         });
+
         CompanyCIN.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -365,7 +418,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                instreginput.setError(null);
             }
 
             @Override
@@ -373,16 +426,6 @@ public class HrCompanyDetailsTabFragment extends Fragment {
 
             }
         });
-
-
-//        savepersonal.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                savepersonal.setVisibility(View.GONE);
-//                personalprogress.setVisibility(View.VISIBLE);
-//                validateandSave();
-//            }
-//        });
 
         flag1 = 0;
         return rootView;
@@ -398,8 +441,6 @@ public class HrCompanyDetailsTabFragment extends Fragment {
 
     public boolean validate() {
         errorflag1 = 0;
-
-
         ComName = CompanyName.getText().toString();
         ComMail = CompanyEmail.getText().toString();
         ComWeb = CompanyWebsite.getText().toString();
@@ -412,34 +453,34 @@ public class HrCompanyDetailsTabFragment extends Fragment {
         ComAdd3 = CompanyAddressLine3.getText().toString();
 
         if (ComName.length() < 1) {
-            CompanyName.setError("Please Enter valid Company Name");
+            instnameinput.setError("Kindly enter valid Company Name");
             errorflag1 = 1;
         } else if (ComAdd1.length() < 1) {
-            CompanyAddressLine1.setError("Please Enter valid Address ");
+            addressline1input.setError("Kindly enter valid Address ");
             errorflag1 = 1;
         } else if (ComAdd2.length() < 1) {
-            CompanyAddressLine2.setError("Please Enter valid Address ");
+            addressline2input.setError("Kindly enter valid Address ");
             errorflag1 = 1;
         } else if (ComAdd3.length() < 1) {
-            CompanyAddressLine3.setError("Please Enter valid Address ");
+            addressline3input.setError("Kindly enter valid Address ");
             errorflag1 = 1;
         } else if (ComMail.length() < 1) {
-            CompanyEmail.setError("Please Enter valid EMail Id");
+            instemailinput.setError("Kindly enter valid EMail Id");
             errorflag1 = 1;
         } else if (!ComMail.contains("@")) {
-            CompanyEmail.setError("Please Enter valid EMail Id");
+            instemailinput.setError("Kindly enter EMail Id");
             errorflag1 = 1;
         } else if (ComWeb.length() < 1 || !ComWeb.contains(".")) {
-            CompanyWebsite.setError("Please Enter valid Company Website");
+            instwebinput.setError("Please Enter valid Company Website");
             errorflag1 = 1;
         } else if (ComPhone.length() < 7) {
-            CompanyPhone.setError("Please Enter valid Phone number");
+            instphoneinput.setError("Kindly enter valid Phone number");
             errorflag1 = 1;
         } else if (ComAlterPhone.length() < 7) {
-            CompanyAlternatePhone.setError("Please Enter valid Alternate Phone");
+            instphoneainput.setError("Kindly enter valid Alternate Phone");
             errorflag1 = 1;
         } else if (ComCIIN.length() < 3) {
-            CompanyCIN.setError("Please Enter valid Company CIIN");
+            instreginput.setError("Kindly enter valid Company CIIN");
             errorflag1 = 1;
         } else if (pos == 0) {
             Toast.makeText(getActivity(), "Select Valid Company Type ", Toast.LENGTH_SHORT).show();

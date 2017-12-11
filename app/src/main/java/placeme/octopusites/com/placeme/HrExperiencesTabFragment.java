@@ -54,7 +54,7 @@ import static placeme.octopusites.com.placeme.HrCompanyDetailsTabFragment.HRlog;
 public class HrExperiencesTabFragment extends Fragment {
 
 
-    int d = 0, expcount = 0;
+    int d = 0, expcount = 0,editexp=0;
     int edittedFlag = 0;
     View addmoreexp;
     ProgressBar   personalprogress1;
@@ -2296,7 +2296,7 @@ public class HrExperiencesTabFragment extends Fragment {
         addmoreexp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                editexp=0;
                 if (expcount == 0) {
 
                     if(post1.getText().toString()!=null && inst11.getText().toString()!=null && fromdate1.getText().toString()!=null )
@@ -3994,6 +3994,26 @@ public class HrExperiencesTabFragment extends Fragment {
             fromdate10.setText("");
             todate10.setText("");
             switch10.setChecked(false);
+
+            posts1= post1.getText().toString();
+            inst1s1= inst11.getText().toString();
+            fromdates1= fromdate1.getText().toString();
+            todates1=   todate1.getText().toString();
+
+
+
+            if(posts1.equals("") && inst1s1.equals("") && fromdates1.equals("") && todates1.equals("")){
+                Log.d("TAG", "deleteLang: strength1 1");
+                editexp =1;
+            }
+
+            if(editexp==1){
+                Log.d("TAG", "deleteLang: strength1 - "+editexp);
+                save();
+            }
+
+
+
             //set value 9
             // you are here........................................
         }
@@ -4402,164 +4422,168 @@ public class HrExperiencesTabFragment extends Fragment {
 
         //validate_1 function return true if all filed are OK fro 1 block
         boolean v0 = false, v1 = false, v2 = false, v3 = false, v4 = false, v5 = false, v6 = false, v7 = false, v8 = false, v9 = false;
+        if(editexp==1){
+            save();
+        }
+        else {
+            if (expcount == 0) {
+                v0 = validate_0();
+            } else if (expcount == 1) {
+                v0 = validate_0();
+                if (v0 == true) {
+                    validate_1();
+                }
+            } else if (expcount == 2) {
+                v0 = validate_0();
+                if (v0 == true) {
+                    v1 = validate_1();
+                }
+                if (v1 == true) {
+                    validate_2();
+                }
+            } else if (expcount == 3) {
+                v0 = validate_0();
+                if (v0 == true) {
+                    v1 = validate_1();
+                }
+                if (v1 == true) {
+                    v2 = validate_2();
+                }
+                if (v2 == true) {
+                    validate_3();
+                }
+            } else if (expcount == 4) {
+                v0 = validate_0();
+                if (v0 == true) {
+                    v1 = validate_1();
+                }
+                if (v1 == true) {
+                    v2 = validate_2();
+                }
+                if (v2 == true) {
+                    v3 = validate_3();
+                }
+                if (v3 == true) {
+                    v4 = validate_4();
+                }
 
-        if (expcount == 0) {
-            v0 = validate_0();
-        } else if (expcount == 1) {
-            v0 = validate_0();
-            if (v0 == true) {
-                validate_1();
-            }
-        } else if (expcount == 2) {
-            v0 = validate_0();
-            if (v0 == true) {
-                v1 = validate_1();
-            }
-            if (v1 == true) {
-                validate_2();
-            }
-        } else if (expcount == 3) {
-            v0 = validate_0();
-            if (v0 == true) {
-                v1 = validate_1();
-            }
-            if (v1 == true) {
-                v2 = validate_2();
-            }
-            if (v2 == true) {
-                validate_3();
-            }
-        } else if (expcount == 4) {
-            v0 = validate_0();
-            if (v0 == true) {
-                v1 = validate_1();
-            }
-            if (v1 == true) {
-                v2 = validate_2();
-            }
-            if (v2 == true) {
-                v3 = validate_3();
-            }
-            if (v3 == true) {
-                v4 = validate_4();
-            }
+            } else if (expcount == 5) {
 
-        } else if (expcount == 5) {
+                v0 = validate_0();
+                if (v0 == true) {
+                    v1 = validate_1();
+                }
+                if (v1 == true) {
+                    v2 = validate_2();
+                }
+                if (v2 == true) {
+                    v3 = validate_3();
+                }
+                if (v3 == true) {
+                    v4 = validate_4();
+                }
+                if (v4 == true) {
+                    v5 = validate_5();
+                }
+            } else if (expcount == 6) {
 
-            v0 = validate_0();
-            if (v0 == true) {
-                v1 = validate_1();
-            }
-            if (v1 == true) {
-                v2 = validate_2();
-            }
-            if (v2 == true) {
-                v3 = validate_3();
-            }
-            if (v3 == true) {
-                v4 = validate_4();
-            }
-            if (v4 == true) {
-                v5 = validate_5();
-            }
-        } else if (expcount == 6) {
-
-            v0 = validate_0();
-            if (v0 == true) {
-                v1 = validate_1();
-            }
-            if (v1 == true) {
-                v2 = validate_2();
-            }
-            if (v2 == true) {
-                v3 = validate_3();
-            }
-            if (v3 == true) {
-                v4 = validate_4();
-            }
-            if (v4 == true) {
-                v5 = validate_5();
-            }
-            if (v5 == true) {
-                v6 = validate_6();
-            }
-        } else if (expcount == 7) {
-            v0 = validate_0();
-            if (v0 == true) {
-                v1 = validate_1();
-            }
-            if (v1 == true) {
-                v2 = validate_2();
-            }
-            if (v2 == true) {
-                v3 = validate_3();
-            }
-            if (v3 == true) {
-                v4 = validate_4();
-            }
-            if (v4 == true) {
-                v5 = validate_5();
-            }
-            if (v5 == true) {
-                v6 = validate_6();
-            }
-            if (v6 == true) {
-                v7 = validate_7();
-            }
-        } else if (expcount == 8) {
-            v0 = validate_0();
-            if (v0 == true) {
-                v1 = validate_1();
-            }
-            if (v1 == true) {
-                v2 = validate_2();
-            }
-            if (v2 == true) {
-                v3 = validate_3();
-            }
-            if (v3 == true) {
-                v4 = validate_4();
-            }
-            if (v4 == true) {
-                v5 = validate_5();
-            }
-            if (v5 == true) {
-                v6 = validate_6();
-            }
-            if (v6 == true) {
-                v7 = validate_7();
-            }
-            if (v7 == true) {
-                v8 = validate_8();
-            }
-        } else if (expcount == 9) {
-            v0 = validate_0();
-            if (v0 == true) {
-                v1 = validate_1();
-            }
-            if (v1 == true) {
-                v2 = validate_2();
-            }
-            if (v2 == true) {
-                v3 = validate_3();
-            }
-            if (v3 == true) {
-                v4 = validate_4();
-            }
-            if (v4 == true) {
-                v5 = validate_5();
-            }
-            if (v5 == true) {
-                v6 = validate_6();
-            }
-            if (v6 == true) {
-                v7 = validate_7();
-            }
-            if (v7 == true) {
-                v8 = validate_8();
-            }
-            if (v8 == true) {
-                validate_9();
+                v0 = validate_0();
+                if (v0 == true) {
+                    v1 = validate_1();
+                }
+                if (v1 == true) {
+                    v2 = validate_2();
+                }
+                if (v2 == true) {
+                    v3 = validate_3();
+                }
+                if (v3 == true) {
+                    v4 = validate_4();
+                }
+                if (v4 == true) {
+                    v5 = validate_5();
+                }
+                if (v5 == true) {
+                    v6 = validate_6();
+                }
+            } else if (expcount == 7) {
+                v0 = validate_0();
+                if (v0 == true) {
+                    v1 = validate_1();
+                }
+                if (v1 == true) {
+                    v2 = validate_2();
+                }
+                if (v2 == true) {
+                    v3 = validate_3();
+                }
+                if (v3 == true) {
+                    v4 = validate_4();
+                }
+                if (v4 == true) {
+                    v5 = validate_5();
+                }
+                if (v5 == true) {
+                    v6 = validate_6();
+                }
+                if (v6 == true) {
+                    v7 = validate_7();
+                }
+            } else if (expcount == 8) {
+                v0 = validate_0();
+                if (v0 == true) {
+                    v1 = validate_1();
+                }
+                if (v1 == true) {
+                    v2 = validate_2();
+                }
+                if (v2 == true) {
+                    v3 = validate_3();
+                }
+                if (v3 == true) {
+                    v4 = validate_4();
+                }
+                if (v4 == true) {
+                    v5 = validate_5();
+                }
+                if (v5 == true) {
+                    v6 = validate_6();
+                }
+                if (v6 == true) {
+                    v7 = validate_7();
+                }
+                if (v7 == true) {
+                    v8 = validate_8();
+                }
+            } else if (expcount == 9) {
+                v0 = validate_0();
+                if (v0 == true) {
+                    v1 = validate_1();
+                }
+                if (v1 == true) {
+                    v2 = validate_2();
+                }
+                if (v2 == true) {
+                    v3 = validate_3();
+                }
+                if (v3 == true) {
+                    v4 = validate_4();
+                }
+                if (v4 == true) {
+                    v5 = validate_5();
+                }
+                if (v5 == true) {
+                    v6 = validate_6();
+                }
+                if (v6 == true) {
+                    v7 = validate_7();
+                }
+                if (v7 == true) {
+                    v8 = validate_8();
+                }
+                if (v8 == true) {
+                    validate_9();
+                }
             }
         }
         if (errorflag == 0) {
@@ -4591,7 +4615,7 @@ public class HrExperiencesTabFragment extends Fragment {
         protected void onPostExecute(String result) {
             if (result.equals("success")) {
 
-                Toast.makeText(getActivity(),"Successfully Saved !",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(),"Successfully Saved !",Toast.LENGTH_SHORT).show();
 
                 if (role.equals("alumni"))
                     getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);

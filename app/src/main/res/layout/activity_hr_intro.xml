@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/myprofileintroscrollview"
     android:background="@color/while_color">
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_my_profile_intro"
@@ -20,8 +21,6 @@
             android:id="@+id/section"
             android:layout_centerHorizontal="true"
             />
-
-
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"

@@ -55,7 +55,7 @@ import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 public class MyProfilePatents extends AppCompatActivity {
 
-    int patentcount = 0;
+    int patentcount = 0,editpatent= 0;
     View addmorepatent;
     EditText title1, appno1, inventor1, issue1, filing1, url1, description1, title2, appno2, inventor2, issue2, filing2, url2, description2, title3, appno3, inventor3, issue3, filing3, url3, description3, title4, appno4, inventor4, issue4, filing4, url4, description4, title5, appno5, inventor5, issue5, filing5, url5, description5, title6, appno6, inventor6, issue6, filing6, url6, description6, title7, appno7, inventor7, issue7, filing7, url7, description7, title8, appno8, inventor8, issue8, filing8, url8, description8, title9, appno9, inventor9, issue9, filing9, url9, description9, title10, appno10, inventor10, issue10, filing10, url10, description10;
     Spinner patoffice1, patoffice2, patoffice3, patoffice4, patoffice5, patoffice6, patoffice7, patoffice8, patoffice9, patoffice10;
@@ -2123,7 +2123,7 @@ public class MyProfilePatents extends AppCompatActivity {
         addmorepatent.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                editpatent=1;
                 if (patentcount == 0) {
                     if (title1.getText().toString() != null && appno1.getText().toString() != null && inventor1.getText().toString() != null && (issue1.getText().toString() != null || filing1.getText().toString() != null)) {
                         if (!title1.getText().toString().equals("") && !appno1.getText().toString().equals("") && !inventor1.getText().toString().equals("") && (!issue1.getText().toString().equals("") || !filing1.getText().toString().equals("")) && !patoffice1.getSelectedItem().toString().equals("- Select Patent Office -")) {
@@ -4784,6 +4784,25 @@ public class MyProfilePatents extends AppCompatActivity {
             radioButtonPending10.setChecked(false);
 
 
+            stitle9 = stitle10;
+            sappno9 = sappno10;
+            selectedCountry9 = selectedCountry10;
+            sinventor9 = sinventor10;
+            sissue9 = sissue10;
+            sfiling9 = sfiling10;
+            surl9 = surl10;
+            sdescription9 = sdescription10;
+
+
+            if(stitle1.equals("") && sappno1.equals("") && sinventor1.equals("") && sissue1.equals("") && sfiling1.equals("")){
+                Log.d("TAG", "deleteLang: lang 1");
+                editpatent =1;
+            }
+
+            if(editpatent==1){
+                Log.d("TAG", "deleteLang: editcertfi - "+editpatent);
+                encpatent();
+            }
         }
     }
 
@@ -5144,6 +5163,11 @@ public class MyProfilePatents extends AppCompatActivity {
         String sPadding = "ISO10126Padding";
 
         int errorflag = 0;
+
+        if(editpatent==1){
+            encpatent();
+        }
+        else {
         if (patentcount == 0) {
             if (stitle1.length() < 2) {
                 errorflag = 1;
@@ -6931,52 +6955,49 @@ public class MyProfilePatents extends AppCompatActivity {
                     }
                 }
             }
-
         }
-
-        if(appnoinput2.getError()!=null)
-            if(appnoinput2.getError().equals("Kindly enter valid application number")){
-
-            }
-
-
-
-
+        }
         if (errorflag == 0) {
-            try {
-
-                Patents obj1 = new Patents(stitle1, sappno1, selectedCountry1, sinventor1, issuedorpending1, sissue1, sfiling1, surl1, sdescription1);
-                Patents obj2 = new Patents(stitle2, sappno2, selectedCountry2, sinventor2, issuedorpending2, sissue2, sfiling2, surl2, sdescription2);
-                Patents obj3 = new Patents(stitle3, sappno3, selectedCountry3, sinventor3, issuedorpending3, sissue3, sfiling3, surl3, sdescription3);
-                Patents obj4 = new Patents(stitle4, sappno4, selectedCountry4, sinventor4, issuedorpending4, sissue4, sfiling4, surl4, sdescription4);
-                Patents obj5 = new Patents(stitle5, sappno5, selectedCountry5, sinventor5, issuedorpending5, sissue5, sfiling5, surl5, sdescription5);
-                Patents obj6 = new Patents(stitle6, sappno6, selectedCountry6, sinventor6, issuedorpending6, sissue6, sfiling6, surl6, sdescription6);
-                Patents obj7 = new Patents(stitle7, sappno7, selectedCountry7, sinventor7, issuedorpending7, sissue7, sfiling7, surl7, sdescription7);
-                Patents obj8 = new Patents(stitle8, sappno8, selectedCountry8, sinventor8, issuedorpending8, sissue8, sfiling8, surl8, sdescription8);
-                Patents obj9 = new Patents(stitle9, sappno9, selectedCountry9, sinventor9, issuedorpending9, sissue9, sfiling9, surl9, sdescription9);
-                Patents obj10 = new Patents(stitle10, sappno10, selectedCountry10, sinventor10, issuedorpending10, sissue10, sfiling10, surl10, sdescription10);
-
-                patentsList.add(obj1);
-                patentsList.add(obj2);
-                patentsList.add(obj3);
-                patentsList.add(obj4);
-                patentsList.add(obj5);
-                patentsList.add(obj6);
-                patentsList.add(obj7);
-                patentsList.add(obj8);
-                patentsList.add(obj9);
-                patentsList.add(obj10);
-
-                String encObjString = OtoString(patentsList, MySharedPreferencesManager.getDigest1(MyProfilePatents.this), MySharedPreferencesManager.getDigest2(MyProfilePatents.this));
-
-                new SavePatents().execute(encObjString);
-
-
-            } catch (Exception e) {
-                Toast.makeText(MyProfilePatents.this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
+            encpatent();
         }
 
+    }
+
+    public void encpatent()
+    {
+
+        try {
+
+            Patents obj1 = new Patents(stitle1, sappno1, selectedCountry1, sinventor1, issuedorpending1, sissue1, sfiling1, surl1, sdescription1);
+            Patents obj2 = new Patents(stitle2, sappno2, selectedCountry2, sinventor2, issuedorpending2, sissue2, sfiling2, surl2, sdescription2);
+            Patents obj3 = new Patents(stitle3, sappno3, selectedCountry3, sinventor3, issuedorpending3, sissue3, sfiling3, surl3, sdescription3);
+            Patents obj4 = new Patents(stitle4, sappno4, selectedCountry4, sinventor4, issuedorpending4, sissue4, sfiling4, surl4, sdescription4);
+            Patents obj5 = new Patents(stitle5, sappno5, selectedCountry5, sinventor5, issuedorpending5, sissue5, sfiling5, surl5, sdescription5);
+            Patents obj6 = new Patents(stitle6, sappno6, selectedCountry6, sinventor6, issuedorpending6, sissue6, sfiling6, surl6, sdescription6);
+            Patents obj7 = new Patents(stitle7, sappno7, selectedCountry7, sinventor7, issuedorpending7, sissue7, sfiling7, surl7, sdescription7);
+            Patents obj8 = new Patents(stitle8, sappno8, selectedCountry8, sinventor8, issuedorpending8, sissue8, sfiling8, surl8, sdescription8);
+            Patents obj9 = new Patents(stitle9, sappno9, selectedCountry9, sinventor9, issuedorpending9, sissue9, sfiling9, surl9, sdescription9);
+            Patents obj10 = new Patents(stitle10, sappno10, selectedCountry10, sinventor10, issuedorpending10, sissue10, sfiling10, surl10, sdescription10);
+
+            patentsList.add(obj1);
+            patentsList.add(obj2);
+            patentsList.add(obj3);
+            patentsList.add(obj4);
+            patentsList.add(obj5);
+            patentsList.add(obj6);
+            patentsList.add(obj7);
+            patentsList.add(obj8);
+            patentsList.add(obj9);
+            patentsList.add(obj10);
+
+            String encObjString = OtoString(patentsList, MySharedPreferencesManager.getDigest1(MyProfilePatents.this), MySharedPreferencesManager.getDigest2(MyProfilePatents.this));
+
+            new SavePatents().execute(encObjString);
+
+
+        } catch (Exception e) {
+            Toast.makeText(MyProfilePatents.this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -7034,8 +7055,11 @@ public class MyProfilePatents extends AppCompatActivity {
             alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialogInterface) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfilePatents.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfilePatents.this));
+
                 }
             });
 
