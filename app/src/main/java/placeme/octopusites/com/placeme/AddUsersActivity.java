@@ -660,16 +660,11 @@ public class AddUsersActivity extends AppCompatActivity {
             super.onProgressUpdate(progress);
             Log.d("LAst","progressOnUpdate1:"+data_for_progressbar+"");
 //
-
             prg1.setProgress(data_for_progressbar);
-
-
         }
 
     }
     class CreateUser extends AsyncTask<String, String, String> {
-
-
         protected String doInBackground(String... param) {
 
             String r = null;

@@ -147,6 +147,13 @@
         <item>Zulu</item>
     </string-array>
 
+    <string-array name="spinner_list_item_array">
+        <item>All users</item>
+        <item>Student</item>
+        <item>Alumni</item>
+        <item>Placed</item>
+        <item>Debar</item>
+    </string-array>
 
 
 </resources>
