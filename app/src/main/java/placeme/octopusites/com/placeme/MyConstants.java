@@ -23,8 +23,9 @@ public class MyConstants {
 
     //-----------------------------------   AESTest   ---------------------------------
 
-    public static final String url_Welcome = "http://192.168.100.100:8080/AESTest/Welcome";
-    public static final String url_login = "http://192.168.100.100:8080/AESTest/Auth";           // changed to AEStest.auth
+    public static final String url_Welcome = "http://192.168.100.100/AESTest/Welcome";
+    public static final String url_login = "http://192.168.100.100/AESTest/Auth";
+    // changed to AEStest.auth
 //    public static final String url_savesessiondetails = "http://192.168.100.100/PlaceMe/SaveSessionDetails";
 
 //    -----------------------------------ProfileObjects---------------------------------------------------------------------
@@ -34,7 +35,9 @@ public class MyConstants {
 
     public static final String load_HR_data = "http://192.168.100.100/ProfileObjects/GetHrData";
     public static String url_load_alumni_data = "http://192.168.100.100/ProfileObjects/GetAlumniData";
+
     public static final String load_student_data = "http://192.168.100.100/ProfileObjects/GetStudentData";
+
     public static final String load_Admin_data = "http://192.168.100.100/ProfileObjects/GetAdminData";
 
 //    --------------------------------------Intro-------------------------------------

@@ -463,22 +463,11 @@ public class HrContactTabFragment extends Fragment {
                                     errorflag = 1;
                                     addressline3input.setError("Kindly enter valid address");
                                 } else {
-                                    if (hrphone.length() < 6) {
-                                        phoneinput.setError("Kindly enter valid phone number");
-                                        errorflag = 1;
-                                    } else {
                                         if (hrmobile.length() < 10 || hrmobile.length() > 10) {
                                             errorflag = 1;
                                             mobileinput.setError("Kindly enter valid 10-digit mobile number");
-                                        } else {
-                                            if (hrmobile2.length() < 10 || hrmobile2.length() > 10) {
-                                                mobile2input.setError("Kindly enter valid 10-digit mobile number");
-                                                errorflag = 1;
-                                            }
                                         }
                                     }
-
-                                }
                             }
                         }
                     }

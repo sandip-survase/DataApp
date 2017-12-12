@@ -87,6 +87,7 @@ public class HrCompanyDetails extends AppCompatActivity {
         CompanyAddressLine2 = (EditText) findViewById(R.id.compaddressline2);
         CompanyAddressLine3 = (EditText) findViewById(R.id.compaddressline3);
         loctxt=(TextView) findViewById(R.id.loctxt);
+
         Company_Nature = (Spinner) findViewById(R.id.board10);
 
         instnameinput = (TextInputLayout) findViewById(R.id.instnameinput);
@@ -128,6 +129,7 @@ public class HrCompanyDetails extends AppCompatActivity {
         CompanyAltPhonestr = h.getCompanyAltPhone();
         CompanyCIINstr = h.getCompanyCIIN();
         CompanyNaturestr = h.getCompanyNature();
+
         CompanyAddressLine1str = h.getCompanyaddl1();
         CompanyAddressLine2str = h.getCompanyaddl2();
         CompanyAddressLine3str = h.getCompanyaddl3();
@@ -510,8 +512,8 @@ public class HrCompanyDetails extends AppCompatActivity {
         setResult(Activity.RESULT_CANCELED, returnIntent);
         Toast.makeText(this, "result set cancel", Toast.LENGTH_SHORT).show();
 
-
-        if (flag1 == 1 || !CompanyNaturestr.equals(CompanyType)) {
+//|| !CompanyNaturestr.equals(CompanyType)
+        if (flag1 == 1 ) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
             alertDialogBuilder

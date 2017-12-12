@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -33,14 +34,14 @@ public class AdminInstituteTabFragment extends Fragment {
 //    Button save;
 //    ProgressBar saveprogress;
     public static final String Username = "nameKey";
-    EditText iname, iemail, iweb, iphone, ialtphone, uniname, ireg;
-    String instname = "", instemail = "", instweb = "", instphone = "", instaltrphone = "", universityname = "", instreg = "", strobj = "";
-    TextInputLayout instnameinput,instemailinput,instwebinput,instphoneinput,instphoneainput,instuniversityinput,instreginput;
+    EditText iname, iemail, iweb, iphone, ialtphone, uniname,caddrline1, caddrline2, caddrline3, ireg;
+    String instname = "", instemail = "", instweb = "", instphone = "", instaltrphone = "", universityname = "", instreg = "", strobj = "", instcaddrline1 = "", instcaddrline2 = "", instcaddrline3 = "";
+    TextInputLayout instnameinput,instemailinput,instwebinput,instphoneinput,instphoneainput,instuniversityinput,caddrline1input, caddrline2input, caddrline3input,instreginput;
     String encUsername, enciname, encinstemail, encinstweb, encinstphone, encinstaltrphone, encuniversityname, encCinstreg;
     int errorflag1 = 0, errorflag2 = 0, errorflag3 = 0, errorflag4 = 0, errorflag5 = 0, errorflag6 = 0, errorflag7 = 0;
     String digest1, digest2;
     int edittedFlag = 0;
-
+    TextView loctxt;
     String username = "", resultofop;
     JSONObject json;
     JSONParser jParser = new JSONParser();
@@ -68,6 +69,10 @@ public class AdminInstituteTabFragment extends Fragment {
         instuniversityinput=(TextInputLayout)rootView.findViewById(R.id.instuniversityinput);
         instreginput=(TextInputLayout)rootView.findViewById(R.id.instreginput);
 
+        caddrline1input = (TextInputLayout)rootView. findViewById(R.id.caddrline1input);
+        caddrline2input = (TextInputLayout)rootView. findViewById(R.id.caddrline2input);
+        caddrline3input = (TextInputLayout)rootView.findViewById(R.id.caddrline3input);
+
         instnameinput.setTypeface(MyConstants.getLight(getActivity()));
         instemailinput.setTypeface(MyConstants.getLight(getActivity()));
         instwebinput.setTypeface(MyConstants.getLight(getActivity()));
@@ -75,6 +80,10 @@ public class AdminInstituteTabFragment extends Fragment {
         instphoneainput.setTypeface(MyConstants.getLight(getActivity()));
         instuniversityinput.setTypeface(MyConstants.getLight(getActivity()));
         instreginput.setTypeface(MyConstants.getLight(getActivity()));
+        caddrline1input.setTypeface(MyConstants.getLight(getActivity()));
+        caddrline2input.setTypeface(MyConstants.getLight(getActivity()));
+        caddrline3input.setTypeface(MyConstants.getLight(getActivity()));
+
 
         iname = (EditText) rootView.findViewById(R.id.instname);
         iemail = (EditText) rootView.findViewById(R.id.instemail);
@@ -83,6 +92,11 @@ public class AdminInstituteTabFragment extends Fragment {
         ialtphone = (EditText) rootView.findViewById(R.id.instphonea);
         uniname = (EditText) rootView.findViewById(R.id.instuniversity);
         ireg = (EditText) rootView.findViewById(R.id.instreg);
+        loctxt = (TextView)rootView.findViewById(R.id.loctxt);
+
+        caddrline1 = (EditText)rootView. findViewById(R.id.caddrline1);
+        caddrline2 = (EditText)rootView. findViewById(R.id.caddrline2);
+        caddrline3 = (EditText)rootView. findViewById(R.id.caddrline3);
 
         iname.setTypeface(MyConstants.getBold(getActivity()));
         iemail.setTypeface(MyConstants.getBold(getActivity()));
@@ -91,6 +105,12 @@ public class AdminInstituteTabFragment extends Fragment {
         ialtphone.setTypeface(MyConstants.getBold(getActivity()));
         uniname.setTypeface(MyConstants.getBold(getActivity()));
         ireg.setTypeface(MyConstants.getBold(getActivity()));
+        loctxt.setTypeface(MyConstants.getBold(getActivity()));
+
+        caddrline1.setTypeface(MyConstants.getBold(getActivity()));
+        caddrline2.setTypeface(MyConstants.getBold(getActivity()));
+        caddrline3.setTypeface(MyConstants.getBold(getActivity()));
+        loctxt.setTypeface(MyConstants.getBold(getActivity()));
 
 //        save=(Button)rootView.findViewById(R.id.savepersonal);
 //        saveprogress=(ProgressBar) rootView.findViewById(R.id.personalprogress);
@@ -103,6 +123,10 @@ public class AdminInstituteTabFragment extends Fragment {
         instaltrphone = a.getInstaltrphone();
         universityname = a.getUnivname();
         instreg = a.getInstregno();
+
+        instcaddrline1 = a.getInstcaddrline1();
+        instcaddrline2 = a.getInstcaddrline2();
+        instcaddrline3 = a.getInstcaddrline3();
 
         if (instname != null)
             iname.setText(instname);
@@ -118,6 +142,18 @@ public class AdminInstituteTabFragment extends Fragment {
             uniname.setText(universityname);
         if (instreg != null)
             ireg.setText(instreg);
+
+
+        if (instcaddrline1 != null)
+            caddrline1.setText(instcaddrline1);
+
+        if (instcaddrline2 != null)
+            caddrline2.setText(instcaddrline2);
+
+        if (instcaddrline3 != null)
+            caddrline3.setText(instcaddrline3);
+
+
         iname.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -239,6 +275,60 @@ public class AdminInstituteTabFragment extends Fragment {
             }
         });
 
+        caddrline1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                edittedFlag = 1;
+                caddrline1input.setError(null);
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        caddrline2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                edittedFlag = 1;
+                caddrline2input.setError(null);
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        caddrline3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                edittedFlag = 1;
+                caddrline3input.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
         return rootView;
     }
 
@@ -260,6 +350,10 @@ public class AdminInstituteTabFragment extends Fragment {
         universityname = uniname.getText().toString();
         instreg = ireg.getText().toString();
 
+        instcaddrline1 = caddrline1.getText().toString();
+        instcaddrline2 = caddrline2.getText().toString();
+        instcaddrline3 = caddrline3.getText().toString();
+
         if (instname.length() < 2) {
 
             instnameinput.setError("Kindly enter valid institute name");
@@ -268,42 +362,49 @@ public class AdminInstituteTabFragment extends Fragment {
         } else {
                instnameinput.setError(null);
             if (!instemail.contains("@") || (!instemail.contains(".edu"))) {
-                instemailinput.setError("Kindly enter valid email address");
+                instemailinput.setError("Kindly enter valid email address (must contain .edu)");
                 errorflag1 = 1;
             } else {
                 instemailinput.setError(null);
-                if (instweb.length() < 3 && !instweb.contains(".")) {
+                if (instweb.length() < 3 || !instweb.contains(".")) {
                     instwebinput.setError("Kindly enter valid website URL");
                     errorflag2 = 1;
                 } else {
                     instwebinput.setError(null);
-                    if (instphone.length() < 6) {
+                    if (instphone.length() < 10) {
                         instphoneinput.setError("Kindly enter valid phone number ");
                         errorflag3 = 1;
                     } else {
                         instphoneinput.setError(null);
-                        if (instaltrphone.length() < 6) {
-                            instphoneainput.setError("Kindly enter valid phone number");
-                            errorflag4 = 1;
+
+                        if (universityname.length() < 2) {
+                            instuniversityinput.setError("Kindly enter valid university name");
+                            errorflag5 = 1;
                         } else {
-                            instphoneainput.setError(null);
-                            if (universityname.length() < 2) {
-                                instuniversityinput.setError("Kindly enter valid university name");
-                                errorflag5 = 1;
+                            instuniversityinput.setError(null);
+                            if (instreg.length() < 2) {
+                                instreginput.setError("Kindly enter valid registration number");
+                                errorflag6 = 1;
                             } else {
-                                instuniversityinput.setError(null);
-                                if (instreg.length() < 2) {
-                                    instreginput.setError("Kindly enter valid registration number");
+                                instreginput.setError(null);
+                                if (instcaddrline1.length() < 2) {
+                                    caddrline1input.setError("Kindly enter valid address");
                                     errorflag6 = 1;
+                                } else {
+                                    if (instcaddrline2.length() < 2) {
+                                        caddrline2input.setError("Kindly enter valid address");
+                                        errorflag6 = 1;
+                                    } else {
+                                        if (instcaddrline3.length() < 2) {
+                                            caddrline3input.setError("Kindly enter valid address");
+                                            errorflag6 = 1;
+                                        }
+                                    }
                                 }
-                                else
-                                    instreginput.setError(null);
-
                             }
+
                         }
-
                     }
-
 
                 }
             }
@@ -319,9 +420,7 @@ public class AdminInstituteTabFragment extends Fragment {
         if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag5 == 0 && errorflag6 == 0 && errorflag7 == 0) {
             try {
 
-                AdminInstituteModal obj = new AdminInstituteModal(instname, instemail, instweb, instphone, instaltrphone, universityname, instreg);
-//
-
+                AdminInstituteModal obj = new AdminInstituteModal(instname, instemail, instweb, instphone, instaltrphone, universityname,instreg,instcaddrline1,instcaddrline2,instcaddrline3);
                 digest1 = MySharedPreferencesManager.getDigest1(getActivity());
                 digest2 = MySharedPreferencesManager.getDigest2(getActivity());
 
@@ -405,7 +504,7 @@ public class AdminInstituteTabFragment extends Fragment {
             if (result.equals("success")) {
 //                save.setVisibility(View.VISIBLE);
 //                saveprogress.setVisibility(View.GONE);
-                Toast.makeText(getActivity(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                 if (edittedFlag == 1) {
                     getActivity().setResult(111);
 
