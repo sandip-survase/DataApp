@@ -35,7 +35,7 @@ import placeme.octopusites.com.placeme.modal.MyProfileLocationModal;
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 public class MyProfileLocationPreferences extends AppCompatActivity {
-    int locationcount = 0;
+    int locationcount = 0,editlocation=0;
     View addmorelocation;
     String username, role;
     String digest1, digest2;
@@ -238,7 +238,7 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
         addmorelocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                editlocation=0;
                 if (locationcount == 0) {
                     if (location1.getText().toString() != null) {
                         if (!location1.getText().toString().equals("")) {
@@ -373,7 +373,6 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
             }
         }
 
-
         edittedFlag = 0;
     }
 
@@ -382,7 +381,7 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
         alertDialogBuilder
-                .setMessage("Do you want to delete this patent ?")
+                .setMessage("Do you want to delete this location ?")
                 .setCancelable(false)
                 .setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
@@ -404,8 +403,11 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialogInterface) {
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileLocationPreferences.this));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileLocationPreferences.this));
+
             }
         });
 
@@ -529,6 +531,18 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
             slocation4 = slocation5;
             location4.setText(slocation4);
             location5.setText("");
+
+            slocation1 = location1.getText().toString();
+
+            if(slocation1.equals("")){
+                Log.d("TAG", "deleteLang: strength1 1");
+                editlocation=1;
+            }
+
+            if(editlocation==1){
+                Log.d("TAG", "deleteLang: strength1 - "+editlocation);
+                enclocation();
+            }
         }
     }
 
@@ -552,86 +566,91 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
 
         int errorflag = 0;
 
-        if (locationcount == 0) {
-            if (slocation1.length() < 2) {
-                errorflag = 1;
-                locationinput1.setError("Kindly enter valid location.");
-            }
-        } else if (locationcount == 1) {
-            if (slocation1.length() < 2) {
-                errorflag = 1;
-                locationinput1.setError("Kindly enter valid location.");
-            } else {
-                errorflag = 0;
-                if (slocation2.length() < 2) {
+        if(editlocation==1){
+            enclocation();
+        }
+        else {
+            if (locationcount == 0) {
+                if (slocation1.length() < 2) {
                     errorflag = 1;
-                    locationinput2.setError("Kindly enter valid location.");
+                    locationinput1.setError("Kindly enter valid location.");
                 }
-            }
-        } else if (locationcount == 2) {
-            if (slocation1.length() < 2) {
-                errorflag = 1;
-                locationinput1.setError("Kindly enter valid location.");
-            } else {
-                errorflag = 0;
-                if (slocation2.length() < 2) {
+            } else if (locationcount == 1) {
+                if (slocation1.length() < 2) {
                     errorflag = 1;
-                    locationinput2.setError("Kindly enter valid location.");
+                    locationinput1.setError("Kindly enter valid location.");
                 } else {
                     errorflag = 0;
-                    if (slocation3.length() < 2) {
+                    if (slocation2.length() < 2) {
                         errorflag = 1;
-                        locationinput3.setError("Kindly enter valid location.");
+                        locationinput2.setError("Kindly enter valid location.");
                     }
                 }
-            }
-        } else if (locationcount == 3) {
-            if (slocation1.length() < 2) {
-                errorflag = 1;
-                locationinput1.setError("Kindly enter valid location.");
-            } else {
-                errorflag = 0;
-                if (slocation2.length() < 2) {
+            } else if (locationcount == 2) {
+                if (slocation1.length() < 2) {
                     errorflag = 1;
-                    locationinput2.setError("Kindly enter valid location.");
+                    locationinput1.setError("Kindly enter valid location.");
                 } else {
                     errorflag = 0;
-                    if (slocation3.length() < 2) {
+                    if (slocation2.length() < 2) {
                         errorflag = 1;
-                        locationinput3.setError("Kindly enter valid location.");
+                        locationinput2.setError("Kindly enter valid location.");
                     } else {
                         errorflag = 0;
-                        if (slocation4.length() < 2) {
+                        if (slocation3.length() < 2) {
                             errorflag = 1;
-                            locationinput4.setError("Kindly enter valid location.");
+                            locationinput3.setError("Kindly enter valid location.");
                         }
                     }
                 }
-            }
-        } else if (locationcount == 4) {
-            if (slocation1.length() < 2) {
-                errorflag = 1;
-                locationinput1.setError("Kindly enter valid location.");
-            } else {
-                errorflag = 0;
-                if (slocation2.length() < 2) {
+            } else if (locationcount == 3) {
+                if (slocation1.length() < 2) {
                     errorflag = 1;
-                    locationinput2.setError("Kindly enter valid location.");
+                    locationinput1.setError("Kindly enter valid location.");
                 } else {
                     errorflag = 0;
-                    if (slocation3.length() < 2) {
+                    if (slocation2.length() < 2) {
                         errorflag = 1;
-                        locationinput3.setError("Kindly enter valid location.");
+                        locationinput2.setError("Kindly enter valid location.");
                     } else {
                         errorflag = 0;
-                        if (slocation4.length() < 2) {
+                        if (slocation3.length() < 2) {
                             errorflag = 1;
-                            locationinput4.setError("Kindly enter valid location.");
+                            locationinput3.setError("Kindly enter valid location.");
                         } else {
                             errorflag = 0;
-                            if (slocation5.length() < 2) {
+                            if (slocation4.length() < 2) {
                                 errorflag = 1;
-                                locationinput5.setError("Kindly enter valid location.");
+                                locationinput4.setError("Kindly enter valid location.");
+                            }
+                        }
+                    }
+                }
+            } else if (locationcount == 4) {
+                if (slocation1.length() < 2) {
+                    errorflag = 1;
+                    locationinput1.setError("Kindly enter valid location.");
+                } else {
+                    errorflag = 0;
+                    if (slocation2.length() < 2) {
+                        errorflag = 1;
+                        locationinput2.setError("Kindly enter valid location.");
+                    } else {
+                        errorflag = 0;
+                        if (slocation3.length() < 2) {
+                            errorflag = 1;
+                            locationinput3.setError("Kindly enter valid location.");
+                        } else {
+                            errorflag = 0;
+                            if (slocation4.length() < 2) {
+                                errorflag = 1;
+                                locationinput4.setError("Kindly enter valid location.");
+                            } else {
+                                errorflag = 0;
+                                if (slocation5.length() < 2) {
+                                    errorflag = 1;
+                                    locationinput5.setError("Kindly enter valid location.");
+                                }
                             }
                         }
                     }
@@ -640,22 +659,26 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
         }
 
         if (errorflag == 0) {
-            try {
-
-                MyProfileLocationModal obj2 = new MyProfileLocationModal(slocation1, slocation2, slocation3, slocation4, slocation5);
-
-                encobj = OtoString(obj2, MySharedPreferencesManager.getDigest1(MyProfileLocationPreferences.this), MySharedPreferencesManager.getDigest2(MyProfileLocationPreferences.this));
-                Log.d("TAG", "validateandSave: encobj - " + encobj);
-
-                new SaveLocations().execute();
-
-
-            } catch (Exception e) {
-                Toast.makeText(MyProfileLocationPreferences.this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
+            enclocation();
         }
     }
 
+    public void enclocation()
+    {
+        try {
+
+            MyProfileLocationModal obj2 = new MyProfileLocationModal(slocation1, slocation2, slocation3, slocation4, slocation5);
+
+            encobj = OtoString(obj2, MySharedPreferencesManager.getDigest1(MyProfileLocationPreferences.this), MySharedPreferencesManager.getDigest2(MyProfileLocationPreferences.this));
+            Log.d("TAG", "validateandSave: encobj - " + encobj);
+
+            new SaveLocations().execute();
+
+
+        } catch (Exception e) {
+            Toast.makeText(MyProfileLocationPreferences.this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -711,8 +734,10 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
             alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialogInterface) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileLocationPreferences.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileLocationPreferences.this));
                 }
             });
 

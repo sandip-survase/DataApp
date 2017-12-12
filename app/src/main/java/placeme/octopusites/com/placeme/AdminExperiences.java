@@ -54,7 +54,7 @@ import placeme.octopusites.com.placeme.modal.Experiences;
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 public class AdminExperiences extends AppCompatActivity {
-    int expcount=0;
+    int expcount=0,editexp=0;
     View addmoreexp;
     TextView t,work1,work2,work3,work4,work5,work6,work7,work8,work9,work10;
     ImageView i;
@@ -493,15 +493,17 @@ public class AdminExperiences extends AppCompatActivity {
                     inst1.setText(sinst1);
                     fromdate1.setText(sfromdate1);
 
+                    if (stodate1.length() > 0) {
+                        todate1.setText(stodate1);
+                    } else {
+                        expsw1.setChecked(true);
+                        todate1.setText("");
+                        workinghereflag1 = 1;
+                        todateinput1.setVisibility(View.INVISIBLE);
+                    }
+
                 }
-                if (stodate1.length() > 0) {
-                    todate1.setText(stodate1);
-                } else {
-                    expsw1.setChecked(true);
-                    todate1.setText("");
-                    workinghereflag1 = 1;
-                    todateinput1.setVisibility(View.INVISIBLE);
-                }
+
 
             }
             if (spost2 != null) {
@@ -2650,6 +2652,7 @@ public class AdminExperiences extends AppCompatActivity {
         addmoreexp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                editexp=0;
                 if(expcount==0)
                 {
                     View v=(View)findViewById(R.id.expline1);
@@ -4557,6 +4560,7 @@ public class AdminExperiences extends AppCompatActivity {
             inst1.setText(sinst1);
             post1.setText(spost1);
             fromdate1.setText(sfromdate1);
+
             if(expsw2.isChecked()==true){
                 expsw1.setChecked(true);
                 todate1.setText("");
@@ -4843,6 +4847,18 @@ public class AdminExperiences extends AppCompatActivity {
             todate10.setText("");
             expsw10.setChecked(false);
 
+
+
+            if(spost1.equals("") && sinst1.equals("") && sfromdate1.equals("") && stodate1.equals("")){
+                Log.d("TAG", "deleteLang: strength1 1");
+                editexp =1;
+            }
+
+            if(editexp==1){
+                Log.d("TAG", "deleteLang: strength1 - "+editexp);
+                save1();
+            }
+
         }
 
     }
@@ -4973,7 +4989,11 @@ public class AdminExperiences extends AppCompatActivity {
 
 
         //validation
+        if(editexp==1){
+            save1();
+        }
 
+        else {
         if (expcount == 0) {
             if (spost1.length() < 2) {
                 errorflag = 1;
@@ -6801,7 +6821,8 @@ public class AdminExperiences extends AppCompatActivity {
 
                                                                                                                                                                                                     }
 
-                                                                                                                                                                                                };
+                                                                                                                                                                                                }
+                                                                                                                                                                                                ;
                                                                                                                                                                                             }
                                                                                                                                                                                         }
                                                                                                                                                                                     }
@@ -6861,7 +6882,7 @@ public class AdminExperiences extends AppCompatActivity {
                     }
 
                 }
-
+            }
             }
         }
         if(errorflag==0) {

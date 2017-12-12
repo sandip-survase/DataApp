@@ -51,7 +51,7 @@ public class MyProfileCertifications extends AppCompatActivity {
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-
+    int editcertfi=0;
     boolean blnswitch1, blnswitch2, blnswitch3, blnswitch4, blnswitch5, blnswitch6, blnswitch7, blnswitch8, blnswitch9, blnswitch10;
     EditText title1, issuer1, license1, title2, issuer2, license2, title3, issuer3, license3, title4, issuer4, license4, title5, issuer5, license5, title6, issuer6, license6, title7, issuer7, license7, title8, issuer8, license8, title9, issuer9, license9, title10, issuer10, license10;
     EditText startdate1, enddate1, startdate2, enddate2, startdate3, enddate3, startdate4, enddate4, startdate5, enddate5, startdate6, enddate6, startdate7, enddate7, startdate8, enddate8, startdate9, enddate9, startdate10, enddate10;
@@ -1710,6 +1710,9 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                editcertfi=0;
+
+
                 if (certicount == 0) {
                     if (title1.getText().toString() != null && issuer1.getText().toString() != null && startdate1.getText().toString() != null && enddate1.getText().toString() != null) {
                         if (!title1.getText().toString().equals("") && !issuer1.getText().toString().equals("") && !startdate1.getText().toString().equals("") && !enddate1.getText().toString().equals("")) {
@@ -2271,1663 +2274,1674 @@ public class MyProfileCertifications extends AppCompatActivity {
 
         int errorflag = 0;
 
-        if (certicount == 0) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+        if(editcertfi==1)
+        {
+            savecertifi();
+        }
+        else {
+            if (certicount == 0) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid name");
+                    titleinput1.setError("Kindly enter valid name");
                 } else {
                     errorflag = 0;
-                    if (sstartdate1.length() < 1) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        certistartdate1.setError("Kindly select valid date");
+                        issuerinput1.setError("Kindly enter valid name");
                     } else {
                         errorflag = 0;
-                        if (willexpire1.equals("yes")) {
-                            if (senddate1.length() < 4) {
-                                errorflag = 1;
-                                certienddate1.setError("Kindly select valid date");
-                            }
-                        }
-
-                    }
-
-
-                }
-            }
-        } else if (certicount == 1) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
-                    errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid name");
-                } else {
-                    errorflag = 0;
-                    if (sstartdate1.length() < 1) {
-                        errorflag = 1;
-                        certistartdate1.setError("Kindly select valid date");
-                    } else {
-                        if (willexpire1.equals("yes")) {
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
                             errorflag = 0;
-                            if (senddate1.length() < 4) {
-                                errorflag = 1;
-                                certienddate1.setError("Kindly select valid date");
-                            }
-                        }
-
-
-                        {
-                            errorflag = 0;
-                            if (stitle2.length() < 3) {
-                                errorflag = 1;
-                                titleinput2.setError("Kindly enter valid name");
-                            } else {
-                                errorflag = 0;
-                                if (sissuer2.length() < 3) {
+                            if (willexpire1.equals("yes")) {
+                                if (senddate1.length() < 4) {
                                     errorflag = 1;
-                                    issuerinput2.setError("Kindly enter valid name");
-                                } else {
-                                    errorflag = 0;
-                                    if (sstartdate2.length() < 2) {
-                                        errorflag = 1;
-                                        certistartdate2.setError("Kindly select valid date");
-                                    } else {
-                                        errorflag = 0;
-                                        if (willexpire2.equals("yes")) {
-                                            if (senddate2.length() < 4) {
-                                                errorflag = 1;
-                                                certienddate2.setError("Kindly select valid date");
-                                            }
-                                        }
-
-                                    }
-
+                                    certienddate1.setError("Kindly select valid date");
                                 }
                             }
 
                         }
 
+
                     }
                 }
-            }
-        }
-        if (certicount == 2) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            } else if (certicount == 1) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid name");
+                    titleinput1.setError("Kindly enter valid name");
                 } else {
-
                     errorflag = 0;
-                    if (sstartdate1.length() < 1) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        certistartdate1.setError("Kindly select valid date");
+                        issuerinput1.setError("Kindly enter valid name");
                     } else {
                         errorflag = 0;
-                        if (willexpire1.equals("yes")) {
-                            if (senddate1.length() < 4) {
-                                errorflag = 1;
-                                certienddate1.setError("Kindly select valid date");
-                            }
-                        }
-
-                        {
-                            errorflag = 0;
-                            if (stitle2.length() < 3) {
-                                errorflag = 1;
-                                titleinput2.setError("Kindly enter valid name");
-                            } else {
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
+                            if (willexpire1.equals("yes")) {
                                 errorflag = 0;
-                                if (sissuer2.length() < 3) {
+                                if (senddate1.length() < 4) {
                                     errorflag = 1;
-                                    issuerinput2.setError("Kindly enter valid name");
-                                } else {
+                                    certienddate1.setError("Kindly select valid date");
+                                }
+                            }
 
+
+                            {
+                                errorflag = 0;
+                                if (stitle2.length() < 3) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid name");
+                                } else {
                                     errorflag = 0;
-                                    if (sstartdate2.length() < 2) {
+                                    if (sissuer2.length() < 3) {
                                         errorflag = 1;
-                                        certistartdate2.setError("Kindly select valid date");
+                                        issuerinput2.setError("Kindly enter valid name");
                                     } else {
                                         errorflag = 0;
-                                        if (willexpire2.equals("yes")) {
-                                            if (senddate2.length() < 4) {
-                                                errorflag = 1;
-                                                certienddate2.setError("Kindly select valid date");
-                                            }
-                                        }
-
-
-                                        {
+                                        if (sstartdate2.length() < 2) {
+                                            errorflag = 1;
+                                            certistartdate2.setError("Kindly select valid date");
+                                        } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 3) {
-                                                errorflag = 1;
-                                                titleinput3.setError("Kindly enter valid name");
-                                            } else {
-                                                errorflag = 0;
-                                                if (sissuer3.length() < 3) {
+                                            if (willexpire2.equals("yes")) {
+                                                if (senddate2.length() < 4) {
                                                     errorflag = 1;
-                                                    issuerinput3.setError("Kindly enter valid name");
-                                                } else {
-
-                                                    errorflag = 0;
-                                                    if (sstartdate3.length() < 3) {
-                                                        errorflag = 1;
-                                                        certistartdate3.setError("Kindly select valid date");
-                                                    } else {
-                                                        errorflag = 0;
-                                                        if (willexpire3.equals("yes")) {
-                                                            if (senddate3.length() < 4) {
-                                                                errorflag = 1;
-                                                                certienddate3.setError("Kindly select valid date");
-                                                            }
-                                                        }
-
-                                                    }
-
+                                                    certienddate2.setError("Kindly select valid date");
                                                 }
                                             }
+
                                         }
+
                                     }
                                 }
 
                             }
 
                         }
-
                     }
                 }
             }
-        }
-        if (certicount == 3) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            if (certicount == 2) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid name");
+                    titleinput1.setError("Kindly enter valid name");
                 } else {
-
                     errorflag = 0;
-                    if (sstartdate1.length() < 1) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        certistartdate1.setError("Kindly select valid date");
+                        issuerinput1.setError("Kindly enter valid name");
                     } else {
+
                         errorflag = 0;
-                        if (willexpire1.equals("yes")) {
-                            if (senddate1.length() < 4) {
-                                errorflag = 1;
-                                certienddate1.setError("Kindly select valid date");
-                            }
-                        }
-
-                        {
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
                             errorflag = 0;
-                            if (stitle2.length() < 3) {
-                                errorflag = 1;
-                                titleinput2.setError("Kindly enter valid name");
-                            } else {
-                                errorflag = 0;
-                                if (sissuer2.length() < 3) {
+                            if (willexpire1.equals("yes")) {
+                                if (senddate1.length() < 4) {
                                     errorflag = 1;
-                                    issuerinput2.setError("Kindly enter valid name");
+                                    certienddate1.setError("Kindly select valid date");
+                                }
+                            }
+
+                            {
+                                errorflag = 0;
+                                if (stitle2.length() < 3) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid name");
                                 } else {
-
                                     errorflag = 0;
-                                    if (sstartdate2.length() < 2) {
+                                    if (sissuer2.length() < 3) {
                                         errorflag = 1;
-                                        certistartdate2.setError("Kindly select valid date");
+                                        issuerinput2.setError("Kindly enter valid name");
                                     } else {
-                                        errorflag = 0;
-                                        if (willexpire2.equals("yes")) {
-                                            if (senddate2.length() < 4) {
-                                                errorflag = 1;
-                                                certienddate2.setError("Kindly select valid date");
-                                            }
-                                        }
 
-                                        {
+                                        errorflag = 0;
+                                        if (sstartdate2.length() < 2) {
+                                            errorflag = 1;
+                                            certistartdate2.setError("Kindly select valid date");
+                                        } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 3) {
-                                                errorflag = 1;
-                                                titleinput3.setError("Kindly enter valid name");
-                                            } else {
-                                                errorflag = 0;
-                                                if (sissuer3.length() < 3) {
+                                            if (willexpire2.equals("yes")) {
+                                                if (senddate2.length() < 4) {
                                                     errorflag = 1;
-                                                    issuerinput3.setError("Kindly enter valid name");
+                                                    certienddate2.setError("Kindly select valid date");
+                                                }
+                                            }
+
+
+                                            {
+                                                errorflag = 0;
+                                                if (stitle3.length() < 3) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid name");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sstartdate3.length() < 3) {
+                                                    if (sissuer3.length() < 3) {
                                                         errorflag = 1;
-                                                        certistartdate3.setError("Kindly select valid date");
+                                                        issuerinput3.setError("Kindly enter valid name");
                                                     } else {
+
                                                         errorflag = 0;
-                                                        if (willexpire3.equals("yes")) {
-                                                            if (senddate3.length() < 4) {
-                                                                errorflag = 1;
-                                                                certienddate3.setError("Kindly select valid date");
-                                                            }
-                                                        }
-
-                                                        {
+                                                        if (sstartdate3.length() < 3) {
+                                                            errorflag = 1;
+                                                            certistartdate3.setError("Kindly select valid date");
+                                                        } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 3) {
-                                                                errorflag = 1;
-                                                                titleinput4.setError("Kindly enter valid name");
-                                                            } else {
-                                                                errorflag = 0;
-                                                                if (sissuer4.length() < 3) {
+                                                            if (willexpire3.equals("yes")) {
+                                                                if (senddate3.length() < 4) {
                                                                     errorflag = 1;
-                                                                    issuerinput4.setError("Kindly enter valid name");
-                                                                } else {
-
-                                                                    errorflag = 0;
-                                                                    if (sstartdate4.length() < 3) {
-                                                                        errorflag = 1;
-                                                                        certistartdate4.setError("Kindly select valid date");
-                                                                    } else {
-                                                                        errorflag = 0;
-                                                                        if (willexpire4.equals("yes")) {
-                                                                            if (senddate4.length() < 4) {
-                                                                                errorflag = 1;
-                                                                                certienddate4.setError("Kindly select valid date");
-                                                                            }
-                                                                        }
-
-                                                                    }
-
+                                                                    certienddate3.setError("Kindly select valid date");
                                                                 }
-
                                                             }
+
                                                         }
+
                                                     }
-
                                                 }
-
                                             }
-
                                         }
                                     }
+
                                 }
 
                             }
 
                         }
-
                     }
                 }
             }
-        }
-        if (certicount == 4) {
-
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            if (certicount == 3) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid name");
+                    titleinput1.setError("Kindly enter valid name");
                 } else {
-
                     errorflag = 0;
-                    if (sstartdate1.length() < 1) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        certistartdate1.setError("Kindly select valid date");
+                        issuerinput1.setError("Kindly enter valid name");
                     } else {
-                        errorflag = 0;
-                        if (willexpire1.equals("yes")) {
-                            if (senddate1.length() < 4) {
-                                errorflag = 1;
-                                certienddate1.setError("Kindly select valid date");
-                            }
-                        }
 
-                        {
+                        errorflag = 0;
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
                             errorflag = 0;
-                            if (stitle2.length() < 3) {
-                                errorflag = 1;
-                                titleinput2.setError("Kindly enter valid name");
-                            } else {
-                                errorflag = 0;
-                                if (sissuer2.length() < 3) {
+                            if (willexpire1.equals("yes")) {
+                                if (senddate1.length() < 4) {
                                     errorflag = 1;
-                                    issuerinput2.setError("Kindly enter valid name");
+                                    certienddate1.setError("Kindly select valid date");
+                                }
+                            }
+
+                            {
+                                errorflag = 0;
+                                if (stitle2.length() < 3) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid name");
                                 } else {
                                     errorflag = 0;
-                                    if (sstartdate2.length() < 2) {
+                                    if (sissuer2.length() < 3) {
                                         errorflag = 1;
-                                        certistartdate2.setError("Kindly select valid date");
+                                        issuerinput2.setError("Kindly enter valid name");
                                     } else {
-                                        errorflag = 0;
-                                        if (willexpire2.equals("yes")) {
-                                            if (senddate2.length() < 4) {
-                                                errorflag = 1;
-                                                certienddate2.setError("Kindly select valid date");
-                                            }
-                                        }
 
-                                        {
+                                        errorflag = 0;
+                                        if (sstartdate2.length() < 2) {
+                                            errorflag = 1;
+                                            certistartdate2.setError("Kindly select valid date");
+                                        } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 3) {
-                                                errorflag = 1;
-                                                titleinput3.setError("Kindly enter valid name");
-                                            } else {
-                                                errorflag = 0;
-                                                if (sissuer3.length() < 3) {
+                                            if (willexpire2.equals("yes")) {
+                                                if (senddate2.length() < 4) {
                                                     errorflag = 1;
-                                                    issuerinput3.setError("Kindly enter valid name");
+                                                    certienddate2.setError("Kindly select valid date");
+                                                }
+                                            }
+
+                                            {
+                                                errorflag = 0;
+                                                if (stitle3.length() < 3) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid name");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sstartdate3.length() < 3) {
+                                                    if (sissuer3.length() < 3) {
                                                         errorflag = 1;
-                                                        certistartdate3.setError("Kindly select valid date");
+                                                        issuerinput3.setError("Kindly enter valid name");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (willexpire3.equals("yes")) {
-                                                            if (senddate3.length() < 4) {
-                                                                errorflag = 1;
-                                                                certienddate3.setError("Kindly select valid date");
-                                                            }
-                                                        }
-
-                                                        {
+                                                        if (sstartdate3.length() < 3) {
+                                                            errorflag = 1;
+                                                            certistartdate3.setError("Kindly select valid date");
+                                                        } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 3) {
-                                                                errorflag = 1;
-                                                                titleinput4.setError("Kindly enter valid name");
-                                                            } else {
-                                                                errorflag = 0;
-                                                                if (sissuer4.length() < 3) {
+                                                            if (willexpire3.equals("yes")) {
+                                                                if (senddate3.length() < 4) {
                                                                     errorflag = 1;
-                                                                    issuerinput4.setError("Kindly enter valid name");
+                                                                    certienddate3.setError("Kindly select valid date");
+                                                                }
+                                                            }
+
+                                                            {
+                                                                errorflag = 0;
+                                                                if (stitle4.length() < 3) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid name");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (sstartdate4.length() < 3) {
+                                                                    if (sissuer4.length() < 3) {
                                                                         errorflag = 1;
-                                                                        certistartdate4.setError("Kindly select valid date");
+                                                                        issuerinput4.setError("Kindly enter valid name");
                                                                     } else {
+
                                                                         errorflag = 0;
-                                                                        if (willexpire4.equals("yes")) {
-                                                                            if (senddate4.length() < 4) {
-                                                                                errorflag = 1;
-                                                                                certienddate4.setError("Kindly select valid date");
-                                                                            }
-                                                                        }
-
-                                                                        {
+                                                                        if (sstartdate4.length() < 3) {
+                                                                            errorflag = 1;
+                                                                            certistartdate4.setError("Kindly select valid date");
+                                                                        } else {
                                                                             errorflag = 0;
-                                                                            if (stitle5.length() < 3) {
-                                                                                errorflag = 1;
-                                                                                titleinput5.setError("Kindly enter valid name");
-                                                                            } else {
-                                                                                errorflag = 0;
-                                                                                if (sissuer5.length() < 3) {
+                                                                            if (willexpire4.equals("yes")) {
+                                                                                if (senddate4.length() < 4) {
                                                                                     errorflag = 1;
-                                                                                    issuerinput5.setError("Kindly enter valid name");
-                                                                                } else {
-                                                                                    errorflag = 0;
-                                                                                    if (sstartdate5.length() < 3) {
-                                                                                        errorflag = 1;
-                                                                                        certistartdate5.setError("Kindly select valid date");
-                                                                                    } else {
-                                                                                        errorflag = 0;
-                                                                                        if (willexpire5.equals("yes")) {
-                                                                                            if (senddate5.length() < 4) {
-                                                                                                errorflag = 1;
-                                                                                                certienddate5.setError("Kindly select valid date");
-                                                                                            }
-                                                                                        }
-
-                                                                                    }
-
-
+                                                                                    certienddate4.setError("Kindly select valid date");
                                                                                 }
                                                                             }
+
                                                                         }
 
                                                                     }
 
                                                                 }
-
                                                             }
                                                         }
+
                                                     }
 
                                                 }
 
                                             }
-
                                         }
                                     }
+
                                 }
 
                             }
 
                         }
-
                     }
                 }
             }
-        }
-        if (certicount == 5) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            if (certicount == 4) {
+
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid name");
+                    titleinput1.setError("Kindly enter valid name");
                 } else {
-
                     errorflag = 0;
-                    if (sstartdate1.length() < 1) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        certistartdate1.setError("Kindly select valid date");
+                        issuerinput1.setError("Kindly enter valid name");
                     } else {
-                        errorflag = 0;
-                        if (willexpire1.equals("yes")) {
-                            if (senddate1.length() < 4) {
-                                errorflag = 1;
-                                certienddate1.setError("Kindly select valid date");
-                            }
-                        }
 
-                        {
+                        errorflag = 0;
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
                             errorflag = 0;
-                            if (stitle2.length() < 3) {
-                                errorflag = 1;
-                                titleinput2.setError("Kindly enter valid name");
-                            } else {
-                                errorflag = 0;
-                                if (sissuer2.length() < 3) {
+                            if (willexpire1.equals("yes")) {
+                                if (senddate1.length() < 4) {
                                     errorflag = 1;
-                                    issuerinput2.setError("Kindly enter valid name");
+                                    certienddate1.setError("Kindly select valid date");
+                                }
+                            }
+
+                            {
+                                errorflag = 0;
+                                if (stitle2.length() < 3) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid name");
                                 } else {
                                     errorflag = 0;
-                                    if (sstartdate2.length() < 2) {
+                                    if (sissuer2.length() < 3) {
                                         errorflag = 1;
-                                        certistartdate2.setError("Kindly select valid date");
+                                        issuerinput2.setError("Kindly enter valid name");
                                     } else {
                                         errorflag = 0;
-                                        if (willexpire2.equals("yes")) {
-                                            if (senddate2.length() < 4) {
-                                                errorflag = 1;
-                                                certienddate2.setError("Kindly select valid date");
-                                            }
-                                        }
-
-                                        {
+                                        if (sstartdate2.length() < 2) {
+                                            errorflag = 1;
+                                            certistartdate2.setError("Kindly select valid date");
+                                        } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 3) {
-                                                errorflag = 1;
-                                                titleinput3.setError("Kindly enter valid name");
-                                            } else {
-                                                errorflag = 0;
-                                                if (sissuer3.length() < 3) {
+                                            if (willexpire2.equals("yes")) {
+                                                if (senddate2.length() < 4) {
                                                     errorflag = 1;
-                                                    issuerinput3.setError("Kindly enter valid name");
+                                                    certienddate2.setError("Kindly select valid date");
+                                                }
+                                            }
+
+                                            {
+                                                errorflag = 0;
+                                                if (stitle3.length() < 3) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid name");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sstartdate3.length() < 3) {
+                                                    if (sissuer3.length() < 3) {
                                                         errorflag = 1;
-                                                        certistartdate3.setError("Kindly select valid date");
+                                                        issuerinput3.setError("Kindly enter valid name");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (willexpire3.equals("yes")) {
-                                                            if (senddate3.length() < 4) {
-                                                                errorflag = 1;
-                                                                certienddate3.setError("Kindly select valid date");
-                                                            }
-                                                        }
-
-                                                        {
+                                                        if (sstartdate3.length() < 3) {
+                                                            errorflag = 1;
+                                                            certistartdate3.setError("Kindly select valid date");
+                                                        } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 3) {
-                                                                errorflag = 1;
-                                                                titleinput4.setError("Kindly enter valid name");
-                                                            } else {
-                                                                errorflag = 0;
-                                                                if (sissuer4.length() < 3) {
+                                                            if (willexpire3.equals("yes")) {
+                                                                if (senddate3.length() < 4) {
                                                                     errorflag = 1;
-                                                                    issuerinput4.setError("Kindly enter valid name");
+                                                                    certienddate3.setError("Kindly select valid date");
+                                                                }
+                                                            }
+
+                                                            {
+                                                                errorflag = 0;
+                                                                if (stitle4.length() < 3) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid name");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (sstartdate4.length() < 3) {
+                                                                    if (sissuer4.length() < 3) {
                                                                         errorflag = 1;
-                                                                        certistartdate4.setError("Kindly select valid date");
+                                                                        issuerinput4.setError("Kindly enter valid name");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (willexpire4.equals("yes")) {
-                                                                            if (senddate4.length() < 4) {
-                                                                                errorflag = 1;
-                                                                                certienddate4.setError("Kindly select valid date");
-                                                                            }
-                                                                        }
-
-                                                                        {
+                                                                        if (sstartdate4.length() < 3) {
+                                                                            errorflag = 1;
+                                                                            certistartdate4.setError("Kindly select valid date");
+                                                                        } else {
                                                                             errorflag = 0;
-                                                                            if (stitle5.length() < 3) {
-                                                                                errorflag = 1;
-                                                                                titleinput5.setError("Kindly enter valid name");
-                                                                            } else {
-                                                                                errorflag = 0;
-                                                                                if (sissuer5.length() < 3) {
+                                                                            if (willexpire4.equals("yes")) {
+                                                                                if (senddate4.length() < 4) {
                                                                                     errorflag = 1;
-                                                                                    issuerinput5.setError("Kindly enter valid name");
+                                                                                    certienddate4.setError("Kindly select valid date");
+                                                                                }
+                                                                            }
+
+                                                                            {
+                                                                                errorflag = 0;
+                                                                                if (stitle5.length() < 3) {
+                                                                                    errorflag = 1;
+                                                                                    titleinput5.setError("Kindly enter valid name");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (sstartdate5.length() < 3) {
+                                                                                    if (sissuer5.length() < 3) {
                                                                                         errorflag = 1;
-                                                                                        certistartdate5.setError("Kindly select valid date");
+                                                                                        issuerinput5.setError("Kindly enter valid name");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (willexpire5.equals("yes")) {
-                                                                                            if (senddate5.length() < 4) {
-                                                                                                errorflag = 1;
-                                                                                                certienddate5.setError("Kindly select valid date");
-                                                                                            }
-                                                                                        }
-
-                                                                                        {
+                                                                                        if (sstartdate5.length() < 3) {
+                                                                                            errorflag = 1;
+                                                                                            certistartdate5.setError("Kindly select valid date");
+                                                                                        } else {
                                                                                             errorflag = 0;
-                                                                                            if (stitle6.length() < 3) {
-                                                                                                errorflag = 1;
-                                                                                                titleinput6.setError("Kindly enter valid name");
-                                                                                            } else {
-                                                                                                errorflag = 0;
-                                                                                                if (sissuer6.length() < 3) {
+                                                                                            if (willexpire5.equals("yes")) {
+                                                                                                if (senddate5.length() < 4) {
                                                                                                     errorflag = 1;
-                                                                                                    issuerinput6.setError("Kindly enter valid name");
-                                                                                                } else {
-                                                                                                    errorflag = 0;
-                                                                                                    if (sstartdate6.length() < 3) {
-                                                                                                        errorflag = 1;
-                                                                                                        certistartdate6.setError("Kindly select valid date");
-                                                                                                    } else {
-                                                                                                        errorflag = 0;
-                                                                                                        if (willexpire6.equals("yes")) {
-                                                                                                            if (senddate6.length() < 4) {
-                                                                                                                errorflag = 1;
-                                                                                                                certienddate6.setError("Kindly select valid date");
-                                                                                                            }
-                                                                                                        }
-
-                                                                                                    }
+                                                                                                    certienddate5.setError("Kindly select valid date");
                                                                                                 }
                                                                                             }
 
                                                                                         }
 
+
                                                                                     }
                                                                                 }
                                                                             }
+
                                                                         }
 
                                                                     }
 
                                                                 }
-
                                                             }
                                                         }
+
                                                     }
 
                                                 }
 
                                             }
-
                                         }
                                     }
+
                                 }
 
                             }
 
                         }
-
                     }
                 }
             }
-        }
-        if (certicount == 6) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            if (certicount == 5) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid name");
+                    titleinput1.setError("Kindly enter valid name");
                 } else {
-
                     errorflag = 0;
-                    if (sstartdate1.length() < 1) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        certistartdate1.setError("Kindly select valid date");
+                        issuerinput1.setError("Kindly enter valid name");
                     } else {
-                        errorflag = 0;
-                        if (willexpire1.equals("yes")) {
-                            if (senddate1.length() < 4) {
-                                errorflag = 1;
-                                certienddate1.setError("Kindly select valid date");
-                            }
-                        }
 
-                        {
+                        errorflag = 0;
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
                             errorflag = 0;
-                            if (stitle2.length() < 3) {
-                                errorflag = 1;
-                                titleinput2.setError("Kindly enter valid name");
-                            } else {
-                                errorflag = 0;
-                                if (sissuer2.length() < 3) {
+                            if (willexpire1.equals("yes")) {
+                                if (senddate1.length() < 4) {
                                     errorflag = 1;
-                                    issuerinput2.setError("Kindly enter valid name");
+                                    certienddate1.setError("Kindly select valid date");
+                                }
+                            }
+
+                            {
+                                errorflag = 0;
+                                if (stitle2.length() < 3) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid name");
                                 } else {
                                     errorflag = 0;
-                                    if (sstartdate2.length() < 2) {
+                                    if (sissuer2.length() < 3) {
                                         errorflag = 1;
-                                        certistartdate2.setError("Kindly select valid date");
+                                        issuerinput2.setError("Kindly enter valid name");
                                     } else {
                                         errorflag = 0;
-                                        if (willexpire2.equals("yes")) {
-                                            if (senddate2.length() < 4) {
-                                                errorflag = 1;
-                                                certienddate2.setError("Kindly select valid date");
-                                            }
-                                        }
-
-                                        {
+                                        if (sstartdate2.length() < 2) {
+                                            errorflag = 1;
+                                            certistartdate2.setError("Kindly select valid date");
+                                        } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 3) {
-                                                errorflag = 1;
-                                                titleinput3.setError("Kindly enter valid name");
-                                            } else {
-                                                errorflag = 0;
-                                                if (sissuer3.length() < 3) {
+                                            if (willexpire2.equals("yes")) {
+                                                if (senddate2.length() < 4) {
                                                     errorflag = 1;
-                                                    issuerinput3.setError("Kindly enter valid name");
+                                                    certienddate2.setError("Kindly select valid date");
+                                                }
+                                            }
+
+                                            {
+                                                errorflag = 0;
+                                                if (stitle3.length() < 3) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid name");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sstartdate3.length() < 3) {
+                                                    if (sissuer3.length() < 3) {
                                                         errorflag = 1;
-                                                        certistartdate3.setError("Kindly select valid date");
+                                                        issuerinput3.setError("Kindly enter valid name");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (willexpire3.equals("yes")) {
-                                                            if (senddate3.length() < 4) {
-                                                                errorflag = 1;
-                                                                certienddate3.setError("Kindly select valid date");
-                                                            }
-                                                        }
-
-                                                        {
+                                                        if (sstartdate3.length() < 3) {
+                                                            errorflag = 1;
+                                                            certistartdate3.setError("Kindly select valid date");
+                                                        } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 3) {
-                                                                errorflag = 1;
-                                                                titleinput4.setError("Kindly enter valid name");
-                                                            } else {
-                                                                errorflag = 0;
-                                                                if (sissuer4.length() < 3) {
+                                                            if (willexpire3.equals("yes")) {
+                                                                if (senddate3.length() < 4) {
                                                                     errorflag = 1;
-                                                                    issuerinput4.setError("Kindly enter valid name");
+                                                                    certienddate3.setError("Kindly select valid date");
+                                                                }
+                                                            }
+
+                                                            {
+                                                                errorflag = 0;
+                                                                if (stitle4.length() < 3) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid name");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (sstartdate4.length() < 3) {
+                                                                    if (sissuer4.length() < 3) {
                                                                         errorflag = 1;
-                                                                        certistartdate4.setError("Kindly select valid date");
+                                                                        issuerinput4.setError("Kindly enter valid name");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (willexpire4.equals("yes")) {
-                                                                            if (senddate4.length() < 4) {
-                                                                                errorflag = 1;
-                                                                                certienddate4.setError("Kindly select valid date");
-                                                                            }
-                                                                        }
-
-                                                                        {
+                                                                        if (sstartdate4.length() < 3) {
+                                                                            errorflag = 1;
+                                                                            certistartdate4.setError("Kindly select valid date");
+                                                                        } else {
                                                                             errorflag = 0;
-                                                                            if (stitle5.length() < 3) {
-                                                                                errorflag = 1;
-                                                                                titleinput5.setError("Kindly enter valid name");
-                                                                            } else {
-                                                                                errorflag = 0;
-                                                                                if (sissuer5.length() < 3) {
+                                                                            if (willexpire4.equals("yes")) {
+                                                                                if (senddate4.length() < 4) {
                                                                                     errorflag = 1;
-                                                                                    issuerinput5.setError("Kindly enter valid name");
+                                                                                    certienddate4.setError("Kindly select valid date");
+                                                                                }
+                                                                            }
+
+                                                                            {
+                                                                                errorflag = 0;
+                                                                                if (stitle5.length() < 3) {
+                                                                                    errorflag = 1;
+                                                                                    titleinput5.setError("Kindly enter valid name");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (sstartdate5.length() < 3) {
+                                                                                    if (sissuer5.length() < 3) {
                                                                                         errorflag = 1;
-                                                                                        certistartdate5.setError("Kindly select valid date");
+                                                                                        issuerinput5.setError("Kindly enter valid name");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (willexpire5.equals("yes")) {
-                                                                                            if (senddate5.length() < 4) {
-                                                                                                errorflag = 1;
-                                                                                                certienddate5.setError("Kindly select valid date");
-                                                                                            }
-                                                                                        }
-                                                                                        {
+                                                                                        if (sstartdate5.length() < 3) {
+                                                                                            errorflag = 1;
+                                                                                            certistartdate5.setError("Kindly select valid date");
+                                                                                        } else {
                                                                                             errorflag = 0;
-                                                                                            if (stitle6.length() < 3) {
-                                                                                                errorflag = 1;
-                                                                                                titleinput6.setError("Kindly enter valid name");
-                                                                                            } else {
-                                                                                                errorflag = 0;
-                                                                                                if (sissuer6.length() < 3) {
+                                                                                            if (willexpire5.equals("yes")) {
+                                                                                                if (senddate5.length() < 4) {
                                                                                                     errorflag = 1;
-                                                                                                    issuerinput6.setError("Kindly enter valid name");
+                                                                                                    certienddate5.setError("Kindly select valid date");
+                                                                                                }
+                                                                                            }
+
+                                                                                            {
+                                                                                                errorflag = 0;
+                                                                                                if (stitle6.length() < 3) {
+                                                                                                    errorflag = 1;
+                                                                                                    titleinput6.setError("Kindly enter valid name");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sstartdate6.length() < 3) {
+                                                                                                    if (sissuer6.length() < 3) {
                                                                                                         errorflag = 1;
-                                                                                                        certistartdate6.setError("Kindly select valid date");
+                                                                                                        issuerinput6.setError("Kindly enter valid name");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (willexpire6.equals("yes")) {
-                                                                                                            if (senddate6.length() < 4) {
-                                                                                                                errorflag = 1;
-                                                                                                                certienddate6.setError("Kindly select valid date");
-                                                                                                            }
-                                                                                                        }
-
-                                                                                                        {
+                                                                                                        if (sstartdate6.length() < 3) {
+                                                                                                            errorflag = 1;
+                                                                                                            certistartdate6.setError("Kindly select valid date");
+                                                                                                        } else {
                                                                                                             errorflag = 0;
-                                                                                                            if (stitle7.length() < 3) {
-                                                                                                                errorflag = 1;
-                                                                                                                titleinput7.setError("Kindly enter valid name");
-                                                                                                            } else {
-                                                                                                                errorflag = 0;
-                                                                                                                if (sissuer7.length() < 3) {
+                                                                                                            if (willexpire6.equals("yes")) {
+                                                                                                                if (senddate6.length() < 4) {
                                                                                                                     errorflag = 1;
-                                                                                                                    issuerinput7.setError("Kindly enter valid name");
-                                                                                                                } else {
-                                                                                                                    errorflag = 0;
-                                                                                                                    if (sstartdate7.length() < 3) {
-                                                                                                                        errorflag = 1;
-                                                                                                                        certistartdate7.setError("Kindly select valid date");
-                                                                                                                    } else {
-                                                                                                                        errorflag = 0;
-                                                                                                                        if (willexpire7.equals("yes")) {
-                                                                                                                            if (senddate7.length() < 4) {
-                                                                                                                                errorflag = 1;
-                                                                                                                                certienddate7.setError("Kindly select valid date");
-                                                                                                                            }
-                                                                                                                        }
-
-                                                                                                                    }
+                                                                                                                    certienddate6.setError("Kindly select valid date");
                                                                                                                 }
                                                                                                             }
 
                                                                                                         }
-
                                                                                                     }
                                                                                                 }
+
                                                                                             }
 
                                                                                         }
-
                                                                                     }
                                                                                 }
                                                                             }
+
                                                                         }
 
                                                                     }
 
                                                                 }
-
                                                             }
                                                         }
+
                                                     }
 
                                                 }
 
                                             }
-
                                         }
                                     }
+
                                 }
 
                             }
 
                         }
-
                     }
                 }
             }
-        }
-        if (certicount == 7) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            if (certicount == 6) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid name");
+                    titleinput1.setError("Kindly enter valid name");
                 } else {
-
                     errorflag = 0;
-                    if (sstartdate1.length() < 1) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        certistartdate1.setError("Kindly select valid date");
+                        issuerinput1.setError("Kindly enter valid name");
                     } else {
-                        errorflag = 0;
-                        if (willexpire1.equals("yes")) {
-                            if (senddate1.length() < 4) {
-                                errorflag = 1;
-                                certienddate1.setError("Kindly select valid date");
-                            }
-                        }
 
-                        {
+                        errorflag = 0;
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
                             errorflag = 0;
-                            if (stitle2.length() < 3) {
-                                errorflag = 1;
-                                titleinput2.setError("Kindly enter valid name");
-                            } else {
-                                errorflag = 0;
-                                if (sissuer2.length() < 3) {
+                            if (willexpire1.equals("yes")) {
+                                if (senddate1.length() < 4) {
                                     errorflag = 1;
-                                    issuerinput2.setError("Kindly enter valid name");
+                                    certienddate1.setError("Kindly select valid date");
+                                }
+                            }
+
+                            {
+                                errorflag = 0;
+                                if (stitle2.length() < 3) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid name");
                                 } else {
                                     errorflag = 0;
-                                    if (sstartdate2.length() < 2) {
+                                    if (sissuer2.length() < 3) {
                                         errorflag = 1;
-                                        certistartdate2.setError("Kindly select valid date");
+                                        issuerinput2.setError("Kindly enter valid name");
                                     } else {
                                         errorflag = 0;
-                                        if (willexpire2.equals("yes")) {
-                                            if (senddate2.length() < 4) {
-                                                errorflag = 1;
-                                                certienddate2.setError("Kindly select valid date");
-                                            }
-                                        }
-                                        {
+                                        if (sstartdate2.length() < 2) {
+                                            errorflag = 1;
+                                            certistartdate2.setError("Kindly select valid date");
+                                        } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 3) {
-                                                errorflag = 1;
-                                                titleinput3.setError("Kindly enter valid name");
-                                            } else {
-                                                errorflag = 0;
-                                                if (sissuer3.length() < 3) {
+                                            if (willexpire2.equals("yes")) {
+                                                if (senddate2.length() < 4) {
                                                     errorflag = 1;
-                                                    issuerinput3.setError("Kindly enter valid name");
+                                                    certienddate2.setError("Kindly select valid date");
+                                                }
+                                            }
+
+                                            {
+                                                errorflag = 0;
+                                                if (stitle3.length() < 3) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid name");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sstartdate3.length() < 3) {
+                                                    if (sissuer3.length() < 3) {
                                                         errorflag = 1;
-                                                        certistartdate3.setError("Kindly select valid date");
+                                                        issuerinput3.setError("Kindly enter valid name");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (willexpire3.equals("yes")) {
-                                                            if (senddate3.length() < 4) {
-                                                                errorflag = 1;
-                                                                certienddate3.setError("Kindly select valid date");
-                                                            }
-                                                        }
-                                                        {
+                                                        if (sstartdate3.length() < 3) {
+                                                            errorflag = 1;
+                                                            certistartdate3.setError("Kindly select valid date");
+                                                        } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 3) {
-                                                                errorflag = 1;
-                                                                titleinput4.setError("Kindly enter valid name");
-                                                            } else {
-                                                                errorflag = 0;
-                                                                if (sissuer4.length() < 3) {
+                                                            if (willexpire3.equals("yes")) {
+                                                                if (senddate3.length() < 4) {
                                                                     errorflag = 1;
-                                                                    issuerinput4.setError("Kindly enter valid name");
+                                                                    certienddate3.setError("Kindly select valid date");
+                                                                }
+                                                            }
+
+                                                            {
+                                                                errorflag = 0;
+                                                                if (stitle4.length() < 3) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid name");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (sstartdate4.length() < 3) {
+                                                                    if (sissuer4.length() < 3) {
                                                                         errorflag = 1;
-                                                                        certistartdate4.setError("Kindly select valid date");
+                                                                        issuerinput4.setError("Kindly enter valid name");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (willexpire4.equals("yes")) {
-                                                                            if (senddate4.length() < 4) {
-                                                                                errorflag = 1;
-                                                                                certienddate4.setError("Kindly select valid date");
-                                                                            }
-                                                                        }
-                                                                        {
+                                                                        if (sstartdate4.length() < 3) {
+                                                                            errorflag = 1;
+                                                                            certistartdate4.setError("Kindly select valid date");
+                                                                        } else {
                                                                             errorflag = 0;
-                                                                            if (stitle5.length() < 3) {
-                                                                                errorflag = 1;
-                                                                                titleinput5.setError("Kindly enter valid name");
-                                                                            } else {
-                                                                                errorflag = 0;
-                                                                                if (sissuer5.length() < 3) {
+                                                                            if (willexpire4.equals("yes")) {
+                                                                                if (senddate4.length() < 4) {
                                                                                     errorflag = 1;
-                                                                                    issuerinput5.setError("Kindly enter valid name");
+                                                                                    certienddate4.setError("Kindly select valid date");
+                                                                                }
+                                                                            }
+
+                                                                            {
+                                                                                errorflag = 0;
+                                                                                if (stitle5.length() < 3) {
+                                                                                    errorflag = 1;
+                                                                                    titleinput5.setError("Kindly enter valid name");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (sstartdate5.length() < 3) {
+                                                                                    if (sissuer5.length() < 3) {
                                                                                         errorflag = 1;
-                                                                                        certistartdate5.setError("Kindly select valid date");
+                                                                                        issuerinput5.setError("Kindly enter valid name");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (willexpire5.equals("yes")) {
-                                                                                            if (senddate5.length() < 4) {
-                                                                                                errorflag = 1;
-                                                                                                certienddate5.setError("Kindly select valid date");
-                                                                                            }
-                                                                                        }
-                                                                                        {
+                                                                                        if (sstartdate5.length() < 3) {
+                                                                                            errorflag = 1;
+                                                                                            certistartdate5.setError("Kindly select valid date");
+                                                                                        } else {
                                                                                             errorflag = 0;
-                                                                                            if (stitle6.length() < 3) {
-                                                                                                errorflag = 1;
-                                                                                                titleinput6.setError("Kindly enter valid name");
-                                                                                            } else {
-                                                                                                errorflag = 0;
-                                                                                                if (sissuer6.length() < 3) {
+                                                                                            if (willexpire5.equals("yes")) {
+                                                                                                if (senddate5.length() < 4) {
                                                                                                     errorflag = 1;
-                                                                                                    issuerinput6.setError("Kindly enter valid name");
+                                                                                                    certienddate5.setError("Kindly select valid date");
+                                                                                                }
+                                                                                            }
+                                                                                            {
+                                                                                                errorflag = 0;
+                                                                                                if (stitle6.length() < 3) {
+                                                                                                    errorflag = 1;
+                                                                                                    titleinput6.setError("Kindly enter valid name");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sstartdate6.length() < 3) {
+                                                                                                    if (sissuer6.length() < 3) {
                                                                                                         errorflag = 1;
-                                                                                                        certistartdate6.setError("Kindly select valid date");
+                                                                                                        issuerinput6.setError("Kindly enter valid name");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (willexpire6.equals("yes")) {
-                                                                                                            if (senddate6.length() < 4) {
-                                                                                                                errorflag = 1;
-                                                                                                                certienddate6.setError("Kindly select valid date");
-                                                                                                            }
-                                                                                                        }
-                                                                                                        {
+                                                                                                        if (sstartdate6.length() < 3) {
+                                                                                                            errorflag = 1;
+                                                                                                            certistartdate6.setError("Kindly select valid date");
+                                                                                                        } else {
                                                                                                             errorflag = 0;
-                                                                                                            if (stitle7.length() < 3) {
-                                                                                                                errorflag = 1;
-                                                                                                                titleinput7.setError("Kindly enter valid name");
-                                                                                                            } else {
-                                                                                                                errorflag = 0;
-                                                                                                                if (sissuer7.length() < 3) {
+                                                                                                            if (willexpire6.equals("yes")) {
+                                                                                                                if (senddate6.length() < 4) {
                                                                                                                     errorflag = 1;
-                                                                                                                    issuerinput7.setError("Kindly enter valid name");
+                                                                                                                    certienddate6.setError("Kindly select valid date");
+                                                                                                                }
+                                                                                                            }
+
+                                                                                                            {
+                                                                                                                errorflag = 0;
+                                                                                                                if (stitle7.length() < 3) {
+                                                                                                                    errorflag = 1;
+                                                                                                                    titleinput7.setError("Kindly enter valid name");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
-                                                                                                                    if (sstartdate7.length() < 3) {
+                                                                                                                    if (sissuer7.length() < 3) {
                                                                                                                         errorflag = 1;
-                                                                                                                        certistartdate7.setError("Kindly select valid date");
+                                                                                                                        issuerinput7.setError("Kindly enter valid name");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
-                                                                                                                        if (willexpire7.equals("yes")) {
-                                                                                                                            if (senddate7.length() < 4) {
-                                                                                                                                errorflag = 1;
-                                                                                                                                certienddate7.setError("Kindly select valid date");
-                                                                                                                            }
-                                                                                                                        }
-                                                                                                                        {
+                                                                                                                        if (sstartdate7.length() < 3) {
+                                                                                                                            errorflag = 1;
+                                                                                                                            certistartdate7.setError("Kindly select valid date");
+                                                                                                                        } else {
                                                                                                                             errorflag = 0;
-                                                                                                                            if (stitle8.length() < 3) {
-                                                                                                                                errorflag = 1;
-                                                                                                                                titleinput8.setError("Kindly enter valid name");
-                                                                                                                            } else {
-                                                                                                                                errorflag = 0;
-                                                                                                                                if (sissuer8.length() < 3) {
+                                                                                                                            if (willexpire7.equals("yes")) {
+                                                                                                                                if (senddate7.length() < 4) {
                                                                                                                                     errorflag = 1;
-                                                                                                                                    issuerinput8.setError("Kindly enter valid name");
-                                                                                                                                } else {
-                                                                                                                                    errorflag = 0;
-                                                                                                                                    if (sstartdate8.length() < 3) {
-                                                                                                                                        errorflag = 1;
-                                                                                                                                        certistartdate8.setError("Kindly select valid date");
-                                                                                                                                    } else {
-                                                                                                                                        errorflag = 0;
-                                                                                                                                        if (willexpire8.equals("yes")) {
-                                                                                                                                            if (senddate8.length() < 4) {
-                                                                                                                                                errorflag = 1;
-                                                                                                                                                certienddate8.setError("Kindly select valid date");
-                                                                                                                                            }
-                                                                                                                                        }
-                                                                                                                                    }
+                                                                                                                                    certienddate7.setError("Kindly select valid date");
                                                                                                                                 }
                                                                                                                             }
 
                                                                                                                         }
-
                                                                                                                     }
                                                                                                                 }
+
                                                                                                             }
 
                                                                                                         }
-
                                                                                                     }
                                                                                                 }
+
                                                                                             }
 
                                                                                         }
-
                                                                                     }
                                                                                 }
                                                                             }
+
                                                                         }
 
                                                                     }
 
                                                                 }
-
                                                             }
                                                         }
+
                                                     }
 
                                                 }
 
                                             }
-
                                         }
                                     }
+
                                 }
 
                             }
 
                         }
-
                     }
                 }
             }
-        }
-        if (certicount == 8) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            if (certicount == 7) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid name");
+                    titleinput1.setError("Kindly enter valid name");
                 } else {
-
                     errorflag = 0;
-                    if (sstartdate1.length() < 1) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        certistartdate1.setError("Kindly select valid date");
+                        issuerinput1.setError("Kindly enter valid name");
                     } else {
+
                         errorflag = 0;
-                        if (willexpire1.equals("yes")) {
-                            if (senddate1.length() < 4) {
-                                errorflag = 1;
-                                certienddate1.setError("Kindly select valid date");
-                            }
-                        }
-                        {
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
                             errorflag = 0;
-                            if (stitle2.length() < 3) {
-                                errorflag = 1;
-                                titleinput2.setError("Kindly enter valid name");
-                            } else {
-                                errorflag = 0;
-                                if (sissuer2.length() < 3) {
+                            if (willexpire1.equals("yes")) {
+                                if (senddate1.length() < 4) {
                                     errorflag = 1;
-                                    issuerinput2.setError("Kindly enter valid name");
+                                    certienddate1.setError("Kindly select valid date");
+                                }
+                            }
+
+                            {
+                                errorflag = 0;
+                                if (stitle2.length() < 3) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid name");
                                 } else {
                                     errorflag = 0;
-                                    if (sstartdate2.length() < 2) {
+                                    if (sissuer2.length() < 3) {
                                         errorflag = 1;
-                                        certistartdate2.setError("Kindly select valid date");
+                                        issuerinput2.setError("Kindly enter valid name");
                                     } else {
                                         errorflag = 0;
-                                        if (willexpire2.equals("yes")) {
-                                            if (senddate2.length() < 4) {
-                                                errorflag = 1;
-                                                certienddate2.setError("Kindly select valid date");
-                                            }
-                                        }
-                                        {
+                                        if (sstartdate2.length() < 2) {
+                                            errorflag = 1;
+                                            certistartdate2.setError("Kindly select valid date");
+                                        } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 3) {
-                                                errorflag = 1;
-                                                titleinput3.setError("Kindly enter valid name");
-                                            } else {
-                                                errorflag = 0;
-                                                if (sissuer3.length() < 3) {
+                                            if (willexpire2.equals("yes")) {
+                                                if (senddate2.length() < 4) {
                                                     errorflag = 1;
-                                                    issuerinput3.setError("Kindly enter valid name");
+                                                    certienddate2.setError("Kindly select valid date");
+                                                }
+                                            }
+                                            {
+                                                errorflag = 0;
+                                                if (stitle3.length() < 3) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid name");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sstartdate3.length() < 3) {
+                                                    if (sissuer3.length() < 3) {
                                                         errorflag = 1;
-                                                        certistartdate3.setError("Kindly select valid date");
+                                                        issuerinput3.setError("Kindly enter valid name");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (willexpire3.equals("yes")) {
-                                                            if (senddate3.length() < 4) {
-                                                                errorflag = 1;
-                                                                certienddate3.setError("Kindly select valid date");
-                                                            }
-                                                        }
-                                                        {
+                                                        if (sstartdate3.length() < 3) {
+                                                            errorflag = 1;
+                                                            certistartdate3.setError("Kindly select valid date");
+                                                        } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 3) {
-                                                                errorflag = 1;
-                                                                titleinput4.setError("Kindly enter valid name");
-                                                            } else {
-                                                                errorflag = 0;
-                                                                if (sissuer4.length() < 3) {
+                                                            if (willexpire3.equals("yes")) {
+                                                                if (senddate3.length() < 4) {
                                                                     errorflag = 1;
-                                                                    issuerinput4.setError("Kindly enter valid name");
+                                                                    certienddate3.setError("Kindly select valid date");
+                                                                }
+                                                            }
+                                                            {
+                                                                errorflag = 0;
+                                                                if (stitle4.length() < 3) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid name");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (sstartdate4.length() < 3) {
+                                                                    if (sissuer4.length() < 3) {
                                                                         errorflag = 1;
-                                                                        certistartdate4.setError("Kindly select valid date");
+                                                                        issuerinput4.setError("Kindly enter valid name");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (willexpire4.equals("yes")) {
-                                                                            if (senddate4.length() < 4) {
-                                                                                errorflag = 1;
-                                                                                certienddate4.setError("Kindly select valid date");
-                                                                            }
-                                                                        }
-                                                                        {
+                                                                        if (sstartdate4.length() < 3) {
+                                                                            errorflag = 1;
+                                                                            certistartdate4.setError("Kindly select valid date");
+                                                                        } else {
                                                                             errorflag = 0;
-                                                                            if (stitle5.length() < 3) {
-                                                                                errorflag = 1;
-                                                                                titleinput5.setError("Kindly enter valid name");
-                                                                            } else {
-                                                                                errorflag = 0;
-                                                                                if (sissuer5.length() < 3) {
+                                                                            if (willexpire4.equals("yes")) {
+                                                                                if (senddate4.length() < 4) {
                                                                                     errorflag = 1;
-                                                                                    issuerinput5.setError("Kindly enter valid name");
+                                                                                    certienddate4.setError("Kindly select valid date");
+                                                                                }
+                                                                            }
+                                                                            {
+                                                                                errorflag = 0;
+                                                                                if (stitle5.length() < 3) {
+                                                                                    errorflag = 1;
+                                                                                    titleinput5.setError("Kindly enter valid name");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (sstartdate5.length() < 3) {
+                                                                                    if (sissuer5.length() < 3) {
                                                                                         errorflag = 1;
-                                                                                        certistartdate5.setError("Kindly select valid date");
+                                                                                        issuerinput5.setError("Kindly enter valid name");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (willexpire5.equals("yes")) {
-                                                                                            if (senddate5.length() < 4) {
-                                                                                                errorflag = 1;
-                                                                                                certienddate5.setError("Kindly select valid date");
-                                                                                            }
-                                                                                        }
-                                                                                        {
+                                                                                        if (sstartdate5.length() < 3) {
+                                                                                            errorflag = 1;
+                                                                                            certistartdate5.setError("Kindly select valid date");
+                                                                                        } else {
                                                                                             errorflag = 0;
-                                                                                            if (stitle6.length() < 3) {
-                                                                                                errorflag = 1;
-                                                                                                titleinput6.setError("Kindly enter valid name");
-                                                                                            } else {
-                                                                                                errorflag = 0;
-                                                                                                if (sissuer6.length() < 3) {
+                                                                                            if (willexpire5.equals("yes")) {
+                                                                                                if (senddate5.length() < 4) {
                                                                                                     errorflag = 1;
-                                                                                                    issuerinput6.setError("Kindly enter valid name");
+                                                                                                    certienddate5.setError("Kindly select valid date");
+                                                                                                }
+                                                                                            }
+                                                                                            {
+                                                                                                errorflag = 0;
+                                                                                                if (stitle6.length() < 3) {
+                                                                                                    errorflag = 1;
+                                                                                                    titleinput6.setError("Kindly enter valid name");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sstartdate6.length() < 3) {
+                                                                                                    if (sissuer6.length() < 3) {
                                                                                                         errorflag = 1;
-                                                                                                        certistartdate6.setError("Kindly select valid date");
+                                                                                                        issuerinput6.setError("Kindly enter valid name");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (willexpire6.equals("yes")) {
-                                                                                                            if (senddate6.length() < 4) {
-                                                                                                                errorflag = 1;
-                                                                                                                certienddate6.setError("Kindly select valid date");
-                                                                                                            }
-                                                                                                        }
-                                                                                                        {
+                                                                                                        if (sstartdate6.length() < 3) {
+                                                                                                            errorflag = 1;
+                                                                                                            certistartdate6.setError("Kindly select valid date");
+                                                                                                        } else {
                                                                                                             errorflag = 0;
-                                                                                                            if (stitle7.length() < 3) {
-                                                                                                                errorflag = 1;
-                                                                                                                titleinput7.setError("Kindly enter valid name");
-                                                                                                            } else {
-                                                                                                                errorflag = 0;
-                                                                                                                if (sissuer7.length() < 3) {
+                                                                                                            if (willexpire6.equals("yes")) {
+                                                                                                                if (senddate6.length() < 4) {
                                                                                                                     errorflag = 1;
-                                                                                                                    issuerinput7.setError("Kindly enter valid name");
+                                                                                                                    certienddate6.setError("Kindly select valid date");
+                                                                                                                }
+                                                                                                            }
+                                                                                                            {
+                                                                                                                errorflag = 0;
+                                                                                                                if (stitle7.length() < 3) {
+                                                                                                                    errorflag = 1;
+                                                                                                                    titleinput7.setError("Kindly enter valid name");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
-                                                                                                                    if (sstartdate7.length() < 3) {
+                                                                                                                    if (sissuer7.length() < 3) {
                                                                                                                         errorflag = 1;
-                                                                                                                        certistartdate7.setError("Kindly select valid date");
+                                                                                                                        issuerinput7.setError("Kindly enter valid name");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
-                                                                                                                        if (willexpire7.equals("yes")) {
-                                                                                                                            if (senddate7.length() < 4) {
-                                                                                                                                errorflag = 1;
-                                                                                                                                certienddate7.setError("Kindly select valid date");
-                                                                                                                            }
-                                                                                                                        }
-                                                                                                                        {
+                                                                                                                        if (sstartdate7.length() < 3) {
+                                                                                                                            errorflag = 1;
+                                                                                                                            certistartdate7.setError("Kindly select valid date");
+                                                                                                                        } else {
                                                                                                                             errorflag = 0;
-                                                                                                                            if (stitle8.length() < 3) {
-                                                                                                                                errorflag = 1;
-                                                                                                                                titleinput8.setError("Kindly enter valid name");
-                                                                                                                            } else {
-                                                                                                                                errorflag = 0;
-                                                                                                                                if (sissuer8.length() < 3) {
+                                                                                                                            if (willexpire7.equals("yes")) {
+                                                                                                                                if (senddate7.length() < 4) {
                                                                                                                                     errorflag = 1;
-                                                                                                                                    issuerinput8.setError("Kindly enter valid name");
+                                                                                                                                    certienddate7.setError("Kindly select valid date");
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                            {
+                                                                                                                                errorflag = 0;
+                                                                                                                                if (stitle8.length() < 3) {
+                                                                                                                                    errorflag = 1;
+                                                                                                                                    titleinput8.setError("Kindly enter valid name");
                                                                                                                                 } else {
                                                                                                                                     errorflag = 0;
-                                                                                                                                    if (sstartdate8.length() < 3) {
+                                                                                                                                    if (sissuer8.length() < 3) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        certistartdate8.setError("Kindly select valid date");
+                                                                                                                                        issuerinput8.setError("Kindly enter valid name");
                                                                                                                                     } else {
                                                                                                                                         errorflag = 0;
-                                                                                                                                        if (willexpire8.equals("yes")) {
-                                                                                                                                            if (senddate8.length() < 4) {
-                                                                                                                                                errorflag = 1;
-                                                                                                                                                certienddate8.setError("Kindly select valid date");
+                                                                                                                                        if (sstartdate8.length() < 3) {
+                                                                                                                                            errorflag = 1;
+                                                                                                                                            certistartdate8.setError("Kindly select valid date");
+                                                                                                                                        } else {
+                                                                                                                                            errorflag = 0;
+                                                                                                                                            if (willexpire8.equals("yes")) {
+                                                                                                                                                if (senddate8.length() < 4) {
+                                                                                                                                                    errorflag = 1;
+                                                                                                                                                    certienddate8.setError("Kindly select valid date");
+                                                                                                                                                }
                                                                                                                                             }
                                                                                                                                         }
-                                                                                                                                        {
+                                                                                                                                    }
+                                                                                                                                }
+
+                                                                                                                            }
+
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+
+                                                                                                            }
+
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+
+                                                                                            }
+
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+
+                                                                        }
+
+                                                                    }
+
+                                                                }
+                                                            }
+                                                        }
+
+                                                    }
+
+                                                }
+
+                                            }
+                                        }
+                                    }
+
+                                }
+
+                            }
+
+                        }
+                    }
+                }
+            }
+            if (certicount == 8) {
+                if (stitle1.length() < 3) {
+                    errorflag = 1;
+                    titleinput1.setError("Kindly enter valid name");
+                } else {
+                    errorflag = 0;
+                    if (sissuer1.length() < 3) {
+                        errorflag = 1;
+                        issuerinput1.setError("Kindly enter valid name");
+                    } else {
+
+                        errorflag = 0;
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
+                            errorflag = 0;
+                            if (willexpire1.equals("yes")) {
+                                if (senddate1.length() < 4) {
+                                    errorflag = 1;
+                                    certienddate1.setError("Kindly select valid date");
+                                }
+                            }
+                            {
+                                errorflag = 0;
+                                if (stitle2.length() < 3) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid name");
+                                } else {
+                                    errorflag = 0;
+                                    if (sissuer2.length() < 3) {
+                                        errorflag = 1;
+                                        issuerinput2.setError("Kindly enter valid name");
+                                    } else {
+                                        errorflag = 0;
+                                        if (sstartdate2.length() < 2) {
+                                            errorflag = 1;
+                                            certistartdate2.setError("Kindly select valid date");
+                                        } else {
+                                            errorflag = 0;
+                                            if (willexpire2.equals("yes")) {
+                                                if (senddate2.length() < 4) {
+                                                    errorflag = 1;
+                                                    certienddate2.setError("Kindly select valid date");
+                                                }
+                                            }
+                                            {
+                                                errorflag = 0;
+                                                if (stitle3.length() < 3) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid name");
+                                                } else {
+                                                    errorflag = 0;
+                                                    if (sissuer3.length() < 3) {
+                                                        errorflag = 1;
+                                                        issuerinput3.setError("Kindly enter valid name");
+                                                    } else {
+                                                        errorflag = 0;
+                                                        if (sstartdate3.length() < 3) {
+                                                            errorflag = 1;
+                                                            certistartdate3.setError("Kindly select valid date");
+                                                        } else {
+                                                            errorflag = 0;
+                                                            if (willexpire3.equals("yes")) {
+                                                                if (senddate3.length() < 4) {
+                                                                    errorflag = 1;
+                                                                    certienddate3.setError("Kindly select valid date");
+                                                                }
+                                                            }
+                                                            {
+                                                                errorflag = 0;
+                                                                if (stitle4.length() < 3) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid name");
+                                                                } else {
+                                                                    errorflag = 0;
+                                                                    if (sissuer4.length() < 3) {
+                                                                        errorflag = 1;
+                                                                        issuerinput4.setError("Kindly enter valid name");
+                                                                    } else {
+                                                                        errorflag = 0;
+                                                                        if (sstartdate4.length() < 3) {
+                                                                            errorflag = 1;
+                                                                            certistartdate4.setError("Kindly select valid date");
+                                                                        } else {
+                                                                            errorflag = 0;
+                                                                            if (willexpire4.equals("yes")) {
+                                                                                if (senddate4.length() < 4) {
+                                                                                    errorflag = 1;
+                                                                                    certienddate4.setError("Kindly select valid date");
+                                                                                }
+                                                                            }
+                                                                            {
+                                                                                errorflag = 0;
+                                                                                if (stitle5.length() < 3) {
+                                                                                    errorflag = 1;
+                                                                                    titleinput5.setError("Kindly enter valid name");
+                                                                                } else {
+                                                                                    errorflag = 0;
+                                                                                    if (sissuer5.length() < 3) {
+                                                                                        errorflag = 1;
+                                                                                        issuerinput5.setError("Kindly enter valid name");
+                                                                                    } else {
+                                                                                        errorflag = 0;
+                                                                                        if (sstartdate5.length() < 3) {
+                                                                                            errorflag = 1;
+                                                                                            certistartdate5.setError("Kindly select valid date");
+                                                                                        } else {
+                                                                                            errorflag = 0;
+                                                                                            if (willexpire5.equals("yes")) {
+                                                                                                if (senddate5.length() < 4) {
+                                                                                                    errorflag = 1;
+                                                                                                    certienddate5.setError("Kindly select valid date");
+                                                                                                }
+                                                                                            }
+                                                                                            {
+                                                                                                errorflag = 0;
+                                                                                                if (stitle6.length() < 3) {
+                                                                                                    errorflag = 1;
+                                                                                                    titleinput6.setError("Kindly enter valid name");
+                                                                                                } else {
+                                                                                                    errorflag = 0;
+                                                                                                    if (sissuer6.length() < 3) {
+                                                                                                        errorflag = 1;
+                                                                                                        issuerinput6.setError("Kindly enter valid name");
+                                                                                                    } else {
+                                                                                                        errorflag = 0;
+                                                                                                        if (sstartdate6.length() < 3) {
+                                                                                                            errorflag = 1;
+                                                                                                            certistartdate6.setError("Kindly select valid date");
+                                                                                                        } else {
+                                                                                                            errorflag = 0;
+                                                                                                            if (willexpire6.equals("yes")) {
+                                                                                                                if (senddate6.length() < 4) {
+                                                                                                                    errorflag = 1;
+                                                                                                                    certienddate6.setError("Kindly select valid date");
+                                                                                                                }
+                                                                                                            }
+                                                                                                            {
+                                                                                                                errorflag = 0;
+                                                                                                                if (stitle7.length() < 3) {
+                                                                                                                    errorflag = 1;
+                                                                                                                    titleinput7.setError("Kindly enter valid name");
+                                                                                                                } else {
+                                                                                                                    errorflag = 0;
+                                                                                                                    if (sissuer7.length() < 3) {
+                                                                                                                        errorflag = 1;
+                                                                                                                        issuerinput7.setError("Kindly enter valid name");
+                                                                                                                    } else {
+                                                                                                                        errorflag = 0;
+                                                                                                                        if (sstartdate7.length() < 3) {
+                                                                                                                            errorflag = 1;
+                                                                                                                            certistartdate7.setError("Kindly select valid date");
+                                                                                                                        } else {
+                                                                                                                            errorflag = 0;
+                                                                                                                            if (willexpire7.equals("yes")) {
+                                                                                                                                if (senddate7.length() < 4) {
+                                                                                                                                    errorflag = 1;
+                                                                                                                                    certienddate7.setError("Kindly select valid date");
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                            {
+                                                                                                                                errorflag = 0;
+                                                                                                                                if (stitle8.length() < 3) {
+                                                                                                                                    errorflag = 1;
+                                                                                                                                    titleinput8.setError("Kindly enter valid name");
+                                                                                                                                } else {
+                                                                                                                                    errorflag = 0;
+                                                                                                                                    if (sissuer8.length() < 3) {
+                                                                                                                                        errorflag = 1;
+                                                                                                                                        issuerinput8.setError("Kindly enter valid name");
+                                                                                                                                    } else {
+                                                                                                                                        errorflag = 0;
+                                                                                                                                        if (sstartdate8.length() < 3) {
+                                                                                                                                            errorflag = 1;
+                                                                                                                                            certistartdate8.setError("Kindly select valid date");
+                                                                                                                                        } else {
                                                                                                                                             errorflag = 0;
-                                                                                                                                            if (stitle9.length() < 3) {
-                                                                                                                                                errorflag = 1;
-                                                                                                                                                titleinput9.setError("Kindly enter valid name");
-                                                                                                                                            } else {
-                                                                                                                                                errorflag = 0;
-                                                                                                                                                if (sissuer9.length() < 3) {
+                                                                                                                                            if (willexpire8.equals("yes")) {
+                                                                                                                                                if (senddate8.length() < 4) {
                                                                                                                                                     errorflag = 1;
-                                                                                                                                                    issuerinput9.setError("Kindly enter valid name");
+                                                                                                                                                    certienddate8.setError("Kindly select valid date");
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                            {
+                                                                                                                                                errorflag = 0;
+                                                                                                                                                if (stitle9.length() < 3) {
+                                                                                                                                                    errorflag = 1;
+                                                                                                                                                    titleinput9.setError("Kindly enter valid name");
                                                                                                                                                 } else {
                                                                                                                                                     errorflag = 0;
-                                                                                                                                                    if (sstartdate9.length() < 3) {
+                                                                                                                                                    if (sissuer9.length() < 3) {
                                                                                                                                                         errorflag = 1;
-                                                                                                                                                        certistartdate9.setError("Kindly select valid date");
+                                                                                                                                                        issuerinput9.setError("Kindly enter valid name");
                                                                                                                                                     } else {
                                                                                                                                                         errorflag = 0;
-                                                                                                                                                        if (willexpire9.equals("yes")) {
-                                                                                                                                                            if (senddate9.length() < 4) {
-                                                                                                                                                                errorflag = 1;
-                                                                                                                                                                certienddate9.setError("Kindly select valid date");
+                                                                                                                                                        if (sstartdate9.length() < 3) {
+                                                                                                                                                            errorflag = 1;
+                                                                                                                                                            certistartdate9.setError("Kindly select valid date");
+                                                                                                                                                        } else {
+                                                                                                                                                            errorflag = 0;
+                                                                                                                                                            if (willexpire9.equals("yes")) {
+                                                                                                                                                                if (senddate9.length() < 4) {
+                                                                                                                                                                    errorflag = 1;
+                                                                                                                                                                    certienddate9.setError("Kindly select valid date");
+                                                                                                                                                                }
                                                                                                                                                             }
                                                                                                                                                         }
                                                                                                                                                     }
                                                                                                                                                 }
+
                                                                                                                                             }
 
                                                                                                                                         }
-
                                                                                                                                     }
                                                                                                                                 }
+
                                                                                                                             }
 
                                                                                                                         }
-
                                                                                                                     }
                                                                                                                 }
+
                                                                                                             }
 
                                                                                                         }
-
                                                                                                     }
                                                                                                 }
+
                                                                                             }
 
                                                                                         }
-
                                                                                     }
                                                                                 }
                                                                             }
+
                                                                         }
 
                                                                     }
 
                                                                 }
-
                                                             }
                                                         }
+
                                                     }
 
                                                 }
 
                                             }
-
                                         }
                                     }
+
                                 }
 
                             }
 
                         }
-
                     }
                 }
             }
-        }
-        if (certicount == 9) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            if (certicount == 9) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid name");
+                    titleinput1.setError("Kindly enter valid name");
                 } else {
-
                     errorflag = 0;
-                    if (sstartdate1.length() < 1) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        certistartdate1.setError("Kindly select valid date");
+                        issuerinput1.setError("Kindly enter valid name");
                     } else {
+
                         errorflag = 0;
-                        if (willexpire1.equals("yes")) {
-                            if (senddate1.length() < 4) {
-                                errorflag = 1;
-                                certienddate1.setError("Kindly select valid date");
-                            }
-                        }
-                        {
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
                             errorflag = 0;
-                            if (stitle2.length() < 3) {
-                                errorflag = 1;
-                                titleinput2.setError("Kindly enter valid name");
-                            } else {
-                                errorflag = 0;
-                                if (sissuer2.length() < 3) {
+                            if (willexpire1.equals("yes")) {
+                                if (senddate1.length() < 4) {
                                     errorflag = 1;
-                                    issuerinput2.setError("Kindly enter valid name");
+                                    certienddate1.setError("Kindly select valid date");
+                                }
+                            }
+                            {
+                                errorflag = 0;
+                                if (stitle2.length() < 3) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid name");
                                 } else {
                                     errorflag = 0;
-                                    if (sstartdate2.length() < 2) {
+                                    if (sissuer2.length() < 3) {
                                         errorflag = 1;
-                                        certistartdate2.setError("Kindly select valid date");
+                                        issuerinput2.setError("Kindly enter valid name");
                                     } else {
                                         errorflag = 0;
-                                        if (willexpire2.equals("yes")) {
-                                            if (senddate2.length() < 4) {
-                                                errorflag = 1;
-                                                certienddate2.setError("Kindly select valid date");
-                                            }
-                                        }
-                                        {
+                                        if (sstartdate2.length() < 2) {
+                                            errorflag = 1;
+                                            certistartdate2.setError("Kindly select valid date");
+                                        } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 3) {
-                                                errorflag = 1;
-                                                titleinput3.setError("Kindly enter valid name");
-                                            } else {
-                                                errorflag = 0;
-                                                if (sissuer3.length() < 3) {
+                                            if (willexpire2.equals("yes")) {
+                                                if (senddate2.length() < 4) {
                                                     errorflag = 1;
-                                                    issuerinput3.setError("Kindly enter valid name");
+                                                    certienddate2.setError("Kindly select valid date");
+                                                }
+                                            }
+                                            {
+                                                errorflag = 0;
+                                                if (stitle3.length() < 3) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid name");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sstartdate3.length() < 3) {
+                                                    if (sissuer3.length() < 3) {
                                                         errorflag = 1;
-                                                        certistartdate3.setError("Kindly select valid date");
+                                                        issuerinput3.setError("Kindly enter valid name");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (willexpire3.equals("yes")) {
-                                                            if (senddate3.length() < 4) {
-                                                                errorflag = 1;
-                                                                certienddate3.setError("Kindly select valid date");
-                                                            }
-                                                        }
-                                                        {
+                                                        if (sstartdate3.length() < 3) {
+                                                            errorflag = 1;
+                                                            certistartdate3.setError("Kindly select valid date");
+                                                        } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 3) {
-                                                                errorflag = 1;
-                                                                titleinput4.setError("Kindly enter valid name");
-                                                            } else {
-                                                                errorflag = 0;
-                                                                if (sissuer4.length() < 3) {
+                                                            if (willexpire3.equals("yes")) {
+                                                                if (senddate3.length() < 4) {
                                                                     errorflag = 1;
-                                                                    issuerinput4.setError("Kindly enter valid name");
+                                                                    certienddate3.setError("Kindly select valid date");
+                                                                }
+                                                            }
+                                                            {
+                                                                errorflag = 0;
+                                                                if (stitle4.length() < 3) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid name");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (sstartdate4.length() < 3) {
+                                                                    if (sissuer4.length() < 3) {
                                                                         errorflag = 1;
-                                                                        certistartdate4.setError("Kindly select valid date");
+                                                                        issuerinput4.setError("Kindly enter valid name");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (willexpire4.equals("yes")) {
-                                                                            if (senddate4.length() < 4) {
-                                                                                errorflag = 1;
-                                                                                certienddate4.setError("Kindly select valid date");
-                                                                            }
-                                                                        }
-                                                                        {
+                                                                        if (sstartdate4.length() < 3) {
+                                                                            errorflag = 1;
+                                                                            certistartdate4.setError("Kindly select valid date");
+                                                                        } else {
                                                                             errorflag = 0;
-                                                                            if (stitle5.length() < 3) {
-                                                                                errorflag = 1;
-                                                                                titleinput5.setError("Kindly enter valid name");
-                                                                            } else {
-                                                                                errorflag = 0;
-                                                                                if (sissuer5.length() < 3) {
+                                                                            if (willexpire4.equals("yes")) {
+                                                                                if (senddate4.length() < 4) {
                                                                                     errorflag = 1;
-                                                                                    issuerinput5.setError("Kindly enter valid name");
+                                                                                    certienddate4.setError("Kindly select valid date");
+                                                                                }
+                                                                            }
+                                                                            {
+                                                                                errorflag = 0;
+                                                                                if (stitle5.length() < 3) {
+                                                                                    errorflag = 1;
+                                                                                    titleinput5.setError("Kindly enter valid name");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (sstartdate5.length() < 3) {
+                                                                                    if (sissuer5.length() < 3) {
                                                                                         errorflag = 1;
-                                                                                        certistartdate5.setError("Kindly select valid date");
+                                                                                        issuerinput5.setError("Kindly enter valid name");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (willexpire5.equals("yes")) {
-                                                                                            if (senddate5.length() < 4) {
-                                                                                                errorflag = 1;
-                                                                                                certienddate5.setError("Kindly select valid date");
-                                                                                            }
-                                                                                        }
-                                                                                        {
+                                                                                        if (sstartdate5.length() < 3) {
+                                                                                            errorflag = 1;
+                                                                                            certistartdate5.setError("Kindly select valid date");
+                                                                                        } else {
                                                                                             errorflag = 0;
-                                                                                            if (stitle6.length() < 3) {
-                                                                                                errorflag = 1;
-                                                                                                titleinput6.setError("Kindly enter valid name");
-                                                                                            } else {
-                                                                                                errorflag = 0;
-                                                                                                if (sissuer6.length() < 3) {
+                                                                                            if (willexpire5.equals("yes")) {
+                                                                                                if (senddate5.length() < 4) {
                                                                                                     errorflag = 1;
-                                                                                                    issuerinput6.setError("Kindly enter valid name");
+                                                                                                    certienddate5.setError("Kindly select valid date");
+                                                                                                }
+                                                                                            }
+                                                                                            {
+                                                                                                errorflag = 0;
+                                                                                                if (stitle6.length() < 3) {
+                                                                                                    errorflag = 1;
+                                                                                                    titleinput6.setError("Kindly enter valid name");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sstartdate6.length() < 3) {
+                                                                                                    if (sissuer6.length() < 3) {
                                                                                                         errorflag = 1;
-                                                                                                        certistartdate6.setError("Kindly select valid date");
+                                                                                                        issuerinput6.setError("Kindly enter valid name");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (willexpire6.equals("yes")) {
-                                                                                                            if (senddate6.length() < 4) {
-                                                                                                                errorflag = 1;
-                                                                                                                certienddate6.setError("Kindly select valid date");
-                                                                                                            }
-                                                                                                        }
-
-                                                                                                        {
+                                                                                                        if (sstartdate6.length() < 3) {
+                                                                                                            errorflag = 1;
+                                                                                                            certistartdate6.setError("Kindly select valid date");
+                                                                                                        } else {
                                                                                                             errorflag = 0;
-                                                                                                            if (stitle7.length() < 3) {
-                                                                                                                errorflag = 1;
-                                                                                                                titleinput7.setError("Kindly enter valid name");
-                                                                                                            } else {
-                                                                                                                errorflag = 0;
-                                                                                                                if (sissuer7.length() < 3) {
+                                                                                                            if (willexpire6.equals("yes")) {
+                                                                                                                if (senddate6.length() < 4) {
                                                                                                                     errorflag = 1;
-                                                                                                                    issuerinput7.setError("Kindly enter valid name");
+                                                                                                                    certienddate6.setError("Kindly select valid date");
+                                                                                                                }
+                                                                                                            }
+
+                                                                                                            {
+                                                                                                                errorflag = 0;
+                                                                                                                if (stitle7.length() < 3) {
+                                                                                                                    errorflag = 1;
+                                                                                                                    titleinput7.setError("Kindly enter valid name");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
-                                                                                                                    if (sstartdate7.length() < 3) {
+                                                                                                                    if (sissuer7.length() < 3) {
                                                                                                                         errorflag = 1;
-                                                                                                                        certistartdate7.setError("Kindly select valid date");
+                                                                                                                        issuerinput7.setError("Kindly enter valid name");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
-                                                                                                                        if (willexpire7.equals("yes")) {
-                                                                                                                            if (senddate7.length() < 4) {
-                                                                                                                                errorflag = 1;
-                                                                                                                                certienddate7.setError("Kindly select valid date");
-                                                                                                                            }
-                                                                                                                        }
-                                                                                                                        {
+                                                                                                                        if (sstartdate7.length() < 3) {
+                                                                                                                            errorflag = 1;
+                                                                                                                            certistartdate7.setError("Kindly select valid date");
+                                                                                                                        } else {
                                                                                                                             errorflag = 0;
-                                                                                                                            if (stitle8.length() < 3) {
-                                                                                                                                errorflag = 1;
-                                                                                                                                titleinput8.setError("Kindly enter valid name");
-                                                                                                                            } else {
-                                                                                                                                errorflag = 0;
-                                                                                                                                if (sissuer8.length() < 3) {
+                                                                                                                            if (willexpire7.equals("yes")) {
+                                                                                                                                if (senddate7.length() < 4) {
                                                                                                                                     errorflag = 1;
-                                                                                                                                    issuerinput8.setError("Kindly enter valid name");
+                                                                                                                                    certienddate7.setError("Kindly select valid date");
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                            {
+                                                                                                                                errorflag = 0;
+                                                                                                                                if (stitle8.length() < 3) {
+                                                                                                                                    errorflag = 1;
+                                                                                                                                    titleinput8.setError("Kindly enter valid name");
                                                                                                                                 } else {
                                                                                                                                     errorflag = 0;
-                                                                                                                                    if (sstartdate8.length() < 3) {
+                                                                                                                                    if (sissuer8.length() < 3) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        certistartdate8.setError("Kindly select valid date");
+                                                                                                                                        issuerinput8.setError("Kindly enter valid name");
                                                                                                                                     } else {
                                                                                                                                         errorflag = 0;
-                                                                                                                                        if (willexpire8.equals("yes")) {
-                                                                                                                                            if (senddate8.length() < 4) {
-                                                                                                                                                errorflag = 1;
-                                                                                                                                                certienddate8.setError("Kindly select valid date");
-                                                                                                                                            }
-                                                                                                                                        }
-                                                                                                                                        {
+                                                                                                                                        if (sstartdate8.length() < 3) {
+                                                                                                                                            errorflag = 1;
+                                                                                                                                            certistartdate8.setError("Kindly select valid date");
+                                                                                                                                        } else {
                                                                                                                                             errorflag = 0;
-                                                                                                                                            if (stitle9.length() < 3) {
-                                                                                                                                                errorflag = 1;
-                                                                                                                                                titleinput9.setError("Kindly enter valid name");
-                                                                                                                                            } else {
-                                                                                                                                                errorflag = 0;
-                                                                                                                                                if (sissuer9.length() < 3) {
+                                                                                                                                            if (willexpire8.equals("yes")) {
+                                                                                                                                                if (senddate8.length() < 4) {
                                                                                                                                                     errorflag = 1;
-                                                                                                                                                    issuerinput9.setError("Kindly enter valid name");
+                                                                                                                                                    certienddate8.setError("Kindly select valid date");
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                            {
+                                                                                                                                                errorflag = 0;
+                                                                                                                                                if (stitle9.length() < 3) {
+                                                                                                                                                    errorflag = 1;
+                                                                                                                                                    titleinput9.setError("Kindly enter valid name");
                                                                                                                                                 } else {
                                                                                                                                                     errorflag = 0;
-                                                                                                                                                    if (sstartdate9.length() < 3) {
+                                                                                                                                                    if (sissuer9.length() < 3) {
                                                                                                                                                         errorflag = 1;
-                                                                                                                                                        certistartdate9.setError("Kindly select valid date");
+                                                                                                                                                        issuerinput9.setError("Kindly enter valid name");
                                                                                                                                                     } else {
                                                                                                                                                         errorflag = 0;
-                                                                                                                                                        if (willexpire9.equals("yes")) {
-                                                                                                                                                            if (senddate9.length() < 4) {
-                                                                                                                                                                errorflag = 1;
-                                                                                                                                                                certienddate9.setError("Kindly select valid date");
-                                                                                                                                                            }
-                                                                                                                                                        }
-                                                                                                                                                        {
+                                                                                                                                                        if (sstartdate9.length() < 3) {
+                                                                                                                                                            errorflag = 1;
+                                                                                                                                                            certistartdate9.setError("Kindly select valid date");
+                                                                                                                                                        } else {
                                                                                                                                                             errorflag = 0;
-                                                                                                                                                            if (stitle10.length() < 3) {
-                                                                                                                                                                errorflag = 1;
-                                                                                                                                                                titleinput10.setError("Kindly enter valid name");
-                                                                                                                                                            } else {
-                                                                                                                                                                errorflag = 0;
-                                                                                                                                                                if (sissuer10.length() < 3) {
+                                                                                                                                                            if (willexpire9.equals("yes")) {
+                                                                                                                                                                if (senddate9.length() < 4) {
                                                                                                                                                                     errorflag = 1;
-                                                                                                                                                                    issuerinput10.setError("Kindly enter valid name");
+                                                                                                                                                                    certienddate9.setError("Kindly select valid date");
+                                                                                                                                                                }
+                                                                                                                                                            }
+                                                                                                                                                            {
+                                                                                                                                                                errorflag = 0;
+                                                                                                                                                                if (stitle10.length() < 3) {
+                                                                                                                                                                    errorflag = 1;
+                                                                                                                                                                    titleinput10.setError("Kindly enter valid name");
                                                                                                                                                                 } else {
                                                                                                                                                                     errorflag = 0;
-                                                                                                                                                                    if (sstartdate10.length() < 3) {
+                                                                                                                                                                    if (sissuer10.length() < 3) {
                                                                                                                                                                         errorflag = 1;
-                                                                                                                                                                        certistartdate10.setError("Kindly select valid date");
+                                                                                                                                                                        issuerinput10.setError("Kindly enter valid name");
                                                                                                                                                                     } else {
                                                                                                                                                                         errorflag = 0;
-                                                                                                                                                                        if (willexpire10.equals("yes")) {
-                                                                                                                                                                            if (senddate10.length() < 4) {
-                                                                                                                                                                                errorflag = 1;
-                                                                                                                                                                                certienddate10.setError("Kindly select valid date");
+                                                                                                                                                                        if (sstartdate10.length() < 3) {
+                                                                                                                                                                            errorflag = 1;
+                                                                                                                                                                            certistartdate10.setError("Kindly select valid date");
+                                                                                                                                                                        } else {
+                                                                                                                                                                            errorflag = 0;
+                                                                                                                                                                            if (willexpire10.equals("yes")) {
+                                                                                                                                                                                if (senddate10.length() < 4) {
+                                                                                                                                                                                    errorflag = 1;
+                                                                                                                                                                                    certienddate10.setError("Kindly select valid date");
+                                                                                                                                                                                }
                                                                                                                                                                             }
                                                                                                                                                                         }
                                                                                                                                                                     }
                                                                                                                                                                 }
+
                                                                                                                                                             }
 
                                                                                                                                                         }
-
                                                                                                                                                     }
                                                                                                                                                 }
+
                                                                                                                                             }
 
                                                                                                                                         }
-
                                                                                                                                     }
                                                                                                                                 }
+
                                                                                                                             }
 
                                                                                                                         }
-
                                                                                                                     }
                                                                                                                 }
+
                                                                                                             }
 
                                                                                                         }
-
                                                                                                     }
                                                                                                 }
+
                                                                                             }
 
                                                                                         }
-
                                                                                     }
                                                                                 }
                                                                             }
+
                                                                         }
 
                                                                     }
 
                                                                 }
-
                                                             }
                                                         }
+
                                                     }
 
                                                 }
 
                                             }
-
                                         }
                                     }
+
                                 }
 
                             }
 
                         }
-
                     }
                 }
             }
+
         }
 
-
         if (errorflag == 0) {
-            try {
+            savecertifi();
+        }
 
-                Certificates obj1 = new Certificates(stitle1, sissuer1, slicense1, sstartdate1, senddate1, willexpire1);
-                Certificates obj2 = new Certificates(stitle2, sissuer2, slicense2, sstartdate2, senddate2, willexpire2);
-                Certificates obj3 = new Certificates(stitle3, sissuer3, slicense3, sstartdate3, senddate3, willexpire3);
-                Certificates obj4 = new Certificates(stitle4, sissuer4, slicense4, sstartdate4, senddate4, willexpire4);
-                Certificates obj5 = new Certificates(stitle5, sissuer5, slicense5, sstartdate5, senddate5, willexpire5);
-                Certificates obj6 = new Certificates(stitle6, sissuer6, slicense6, sstartdate6, senddate6, willexpire6);
-                Certificates obj7 = new Certificates(stitle7, sissuer7, slicense7, sstartdate7, senddate7, willexpire7);
-                Certificates obj8 = new Certificates(stitle8, sissuer8, slicense8, sstartdate8, senddate8, willexpire8);
-                Certificates obj9 = new Certificates(stitle9, sissuer9, slicense9, sstartdate9, senddate9, willexpire9);
-                Certificates obj10 = new Certificates(stitle10, sissuer10, slicense10, sstartdate10, senddate10, willexpire10);
+    }
+
+    public void savecertifi(){
+
+        try {
+
+            Certificates obj1 = new Certificates(stitle1, sissuer1, slicense1, sstartdate1, senddate1, willexpire1);
+            Certificates obj2 = new Certificates(stitle2, sissuer2, slicense2, sstartdate2, senddate2, willexpire2);
+            Certificates obj3 = new Certificates(stitle3, sissuer3, slicense3, sstartdate3, senddate3, willexpire3);
+            Certificates obj4 = new Certificates(stitle4, sissuer4, slicense4, sstartdate4, senddate4, willexpire4);
+            Certificates obj5 = new Certificates(stitle5, sissuer5, slicense5, sstartdate5, senddate5, willexpire5);
+            Certificates obj6 = new Certificates(stitle6, sissuer6, slicense6, sstartdate6, senddate6, willexpire6);
+            Certificates obj7 = new Certificates(stitle7, sissuer7, slicense7, sstartdate7, senddate7, willexpire7);
+            Certificates obj8 = new Certificates(stitle8, sissuer8, slicense8, sstartdate8, senddate8, willexpire8);
+            Certificates obj9 = new Certificates(stitle9, sissuer9, slicense9, sstartdate9, senddate9, willexpire9);
+            Certificates obj10 = new Certificates(stitle10, sissuer10, slicense10, sstartdate10, senddate10, willexpire10);
 
 
-                certificatesList.add(obj1);
-                certificatesList.add(obj2);
-                certificatesList.add(obj3);
-                certificatesList.add(obj4);
-                certificatesList.add(obj5);
-                certificatesList.add(obj6);
-                certificatesList.add(obj7);
-                certificatesList.add(obj8);
-                certificatesList.add(obj9);
-                certificatesList.add(obj10);
+            certificatesList.add(obj1);
+            certificatesList.add(obj2);
+            certificatesList.add(obj3);
+            certificatesList.add(obj4);
+            certificatesList.add(obj5);
+            certificatesList.add(obj6);
+            certificatesList.add(obj7);
+            certificatesList.add(obj8);
+            certificatesList.add(obj9);
+            certificatesList.add(obj10);
 
-                String encObjString = OtoString(certificatesList, MySharedPreferencesManager.getDigest1(MyProfileCertifications.this), MySharedPreferencesManager.getDigest2(MyProfileCertifications.this));
+            String encObjString = OtoString(certificatesList, MySharedPreferencesManager.getDigest1(MyProfileCertifications.this), MySharedPreferencesManager.getDigest2(MyProfileCertifications.this));
 
-                new SaveCertificates().execute(encObjString);
+            new SaveCertificates().execute(encObjString);
 
-            } catch (Exception e) {
-                Log.d("TAG", "validateandSave:  " + e.getMessage());
-            }
-
+        } catch (Exception e) {
+            Log.d("TAG", "validateandSave:  " + e.getMessage());
         }
 
     }
@@ -3994,8 +4008,11 @@ public class MyProfileCertifications extends AppCompatActivity {
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialogInterface) {
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileCertifications.this));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileCertifications.this));
+
             }
         });
 
@@ -5377,6 +5394,16 @@ public class MyProfileCertifications extends AppCompatActivity {
             enddate9.setText(senddate9);
             switch9.setChecked(blnswitch10);
 
+            if(stitle1.equals("") && sissuer1.equals("") && slicense1.equals("") && sstartdate1.equals("") && senddate1.equals("") && !blnswitch1){
+                Log.d("TAG", "deleteLang: lang 1");
+                editcertfi =1;
+            }
+
+            if(editcertfi==1){
+                Log.d("TAG", "deleteLang: editcertfi - "+editcertfi);
+                savecertifi();
+            }
+
         }
 
 
@@ -5410,8 +5437,11 @@ public class MyProfileCertifications extends AppCompatActivity {
             alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialogInterface) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileCertifications.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileCertifications.this));
+
                 }
             });
 

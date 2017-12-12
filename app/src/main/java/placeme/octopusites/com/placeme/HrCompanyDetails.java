@@ -1,19 +1,19 @@
 package placeme.octopusites.com.placeme;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.icu.text.UnicodeSetSpanner;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -21,8 +21,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -37,32 +35,31 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
-
 import placeme.octopusites.com.placeme.modal.CompanyDetailsModal;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 public class HrCompanyDetails extends AppCompatActivity {
 
-    public int pos;
-    String CompanyType="",strobj="";
-    String encobj="";
     public static String HRlog = "HRlog";
-    String CompanyNamestr="", CompanyEmailstr="", CompanyWebstr="", Companyphonestr="", CompanyAltPhonestr="", CompanyCIINstr="", CompanyNaturestr="", CompanyAddressLine1str="", CompanyAddressLine2str="", CompanyAddressLine3str="";
+    public int pos;
+    String CompanyType = "", strobj = "";
+    String encobj = "";
+    String CompanyNamestr = "", CompanyEmailstr = "", CompanyWebstr = "", Companyphonestr = "", CompanyAltPhonestr = "", CompanyCIINstr = "", CompanyNaturestr = "", CompanyAddressLine1str = "", CompanyAddressLine2str = "", CompanyAddressLine3str = "";
     EditText CompanyName, CompanyEmail, CompanyWebsite, CompanyPhone, CompanyAlternatePhone, CompanyCIN, CompanyAddressLine1, CompanyAddressLine2, CompanyAddressLine3;
     Spinner Company_Nature;
-    String encComName="", encUsername="", encComMail="", encComWeb="", encComPhone="", encComAlterPhone="", encComCIIN="", encComType="", encComAddL1="", encComAddL2="", encComAddL3="";
+    String encComName = "", encUsername = "", encComMail = "", encComWeb = "", encComPhone = "", encComAlterPhone = "", encComCIIN = "", encComType = "", encComAddL1 = "", encComAddL2 = "", encComAddL3 = "";
     String[] Nature = {"-Select Company Nature-", "Partnership", "Propietorship", "LLP (Limited Liability)", "Private Limited", "Public Limited", "Inc"};
     JSONParser jsonParser = new JSONParser();
+
     //    private static String url_savedata = "http://192.168.100.10/AESTest/SaveHrCompany";
     JSONObject json;
     String userName;
     HrData h = new HrData();
     ArrayAdapter<String> dataAdapter;
     int flag1 = 0, flag2 = 0, flag3 = 0, flag4 = 0, flag5 = 0, flag6 = 0, flag7 = 0, flag8 = 0, flag9 = 0, flag10 = 0;
-
+    TextInputLayout instnameinput, addressline1input, addressline2input, addressline3input, instemailinput, instwebinput, instphoneinput, instphoneainput, instreginput;
+    TextView loctxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,8 +76,6 @@ public class HrCompanyDetails extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-
-
         CompanyName = (EditText) findViewById(R.id.instname);
         CompanyEmail = (EditText) findViewById(R.id.instemail);
         CompanyWebsite = (EditText) findViewById(R.id.instweb);
@@ -91,8 +86,40 @@ public class HrCompanyDetails extends AppCompatActivity {
         CompanyAddressLine1 = (EditText) findViewById(R.id.compaddressline1);
         CompanyAddressLine2 = (EditText) findViewById(R.id.compaddressline2);
         CompanyAddressLine3 = (EditText) findViewById(R.id.compaddressline3);
-
+        loctxt=(TextView) findViewById(R.id.loctxt);
         Company_Nature = (Spinner) findViewById(R.id.board10);
+
+        instnameinput = (TextInputLayout) findViewById(R.id.instnameinput);
+        addressline1input = (TextInputLayout) findViewById(R.id.addressline1input);
+        addressline2input = (TextInputLayout) findViewById(R.id.addressline2input);
+        addressline3input = (TextInputLayout) findViewById(R.id.addressline3input);
+        instemailinput = (TextInputLayout) findViewById(R.id.instemailinput);
+        instwebinput = (TextInputLayout) findViewById(R.id.instwebinput);
+        instphoneinput = (TextInputLayout) findViewById(R.id.instphoneinput);
+        instphoneainput = (TextInputLayout) findViewById(R.id.instphoneainput);
+        instreginput = (TextInputLayout) findViewById(R.id.instreginput);
+
+        CompanyName.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
+        CompanyEmail.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
+        CompanyWebsite.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
+        CompanyPhone.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
+        CompanyAlternatePhone.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
+        CompanyCIN.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
+        CompanyAddressLine1.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
+        CompanyAddressLine2.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
+        CompanyAddressLine3.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
+        loctxt.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
+
+        instnameinput.setTypeface(MyConstants.getLight(HrCompanyDetails.this));
+        addressline1input.setTypeface(MyConstants.getLight(HrCompanyDetails.this));
+        addressline2input.setTypeface(MyConstants.getLight(HrCompanyDetails.this));
+        addressline3input.setTypeface(MyConstants.getLight(HrCompanyDetails.this));
+        instemailinput.setTypeface(MyConstants.getLight(HrCompanyDetails.this));
+        instwebinput.setTypeface(MyConstants.getLight(HrCompanyDetails.this));
+        instphoneinput.setTypeface(MyConstants.getLight(HrCompanyDetails.this));
+        instphoneainput.setTypeface(MyConstants.getLight(HrCompanyDetails.this));
+        instreginput.setTypeface(MyConstants.getLight(HrCompanyDetails.this));
+
 
         CompanyNamestr = h.getCompanyName();
         CompanyEmailstr = h.getCompanyEmail();
@@ -108,7 +135,6 @@ public class HrCompanyDetails extends AppCompatActivity {
         Log.d("TAG", "onCreate: ");
 
 
-
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, Nature) {
             @Override
             public boolean isEnabled(int position) {
@@ -121,19 +147,28 @@ public class HrCompanyDetails extends AppCompatActivity {
                 }
             }
 
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTextColor(getResources().getColor(R.color.dark_color));
+                tv.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
+                return view;
+            }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+                tv.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
 
                 if (position == 0) {
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 } else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -149,8 +184,9 @@ public class HrCompanyDetails extends AppCompatActivity {
                 // new HrCompanyDetails().GetStates().execute();
                 pos = position;
                 CompanyType = Nature[position];
-                Log.d("TAG", "onItemSelected: - " +CompanyType);
+                Log.d("TAG", "onItemSelected: - " + CompanyType);
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -160,7 +196,11 @@ public class HrCompanyDetails extends AppCompatActivity {
             if (!CompanyNamestr.equals(""))
                 CompanyName.setText(CompanyNamestr);
 
+        } else {
+            CompanyNamestr = "";
+            CompanyType = "";
         }
+
         if (CompanyEmailstr != null) {
             if (!CompanyEmailstr.equals(""))
                 CompanyEmail.setText(CompanyEmailstr);
@@ -217,7 +257,7 @@ public class HrCompanyDetails extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                instnameinput.setError(null);
             }
 
             @Override
@@ -234,7 +274,7 @@ public class HrCompanyDetails extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                addressline1input.setError(null);
             }
 
             @Override
@@ -251,7 +291,7 @@ public class HrCompanyDetails extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                addressline2input.setError(null);
             }
 
             @Override
@@ -268,7 +308,7 @@ public class HrCompanyDetails extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                addressline3input.setError(null);
             }
 
             @Override
@@ -285,7 +325,7 @@ public class HrCompanyDetails extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                instemailinput.setError(null);
             }
 
             @Override
@@ -302,7 +342,7 @@ public class HrCompanyDetails extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                instwebinput.setError(null);
             }
 
             @Override
@@ -319,7 +359,7 @@ public class HrCompanyDetails extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                instphoneinput.setError(null);
             }
 
             @Override
@@ -336,7 +376,7 @@ public class HrCompanyDetails extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                instphoneainput.setError(null);
             }
 
             @Override
@@ -353,7 +393,7 @@ public class HrCompanyDetails extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                instreginput.setError(null);
             }
 
             @Override
@@ -389,7 +429,7 @@ public class HrCompanyDetails extends AppCompatActivity {
 
     public void validateandSave() {
         int errorflag1 = 0, errorflag2 = 0, errorflag3 = 0, errorflag4 = 0, errorflag5 = 0, errorflag6 = 0, errorflag7 = 0, errorflag8 = 0, errorflag9 = 0, errorflag10 = 0;
-        String ComName="", ComMail, ComWeb, ComPhone, ComAlterPhone, ComCIIN, ComAdd1, ComAdd2, ComAdd3;
+        String ComName = "", ComMail, ComWeb, ComPhone, ComAlterPhone, ComCIIN, ComAdd1, ComAdd2, ComAdd3;
         ComName = CompanyName.getText().toString();
         ComMail = CompanyEmail.getText().toString();
         ComWeb = CompanyWebsite.getText().toString();
@@ -402,34 +442,34 @@ public class HrCompanyDetails extends AppCompatActivity {
         ComAdd3 = CompanyAddressLine3.getText().toString();
 
         if (ComName.length() < 1) {
-            CompanyName.setError("Please Enter valid Company Name");
+            instnameinput.setError("Kindly enter valid Company Name");
             errorflag1 = 1;
         } else if (ComAdd1.length() < 1) {
-            CompanyAddressLine1.setError("Please Enter valid Address ");
+            addressline1input.setError("Kindly enter valid Address ");
             errorflag8 = 1;
         } else if (ComAdd2.length() < 1) {
-            CompanyAddressLine2.setError("Please Enter valid Address ");
+            addressline2input.setError("Kindly enter valid Address ");
             errorflag9 = 1;
         } else if (ComAdd3.length() < 1) {
-            CompanyAddressLine3.setError("Please Enter valid Address ");
+            addressline3input.setError("Kindly enter valid Address ");
             errorflag10 = 1;
         } else if (ComMail.length() < 1) {
-            CompanyEmail.setError("Please Enter valid EMail Id");
+            instemailinput.setError("Kindly enter valid EMail Id");
             errorflag2 = 1;
         } else if (!ComMail.contains("@")) {
-            CompanyEmail.setError("Please Enter valid EMail Id");
+            instemailinput.setError("Kindly enter EMail Id");
             errorflag2 = 1;
         } else if (ComWeb.length() < 1 || !ComWeb.contains(".")) {
-            CompanyWebsite.setError("Please Enter valid Company Website");
+            instwebinput.setError("Please Enter valid Company Website");
             errorflag3 = 1;
         } else if (ComPhone.length() < 7) {
-            CompanyPhone.setError("Please Enter valid Phone number");
+            instphoneinput.setError("Kindly enter valid Phone number");
             errorflag4 = 1;
         } else if (ComAlterPhone.length() < 7) {
-            CompanyAlternatePhone.setError("Please Enter valid Alternate Phone");
+            instphoneainput.setError("Kindly enter valid Alternate Phone");
             errorflag5 = 1;
         } else if (ComCIIN.length() < 3) {
-            CompanyCIN.setError("Please Enter valid Company CIIN");
+            instreginput.setError("Kindly enter valid Company CIIN");
             errorflag6 = 1;
         } else if (pos == 0) {
             Toast.makeText(this, "Select Valid Company Type ", Toast.LENGTH_SHORT).show();
@@ -442,17 +482,17 @@ public class HrCompanyDetails extends AppCompatActivity {
             try {
 
 
-                ArrayList<CompanyDetailsModal> modalList=new ArrayList<>();
+                ArrayList<CompanyDetailsModal> modalList = new ArrayList<>();
 //                String ComName, ComMail, ComWeb, ComPhone, ComAlterPhone, ComCIIN, ComAdd1, ComAdd2, ComAdd3;
 
-                CompanyDetailsModal obj2 = new CompanyDetailsModal(ComName, ComMail,ComWeb,ComPhone,ComAlterPhone,ComCIIN,ComAdd1, ComAdd2, ComAdd3,CompanyType);
+                CompanyDetailsModal obj2 = new CompanyDetailsModal(ComName, ComMail, ComWeb, ComPhone, ComAlterPhone, ComCIIN, ComAdd1, ComAdd2, ComAdd3, CompanyType);
 
-                Log.d("TAG", "validateandSave:-"+obj2.ComName+"   "+obj2.ComMail+""+obj2.ComWeb+ "  "+obj2.ComPhone+"   "+obj2.ComAlterPhone+"   "+obj2.ComCIIN+"   "+obj2.ComAdd1+  "   "+obj2.ComAdd2+"   "+obj2.ComAdd3+"   "+obj2.CompanyNature);
+                Log.d("TAG", "validateandSave:-" + obj2.ComName + "   " + obj2.ComMail + "" + obj2.ComWeb + "  " + obj2.ComPhone + "   " + obj2.ComAlterPhone + "   " + obj2.ComCIIN + "   " + obj2.ComAdd1 + "   " + obj2.ComAdd2 + "   " + obj2.ComAdd3 + "   " + obj2.CompanyNature);
 
-                Log.d("TAG", "validateandSave: - modallist size "+modalList.size());
-                encobj =OtoString(obj2,MySharedPreferencesManager.getDigest1(HrCompanyDetails.this),MySharedPreferencesManager.getDigest2(HrCompanyDetails.this));
+                Log.d("TAG", "validateandSave: - modallist size " + modalList.size());
+                encobj = OtoString(obj2, MySharedPreferencesManager.getDigest1(HrCompanyDetails.this), MySharedPreferencesManager.getDigest2(HrCompanyDetails.this));
 
-                Log.d("TAG", "validateandSave: encobj - "+encobj);
+                Log.d("TAG", "validateandSave: encobj - " + encobj);
 
                 new SaveDataHr().execute();
 
@@ -463,40 +503,13 @@ public class HrCompanyDetails extends AppCompatActivity {
         }
     }
 
-    class SaveDataHr extends AsyncTask<String, String, String> {
-        protected String doInBackground(String... param) {
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", encUsername));
-            params.add(new BasicNameValuePair("d", encobj));       //1
-
-            json = jsonParser.makeHttpRequest(MyConstants.url_SaveHrCompany, "GET", params);
-            try {
-                r = json.getString("info");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-
-        }
-
-        protected void onPostExecute(String result) {
-            if (result.equals("success")) {
-                Toast.makeText(HrCompanyDetails.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
-                    setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
-                HrCompanyDetails.super.onBackPressed();
-
-            }
-        }
-    }
-
     @Override
     public void onBackPressed() {
 
         Intent returnIntent = new Intent();
         setResult(Activity.RESULT_CANCELED, returnIntent);
         Toast.makeText(this, "result set cancel", Toast.LENGTH_SHORT).show();
+
 
         if (flag1 == 1 || !CompanyNaturestr.equals(CompanyType)) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -535,5 +548,33 @@ public class HrCompanyDetails extends AppCompatActivity {
             setResult(Activity.RESULT_CANCELED, returnIntent);
         }
 
+    }
+
+    class SaveDataHr extends AsyncTask<String, String, String> {
+        protected String doInBackground(String... param) {
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", encUsername));
+            params.add(new BasicNameValuePair("d", encobj));       //1
+
+            json = jsonParser.makeHttpRequest(MyConstants.url_SaveHrCompany, "GET", params);
+            try {
+                r = json.getString("info");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+
+        }
+
+        protected void onPostExecute(String result) {
+            if (result.equals("success")) {
+                Toast.makeText(HrCompanyDetails.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+                setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
+                HrCompanyDetails.super.onBackPressed();
+
+            }
+        }
     }
 }

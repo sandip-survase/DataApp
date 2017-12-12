@@ -54,8 +54,6 @@ public class LoginActivity extends AppCompatActivity {
 
     JSONObject json;
     String resultofop = "";
-    private static String url_login = "http://192.168.100.100/AESTest/Auth";
-    private static String url_savesessiondetails = "http://192.168.100.100/PlaceMe/SaveSessionDetails";
     //private static String url_sessiondetails = "http://ip-api.com/json";
     String country = "", regionName = "", city = "", isp = "", countryCode = "", query = "";
     String enccountry, encregionName, enccity, encisp, enccountryCode, encquery;
@@ -241,7 +239,7 @@ public class LoginActivity extends AppCompatActivity {
                     params.add(new BasicNameValuePair("u", mEmail));
                     params.add(new BasicNameValuePair("p", mPassword));
 //                    params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken")));
-                    json = jParser.makeHttpRequest(url_login, "GET", params);
+                    json = jParser.makeHttpRequest(MyConstants.url_login, "GET", params);
                     Log.d("TAG", "loginActivity json : "+json);
                     String s = null;
 
@@ -393,7 +391,7 @@ public class LoginActivity extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));    //0
             params.add(new BasicNameValuePair("m", getDeviceName()));      //1
-            json = jParser.makeHttpRequest(url_savesessiondetails, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_savesessiondetails, "GET", params);
             try {
                 r = json.getString("info");
 

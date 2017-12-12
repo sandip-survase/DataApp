@@ -13,6 +13,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -42,7 +43,7 @@ import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 public class MyProfileAchievements extends AppCompatActivity {
 
-    int honorcount = 0;
+    int honorcount = 0,editachieve=0;
     View addmorehonor;
     String username, role;
     String digest1, digest2;
@@ -1111,6 +1112,8 @@ titleinput10.setError(null);
         addmorehonor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                editachieve=0;
+
                 if (honorcount == 0) {
                     if (title1.getText().toString() != null && issuer1.getText().toString() != null && yearofhonor1.getText().toString() != null) {
                         if (!title1.getText().toString().equals("") && !issuer1.getText().toString().equals("")  && !yearofhonor1.getText().toString().equals("")) {
@@ -1552,8 +1555,11 @@ titleinput10.setError(null);
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialogInterface) {
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileAchievements.this));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileAchievements.this));
+
             }
         });
 
@@ -2643,6 +2649,18 @@ titleinput10.setError(null);
             description9.setText(sdescription9);
             yearofhonor9.setText(syearofhonor9);
 
+
+            if(stitle1.equals("") && sissuer1.equals("") && sdescription1.equals("") && syearofhonor1.equals("") ){
+                Log.d("TAG", "deleteLang: lang 1");
+                editachieve =1;
+            }
+
+            if(editachieve==1){
+                Log.d("TAG", "deleteLang: editcertfi - "+editachieve);
+                encachieve();
+            }
+
+
         }
     }
 
@@ -2840,172 +2858,178 @@ titleinput10.setError(null);
 
         int errorflag = 0;
 
-        if (honorcount == 0) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
-                    errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid Issuer");
-                } else {
-                    errorflag = 0;
-                    if (syearofhonor1.length() < 3) {
-                        errorflag = 1;
-                        yearhonor1.setError("Kindly select valid Date");
-                    }
-                }
-            }
-        } else if (honorcount == 1) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
-                    errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid Issuer");
-                } else {
-                    errorflag = 0;
-                    if (syearofhonor1.length() < 3) {
-                        errorflag = 1;
-                        yearhonor1.setError("Kindly select valid Date");
-                    } else {
-                        errorflag = 0;
-                        if (stitle2.length() < 3) {
-                            errorflag = 2;
-                            titleinput2.setError("Kindly enter valid title");
-                        } else {
-                            errorflag = 0;
-                            if (sissuer2.length() < 3) {
-                                errorflag = 2;
-                                issuerinput2.setError("Kindly enter valid Issuer");
-                            } else {
-                                errorflag = 0;
-                                if (syearofhonor2.length() < 3) {
-                                    errorflag = 2;
-                                    yearhonor2.setError("Kindly select valid Date");
-                                }
-                            }
-                        }
+        if(editachieve==1){
+            encachieve();
+        }
+        else {
 
-                    }
-                }
-            }
-        } else if (honorcount == 2) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            if (honorcount == 0) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid Issuer");
+                    titleinput1.setError("Kindly enter valid title");
                 } else {
                     errorflag = 0;
-                    if (syearofhonor1.length() < 3) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        yearhonor1.setError("Kindly select valid Date");
+                        issuerinput1.setError("Kindly enter valid Issuer");
                     } else {
                         errorflag = 0;
-                        if (stitle2.length() < 3) {
-                            errorflag = 2;
-                            titleinput2.setError("Kindly enter valid title");
+                        if (syearofhonor1.length() < 3) {
+                            errorflag = 1;
+                            yearhonor1.setError("Kindly select valid Date");
+                        }
+                    }
+                }
+            } else if (honorcount == 1) {
+                if (stitle1.length() < 3) {
+                    errorflag = 1;
+                    titleinput1.setError("Kindly enter valid title");
+                } else {
+                    errorflag = 0;
+                    if (sissuer1.length() < 3) {
+                        errorflag = 1;
+                        issuerinput1.setError("Kindly enter valid Issuer");
+                    } else {
+                        errorflag = 0;
+                        if (syearofhonor1.length() < 3) {
+                            errorflag = 1;
+                            yearhonor1.setError("Kindly select valid Date");
                         } else {
                             errorflag = 0;
-                            if (sissuer2.length() < 3) {
+                            if (stitle2.length() < 3) {
                                 errorflag = 2;
-                                issuerinput2.setError("Kindly enter valid Issuer");
+                                titleinput2.setError("Kindly enter valid title");
                             } else {
                                 errorflag = 0;
-                                if (syearofhonor2.length() < 3) {
+                                if (sissuer2.length() < 3) {
                                     errorflag = 2;
-                                    yearhonor2.setError("Kindly select valid Date");
+                                    issuerinput2.setError("Kindly enter valid Issuer");
                                 } else {
                                     errorflag = 0;
-                                    if (stitle3.length() < 3) {
-                                        errorflag = 3;
-                                        titleinput3.setError("Kindly enter valid title");
+                                    if (syearofhonor2.length() < 3) {
+                                        errorflag = 2;
+                                        yearhonor2.setError("Kindly select valid Date");
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+            } else if (honorcount == 2) {
+                if (stitle1.length() < 3) {
+                    errorflag = 1;
+                    titleinput1.setError("Kindly enter valid title");
+                } else {
+                    errorflag = 0;
+                    if (sissuer1.length() < 3) {
+                        errorflag = 1;
+                        issuerinput1.setError("Kindly enter valid Issuer");
+                    } else {
+                        errorflag = 0;
+                        if (syearofhonor1.length() < 3) {
+                            errorflag = 1;
+                            yearhonor1.setError("Kindly select valid Date");
+                        } else {
+                            errorflag = 0;
+                            if (stitle2.length() < 3) {
+                                errorflag = 2;
+                                titleinput2.setError("Kindly enter valid title");
+                            } else {
+                                errorflag = 0;
+                                if (sissuer2.length() < 3) {
+                                    errorflag = 2;
+                                    issuerinput2.setError("Kindly enter valid Issuer");
+                                } else {
+                                    errorflag = 0;
+                                    if (syearofhonor2.length() < 3) {
+                                        errorflag = 2;
+                                        yearhonor2.setError("Kindly select valid Date");
                                     } else {
                                         errorflag = 0;
-                                        if (sissuer3.length() < 3) {
+                                        if (stitle3.length() < 3) {
                                             errorflag = 3;
-                                            issuerinput3.setError("Kindly enter valid Issuer");
+                                            titleinput3.setError("Kindly enter valid title");
                                         } else {
                                             errorflag = 0;
-                                            if (syearofhonor3.length() < 3) {
+                                            if (sissuer3.length() < 3) {
                                                 errorflag = 3;
-                                                yearhonor3.setError("Kindly select valid Date");
+                                                issuerinput3.setError("Kindly enter valid Issuer");
+                                            } else {
+                                                errorflag = 0;
+                                                if (syearofhonor3.length() < 3) {
+                                                    errorflag = 3;
+                                                    yearhonor3.setError("Kindly select valid Date");
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
-                        }
 
+                        }
                     }
                 }
-            }
-        } else if (honorcount == 3) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            } else if (honorcount == 3) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid Issuer");
+                    titleinput1.setError("Kindly enter valid title");
                 } else {
                     errorflag = 0;
-                    if (syearofhonor1.length() < 3) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        yearhonor1.setError("Kindly select valid Date");
+                        issuerinput1.setError("Kindly enter valid Issuer");
                     } else {
                         errorflag = 0;
-                        if (stitle2.length() < 3) {
-                            errorflag = 2;
-                            titleinput2.setError("Kindly enter valid title");
+                        if (syearofhonor1.length() < 3) {
+                            errorflag = 1;
+                            yearhonor1.setError("Kindly select valid Date");
                         } else {
                             errorflag = 0;
-                            if (sissuer2.length() < 3) {
+                            if (stitle2.length() < 3) {
                                 errorflag = 2;
-                                issuerinput2.setError("Kindly enter valid Issuer");
+                                titleinput2.setError("Kindly enter valid title");
                             } else {
                                 errorflag = 0;
-                                if (syearofhonor2.length() < 3) {
+                                if (sissuer2.length() < 3) {
                                     errorflag = 2;
-                                    yearhonor2.setError("Kindly select valid Date");
+                                    issuerinput2.setError("Kindly enter valid Issuer");
                                 } else {
                                     errorflag = 0;
-                                    if (stitle3.length() < 3) {
-                                        errorflag = 3;
-                                        titleinput3.setError("Kindly enter valid title");
+                                    if (syearofhonor2.length() < 3) {
+                                        errorflag = 2;
+                                        yearhonor2.setError("Kindly select valid Date");
                                     } else {
                                         errorflag = 0;
-                                        if (sissuer3.length() < 3) {
+                                        if (stitle3.length() < 3) {
                                             errorflag = 3;
-                                            issuerinput3.setError("Kindly enter valid Issuer");
+                                            titleinput3.setError("Kindly enter valid title");
                                         } else {
                                             errorflag = 0;
-                                            if (syearofhonor3.length() < 3) {
+                                            if (sissuer3.length() < 3) {
                                                 errorflag = 3;
-                                                yearhonor3.setError("Kindly select valid Date");
+                                                issuerinput3.setError("Kindly enter valid Issuer");
                                             } else {
                                                 errorflag = 0;
-                                                if (stitle4.length() < 3) {
-                                                    errorflag = 4;
-                                                    titleinput4.setError("Kindly enter valid title");
+                                                if (syearofhonor3.length() < 3) {
+                                                    errorflag = 3;
+                                                    yearhonor3.setError("Kindly select valid Date");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sissuer4.length() < 3) {
+                                                    if (stitle4.length() < 3) {
                                                         errorflag = 4;
-                                                        issuerinput4.setError("Kindly enter valid Issuer");
+                                                        titleinput4.setError("Kindly enter valid title");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (syearofhonor4.length() < 3) {
+                                                        if (sissuer4.length() < 3) {
                                                             errorflag = 4;
-                                                            yearhonor4.setError("Kindly select valid Date");
+                                                            issuerinput4.setError("Kindly enter valid Issuer");
+                                                        } else {
+                                                            errorflag = 0;
+                                                            if (syearofhonor4.length() < 3) {
+                                                                errorflag = 4;
+                                                                yearhonor4.setError("Kindly select valid Date");
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -3014,85 +3038,85 @@ titleinput10.setError(null);
                                     }
                                 }
                             }
-                        }
 
+                        }
                     }
                 }
-            }
-        } else if (honorcount == 4) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            } else if (honorcount == 4) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid Issuer");
+                    titleinput1.setError("Kindly enter valid title");
                 } else {
                     errorflag = 0;
-                    if (syearofhonor1.length() < 3) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        yearhonor1.setError("Kindly select valid Date");
+                        issuerinput1.setError("Kindly enter valid Issuer");
                     } else {
                         errorflag = 0;
-                        if (stitle2.length() < 3) {
-                            errorflag = 2;
-                            titleinput2.setError("Kindly enter valid title");
+                        if (syearofhonor1.length() < 3) {
+                            errorflag = 1;
+                            yearhonor1.setError("Kindly select valid Date");
                         } else {
                             errorflag = 0;
-                            if (sissuer2.length() < 3) {
+                            if (stitle2.length() < 3) {
                                 errorflag = 2;
-                                issuerinput2.setError("Kindly enter valid Issuer");
+                                titleinput2.setError("Kindly enter valid title");
                             } else {
                                 errorflag = 0;
-                                if (syearofhonor2.length() < 3) {
+                                if (sissuer2.length() < 3) {
                                     errorflag = 2;
-                                    yearhonor2.setError("Kindly select valid Date");
+                                    issuerinput2.setError("Kindly enter valid Issuer");
                                 } else {
                                     errorflag = 0;
-                                    if (stitle3.length() < 3) {
-                                        errorflag = 3;
-                                        titleinput3.setError("Kindly enter valid title");
+                                    if (syearofhonor2.length() < 3) {
+                                        errorflag = 2;
+                                        yearhonor2.setError("Kindly select valid Date");
                                     } else {
                                         errorflag = 0;
-                                        if (sissuer3.length() < 3) {
+                                        if (stitle3.length() < 3) {
                                             errorflag = 3;
-                                            issuerinput3.setError("Kindly enter valid Issuer");
+                                            titleinput3.setError("Kindly enter valid title");
                                         } else {
                                             errorflag = 0;
-                                            if (syearofhonor3.length() < 3) {
+                                            if (sissuer3.length() < 3) {
                                                 errorflag = 3;
-                                                yearhonor3.setError("Kindly select valid Date");
+                                                issuerinput3.setError("Kindly enter valid Issuer");
                                             } else {
                                                 errorflag = 0;
-                                                if (stitle4.length() < 3) {
-                                                    errorflag = 4;
-                                                    titleinput4.setError("Kindly enter valid title");
+                                                if (syearofhonor3.length() < 3) {
+                                                    errorflag = 3;
+                                                    yearhonor3.setError("Kindly select valid Date");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sissuer4.length() < 3) {
+                                                    if (stitle4.length() < 3) {
                                                         errorflag = 4;
-                                                        issuerinput4.setError("Kindly enter valid Issuer");
+                                                        titleinput4.setError("Kindly enter valid title");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (syearofhonor4.length() < 3) {
+                                                        if (sissuer4.length() < 3) {
                                                             errorflag = 4;
-                                                            yearhonor4.setError("Kindly select valid Date");
+                                                            issuerinput4.setError("Kindly enter valid Issuer");
                                                         } else {
                                                             errorflag = 0;
-                                                            if (stitle5.length() < 3) {
-                                                                errorflag = 5;
-                                                                titleinput5.setError("Kindly enter valid title");
+                                                            if (syearofhonor4.length() < 3) {
+                                                                errorflag = 4;
+                                                                yearhonor4.setError("Kindly select valid Date");
                                                             } else {
                                                                 errorflag = 0;
-                                                                if (sissuer5.length() < 3) {
+                                                                if (stitle5.length() < 3) {
                                                                     errorflag = 5;
-                                                                    issuerinput5.setError("Kindly enter valid Issuer");
+                                                                    titleinput5.setError("Kindly enter valid title");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (syearofhonor5.length() < 3) {
+                                                                    if (sissuer5.length() < 3) {
                                                                         errorflag = 5;
-                                                                        yearhonor5.setError("Kindly select valid Date");
+                                                                        issuerinput5.setError("Kindly enter valid Issuer");
+                                                                    } else {
+                                                                        errorflag = 0;
+                                                                        if (syearofhonor5.length() < 3) {
+                                                                            errorflag = 5;
+                                                                            yearhonor5.setError("Kindly select valid Date");
+                                                                        }
                                                                     }
                                                                 }
                                                             }
@@ -3104,100 +3128,100 @@ titleinput10.setError(null);
                                     }
                                 }
                             }
-                        }
 
+                        }
                     }
                 }
-            }
-        } else if (honorcount == 5) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            } else if (honorcount == 5) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid Issuer");
+                    titleinput1.setError("Kindly enter valid title");
                 } else {
                     errorflag = 0;
-                    if (syearofhonor1.length() < 3) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        yearhonor1.setError("Kindly select valid Date");
+                        issuerinput1.setError("Kindly enter valid Issuer");
                     } else {
                         errorflag = 0;
-                        if (stitle2.length() < 3) {
-                            errorflag = 2;
-                            titleinput2.setError("Kindly enter valid title");
+                        if (syearofhonor1.length() < 3) {
+                            errorflag = 1;
+                            yearhonor1.setError("Kindly select valid Date");
                         } else {
                             errorflag = 0;
-                            if (sissuer2.length() < 3) {
+                            if (stitle2.length() < 3) {
                                 errorflag = 2;
-                                issuerinput2.setError("Kindly enter valid Issuer");
+                                titleinput2.setError("Kindly enter valid title");
                             } else {
                                 errorflag = 0;
-                                if (syearofhonor2.length() < 3) {
+                                if (sissuer2.length() < 3) {
                                     errorflag = 2;
-                                    yearhonor2.setError("Kindly select valid Date");
+                                    issuerinput2.setError("Kindly enter valid Issuer");
                                 } else {
                                     errorflag = 0;
-                                    if (stitle3.length() < 3) {
-                                        errorflag = 3;
-                                        titleinput3.setError("Kindly enter valid title");
+                                    if (syearofhonor2.length() < 3) {
+                                        errorflag = 2;
+                                        yearhonor2.setError("Kindly select valid Date");
                                     } else {
                                         errorflag = 0;
-                                        if (sissuer3.length() < 3) {
+                                        if (stitle3.length() < 3) {
                                             errorflag = 3;
-                                            issuerinput3.setError("Kindly enter valid Issuer");
+                                            titleinput3.setError("Kindly enter valid title");
                                         } else {
                                             errorflag = 0;
-                                            if (syearofhonor3.length() < 3) {
+                                            if (sissuer3.length() < 3) {
                                                 errorflag = 3;
-                                                yearhonor3.setError("Kindly select valid Date");
+                                                issuerinput3.setError("Kindly enter valid Issuer");
                                             } else {
                                                 errorflag = 0;
-                                                if (stitle4.length() < 3) {
-                                                    errorflag = 4;
-                                                    titleinput4.setError("Kindly enter valid title");
+                                                if (syearofhonor3.length() < 3) {
+                                                    errorflag = 3;
+                                                    yearhonor3.setError("Kindly select valid Date");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sissuer4.length() < 3) {
+                                                    if (stitle4.length() < 3) {
                                                         errorflag = 4;
-                                                        issuerinput4.setError("Kindly enter valid Issuer");
+                                                        titleinput4.setError("Kindly enter valid title");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (syearofhonor4.length() < 3) {
+                                                        if (sissuer4.length() < 3) {
                                                             errorflag = 4;
-                                                            yearhonor4.setError("Kindly select valid Date");
+                                                            issuerinput4.setError("Kindly enter valid Issuer");
                                                         } else {
                                                             errorflag = 0;
-                                                            if (stitle5.length() < 3) {
-                                                                errorflag = 5;
-                                                                titleinput5.setError("Kindly enter valid title");
+                                                            if (syearofhonor4.length() < 3) {
+                                                                errorflag = 4;
+                                                                yearhonor4.setError("Kindly select valid Date");
                                                             } else {
                                                                 errorflag = 0;
-                                                                if (sissuer5.length() < 3) {
+                                                                if (stitle5.length() < 3) {
                                                                     errorflag = 5;
-                                                                    issuerinput5.setError("Kindly enter valid Issuer");
+                                                                    titleinput5.setError("Kindly enter valid title");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (syearofhonor5.length() < 3) {
+                                                                    if (sissuer5.length() < 3) {
                                                                         errorflag = 5;
-                                                                        yearhonor5.setError("Kindly select valid Date");
+                                                                        issuerinput5.setError("Kindly enter valid Issuer");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (stitle6.length() < 3) {
-                                                                            errorflag = 6;
-                                                                            titleinput6.setError("Kindly enter valid title");
+                                                                        if (syearofhonor5.length() < 3) {
+                                                                            errorflag = 5;
+                                                                            yearhonor5.setError("Kindly select valid Date");
                                                                         } else {
                                                                             errorflag = 0;
-                                                                            if (sissuer6.length() < 3) {
+                                                                            if (stitle6.length() < 3) {
                                                                                 errorflag = 6;
-                                                                                issuerinput6.setError("Kindly enter valid Issuer");
+                                                                                titleinput6.setError("Kindly enter valid title");
                                                                             } else {
                                                                                 errorflag = 0;
-                                                                                if (syearofhonor6.length() < 3) {
+                                                                                if (sissuer6.length() < 3) {
                                                                                     errorflag = 6;
-                                                                                    yearhonor6.setError("Kindly select valid Date");
+                                                                                    issuerinput6.setError("Kindly enter valid Issuer");
+                                                                                } else {
+                                                                                    errorflag = 0;
+                                                                                    if (syearofhonor6.length() < 3) {
+                                                                                        errorflag = 6;
+                                                                                        yearhonor6.setError("Kindly select valid Date");
+                                                                                    }
                                                                                 }
                                                                             }
                                                                         }
@@ -3212,115 +3236,115 @@ titleinput10.setError(null);
                                     }
                                 }
                             }
-                        }
 
+                        }
                     }
                 }
-            }
-        } else if (honorcount == 6) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            } else if (honorcount == 6) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid Issuer");
+                    titleinput1.setError("Kindly enter valid title");
                 } else {
                     errorflag = 0;
-                    if (syearofhonor1.length() < 3) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        yearhonor1.setError("Kindly select valid Date");
+                        issuerinput1.setError("Kindly enter valid Issuer");
                     } else {
                         errorflag = 0;
-                        if (stitle2.length() < 3) {
-                            errorflag = 2;
-                            titleinput2.setError("Kindly enter valid title");
+                        if (syearofhonor1.length() < 3) {
+                            errorflag = 1;
+                            yearhonor1.setError("Kindly select valid Date");
                         } else {
                             errorflag = 0;
-                            if (sissuer2.length() < 3) {
+                            if (stitle2.length() < 3) {
                                 errorflag = 2;
-                                issuerinput2.setError("Kindly enter valid Issuer");
+                                titleinput2.setError("Kindly enter valid title");
                             } else {
                                 errorflag = 0;
-                                if (syearofhonor2.length() < 3) {
+                                if (sissuer2.length() < 3) {
                                     errorflag = 2;
-                                    yearhonor2.setError("Kindly select valid Date");
+                                    issuerinput2.setError("Kindly enter valid Issuer");
                                 } else {
                                     errorflag = 0;
-                                    if (stitle3.length() < 3) {
-                                        errorflag = 3;
-                                        titleinput3.setError("Kindly enter valid title");
+                                    if (syearofhonor2.length() < 3) {
+                                        errorflag = 2;
+                                        yearhonor2.setError("Kindly select valid Date");
                                     } else {
                                         errorflag = 0;
-                                        if (sissuer3.length() < 3) {
+                                        if (stitle3.length() < 3) {
                                             errorflag = 3;
-                                            issuerinput3.setError("Kindly enter valid Issuer");
+                                            titleinput3.setError("Kindly enter valid title");
                                         } else {
                                             errorflag = 0;
-                                            if (syearofhonor3.length() < 3) {
+                                            if (sissuer3.length() < 3) {
                                                 errorflag = 3;
-                                                yearhonor3.setError("Kindly select valid Date");
+                                                issuerinput3.setError("Kindly enter valid Issuer");
                                             } else {
                                                 errorflag = 0;
-                                                if (stitle4.length() < 3) {
-                                                    errorflag = 4;
-                                                    titleinput4.setError("Kindly enter valid title");
+                                                if (syearofhonor3.length() < 3) {
+                                                    errorflag = 3;
+                                                    yearhonor3.setError("Kindly select valid Date");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sissuer4.length() < 3) {
+                                                    if (stitle4.length() < 3) {
                                                         errorflag = 4;
-                                                        issuerinput4.setError("Kindly enter valid Issuer");
+                                                        titleinput4.setError("Kindly enter valid title");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (syearofhonor4.length() < 3) {
+                                                        if (sissuer4.length() < 3) {
                                                             errorflag = 4;
-                                                            yearhonor4.setError("Kindly select valid Date");
+                                                            issuerinput4.setError("Kindly enter valid Issuer");
                                                         } else {
                                                             errorflag = 0;
-                                                            if (stitle5.length() < 3) {
-                                                                errorflag = 5;
-                                                                titleinput5.setError("Kindly enter valid title");
+                                                            if (syearofhonor4.length() < 3) {
+                                                                errorflag = 4;
+                                                                yearhonor4.setError("Kindly select valid Date");
                                                             } else {
                                                                 errorflag = 0;
-                                                                if (sissuer5.length() < 3) {
+                                                                if (stitle5.length() < 3) {
                                                                     errorflag = 5;
-                                                                    issuerinput5.setError("Kindly enter valid Issuer");
+                                                                    titleinput5.setError("Kindly enter valid title");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (syearofhonor5.length() < 3) {
+                                                                    if (sissuer5.length() < 3) {
                                                                         errorflag = 5;
-                                                                        yearhonor5.setError("Kindly select valid Date");
+                                                                        issuerinput5.setError("Kindly enter valid Issuer");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (stitle6.length() < 3) {
-                                                                            errorflag = 6;
-                                                                            titleinput6.setError("Kindly enter valid title");
+                                                                        if (syearofhonor5.length() < 3) {
+                                                                            errorflag = 5;
+                                                                            yearhonor5.setError("Kindly select valid Date");
                                                                         } else {
                                                                             errorflag = 0;
-                                                                            if (sissuer6.length() < 3) {
+                                                                            if (stitle6.length() < 3) {
                                                                                 errorflag = 6;
-                                                                                issuerinput6.setError("Kindly enter valid Issuer");
+                                                                                titleinput6.setError("Kindly enter valid title");
                                                                             } else {
                                                                                 errorflag = 0;
-                                                                                if (syearofhonor6.length() < 3) {
+                                                                                if (sissuer6.length() < 3) {
                                                                                     errorflag = 6;
-                                                                                    yearhonor6.setError("Kindly select valid Date");
+                                                                                    issuerinput6.setError("Kindly enter valid Issuer");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (stitle7.length() < 3) {
-                                                                                        errorflag = 7;
-                                                                                        titleinput7.setError("Kindly enter valid title");
+                                                                                    if (syearofhonor6.length() < 3) {
+                                                                                        errorflag = 6;
+                                                                                        yearhonor6.setError("Kindly select valid Date");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (sissuer7.length() < 3) {
+                                                                                        if (stitle7.length() < 3) {
                                                                                             errorflag = 7;
-                                                                                            issuerinput7.setError("Kindly enter valid Issuer");
+                                                                                            titleinput7.setError("Kindly enter valid title");
                                                                                         } else {
                                                                                             errorflag = 0;
-                                                                                            if (syearofhonor7.length() < 3) {
+                                                                                            if (sissuer7.length() < 3) {
                                                                                                 errorflag = 7;
-                                                                                                yearhonor7.setError("Kindly select valid Date");
+                                                                                                issuerinput7.setError("Kindly enter valid Issuer");
+                                                                                            } else {
+                                                                                                errorflag = 0;
+                                                                                                if (syearofhonor7.length() < 3) {
+                                                                                                    errorflag = 7;
+                                                                                                    yearhonor7.setError("Kindly select valid Date");
+                                                                                                }
                                                                                             }
                                                                                         }
                                                                                     }
@@ -3338,130 +3362,130 @@ titleinput10.setError(null);
                                     }
                                 }
                             }
-                        }
 
+                        }
                     }
                 }
-            }
-        } else if (honorcount == 7) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            } else if (honorcount == 7) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid Issuer");
+                    titleinput1.setError("Kindly enter valid title");
                 } else {
                     errorflag = 0;
-                    if (syearofhonor1.length() < 3) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        yearhonor1.setError("Kindly select valid Date");
+                        issuerinput1.setError("Kindly enter valid Issuer");
                     } else {
                         errorflag = 0;
-                        if (stitle2.length() < 3) {
-                            errorflag = 2;
-                            titleinput2.setError("Kindly enter valid title");
+                        if (syearofhonor1.length() < 3) {
+                            errorflag = 1;
+                            yearhonor1.setError("Kindly select valid Date");
                         } else {
                             errorflag = 0;
-                            if (sissuer2.length() < 3) {
+                            if (stitle2.length() < 3) {
                                 errorflag = 2;
-                                issuerinput2.setError("Kindly enter valid Issuer");
+                                titleinput2.setError("Kindly enter valid title");
                             } else {
                                 errorflag = 0;
-                                if (syearofhonor2.length() < 3) {
+                                if (sissuer2.length() < 3) {
                                     errorflag = 2;
-                                    yearhonor2.setError("Kindly select valid Date");
+                                    issuerinput2.setError("Kindly enter valid Issuer");
                                 } else {
                                     errorflag = 0;
-                                    if (stitle3.length() < 3) {
-                                        errorflag = 3;
-                                        titleinput3.setError("Kindly enter valid title");
+                                    if (syearofhonor2.length() < 3) {
+                                        errorflag = 2;
+                                        yearhonor2.setError("Kindly select valid Date");
                                     } else {
                                         errorflag = 0;
-                                        if (sissuer3.length() < 3) {
+                                        if (stitle3.length() < 3) {
                                             errorflag = 3;
-                                            issuerinput3.setError("Kindly enter valid Issuer");
+                                            titleinput3.setError("Kindly enter valid title");
                                         } else {
                                             errorflag = 0;
-                                            if (syearofhonor3.length() < 3) {
+                                            if (sissuer3.length() < 3) {
                                                 errorflag = 3;
-                                                yearhonor3.setError("Kindly select valid Date");
+                                                issuerinput3.setError("Kindly enter valid Issuer");
                                             } else {
                                                 errorflag = 0;
-                                                if (stitle4.length() < 3) {
-                                                    errorflag = 4;
-                                                    titleinput4.setError("Kindly enter valid title");
+                                                if (syearofhonor3.length() < 3) {
+                                                    errorflag = 3;
+                                                    yearhonor3.setError("Kindly select valid Date");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sissuer4.length() < 3) {
+                                                    if (stitle4.length() < 3) {
                                                         errorflag = 4;
-                                                        issuerinput4.setError("Kindly enter valid Issuer");
+                                                        titleinput4.setError("Kindly enter valid title");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (syearofhonor4.length() < 3) {
+                                                        if (sissuer4.length() < 3) {
                                                             errorflag = 4;
-                                                            yearhonor4.setError("Kindly select valid Date");
+                                                            issuerinput4.setError("Kindly enter valid Issuer");
                                                         } else {
                                                             errorflag = 0;
-                                                            if (stitle5.length() < 3) {
-                                                                errorflag = 5;
-                                                                titleinput5.setError("Kindly enter valid title");
+                                                            if (syearofhonor4.length() < 3) {
+                                                                errorflag = 4;
+                                                                yearhonor4.setError("Kindly select valid Date");
                                                             } else {
                                                                 errorflag = 0;
-                                                                if (sissuer5.length() < 3) {
+                                                                if (stitle5.length() < 3) {
                                                                     errorflag = 5;
-                                                                    issuerinput5.setError("Kindly enter valid Issuer");
+                                                                    titleinput5.setError("Kindly enter valid title");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (syearofhonor5.length() < 3) {
+                                                                    if (sissuer5.length() < 3) {
                                                                         errorflag = 5;
-                                                                        yearhonor5.setError("Kindly select valid Date");
+                                                                        issuerinput5.setError("Kindly enter valid Issuer");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (stitle6.length() < 3) {
-                                                                            errorflag = 6;
-                                                                            titleinput6.setError("Kindly enter valid title");
+                                                                        if (syearofhonor5.length() < 3) {
+                                                                            errorflag = 5;
+                                                                            yearhonor5.setError("Kindly select valid Date");
                                                                         } else {
                                                                             errorflag = 0;
-                                                                            if (sissuer6.length() < 3) {
+                                                                            if (stitle6.length() < 3) {
                                                                                 errorflag = 6;
-                                                                                issuerinput6.setError("Kindly enter valid Issuer");
+                                                                                titleinput6.setError("Kindly enter valid title");
                                                                             } else {
                                                                                 errorflag = 0;
-                                                                                if (syearofhonor6.length() < 3) {
+                                                                                if (sissuer6.length() < 3) {
                                                                                     errorflag = 6;
-                                                                                    yearhonor6.setError("Kindly select valid Date");
+                                                                                    issuerinput6.setError("Kindly enter valid Issuer");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (stitle7.length() < 3) {
-                                                                                        errorflag = 7;
-                                                                                        titleinput7.setError("Kindly enter valid title");
+                                                                                    if (syearofhonor6.length() < 3) {
+                                                                                        errorflag = 6;
+                                                                                        yearhonor6.setError("Kindly select valid Date");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (sissuer7.length() < 3) {
+                                                                                        if (stitle7.length() < 3) {
                                                                                             errorflag = 7;
-                                                                                            issuerinput7.setError("Kindly enter valid Issuer");
+                                                                                            titleinput7.setError("Kindly enter valid title");
                                                                                         } else {
                                                                                             errorflag = 0;
-                                                                                            if (syearofhonor7.length() < 3) {
+                                                                                            if (sissuer7.length() < 3) {
                                                                                                 errorflag = 7;
-                                                                                                yearhonor7.setError("Kindly select valid Date");
+                                                                                                issuerinput7.setError("Kindly enter valid Issuer");
                                                                                             } else {
                                                                                                 errorflag = 0;
-                                                                                                if (stitle8.length() < 3) {
-                                                                                                    errorflag = 8;
-                                                                                                    titleinput8.setError("Kindly enter valid title");
+                                                                                                if (syearofhonor7.length() < 3) {
+                                                                                                    errorflag = 7;
+                                                                                                    yearhonor7.setError("Kindly select valid Date");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sissuer8.length() < 3) {
+                                                                                                    if (stitle8.length() < 3) {
                                                                                                         errorflag = 8;
-                                                                                                        issuerinput8.setError("Kindly enter valid Issuer");
+                                                                                                        titleinput8.setError("Kindly enter valid title");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (syearofhonor8.length() < 3) {
+                                                                                                        if (sissuer8.length() < 3) {
                                                                                                             errorflag = 8;
-                                                                                                            yearhonor8.setError("Kindly select valid Date");
+                                                                                                            issuerinput8.setError("Kindly enter valid Issuer");
+                                                                                                        } else {
+                                                                                                            errorflag = 0;
+                                                                                                            if (syearofhonor8.length() < 3) {
+                                                                                                                errorflag = 8;
+                                                                                                                yearhonor8.setError("Kindly select valid Date");
+                                                                                                            }
                                                                                                         }
                                                                                                     }
                                                                                                 }
@@ -3482,145 +3506,145 @@ titleinput10.setError(null);
                                     }
                                 }
                             }
-                        }
 
+                        }
                     }
                 }
-            }
-        } else if (honorcount == 8) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            } else if (honorcount == 8) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid Issuer");
+                    titleinput1.setError("Kindly enter valid title");
                 } else {
                     errorflag = 0;
-                    if (syearofhonor1.length() < 3) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        yearhonor1.setError("Kindly select valid Date");
+                        issuerinput1.setError("Kindly enter valid Issuer");
                     } else {
                         errorflag = 0;
-                        if (stitle2.length() < 3) {
-                            errorflag = 2;
-                            titleinput2.setError("Kindly enter valid title");
+                        if (syearofhonor1.length() < 3) {
+                            errorflag = 1;
+                            yearhonor1.setError("Kindly select valid Date");
                         } else {
                             errorflag = 0;
-                            if (sissuer2.length() < 3) {
+                            if (stitle2.length() < 3) {
                                 errorflag = 2;
-                                issuerinput2.setError("Kindly enter valid Issuer");
+                                titleinput2.setError("Kindly enter valid title");
                             } else {
                                 errorflag = 0;
-                                if (syearofhonor2.length() < 3) {
+                                if (sissuer2.length() < 3) {
                                     errorflag = 2;
-                                    yearhonor2.setError("Kindly select valid Date");
+                                    issuerinput2.setError("Kindly enter valid Issuer");
                                 } else {
                                     errorflag = 0;
-                                    if (stitle3.length() < 3) {
-                                        errorflag = 3;
-                                        titleinput3.setError("Kindly enter valid title");
+                                    if (syearofhonor2.length() < 3) {
+                                        errorflag = 2;
+                                        yearhonor2.setError("Kindly select valid Date");
                                     } else {
                                         errorflag = 0;
-                                        if (sissuer3.length() < 3) {
+                                        if (stitle3.length() < 3) {
                                             errorflag = 3;
-                                            issuerinput3.setError("Kindly enter valid Issuer");
+                                            titleinput3.setError("Kindly enter valid title");
                                         } else {
                                             errorflag = 0;
-                                            if (syearofhonor3.length() < 3) {
+                                            if (sissuer3.length() < 3) {
                                                 errorflag = 3;
-                                                yearhonor3.setError("Kindly select valid Date");
+                                                issuerinput3.setError("Kindly enter valid Issuer");
                                             } else {
                                                 errorflag = 0;
-                                                if (stitle4.length() < 3) {
-                                                    errorflag = 4;
-                                                    titleinput4.setError("Kindly enter valid title");
+                                                if (syearofhonor3.length() < 3) {
+                                                    errorflag = 3;
+                                                    yearhonor3.setError("Kindly select valid Date");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sissuer4.length() < 3) {
+                                                    if (stitle4.length() < 3) {
                                                         errorflag = 4;
-                                                        issuerinput4.setError("Kindly enter valid Issuer");
+                                                        titleinput4.setError("Kindly enter valid title");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (syearofhonor4.length() < 3) {
+                                                        if (sissuer4.length() < 3) {
                                                             errorflag = 4;
-                                                            yearhonor4.setError("Kindly select valid Date");
+                                                            issuerinput4.setError("Kindly enter valid Issuer");
                                                         } else {
                                                             errorflag = 0;
-                                                            if (stitle5.length() < 3) {
-                                                                errorflag = 5;
-                                                                titleinput5.setError("Kindly enter valid title");
+                                                            if (syearofhonor4.length() < 3) {
+                                                                errorflag = 4;
+                                                                yearhonor4.setError("Kindly select valid Date");
                                                             } else {
                                                                 errorflag = 0;
-                                                                if (sissuer5.length() < 3) {
+                                                                if (stitle5.length() < 3) {
                                                                     errorflag = 5;
-                                                                    issuerinput5.setError("Kindly enter valid Issuer");
+                                                                    titleinput5.setError("Kindly enter valid title");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (syearofhonor5.length() < 3) {
+                                                                    if (sissuer5.length() < 3) {
                                                                         errorflag = 5;
-                                                                        yearhonor5.setError("Kindly select valid Date");
+                                                                        issuerinput5.setError("Kindly enter valid Issuer");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (stitle6.length() < 3) {
-                                                                            errorflag = 6;
-                                                                            titleinput6.setError("Kindly enter valid title");
+                                                                        if (syearofhonor5.length() < 3) {
+                                                                            errorflag = 5;
+                                                                            yearhonor5.setError("Kindly select valid Date");
                                                                         } else {
                                                                             errorflag = 0;
-                                                                            if (sissuer6.length() < 3) {
+                                                                            if (stitle6.length() < 3) {
                                                                                 errorflag = 6;
-                                                                                issuerinput6.setError("Kindly enter valid Issuer");
+                                                                                titleinput6.setError("Kindly enter valid title");
                                                                             } else {
                                                                                 errorflag = 0;
-                                                                                if (syearofhonor6.length() < 3) {
+                                                                                if (sissuer6.length() < 3) {
                                                                                     errorflag = 6;
-                                                                                    yearhonor6.setError("Kindly select valid Date");
+                                                                                    issuerinput6.setError("Kindly enter valid Issuer");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (stitle7.length() < 3) {
-                                                                                        errorflag = 7;
-                                                                                        titleinput7.setError("Kindly enter valid title");
+                                                                                    if (syearofhonor6.length() < 3) {
+                                                                                        errorflag = 6;
+                                                                                        yearhonor6.setError("Kindly select valid Date");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (sissuer7.length() < 3) {
+                                                                                        if (stitle7.length() < 3) {
                                                                                             errorflag = 7;
-                                                                                            issuerinput7.setError("Kindly enter valid Issuer");
+                                                                                            titleinput7.setError("Kindly enter valid title");
                                                                                         } else {
                                                                                             errorflag = 0;
-                                                                                            if (syearofhonor7.length() < 3) {
+                                                                                            if (sissuer7.length() < 3) {
                                                                                                 errorflag = 7;
-                                                                                                yearhonor7.setError("Kindly select valid Date");
+                                                                                                issuerinput7.setError("Kindly enter valid Issuer");
                                                                                             } else {
                                                                                                 errorflag = 0;
-                                                                                                if (stitle8.length() < 3) {
-                                                                                                    errorflag = 8;
-                                                                                                    titleinput8.setError("Kindly enter valid title");
+                                                                                                if (syearofhonor7.length() < 3) {
+                                                                                                    errorflag = 7;
+                                                                                                    yearhonor7.setError("Kindly select valid Date");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sissuer8.length() < 3) {
+                                                                                                    if (stitle8.length() < 3) {
                                                                                                         errorflag = 8;
-                                                                                                        issuerinput8.setError("Kindly enter valid Issuer");
+                                                                                                        titleinput8.setError("Kindly enter valid title");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (syearofhonor8.length() < 3) {
+                                                                                                        if (sissuer8.length() < 3) {
                                                                                                             errorflag = 8;
-                                                                                                            yearhonor8.setError("Kindly select valid Date");
+                                                                                                            issuerinput8.setError("Kindly enter valid Issuer");
                                                                                                         } else {
                                                                                                             errorflag = 0;
-                                                                                                            if (stitle9.length() < 3) {
-                                                                                                                errorflag = 9;
-                                                                                                                titleinput9.setError("Kindly enter valid title");
+                                                                                                            if (syearofhonor8.length() < 3) {
+                                                                                                                errorflag = 8;
+                                                                                                                yearhonor8.setError("Kindly select valid Date");
                                                                                                             } else {
                                                                                                                 errorflag = 0;
-                                                                                                                if (sissuer9.length() < 3) {
+                                                                                                                if (stitle9.length() < 3) {
                                                                                                                     errorflag = 9;
-                                                                                                                    issuerinput9.setError("Kindly enter valid Issuer");
+                                                                                                                    titleinput9.setError("Kindly enter valid title");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
-                                                                                                                    if (syearofhonor9.length() < 3) {
+                                                                                                                    if (sissuer9.length() < 3) {
                                                                                                                         errorflag = 9;
-                                                                                                                        yearhonor9.setError("Kindly select valid Date");
+                                                                                                                        issuerinput9.setError("Kindly enter valid Issuer");
+                                                                                                                    } else {
+                                                                                                                        errorflag = 0;
+                                                                                                                        if (syearofhonor9.length() < 3) {
+                                                                                                                            errorflag = 9;
+                                                                                                                            yearhonor9.setError("Kindly select valid Date");
+                                                                                                                        }
                                                                                                                     }
                                                                                                                 }
                                                                                                             }
@@ -3644,160 +3668,160 @@ titleinput10.setError(null);
                                     }
                                 }
                             }
-                        }
 
+                        }
                     }
                 }
-            }
-        } else if (honorcount == 9) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                titleinput1.setError("Kindly enter valid title");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            } else if (honorcount == 9) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuerinput1.setError("Kindly enter valid Issuer");
+                    titleinput1.setError("Kindly enter valid title");
                 } else {
                     errorflag = 0;
-                    if (syearofhonor1.length() < 3) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        yearhonor1.setError("Kindly select valid Date");
+                        issuerinput1.setError("Kindly enter valid Issuer");
                     } else {
                         errorflag = 0;
-                        if (stitle2.length() < 3) {
-                            errorflag = 2;
-                            titleinput2.setError("Kindly enter valid title");
+                        if (syearofhonor1.length() < 3) {
+                            errorflag = 1;
+                            yearhonor1.setError("Kindly select valid Date");
                         } else {
                             errorflag = 0;
-                            if (sissuer2.length() < 3) {
+                            if (stitle2.length() < 3) {
                                 errorflag = 2;
-                                issuerinput2.setError("Kindly enter valid Issuer");
+                                titleinput2.setError("Kindly enter valid title");
                             } else {
                                 errorflag = 0;
-                                if (syearofhonor2.length() < 3) {
+                                if (sissuer2.length() < 3) {
                                     errorflag = 2;
-                                    yearhonor2.setError("Kindly select valid Date");
+                                    issuerinput2.setError("Kindly enter valid Issuer");
                                 } else {
                                     errorflag = 0;
-                                    if (stitle3.length() < 3) {
-                                        errorflag = 3;
-                                        titleinput3.setError("Kindly enter valid title");
+                                    if (syearofhonor2.length() < 3) {
+                                        errorflag = 2;
+                                        yearhonor2.setError("Kindly select valid Date");
                                     } else {
                                         errorflag = 0;
-                                        if (sissuer3.length() < 3) {
+                                        if (stitle3.length() < 3) {
                                             errorflag = 3;
-                                            issuerinput3.setError("Kindly enter valid Issuer");
+                                            titleinput3.setError("Kindly enter valid title");
                                         } else {
                                             errorflag = 0;
-                                            if (syearofhonor3.length() < 3) {
+                                            if (sissuer3.length() < 3) {
                                                 errorflag = 3;
-                                                yearhonor3.setError("Kindly select valid Date");
+                                                issuerinput3.setError("Kindly enter valid Issuer");
                                             } else {
                                                 errorflag = 0;
-                                                if (stitle4.length() < 3) {
-                                                    errorflag = 4;
-                                                    titleinput4.setError("Kindly enter valid title");
+                                                if (syearofhonor3.length() < 3) {
+                                                    errorflag = 3;
+                                                    yearhonor3.setError("Kindly select valid Date");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sissuer4.length() < 3) {
+                                                    if (stitle4.length() < 3) {
                                                         errorflag = 4;
-                                                        issuerinput4.setError("Kindly enter valid Issuer");
+                                                        titleinput4.setError("Kindly enter valid title");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (syearofhonor4.length() < 3) {
+                                                        if (sissuer4.length() < 3) {
                                                             errorflag = 4;
-                                                            yearhonor4.setError("Kindly select valid Date");
+                                                            issuerinput4.setError("Kindly enter valid Issuer");
                                                         } else {
                                                             errorflag = 0;
-                                                            if (stitle5.length() < 3) {
-                                                                errorflag = 5;
-                                                                titleinput5.setError("Kindly enter valid title");
+                                                            if (syearofhonor4.length() < 3) {
+                                                                errorflag = 4;
+                                                                yearhonor4.setError("Kindly select valid Date");
                                                             } else {
                                                                 errorflag = 0;
-                                                                if (sissuer5.length() < 3) {
+                                                                if (stitle5.length() < 3) {
                                                                     errorflag = 5;
-                                                                    issuerinput5.setError("Kindly enter valid Issuer");
+                                                                    titleinput5.setError("Kindly enter valid title");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (syearofhonor5.length() < 3) {
+                                                                    if (sissuer5.length() < 3) {
                                                                         errorflag = 5;
-                                                                        yearhonor5.setError("Kindly select valid Date");
+                                                                        issuerinput5.setError("Kindly enter valid Issuer");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (stitle6.length() < 3) {
-                                                                            errorflag = 6;
-                                                                            titleinput6.setError("Kindly enter valid title");
+                                                                        if (syearofhonor5.length() < 3) {
+                                                                            errorflag = 5;
+                                                                            yearhonor5.setError("Kindly select valid Date");
                                                                         } else {
                                                                             errorflag = 0;
-                                                                            if (sissuer6.length() < 3) {
+                                                                            if (stitle6.length() < 3) {
                                                                                 errorflag = 6;
-                                                                                issuerinput6.setError("Kindly enter valid Issuer");
+                                                                                titleinput6.setError("Kindly enter valid title");
                                                                             } else {
                                                                                 errorflag = 0;
-                                                                                if (syearofhonor6.length() < 3) {
+                                                                                if (sissuer6.length() < 3) {
                                                                                     errorflag = 6;
-                                                                                    yearhonor6.setError("Kindly select valid Date");
+                                                                                    issuerinput6.setError("Kindly enter valid Issuer");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (stitle7.length() < 3) {
-                                                                                        errorflag = 7;
-                                                                                        titleinput7.setError("Kindly enter valid title");
+                                                                                    if (syearofhonor6.length() < 3) {
+                                                                                        errorflag = 6;
+                                                                                        yearhonor6.setError("Kindly select valid Date");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (sissuer7.length() < 3) {
+                                                                                        if (stitle7.length() < 3) {
                                                                                             errorflag = 7;
-                                                                                            issuerinput7.setError("Kindly enter valid Issuer");
+                                                                                            titleinput7.setError("Kindly enter valid title");
                                                                                         } else {
                                                                                             errorflag = 0;
-                                                                                            if (syearofhonor7.length() < 3) {
+                                                                                            if (sissuer7.length() < 3) {
                                                                                                 errorflag = 7;
-                                                                                                yearhonor7.setError("Kindly select valid Date");
+                                                                                                issuerinput7.setError("Kindly enter valid Issuer");
                                                                                             } else {
                                                                                                 errorflag = 0;
-                                                                                                if (stitle8.length() < 3) {
-                                                                                                    errorflag = 8;
-                                                                                                    titleinput8.setError("Kindly enter valid title");
+                                                                                                if (syearofhonor7.length() < 3) {
+                                                                                                    errorflag = 7;
+                                                                                                    yearhonor7.setError("Kindly select valid Date");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sissuer8.length() < 3) {
+                                                                                                    if (stitle8.length() < 3) {
                                                                                                         errorflag = 8;
-                                                                                                        issuerinput8.setError("Kindly enter valid Issuer");
+                                                                                                        titleinput8.setError("Kindly enter valid title");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (syearofhonor8.length() < 3) {
+                                                                                                        if (sissuer8.length() < 3) {
                                                                                                             errorflag = 8;
-                                                                                                            yearhonor8.setError("Kindly select valid Date");
+                                                                                                            issuerinput8.setError("Kindly enter valid Issuer");
                                                                                                         } else {
                                                                                                             errorflag = 0;
-                                                                                                            if (stitle9.length() < 3) {
-                                                                                                                errorflag = 9;
-                                                                                                                titleinput9.setError("Kindly enter valid title");
+                                                                                                            if (syearofhonor8.length() < 3) {
+                                                                                                                errorflag = 8;
+                                                                                                                yearhonor8.setError("Kindly select valid Date");
                                                                                                             } else {
                                                                                                                 errorflag = 0;
-                                                                                                                if (sissuer9.length() < 3) {
+                                                                                                                if (stitle9.length() < 3) {
                                                                                                                     errorflag = 9;
-                                                                                                                    issuerinput9.setError("Kindly enter valid Issuer");
+                                                                                                                    titleinput9.setError("Kindly enter valid title");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
-                                                                                                                    if (syearofhonor9.length() < 3) {
+                                                                                                                    if (sissuer9.length() < 3) {
                                                                                                                         errorflag = 9;
-                                                                                                                        yearhonor9.setError("Kindly select valid Date");
+                                                                                                                        issuerinput9.setError("Kindly enter valid Issuer");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
-                                                                                                                        if (stitle10.length() < 3) {
-                                                                                                                            errorflag = 10;
-                                                                                                                            titleinput10.setError("Kindly enter valid title");
+                                                                                                                        if (syearofhonor9.length() < 3) {
+                                                                                                                            errorflag = 9;
+                                                                                                                            yearhonor9.setError("Kindly select valid Date");
                                                                                                                         } else {
                                                                                                                             errorflag = 0;
-                                                                                                                            if (sissuer10.length() < 3) {
+                                                                                                                            if (stitle10.length() < 3) {
                                                                                                                                 errorflag = 10;
-                                                                                                                                issuerinput10.setError("Kindly enter valid Issuer");
+                                                                                                                                titleinput10.setError("Kindly enter valid title");
                                                                                                                             } else {
                                                                                                                                 errorflag = 0;
-                                                                                                                                if (syearofhonor10.length() < 3) {
+                                                                                                                                if (sissuer10.length() < 3) {
                                                                                                                                     errorflag = 10;
-                                                                                                                                    yearhonor10.setError("Kindly select valid Date");
+                                                                                                                                    issuerinput10.setError("Kindly enter valid Issuer");
+                                                                                                                                } else {
+                                                                                                                                    errorflag = 0;
+                                                                                                                                    if (syearofhonor10.length() < 3) {
+                                                                                                                                        errorflag = 10;
+                                                                                                                                        yearhonor10.setError("Kindly select valid Date");
+                                                                                                                                    }
                                                                                                                                 }
                                                                                                                             }
                                                                                                                         }
@@ -3824,45 +3848,54 @@ titleinput10.setError(null);
                                     }
                                 }
                             }
-                        }
 
+                        }
                     }
                 }
             }
         }
         if (errorflag == 0) {
-            try {
-                Honors obj1 = new Honors(stitle1, sissuer1, sdescription1, syearofhonor1);
-                Honors obj2 = new Honors(stitle2, sissuer2, sdescription2, syearofhonor2);
-                Honors obj3 = new Honors(stitle3, sissuer3, sdescription3, syearofhonor3);
-                Honors obj4 = new Honors(stitle4, sissuer4, sdescription4, syearofhonor4);
-                Honors obj5 = new Honors(stitle5, sissuer5, sdescription5, syearofhonor5);
-                Honors obj6 = new Honors(stitle6, sissuer6, sdescription6, syearofhonor6);
-                Honors obj7 = new Honors(stitle7, sissuer7, sdescription7, syearofhonor7);
-                Honors obj8 = new Honors(stitle8, sissuer8, sdescription8, syearofhonor8);
-                Honors obj9 = new Honors(stitle9, sissuer9, sdescription9, syearofhonor9);
-                Honors obj10 = new Honors(stitle10, sissuer10, sdescription10, syearofhonor10);
 
-                honorsList.add(obj1);
-                honorsList.add(obj2);
-                honorsList.add(obj3);
-                honorsList.add(obj4);
-                honorsList.add(obj5);
-                honorsList.add(obj6);
-                honorsList.add(obj7);
-                honorsList.add(obj8);
-                honorsList.add(obj9);
-                honorsList.add(obj10);
-
-                String encObjString = OtoString(honorsList, MySharedPreferencesManager.getDigest1(MyProfileAchievements.this), MySharedPreferencesManager.getDigest2(MyProfileAchievements.this));
-
-                new SaveHonors().execute(encObjString);
-
-            } catch (Exception e) {
-                Toast.makeText(MyProfileAchievements.this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
+            encachieve();
         }
     }
+
+    public void encachieve()
+    {
+        try {
+
+            Honors obj1 = new Honors(stitle1, sissuer1, sdescription1, syearofhonor1);
+            Honors obj2 = new Honors(stitle2, sissuer2, sdescription2, syearofhonor2);
+            Honors obj3 = new Honors(stitle3, sissuer3, sdescription3, syearofhonor3);
+            Honors obj4 = new Honors(stitle4, sissuer4, sdescription4, syearofhonor4);
+            Honors obj5 = new Honors(stitle5, sissuer5, sdescription5, syearofhonor5);
+            Honors obj6 = new Honors(stitle6, sissuer6, sdescription6, syearofhonor6);
+            Honors obj7 = new Honors(stitle7, sissuer7, sdescription7, syearofhonor7);
+            Honors obj8 = new Honors(stitle8, sissuer8, sdescription8, syearofhonor8);
+            Honors obj9 = new Honors(stitle9, sissuer9, sdescription9, syearofhonor9);
+            Honors obj10 = new Honors(stitle10, sissuer10, sdescription10, syearofhonor10);
+
+            honorsList.add(obj1);
+            honorsList.add(obj2);
+            honorsList.add(obj3);
+            honorsList.add(obj4);
+            honorsList.add(obj5);
+            honorsList.add(obj6);
+            honorsList.add(obj7);
+            honorsList.add(obj8);
+            honorsList.add(obj9);
+            honorsList.add(obj10);
+
+            String encObjString = OtoString(honorsList, MySharedPreferencesManager.getDigest1(MyProfileAchievements.this), MySharedPreferencesManager.getDigest2(MyProfileAchievements.this));
+
+            new SaveHonors().execute(encObjString);
+
+        } catch (Exception e) {
+            Toast.makeText(MyProfileAchievements.this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -3919,8 +3952,11 @@ titleinput10.setError(null);
             alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialogInterface) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileAchievements.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileAchievements.this));
+
                 }
             });
 

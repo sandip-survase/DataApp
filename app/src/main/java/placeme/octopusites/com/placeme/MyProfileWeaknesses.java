@@ -37,7 +37,7 @@ import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 public class MyProfileWeaknesses extends AppCompatActivity {
 
-    int weakcount = 0;
+    int weakcount = 0,editweak=0;
     View addmoreweak;
     String username,role;
     String digest1, digest2;
@@ -386,6 +386,7 @@ public class MyProfileWeaknesses extends AppCompatActivity {
         addmoreweak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                editweak=0;
                 if (weakcount == 0) {
                     if (weak1.getText().toString() != null) {
                         if (!weak1.getText().toString().equals("")) {
@@ -681,7 +682,7 @@ public class MyProfileWeaknesses extends AppCompatActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
         alertDialogBuilder
-                .setMessage("Do you want to delete this patent ?")
+                .setMessage("Do you want to delete this weakness ?")
                 .setCancelable(false)
                 .setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
@@ -703,8 +704,11 @@ public class MyProfileWeaknesses extends AppCompatActivity {
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialogInterface) {
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileWeaknesses.this));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileWeaknesses.this));
+
             }
         });
 
@@ -1074,6 +1078,18 @@ public class MyProfileWeaknesses extends AppCompatActivity {
                 weak9.setText(sweak9);
                 weak10.setText("");
 
+            sweak1 = weak1.getText().toString();
+
+            if(sweak1.equals("")){
+                Log.d("TAG", "deleteLang: strength1 1");
+                editweak=1;
+            }
+
+            if(editweak==1){
+                Log.d("TAG", "deleteLang: strength1 - "+editweak);
+                encweak();
+            }
+
         }
     }
 
@@ -1105,7 +1121,10 @@ public class MyProfileWeaknesses extends AppCompatActivity {
 //        String sPadding = "ISO10126Padding";
 
         int errorflag = 0;
-
+        if(editweak==1){
+            encweak();
+        }
+        else {
         if (weakcount == 0) {
             if (sweak1.length() < 2) {
                 errorflag = 1;
@@ -1427,18 +1446,23 @@ public class MyProfileWeaknesses extends AppCompatActivity {
                 }
             }
         }
+        }
         if (errorflag == 0) {
-            try {
+            encweak();
+        }
+    }
 
-                MyProfileWeaknessesModal obj2 = new MyProfileWeaknessesModal(sweak1, sweak2, sweak3, sweak4, sweak5, sweak6, sweak7, sweak8, sweak9, sweak10);;
+    public void encweak(){
+        try {
 
-                encobj =OtoString(obj2,MySharedPreferencesManager.getDigest1(MyProfileWeaknesses.this),MySharedPreferencesManager.getDigest2(MyProfileWeaknesses.this));
-                Log.d("TAG", "validateandSave: encobj - "+encobj);
-                new SaveWeak().execute();
+            MyProfileWeaknessesModal obj2 = new MyProfileWeaknessesModal(sweak1, sweak2, sweak3, sweak4, sweak5, sweak6, sweak7, sweak8, sweak9, sweak10);;
 
-            } catch (Exception e) {
-                Toast.makeText(MyProfileWeaknesses.this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
+            encobj =OtoString(obj2,MySharedPreferencesManager.getDigest1(MyProfileWeaknesses.this),MySharedPreferencesManager.getDigest2(MyProfileWeaknesses.this));
+            Log.d("TAG", "validateandSave: encobj - "+encobj);
+            new SaveWeak().execute();
+
+        } catch (Exception e) {
+            Toast.makeText(MyProfileWeaknesses.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -1547,8 +1571,11 @@ public class MyProfileWeaknesses extends AppCompatActivity {
             alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialogInterface) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileWeaknesses.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileWeaknesses.this));
+
                 }
             });
 

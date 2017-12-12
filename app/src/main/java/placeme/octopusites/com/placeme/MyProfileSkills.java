@@ -55,6 +55,7 @@ public class MyProfileSkills extends AppCompatActivity {
     View addmoreskillView;
     String username,role;
     String digest1, digest2;
+    int editeskills=0;
     JSONParser jParser = new JSONParser();
     JSONObject json;
     StudentData s = new StudentData();
@@ -91,7 +92,6 @@ public class MyProfileSkills extends AppCompatActivity {
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
-
         TextView skilltxt = (TextView) findViewById(R.id.skilltxt);
         skilltxt.setTypeface(MyConstants.getBold(this));
 
@@ -375,7 +375,8 @@ public class MyProfileSkills extends AppCompatActivity {
         addmoreskill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                editeskills=0;
+                Log.d("TAG", "onClick: skill count - "+skillcount);
                 if (skillcount == 0) {
 
                     if(skill1.getText().toString()!=null)
@@ -550,9 +551,6 @@ public class MyProfileSkills extends AppCompatActivity {
                     }
                     else
                         Toast.makeText(MyProfileSkills.this, "Please fill the Seventh skill", Toast.LENGTH_SHORT).show();
-
-
-
 
 
                 } else if (skillcount == 7) {
@@ -784,7 +782,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     {
                         if(!skill16.getText().toString().equals("")&&!proficiency16.getSelectedItem().toString().equals("- Proficiency -"))
                         {
-
+                            Log.d("TAG", "onClick: skill 17");
                             View v = (View) findViewById(R.id.skillline16);
                             v.setVisibility(View.VISIBLE);
 
@@ -812,8 +810,7 @@ public class MyProfileSkills extends AppCompatActivity {
                     {
                         if(!skill17.getText().toString().equals("")&&!proficiency17.getSelectedItem().toString().equals("- Proficiency -"))
                         {
-
-
+                            Log.d("TAG", "onClick: skill 18");
                             View v = (View) findViewById(R.id.skillline17);
                             v.setVisibility(View.VISIBLE);
 
@@ -840,10 +837,9 @@ public class MyProfileSkills extends AppCompatActivity {
                         if(!skill18.getText().toString().equals("")&&!proficiency18.getSelectedItem().toString().equals("- Proficiency -"))
                         {
 
-
+                            Log.d("TAG", "onClick: skill 19");
                             View v = (View) findViewById(R.id.skillline18);
                             v.setVisibility(View.VISIBLE);
-
                             RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.skillrl19);
                             relativeLayout1.setVisibility(View.VISIBLE);
 
@@ -858,16 +854,15 @@ public class MyProfileSkills extends AppCompatActivity {
                     }
                     else
                         Toast.makeText(MyProfileSkills.this, "Please fill the Eighteenth skill", Toast.LENGTH_SHORT).show();
-
-
-
-                } else if (skillcount == 18) {
+                }
+                else if (skillcount == 18) {
 
                     if(skill19.getText().toString()!=null)
                     {
                         if(!skill19.getText().toString().equals("")&&!proficiency19.getSelectedItem().toString().equals("- Proficiency -"))
                         {
 
+                            Log.d("TAG", "onClick: skill 20");
                             View v = (View) findViewById(R.id.skillline19);
                             v.setVisibility(View.VISIBLE);
 
@@ -1967,7 +1962,6 @@ public class MyProfileSkills extends AppCompatActivity {
                 sproficiency19 = (String) parent.getItemAtPosition(position);
                 if (s.getSproficiency19()!=null && !s.getSproficiency19().equals(sproficiency19)) {
                     proficiencyEdittedFlog = 1;
-                    addmoreskillView.setVisibility(View.GONE);
                 }
 
 
@@ -1984,6 +1978,8 @@ public class MyProfileSkills extends AppCompatActivity {
                 sproficiency20 = (String) parent.getItemAtPosition(position);
                 if (s.getSproficiency20()!=null && !s.getSproficiency20().equals(sproficiency20)) {
                     proficiencyEdittedFlog = 1;
+                    addmoreskillView.setVisibility(View.GONE);
+
                 }
 
 
@@ -2026,8 +2022,11 @@ public class MyProfileSkills extends AppCompatActivity {
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialogInterface) {
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileSkills.this));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileSkills.this));
+
             }
         });
 
@@ -2038,8 +2037,8 @@ public class MyProfileSkills extends AppCompatActivity {
     void deleteSkill() {
         View v = (View) findViewById(R.id.skillline19);
 
-
         if (v.getVisibility() == View.VISIBLE) {
+            Log.d("TAG", "deleteSkill: skillline19");
 
             View v1 = (View) findViewById(R.id.skillline19);
             v1.setVisibility(View.GONE);
@@ -2049,7 +2048,6 @@ public class MyProfileSkills extends AppCompatActivity {
 
             RelativeLayout relativeLayout2 = (RelativeLayout) findViewById(R.id.proficiencyspinner20);
             relativeLayout2.setVisibility(View.GONE);
-
             skillcount--;
 
             TextView t = (TextView) findViewById(R.id.addmoreskilltxt);
@@ -2059,8 +2057,11 @@ public class MyProfileSkills extends AppCompatActivity {
             i.setVisibility(View.VISIBLE);
 
         } else {
+
             v = (View) findViewById(R.id.skillline18);
             if (v.getVisibility() == View.VISIBLE) {
+
+                Log.d("TAG", "deleteSkill: skillline18");
 
                 View v1 = (View) findViewById(R.id.skillline18);
                 v1.setVisibility(View.GONE);
@@ -2077,6 +2078,8 @@ public class MyProfileSkills extends AppCompatActivity {
                 v = (View) findViewById(R.id.skillline17);
                 if (v.getVisibility() == View.VISIBLE) {
 
+                    Log.d("TAG", "deleteSkill: skillline17");
+
                     View v1 = (View) findViewById(R.id.skillline17);
                     v1.setVisibility(View.GONE);
 
@@ -2091,6 +2094,8 @@ public class MyProfileSkills extends AppCompatActivity {
                 } else {
                     v = (View) findViewById(R.id.skillline16);
                     if (v.getVisibility() == View.VISIBLE) {
+
+                        Log.d("TAG", "deleteSkill: skillline16");
 
                         View v1 = (View) findViewById(R.id.skillline16);
                         v1.setVisibility(View.GONE);
@@ -2355,7 +2360,9 @@ public class MyProfileSkills extends AppCompatActivity {
         if (d == 20) {
             skill20.setText("");
             proficiency20.setSelection(0);
+
         } else if (d == 19) {
+
             sskill20 = skill20.getText().toString();
             sproficiency20 = proficiency20.getSelectedItem().toString();
 
@@ -4510,6 +4517,27 @@ public class MyProfileSkills extends AppCompatActivity {
             skill19.setText(sskill19);
             proficiency19.setSelection(dataAdapter.getPosition(sproficiency20));
 
+
+//            **************
+
+            sproficiency1=proficiency1.getSelectedItem().toString();
+            if(sskill1.equals("")  )
+            {
+                Log.d("TAG", "deleteLang: lang 1");
+                editeskills =1;
+            }
+
+            if(editeskills==1){
+                Log.d("TAG", "deleteLang: editlang - "+editeskills);
+                encskills();
+            }
+
+
+//          *********************
+
+
+
+
         }
 
     }
@@ -4591,114 +4619,121 @@ public class MyProfileSkills extends AppCompatActivity {
         String sPadding = "ISO10126Padding";
 
         int errorflag = 0;
-        if (skillcount == 0) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skillinput1.setError("Invalid Skill");
 
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
-                    errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
-                }
-            }
-        } else if (skillcount == 1) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skillinput1.setError("Invalid Skill");
+        if(editeskills==1){
+            encskills();
+        }
+        else {
 
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
+            if (skillcount == 0) {
+                if (sskill1.length() < 1) {
                     errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    skillinput1.setError("Invalid Skill");
+
                 } else {
-                    errorflag = 0;
-                    if (sskill2.length() < 1) {
+                    if (sproficiency1.equals("- Proficiency -")) {
                         errorflag = 1;
-                        skillinput2.setError("Invalid Skill");
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    }
+                }
+            } else if (skillcount == 1) {
+                if (sskill1.length() < 1) {
+                    errorflag = 1;
+                    skillinput1.setError("Invalid Skill");
 
+                } else {
+                    if (sproficiency1.equals("- Proficiency -")) {
+                        errorflag = 1;
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                     } else {
-                        if (sproficiency2.equals("- Proficiency -")) {
+                        errorflag = 0;
+                        if (sskill2.length() < 1) {
                             errorflag = 1;
-                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                            skillinput2.setError("Invalid Skill");
+
+                        } else {
+                            if (sproficiency2.equals("- Proficiency -")) {
+                                errorflag = 1;
+                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                            }
                         }
                     }
                 }
-            }
-        } else if (skillcount == 2) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skillinput1.setError("Invalid Skill");
-
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
+            } else if (skillcount == 2) {
+                if (sskill1.length() < 1) {
                     errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    skillinput1.setError("Invalid Skill");
+
                 } else {
-                    errorflag = 0;
-                    if (sskill2.length() < 1) {
+                    if (sproficiency1.equals("- Proficiency -")) {
                         errorflag = 1;
-                        skillinput2.setError("Invalid Skill");
-
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                     } else {
-                        if (sproficiency2.equals("- Proficiency -")) {
+                        errorflag = 0;
+                        if (sskill2.length() < 1) {
                             errorflag = 1;
-                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
-                        } else {
-                            errorflag = 0;
-                            if (sskill3.length() < 1) {
-                                errorflag = 1;
-                                skillinput3.setError("Invalid Skill");
+                            skillinput2.setError("Invalid Skill");
 
+                        } else {
+                            if (sproficiency2.equals("- Proficiency -")) {
+                                errorflag = 1;
+                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                             } else {
-                                if (sproficiency3.equals("- Proficiency -")) {
+                                errorflag = 0;
+                                if (sskill3.length() < 1) {
                                     errorflag = 1;
-                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                    skillinput3.setError("Invalid Skill");
+
+                                } else {
+                                    if (sproficiency3.equals("- Proficiency -")) {
+                                        errorflag = 1;
+                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-        } else if (skillcount == 3) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skillinput1.setError("Invalid Skill");
-
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
+            } else if (skillcount == 3) {
+                if (sskill1.length() < 1) {
                     errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    skillinput1.setError("Invalid Skill");
+
                 } else {
-                    errorflag = 0;
-                    if (sskill2.length() < 1) {
+                    if (sproficiency1.equals("- Proficiency -")) {
                         errorflag = 1;
-                        skillinput2.setError("Invalid Skill");
-
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                     } else {
-                        if (sproficiency2.equals("- Proficiency -")) {
+                        errorflag = 0;
+                        if (sskill2.length() < 1) {
                             errorflag = 1;
-                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                            skillinput2.setError("Invalid Skill");
+
                         } else {
-                            errorflag = 0;
-                            if (sskill3.length() < 1) {
+                            if (sproficiency2.equals("- Proficiency -")) {
                                 errorflag = 1;
-                                skillinput3.setError("Invalid Skill");
-
+                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                             } else {
-                                if (sproficiency3.equals("- Proficiency -")) {
+                                errorflag = 0;
+                                if (sskill3.length() < 1) {
                                     errorflag = 1;
-                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
-                                } else {
-                                    errorflag = 0;
-                                    if (sskill4.length() < 1) {
-                                        errorflag = 1;
-                                        skillinput4.setError("Invalid Skill");
+                                    skillinput3.setError("Invalid Skill");
 
+                                } else {
+                                    if (sproficiency3.equals("- Proficiency -")) {
+                                        errorflag = 1;
+                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                     } else {
-                                        if (sproficiency4.equals("- Proficiency -")) {
+                                        errorflag = 0;
+                                        if (sskill4.length() < 1) {
                                             errorflag = 1;
-                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                            skillinput4.setError("Invalid Skill");
+
+                                        } else {
+                                            if (sproficiency4.equals("- Proficiency -")) {
+                                                errorflag = 1;
+                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                            }
                                         }
                                     }
                                 }
@@ -4706,55 +4741,55 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (skillcount == 4) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skillinput1.setError("Invalid Skill");
-
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
+            } else if (skillcount == 4) {
+                if (sskill1.length() < 1) {
                     errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    skillinput1.setError("Invalid Skill");
+
                 } else {
-                    errorflag = 0;
-                    if (sskill2.length() < 1) {
+                    if (sproficiency1.equals("- Proficiency -")) {
                         errorflag = 1;
-                        skillinput2.setError("Invalid Skill");
-
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                     } else {
-                        if (sproficiency2.equals("- Proficiency -")) {
+                        errorflag = 0;
+                        if (sskill2.length() < 1) {
                             errorflag = 1;
-                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                            skillinput2.setError("Invalid Skill");
+
                         } else {
-                            errorflag = 0;
-                            if (sskill3.length() < 1) {
+                            if (sproficiency2.equals("- Proficiency -")) {
                                 errorflag = 1;
-                                skillinput3.setError("Invalid Skill");
-
+                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                             } else {
-                                if (sproficiency3.equals("- Proficiency -")) {
+                                errorflag = 0;
+                                if (sskill3.length() < 1) {
                                     errorflag = 1;
-                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                    skillinput3.setError("Invalid Skill");
+
                                 } else {
-                                    errorflag = 0;
-                                    if (sskill4.length() < 1) {
+                                    if (sproficiency3.equals("- Proficiency -")) {
                                         errorflag = 1;
-                                        skillinput4.setError("Invalid Skill");
-
+                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                     } else {
-                                        if (sproficiency4.equals("- Proficiency -")) {
+                                        errorflag = 0;
+                                        if (sskill4.length() < 1) {
                                             errorflag = 1;
-                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
-                                        } else {
-                                            if (sskill5.length() < 1) {
-                                                errorflag = 1;
-                                                skillinput5.setError("Invalid Skill");
+                                            skillinput4.setError("Invalid Skill");
 
+                                        } else {
+                                            if (sproficiency4.equals("- Proficiency -")) {
+                                                errorflag = 1;
+                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                             } else {
-                                                if (sproficiency5.equals("- Proficiency -")) {
+                                                if (sskill5.length() < 1) {
                                                     errorflag = 1;
-                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                    skillinput5.setError("Invalid Skill");
+
+                                                } else {
+                                                    if (sproficiency5.equals("- Proficiency -")) {
+                                                        errorflag = 1;
+                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                    }
                                                 }
                                             }
                                         }
@@ -4764,65 +4799,65 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (skillcount == 5) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skill1.setError("Invalid Skill");
-
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
+            } else if (skillcount == 5) {
+                if (sskill1.length() < 1) {
                     errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    skill1.setError("Invalid Skill");
+
                 } else {
-                    errorflag = 0;
-                    if (sskill2.length() < 1) {
+                    if (sproficiency1.equals("- Proficiency -")) {
                         errorflag = 1;
-                        skillinput2.setError("Invalid Skill");
-
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                     } else {
-                        if (sproficiency2.equals("- Proficiency -")) {
+                        errorflag = 0;
+                        if (sskill2.length() < 1) {
                             errorflag = 1;
-                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                            skillinput2.setError("Invalid Skill");
+
                         } else {
-                            errorflag = 0;
-                            if (sskill3.length() < 1) {
+                            if (sproficiency2.equals("- Proficiency -")) {
                                 errorflag = 1;
-                                skillinput3.setError("Invalid Skill");
-
+                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                             } else {
-                                if (sproficiency3.equals("- Proficiency -")) {
+                                errorflag = 0;
+                                if (sskill3.length() < 1) {
                                     errorflag = 1;
-                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                    skillinput3.setError("Invalid Skill");
+
                                 } else {
-                                    errorflag = 0;
-                                    if (sskill4.length() < 1) {
+                                    if (sproficiency3.equals("- Proficiency -")) {
                                         errorflag = 1;
-                                        skillinput4.setError("Invalid Skill");
-
+                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                     } else {
-                                        if (sproficiency4.equals("- Proficiency -")) {
+                                        errorflag = 0;
+                                        if (sskill4.length() < 1) {
                                             errorflag = 1;
-                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                            skillinput4.setError("Invalid Skill");
+
                                         } else {
-                                            if (sskill5.length() < 1) {
+                                            if (sproficiency4.equals("- Proficiency -")) {
                                                 errorflag = 1;
-                                                skillinput5.setError("Invalid Skill");
-
+                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                             } else {
-                                                if (sproficiency5.equals("- Proficiency -")) {
+                                                if (sskill5.length() < 1) {
                                                     errorflag = 1;
-                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
-                                                } else {
-                                                    errorflag = 0;
-                                                    if (sskill6.length() < 1) {
-                                                        errorflag = 1;
-                                                        skillinput6.setError("Invalid Skill");
+                                                    skillinput5.setError("Invalid Skill");
 
+                                                } else {
+                                                    if (sproficiency5.equals("- Proficiency -")) {
+                                                        errorflag = 1;
+                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                     } else {
-                                                        if (sproficiency6.equals("- Proficiency -")) {
+                                                        errorflag = 0;
+                                                        if (sskill6.length() < 1) {
                                                             errorflag = 1;
-                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                            skillinput6.setError("Invalid Skill");
+
+                                                        } else {
+                                                            if (sproficiency6.equals("- Proficiency -")) {
+                                                                errorflag = 1;
+                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -4834,75 +4869,75 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (skillcount == 6) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skill1.setError("Invalid Skill");
-
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
+            } else if (skillcount == 6) {
+                if (sskill1.length() < 1) {
                     errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    skill1.setError("Invalid Skill");
+
                 } else {
-                    errorflag = 0;
-                    if (sskill2.length() < 1) {
+                    if (sproficiency1.equals("- Proficiency -")) {
                         errorflag = 1;
-                        skillinput2.setError("Invalid Skill");
-
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                     } else {
-                        if (sproficiency2.equals("- Proficiency -")) {
+                        errorflag = 0;
+                        if (sskill2.length() < 1) {
                             errorflag = 1;
-                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                            skillinput2.setError("Invalid Skill");
+
                         } else {
-                            errorflag = 0;
-                            if (sskill3.length() < 1) {
+                            if (sproficiency2.equals("- Proficiency -")) {
                                 errorflag = 1;
-                                skillinput3.setError("Invalid Skill");
-
+                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                             } else {
-                                if (sproficiency3.equals("- Proficiency -")) {
+                                errorflag = 0;
+                                if (sskill3.length() < 1) {
                                     errorflag = 1;
-                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                    skillinput3.setError("Invalid Skill");
+
                                 } else {
-                                    errorflag = 0;
-                                    if (sskill4.length() < 1) {
+                                    if (sproficiency3.equals("- Proficiency -")) {
                                         errorflag = 1;
-                                        skillinput4.setError("Invalid Skill");
-
+                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                     } else {
-                                        if (sproficiency4.equals("- Proficiency -")) {
+                                        errorflag = 0;
+                                        if (sskill4.length() < 1) {
                                             errorflag = 1;
-                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                            skillinput4.setError("Invalid Skill");
+
                                         } else {
-                                            if (sskill5.length() < 1) {
+                                            if (sproficiency4.equals("- Proficiency -")) {
                                                 errorflag = 1;
-                                                skillinput5.setError("Invalid Skill");
-
+                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                             } else {
-                                                if (sproficiency5.equals("- Proficiency -")) {
+                                                if (sskill5.length() < 1) {
                                                     errorflag = 1;
-                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                    skillinput5.setError("Invalid Skill");
+
                                                 } else {
-                                                    errorflag = 0;
-                                                    if (sskill6.length() < 1) {
+                                                    if (sproficiency5.equals("- Proficiency -")) {
                                                         errorflag = 1;
-                                                        skillinput6.setError("Invalid Skill");
-
+                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                     } else {
-                                                        if (sproficiency6.equals("- Proficiency -")) {
+                                                        errorflag = 0;
+                                                        if (sskill6.length() < 1) {
                                                             errorflag = 1;
-                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
-                                                        } else {
-                                                            errorflag = 0;
-                                                            if (sskill7.length() < 1) {
-                                                                errorflag = 1;
-                                                                skillinput7.setError("Invalid Skill");
+                                                            skillinput6.setError("Invalid Skill");
 
+                                                        } else {
+                                                            if (sproficiency6.equals("- Proficiency -")) {
+                                                                errorflag = 1;
+                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                             } else {
-                                                                if (sproficiency7.equals("- Proficiency -")) {
+                                                                errorflag = 0;
+                                                                if (sskill7.length() < 1) {
                                                                     errorflag = 1;
-                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                    skillinput7.setError("Invalid Skill");
+
+                                                                } else {
+                                                                    if (sproficiency7.equals("- Proficiency -")) {
+                                                                        errorflag = 1;
+                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                    }
                                                                 }
                                                             }
                                                         }
@@ -4916,85 +4951,85 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (skillcount == 7) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skill1.setError("Invalid Skill");
-
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
+            } else if (skillcount == 7) {
+                if (sskill1.length() < 1) {
                     errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    skill1.setError("Invalid Skill");
+
                 } else {
-                    errorflag = 0;
-                    if (sskill2.length() < 1) {
+                    if (sproficiency1.equals("- Proficiency -")) {
                         errorflag = 1;
-                        skillinput2.setError("Invalid Skill");
-
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                     } else {
-                        if (sproficiency2.equals("- Proficiency -")) {
+                        errorflag = 0;
+                        if (sskill2.length() < 1) {
                             errorflag = 1;
-                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                            skillinput2.setError("Invalid Skill");
+
                         } else {
-                            errorflag = 0;
-                            if (sskill3.length() < 1) {
+                            if (sproficiency2.equals("- Proficiency -")) {
                                 errorflag = 1;
-                                skillinput3.setError("Invalid Skill");
-
+                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                             } else {
-                                if (sproficiency3.equals("- Proficiency -")) {
+                                errorflag = 0;
+                                if (sskill3.length() < 1) {
                                     errorflag = 1;
-                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                    skillinput3.setError("Invalid Skill");
+
                                 } else {
-                                    errorflag = 0;
-                                    if (sskill4.length() < 1) {
+                                    if (sproficiency3.equals("- Proficiency -")) {
                                         errorflag = 1;
-                                        skillinput4.setError("Invalid Skill");
-
+                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                     } else {
-                                        if (sproficiency4.equals("- Proficiency -")) {
+                                        errorflag = 0;
+                                        if (sskill4.length() < 1) {
                                             errorflag = 1;
-                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                            skillinput4.setError("Invalid Skill");
+
                                         } else {
-                                            if (sskill5.length() < 1) {
+                                            if (sproficiency4.equals("- Proficiency -")) {
                                                 errorflag = 1;
-                                                skillinput5.setError("Invalid Skill");
-
+                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                             } else {
-                                                if (sproficiency5.equals("- Proficiency -")) {
+                                                if (sskill5.length() < 1) {
                                                     errorflag = 1;
-                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                    skillinput5.setError("Invalid Skill");
+
                                                 } else {
-                                                    errorflag = 0;
-                                                    if (sskill6.length() < 1) {
+                                                    if (sproficiency5.equals("- Proficiency -")) {
                                                         errorflag = 1;
-                                                        skillinput6.setError("Invalid Skill");
-
+                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                     } else {
-                                                        if (sproficiency6.equals("- Proficiency -")) {
+                                                        errorflag = 0;
+                                                        if (sskill6.length() < 1) {
                                                             errorflag = 1;
-                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                            skillinput6.setError("Invalid Skill");
+
                                                         } else {
-                                                            errorflag = 0;
-                                                            if (sskill7.length() < 1) {
+                                                            if (sproficiency6.equals("- Proficiency -")) {
                                                                 errorflag = 1;
-                                                                skillinput7.setError("Invalid Skill");
-
+                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                             } else {
-                                                                if (sproficiency7.equals("- Proficiency -")) {
+                                                                errorflag = 0;
+                                                                if (sskill7.length() < 1) {
                                                                     errorflag = 1;
-                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
-                                                                } else {
-                                                                    errorflag = 0;
-                                                                    if (sskill8.length() < 1) {
-                                                                        errorflag = 1;
-                                                                        skillinput8.setError("Invalid Skill");
+                                                                    skillinput7.setError("Invalid Skill");
 
+                                                                } else {
+                                                                    if (sproficiency7.equals("- Proficiency -")) {
+                                                                        errorflag = 1;
+                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                     } else {
-                                                                        if (sproficiency8.equals("- Proficiency -")) {
+                                                                        errorflag = 0;
+                                                                        if (sskill8.length() < 1) {
                                                                             errorflag = 1;
-                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                            skillinput8.setError("Invalid Skill");
+
+                                                                        } else {
+                                                                            if (sproficiency8.equals("- Proficiency -")) {
+                                                                                errorflag = 1;
+                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                            }
                                                                         }
                                                                     }
                                                                 }
@@ -5010,95 +5045,95 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (skillcount == 8) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skill1.setError("Invalid Skill");
-
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
+            } else if (skillcount == 8) {
+                if (sskill1.length() < 1) {
                     errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    skill1.setError("Invalid Skill");
+
                 } else {
-                    errorflag = 0;
-                    if (sskill2.length() < 1) {
+                    if (sproficiency1.equals("- Proficiency -")) {
                         errorflag = 1;
-                        skillinput2.setError("Invalid Skill");
-
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                     } else {
-                        if (sproficiency2.equals("- Proficiency -")) {
+                        errorflag = 0;
+                        if (sskill2.length() < 1) {
                             errorflag = 1;
-                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                            skillinput2.setError("Invalid Skill");
+
                         } else {
-                            errorflag = 0;
-                            if (sskill3.length() < 1) {
+                            if (sproficiency2.equals("- Proficiency -")) {
                                 errorflag = 1;
-                                skillinput3.setError("Invalid Skill");
-
+                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                             } else {
-                                if (sproficiency3.equals("- Proficiency -")) {
+                                errorflag = 0;
+                                if (sskill3.length() < 1) {
                                     errorflag = 1;
-                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                    skillinput3.setError("Invalid Skill");
+
                                 } else {
-                                    errorflag = 0;
-                                    if (sskill4.length() < 1) {
+                                    if (sproficiency3.equals("- Proficiency -")) {
                                         errorflag = 1;
-                                        skillinput4.setError("Invalid Skill");
-
+                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                     } else {
-                                        if (sproficiency4.equals("- Proficiency -")) {
+                                        errorflag = 0;
+                                        if (sskill4.length() < 1) {
                                             errorflag = 1;
-                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                            skillinput4.setError("Invalid Skill");
+
                                         } else {
-                                            if (sskill5.length() < 1) {
+                                            if (sproficiency4.equals("- Proficiency -")) {
                                                 errorflag = 1;
-                                                skillinput5.setError("Invalid Skill");
-
+                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                             } else {
-                                                if (sproficiency5.equals("- Proficiency -")) {
+                                                if (sskill5.length() < 1) {
                                                     errorflag = 1;
-                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                    skillinput5.setError("Invalid Skill");
+
                                                 } else {
-                                                    errorflag = 0;
-                                                    if (sskill6.length() < 1) {
+                                                    if (sproficiency5.equals("- Proficiency -")) {
                                                         errorflag = 1;
-                                                        skillinput6.setError("Invalid Skill");
-
+                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                     } else {
-                                                        if (sproficiency6.equals("- Proficiency -")) {
+                                                        errorflag = 0;
+                                                        if (sskill6.length() < 1) {
                                                             errorflag = 1;
-                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                            skillinput6.setError("Invalid Skill");
+
                                                         } else {
-                                                            errorflag = 0;
-                                                            if (sskill7.length() < 1) {
+                                                            if (sproficiency6.equals("- Proficiency -")) {
                                                                 errorflag = 1;
-                                                                skillinput7.setError("Invalid Skill");
-
+                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                             } else {
-                                                                if (sproficiency7.equals("- Proficiency -")) {
+                                                                errorflag = 0;
+                                                                if (sskill7.length() < 1) {
                                                                     errorflag = 1;
-                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                    skillinput7.setError("Invalid Skill");
+
                                                                 } else {
-                                                                    errorflag = 0;
-                                                                    if (sskill8.length() < 1) {
+                                                                    if (sproficiency7.equals("- Proficiency -")) {
                                                                         errorflag = 1;
-                                                                        skillinput8.setError("Invalid Skill");
-
+                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                     } else {
-                                                                        if (sproficiency8.equals("- Proficiency -")) {
+                                                                        errorflag = 0;
+                                                                        if (sskill8.length() < 1) {
                                                                             errorflag = 1;
-                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
-                                                                        } else {
-                                                                            errorflag = 0;
-                                                                            if (sskill9.length() < 1) {
-                                                                                errorflag = 1;
-                                                                                skillinput9.setError("Invalid Skill");
+                                                                            skillinput8.setError("Invalid Skill");
 
+                                                                        } else {
+                                                                            if (sproficiency8.equals("- Proficiency -")) {
+                                                                                errorflag = 1;
+                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                             } else {
-                                                                                if (sproficiency9.equals("- Proficiency -")) {
+                                                                                errorflag = 0;
+                                                                                if (sskill9.length() < 1) {
                                                                                     errorflag = 1;
-                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                    skillinput9.setError("Invalid Skill");
+
+                                                                                } else {
+                                                                                    if (sproficiency9.equals("- Proficiency -")) {
+                                                                                        errorflag = 1;
+                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                    }
                                                                                 }
                                                                             }
                                                                         }
@@ -5116,105 +5151,105 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (skillcount == 9) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skill1.setError("Invalid Skill");
-
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
+            } else if (skillcount == 9) {
+                if (sskill1.length() < 1) {
                     errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    skill1.setError("Invalid Skill");
+
                 } else {
-                    errorflag = 0;
-                    if (sskill2.length() < 1) {
+                    if (sproficiency1.equals("- Proficiency -")) {
                         errorflag = 1;
-                        skillinput2.setError("Invalid Skill");
-
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                     } else {
-                        if (sproficiency2.equals("- Proficiency -")) {
+                        errorflag = 0;
+                        if (sskill2.length() < 1) {
                             errorflag = 1;
-                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                            skillinput2.setError("Invalid Skill");
+
                         } else {
-                            errorflag = 0;
-                            if (sskill3.length() < 1) {
+                            if (sproficiency2.equals("- Proficiency -")) {
                                 errorflag = 1;
-                                skillinput3.setError("Invalid Skill");
-
+                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                             } else {
-                                if (sproficiency3.equals("- Proficiency -")) {
+                                errorflag = 0;
+                                if (sskill3.length() < 1) {
                                     errorflag = 1;
-                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                    skillinput3.setError("Invalid Skill");
+
                                 } else {
-                                    errorflag = 0;
-                                    if (sskill4.length() < 1) {
+                                    if (sproficiency3.equals("- Proficiency -")) {
                                         errorflag = 1;
-                                        skillinput4.setError("Invalid Skill");
-
+                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                     } else {
-                                        if (sproficiency4.equals("- Proficiency -")) {
+                                        errorflag = 0;
+                                        if (sskill4.length() < 1) {
                                             errorflag = 1;
-                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                            skillinput4.setError("Invalid Skill");
+
                                         } else {
-                                            if (sskill5.length() < 1) {
+                                            if (sproficiency4.equals("- Proficiency -")) {
                                                 errorflag = 1;
-                                                skillinput5.setError("Invalid Skill");
-
+                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                             } else {
-                                                if (sproficiency5.equals("- Proficiency -")) {
+                                                if (sskill5.length() < 1) {
                                                     errorflag = 1;
-                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                    skillinput5.setError("Invalid Skill");
+
                                                 } else {
-                                                    errorflag = 0;
-                                                    if (sskill6.length() < 1) {
+                                                    if (sproficiency5.equals("- Proficiency -")) {
                                                         errorflag = 1;
-                                                        skillinput6.setError("Invalid Skill");
-
+                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                     } else {
-                                                        if (sproficiency6.equals("- Proficiency -")) {
+                                                        errorflag = 0;
+                                                        if (sskill6.length() < 1) {
                                                             errorflag = 1;
-                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                            skillinput6.setError("Invalid Skill");
+
                                                         } else {
-                                                            errorflag = 0;
-                                                            if (sskill7.length() < 1) {
+                                                            if (sproficiency6.equals("- Proficiency -")) {
                                                                 errorflag = 1;
-                                                                skillinput7.setError("Invalid Skill");
-
+                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                             } else {
-                                                                if (sproficiency7.equals("- Proficiency -")) {
+                                                                errorflag = 0;
+                                                                if (sskill7.length() < 1) {
                                                                     errorflag = 1;
-                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                    skillinput7.setError("Invalid Skill");
+
                                                                 } else {
-                                                                    errorflag = 0;
-                                                                    if (sskill8.length() < 1) {
+                                                                    if (sproficiency7.equals("- Proficiency -")) {
                                                                         errorflag = 1;
-                                                                        skillinput8.setError("Invalid Skill");
-
+                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                     } else {
-                                                                        if (sproficiency8.equals("- Proficiency -")) {
+                                                                        errorflag = 0;
+                                                                        if (sskill8.length() < 1) {
                                                                             errorflag = 1;
-                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                            skillinput8.setError("Invalid Skill");
+
                                                                         } else {
-                                                                            errorflag = 0;
-                                                                            if (sskill9.length() < 1) {
+                                                                            if (sproficiency8.equals("- Proficiency -")) {
                                                                                 errorflag = 1;
-                                                                                skillinput9.setError("Invalid Skill");
-
+                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                             } else {
-                                                                                if (sproficiency9.equals("- Proficiency -")) {
+                                                                                errorflag = 0;
+                                                                                if (sskill9.length() < 1) {
                                                                                     errorflag = 1;
-                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
-                                                                                } else {
-                                                                                    errorflag = 0;
-                                                                                    if (sskill10.length() < 1) {
-                                                                                        errorflag = 1;
-                                                                                        skillinput10.setError("Invalid Skill");
+                                                                                    skillinput9.setError("Invalid Skill");
 
+                                                                                } else {
+                                                                                    if (sproficiency9.equals("- Proficiency -")) {
+                                                                                        errorflag = 1;
+                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                     } else {
-                                                                                        if (sproficiency10.equals("- Proficiency -")) {
+                                                                                        errorflag = 0;
+                                                                                        if (sskill10.length() < 1) {
                                                                                             errorflag = 1;
-                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                            skillinput10.setError("Invalid Skill");
+
+                                                                                        } else {
+                                                                                            if (sproficiency10.equals("- Proficiency -")) {
+                                                                                                errorflag = 1;
+                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                            }
                                                                                         }
                                                                                     }
                                                                                 }
@@ -5234,115 +5269,115 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (skillcount == 10) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skill1.setError("Invalid Skill");
-
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
+            } else if (skillcount == 10) {
+                if (sskill1.length() < 1) {
                     errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    skill1.setError("Invalid Skill");
+
                 } else {
-                    errorflag = 0;
-                    if (sskill2.length() < 1) {
+                    if (sproficiency1.equals("- Proficiency -")) {
                         errorflag = 1;
-                        skillinput2.setError("Invalid Skill");
-
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                     } else {
-                        if (sproficiency2.equals("- Proficiency -")) {
+                        errorflag = 0;
+                        if (sskill2.length() < 1) {
                             errorflag = 1;
-                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                            skillinput2.setError("Invalid Skill");
+
                         } else {
-                            errorflag = 0;
-                            if (sskill3.length() < 1) {
+                            if (sproficiency2.equals("- Proficiency -")) {
                                 errorflag = 1;
-                                skillinput3.setError("Invalid Skill");
-
+                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                             } else {
-                                if (sproficiency3.equals("- Proficiency -")) {
+                                errorflag = 0;
+                                if (sskill3.length() < 1) {
                                     errorflag = 1;
-                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                    skillinput3.setError("Invalid Skill");
+
                                 } else {
-                                    errorflag = 0;
-                                    if (sskill4.length() < 1) {
+                                    if (sproficiency3.equals("- Proficiency -")) {
                                         errorflag = 1;
-                                        skillinput4.setError("Invalid Skill");
-
+                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                     } else {
-                                        if (sproficiency4.equals("- Proficiency -")) {
+                                        errorflag = 0;
+                                        if (sskill4.length() < 1) {
                                             errorflag = 1;
-                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                            skillinput4.setError("Invalid Skill");
+
                                         } else {
-                                            if (sskill5.length() < 1) {
+                                            if (sproficiency4.equals("- Proficiency -")) {
                                                 errorflag = 1;
-                                                skillinput5.setError("Invalid Skill");
-
+                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                             } else {
-                                                if (sproficiency5.equals("- Proficiency -")) {
+                                                if (sskill5.length() < 1) {
                                                     errorflag = 1;
-                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                    skillinput5.setError("Invalid Skill");
+
                                                 } else {
-                                                    errorflag = 0;
-                                                    if (sskill6.length() < 1) {
+                                                    if (sproficiency5.equals("- Proficiency -")) {
                                                         errorflag = 1;
-                                                        skillinput6.setError("Invalid Skill");
-
+                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                     } else {
-                                                        if (sproficiency6.equals("- Proficiency -")) {
+                                                        errorflag = 0;
+                                                        if (sskill6.length() < 1) {
                                                             errorflag = 1;
-                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                            skillinput6.setError("Invalid Skill");
+
                                                         } else {
-                                                            errorflag = 0;
-                                                            if (sskill7.length() < 1) {
+                                                            if (sproficiency6.equals("- Proficiency -")) {
                                                                 errorflag = 1;
-                                                                skillinput7.setError("Invalid Skill");
-
+                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                             } else {
-                                                                if (sproficiency7.equals("- Proficiency -")) {
+                                                                errorflag = 0;
+                                                                if (sskill7.length() < 1) {
                                                                     errorflag = 1;
-                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                    skillinput7.setError("Invalid Skill");
+
                                                                 } else {
-                                                                    errorflag = 0;
-                                                                    if (sskill8.length() < 1) {
+                                                                    if (sproficiency7.equals("- Proficiency -")) {
                                                                         errorflag = 1;
-                                                                        skillinput8.setError("Invalid Skill");
-
+                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                     } else {
-                                                                        if (sproficiency8.equals("- Proficiency -")) {
+                                                                        errorflag = 0;
+                                                                        if (sskill8.length() < 1) {
                                                                             errorflag = 1;
-                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                            skillinput8.setError("Invalid Skill");
+
                                                                         } else {
-                                                                            errorflag = 0;
-                                                                            if (sskill9.length() < 1) {
+                                                                            if (sproficiency8.equals("- Proficiency -")) {
                                                                                 errorflag = 1;
-                                                                                skillinput9.setError("Invalid Skill");
-
+                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                             } else {
-                                                                                if (sproficiency9.equals("- Proficiency -")) {
+                                                                                errorflag = 0;
+                                                                                if (sskill9.length() < 1) {
                                                                                     errorflag = 1;
-                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                    skillinput9.setError("Invalid Skill");
+
                                                                                 } else {
-                                                                                    errorflag = 0;
-                                                                                    if (sskill10.length() < 1) {
+                                                                                    if (sproficiency9.equals("- Proficiency -")) {
                                                                                         errorflag = 1;
-                                                                                        skillinput10.setError("Invalid Skill");
-
+                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                     } else {
-                                                                                        if (sproficiency10.equals("- Proficiency -")) {
+                                                                                        errorflag = 0;
+                                                                                        if (sskill10.length() < 1) {
                                                                                             errorflag = 1;
-                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
-                                                                                        } else {
-                                                                                            errorflag = 0;
-                                                                                            if (sskill11.length() < 1) {
-                                                                                                errorflag = 1;
-                                                                                                skillinput11.setError("Invalid Skill");
+                                                                                            skillinput10.setError("Invalid Skill");
 
+                                                                                        } else {
+                                                                                            if (sproficiency10.equals("- Proficiency -")) {
+                                                                                                errorflag = 1;
+                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                             } else {
-                                                                                                if (sproficiency11.equals("- Proficiency -")) {
+                                                                                                errorflag = 0;
+                                                                                                if (sskill11.length() < 1) {
                                                                                                     errorflag = 1;
-                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                    skillinput11.setError("Invalid Skill");
+
+                                                                                                } else {
+                                                                                                    if (sproficiency11.equals("- Proficiency -")) {
+                                                                                                        errorflag = 1;
+                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                    }
                                                                                                 }
                                                                                             }
                                                                                         }
@@ -5364,125 +5399,125 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (skillcount == 11) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skill1.setError("Invalid Skill");
-
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
+            } else if (skillcount == 11) {
+                if (sskill1.length() < 1) {
                     errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    skill1.setError("Invalid Skill");
+
                 } else {
-                    errorflag = 0;
-                    if (sskill2.length() < 1) {
+                    if (sproficiency1.equals("- Proficiency -")) {
                         errorflag = 1;
-                        skillinput2.setError("Invalid Skill");
-
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                     } else {
-                        if (sproficiency2.equals("- Proficiency -")) {
+                        errorflag = 0;
+                        if (sskill2.length() < 1) {
                             errorflag = 1;
-                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                            skillinput2.setError("Invalid Skill");
+
                         } else {
-                            errorflag = 0;
-                            if (sskill3.length() < 1) {
+                            if (sproficiency2.equals("- Proficiency -")) {
                                 errorflag = 1;
-                                skillinput3.setError("Invalid Skill");
-
+                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                             } else {
-                                if (sproficiency3.equals("- Proficiency -")) {
+                                errorflag = 0;
+                                if (sskill3.length() < 1) {
                                     errorflag = 1;
-                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                    skillinput3.setError("Invalid Skill");
+
                                 } else {
-                                    errorflag = 0;
-                                    if (sskill4.length() < 1) {
+                                    if (sproficiency3.equals("- Proficiency -")) {
                                         errorflag = 1;
-                                        skillinput4.setError("Invalid Skill");
-
+                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                     } else {
-                                        if (sproficiency4.equals("- Proficiency -")) {
+                                        errorflag = 0;
+                                        if (sskill4.length() < 1) {
                                             errorflag = 1;
-                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                            skillinput4.setError("Invalid Skill");
+
                                         } else {
-                                            if (sskill5.length() < 1) {
+                                            if (sproficiency4.equals("- Proficiency -")) {
                                                 errorflag = 1;
-                                                skillinput5.setError("Invalid Skill");
-
+                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                             } else {
-                                                if (sproficiency5.equals("- Proficiency -")) {
+                                                if (sskill5.length() < 1) {
                                                     errorflag = 1;
-                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                    skillinput5.setError("Invalid Skill");
+
                                                 } else {
-                                                    errorflag = 0;
-                                                    if (sskill6.length() < 1) {
+                                                    if (sproficiency5.equals("- Proficiency -")) {
                                                         errorflag = 1;
-                                                        skillinput6.setError("Invalid Skill");
-
+                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                     } else {
-                                                        if (sproficiency6.equals("- Proficiency -")) {
+                                                        errorflag = 0;
+                                                        if (sskill6.length() < 1) {
                                                             errorflag = 1;
-                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                            skillinput6.setError("Invalid Skill");
+
                                                         } else {
-                                                            errorflag = 0;
-                                                            if (sskill7.length() < 1) {
+                                                            if (sproficiency6.equals("- Proficiency -")) {
                                                                 errorflag = 1;
-                                                                skillinput7.setError("Invalid Skill");
-
+                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                             } else {
-                                                                if (sproficiency7.equals("- Proficiency -")) {
+                                                                errorflag = 0;
+                                                                if (sskill7.length() < 1) {
                                                                     errorflag = 1;
-                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                    skillinput7.setError("Invalid Skill");
+
                                                                 } else {
-                                                                    errorflag = 0;
-                                                                    if (sskill8.length() < 1) {
+                                                                    if (sproficiency7.equals("- Proficiency -")) {
                                                                         errorflag = 1;
-                                                                        skillinput8.setError("Invalid Skill");
-
+                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                     } else {
-                                                                        if (sproficiency8.equals("- Proficiency -")) {
+                                                                        errorflag = 0;
+                                                                        if (sskill8.length() < 1) {
                                                                             errorflag = 1;
-                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                            skillinput8.setError("Invalid Skill");
+
                                                                         } else {
-                                                                            errorflag = 0;
-                                                                            if (sskill9.length() < 1) {
+                                                                            if (sproficiency8.equals("- Proficiency -")) {
                                                                                 errorflag = 1;
-                                                                                skillinput9.setError("Invalid Skill");
-
+                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                             } else {
-                                                                                if (sproficiency9.equals("- Proficiency -")) {
+                                                                                errorflag = 0;
+                                                                                if (sskill9.length() < 1) {
                                                                                     errorflag = 1;
-                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                    skillinput9.setError("Invalid Skill");
+
                                                                                 } else {
-                                                                                    errorflag = 0;
-                                                                                    if (sskill10.length() < 1) {
+                                                                                    if (sproficiency9.equals("- Proficiency -")) {
                                                                                         errorflag = 1;
-                                                                                        skillinput10.setError("Invalid Skill");
-
+                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                     } else {
-                                                                                        if (sproficiency10.equals("- Proficiency -")) {
+                                                                                        errorflag = 0;
+                                                                                        if (sskill10.length() < 1) {
                                                                                             errorflag = 1;
-                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                            skillinput10.setError("Invalid Skill");
+
                                                                                         } else {
-                                                                                            errorflag = 0;
-                                                                                            if (sskill11.length() < 1) {
+                                                                                            if (sproficiency10.equals("- Proficiency -")) {
                                                                                                 errorflag = 1;
-                                                                                                skillinput11.setError("Invalid Skill");
-
+                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                             } else {
-                                                                                                if (sproficiency11.equals("- Proficiency -")) {
+                                                                                                errorflag = 0;
+                                                                                                if (sskill11.length() < 1) {
                                                                                                     errorflag = 1;
-                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
-                                                                                                } else {
-                                                                                                    errorflag = 0;
-                                                                                                    if (sskill12.length() < 1) {
-                                                                                                        errorflag = 1;
-                                                                                                        skillinput12.setError("Invalid Skill");
+                                                                                                    skillinput11.setError("Invalid Skill");
 
+                                                                                                } else {
+                                                                                                    if (sproficiency11.equals("- Proficiency -")) {
+                                                                                                        errorflag = 1;
+                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                     } else {
-                                                                                                        if (sproficiency12.equals("- Proficiency -")) {
+                                                                                                        errorflag = 0;
+                                                                                                        if (sskill12.length() < 1) {
                                                                                                             errorflag = 1;
-                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                            skillinput12.setError("Invalid Skill");
+
+                                                                                                        } else {
+                                                                                                            if (sproficiency12.equals("- Proficiency -")) {
+                                                                                                                errorflag = 1;
+                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                            }
                                                                                                         }
                                                                                                     }
                                                                                                 }
@@ -5506,135 +5541,135 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (skillcount == 12) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skill1.setError("Invalid Skill");
-
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
+            } else if (skillcount == 12) {
+                if (sskill1.length() < 1) {
                     errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    skill1.setError("Invalid Skill");
+
                 } else {
-                    errorflag = 0;
-                    if (sskill2.length() < 1) {
+                    if (sproficiency1.equals("- Proficiency -")) {
                         errorflag = 1;
-                        skillinput2.setError("Invalid Skill");
-
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                     } else {
-                        if (sproficiency2.equals("- Proficiency -")) {
+                        errorflag = 0;
+                        if (sskill2.length() < 1) {
                             errorflag = 1;
-                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                            skillinput2.setError("Invalid Skill");
+
                         } else {
-                            errorflag = 0;
-                            if (sskill3.length() < 1) {
+                            if (sproficiency2.equals("- Proficiency -")) {
                                 errorflag = 1;
-                                skillinput3.setError("Invalid Skill");
-
+                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                             } else {
-                                if (sproficiency3.equals("- Proficiency -")) {
+                                errorflag = 0;
+                                if (sskill3.length() < 1) {
                                     errorflag = 1;
-                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                    skillinput3.setError("Invalid Skill");
+
                                 } else {
-                                    errorflag = 0;
-                                    if (sskill4.length() < 1) {
+                                    if (sproficiency3.equals("- Proficiency -")) {
                                         errorflag = 1;
-                                        skillinput4.setError("Invalid Skill");
-
+                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                     } else {
-                                        if (sproficiency4.equals("- Proficiency -")) {
+                                        errorflag = 0;
+                                        if (sskill4.length() < 1) {
                                             errorflag = 1;
-                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                            skillinput4.setError("Invalid Skill");
+
                                         } else {
-                                            if (sskill5.length() < 1) {
+                                            if (sproficiency4.equals("- Proficiency -")) {
                                                 errorflag = 1;
-                                                skillinput5.setError("Invalid Skill");
-
+                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                             } else {
-                                                if (sproficiency5.equals("- Proficiency -")) {
+                                                if (sskill5.length() < 1) {
                                                     errorflag = 1;
-                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                    skillinput5.setError("Invalid Skill");
+
                                                 } else {
-                                                    errorflag = 0;
-                                                    if (sskill6.length() < 1) {
+                                                    if (sproficiency5.equals("- Proficiency -")) {
                                                         errorflag = 1;
-                                                        skillinput6.setError("Invalid Skill");
-
+                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                     } else {
-                                                        if (sproficiency6.equals("- Proficiency -")) {
+                                                        errorflag = 0;
+                                                        if (sskill6.length() < 1) {
                                                             errorflag = 1;
-                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                            skillinput6.setError("Invalid Skill");
+
                                                         } else {
-                                                            errorflag = 0;
-                                                            if (sskill7.length() < 1) {
+                                                            if (sproficiency6.equals("- Proficiency -")) {
                                                                 errorflag = 1;
-                                                                skillinput7.setError("Invalid Skill");
-
+                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                             } else {
-                                                                if (sproficiency7.equals("- Proficiency -")) {
+                                                                errorflag = 0;
+                                                                if (sskill7.length() < 1) {
                                                                     errorflag = 1;
-                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                    skillinput7.setError("Invalid Skill");
+
                                                                 } else {
-                                                                    errorflag = 0;
-                                                                    if (sskill8.length() < 1) {
+                                                                    if (sproficiency7.equals("- Proficiency -")) {
                                                                         errorflag = 1;
-                                                                        skillinput8.setError("Invalid Skill");
-
+                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                     } else {
-                                                                        if (sproficiency8.equals("- Proficiency -")) {
+                                                                        errorflag = 0;
+                                                                        if (sskill8.length() < 1) {
                                                                             errorflag = 1;
-                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                            skillinput8.setError("Invalid Skill");
+
                                                                         } else {
-                                                                            errorflag = 0;
-                                                                            if (sskill9.length() < 1) {
+                                                                            if (sproficiency8.equals("- Proficiency -")) {
                                                                                 errorflag = 1;
-                                                                                skillinput9.setError("Invalid Skill");
-
+                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                             } else {
-                                                                                if (sproficiency9.equals("- Proficiency -")) {
+                                                                                errorflag = 0;
+                                                                                if (sskill9.length() < 1) {
                                                                                     errorflag = 1;
-                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                    skillinput9.setError("Invalid Skill");
+
                                                                                 } else {
-                                                                                    errorflag = 0;
-                                                                                    if (sskill10.length() < 1) {
+                                                                                    if (sproficiency9.equals("- Proficiency -")) {
                                                                                         errorflag = 1;
-                                                                                        skillinput10.setError("Invalid Skill");
-
+                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                     } else {
-                                                                                        if (sproficiency10.equals("- Proficiency -")) {
+                                                                                        errorflag = 0;
+                                                                                        if (sskill10.length() < 1) {
                                                                                             errorflag = 1;
-                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                            skillinput10.setError("Invalid Skill");
+
                                                                                         } else {
-                                                                                            errorflag = 0;
-                                                                                            if (sskill11.length() < 1) {
+                                                                                            if (sproficiency10.equals("- Proficiency -")) {
                                                                                                 errorflag = 1;
-                                                                                                skillinput11.setError("Invalid Skill");
-
+                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                             } else {
-                                                                                                if (sproficiency11.equals("- Proficiency -")) {
+                                                                                                errorflag = 0;
+                                                                                                if (sskill11.length() < 1) {
                                                                                                     errorflag = 1;
-                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                    skillinput11.setError("Invalid Skill");
+
                                                                                                 } else {
-                                                                                                    errorflag = 0;
-                                                                                                    if (sskill12.length() < 1) {
+                                                                                                    if (sproficiency11.equals("- Proficiency -")) {
                                                                                                         errorflag = 1;
-                                                                                                        skillinput12.setError("Invalid Skill");
-
+                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                     } else {
-                                                                                                        if (sproficiency12.equals("- Proficiency -")) {
+                                                                                                        errorflag = 0;
+                                                                                                        if (sskill12.length() < 1) {
                                                                                                             errorflag = 1;
-                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
-                                                                                                        } else {
-                                                                                                            errorflag = 0;
-                                                                                                            if (sskill13.length() < 1) {
-                                                                                                                errorflag = 1;
-                                                                                                                skillinput13.setError("Invalid Skill");
+                                                                                                            skillinput12.setError("Invalid Skill");
 
+                                                                                                        } else {
+                                                                                                            if (sproficiency12.equals("- Proficiency -")) {
+                                                                                                                errorflag = 1;
+                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                             } else {
-                                                                                                                if (sproficiency13.equals("- Proficiency -")) {
+                                                                                                                errorflag = 0;
+                                                                                                                if (sskill13.length() < 1) {
                                                                                                                     errorflag = 1;
-                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                    skillinput13.setError("Invalid Skill");
+
+                                                                                                                } else {
+                                                                                                                    if (sproficiency13.equals("- Proficiency -")) {
+                                                                                                                        errorflag = 1;
+                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                    }
                                                                                                                 }
                                                                                                             }
                                                                                                         }
@@ -5660,145 +5695,145 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (skillcount == 13) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skill1.setError("Invalid Skill");
-
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
+            } else if (skillcount == 13) {
+                if (sskill1.length() < 1) {
                     errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    skill1.setError("Invalid Skill");
+
                 } else {
-                    errorflag = 0;
-                    if (sskill2.length() < 1) {
+                    if (sproficiency1.equals("- Proficiency -")) {
                         errorflag = 1;
-                        skillinput2.setError("Invalid Skill");
-
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                     } else {
-                        if (sproficiency2.equals("- Proficiency -")) {
+                        errorflag = 0;
+                        if (sskill2.length() < 1) {
                             errorflag = 1;
-                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                            skillinput2.setError("Invalid Skill");
+
                         } else {
-                            errorflag = 0;
-                            if (sskill3.length() < 1) {
+                            if (sproficiency2.equals("- Proficiency -")) {
                                 errorflag = 1;
-                                skillinput3.setError("Invalid Skill");
-
+                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                             } else {
-                                if (sproficiency3.equals("- Proficiency -")) {
+                                errorflag = 0;
+                                if (sskill3.length() < 1) {
                                     errorflag = 1;
-                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                    skillinput3.setError("Invalid Skill");
+
                                 } else {
-                                    errorflag = 0;
-                                    if (sskill4.length() < 1) {
+                                    if (sproficiency3.equals("- Proficiency -")) {
                                         errorflag = 1;
-                                        skillinput4.setError("Invalid Skill");
-
+                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                     } else {
-                                        if (sproficiency4.equals("- Proficiency -")) {
+                                        errorflag = 0;
+                                        if (sskill4.length() < 1) {
                                             errorflag = 1;
-                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                            skillinput4.setError("Invalid Skill");
+
                                         } else {
-                                            if (sskill5.length() < 1) {
+                                            if (sproficiency4.equals("- Proficiency -")) {
                                                 errorflag = 1;
-                                                skillinput5.setError("Invalid Skill");
-
+                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                             } else {
-                                                if (sproficiency5.equals("- Proficiency -")) {
+                                                if (sskill5.length() < 1) {
                                                     errorflag = 1;
-                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                    skillinput5.setError("Invalid Skill");
+
                                                 } else {
-                                                    errorflag = 0;
-                                                    if (sskill6.length() < 1) {
+                                                    if (sproficiency5.equals("- Proficiency -")) {
                                                         errorflag = 1;
-                                                        skillinput6.setError("Invalid Skill");
-
+                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                     } else {
-                                                        if (sproficiency6.equals("- Proficiency -")) {
+                                                        errorflag = 0;
+                                                        if (sskill6.length() < 1) {
                                                             errorflag = 1;
-                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                            skillinput6.setError("Invalid Skill");
+
                                                         } else {
-                                                            errorflag = 0;
-                                                            if (sskill7.length() < 1) {
+                                                            if (sproficiency6.equals("- Proficiency -")) {
                                                                 errorflag = 1;
-                                                                skillinput7.setError("Invalid Skill");
-
+                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                             } else {
-                                                                if (sproficiency7.equals("- Proficiency -")) {
+                                                                errorflag = 0;
+                                                                if (sskill7.length() < 1) {
                                                                     errorflag = 1;
-                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                    skillinput7.setError("Invalid Skill");
+
                                                                 } else {
-                                                                    errorflag = 0;
-                                                                    if (sskill8.length() < 1) {
+                                                                    if (sproficiency7.equals("- Proficiency -")) {
                                                                         errorflag = 1;
-                                                                        skillinput8.setError("Invalid Skill");
-
+                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                     } else {
-                                                                        if (sproficiency8.equals("- Proficiency -")) {
+                                                                        errorflag = 0;
+                                                                        if (sskill8.length() < 1) {
                                                                             errorflag = 1;
-                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                            skillinput8.setError("Invalid Skill");
+
                                                                         } else {
-                                                                            errorflag = 0;
-                                                                            if (sskill9.length() < 1) {
+                                                                            if (sproficiency8.equals("- Proficiency -")) {
                                                                                 errorflag = 1;
-                                                                                skillinput9.setError("Invalid Skill");
-
+                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                             } else {
-                                                                                if (sproficiency9.equals("- Proficiency -")) {
+                                                                                errorflag = 0;
+                                                                                if (sskill9.length() < 1) {
                                                                                     errorflag = 1;
-                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                    skillinput9.setError("Invalid Skill");
+
                                                                                 } else {
-                                                                                    errorflag = 0;
-                                                                                    if (sskill10.length() < 1) {
+                                                                                    if (sproficiency9.equals("- Proficiency -")) {
                                                                                         errorflag = 1;
-                                                                                        skillinput10.setError("Invalid Skill");
-
+                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                     } else {
-                                                                                        if (sproficiency10.equals("- Proficiency -")) {
+                                                                                        errorflag = 0;
+                                                                                        if (sskill10.length() < 1) {
                                                                                             errorflag = 1;
-                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                            skillinput10.setError("Invalid Skill");
+
                                                                                         } else {
-                                                                                            errorflag = 0;
-                                                                                            if (sskill11.length() < 1) {
+                                                                                            if (sproficiency10.equals("- Proficiency -")) {
                                                                                                 errorflag = 1;
-                                                                                                skillinput11.setError("Invalid Skill");
-
+                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                             } else {
-                                                                                                if (sproficiency11.equals("- Proficiency -")) {
+                                                                                                errorflag = 0;
+                                                                                                if (sskill11.length() < 1) {
                                                                                                     errorflag = 1;
-                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                    skillinput11.setError("Invalid Skill");
+
                                                                                                 } else {
-                                                                                                    errorflag = 0;
-                                                                                                    if (sskill12.length() < 1) {
+                                                                                                    if (sproficiency11.equals("- Proficiency -")) {
                                                                                                         errorflag = 1;
-                                                                                                        skillinput12.setError("Invalid Skill");
-
+                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                     } else {
-                                                                                                        if (sproficiency12.equals("- Proficiency -")) {
+                                                                                                        errorflag = 0;
+                                                                                                        if (sskill12.length() < 1) {
                                                                                                             errorflag = 1;
-                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                            skillinput12.setError("Invalid Skill");
+
                                                                                                         } else {
-                                                                                                            errorflag = 0;
-                                                                                                            if (sskill13.length() < 1) {
+                                                                                                            if (sproficiency12.equals("- Proficiency -")) {
                                                                                                                 errorflag = 1;
-                                                                                                                skillinput13.setError("Invalid Skill");
-
+                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                             } else {
-                                                                                                                if (sproficiency13.equals("- Proficiency -")) {
+                                                                                                                errorflag = 0;
+                                                                                                                if (sskill13.length() < 1) {
                                                                                                                     errorflag = 1;
-                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
-                                                                                                                } else {
-                                                                                                                    errorflag = 0;
-                                                                                                                    if (sskill14.length() < 1) {
-                                                                                                                        errorflag = 1;
-                                                                                                                        skillinput14.setError("Invalid Skill");
+                                                                                                                    skillinput13.setError("Invalid Skill");
 
+                                                                                                                } else {
+                                                                                                                    if (sproficiency13.equals("- Proficiency -")) {
+                                                                                                                        errorflag = 1;
+                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                     } else {
-                                                                                                                        if (sproficiency14.equals("- Proficiency -")) {
+                                                                                                                        errorflag = 0;
+                                                                                                                        if (sskill14.length() < 1) {
                                                                                                                             errorflag = 1;
-                                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                            skillinput14.setError("Invalid Skill");
+
+                                                                                                                        } else {
+                                                                                                                            if (sproficiency14.equals("- Proficiency -")) {
+                                                                                                                                errorflag = 1;
+                                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                            }
                                                                                                                         }
                                                                                                                     }
                                                                                                                 }
@@ -5826,155 +5861,155 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (skillcount == 14) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skill1.setError("Invalid Skill");
-
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
+            } else if (skillcount == 14) {
+                if (sskill1.length() < 1) {
                     errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    skill1.setError("Invalid Skill");
+
                 } else {
-                    errorflag = 0;
-                    if (sskill2.length() < 1) {
+                    if (sproficiency1.equals("- Proficiency -")) {
                         errorflag = 1;
-                        skillinput2.setError("Invalid Skill");
-
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                     } else {
-                        if (sproficiency2.equals("- Proficiency -")) {
+                        errorflag = 0;
+                        if (sskill2.length() < 1) {
                             errorflag = 1;
-                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                            skillinput2.setError("Invalid Skill");
+
                         } else {
-                            errorflag = 0;
-                            if (sskill3.length() < 1) {
+                            if (sproficiency2.equals("- Proficiency -")) {
                                 errorflag = 1;
-                                skillinput3.setError("Invalid Skill");
-
+                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                             } else {
-                                if (sproficiency3.equals("- Proficiency -")) {
+                                errorflag = 0;
+                                if (sskill3.length() < 1) {
                                     errorflag = 1;
-                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                    skillinput3.setError("Invalid Skill");
+
                                 } else {
-                                    errorflag = 0;
-                                    if (sskill4.length() < 1) {
+                                    if (sproficiency3.equals("- Proficiency -")) {
                                         errorflag = 1;
-                                        skillinput4.setError("Invalid Skill");
-
+                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                     } else {
-                                        if (sproficiency4.equals("- Proficiency -")) {
+                                        errorflag = 0;
+                                        if (sskill4.length() < 1) {
                                             errorflag = 1;
-                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                            skillinput4.setError("Invalid Skill");
+
                                         } else {
-                                            if (sskill5.length() < 1) {
+                                            if (sproficiency4.equals("- Proficiency -")) {
                                                 errorflag = 1;
-                                                skillinput5.setError("Invalid Skill");
-
+                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                             } else {
-                                                if (sproficiency5.equals("- Proficiency -")) {
+                                                if (sskill5.length() < 1) {
                                                     errorflag = 1;
-                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                    skillinput5.setError("Invalid Skill");
+
                                                 } else {
-                                                    errorflag = 0;
-                                                    if (sskill6.length() < 1) {
+                                                    if (sproficiency5.equals("- Proficiency -")) {
                                                         errorflag = 1;
-                                                        skillinput6.setError("Invalid Skill");
-
+                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                     } else {
-                                                        if (sproficiency6.equals("- Proficiency -")) {
+                                                        errorflag = 0;
+                                                        if (sskill6.length() < 1) {
                                                             errorflag = 1;
-                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                            skillinput6.setError("Invalid Skill");
+
                                                         } else {
-                                                            errorflag = 0;
-                                                            if (sskill7.length() < 1) {
+                                                            if (sproficiency6.equals("- Proficiency -")) {
                                                                 errorflag = 1;
-                                                                skillinput7.setError("Invalid Skill");
-
+                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                             } else {
-                                                                if (sproficiency7.equals("- Proficiency -")) {
+                                                                errorflag = 0;
+                                                                if (sskill7.length() < 1) {
                                                                     errorflag = 1;
-                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                    skillinput7.setError("Invalid Skill");
+
                                                                 } else {
-                                                                    errorflag = 0;
-                                                                    if (sskill8.length() < 1) {
+                                                                    if (sproficiency7.equals("- Proficiency -")) {
                                                                         errorflag = 1;
-                                                                        skillinput8.setError("Invalid Skill");
-
+                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                     } else {
-                                                                        if (sproficiency8.equals("- Proficiency -")) {
+                                                                        errorflag = 0;
+                                                                        if (sskill8.length() < 1) {
                                                                             errorflag = 1;
-                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                            skillinput8.setError("Invalid Skill");
+
                                                                         } else {
-                                                                            errorflag = 0;
-                                                                            if (sskill9.length() < 1) {
+                                                                            if (sproficiency8.equals("- Proficiency -")) {
                                                                                 errorflag = 1;
-                                                                                skillinput9.setError("Invalid Skill");
-
+                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                             } else {
-                                                                                if (sproficiency9.equals("- Proficiency -")) {
+                                                                                errorflag = 0;
+                                                                                if (sskill9.length() < 1) {
                                                                                     errorflag = 1;
-                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                    skillinput9.setError("Invalid Skill");
+
                                                                                 } else {
-                                                                                    errorflag = 0;
-                                                                                    if (sskill10.length() < 1) {
+                                                                                    if (sproficiency9.equals("- Proficiency -")) {
                                                                                         errorflag = 1;
-                                                                                        skillinput10.setError("Invalid Skill");
-
+                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                     } else {
-                                                                                        if (sproficiency10.equals("- Proficiency -")) {
+                                                                                        errorflag = 0;
+                                                                                        if (sskill10.length() < 1) {
                                                                                             errorflag = 1;
-                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                            skillinput10.setError("Invalid Skill");
+
                                                                                         } else {
-                                                                                            errorflag = 0;
-                                                                                            if (sskill11.length() < 1) {
+                                                                                            if (sproficiency10.equals("- Proficiency -")) {
                                                                                                 errorflag = 1;
-                                                                                                skillinput11.setError("Invalid Skill");
-
+                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                             } else {
-                                                                                                if (sproficiency11.equals("- Proficiency -")) {
+                                                                                                errorflag = 0;
+                                                                                                if (sskill11.length() < 1) {
                                                                                                     errorflag = 1;
-                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                    skillinput11.setError("Invalid Skill");
+
                                                                                                 } else {
-                                                                                                    errorflag = 0;
-                                                                                                    if (sskill12.length() < 1) {
+                                                                                                    if (sproficiency11.equals("- Proficiency -")) {
                                                                                                         errorflag = 1;
-                                                                                                        skillinput12.setError("Invalid Skill");
-
+                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                     } else {
-                                                                                                        if (sproficiency12.equals("- Proficiency -")) {
+                                                                                                        errorflag = 0;
+                                                                                                        if (sskill12.length() < 1) {
                                                                                                             errorflag = 1;
-                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                            skillinput12.setError("Invalid Skill");
+
                                                                                                         } else {
-                                                                                                            errorflag = 0;
-                                                                                                            if (sskill13.length() < 1) {
+                                                                                                            if (sproficiency12.equals("- Proficiency -")) {
                                                                                                                 errorflag = 1;
-                                                                                                                skillinput13.setError("Invalid Skill");
-
+                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                             } else {
-                                                                                                                if (sproficiency13.equals("- Proficiency -")) {
+                                                                                                                errorflag = 0;
+                                                                                                                if (sskill13.length() < 1) {
                                                                                                                     errorflag = 1;
-                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                    skillinput13.setError("Invalid Skill");
+
                                                                                                                 } else {
-                                                                                                                    errorflag = 0;
-                                                                                                                    if (sskill14.length() < 1) {
+                                                                                                                    if (sproficiency13.equals("- Proficiency -")) {
                                                                                                                         errorflag = 1;
-                                                                                                                        skillinput14.setError("Invalid Skill");
-
+                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                     } else {
-                                                                                                                        if (sproficiency14.equals("- Proficiency -")) {
+                                                                                                                        errorflag = 0;
+                                                                                                                        if (sskill14.length() < 1) {
                                                                                                                             errorflag = 1;
-                                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
-                                                                                                                        } else {
-                                                                                                                            errorflag = 0;
-                                                                                                                            if (sskill15.length() < 1) {
-                                                                                                                                errorflag = 1;
-                                                                                                                                skillinput15.setError("Invalid Skill");
+                                                                                                                            skillinput14.setError("Invalid Skill");
 
+                                                                                                                        } else {
+                                                                                                                            if (sproficiency14.equals("- Proficiency -")) {
+                                                                                                                                errorflag = 1;
+                                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                             } else {
-                                                                                                                                if (sproficiency15.equals("- Proficiency -")) {
+                                                                                                                                errorflag = 0;
+                                                                                                                                if (sskill15.length() < 1) {
                                                                                                                                     errorflag = 1;
-                                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                    skillinput15.setError("Invalid Skill");
+
+                                                                                                                                } else {
+                                                                                                                                    if (sproficiency15.equals("- Proficiency -")) {
+                                                                                                                                        errorflag = 1;
+                                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                    }
                                                                                                                                 }
                                                                                                                             }
                                                                                                                         }
@@ -6004,165 +6039,165 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (skillcount == 15) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skill1.setError("Invalid Skill");
-
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
+            } else if (skillcount == 15) {
+                if (sskill1.length() < 1) {
                     errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    skill1.setError("Invalid Skill");
+
                 } else {
-                    errorflag = 0;
-                    if (sskill2.length() < 1) {
+                    if (sproficiency1.equals("- Proficiency -")) {
                         errorflag = 1;
-                        skillinput2.setError("Invalid Skill");
-
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                     } else {
-                        if (sproficiency2.equals("- Proficiency -")) {
+                        errorflag = 0;
+                        if (sskill2.length() < 1) {
                             errorflag = 1;
-                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                            skillinput2.setError("Invalid Skill");
+
                         } else {
-                            errorflag = 0;
-                            if (sskill3.length() < 1) {
+                            if (sproficiency2.equals("- Proficiency -")) {
                                 errorflag = 1;
-                                skillinput3.setError("Invalid Skill");
-
+                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                             } else {
-                                if (sproficiency3.equals("- Proficiency -")) {
+                                errorflag = 0;
+                                if (sskill3.length() < 1) {
                                     errorflag = 1;
-                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                    skillinput3.setError("Invalid Skill");
+
                                 } else {
-                                    errorflag = 0;
-                                    if (sskill4.length() < 1) {
+                                    if (sproficiency3.equals("- Proficiency -")) {
                                         errorflag = 1;
-                                        skillinput4.setError("Invalid Skill");
-
+                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                     } else {
-                                        if (sproficiency4.equals("- Proficiency -")) {
+                                        errorflag = 0;
+                                        if (sskill4.length() < 1) {
                                             errorflag = 1;
-                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                            skillinput4.setError("Invalid Skill");
+
                                         } else {
-                                            if (sskill5.length() < 1) {
+                                            if (sproficiency4.equals("- Proficiency -")) {
                                                 errorflag = 1;
-                                                skillinput5.setError("Invalid Skill");
-
+                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                             } else {
-                                                if (sproficiency5.equals("- Proficiency -")) {
+                                                if (sskill5.length() < 1) {
                                                     errorflag = 1;
-                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                    skillinput5.setError("Invalid Skill");
+
                                                 } else {
-                                                    errorflag = 0;
-                                                    if (sskill6.length() < 1) {
+                                                    if (sproficiency5.equals("- Proficiency -")) {
                                                         errorflag = 1;
-                                                        skillinput6.setError("Invalid Skill");
-
+                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                     } else {
-                                                        if (sproficiency6.equals("- Proficiency -")) {
+                                                        errorflag = 0;
+                                                        if (sskill6.length() < 1) {
                                                             errorflag = 1;
-                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                            skillinput6.setError("Invalid Skill");
+
                                                         } else {
-                                                            errorflag = 0;
-                                                            if (sskill7.length() < 1) {
+                                                            if (sproficiency6.equals("- Proficiency -")) {
                                                                 errorflag = 1;
-                                                                skillinput7.setError("Invalid Skill");
-
+                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                             } else {
-                                                                if (sproficiency7.equals("- Proficiency -")) {
+                                                                errorflag = 0;
+                                                                if (sskill7.length() < 1) {
                                                                     errorflag = 1;
-                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                    skillinput7.setError("Invalid Skill");
+
                                                                 } else {
-                                                                    errorflag = 0;
-                                                                    if (sskill8.length() < 1) {
+                                                                    if (sproficiency7.equals("- Proficiency -")) {
                                                                         errorflag = 1;
-                                                                        skillinput8.setError("Invalid Skill");
-
+                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                     } else {
-                                                                        if (sproficiency8.equals("- Proficiency -")) {
+                                                                        errorflag = 0;
+                                                                        if (sskill8.length() < 1) {
                                                                             errorflag = 1;
-                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                            skillinput8.setError("Invalid Skill");
+
                                                                         } else {
-                                                                            errorflag = 0;
-                                                                            if (sskill9.length() < 1) {
+                                                                            if (sproficiency8.equals("- Proficiency -")) {
                                                                                 errorflag = 1;
-                                                                                skillinput9.setError("Invalid Skill");
-
+                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                             } else {
-                                                                                if (sproficiency9.equals("- Proficiency -")) {
+                                                                                errorflag = 0;
+                                                                                if (sskill9.length() < 1) {
                                                                                     errorflag = 1;
-                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                    skillinput9.setError("Invalid Skill");
+
                                                                                 } else {
-                                                                                    errorflag = 0;
-                                                                                    if (sskill10.length() < 1) {
+                                                                                    if (sproficiency9.equals("- Proficiency -")) {
                                                                                         errorflag = 1;
-                                                                                        skillinput10.setError("Invalid Skill");
-
+                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                     } else {
-                                                                                        if (sproficiency10.equals("- Proficiency -")) {
+                                                                                        errorflag = 0;
+                                                                                        if (sskill10.length() < 1) {
                                                                                             errorflag = 1;
-                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                            skillinput10.setError("Invalid Skill");
+
                                                                                         } else {
-                                                                                            errorflag = 0;
-                                                                                            if (sskill11.length() < 1) {
+                                                                                            if (sproficiency10.equals("- Proficiency -")) {
                                                                                                 errorflag = 1;
-                                                                                                skillinput11.setError("Invalid Skill");
-
+                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                             } else {
-                                                                                                if (sproficiency11.equals("- Proficiency -")) {
+                                                                                                errorflag = 0;
+                                                                                                if (sskill11.length() < 1) {
                                                                                                     errorflag = 1;
-                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                    skillinput11.setError("Invalid Skill");
+
                                                                                                 } else {
-                                                                                                    errorflag = 0;
-                                                                                                    if (sskill12.length() < 1) {
+                                                                                                    if (sproficiency11.equals("- Proficiency -")) {
                                                                                                         errorflag = 1;
-                                                                                                        skillinput12.setError("Invalid Skill");
-
+                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                     } else {
-                                                                                                        if (sproficiency12.equals("- Proficiency -")) {
+                                                                                                        errorflag = 0;
+                                                                                                        if (sskill12.length() < 1) {
                                                                                                             errorflag = 1;
-                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                            skillinput12.setError("Invalid Skill");
+
                                                                                                         } else {
-                                                                                                            errorflag = 0;
-                                                                                                            if (sskill13.length() < 1) {
+                                                                                                            if (sproficiency12.equals("- Proficiency -")) {
                                                                                                                 errorflag = 1;
-                                                                                                                skillinput13.setError("Invalid Skill");
-
+                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                             } else {
-                                                                                                                if (sproficiency13.equals("- Proficiency -")) {
+                                                                                                                errorflag = 0;
+                                                                                                                if (sskill13.length() < 1) {
                                                                                                                     errorflag = 1;
-                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                    skillinput13.setError("Invalid Skill");
+
                                                                                                                 } else {
-                                                                                                                    errorflag = 0;
-                                                                                                                    if (sskill14.length() < 1) {
+                                                                                                                    if (sproficiency13.equals("- Proficiency -")) {
                                                                                                                         errorflag = 1;
-                                                                                                                        skillinput14.setError("Invalid Skill");
-
+                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                     } else {
-                                                                                                                        if (sproficiency14.equals("- Proficiency -")) {
+                                                                                                                        errorflag = 0;
+                                                                                                                        if (sskill14.length() < 1) {
                                                                                                                             errorflag = 1;
-                                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                            skillinput14.setError("Invalid Skill");
+
                                                                                                                         } else {
-                                                                                                                            errorflag = 0;
-                                                                                                                            if (sskill15.length() < 1) {
+                                                                                                                            if (sproficiency14.equals("- Proficiency -")) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                skillinput15.setError("Invalid Skill");
-
+                                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                             } else {
-                                                                                                                                if (sproficiency15.equals("- Proficiency -")) {
+                                                                                                                                errorflag = 0;
+                                                                                                                                if (sskill15.length() < 1) {
                                                                                                                                     errorflag = 1;
-                                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
-                                                                                                                                } else {
-                                                                                                                                    errorflag = 0;
-                                                                                                                                    if (sskill16.length() < 1) {
-                                                                                                                                        errorflag = 1;
-                                                                                                                                        skillinput16.setError("Invalid Skill");
+                                                                                                                                    skillinput15.setError("Invalid Skill");
 
+                                                                                                                                } else {
+                                                                                                                                    if (sproficiency15.equals("- Proficiency -")) {
+                                                                                                                                        errorflag = 1;
+                                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                                     } else {
-                                                                                                                                        if (sproficiency16.equals("- Proficiency -")) {
+                                                                                                                                        errorflag = 0;
+                                                                                                                                        if (sskill16.length() < 1) {
                                                                                                                                             errorflag = 1;
-                                                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                            skillinput16.setError("Invalid Skill");
+
+                                                                                                                                        } else {
+                                                                                                                                            if (sproficiency16.equals("- Proficiency -")) {
+                                                                                                                                                errorflag = 1;
+                                                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                            }
                                                                                                                                         }
                                                                                                                                     }
                                                                                                                                 }
@@ -6194,174 +6229,174 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (skillcount == 16) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skill1.setError("Invalid Skill");
-
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
+            } else if (skillcount == 16) {
+                if (sskill1.length() < 1) {
                     errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    skill1.setError("Invalid Skill");
+
                 } else {
-                    errorflag = 0;
-                    if (sskill2.length() < 1) {
+                    if (sproficiency1.equals("- Proficiency -")) {
                         errorflag = 1;
-                        skillinput2.setError("Invalid Skill");
-
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                     } else {
-                        if (sproficiency2.equals("- Proficiency -")) {
+                        errorflag = 0;
+                        if (sskill2.length() < 1) {
                             errorflag = 1;
-                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                            skillinput2.setError("Invalid Skill");
+
                         } else {
-                            errorflag = 0;
-                            if (sskill3.length() < 1) {
+                            if (sproficiency2.equals("- Proficiency -")) {
                                 errorflag = 1;
-                                skillinput3.setError("Invalid Skill");
-
+                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                             } else {
-                                if (sproficiency3.equals("- Proficiency -")) {
+                                errorflag = 0;
+                                if (sskill3.length() < 1) {
                                     errorflag = 1;
-                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                    skillinput3.setError("Invalid Skill");
+
                                 } else {
-                                    errorflag = 0;
-                                    if (sskill4.length() < 1) {
+                                    if (sproficiency3.equals("- Proficiency -")) {
                                         errorflag = 1;
-                                        skillinput4.setError("Invalid Skill");
-
+                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                     } else {
-                                        if (sproficiency4.equals("- Proficiency -")) {
+                                        errorflag = 0;
+                                        if (sskill4.length() < 1) {
                                             errorflag = 1;
-                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                            skillinput4.setError("Invalid Skill");
+
                                         } else {
-                                            if (sskill5.length() < 1) {
+                                            if (sproficiency4.equals("- Proficiency -")) {
                                                 errorflag = 1;
-                                                skillinput5.setError("Invalid Skill");
-
+                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                             } else {
-                                                if (sproficiency5.equals("- Proficiency -")) {
+                                                if (sskill5.length() < 1) {
                                                     errorflag = 1;
-                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                    skillinput5.setError("Invalid Skill");
+
                                                 } else {
-                                                    errorflag = 0;
-                                                    if (sskill6.length() < 1) {
+                                                    if (sproficiency5.equals("- Proficiency -")) {
                                                         errorflag = 1;
-                                                        skillinput6.setError("Invalid Skill");
-
+                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                     } else {
-                                                        if (sproficiency6.equals("- Proficiency -")) {
+                                                        errorflag = 0;
+                                                        if (sskill6.length() < 1) {
                                                             errorflag = 1;
-                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                            skillinput6.setError("Invalid Skill");
+
                                                         } else {
-                                                            errorflag = 0;
-                                                            if (sskill7.length() < 1) {
+                                                            if (sproficiency6.equals("- Proficiency -")) {
                                                                 errorflag = 1;
-                                                                skillinput7.setError("Invalid Skill");
-
+                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                             } else {
-                                                                if (sproficiency7.equals("- Proficiency -")) {
+                                                                errorflag = 0;
+                                                                if (sskill7.length() < 1) {
                                                                     errorflag = 1;
-                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                    skillinput7.setError("Invalid Skill");
+
                                                                 } else {
-                                                                    errorflag = 0;
-                                                                    if (sskill8.length() < 1) {
+                                                                    if (sproficiency7.equals("- Proficiency -")) {
                                                                         errorflag = 1;
-                                                                        skillinput8.setError("Invalid Skill");
-
+                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                     } else {
-                                                                        if (sproficiency8.equals("- Proficiency -")) {
+                                                                        errorflag = 0;
+                                                                        if (sskill8.length() < 1) {
                                                                             errorflag = 1;
-                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                            skillinput8.setError("Invalid Skill");
+
                                                                         } else {
-                                                                            errorflag = 0;
-                                                                            if (sskill9.length() < 1) {
+                                                                            if (sproficiency8.equals("- Proficiency -")) {
                                                                                 errorflag = 1;
-                                                                                skillinput9.setError("Invalid Skill");
-
+                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                             } else {
-                                                                                if (sproficiency9.equals("- Proficiency -")) {
+                                                                                errorflag = 0;
+                                                                                if (sskill9.length() < 1) {
                                                                                     errorflag = 1;
-                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                    skillinput9.setError("Invalid Skill");
+
                                                                                 } else {
-                                                                                    errorflag = 0;
-                                                                                    if (sskill10.length() < 1) {
+                                                                                    if (sproficiency9.equals("- Proficiency -")) {
                                                                                         errorflag = 1;
-                                                                                        skillinput10.setError("Invalid Skill");
-
+                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                     } else {
-                                                                                        if (sproficiency10.equals("- Proficiency -")) {
+                                                                                        errorflag = 0;
+                                                                                        if (sskill10.length() < 1) {
                                                                                             errorflag = 1;
-                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                            skillinput10.setError("Invalid Skill");
+
                                                                                         } else {
-                                                                                            errorflag = 0;
-                                                                                            if (sskill11.length() < 1) {
+                                                                                            if (sproficiency10.equals("- Proficiency -")) {
                                                                                                 errorflag = 1;
-                                                                                                skillinput11.setError("Invalid Skill");
-
+                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                             } else {
-                                                                                                if (sproficiency11.equals("- Proficiency -")) {
+                                                                                                errorflag = 0;
+                                                                                                if (sskill11.length() < 1) {
                                                                                                     errorflag = 1;
-                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                    skillinput11.setError("Invalid Skill");
+
                                                                                                 } else {
-                                                                                                    errorflag = 0;
-                                                                                                    if (sskill12.length() < 1) {
+                                                                                                    if (sproficiency11.equals("- Proficiency -")) {
                                                                                                         errorflag = 1;
-                                                                                                        skillinput12.setError("Invalid Skill");
-
+                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                     } else {
-                                                                                                        if (sproficiency12.equals("- Proficiency -")) {
+                                                                                                        errorflag = 0;
+                                                                                                        if (sskill12.length() < 1) {
                                                                                                             errorflag = 1;
-                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                            skillinput12.setError("Invalid Skill");
+
                                                                                                         } else {
-                                                                                                            errorflag = 0;
-                                                                                                            if (sskill13.length() < 1) {
+                                                                                                            if (sproficiency12.equals("- Proficiency -")) {
                                                                                                                 errorflag = 1;
-                                                                                                                skillinput13.setError("Invalid Skill");
-
+                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                             } else {
-                                                                                                                if (sproficiency13.equals("- Proficiency -")) {
+                                                                                                                errorflag = 0;
+                                                                                                                if (sskill13.length() < 1) {
                                                                                                                     errorflag = 1;
-                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                    skillinput13.setError("Invalid Skill");
+
                                                                                                                 } else {
-                                                                                                                    errorflag = 0;
-                                                                                                                    if (sskill14.length() < 1) {
+                                                                                                                    if (sproficiency13.equals("- Proficiency -")) {
                                                                                                                         errorflag = 1;
-                                                                                                                        skillinput14.setError("Invalid Skill");
-
+                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                     } else {
-                                                                                                                        if (sproficiency14.equals("- Proficiency -")) {
+                                                                                                                        errorflag = 0;
+                                                                                                                        if (sskill14.length() < 1) {
                                                                                                                             errorflag = 1;
-                                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                            skillinput14.setError("Invalid Skill");
+
                                                                                                                         } else {
-                                                                                                                            errorflag = 0;
-                                                                                                                            if (sskill15.length() < 1) {
+                                                                                                                            if (sproficiency14.equals("- Proficiency -")) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                skillinput15.setError("Invalid Skill");
-
+                                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                             } else {
-                                                                                                                                if (sproficiency15.equals("- Proficiency -")) {
+                                                                                                                                errorflag = 0;
+                                                                                                                                if (sskill15.length() < 1) {
                                                                                                                                     errorflag = 1;
-                                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                    skillinput15.setError("Invalid Skill");
+
                                                                                                                                 } else {
-                                                                                                                                    errorflag = 0;
-                                                                                                                                    if (sskill16.length() < 1) {
+                                                                                                                                    if (sproficiency15.equals("- Proficiency -")) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        skillinput16.setError("Invalid Skill");
-
+                                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                                     } else {
-                                                                                                                                        if (sproficiency16.equals("- Proficiency -")) {
+                                                                                                                                        errorflag = 0;
+                                                                                                                                        if (sskill16.length() < 1) {
                                                                                                                                             errorflag = 1;
-                                                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
-                                                                                                                                        } else {
-                                                                                                                                            if (sskill17.length() < 1) {
-                                                                                                                                                errorflag = 1;
-                                                                                                                                                skillinput17.setError("Invalid Skill");
+                                                                                                                                            skillinput16.setError("Invalid Skill");
 
+                                                                                                                                        } else {
+                                                                                                                                            if (sproficiency16.equals("- Proficiency -")) {
+                                                                                                                                                errorflag = 1;
+                                                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                                             } else {
-                                                                                                                                                if (sproficiency17.equals("- Proficiency -")) {
+                                                                                                                                                if (sskill17.length() < 1) {
                                                                                                                                                     errorflag = 1;
-                                                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                                    skillinput17.setError("Invalid Skill");
+
+                                                                                                                                                } else {
+                                                                                                                                                    if (sproficiency17.equals("- Proficiency -")) {
+                                                                                                                                                        errorflag = 1;
+                                                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                                    }
                                                                                                                                                 }
                                                                                                                                             }
                                                                                                                                         }
@@ -6395,184 +6430,184 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (skillcount == 17) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skill1.setError("Invalid Skill");
-
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
+            } else if (skillcount == 17) {
+                if (sskill1.length() < 1) {
                     errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    skill1.setError("Invalid Skill");
+
                 } else {
-                    errorflag = 0;
-                    if (sskill2.length() < 1) {
+                    if (sproficiency1.equals("- Proficiency -")) {
                         errorflag = 1;
-                        skillinput2.setError("Invalid Skill");
-
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                     } else {
-                        if (sproficiency2.equals("- Proficiency -")) {
+                        errorflag = 0;
+                        if (sskill2.length() < 1) {
                             errorflag = 1;
-                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                            skillinput2.setError("Invalid Skill");
+
                         } else {
-                            errorflag = 0;
-                            if (sskill3.length() < 1) {
+                            if (sproficiency2.equals("- Proficiency -")) {
                                 errorflag = 1;
-                                skillinput3.setError("Invalid Skill");
-
+                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                             } else {
-                                if (sproficiency3.equals("- Proficiency -")) {
+                                errorflag = 0;
+                                if (sskill3.length() < 1) {
                                     errorflag = 1;
-                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                    skillinput3.setError("Invalid Skill");
+
                                 } else {
-                                    errorflag = 0;
-                                    if (sskill4.length() < 1) {
+                                    if (sproficiency3.equals("- Proficiency -")) {
                                         errorflag = 1;
-                                        skillinput4.setError("Invalid Skill");
-
+                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                     } else {
-                                        if (sproficiency4.equals("- Proficiency -")) {
+                                        errorflag = 0;
+                                        if (sskill4.length() < 1) {
                                             errorflag = 1;
-                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                            skillinput4.setError("Invalid Skill");
+
                                         } else {
-                                            if (sskill5.length() < 1) {
+                                            if (sproficiency4.equals("- Proficiency -")) {
                                                 errorflag = 1;
-                                                skillinput5.setError("Invalid Skill");
-
+                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                             } else {
-                                                if (sproficiency5.equals("- Proficiency -")) {
+                                                if (sskill5.length() < 1) {
                                                     errorflag = 1;
-                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                    skillinput5.setError("Invalid Skill");
+
                                                 } else {
-                                                    errorflag = 0;
-                                                    if (sskill6.length() < 1) {
+                                                    if (sproficiency5.equals("- Proficiency -")) {
                                                         errorflag = 1;
-                                                        skillinput6.setError("Invalid Skill");
-
+                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                     } else {
-                                                        if (sproficiency6.equals("- Proficiency -")) {
+                                                        errorflag = 0;
+                                                        if (sskill6.length() < 1) {
                                                             errorflag = 1;
-                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                            skillinput6.setError("Invalid Skill");
+
                                                         } else {
-                                                            errorflag = 0;
-                                                            if (sskill7.length() < 1) {
+                                                            if (sproficiency6.equals("- Proficiency -")) {
                                                                 errorflag = 1;
-                                                                skillinput7.setError("Invalid Skill");
-
+                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                             } else {
-                                                                if (sproficiency7.equals("- Proficiency -")) {
+                                                                errorflag = 0;
+                                                                if (sskill7.length() < 1) {
                                                                     errorflag = 1;
-                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                    skillinput7.setError("Invalid Skill");
+
                                                                 } else {
-                                                                    errorflag = 0;
-                                                                    if (sskill8.length() < 1) {
+                                                                    if (sproficiency7.equals("- Proficiency -")) {
                                                                         errorflag = 1;
-                                                                        skillinput8.setError("Invalid Skill");
-
+                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                     } else {
-                                                                        if (sproficiency8.equals("- Proficiency -")) {
+                                                                        errorflag = 0;
+                                                                        if (sskill8.length() < 1) {
                                                                             errorflag = 1;
-                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                            skillinput8.setError("Invalid Skill");
+
                                                                         } else {
-                                                                            errorflag = 0;
-                                                                            if (sskill9.length() < 1) {
+                                                                            if (sproficiency8.equals("- Proficiency -")) {
                                                                                 errorflag = 1;
-                                                                                skillinput9.setError("Invalid Skill");
-
+                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                             } else {
-                                                                                if (sproficiency9.equals("- Proficiency -")) {
+                                                                                errorflag = 0;
+                                                                                if (sskill9.length() < 1) {
                                                                                     errorflag = 1;
-                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                    skillinput9.setError("Invalid Skill");
+
                                                                                 } else {
-                                                                                    errorflag = 0;
-                                                                                    if (sskill10.length() < 1) {
+                                                                                    if (sproficiency9.equals("- Proficiency -")) {
                                                                                         errorflag = 1;
-                                                                                        skillinput10.setError("Invalid Skill");
-
+                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                     } else {
-                                                                                        if (sproficiency10.equals("- Proficiency -")) {
+                                                                                        errorflag = 0;
+                                                                                        if (sskill10.length() < 1) {
                                                                                             errorflag = 1;
-                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                            skillinput10.setError("Invalid Skill");
+
                                                                                         } else {
-                                                                                            errorflag = 0;
-                                                                                            if (sskill11.length() < 1) {
+                                                                                            if (sproficiency10.equals("- Proficiency -")) {
                                                                                                 errorflag = 1;
-                                                                                                skillinput11.setError("Invalid Skill");
-
+                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                             } else {
-                                                                                                if (sproficiency11.equals("- Proficiency -")) {
+                                                                                                errorflag = 0;
+                                                                                                if (sskill11.length() < 1) {
                                                                                                     errorflag = 1;
-                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                    skillinput11.setError("Invalid Skill");
+
                                                                                                 } else {
-                                                                                                    errorflag = 0;
-                                                                                                    if (sskill12.length() < 1) {
+                                                                                                    if (sproficiency11.equals("- Proficiency -")) {
                                                                                                         errorflag = 1;
-                                                                                                        skillinput12.setError("Invalid Skill");
-
+                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                     } else {
-                                                                                                        if (sproficiency12.equals("- Proficiency -")) {
+                                                                                                        errorflag = 0;
+                                                                                                        if (sskill12.length() < 1) {
                                                                                                             errorflag = 1;
-                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                            skillinput12.setError("Invalid Skill");
+
                                                                                                         } else {
-                                                                                                            errorflag = 0;
-                                                                                                            if (sskill13.length() < 1) {
+                                                                                                            if (sproficiency12.equals("- Proficiency -")) {
                                                                                                                 errorflag = 1;
-                                                                                                                skillinput13.setError("Invalid Skill");
-
+                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                             } else {
-                                                                                                                if (sproficiency13.equals("- Proficiency -")) {
+                                                                                                                errorflag = 0;
+                                                                                                                if (sskill13.length() < 1) {
                                                                                                                     errorflag = 1;
-                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                    skillinput13.setError("Invalid Skill");
+
                                                                                                                 } else {
-                                                                                                                    errorflag = 0;
-                                                                                                                    if (sskill14.length() < 1) {
+                                                                                                                    if (sproficiency13.equals("- Proficiency -")) {
                                                                                                                         errorflag = 1;
-                                                                                                                        skillinput14.setError("Invalid Skill");
-
+                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                     } else {
-                                                                                                                        if (sproficiency14.equals("- Proficiency -")) {
+                                                                                                                        errorflag = 0;
+                                                                                                                        if (sskill14.length() < 1) {
                                                                                                                             errorflag = 1;
-                                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                            skillinput14.setError("Invalid Skill");
+
                                                                                                                         } else {
-                                                                                                                            errorflag = 0;
-                                                                                                                            if (sskill15.length() < 1) {
+                                                                                                                            if (sproficiency14.equals("- Proficiency -")) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                skillinput15.setError("Invalid Skill");
-
+                                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                             } else {
-                                                                                                                                if (sproficiency15.equals("- Proficiency -")) {
+                                                                                                                                errorflag = 0;
+                                                                                                                                if (sskill15.length() < 1) {
                                                                                                                                     errorflag = 1;
-                                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                    skillinput15.setError("Invalid Skill");
+
                                                                                                                                 } else {
-                                                                                                                                    errorflag = 0;
-                                                                                                                                    if (sskill16.length() < 1) {
+                                                                                                                                    if (sproficiency15.equals("- Proficiency -")) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        skillinput16.setError("Invalid Skill");
-
+                                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                                     } else {
-                                                                                                                                        if (sproficiency16.equals("- Proficiency -")) {
+                                                                                                                                        errorflag = 0;
+                                                                                                                                        if (sskill16.length() < 1) {
                                                                                                                                             errorflag = 1;
-                                                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                            skillinput16.setError("Invalid Skill");
+
                                                                                                                                         } else {
-                                                                                                                                            if (sskill17.length() < 1) {
+                                                                                                                                            if (sproficiency16.equals("- Proficiency -")) {
                                                                                                                                                 errorflag = 1;
-                                                                                                                                                skillinput17.setError("Invalid Skill");
-
+                                                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                                             } else {
-                                                                                                                                                if (sproficiency17.equals("- Proficiency -")) {
+                                                                                                                                                if (sskill17.length() < 1) {
                                                                                                                                                     errorflag = 1;
-                                                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
-                                                                                                                                                } else {
-                                                                                                                                                    errorflag = 0;
-                                                                                                                                                    if (sskill18.length() < 1) {
-                                                                                                                                                        errorflag = 1;
-                                                                                                                                                        skillinput18.setError("Invalid Skill");
+                                                                                                                                                    skillinput17.setError("Invalid Skill");
 
+                                                                                                                                                } else {
+                                                                                                                                                    if (sproficiency17.equals("- Proficiency -")) {
+                                                                                                                                                        errorflag = 1;
+                                                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                                                     } else {
-                                                                                                                                                        if (sproficiency18.equals("- Proficiency -")) {
+                                                                                                                                                        errorflag = 0;
+                                                                                                                                                        if (sskill18.length() < 1) {
                                                                                                                                                             errorflag = 1;
-                                                                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                                            skillinput18.setError("Invalid Skill");
+
+                                                                                                                                                        } else {
+                                                                                                                                                            if (sproficiency18.equals("- Proficiency -")) {
+                                                                                                                                                                errorflag = 1;
+                                                                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                                            }
                                                                                                                                                         }
                                                                                                                                                     }
                                                                                                                                                 }
@@ -6608,194 +6643,194 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (skillcount == 18) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skill1.setError("Invalid Skill");
-
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
+            } else if (skillcount == 18) {
+                if (sskill1.length() < 1) {
                     errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    skill1.setError("Invalid Skill");
+
                 } else {
-                    errorflag = 0;
-                    if (sskill2.length() < 1) {
+                    if (sproficiency1.equals("- Proficiency -")) {
                         errorflag = 1;
-                        skillinput2.setError("Invalid Skill");
-
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                     } else {
-                        if (sproficiency2.equals("- Proficiency -")) {
+                        errorflag = 0;
+                        if (sskill2.length() < 1) {
                             errorflag = 1;
-                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                            skillinput2.setError("Invalid Skill");
+
                         } else {
-                            errorflag = 0;
-                            if (sskill3.length() < 1) {
+                            if (sproficiency2.equals("- Proficiency -")) {
                                 errorflag = 1;
-                                skillinput3.setError("Invalid Skill");
-
+                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                             } else {
-                                if (sproficiency3.equals("- Proficiency -")) {
+                                errorflag = 0;
+                                if (sskill3.length() < 1) {
                                     errorflag = 1;
-                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                    skillinput3.setError("Invalid Skill");
+
                                 } else {
-                                    errorflag = 0;
-                                    if (sskill4.length() < 1) {
+                                    if (sproficiency3.equals("- Proficiency -")) {
                                         errorflag = 1;
-                                        skillinput4.setError("Invalid Skill");
-
+                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                     } else {
-                                        if (sproficiency4.equals("- Proficiency -")) {
+                                        errorflag = 0;
+                                        if (sskill4.length() < 1) {
                                             errorflag = 1;
-                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                            skillinput4.setError("Invalid Skill");
+
                                         } else {
-                                            if (sskill5.length() < 1) {
+                                            if (sproficiency4.equals("- Proficiency -")) {
                                                 errorflag = 1;
-                                                skillinput5.setError("Invalid Skill");
-
+                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                             } else {
-                                                if (sproficiency5.equals("- Proficiency -")) {
+                                                if (sskill5.length() < 1) {
                                                     errorflag = 1;
-                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                    skillinput5.setError("Invalid Skill");
+
                                                 } else {
-                                                    errorflag = 0;
-                                                    if (sskill6.length() < 1) {
+                                                    if (sproficiency5.equals("- Proficiency -")) {
                                                         errorflag = 1;
-                                                        skillinput6.setError("Invalid Skill");
-
+                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                     } else {
-                                                        if (sproficiency6.equals("- Proficiency -")) {
+                                                        errorflag = 0;
+                                                        if (sskill6.length() < 1) {
                                                             errorflag = 1;
-                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                            skillinput6.setError("Invalid Skill");
+
                                                         } else {
-                                                            errorflag = 0;
-                                                            if (sskill7.length() < 1) {
+                                                            if (sproficiency6.equals("- Proficiency -")) {
                                                                 errorflag = 1;
-                                                                skillinput7.setError("Invalid Skill");
-
+                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                             } else {
-                                                                if (sproficiency7.equals("- Proficiency -")) {
+                                                                errorflag = 0;
+                                                                if (sskill7.length() < 1) {
                                                                     errorflag = 1;
-                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                    skillinput7.setError("Invalid Skill");
+
                                                                 } else {
-                                                                    errorflag = 0;
-                                                                    if (sskill8.length() < 1) {
+                                                                    if (sproficiency7.equals("- Proficiency -")) {
                                                                         errorflag = 1;
-                                                                        skillinput8.setError("Invalid Skill");
-
+                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                     } else {
-                                                                        if (sproficiency8.equals("- Proficiency -")) {
+                                                                        errorflag = 0;
+                                                                        if (sskill8.length() < 1) {
                                                                             errorflag = 1;
-                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                            skillinput8.setError("Invalid Skill");
+
                                                                         } else {
-                                                                            errorflag = 0;
-                                                                            if (sskill9.length() < 1) {
+                                                                            if (sproficiency8.equals("- Proficiency -")) {
                                                                                 errorflag = 1;
-                                                                                skillinput9.setError("Invalid Skill");
-
+                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                             } else {
-                                                                                if (sproficiency9.equals("- Proficiency -")) {
+                                                                                errorflag = 0;
+                                                                                if (sskill9.length() < 1) {
                                                                                     errorflag = 1;
-                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                    skillinput9.setError("Invalid Skill");
+
                                                                                 } else {
-                                                                                    errorflag = 0;
-                                                                                    if (sskill10.length() < 1) {
+                                                                                    if (sproficiency9.equals("- Proficiency -")) {
                                                                                         errorflag = 1;
-                                                                                        skillinput10.setError("Invalid Skill");
-
+                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                     } else {
-                                                                                        if (sproficiency10.equals("- Proficiency -")) {
+                                                                                        errorflag = 0;
+                                                                                        if (sskill10.length() < 1) {
                                                                                             errorflag = 1;
-                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                            skillinput10.setError("Invalid Skill");
+
                                                                                         } else {
-                                                                                            errorflag = 0;
-                                                                                            if (sskill11.length() < 1) {
+                                                                                            if (sproficiency10.equals("- Proficiency -")) {
                                                                                                 errorflag = 1;
-                                                                                                skillinput11.setError("Invalid Skill");
-
+                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                             } else {
-                                                                                                if (sproficiency11.equals("- Proficiency -")) {
+                                                                                                errorflag = 0;
+                                                                                                if (sskill11.length() < 1) {
                                                                                                     errorflag = 1;
-                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                    skillinput11.setError("Invalid Skill");
+
                                                                                                 } else {
-                                                                                                    errorflag = 0;
-                                                                                                    if (sskill12.length() < 1) {
+                                                                                                    if (sproficiency11.equals("- Proficiency -")) {
                                                                                                         errorflag = 1;
-                                                                                                        skillinput12.setError("Invalid Skill");
-
+                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                     } else {
-                                                                                                        if (sproficiency12.equals("- Proficiency -")) {
+                                                                                                        errorflag = 0;
+                                                                                                        if (sskill12.length() < 1) {
                                                                                                             errorflag = 1;
-                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                            skillinput12.setError("Invalid Skill");
+
                                                                                                         } else {
-                                                                                                            errorflag = 0;
-                                                                                                            if (sskill13.length() < 1) {
+                                                                                                            if (sproficiency12.equals("- Proficiency -")) {
                                                                                                                 errorflag = 1;
-                                                                                                                skillinput13.setError("Invalid Skill");
-
+                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                             } else {
-                                                                                                                if (sproficiency13.equals("- Proficiency -")) {
+                                                                                                                errorflag = 0;
+                                                                                                                if (sskill13.length() < 1) {
                                                                                                                     errorflag = 1;
-                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                    skillinput13.setError("Invalid Skill");
+
                                                                                                                 } else {
-                                                                                                                    errorflag = 0;
-                                                                                                                    if (sskill14.length() < 1) {
+                                                                                                                    if (sproficiency13.equals("- Proficiency -")) {
                                                                                                                         errorflag = 1;
-                                                                                                                        skillinput14.setError("Invalid Skill");
-
+                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                     } else {
-                                                                                                                        if (sproficiency14.equals("- Proficiency -")) {
+                                                                                                                        errorflag = 0;
+                                                                                                                        if (sskill14.length() < 1) {
                                                                                                                             errorflag = 1;
-                                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                            skillinput14.setError("Invalid Skill");
+
                                                                                                                         } else {
-                                                                                                                            errorflag = 0;
-                                                                                                                            if (sskill15.length() < 1) {
+                                                                                                                            if (sproficiency14.equals("- Proficiency -")) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                skillinput15.setError("Invalid Skill");
-
+                                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                             } else {
-                                                                                                                                if (sproficiency15.equals("- Proficiency -")) {
+                                                                                                                                errorflag = 0;
+                                                                                                                                if (sskill15.length() < 1) {
                                                                                                                                     errorflag = 1;
-                                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                    skillinput15.setError("Invalid Skill");
+
                                                                                                                                 } else {
-                                                                                                                                    errorflag = 0;
-                                                                                                                                    if (sskill16.length() < 1) {
+                                                                                                                                    if (sproficiency15.equals("- Proficiency -")) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        skillinput16.setError("Invalid Skill");
-
+                                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                                     } else {
-                                                                                                                                        if (sproficiency16.equals("- Proficiency -")) {
+                                                                                                                                        errorflag = 0;
+                                                                                                                                        if (sskill16.length() < 1) {
                                                                                                                                             errorflag = 1;
-                                                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                            skillinput16.setError("Invalid Skill");
+
                                                                                                                                         } else {
-                                                                                                                                            if (sskill17.length() < 1) {
+                                                                                                                                            if (sproficiency16.equals("- Proficiency -")) {
                                                                                                                                                 errorflag = 1;
-                                                                                                                                                skillinput17.setError("Invalid Skill");
-
+                                                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                                             } else {
-                                                                                                                                                if (sproficiency17.equals("- Proficiency -")) {
+                                                                                                                                                if (sskill17.length() < 1) {
                                                                                                                                                     errorflag = 1;
-                                                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                                    skillinput17.setError("Invalid Skill");
+
                                                                                                                                                 } else {
-                                                                                                                                                    errorflag = 0;
-                                                                                                                                                    if (sskill18.length() < 1) {
+                                                                                                                                                    if (sproficiency17.equals("- Proficiency -")) {
                                                                                                                                                         errorflag = 1;
-                                                                                                                                                        skillinput18.setError("Invalid Skill");
-
+                                                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                                                     } else {
-                                                                                                                                                        if (sproficiency18.equals("- Proficiency -")) {
+                                                                                                                                                        errorflag = 0;
+                                                                                                                                                        if (sskill18.length() < 1) {
                                                                                                                                                             errorflag = 1;
-                                                                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
-                                                                                                                                                        } else {
-                                                                                                                                                            errorflag = 0;
-                                                                                                                                                            if (sskill19.length() < 1) {
-                                                                                                                                                                errorflag = 1;
-                                                                                                                                                                skillinput19.setError("Invalid Skill");
+                                                                                                                                                            skillinput18.setError("Invalid Skill");
 
+                                                                                                                                                        } else {
+                                                                                                                                                            if (sproficiency18.equals("- Proficiency -")) {
+                                                                                                                                                                errorflag = 1;
+                                                                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                                                             } else {
-                                                                                                                                                                if (sproficiency19.equals("- Proficiency -")) {
+                                                                                                                                                                errorflag = 0;
+                                                                                                                                                                if (sskill19.length() < 1) {
                                                                                                                                                                     errorflag = 1;
-                                                                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                                                    skillinput19.setError("Invalid Skill");
+
+                                                                                                                                                                } else {
+                                                                                                                                                                    if (sproficiency19.equals("- Proficiency -")) {
+                                                                                                                                                                        errorflag = 1;
+                                                                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                                                    }
                                                                                                                                                                 }
                                                                                                                                                             }
                                                                                                                                                         }
@@ -6833,204 +6868,204 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                     }
                 }
-            }
-        } else if (skillcount == 19) {
-            if (sskill1.length() < 1) {
-                errorflag = 1;
-                skill1.setError("Invalid Skill");
-
-            } else {
-                if (sproficiency1.equals("- Proficiency -")) {
+            } else if (skillcount == 19) {
+                if (sskill1.length() < 1) {
                     errorflag = 1;
-                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                    skill1.setError("Invalid Skill");
+
                 } else {
-                    errorflag = 0;
-                    if (sskill2.length() < 1) {
+                    if (sproficiency1.equals("- Proficiency -")) {
                         errorflag = 1;
-                        skillinput2.setError("Invalid Skill");
-
+                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                     } else {
-                        if (sproficiency2.equals("- Proficiency -")) {
+                        errorflag = 0;
+                        if (sskill2.length() < 1) {
                             errorflag = 1;
-                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                            skillinput2.setError("Invalid Skill");
+
                         } else {
-                            errorflag = 0;
-                            if (sskill3.length() < 1) {
+                            if (sproficiency2.equals("- Proficiency -")) {
                                 errorflag = 1;
-                                skillinput3.setError("Invalid Skill");
-
+                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                             } else {
-                                if (sproficiency3.equals("- Proficiency -")) {
+                                errorflag = 0;
+                                if (sskill3.length() < 1) {
                                     errorflag = 1;
-                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                    skillinput3.setError("Invalid Skill");
+
                                 } else {
-                                    errorflag = 0;
-                                    if (sskill4.length() < 1) {
+                                    if (sproficiency3.equals("- Proficiency -")) {
                                         errorflag = 1;
-                                        skillinput4.setError("Invalid Skill");
-
+                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                     } else {
-                                        if (sproficiency4.equals("- Proficiency -")) {
+                                        errorflag = 0;
+                                        if (sskill4.length() < 1) {
                                             errorflag = 1;
-                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                            skillinput4.setError("Invalid Skill");
+
                                         } else {
-                                            if (sskill5.length() < 1) {
+                                            if (sproficiency4.equals("- Proficiency -")) {
                                                 errorflag = 1;
-                                                skillinput5.setError("Invalid Skill");
-
+                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                             } else {
-                                                if (sproficiency5.equals("- Proficiency -")) {
+                                                if (sskill5.length() < 1) {
                                                     errorflag = 1;
-                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                    skillinput5.setError("Invalid Skill");
+
                                                 } else {
-                                                    errorflag = 0;
-                                                    if (sskill6.length() < 1) {
+                                                    if (sproficiency5.equals("- Proficiency -")) {
                                                         errorflag = 1;
-                                                        skillinput6.setError("Invalid Skill");
-
+                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                     } else {
-                                                        if (sproficiency6.equals("- Proficiency -")) {
+                                                        errorflag = 0;
+                                                        if (sskill6.length() < 1) {
                                                             errorflag = 1;
-                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                            skillinput6.setError("Invalid Skill");
+
                                                         } else {
-                                                            errorflag = 0;
-                                                            if (sskill7.length() < 1) {
+                                                            if (sproficiency6.equals("- Proficiency -")) {
                                                                 errorflag = 1;
-                                                                skillinput7.setError("Invalid Skill");
-
+                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                             } else {
-                                                                if (sproficiency7.equals("- Proficiency -")) {
+                                                                errorflag = 0;
+                                                                if (sskill7.length() < 1) {
                                                                     errorflag = 1;
-                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                    skillinput7.setError("Invalid Skill");
+
                                                                 } else {
-                                                                    errorflag = 0;
-                                                                    if (sskill8.length() < 1) {
+                                                                    if (sproficiency7.equals("- Proficiency -")) {
                                                                         errorflag = 1;
-                                                                        skillinput8.setError("Invalid Skill");
-
+                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                     } else {
-                                                                        if (sproficiency8.equals("- Proficiency -")) {
+                                                                        errorflag = 0;
+                                                                        if (sskill8.length() < 1) {
                                                                             errorflag = 1;
-                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                            skillinput8.setError("Invalid Skill");
+
                                                                         } else {
-                                                                            errorflag = 0;
-                                                                            if (sskill9.length() < 1) {
+                                                                            if (sproficiency8.equals("- Proficiency -")) {
                                                                                 errorflag = 1;
-                                                                                skillinput9.setError("Invalid Skill");
-
+                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                             } else {
-                                                                                if (sproficiency9.equals("- Proficiency -")) {
+                                                                                errorflag = 0;
+                                                                                if (sskill9.length() < 1) {
                                                                                     errorflag = 1;
-                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                    skillinput9.setError("Invalid Skill");
+
                                                                                 } else {
-                                                                                    errorflag = 0;
-                                                                                    if (sskill10.length() < 1) {
+                                                                                    if (sproficiency9.equals("- Proficiency -")) {
                                                                                         errorflag = 1;
-                                                                                        skillinput10.setError("Invalid Skill");
-
+                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                     } else {
-                                                                                        if (sproficiency10.equals("- Proficiency -")) {
+                                                                                        errorflag = 0;
+                                                                                        if (sskill10.length() < 1) {
                                                                                             errorflag = 1;
-                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                            skillinput10.setError("Invalid Skill");
+
                                                                                         } else {
-                                                                                            errorflag = 0;
-                                                                                            if (sskill11.length() < 1) {
+                                                                                            if (sproficiency10.equals("- Proficiency -")) {
                                                                                                 errorflag = 1;
-                                                                                                skillinput11.setError("Invalid Skill");
-
+                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                             } else {
-                                                                                                if (sproficiency11.equals("- Proficiency -")) {
+                                                                                                errorflag = 0;
+                                                                                                if (sskill11.length() < 1) {
                                                                                                     errorflag = 1;
-                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                    skillinput11.setError("Invalid Skill");
+
                                                                                                 } else {
-                                                                                                    errorflag = 0;
-                                                                                                    if (sskill12.length() < 1) {
+                                                                                                    if (sproficiency11.equals("- Proficiency -")) {
                                                                                                         errorflag = 1;
-                                                                                                        skillinput12.setError("Invalid Skill");
-
+                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                     } else {
-                                                                                                        if (sproficiency12.equals("- Proficiency -")) {
+                                                                                                        errorflag = 0;
+                                                                                                        if (sskill12.length() < 1) {
                                                                                                             errorflag = 1;
-                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                            skillinput12.setError("Invalid Skill");
+
                                                                                                         } else {
-                                                                                                            errorflag = 0;
-                                                                                                            if (sskill13.length() < 1) {
+                                                                                                            if (sproficiency12.equals("- Proficiency -")) {
                                                                                                                 errorflag = 1;
-                                                                                                                skillinput13.setError("Invalid Skill");
-
+                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                             } else {
-                                                                                                                if (sproficiency13.equals("- Proficiency -")) {
+                                                                                                                errorflag = 0;
+                                                                                                                if (sskill13.length() < 1) {
                                                                                                                     errorflag = 1;
-                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                    skillinput13.setError("Invalid Skill");
+
                                                                                                                 } else {
-                                                                                                                    errorflag = 0;
-                                                                                                                    if (sskill14.length() < 1) {
+                                                                                                                    if (sproficiency13.equals("- Proficiency -")) {
                                                                                                                         errorflag = 1;
-                                                                                                                        skillinput14.setError("Invalid Skill");
-
+                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                     } else {
-                                                                                                                        if (sproficiency14.equals("- Proficiency -")) {
+                                                                                                                        errorflag = 0;
+                                                                                                                        if (sskill14.length() < 1) {
                                                                                                                             errorflag = 1;
-                                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                            skillinput14.setError("Invalid Skill");
+
                                                                                                                         } else {
-                                                                                                                            errorflag = 0;
-                                                                                                                            if (sskill15.length() < 1) {
+                                                                                                                            if (sproficiency14.equals("- Proficiency -")) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                skillinput15.setError("Invalid Skill");
-
+                                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                             } else {
-                                                                                                                                if (sproficiency15.equals("- Proficiency -")) {
+                                                                                                                                errorflag = 0;
+                                                                                                                                if (sskill15.length() < 1) {
                                                                                                                                     errorflag = 1;
-                                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                    skillinput15.setError("Invalid Skill");
+
                                                                                                                                 } else {
-                                                                                                                                    errorflag = 0;
-                                                                                                                                    if (sskill16.length() < 1) {
+                                                                                                                                    if (sproficiency15.equals("- Proficiency -")) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        skillinput16.setError("Invalid Skill");
-
+                                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                                     } else {
-                                                                                                                                        if (sproficiency16.equals("- Proficiency -")) {
+                                                                                                                                        errorflag = 0;
+                                                                                                                                        if (sskill16.length() < 1) {
                                                                                                                                             errorflag = 1;
-                                                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                            skillinput16.setError("Invalid Skill");
+
                                                                                                                                         } else {
-                                                                                                                                            if (sskill17.length() < 1) {
+                                                                                                                                            if (sproficiency16.equals("- Proficiency -")) {
                                                                                                                                                 errorflag = 1;
-                                                                                                                                                skillinput17.setError("Invalid Skill");
-
+                                                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                                             } else {
-                                                                                                                                                if (sproficiency17.equals("- Proficiency -")) {
+                                                                                                                                                if (sskill17.length() < 1) {
                                                                                                                                                     errorflag = 1;
-                                                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                                    skillinput17.setError("Invalid Skill");
+
                                                                                                                                                 } else {
-                                                                                                                                                    errorflag = 0;
-                                                                                                                                                    if (sskill18.length() < 1) {
+                                                                                                                                                    if (sproficiency17.equals("- Proficiency -")) {
                                                                                                                                                         errorflag = 1;
-                                                                                                                                                        skillinput18.setError("Invalid Skill");
-
+                                                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                                                     } else {
-                                                                                                                                                        if (sproficiency18.equals("- Proficiency -")) {
+                                                                                                                                                        errorflag = 0;
+                                                                                                                                                        if (sskill18.length() < 1) {
                                                                                                                                                             errorflag = 1;
-                                                                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                                            skillinput18.setError("Invalid Skill");
+
                                                                                                                                                         } else {
-                                                                                                                                                            errorflag = 0;
-                                                                                                                                                            if (sskill19.length() < 1) {
+                                                                                                                                                            if (sproficiency18.equals("- Proficiency -")) {
                                                                                                                                                                 errorflag = 1;
-                                                                                                                                                                skillinput19.setError("Invalid Skill");
-
+                                                                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                                                             } else {
-                                                                                                                                                                if (sproficiency19.equals("- Proficiency -")) {
+                                                                                                                                                                errorflag = 0;
+                                                                                                                                                                if (sskill19.length() < 1) {
                                                                                                                                                                     errorflag = 1;
-                                                                                                                                                                    Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
-                                                                                                                                                                } else {
-                                                                                                                                                                    errorflag = 0;
-                                                                                                                                                                    if (sskill20.length() < 1) {
-                                                                                                                                                                        errorflag = 1;
-                                                                                                                                                                        skillinput20.setError("Invalid Skill");
+                                                                                                                                                                    skillinput19.setError("Invalid Skill");
 
+                                                                                                                                                                } else {
+                                                                                                                                                                    if (sproficiency19.equals("- Proficiency -")) {
+                                                                                                                                                                        errorflag = 1;
+                                                                                                                                                                        Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
                                                                                                                                                                     } else {
-                                                                                                                                                                        if (sproficiency20.equals("- Proficiency -")) {
+                                                                                                                                                                        errorflag = 0;
+                                                                                                                                                                        if (sskill20.length() < 1) {
                                                                                                                                                                             errorflag = 1;
-                                                                                                                                                                            Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                                                            skillinput20.setError("Invalid Skill");
+
+                                                                                                                                                                        } else {
+                                                                                                                                                                            if (sproficiency20.equals("- Proficiency -")) {
+                                                                                                                                                                                errorflag = 1;
+                                                                                                                                                                                Toast.makeText(MyProfileSkills.this, "Please Select Proficiency", Toast.LENGTH_LONG).show();
+                                                                                                                                                                            }
                                                                                                                                                                         }
                                                                                                                                                                     }
                                                                                                                                                                 }
@@ -7071,63 +7106,67 @@ public class MyProfileSkills extends AppCompatActivity {
                     }
                 }
             }
+
         }
-
-
         if (errorflag == 0) {
-            try {
-
-                    Skills obj1=new Skills(sskill1,sproficiency1);
-                    Skills obj2=new Skills(sskill2,sproficiency2);
-                    Skills obj3=new Skills(sskill3,sproficiency3);
-                    Skills obj4=new Skills(sskill4,sproficiency4);
-                    Skills obj5=new Skills(sskill5,sproficiency5);
-                    Skills obj6=new Skills(sskill6,sproficiency6);
-                    Skills obj7=new Skills(sskill7,sproficiency7);
-                    Skills obj8=new Skills(sskill8,sproficiency8);
-                    Skills obj9=new Skills(sskill9,sproficiency9);
-                    Skills obj10=new Skills(sskill10,sproficiency10);
-                    Skills obj11=new Skills(sskill11,sproficiency11);
-                    Skills obj12=new Skills(sskill12,sproficiency12);
-                    Skills obj13=new Skills(sskill13,sproficiency13);
-                    Skills obj14=new Skills(sskill14,sproficiency14);
-                    Skills obj15=new Skills(sskill15,sproficiency15);
-                    Skills obj16=new Skills(sskill16,sproficiency16);
-                    Skills obj17=new Skills(sskill17,sproficiency17);
-                    Skills obj18=new Skills(sskill18,sproficiency18);
-                    Skills obj19=new Skills(sskill19,sproficiency19);
-                    Skills obj20=new Skills(sskill20,sproficiency20);
-
-                    skillsList.add(obj1);
-                    skillsList.add(obj2);
-                    skillsList.add(obj3);
-                    skillsList.add(obj4);
-                    skillsList.add(obj5);
-                    skillsList.add(obj6);
-                    skillsList.add(obj7);
-                    skillsList.add(obj8);
-                    skillsList.add(obj9);
-                    skillsList.add(obj10);
-                    skillsList.add(obj11);
-                    skillsList.add(obj12);
-                    skillsList.add(obj13);
-                    skillsList.add(obj14);
-                    skillsList.add(obj15);
-                    skillsList.add(obj16);
-                    skillsList.add(obj17);
-                    skillsList.add(obj18);
-                    skillsList.add(obj19);
-                    skillsList.add(obj20);
-
-                String encObjString=OtoString(skillsList,MySharedPreferencesManager.getDigest1(MyProfileSkills.this),MySharedPreferencesManager.getDigest2(MyProfileSkills.this));
-
-
-                new SaveSkills().execute(encObjString);
-            } catch (Exception e) {
-                Toast.makeText(MyProfileSkills.this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
+            encskills();
         }
 
+    }
+
+    public void encskills(){
+
+        try {
+
+            Skills obj1=new Skills(sskill1,sproficiency1);
+            Skills obj2=new Skills(sskill2,sproficiency2);
+            Skills obj3=new Skills(sskill3,sproficiency3);
+            Skills obj4=new Skills(sskill4,sproficiency4);
+            Skills obj5=new Skills(sskill5,sproficiency5);
+            Skills obj6=new Skills(sskill6,sproficiency6);
+            Skills obj7=new Skills(sskill7,sproficiency7);
+            Skills obj8=new Skills(sskill8,sproficiency8);
+            Skills obj9=new Skills(sskill9,sproficiency9);
+            Skills obj10=new Skills(sskill10,sproficiency10);
+            Skills obj11=new Skills(sskill11,sproficiency11);
+            Skills obj12=new Skills(sskill12,sproficiency12);
+            Skills obj13=new Skills(sskill13,sproficiency13);
+            Skills obj14=new Skills(sskill14,sproficiency14);
+            Skills obj15=new Skills(sskill15,sproficiency15);
+            Skills obj16=new Skills(sskill16,sproficiency16);
+            Skills obj17=new Skills(sskill17,sproficiency17);
+            Skills obj18=new Skills(sskill18,sproficiency18);
+            Skills obj19=new Skills(sskill19,sproficiency19);
+            Skills obj20=new Skills(sskill20,sproficiency20);
+
+            skillsList.add(obj1);
+            skillsList.add(obj2);
+            skillsList.add(obj3);
+            skillsList.add(obj4);
+            skillsList.add(obj5);
+            skillsList.add(obj6);
+            skillsList.add(obj7);
+            skillsList.add(obj8);
+            skillsList.add(obj9);
+            skillsList.add(obj10);
+            skillsList.add(obj11);
+            skillsList.add(obj12);
+            skillsList.add(obj13);
+            skillsList.add(obj14);
+            skillsList.add(obj15);
+            skillsList.add(obj16);
+            skillsList.add(obj17);
+            skillsList.add(obj18);
+            skillsList.add(obj19);
+            skillsList.add(obj20);
+
+            String encObjString=OtoString(skillsList,MySharedPreferencesManager.getDigest1(MyProfileSkills.this),MySharedPreferencesManager.getDigest2(MyProfileSkills.this));
+
+
+            new SaveSkills().execute(encObjString);
+        } catch (Exception e) {
+            Toast.makeText(MyProfileSkills.this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     class SaveSkills extends AsyncTask<String, String, String> {
@@ -7271,8 +7310,11 @@ public class MyProfileSkills extends AppCompatActivity {
             alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialogInterface) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileSkills.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileSkills.this));
+
                 }
             });
 

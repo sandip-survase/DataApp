@@ -1049,6 +1049,8 @@ public class MyProfileFragment extends Fragment {
                     }
                     s=json.getString("knownlang");
                     Log.d("TAG", "knownlang: "+s);
+
+
                     if(s.equals("found")) {
                         found_lang=1;
 
@@ -1261,6 +1263,7 @@ public class MyProfileFragment extends Fragment {
 
                     }
                     s=json.getString("courses");
+                    Log.d("TAG", "doInBackground: course1 -"+s);
                     if(s.equals("found")) {
                         found_courses=1;
 
@@ -1281,6 +1284,11 @@ public class MyProfileFragment extends Fragment {
                         inst1=obj1.getInst();
                         fromdate1=obj1.getFromdate();
                         todate1=obj1.getTodate();
+
+                        Log.d("TAG", "doInBackground: course1 -"+course1);
+                        Log.d("TAG", "doInBackground: inst1 - "+inst1);
+                        Log.d("TAG", "doInBackground: fromdate1 -"+fromdate1);
+                        Log.d("TAG", "doInBackground: todate1 - "+todate1);
 
                         course2=obj2.getName();
                         inst2=obj2.getInst();

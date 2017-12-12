@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35"
+    android:background="@color/while_color"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
     >
@@ -33,18 +33,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/section"
+                android:id="@+id/fnameTextInputLayout"
+
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/fname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="First Name"
-                    android:imeOptions="actionNext"
+                    android:hint="First Name *"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="50"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:inputType="textCapWords"
-                    android:singleLine="true"
-                    android:textColor="#eee"
-                    android:textSize="15dp" />
+                    android:imeOptions="actionNext"
+                    android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -56,17 +60,21 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/section"
                 android:layout_marginLeft="5dp"
-                android:id="@+id/lnameinput"
+                android:id="@+id/lnameTextInputLayout"
+
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Last Name"
-                    android:textSize="15dp"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:hint="Last Name *"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
-                    android:textColor="#eee"
+                    android:maxLength="50"
+                    android:textSize="16dp"
                     android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/sname"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -74,19 +82,21 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/lnameinput"
+                android:layout_below="@+id/lnameTextInputLayout"
                 android:id="@+id/roleinputlayout"
+                android:layout_marginTop="20dp"
+
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/role"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Role *"
+                    android:textSize="16dp"
                     android:focusable="false"
-                    android:hint="Role"
-                    android:singleLine="true"
-                    android:textColor="#eee"
-                    android:textSize="15dp" />
+                    android:textColor="@color/dark_color"
+                    android:singleLine="true"/>
 
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
@@ -100,11 +110,11 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
-                    android:textSize="15dp"
+                    android:hint="Email *"
+                    android:textSize="16dp"
                     android:focusable="false"
+                    android:textColor="@color/dark_color"
                     android:singleLine="true"
-                    android:textColor="#eee"
                     android:id="@+id/email"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -115,15 +125,16 @@
                 android:id="@+id/instinputlayout"
                 android:layout_below="@+id/emailinputlayout"
                 android:layout_marginTop="10dp"
+
                 android:theme="@style/TextLabel">
 
                 <android.support.v7.widget.AppCompatEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Designation"
-                    android:textSize="15dp"
+                    android:hint="Designation *"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/inst"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -133,7 +144,7 @@
                 android:text="Location Details"
                 android:layout_below="@+id/instinputlayout"
                 android:textSize="20dp"
-                android:textColor="#eee"
+                android:textColor="@color/while_color"
                 android:id="@+id/loctxt"
                 android:layout_marginTop="25dp"
                 android:layout_centerHorizontal="true"
@@ -141,7 +152,8 @@
                 android:paddingBottom="10dp"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:background="@drawable/textviewborder2"
+                android:background="@drawable/textviewborder"
+                android:elevation="6dp"
                 />
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -154,136 +166,17 @@
                 <AutoCompleteTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="City / District"
-                    android:textSize="15dp"
+                    android:hint="City / District *"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
+                    android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:maxLines="1"
-                    android:textColor="#eee"
+                    android:imeOptions="actionNext"
                     android:id="@+id/citystaecountry"/>
 
             </android.support.design.widget.TextInputLayout>
-            <!--<RelativeLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@+id/loctxt"-->
-            <!--android:id="@+id/countryspinner"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:layout_marginRight="3dp"-->
-            <!--android:layout_weight=".28"-->
-            <!--android:orientation="horizontal">-->
 
-            <!--<Spinner-->
-            <!--android:id="@+id/country"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:background="@android:color/transparent"-->
-            <!--android:gravity="center"-->
-            <!--android:popupBackground="#001111"-->
-            <!--android:layout_marginLeft="5dp"-->
-            <!--android:spinnerMode="dropdown" />-->
-
-            <!--<ImageView-->
-            <!--android:layout_width="40dp"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:id="@+id/spinnerimg1"-->
-            <!--android:tint="#eee"-->
-            <!--android:src="@drawable/drop" />-->
-
-            <!--<View-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="1dp"-->
-            <!--android:layout_below="@+id/spinnerimg1"-->
-            <!--android:background="#eee"-->
-            <!--/>-->
-
-            <!--</RelativeLayout>-->
-
-            <!--<RelativeLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@+id/countryspinner"-->
-            <!--android:layout_marginTop="20dp"-->
-            <!--android:layout_marginRight="3dp"-->
-            <!--android:layout_weight=".28"-->
-            <!--android:id="@+id/statespinner"-->
-            <!--android:orientation="horizontal">-->
-
-            <!--<Spinner-->
-            <!--android:id="@+id/state"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:background="@android:color/transparent"-->
-            <!--android:gravity="center"-->
-            <!--android:popupBackground="#001111"-->
-            <!--android:layout_marginLeft="5dp"-->
-            <!--android:spinnerMode="dropdown" />-->
-
-            <!--<ImageView-->
-            <!--android:layout_width="40dp"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:id="@+id/spinnerimg2"-->
-            <!--android:tint="#eee"-->
-            <!--android:src="@drawable/drop" />-->
-
-            <!--<View-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="1dp"-->
-            <!--android:layout_below="@+id/spinnerimg2"-->
-            <!--android:background="#eee"-->
-            <!--/>-->
-
-            <!--</RelativeLayout>-->
-
-            <!--<RelativeLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@+id/statespinner"-->
-            <!--android:layout_marginTop="20dp"-->
-            <!--android:layout_marginRight="3dp"-->
-            <!--android:layout_weight=".28"-->
-            <!--android:id="@+id/cityspinner"-->
-            <!--android:orientation="horizontal">-->
-
-            <!--<Spinner-->
-            <!--android:id="@+id/city"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:background="@android:color/transparent"-->
-            <!--android:gravity="center"-->
-            <!--android:popupBackground="#001111"-->
-            <!--android:layout_marginLeft="5dp"-->
-            <!--android:spinnerMode="dropdown" />-->
-
-            <!--<ImageView-->
-            <!--android:layout_width="40dp"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:id="@+id/spinnerimg3"-->
-            <!--android:tint="#eee"-->
-            <!--android:src="@drawable/drop" />-->
-
-            <!--<View-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="1dp"-->
-            <!--android:layout_below="@+id/spinnerimg3"-->
-            <!--android:background="#eee"-->
-            <!--/>-->
-
-            <!--</RelativeLayout>-->
 
         </RelativeLayout>
 

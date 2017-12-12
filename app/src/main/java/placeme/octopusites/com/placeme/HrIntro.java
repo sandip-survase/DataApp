@@ -111,6 +111,19 @@ public class HrIntro extends AppCompatActivity {
         designinputlayout = (TextInputLayout) findViewById(R.id.instinputlayout);
         citystaecountryinputlayout = (TextInputLayout) findViewById(R.id.citystaecountryinputlayout);
 
+        fnameTextInputLayout.setTypeface(MyConstants.getLight(this));
+                 lnameTextInputLayout.setTypeface(MyConstants.getLight(this));
+                 roleinputlayout.setTypeface(MyConstants.getLight(this));
+
+                designinputlayout.setTypeface(MyConstants.getLight(this));
+                emailinputlayout.setTypeface(MyConstants.getLight(this));
+                 citystaecountryinputlayout.setTypeface(MyConstants.getLight(this));
+
+
+
+
+
+
 
         ScrollView myprofileintroscrollview = (ScrollView) findViewById(R.id.myprofileintroscrollview);
         disableScrollbars(myprofileintroscrollview);

@@ -118,18 +118,31 @@ public class EditProfile extends AppCompatActivity {
 
                 if (currentPosition == 0) {
                     PersonalProfileTabFragment fragment = (PersonalProfileTabFragment) adapter.getItem(0);
-                    Boolean personal_success = fragment.validate();
-                    if (personal_success) {
-                        fragment.save();
-                        Toast.makeText(EditProfile.this, "Successfully Updated !", Toast.LENGTH_SHORT).show();
 
+                    Boolean personal_success = fragment.validate();
+                    if (fragment.edittedFlag == 1) {
+                        if (personal_success) {
+                            fragment.save();
+                            Toast.makeText(EditProfile.this, "Successfully Updated !", Toast.LENGTH_SHORT).show();
+
+                        }
                     }
+
                 } else if (currentPosition == 2) {
                     ProjectsProfileTabFragment projFrag = (ProjectsProfileTabFragment) adapter.getItem(2);
-                    Boolean project_success = projFrag.myvalidate();
-                    if (project_success) {
+
+                    if(projFrag.editproj == 1){
                         projFrag.save();
                         Toast.makeText(EditProfile.this, "Successfully Updated !", Toast.LENGTH_SHORT).show();
+
+                    }else {
+                        Boolean project_success = projFrag.myvalidate();
+                        if (projFrag.edittedFlag == 1) {
+                            if (project_success) {
+                                projFrag.save();
+                                Toast.makeText(EditProfile.this, "Successfully Updated !", Toast.LENGTH_SHORT).show();
+                            }
+                        }
                     }
                 }
 
@@ -263,7 +276,6 @@ public class EditProfile extends AppCompatActivity {
                                         personal_success = fragment.validate();
                                         if (!personal_success) {
                                             mViewPager.setCurrentItem(0);
-
                                             fragment.validate();
                                             personalflag = 1;
                                         } else {
@@ -271,23 +283,27 @@ public class EditProfile extends AppCompatActivity {
                                             fragment.save();
                                         }
                                     }
-
-                                    if (projFrag.edittedFlag == 1) {
-                                        project_success = projFrag.myvalidate();
-                                        if (!project_success) {
-                                            if (personalflag != 1) {
+                                    if(projFrag.editproj == 1){
+                                        projFrag.save();
+                                        personal_success=true;
+                                    }
+                                    else {
+                                        if (projFrag.edittedFlag == 1) {
+                                            project_success = projFrag.myvalidate();
+                                            if (!project_success) {
+                                                if (personalflag != 1) {
 //                                                projFrag.setCount();
-                                                mViewPager.setCurrentItem(2);
-                                                projFrag.myvalidate();
-                                                projectFlag = 1;
+                                                    mViewPager.setCurrentItem(2);
+                                                    projFrag.myvalidate();
+                                                    projectFlag = 1;
+                                                }
+
+                                            } else {
+                                                projFrag.save();
+                                                projectFlag = 0;
+
                                             }
-
-                                        } else {
-                                            projFrag.save();
-                                            projectFlag = 0;
-
                                         }
-
                                     }
 
                                     if (personal_success && project_success) {
@@ -312,8 +328,11 @@ public class EditProfile extends AppCompatActivity {
             alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialogInterface) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(EditProfile.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(EditProfile.this));
+
                 }
             });
 

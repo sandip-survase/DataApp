@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.text.Editable;
@@ -53,7 +54,6 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
  */
 public class HrPersonalTabFragment extends Fragment {
 
-
     private EditText fname, lname, role, email, designation;
     private Spinner country, state, city;
     AutoCompleteTextView citystaecountry;
@@ -77,7 +77,7 @@ public class HrPersonalTabFragment extends Fragment {
     String firstname = "", lastname = "", designationValue = "",CityStateCountry="";
     String userName, roleValue;
     String encUsername, encRole, encFname, encLname, encCountry, encState, encCity, encdesignation;
-
+    TextInputLayout fnameTextInputLayout, lnameTextInputLayout, roleinputlayout,designinputlayout, emailinputlayout, citystaecountryinputlayout;
 
     String countries[], states[], cities[];
 
@@ -117,13 +117,30 @@ public class HrPersonalTabFragment extends Fragment {
         role = (EditText) rootView.findViewById(R.id.role);
         email = (EditText) rootView.findViewById(R.id.email);
         designation = (EditText) rootView.findViewById(R.id.inst);
-//        savePersonal = (Button) rootView.findViewById(R.id.savepersonal);
-//        personalprogress= (ProgressBar) rootView.findViewById(R.id.personalprogress);
+        citystaecountry = (AutoCompleteTextView) rootView.findViewById(R.id.citystaecountry);
+
+        fnameTextInputLayout = (TextInputLayout)rootView. findViewById(R.id.fnameTextInputLayout);
+        lnameTextInputLayout = (TextInputLayout)rootView. findViewById(R.id.lnameTextInputLayout);
+        roleinputlayout = (TextInputLayout)rootView. findViewById(R.id.roleinputlayout);
+        emailinputlayout = (TextInputLayout)rootView. findViewById(R.id.emailinputlayout);
+        designinputlayout = (TextInputLayout) rootView.findViewById(R.id.instinputlayout);
+        citystaecountryinputlayout = (TextInputLayout)rootView. findViewById(R.id.citystaecountryinputlayout);
+
+        fname.setTypeface(MyConstants.getBold(getActivity()));
+        lname.setTypeface(MyConstants.getBold(getActivity()));
+        role.setTypeface(MyConstants.getBold(getActivity()));
+        email.setTypeface(MyConstants.getBold(getActivity()));
+        designation.setTypeface(MyConstants.getBold(getActivity()));
+        citystaecountry.setTypeface(MyConstants.getBold(getActivity()));
+
+        fnameTextInputLayout.setTypeface(MyConstants.getLight(getActivity()));
+        lnameTextInputLayout.setTypeface(MyConstants.getLight(getActivity()));
+        roleinputlayout.setTypeface(MyConstants.getLight(getActivity()));
+        designinputlayout.setTypeface(MyConstants.getLight(getActivity()));
+        emailinputlayout.setTypeface(MyConstants.getLight(getActivity()));
+        citystaecountryinputlayout.setTypeface(MyConstants.getLight(getActivity()));
+
         citystaecountry=(AutoCompleteTextView)rootView.findViewById(R.id.citystaecountry);
-
-//        ScrollView myprofileintroscrollview = (ScrollView) rootView.findViewById(R.id.myprofileintroscrollview);
-//        disableScrollbars(myprofileintroscrollview);
-
         userName = MySharedPreferencesManager.getUsername(getActivity());
         encUsername = userName;
 
@@ -176,22 +193,6 @@ public class HrPersonalTabFragment extends Fragment {
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line,listAll);
         citystaecountry.setAdapter(adapter);
 
-        citystaecountry.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                edittedFlagp=1;
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
         if (firstname != null) {
 
             if (firstname.length() > 1)
@@ -212,6 +213,26 @@ public class HrPersonalTabFragment extends Fragment {
             CityStateCountry = selectedCity+" , "+selectedState+" , "+selectedCountry;
             citystaecountry.setText(CityStateCountry);
         }
+
+
+        citystaecountry.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                edittedFlagp = 1;
+                citystaecountryinputlayout.setError("");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         fname.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -220,7 +241,7 @@ public class HrPersonalTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                fname.setError(null);
+                fnameTextInputLayout.setError(null);
                 edittedFlagp = 1;
             }
 
@@ -238,7 +259,8 @@ public class HrPersonalTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                lname.setError(null);
+
+                lnameTextInputLayout.setError(null);
                 edittedFlagp = 1;
             }
 
@@ -256,7 +278,7 @@ public class HrPersonalTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                designation.setError(null);
+                designinputlayout.setError(null);
                 edittedFlagp = 1;
             }
 
@@ -265,15 +287,6 @@ public class HrPersonalTabFragment extends Fragment {
 
             }
         });
-
-//        savePersonal.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                personalprogress.setVisibility(View.VISIBLE);
-////                savePersonal.setVisibility(View.GONE);
-//                validateandSave();
-//            }
-//        });
 
         edittedFlagp=0;
 
@@ -315,34 +328,31 @@ public class HrPersonalTabFragment extends Fragment {
         lastname = lname.getText().toString();
         designationValue = designation.getText().toString();
         CityStateCountry = citystaecountry.getText().toString();
-        if(CityStateCountry.length()<2)
-        {
-            citystaecountry.setError("Incorrect City Name");
-            persnolerrorflag=1;
-        }
-        else
-        {
-            citystaecountry.setError(null);
-            String[] parts = CityStateCountry.split(" , ");
-            if(parts.length==3) {
-                selectedCity = parts[0];
-                selectedState = parts[1];
-                selectedCountry = parts[2];
-            }
-        }
 
         if (firstname.length() < 2) {
-            fname.setError("Incorrect First Name");
+            fnameTextInputLayout.setError("Kindly enter valid first name");
             persnolerrorflag = 1;
-            Log.d("hrlog", "validate: fname"+persnolerrorflag);
         } else if (lastname.length() < 2) {
-            lname.setError("Incorrect Last Name");
+            lnameTextInputLayout.setError("Kindly enter valid last name");
             persnolerrorflag = 1;
-            Log.d("hrlog", "validate: lname"+persnolerrorflag);
         } else if (designation.length() < 2) {
-            designation.setError("Incorrect designation");
+            designinputlayout.setError("Kindly enter valid designation");
             persnolerrorflag = 1;
-            Log.d("hrlog", "validate: desiname"+persnolerrorflag);
+        } else {
+            if (CityStateCountry.length() < 2) {
+                citystaecountryinputlayout.setError("Please select your city");
+                persnolerrorflag = 1;
+            } else {
+                citystaecountry.setError(null);
+
+                String[] parts = CityStateCountry.split(" , ");
+                if (parts.length == 3) {
+                    selectedCity = parts[0];
+                    selectedState = parts[1];
+                    selectedCountry = parts[2];
+                }
+            }
+
         }
 
         if(persnolerrorflag == 0)
@@ -397,314 +407,12 @@ public class HrPersonalTabFragment extends Fragment {
 
             if (result.equals("success")) {
                 edittedFlagp=0;
-                Toast.makeText(getActivity(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
-//                this.super.onBackPressed();
             }
-
-//            personalprogress.setVisibility(View.GONE);
-//            savePersonal.setVisibility(View.VISIBLE);
 
             getActivity().setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
         }
     }
 
-
-
-
-
-//    class GetCountries extends AsyncTask<String, String, String> {
-//
-//
-//        protected String doInBackground(String... param) {
-//
-//
-////            List<NameValuePair> params = new ArrayList<NameValuePair>();
-////            json = jParser.makeHttpRequest(url_getcountries, "GET", params);
-////            try {
-////                String s = json.getString("count");
-////                countrycount=Integer.parseInt(s);
-////                countries=new String[countrycount];
-////                for(int i=0;i<countrycount;i++)
-////                {
-////                    countries[i]=json.getString("country"+i);
-////                }
-////
-////            }catch (Exception e){e.printStackTrace();}
-//
-//            countrycount = getResources().getStringArray(R.array.countries_array).length;
-//            countries = new String[countrycount];
-//            countries = getResources().getStringArray(R.array.countries_array);
-//
-//            return "";
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//
-//            countrieslist.clear();
-//            countrieslist.add("- Select Country -");
-//            for (int i = 0; i < countrycount; i++) {
-//                countrieslist.add(countries[i]);
-//            }
-//            populateCountries();
-//        }
-//    }
-//
-//    class GetStates extends AsyncTask<String, String, String> {
-//
-//
-//        protected String doInBackground(String... param) {
-//
-//
-//            List<NameValuePair> params = new ArrayList<NameValuePair>();
-//            params.add(new BasicNameValuePair("country", selectedCountry));
-//            json = jParser.makeHttpRequest(url_getstates, "GET", params);
-//            try {
-//                String s = json.getString("count");
-//                statecount = Integer.parseInt(s);
-//                states = new String[statecount];
-//                for (int i = 0; i < statecount; i++) {
-//                    states[i] = json.getString("state" + i);
-//                }
-//
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            return "";
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//            stateslist.clear();
-//            stateslist.add("- Select State -");
-//            for (int i = 0; i < statecount; i++) {
-//                stateslist.add(states[i]);
-//            }
-//            populateStates();
-//        }
-//    }
-//
-//    class GetCities extends AsyncTask<String, String, String> {
-//
-//
-//        protected String doInBackground(String... param) {
-//
-//
-//            List<NameValuePair> params = new ArrayList<NameValuePair>();
-//            params.add(new BasicNameValuePair("state", selectedState));
-//            json = jParser.makeHttpRequest(url_getcities, "GET", params);
-//            try {
-//                String s = json.getString("count");
-//                citycount = Integer.parseInt(s);
-//                cities = new String[citycount];
-//                for (int i = 0; i < citycount; i++) {
-//                    cities[i] = json.getString("city" + i);
-//                }
-//
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            return "";
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//            citieslist.clear();
-//            citieslist.add("- Select City -");
-//            for (int i = 0; i < citycount; i++) {
-//                citieslist.add(cities[i]);
-//            }
-//            populateCities();
-//        }
-//
-//    }
-//
-//    private void disableScrollbars(ScrollView scrollView) {
-//        if (scrollView != null) {
-//
-//            scrollView.setVerticalScrollBarEnabled(false);
-//
-//        }
-//    }
-//
-//
-//    void populateCountries() {
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, countrieslist) {
-//            @Override
-//            public boolean isEnabled(int position) {
-//
-//                if (position == 0) {
-//
-//                    return false;
-//                } else {
-//                    return true;
-//                }
-//            }
-//
-//            @Override
-//            public View getDropDownView(int position, View convertView,
-//                                        ViewGroup parent) {
-//                View view = super.getDropDownView(position, convertView, parent);
-//                TextView tv = (TextView) view;
-//                Typeface custom_font3 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/abz.ttf");
-//                tv.setTypeface(custom_font3);
-//
-//                if (position == 0) {
-//                    // Set the hint text color gray
-//                    tv.setTextColor(Color.GRAY);
-//                } else {
-//                    tv.setTextColor(Color.parseColor("#eeeeee"));
-//                }
-//                return view;
-//            }
-//        };
-//        ;
-//        country.setAdapter(dataAdapter);
-//
-//        country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                selectedCountry = (String) parent.getItemAtPosition(position);
-//
-//                new GetStates().execute();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//        //getter method
-//        if (isCountrySet == 0) {
-//            isCountrySet = 1;
-//            if (hr.getCountry() != null) {
-//                country.setSelection(dataAdapter.getPosition(hr.getCountry()));
-//                selectedCountry = hr.getCountry();
-//                oldCountry = hr.getCountry();
-//            } else
-//                oldCountry = "- Select Country -";
-//        }
-//
-//
-//    }
-//
-//    void populateStates() {
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, stateslist) {
-//            @Override
-//            public boolean isEnabled(int position) {
-//
-//                if (position == 0) {
-//
-//                    return false;
-//                } else {
-//                    return true;
-//                }
-//            }
-//
-//            @Override
-//            public View getDropDownView(int position, View convertView,
-//                                        ViewGroup parent) {
-//                View view = super.getDropDownView(position, convertView, parent);
-//                TextView tv = (TextView) view;
-//                Typeface custom_font3 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/abz.ttf");
-//                tv.setTypeface(custom_font3);
-//
-//                if (position == 0) {
-//                    // Set the hint text color gray
-//                    tv.setTextColor(Color.GRAY);
-//                } else {
-//                    tv.setTextColor(Color.parseColor("#eeeeee"));
-//                }
-//                return view;
-//            }
-//        };
-//        ;
-//        state.setAdapter(dataAdapter);
-//
-//        state.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                selectedState = (String) parent.getItemAtPosition(position);
-//
-//                new GetCities().execute();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//
-//        if (isStateSet == 0) {
-//            isStateSet = 1;
-//            if (hr.getState() != null) {
-//                state.setSelection(dataAdapter.getPosition(hr.getState()));
-//                selectedState = hr.getState();
-//                oldState = hr.getState();
-//            } else
-//                oldState = "- Select State -";
-//        }
-//    }
-//
-//    void populateCities() {
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, citieslist) {
-//            @Override
-//            public boolean isEnabled(int position) {
-//
-//                if (position == 0) {
-//
-//                    return false;
-//                } else {
-//                    return true;
-//                }
-//            }
-//
-//            @Override
-//            public View getDropDownView(int position, View convertView,
-//                                        ViewGroup parent) {
-//                View view = super.getDropDownView(position, convertView, parent);
-//                TextView tv = (TextView) view;
-//                Typeface custom_font3 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/abz.ttf");
-//                tv.setTypeface(custom_font3);
-//
-//                if (position == 0) {
-//                    // Set the hint text color gray
-//                    tv.setTextColor(Color.GRAY);
-//                } else {
-//                    tv.setTextColor(Color.parseColor("#eeeeee"));
-//                }
-//                return view;
-//            }
-//        };
-//
-//        city.setAdapter(dataAdapter);
-//
-//        city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                selectedCity = (String) parent.getItemAtPosition(position);
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//
-//        if (isCitySet == 0) {
-//            isCitySet = 1;
-//            if (hr.getCity() != null) {
-//                city.setSelection(dataAdapter.getPosition(hr.getCity()));
-//                selectedCity = hr.getCity();
-//                oldCity = hr.getCity();
-//            } else
-//                oldCity = "- Select City -";
-//        }
-//    }
-//
 
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         Animation animation = super.onCreateAnimation(transit, enter, nextAnim);
