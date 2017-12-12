@@ -512,7 +512,7 @@ public class PrintProfileTabFragment extends Fragment {
                 DownloadManager localDownloadManager = (DownloadManager)getContext().getSystemService(DOWNLOAD_SERVICE);
                 Uri uri = new Uri.Builder()
                         .scheme("http")
-                        .encodedAuthority("192.168.100.10:8080")
+                        .authority("192.168.100.10:")
                         .path("GenerateResumeWithJODConverter3/DownloadResume")
                         .appendQueryParameter("username",username)
                         .appendQueryParameter("format",format)
