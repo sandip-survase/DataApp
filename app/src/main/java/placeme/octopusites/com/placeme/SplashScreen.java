@@ -37,7 +37,7 @@ public class SplashScreen extends Activity {
     public static final String Password = "passKey";
     public static final String Intro = "intro";
     private static String url_login = "http://192.168.100.100/PlaceMe/Auth";
-    private static String url_getdigest = "http://192.168.100.100/PlaceMe/GetDigest";
+
     private static String url_savesessiondetails = "http://192.168.100.100/PlaceMe/SaveSessionDetails";
     SharedPreferences sharedpreferences;
     JSONParser jParser = new JSONParser();
@@ -429,42 +429,46 @@ public class SplashScreen extends Activity {
 
     class GetDigest extends AsyncTask<String, String, String> {
 
-
+        String info = null;
         protected String doInBackground(String... param) {
 
-
+            String username = MySharedPreferencesManager.getUsername(SplashScreen.this);
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("aid", android_id));
             params.add(new BasicNameValuePair("did", device_id));
+            params.add(new BasicNameValuePair("u", username));
 
-            json = jParser.makeHttpRequest(url_getdigest, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_getdigest, "GET", params);
             try {
-                digest1 = json.getString("digest1");
-                digest2 = json.getString("digest2");
-                digest3 = json.getString("digest3");
+                info = json.getString("info");
 
-//                Digest d = new Digest();
-//                d.setDigest1(digest1);
-//                d.setDigest2(digest2);
+                if (info != null && info.equals("success")) {
 
-                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedpreferences.edit();
+                    digest1 = json.getString("digest1");
+                    digest2 = json.getString("digest2");
+                    digest3 = json.getString("digest3");
 
-                editor.putString("digest1", digest1);
-                editor.putString("digest2", digest2);
-                editor.putString("digest3", digest3);
-                editor.commit();
+                    sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                    editor.putString("digest1", digest1);
+                    editor.putString("digest2", digest2);
+                    editor.putString("digest3", digest3);
+                    editor.commit();
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return "";
+            return info;
         }
 
         @Override
         protected void onPostExecute(String result) {
-
-
+            if (info != null && !info.equals("success")) {
+                Toast.makeText(SplashScreen.this, info, Toast.LENGTH_SHORT).show();
+                //TODO remove comment from servlet checking aid,did is not null from getDigest
+            }
         }
     }
 

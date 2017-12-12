@@ -50,7 +50,6 @@ public class ShowUsers extends AppCompatActivity {
     FloatingActionButton fab;
     SwipeRefreshLayout swipeRefreshLayout;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -387,6 +386,26 @@ public class ShowUsers extends AppCompatActivity {
 
         return true;
     }
+
+    // add spinner in action bar  do it later
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.spinner_and_search, menu);
+//
+//        MenuItem item = menu.findItem(R.id.spinner);
+//        Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
+//
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//                R.array.spinner_list_item_array, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//        searchView.setMenuItem(item);
+//
+//
+//        spinner.setAdapter(adapter);
+//        return true;
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
