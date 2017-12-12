@@ -23,8 +23,8 @@ public class MyConstants {
 
     //-----------------------------------   AESTest   ---------------------------------
 
-    public static final String url_Welcome = "http://192.168.100.100:8080/AESTest/Welcome";
-    public static final String url_login = "http://192.168.100.100:8080/AESTest/Auth";           // changed to AEStest.auth
+    public static final String url_Welcome = "http://192.168.100.100/AESTest/Welcome";
+    public static final String url_login = "http://192.168.100.100/AESTest/Auth";           // changed to AEStest.auth
 //    public static final String url_savesessiondetails = "http://192.168.100.100/PlaceMe/SaveSessionDetails";
 
 //    -----------------------------------ProfileObjects---------------------------------------------------------------------

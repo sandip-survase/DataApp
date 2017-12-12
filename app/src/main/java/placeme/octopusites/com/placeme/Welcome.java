@@ -1014,7 +1014,6 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
                     if (usernameflag == false) {
                         new ValidateUser().execute();
-//                        new ValidateUser().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                     }
 
                 }
