@@ -69,7 +69,7 @@ public class AdminPersonalTabFragment extends Fragment {
     JSONParser jParser = new JSONParser();
 
 
-    private static String url_savedata = "http://192.168.100.100/AESTest/SaveAdminPersonal";
+//    private static String url_savedata = "http://192.168.100.100/AESTest/SaveAdminPersonal";
 
 
 
@@ -112,6 +112,7 @@ public class AdminPersonalTabFragment extends Fragment {
         caddrtxt=(TextView)rootView.findViewById(R.id.caddrtxt);
         paddrtxt=(TextView)rootView.findViewById(R.id.paddrtxt);
         loctxt=(TextView)rootView.findViewById(R.id.loctxt);
+
         gendertxt.setTypeface(MyConstants.getLight(getActivity()));
         caddrtxt.setTypeface(MyConstants.getLight(getActivity()));
         paddrtxt.setTypeface(MyConstants.getLight(getActivity()));
@@ -127,6 +128,7 @@ public class AdminPersonalTabFragment extends Fragment {
         inst = (EditText) rootView.findViewById(R.id.inst);
         dobedittext = (EditText) rootView.findViewById(R.id.dob);
         dobedittext.setFocusable(false);
+
         radioGroupGender = (RadioGroup) rootView.findViewById(R.id.radioGroupGender);
         radioButtonMale = (RadioButton) rootView.findViewById(R.id.radioButtonMale);
         radioButtonFemale = (RadioButton) rootView.findViewById(R.id.radioButtonFemale);
@@ -137,6 +139,7 @@ public class AdminPersonalTabFragment extends Fragment {
         paddrline1 = (EditText) rootView.findViewById(R.id.paddrline1);
         paddrline2 = (EditText) rootView.findViewById(R.id.paddrline2);
         paddrline3 = (EditText) rootView.findViewById(R.id.paddrline3);
+
 //        save = (Button) rootView.findViewById(R.id.savepersonal);
 //        personalprogress = (ProgressBar) rootView.findViewById(R.id.personalprogress);
 
@@ -381,6 +384,7 @@ public class AdminPersonalTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                instinputlayout.setError(null);
             }
 
             @Override
@@ -388,6 +392,28 @@ public class AdminPersonalTabFragment extends Fragment {
 
             }
         });
+        profileaemail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                edittedFlag = 1;
+                profileaemailinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+
+
+
         dobedittext.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -651,13 +677,14 @@ public class AdminPersonalTabFragment extends Fragment {
         DateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
         DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
         String outputDateStrlastdateofreg = "";
+
         try {
             Date date = inputFormat.parse(dob);
             outputDateStrlastdateofreg = outputFormat.format(date);
             dob = outputDateStrlastdateofreg;
         } catch (Exception e) {
-            Toast.makeText(getContext(), "Kindly enter vali date of birth", Toast.LENGTH_SHORT).show();
-            dobinput.setError("Kindly enter valid date of birth");
+//            Toast.makeText(getContext(), "Kindly enter vali date of birth", Toast.LENGTH_SHORT).show();
+//            dobinput.setError("Kindly enter valid date of birth");
         }
 
         int selectedId;
@@ -666,29 +693,24 @@ public class AdminPersonalTabFragment extends Fragment {
             selectedId = radioGroupGender.getCheckedRadioButtonId();
             tempradiobutton = (RadioButton) rootView.findViewById(selectedId);
             gender = tempradiobutton.getText().toString().trim();
+
         } catch (Exception e) {
-            errorflag1 = 1;
-            Toast.makeText(getActivity(), "Select Gender", Toast.LENGTH_LONG).show();
+//            errorflag1 = 1;
+//            Toast.makeText(getActivity(), "Select Gender", Toast.LENGTH_LONG).show();
         }
 
 
         if (fname.length() < 2) {
             fnameinput.setError("Kindly enter valid first name");
             errorflag1 = 1;
-        } else if (mname.length() < 2) {
-            mnameinput.setError("Kindly enter valid last name");
-            errorflag1 = 1;
         } else if (sname.length() < 2) {
             snameinput.setError("Kindly enter valid surname");
             errorflag1 = 1;
-        } else if (!alternateemail.contains("@")) {
+        } else if (!alternateemail.contains("@") || !alternateemail.contains(".edu")) {
             profileaemailinput.setError("Kindly enter valid email address");
             errorflag1 = 1;
         } else if (sinst.length() < 2) {
             instinputlayout.setError("Kindly enter valid institute name");
-            errorflag1 = 1;
-        } else if (dob.length() < 2) {
-            Toast.makeText(getContext(), "Kindly select date of birth", Toast.LENGTH_SHORT).show();
             errorflag1 = 1;
         } else if (addrline1c.length() < 2) {
             caddrline1input.setError("Kindly enter valid address");
@@ -698,15 +720,6 @@ public class AdminPersonalTabFragment extends Fragment {
             errorflag1 = 1;
         } else if (addrline3c.length() < 2) {
             caddrline3input.setError("Kindly enter valid address");
-            errorflag1 = 1;
-        } else if (addrline1p.length() < 2) {
-            paddrline1input.setError("Kindly enter valid address");
-            errorflag1 = 1;
-        } else if (addrline2p.length() < 2) {
-            paddrline2input.setError("Kindly enter valid address");
-            errorflag1 = 1;
-        } else if (addrline3p.length() < 2) {
-            paddrline3input.setError("Kindly enter valid address");
             errorflag1 = 1;
         }
         if (errorflag1 == 0)
@@ -771,7 +784,7 @@ public class AdminPersonalTabFragment extends Fragment {
         protected void onPostExecute(String result) {
 
             if (result.equals("success")) {
-                Toast.makeText(getActivity(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                 if (edittedFlag == 1) {
                     getActivity().setResult(111);
 

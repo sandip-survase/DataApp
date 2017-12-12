@@ -868,7 +868,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             public void onClick(View view) {
 
                 navMenuFlag=5;
-                Toast.makeText(MainActivity.this, "settings", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, "settings", Toast.LENGTH_SHORT).show();
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.my_profile_icon);
                 profilei.setImageDrawable(myDrawable1);

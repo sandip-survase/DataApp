@@ -179,11 +179,11 @@ public class AdminIntro extends AppCompatActivity {
                 citystaecountry.setText(CityStateCountry);
             }
             else
-                citystaecountry.setText("City/District");
+                citystaecountry.setText("");
 
         }
         else
-            citystaecountry.setText("City/District");
+            citystaecountry.setText("");
 
         try
         {
@@ -335,7 +335,7 @@ public class AdminIntro extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        if (!oldCountry.equals(selectedCountry) || !oldState.equals(selectedState) || !oldCity.equals(selectedCity) || edittedFlag == 1) {
+        if ( edittedFlag == 1) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
             alertDialogBuilder
@@ -401,7 +401,7 @@ public class AdminIntro extends AppCompatActivity {
                     if(CityStateCountry.length()<2)
                     {
                         citystaecountryinputlayout.setError("Please select your city");
-                        errorflagfirstname=1;
+                        errorflag4=1;
                     }
                     else
                     {
@@ -433,7 +433,7 @@ public class AdminIntro extends AppCompatActivity {
         }
 
 
-        if (errorflagfirstname == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag1 == 0  ) {
+        if (errorflag4 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag1 == 0  ) {
             try {
 //
                 String mname = a.getMname();

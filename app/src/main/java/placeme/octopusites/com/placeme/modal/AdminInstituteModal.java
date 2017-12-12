@@ -15,6 +15,7 @@ public class AdminInstituteModal implements Serializable {
     String instregno;
     String instweb;
     String instphone;
+    String instcaddrline1,instcaddrline2,instcaddrline3;
 
     public String getInstname() {
         return instname;
@@ -22,6 +23,30 @@ public class AdminInstituteModal implements Serializable {
 
     public void setInstname(String instname) {
         this.instname = instname;
+    }
+
+    public String getInstcaddrline1() {
+        return instcaddrline1;
+    }
+
+    public void setInstcaddrline1(String instcaddrline1) {
+        this.instcaddrline1 = instcaddrline1;
+    }
+
+    public String getInstcaddrline2() {
+        return instcaddrline2;
+    }
+
+    public void setInstcaddrline2(String instcaddrline2) {
+        this.instcaddrline2 = instcaddrline2;
+    }
+
+    public String getInstcaddrline3() {
+        return instcaddrline3;
+    }
+
+    public void setInstcaddrline3(String instcaddrline3) {
+        this.instcaddrline3 = instcaddrline3;
     }
 
     public String getInstemail() {
@@ -72,7 +97,7 @@ public class AdminInstituteModal implements Serializable {
         this.instregno = instregno;
     }
 
-    public AdminInstituteModal(String instname, String instemail, String instweb, String instphone, String instaltrphone, String univname, String instregno) {
+    public AdminInstituteModal(String instname, String instemail, String instweb, String instphone, String instaltrphone, String univname, String instregno,String instcaddrline1,String instcaddrline2,String instcaddrline3) {
         this.instname = instname;
         this.instemail = instemail;
         this.instweb = instweb;
@@ -80,7 +105,9 @@ public class AdminInstituteModal implements Serializable {
         this.instaltrphone = instaltrphone;
         this.univname = univname;
         this.instregno = instregno;
-
+        this.instcaddrline1 = instcaddrline1;
+        this.instcaddrline2 = instcaddrline2;
+        this.instcaddrline3 = instcaddrline3;
     }
 
 

@@ -100,9 +100,8 @@ public class EditProfileAdmin extends AppCompatActivity {
 
                 if(currentPosition==0){
                     AdminPersonalTabFragment fragment = (AdminPersonalTabFragment) adapter.getItem(0);
-
+                    Boolean personal_success = fragment.validate();
                     if(fragment.edittedFlag==1){
-                        Boolean personal_success = fragment.validate();
                         if(personal_success){
                             fragment.save();
                         }
@@ -110,8 +109,9 @@ public class EditProfileAdmin extends AppCompatActivity {
                 }
                 if(currentPosition==1){
                     AdminInstituteTabFragment adminInstituteTabFragment= (AdminInstituteTabFragment) adapter.getItem(1);
+                    Boolean project_success = adminInstituteTabFragment.validate();
                     if(adminInstituteTabFragment.edittedFlag==1){
-                        Boolean project_success = adminInstituteTabFragment.validate();
+
                         if(project_success){
                             adminInstituteTabFragment.save();
                         }
@@ -119,8 +119,8 @@ public class EditProfileAdmin extends AppCompatActivity {
                 }
                 if(currentPosition==3){
                     HrExperiencesTabFragment ExperiencesTabFragment= (HrExperiencesTabFragment) adapter.getItem(3);
+                    Boolean project_success = ExperiencesTabFragment.validate();
                     if(ExperiencesTabFragment.edittedFlag==1){
-                        Boolean project_success = ExperiencesTabFragment.validate();
                         if(project_success){
                             ExperiencesTabFragment.save();
                         }
@@ -128,8 +128,9 @@ public class EditProfileAdmin extends AppCompatActivity {
                 }
                 if(currentPosition==4){
                     HrContactTabFragment ContactTabFragment= (HrContactTabFragment) adapter.getItem(4);
+                    Boolean project_success = ContactTabFragment.validate();
                     if(ContactTabFragment.edittedFlag==1){
-                        Boolean project_success = ContactTabFragment.validate();
+
                         if(project_success){
                             ContactTabFragment.save();
                         }

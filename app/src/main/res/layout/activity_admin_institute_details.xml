@@ -22,7 +22,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Institute Name"
+                android:hint="Institute Name*"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
                 android:maxLength="200"
@@ -43,7 +43,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Institute Email Address"
+                android:hint="Institute Email Address*"
                 android:textSize="16dp"
                 android:inputType="textEmailAddress"
                 android:singleLine="true"
@@ -64,7 +64,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Institute Website"
+                android:hint="Institute Website*"
                 android:textSize="16dp"
                 android:inputType="textUri"
                 android:singleLine="true"
@@ -84,7 +84,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Institute Phone Number (with STD code)"
+                android:hint="Institute Phone Number (with STD code)*"
                 android:textSize="16dp"
                 android:inputType="number"
                 android:singleLine="true"
@@ -124,7 +124,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="University Name"
+                android:hint="University Name*"
                 android:textSize="16dp"
                 android:singleLine="true"
                 android:textColor="@color/dark_color"
@@ -143,7 +143,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Institute Registration Number"
+                android:hint="Institute Registration Number*"
                 android:textSize="16dp"
                 android:singleLine="true"
                 android:textColor="@color/dark_color"
@@ -151,6 +151,101 @@
                 android:id="@+id/instreg"/>
 
         </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location Details"
+            android:layout_below="@+id/instreginput"
+            android:textSize="18dp"
+            android:textColor="@color/while_color"
+            android:id="@+id/loctxt"
+            android:layout_marginTop="25dp"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Current Address"
+            android:layout_below="@+id/loctxt"
+            android:id="@+id/caddrtxt"
+            android:textColor="@color/dark_color"
+            android:textSize="14dp"
+            android:layout_marginTop="12dp"
+            />
+
+
+        <android.support.design.widget.TextInputLayout
+            android:theme="@style/TextLabel"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:id="@+id/caddrline1input"
+            android:layout_below="@+id/caddrtxt"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/caddrline1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="@color/dark_color"
+                android:maxLength="200"
+                android:singleLine="true"
+                android:inputType="textCapWords"
+                android:maxLines="1"
+                android:hint="House no/Flat no/Plot no, Name*"
+                />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:theme="@style/TextLabel"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:id="@+id/caddrline2input"
+            android:layout_below="@+id/caddrline1input"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/caddrline2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="@color/dark_color"
+                android:maxLength="200"
+                android:singleLine="true"
+                android:inputType="textCapWords"
+                android:maxLines="1"
+                android:hint="Street Name/Landmark*"
+                />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:theme="@style/TextLabel"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:id="@+id/caddrline3input"
+            android:layout_below="@+id/caddrline2input"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/caddrline3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="@color/dark_color"
+                android:maxLength="200"
+                android:inputType="textCapWords"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:hint="City, Pincode*"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+
+
+
+
 
     </RelativeLayout>
 </ScrollView>

@@ -1,70 +1,53 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import placeme.octopusites.com.placeme.modal.AdminInstituteModal;
-import placeme.octopusites.com.placeme.modal.AdminIntroModal;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 
 public class AdminInstituteDetails extends AppCompatActivity {
 
     //sss
-    EditText iname,iemail,iweb,iphone,ialtphone,uniname,ireg;
-    String instname="",instemail="",instweb="",instphone="",instaltrphone="",universityname="",instreg="";
-    String encUsername,enciname,encinstemail,encinstweb,encinstphone,encinstaltrphone,encuniversityname,encCinstreg;
-    TextInputLayout instnameinput,instemailinput,instwebinput,instphoneinput,instphoneainput,instuniversityinput,instreginput;
-    private String username;
-    int edittedFlag=0;
-
-
-    String digest1,digest2;
+    EditText iname, iemail, iweb, iphone, ialtphone, uniname, caddrline1, caddrline2, caddrline3, ireg;
+    String instname = "", instemail = "", instweb = "", instphone = "", instaltrphone = "", universityname = "", instreg = "", instcaddrline1 = "", instcaddrline2 = "", instcaddrline3 = "";
+    String encUsername, enciname, encinstemail, encinstweb, encinstphone, encinstaltrphone, encuniversityname, encCinstreg;
+    TextInputLayout instnameinput, instemailinput, instwebinput, instphoneinput, instphoneainput, instuniversityinput, caddrline1input, caddrline2input, caddrline3input, instreginput;
+    int edittedFlag = 0;
+    TextView loctxt;
+    String digest1, digest2;
     JSONObject json;
     JSONParser jParser = new JSONParser();
-
-
-
-    AdminData a =new AdminData();
+    AdminData a = new AdminData();
     //
     AdminInstituteModal obj;
-    String strobj="",encobj;
-
-
-
+    String strobj = "", encobj;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,35 +56,44 @@ public class AdminInstituteDetails extends AppCompatActivity {
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
-        username=MySharedPreferencesManager.getUsername(this);
-        String role=MySharedPreferencesManager.getRole(this);
-        encUsername=username;
+        username = MySharedPreferencesManager.getUsername(this);
+        String role = MySharedPreferencesManager.getRole(this);
+        encUsername = username;
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Institute Details");
         ab.setDisplayHomeAsUpEnabled(true);
 
-
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-        instnameinput=(TextInputLayout)findViewById(R.id.instnameinput);
-        instemailinput=(TextInputLayout)findViewById(R.id.instemailinput);
-        instwebinput=(TextInputLayout)findViewById(R.id.instwebinput);
-        instphoneinput=(TextInputLayout)findViewById(R.id.instphoneinput);
-        instphoneainput=(TextInputLayout)findViewById(R.id.instphoneainput);
-        instuniversityinput=(TextInputLayout)findViewById(R.id.instuniversityinput);
-        instreginput=(TextInputLayout)findViewById(R.id.instreginput);
+        instnameinput = (TextInputLayout) findViewById(R.id.instnameinput);
+        instemailinput = (TextInputLayout) findViewById(R.id.instemailinput);
+        instwebinput = (TextInputLayout) findViewById(R.id.instwebinput);
+        instphoneinput = (TextInputLayout) findViewById(R.id.instphoneinput);
+        instphoneainput = (TextInputLayout) findViewById(R.id.instphoneainput);
+        instuniversityinput = (TextInputLayout) findViewById(R.id.instuniversityinput);
+        instreginput = (TextInputLayout) findViewById(R.id.instreginput);
+
+        caddrline1input = (TextInputLayout) findViewById(R.id.caddrline1input);
+        caddrline2input = (TextInputLayout) findViewById(R.id.caddrline2input);
+        caddrline3input = (TextInputLayout) findViewById(R.id.caddrline3input);
+
+        iname = (EditText) findViewById(R.id.instname);
+        iemail = (EditText) findViewById(R.id.instemail);
+        iweb = (EditText) findViewById(R.id.instweb);
+        iphone = (EditText) findViewById(R.id.instphone);
+        ialtphone = (EditText) findViewById(R.id.instphonea);
+        uniname = (EditText) findViewById(R.id.instuniversity);
+        ireg = (EditText) findViewById(R.id.instreg);
+        loctxt = (TextView) findViewById(R.id.loctxt);
 
 
-        iname=(EditText)findViewById(R.id.instname);
-        iemail=(EditText)findViewById(R.id.instemail);
-        iweb=(EditText)findViewById(R.id.instweb);
-        iphone=(EditText)findViewById(R.id.instphone);
-        ialtphone=(EditText)findViewById(R.id.instphonea);
-        uniname=(EditText)findViewById(R.id.instuniversity);
-        ireg=(EditText)findViewById(R.id.instreg);
+        caddrline1 = (EditText) findViewById(R.id.caddrline1);
+        caddrline2 = (EditText) findViewById(R.id.caddrline2);
+        caddrline3 = (EditText) findViewById(R.id.caddrline3);
+
 
         instnameinput.setTypeface(MyConstants.getLight(this));
         instemailinput.setTypeface(MyConstants.getLight(this));
@@ -110,6 +102,9 @@ public class AdminInstituteDetails extends AppCompatActivity {
         instphoneainput.setTypeface(MyConstants.getLight(this));
         instuniversityinput.setTypeface(MyConstants.getLight(this));
         instreginput.setTypeface(MyConstants.getLight(this));
+        caddrline1input.setTypeface(MyConstants.getLight(this));
+        caddrline2input.setTypeface(MyConstants.getLight(this));
+        caddrline3input.setTypeface(MyConstants.getLight(this));
 
         iname.setTypeface(MyConstants.getBold(this));
         iemail.setTypeface(MyConstants.getBold(this));
@@ -118,14 +113,23 @@ public class AdminInstituteDetails extends AppCompatActivity {
         ialtphone.setTypeface(MyConstants.getBold(this));
         uniname.setTypeface(MyConstants.getBold(this));
         ireg.setTypeface(MyConstants.getBold(this));
+        caddrline1.setTypeface(MyConstants.getBold(this));
+        caddrline2.setTypeface(MyConstants.getBold(this));
+        caddrline3.setTypeface(MyConstants.getBold(this));
+        loctxt.setTypeface(MyConstants.getBold(this));
 
         instname = a.getInstitute();
-        instemail= a.getInstemail();
-        instweb= a.getInstweb();
-        instphone= a.getInstphone();
-        instaltrphone= a.getInstaltrphone();
-        universityname= a.getUnivname();
-        instreg= a.getInstregno();
+        instemail = a.getInstemail();
+        instweb = a.getInstweb();
+        instphone = a.getInstphone();
+        instaltrphone = a.getInstaltrphone();
+        universityname = a.getUnivname();
+        instreg = a.getInstregno();
+
+        instcaddrline1 = a.getInstcaddrline1();
+        instcaddrline2 = a.getInstcaddrline2();
+        instcaddrline3 = a.getInstcaddrline3();
+
 
         if (instname != null)
             iname.setText(instname);
@@ -141,7 +145,17 @@ public class AdminInstituteDetails extends AppCompatActivity {
             uniname.setText(universityname);
         if (instreg != null)
             ireg.setText(instreg);
+        if (instreg != null)
+            ireg.setText(instreg);
 
+        if (instcaddrline1 != null)
+            caddrline1.setText(instcaddrline1);
+
+        if (instcaddrline2 != null)
+            caddrline2.setText(instcaddrline2);
+
+        if (instcaddrline3 != null)
+            caddrline3.setText(instcaddrline3);
 
         iname.addTextChangedListener(new TextWatcher() {
             @Override
@@ -151,7 +165,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                edittedFlag=1;
+                edittedFlag = 1;
                 instnameinput.setError(null);
             }
 
@@ -168,7 +182,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                edittedFlag=1;
+                edittedFlag = 1;
                 instemailinput.setError(null);
             }
 
@@ -185,7 +199,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                edittedFlag=1;
+                edittedFlag = 1;
                 instwebinput.setError(null);
             }
 
@@ -202,7 +216,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                edittedFlag=1;
+                edittedFlag = 1;
                 instphoneinput.setError(null);
             }
 
@@ -219,7 +233,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                edittedFlag=1;
+                edittedFlag = 1;
                 instphoneainput.setError(null);
             }
 
@@ -236,7 +250,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                edittedFlag=1;
+                edittedFlag = 1;
                 instuniversityinput.setError(null);
             }
 
@@ -253,7 +267,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                edittedFlag=1;
+                edittedFlag = 1;
                 instreginput.setError(null);
 
             }
@@ -263,13 +277,67 @@ public class AdminInstituteDetails extends AppCompatActivity {
 
             }
         });
+
+        caddrline1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                edittedFlag = 1;
+                caddrline1input.setError(null);
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        caddrline2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                edittedFlag = 1;
+                caddrline2input.setError(null);
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        caddrline3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                edittedFlag = 1;
+                caddrline3input.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
     }
 
-    void validateandSave()    {
+    void validateandSave() {
 
 
-
-        int errorflag1=0,errorflag2=0,errorflag3=0,errorflag4=0, errorflag5=0,errorflag6=0,errorflag7=0;
+        int errorflag1 = 0, errorflag2 = 0, errorflag3 = 0, errorflag4 = 0, errorflag5 = 0, errorflag6 = 0, errorflag7 = 0;
 
         instname = iname.getText().toString();
         instemail = iemail.getText().toString();
@@ -279,66 +347,79 @@ public class AdminInstituteDetails extends AppCompatActivity {
         universityname = uniname.getText().toString();
         instreg = ireg.getText().toString();
 
+        instcaddrline1 = caddrline1.getText().toString();
+        instcaddrline2 = caddrline2.getText().toString();
+        instcaddrline3 = caddrline3.getText().toString();
 
 
-
-        if (instname.length() < 2){
+        if (instname.length() < 2) {
             instnameinput.setError("Kindly enter valid institute name");
 
             errorflag7 = 1;
 
-        }else {
+        } else {
             if (!instemail.contains("@") || (!instemail.contains(".edu"))) {
                 instemailinput.setError("Kindly enter valid email address (must contain .edu)");
                 errorflag1 = 1;
             } else {
-                if (instweb.length() < 3 && !instweb.contains(".")) {
+                if (instweb.length() < 3 || !instweb.contains(".")) {
                     instwebinput.setError("Kindly enter valid website URL");
                     errorflag2 = 1;
                 } else {
-                    if (instphone.length() < 6) {
+                    if (instphone.length() < 10) {
                         instphoneinput.setError("Kindly enter valid phone number");
                         errorflag3 = 1;
                     } else {
-                        if (instaltrphone.length() < 6) {
-                            instphoneainput.setError("Kindly enter valid phone number");
-                            errorflag4 = 1;
+                        if (universityname.length() < 2) {
+                            instuniversityinput.setError("Kindly enter valid university name");
+                            errorflag5 = 1;
                         } else {
-                            if (universityname.length() < 2) {
-                                instuniversityinput.setError("Kindly enter valid university name");
-                                errorflag5 = 1;
+                            if (instreg.length() < 2) {
+                                instreginput.setError("Kindly enter valid registration number");
+                                errorflag6 = 1;
                             } else {
-                                if (instreg.length() < 2) {
-                                    instreginput.setError("Kindly enter valid registration number");
+                                if (instcaddrline1.length() < 2){
+                                    caddrline1input.setError("Kindly enter valid address");
                                     errorflag6 = 1;
                                 }
+                                else {
+                                    if (instcaddrline2.length() < 2) {
+                                        caddrline2input.setError("Kindly enter valid address");
+                                        errorflag6 = 1;
+                                    }
+                                    else {
+                                        if (instcaddrline3.length() < 2) {
+                                            caddrline3input.setError("Kindly enter valid address");
+                                            errorflag6 = 1;
+                                        }
+                                    }
+                                }
                             }
+
                         }
 
                     }
 
-
                 }
             }
         }
-        if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag5 == 0&& errorflag6 == 0 && errorflag7==0) {
+        if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag5 == 0 && errorflag6 == 0 && errorflag7 == 0) {
             try {
 //
 
                 /////******************object work*******************////////
                 //one field is to be stored in adminintro
-                try{
-                obj = new AdminInstituteModal(instname,instemail,instweb,instphone,instaltrphone,universityname,instreg);
+                try {
+                    Log.d("TAG", "validateandSave: instreg - "+instreg);
+                    obj = new AdminInstituteModal(instname, instemail, instweb, instphone, instaltrphone, universityname, instreg,instcaddrline1,instcaddrline2,instcaddrline3);
 //
+                    digest1 = MySharedPreferencesManager.getDigest1(this);
+                    digest2 = MySharedPreferencesManager.getDigest2(this);
 
-                    digest1=MySharedPreferencesManager.getDigest1(this);
-                    digest2=MySharedPreferencesManager.getDigest2(this);
-
-                    strobj =OtoString(obj,digest1,digest2);
-                    Log.d("TAG", "validateandSave: - "+strobj);
-                }
-                catch (Exception e){
-                    Log.d("TAG", "validateandSave: - "+e.getMessage());
+                    strobj = OtoString(obj, digest1, digest2);
+                    Log.d("TAG", "validateandSave: - " + strobj);
+                } catch (Exception e) {
+                    Log.d("TAG", "validateandSave: - " + e.getMessage());
                 }
                 new SaveData().execute();
 
@@ -349,8 +430,6 @@ public class AdminInstituteDetails extends AppCompatActivity {
         }
 
     }
-
-
 
 
     @Override
@@ -364,11 +443,12 @@ public class AdminInstituteDetails extends AppCompatActivity {
 
             case android.R.id.home:
                 onBackPressed();
-                return(true);
+                return (true);
         }
 
-        return(super.onOptionsItemSelected(item));
+        return (super.onOptionsItemSelected(item));
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.savemenu, menu);
@@ -377,7 +457,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(edittedFlag==1) {
+        if (edittedFlag == 1) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
             alertDialogBuilder
@@ -414,17 +494,15 @@ public class AdminInstituteDetails extends AppCompatActivity {
     }
 
 
-
     class SaveData extends AsyncTask<String, String, String> {
 
 
         protected String doInBackground(String... param) {
 
-            String r=null;
+            String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u",encUsername));    //0
-            params.add(new BasicNameValuePair("obj",strobj));    //1
-
+            params.add(new BasicNameValuePair("u", encUsername));    //0
+            params.add(new BasicNameValuePair("obj", strobj));    //1
 
 
             json = jParser.makeHttpRequest(MyConstants.url_SaveAdminInstituteData, "GET", params);
@@ -433,16 +511,17 @@ public class AdminInstituteDetails extends AppCompatActivity {
                 r = json.getString("info");
 
 
-            }catch (Exception e){e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return r;
         }
 
         @Override
         protected void onPostExecute(String result) {
 
-            if(result.equals("success"))
-            {
-                Toast.makeText(AdminInstituteDetails.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
+            if (result.equals("success")) {
+                Toast.makeText(AdminInstituteDetails.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
                 a.setFname(instname);
                 a.setInstemail(instemail);
                 a.setInstweb(instweb);
@@ -450,15 +529,14 @@ public class AdminInstituteDetails extends AppCompatActivity {
                 a.setInstaltrphone(instaltrphone);
                 a.setUnivname(universityname);
                 a.setInstregno(instreg);
-                MySharedPreferencesManager.save (AdminInstituteDetails.this,"instname",instname);
+                MySharedPreferencesManager.save(AdminInstituteDetails.this, "instname", instname);
 
-                if(edittedFlag==1){
+                if (edittedFlag == 1) {
                     setResult(111);
                 }
                 AdminInstituteDetails.super.onBackPressed();
-            }
-            else {
-                Toast.makeText(AdminInstituteDetails.this,"not saved"+result,Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(AdminInstituteDetails.this, "not saved" + result, Toast.LENGTH_SHORT).show();
 
             }
         }
