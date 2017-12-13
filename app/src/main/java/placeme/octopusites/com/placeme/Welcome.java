@@ -198,19 +198,19 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         scale3(tporl);
         scale4(hrrl);
     }
-   public void animateStudentRl(){
+    public void animateStudentRl(){
 
-           Intent intent = new Intent(Welcome.this, StudentRoleSelected.class);
+        Intent intent = new Intent(Welcome.this, StudentRoleSelected.class);
 
-           EasyTransitionOptions options =
-                   EasyTransitionOptions.makeTransitionOptions(
-                           Welcome.this,
-                           WelcomeRoleView.findViewById(R.id.iv_icon_student)
+        EasyTransitionOptions options =
+                EasyTransitionOptions.makeTransitionOptions(
+                        Welcome.this,
+                        WelcomeRoleView.findViewById(R.id.iv_icon_student)
 
-                   );
+                );
 
-           // start transition
-           EasyTransition.startActivityForResult(intent,1111, options);
+        // start transition
+        EasyTransition.startActivityForResult(intent,1111, options);
 
 
     }
@@ -1095,7 +1095,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                         Toast.makeText(Welcome.this, "Please select your role !", Toast.LENGTH_SHORT).show();
                     }
 
-                        if (path == 3) {
+                    if (path == 3) {
 
                         errorFlagThroughAdminIntro = false;
                         fname = fnameEditText.getText().toString().trim();
@@ -1664,6 +1664,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
             try {
 
+                Log.d("TAG", "digest1: "+digest1);
+                Log.d("TAG", "digest2: "+digest2);
                 byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
                 byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
                 String sPadding = "ISO10126Padding";
