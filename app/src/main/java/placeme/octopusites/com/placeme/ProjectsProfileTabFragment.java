@@ -276,6 +276,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 projinput1.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -294,7 +295,7 @@ public class ProjectsProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                edittedFlag = 1;
                 domaininput1.setError(null);
             }
 
@@ -311,7 +312,7 @@ public class ProjectsProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                edittedFlag = 1;
                 teaminput1.setError(null);
             }
 
@@ -328,7 +329,7 @@ public class ProjectsProfileTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                edittedFlag = 1;
                 durationinput1.setError(null);
             }
 
@@ -346,6 +347,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 projinput2.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -362,6 +364,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 domaininput2 .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -378,6 +381,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 teaminput2.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -394,6 +398,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 durationinput2.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -410,6 +415,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 projinput3.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -426,6 +432,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 domaininput3.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -442,6 +449,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 teaminput3 .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -458,6 +466,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 durationinput3 .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -474,6 +483,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 projinput4 .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -490,6 +500,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 domaininput4 .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -506,6 +517,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 teaminput4 .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -522,6 +534,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 durationinput4.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -538,6 +551,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 projinput5 .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -554,6 +568,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 domaininput5 .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -570,6 +585,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 teaminput5.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -586,6 +602,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 durationinput5 .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -602,6 +619,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 projinput6 .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -618,6 +636,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 domaininput6 .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -634,6 +653,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 teaminput6 .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -650,6 +670,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 durationinput6 .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -666,6 +687,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 projinput7.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -682,7 +704,9 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 domaininput7 .setError(null);
+                edittedFlag = 1;
             }
+
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -698,6 +722,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 teaminput7.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -714,6 +739,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 durationinput7 .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -730,7 +756,9 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 projinput8.setError(null);
+                edittedFlag = 1;
             }
+
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -746,6 +774,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 domaininput8.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -762,6 +791,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 teaminput8 .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -778,6 +808,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 durationinput8  .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -794,6 +825,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 projinput9 .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -810,6 +842,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 domaininput9 .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -826,6 +859,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 teaminput9 .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -842,6 +876,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 durationinput9  .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -858,6 +893,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 projinput10.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -874,6 +910,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 domaininput10 .setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -890,6 +927,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 teaminput10.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -906,6 +944,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 durationinput10.setError(null);
+                edittedFlag = 1;
             }
 
             @Override
@@ -3962,6 +4001,7 @@ public class ProjectsProfileTabFragment extends Fragment {
 
             if (result.equals("success")) {
 //                Toast.makeText(getActivity(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
 
                 if (role.equals("student"))
                     getActivity().setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
