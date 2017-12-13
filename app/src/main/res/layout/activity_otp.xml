@@ -61,6 +61,7 @@
             android:textColor="@color/while_color"
             android:inputType="number"
             android:textSize="16dp"
+            android:maxLength="6"
             android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
