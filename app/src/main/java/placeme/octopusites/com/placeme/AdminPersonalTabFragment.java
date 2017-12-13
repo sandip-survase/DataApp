@@ -706,10 +706,7 @@ public class AdminPersonalTabFragment extends Fragment {
         } else if (sname.length() < 2) {
             snameinput.setError("Kindly enter valid surname");
             errorflag1 = 1;
-        } else if (!alternateemail.contains("@") || !alternateemail.contains(".edu")) {
-            profileaemailinput.setError("Kindly enter valid email address");
-            errorflag1 = 1;
-        } else if (sinst.length() < 2) {
+        }  else if (sinst.length() < 2) {
             instinputlayout.setError("Kindly enter valid institute name");
             errorflag1 = 1;
         } else if (addrline1c.length() < 2) {

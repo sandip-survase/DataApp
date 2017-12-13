@@ -162,6 +162,7 @@ public class HrPersonalTabFragment extends Fragment {
         selectedCountry = hr.getCountry();
         selectedState = hr.getState();
         selectedCity = hr.getCity();
+
         firstname = hr.getFname();
         lastname = hr.getLname();
         designationValue = hr.getDesignation();
@@ -208,8 +209,12 @@ public class HrPersonalTabFragment extends Fragment {
 
         if(selectedCountry!=null && selectedState!=null && selectedCity!=null)
         {
-            CityStateCountry = selectedCity+" , "+selectedState+" , "+selectedCountry;
-            citystaecountry.setText(CityStateCountry);
+            if(!selectedCountry.equals("") && !selectedState.equals("") && !selectedCity.equals("")) {
+                CityStateCountry = selectedCity + " , " + selectedState + " , " + selectedCountry;
+                citystaecountry.setText(CityStateCountry);
+            }
+            else
+                citystaecountry.setText("");
         }
 
 

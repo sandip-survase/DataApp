@@ -122,7 +122,6 @@ public class EditProfileAlumni extends AppCompatActivity {
                     if(fragment.edittedFlag==1){
                         if(personal_success){
                             fragment.save();
-                            Toast.makeText(getApplicationContext(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -133,7 +132,6 @@ public class EditProfileAlumni extends AppCompatActivity {
 
                         if (project_success) {
                             projFrag.save();
-                            Toast.makeText(getApplicationContext(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -144,7 +142,6 @@ public class EditProfileAlumni extends AppCompatActivity {
 
                         if (project_success) {
                             expFrag.save();
-                            Toast.makeText(getApplicationContext(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

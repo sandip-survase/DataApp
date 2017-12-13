@@ -1617,6 +1617,7 @@ public class PersonalProfileTabFragment extends Fragment  {
         protected void onPostExecute(String result) {
 
             if (resultofop.equals("success")) {
+                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                 Log.d("TAG", "onPostExecute: role before- "+role);
                 if (role.equals("student")) {
                     Log.d("TAG", "onPostExecute: role - "+role);
