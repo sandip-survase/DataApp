@@ -1313,8 +1313,14 @@ public class PersonalProfileTabFragment extends Fragment  {
                 languagesknownedittext.setText(lang1 + ", " + lang2 + ", " + lang3 + ", " + lang4 + ", " + lang5 + ", " + lang6 + ", " + lang7 + ", " + lang8 + ", " + lang9);
         }
         if (lang1 != null && lang2 != null && lang3 != null && lang4 != null && lang5 != null && lang6 != null && lang7 != null && lang8 != null && lang9 != null && lang10 != null) {
+
             if (!lang1.equals("- Select Language -") && !lang2.equals("- Select Language -") && !lang3.equals("- Select Language -") && !lang4.equals("- Select Language -") && !lang5.equals("- Select Language -") && !lang6.equals("- Select Language -") && !lang7.equals("- Select Language -") && !lang8.equals("- Select Language -") && !lang9.equals("- Select Language -") && !lang10.equals("- Select Language -"))
-                languagesknownedittext.setText(lang1 + ", " + lang2 + ", " + lang3 + ", " + lang4 + ", " + lang5 + ", " + lang6 + ", " + lang7 + ", " + lang8 + ", " + lang9 + ", " + lang10);
+                if(lang1.length()>1)
+                    languagesknownedittext.setText(lang1 + ", " + lang2 + ", " + lang3 + ", " + lang4 + ", " + lang5 + ", " + lang6 + ", " + lang7 + ", " + lang8 + ", " + lang9 + ", " + lang10);
+                else
+                {
+                    languagesknownedittext.setText("No languages");
+                }
         }
     }
 

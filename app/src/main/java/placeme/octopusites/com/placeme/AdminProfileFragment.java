@@ -114,10 +114,9 @@ public class AdminProfileFragment extends Fragment {
     String email2 = "", addressline1 = "", addressline2 = "", addressline3 = "", telephone = "", mobile = "", mobile2 = "";
     String post1 = "", inst1 = "", post2 = "", inst2 = "", post3 = "", inst3 = "", post4 = "", inst4 = "", post5 = "", inst5 = "", post6 = "", inst6 = "", post7 = "", inst7 = "", post8 = "", inst8 = "", post9 = "", inst9 = "", post10 = "", inst10 = "";
     String fromdate1 = "", todate1 = "", fromdate2 = "", todate2 = "", fromdate3 = "", todate3 = "", fromdate4 = "", todate4 = "", fromdate5 = "", todate5 = "", fromdate6 = "", todate6 = "", fromdate7 = "", todate7 = "", fromdate8 = "", todate8 = "", fromdate9 = "", todate9 = "", fromdate10 = "", todate10 = "";
-    String dob = "", gender = "", paddrline1 = "", paddrline2 = "", paddrline3 = "", personaldataobject = "";
+    String dob = "", gender = "", paddrline1 = "", paddrline2 = "", paddrline3 = "", personaldataobject = "",ucode="";
     boolean hrinfobox1 = false, hrinfobox2 = false, hrinfobox3 = false;
 
-    String ucode = "";
 
 
     int percentProfile = 0;
@@ -484,6 +483,10 @@ public class AdminProfileFragment extends Fragment {
 
     void populateData() {
         setVisibilityExpbox();
+
+        if(!ucode.equals(""))
+            myprofilepreview.setText(ucode);
+
 
         if (found_AdminIntro == 1) {
             if (!fname.equals("") && !lname.equals("")) {
@@ -2267,9 +2270,15 @@ public class AdminProfileFragment extends Fragment {
 
 
                 resultofop = json.getString("info");
+
                 Log.d("tag", "JSON resultofop - " + resultofop);
+
                 if (resultofop.equals("found")) {
-//                    ucode = json.getString("ucode");
+
+                    ucode = json.getString("ucode");
+
+
+
 //                    phone = json.getString("phoned");
 
 

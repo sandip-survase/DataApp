@@ -446,11 +446,7 @@ public class HrContactTabFragment extends Fragment {
                 if (plainusername.equals(hremail2)) {
                     errorflag = 1;
                     emai2input.setError("Personal and professional email cannot be same");
-                } else {
-                    if (!email2.getText().toString().contains("@") || !email2.getText().toString().contains(".edu")) {
-                        errorflag = 1;
-                        emai2input.setError("Kindly enter valid professional email address");
-                    } else {
+                }  else {
                         if (hraddressline1.length() < 1) {
                             errorflag = 1;
                             addressline1input.setError("Kindly enter valid address");
@@ -470,7 +466,7 @@ public class HrContactTabFragment extends Fragment {
                                     }
                             }
                         }
-                    }
+
                 }
             }
 

@@ -118,8 +118,8 @@ public class EditProfileAlumni extends AppCompatActivity {
                 // 0 2 5
                 if(currentPosition==0){
                     PersonalProfileTabFragment fragment = (PersonalProfileTabFragment) adapter.getItem(0);
+                    Boolean personal_success = fragment.validate();
                     if(fragment.edittedFlag==1){
-                        Boolean personal_success = fragment.validate();
                         if(personal_success){
                             fragment.save();
                             Toast.makeText(getApplicationContext(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
@@ -128,8 +128,9 @@ public class EditProfileAlumni extends AppCompatActivity {
                 }
                 if(currentPosition==2) {
                     ProjectsProfileTabFragment projFrag = (ProjectsProfileTabFragment) adapter.getItem(2);
+                    Boolean project_success = projFrag.myvalidate();
                     if (projFrag.edittedFlag == 1) {
-                        Boolean project_success = projFrag.myvalidate();
+
                         if (project_success) {
                             projFrag.save();
                             Toast.makeText(getApplicationContext(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
@@ -138,8 +139,9 @@ public class EditProfileAlumni extends AppCompatActivity {
                 }
                 if(currentPosition==5) {
                     HrExperiencesTabFragment   expFrag= (HrExperiencesTabFragment) adapter.getItem(5);
+                    Boolean project_success = expFrag.validate();
                     if (expFrag.edittedFlag == 1) {
-                        Boolean project_success = expFrag.validate();
+
                         if (project_success) {
                             expFrag.save();
                             Toast.makeText(getApplicationContext(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
@@ -148,7 +150,6 @@ public class EditProfileAlumni extends AppCompatActivity {
                 }
 
                 setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
-
             }
         });
 

@@ -84,7 +84,7 @@ public class MyProfileAlumniFragment extends Fragment {
     public static final String Username = "nameKey";
     public static final String alumniLog = "alumniLog";
     final static CharSequence[] items = {"Update Profile Picture", "Delete Profile Picture"};
-    public String role = "";
+    public String role = "",ucode="";
     ImageView insti4, exp2, exp3;
     CircleImageView myprofileimg;
     ImageButton iv_camera;
@@ -440,13 +440,13 @@ public class MyProfileAlumniFragment extends Fragment {
             }
         });
 
-
         myprofileimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), ViewProfileImage.class));
             }
         });
+
         iv_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -553,9 +553,11 @@ public class MyProfileAlumniFragment extends Fragment {
         setVisibilityExpbox();
 
         percentProfile = 0;
+        if(!ucode.equals(""))
+        myprofilepreview.setText(ucode);
+
 
         if (found_box1 == 1) {
-
             percentProfile++;
             if (!fname.equals("") && !lname.equals("")) {
                 String firstLetterCapFirstname = fname.substring(0, 1).toUpperCase() + fname.substring(1);
@@ -2770,10 +2772,12 @@ public class MyProfileAlumniFragment extends Fragment {
 
                 resultofop = json.getString("info");
 
+
                 Log.d("TAG", "info " + resultofop);
+                Log.d("TAG", "json " + json);
 
                 if (resultofop.equals("found")) {
-
+                    ucode = json.getString("ucode");
                     phone = json.getString("phone");
 
                     s = json.getString("intro");
@@ -2796,10 +2800,10 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setCountry(country);
                         studentData.setState(state);
                         studentData.setCity(city);
-                        Log.d("TAG", "doInBackground: country -"+country);
-                        Log.d("TAG", "doInBackground: state -"+state);
-                        Log.d("TAG", "doInBackground: city -"+city);
-                        Log.d("TAG", "dataobject===: " + dataobject);
+//                        Log.d("TAG", "doInBackground: country -"+country);
+//                        Log.d("TAG", "doInBackground: state -"+state);
+//                        Log.d("TAG", "doInBackground: city -"+city);
+//                        Log.d("TAG", "dataobject===: " + dataobject);
                     }
 
                     s = json.getString("career");
@@ -3004,10 +3008,10 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setBoard12(obj2.selectedboardBytes1);
                         studentData.setYearofpassing12(obj2.monthandyearofpassing12);
 
-                        Log.d("TAG", "twelthdataobject===: " + twelthdataobject);
-                        Log.d("TAG", " twelthdataobject yearofpassing12===: " + yearofpassing12);
-                        Log.d("TAG", " twelthdataobject schoolname12===: " + schoolname12);
-                        Log.d("TAG", " twelthdataobject board12===: " + board12);
+//                        Log.d("TAG", "twelthdataobject===: " + twelthdataobject);
+//                        Log.d("TAG", " twelthdataobject yearofpassing12===: " + yearofpassing12);
+//                        Log.d("TAG", " twelthdataobject schoolname12===: " + schoolname12);
+//                        Log.d("TAG", " twelthdataobject board12===: " + board12);
 
 
                     }
@@ -3138,11 +3142,11 @@ public class MyProfileAlumniFragment extends Fragment {
                         universitypgyear = obj.getSelectedUniversitypgyear();
                         collegenamepgyear = obj.getSchoolnamepgyears();
                         yearofpassingpgyear = obj.getMonthandyearofpassingpgyear();
-
-                        Log.d("TAG", "doInBackground: coursepgyear - " + coursepgyear);
-                        Log.d("TAG", "doInBackground: streampgyear - " + streampgyear);
-                        Log.d("TAG", "doInBackground: collegenamepgyear - " + collegenamepgyear);
-                        Log.d("TAG", "doInBackground: yearofpassingpgyear - " + yearofpassingpgyear);
+//
+//                        Log.d("TAG", "doInBackground: coursepgyear - " + coursepgyear);
+//                        Log.d("TAG", "doInBackground: streampgyear - " + streampgyear);
+//                        Log.d("TAG", "doInBackground: collegenamepgyear - " + collegenamepgyear);
+//                        Log.d("TAG", "doInBackground: yearofpassingpgyear - " + yearofpassingpgyear);
 
                         studentData.setMarksyear1pgyear(marksyear1pgyear);
                         studentData.setOutofyear1pgyear(outofyear1pgyear);

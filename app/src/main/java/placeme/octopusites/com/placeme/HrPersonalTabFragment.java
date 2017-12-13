@@ -159,8 +159,6 @@ public class HrPersonalTabFragment extends Fragment {
 
         roleValue = MySharedPreferencesManager.getRole(getActivity());
         role.setText(roleValue.toUpperCase());
-
-
         selectedCountry = hr.getCountry();
         selectedState = hr.getState();
         selectedCity = hr.getCity();

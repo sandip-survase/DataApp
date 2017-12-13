@@ -78,19 +78,19 @@ public class HRProfileFragment extends Fragment {
     String dataobject = "",companydataobject="", careerdataobject = "", strengthdataobject = "", weaknessesdataobject = "", locationpreferencesdataobject = "", tenthdataobject = "", ugdataobject = "", personaldataobject = "", contact_details_dataobject = "", twelthdataobject = "", diplomadataobject = "", experiencesataobject;
 
     TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt;
-    TextView editprofiletxt, eduboxtxt, expboxtxt, accomplishmentsboxtxt, instemailtxt, contactboxtxt, instcontactemail, acc4txttxt, instwebtxt;
+    TextView editprofiletxt, eduboxtxt, expboxtxt, accomplishmentsboxtxt, instemailtxt,caddinst,instcontactaddr, contactboxtxt, instcontactemail, acc4txttxt, instwebtxt;
     TextView myprofilecource, instteletxt, insttelephone, instwebsite, acc2txt, acc2txttxt, acc4txt, acc5txt, acc6txt, acc7txt, acc5txttxt, acc6txttxt, acc7txttxt;
     TextView exp1txt, myprofileexpfromto, myprofileexp1name, myprofileexp2name, exp2txt, myprofileexpfromto2, myprofileexp3name, exp3txt, myprofileexpfromto3, emailtxt, myprofileclgname, nametxt, mobiletxt, contactpersonalemail, contactaddr, contactprofesionalemail, myprofiledomain1, myprofileduration1, myprofiledomain2, myprofileduration2, myprofiledomain3, myprofileduration3, careerobjtxttxt, strengthstxt, weaknessestxt, locationpreferences, contactaddr1, contactmobile, contactemail, myprofilepreview;
     HashMap<String, Integer> hashMap;
     ImageView introedit, eduedit, expedit, accomplishmentsedit, careeredit, contactedit, exp2, exp3;
     final static CharSequence[] items = {"View Profile Picture", "Update Profile Picture", "Delete Profile Picture"};
     RelativeLayout editprofilerl, exptab2, exptab3;
-    String username = "", resultofop;
+    String username = "", resultofop="",ucode="";
     //
 
     String fname = "", lname = "", country = "", state = "", city = "", designation = "", phone = "";
     int found_intro_box = 0, found_contact_details = 0, found_skills = 0, found_honors = 0, found_patents = 0, found_publications = 0;
-    String email2 = "", addressline1 = "", addressline2 = "", addressline3 = "", telephone = "", mobile2 = "";
+    String email2 = "", addressline1 = "", addressline2 = "", addressline3 = "", telephone = "", mobile2 = "", instcaddrline1 = "", instcaddrline2 = "", instcaddrline3 = "";
     String skill1 = "", skill2 = "", skill3 = "", skill4 = "", skill5 = "", skill6 = "", skill7 = "", skill8 = "", skill9 = "", skill10 = "", skill11 = "", skill12 = "", skill13 = "", skill14 = "", skill15 = "", skill16 = "", skill17 = "", skill18 = "", skill19 = "", skill20 = "";
     String sproficiency1 = "", sproficiency2 = "", sproficiency3 = "", sproficiency4 = "", sproficiency5 = "", sproficiency6 = "", sproficiency7 = "", sproficiency8 = "", sproficiency9 = "", sproficiency10 = "", sproficiency11 = "", sproficiency12 = "", sproficiency13 = "", sproficiency14 = "", sproficiency15 = "", sproficiency16 = "", sproficiency17 = "", sproficiency18 = "", sproficiency19 = "", sproficiency20 = "";
     String htitle1 = "", hissuer1 = "", hdescription1 = "", htitle2 = "", hissuer2 = "", hdescription2 = "", htitle3 = "", hissuer3 = "", hdescription3 = "", htitle4 = "", hissuer4 = "", hdescription4 = "", htitle5 = "", hissuer5 = "", hdescription5 = "", htitle6 = "", hissuer6 = "", hdescription6 = "", htitle7 = "", hissuer7 = "", hdescription7 = "", htitle8 = "", hissuer8 = "", hdescription8 = "", htitle9 = "", hissuer9 = "", hdescription9 = "", htitle10 = "", hissuer10 = "", hdescription10 = "", yearofhonor1 = "", yearofhonor2 = "", yearofhonor3 = "", yearofhonor4 = "", yearofhonor5 = "", yearofhonor6 = "", yearofhonor7 = "", yearofhonor8 = "", yearofhonor9 = "", yearofhonor10 = "";
@@ -177,6 +177,8 @@ public class HRProfileFragment extends Fragment {
         profileprogress = (ProgressBar) rootView.findViewById(R.id.profileprogress);
         updateProgress = (ProgressBar) rootView.findViewById(R.id.updateProgress);
 
+        caddinst= (TextView) rootView.findViewById(R.id.caddinst);
+        instcontactaddr= (TextView) rootView.findViewById(R.id.instcontactaddr);
 
         swipe_refresh_layout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
         SwipeRefreshLayout tswipe_refresh_layout = (SwipeRefreshLayout) getActivity().findViewById(R.id.swipe_refresh_layout);
@@ -230,12 +232,8 @@ public class HRProfileFragment extends Fragment {
 
 
         contactaddr1 = (TextView) rootView.findViewById(R.id.contactaddr);
-
         contactmobile = (TextView) rootView.findViewById(R.id.contactmobile);
-
         myprofilepreview = (TextView) rootView.findViewById(R.id.myprofilepreview);
-
-
 
         myprofilepreview.setTypeface(MyConstants.getBold(getActivity()));
         myprofilename.setTypeface(MyConstants.getBold(getActivity()));
@@ -250,8 +248,9 @@ public class HRProfileFragment extends Fragment {
         expboxtxt.setTypeface(MyConstants.getBold(getActivity()));
         accomplishmentsboxtxt.setTypeface(MyConstants.getBold(getActivity()));
         contactboxtxt.setTypeface(MyConstants.getBold(getActivity()));
+        caddinst.setTypeface(MyConstants.getLight(getActivity()));
 
-        myprofilecource.setTypeface(MyConstants.getBold(getActivity()));
+        myprofilecource.setTypeface(MyConstants.getLight(getActivity()));
         instemailtxt.setTypeface(MyConstants.getLight(getActivity()));
         instwebtxt.setTypeface(MyConstants.getLight(getActivity()));
         instteletxt.setTypeface(MyConstants.getLight(getActivity()));
@@ -262,7 +261,7 @@ public class HRProfileFragment extends Fragment {
         acc6txt.setTypeface(MyConstants.getLight(getActivity()));
         acc7txt.setTypeface(MyConstants.getLight(getActivity()));
 //
-        myprofileclgname.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileclgname.setTypeface(MyConstants.getBold(getActivity()));
         instcontactemail.setTypeface(MyConstants.getBold(getActivity()));
         instwebsite.setTypeface(MyConstants.getBold(getActivity()));
         insttelephone.setTypeface(MyConstants.getBold(getActivity()));
@@ -271,7 +270,7 @@ public class HRProfileFragment extends Fragment {
         acc5txttxt.setTypeface(MyConstants.getBold(getActivity()));
         acc6txttxt.setTypeface(MyConstants.getBold(getActivity()));
         acc7txttxt.setTypeface(MyConstants.getBold(getActivity()));
-
+        instcontactaddr.setTypeface(MyConstants.getBold(getActivity()));
         exp1txt.setTypeface(MyConstants.getBold(getActivity()));
         myprofileexp1name.setTypeface(MyConstants.getLight(getActivity()));
         myprofileexpfromto.setTypeface(MyConstants.getLight(getActivity()));
@@ -650,11 +649,13 @@ public class HRProfileFragment extends Fragment {
 
                 resultofop=json.getString("info");
 
+
                 Log.d("TAG", "doInBackground: resultofop - "+resultofop);
 
                 if(resultofop.equals("found"))
                 {
                     phone=json.getString("phone");
+                    ucode = json.getString("ucode");
 
                     s=json.getString("intro");
 
@@ -716,6 +717,7 @@ public class HRProfileFragment extends Fragment {
                         Companyaddl1str = objstr.ComAdd1;
                         Companyaddl2str = objstr.ComAdd2;
                         Companyaddl3str = objstr.ComAdd3;
+
 
                         hrData.setCompanyName(CompanyNamestr);
                         hrData.setCompanyEmail(CompanyEmailstr);
@@ -1597,6 +1599,9 @@ public class HRProfileFragment extends Fragment {
 
             percentProfile = 0;
 
+            if(!ucode.equals(""))
+                myprofilepreview.setText(ucode);
+
             if (found_intro_box == 1) {
                 if (!fname.equals("") && !lname.equals("")) {
 
@@ -1697,11 +1702,11 @@ public class HRProfileFragment extends Fragment {
 
             if (found_box1 == 1) {
                 if (CompanyNamestr != "") {
-                    myprofilecource.setText(CompanyNamestr);
+                    myprofileclgname.setText(CompanyNamestr);
                 }
-                if (Companyaddl1str != "" && Companyaddl2str != "" && Companyaddl3str != "") {
-                    myprofileclgname.setText(Companyaddl1str + ", " + Companyaddl2str + ", " + Companyaddl3str);
-                }
+//                if (Companyaddl1str != "" && Companyaddl2str != "" && Companyaddl3str != "") {
+//                    myprofileclgname.setText(Companyaddl1str + ", " + Companyaddl2str + ", " + Companyaddl3str);
+//                }
                 if (CompanyEmailstr != "") {
                     instcontactemail.setText(CompanyEmailstr);
                 }
@@ -1712,6 +1717,10 @@ public class HRProfileFragment extends Fragment {
                 if (Companyphonestr != "") {
                     insttelephone.setText(Companyphonestr);
                 }
+                if (!Companyaddl1str.equals("")) {
+                    instcontactaddr.setText(Companyaddl1str + " " + Companyaddl2str + " " + Companyaddl3str);
+                }
+
                 percentProfile++;
 
             }

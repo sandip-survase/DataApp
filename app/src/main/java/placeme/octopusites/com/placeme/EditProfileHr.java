@@ -134,9 +134,9 @@ public class EditProfileHr extends AppCompatActivity {
                 }
                 if (currentPosition == 4) {
                     HrContactTabFragment hrContactTabFragment = (HrContactTabFragment) adapter.getItem(4);
+                    Boolean contact_success = hrContactTabFragment.validate();
                     if (hrContactTabFragment.edittedFlag == 1) {
-                        Boolean project_success = hrContactTabFragment.validate();
-                        if (project_success) {
+                        if (contact_success) {
                             hrContactTabFragment.save();
                             Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                         }

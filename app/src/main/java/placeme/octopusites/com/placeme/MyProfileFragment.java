@@ -103,7 +103,7 @@ public class MyProfileFragment extends Fragment {
     ImageView introedit, eduedit, projectsedit, accomplishmentsedit, careeredit, contactedit;
     final static CharSequence[] items = {"Update Profile Picture", "Delete Profile Picture"};
     RelativeLayout editprofilerl;
-    String username = "", resultofop,dataobject="",careerdataobject="",strengthdataobject="",weaknessesdataobject="",locationpreferencesdataobject="",tenthdataobject="",ugdataobject="",personaldataobject="",contact_details_dataobject="";
+    String username = "",ucode="", resultofop="",dataobject="",careerdataobject="",strengthdataobject="",weaknessesdataobject="",locationpreferencesdataobject="",tenthdataobject="",ugdataobject="",personaldataobject="",contact_details_dataobject="";
     String fname = "", mname = "", lname = "", country = "", state = "", city = "", role = "", plainusername = "", phone = "";
     String marks10 = "", outof10 = "", percentage10 = "", schoolname10 = "", board10 = "", yearofpassing10 = "", marks12 = "", outof12 = "", percentage12 = "", schoolname12 = "", board12 = "", stream12 = "", yearofpassing12 = "", markssem1diploma = "", outofsem1diploma = "", percentagesem1diploma = "", markssem2diploma = "", outofsem2diploma = "", percentagesem2diploma = "", markssem3diploma = "", outofsem3diploma = "", percentagesem3diploma = "", markssem4diploma = "", outofsem4diploma = "", percentagesem4diploma = "", markssem5diploma = "", outofsem5diploma = "", percentagesem5diploma = "", markssem6diploma = "", outofsem6diploma = "", percentagesem6diploma = "", aggregatediploma = "", coursediploma = "", streamdiploma = "", universitydiploma = "", collegenamediploma = "", yearofpassingdiploma = "";
     String markssem1ug = "", outofsem1ug = "", percentagesem1ug = "", markssem2ug = "", outofsem2ug = "", percentagesem2ug = "", markssem3ug = "", outofsem3ug = "", percentagesem3ug = "", markssem4ug = "", outofsem4ug = "", percentagesem4ug = "", markssem5ug = "", outofsem5ug = "", percentagesem5ug = "", markssem6ug = "", outofsem6ug = "", percentagesem6ug = "", markssem7ug = "", outofsem7ug = "", percentagesem7ug = "", markssem8ug = "", outofsem8ug = "", percentagesem8ug = "", aggregateug = "", courseug = "", streamug = "", universityug = "", collegenameug = "", yearofpassingug = "";
@@ -522,11 +522,10 @@ public class MyProfileFragment extends Fragment {
                 String s = "";
                 Log.d("TAG", "doInBackround: after " + username);
                 resultofop = json.getString("info");
-
                 Log.d("TAG", "info1 " + resultofop);
 
                 if (resultofop.equals("found")) {
-
+                    ucode = json.getString("ucode");
                     phone = json.getString("phone");
 
                     s = json.getString("intro");
@@ -2140,6 +2139,10 @@ public class MyProfileFragment extends Fragment {
 
     void populateData() {
         Log.d("TAG", "populateData: welcome to populate");
+
+        if(!ucode.equals(""))
+            myprofilepreview.setText(ucode);
+
 
         if (found_contact_details == 1) {
             if (!addressline1.equals("")) {

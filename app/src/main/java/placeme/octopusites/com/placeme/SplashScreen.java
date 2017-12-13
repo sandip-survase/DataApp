@@ -433,14 +433,21 @@ public class SplashScreen extends Activity {
         protected String doInBackground(String... param) {
 
             String username = MySharedPreferencesManager.getUsername(SplashScreen.this);
+
+            Log.d("***", "doInBackground: user "+username);
+            Log.d("***", "doInBackground: aid "+android_id);
+            Log.d("***", "doInBackground: did "+device_id);
+
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("aid", android_id));
             params.add(new BasicNameValuePair("did", device_id));
             params.add(new BasicNameValuePair("u", username));
 
             json = jParser.makeHttpRequest(MyConstants.url_getdigest, "GET", params);
+            Log.d("  ***", "doInBackground: json -"+json);
             try {
                 info = json.getString("info");
+
 
                 if (info != null && info.equals("success")) {
 
@@ -458,6 +465,7 @@ public class SplashScreen extends Activity {
                 }
 
             } catch (Exception e) {
+                Log.d("TAG", "doInBackground: exception in splashsreen"+e.getMessage());
                 e.printStackTrace();
             }
             return info;

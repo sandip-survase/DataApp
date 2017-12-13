@@ -177,11 +177,11 @@ public class HrIntro extends AppCompatActivity {
                 citystaecountry.setText(CityStateCountry);
             }
             else
-                citystaecountry.setText("City/District");
+                citystaecountry.setText("");
 
         }
         else
-            citystaecountry.setText("City/District");
+            citystaecountry.setText("");
 
         try {
             JSONObject jsonObject = new JSONObject(getJson());
@@ -333,7 +333,6 @@ public class HrIntro extends AppCompatActivity {
         }
 
         if (errorflagfirstname == 0 && errorflagCountry == 0 && errorflagState == 0 && errorflagCity == 0 && errorflaglastname == 0 && errorflagdesignation == 0) {
-
             try {
 
                 ModalHrIntro obj2 = new ModalHrIntro(firstname, lastname, designationValue, selectedCity, selectedState, selectedCountry);
@@ -428,6 +427,7 @@ public class HrIntro extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", encUsername));
             params.add(new BasicNameValuePair("d", encobj));       //1
 
+            Log.d("TAG", "doInBackground: HRintro activity-----------------------------------");
             json = jParser.makeHttpRequest(MyConstants.url_SaveHrIntro, "GET", params);
             try {
                 r = json.getString("info");
@@ -442,6 +442,7 @@ public class HrIntro extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             if (result.equals("success")) {
+
                 Toast.makeText(HrIntro.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
                 setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
 

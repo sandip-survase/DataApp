@@ -379,13 +379,17 @@
                             android:layout_marginRight="10dp"
                             android:textSize="12dp"
                             android:layout_below="@+id/myprofilecource"
-                            android:text="Company address"
-                            android:textColor="#282f35"
+                            android:text="Company Name"
+                            android:textColor="@color/dark_color"
                             android:ellipsize="start"
                             />
 
 
                     </RelativeLayout>
+
+
+                    <!--****************-->
+
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -394,9 +398,64 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_below="@+id/edutab1"
-                        android:id="@+id/edutab2"
+                        android:id="@+id/instcontacttab1"
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
+                        android:paddingBottom="10dp"
+                        >
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/location_icon"
+                            android:id="@+id/instcontacttab2"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            />
+                        <TextView
+                            android:layout_toRightOf="@+id/instcontacttab2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/caddinst"
+                            android:text="Company Address"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:ellipsize="start"
+                            android:textSize="14dp"
+                            android:textColor="#03353e"
+
+                            />
+
+                        <TextView
+                            android:layout_toRightOf="@+id/instcontacttab2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/instcontactaddr"
+                            android:layout_below="@+id/caddinst"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="13dp"
+                            android:text="Address line1, Address line2, Address line3."
+                            android:textColor="#03353e"
+                            android:ellipsize="start"
+                            />
+
+
+                    </RelativeLayout>
+                    <!--*****************-->
+
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_below="@+id/instcontacttab1"
+                        android:id="@+id/edutab2"
+                        android:elevation="2dp"
+                        android:background="@drawable/boxborder"
                         android:paddingBottom="10dp"
                         >
                         <ImageView

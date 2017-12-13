@@ -169,7 +169,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Alternate Phone Number (with STD code)*"
+                android:hint="Alternate Phone Number (with STD code)"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
                 android:maxLength="11"

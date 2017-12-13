@@ -476,10 +476,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
         } else if (ComPhone.length() < 7) {
             instphoneinput.setError("Kindly enter valid Phone number");
             errorflag1 = 1;
-        } else if (ComAlterPhone.length() < 7) {
-            instphoneainput.setError("Kindly enter valid Alternate Phone");
-            errorflag1 = 1;
-        } else if (ComCIIN.length() < 3) {
+        }  else if (ComCIIN.length() < 3) {
             instreginput.setError("Kindly enter valid Company CIIN");
             errorflag1 = 1;
         } else if (pos == 0) {

@@ -467,9 +467,6 @@ public class HrCompanyDetails extends AppCompatActivity {
         } else if (ComPhone.length() < 7) {
             instphoneinput.setError("Kindly enter valid Phone number");
             errorflag4 = 1;
-        } else if (ComAlterPhone.length() < 7) {
-            instphoneainput.setError("Kindly enter valid Alternate Phone");
-            errorflag5 = 1;
         } else if (ComCIIN.length() < 3) {
             instreginput.setError("Kindly enter valid Company CIIN");
             errorflag6 = 1;
@@ -479,7 +476,7 @@ public class HrCompanyDetails extends AppCompatActivity {
         }
 
 
-        if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag5 == 0 && errorflag6 == 0 && errorflag7 == 0 && errorflag8 == 0 && errorflag9 == 0 && errorflag10 == 0) {
+        if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 &&  errorflag6 == 0 && errorflag7 == 0 && errorflag8 == 0 && errorflag9 == 0 && errorflag10 == 0) {
 
             try {
 

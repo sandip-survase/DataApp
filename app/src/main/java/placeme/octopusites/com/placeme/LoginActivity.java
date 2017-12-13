@@ -214,6 +214,9 @@ public class LoginActivity extends AppCompatActivity {
         if (newUserCheck!=null && newUserCheck.equals("yes")) {
             startActivity(new Intent(LoginActivity.this, OTPActivity.class));
         }
+
+        if(MySharedPreferencesManager.getUsername(this)!=null&&MySharedPreferencesManager.getPassword(this)!=null)
+            attemptLogin(MySharedPreferencesManager.getUsername(this),MySharedPreferencesManager.getPassword(this));
     }
 
     void attemptLogin(String u, String p) {
