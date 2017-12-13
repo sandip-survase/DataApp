@@ -139,14 +139,43 @@ public class MyProfileFragment extends Fragment {
     int percentProfile = 0;
     ProgressBar profileprogress;
 
+    public void bottomupbox2(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.bottom_up_box2);
+        view.startAnimation(animation1);
+        animation1.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                profileprogress.setVisibility(View.VISIBLE);
+                View box2section=rootView.findViewById(R.id.box2section);
+                box2section.setVisibility(View.VISIBLE);
+                editprofiletxt.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_my_profile, container, false);
 
         box1=(RelativeLayout)rootView.findViewById(R.id.box1);
-        box2=(View)rootView.findViewById(R.id.box2);
+        box2=rootView.findViewById(R.id.box2);
         edutab4=(RelativeLayout)rootView.findViewById(R.id.edutab4);
+
+
         edutab2=(RelativeLayout)rootView.findViewById(R.id.edutab2);
         edutab1=(RelativeLayout)rootView.findViewById(R.id.edutab1);
         edutab3=(RelativeLayout)rootView.findViewById(R.id.edutab3);
@@ -181,6 +210,7 @@ public class MyProfileFragment extends Fragment {
         tswipe_refresh_layout.setVisibility(View.GONE);
         myprofileimg = (CircleImageView) rootView.findViewById(R.id.myprofileimg);
         iv_camera=(ImageButton)  rootView.findViewById(R.id.iv_camera);
+
         myprofilename = (TextView) rootView.findViewById(R.id.myprofilename);
         myprofilrole = (TextView) rootView.findViewById(R.id.myprofilrole);
         myprofiledu = (TextView) rootView.findViewById(R.id.myprofiledu);
@@ -189,6 +219,10 @@ public class MyProfileFragment extends Fragment {
         myprofilepercenttxt = (TextView) rootView.findViewById(R.id.myprofilepercenttxt);
         editprofiletxt = (TextView) rootView.findViewById(R.id.editprofiletxt);
         eduboxtxt = (TextView) rootView.findViewById(R.id.eduboxtxt);
+        ImageView box2pencil=(ImageView) rootView.findViewById(R.id.box2pencil);
+
+
+
         projboxtxt = (TextView) rootView.findViewById(R.id.projboxtxt);
         accomplishmentsboxtxt = (TextView) rootView.findViewById(R.id.accomplishmentsboxtxt);
         careerboxtxt = (TextView) rootView.findViewById(R.id.careerboxtxt);
@@ -315,8 +349,18 @@ public class MyProfileFragment extends Fragment {
         contactmobile.setTypeface(MyConstants.getBold(getActivity()));
 
 
-
-
+        if(!ShouldAnimateProfile.shouldAnimate)
+        {
+            MyConstants.bottomupbox1(getActivity(),box1);
+            bottomupbox2(getActivity(),box2);
+            MyConstants.bottomupbox4(getActivity(),edutab4);
+            MyConstants.fade(getActivity(),myprofileimg);
+            MyConstants.fade(getActivity(),iv_camera);
+            MyConstants.bottomupbox3(getActivity(),eduboxtxt);
+            MyConstants.bottomupbox3(getActivity(),box2pencil);
+            MyConstants.fadeandmovedown(getActivity(),myprofilepreview);
+            ShouldAnimateProfile.shouldAnimate=true;
+        }
 
 
 

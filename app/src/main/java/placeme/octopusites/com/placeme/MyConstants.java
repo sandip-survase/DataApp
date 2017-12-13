@@ -1,7 +1,11 @@
 package placeme.octopusites.com.placeme;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 /**
  * Created by admin on 9/27/2017.
@@ -137,7 +141,8 @@ public class MyConstants {
     public static final String url_SavePlacedDebarInfo = "http://192.168.100.20:8080/AESTest/SavePlacedDebarInfo";
     public static final String url_GetPlacedDebarInfo = "http://192.168.100.20:8080/AESTest/GetPlacedDebarInfo";
     public static final String url_DeleteNonActiveUser = "http://192.168.100.20:8080/AESTest/DeleteNonActiveUser";
-    public static final String url_SaveWelcomeIntroData = "http://192.168.100.100/AESTest/SaveNewUserWelcomeIntroData";
+    public static final String url_SaveWelcomeIntroData = "http://192.168.100.100" +
+            "/AESTest/SaveNewUserWelcomeIntroData";
     public static final String url_SaveStudentFnameLnameMobile = "http://192.168.100.100/AESTest/SaveStudentFnameLnameMobile";
 
 //    private static String url = "http://192.168.100.100/HandleMobileRequests/getimg.jsp?username=";
@@ -177,11 +182,119 @@ public class MyConstants {
     {
         return Typeface.createFromAsset(context.getAssets(),  "fonts/righteous.ttf");
     }
+    public static void fade(Activity activity, View view){
 
-    //--
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.fadein);
+        view.startAnimation(animation1);
+    }
+    public static void fadeandmovedown(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.fadeinmove);
+        view.startAnimation(animation1);
+    }
+    public static void slideoutleft2(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.slideoutleft2);
+        view.startAnimation(animation1);
 
 
-    public static String url_save_intro_data = "http://192.168.100.100/AESTest/SaveAlumniIntro";
+    }
+    public static void fadeout(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.fadeout);
+        view.startAnimation(animation1);
+
+
+    }
+    public static void slideinleft1(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.slideinleft1);
+        view.startAnimation(animation1);
+    }
+    public static void slideinleft2(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.slideinleft2);
+        view.startAnimation(animation1);
+    }
+    public static void scale1(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.scaleup1);
+        view.startAnimation(animation1);
+    }
+    public static void scale2(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.scaleup2);
+        view.startAnimation(animation1);
+    }
+    public static void scale3(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.scaleup3);
+        view.startAnimation(animation1);
+    }
+    public static void scale4(Activity activity,View view){
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.scaleup4);
+        view.startAnimation(animation1);
+    }
+    public static void scaledown(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.scaledown);
+        view.startAnimation(animation1);
+
+    }
+    public static void bottomupbox1(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.bottom_up_box1);
+        view.startAnimation(animation1);
+
+    }
+    public static void bottomupbox2(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.bottom_up_box2);
+        view.startAnimation(animation1);
+
+    }
+    public static void bottomupbox3(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.bottom_up_box3);
+        view.startAnimation(animation1);
+
+    }
+    public static void bottomupbox4(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.bottom_up_box4);
+        view.startAnimation(animation1);
+
+    }
 
 
 
