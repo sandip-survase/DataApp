@@ -250,9 +250,9 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             locationcount++;
                         } else
-                            Toast.makeText(MyProfileLocationPreferences.this, "Please Enter First Location", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileLocationPreferences.this, "Please enter empty location", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileLocationPreferences.this, "Please Enter First Location", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileLocationPreferences.this, "Please enter empty location", Toast.LENGTH_SHORT).show();
 
 
                 } else if (locationcount == 1) {
@@ -266,9 +266,9 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
                             locationcount++;
 
                         } else
-                            Toast.makeText(MyProfileLocationPreferences.this, "Please Enter Second Location", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileLocationPreferences.this, "Please enter empty location", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileLocationPreferences.this, "Please Enter Second Location", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileLocationPreferences.this, "Please enter empty location", Toast.LENGTH_SHORT).show();
 
                 } else if (locationcount == 2) {
                     if (location3.getText().toString() != null) {
@@ -281,9 +281,9 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             locationcount++;
                         } else
-                            Toast.makeText(MyProfileLocationPreferences.this, "Please Enter Third Location", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileLocationPreferences.this, "Please enter empty location", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileLocationPreferences.this, "Please Enter First Third", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileLocationPreferences.this, "Please enter empty location", Toast.LENGTH_SHORT).show();
 
                 } else if (locationcount == 3) {
 
@@ -303,9 +303,9 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
                             t.setVisibility(View.GONE);
                             i.setVisibility(View.GONE);
                         } else
-                            Toast.makeText(MyProfileLocationPreferences.this, "Please Enter Fifth Location", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileLocationPreferences.this, "Please enter empty location", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileLocationPreferences.this, "Please Enter Fifth Location", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileLocationPreferences.this, "Please enter empty location", Toast.LENGTH_SHORT).show();
 
 
                 }

@@ -190,6 +190,7 @@
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch1"
+                android:id="@+id/expire1"
 
                 />
 
@@ -380,6 +381,7 @@
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch2"
+                android:id="@+id/expire2"
                 />
 
             <android.support.v7.widget.SwitchCompat
@@ -569,6 +571,7 @@
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch3"
+                android:id="@+id/expire3"
                 />
 
             <android.support.v7.widget.SwitchCompat
@@ -759,6 +762,7 @@
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch4"
+                android:id="@+id/expire4"
                 />
 
             <android.support.v7.widget.SwitchCompat
@@ -950,6 +954,7 @@
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch5"
+                android:id="@+id/expire5"
                 />
 
             <android.support.v7.widget.SwitchCompat
@@ -1140,6 +1145,7 @@
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch6"
+                android:id="@+id/expire6"
                 />
 
             <android.support.v7.widget.SwitchCompat
@@ -1332,6 +1338,7 @@
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch7"
+                android:id="@+id/expire7"
                 />
 
             <android.support.v7.widget.SwitchCompat
@@ -1522,6 +1529,7 @@
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch8"
+                android:id="@+id/expire8"
                 />
 
             <android.support.v7.widget.SwitchCompat
@@ -1714,6 +1722,7 @@
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch9"
+                android:id="@+id/expire9"
                 />
 
             <android.support.v7.widget.SwitchCompat
@@ -1903,6 +1912,7 @@
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch10"
+                android:id="@+id/expire10"
                 />
 
             <android.support.v7.widget.SwitchCompat

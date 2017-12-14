@@ -395,11 +395,11 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MyProfileSkills.this, "Please fill the first skill", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(MyProfileSkills.this, "Please fill the first skill", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
 
 
                 } else if (skillcount == 1) {
@@ -420,11 +420,11 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MyProfileSkills.this, "Please fill the second skill", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(MyProfileSkills.this, "Please fill the second skill", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
 
                 }
                 else if (skillcount == 2) {
@@ -447,11 +447,11 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MyProfileSkills.this, "Please fill the Third skill", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(MyProfileSkills.this, "Please fill the Third skill", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
 
 
                 } else if (skillcount == 3) {
@@ -472,11 +472,11 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MyProfileSkills.this, "Please fill the Fourth skill", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(MyProfileSkills.this, "Please fill the Fourth skill", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
 
                 }
                 else if (skillcount == 4) {
@@ -496,11 +496,11 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MyProfileSkills.this, "Please fill the Fifth skill", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(MyProfileSkills.this, "Please fill the Fifth skill", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
 
 
 
@@ -522,11 +522,11 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MyProfileSkills.this, "Please fill the Sixth skill", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(MyProfileSkills.this, "Please fill the Sixth skill", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
 
 
                 } else if (skillcount == 6) {
@@ -546,11 +546,11 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MyProfileSkills.this, "Please fill the Seventh skill", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(MyProfileSkills.this, "Please fill the Seventh skill", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
 
 
                 } else if (skillcount == 7) {
@@ -571,11 +571,11 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MyProfileSkills.this, "Please fill the Eighth skill", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(MyProfileSkills.this, "Please fill the Eighth skill", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
 
 
 
@@ -600,11 +600,11 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MyProfileSkills.this, "Please fill the Nineth skill", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(MyProfileSkills.this, "Please fill the Nineth skill", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
 
 
 
@@ -630,11 +630,11 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MyProfileSkills.this, "Please fill the Tenth skill", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(MyProfileSkills.this, "Please fill the Tenth skill", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
 
 
 
@@ -657,11 +657,11 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MyProfileSkills.this, "Please fill the Eleventh skill", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(MyProfileSkills.this, "Please fill the Eleventh skill", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
 
 
 
@@ -685,11 +685,11 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MyProfileSkills.this, "Please fill the Twelth skill", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(MyProfileSkills.this, "Please fill the Twelth skill", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
 
 
 
@@ -713,11 +713,11 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MyProfileSkills.this, "Please fill the Thirteenth skill", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(MyProfileSkills.this, "Please fill the Thirteenth skill", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
 
 
 
@@ -740,11 +740,11 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MyProfileSkills.this, "Please fill the Fourteenth skill", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(MyProfileSkills.this, "Please fill the Fourteenth skill", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
 
 
 
@@ -768,11 +768,11 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MyProfileSkills.this, "Please fill the Fiftheenth skill", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(MyProfileSkills.this, "Please fill the Fiftheenth skill", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
 
 
 
@@ -796,11 +796,11 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MyProfileSkills.this, "Please fill the Sixteenth skill", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(MyProfileSkills.this, "Please fill the Sixteenth skill", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
 
 
 
@@ -823,11 +823,11 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MyProfileSkills.this, "Please fill the Seventeenth skill", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(MyProfileSkills.this, "Please fill the Seventeenth skill", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
 
 
 
@@ -849,11 +849,11 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MyProfileSkills.this, "Please fill the Eighteenth skill", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(MyProfileSkills.this, "Please fill the Eighteenth skill", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                 }
                 else if (skillcount == 18) {
 
@@ -882,11 +882,11 @@ public class MyProfileSkills extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MyProfileSkills.this, "Please fill the Nineteenth skill", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(MyProfileSkills.this, "Please fill the Nineteenth skill", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileSkills.this, "Please fill the empty skill", Toast.LENGTH_SHORT).show();
 
 
                 }

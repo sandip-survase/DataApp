@@ -51,7 +51,7 @@ public class MyProfileCertifications extends AppCompatActivity {
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-    int editcertfi=0;
+    int editcertfi = 0;
     boolean blnswitch1, blnswitch2, blnswitch3, blnswitch4, blnswitch5, blnswitch6, blnswitch7, blnswitch8, blnswitch9, blnswitch10;
     EditText title1, issuer1, license1, title2, issuer2, license2, title3, issuer3, license3, title4, issuer4, license4, title5, issuer5, license5, title6, issuer6, license6, title7, issuer7, license7, title8, issuer8, license8, title9, issuer9, license9, title10, issuer10, license10;
     EditText startdate1, enddate1, startdate2, enddate2, startdate3, enddate3, startdate4, enddate4, startdate5, enddate5, startdate6, enddate6, startdate7, enddate7, startdate8, enddate8, startdate9, enddate9, startdate10, enddate10;
@@ -61,7 +61,8 @@ public class MyProfileCertifications extends AppCompatActivity {
     String encwillexpire1, encwillexpire2, encwillexpire3, encwillexpire4, encwillexpire5, encwillexpire6, encwillexpire7, encwillexpire8, encwillexpire9, encwillexpire10;
     TextInputLayout titleinput1, issuerinput1, licenseinput1, titleinput2, issuerinput2, licenseinput2, titleinput3, issuerinput3, licenseinput3, titleinput4, issuerinput4, licenseinput4, titleinput5, issuerinput5, licenseinput5, titleinput6, issuerinput6, licenseinput6, titleinput7, issuerinput7, licenseinput7, titleinput8, issuerinput8, licenseinput8, titleinput9, issuerinput9, licenseinput9, titleinput10, issuerinput10, licenseinput10;
 
-
+    TextView expire1, expire2, expire3, expire4, expire5, expire6, expire7, expire8, expire9, expire10;
+    TextView aadt;
     SwitchCompat switch1, switch2, switch3, switch4, switch5, switch6, switch7, switch8, switch9, switch10;
     View trash1selectionview, trash2selectionview, trash3selectionview, trash4selectionview, trash5selectionview, trash6selectionview, trash7selectionview, trash8selectionview, trash9selectionview, trash10selectionview;
     int edittedFlag = 0;
@@ -203,6 +204,39 @@ public class MyProfileCertifications extends AppCompatActivity {
         issuer10 = (EditText) findViewById(R.id.issuer10);
         license10 = (EditText) findViewById(R.id.license10);
 
+        startdate1 = (EditText) findViewById(R.id.startdate1);
+        enddate1 = (EditText) findViewById(R.id.enddate1);
+        startdate2 = (EditText) findViewById(R.id.startdate2);
+        enddate2 = (EditText) findViewById(R.id.enddate2);
+        startdate3 = (EditText) findViewById(R.id.startdate3);
+        enddate3 = (EditText) findViewById(R.id.enddate3);
+        startdate4 = (EditText) findViewById(R.id.startdate4);
+        enddate4 = (EditText) findViewById(R.id.enddate4);
+        startdate5 = (EditText) findViewById(R.id.startdate5);
+        enddate5 = (EditText) findViewById(R.id.enddate5);
+        startdate6 = (EditText) findViewById(R.id.startdate6);
+        enddate6 = (EditText) findViewById(R.id.enddate6);
+        startdate7 = (EditText) findViewById(R.id.startdate7);
+        enddate7 = (EditText) findViewById(R.id.enddate7);
+        startdate8 = (EditText) findViewById(R.id.startdate8);
+        enddate8 = (EditText) findViewById(R.id.enddate8);
+        startdate9 = (EditText) findViewById(R.id.startdate9);
+        enddate9 = (EditText) findViewById(R.id.enddate9);
+        startdate10 = (EditText) findViewById(R.id.startdate10);
+        enddate10 = (EditText) findViewById(R.id.enddate10);
+
+        expire1 = (TextView) findViewById(R.id.expire1);
+        expire2 = (TextView) findViewById(R.id.expire2);
+        expire3 = (TextView) findViewById(R.id.expire3);
+        expire4 = (TextView) findViewById(R.id.expire4);
+        expire5 = (TextView) findViewById(R.id.expire5);
+        expire6 = (TextView) findViewById(R.id.expire6);
+        expire7 = (TextView) findViewById(R.id.expire7);
+        expire8 = (TextView) findViewById(R.id.expire8);
+        expire9 = (TextView) findViewById(R.id.expire9);
+        expire10 = (TextView) findViewById(R.id.expire10);
+        aadt = (TextView) findViewById(R.id.addmorecertitxt);
+
 
         titleinput1 = (TextInputLayout) findViewById(R.id.titleinput1);
         issuerinput1 = (TextInputLayout) findViewById(R.id.issuerinput1);
@@ -264,6 +298,7 @@ public class MyProfileCertifications extends AppCompatActivity {
         certistartdate10 = (TextInputLayout) findViewById(R.id.certistartdate10);
         certienddate10 = (TextInputLayout) findViewById(R.id.certienddate10);
 
+        aadt.setTypeface(MyConstants.getBold(this));
         title1.setTypeface(MyConstants.getBold(this));
         issuer1.setTypeface(MyConstants.getBold(this));
         license1.setTypeface(MyConstants.getBold(this));
@@ -294,6 +329,38 @@ public class MyProfileCertifications extends AppCompatActivity {
         title10.setTypeface(MyConstants.getBold(this));
         issuer10.setTypeface(MyConstants.getBold(this));
         license10.setTypeface(MyConstants.getBold(this));
+        startdate1.setTypeface(MyConstants.getBold(this));
+
+        enddate1.setTypeface(MyConstants.getBold(this));
+        startdate2.setTypeface(MyConstants.getBold(this));
+        enddate2.setTypeface(MyConstants.getBold(this));
+        startdate3.setTypeface(MyConstants.getBold(this));
+        enddate3.setTypeface(MyConstants.getBold(this));
+        startdate4.setTypeface(MyConstants.getBold(this));
+        enddate4.setTypeface(MyConstants.getBold(this));
+        startdate5.setTypeface(MyConstants.getBold(this));
+        enddate5.setTypeface(MyConstants.getBold(this));
+        startdate6.setTypeface(MyConstants.getBold(this));
+        enddate6.setTypeface(MyConstants.getBold(this));
+        startdate7.setTypeface(MyConstants.getBold(this));
+        enddate7.setTypeface(MyConstants.getBold(this));
+        startdate8.setTypeface(MyConstants.getBold(this));
+        enddate8.setTypeface(MyConstants.getBold(this));
+        startdate9.setTypeface(MyConstants.getBold(this));
+        enddate9.setTypeface(MyConstants.getBold(this));
+        startdate10.setTypeface(MyConstants.getBold(this));
+        enddate10.setTypeface(MyConstants.getBold(this));
+
+        expire1.setTypeface(MyConstants.getLight(this));
+        expire2.setTypeface(MyConstants.getLight(this));
+        expire3.setTypeface(MyConstants.getLight(this));
+        expire4.setTypeface(MyConstants.getLight(this));
+        expire5.setTypeface(MyConstants.getLight(this));
+        expire6.setTypeface(MyConstants.getLight(this));
+        expire7.setTypeface(MyConstants.getLight(this));
+        expire8.setTypeface(MyConstants.getLight(this));
+        expire9.setTypeface(MyConstants.getLight(this));
+        expire10.setTypeface(MyConstants.getLight(this));
 
 
         titleinput1.setTypeface(MyConstants.getLight(this));
@@ -1013,26 +1080,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             }
         });
 
-        startdate1 = (EditText) findViewById(R.id.startdate1);
-        enddate1 = (EditText) findViewById(R.id.enddate1);
-        startdate2 = (EditText) findViewById(R.id.startdate2);
-        enddate2 = (EditText) findViewById(R.id.enddate2);
-        startdate3 = (EditText) findViewById(R.id.startdate3);
-        enddate3 = (EditText) findViewById(R.id.enddate3);
-        startdate4 = (EditText) findViewById(R.id.startdate4);
-        enddate4 = (EditText) findViewById(R.id.enddate4);
-        startdate5 = (EditText) findViewById(R.id.startdate5);
-        enddate5 = (EditText) findViewById(R.id.enddate5);
-        startdate6 = (EditText) findViewById(R.id.startdate6);
-        enddate6 = (EditText) findViewById(R.id.enddate6);
-        startdate7 = (EditText) findViewById(R.id.startdate7);
-        enddate7 = (EditText) findViewById(R.id.enddate7);
-        startdate8 = (EditText) findViewById(R.id.startdate8);
-        enddate8 = (EditText) findViewById(R.id.enddate8);
-        startdate9 = (EditText) findViewById(R.id.startdate9);
-        enddate9 = (EditText) findViewById(R.id.enddate9);
-        startdate10 = (EditText) findViewById(R.id.startdate10);
-        enddate10 = (EditText) findViewById(R.id.enddate10);
+
 
         startdate1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -1446,7 +1494,6 @@ public class MyProfileCertifications extends AppCompatActivity {
         startdate3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String toDate = enddate3.getText().toString();
                 showDateDialog(startdate3, false, 0, "", toDate);
             }
@@ -1710,7 +1757,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                editcertfi=0;
+                editcertfi = 0;
 
 
                 if (certicount == 0) {
@@ -1724,9 +1771,9 @@ public class MyProfileCertifications extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             certicount++;
                         } else
-                            Toast.makeText(MyProfileCertifications.this, "Please fill the first certificate", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCertifications.this, "Please fill the first certificate", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
 
 
                 } else if (certicount == 1) {
@@ -1740,9 +1787,9 @@ public class MyProfileCertifications extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             certicount++;
                         } else
-                            Toast.makeText(MyProfileCertifications.this, "Please fill the second certificate", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCertifications.this, "Please fill the second certificate", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
 
 
                 } else if (certicount == 2) {
@@ -1755,9 +1802,9 @@ public class MyProfileCertifications extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             certicount++;
                         } else
-                            Toast.makeText(MyProfileCertifications.this, "Please fill the third certificate", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCertifications.this, "Please fill the third certificate", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
 
 
                 } else if (certicount == 3) {
@@ -1770,9 +1817,9 @@ public class MyProfileCertifications extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             certicount++;
                         } else
-                            Toast.makeText(MyProfileCertifications.this, "Please fill the fourth certificate", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCertifications.this, "Please fill the fourth certificate", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
 
 
                 } else if (certicount == 4) {
@@ -1785,9 +1832,9 @@ public class MyProfileCertifications extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             certicount++;
                         } else
-                            Toast.makeText(MyProfileCertifications.this, "Please fill the fifth certificate", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCertifications.this, "Please fill the fifth certificate", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
 
 
                 } else if (certicount == 5) {
@@ -1801,9 +1848,9 @@ public class MyProfileCertifications extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             certicount++;
                         } else
-                            Toast.makeText(MyProfileCertifications.this, "Please fill the sixth certificate", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCertifications.this, "Please fill the sixth certificate", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
 
 
                 } else if (certicount == 6) {
@@ -1816,9 +1863,9 @@ public class MyProfileCertifications extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             certicount++;
                         } else
-                            Toast.makeText(MyProfileCertifications.this, "Please fill the seventh certificate", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCertifications.this, "Please fill the seventh certificate", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
 
 
                 } else if (certicount == 7) {
@@ -1831,9 +1878,9 @@ public class MyProfileCertifications extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             certicount++;
                         } else
-                            Toast.makeText(MyProfileCertifications.this, "Please fill the eighth certificate", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCertifications.this, "Please fill the eighth certificate", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
 
 
                 } else if (certicount == 8) {
@@ -1845,15 +1892,15 @@ public class MyProfileCertifications extends AppCompatActivity {
                             RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.certirl10);
                             relativeLayout1.setVisibility(View.VISIBLE);
                             certicount++;
-                            TextView t = (TextView) findViewById(R.id.addmorecertitxt);
+
                             ImageView i = (ImageView) findViewById(R.id.addmorecertiimg);
                             addmorecerti.setVisibility(View.GONE);
-                            t.setVisibility(View.GONE);
+                            aadt.setVisibility(View.GONE);
                             i.setVisibility(View.GONE);
                         } else
-                            Toast.makeText(MyProfileCertifications.this, "Please fill the ninth certificate", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCertifications.this, "Please fill the ninth certificate", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -1896,7 +1943,7 @@ public class MyProfileCertifications extends AppCompatActivity {
         stitle4 = s.getTitle4();
         sissuer4 = s.getIssuer4();
 
-        Log.d("TAG", "doInBackground: sissuer4 - "+sissuer4);
+        Log.d("TAG", "doInBackground: sissuer4 - " + sissuer4);
 
         slicense4 = s.getLicense4();
         sstartdate4 = s.getStartdate4certificate();
@@ -2274,11 +2321,9 @@ public class MyProfileCertifications extends AppCompatActivity {
 
         int errorflag = 0;
 
-        if(editcertfi==1)
-        {
+        if (editcertfi == 1) {
             savecertifi();
-        }
-        else {
+        } else {
             if (certicount == 0) {
                 if (stitle1.length() < 3) {
                     errorflag = 1;
@@ -3909,7 +3954,7 @@ public class MyProfileCertifications extends AppCompatActivity {
 
     }
 
-    public void savecertifi(){
+    public void savecertifi() {
 
         try {
 
@@ -5394,13 +5439,13 @@ public class MyProfileCertifications extends AppCompatActivity {
             enddate9.setText(senddate9);
             switch9.setChecked(blnswitch10);
 
-            if(stitle1.equals("") && sissuer1.equals("") && slicense1.equals("") && sstartdate1.equals("") && senddate1.equals("") && !blnswitch1){
+            if (stitle1.equals("") && sissuer1.equals("") && slicense1.equals("") && sstartdate1.equals("") && senddate1.equals("") && !blnswitch1) {
                 Log.d("TAG", "deleteLang: lang 1");
-                editcertfi =1;
+                editcertfi = 1;
             }
 
-            if(editcertfi==1){
-                Log.d("TAG", "deleteLang: editcertfi - "+editcertfi);
+            if (editcertfi == 1) {
+                Log.d("TAG", "deleteLang: editcertfi - " + editcertfi);
                 savecertifi();
             }
 
@@ -5609,7 +5654,6 @@ public class MyProfileCertifications extends AppCompatActivity {
         int h = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 215, getResources().getDisplayMetrics());
         alertDialog.getWindow().setLayout(w, h);
     }
-
 
 
     void setMonthYear(EditText id, String selectedMonth, String selectedYear, boolean isValid) {

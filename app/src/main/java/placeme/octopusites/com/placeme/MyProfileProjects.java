@@ -1055,10 +1055,10 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
 
                             projectscount++;
                         } else
-                            Toast.makeText(MyProfileProjects.this, "Please Enter First Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileProjects.this, "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     }
                     else
-                        Toast.makeText(MyProfileProjects.this, "Please Enter First Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileProjects.this, "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
                 }
                 else  if(projectscount==1)
@@ -1075,10 +1075,10 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
                     projectscount++;
 
                         } else
-                            Toast.makeText(MyProfileProjects.this, "Please Enter Second Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileProjects.this, "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     }
                     else
-                        Toast.makeText(MyProfileProjects.this, "Please Enter Second Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileProjects.this, "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -1096,10 +1096,10 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
                     projectscount++;
 
                         } else
-                            Toast.makeText(MyProfileProjects.this, "Please Enter Third Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileProjects.this, "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     }
                     else
-                        Toast.makeText(MyProfileProjects.this, "Please Enter Third Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileProjects.this, "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -1118,10 +1118,10 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
                     projectscount++;
 
                         } else
-                            Toast.makeText(MyProfileProjects.this, "Please Enter Fourth Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileProjects.this, "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     }
                     else
-                        Toast.makeText(MyProfileProjects.this, "Please Enter Fourth Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileProjects.this, "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -1140,10 +1140,10 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
                     projectscount++;
 
                         } else
-                            Toast.makeText(MyProfileProjects.this, "Please Enter Fifth Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileProjects.this, "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     }
                     else
-                        Toast.makeText(MyProfileProjects.this, "Please Enter Fifth Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileProjects.this, "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -1161,10 +1161,10 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
                     projectscount++;
 
                         } else
-                            Toast.makeText(MyProfileProjects.this, "Please Enter Sixth Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileProjects.this, "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     }
                     else
-                        Toast.makeText(MyProfileProjects.this, "Please Enter Sixth Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileProjects.this, "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
 
 
@@ -1185,10 +1185,10 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
                     projectscount++;
 
                         } else
-                            Toast.makeText(MyProfileProjects.this, "Please Enter Seventh Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileProjects.this, "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     }
                     else
-                        Toast.makeText(MyProfileProjects.this, "Please Enter Seventh Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileProjects.this, "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
                 }
                 else  if(projectscount==7)
@@ -1205,10 +1205,10 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
                     projectscount++;
 
                         } else
-                            Toast.makeText(MyProfileProjects.this, "Please Enter Eighth Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileProjects.this, "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     }
                     else
-                        Toast.makeText(MyProfileProjects.this, "Please Enter Eighth Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileProjects.this, "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
 
 
@@ -1235,10 +1235,10 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
                     i.setVisibility(View.GONE);
 
                         } else
-                            Toast.makeText(MyProfileProjects.this, "Please Enter Nineth Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileProjects.this, "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     }
                     else
-                        Toast.makeText(MyProfileProjects.this, "Please Enter Nineth Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileProjects.this, "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
                 }
 

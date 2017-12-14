@@ -1380,9 +1380,9 @@ public class MyProfileCourses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             coursecount++;
                         } else
-                            Toast.makeText(MyProfileCourses.this, "Please fill the first Course", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCourses.this, "Please fill the first Course", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
 
                 } else if (coursecount == 1) {
                     if (name2.getText().toString() != null && inst2.getText().toString() != null && fromdate2.getText().toString() != null && todate2.getText().toString() != null) {
@@ -1395,9 +1395,9 @@ public class MyProfileCourses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             coursecount++;
                         } else
-                            Toast.makeText(MyProfileCourses.this, "Please fill the Second Course", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCourses.this, "Please fill the Second Course", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
 
 
                 } else if (coursecount == 2) {
@@ -1410,9 +1410,9 @@ public class MyProfileCourses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             coursecount++;
                         } else
-                            Toast.makeText(MyProfileCourses.this, "Please fill the Third Course", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCourses.this, "Please fill the Third Course", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
 
 
                 } else if (coursecount == 3) {
@@ -1426,9 +1426,9 @@ public class MyProfileCourses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             coursecount++;
                         } else
-                            Toast.makeText(MyProfileCourses.this, "Please fill the Fourth Course", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCourses.this, "Please fill the Fourth Course", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
 
 
                 } else if (coursecount == 4) {
@@ -1442,9 +1442,9 @@ public class MyProfileCourses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             coursecount++;
                         } else
-                            Toast.makeText(MyProfileCourses.this, "Please fill the Fifth Course", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCourses.this, "Please fill the Fifth Course", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
 
                 } else if (coursecount == 5) {
                     if (name6.getText().toString() != null && inst6.getText().toString() != null && fromdate6.getText().toString() != null && todate6.getText().toString() != null) {
@@ -1456,9 +1456,9 @@ public class MyProfileCourses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             coursecount++;
                         } else
-                            Toast.makeText(MyProfileCourses.this, "Please fill the Sixth Course", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCourses.this, "Please fill the Sixth Course", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
 
 
                 } else if (coursecount == 6) {
@@ -1472,9 +1472,9 @@ public class MyProfileCourses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             coursecount++;
                         } else
-                            Toast.makeText(MyProfileCourses.this, "Please fill the Seventh Course", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCourses.this, "Please fill the Seventh Course", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
 
 
                 } else if (coursecount == 7) {
@@ -1487,9 +1487,9 @@ public class MyProfileCourses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             coursecount++;
                         } else
-                            Toast.makeText(MyProfileCourses.this, "Please fill the Eighth Course", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCourses.this, "Please fill the Eighth Course", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
 
 
                 } else if (coursecount == 8) {
@@ -1507,9 +1507,9 @@ public class MyProfileCourses extends AppCompatActivity {
                             t.setVisibility(View.GONE);
                             i.setVisibility(View.GONE);
                         } else
-                            Toast.makeText(MyProfileCourses.this, "Please fill the Nineth Course", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCourses.this, "Please fill the Nineth Course", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -3047,8 +3047,7 @@ public class MyProfileCourses extends AppCompatActivity {
             id.setText(selectedMonth + ", " + selectedYear);
         } else {
 //            textInputLayout.setError("Choose valid date 123");
-            nameinput1.setError("errrrrrororor");
-            todateinput1.setError("errrrrrororor");
+            todateinput1.setError("please fill todate");
             Toast.makeText(this, "Invalid date " + textInputLayout, Toast.LENGTH_LONG).show();
             id.setText("");
         }

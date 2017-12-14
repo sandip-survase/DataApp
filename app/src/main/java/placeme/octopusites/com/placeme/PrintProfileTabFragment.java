@@ -106,7 +106,7 @@ public class PrintProfileTabFragment extends Fragment {
                     case R.id.radioButtonWord:
                         format="word";
                         radioButtonPdf.setChecked(true);
-                        Toast.makeText(getActivity(),"Word option is not available right now, but will be available soon.",Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(),"Word option is not available right now, but will be available soon.",Toast.LENGTH_LONG).show();
                         break;
                 }
             }
@@ -512,7 +512,7 @@ public class PrintProfileTabFragment extends Fragment {
                 DownloadManager localDownloadManager = (DownloadManager)getContext().getSystemService(DOWNLOAD_SERVICE);
                 Uri uri = new Uri.Builder()
                         .scheme("http")
-                        .authority("192.168.100.10:")
+                        .authority("192.168.100.10")
                         .path("GenerateResumeWithJODConverter3/DownloadResume")
                         .appendQueryParameter("username",username)
                         .appendQueryParameter("format",format)

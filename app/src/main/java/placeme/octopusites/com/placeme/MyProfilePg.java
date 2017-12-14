@@ -226,6 +226,23 @@ public class MyProfilePg extends AppCompatActivity {
         yearofpassingpgsem.setTypeface(MyConstants.getBold(this));
         yearofpassingpgyear.setTypeface(MyConstants.getBold(this));
 
+        pmarksyear1.setTypeface(MyConstants.getBold(this));
+                poutofyear1.setTypeface(MyConstants.getBold(this));
+                ppercentyear1.setTypeface(MyConstants.getBold(this));
+                pmarksyear2.setTypeface(MyConstants.getBold(this));
+                poutofyear2.setTypeface(MyConstants.getBold(this));
+                ppercentyear2.setTypeface(MyConstants.getBold(this));
+                pmarksyear3.setTypeface(MyConstants.getBold(this));
+                poutofyear3.setTypeface(MyConstants.getBold(this));
+                ppercentyear3.setTypeface(MyConstants.getBold(this));
+                pgyearaggregate.setTypeface(MyConstants.getBold(this));
+                otheryearcourse.setTypeface(MyConstants.getBold(this));
+                otheryearstream.setTypeface(MyConstants.getBold(this));
+                otheryearuniversity.setTypeface(MyConstants.getBold(this));
+                schoolnamepgyear.setTypeface(MyConstants.getBold(this));
+
+
+
         pmarkssem1input.setTypeface(MyConstants.getLight(this));
         ppercentsem1input.setTypeface(MyConstants.getLight(this));
         pmarksusem2input.setTypeface(MyConstants.getLight(this));
@@ -249,6 +266,7 @@ public class MyProfilePg extends AppCompatActivity {
         othersemuniversityinput.setTypeface(MyConstants.getLight(this));
         schoolnamepgseminput.setTypeface(MyConstants.getLight(this));
         yearofpassingpgseminput.setTypeface(MyConstants.getLight(this));
+
         pmarksuyear1input.setTypeface(MyConstants.getLight(this));
         poutofyear1input.setTypeface(MyConstants.getLight(this));
         ppercentyear1input.setTypeface(MyConstants.getLight(this));
@@ -944,9 +962,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//
                 poutofyear1input.setError(null);
-
                 try {
                     double percentage = 0;
                     String s1 = pmarksyear1.getText().toString();
@@ -2290,7 +2306,6 @@ public class MyProfilePg extends AppCompatActivity {
                                                                                     float aggg=0;
                                                                                     if(!aggregatepgsem.equals(""))
                                                                                         aggg=Float.parseFloat(aggregatepgsem);
-
                                                                                     if (aggg<=0||aggg>=100) {
                                                                                         errorflag1 = 1;
                                                                                         pgsemaggregateinput.setError("Incorrect Aggregate");
@@ -2477,8 +2492,6 @@ public class MyProfilePg extends AppCompatActivity {
 
                                                 if(!aggregatepgyear.equals(""))
                                                     aggg = Float.parseFloat(aggregatepgyear);
-
-
                                                 if (aggg <= 0 || aggg >= 100) {
                                                     errorflag1 = 1;
                                                     pgyearaggregateinput.setError("Incorrect Aggregate");
@@ -2597,6 +2610,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             if(result.equals("success"))
             {
+                if(!markssem1.equals(""))
                 Toast.makeText(MyProfilePg.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
 
@@ -2677,7 +2691,8 @@ public class MyProfilePg extends AppCompatActivity {
 
             if(result.equals("success"))
             {
-                Toast.makeText(MyProfilePg.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
+                if(!marksyear1.equals(""))
+                    Toast.makeText(MyProfilePg.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
                 if(role.equals("student"))
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
