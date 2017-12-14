@@ -1,7 +1,11 @@
 package placeme.octopusites.com.placeme;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 /**
  * Created by admin on 9/27/2017.
@@ -33,72 +37,65 @@ public class MyConstants {
 
 //    --------------------------------------Load fragment data-------------------------------------
 
-    public static final String load_HR_data = "http://192.168.100.10/ProfileObjects/GetHrData";
-
-    public static String url_load_alumni_data = "http://192.168.100.10/ProfileObjects/GetAlumniData";
-
-    public static final String load_student_data = "http://192.168.100.10/ProfileObjects/GetStudentData";
-
-    public static final String load_Admin_data = "http://192.168.100.10/ProfileObjects/GetAdminData";
+    public static final String load_HR_data = "http://192.168.100.100/ProfileObjects/GetHrData";
+    public static String url_load_alumni_data = "http://192.168.100.100/ProfileObjects/GetAlumniData";
+    public static final String load_student_data = "http://192.168.100.100/ProfileObjects/GetStudentData";
+    public static final String load_Admin_data = "http://192.168.100.100/ProfileObjects/GetAdminData";
 
 //    --------------------------------------Intro-------------------------------------
 
-    public static final String url_SaveIntro = "http://192.168.100.10/ProfileObjects/SaveIntro";
-
+    public static final String url_SaveIntro = "http://192.168.100.100/ProfileObjects/SaveIntro";
     public static final String url_SaveHrIntro = "http://192.168.100.100/ProfileObjects/SaveHrIntro";
-
-    public static String url_SaveAdminIntro= "http://192.168.100.10/ProfileObjects/SaveAdminIntro";
+    public static String url_SaveAdminIntro= "http://192.168.100.100/ProfileObjects/SaveAdminIntro";
 
 //    --------------------------------------project-------------------------------------
 
-    public static final String url_saveprojects = "http://192.168.100.10/ProfileObjects/SaveProjects";
+    public static final String url_saveprojects = "http://192.168.100.100/ProfileObjects/SaveProjects";
 
 //    -----------------------------------Education details--------------------------
 
-    public static final String url_SaveTenth = "http://192.168.100.10/ProfileObjects/SaveTenth";
-    public static final String url_savedata_twelth = "http://192.168.100.10/ProfileObjects/SaveTwelth";
-    public static final String url_savedata_diploma = "http://192.168.100.10/ProfileObjects/SaveDiploma";
-    public static String url_savedata_ug = "http://192.168.100.10/ProfileObjects/SaveUg";
-    public static String url_savedata_pg_sem = "http://192.168.100.10/ProfileObjects/SavePgSem";
-    public static String url_savedata_pg_year = "http://192.168.100.10/ProfileObjects/SavePgYear";
+    public static final String url_SaveTenth = "http://192.168.100.100/ProfileObjects/SaveTenth";
+    public static final String url_savedata_twelth = "http://192.168.100.100/ProfileObjects/SaveTwelth";
+    public static final String url_savedata_diploma = "http://192.168.100.100/ProfileObjects/SaveDiploma";
+    public static String url_savedata_ug = "http://192.168.100.100/ProfileObjects/SaveUg";
+    public static String url_savedata_pg_sem = "http://192.168.100.100/ProfileObjects/SavePgSem";
+    public static String url_savedata_pg_year = "http://192.168.100.100/ProfileObjects/SavePgYear";
 
 //    ----------------------------------------Accomplishments-----------------------------
 
-    public static final String url_savelanguages = "http://192.168.100.10/ProfileObjects/SaveLanguages";
-    public static final String url_savecertifications = "http://192.168.100.10/ProfileObjects/SaveCertificates";
-    public static final String url_savecourses = "http://192.168.100.10/ProfileObjects/SaveCourses";
-    public static final String url_saveskills = "http://192.168.100.10/ProfileObjects/SaveSkills";
-    public static final String url_savehonors = "http://192.168.100.10/ProfileObjects/SaveHonors";
-    public static final String url_savepatents = "http://192.168.100.10/ProfileObjects/SavePatents";
-    public static final String url_savepublications = "http://192.168.100.10/ProfileObjects/SavePublications";
+    public static final String url_savelanguages = "http://192.168.100.100/ProfileObjects/SaveLanguages";
+    public static final String url_savecertifications = "http://192.168.100.100/ProfileObjects/SaveCertificates";
+    public static final String url_savecourses = "http://192.168.100.100/ProfileObjects/SaveCourses";
+    public static final String url_saveskills = "http://192.168.100.100/ProfileObjects/SaveSkills";
+    public static final String url_savehonors = "http://192.168.100.100/ProfileObjects/SaveHonors";
+    public static final String url_savepatents = "http://192.168.100.100/ProfileObjects/SavePatents";
+    public static final String url_savepublications = "http://192.168.100.100/ProfileObjects/SavePublications";
 
 //    -----------------------------------------MyProfileCareerDetails---------------------------------
 
-    public static final String url_savecareerobj = "http://192.168.100.10/ProfileObjects/SaveCareerObj";
-    public static final String url_savestrengths = "http://192.168.100.10/ProfileObjects/SaveStrengths";
-    public static final String url_saveweaknesses = "http://192.168.100.10/ProfileObjects/SaveWeaknesses";
-    public static final String url_savelocationpreferences = "http://192.168.100.10/ProfileObjects/SaveLocationPreferences";
+    public static final String url_savecareerobj = "http://192.168.100.100/ProfileObjects/SaveCareerObj";
+    public static final String url_savestrengths = "http://192.168.100.100/ProfileObjects/SaveStrengths";
+    public static final String url_saveweaknesses = "http://192.168.100.100/ProfileObjects/SaveWeaknesses";
+    public static final String url_savelocationpreferences = "http://192.168.100.100/ProfileObjects/SaveLocationPreferences";
 
 //    --------------------------------------------MyProfileContact---------------------------------
 
-    public static final String url_SaveStdalmContact= "http://192.168.100.10/ProfileObjects/SaveStdAlmContact";
-
-    public static final String url_SaveAdminContact = "http://192.168.100.10/ProfileObjects/SaveAdminContact";
-
-    public static final String url_SaveHrContact= "http://192.168.100.10/ProfileObjects/SaveHrContact";
+    public static final String url_SaveStdalmContact= "http://192.168.100.100/ProfileObjects/SaveStdAlmContact";
+    public static final String url_SaveAdminContact = "http://192.168.100.100/ProfileObjects/SaveAdminContact";
+    public static final String url_SaveHrContact= "http://192.168.100.100/ProfileObjects/SaveHrContact";
 
 //   --------------------------------------------Experience---------------------------------
 
-    public static final String url_SaveExperiences= "http://192.168.100.10/ProfileObjects/SaveExperiences";
+    public static final String url_SaveExperiences= "http://192.168.100.100/ProfileObjects/SaveExperiences";
 
 //  --------------------------------------------Tabfragment---------------------------------
 
-    public static String savepersonalinfo = "http://192.168.100.10/ProfileObjects/SavePersonalInfo";
-    public static final String url_SaveAdminPersonal = "http://192.168.100.10/ProfileObjects/SaveAdminPersonal";
+    public static String savepersonalinfo = "http://192.168.100.100/ProfileObjects/SavePersonalInfo";
+    public static final String url_SaveAdminPersonal = "http://192.168.100.100/ProfileObjects/SaveAdminPersonal";
 
 //    ------------------------------------------company details---------------------------------
 
-    public static final String url_SaveHrCompany = "http://192.168.100.10/ProfileObjects/SaveHrCompany";
+    public static final String url_SaveHrCompany = "http://192.168.100.100/ProfileObjects/SaveHrCompany";
 
 //    ------------------------------------------Institute details---------------------------------
 
@@ -135,16 +132,17 @@ public class MyConstants {
     public static final String upload_profile = "http://192.168.100.100/AESTest/UploadProfile";
     public static final String remove_profile = "http://192.168.100.100/AESTest/RemoveImage";
 
-    public static final String url_createSingleUser_admin = "http://192.168.100.100/AESTest/CreateSingleUser";
-    public static final String url_createMultipleUser_admin = "http://192.168.100.100/AESTest/CreateMultipleUser";
-    public static final String url_delete_file = "http://192.168.100.100/AESTest/DeleteFile";
-    public static final String url_uploadSingleFile = "http://192.168.100.100/AESTest/UploadSingleFile";
-    public static final String url_GetRegisteredUsersUnderAdmin = "http://192.168.100.100/AESTest/GetRegisteredUsersUnderAdmin";
+    public static final String url_createSingleUser_admin = "http://192.168.100.20:8080/AESTest/CreateSingleUser";
+    public static final String url_createMultipleUser_admin = "http://192.168.100.20:8080/AESTest/CreateMultipleUser";
+    public static final String url_delete_file = "http://192.168.100.20:8080/AESTest/DeleteFile";
+    public static final String url_uploadSingleFile = "http://192.168.100.20:8080/AESTest/UploadSingleFile";
+    public static final String url_GetRegisteredUsersUnderAdmin = "http://192.168.100.20:8080/AESTest/GetRegisteredUsersUnderAdmin";
     public static final String url_getlastupdated = "http://192.168.100.100/AESTest/GetLastUpdated";
-    public static final String url_SavePlacedDebarInfo = "http://192.168.100.100/AESTest/SavePlacedDebarInfo";
-    public static final String url_GetPlacedDebarInfo = "http://192.168.100.100/AESTest/GetPlacedDebarInfo";
-    public static final String url_DeleteNonActiveUser = "http://192.168.100.100/AESTest/DeleteNonActiveUser";
-    public static final String url_SaveWelcomeIntroData = "http://192.168.100.100/AESTest/SaveNewUserWelcomeIntroData";
+    public static final String url_SavePlacedDebarInfo = "http://192.168.100.20:8080/AESTest/SavePlacedDebarInfo";
+    public static final String url_GetPlacedDebarInfo = "http://192.168.100.20:8080/AESTest/GetPlacedDebarInfo";
+    public static final String url_DeleteNonActiveUser = "http://192.168.100.20:8080/AESTest/DeleteNonActiveUser";
+    public static final String url_SaveWelcomeIntroData = "http://192.168.100.100" +
+            "/AESTest/SaveNewUserWelcomeIntroData";
     public static final String url_SaveStudentFnameLnameMobile = "http://192.168.100.100/AESTest/SaveStudentFnameLnameMobile";
 
 //    private static String url = "http://192.168.100.100/HandleMobileRequests/getimg.jsp?username=";
@@ -156,7 +154,7 @@ public class MyConstants {
     public static final String url_checkUcode = "http://192.168.100.100/AESTest/checkUcode";
     public static final String url_ClearOTP = "http://192.168.100.100/AESTest/ClearOTP";
     public static final String url_AddStudentUnderAdmin = "http://192.168.100.100/AESTest/AddStudentUnderAdmin";
-    public static final String url_GetCountOfUsersUnderAdmin = "http://192.168.100.100/AESTest/GetCountOfUsersUnderAdmin";
+    public static final String url_GetCountOfUsersUnderAdmin = "http://192.168.100.20:8080/AESTest/GetCountOfUsersUnderAdmin";
 
 //    --------------------------------- function --------------------------------------------------------------
 
@@ -184,11 +182,119 @@ public class MyConstants {
     {
         return Typeface.createFromAsset(context.getAssets(),  "fonts/righteous.ttf");
     }
+    public static void fade(Activity activity, View view){
 
-    //--
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.fadein);
+        view.startAnimation(animation1);
+    }
+    public static void fadeandmovedown(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.fadeinmove);
+        view.startAnimation(animation1);
+    }
+    public static void slideoutleft2(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.slideoutleft2);
+        view.startAnimation(animation1);
 
 
-    public static String url_save_intro_data = "http://192.168.100.100/AESTest/SaveAlumniIntro";
+    }
+    public static void fadeout(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.fadeout);
+        view.startAnimation(animation1);
+
+
+    }
+    public static void slideinleft1(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.slideinleft1);
+        view.startAnimation(animation1);
+    }
+    public static void slideinleft2(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.slideinleft2);
+        view.startAnimation(animation1);
+    }
+    public static void scale1(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.scaleup1);
+        view.startAnimation(animation1);
+    }
+    public static void scale2(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.scaleup2);
+        view.startAnimation(animation1);
+    }
+    public static void scale3(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.scaleup3);
+        view.startAnimation(animation1);
+    }
+    public static void scale4(Activity activity,View view){
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.scaleup4);
+        view.startAnimation(animation1);
+    }
+    public static void scaledown(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.scaledown);
+        view.startAnimation(animation1);
+
+    }
+    public static void bottomupbox1(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.bottom_up_box1);
+        view.startAnimation(animation1);
+
+    }
+    public static void bottomupbox2(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.bottom_up_box2);
+        view.startAnimation(animation1);
+
+    }
+    public static void bottomupbox3(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.bottom_up_box3);
+        view.startAnimation(animation1);
+
+    }
+    public static void bottomupbox4(Activity activity,View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.bottom_up_box4);
+        view.startAnimation(animation1);
+
+    }
 
 
 

@@ -121,7 +121,7 @@ public class SplashScreen extends Activity {
                 }
 
                 new GetDigest().execute();
-                new UpdateFirebaseToken().execute();
+
 
 
                 String i = sharedpreferences.getString(Intro, null);
@@ -475,6 +475,7 @@ public class SplashScreen extends Activity {
         protected void onPostExecute(String result) {
             if (info != null && !info.equals("success")) {
                 Toast.makeText(SplashScreen.this, info, Toast.LENGTH_SHORT).show();
+                new UpdateFirebaseToken().execute();
                 //TODO remove comment from servlet checking aid,did is not null from getDigest
             }
         }

@@ -232,7 +232,9 @@
                     android:layout_below="@+id/box1"
                     android:layout_centerHorizontal="true"
                     android:background="@color/while_color"
-                    android:elevation="4dp" />
+                    android:elevation="4dp"
+                    android:visibility="gone"
+                    />
 
                 <ProgressBar
                     android:id="@+id/profileprogress"
@@ -249,7 +251,9 @@
                     android:indeterminate="false"
                     android:max="1000"
                     android:progress="10"
-                    android:progressDrawable="@drawable/progressbarblue" />
+                    android:progressDrawable="@drawable/progressbarblue"
+                    android:visibility="gone"
+                    />
 
                 <RelativeLayout
                     android:id="@+id/editprofilerl"
@@ -269,7 +273,9 @@
                         android:layout_marginTop="13dp"
                         android:text="EDIT PROFILE"
                         android:textColor="#00bcd4"
-                        android:textSize="12dp" />
+                        android:textSize="12dp"
+                        android:visibility="gone"
+                        />
 
                 </RelativeLayout>
 
@@ -292,6 +298,7 @@
                     android:textSize="16dp" />
 
                 <ImageView
+                    android:id="@+id/box2pencil"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_alignParentRight="true"

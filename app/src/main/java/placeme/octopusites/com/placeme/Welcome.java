@@ -161,10 +161,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         usernameedittext.setTypeface(bold);
         welcometextviewcontext1.setTypeface(bold);
         welcometextviewcontext2.setTypeface(light);
-        fade(enteremailimage);
-        fadeandmove(usernameTextInputLayout);
-        slideinleft1(welcometextviewcontext1);
-        slideinleft2(welcometextviewcontext2);
+        MyConstants.fade(this,enteremailimage);
+        MyConstants.fadeandmovedown(this,usernameTextInputLayout);
+        MyConstants.slideinleft1(this,welcometextviewcontext1);
+        MyConstants.slideinleft2(this,welcometextviewcontext2);
         usernameedittext.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -190,13 +190,13 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         alumnirl.setVisibility(View.VISIBLE);
         tporl.setVisibility(View.VISIBLE);
         hrrl.setVisibility(View.VISIBLE);
-        slideinleft1(rolewelcometextviewcontext1);
-        slideinleft2(rolewelcometextviewcontext2);
-        fade(rolewelcometextviewcontext3);
-        scale1(studentrl);
-        scale2(alumnirl);
-        scale3(tporl);
-        scale4(hrrl);
+        MyConstants.slideinleft1(this,rolewelcometextviewcontext1);
+        MyConstants.slideinleft2(this,rolewelcometextviewcontext2);
+        MyConstants.fade(this,rolewelcometextviewcontext3);
+        MyConstants.scale1(this,studentrl);
+        MyConstants.scale2(this,alumnirl);
+        MyConstants.scale3(this,tporl);
+        MyConstants.scale4(this,hrrl);
     }
     public void animateStudentRl(){
 
@@ -256,88 +256,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         // start transition
         EasyTransition.startActivityForResult(intent,4444, options);
     }
-    public void slideoutleft2(View view){
-
-        Animation animation1 =
-                AnimationUtils.loadAnimation(getApplicationContext(),
-                        R.anim.slideoutleft2);
-        view.startAnimation(animation1);
 
 
-    }
-    public void fadeout(View view){
 
-        Animation animation1 =
-                AnimationUtils.loadAnimation(getApplicationContext(),
-                        R.anim.fadeout);
-        view.startAnimation(animation1);
-
-
-    }
-    public void fade(View view){
-
-        Animation animation1 =
-                AnimationUtils.loadAnimation(getApplicationContext(),
-                        R.anim.fadein);
-        view.startAnimation(animation1);
-    }
-    public void fadeandmove(View view){
-
-        Animation animation1 =
-                AnimationUtils.loadAnimation(getApplicationContext(),
-                        R.anim.fadeinmove);
-        view.startAnimation(animation1);
-    }  //test
-    public void slideinleft1(View view){
-
-        Animation animation1 =
-                AnimationUtils.loadAnimation(getApplicationContext(),
-                        R.anim.slideinleft1);
-        view.startAnimation(animation1);
-    }
-    public void slideinleft2(View view){
-
-        Animation animation1 =
-                AnimationUtils.loadAnimation(getApplicationContext(),
-                        R.anim.slideinleft2);
-        view.startAnimation(animation1);
-    }
-    public void scale1(View view){
-
-        Animation animation1 =
-                AnimationUtils.loadAnimation(getApplicationContext(),
-                        R.anim.scaleup1);
-        view.startAnimation(animation1);
-    }
-    public void scale2(View view){
-
-        Animation animation1 =
-                AnimationUtils.loadAnimation(getApplicationContext(),
-                        R.anim.scaleup2);
-        view.startAnimation(animation1);
-    }
-    public void scale3(View view){
-
-        Animation animation1 =
-                AnimationUtils.loadAnimation(getApplicationContext(),
-                        R.anim.scaleup3);
-        view.startAnimation(animation1);
-    }
-    public void scale4(View view){
-
-        Animation animation1 =
-                AnimationUtils.loadAnimation(getApplicationContext(),
-                        R.anim.scaleup4);
-        view.startAnimation(animation1);
-    }
-    public void scaledown(View view){
-
-        Animation animation1 =
-                AnimationUtils.loadAnimation(getApplicationContext(),
-                        R.anim.scaledown);
-        view.startAnimation(animation1);
-
-    }
     public class ZoomOutPageTransformer implements ViewPager.PageTransformer {
         private static final float MIN_SCALE = 0.85f;
         private static final float MIN_ALPHA = 0.5f;
@@ -413,10 +334,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         }
 
 
-        fade(welcomepasswordenterpasswordimage);
-        fadeandmove(welcomepasswordTextInputLayout);
-        slideinleft1(welcomepasswordwelcometextviewcontext1);
-        slideinleft2(welcomepasswordwelcometextviewcontext2);
+        MyConstants.fade(this,welcomepasswordenterpasswordimage);
+        MyConstants.fadeandmovedown(this,welcomepasswordTextInputLayout);
+        MyConstants.slideinleft1(this,welcomepasswordwelcometextviewcontext1);
+        MyConstants.slideinleft2(this,welcomepasswordwelcometextviewcontext2);
     }
 
     public void setWelComeCreatePasswordView(View v) {
@@ -498,15 +419,15 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         lnameTextInputLayout=(TextInputLayout)WelComeIntroView.findViewById(R.id.lnameTextInputLayout);
         mobileTextInputLayout=(TextInputLayout)WelComeIntroView.findViewById(R.id.mobileTextInputLayout);
 
-        slideinleft1(getProfilePictureMsg);
-        slideinleft2(welcometextviewcontext2);
+        MyConstants.slideinleft1(this,getProfilePictureMsg);
+        MyConstants.slideinleft2(this,welcometextviewcontext2);
 
-        fade(welcometextviewcontext3);
-        fade(profilePicture);
-        fade(iv_camera);
-        fadeandmove(fnameTextInputLayout);
-        fadeandmove(lnameTextInputLayout);
-        fadeandmove(mobileTextInputLayout);
+        MyConstants.fade(this,welcometextviewcontext3);
+        MyConstants.fade(this,profilePicture);
+        MyConstants.fade(this,iv_camera);
+        MyConstants.fadeandmovedown(this,fnameTextInputLayout);
+        MyConstants.fadeandmovedown(this,lnameTextInputLayout);
+        MyConstants.fadeandmovedown(this,mobileTextInputLayout);
 
         Log.d("TAG", "role: animation called page 2");
 
@@ -602,14 +523,14 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         lnameTextInputLayout=(TextInputLayout)WelComeIntroThroughAdminView.findViewById(R.id.lnameTextInputLayout);
         mobileTextInputLayout=(TextInputLayout)WelComeIntroThroughAdminView.findViewById(R.id.mobileTextInputLayout);
 
-        slideinleft1(getProfilePictureMsg);
-        slideinleft2(adminInfo);
-        fade(welcometextviewcontext3);
-        fade(profilePicture);
-        fade(iv_camera);
-        fadeandmove(fnameTextInputLayout);
-        fadeandmove(lnameTextInputLayout);
-        fadeandmove(mobileTextInputLayout);
+        MyConstants.slideinleft1(this,getProfilePictureMsg);
+        MyConstants.slideinleft2(this,adminInfo);
+        MyConstants.fade(this,welcometextviewcontext3);
+        MyConstants.fade(this,profilePicture);
+        MyConstants.fade(this,iv_camera);
+        MyConstants.fadeandmovedown(this,fnameTextInputLayout);
+        MyConstants.fadeandmovedown(this,lnameTextInputLayout);
+        MyConstants.fadeandmovedown(this,mobileTextInputLayout);
 
         fnameTextInputLayout.setTypeface(MyConstants.getLight(this));
         lnameTextInputLayout.setTypeface(MyConstants.getLight(this));
@@ -722,11 +643,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 tporl.setVisibility(View.VISIBLE);
                 hrrl.setVisibility(View.VISIBLE);
 
-                scaledown(alumnirl);
-                scaledown(tporl);
-                scaledown(hrrl);
-                slideoutleft2(rolewelcometextviewcontext2);
-                fadeout(rolewelcometextviewcontext3);
+                MyConstants.scaledown(Welcome.this,alumnirl);
+                MyConstants.scaledown(Welcome.this,tporl);
+                MyConstants.scaledown(Welcome.this,hrrl);
+                MyConstants.slideoutleft2(Welcome.this,rolewelcometextviewcontext2);
+                MyConstants.fadeout(Welcome.this,rolewelcometextviewcontext3);
                 animateStudentRl();
 
             }
@@ -746,11 +667,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 tporl.setVisibility(View.VISIBLE);
                 hrrl.setVisibility(View.VISIBLE);
 
-                scaledown(studentrl);
-                scaledown(tporl);
-                scaledown(hrrl);
-                slideoutleft2(rolewelcometextviewcontext2);
-                fadeout(rolewelcometextviewcontext3);
+                MyConstants.scaledown(Welcome.this,studentrl);
+                MyConstants.scaledown(Welcome.this,tporl);
+                MyConstants.scaledown(Welcome.this,hrrl);
+                MyConstants.slideoutleft2(Welcome.this,rolewelcometextviewcontext2);
+                MyConstants.fadeout(Welcome.this,rolewelcometextviewcontext3);
                 animateAlumniRl();
 
             }
@@ -769,11 +690,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 tporl.setVisibility(View.GONE);
                 hrrl.setVisibility(View.VISIBLE);
 
-                scaledown(studentrl);
-                scaledown(alumnirl);
-                scaledown(hrrl);
-                slideoutleft2(rolewelcometextviewcontext2);
-                fadeout(rolewelcometextviewcontext3);
+                MyConstants.scaledown(Welcome.this,studentrl);
+                MyConstants.scaledown(Welcome.this,alumnirl);
+                MyConstants.scaledown(Welcome.this,hrrl);
+                MyConstants.slideoutleft2(Welcome.this,rolewelcometextviewcontext2);
+                MyConstants.fadeout(Welcome.this,rolewelcometextviewcontext3);
                 animateTPORl();
 
             }
@@ -792,11 +713,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 tporl.setVisibility(View.VISIBLE);
                 hrrl.setVisibility(View.GONE);
 
-                scaledown(studentrl);
-                scaledown(alumnirl);
-                scaledown(tporl);
-                slideoutleft2(rolewelcometextviewcontext2);
-                fadeout(rolewelcometextviewcontext3);
+                MyConstants.scaledown(Welcome.this,studentrl);
+                MyConstants.scaledown(Welcome.this,alumnirl);
+                MyConstants.scaledown(Welcome.this,tporl);
+                MyConstants.slideoutleft2(Welcome.this,rolewelcometextviewcontext2);
+                MyConstants.fadeout(Welcome.this,rolewelcometextviewcontext3);
                 animateHRRl();
 
             }
@@ -953,11 +874,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 }
                 if(currentPosition==3&&path==2)
                 {
-                    fade(enterpasswordimage);
-                    slideinleft1(createpasswordwelcometextviewcontext1);
-                    slideinleft2(createpasswordwelcometextviewcontext2);
-                    fadeandmove(passwordTextInputLayout);
-                    fadeandmove(confirmPasswordTextInputLayout);
+                    MyConstants.fade(Welcome.this,enterpasswordimage);
+                    MyConstants.slideinleft1(Welcome.this,createpasswordwelcometextviewcontext1);
+                    MyConstants.slideinleft2(Welcome.this,createpasswordwelcometextviewcontext2);
+                    MyConstants.fadeandmovedown(Welcome.this,passwordTextInputLayout);
+                    MyConstants.fadeandmovedown(Welcome.this,confirmPasswordTextInputLayout);
                 }
             }
 
@@ -1076,8 +997,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
 
                                 encfname=Encrypt(fname,digest1,digest2);
-                                enclname=Encrypt(fname,digest1,digest2);
-                                encmobile=Encrypt(fname,digest1,digest2);
+                                enclname=Encrypt(lname,digest1,digest2);
+                                encmobile=Encrypt(mobile,digest1,digest2);
 
                                 viewPager.setCurrentItem(2);
                                 addBottomDots(2, 4);
@@ -1267,7 +1188,14 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             params.add(new BasicNameValuePair("p", encPassword));        // 6
             params.add(new BasicNameValuePair("id", android_id));        // 7
 
-            Log.d("TAG", "doInBackground: enc role ========================  " + encrole);
+
+            try {
+                Log.d("TAG", "sending fname" + Decrypt(encfname,digest1,digest2));
+                Log.d("TAG", "sending lname" + Decrypt(enclname,digest1,digest2));
+                Log.d("TAG", "sending mobile" + Decrypt(encmobile,digest1,digest2));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
 
             json = jParser.makeHttpRequest(MyConstants.url_SaveWelcomeIntroData, "GET", params);
