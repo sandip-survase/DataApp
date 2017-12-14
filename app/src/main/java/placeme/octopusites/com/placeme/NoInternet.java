@@ -18,12 +18,13 @@ public class NoInternet extends AppCompatActivity {
 
     Button refreshButton;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_no_internet);
 
-        refreshButton= (Button) findViewById(R.id.refreshButton);
+        refreshButton = (Button) findViewById(R.id.refreshButton);
 
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -49,10 +50,10 @@ public class NoInternet extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        if(isOnline()){
+        if (isOnline()) {
             super.onBackPressed();
             Toast.makeText(this, "lets go..!", Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             Intent homeIntent = new Intent(Intent.ACTION_MAIN);
             homeIntent.addCategory(Intent.CATEGORY_HOME);
             homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -61,8 +62,8 @@ public class NoInternet extends AppCompatActivity {
     }
 
 
-    public void check(){
-        if(isOnline()){
+    public void check() {
+        if (isOnline()) {
             super.onBackPressed();
             Toast.makeText(this, "lets go..!", Toast.LENGTH_SHORT).show();
         }
