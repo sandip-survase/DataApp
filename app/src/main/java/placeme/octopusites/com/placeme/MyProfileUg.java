@@ -1032,13 +1032,11 @@ public class MyProfileUg extends AppCompatActivity {
             public void onClick(View view) {
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyProfileUg.this);
                 LayoutInflater inflater = MyProfileUg.this.getLayoutInflater();
+
                 View dialog = inflater.inflate(R.layout.monthyeardialog,null);
                 dialogBuilder.setView(dialog);
 
-
-
                 final WheelView monthView,yearView;
-
                 final List<String> monthList= new ArrayList<String>();
                 final List<String> yearList= new ArrayList<String>();
 
@@ -1059,7 +1057,7 @@ public class MyProfileUg extends AppCompatActivity {
                 monthList.add("Dec");
 
                 Calendar cur=Calendar.getInstance();
-                for(int i=1975;i<=cur.get(Calendar.YEAR)+5;i++)
+                for(int i=1975;i<=cur.get(Calendar.YEAR)+2;i++)
                     yearList.add(""+i);
 
 
@@ -1381,7 +1379,6 @@ public class MyProfileUg extends AppCompatActivity {
                 selectedCourse = (String) parent.getItemAtPosition(position);
                 TextInputLayout otherboardinput=(TextInputLayout)findViewById(R.id.othercourseinput);
                 if(selectedCourse.equals("Other")) {
-
                     otherboardinput.setVisibility(View.VISIBLE);
                 }
                 else {

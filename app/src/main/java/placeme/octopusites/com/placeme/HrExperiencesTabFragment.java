@@ -410,327 +410,328 @@ public class HrExperiencesTabFragment extends Fragment {
                 showDeletDialog();
             }
         });
-        fromdate1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                // 1- id   2- isFromDateSelected 3-fromYear   4- month in str
-
-                String toDate = todate1.getText().toString();
-                showDateDialog(fromdate1, false, 0, "", toDate);
-
-
-            }
-        });
-        todate1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate1.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate1.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate1, isFromDateSelected, fromYear, fromMonth, "");
-
-            }
-        });
-        fromdate2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String toDate = todate2.getText().toString();
-                showDateDialog(fromdate2, false, 0, "", toDate);
-
-
-            }
-        });
-        todate2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate2.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate2.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate2, isFromDateSelected, fromYear, fromMonth, "");
-            }
-        });
-        fromdate3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String toDate = todate3.getText().toString();
-                showDateDialog(fromdate3, false, 0, "", toDate);
-
-
-            }
-        });
-        todate3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate3.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate3.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate3, isFromDateSelected, fromYear, fromMonth, "");
-            }
-
-        });
-        fromdate4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String toDate = todate4.getText().toString();
-                showDateDialog(fromdate4, false, 0, "", toDate);
-
-
-            }
-        });
-        todate4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate4.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate4.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate4, isFromDateSelected, fromYear, fromMonth, "");
-            }
-        });
-        fromdate5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String toDate = todate5.getText().toString();
-                showDateDialog(fromdate5, false, 0, "", toDate);
-
-            }
-        });
-        todate5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate5.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate5.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate5, isFromDateSelected, fromYear, fromMonth, "");
-            }
-        });
-        fromdate6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String toDate = todate6.getText().toString();
-                showDateDialog(fromdate6, false, 0, "", toDate);
-
-            }
-        });
-        todate6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate6.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate6.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate6, isFromDateSelected, fromYear, fromMonth, "");
-            }
-        });
-        fromdate7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String toDate = todate7.getText().toString();
-                showDateDialog(fromdate7, false, 0, "", toDate);
-
-            }
-        });
-        todate7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate7.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate7.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate7, isFromDateSelected, fromYear, fromMonth, "");
-            }
-        });
-        fromdate8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String toDate = todate8.getText().toString();
-                showDateDialog(fromdate8, false, 0, "", toDate);
-
-            }
-        });
-        todate8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate8.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate8.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate8, isFromDateSelected, fromYear, fromMonth, "");
-            }
-        });
-        fromdate9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String toDate = todate9.getText().toString();
-                showDateDialog(fromdate9, false, 0, "", toDate);
-
-            }
-        });
-        todate9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate9.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate9.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate9, isFromDateSelected, fromYear, fromMonth, "");
-            }
-        });
-        fromdate10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String toDate = todate10.getText().toString();
-                showDateDialog(fromdate10, false, 0, "", toDate);
-
-            }
-        });
-        todate10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate10.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate10.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate10, isFromDateSelected, fromYear, fromMonth, "");
-            }
-        });
-
+//
+//        fromdate1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//
+//                // 1- id   2- isFromDateSelected 3-fromYear   4- month in str
+//
+//                String toDate = todate1.getText().toString();
+//                showDateDialog(fromdate1, false, 0, "", toDate);
+//
+//
+//            }
+//        });
+//        todate1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate1.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate1.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate1, isFromDateSelected, fromYear, fromMonth, "");
+//
+//            }
+//        });
+//        fromdate2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                String toDate = todate2.getText().toString();
+//                showDateDialog(fromdate2, false, 0, "", toDate);
+//
+//
+//            }
+//        });
+//        todate2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate2.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate2.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate2, isFromDateSelected, fromYear, fromMonth, "");
+//            }
+//        });
+//        fromdate3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                String toDate = todate3.getText().toString();
+//                showDateDialog(fromdate3, false, 0, "", toDate);
+//
+//
+//            }
+//        });
+//        todate3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate3.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate3.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate3, isFromDateSelected, fromYear, fromMonth, "");
+//            }
+//
+//        });
+//        fromdate4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                String toDate = todate4.getText().toString();
+//                showDateDialog(fromdate4, false, 0, "", toDate);
+//
+//
+//            }
+//        });
+//        todate4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate4.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate4.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate4, isFromDateSelected, fromYear, fromMonth, "");
+//            }
+//        });
+//        fromdate5.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                String toDate = todate5.getText().toString();
+//                showDateDialog(fromdate5, false, 0, "", toDate);
+//
+//            }
+//        });
+//        todate5.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate5.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate5.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate5, isFromDateSelected, fromYear, fromMonth, "");
+//            }
+//        });
+//        fromdate6.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                String toDate = todate6.getText().toString();
+//                showDateDialog(fromdate6, false, 0, "", toDate);
+//
+//            }
+//        });
+//        todate6.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate6.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate6.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate6, isFromDateSelected, fromYear, fromMonth, "");
+//            }
+//        });
+//        fromdate7.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                String toDate = todate7.getText().toString();
+//                showDateDialog(fromdate7, false, 0, "", toDate);
+//
+//            }
+//        });
+//        todate7.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate7.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate7.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate7, isFromDateSelected, fromYear, fromMonth, "");
+//            }
+//        });
+//        fromdate8.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                String toDate = todate8.getText().toString();
+//                showDateDialog(fromdate8, false, 0, "", toDate);
+//
+//            }
+//        });
+//        todate8.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate8.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate8.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate8, isFromDateSelected, fromYear, fromMonth, "");
+//            }
+//        });
+//        fromdate9.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                String toDate = todate9.getText().toString();
+//                showDateDialog(fromdate9, false, 0, "", toDate);
+//
+//            }
+//        });
+//        todate9.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate9.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate9.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate9, isFromDateSelected, fromYear, fromMonth, "");
+//            }
+//        });
+//        fromdate10.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                String toDate = todate10.getText().toString();
+//                showDateDialog(fromdate10, false, 0, "", toDate);
+//
+//            }
+//        });
+//        todate10.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate10.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate10.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate10, isFromDateSelected, fromYear, fromMonth, "");
+//            }
+//        });
+//
 
         switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -1629,14 +1630,9 @@ public class HrExperiencesTabFragment extends Fragment {
         fromdate1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 // 1- id   2- isFromDateSelected 3-fromYear   4- month in str
-
                 String toDate = todate1.getText().toString();
-                showDateDialog(fromdate1, false, 0, "", toDate);
-
-
+                showDateDialog(fromdate1,fromdateinput1, false, 0, "", toDate);
             }
         });
         todate1.setOnClickListener(new View.OnClickListener() {
@@ -1659,7 +1655,7 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate1, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate1,todateinput1, isFromDateSelected, fromYear, fromMonth, "");
 
             }
         });
@@ -1668,7 +1664,7 @@ public class HrExperiencesTabFragment extends Fragment {
             public void onClick(View view) {
 
                 String toDate = todate2.getText().toString();
-                showDateDialog(fromdate2, false, 0, "", toDate);
+                showDateDialog(fromdate2,fromdateinput2, false, 0, "", toDate);
 
 
             }
@@ -1692,7 +1688,7 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate2, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate2,todateinput2, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
         fromdate3.setOnClickListener(new View.OnClickListener() {
@@ -1700,7 +1696,7 @@ public class HrExperiencesTabFragment extends Fragment {
             public void onClick(View view) {
 
                 String toDate = todate3.getText().toString();
-                showDateDialog(fromdate3, false, 0, "", toDate);
+                showDateDialog(fromdate3,fromdateinput3, false, 0, "", toDate);
 
 
             }
@@ -1724,7 +1720,7 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate3, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate3,todateinput3, isFromDateSelected, fromYear, fromMonth, "");
             }
 
         });
@@ -1733,7 +1729,7 @@ public class HrExperiencesTabFragment extends Fragment {
             public void onClick(View view) {
 
                 String toDate = todate4.getText().toString();
-                showDateDialog(fromdate4, false, 0, "", toDate);
+                showDateDialog(fromdate4,fromdateinput4, false, 0, "", toDate);
 
 
             }
@@ -1757,7 +1753,7 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate4, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate4,todateinput4, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
         fromdate5.setOnClickListener(new View.OnClickListener() {
@@ -1765,7 +1761,7 @@ public class HrExperiencesTabFragment extends Fragment {
             public void onClick(View view) {
 
                 String toDate = todate5.getText().toString();
-                showDateDialog(fromdate5, false, 0, "", toDate);
+                showDateDialog(fromdate5,fromdateinput5, false, 0, "", toDate);
 
             }
         });
@@ -1788,7 +1784,7 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate5, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate5,todateinput5 ,isFromDateSelected, fromYear, fromMonth, "");
             }
         });
         fromdate6.setOnClickListener(new View.OnClickListener() {
@@ -1796,7 +1792,7 @@ public class HrExperiencesTabFragment extends Fragment {
             public void onClick(View view) {
 
                 String toDate = todate6.getText().toString();
-                showDateDialog(fromdate6, false, 0, "", toDate);
+                showDateDialog(fromdate6,fromdateinput6, false, 0, "", toDate);
 
             }
         });
@@ -1819,7 +1815,7 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate6, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate6,todateinput6, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
         fromdate7.setOnClickListener(new View.OnClickListener() {
@@ -1827,7 +1823,7 @@ public class HrExperiencesTabFragment extends Fragment {
             public void onClick(View view) {
 
                 String toDate = todate7.getText().toString();
-                showDateDialog(fromdate7, false, 0, "", toDate);
+                showDateDialog(fromdate7,fromdateinput7,false, 0, "", toDate);
 
             }
         });
@@ -1850,7 +1846,7 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate7, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate7,todateinput7, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
         fromdate8.setOnClickListener(new View.OnClickListener() {
@@ -1858,7 +1854,7 @@ public class HrExperiencesTabFragment extends Fragment {
             public void onClick(View view) {
 
                 String toDate = todate8.getText().toString();
-                showDateDialog(fromdate8, false, 0, "", toDate);
+                showDateDialog(fromdate8,fromdateinput8, false, 0, "", toDate);
 
             }
         });
@@ -1881,7 +1877,7 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate8, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate8,todateinput8, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
         fromdate9.setOnClickListener(new View.OnClickListener() {
@@ -1889,7 +1885,7 @@ public class HrExperiencesTabFragment extends Fragment {
             public void onClick(View view) {
 
                 String toDate = todate9.getText().toString();
-                showDateDialog(fromdate9, false, 0, "", toDate);
+                showDateDialog(fromdate9,fromdateinput9, false, 0, "", toDate);
 
             }
         });
@@ -1912,7 +1908,7 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate9, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate9,todateinput9, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
         fromdate10.setOnClickListener(new View.OnClickListener() {
@@ -1920,7 +1916,7 @@ public class HrExperiencesTabFragment extends Fragment {
             public void onClick(View view) {
 
                 String toDate = todate10.getText().toString();
-                showDateDialog(fromdate10, false, 0, "", toDate);
+                showDateDialog(fromdate10,fromdateinput10, false, 0, "", toDate);
 
             }
         });
@@ -1943,7 +1939,7 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate10, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate10,todateinput10, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -2304,7 +2300,7 @@ public class HrExperiencesTabFragment extends Fragment {
                         if(!post1.getText().toString().equals("") && !inst11.getText().toString().equals("") && !fromdate1.getText().toString().equals("") )
                         {
                             if(!switch1.isChecked() && todate1.getText().toString().equals("") ) {
-                                Toast.makeText(getActivity(), "Please fill the first Experience", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please fill the first experience", Toast.LENGTH_SHORT).show();
                             }
 
 
@@ -2334,10 +2330,10 @@ public class HrExperiencesTabFragment extends Fragment {
                             }
                         }
                         else
-                            Toast.makeText(getActivity(), "Please fill the first Experience", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                     }
                     else
-                        Toast.makeText(getActivity(), "Please fill the first Experience", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
 
                 }
                 else if (expcount == 1) {
@@ -2345,7 +2341,7 @@ public class HrExperiencesTabFragment extends Fragment {
                         if (!post2.getText().toString().equals("") && !inst12.getText().toString().equals("") && !fromdate2.getText().toString().equals("")) {
 
                             if (!switch2.isChecked() && todate2.getText().toString().equals("")) {
-                                Toast.makeText(getActivity(), "Please fill the Second Experience", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                             }
 
                             if (!switch2.isChecked()) {
@@ -2374,11 +2370,11 @@ public class HrExperiencesTabFragment extends Fragment {
 
                         else
                         {
-                            Toast.makeText(getActivity(), "Please fill the Second Experience", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(getActivity(), "Please fill the Second Experience", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
 
 
 
@@ -2392,7 +2388,7 @@ public class HrExperiencesTabFragment extends Fragment {
                         if(!post3.getText().toString().equals("") && !inst13.getText().toString().equals("") && !fromdate3.getText().toString().equals("") )
                         {
                             if (!switch3.isChecked() && todate3.getText().toString().equals("")) {
-                                Toast.makeText(getActivity(), "Please fill the Third Experience", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                             }
 
                             if (!switch3.isChecked()) {
@@ -2418,11 +2414,10 @@ public class HrExperiencesTabFragment extends Fragment {
                             }
                         }
                         else
-                            Toast.makeText(getActivity(), "Please fill the Third Experience", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                     }
                     else
-                        Toast.makeText(getActivity(), "Please fill the Third Experience", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
 
                 }
                 else if (expcount == 3) {
@@ -2431,9 +2426,8 @@ public class HrExperiencesTabFragment extends Fragment {
                         if(!post4.getText().toString().equals("") && !inst14.getText().toString().equals("") && !fromdate4.getText().toString().equals("") )
                         {
                             if (!switch4.isChecked() && todate4.getText().toString().equals("")) {
-                                Toast.makeText(getActivity(), "Please fill the Fourth Experience", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                             }
-
 
                             if (!switch4.isChecked()) {
 
@@ -2461,12 +2455,11 @@ public class HrExperiencesTabFragment extends Fragment {
                         }
                         else
                         {
-                            Toast.makeText(getActivity(), "Please fill the Fourth Experience", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(getActivity(), "Please fill the Fourth Experience", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -2476,7 +2469,7 @@ public class HrExperiencesTabFragment extends Fragment {
                         if(!post5.getText().toString().equals("") && !inst15.getText().toString().equals("") && !fromdate5.getText().toString().equals("") )
                         {
                             if (!switch5.isChecked() && todate5.getText().toString().equals("")) {
-                                Toast.makeText(getActivity(), "Please fill the Fifth Experience", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                             }
 
                             if (!switch5.isChecked()) {
@@ -2503,14 +2496,11 @@ public class HrExperiencesTabFragment extends Fragment {
                         }
                         else
                         {
-                            Toast.makeText(getActivity(), "Please fill the Fifth Experience", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(getActivity(), "Please fill the Fifth Experience", Toast.LENGTH_SHORT).show();
-
-
-
+                        Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -2521,7 +2511,7 @@ public class HrExperiencesTabFragment extends Fragment {
                         if(!post6.getText().toString().equals("") && !inst16.getText().toString().equals("") && !fromdate6.getText().toString().equals("") )
                         {
                             if (!switch6.isChecked() && todate6.getText().toString().equals("")) {
-                                Toast.makeText(getActivity(), "Please fill the Sixth Experience", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                             }
 
 
@@ -2550,13 +2540,11 @@ public class HrExperiencesTabFragment extends Fragment {
                         }
                         else
                         {
-                            Toast.makeText(getActivity(), "Please fill the Sixth Experience", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(getActivity(), "Please fill the Sixth Experience", Toast.LENGTH_SHORT).show();
-
-
+                        Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
 
                 }
                 else if (expcount == 6) {
@@ -2566,15 +2554,10 @@ public class HrExperiencesTabFragment extends Fragment {
                         if(!post7.getText().toString().equals("") && !inst17.getText().toString().equals("") && !fromdate7.getText().toString().equals("") )
                         {
                             if (!switch7.isChecked() && todate7.getText().toString().equals("")) {
-                                Toast.makeText(getActivity(), "Please fill the Seventh Experience", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                             }
-
-
-
-                            if (!switch7.isChecked()) {
-
+                           if (!switch7.isChecked()) {
                                 if (todate7.getText().toString() != null) {
-
                                     if (!todate7.getText().toString().equals("")) {
                                         View v = (View)rootView. findViewById(R.id.expline7);
                                         v.setVisibility(View.VISIBLE);
@@ -2595,11 +2578,11 @@ public class HrExperiencesTabFragment extends Fragment {
                         }
                         else
                         {
-                            Toast.makeText(getActivity(), "Please fill the Seventh Experience", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(getActivity(), "Please fill the Seventh Experience", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
 
 
                 } else if (expcount == 7) {
@@ -2609,10 +2592,8 @@ public class HrExperiencesTabFragment extends Fragment {
                         if(!post8.getText().toString().equals("") && !inst18.getText().toString().equals("") && !fromdate8.getText().toString().equals("") )
                         {
                             if (!switch8.isChecked() && todate8.getText().toString().equals("")) {
-                                Toast.makeText(getActivity(), "Please fill the Eighth Experience", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                             }
-
-
 
                             if (!switch8.isChecked()) {
 
@@ -2638,12 +2619,11 @@ public class HrExperiencesTabFragment extends Fragment {
                         }
                         else
                         {
-                            Toast.makeText(getActivity(), "Please fill the Eighth Experience", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(getActivity(), "Please fill the Eighth Experience", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
 
                 }
                 else if (expcount == 8) {
@@ -2652,7 +2632,7 @@ public class HrExperiencesTabFragment extends Fragment {
                         if(!post9.getText().toString().equals("") && !inst19.getText().toString().equals("") && !fromdate9.getText().toString().equals("") )
                         {
                             if (!switch9.isChecked() && todate9.getText().toString().equals("")) {
-                                Toast.makeText(getActivity(), "Please fill the Nineth Experience", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                             }
 
                             if (!switch9.isChecked()) {
@@ -2697,11 +2677,11 @@ public class HrExperiencesTabFragment extends Fragment {
                         }
                         else
                         {
-                            Toast.makeText(getActivity(), "Please fill the Nineth Experience", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(getActivity(), "Please fill the Nineth Experience", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -2709,18 +2689,11 @@ public class HrExperiencesTabFragment extends Fragment {
             }
         });
 
-//        savepersonal.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                savepersonal.setVisibility(View.GONE);
-//                personalprogress1.setVisibility(View.VISIBLE);
-//                validateAndSaveData();
-//            }
-//        });
         edittedFlag=0;
         return rootView;
     }
-    void showDateDialog(final EditText id, boolean isFromDateSelected, final int fromYear, final String fromMonth, final String todate) {
+    void showDateDialog(final EditText id,final TextInputLayout idinput, boolean isFromDateSelected, final int fromYear, final String fromMonth, final String todate) {
+
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -2859,7 +2832,12 @@ public class HrExperiencesTabFragment extends Fragment {
                     isvalid = false;
                 }
 
-                setMonthYear(id, selectedMonth, selectedYear, isvalid);
+             boolean bln = setMonthYear(id, selectedMonth, selectedYear, isvalid);
+                if(!bln) {
+                    idinput.setError("kindly enter valid date");
+//                    Toast.makeText(getActivity(), "bln "+bln, Toast.LENGTH_SHORT).show();
+                }
+
                 alertDialog.cancel();
             }
         });
@@ -2906,16 +2884,18 @@ public class HrExperiencesTabFragment extends Fragment {
         }
 
     }
-    void setMonthYear(EditText id, String selectedMonth, String selectedYear, boolean isValid) {
-        id.setError(null);
+    boolean setMonthYear(EditText id, String selectedMonth, String selectedYear, boolean isValid) {
+
         if (isValid == true) {
             id.setText(selectedMonth + ", " + selectedYear);
+            return true;
         } else {
-            id.setError("Kindly choose valid date");
-            Toast.makeText(getActivity(), "Kindly enter valid date", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(), "Kindly enter valid date", Toast.LENGTH_SHORT).show();
             id.setText("");
+            return false;
         }
     }
+
     void showDeletDialog() {
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());

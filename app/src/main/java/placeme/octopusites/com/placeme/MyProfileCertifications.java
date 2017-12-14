@@ -943,11 +943,10 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,
                                          boolean isChecked) {
-
                 edittedFlag = 1;
                 if (isChecked) {
                     certienddate1.setVisibility(View.GONE);
-                    enddate1.setText("To Date");
+                    enddate1.setText("");
                 } else
                     certienddate1.setVisibility(View.VISIBLE);
 
@@ -961,7 +960,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                 edittedFlag = 1;
                 if (isChecked) {
                     certienddate2.setVisibility(View.GONE);
-                    enddate2.setText("To Date");
+                    enddate2.setText("");
                 } else
                     certienddate2.setVisibility(View.VISIBLE);
 
@@ -975,7 +974,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                 edittedFlag = 1;
                 if (isChecked) {
                     certienddate3.setVisibility(View.GONE);
-                    enddate3.setText("To Date");
+                    enddate3.setText("");
                 } else
                     certienddate3.setVisibility(View.VISIBLE);
 
@@ -989,7 +988,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                 edittedFlag = 1;
                 if (isChecked) {
                     certienddate4.setVisibility(View.GONE);
-                    enddate4.setText("To Date");
+                    enddate4.setText("");
                 } else
                     certienddate4.setVisibility(View.VISIBLE);
 
@@ -1003,7 +1002,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                 edittedFlag = 1;
                 if (isChecked) {
                     certienddate5.setVisibility(View.GONE);
-                    enddate5.setText("To Date");
+                    enddate5.setText("");
                 } else
                     certienddate5.setVisibility(View.VISIBLE);
 
@@ -1017,7 +1016,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                 edittedFlag = 1;
                 if (isChecked) {
                     certienddate6.setVisibility(View.GONE);
-                    enddate6.setText("To Date");
+                    enddate6.setText("");
                 } else
                     certienddate6.setVisibility(View.VISIBLE);
 
@@ -1031,7 +1030,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                 edittedFlag = 1;
                 if (isChecked) {
                     certienddate7.setVisibility(View.GONE);
-                    enddate7.setText("To Date");
+                    enddate7.setText("");
                 } else
                     certienddate7.setVisibility(View.VISIBLE);
 
@@ -1045,7 +1044,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                 edittedFlag = 1;
                 if (isChecked) {
                     certienddate8.setVisibility(View.GONE);
-                    enddate8.setText("To Date");
+                    enddate8.setText("");
                 } else
                     certienddate8.setVisibility(View.VISIBLE);
 
@@ -1059,7 +1058,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                 edittedFlag = 1;
                 if (isChecked) {
                     certienddate9.setVisibility(View.GONE);
-                    enddate9.setText("To Date");
+                    enddate9.setText("");
                 } else
                     certienddate9.setVisibility(View.VISIBLE);
 
@@ -1073,7 +1072,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                 edittedFlag = 1;
                 if (isChecked) {
                     certienddate10.setVisibility(View.GONE);
-                    enddate10.setText("To Date");
+                    enddate10.setText("");
                 } else
                     certienddate10.setVisibility(View.VISIBLE);
 
@@ -1431,7 +1430,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                 // 1- id   2- isFromDateSelected 3-fromYear   4- month in str
 
                 String toDate = enddate1.getText().toString();
-                showDateDialog(startdate1, false, 0, "", toDate);
+                showDateDialog(startdate1,certistartdate1, false, 0, "", toDate);
 
 
             }
@@ -1455,7 +1454,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate1, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate1,certienddate1, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1464,7 +1463,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             public void onClick(View view) {
 
                 String toDate = enddate2.getText().toString();
-                showDateDialog(startdate2, false, 0, "", toDate);
+                showDateDialog(startdate2,certistartdate2, false, 0, "", toDate);
             }
         });
         enddate2.setOnClickListener(new View.OnClickListener() {
@@ -1486,7 +1485,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate2, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate2,certienddate2, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1495,7 +1494,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String toDate = enddate3.getText().toString();
-                showDateDialog(startdate3, false, 0, "", toDate);
+                showDateDialog(startdate3,certistartdate3, false, 0, "", toDate);
             }
         });
         enddate3.setOnClickListener(new View.OnClickListener() {
@@ -1517,7 +1516,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate3, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate3,certienddate3, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1527,7 +1526,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             public void onClick(View view) {
 
                 String toDate = enddate4.getText().toString();
-                showDateDialog(startdate4, false, 0, "", toDate);
+                showDateDialog(startdate4,certistartdate4, false, 0, "", toDate);
 
             }
         });
@@ -1550,7 +1549,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate4, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate4,certienddate4, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1560,7 +1559,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             public void onClick(View view) {
 
                 String toDate = enddate5.getText().toString();
-                showDateDialog(startdate5, false, 0, "", toDate);
+                showDateDialog(startdate5,certistartdate5, false, 0, "", toDate);
             }
         });
         enddate5.setOnClickListener(new View.OnClickListener() {
@@ -1582,7 +1581,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate5, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate5,certienddate5, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1592,7 +1591,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             public void onClick(View view) {
 
                 String toDate = enddate6.getText().toString();
-                showDateDialog(startdate6, false, 0, "", toDate);
+                showDateDialog(startdate6,certistartdate6, false, 0, "", toDate);
 
             }
         });
@@ -1615,7 +1614,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate6, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate6,certienddate6, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1625,7 +1624,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             public void onClick(View view) {
 
                 String toDate = enddate7.getText().toString();
-                showDateDialog(startdate7, false, 0, "", toDate);
+                showDateDialog(startdate7,certistartdate7, false, 0, "", toDate);
 
             }
         });
@@ -1648,7 +1647,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate7, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate7,certienddate7, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1658,7 +1657,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             public void onClick(View view) {
 
                 String toDate = enddate8.getText().toString();
-                showDateDialog(startdate8, false, 0, "", toDate);
+                showDateDialog(startdate8,certistartdate8, false, 0, "", toDate);
 
             }
         });
@@ -1681,7 +1680,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate8, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate8,certienddate8, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1691,7 +1690,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             public void onClick(View view) {
 
                 String toDate = enddate9.getText().toString();
-                showDateDialog(startdate9, false, 0, "", toDate);
+                showDateDialog(startdate9,certistartdate9, false, 0, "", toDate);
             }
         });
         enddate9.setOnClickListener(new View.OnClickListener() {
@@ -1713,7 +1712,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate9, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate9,certienddate9, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1722,7 +1721,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String toDate = enddate10.getText().toString();
-                showDateDialog(startdate10, false, 0, "", toDate);
+                showDateDialog(startdate10,certistartdate10, false, 0, "", toDate);
             }
         });
         enddate10.setOnClickListener(new View.OnClickListener() {
@@ -1744,7 +1743,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate10, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate10,certienddate10, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -5495,7 +5494,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             MyProfileCertifications.super.onBackPressed();
     }
 
-    void showDateDialog(final EditText id, boolean isFromDateSelected, final int fromYear, final String fromMonth, final String todate) {
+    void showDateDialog(final EditText id,final TextInputLayout idinput, boolean isFromDateSelected, final int fromYear, final String fromMonth, final String todate) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyProfileCertifications.this);
         LayoutInflater inflater = MyProfileCertifications.this.getLayoutInflater();
@@ -5634,7 +5633,13 @@ public class MyProfileCertifications extends AppCompatActivity {
                     isvalid = false;
                 }
 
-                setMonthYear(id, selectedMonth, selectedYear, isvalid);
+//                setMonthYear(id, selectedMonth, selectedYear, isvalid);
+
+                boolean bln = setMonthYear(id, selectedMonth, selectedYear, isvalid);
+                if(!bln) {
+                    idinput.setError("kindly enter valid date");
+//                    Toast.makeText(getActivity(), "bln "+bln, Toast.LENGTH_SHORT).show();
+                }
                 alertDialog.cancel();
             }
         });
@@ -5656,14 +5661,15 @@ public class MyProfileCertifications extends AppCompatActivity {
     }
 
 
-    void setMonthYear(EditText id, String selectedMonth, String selectedYear, boolean isValid) {
+    boolean setMonthYear(EditText id, String selectedMonth, String selectedYear, boolean isValid) {
         id.setError(null);
         if (isValid == true) {
             id.setText(selectedMonth + ", " + selectedYear);
+            return  true;
+
         } else {
-            id.setError("Choose valid date");
-            Toast.makeText(this, "Kindly select valid date", Toast.LENGTH_SHORT).show();
             id.setText("");
+            return  false;
         }
     }
 

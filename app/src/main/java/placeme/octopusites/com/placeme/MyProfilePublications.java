@@ -3535,7 +3535,7 @@ public class MyProfilePublications extends AppCompatActivity {
                             errorflag = 0;
                             if (spublicationdate1.length() < 2) {
                                 errorflag = 1;
-                                publicationdateinput1.setError("Kindly select valid month,year");
+                                publicationdateinput1.setError("Kindly select valid date");
                             }
                         }
                     }
@@ -3558,7 +3558,7 @@ public class MyProfilePublications extends AppCompatActivity {
                             errorflag = 0;
                             if (spublicationdate1.length() < 2) {
                                 errorflag = 1;
-                                publicationdateinput1.setError("Kindly select valid month,year");
+                                publicationdateinput1.setError("Kindly select valid date");
                             } else {
                                 errorflag = 0;
                                 if (stitle2.length() < 2) {
@@ -3578,7 +3578,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                             errorflag = 0;
                                             if (spublicationdate2.length() < 2) {
                                                 errorflag = 2;
-                                                publicationdateinput2.setError("Kindly select valid month,year");
+                                                publicationdateinput2.setError("Kindly select valid date");
                                             }
                                         }
                                     }
@@ -3605,7 +3605,7 @@ public class MyProfilePublications extends AppCompatActivity {
                             errorflag = 0;
                             if (spublicationdate1.length() < 2) {
                                 errorflag = 1;
-                                publicationdateinput1.setError("Kindly select valid month,year");
+                                publicationdateinput1.setError("Kindly select valid date");
                             } else {
                                 errorflag = 0;
                                 if (stitle2.length() < 2) {
@@ -3625,7 +3625,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                             errorflag = 0;
                                             if (spublicationdate2.length() < 2) {
                                                 errorflag = 2;
-                                                publicationdateinput2.setError("Kindly select valid month,year");
+                                                publicationdateinput2.setError("Kindly select valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (stitle3.length() < 2) {
@@ -3645,7 +3645,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (spublicationdate3.length() < 2) {
                                                                 errorflag = 3;
-                                                                publicationdateinput3.setError("Kindly select valid month,year");
+                                                                publicationdateinput3.setError("Kindly select valid date");
                                                             }
                                                         }
                                                     }
@@ -3676,7 +3676,7 @@ public class MyProfilePublications extends AppCompatActivity {
                             errorflag = 0;
                             if (spublicationdate1.length() < 2) {
                                 errorflag = 1;
-                                publicationdateinput1.setError("Kindly select valid month,year");
+                                publicationdateinput1.setError("Kindly select valid date");
                             } else {
                                 errorflag = 0;
                                 if (stitle2.length() < 2) {
@@ -3696,7 +3696,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                             errorflag = 0;
                                             if (spublicationdate2.length() < 2) {
                                                 errorflag = 2;
-                                                publicationdateinput2.setError("Kindly select valid month,year");
+                                                publicationdateinput2.setError("Kindly select valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (stitle3.length() < 2) {
@@ -3716,7 +3716,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (spublicationdate3.length() < 2) {
                                                                 errorflag = 3;
-                                                                publicationdateinput3.setError("Kindly select valid month,year");
+                                                                publicationdateinput3.setError("Kindly select valid date");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (stitle4.length() < 2) {
@@ -3736,7 +3736,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                             errorflag = 0;
                                                                             if (spublicationdate4.length() < 2) {
                                                                                 errorflag = 4;
-                                                                                publicationdateinput4.setError("Kindly select valid month,year");
+                                                                                publicationdateinput4.setError("Kindly select valid date");
                                                                             }
                                                                         }
                                                                     }
@@ -3771,7 +3771,7 @@ public class MyProfilePublications extends AppCompatActivity {
                             errorflag = 0;
                             if (spublicationdate1.length() < 2) {
                                 errorflag = 1;
-                                publicationdateinput1.setError("Kindly select valid month,year");
+                                publicationdateinput1.setError("Kindly select valid date");
                             } else {
                                 errorflag = 0;
                                 if (stitle2.length() < 2) {
@@ -3791,7 +3791,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                             errorflag = 0;
                                             if (spublicationdate2.length() < 2) {
                                                 errorflag = 2;
-                                                publicationdateinput2.setError("Kindly select valid month,year");
+                                                publicationdateinput2.setError("Kindly select valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (stitle3.length() < 2) {
@@ -3811,7 +3811,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (spublicationdate3.length() < 2) {
                                                                 errorflag = 3;
-                                                                publicationdateinput3.setError("Kindly select valid month,year");
+                                                                publicationdateinput3.setError("Kindly select valid date");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (stitle4.length() < 2) {
@@ -3831,7 +3831,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                             errorflag = 0;
                                                                             if (spublicationdate4.length() < 2) {
                                                                                 errorflag = 4;
-                                                                                publicationdateinput4.setError("Kindly select valid month,year");
+                                                                                publicationdateinput4.setError("Kindly select valid date");
                                                                             } else {
                                                                                 errorflag = 0;
                                                                                 if (stitle5.length() < 2) {
@@ -3851,7 +3851,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (spublicationdate5.length() < 2) {
                                                                                                 errorflag = 5;
-                                                                                                publicationdateinput5.setError("Kindly select valid month,year");
+                                                                                                publicationdateinput5.setError("Kindly select valid date");
                                                                                             }
                                                                                         }
                                                                                     }
@@ -3890,7 +3890,7 @@ public class MyProfilePublications extends AppCompatActivity {
                             errorflag = 0;
                             if (spublicationdate1.length() < 2) {
                                 errorflag = 1;
-                                publicationdateinput1.setError("Kindly select valid month,year");
+                                publicationdateinput1.setError("Kindly select valid date");
                             } else {
                                 errorflag = 0;
                                 if (stitle2.length() < 2) {
@@ -3910,7 +3910,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                             errorflag = 0;
                                             if (spublicationdate2.length() < 2) {
                                                 errorflag = 2;
-                                                publicationdateinput2.setError("Kindly select valid month,year");
+                                                publicationdateinput2.setError("Kindly select valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (stitle3.length() < 2) {
@@ -3930,7 +3930,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (spublicationdate3.length() < 2) {
                                                                 errorflag = 3;
-                                                                publicationdateinput3.setError("Kindly select valid month,year");
+                                                                publicationdateinput3.setError("Kindly select valid date");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (stitle4.length() < 2) {
@@ -3950,7 +3950,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                             errorflag = 0;
                                                                             if (spublicationdate4.length() < 2) {
                                                                                 errorflag = 4;
-                                                                                publicationdateinput4.setError("Kindly select valid month,year");
+                                                                                publicationdateinput4.setError("Kindly select valid date");
                                                                             } else {
                                                                                 errorflag = 0;
                                                                                 if (stitle5.length() < 2) {
@@ -3970,7 +3970,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (spublicationdate5.length() < 2) {
                                                                                                 errorflag = 5;
-                                                                                                publicationdateinput5.setError("Kindly select valid month,year");
+                                                                                                publicationdateinput5.setError("Kindly select valid date");
                                                                                             } else {
                                                                                                 errorflag = 0;
                                                                                                 if (stitle6.length() < 2) {
@@ -3990,7 +3990,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                                             errorflag = 0;
                                                                                                             if (spublicationdate6.length() < 2) {
                                                                                                                 errorflag = 6;
-                                                                                                                publicationdateinput6.setError("Kindly select valid month,year");
+                                                                                                                publicationdateinput6.setError("Kindly select valid date");
                                                                                                             }
                                                                                                         }
                                                                                                     }
@@ -4033,7 +4033,7 @@ public class MyProfilePublications extends AppCompatActivity {
                             errorflag = 0;
                             if (spublicationdate1.length() < 2) {
                                 errorflag = 1;
-                                publicationdateinput1.setError("Kindly select valid month,year");
+                                publicationdateinput1.setError("Kindly select valid date");
                             } else {
                                 errorflag = 0;
                                 if (stitle2.length() < 2) {
@@ -4053,7 +4053,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                             errorflag = 0;
                                             if (spublicationdate2.length() < 2) {
                                                 errorflag = 2;
-                                                publicationdateinput2.setError("Kindly select valid month,year");
+                                                publicationdateinput2.setError("Kindly select valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (stitle3.length() < 2) {
@@ -4073,7 +4073,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (spublicationdate3.length() < 2) {
                                                                 errorflag = 3;
-                                                                publicationdateinput3.setError("Kindly select valid month,year");
+                                                                publicationdateinput3.setError("Kindly select valid date");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (stitle4.length() < 2) {
@@ -4093,7 +4093,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                             errorflag = 0;
                                                                             if (spublicationdate4.length() < 2) {
                                                                                 errorflag = 4;
-                                                                                publicationdateinput4.setError("Kindly select valid month,year");
+                                                                                publicationdateinput4.setError("Kindly select valid date");
                                                                             } else {
                                                                                 errorflag = 0;
                                                                                 if (stitle5.length() < 2) {
@@ -4113,7 +4113,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (spublicationdate5.length() < 2) {
                                                                                                 errorflag = 5;
-                                                                                                publicationdateinput5.setError("Kindly select valid month,year");
+                                                                                                publicationdateinput5.setError("Kindly select valid date");
                                                                                             } else {
                                                                                                 errorflag = 0;
                                                                                                 if (stitle6.length() < 2) {
@@ -4133,7 +4133,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                                             errorflag = 0;
                                                                                                             if (spublicationdate6.length() < 2) {
                                                                                                                 errorflag = 6;
-                                                                                                                publicationdateinput6.setError("Kindly select valid month,year");
+                                                                                                                publicationdateinput6.setError("Kindly select valid date");
                                                                                                             } else {
                                                                                                                 errorflag = 0;
                                                                                                                 if (stitle7.length() < 2) {
@@ -4153,7 +4153,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                                                             errorflag = 0;
                                                                                                                             if (spublicationdate7.length() < 2) {
                                                                                                                                 errorflag = 7;
-                                                                                                                                publicationdateinput7.setError("Kindly select valid month,year");
+                                                                                                                                publicationdateinput7.setError("Kindly select valid date");
                                                                                                                             }
                                                                                                                         }
                                                                                                                     }
@@ -4200,7 +4200,7 @@ public class MyProfilePublications extends AppCompatActivity {
                             errorflag = 0;
                             if (spublicationdate1.length() < 2) {
                                 errorflag = 1;
-                                publicationdateinput1.setError("Kindly select valid month,year");
+                                publicationdateinput1.setError("Kindly select valid date");
                             } else {
                                 errorflag = 0;
                                 if (stitle2.length() < 2) {
@@ -4220,7 +4220,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                             errorflag = 0;
                                             if (spublicationdate2.length() < 2) {
                                                 errorflag = 2;
-                                                publicationdateinput2.setError("Kindly select valid month,year");
+                                                publicationdateinput2.setError("Kindly select valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (stitle3.length() < 2) {
@@ -4240,7 +4240,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (spublicationdate3.length() < 2) {
                                                                 errorflag = 3;
-                                                                publicationdateinput3.setError("Kindly select valid month,year");
+                                                                publicationdateinput3.setError("Kindly select valid date");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (stitle4.length() < 2) {
@@ -4260,7 +4260,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                             errorflag = 0;
                                                                             if (spublicationdate4.length() < 2) {
                                                                                 errorflag = 4;
-                                                                                publicationdateinput4.setError("Kindly select valid month,year");
+                                                                                publicationdateinput4.setError("Kindly select valid date");
                                                                             } else {
                                                                                 errorflag = 0;
                                                                                 if (stitle5.length() < 2) {
@@ -4280,7 +4280,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (spublicationdate5.length() < 2) {
                                                                                                 errorflag = 5;
-                                                                                                publicationdateinput5.setError("Kindly select valid month,year");
+                                                                                                publicationdateinput5.setError("Kindly select valid date");
                                                                                             } else {
                                                                                                 errorflag = 0;
                                                                                                 if (stitle6.length() < 2) {
@@ -4300,7 +4300,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                                             errorflag = 0;
                                                                                                             if (spublicationdate6.length() < 2) {
                                                                                                                 errorflag = 6;
-                                                                                                                publicationdateinput6.setError("Kindly select valid month,year");
+                                                                                                                publicationdateinput6.setError("Kindly select valid date");
                                                                                                             } else {
                                                                                                                 errorflag = 0;
                                                                                                                 if (stitle7.length() < 2) {
@@ -4320,7 +4320,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                                                             errorflag = 0;
                                                                                                                             if (spublicationdate7.length() < 2) {
                                                                                                                                 errorflag = 7;
-                                                                                                                                publicationdateinput7.setError("Kindly select valid month,year");
+                                                                                                                                publicationdateinput7.setError("Kindly select valid date");
                                                                                                                             } else {
                                                                                                                                 errorflag = 0;
                                                                                                                                 if (stitle8.length() < 2) {
@@ -4340,7 +4340,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                                                                             errorflag = 0;
                                                                                                                                             if (spublicationdate8.length() < 2) {
                                                                                                                                                 errorflag = 8;
-                                                                                                                                                publicationdateinput8.setError("Kindly select valid month,year");
+                                                                                                                                                publicationdateinput8.setError("Kindly select valid date");
                                                                                                                                             }
                                                                                                                                         }
                                                                                                                                     }
@@ -4391,7 +4391,7 @@ public class MyProfilePublications extends AppCompatActivity {
                             errorflag = 0;
                             if (spublicationdate1.length() < 2) {
                                 errorflag = 1;
-                                publicationdateinput1.setError("Kindly select valid month,year");
+                                publicationdateinput1.setError("Kindly select valid date");
                             } else {
                                 errorflag = 0;
                                 if (stitle2.length() < 2) {
@@ -4411,7 +4411,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                             errorflag = 0;
                                             if (spublicationdate2.length() < 2) {
                                                 errorflag = 2;
-                                                publicationdateinput2.setError("Kindly select valid month,year");
+                                                publicationdateinput2.setError("Kindly select valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (stitle3.length() < 2) {
@@ -4431,7 +4431,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (spublicationdate3.length() < 2) {
                                                                 errorflag = 3;
-                                                                publicationdateinput3.setError("Kindly select valid month,year");
+                                                                publicationdateinput3.setError("Kindly select valid date");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (stitle4.length() < 2) {
@@ -4451,7 +4451,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                             errorflag = 0;
                                                                             if (spublicationdate4.length() < 2) {
                                                                                 errorflag = 4;
-                                                                                publicationdateinput4.setError("Kindly select valid month,year");
+                                                                                publicationdateinput4.setError("Kindly select valid date");
                                                                             } else {
                                                                                 errorflag = 0;
                                                                                 if (stitle5.length() < 2) {
@@ -4471,7 +4471,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (spublicationdate5.length() < 2) {
                                                                                                 errorflag = 5;
-                                                                                                publicationdateinput5.setError("Kindly select valid month,year");
+                                                                                                publicationdateinput5.setError("Kindly select valid date");
                                                                                             } else {
                                                                                                 errorflag = 0;
                                                                                                 if (stitle6.length() < 2) {
@@ -4491,7 +4491,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                                             errorflag = 0;
                                                                                                             if (spublicationdate6.length() < 2) {
                                                                                                                 errorflag = 6;
-                                                                                                                publicationdateinput6.setError("Kindly select valid month,year");
+                                                                                                                publicationdateinput6.setError("Kindly select valid date");
                                                                                                             } else {
                                                                                                                 errorflag = 0;
                                                                                                                 if (stitle7.length() < 2) {
@@ -4511,7 +4511,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                                                             errorflag = 0;
                                                                                                                             if (spublicationdate7.length() < 2) {
                                                                                                                                 errorflag = 7;
-                                                                                                                                publicationdateinput7.setError("Kindly select valid month,year");
+                                                                                                                                publicationdateinput7.setError("Kindly select valid date");
                                                                                                                             } else {
                                                                                                                                 errorflag = 0;
                                                                                                                                 if (stitle8.length() < 2) {
@@ -4531,7 +4531,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                                                                             errorflag = 0;
                                                                                                                                             if (spublicationdate8.length() < 2) {
                                                                                                                                                 errorflag = 8;
-                                                                                                                                                publicationdateinput8.setError("Kindly select valid month,year");
+                                                                                                                                                publicationdateinput8.setError("Kindly select valid date");
                                                                                                                                             } else {
                                                                                                                                                 errorflag = 0;
                                                                                                                                                 if (stitle9.length() < 2) {
@@ -4551,7 +4551,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                                                                                             errorflag = 0;
                                                                                                                                                             if (spublicationdate9.length() < 2) {
                                                                                                                                                                 errorflag = 9;
-                                                                                                                                                                publicationdateinput9.setError("Kindly select valid month,year");
+                                                                                                                                                                publicationdateinput9.setError("Kindly select valid date");
                                                                                                                                                             }
                                                                                                                                                         }
                                                                                                                                                     }
@@ -4606,7 +4606,7 @@ public class MyProfilePublications extends AppCompatActivity {
                             errorflag = 0;
                             if (spublicationdate1.length() < 2) {
                                 errorflag = 1;
-                                publicationdateinput1.setError("Kindly select valid month,year");
+                                publicationdateinput1.setError("Kindly select valid date");
                             } else {
                                 errorflag = 0;
                                 if (stitle2.length() < 2) {
@@ -4626,7 +4626,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                             errorflag = 0;
                                             if (spublicationdate2.length() < 2) {
                                                 errorflag = 2;
-                                                publicationdateinput2.setError("Kindly select valid month,year");
+                                                publicationdateinput2.setError("Kindly select valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (stitle3.length() < 2) {
@@ -4646,7 +4646,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                             errorflag = 0;
                                                             if (spublicationdate3.length() < 2) {
                                                                 errorflag = 3;
-                                                                publicationdateinput3.setError("Kindly select valid month,year");
+                                                                publicationdateinput3.setError("Kindly select valid date");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (stitle4.length() < 2) {
@@ -4666,7 +4666,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                             errorflag = 0;
                                                                             if (spublicationdate4.length() < 2) {
                                                                                 errorflag = 4;
-                                                                                publicationdateinput4.setError("Kindly select valid month,year");
+                                                                                publicationdateinput4.setError("Kindly select valid date");
                                                                             } else {
                                                                                 errorflag = 0;
                                                                                 if (stitle5.length() < 2) {
@@ -4686,7 +4686,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                             errorflag = 0;
                                                                                             if (spublicationdate5.length() < 2) {
                                                                                                 errorflag = 5;
-                                                                                                publicationdateinput5.setError("Kindly select valid month,year");
+                                                                                                publicationdateinput5.setError("Kindly select valid date");
                                                                                             } else {
                                                                                                 errorflag = 0;
                                                                                                 if (stitle6.length() < 2) {
@@ -4706,7 +4706,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                                             errorflag = 0;
                                                                                                             if (spublicationdate6.length() < 2) {
                                                                                                                 errorflag = 6;
-                                                                                                                publicationdateinput6.setError("Kindly select valid month,year");
+                                                                                                                publicationdateinput6.setError("Kindly select valid date");
                                                                                                             } else {
                                                                                                                 errorflag = 0;
                                                                                                                 if (stitle7.length() < 2) {
@@ -4726,7 +4726,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                                                             errorflag = 0;
                                                                                                                             if (spublicationdate7.length() < 2) {
                                                                                                                                 errorflag = 7;
-                                                                                                                                publicationdateinput7.setError("Kindly select valid month,year");
+                                                                                                                                publicationdateinput7.setError("Kindly select valid date");
                                                                                                                             } else {
                                                                                                                                 errorflag = 0;
                                                                                                                                 if (stitle8.length() < 2) {
@@ -4746,7 +4746,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                                                                             errorflag = 0;
                                                                                                                                             if (spublicationdate8.length() < 2) {
                                                                                                                                                 errorflag = 8;
-                                                                                                                                                publicationdateinput8.setError("Kindly select valid month,year");
+                                                                                                                                                publicationdateinput8.setError("Kindly select valid date");
                                                                                                                                             } else {
                                                                                                                                                 errorflag = 0;
                                                                                                                                                 if (stitle9.length() < 2) {
@@ -4766,7 +4766,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                                                                                             errorflag = 0;
                                                                                                                                                             if (spublicationdate9.length() < 2) {
                                                                                                                                                                 errorflag = 9;
-                                                                                                                                                                publicationdateinput9.setError("Kindly select valid month,year");
+                                                                                                                                                                publicationdateinput9.setError("Kindly select valid date");
                                                                                                                                                             } else {
                                                                                                                                                                 errorflag = 0;
                                                                                                                                                                 if (stitle10.length() < 2) {
@@ -4786,7 +4786,7 @@ public class MyProfilePublications extends AppCompatActivity {
                                                                                                                                                                             errorflag = 0;
                                                                                                                                                                             if (spublicationdate10.length() < 2) {
                                                                                                                                                                                 errorflag = 10;
-                                                                                                                                                                                publicationdateinput10.setError("Kindly select valid month,year");
+                                                                                                                                                                                publicationdateinput10.setError("Kindly select valid date");
                                                                                                                                                                             }
                                                                                                                                                                         }
                                                                                                                                                                     }
@@ -5027,8 +5027,8 @@ public class MyProfilePublications extends AppCompatActivity {
     void setMonthYear(EditText id, String selectedMonth, String selectedYear, int isInvalidDate) {
         if (isInvalidDate == 1) {
             id.setText("");
-            id.setError("Kindly select valid month,year");
-            Toast.makeText(this, "Kindly select valid month,year", Toast.LENGTH_SHORT).show();
+            id.setError("Kindly select valid date");
+            Toast.makeText(this, "Kindly select valid date", Toast.LENGTH_SHORT).show();
         } else
             id.setText(selectedMonth + ", " + selectedYear);
     }

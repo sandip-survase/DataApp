@@ -115,6 +115,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
         }
 
         ArrayList<String> stringArrayList = new ArrayList<>(Arrays.asList(CourseList));
+
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, CourseList) {
 
             @Override
@@ -141,11 +142,6 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
             @Override
             public void onClick(View v) {
                 streams.showDropDown();
-
-
-
-
-
             }
         });
 
@@ -166,6 +162,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
                         InputMethodManager.HIDE_NOT_ALWAYS);
 
                 String toCompare = courses.getText().toString();
+
                 int index = 0;
                 for (int i = 0; i < CourseList.length; i++) {
                     if (CourseList[i].equals(toCompare))
@@ -333,13 +330,6 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
         return rootView;
     }
 
-
-    //    private void updateLabel() {
-//        String myFormat = "dd/MM/yyyy"; //In which you need put here
-//        SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
-//
-//        lastdateofrr.setText(sdf.format(myCalendar.getTime()));
-//    }
     String setStreamAdapter(String a) {
         try {
 

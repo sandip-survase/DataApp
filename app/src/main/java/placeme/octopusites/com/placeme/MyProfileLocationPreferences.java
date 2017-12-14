@@ -17,6 +17,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -25,8 +27,12 @@ import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,13 +47,14 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
+    ArrayList<String> listAll = new ArrayList<String>();
     //    private static String url_savelocationpreferences= "http://192.168.100.100/AESTest/SaveLocationPreferences";
     View trash1selectionview, trash2selectionview, trash3selectionview, trash4selectionview, trash5selectionview;
     int edittedFlag = 0;
     ;
     int d = 0;
     StudentData s = new StudentData();
-    EditText location1, location2, location3, location4, location5;
+    AutoCompleteTextView location1, location2, location3, location4, location5;
     TextInputLayout locationinput1, locationinput2, locationinput3, locationinput4, locationinput5;
     String slocation1, slocation2, slocation3, slocation4, slocation5, encobj = "";
     String enclocation1, enclocation2, enclocation3, enclocation4, enclocation5;
@@ -78,11 +85,11 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
         locationinput4 = (TextInputLayout) findViewById(R.id.locationinput4);
         locationinput5 = (TextInputLayout) findViewById(R.id.locationinput5);
 
-        location1 = (EditText) findViewById(R.id.location1);
-        location2 = (EditText) findViewById(R.id.location2);
-        location3 = (EditText) findViewById(R.id.location3);
-        location4 = (EditText) findViewById(R.id.location4);
-        location5 = (EditText) findViewById(R.id.location5);
+        location1 = (AutoCompleteTextView) findViewById(R.id.location1);
+        location2 = (AutoCompleteTextView) findViewById(R.id.location2);
+        location3 = (AutoCompleteTextView) findViewById(R.id.location3);
+        location4 = (AutoCompleteTextView) findViewById(R.id.location4);
+        location5 = (AutoCompleteTextView) findViewById(R.id.location5);
 
         location1.setTypeface(MyConstants.getBold(this));
         location2.setTypeface(MyConstants.getBold(this));
@@ -136,6 +143,35 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
                 showDeletDialog();
             }
         });
+
+        try {
+            JSONObject jsonObject = new JSONObject(getJson());
+            JSONArray array = jsonObject.getJSONArray("array");
+            for (int i = 0; i < array.length(); i++) {
+
+                JSONObject object = array.getJSONObject(i);
+                String city = object.getString("city");
+                String state = object.getString("state");
+                String country = object.getString("country");
+
+
+                listAll.add(city + " , " + state + " , " + country);
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, listAll);
+        location1.setAdapter(adapter);
+
+        location2.setAdapter(adapter);
+        location3.setAdapter(adapter);
+        location4.setAdapter(adapter);
+        location5.setAdapter(adapter);
+
 
 
 
@@ -704,6 +740,21 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
 
 
+    }
+    public String getJson() {
+        String json = null;
+        try {
+            InputStream is = getAssets().open("citystatecountrydb/array.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return json;
+        }
+        return json;
     }
 
     @Override
