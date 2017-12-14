@@ -1795,12 +1795,19 @@ public class MyProfileUg extends AppCompatActivity {
                                                                                                         float aggg=0;
 
                                                                                                         Log.d("TAG", "validateandSave: try  aggregate");
+
+
                                                                                                         if(!aggregate.equals(""))
                                                                                                             aggg = Float.parseFloat(aggregate);
                                                                                                         if (aggg<=0||aggg>=100) {
                                                                                                             errorflag1 = 1;
                                                                                                             uaggregateinput.setError("Kindly enter valid Aggregate");
-                                                                                                        } else {
+                                                                                                        }
+
+
+
+
+                                                                                                        else {
                                                                                                             errorflag1 = 0;
                                                                                                             if (selectedCourse.equals("- Select Course -")) {
                                                                                                                 errorflag1 = 1;

@@ -2274,14 +2274,7 @@ public class AdminProfileFragment extends Fragment {
                 Log.d("tag", "JSON resultofop - " + resultofop);
 
                 if (resultofop.equals("found")) {
-
                     ucode = json.getString("ucode");
-
-
-
-//                    phone = json.getString("phoned");
-
-
                     String s = json.getString("AdminIntro");
                     Log.d("===JSON===", "" + s);
                     if (s.equals("found")) {

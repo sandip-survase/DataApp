@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -53,21 +52,20 @@ import placeme.octopusites.com.placeme.modal.MyProfileDiplomaModal;
 import placeme.octopusites.com.placeme.modal.MyProfileTwelthModal;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
     EditText marks12, outof12, percent12, schoolname12, otherboard, otherstream12;
     EditText dmarkssem1, doutofsem1, dpercentsem1, dmarkssem2, doutofsem2, dpercentsem2, dmarkssem3, doutofsem3, dpercentsem3, dmarkssem4, doutofsem4, dpercentsem4, dmarkssem5, doutofsem5, dpercentsem5, dmarkssem6, doutofsem6, dpercentsem6, daggregate, schoolnamed, othercourse, otherboardd;
-    TextInputLayout marks12input,outof12input,schoolname12input,otherstream12input,otherboardinput,yearofpassing12inpute,marksdsem1input,doutofsem1input,dpercentsem1input,marksdsem2input,doutofsem2input,dpercentsem2inpute,marksdsem3input,doutofsem3input,dpercentsem3input,marksdsem4input,doutofsem4inpute,dpercentsem4inpute,marksdsem5input,doutofsem5input,dpercentsem5input,marksdsem6input,doutofsem6input,dpercentsem6input,daggregateinput,othercourseinput,otherboarddinput,schoolnamedinput,yearofpassingdinput;
+    TextInputLayout marks12input, outof12input, schoolname12input, otherstream12input, otherboardinput, yearofpassing12inpute, marksdsem1input, doutofsem1input, dpercentsem1input, marksdsem2input, doutofsem2input, dpercentsem2inpute, marksdsem3input, doutofsem3input, dpercentsem3input, marksdsem4input, doutofsem4inpute, dpercentsem4inpute, marksdsem5input, doutofsem5input, dpercentsem5input, marksdsem6input, doutofsem6input, dpercentsem6input, daggregateinput, othercourseinput, otherboarddinput, schoolnamedinput, yearofpassingdinput;
     TextInputLayout percent12input;
-    String selectedBoard12="", selectedBoarddiploma="", selectedStream12="", monthandyearofpassing12="", monthandyearofpassingdiploma="";
-    String encselectedboard12="", encselectedboarddiploma="", encselectedstream12="", encmonthandyearofpassing12="", encmonthandyearofpassingdiploma="";
+    String selectedBoard12 = "", selectedBoarddiploma = "", selectedStream12 = "", monthandyearofpassing12 = "", monthandyearofpassingdiploma = "";
+    String encselectedboard12 = "", encselectedboarddiploma = "", encselectedstream12 = "", encmonthandyearofpassing12 = "", encmonthandyearofpassingdiploma = "";
     Spinner stream12, board12;
 
     Spinner dcourse, duniversity;
 
-    String username,role;
+    String username, role;
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
@@ -95,9 +93,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
     String selectedstreamBytes1 = null;
     String selectedcourseBytes1 = null;
 
-    String strobj,strobj2;
-
-
+    String strobj, strobj2;
 
 
     @Override
@@ -113,7 +109,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-        username =MySharedPreferencesManager.getUsername(this);
+        username = MySharedPreferencesManager.getUsername(this);
         role = MySharedPreferencesManager.getRole(this);
 
         dmarkssem1 = (EditText) findViewById(R.id.dmarkssem1);
@@ -152,36 +148,36 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         stream12 = (Spinner) findViewById(R.id.stream12);
         board12 = (Spinner) findViewById(R.id.board12);
 
-        marks12input= (TextInputLayout) findViewById(R.id.marks12input);
-        outof12input= (TextInputLayout) findViewById(R.id.outof12input);
-        schoolname12input= (TextInputLayout) findViewById(R.id.schoolname12input);
-        otherstream12input= (TextInputLayout) findViewById(R.id.otherstream12input);
-        otherboardinput= (TextInputLayout) findViewById(R.id.otherboardinput);
-        yearofpassing12inpute= (TextInputLayout) findViewById(R.id.yearofpassing12inpute);
-        marksdsem1input= (TextInputLayout) findViewById(R.id.marksdsem1input);
-        doutofsem1input= (TextInputLayout) findViewById(R.id.doutofsem1input);
-        dpercentsem1input= (TextInputLayout) findViewById(R.id.dpercentsem1input);
-        marksdsem2input= (TextInputLayout) findViewById(R.id.marksdsem2input);
-        doutofsem2input= (TextInputLayout) findViewById(R.id.doutofsem2input);
-        dpercentsem2inpute= (TextInputLayout) findViewById(R.id.dpercentsem2inpute);
-        marksdsem3input= (TextInputLayout) findViewById(R.id.marksdsem3input);
-        doutofsem3input= (TextInputLayout) findViewById(R.id.doutofsem3input);
-        dpercentsem3input= (TextInputLayout) findViewById(R.id.dpercentsem3input);
-        marksdsem4input= (TextInputLayout) findViewById(R.id.marksdsem4input);
-        doutofsem4inpute= (TextInputLayout) findViewById(R.id.doutofsem4inpute);
-        dpercentsem4inpute= (TextInputLayout) findViewById(R.id.dpercentsem4inpute);
-        marksdsem5input= (TextInputLayout) findViewById(R.id.marksdsem5input);
-        doutofsem5input= (TextInputLayout) findViewById(R.id.doutofsem5input);
-        dpercentsem5input= (TextInputLayout) findViewById(R.id.dpercentsem5input);
-        marksdsem6input= (TextInputLayout) findViewById(R.id.marksdsem6input);
-        doutofsem6input= (TextInputLayout) findViewById(R.id.doutofsem6input);
-        dpercentsem6input= (TextInputLayout) findViewById(R.id.dpercentsem6input);
-        daggregateinput= (TextInputLayout) findViewById(R.id.daggregateinput);
-        othercourseinput= (TextInputLayout) findViewById(R.id.othercourseinput);
-        otherboarddinput= (TextInputLayout) findViewById(R.id.otherboarddinput);
-        schoolnamedinput= (TextInputLayout) findViewById(R.id.schoolnamedinput);
-        yearofpassingdinput= (TextInputLayout) findViewById(R.id.yearofpassingdinput);
-        percent12input= (TextInputLayout) findViewById(R.id.percent12input);
+        marks12input = (TextInputLayout) findViewById(R.id.marks12input);
+        outof12input = (TextInputLayout) findViewById(R.id.outof12input);
+        schoolname12input = (TextInputLayout) findViewById(R.id.schoolname12input);
+        otherstream12input = (TextInputLayout) findViewById(R.id.otherstream12input);
+        otherboardinput = (TextInputLayout) findViewById(R.id.otherboardinput);
+        yearofpassing12inpute = (TextInputLayout) findViewById(R.id.yearofpassing12inpute);
+        marksdsem1input = (TextInputLayout) findViewById(R.id.marksdsem1input);
+        doutofsem1input = (TextInputLayout) findViewById(R.id.doutofsem1input);
+        dpercentsem1input = (TextInputLayout) findViewById(R.id.dpercentsem1input);
+        marksdsem2input = (TextInputLayout) findViewById(R.id.marksdsem2input);
+        doutofsem2input = (TextInputLayout) findViewById(R.id.doutofsem2input);
+        dpercentsem2inpute = (TextInputLayout) findViewById(R.id.dpercentsem2inpute);
+        marksdsem3input = (TextInputLayout) findViewById(R.id.marksdsem3input);
+        doutofsem3input = (TextInputLayout) findViewById(R.id.doutofsem3input);
+        dpercentsem3input = (TextInputLayout) findViewById(R.id.dpercentsem3input);
+        marksdsem4input = (TextInputLayout) findViewById(R.id.marksdsem4input);
+        doutofsem4inpute = (TextInputLayout) findViewById(R.id.doutofsem4inpute);
+        dpercentsem4inpute = (TextInputLayout) findViewById(R.id.dpercentsem4inpute);
+        marksdsem5input = (TextInputLayout) findViewById(R.id.marksdsem5input);
+        doutofsem5input = (TextInputLayout) findViewById(R.id.doutofsem5input);
+        dpercentsem5input = (TextInputLayout) findViewById(R.id.dpercentsem5input);
+        marksdsem6input = (TextInputLayout) findViewById(R.id.marksdsem6input);
+        doutofsem6input = (TextInputLayout) findViewById(R.id.doutofsem6input);
+        dpercentsem6input = (TextInputLayout) findViewById(R.id.dpercentsem6input);
+        daggregateinput = (TextInputLayout) findViewById(R.id.daggregateinput);
+        othercourseinput = (TextInputLayout) findViewById(R.id.othercourseinput);
+        otherboarddinput = (TextInputLayout) findViewById(R.id.otherboarddinput);
+        schoolnamedinput = (TextInputLayout) findViewById(R.id.schoolnamedinput);
+        yearofpassingdinput = (TextInputLayout) findViewById(R.id.yearofpassingdinput);
+        percent12input = (TextInputLayout) findViewById(R.id.percent12input);
 
 
         marks12.setTypeface(MyConstants.getBold(this));
@@ -839,8 +835,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         });
 
 
-
-
         marks12.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -1039,7 +1033,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             @NonNull
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View view= super.getView(position, convertView, parent);
+                View view = super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
                 tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
                 return view;
@@ -1070,7 +1064,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 TextInputLayout otherboardinput = (TextInputLayout) findViewById(R.id.otherboarddinput);
                 if (selectedBoarddiploma.equals("Other")) {
 
-                    Log.d("TAG", "onItemSelected: other - "+selectedBoarddiploma);
+                    Log.d("TAG", "onItemSelected: other - " + selectedBoarddiploma);
                     otherboardinput.setVisibility(View.VISIBLE);
                     otherboardd.setVisibility(View.VISIBLE);
 
@@ -1108,7 +1102,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             @NonNull
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View view= super.getView(position, convertView, parent);
+                View view = super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
                 tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
                 return view;
@@ -1175,7 +1169,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             @NonNull
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View view= super.getView(position, convertView, parent);
+                View view = super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
                 tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
                 return view;
@@ -1221,7 +1215,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             }
         });
-
 
 
         yearofpassing12.setOnClickListener(new View.OnClickListener() {
@@ -1465,9 +1458,8 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 otherboard.setVisibility(View.VISIBLE);
                 otherboard.setText(selectedBoard12);
             }
-        }
-        else
-            selectedBoard12="-Select Board - ";
+        } else
+            selectedBoard12 = "-Select Board - ";
 
         if (selectedStream12 != null) {
             int foundstream = 0;
@@ -1483,9 +1475,8 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 otherstream12.setVisibility(View.VISIBLE);
                 otherstream12.setText(selectedStream12);
             }
-        }
-        else
-            selectedStream12="-Select Board -";
+        } else
+            selectedStream12 = "-Select Board -";
 
         if (s.getMarkssem1diploma() != null)
             markssem1 = s.getMarkssem1diploma();
@@ -1530,7 +1521,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             selectedBoarddiploma = s.getUniversitydiploma();
 
 
-
         if (s.getCollegenamediploma() != null)
             schoolnamediploma = s.getCollegenamediploma();
         if (s.getYearofpassingdiploma() != null)
@@ -1547,7 +1537,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             pattern = "diploma";
             radioButtonDiploma.setChecked(true);
         }
-
 
 
         if (outofsem1 != null)
@@ -1613,71 +1602,31 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             for (int i = 1; i < dboards.length - 1; i++)
                 if (selectedBoarddiploma.equals(dboards[i])) {
                     foundboard = 1;
-                    Log.d("TAG", "onCreate:  foundboard-"+foundboard);
+                    Log.d("TAG", "onCreate:  foundboard-" + foundboard);
                     break;
                 }
 
-            Log.d("TAG", "onCreate: selectedBoarddiploma -"+selectedBoarddiploma);
+            Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedBoarddiploma);
 
             if (foundboard == 1)
                 duniversity.setSelection(dataAdapter3.getPosition(selectedBoarddiploma));
             else {
 
-                if(selectedBoarddiploma.equals("")){
+                if (selectedBoarddiploma.equals("")) {
                     duniversity.setSelection(dataAdapter3.getPosition("- Select Board -"));
                     otherboardd.setVisibility(View.GONE);
 //                    otherboardd.setText(selectedBoarddiploma);
-                }
-                else {
+                } else {
                     duniversity.setSelection(dataAdapter3.getPosition("Other"));
                     otherboardd.setVisibility(View.VISIBLE);
                     otherboardd.setText(selectedBoarddiploma);
                 }
             }
-        }
-
-        else
-            selectedBoarddiploma="- Select Board - ";
+        } else
+            selectedBoarddiploma = "- Select Board - ";
 
 
         edittedFlag = 0;
-    }
-
-    class GetCourses extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-            json = jParser.makeHttpRequest(MyConstants.url_getcourses, "GET", params);
-            try {
-                String s = json.getString("count");
-                coursecount = Integer.parseInt(s);
-                courses = new String[coursecount];
-                for (int i = 0; i < coursecount; i++) {
-                    courses[i] = json.getString("course" + i);
-                }
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            courseslist.clear();
-            courseslist.add("- Select Course -");
-            for (int i = 0; i < coursecount; i++) {
-                courseslist.add(courses[i]);
-            }
-            populateCourses();
-            courseslist.add("Other");
-        }
     }
 
     void populateCourses() {
@@ -1696,7 +1645,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             @NonNull
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View view= super.getView(position, convertView, parent);
+                View view = super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
                 tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
                 return view;
@@ -1816,7 +1765,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                     otherspecifiedstream = otherstream12.getText().toString();
                                     if (otherspecifiedstream.length() < 3) {
                                         errorflag6 = 1;
-                                         otherstream12input.setError("Kindly enter valid Stream");
+                                        otherstream12input.setError("Kindly enter valid Stream");
                                     }
                                 }
 
@@ -2013,16 +1962,10 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                                                                     doutofsem6input.setError("Incorrect Percentage");
                                                                                 } else {
                                                                                     errorflag1 = 0;
-                                                                                    float aggg=0;
+                                                                                    float aggg = 0;
                                                                                     Log.d("TAG", "validateandSave: try  aggregate");
-                                                                                    if(!aggregate.equals(""))
+                                                                                    if (!aggregate.equals(""))
                                                                                         aggg = Float.parseFloat(aggregate);
-
-                                                                                        errorflag1 = 1;
-                                                                                        Log.d("TAG", "validateandSave: aggg  - "+aggg);
-                                                                                        Log.d("TAG", "validateandSave: catch  aggregate");
-
-//                                                                                        daggregateinput.setError("Kindly enter valid Aggregate");
 
                                                                                     if (aggg <= 0 || aggg >= 100) {
                                                                                         errorflag1 = 1;
@@ -2059,8 +2002,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
                                                                                                         otherboarddinput.setError("Invalid Board");
                                                                                                     }
-                                                                                                }
-                                                                                                else if (monthandyearofpassingdiploma.length() < 9 || monthandyearofpassingdiploma.length() > 9) {
+                                                                                                } else if (monthandyearofpassingdiploma.length() < 9 || monthandyearofpassingdiploma.length() > 9) {
                                                                                                     errorflag5 = 1;
                                                                                                     yearofpassingdinput.setError("Kindly select valid Month,Year");
                                                                                                 }
@@ -2145,8 +2087,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         s.setYearofpassing12("");
 
 
-
-
     }
 
     public void setBlankDelpoma() {
@@ -2171,8 +2111,8 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         percentsem6 = "";
         aggregate = "";
         schoolnamediploma = "";
-        selectedBoarddiploma="";
-        selectedCourse="- Select Course -";
+        selectedBoarddiploma = "";
+        selectedCourse = "- Select Course -";
 
 
         dmarkssem1.setText("");
@@ -2245,167 +2185,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
     }
 
-
-    class SaveDataTwelth extends AsyncTask<String, String, String> {
-
-        protected String doInBackground(String... param) {
-
-            MyProfileTwelthModal obj = new MyProfileTwelthModal(marksobtained,outofmarks,percentage,schoolnametwelth,selectedStream12,selectedBoard12,monthandyearofpassing12);
-
-            Log.d("params", "marksobtained: "+marksobtained);
-            Log.d("params", "outofmarks: "+outofmarks);
-            Log.d("params", "percentage: "+percentage);
-            Log.d("params", "schoolnametwelth: "+schoolnametwelth);
-            Log.d("params", "selectedstreamBytes1: "+selectedStream12);
-            Log.d("params", "monthandyearofpassing12: "+monthandyearofpassing12);
-            Log.d("params", "selectedboardBytes1: "+selectedBoard12);
-
-
-
-            try{
-                digest1=MySharedPreferencesManager.getDigest1(MyProfileTwelthOrDiploma.this);
-                digest2=MySharedPreferencesManager.getDigest2(MyProfileTwelthOrDiploma.this);
-
-                strobj =OtoString(obj,digest1,digest2);
-                Log.d("encstrobj", "strobj twelth: "+strobj);
-
-            }
-            catch (Exception e){
-                Log.d("TAG", "validateandSave: - "+e.getMessage());
-            }
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));    //0
-            params.add(new BasicNameValuePair("obj", strobj));        //1
-
-
-            json = jParser.makeHttpRequest(MyConstants.url_savedata_twelth, "GET", params);
-            try {
-                r = json.getString("info");
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            if (result.equals("success")) {
-                Toast.makeText(MyProfileTwelthOrDiploma.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
-
-
-                if (role.equals("student"))
-                    setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
-                else if (role.equals("alumni"))
-                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
-
-//                if(pattern.equals("twelth")) {
-//                    setBlankDelpoma();
-//                }
-//                if(pattern.equals("diploma")) {
-//                    setBlankTwelth();
-//                }
-
-
-                // fill student obj with update value
-                s.setMarks12(marksobtained);
-                s.setOutof12(outofmarks);
-                s.setPercentage12(percentage);
-                s.setSchoolname12(schoolnametwelth);
-                s.setStream12(selectedStream12);
-                s.setBoard12(selectedBoard12);
-                s.setYearofpassing12(monthandyearofpassing12);
-
-                MyProfileTwelthOrDiploma.super.onBackPressed();
-            }
-        }
-    }
-
-    class SaveDataDiploma extends AsyncTask<String, String, String> {
-
-
-
-        protected String doInBackground(String... param) {
-            Log.d("TAG", "doInBackground: SaveDataDiploma welcome ");
-
-            MyProfileDiplomaModal obj2 = new MyProfileDiplomaModal(markssem1,outofsem1,percentsem1,markssem2,outofsem2,percentsem2,markssem3,outofsem3,percentsem3,markssem4,outofsem4,percentsem4,markssem5,outofsem5,percentsem5,markssem6,outofsem6,percentsem6,aggregate,  selectedCourse, selectedBoarddiploma,  schoolnamediploma,monthandyearofpassingdiploma);
-
-            try{
-                Log.d("encstrobj", "diploma before try block: ");
-                strobj2 =OtoString(obj2,MySharedPreferencesManager.getDigest1(MyProfileTwelthOrDiploma.this),MySharedPreferencesManager.getDigest2(MyProfileTwelthOrDiploma.this));
-                Log.d("encstrobj", "diploma before: "+strobj2);
-                Log.d("encstrobj", "diploma strobj: "+strobj2);
-
-            }
-            catch (Exception e){
-                Log.d("TAG", "validateandSave: - "+e.getMessage());
-            }
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));    //0
-            params.add(new BasicNameValuePair("obj1", strobj2));        //1
-
-            json = jParser.makeHttpRequest(MyConstants.url_savedata_diploma, "GET", params);
-            try {
-                r = json.getString("info");
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            if (result.equals("success")) {
-
-
-                String role=MySharedPreferencesManager.getRole(MyProfileTwelthOrDiploma.this);
-                if (role.equals("student"))
-                    setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
-                else if (role.equals("alumni"))
-                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
-
-                Toast.makeText(MyProfileTwelthOrDiploma.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
-                MyProfileTwelthOrDiploma.super.onBackPressed();
-
-
-                s.setMarkssem1diploma(markssem1);
-                s.setOutofsem1diploma(outofsem1);
-                s.setPercentagesem1diploma(percentsem1);
-                s.setMarkssem2diploma(markssem2);
-                s.setOutofsem2diploma(outofsem2);
-                s.setPercentagesem2diploma(percentsem2);
-                s.setMarkssem3diploma(markssem3);
-                s.setOutofsem3diploma(outofsem3);
-                s.setPercentagesem3diploma(percentsem3);
-                s.setMarkssem4diploma(markssem4);
-                s.setOutofsem4diploma(outofsem4);
-
-                s.setPercentagesem4diploma(percentsem4);
-                Log.d("TAG", "onPostExecute: " + percentsem4);
-                s.setMarkssem5diploma(markssem5);
-                s.setOutofsem5diploma(outofsem5);
-                s.setPercentagesem5diploma(percentsem5);
-                s.setMarkssem6diploma(markssem6);
-                s.setOutofsem6diploma(outofsem6);
-                s.setPercentagesem6diploma(percentsem6);
-                s.setAggregatediploma(aggregate);
-                s.setUniversitydiploma(selectedBoarddiploma);
-                s.setCollegenamediploma(schoolnamediploma);
-                s.setYearofpassingdiploma(monthandyearofpassingdiploma);
-
-            }
-        }
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -2473,5 +2252,199 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             alertDialog.show();
         } else
             MyProfileTwelthOrDiploma.super.onBackPressed();
+    }
+
+    class GetCourses extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+            json = jParser.makeHttpRequest(MyConstants.url_getcourses, "GET", params);
+            try {
+                String s = json.getString("count");
+                coursecount = Integer.parseInt(s);
+                courses = new String[coursecount];
+                for (int i = 0; i < coursecount; i++) {
+                    courses[i] = json.getString("course" + i);
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            courseslist.clear();
+            courseslist.add("- Select Course -");
+            for (int i = 0; i < coursecount; i++) {
+                courseslist.add(courses[i]);
+            }
+            populateCourses();
+            courseslist.add("Other");
+        }
+    }
+
+    class SaveDataTwelth extends AsyncTask<String, String, String> {
+
+        protected String doInBackground(String... param) {
+
+            MyProfileTwelthModal obj = new MyProfileTwelthModal(marksobtained, outofmarks, percentage, schoolnametwelth, selectedStream12, selectedBoard12, monthandyearofpassing12);
+
+            Log.d("params", "marksobtained: " + marksobtained);
+            Log.d("params", "outofmarks: " + outofmarks);
+            Log.d("params", "percentage: " + percentage);
+            Log.d("params", "schoolnametwelth: " + schoolnametwelth);
+            Log.d("params", "selectedstreamBytes1: " + selectedStream12);
+            Log.d("params", "monthandyearofpassing12: " + monthandyearofpassing12);
+            Log.d("params", "selectedboardBytes1: " + selectedBoard12);
+
+
+            try {
+                digest1 = MySharedPreferencesManager.getDigest1(MyProfileTwelthOrDiploma.this);
+                digest2 = MySharedPreferencesManager.getDigest2(MyProfileTwelthOrDiploma.this);
+
+                strobj = OtoString(obj, digest1, digest2);
+                Log.d("encstrobj", "strobj twelth: " + strobj);
+
+            } catch (Exception e) {
+                Log.d("TAG", "validateandSave: - " + e.getMessage());
+            }
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));    //0
+            params.add(new BasicNameValuePair("obj", strobj));        //1
+
+
+            json = jParser.makeHttpRequest(MyConstants.url_savedata_twelth, "GET", params);
+            try {
+                r = json.getString("info");
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (result.equals("success")) {
+                if (!marksobtained.equals(""))
+                    Toast.makeText(MyProfileTwelthOrDiploma.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+
+
+                if (role.equals("student"))
+                    setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+                else if (role.equals("alumni"))
+                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+
+//                if(pattern.equals("twelth")) {
+//                    setBlankDelpoma();
+//                }
+//                if(pattern.equals("diploma")) {
+//                    setBlankTwelth();
+//                }
+
+
+                // fill student obj with update value
+                s.setMarks12(marksobtained);
+                s.setOutof12(outofmarks);
+                s.setPercentage12(percentage);
+                s.setSchoolname12(schoolnametwelth);
+                s.setStream12(selectedStream12);
+                s.setBoard12(selectedBoard12);
+                s.setYearofpassing12(monthandyearofpassing12);
+
+                MyProfileTwelthOrDiploma.super.onBackPressed();
+            }
+        }
+    }
+
+    class SaveDataDiploma extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+            Log.d("TAG", "doInBackground: SaveDataDiploma welcome ");
+
+            MyProfileDiplomaModal obj2 = new MyProfileDiplomaModal(markssem1, outofsem1, percentsem1, markssem2, outofsem2, percentsem2, markssem3, outofsem3, percentsem3, markssem4, outofsem4, percentsem4, markssem5, outofsem5, percentsem5, markssem6, outofsem6, percentsem6, aggregate, selectedCourse, selectedBoarddiploma, schoolnamediploma, monthandyearofpassingdiploma);
+
+            try {
+                Log.d("encstrobj", "diploma before try block: ");
+                strobj2 = OtoString(obj2, MySharedPreferencesManager.getDigest1(MyProfileTwelthOrDiploma.this), MySharedPreferencesManager.getDigest2(MyProfileTwelthOrDiploma.this));
+                Log.d("encstrobj", "diploma before: " + strobj2);
+                Log.d("encstrobj", "diploma strobj: " + strobj2);
+
+            } catch (Exception e) {
+                Log.d("TAG", "validateandSave: - " + e.getMessage());
+            }
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));    //0
+            params.add(new BasicNameValuePair("obj1", strobj2));        //1
+
+            json = jParser.makeHttpRequest(MyConstants.url_savedata_diploma, "GET", params);
+            try {
+                r = json.getString("info");
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (result.equals("success")) {
+
+
+                String role = MySharedPreferencesManager.getRole(MyProfileTwelthOrDiploma.this);
+                if (role.equals("student"))
+                    setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+                else if (role.equals("alumni"))
+                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+                if (!markssem1.equals(""))
+                    Toast.makeText(MyProfileTwelthOrDiploma.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+                MyProfileTwelthOrDiploma.super.onBackPressed();
+
+
+                s.setMarkssem1diploma(markssem1);
+                s.setOutofsem1diploma(outofsem1);
+                s.setPercentagesem1diploma(percentsem1);
+                s.setMarkssem2diploma(markssem2);
+                s.setOutofsem2diploma(outofsem2);
+                s.setPercentagesem2diploma(percentsem2);
+                s.setMarkssem3diploma(markssem3);
+                s.setOutofsem3diploma(outofsem3);
+                s.setPercentagesem3diploma(percentsem3);
+                s.setMarkssem4diploma(markssem4);
+                s.setOutofsem4diploma(outofsem4);
+
+                s.setPercentagesem4diploma(percentsem4);
+                Log.d("TAG", "onPostExecute: " + percentsem4);
+                s.setMarkssem5diploma(markssem5);
+                s.setOutofsem5diploma(outofsem5);
+                s.setPercentagesem5diploma(percentsem5);
+                s.setMarkssem6diploma(markssem6);
+                s.setOutofsem6diploma(outofsem6);
+                s.setPercentagesem6diploma(percentsem6);
+                s.setAggregatediploma(aggregate);
+                s.setUniversitydiploma(selectedBoarddiploma);
+                s.setCollegenamediploma(schoolnamediploma);
+                s.setYearofpassingdiploma(monthandyearofpassingdiploma);
+
+            }
+        }
     }
 }

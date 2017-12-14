@@ -1054,7 +1054,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             public void onClick(View view) {
                 editproj=0;
                 if (projectscount == 0) {
-//                    if(proj1.getText().toString()!=null && domain1.getText().toString()!=null && team1.getText().toString()!=null && duration1.getText().toString()!=null) {
+                    if(proj1.getText().toString()!=null && domain1.getText().toString()!=null && team1.getText().toString()!=null && duration1.getText().toString()!=null) {
                     if (!proj1.getText().toString().equals("") && !domain1.getText().toString().equals("") && !team1.getText().toString().equals("") && !duration1.getText().toString().equals("")) {
 
                         View v = (View) rootView.findViewById(R.id.projectline1);
@@ -1065,13 +1065,13 @@ public class ProjectsProfileTabFragment extends Fragment {
 
                         projectscount++;
                     } else
-                        Toast.makeText(getActivity(), "Please Enter First Project Details", Toast.LENGTH_SHORT).show();
-//                    }
-//                    else
-//                        Toast.makeText(getActivity(), "Please Enter First Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
                 } else if (projectscount == 1) {
-//                    if(proj2.getText().toString()!=null && domain2.getText().toString()!=null && team2.getText().toString()!=null && duration2.getText().toString()!=null) {
+                    if(proj2.getText().toString()!=null && domain2.getText().toString()!=null && team2.getText().toString()!=null && duration2.getText().toString()!=null) {
                     if (!proj2.getText().toString().equals("") && !domain2.getText().toString().equals("") && !team2.getText().toString().equals("") && !duration2.getText().toString().equals("")) {
 
                         View v = (View) rootView.findViewById(R.id.projectline2);
@@ -1082,14 +1082,14 @@ public class ProjectsProfileTabFragment extends Fragment {
                         projectscount++;
 
                     } else
-                        Toast.makeText(getActivity(), "Please Enter Second Project Details1", Toast.LENGTH_SHORT).show();
-//                    }
-//                    else
-//                        Toast.makeText(getActivity(), "Please Enter Second Project Details2", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
                 } else if (projectscount == 2) {
 
-//                    if(proj3.getText().toString()!=null && domain3.getText().toString()!=null && team3.getText().toString()!=null && duration3.getText().toString()!=null) {
+                    if(proj3.getText().toString()!=null && domain3.getText().toString()!=null && team3.getText().toString()!=null && duration3.getText().toString()!=null) {
                     if (!proj3.getText().toString().equals("") && !domain3.getText().toString().equals("") && !team3.getText().toString().equals("") && !duration3.getText().toString().equals("")) {
 
                         View v = (View) rootView.findViewById(R.id.projectline3);
@@ -1100,10 +1100,10 @@ public class ProjectsProfileTabFragment extends Fragment {
                         projectscount++;
 
                     } else
-                        Toast.makeText(getActivity(), "Please Enter Third Project Details", Toast.LENGTH_SHORT).show();
-//                    }
-//                    else
-//                        Toast.makeText(getActivity(), "Please Enter Third Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
 
                 } else if (projectscount == 3) {
@@ -1120,9 +1120,9 @@ public class ProjectsProfileTabFragment extends Fragment {
                             projectscount++;
 
                         } else
-                            Toast.makeText(getActivity(), "Please Enter Fourth Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(getActivity(), "Please Enter Fourth Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
 
                 } else if (projectscount == 4) {
@@ -1139,9 +1139,9 @@ public class ProjectsProfileTabFragment extends Fragment {
                             projectscount++;
 
                         } else
-                            Toast.makeText(getActivity(), "Please Enter Fifth Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(getActivity(), "Please Enter Fifth Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
 
                 } else if (projectscount == 5) {
@@ -1157,9 +1157,9 @@ public class ProjectsProfileTabFragment extends Fragment {
                             projectscount++;
 
                         } else
-                            Toast.makeText(getActivity(), "Please Enter Sixth Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(getActivity(), "Please Enter Sixth Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
                 } else if (projectscount == 6) {
                     if (proj7.getText().toString() != null && domain7.getText().toString() != null && team7.getText().toString() != null && duration7.getText().toString() != null) {
@@ -1173,9 +1173,9 @@ public class ProjectsProfileTabFragment extends Fragment {
                             projectscount++;
 
                         } else
-                            Toast.makeText(getActivity(), "Please Enter Seventh Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(getActivity(), "Please Enter Seventh Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
                 } else if (projectscount == 7) {
                     if (proj8.getText().toString() != null && domain8.getText().toString() != null && team8.getText().toString() != null && duration8.getText().toString() != null) {
@@ -1190,9 +1190,9 @@ public class ProjectsProfileTabFragment extends Fragment {
                             projectscount++;
 
                         } else
-                            Toast.makeText(getActivity(), "Please Enter Eighth Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(getActivity(), "Please Enter Eighth Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
                 } else if (projectscount == 8) {
 
@@ -1214,28 +1214,15 @@ public class ProjectsProfileTabFragment extends Fragment {
                             i.setVisibility(View.GONE);
 
                         } else
-                            Toast.makeText(getActivity(), "Please Enter Nineth Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(getActivity(), "Please Enter Nineth Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
                 }
 
             }
         });
 
-//
-//        save = (Button) rootView.findViewById(R.id.saveprojects);
-//        projectsprogress = (ProgressBar) rootView.findViewById(R.id.projectprogress);
-//
-//
-//        save.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                projectsprogress.setVisibility(View.VISIBLE);
-//                save.setVisibility(View.GONE);
-//                validateandSave();
-//            }
-//        });
 
 
         demoKeyBytes = SimpleBase64Encoder.decode(digest1);

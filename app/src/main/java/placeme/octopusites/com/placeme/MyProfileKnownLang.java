@@ -227,7 +227,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     }
                     else
                     {
-                        Toast.makeText(MyProfileKnownLang.this, "Please fill the First Language", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileKnownLang.this, "Please fill the empty Language", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else  if(langcount==1)
@@ -243,7 +243,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     }
                     else
                     {
-                        Toast.makeText(MyProfileKnownLang.this, "Please fill the Second Language", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileKnownLang.this, "Please fill the empty Language", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -261,7 +261,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     }
                     else
                     {
-                        Toast.makeText(MyProfileKnownLang.this, "Please fill the Third Language", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileKnownLang.this, "Please fill the empty Language", Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -279,7 +279,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     }
                     else
                     {
-                        Toast.makeText(MyProfileKnownLang.this, "Please fill the Fourth Language", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileKnownLang.this, "Please fill the empty Language", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -298,7 +298,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     }
                     else
                     {
-                        Toast.makeText(MyProfileKnownLang.this, "Please fill the Fifth Language", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileKnownLang.this, "Please fill the empty Language", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -318,7 +318,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     }
                     else
                     {
-                        Toast.makeText(MyProfileKnownLang.this, "Please fill the Sixth Language", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileKnownLang.this, "Please fill the empty Language", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -339,7 +339,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     }
                     else
                     {
-                        Toast.makeText(MyProfileKnownLang.this, "Please fill the Seventh Language", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileKnownLang.this, "Please fill the empty Language", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -358,7 +358,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     }
                     else
                     {
-                        Toast.makeText(MyProfileKnownLang.this, "Please fill the Eighth Language", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileKnownLang.this, "Please fill the empty Language", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -382,7 +382,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                     }
                     else
                     {
-                        Toast.makeText(MyProfileKnownLang.this, "Please fill the Ninth Language", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileKnownLang.this, "Please fill the empty Language", Toast.LENGTH_SHORT).show();
                     }
 
 

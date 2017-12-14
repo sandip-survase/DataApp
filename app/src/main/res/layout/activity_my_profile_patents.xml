@@ -2007,7 +2007,7 @@
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:id="@+id/spinnerimg8"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/delete_icon" />
 
                 <View
                     android:layout_width="match_parent"

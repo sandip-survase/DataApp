@@ -398,9 +398,9 @@ public class MyProfileWeaknesses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             weakcount++;
                         } else
-                            Toast.makeText(MyProfileWeaknesses.this, "Please Enter first Weaknesses", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileWeaknesses.this, "Please enter empty weaknesses", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileWeaknesses.this, "Please Enter first Weaknesses", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileWeaknesses.this, "Please enter empty weaknesses", Toast.LENGTH_SHORT).show();
 
                 } else if (weakcount == 1) {
                     if (weak2.getText().toString() != null) {
@@ -413,9 +413,9 @@ public class MyProfileWeaknesses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             weakcount++;
                         } else
-                            Toast.makeText(MyProfileWeaknesses.this, "Please Enter second Weaknesses", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileWeaknesses.this, "Please enter empty weaknesses", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileWeaknesses.this, "Please Enter secound Weaknesses", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileWeaknesses.this, "Please enter empty weaknesses", Toast.LENGTH_SHORT).show();
                 } else if (weakcount == 2) {
 
 
@@ -428,9 +428,9 @@ public class MyProfileWeaknesses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             weakcount++;
                         } else
-                            Toast.makeText(MyProfileWeaknesses.this, "Please Enter Third Weaknesses", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileWeaknesses.this, "Please enter empty weaknesses", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileWeaknesses.this, "Please Enter Third Weaknesses", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileWeaknesses.this, "Please enter empty weaknesses", Toast.LENGTH_SHORT).show();
 
                 } else if (weakcount == 3) {
                     if (weak4.getText().toString() != null) {
@@ -442,9 +442,9 @@ public class MyProfileWeaknesses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             weakcount++;
                         } else
-                            Toast.makeText(MyProfileWeaknesses.this, "Please Enter Fourth Weaknesses", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileWeaknesses.this, "Please enter empty weaknesses", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileWeaknesses.this, "Please Enter Fourth Weaknesses", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileWeaknesses.this, "Please enter empty weaknesses", Toast.LENGTH_SHORT).show();
 
                 } else if (weakcount == 4) {
                     if (weak5.getText().toString() != null) {
@@ -457,9 +457,9 @@ public class MyProfileWeaknesses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             weakcount++;
                         } else
-                            Toast.makeText(MyProfileWeaknesses.this, "Please Enter Fifth Weaknesses", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileWeaknesses.this, "Please enter empty weaknesses", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileWeaknesses.this, "Please Enter Fifth Weaknesses", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileWeaknesses.this, "Please enter empty weaknesses", Toast.LENGTH_SHORT).show();
 
                 } else if (weakcount == 5) {
                     if (weak6.getText().toString() != null) {
@@ -472,9 +472,9 @@ public class MyProfileWeaknesses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             weakcount++;
                         } else
-                            Toast.makeText(MyProfileWeaknesses.this, "Please Enter Sixth Weaknesses", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileWeaknesses.this, "Please enter empty weaknesses", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileWeaknesses.this, "Please Enter Sixth Weaknesses", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileWeaknesses.this, "Please enter empty weaknesses", Toast.LENGTH_SHORT).show();
 
                 } else if (weakcount == 6) {
                     if (weak7.getText().toString() != null) {
@@ -488,9 +488,9 @@ public class MyProfileWeaknesses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             weakcount++;
                         } else
-                            Toast.makeText(MyProfileWeaknesses.this, "Please Enter Seventh Weaknesses", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileWeaknesses.this, "Please enter empty weaknesses", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileWeaknesses.this, "Please Enter Seventh Weaknesses", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileWeaknesses.this, "Please enter empty weaknesses", Toast.LENGTH_SHORT).show();
 
                 } else if (weakcount == 7) {
 
@@ -505,9 +505,9 @@ public class MyProfileWeaknesses extends AppCompatActivity {
                             weakcount++;
 
                         } else
-                            Toast.makeText(MyProfileWeaknesses.this, "Please Enter Eighth Weaknesses", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileWeaknesses.this, "Please enter empty weaknesses", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileWeaknesses.this, "Please Enter Eighth Weaknesses", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileWeaknesses.this, "Please enter empty weaknesses", Toast.LENGTH_SHORT).show();
 
                     View v = (View) findViewById(R.id.weakline7);
                     v.setVisibility(View.VISIBLE);
@@ -530,9 +530,9 @@ public class MyProfileWeaknesses extends AppCompatActivity {
                             t.setVisibility(View.GONE);
                             i.setVisibility(View.GONE);
                         } else
-                            Toast.makeText(MyProfileWeaknesses.this, "Please Enter Nineth Weaknesses", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileWeaknesses.this, "Please enter empty weaknesses", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileWeaknesses.this, "Please Enter Nineth Weaknesses", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileWeaknesses.this, "Please enter empty weaknesses", Toast.LENGTH_SHORT).show();
 
                     View v = (View) findViewById(R.id.weakline7);
                     v.setVisibility(View.VISIBLE);

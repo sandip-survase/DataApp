@@ -1551,10 +1551,10 @@ public class MyProfilePublications extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             publicationcount++;
                         } else {
-                            Toast.makeText(MyProfilePublications.this, "Please fill the first publication", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfilePublications.this, "Please fill the empty publication", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfilePublications.this, "Please fill the first publication", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfilePublications.this, "Please fill the empty publication", Toast.LENGTH_SHORT).show();
 
 
                 } else if (publicationcount == 1) {
@@ -1567,10 +1567,10 @@ public class MyProfilePublications extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             publicationcount++;
                         } else {
-                            Toast.makeText(MyProfilePublications.this, "Please fill the second publication", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfilePublications.this, "Please fill the empty publication", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfilePublications.this, "Please fill the second publication", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfilePublications.this, "Please fill the empty publication", Toast.LENGTH_SHORT).show();
 
 
                 } else if (publicationcount == 2) {
@@ -1584,10 +1584,10 @@ public class MyProfilePublications extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             publicationcount++;
                         } else {
-                            Toast.makeText(MyProfilePublications.this, "Please fill the third publication", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfilePublications.this, "Please fill the empty publication", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfilePublications.this, "Please fill the third publication", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfilePublications.this, "Please fill the empty publication", Toast.LENGTH_SHORT).show();
 
 
                 } else if (publicationcount == 3) {
@@ -1600,10 +1600,10 @@ public class MyProfilePublications extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             publicationcount++;
                         } else {
-                            Toast.makeText(MyProfilePublications.this, "Please fill the fourth publication", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfilePublications.this, "Please fill the empty publication", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfilePublications.this, "Please fill the fourth publication", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfilePublications.this, "Please fill the empty publication", Toast.LENGTH_SHORT).show();
 
 
                 } else if (publicationcount == 4) {
@@ -1617,10 +1617,10 @@ public class MyProfilePublications extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             publicationcount++;
                         } else {
-                            Toast.makeText(MyProfilePublications.this, "Please fill the fifth publication", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfilePublications.this, "Please fill the empty publication", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfilePublications.this, "Please fill the fifth publication", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfilePublications.this, "Please fill the empty publication", Toast.LENGTH_SHORT).show();
 
 
                 } else if (publicationcount == 5) {
@@ -1634,10 +1634,10 @@ public class MyProfilePublications extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             publicationcount++;
                         } else {
-                            Toast.makeText(MyProfilePublications.this, "Please fill the sixth publication", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfilePublications.this, "Please fill the empty publication", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfilePublications.this, "Please fill the sixth publication", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfilePublications.this, "Please fill the empty publication", Toast.LENGTH_SHORT).show();
 
 
                 } else if (publicationcount == 6) {
@@ -1650,10 +1650,10 @@ public class MyProfilePublications extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             publicationcount++;
                         } else {
-                            Toast.makeText(MyProfilePublications.this, "Please fill the seventh publication", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfilePublications.this, "Please fill the empty publication", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfilePublications.this, "Please fill the seventh publication", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfilePublications.this, "Please fill the empty publication", Toast.LENGTH_SHORT).show();
 
 
                 } else if (publicationcount == 7) {
@@ -1667,10 +1667,10 @@ public class MyProfilePublications extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             publicationcount++;
                         } else {
-                            Toast.makeText(MyProfilePublications.this, "Please fill the eighth publication", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfilePublications.this, "Please fill the empty publication", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfilePublications.this, "Please fill the eighth publication", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfilePublications.this, "Please fill the empty publication", Toast.LENGTH_SHORT).show();
 
 
                 } else if (publicationcount == 8) {
@@ -1692,10 +1692,10 @@ public class MyProfilePublications extends AppCompatActivity {
                             t.setVisibility(View.GONE);
                             i.setVisibility(View.GONE);
                         } else {
-                            Toast.makeText(MyProfilePublications.this, "Please fill the nineth publication", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfilePublications.this, "Please fill the empty publication", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfilePublications.this, "Please fill the nineth publication", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfilePublications.this, "Please fill the empty publication", Toast.LENGTH_SHORT).show();
 
 
                 }

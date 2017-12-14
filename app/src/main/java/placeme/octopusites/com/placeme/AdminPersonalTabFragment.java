@@ -766,8 +766,6 @@ public class AdminPersonalTabFragment extends Fragment {
             params.add(new BasicNameValuePair("p", encobj));     //1
 
             json = jParser.makeHttpRequest(MyConstants.url_SaveAdminPersonal, "GET", params);
-
-
             try {
                 r = json.getString("info");
 

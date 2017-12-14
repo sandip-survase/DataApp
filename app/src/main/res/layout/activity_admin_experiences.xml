@@ -59,6 +59,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Position Held"
+                android:inputType="textCapWords"
+
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
                 android:maxLength="100"
@@ -77,6 +79,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Institute/Organization Name"
+                android:inputType="textCapWords"
+
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
                 android:maxLength="200"
@@ -216,6 +220,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Position Held"
                 android:textSize="16dp"
+                android:inputType="textCapWords"
+
                 android:textColor="@color/dark_color"
                 android:maxLength="100"
                 android:singleLine="true"
@@ -226,6 +232,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/instinput2"
+
             android:layout_below="@+id/postinput2"
             android:theme="@style/TextLabel">
 
@@ -234,6 +241,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Institute/Organization Name"
                 android:textSize="16dp"
+                android:inputType="textCapWords"
+
                 android:textColor="@color/dark_color"
                 android:maxLength="200"
                 android:singleLine="true"
@@ -371,6 +380,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Position Held"
+                android:inputType="textCapWords"
+
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
                 android:maxLength="100"
@@ -390,6 +401,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Institute/Organization Name"
                 android:textSize="16dp"
+                android:inputType="textCapWords"
+
                 android:textColor="@color/dark_color"
                 android:maxLength="200"
                 android:singleLine="true"
@@ -527,6 +540,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Position Held"
+                android:inputType="textCapWords"
+
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
                 android:maxLength="100"
@@ -544,6 +559,8 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+
                 android:hint="Institute/Organization Name"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
@@ -683,6 +700,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Position Held"
                 android:textSize="16dp"
+                android:inputType="textCapWords"
+
                 android:textColor="@color/dark_color"
                 android:maxLength="100"
                 android:singleLine="true"
@@ -699,6 +718,8 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+
                 android:hint="Institute/Organization Name"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
@@ -838,6 +859,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Position Held"
+                android:inputType="textCapWords"
+
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
                 android:maxLength="100"
@@ -857,6 +880,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Institute/Organization Name"
                 android:textSize="16dp"
+                android:inputType="textCapWords"
+
                 android:textColor="@color/dark_color"
                 android:maxLength="200"
                 android:singleLine="true"
@@ -995,6 +1020,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Position Held"
+                android:inputType="textCapWords"
+
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
                 android:maxLength="100"
@@ -1013,6 +1040,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Institute/Organization Name"
+                android:inputType="textCapWords"
+
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
                 android:maxLength="200"
@@ -1152,6 +1181,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Position Held"
+                android:inputType="textCapWords"
+
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
                 android:maxLength="100"
@@ -1169,6 +1200,8 @@
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+
                 android:hint="Institute/Organization Name"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
@@ -1309,6 +1342,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Position Held"
+                android:inputType="textCapWords"
+
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
                 android:maxLength="100"
@@ -1328,6 +1363,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Institute/Organization Name"
                 android:textSize="16dp"
+                android:inputType="textCapWords"
+
                 android:textColor="@color/dark_color"
                 android:maxLength="200"
                 android:singleLine="true"
@@ -1467,6 +1504,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Position Held"
                 android:textSize="16dp"
+                android:inputType="textCapWords"
+
                 android:textColor="@color/dark_color"
                 android:maxLength="100"
                 android:singleLine="true"
@@ -1485,6 +1524,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Institute/Organization Name"
                 android:textSize="16dp"
+                android:inputType="textCapWords"
+
                 android:textColor="@color/dark_color"
                 android:maxLength="200"
                 android:singleLine="true"

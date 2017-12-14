@@ -400,10 +400,10 @@ public class MyProfileStrengths extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             strengthcount++;
                         }else
-                            Toast.makeText(MyProfileStrengths.this, "Please enter first strength", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileStrengths.this, "Please enter empty strength", Toast.LENGTH_SHORT).show();
                     }
                     else
-                        Toast.makeText(MyProfileStrengths.this, "Please enter first strength", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileStrengths.this, "Please enter empty strength", Toast.LENGTH_SHORT).show();
                 }
                 else if(strengthcount==1)
                 {
@@ -417,9 +417,9 @@ public class MyProfileStrengths extends AppCompatActivity {
                             strengthcount++;
                         }
                         else
-                            Toast.makeText(MyProfileStrengths.this, "Please enter Second strength", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileStrengths.this, "Please enter empty strength", Toast.LENGTH_SHORT).show();
                     }else
-                        Toast.makeText(MyProfileStrengths.this, "Please enter second strength", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileStrengths.this, "Please enter empty strength", Toast.LENGTH_SHORT).show();
 
                 }
                 else if(strengthcount==2)
@@ -433,9 +433,9 @@ public class MyProfileStrengths extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             strengthcount++;
                         }else
-                            Toast.makeText(MyProfileStrengths.this, "Please enter third strength", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileStrengths.this, "Please enter empty strength", Toast.LENGTH_SHORT).show();
                     }else
-                        Toast.makeText(MyProfileStrengths.this, "Please enter third strength", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileStrengths.this, "Please enter empty strength", Toast.LENGTH_SHORT).show();
 
                 }
                 else  if(strengthcount==3)
@@ -450,9 +450,9 @@ public class MyProfileStrengths extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             strengthcount++;
                         }else
-                            Toast.makeText(MyProfileStrengths.this, "Please enter fourth strength", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileStrengths.this, "Please enter empty strength", Toast.LENGTH_SHORT).show();
                     }else
-                        Toast.makeText(MyProfileStrengths.this, "Please enter fourth strength", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileStrengths.this, "Please enter empty strength", Toast.LENGTH_SHORT).show();
                 }
                 else if(strengthcount==4)
                 {
@@ -465,9 +465,9 @@ public class MyProfileStrengths extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             strengthcount++;
                         }else
-                            Toast.makeText(MyProfileStrengths.this, "Please enter fifth strength", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileStrengths.this, "Please enter empty strength", Toast.LENGTH_SHORT).show();
                     }else
-                        Toast.makeText(MyProfileStrengths.this, "Please enter fifth strength", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileStrengths.this, "Please enter empty strength", Toast.LENGTH_SHORT).show();
                 }
                 else if(strengthcount==5)
                 {
@@ -480,9 +480,9 @@ public class MyProfileStrengths extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             strengthcount++;
                         }else
-                            Toast.makeText(MyProfileStrengths.this, "Please enter sixth strength", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileStrengths.this, "Please enter empty strength", Toast.LENGTH_SHORT).show();
                     }else
-                        Toast.makeText(MyProfileStrengths.this, "Please enter sixth strength", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileStrengths.this, "Please enter empty strength", Toast.LENGTH_SHORT).show();
                 }
                 else if(strengthcount==6)
                 {
@@ -495,9 +495,9 @@ public class MyProfileStrengths extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             strengthcount++;
                         }else
-                            Toast.makeText(MyProfileStrengths.this, "Please enter seventh strength", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileStrengths.this, "Please enter empty strength", Toast.LENGTH_SHORT).show();
                     }else
-                        Toast.makeText(MyProfileStrengths.this, "Please enter seventh strength", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileStrengths.this, "Please enter empty strength", Toast.LENGTH_SHORT).show();
                 }
                 else if(strengthcount==7)
                 {
@@ -511,9 +511,9 @@ public class MyProfileStrengths extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             strengthcount++;
                         }else
-                            Toast.makeText(MyProfileStrengths.this, "Please enter eighth strength", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileStrengths.this, "Please enter empty strength", Toast.LENGTH_SHORT).show();
                     }else
-                        Toast.makeText(MyProfileStrengths.this, "Please enter eighth strength", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileStrengths.this, "Please enter empty strength", Toast.LENGTH_SHORT).show();
 
                 }
                 else if(strengthcount==8)
@@ -532,9 +532,9 @@ public class MyProfileStrengths extends AppCompatActivity {
                             t.setVisibility(View.GONE);
                             i.setVisibility(View.GONE);
                         }else
-                            Toast.makeText(MyProfileStrengths.this, "Please enter nineth strength", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileStrengths.this, "Please enter empty strength", Toast.LENGTH_SHORT).show();
                     }else
-                        Toast.makeText(MyProfileStrengths.this, "Please enter nineth strength", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileStrengths.this, "Please enter empty strength", Toast.LENGTH_SHORT).show();
                 }
 
             }

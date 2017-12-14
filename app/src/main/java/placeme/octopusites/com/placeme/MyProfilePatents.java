@@ -2134,10 +2134,10 @@ public class MyProfilePatents extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             patentcount++;
                         } else {
-                            Toast.makeText(MyProfilePatents.this, "Please fill the first Honors", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfilePatents.this, "Please fill the empty patent", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfilePatents.this, "Please fill the first Honors", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfilePatents.this, "Please fill the empty patent", Toast.LENGTH_SHORT).show();
 
 
                 } else if (patentcount == 1) {
@@ -2151,10 +2151,10 @@ public class MyProfilePatents extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             patentcount++;
                         } else {
-                            Toast.makeText(MyProfilePatents.this, "Please fill the Second Honors", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfilePatents.this, "Please fill the empty patent", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfilePatents.this, "Please fill the Second Honors", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfilePatents.this, "Please fill the empty patent", Toast.LENGTH_SHORT).show();
 
                 } else if (patentcount == 2) {
                     if (title3.getText().toString() != null && appno3.getText().toString() != null && inventor3.getText().toString() != null && (issue3.getText().toString() != null || filing3.getText().toString() != null)) {
@@ -2167,10 +2167,10 @@ public class MyProfilePatents extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             patentcount++;
                         } else {
-                            Toast.makeText(MyProfilePatents.this, "Please fill the Third Honors", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfilePatents.this, "Please fill the empty patent", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfilePatents.this, "Please fill the Third Honors", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfilePatents.this, "Please fill the empty patent", Toast.LENGTH_SHORT).show();
 
                 } else if (patentcount == 3) {
                     if (title4.getText().toString() != null && appno4.getText().toString() != null && inventor4.getText().toString() != null && (issue4.getText().toString() != null || filing4.getText().toString() != null)) {
@@ -2182,10 +2182,10 @@ public class MyProfilePatents extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             patentcount++;
                         } else {
-                            Toast.makeText(MyProfilePatents.this, "Please fill the Fourth Honors", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfilePatents.this, "Please fill the empty patent", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfilePatents.this, "Please fill the Fourth Honors", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfilePatents.this, "Please fill the empty patent", Toast.LENGTH_SHORT).show();
 
 
                 } else if (patentcount == 4) {
@@ -2198,10 +2198,10 @@ public class MyProfilePatents extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             patentcount++;
                         } else {
-                            Toast.makeText(MyProfilePatents.this, "Please fill the Fifth Honors", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfilePatents.this, "Please fill the empty patent", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfilePatents.this, "Please fill the Fifth Honors", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfilePatents.this, "Please fill the empty patent", Toast.LENGTH_SHORT).show();
 
 
                 } else if (patentcount == 5) {
@@ -2215,10 +2215,10 @@ public class MyProfilePatents extends AppCompatActivity {
                             patentcount++;
 
                         } else {
-                            Toast.makeText(MyProfilePatents.this, "Please fill the Sixth Honors", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfilePatents.this, "Please fill the empty patent", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfilePatents.this, "Please fill the Sixth Honors", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfilePatents.this, "Please fill the empty patent", Toast.LENGTH_SHORT).show();
 
 
                 } else if (patentcount == 6) {
@@ -2231,10 +2231,10 @@ public class MyProfilePatents extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             patentcount++;
                         } else {
-                            Toast.makeText(MyProfilePatents.this, "Please fill the Seventh Honors", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfilePatents.this, "Please fill the empty patent", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfilePatents.this, "Please fill the Seventh Honors", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfilePatents.this, "Please fill the empty patent", Toast.LENGTH_SHORT).show();
 
 
                 } else if (patentcount == 7) {
@@ -2247,10 +2247,10 @@ public class MyProfilePatents extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             patentcount++;
                         } else {
-                            Toast.makeText(MyProfilePatents.this, "Please fill the Eighth Honors", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfilePatents.this, "Please fill the empty patent", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfilePatents.this, "Please fill the Eighth Honors", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfilePatents.this, "Please fill the empty patent", Toast.LENGTH_SHORT).show();
 
 
                 } else if (patentcount == 8) {
@@ -2270,10 +2270,10 @@ public class MyProfilePatents extends AppCompatActivity {
                             t.setVisibility(View.GONE);
                             i.setVisibility(View.GONE);
                         } else {
-                            Toast.makeText(MyProfilePatents.this, "Please fill the Nineth Honors", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfilePatents.this, "Please fill the empty patent", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfilePatents.this, "Please fill the Nineth Honors", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfilePatents.this, "Please fill the empty patent", Toast.LENGTH_SHORT).show();
 
 
                 }

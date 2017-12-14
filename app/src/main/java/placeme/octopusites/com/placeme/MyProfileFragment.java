@@ -529,6 +529,7 @@ public class MyProfileFragment extends Fragment {
                     phone = json.getString("phone");
 
                     s = json.getString("intro");
+                    Log.d("TAG", "json :-" + s);
                     if (s.equals("found")) {
                         found_box1 = 1;
                         Log.d("TAG", "found_box1===:-" + found_box1);

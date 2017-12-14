@@ -1127,10 +1127,10 @@ titleinput10.setError(null);
                             textInputLayout.setVisibility(View.VISIBLE);
                             honorcount++;
                         } else {
-                            Toast.makeText(MyProfileAchievements.this, "Please fill the first honors", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileAchievements.this, "Please fill the empty honors", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfileAchievements.this, "Please fill the first honors", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileAchievements.this, "Please fill the empty honors", Toast.LENGTH_SHORT).show();
 
 
                 } else if (honorcount == 1) {
@@ -1146,10 +1146,10 @@ titleinput10.setError(null);
                             textInputLayout.setVisibility(View.VISIBLE);
                             honorcount++;
                         } else {
-                            Toast.makeText(MyProfileAchievements.this, "Please fill the second honors", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileAchievements.this, "Please fill the empty honors", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfileAchievements.this, "Please fill the second honors", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileAchievements.this, "Please fill the empty honors", Toast.LENGTH_SHORT).show();
 
 
                 } else if (honorcount == 2) {
@@ -1166,10 +1166,10 @@ titleinput10.setError(null);
                             textInputLayout.setVisibility(View.VISIBLE);
                             honorcount++;
                         } else {
-                            Toast.makeText(MyProfileAchievements.this, "Please fill the third honors", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileAchievements.this, "Please fill the empty honors", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfileAchievements.this, "Please fill the third honors", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileAchievements.this, "Please fill the empty honors", Toast.LENGTH_SHORT).show();
 
 
                 } else if (honorcount == 3) {
@@ -1186,10 +1186,10 @@ titleinput10.setError(null);
                             textInputLayout.setVisibility(View.VISIBLE);
                             honorcount++;
                         } else {
-                            Toast.makeText(MyProfileAchievements.this, "Please fill the fourth honors", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileAchievements.this, "Please fill the empty honors", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfileAchievements.this, "Please fill the fourth honors", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileAchievements.this, "Please fill the empty honors", Toast.LENGTH_SHORT).show();
 
 
                 } else if (honorcount == 4) {
@@ -1205,10 +1205,10 @@ titleinput10.setError(null);
                             textInputLayout.setVisibility(View.VISIBLE);
                             honorcount++;
                         } else {
-                            Toast.makeText(MyProfileAchievements.this, "Please fill the fifth honors", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileAchievements.this, "Please fill the empty honors", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfileAchievements.this, "Please fill the fifth honors", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileAchievements.this, "Please fill the empty honors", Toast.LENGTH_SHORT).show();
 
 
                 } else if (honorcount == 5) {
@@ -1225,10 +1225,10 @@ titleinput10.setError(null);
                             textInputLayout.setVisibility(View.VISIBLE);
                             honorcount++;
                         } else {
-                            Toast.makeText(MyProfileAchievements.this, "Please fill the sixth honors", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileAchievements.this, "Please fill the empty honors", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfileAchievements.this, "Please fill the sixth honors", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileAchievements.this, "Please fill the empty honors", Toast.LENGTH_SHORT).show();
 
 
                 } else if (honorcount == 6) {
@@ -1245,10 +1245,10 @@ titleinput10.setError(null);
                             textInputLayout.setVisibility(View.VISIBLE);
                             honorcount++;
                         } else {
-                            Toast.makeText(MyProfileAchievements.this, "Please fill the seventh honors", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileAchievements.this, "Please fill the empty honors", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfileAchievements.this, "Please fill the seventh honors", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileAchievements.this, "Please fill the empty honors", Toast.LENGTH_SHORT).show();
 
 
                 } else if (honorcount == 7) {
@@ -1265,10 +1265,10 @@ titleinput10.setError(null);
                             textInputLayout.setVisibility(View.VISIBLE);
                             honorcount++;
                         } else {
-                            Toast.makeText(MyProfileAchievements.this, "Please fill the eighth honors", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileAchievements.this, "Please fill the empty honors", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfileAchievements.this, "Please fill the eighth honors", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileAchievements.this, "Please fill the empty honors", Toast.LENGTH_SHORT).show();
 
                 } else if (honorcount == 8) {
                     if (title9.getText().toString() != null && issuer9.getText().toString() != null  && yearofhonor9.getText().toString() != null) {
@@ -1291,10 +1291,10 @@ titleinput10.setError(null);
                             t.setVisibility(View.GONE);
                             i.setVisibility(View.GONE);
                         } else {
-                            Toast.makeText(MyProfileAchievements.this, "Please fill the ninth honors", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileAchievements.this, "Please fill the empty honors", Toast.LENGTH_SHORT).show();
                         }
                     } else
-                        Toast.makeText(MyProfileAchievements.this, "Please fill the ninth honors", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileAchievements.this, "Please fill the empty honors", Toast.LENGTH_SHORT).show();
 
 
                 }
