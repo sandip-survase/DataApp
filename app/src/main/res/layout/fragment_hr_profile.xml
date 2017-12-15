@@ -151,6 +151,7 @@
                         android:textColor="#03353e"
                         android:layout_marginTop="3dp"
                         android:layout_below="@+id/myprofilrole"
+                        android:visibility="gone"
                         />
 
                     <TextView
@@ -239,6 +240,7 @@
                     android:id="@+id/box2section"
                     android:layout_centerHorizontal="true"
                     android:elevation="4dp"
+                    android:visibility="gone"
                     />
 
                 <ProgressBar
@@ -257,6 +259,7 @@
                     android:indeterminate="false"
                     android:id="@+id/profileprogress"
                     android:elevation="10dp"
+                    android:visibility="gone"
                     />
 
                 <RelativeLayout
@@ -278,6 +281,7 @@
                         android:text="EDIT PROFILE"
                         android:layout_marginTop="13dp"
                         android:textSize="12dp"
+                        android:visibility="gone"
                         />
 
                 </RelativeLayout>
@@ -291,7 +295,6 @@
                     android:text="Company Details"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-
                     android:textSize="16dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
@@ -301,6 +304,7 @@
                     android:elevation="2dp"
                     />
                 <ImageView
+                    android:id="@+id/box2pencil"
                     android:layout_below="@+id/box2"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
@@ -706,7 +710,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_centerHorizontal="true"
                             android:textSize="14dp"
-                            android:text="Language1, Language 2."
+                            android:text="No known languages filled."
                             android:textColor="#03353e"
                             android:ellipsize="start"
 
@@ -759,7 +763,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_centerHorizontal="true"
                             android:textSize="14dp"
-                            android:text="Skill 1, Skill 2."
+                            android:text="No skills filled."
                             android:textColor="#03353e"
                             android:ellipsize="start"
 
@@ -813,7 +817,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_centerHorizontal="true"
                             android:textSize="14dp"
-                            android:text="Honor 1, Award 2."
+                            android:text="No awards filled."
                             android:textColor="#03353e"
                             android:ellipsize="start"
 
@@ -866,7 +870,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:textSize="14dp"
-                            android:text="Patent 1, Patent 2."
+                            android:text="No patents filled."
                             android:textColor="#03353e"
                             android:ellipsize="start"
                             />
@@ -919,7 +923,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:textSize="14dp"
-                            android:text="Publication 1, Publication 2."
+                            android:text="No publications filled."
                             android:textColor="#03353e"
                             android:ellipsize="start"
                             />
@@ -995,6 +999,7 @@
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
+                        android:visibility="gone"
                         >
                         <ImageView
                             android:layout_width="30dp"
@@ -1058,6 +1063,7 @@
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
+                        android:visibility="gone"
                         >
                         <ImageView
                             android:layout_width="30dp"
@@ -1124,6 +1130,7 @@
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
+                        android:visibility="gone"
                         >
                         <ImageView
                             android:layout_width="30dp"
@@ -1176,6 +1183,57 @@
                             />
 
                     </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/noexptab"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/exptab3"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
+                        >
+
+                        <ImageView
+                            android:id="@+id/noexp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/experiences_icon"
+                            android:layout_marginBottom="10dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/noedudetailstxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@+id/noexp"
+                            android:layout_centerVertical="true"
+                            android:ellipsize="start"
+                            android:text="No experiences filled."
+                            android:textColor="#03353e"
+                            android:textSize="14dp"
+                            />
+
+                    </RelativeLayout>
+                    <TextView
+                        android:id="@+id/extraexpcount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="12dp"
+                        android:textColor="@color/dark_color"
+                        android:text="and 3 more"
+                        android:layout_below="@+id/noexptab"
+                        android:layout_marginRight="10dp"
+                        />
 
 
 
@@ -1282,7 +1340,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:textSize="13dp"
-                            android:text="Address line1, Address line2, Address line3."
+                            android:text="No address filled."
                             android:textColor="#03353e"
                             android:ellipsize="start"
                             />

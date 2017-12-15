@@ -10,10 +10,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -26,6 +28,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -33,6 +36,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.signature.ObjectKey;
 
 
@@ -72,6 +79,7 @@ import static placeme.octopusites.com.placeme.HrCompanyDetails.HRlog;
 public class HRProfileFragment extends Fragment {
 
     CircleImageView myprofileimg;
+    ImageButton iv_camera;
     ProgressBar profileprogress,updateProgress;
     SwipeRefreshLayout swipe_refresh_layout;
 
@@ -83,8 +91,8 @@ public class HRProfileFragment extends Fragment {
     TextView exp1txt, myprofileexpfromto, myprofileexp1name, myprofileexp2name, exp2txt, myprofileexpfromto2, myprofileexp3name, exp3txt, myprofileexpfromto3, emailtxt, myprofileclgname, nametxt, mobiletxt, contactpersonalemail, contactaddr, contactprofesionalemail, myprofiledomain1, myprofileduration1, myprofiledomain2, myprofileduration2, myprofiledomain3, myprofileduration3, careerobjtxttxt, strengthstxt, weaknessestxt, locationpreferences, contactaddr1, contactmobile, contactemail, myprofilepreview;
     HashMap<String, Integer> hashMap;
     ImageView introedit, eduedit, expedit, accomplishmentsedit, careeredit, contactedit, exp2, exp3;
-    final static CharSequence[] items = {"View Profile Picture", "Update Profile Picture", "Delete Profile Picture"};
-    RelativeLayout editprofilerl, exptab2, exptab3;
+    final static CharSequence[] items = {"Update Profile Picture", "Delete Profile Picture"};
+    RelativeLayout box1,edutab1,editprofilerl, exptab2, exptab3;
     String username = "", resultofop="",ucode="";
     //
 
@@ -134,15 +142,39 @@ public class HRProfileFragment extends Fragment {
     byte[] demoIVBytes;
     String sPadding;
     public String role = "";
+    View rootView,box2;
+    public void bottomupbox2(Activity activity,View view){
 
-    public HRProfileFragment() {
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.bottom_up_box2);
+        view.startAnimation(animation1);
+        animation1.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                profileprogress.setVisibility(View.VISIBLE);
+                View box2section=rootView.findViewById(R.id.box2section);
+                box2section.setVisibility(View.VISIBLE);
+                editprofiletxt.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_hr_profile, container, false);
+        rootView = inflater.inflate(R.layout.fragment_hr_profile, container, false);
 
 
         hashMap = new HashMap<>();
@@ -159,7 +191,12 @@ public class HRProfileFragment extends Fragment {
         hashMap.put("Nov", 11);
         hashMap.put("Dec", 12);
 
+        box1=(RelativeLayout)rootView.findViewById(R.id.box1);
+        box2=rootView.findViewById(R.id.box2);
+
         myprofileimg = (CircleImageView) rootView.findViewById(R.id.myprofileimg);
+        iv_camera=(ImageButton)  rootView.findViewById(R.id.iv_camera);
+
         myprofilename = (TextView) rootView.findViewById(R.id.myprofilename);
         myprofilrole = (TextView) rootView.findViewById(R.id.myprofilrole);
         myprofiledu = (TextView) rootView.findViewById(R.id.myprofiledu);
@@ -173,10 +210,11 @@ public class HRProfileFragment extends Fragment {
         accomplishmentsboxtxt = (TextView) rootView.findViewById(R.id.accomplishmentsboxtxt);
         expboxtxt = (TextView) rootView.findViewById(R.id.expboxtxt);
         contactboxtxt = (TextView) rootView.findViewById(R.id.contactboxtxt);
+        edutab1=(RelativeLayout)rootView.findViewById(R.id.edutab1);
 
         profileprogress = (ProgressBar) rootView.findViewById(R.id.profileprogress);
         updateProgress = (ProgressBar) rootView.findViewById(R.id.updateProgress);
-
+        ImageView box2pencil=(ImageView) rootView.findViewById(R.id.box2pencil);
         caddinst= (TextView) rootView.findViewById(R.id.caddinst);
         instcontactaddr= (TextView) rootView.findViewById(R.id.instcontactaddr);
 
@@ -220,7 +258,8 @@ public class HRProfileFragment extends Fragment {
         myprofileexp3name = (TextView) rootView.findViewById(R.id.myprofileexp3name);
         myprofileexpfromto3 = (TextView) rootView.findViewById(R.id.myprofileexpfromto2);
 
-
+        TextView noedudetailstxt= (TextView) rootView.findViewById(R.id.noedudetailstxt);
+        TextView extraexpcount= (TextView) rootView.findViewById(R.id.extraexpcount);
         nametxt = (TextView) rootView.findViewById(R.id.nametxt);
         emailtxt = (TextView) rootView.findViewById(R.id.emailtxt);
         mobiletxt = (TextView) rootView.findViewById(R.id.mobiletxt);
@@ -239,6 +278,7 @@ public class HRProfileFragment extends Fragment {
         myprofilename.setTypeface(MyConstants.getBold(getActivity()));
         myprofilrole.setTypeface(MyConstants.getBold(getActivity()));
 
+        noedudetailstxt.setTypeface(MyConstants.getBold(getActivity()));
         myprofiledu.setTypeface(MyConstants.getBold(getActivity()));
         myprofilloc.setTypeface(MyConstants.getLight(getActivity()));
         myprofilemail.setTypeface(MyConstants.getLight(getActivity()));
@@ -255,6 +295,7 @@ public class HRProfileFragment extends Fragment {
         instwebtxt.setTypeface(MyConstants.getLight(getActivity()));
         instteletxt.setTypeface(MyConstants.getLight(getActivity()));
 
+        extraexpcount.setTypeface(MyConstants.getLight(getActivity()));
         acc2txt.setTypeface(MyConstants.getLight(getActivity()));
         acc4txt.setTypeface(MyConstants.getLight(getActivity()));
         acc5txt.setTypeface(MyConstants.getLight(getActivity()));
@@ -309,6 +350,25 @@ public class HRProfileFragment extends Fragment {
 //        careeredit=(ImageView)rootView.findViewById(R.id.careeredit);
 //        contactedit=(ImageView)rootView.findViewById(R.id.contactedit);
 
+        if(!ShouldAnimateProfile.shouldAnimate)
+        {
+            MyConstants.bottomupbox1(getActivity(),box1);
+            bottomupbox2(getActivity(),box2);
+            MyConstants.bottomupbox4(getActivity(),edutab1);
+            MyConstants.fade(getActivity(),myprofileimg);
+            MyConstants.fade(getActivity(),iv_camera);
+            MyConstants.bottomupbox3(getActivity(),eduboxtxt);
+            MyConstants.bottomupbox3(getActivity(),box2pencil);
+            MyConstants.fadeandmovedown(getActivity(),myprofilepreview);
+            ShouldAnimateProfile.shouldAnimate=true;
+        }
+        else
+        {
+            profileprogress.setVisibility(View.VISIBLE);
+            View box2section=rootView.findViewById(R.id.box2section);
+            box2section.setVisibility(View.VISIBLE);
+            editprofiletxt.setVisibility(View.VISIBLE);
+        }
 
         username=MySharedPreferencesManager.getUsername(getActivity());
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
@@ -380,8 +440,13 @@ public class HRProfileFragment extends Fragment {
         myprofileimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment newFragment = new FireMissilesDialogFragment();
-                newFragment.show(getActivity().getSupportFragmentManager(), "missiles");
+                startActivity(new Intent(getContext(), ViewProfileImage.class));
+            }
+        });
+        iv_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialog();
             }
         });
 
@@ -405,12 +470,7 @@ public class HRProfileFragment extends Fragment {
         });
 
 
-        myprofileimg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDialog();
-            }
-        });
+
 
 //        new GetHRData().execute();
         refreshContent();
@@ -469,14 +529,9 @@ public class HRProfileFragment extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
 
                 if (which == 0) {
-                    startActivity(new Intent(getContext(), ViewProfileImage.class));
-                } else if (which == 1) {
-
                     dialog.cancel();
                     ((HRActivity) getActivity()).requestCropImage();
-
-                } else if (which == 2) {
-
+                } else if (which == 1) {
                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -495,7 +550,6 @@ public class HRProfileFragment extends Fragment {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                     builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
                             .setNegativeButton("No", dialogClickListener).show();
-
                 }
             }
         });
@@ -3255,7 +3309,23 @@ public class HRProfileFragment extends Fragment {
         GlideApp.with(getContext())
                 .load(uri)
                 .signature(new ObjectKey(System.currentTimeMillis() + ""))
-                .into(myprofileimg);
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        updateProgress.setVisibility(View.GONE);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        updateProgress.setVisibility(View.GONE);
+                        return false;
+                    }
+
+                })
+                .into(myprofileimg)
+
+        ;
 
 
     }
