@@ -17,7 +17,7 @@
             android:id="@+id/locationtxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:elevation="6dp"
+            android:elevation="2dp"
             android:layout_centerHorizontal="true"
             android:background="@drawable/textviewborder"
             android:paddingBottom="10dp"
@@ -324,7 +324,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/locationrl5"
-            android:elevation="6dp"
+            android:elevation="2dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/textviewborder" />
 
@@ -341,14 +341,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/locationrl5"
             android:layout_marginLeft="10dp"
-            android:elevation="8dp"
+            android:elevation="2dp"
             android:layout_marginTop="30dp"
             android:text="Add Another Location"
             android:textColor="@color/while_color"
             android:textSize="18dp" />
 
         <ImageView
-            android:elevation="8dp"
+            android:elevation="2dp"
             android:id="@+id/addmorelocationimg"
             android:layout_width="30dp"
             android:layout_height="30dp"

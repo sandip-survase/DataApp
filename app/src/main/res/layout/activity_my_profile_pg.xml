@@ -21,7 +21,7 @@
         <TextView
             android:id="@+id/pgtxt"
             android:layout_width="wrap_content"
-            android:elevation="6dp"
+            android:elevation="2dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:background="@drawable/textviewborder"

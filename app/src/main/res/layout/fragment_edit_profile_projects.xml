@@ -34,7 +34,7 @@
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:elevation="6dp"
+            android:elevation="2dp"
             android:background="@drawable/textviewborder"
             />
         <ImageView
@@ -1357,7 +1357,7 @@
             android:layout_below="@+id/projectrl10"
             android:id="@+id/addmoreproject"
             android:layout_marginTop="20dp"
-            android:elevation="6dp"
+            android:elevation="2dp"
             />
 
         <TextView
@@ -1370,7 +1370,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
             android:id="@+id/addmoreprojecttxt"
-            android:elevation="8dp"
+            android:elevation="3dp"
             />
         <ImageView
             android:layout_width="30dp"
@@ -1381,7 +1381,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
             android:id="@+id/addmoreprojectimg"
-            android:elevation="8dp"
+            android:elevation="3dp"
             />
 
     </RelativeLayout>

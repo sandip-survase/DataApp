@@ -19,7 +19,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp" />
+            android:elevation="2dp" />
 
         <TextView
             android:id="@+id/knownlangtxt"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="40dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:text="Known Languages"
             android:textColor="@color/while_color"
             android:textSize="18dp" />
@@ -38,7 +38,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:layout_marginTop="40dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:src="@drawable/add_icon_white" />
 
         <View
@@ -48,7 +48,7 @@
             android:layout_below="@+id/studentBlock"
             android:layout_marginTop="20dp"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp" />
+            android:elevation="2dp" />
 
         <TextView
             android:id="@+id/certitxt"
@@ -57,7 +57,7 @@
             android:layout_below="@+id/studentBlock"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:text="Certifications"
             android:textColor="@color/while_color"
             android:textSize="18dp" />
@@ -69,7 +69,7 @@
             android:layout_below="@+id/studentBlock"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:src="@drawable/add_icon_white" />
 
         <View
@@ -79,7 +79,7 @@
             android:layout_below="@+id/certibutton"
             android:layout_marginTop="20dp"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp" />
+            android:elevation="2dp" />
 
         <TextView
             android:id="@+id/coursetxt"
@@ -88,7 +88,7 @@
             android:layout_below="@+id/certibutton"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:text="Courses"
             android:textColor="@color/while_color"
             android:textSize="18dp" />
@@ -100,7 +100,7 @@
             android:layout_below="@+id/certibutton"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:src="@drawable/add_icon_white" />
 
         <View
@@ -110,7 +110,7 @@
             android:layout_below="@+id/coursebutton"
             android:layout_marginTop="20dp"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp" />
+            android:elevation="2dp" />
 
         <TextView
             android:id="@+id/skillstxt"
@@ -119,7 +119,7 @@
             android:layout_below="@+id/coursebutton"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:text="Expert Skills"
             android:textColor="@color/while_color"
             android:textSize="18dp" />
@@ -131,7 +131,7 @@
             android:layout_below="@+id/coursebutton"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:src="@drawable/add_icon_white" />
 
         <View
@@ -141,7 +141,7 @@
             android:layout_below="@+id/alumniBlock"
             android:layout_marginTop="20dp"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp" />
+            android:elevation="2dp" />
 
         <TextView
             android:id="@+id/honortxt"
@@ -150,7 +150,7 @@
             android:layout_below="@+id/alumniBlock"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:text="Honors and Awards"
             android:textColor="@color/while_color"
             android:textSize="18dp" />
@@ -162,7 +162,7 @@
             android:layout_below="@+id/alumniBlock"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:src="@drawable/add_icon_white" />
 
         <View
@@ -172,7 +172,7 @@
             android:layout_below="@+id/adminBlock"
             android:layout_marginTop="20dp"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp" />
+            android:elevation="2dp" />
 
         <TextView
             android:id="@+id/patenttxt"
@@ -181,7 +181,7 @@
             android:layout_below="@+id/adminBlock"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:text="Patents"
             android:textColor="@color/while_color"
             android:textSize="18dp" />
@@ -193,7 +193,7 @@
             android:layout_below="@+id/adminBlock"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:src="@drawable/add_icon_white" />
 
         <View
@@ -203,7 +203,7 @@
             android:layout_below="@+id/patentbutton"
             android:layout_marginTop="20dp"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp" />
+            android:elevation="2dp" />
 
         <TextView
             android:id="@+id/publicationtxt"
@@ -212,7 +212,7 @@
             android:layout_below="@+id/patentbutton"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:text="Publications"
             android:textColor="@color/while_color"
             android:textSize="18dp" />
@@ -224,7 +224,7 @@
             android:layout_below="@+id/patentbutton"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:src="@drawable/add_icon_white" />
 
         <View

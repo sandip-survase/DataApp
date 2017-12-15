@@ -199,6 +199,7 @@ public class MyProfileFragment extends Fragment {
         acctab5=(RelativeLayout)rootView.findViewById(R.id.acctab5);
         acctab6=(RelativeLayout)rootView.findViewById(R.id.acctab6);
         acctab7=(RelativeLayout)rootView.findViewById(R.id.acctab7);
+
         careertab1=(RelativeLayout)rootView.findViewById(R.id.careertab1);
         careertab2=(RelativeLayout)rootView.findViewById(R.id.careertab2);
         careertab3=(RelativeLayout)rootView.findViewById(R.id.careertab3);
@@ -231,7 +232,6 @@ public class MyProfileFragment extends Fragment {
         editprofiletxt = (TextView) rootView.findViewById(R.id.editprofiletxt);
         eduboxtxt = (TextView) rootView.findViewById(R.id.eduboxtxt);
         ImageView box2pencil=(ImageView) rootView.findViewById(R.id.box2pencil);
-
 
 
         projboxtxt = (TextView) rootView.findViewById(R.id.projboxtxt);

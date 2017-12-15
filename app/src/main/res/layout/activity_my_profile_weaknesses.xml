@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp"
+            android:elevation="2dp"
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
@@ -575,7 +575,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp" />
+            android:elevation="2dp" />
 
         <View
             android:id="@+id/addmoreweak1"
@@ -591,7 +591,7 @@
             android:layout_below="@+id/weakrl10"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:text="Add Another Weakness"
             android:textColor="@color/while_color"
             android:textSize="18dp" />
@@ -604,7 +604,7 @@
             android:layout_below="@+id/weakrl10"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:src="@drawable/add_icon_white" />
 
 
