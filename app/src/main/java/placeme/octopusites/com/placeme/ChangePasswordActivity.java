@@ -2,12 +2,13 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -17,7 +18,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
+
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,19 +35,16 @@ import static placeme.octopusites.com.placeme.R.id.cpass;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
-    EditText currentedittext,newpassedittetx,newpassaedittext;
+    TextInputEditText currentedittext,newpassedittetx,newpassaedittext;
     String username,currentpass,newpass,newpassa,resultofop="";
     String enccurrentpass,encnewpass;
     JSONObject json;
     JSONParser jParser = new JSONParser();
-    //TODO changepass in placeme
     private static String url_changepass = "http://192.168.100.100/PlaceMe/ChangePass";
     ProgressBar progressBar;
     Button changepassbutton;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
     String digest1,digest2;
+    TextInputLayout currentinput,newinput,newainput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,31 +55,14 @@ public class ChangePasswordActivity extends AppCompatActivity {
         ab.setTitle("Change Password");
         ab.setDisplayHomeAsUpEnabled(true);
 
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        String role=sharedpreferences.getString("role",null);
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        String role=MySharedPreferencesManager.getRole(this);
 
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
-
-
-
-
-        currentedittext=(EditText)findViewById(R.id.current_password);
-        newpassedittetx=(EditText)findViewById(R.id.new_password);
-        newpassaedittext=(EditText)findViewById(R.id.new_password_again);
+        currentedittext=(TextInputEditText)findViewById(R.id.current_password);
+        newpassedittetx=(TextInputEditText)findViewById(R.id.new_password);
+        newpassaedittext=(TextInputEditText)findViewById(R.id.new_password_again);
 
         currentedittext.addTextChangedListener(new TextWatcher() {
             @Override
@@ -133,6 +114,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         });
 
         TextView forgotpassword=(TextView)findViewById(R.id.forgot);
+        forgotpassword.setTypeface(MyConstants.getBold(this));
         forgotpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,44 +124,53 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         TextView createpasstxt=(TextView)findViewById(R.id.createpasstxt);
         TextView passsenstxt=(TextView)findViewById(R.id.passsenstxt);
-
+        currentinput=(TextInputLayout)findViewById(R.id.currentinput);
+        newinput=(TextInputLayout)findViewById(R.id.newinput);
+        newainput=(TextInputLayout)findViewById(R.id.newainput);
+        TextInputEditText current_password=(TextInputEditText)findViewById(R.id.current_password);
+        TextInputEditText new_password=(TextInputEditText)findViewById(R.id.new_password);
+        TextInputEditText new_password_again=(TextInputEditText)findViewById(R.id.new_password_again);
         progressBar=(ProgressBar)findViewById(R.id.changepassprogress);
         changepassbutton=(Button)findViewById(R.id.change_password_button);
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/button.ttf");
-        Typeface custom_font2 = Typeface.createFromAsset(getAssets(),  "fonts/hint.ttf");
-        Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/cabinsemibold.ttf");
-        Typeface custom_font4 = Typeface.createFromAsset(getAssets(),  "fonts/maven.ttf");
-        forgotpassword.setTypeface(custom_font2);
-        changepassbutton.setTypeface(custom_font);
-        createpasstxt.setTypeface(custom_font3);
-        passsenstxt.setTypeface(custom_font4);
+
+        changepassbutton.setTypeface(MyConstants.getBold(this));
+        createpasstxt.setTypeface(MyConstants.getBold(this));
+        passsenstxt.setTypeface(MyConstants.getLight(this));
+        currentinput.setTypeface(MyConstants.getLight(this));
+        newinput.setTypeface(MyConstants.getLight(this));
+        newainput.setTypeface(MyConstants.getLight(this));
+        current_password.setTypeface(MyConstants.getBold(this));
+        new_password.setTypeface(MyConstants.getBold(this));
+        new_password_again.setTypeface(MyConstants.getBold(this));
+
+
         changepassbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
 
-                    currentedittext.setError(null);
-                    newpassedittetx.setError(null);
-                    newpassaedittext.setError(null);
+                    currentinput.setError(null);
+                    newinput.setError(null);
+                    newainput.setError(null);
 
                     currentpass=currentedittext.getText().toString();
                     newpass=newpassedittetx.getText().toString();
                     newpassa=newpassaedittext.getText().toString();
                     int flag1=0,flag2=0,flag3=0;
-                    if(currentpass.length()<3)
+                    if(currentpass.length()<6)
                     {
                         flag1=1;
-                        currentedittext.setError("Invalid Password");
+                        currentinput.setError("Kindly enter valid password");
                     }
-                    if(newpass.length()<6)
+                    else if(newpass.length()<6)
                     {
                         flag2=1;
-                        newpassedittetx.setError("Minimum 6 Characters");
+                        newinput.setError("New password must be of at least 6 characters");
                     }
-                    if(newpassa.length()<6)
+                    else if(newpassa.length()<6)
                     {
                         flag3=1;
-                        newpassaedittext.setError("Minimum 6 Characters");
+                        newainput.setError("New password must be of at least 6 characters");
                     }
                     if(flag1==0&&flag2==0&&flag3==0)
                     {
@@ -214,7 +205,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(ChangePasswordActivity.this,"Passwords didn't match",Toast.LENGTH_LONG).show();
+                            Toast.makeText(ChangePasswordActivity.this,"Passwords didn't match !",Toast.LENGTH_LONG).show();
                         }
                     }
 
@@ -263,13 +254,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            //TODO after Successful change of password call change pass servlet from placemechats tht will update the pass on firebase
-
             if(resultofop.equals("success")) {
-                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString("passKey", encnewpass);
-                editor.commit();
+
+                MySharedPreferencesManager.save(ChangePasswordActivity.this,"passKey", encnewpass);
+
                 Toast.makeText(ChangePasswordActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 ChangePasswordActivity.super.onBackPressed();
             }

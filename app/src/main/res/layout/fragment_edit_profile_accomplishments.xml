@@ -1,218 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/myprofileaccomplishments"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/myprofileaccomplishments"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="#282f35"
+    android:background="@color/while_color"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
     >
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_my_profile_intro"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:focusableInTouchMode="true"
-        android:padding="16dp"
-        >
+        android:padding="16dp">
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
             android:id="@+id/studentBlock"
-            android:background="@drawable/boxborderwhite"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_marginTop="30dp"
-            />
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp" />
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/knownlangtxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
+            android:elevation="8dp"
             android:text="Known Languages"
-            android:textColor="#eee"
-            android:textSize="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="40dp"
-            />
+            android:textColor="@color/while_color"
+            android:textSize="18dp" />
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
             android:layout_marginRight="10dp"
             android:layout_marginTop="40dp"
-            />
+            android:elevation="8dp"
+            android:src="@drawable/add_icon_white" />
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/studentBlock"
             android:id="@+id/certibutton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/studentBlock"
             android:layout_marginTop="20dp"
-            android:background="@drawable/boxborderwhite"
-            />
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp" />
+
         <TextView
+            android:id="@+id/certitxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/studentBlock"
-            android:text="Certifications"
-            android:id="@+id/certitxt"
-            android:textColor="#eee"
-            android:textSize="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            />
+            android:elevation="8dp"
+            android:text="Certifications"
+            android:textColor="@color/while_color"
+            android:textSize="18dp" />
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_below="@+id/studentBlock"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:layout_below="@+id/studentBlock"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            />
+            android:elevation="8dp"
+            android:src="@drawable/add_icon_white" />
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/certibutton"
             android:id="@+id/coursebutton"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/boxborderwhite"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_below="@+id/certibutton"
-            android:text="Courses"
-            android:textColor="#eee"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp" />
+
+        <TextView
             android:id="@+id/coursetxt"
-            android:textSize="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            />
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/certibutton"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:elevation="8dp"
+            android:text="Courses"
+            android:textColor="@color/while_color"
+            android:textSize="18dp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:layout_below="@+id/certibutton"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            />
+            android:elevation="8dp"
+            android:src="@drawable/add_icon_white" />
+
         <View
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/coursebutton"
             android:id="@+id/alumniBlock"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/boxborderwhite"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_below="@+id/coursebutton"
-            android:text="Expert Skills"
-            android:textColor="#eee"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp" />
+
+        <TextView
             android:id="@+id/skillstxt"
-            android:textSize="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            />
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/coursebutton"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:elevation="8dp"
+            android:text="Expert Skills"
+            android:textColor="@color/while_color"
+            android:textSize="18dp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:layout_below="@+id/coursebutton"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            />
+            android:elevation="8dp"
+            android:src="@drawable/add_icon_white" />
+
         <View
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/alumniBlock"
             android:id="@+id/adminBlock"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/boxborderwhite"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_below="@+id/alumniBlock"
-            android:text="Honors and Awards"
-            android:textColor="#eee"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp" />
+
+        <TextView
             android:id="@+id/honortxt"
-            android:textSize="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            />
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/alumniBlock"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:elevation="8dp"
+            android:text="Honors and Awards"
+            android:textColor="@color/while_color"
+            android:textSize="18dp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:layout_below="@+id/alumniBlock"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            />
+            android:elevation="8dp"
+            android:src="@drawable/add_icon_white" />
+
         <View
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/adminBlock"
             android:id="@+id/patentbutton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/adminBlock"
             android:layout_marginTop="20dp"
-            android:background="@drawable/boxborderwhite"
-            />
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp" />
+
         <TextView
+            android:id="@+id/patenttxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/adminBlock"
-            android:text="Patents"
-            android:textColor="#eee"
-            android:id="@+id/patenttxt"
-            android:textSize="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            />
+            android:elevation="8dp"
+            android:text="Patents"
+            android:textColor="@color/while_color"
+            android:textSize="18dp" />
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_below="@+id/adminBlock"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:layout_below="@+id/adminBlock"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            />
+            android:elevation="8dp"
+            android:src="@drawable/add_icon_white" />
+
         <View
+            android:id="@+id/publicationbutton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/patentbutton"
-            android:id="@+id/publicationbutton"
             android:layout_marginTop="20dp"
-            android:background="@drawable/boxborderwhite"
-            />
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp" />
+
         <TextView
+            android:id="@+id/publicationtxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/patentbutton"
-            android:text="Publications"
-            android:id="@+id/publicationtxt"
-            android:textColor="#eee"
-            android:textSize="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            />
+            android:elevation="8dp"
+            android:text="Publications"
+            android:textColor="@color/while_color"
+            android:textSize="18dp" />
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_below="@+id/patentbutton"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:layout_below="@+id/patentbutton"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            />
+            android:elevation="8dp"
+            android:src="@drawable/add_icon_white" />
+
+        <View
+            android:id="@+id/dummy_view_for_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@+id/publicationbutton"
+            android:layout_marginTop="50dp" />
+
     </RelativeLayout>
 </android.support.v4.widget.NestedScrollView>

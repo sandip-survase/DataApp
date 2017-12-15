@@ -1,9 +1,9 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,11 +36,9 @@ public class ReportBug extends AppCompatActivity {
     JSONObject json;
     JSONParser jParser = new JSONParser();
     private static String url_report= "http://192.168.100.100/AESTest/ReportBug";
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
+
     String digest1,digest2;
-    EditText title,comments;
+    TextInputEditText title,comments;
     ProgressBar reportprogress;
     String stitle="",scomments="";
     String enctitle,enccomments;
@@ -54,40 +52,28 @@ public class ReportBug extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
 
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        String role=sharedpreferences.getString("role",null);
-
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        String role=MySharedPreferencesManager.getRole(this);
 
         TextView createreporttxt=(TextView)findViewById(R.id.createreporttxt);
         TextView reportsenstxt=(TextView)findViewById(R.id.reportsenstxt);
-
+        TextInputLayout titleinput=(TextInputLayout)findViewById(R.id.titleinput);
+        TextInputLayout commentsinput=(TextInputLayout)findViewById(R.id.commentsinput);
         reportbug_button=(Button)findViewById(R.id.reportbug_button);
-
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/cabinsemibold.ttf");
-        createreporttxt.setTypeface(custom_font);
-        Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/button.ttf");
-        reportbug_button.setTypeface(custom_font3);
-        Typeface custom_fon2 = Typeface.createFromAsset(getAssets(),  "fonts/maven.ttf");
-        reportsenstxt.setTypeface(custom_fon2);
-
-        title=(EditText)findViewById(R.id.title);
-        comments=(EditText)findViewById(R.id.comments);
+        title=(TextInputEditText)findViewById(R.id.title);
+        comments=(TextInputEditText)findViewById(R.id.comments);
         reportprogress=(ProgressBar)findViewById(R.id.reportprogress);
+
+        createreporttxt.setTypeface(MyConstants.getBold(this));
+        reportsenstxt.setTypeface(MyConstants.getBold(this));
+        titleinput.setTypeface(MyConstants.getLight(this));
+        commentsinput.setTypeface(MyConstants.getLight(this));
+        title.setTypeface(MyConstants.getBold(this));
+        comments.setTypeface(MyConstants.getBold(this));
+        reportbug_button.setTypeface(MyConstants.getBold(this));
+
 
         title.addTextChangedListener(new TextWatcher() {
             @Override

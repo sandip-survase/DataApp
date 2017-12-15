@@ -1,7 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyProfileFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MyProfileFragment"
+    android:background="@color/while_color"
+    >
     <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
@@ -10,7 +14,6 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#282f35"
             android:id="@+id/profilepreviewscrollview"
             >
             <RelativeLayout
@@ -22,35 +25,83 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:text="My Profile Preview"
-                    android:textStyle="bold"
-                    android:textColor="#fff"
+                    android:text="Institute/Company Code"
+
+                    android:textColor="#03353e"
                     android:id="@+id/myprofilepreview"
-                    android:textSize="25dp"
+                    android:textSize="16dp"
                     android:layout_marginTop="10dp"
                     />
 
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="57dp"
+                    android:id="@+id/profile_rl"
+                    android:padding="10dp"
+                    android:clipToPadding="false"
+                    >
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/myprofileimg"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:src="@drawable/profile_image_icon"
+                        />
+                    <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:id="@+id/updateProgress"
 
+                        />
+                    <com.andexert.library.RippleView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|right"
+                        app:rv_rippleDuration="80"
+                        app:rv_color="#00bcd4"
+                        app:rv_centered="true"
+                        android:elevation="8dp"
+                        >
+
+                        <ImageButton
+                            android:padding="8dp"
+                            android:id="@+id/iv_camera"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/camera_icon"
+                            android:background="@drawable/button_round_camera"
+                            android:elevation="8dp"
+                            android:cropToPadding="true"
+                            android:scaleType="centerCrop"
+                            />
+
+                    </com.andexert.library.RippleView>
+
+                </FrameLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/boxborder"
-                    android:layout_marginTop="140dp"
+                    android:layout_below="@+id/profile_rl"
+                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:id="@+id/box1"
                     android:layout_marginBottom="10dp"
                     android:paddingBottom="10dp"
+                    android:elevation="2dp"
                     >
-
-
-
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_marginTop="20dp"
-                        android:src="@drawable/pencil"
+                        android:src="@drawable/pencil_icon"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="20dp"
                         />
@@ -63,20 +114,16 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="5dp"
                         />
-
-
-
-
                     <TextView
                         android:id="@+id/myprofilename"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:text="Your Name"
-                        android:textSize="20dp"
-                        android:textColor="#282f35"
-                        android:textStyle="bold"
-                        android:layout_marginTop="70dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/dark_color"
+
+                        android:layout_marginTop="20dp"
                         />
 
                     <TextView
@@ -85,8 +132,9 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:text="Role"
-                        android:textSize="15dp"
-                        android:textColor="#282f35"
+                        android:textSize="12dp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/sky_blue_color"
                         android:layout_marginTop="5dp"
                         android:layout_below="@+id/myprofilename"
                         />
@@ -102,7 +150,7 @@
                         android:layout_marginRight="20dp"
                         android:ellipsize="start"
                         android:gravity="center_horizontal"
-                        android:textColor="#282f35"
+                        android:textColor="#03353e"
                         android:layout_marginTop="3dp"
                         android:layout_below="@+id/myprofilrole"
                         />
@@ -116,7 +164,7 @@
                         android:text="Location"
                         android:layout_toLeftOf="@+id/myprofilbar"
                         android:textSize="10dp"
-                        android:textColor="#282f35"
+                        android:textColor="#03353e"
                         android:ellipsize="start"
                         android:gravity="center_horizontal"
                         android:layout_alignParentLeft="true"
@@ -131,7 +179,7 @@
                         android:layout_centerHorizontal="true"
                         android:text="|"
                         android:textSize="13dp"
-                        android:textColor="#282f35"
+                        android:textColor="#03353e"
                         android:layout_marginTop="10dp"
                         android:layout_below="@+id/myprofiledu"
                         />
@@ -154,7 +202,7 @@
                             android:layout_marginLeft="10dp"
                             android:ellipsize="start"
                             android:gravity="center_horizontal"
-                            android:textColor="#282f35"
+                            android:textColor="#03353e"
                             android:layout_marginTop="10dp"
                             />
                     </RelativeLayout>
@@ -169,6 +217,7 @@
                     android:id="@+id/box2"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:elevation="2dp"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -177,19 +226,22 @@
                     android:layout_below="@+id/box1"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
-                    android:textColor="#fff"
+                    android:textColor="@color/while_color"
                     android:textStyle="italic"
                     android:textSize="11dp"
                     android:id="@+id/myprofilepercenttxt"
+                    android:elevation="10dp"
                     />
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="50dp"
-                    android:background="#fff"
+                    android:background="@color/while_color"
                     android:layout_below="@+id/box1"
                     android:id="@+id/box2section"
                     android:layout_centerHorizontal="true"
+                    android:elevation="4dp"
+                    android:visibility="gone"
                     />
 
                 <ProgressBar
@@ -207,6 +259,8 @@
                     android:progressDrawable="@drawable/progressbarblue"
                     android:indeterminate="false"
                     android:id="@+id/profileprogress"
+                    android:elevation="10dp"
+                    android:visibility="gone"
                     />
 
                 <RelativeLayout
@@ -214,8 +268,9 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/box2section"
                     android:layout_below="@+id/box1"
-                    android:layout_above="@+id/box3"
+                    android:layout_above="@+id/eduboxtxt"
                     android:id="@+id/editprofilerl"
+                    android:elevation="10dp"
                     >
                     <TextView
                         android:id="@+id/editprofiletxt"
@@ -223,1213 +278,1191 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
-                        android:textColor="#00BFFF"
+                        android:textColor="#00bcd4"
                         android:text="EDIT PROFILE"
                         android:layout_marginTop="13dp"
+                        android:textSize="12dp"
+                        android:visibility="gone"
                         />
 
                 </RelativeLayout>
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="50dp"
-                    android:background="@drawable/imgborder"
-                    />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="135dp"
-                    android:layout_height="135dp"
-                    android:id="@+id/myprofileimg"
-                    android:src="@drawable/profile_icon"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="57dp"
-                    />
-                <ProgressBar
+                <TextView
+                    android:id="@+id/eduboxtxt"
+                    android:layout_below="@+id/box2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="100dp"
-                    android:id="@+id/updateProgress"
-                    android:visibility="gone"
+                    android:layout_marginLeft="10dp"
+                    android:text="Institute Details"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+
+                    android:textSize="16dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="#fcfdfd"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/textviewborder"
+                    android:elevation="2dp"
                     />
 
+                <ImageView
+                    android:id="@+id/insteditpencil"
+                    android:layout_below="@+id/box2"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/pencil_icon"
+                    android:layout_alignParentRight="true"
+                    />
+                <ImageView
+                    android:layout_below="@+id/box2"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/eduedit"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_color"
+                    android:layout_below="@+id/eduboxtxt"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="16dp"
+                    android:id="@+id/eduline0"
+                    />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/boxborder"
-                    android:layout_below="@+id/box2"
-                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/eduline0"
+                    android:layout_marginTop="8dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:id="@+id/box3"
                     >
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:id="@+id/eduboxtxt"
-                        android:text="Institute Details"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:textStyle="bold"
-                        android:textSize="18dp"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:textColor="#282f35"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/textviewborder"
-                        />
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginRight="20dp"
-                        android:src="@drawable/pencil"
-                        android:layout_alignParentRight="true"
-                        />
-
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginRight="5dp"
-                        android:id="@+id/eduedit"
-                        android:layout_alignParentRight="true"
-                        />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/institute"
-                        android:layout_below="@+id/eduboxtxt"
-                        android:id="@+id/insti1"
-                        android:layout_marginTop="25dp"
-                        android:layout_marginLeft="20dp"
-                        />
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
+                        android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:layout_below="@+id/eduboxtxt"
                         android:id="@+id/edutab1"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
                         >
-
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/institute_icon"
+                            android:id="@+id/insti1"
+                            android:layout_marginLeft="10dp"
+                            android:layout_centerVertical="true"
+                            />
                         <TextView
+                            android:id="@+id/myprofilecource"
+                            android:layout_toRightOf="@+id/insti1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/myprofilecource"
                             android:text="Institute Name"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_marginLeft="10dp"
                             android:ellipsize="start"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textColor="#282f35"
-                            android:textStyle="bold"
+                            android:textColor="#03353e"
+                            android:textSize="12dp"
                             />
 
                         <TextView
+                            android:id="@+id/myprofileclgname"
+                            android:layout_toRightOf="@+id/insti1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/myprofileclgname"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="3dp"
-                            android:layout_marginRight="20dp"
-                            android:textSize="12dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="14dp"
                             android:layout_below="@+id/myprofilecource"
                             android:layout_centerHorizontal="true"
                             android:text="Institute address"
-                            android:textColor="#282f35"
+                            android:textColor="#03353e"
                             android:ellipsize="start"
                             android:gravity="center_horizontal"
                             />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#282f35"
-                            android:layout_below="@+id/myprofileclgname"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
-                            android:id="@+id/eduline1"
-                            />
-
                     </RelativeLayout>
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/email"
-                        android:tint="#282f35"
-                        android:layout_below="@+id/edutab1"
-                        android:id="@+id/inst2"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginLeft="20dp"
-                        />
+
+                    <!--****************-->
+
+
                     <RelativeLayout
+
+                        android:id="@+id/instcontacttab1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/inst2"
+                        android:layout_marginTop="15dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_below="@+id/edutab1"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
+
+
+                        >
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/location_icon"
+                            android:id="@+id/instcontacttab2"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            />
+                        <TextView
+                            android:layout_toRightOf="@+id/instcontacttab2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/caddinst"
+                            android:text="Institute Address"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:ellipsize="start"
+                            android:textSize="14dp"
+                            android:textColor="#03353e"
+
+                            />
+
+                        <TextView
+                            android:layout_toRightOf="@+id/instcontacttab2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/instcontactaddr"
+                            android:layout_below="@+id/caddinst"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="13dp"
+                            android:text="Address line1, Address line2, Address line3."
+                            android:textColor="@color/dark_color"
+                            android:ellipsize="start"
+                            />
+
+
+                    </RelativeLayout>
+                    <!--*****************-->
+
+                    <RelativeLayout
                         android:id="@+id/edutab2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_below="@+id/instcontacttab1"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
                         >
 
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/email_icon"
+                            android:id="@+id/inst2"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            />
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:id="@+id/instemailtxt"
-                            android:text="EMAIL"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
+                            android:layout_toRightOf="@+id/inst2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Email"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_marginLeft="10dp"
                             android:ellipsize="start"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textColor="#282f35"
-                            android:textStyle="bold"
+                            android:textSize="12dp"
+                            android:textColor="#03353e"
+
                             />
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:id="@+id/instcontactemail"
+                            android:layout_toRightOf="@+id/inst2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="14dp"
                             android:layout_below="@+id/instemailtxt"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="3dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_centerHorizontal="true"
-                            android:textSize="12dp"
                             android:text="Institute's Email Address"
-                            android:textColor="#282f35"
+                            android:textColor="#03353e"
                             android:ellipsize="start"
-                            android:gravity="center_horizontal"
+
                             />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#282f35"
-                            android:layout_below="@+id/instcontactemail"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
-                            android:id="@+id/eduline2"
-                            />
                     </RelativeLayout>
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/website"
-                        android:tint="#282f35"
-                        android:layout_below="@+id/edutab2"
-                        android:id="@+id/inst3"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginLeft="20dp"
-                        />
+
+
                     <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/inst3"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_below="@+id/edutab2"
                         android:id="@+id/edutab3"
-                        >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/instwebtxt"
-                            android:text="Website"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginLeft="10dp"
-                            android:ellipsize="start"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textColor="#282f35"
-                            android:textStyle="bold"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/instwebsite"
-                            android:layout_below="@+id/instwebtxt"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="3dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_centerHorizontal="true"
-                            android:textSize="12dp"
-                            android:text="Institute's Website"
-                            android:textColor="#282f35"
-                            android:ellipsize="start"
-                            android:gravity="center_horizontal"
-                            />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#282f35"
-                            android:layout_below="@+id/instwebsite"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
-                            android:id="@+id/eduline3"
-                            />
-                    </RelativeLayout>
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/telephone"
-                        android:tint="#282f35"
-                        android:layout_below="@+id/edutab3"
-                        android:id="@+id/inst4"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginLeft="20dp"
-                        />
-                    <RelativeLayout
+                        android:layout_below="@+id/edutab2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/inst4"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:layout_below="@+id/edutab3"
-                        android:id="@+id/edutab4"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
                         >
-
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/website_icon"
+                            android:id="@+id/inst3"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            />
                         <TextView
+                            android:id="@+id/instwebtxt"
+                            android:layout_toRightOf="@+id/inst3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/instteletxt"
-                            android:text="Phone Number"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
+                            android:text="Website"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_marginLeft="10dp"
                             android:ellipsize="start"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textColor="#282f35"
-                            android:textStyle="bold"
+                            android:textSize="12dp"
+                            android:textColor="#03353e"
+                        />
+
+                        <TextView
+                            android:id="@+id/instwebsite"
+                            android:layout_toRightOf="@+id/inst3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/instwebtxt"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="14dp"
+                            android:text="Institute's Website"
+                            android:textColor="#03353e"
+                            android:ellipsize="start"
+
+                            />
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/edutab4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/edutab3"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginBottom="10dp"
+                        >
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/mobile_icon"
+                            android:id="@+id/inst4"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            />
+                        <TextView
+                            android:id="@+id/instteletxt"
+                            android:layout_toRightOf="@+id/inst4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Phone Number"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:ellipsize="start"
+                            android:textSize="12dp"
+                            android:textColor="#03353e"
+
                             />
 
                         <TextView
+                            android:id="@+id/insttelephone"
+                            android:layout_toRightOf="@+id/inst4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/insttelephone"
                             android:layout_below="@+id/instteletxt"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="3dp"
+                            android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_centerHorizontal="true"
-                            android:textSize="12dp"
+                            android:textSize="14dp"
                             android:text="Institute's Phone Number"
-                            android:textColor="#282f35"
+                            android:textColor="#03353e"
                             android:ellipsize="start"
-                            android:gravity="center_horizontal"
                             />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#282f35"
-                            android:layout_below="@+id/insttelephone"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
-                            android:id="@+id/eduline4"
-                            />
                     </RelativeLayout>
+
+
                 </RelativeLayout>
 
+                <TextView
+                    android:id="@+id/accomplishmentsboxtxt"
+                    android:layout_below="@+id/box3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Accomplishments"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
 
+                    android:textSize="16dp"
+                    android:textColor="#fcfdfd"
+                    android:elevation="2dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/textviewborder"
+                    />
 
+                <ImageView
+                    android:layout_below="@+id/box3"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/pencil_icon"
+                    android:layout_alignParentRight="true"
+                    />
 
+                <ImageView
+                    android:layout_below="@+id/box3"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/accomplishmentsedit"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_color"
+                    android:layout_below="@+id/accomplishmentsboxtxt"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="16dp"
+                    android:id="@+id/accline0"
+                    />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/boxborder"
-                    android:layout_below="@+id/box3"
+                    android:layout_below="@+id/accline0"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:id="@+id/box5"
                     >
-
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:id="@+id/accomplishmentsboxtxt"
-                        android:text="Accomplishments"
-                        android:textStyle="bold"
-                        android:textSize="18dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:textColor="#282f35"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/textviewborder"
-                        />
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginRight="20dp"
-                        android:src="@drawable/pencil"
-                        android:layout_alignParentRight="true"
-                        />
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_alignParentRight="true"
-                        android:id="@+id/accomplishmentsedit"
-                        />
-
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/language"
-                        android:layout_below="@+id/accomplishmentsboxtxt"
-                        android:id="@+id/acc2"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="20dp"
-                        />
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
-                        android:layout_below="@+id/accomplishmentsboxtxt"
+                        android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:id="@+id/acctab2"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
                         >
-
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/known_languages_icon"
+                            android:id="@+id/acc2"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            />
                         <TextView
+                            android:layout_toRightOf="@+id/acc2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/acc2txt"
                             android:text="Known Languages"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_marginLeft="10dp"
                             android:ellipsize="start"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textColor="#282f35"
-                            android:textStyle="bold"
+                            android:textSize="12dp"
+                            android:textColor="#03353e"
+
                             />
                         <TextView
+                            android:layout_toRightOf="@+id/acc2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/acc2txttxt"
                             android:layout_below="@+id/acc2txt"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="3dp"
+                            android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_centerHorizontal="true"
-                            android:textSize="12dp"
-                            android:text="Language1, Language 2."
-                            android:textColor="#282f35"
+                            android:textSize="14dp"
+                            android:text="No known languages filled."
+                            android:textColor="#03353e"
                             android:ellipsize="start"
-                            android:gravity="center_horizontal"
+
                             />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#282f35"
-                            android:layout_below="@+id/acc2txttxt"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
-                            android:id="@+id/accline2"
-                            />
 
                     </RelativeLayout>
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/skill"
-                        android:layout_below="@+id/acctab2"
-                        android:id="@+id/acc4"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="20dp"
-                        />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginRight="5dp"
                         android:layout_below="@+id/acctab2"
                         android:id="@+id/acctab4"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
                         >
-
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/skills_icon"
+                            android:id="@+id/acc4"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            />
                         <TextView
+                            android:layout_toRightOf="@+id/acc4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/acc4txt"
                             android:text="Expert Skills"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_marginLeft="10dp"
                             android:ellipsize="start"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textColor="#282f35"
-                            android:textStyle="bold"
+                            android:textSize="12dp"
+                            android:textColor="#03353e"
+
                             />
                         <TextView
+                            android:layout_toRightOf="@+id/acc4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/acc4txttxt"
                             android:layout_below="@+id/acc4txt"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="3dp"
+                            android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_centerHorizontal="true"
-                            android:textSize="12dp"
-                            android:text="Skill 1, Skill 2."
-                            android:textColor="#282f35"
+                            android:textSize="14dp"
+                            android:text="No skills filled."
+                            android:textColor="#03353e"
                             android:ellipsize="start"
-                            android:gravity="center_horizontal"
-                            />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#282f35"
-                            android:layout_below="@+id/acc4txttxt"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
-                            android:id="@+id/accline4"
                             />
 
                     </RelativeLayout>
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/honor"
-                        android:layout_below="@+id/acctab4"
-                        android:id="@+id/acc5"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="20dp"
-                        />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginRight="5dp"
                         android:layout_below="@+id/acctab4"
                         android:id="@+id/acctab5"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
                         >
 
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/honors_icon"
+                            android:id="@+id/acc5"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            />
                         <TextView
+                            android:layout_toRightOf="@+id/acc5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/acc5txt"
                             android:text="Honors and Awards"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_marginLeft="10dp"
                             android:ellipsize="start"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textColor="#282f35"
-                            android:textStyle="bold"
+                            android:textSize="12dp"
+                            android:textColor="#03353e"
+
                             />
 
                         <TextView
+                            android:layout_toRightOf="@+id/acc5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/acc5txttxt"
                             android:layout_below="@+id/acc5txt"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="3dp"
+                            android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_centerHorizontal="true"
-                            android:textSize="12dp"
-                            android:text="Honor 1, Award 2."
-                            android:textColor="#282f35"
+                            android:textSize="14dp"
+                            android:text="No awards filled."
+                            android:textColor="#03353e"
                             android:ellipsize="start"
-                            android:gravity="center_horizontal"
-                            />
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#282f35"
-                            android:layout_below="@+id/acc5txttxt"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
-                            android:id="@+id/accline5"
+
                             />
 
+
                     </RelativeLayout>
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/patent"
-                        android:layout_below="@+id/acctab5"
-                        android:id="@+id/acc6"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="20dp"
-                        />
+
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginRight="5dp"
                         android:layout_below="@+id/acctab5"
                         android:id="@+id/acctab6"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
                         >
-
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/patents_icon"
+                            android:id="@+id/acc6"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            />
                         <TextView
+                            android:layout_toRightOf="@+id/acc6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/acc6txt"
                             android:text="Patents"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_marginLeft="10dp"
                             android:ellipsize="start"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textColor="#282f35"
-                            android:textStyle="bold"
+                            android:textSize="12dp"
+                            android:textColor="#03353e"
+
                             />
                         <TextView
+                            android:layout_toRightOf="@+id/acc6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/acc6txttxt"
                             android:layout_below="@+id/acc6txt"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="3dp"
+                            android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_centerHorizontal="true"
-                            android:textSize="12dp"
-                            android:text="Patent 1, Patent 2."
-                            android:textColor="#282f35"
+                            android:textSize="14dp"
+                            android:text="No patents filled."
+                            android:textColor="#03353e"
                             android:ellipsize="start"
-                            android:gravity="center_horizontal"
-                            />
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#282f35"
-                            android:layout_below="@+id/acc6txttxt"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
-                            android:id="@+id/accline6"
                             />
 
+
                     </RelativeLayout>
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/publication"
-                        android:layout_below="@+id/acctab6"
-                        android:id="@+id/acc7"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="20dp"
-                        />
+
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
+                        android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_below="@+id/acctab6"
                         android:id="@+id/acctab7"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
                         >
-
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/publications_icon"
+                            android:id="@+id/acc7"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            />
                         <TextView
+                            android:layout_toRightOf="@+id/acc7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/acc7txt"
                             android:text="Publications"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_marginLeft="10dp"
                             android:ellipsize="start"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textColor="#282f35"
-                            android:textStyle="bold"
+                            android:textSize="12dp"
+                            android:textColor="#03353e"
+
                             />
                         <TextView
+                            android:layout_toRightOf="@+id/acc7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/acc7txttxt"
                             android:layout_below="@+id/acc7txt"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="3dp"
+                            android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_centerHorizontal="true"
-                            android:textSize="12dp"
-                            android:text="Publication 1, Publication 2."
-                            android:textColor="#282f35"
+                            android:textSize="14dp"
+                            android:text="No publications filled."
+                            android:textColor="#03353e"
                             android:ellipsize="start"
-                            android:gravity="center_horizontal"
-                            />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#282f35"
-                            android:layout_below="@+id/acc7txttxt"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
-                            android:id="@+id/accline7"
                             />
 
                     </RelativeLayout>
                 </RelativeLayout>
+                <TextView
+                    android:id="@+id/expboxtxt"
+                    android:layout_below="@+id/box5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Experiences"
 
+                    android:textSize="16dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="#fcfdfd"
+                    android:elevation="2dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/textviewborder"
+                    android:layout_marginLeft="10dp"
+                    />
+
+                <ImageView
+                    android:layout_below="@+id/box5"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/pencil_icon"
+                    android:layout_alignParentRight="true"
+                    />
+
+
+                <ImageView
+                    android:layout_below="@+id/box5"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/expedit"
+                    android:layout_alignParentRight="true"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_color"
+                    android:layout_below="@+id/expboxtxt"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="16dp"
+                    android:id="@+id/expline0"
+                    />
                 <RelativeLayout
+                    android:layout_below="@+id/expline0"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/boxborder"
-                    android:layout_below="@+id/box5"
-                    android:layout_marginTop="10dp"
+                    android:id="@+id/box6"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:id="@+id/box6"
                     >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:id="@+id/expboxtxt"
-                        android:text="Experiences"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:textStyle="bold"
-                        android:textSize="18dp"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:textColor="#282f35"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/textviewborder"
-                        />
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginRight="20dp"
-                        android:src="@drawable/pencil"
-                        android:layout_alignParentRight="true"
-                        />
-
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginRight="5dp"
-                        android:id="@+id/expedit"
-                        android:layout_alignParentRight="true"
-                        />
-
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/diamond"
-                        android:layout_below="@+id/expboxtxt"
-                        android:id="@+id/exp1"
-                        android:layout_marginTop="25dp"
-                        android:layout_marginLeft="20dp"
-                        />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginRight="5dp"
-                        android:layout_below="@+id/expboxtxt"
                         android:id="@+id/exptab1"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
+                        android:visibility="gone"
                         >
-
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/experiences_icon"
+                            android:id="@+id/exp1"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            />
                         <TextView
+                            android:layout_toRightOf="@+id/exp1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/exp1txt"
                             android:text="Position Held"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_marginLeft="10dp"
                             android:ellipsize="start"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textColor="#282f35"
-                            android:textStyle="bold"
+                            android:textSize="14dp"
+                            android:textColor="#03353e"
+
                             />
 
                         <TextView
+                            android:layout_toRightOf="@+id/exp1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/myprofileexp1name"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="3dp"
-                            android:layout_marginRight="20dp"
-                            android:textSize="12dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="13dp"
                             android:layout_below="@+id/exp1txt"
-                            android:layout_centerHorizontal="true"
                             android:text="Institute/Organization Name"
-                            android:textColor="#282f35"
+                            android:textColor="#03353e"
                             android:ellipsize="start"
-                            android:gravity="center_horizontal"
                             />
                         <TextView
+                            android:layout_toRightOf="@+id/exp1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/myprofileexpfromto"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="3dp"
-                            android:layout_marginRight="20dp"
-                            android:textSize="12dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="13dp"
                             android:layout_below="@+id/myprofileexp1name"
-                            android:layout_centerHorizontal="true"
                             android:text="Jan 2016 - Jan 2017 | 1 year"
-                            android:textColor="#282f35"
+                            android:textColor="#03353e"
                             android:ellipsize="start"
-                            android:gravity="center_horizontal"
                             />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#282f35"
-                            android:layout_below="@+id/myprofileexpfromto"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
-                            android:id="@+id/expline1"
-                            />
-
-
                     </RelativeLayout>
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/diamond"
-                        android:layout_below="@+id/exptab1"
-                        android:id="@+id/exp2"
-                        android:layout_marginTop="25dp"
-                        android:layout_marginLeft="20dp"
-                        />
-
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/exptab2"
                         android:layout_below="@+id/exptab1"
-                        android:layout_toRightOf="@+id/exp2"
-                        android:layout_toEndOf="@+id/exp2">
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
+                        android:visibility="gone"
+                        >
 
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/experiences_icon"
+                            android:id="@+id/exp2"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            />
                         <TextView
+                            android:layout_toRightOf="@+id/exp2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/exp2txt"
                             android:text="Position Held"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_marginLeft="10dp"
                             android:ellipsize="start"
                             android:layout_centerHorizontal="true"
                             android:gravity="center_horizontal"
-                            android:textColor="#282f35"
-                            android:textStyle="bold"
+                            android:textSize="14dp"
+                            android:textColor="#03353e"
+
                             />
 
                         <TextView
+                            android:layout_toRightOf="@+id/exp2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/myprofileexp2name"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="3dp"
-                            android:layout_marginRight="20dp"
-                            android:textSize="12dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="13dp"
                             android:layout_below="@+id/exp2txt"
-                            android:layout_centerHorizontal="true"
                             android:text="Institute/Organization Name"
-                            android:textColor="#282f35"
+                            android:textColor="#03353e"
                             android:ellipsize="start"
-                            android:gravity="center_horizontal"
+
                             />
                         <TextView
+                            android:layout_toRightOf="@+id/exp2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/myprofileexpfromto2"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="3dp"
-                            android:layout_marginRight="20dp"
-                            android:textSize="12dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="13dp"
                             android:layout_below="@+id/myprofileexp2name"
-                            android:layout_centerHorizontal="true"
                             android:text="Jan 2016 - Jan 2017 | 1 year"
-                            android:textColor="#282f35"
+                            android:textColor="#03353e"
                             android:ellipsize="start"
-                            android:gravity="center_horizontal"
-                            />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#282f35"
-                            android:layout_below="@+id/myprofileexpfromto2"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
-                            android:id="@+id/expline2"
                             />
 
 
                     </RelativeLayout>
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/diamond"
-                        android:layout_below="@+id/exptab2"
-                        android:id="@+id/exp3"
-                        android:layout_marginTop="25dp"
-                        android:layout_marginLeft="20dp"
-                        />
 
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_below="@+id/exptab2"
                         android:id="@+id/exptab3"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
+                        android:visibility="gone"
                         >
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/experiences_icon"
+                            android:id="@+id/exp3"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            />
 
                         <TextView
+                            android:layout_toRightOf="@+id/exp3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/exp3txt"
                             android:text="Position Held"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_marginLeft="10dp"
                             android:ellipsize="start"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textColor="#282f35"
-                            android:textStyle="bold"
+                            android:textSize="14dp"
+                            android:textColor="#03353e"
+
                             />
 
                         <TextView
+                            android:layout_toRightOf="@+id/exp3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/myprofileexp3name"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="3dp"
-                            android:layout_marginRight="20dp"
-                            android:textSize="12dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="13dp"
                             android:layout_below="@+id/exp3txt"
-                            android:layout_centerHorizontal="true"
                             android:text="Institute/Organization Name"
-                            android:textColor="#282f35"
+                            android:textColor="#03353e"
                             android:ellipsize="start"
-                            android:gravity="center_horizontal"
                             />
                         <TextView
+                            android:layout_toRightOf="@+id/exp3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/myprofileexpfromto3"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="3dp"
-                            android:layout_marginRight="20dp"
-                            android:textSize="12dp"
+                            android:layout_marginRight="10dp"
+                            android:textSize="13dp"
                             android:layout_below="@+id/myprofileexp3name"
-                            android:layout_centerHorizontal="true"
                             android:text="Jan 2016 - Jan 2017 | 1 year"
-                            android:textColor="#282f35"
+                            android:textColor="#03353e"
                             android:ellipsize="start"
-                            android:gravity="center_horizontal"
+                            />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/noexptab"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/exptab3"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
+                        >
+
+                        <ImageView
+                            android:id="@+id/noexp"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/experiences_icon"
+                            android:layout_marginBottom="10dp"
                             />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#282f35"
-                            android:layout_below="@+id/myprofileexpfromto3"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
-                            android:id="@+id/expline3"
+                        <TextView
+                            android:id="@+id/noedudetailstxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@+id/noexp"
+                            android:layout_centerVertical="true"
+                            android:ellipsize="start"
+                            android:text="No experiences filled."
+                            android:textColor="#03353e"
+                            android:textSize="14dp"
                             />
-
 
                     </RelativeLayout>
-
-
-
-
-                </RelativeLayout>
-
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/boxborder"
-                    android:layout_below="@+id/box6"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:id="@+id/box8"
-                    >
-
                     <TextView
+                        android:id="@+id/extraexpcount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:id="@+id/contactboxtxt"
-                        android:text="Contact Details"
-                        android:textStyle="bold"
-                        android:textSize="18dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:textColor="#282f35"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/textviewborder"
+                        android:textSize="12dp"
+                        android:visibility="gone"
+                        android:textColor="@color/dark_color"
+                        android:text="and 3 more"
+                        android:layout_below="@+id/noexptab"
+                        android:layout_marginRight="10dp"
                         />
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginRight="20dp"
-                        android:src="@drawable/pencil"
-                        android:layout_alignParentRight="true"
-                        />
+                </RelativeLayout>
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="5dp"
-                        android:id="@+id/contactedit"
-                        android:layout_marginRight="5dp"
-                        android:layout_alignParentRight="true"
-                        />
+                <TextView
+                    android:id="@+id/contactboxtxt"
+                    android:layout_below="@+id/box6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contact Details"
 
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/location"
-                        android:layout_below="@+id/contactboxtxt"
-                        android:id="@+id/contact1"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginLeft="20dp"
-                        />
+                    android:textSize="16dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="#fcfdfd"
+                    android:elevation="2dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/textviewborder"
+                    android:layout_marginLeft="10dp"
+                    />
+                <ImageView
+                    android:layout_below="@+id/box6"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/pencil_icon"
+                    android:layout_alignParentRight="true"
+                    />
 
+                <ImageView
+                    android:layout_below="@+id/box6"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/contactedit"
+                    android:layout_marginRight="5dp"
+                    android:layout_alignParentRight="true"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_color"
+                    android:layout_below="@+id/contactboxtxt"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="16dp"
+                    android:id="@+id/contactline0"
+                    />
+
+                <RelativeLayout
+                    android:id="@+id/box8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/contactline0"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    >
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/contact1"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:layout_below="@+id/contactboxtxt"
                         android:id="@+id/contacttab1"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
                         >
-
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/location_icon"
+                            android:id="@+id/contact1"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            />
                         <TextView
+                            android:layout_toRightOf="@+id/contact1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/nametxt"
                             android:text="YOUR NAME"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginLeft="20dp"
+                            android:layout_marginLeft="10dp"
                             android:ellipsize="start"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textColor="#282f35"
-                            android:textStyle="bold"
+                            android:textSize="14dp"
+                            android:textColor="#03353e"
+
                             />
 
                         <TextView
+                            android:layout_toRightOf="@+id/contact1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/contactaddr"
                             android:layout_below="@+id/nametxt"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="3dp"
+                            android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_centerHorizontal="true"
-                            android:textSize="12dp"
-                            android:text="Address line1, Address line2, Address line3."
-                            android:textColor="#282f35"
+                            android:textSize="13dp"
+                            android:text="No address filled."
+                            android:textColor="#03353e"
                             android:ellipsize="start"
-                            android:gravity="center_horizontal"
                             />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#282f35"
-                            android:layout_below="@+id/contactaddr"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
-                            android:id="@+id/contactline1"
-                            />
+
                     </RelativeLayout>
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/email"
-                        android:tint="#282f35"
-                        android:layout_below="@+id/contacttab1"
-                        android:id="@+id/contact2"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginLeft="20dp"
-                        />
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/contact2"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginRight="5dp"
                         android:layout_below="@+id/contacttab1"
                         android:id="@+id/contacttab2"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
                         >
-
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/email_icon"
+                            android:id="@+id/contact2"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            />
                         <TextView
+                            android:layout_toRightOf="@+id/contact2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/emailtxt"
-                            android:text="EMAIL"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
+                            android:text="Email"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_marginLeft="10dp"
                             android:ellipsize="start"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textColor="#282f35"
-                            android:textStyle="bold"
+                            android:textSize="12dp"
+                            android:textColor="#03353e"
+
                             />
 
                         <TextView
+                            android:layout_toRightOf="@+id/contact2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/contactprofesionalemail"
                             android:layout_below="@+id/emailtxt"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="3dp"
+                            android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_centerHorizontal="true"
-                            android:textSize="12dp"
+                            android:textSize="14dp"
                             android:text="Professional Email Address"
                             android:textColor="#282f35"
                             android:ellipsize="start"
                             android:gravity="center_horizontal"
                             />
                         <TextView
+                            android:layout_toRightOf="@+id/contact2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/contactpersonalemail"
                             android:layout_below="@+id/contactprofesionalemail"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="3dp"
+                            android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_centerHorizontal="true"
-                            android:textSize="12dp"
+                            android:textSize="14dp"
                             android:text="Personal Email Address"
-                            android:textColor="#282f35"
+                            android:textColor="#03353e"
                             android:ellipsize="start"
-                            android:gravity="center_horizontal"
-                            />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#282f35"
-                            android:layout_below="@+id/contactpersonalemail"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
-                            android:id="@+id/contactline2"
                             />
                     </RelativeLayout>
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/mobile"
-                        android:tint="#282f35"
-                        android:layout_below="@+id/contacttab2"
-                        android:id="@+id/contact3"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginLeft="20dp"
-                        />
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/contact3"
+                        android:layout_marginTop="15dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_below="@+id/contacttab2"
                         android:id="@+id/contacttab3"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
                         >
-
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/mobile_icon"
+                            android:id="@+id/contact3"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            />
                         <TextView
+                            android:layout_toRightOf="@+id/contact3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/mobiletxt"
-                            android:text="MOBILE"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
+                            android:text="Mobile"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_marginLeft="10dp"
                             android:ellipsize="start"
-                            android:layout_centerHorizontal="true"
-                            android:gravity="center_horizontal"
-                            android:textColor="#282f35"
-                            android:textStyle="bold"
+                            android:textSize="14dp"
+                            android:textColor="#03353e"
+
                             />
 
                         <TextView
+                            android:layout_toRightOf="@+id/contact3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/contactmobile"
                             android:layout_below="@+id/mobiletxt"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="3dp"
+                            android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_centerHorizontal="true"
-                            android:textSize="12dp"
+                            android:textSize="13dp"
                             android:text="Your Mobile Number"
-                            android:textColor="#282f35"
+                            android:textColor="#03353e"
                             android:ellipsize="start"
-                            android:gravity="center_horizontal"
+
                             />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#282f35"
-                            android:layout_below="@+id/contactmobile"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp"
-                            android:id="@+id/contactline3"
-                            />
                     </RelativeLayout>
 
 
@@ -1447,36 +1480,10 @@
                         android:id="@+id/trytxt"
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
-                        android:textColor="@android:color/holo_blue_bright"
+                        android:textColor="#03353e"
                         android:textSize="20dp"
-                        android:text="TRY PLACE ME"
-                        android:background="#282f35"
+                        android:text="Try Place Me Pro for Free"
                         android:layout_marginTop="20dp"
-                        android:gravity="bottom"
-                        />
-                    <TextView
-                        android:id="@+id/protxt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:textColor="@android:color/holo_blue_bright"
-                        android:textSize="12dp"
-                        android:text="Pro"
-                        android:background="#282f35"
-                        android:layout_marginTop="13dp"
-                        android:layout_toRightOf="@+id/trytxt"
-                        android:layout_marginRight="10dp"
-                        android:gravity="bottom"
-                        />
-                    <TextView
-                        android:id="@+id/freetxt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:textColor="@android:color/holo_blue_bright"
-                        android:textSize="20dp"
-                        android:text="FOR FREE"
-                        android:background="#282f35"
-                        android:layout_marginTop="20dp"
-                        android:layout_toRightOf="@+id/protxt"
                         android:gravity="bottom"
                         />
 
@@ -1484,7 +1491,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#c59a6d"
+                    android:background="#00bcd4"
                     android:id="@+id/proview"
                     android:layout_below="@+id/prorl"
                     />
@@ -1492,7 +1499,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_above="@+id/proview"
-                    android:layout_below="@+id/box8"
+                    android:layout_below="@+id/box7"
                     android:id="@+id/proselectionview"
                     />
             </RelativeLayout>
@@ -1503,14 +1510,4 @@
     </android.support.v4.widget.SwipeRefreshLayout>
 
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:id="@+id/mainloadingbar"
-        android:visibility="gone"
-
-        style="?android:attr/progressBarStyleLarge"
-        />
 </RelativeLayout>

@@ -1,7 +1,6 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
@@ -28,16 +27,13 @@ import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 
 public class LastSession extends AppCompatActivity {
 
-    TextView countrytxt,platformtxt,iptxt,countrylasttxt,platformlasttxt,iplasttxt,lastaccessedtxt;
+    TextView countrytxt,platformtxt,iptxt,ipiptxt,ipiplasttxt,countrylasttxt,platformlasttxt,iplasttxt,lastaccessedtxt,lastaccessedtxttxt,activetxt,lasttxt,detaildetailtxt,detaildetaillasttxt;
     String scountry,sregion,scity,sregionlast,scitylast,splatform,sip,scountrylast,splatformlast,siplast,slastaccessed;
     JSONObject json;
     String username;
     JSONParser jParser = new JSONParser();
     private static String url_getsession= "http://192.168.100.100/AESTest/GetSessionDetails";
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
-    String digest1,digest2;
+
     int found_current=0,found_last=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,48 +44,51 @@ public class LastSession extends AppCompatActivity {
         ab.setTitle("Login Sessions");
         ab.setDisplayHomeAsUpEnabled(true);
 
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        String role=sharedpreferences.getString("role",null);
-
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
+//        digest1 = MySharedPreferencesManager.getDigest1(this);
+//        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+//        String role=MySharedPreferencesManager.getRole(this);
 
         countrytxt=(TextView)findViewById(R.id.countrytxt);
         platformtxt=(TextView)findViewById(R.id.platformtxt);
         iptxt=(TextView)findViewById(R.id.iptxt);
+        ipiptxt=(TextView)findViewById(R.id.ipiptxt);
+        ipiplasttxt=(TextView)findViewById(R.id.ipiplasttxt);
         countrylasttxt=(TextView)findViewById(R.id.countrylasttxt);
         platformlasttxt=(TextView)findViewById(R.id.platformlasttxt);
         iplasttxt=(TextView)findViewById(R.id.iplasttxt);
+        lastaccessedtxttxt=(TextView)findViewById(R.id.lastaccessedtxttxt);
         lastaccessedtxt=(TextView)findViewById(R.id.lastaccessedtxt);
+        activetxt=(TextView)findViewById(R.id.activetxt);
+        lasttxt=(TextView)findViewById(R.id.lasttxt);
+        detaildetailtxt=(TextView)findViewById(R.id.detaildetailtxt);
+        detaildetaillasttxt=(TextView)findViewById(R.id.detaildetaillasttxt);
+
+        activetxt.setTypeface(MyConstants.getBold(this));
+        lasttxt.setTypeface(MyConstants.getBold(this));
+        detaildetailtxt.setTypeface(MyConstants.getLight(this));
+        detaildetaillasttxt.setTypeface(MyConstants.getLight(this));
+        countrytxt.setTypeface(MyConstants.getBold(this));
+        platformtxt.setTypeface(MyConstants.getBold(this));
+        countrylasttxt.setTypeface(MyConstants.getBold(this));
+        platformlasttxt.setTypeface(MyConstants.getBold(this));
+        iptxt.setTypeface(MyConstants.getBold(this));
+        iplasttxt.setTypeface(MyConstants.getBold(this));
+        ipiptxt.setTypeface(MyConstants.getLight(this));
+        ipiplasttxt.setTypeface(MyConstants.getLight(this));
+        lastaccessedtxttxt.setTypeface(MyConstants.getLight(this));
+        lastaccessedtxt.setTypeface(MyConstants.getBold(this));
+
+
+
+
+
 
         new GetSessionDetails().execute();
 
 
-        TextView activetxt=(TextView)findViewById(R.id.activetxt);
-        TextView lasttxt=(TextView)findViewById(R.id.lasttxt);
-        TextView detaildetailtxt=(TextView)findViewById(R.id.detaildetailtxt);
-        TextView detaildetaillasttxt=(TextView)findViewById(R.id.detaildetaillasttxt);
 
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/cabinsemibold.ttf");
-        activetxt.setTypeface(custom_font);
-        lasttxt.setTypeface(custom_font);
 
-        Typeface custom_fon2 = Typeface.createFromAsset(getAssets(),  "fonts/maven.ttf");
-        detaildetailtxt.setTypeface(custom_fon2);
-        detaildetaillasttxt.setTypeface(custom_fon2);
 
 
     }

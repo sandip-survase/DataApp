@@ -31,8 +31,8 @@ public class AboutFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_about, container, false);
 
-        Typeface custom_font3 = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/cabinsemibold.ttf");
-        Typeface custom_font4 = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/maven.ttf");
+//        Typeface custom_font3 = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/cabinsemibold.ttf");
+//        Typeface custom_font4 = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/maven.ttf");
 
         TextView aboutplacemetxt=(TextView)rootView.findViewById(R.id.aboutplacemetxt);
         TextView versiontxt=(TextView)rootView.findViewById(R.id.versiontxt);
@@ -40,10 +40,11 @@ public class AboutFragment extends Fragment {
         TextView allrightstxt=(TextView)rootView.findViewById(R.id.allrightstxt);
         TextView licensetxt=(TextView)rootView.findViewById(R.id.licensetxt);
 
-        aboutplacemetxt.setTypeface(custom_font3);
-        versiontxt.setTypeface(custom_font4);
-        copyrighttxt.setTypeface(custom_font4);
-        allrightstxt.setTypeface(custom_font4);
+        aboutplacemetxt.setTypeface(MyConstants.getRighteous(getActivity()));
+        versiontxt.setTypeface(MyConstants.getLight(getActivity()));
+        copyrighttxt.setTypeface(MyConstants.getBold(getActivity()));
+        allrightstxt.setTypeface(MyConstants.getLight(getActivity()));
+        licensetxt.setTypeface(MyConstants.getBold(getActivity()));
 
         licensetxt.setOnClickListener(new View.OnClickListener() {
             @Override

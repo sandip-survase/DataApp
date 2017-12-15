@@ -5,20 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="#282f35"
+    android:background="@color/while_color"
     tools:context="placeme.octopusites.com.placeme.EditEmail">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/boxborderwhite"
+        android:background="@drawable/textviewborder2"
         android:layout_marginTop="10dp"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
         android:paddingLeft="20dp"
         android:paddingRight="5dp"
         android:id="@+id/editemailrl1"
+        android:elevation="6dp"
         >
 
 
@@ -26,8 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Email associated with account"
-            android:textSize="18dp"
-            android:textColor="#eee"
+            android:textSize="12dp"
+            android:textColor="@color/dark_color"
             android:id="@+id/asstxt"
             />
 
@@ -35,18 +36,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16dp"
-            android:textColor="#eee"
+            android:textColor="@color/dark_color"
             android:textStyle="bold"
             android:text="username@email.com"
             android:id="@+id/primaryemail"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_below="@+id/asstxt"
             />
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/pencilwhite"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/pencil_icon"
             android:id="@+id/editemailicon"
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"
@@ -59,25 +60,29 @@
             android:text="This is your primary email which we are using as account's username and for other communications."
             android:layout_below="@+id/primaryemail"
             android:id="@+id/emailemailtxt"
-            android:textColor="#bbb"
-            android:paddingTop="5dp"
+            android:textColor="@color/dark_color"
+            android:layout_marginTop="10dp"
+            android:textSize="12dp"
 
             />
 
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/editemailrl2"
+        android:background="@drawable/textviewborder2"
         android:visibility="gone"
+        android:padding="10dp"
+        android:elevation="6dp"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Edit email address"
-            android:textSize="18dp"
-            android:textColor="#eee"
+            android:textSize="14dp"
+            android:textColor="@color/dark_color"
             android:id="@+id/ass2txt"
             />
 
@@ -92,15 +97,18 @@
 
             >
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter email address"
-                android:textSize="15dp"
+                android:textSize="16dp"
                 android:imeOptions="actionNext"
                 android:singleLine="true"
+                android:textStyle="bold"
+                android:digits="abcdefghijklmnopqrstuvwxyz0123456789@._"
+                android:maxLength="100"
                 android:inputType="textEmailAddress"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:id="@+id/newemail"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -114,14 +122,16 @@
 
             >
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter your account's password"
-                android:textSize="15dp"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:singleLine="true"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:id="@+id/accountpassword"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -136,14 +146,16 @@
             android:visibility="gone"
             >
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter OTP"
-                android:textSize="15dp"
-                android:imeOptions="actionNext"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:maxLength="6"
+                android:imeOptions="actionDone"
                 android:singleLine="true"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:inputType="number"
                 android:id="@+id/otp"/>
 
@@ -152,11 +164,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="A confirmation link will be sent to this email address. Click on that link to verify and change your email."
+            android:text="A One Time Password (OTP) will be sent to your new email address."
             android:layout_below="@+id/otpinput"
             android:id="@+id/passpasstxt"
-            android:textColor="#bbb"
-            android:paddingTop="5dp"
+            android:textColor="@color/dark_color"
+            android:layout_marginTop="10dp"
             />
         <ProgressBar
             android:id="@+id/editemailprogress"
@@ -173,11 +185,12 @@
             android:layout_height="wrap_content"
             android:text="Submit"
             android:textAllCaps="false"
-            android:textSize="20dp"
-            android:textColor="#eeeeee"
+            android:textSize="18dp"
+            android:textColor="@color/while_color"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
-            android:background="@drawable/button_round"
+            android:elevation="10dp"
+            android:background="@drawable/textviewborder"
             android:layout_below="@+id/passpasstxt"
             android:id="@+id/changeemailbutton"
             />

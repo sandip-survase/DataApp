@@ -2,597 +2,625 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35">
+    android:background="@color/while_color">
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_my_profile_weaknesses"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
         android:focusableInTouchMode="true"
+        android:padding="16dp"
         tools:context="com.octopusites.placeme.MyProfileWeaknesses">
+
         <TextView
+            android:id="@+id/weaktxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Weaknesses"
-            android:textSize="20dp"
-            android:textColor="#eee"
-            android:id="@+id/weaktxt"
             android:layout_centerHorizontal="true"
-            android:paddingTop="10dp"
+            android:background="@drawable/textviewborder"
+            android:elevation="2dp"
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:background="@drawable/textviewborder2"
-            />
+            android:paddingTop="10dp"
+            android:text="Weaknesses"
+            android:textColor="@color/while_color"
+            android:textSize="20dp" />
+
         <ImageView
+            android:id="@+id/trashweak1"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/weaktxt"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:layout_below="@+id/weaktxt"
             android:layout_marginTop="35dp"
-            android:id="@+id/trashweak1"
-            />
+            android:src="@drawable/delete_icon" />
+
         <View
+            android:id="@+id/trash1selectionview"
             android:layout_width="50dp"
             android:layout_height="50dp"
-
             android:layout_below="@+id/weaktxt"
-            android:layout_marginTop="20dp"
-            android:id="@+id/trash1selectionview"
-            />
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/weakrl1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/weaktxt"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            >
+            android:layout_marginTop="20dp">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/weakinput1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/weakinput1"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/weak1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Weaknesses"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
-                    android:id="@+id/weak1"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
 
         </RelativeLayout>
+
         <View
+            android:id="@+id/weakline1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
             android:layout_below="@+id/weakrl1"
-            android:id="@+id/weakline1"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashweak2"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/weakline1"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:layout_below="@+id/weakline1"
             android:layout_marginTop="35dp"
-            android:id="@+id/trashweak2"
-            />
+            android:src="@drawable/delete_icon" />
+
         <View
+            android:id="@+id/trash2selectionview"
             android:layout_width="50dp"
             android:layout_height="50dp"
-
             android:layout_below="@+id/weakline1"
-            android:layout_marginTop="20dp"
-            android:id="@+id/trash2selectionview"
-            />
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/weakrl2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/weakline1"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/weakinput2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/weakinput2"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/weak2"
+                    android:imeOptions="actionDone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Weaknesses"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
-                    android:id="@+id/weak2"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
 
         </RelativeLayout>
+
         <View
+            android:id="@+id/weakline2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
             android:layout_below="@+id/weakrl2"
-            android:id="@+id/weakline2"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashweak3"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/weakline2"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashweak3"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/weakline2"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash3selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/weakline2"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/weakrl3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/weakline2"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/weakinput3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/weakinput3"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/weak3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
                     android:hint="Weaknesses"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
-                    android:id="@+id/weak3"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
 
         </RelativeLayout>
 
         <View
+            android:id="@+id/weakline3"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
             android:layout_below="@+id/weakrl3"
-            android:id="@+id/weakline3"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashweak4"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/weakline3"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashweak4"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/weakline3"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash4selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/weakline3"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/weakrl4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/weakline3"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/weakinput4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/weakinput4"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/weak4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
                     android:hint="Weaknesses"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
-                    android:id="@+id/weak4"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
 
         </RelativeLayout>
 
         <View
+            android:id="@+id/weakline4"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
             android:layout_below="@+id/weakrl4"
-            android:id="@+id/weakline4"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashweak5"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/weakline4"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashweak5"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/weakline4"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash5selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/weakline4"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/weakrl5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/weakline4"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/weakinput5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/weakinput5"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/weak5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
                     android:hint="Weaknesses"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
-                    android:id="@+id/weak5"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
 
         </RelativeLayout>
 
         <View
+            android:id="@+id/weakline5"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
             android:layout_below="@+id/weakrl5"
-            android:id="@+id/weakline5"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashweak6"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/weakline5"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashweak6"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/weakline5"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash6selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/weakline5"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/weakrl6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/weakline5"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/weakinput6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/weakinput6"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/weak6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Weaknesses"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
-                    android:id="@+id/weak6"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
 
         </RelativeLayout>
+
         <View
+            android:id="@+id/weakline6"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
             android:layout_below="@+id/weakrl6"
-            android:id="@+id/weakline6"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashweak7"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/weakline6"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashweak7"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/weakline6"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash7selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/weakline6"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/weakrl7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/weakline6"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/weakinput7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/weakinput7"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/weak7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Weaknesses"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
-                    android:id="@+id/weak7"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
 
         </RelativeLayout>
 
         <View
+            android:id="@+id/weakline7"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
             android:layout_below="@+id/weakrl7"
-            android:id="@+id/weakline7"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashweak8"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/weakline7"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashweak8"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/weakline7"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash8selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/weakline7"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/weakrl8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/weakline7"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/weakinput8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/weakinput8"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/weak8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Weaknesses"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
-                    android:id="@+id/weak8"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
 
         </RelativeLayout>
 
         <View
+            android:id="@+id/weakline8"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
             android:layout_below="@+id/weakrl8"
-            android:id="@+id/weakline8"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashweak9"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/weakline8"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashweak9"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/weakline8"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash9selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/weakline8"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/weakrl9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/weakline8"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/weakinput9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/weakinput9"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/weak9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Weaknesses"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
-                    android:id="@+id/weak9"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
 
         </RelativeLayout>
 
         <View
+            android:id="@+id/weakline9"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
             android:layout_below="@+id/weakrl9"
-            android:id="@+id/weakline9"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashweak10"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/weakline9"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashweak10"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/weakline9"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash10selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/weakline9"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
             android:id="@+id/weakrl10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/weakline9"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/weakinput10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/weakinput10"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/weak10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Weaknesses"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
-                    android:id="@+id/weak10"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
 
         </RelativeLayout>
 
         <View
+            android:id="@+id/addmoreweak"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/boxborderwhite"
             android:layout_below="@+id/weakrl10"
-            android:id="@+id/addmoreweak"
             android:layout_marginTop="20dp"
-            />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/textviewborder"
+            android:elevation="2dp" />
+
+        <View
+            android:id="@+id/addmoreweak1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@+id/addmoreweak"
+            android:layout_marginTop="20dp" />
 
         <TextView
+            android:id="@+id/addmoreweaktxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/weakrl10"
-            android:text="Add Another Weakness"
-            android:textColor="#eee"
-            android:textSize="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            android:id="@+id/addmoreweaktxt"
-            />
+            android:elevation="3dp"
+            android:text="Add Another Weakness"
+            android:textColor="@color/while_color"
+            android:textSize="18dp" />
+
         <ImageView
+            android:id="@+id/addmoreweakimg"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_below="@+id/weakrl10"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:layout_below="@+id/weakrl10"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:id="@+id/addmoreweakimg"
-            />
+            android:elevation="3dp"
+            android:src="@drawable/add_icon_white" />
+
+
+
 
 
     </RelativeLayout>
+
 </ScrollView>

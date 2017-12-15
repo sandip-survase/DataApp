@@ -4,12 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -58,21 +59,14 @@ public class AdminIntro extends AppCompatActivity {
     String digest1,digest2;
     AutoCompleteTextView citystaecountry;
     ArrayList<String> listAll=new ArrayList<String>();
-    EditText fname,lname,role,email,inst;
+
+    TextInputEditText fname,lname,role,email,inst;
     JSONObject json;
     JSONParser jParser = new JSONParser();
-    SharedPreferences sharedpreferences;
     private String username="";
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Username = "nameKey";
+    TextInputLayout fnameTextInputLayout, lnameTextInputLayout, roleinputlayout,instinputlayout, emailinputlayout, citystaecountryinputlayout;
 
 
-    private static String url_getcountries = "http://192.168.100.100/AESTest/GetCountries";
-    private static String url_getstates= "http://192.168.100.100/AESTest/GetStates";
-    private static String url_getcities= "http://192.168.100.100/AESTest/GetCities";
-
-
-    private static String url_savedata= "http://192.168.100.30:8080/ProfileObjects/SaveAdminIntro";
 
     int countrycount=0,statecount=0,citycount=0;
     String firstname="",lastname="",instname="",CityStateCountry="";
@@ -97,20 +91,8 @@ public class AdminIntro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_intro);
 
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-//        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-//        username=sharedpreferences.getString(Username,null);
-////        String role=sharedpreferences.getString("role",null);
-//
-//        if(digest1==null||digest2==null) {
-//            digest1 = sharedpreferences.getString("digest1", null);
-//            digest2 = sharedpreferences.getString("digest2", null);
-//            d.setDigest1(digest1);
-//            d.setDigest2(digest2);
-//        }
+        digest1=MySharedPreferencesManager.getDigest1(this);
+        digest2=MySharedPreferencesManager.getDigest2(this);
 
 
         ActionBar ab = getSupportActionBar();
@@ -122,9 +104,7 @@ public class AdminIntro extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         TextView loctxt=(TextView)findViewById(R.id.loctxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");
-        loctxt.setTypeface(custom_font1);
-
+        loctxt.setTypeface(MyConstants.getBold(this));
 //        country=(Spinner)findViewById(R.id.country);
 //        state=(Spinner)findViewById(R.id.state);
 //        city=(Spinner)findViewById(R.id.city);
@@ -132,46 +112,80 @@ public class AdminIntro extends AppCompatActivity {
 //        new GetCountries().execute();
 
 
-        fname=(EditText)findViewById(R.id.fname);
-        lname=(EditText)findViewById(R.id.sname);
-        role=(EditText)findViewById(R.id.role);
-        email=(EditText)findViewById(R.id.email);
-        inst=(EditText)findViewById(R.id.inst);
+        fname=(TextInputEditText)findViewById(R.id.fname);
+        lname=(TextInputEditText)findViewById(R.id.lname);
+        role=(TextInputEditText)findViewById(R.id.role);
+        email=(TextInputEditText)findViewById(R.id.email);
+        inst=(TextInputEditText)findViewById(R.id.inst);
 
         citystaecountry=(AutoCompleteTextView)findViewById(R.id.citystaecountry);
+
+        fnameTextInputLayout = (TextInputLayout) findViewById(R.id.fnameTextInputLayout);
+        lnameTextInputLayout = (TextInputLayout) findViewById(R.id.lnameTextInputLayout);
+        roleinputlayout = (TextInputLayout) findViewById(R.id.roleinputlayout);
+        emailinputlayout = (TextInputLayout) findViewById(R.id.emailinputlayout);
+        instinputlayout = (TextInputLayout) findViewById(R.id.instinputlayout);
+        citystaecountryinputlayout = (TextInputLayout) findViewById(R.id.citystaecountryinputlayout);
+
+        fname.setTypeface(MyConstants.getBold(this));
+        lname.setTypeface(MyConstants.getBold(this));
+        role.setTypeface(MyConstants.getBold(this));
+        email.setTypeface(MyConstants.getBold(this));
+        inst.setTypeface(MyConstants.getBold(this));
+        citystaecountry.setTypeface(MyConstants.getBold(this));
+
+        fnameTextInputLayout.setTypeface(MyConstants.getLight(this));
+        lnameTextInputLayout.setTypeface(MyConstants.getLight(this));
+        roleinputlayout.setTypeface(MyConstants.getLight(this));
+        emailinputlayout.setTypeface(MyConstants.getLight(this));
+        instinputlayout.setTypeface(MyConstants.getLight(this));
+        citystaecountryinputlayout.setTypeface(MyConstants.getLight(this));
 
         firstname=a.getFname();
         lastname=a.getLname();
         instname = a.getInstitute();
-
         selectedCountry = a.getCountry();
         selectedState = a.getState();
         selectedCity = a.getCity();
 
-
-
         if(firstname!=null)
             fname.setText(firstname);
+        else
+            firstname="";
+
         if(lastname!=null)
             lname.setText(lastname);
+        else
+            lastname="";
+
         if (instname != null)
             inst.setText(instname);
+        else
+            instname="";
 
 
-    try{
-        role.setText(MySharedPreferencesManager.getRole(this));
-     email.setText(Decrypt(MySharedPreferencesManager.getUsername(this),digest1,digest2));
 
-    } catch (Exception e)
-    {
-    e.printStackTrace();
-    }
+        try{
+            role.setText(MySharedPreferencesManager.getRole(this));
+            email.setText(Decrypt(MySharedPreferencesManager.getUsername(this),digest1,digest2));
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         encUsername=MySharedPreferencesManager.getUsername(this);
         if(selectedCountry!=null && selectedState!=null && selectedCity!=null)
         {
-            CityStateCountry = selectedCity+" , "+selectedState+" , "+selectedCountry;
-            citystaecountry.setText(CityStateCountry);
+            if(!selectedCountry.equals("") && !selectedState.equals("") && !selectedCity.equals("")) {
+                CityStateCountry = selectedCity + " , " + selectedState + " , " + selectedCountry;
+                citystaecountry.setText(CityStateCountry);
+            }
+            else
+                citystaecountry.setText("");
+
         }
+        else
+            citystaecountry.setText("");
 
         try
         {
@@ -184,7 +198,6 @@ public class AdminIntro extends AppCompatActivity {
                 String city=object.getString("city");
                 String state=object.getString("state");
                 String country=object.getString("country");
-
 
                 listAll.add(city+" , "+state+" , "+country);
 
@@ -207,6 +220,7 @@ public class AdminIntro extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                citystaecountryinputlayout.setError(null);
             }
 
             @Override
@@ -226,7 +240,7 @@ public class AdminIntro extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
-
+                fnameTextInputLayout.setError(null);
             }
 
             @Override
@@ -237,7 +251,7 @@ public class AdminIntro extends AppCompatActivity {
         lname.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                lname.setError(null);
+                lnameTextInputLayout.setError(null);
                 edittedFlag=1;
             }
 
@@ -249,7 +263,6 @@ public class AdminIntro extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                // TODO Auto-generated method stub
             }
 
 
@@ -263,6 +276,7 @@ public class AdminIntro extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag=1;
+                instinputlayout.setError(null);
             }
 
             @Override
@@ -298,305 +312,6 @@ public class AdminIntro extends AppCompatActivity {
     }
 
 
-//    class GetCountries extends AsyncTask<String, String, String> {
-//
-//
-//        protected String doInBackground(String... param) {
-//
-//
-//            List<NameValuePair> params = new ArrayList<NameValuePair>();
-//
-//            json = jParser.makeHttpRequest(url_getcountries, "GET", params);
-//            try {
-//                String s = json.getString("count");
-//                countrycount=Integer.parseInt(s);
-//                countries=new String[countrycount];
-//                for(int i=0;i<countrycount;i++)
-//                {
-//                    countries[i]=json.getString("country"+i);
-//                }
-//
-//
-//
-//
-//            }catch (Exception e){e.printStackTrace();}
-//            return "";
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//
-//            countrieslist.clear();
-//            countrieslist.add("- Select Country -");
-//            for(int i=0;i<countrycount;i++)
-//            {
-//                countrieslist.add(countries[i]);
-//            }
-//            populateCountries();
-//        }
-//    }
-//
-//    void populateCountries() {
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, countrieslist) {
-//            @Override
-//            public boolean isEnabled(int position) {
-//
-//                if (position == 0) {
-//
-//                    return false;
-//                } else {
-//                    return true;
-//                }
-//            }
-//
-//            @Override
-//            public View getDropDownView(int position, View convertView,
-//                                        ViewGroup parent) {
-//                View view = super.getDropDownView(position, convertView, parent);
-//                TextView tv = (TextView) view;
-//                Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
-//                tv.setTypeface(custom_font3);
-//
-//                if (position == 0) {
-//                    // Set the hint text color gray
-//                    tv.setTextColor(Color.GRAY);
-//                } else {
-//                    tv.setTextColor(Color.parseColor("#eeeeee"));
-//                }
-//                return view;
-//            }
-//        };
-//
-//        country.setAdapter(dataAdapter);
-//
-//        country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                selectedCountry = (String) parent.getItemAtPosition(position);
-//
-//                new GetStates().execute();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//
-//        if (isCountrySet == 0) {
-//            isCountrySet = 1;
-//            if (a.getCountry() != null) {
-//                country.setSelection(dataAdapter.getPosition(a.getCountry()));
-//                selectedCountry = a.getCountry();
-//                oldCountry = a.getCountry();
-//            } else
-//                oldCountry = "- Select Country -";
-//
-//
-//        }
-//    }
-//
-//    class GetStates extends AsyncTask<String, String, String> {
-//
-//
-//        protected String doInBackground(String... param) {
-//
-//
-//            List<NameValuePair> params = new ArrayList<NameValuePair>();
-//            params.add(new BasicNameValuePair("country",selectedCountry));
-//            json = jParser.makeHttpRequest(url_getstates, "GET", params);
-//            try {
-//                String s = json.getString("count");
-//                statecount=Integer.parseInt(s);
-//                states=new String[statecount];
-//                for(int i=0;i<statecount;i++)
-//                {
-//                    states[i]=json.getString("state"+i);
-//                }
-//
-//
-//
-//
-//            }catch (Exception e){e.printStackTrace();}
-//            return "";
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//            stateslist.clear();
-//            stateslist.add("- Select State -");
-//            for(int i=0;i<statecount;i++)
-//            {
-//                stateslist.add(states[i]);
-//            }
-//            populateStates();
-//        }
-//    }
-//
-//    void populateStates()
-//    {
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, stateslist)
-//        {
-//            @Override
-//            public boolean isEnabled(int position){
-//
-//                if(position == 0)
-//                {
-//
-//                    return false;
-//                }
-//                else
-//                {
-//                    return true;
-//                }
-//            }
-//            @Override
-//            public View getDropDownView(int position, View convertView,
-//                                        ViewGroup parent) {
-//                View view = super.getDropDownView(position, convertView, parent);
-//                TextView tv = (TextView) view;
-//                Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/abz.ttf");
-//                tv.setTypeface(custom_font3);
-//
-//                if(position == 0){
-//                    // Set the hint text color gray
-//                    tv.setTextColor(Color.GRAY);
-//                }
-//                else {
-//                    tv.setTextColor(Color.parseColor("#eeeeee"));
-//                }
-//                return view;
-//            }
-//        };;
-//        state.setAdapter(dataAdapter);
-//
-//        state.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                selectedState = (String) parent.getItemAtPosition(position);
-//
-//                new GetCities().execute();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//
-//        if(isStateSet==0) {
-//            isStateSet=1;
-//            if(a.getState()!=null) {
-//                state.setSelection(dataAdapter.getPosition(a.getState()));
-//                selectedState = a.getState();
-//                oldState = a.getState();
-//            }
-//            else
-//                oldState = "- Select State -" ;
-//        }
-//
-//    }
-//    class GetCities extends AsyncTask<String, String, String> {
-//
-//
-//        protected String doInBackground(String... param) {
-//
-//
-//            List<NameValuePair> params = new ArrayList<NameValuePair>();
-//            params.add(new BasicNameValuePair("state",selectedState));
-//            json = jParser.makeHttpRequest(url_getcities, "GET", params);
-//            try {
-//                String s = json.getString("count");
-//                citycount=Integer.parseInt(s);
-//                cities=new String[citycount];
-//                for(int i=0;i<citycount;i++)
-//                {
-//                    cities[i]=json.getString("city"+i);
-//                }
-//
-//
-//
-//
-//            }catch (Exception e){e.printStackTrace();}
-//            return "";
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String result) {
-//            citieslist.clear();
-//            citieslist.add("- Select City -");
-//            for(int i=0;i<citycount;i++)
-//            {
-//                citieslist.add(cities[i]);
-//            }
-//            populateCities();
-//        }
-//    }
-//
-//    void populateCities()
-//    {
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, citieslist)
-//        {
-//            @Override
-//            public boolean isEnabled(int position){
-//
-//                if(position == 0)
-//                {
-//
-//                    return false;
-//                }
-//                else
-//                {
-//                    return true;
-//                }
-//            }
-//            @Override
-//            public View getDropDownView(int position, View convertView,
-//                                        ViewGroup parent) {
-//                View view = super.getDropDownView(position, convertView, parent);
-//                TextView tv = (TextView) view;
-//                Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/abz.ttf");
-//                tv.setTypeface(custom_font3);
-//
-//                if(position == 0){
-//                    // Set the hint text color gray
-//                    tv.setTextColor(Color.GRAY);
-//                }
-//                else {
-//                    tv.setTextColor(Color.parseColor("#eeeeee"));
-//                }
-//                return view;
-//            }
-//        };;
-//        city.setAdapter(dataAdapter);
-//
-//        city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                selectedCity = (String) parent.getItemAtPosition(position);
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//
-//        if(isCitySet==0) {
-//            isCitySet=1;
-//            if(a.getCity()!=null) {
-//                city.setSelection(dataAdapter.getPosition(a.getCity()));
-//                selectedCity = a.getCity();
-//                oldCity = a.getCity();
-//            }
-//            else
-//                oldCity = "- Select City -" ;
-//        }
-//
-//    }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.savemenu, menu);
@@ -622,7 +337,7 @@ public class AdminIntro extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        if (!oldCountry.equals(selectedCountry) || !oldState.equals(selectedState) || !oldCity.equals(selectedCity) || edittedFlag == 1) {
+        if ( edittedFlag == 1) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
             alertDialogBuilder
@@ -662,93 +377,92 @@ public class AdminIntro extends AppCompatActivity {
     void validateandSave()
     {
 
-
-
         int errorflag1=0,errorflag2=0,errorflag3=0,errorflag4=0, errorflag5=0;
-
-
 
         firstname = fname.getText().toString();
         lastname = lname.getText().toString();
         instname = inst.getText().toString();
         CityStateCountry = citystaecountry.getText().toString();
 
-
-        if(CityStateCountry.length()<2)
-        {
-            citystaecountry.setError("Incorrect City Name");
-            errorflagfirstname=1;
-        }
-        else
-        {
-            citystaecountry.setError(null);
-
-            String[] parts = CityStateCountry.split(" , ");
-            if(parts.length==3) {
-                selectedCity = parts[0];
-                selectedState = parts[1];
-                selectedCountry = parts[2];
-            }
-        }
-
         if (firstname.length() < 2) {
-            fname.setError("Incorrect First Name");
-            errorflag4 = 1;
+            fnameTextInputLayout.setError("Kindly enter valid first name");
+            errorflag1 = 1;
         } else {
-            if (instname.length() < 2) {
-                inst.setError("Incorrect Institute Name");
-                errorflag5 = 1;
+            fnameTextInputLayout.setError(null);
+            if (lastname.length() < 2) {
+                lnameTextInputLayout.setError("Kindly enter valid last name");
+                errorflag2 = 1;
             } else {
-                fname.setError(null);
-                inst.setError(null);
-                if (selectedCountry.contains("Select")) {
-                    Toast.makeText(AdminIntro.this, "Select Country", Toast.LENGTH_SHORT).show();
-                    errorflag1 = 1;
+                lnameTextInputLayout.setError(null);
+                if (instname.length() < 2) {
+                    instinputlayout.setError("Kindly enter valid institute name");
+                    errorflag3 = 1;
                 } else {
-                    if (selectedState.contains("Select")) {
-                        Toast.makeText(AdminIntro.this, "Select State", Toast.LENGTH_SHORT).show();
-                        errorflag2 = 1;
-                    } else if (selectedCity.contains("Select")) {
-                        Toast.makeText(AdminIntro.this, "Select City", Toast.LENGTH_SHORT).show();
-                        errorflag3 = 1;
-                    }
-                }
+                    instinputlayout.setError(null);
 
+                    if(CityStateCountry.length()<2)
+                    {
+                        citystaecountryinputlayout.setError("Please select your city");
+                        errorflag4=1;
+                    }
+                    else
+                    {
+                        citystaecountryinputlayout.setError(null);
+                        String[] parts = CityStateCountry.split(" , ");
+                        if(parts.length==3) {
+                            selectedCity = parts[0];
+                            selectedState = parts[1];
+                            selectedCountry = parts[2];
+                        }
+                    }
+
+//                if (selectedCountry.contains("Select")) {
+//                    Toast.makeText(AdminIntro.this, "Select Country", Toast.LENGTH_SHORT).show();
+//                    errorflag1 = 1;
+//                } else {
+//                    if (selectedState.contains("Select")) {
+//                        Toast.makeText(AdminIntro.this, "Select State", Toast.LENGTH_SHORT).show();
+//                        errorflag2 = 1;
+//                    } else if (selectedCity.contains("Select")) {
+//                        Toast.makeText(AdminIntro.this, "Select City", Toast.LENGTH_SHORT).show();
+//                        errorflag3 = 1;
+//                    }
+//                }
+
+                }
             }
 
+        }
 
-            if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag5 == 0) {
-                try {
+
+        if (errorflag4 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag1 == 0  ) {
+            try {
 //
-                     String mname = a.getMname();
-                     String phone = a.getPhone();
+                String mname = a.getMname();
+                String phone = a.getPhone();
 
-                    Log.d("TAG", "mname: - "+mname);
-                    Log.d("TAG", "phone: - "+phone);
+                Log.d("TAG", "mname: - "+mname);
+                Log.d("TAG", "phone: - "+phone);
 
-                    digest1=MySharedPreferencesManager.getDigest1(this);
-                    digest2=MySharedPreferencesManager.getDigest2(this);
-
-
-                    obj = new AdminIntroModal(firstname,mname,lastname,selectedCountry,selectedState,selectedCity,phone,instname);
-                    try{
-                        strobj =OtoString(obj,digest1,digest2);
-                        Log.d("encstrobj", "strobj: "+strobj);
-
-                    }
-                    catch (Exception e){
-                        Log.d("TAG", "validateandSave: - "+e.getMessage());
-                    }
-
-
-                    new SaveData().execute();
-
-                } catch (Exception e) {
-                    Log.d("TAG", "validateandSave: - "+e.getMessage());
+                obj = new AdminIntroModal(firstname,mname,lastname,selectedCountry,selectedState,selectedCity,phone,instname);
+                try{
+                    strobj =OtoString(obj,digest1,digest2);
+                    Log.d("encstrobj", "strobj: "+strobj);
 
                 }
+                catch (Exception e){
+                    Log.d("TAG", "validateandSave: - "+e.getMessage());
+                }
+
+
+                new SaveData().execute();
+
+            } catch (Exception e) {
+                Log.d("TAG", "validateandSave: - "+e.getMessage());
+
             }
         }
+
     }
 
 
@@ -767,14 +481,10 @@ public class AdminIntro extends AppCompatActivity {
             Log.d("TAG", "encUsername: "+encUsername);
             params.add(new BasicNameValuePair("obj",strobj));       //1
             Log.d("TAG", "strobj: "+encobj);
-
-
-
-
-            json = jParser.makeHttpRequest(url_savedata, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_SaveAdminIntro, "GET", params);
             try {
                 r = json.getString("info");
-
+                Log.d("TAG", " result r:-: "+r);
 
             }catch (Exception e){e.printStackTrace();}
             return r;
@@ -785,12 +495,9 @@ public class AdminIntro extends AppCompatActivity {
 
             if(result.equals("success"))
             {
-
                 MySharedPreferencesManager.save(AdminIntro.this,"institute",instname);
                 Toast.makeText(AdminIntro.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
-//                Intent returnIntent = new Intent();
-//                returnIntent.putExtra("result", result);
                 if(edittedFlag==1){
                     setResult(111);
                 }

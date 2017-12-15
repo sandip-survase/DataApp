@@ -17,7 +17,7 @@ public class CareerobjProfileTabFragment extends Fragment {
 
     //    RadioGroup radioGroupCareerobj;
 //    RadioButton radioButtonObj1,radioButtonObj2,radioButtonObj3,radioButtonObj4,radioButtonObj5,radioButtonObj6;
-//    EditText otherobjedittext,otherstredittext,otherweakedittext,loc1edittext,loc2edittext;
+//    TextInputEditText otherobjedittext,otherstredittext,otherweakedittext,loc1edittext,loc2edittext;
 //    CheckBox CheckBoxStr1,CheckBoxStr2,CheckBoxStr3,CheckBoxStr4,CheckBoxStr5,CheckBoxStr6,CheckBoxStr7,CheckBoxOtherStr;
 //    CheckBox CheckBoxWeak1,CheckBoxWeak2,CheckBoxWeak3,CheckBoxWeak4,CheckBoxWeak5,CheckBoxWeak6,CheckBoxWeak7,CheckBoxOtherWeak;
 //    String username,careerobj,strengths,weaknesses,location1,location2;
@@ -43,11 +43,11 @@ public class CareerobjProfileTabFragment extends Fragment {
 //        radioButtonObj5=(RadioButton)rootView.findViewById(R.id.radioButtonObj5);
 //        radioButtonObj6=(RadioButton)rootView.findViewById(R.id.radioButtonObj6);
 //
-//        otherobjedittext=(EditText)rootView.findViewById(R.id.otherObj);
-//        otherstredittext=(EditText)rootView.findViewById(R.id.otherstr);
-//        otherweakedittext=(EditText)rootView.findViewById(R.id.otherweak);
-//        loc1edittext=(EditText)rootView.findViewById(R.id.loc1);
-//        loc2edittext=(EditText)rootView.findViewById(R.id.loc2);
+//        otherobjedittext=(TextInputEditText)rootView.findViewById(R.id.otherObj);
+//        otherstredittext=(TextInputEditText)rootView.findViewById(R.id.otherstr);
+//        otherweakedittext=(TextInputEditText)rootView.findViewById(R.id.otherweak);
+//        loc1edittext=(TextInputEditText)rootView.findViewById(R.id.loc1);
+//        loc2edittext=(TextInputEditText)rootView.findViewById(R.id.loc2);
 //
 //        CheckBoxStr1=(CheckBox)rootView.findViewById(R.id.CheckBoxStr1);
 //        CheckBoxStr2=(CheckBox)rootView.findViewById(R.id.CheckBoxStr2);
@@ -122,11 +122,11 @@ public class CareerobjProfileTabFragment extends Fragment {
         TextView strengthtxt=(TextView)rootView.findViewById(R.id.strengthtxt);
         TextView weaktxt=(TextView)rootView.findViewById(R.id.weaktxt);
         TextView locationtxt=(TextView)rootView.findViewById(R.id.locationtxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/arba.ttf");
-        careerobjtxt.setTypeface(custom_font1);
-        strengthtxt.setTypeface(custom_font1);
-        weaktxt.setTypeface(custom_font1);
-        locationtxt.setTypeface(custom_font1);
+
+        careerobjtxt.setTypeface(MyConstants.getBold(getActivity()));
+        strengthtxt.setTypeface(MyConstants.getBold(getActivity()));
+        weaktxt.setTypeface(MyConstants.getBold(getActivity()));
+        locationtxt.setTypeface(MyConstants.getBold(getActivity()));
 
         careerobjbutton=(View)rootView.findViewById(R.id.careerobjbutton);
         strengthbutton=(View)rootView.findViewById(R.id.strengthbutton);

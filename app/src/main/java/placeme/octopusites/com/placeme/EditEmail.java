@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.design.widget.TextInputLayout;
@@ -15,7 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -33,9 +32,7 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 public class EditEmail extends AppCompatActivity {
 
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
+
     String username,plainusername;
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
@@ -44,7 +41,7 @@ public class EditEmail extends AppCompatActivity {
     RelativeLayout rl1,rl2;
     View editselectionview;
     Button changeemailbutton;
-    EditText newemail,accountpassword,otp;
+    TextInputEditText newemail,accountpassword,otp;
     String snewemail="",saccountpassword="";
     String encnewemail,encaccountpassword;
     ProgressBar editemailprogress;
@@ -62,12 +59,19 @@ public class EditEmail extends AppCompatActivity {
         ab.setTitle("Edit Email");
         ab.setDisplayHomeAsUpEnabled(true);
 
+
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        String role=MySharedPreferencesManager.getRole(this);
+
+
         otpinput=(TextInputLayout)findViewById(R.id.otpinput);
         emailinput=(TextInputLayout)findViewById(R.id.emailinput);
         passinput=(TextInputLayout)findViewById(R.id.passinput);
-        newemail=(EditText)findViewById(R.id.newemail);
-        accountpassword=(EditText)findViewById(R.id.accountpassword);
-        otp=(EditText)findViewById(R.id.otp);
+        newemail=(TextInputEditText)findViewById(R.id.newemail);
+        accountpassword=(TextInputEditText)findViewById(R.id.accountpassword);
+        otp=(TextInputEditText)findViewById(R.id.otp);
         editemailprogress=(ProgressBar)findViewById(R.id.editemailprogress);
         rl1=(RelativeLayout)findViewById(R.id.editemailrl1);
         rl2=(RelativeLayout)findViewById(R.id.editemailrl2);
@@ -88,37 +92,19 @@ public class EditEmail extends AppCompatActivity {
 
         changeemailbutton=(Button)findViewById(R.id.changeemailbutton);
 
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/cabinsemibold.ttf");
-        asstxt.setTypeface(custom_font);
-        ass2txt.setTypeface(custom_font);
+        asstxt.setTypeface(MyConstants.getLight(this));
+        primaryemail.setTypeface(MyConstants.getBold(this));
+        emailemailtxt.setTypeface(MyConstants.getLight(this));
+        ass2txt.setTypeface(MyConstants.getBold(this));
+        emailinput.setTypeface(MyConstants.getLight(this));
+        newemail.setTypeface(MyConstants.getBold(this));
+        passinput.setTypeface(MyConstants.getLight(this));
+        accountpassword.setTypeface(MyConstants.getBold(this));
+        otpinput.setTypeface(MyConstants.getLight(this));
+        otp.setTypeface(MyConstants.getBold(this));
+        passpasstxt.setTypeface(MyConstants.getBold(this));
 
-        Typeface custom_fon2 = Typeface.createFromAsset(getAssets(),  "fonts/maven.ttf");
-        emailemailtxt.setTypeface(custom_fon2);
-        passpasstxt.setTypeface(custom_fon2);
-
-        Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/button.ttf");
-        changeemailbutton.setTypeface(custom_font3);
-
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        String role=sharedpreferences.getString("role",null);
-
-
-
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
+        changeemailbutton.setTypeface(MyConstants.getBold(this));
         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
         String sPadding = "ISO10126Padding";
@@ -154,13 +140,13 @@ public class EditEmail extends AppCompatActivity {
                     snewemail = newemail.getText().toString();
                     saccountpassword = accountpassword.getText().toString();
                     int errotflag = 0;
-                    if (snewemail.length() < 10 || !snewemail.contains("@")) {
+                    if (snewemail.length() < 5 || !snewemail.contains("@")) {
                         errotflag = 1;
-                        newemail.setError("Enter Valid Email");
+                        emailinput.setError("Kindly enter valid email address");
                     } else {
-                        if (saccountpassword.length() < 3) {
+                        if (saccountpassword.length() < 6) {
                             errotflag = 1;
-                            accountpassword.setError("Invalid Password");
+                            passinput.setError("Kindly enter valid account password");
                         }
                     }
                     if (errotflag == 0) {
@@ -181,7 +167,7 @@ public class EditEmail extends AppCompatActivity {
                                 changeemailbutton.setVisibility(View.GONE);
                                 new SaveEditedEmail().execute();
                             } else
-                                Toast.makeText(EditEmail.this, plainusername + " is your current username, please enter another email", Toast.LENGTH_LONG).show();
+                                Toast.makeText(EditEmail.this, plainusername + " is your current email address. Kindly enter new email address to which you want to switch your account.", Toast.LENGTH_LONG).show();
                         } catch (Exception e) {
                         }
                     }
@@ -194,8 +180,6 @@ public class EditEmail extends AppCompatActivity {
 
 
         protected String doInBackground(String... param) {
-
-            //TODO get fname lname and send it
 
             String r="";
             List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -216,8 +200,6 @@ public class EditEmail extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            //TODO chage in all tables username | firebase update email id auth
-
             editemailprogress.setVisibility(View.GONE);
             changeemailbutton.setVisibility(View.VISIBLE);
 
@@ -227,11 +209,11 @@ public class EditEmail extends AppCompatActivity {
 
             } else if (result.equals("fail")) {
                 otpflag=0;
-                Toast.makeText(EditEmail.this, "Incorrect OTP..!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditEmail.this, "Your entered OTP is incorrect. Kindly enter valid OTP.", Toast.LENGTH_SHORT).show();
             }
             else if (result.equals("expired")) {
                 otpflag=0;
-                Toast.makeText(EditEmail.this, "OTP expired.Please try again.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditEmail.this, "OTP Expired. Click on Resend OTP.", Toast.LENGTH_SHORT).show();
             }
 
 
@@ -270,11 +252,8 @@ public class EditEmail extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             if(result!=null && result.equals("success")){
-                //change email and save it in the sharedpreference
-                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString(Username, encnewemail);
-                editor.commit();
+
+                MySharedPreferencesManager.save(EditEmail.this,MyConstants.USERNAME_KEY,encnewemail);
                 primaryemail.setText(snewemail);
                 Toast.makeText(EditEmail.this, "Username successfully changed from "+plainusername+" to " +snewemail , Toast.LENGTH_SHORT).show();
                 otpflag=0;
@@ -314,7 +293,7 @@ public class EditEmail extends AppCompatActivity {
                 otpinput.setVisibility(View.VISIBLE);
                 otpflag=1;
                 TextView passpasstxt=(TextView)findViewById(R.id.passpasstxt);
-                passpasstxt.setText("A confirmation link has been sent to "+snewemail);
+                passpasstxt.setText("Enter One Time Password (OTP) sent on "+snewemail);
             } else if (result.equals("wrong")) {
                 otpflag=0;
                 Toast.makeText(EditEmail.this, "Incorrect account's password", Toast.LENGTH_LONG).show();

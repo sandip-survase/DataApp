@@ -1,25 +1,21 @@
 package placeme.octopusites.com.placeme;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -27,8 +23,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -53,26 +47,22 @@ import java.util.List;
 import placeme.octopusites.com.placeme.modal.MyProfileTenthModal;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 
 public class MyProfileTenth extends AppCompatActivity {
 
     EditText marks10, outof10, percent10, schoolname10, yearofpassing10, otherboard;
+    TextView tenthtxt;
+    TextInputLayout marks10input, marks10_outOf, schoolname10input, yearofpassing10inpute,otherboardinput,marks10_percentage;
     Spinner board10;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
-    String username;
+
+    String username, role;
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-    //    private static String url_savedata= "http://192.168.100.10/AESTest/SaveTenth";
     String selectedBoard = "";
     int edittedFlag = 0;
-    String marksobtained = "", outofmarks = "", percentage = "", schoolname = "", monthandyearofpassing = "", otherspecifiedboard = "",encobj="";
-    String encmarksobtained, encoutofmarks, encpercentage, encschoolname, encmonthandyearofpassing, encselectedboard;
-    //    StudentData s=new StudentData();
+    String marksobtained = "", outofmarks = "", percentage = "", schoolname = "", monthandyearofpassing = "", otherspecifiedboard = "", encobj = "";
     String oldBoard = "";
     StudentData s = new StudentData();
 
@@ -81,35 +71,21 @@ public class MyProfileTenth extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_tenth);
 
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username = MySharedPreferencesManager.getUsername(this);
+        role = MySharedPreferencesManager.getRole(this);
+
+
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Educational Info");
         ab.setDisplayHomeAsUpEnabled(true);
 
         yearofpassing10 = (EditText) findViewById(R.id.yearofpassing10);
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, null);
-        String role = sharedpreferences.getString("role", null);
-
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
-
-        if (digest1 == null || digest2 == null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
-
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
-
 
 
         TextView tenthtxt = (TextView) findViewById(R.id.tenthtxt);
@@ -123,49 +99,31 @@ public class MyProfileTenth extends AppCompatActivity {
         board10 = (Spinner) findViewById(R.id.board10);
         yearofpassing10 = (EditText) findViewById(R.id.yearofpassing10);
         otherboard = (EditText) findViewById(R.id.otherboard);
+        tenthtxt = (TextView) findViewById(R.id.tenthtxt);
 
+        marks10input = (TextInputLayout) findViewById(R.id.marks10input);
+        marks10_outOf = (TextInputLayout) findViewById(R.id.marks10_outOf);
+        marks10_percentage = (TextInputLayout) findViewById(R.id.marks10_percentage);
+        schoolname10input = (TextInputLayout) findViewById(R.id.schoolname10input);
+        yearofpassing10inpute = (TextInputLayout) findViewById(R.id.yearofpassing10inpute);
+        otherboardinput= (TextInputLayout) findViewById(R.id.otherboardinput);
+        marks10_percentage= (TextInputLayout) findViewById(R.id.marks10_percentage);
 
-//
-//        marksobtained= alumniDataset.getMarks();
-//        outofmarks=alumniDataset.getOutof();
-//        percentage=alumniDataset.getPercentage();
-//        schoolname=alumniDataset.getSchoolname();
-//        monthandyearofpassing=alumniDataset.getYearofpassing();
-//        board10=alumniDataset.getBoard();
-//
-//
-//        if (marksobtained != null) {
-//
-//            if (marksobtained.length() > 1)
-//                marks10.setText(marksobtained);
-//        }
-//
-//        if (outofmarks != null) {
-//            if (outofmarks.length() > 1)
-//                outof10.setText(outofmarks);
-//        }
-//
-//        if (percentage != null) {
-//
-//            if (percentage.length() > 1)
-//                percent10.setText(percentage);
-//        }
-//
-//        if (schoolname != null) {
-//            if (schoolname.length() > 1)
-//                schoolname10.setText(schoolname);
-//        }
-//        if (monthandyearofpassing != null) {
-//
-//            if (monthandyearofpassing.length() > 1)
-//                yearofpassing10.setText(monthandyearofpassing);
-//        }
-//
-//        if (board10 != null) {
-//            if (otherspecifiedboard.length() > 1)
-//                lname.setText(otherspecifiedboard);
-//        }
-//
+        marks10input.setTypeface(MyConstants.getLight(this));
+        marks10_outOf.setTypeface(MyConstants.getLight(this));
+        marks10_percentage.setTypeface(MyConstants.getLight(this));
+        schoolname10input.setTypeface(MyConstants.getLight(this));
+        yearofpassing10inpute.setTypeface(MyConstants.getLight(this));
+        otherboardinput.setTypeface(MyConstants.getLight(this));
+        marks10_percentage.setTypeface(MyConstants.getLight(this));
+
+        marks10.setTypeface(MyConstants.getBold(this));
+        outof10.setTypeface(MyConstants.getBold(this));
+        percent10.setTypeface(MyConstants.getBold(this));
+        schoolname10.setTypeface(MyConstants.getBold(this));
+        yearofpassing10.setTypeface(MyConstants.getBold(this));
+        otherboard.setTypeface(MyConstants.getBold(this));
+        tenthtxt.setTypeface(MyConstants.getBold(this));
 
 
         marks10.addTextChangedListener(new TextWatcher() {
@@ -176,14 +134,14 @@ public class MyProfileTenth extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                marks10.setError(null);
+                marks10input.setError(null);
                 edittedFlag = 1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
-                outof10.setError(null);
+                marks10_outOf.setError(null);
 
                 try {
                     double percentage = 0;
@@ -196,16 +154,14 @@ public class MyProfileTenth extends AppCompatActivity {
                         if (n1 <= n2) {
                             percentage = (n1 * 100 / n2);
 
-                            if (percentage >= 0 && percentage <= 100)
+                            if (percentage > 0 && percentage <= 100)
                                 percent10.setText("" + (new DecimalFormat("##.##").format(percentage)));
 
                         } else {
-                            outof10.setError("Invalid Out Of Marks");
+                            marks10_outOf.setError("Kindly enter valid Out Of Marks");
                             percent10.setText("");
                         }
-                    }
-                    else
-                    {
+                    } else {
                         percent10.setText("");
                     }
                 } catch (Exception e) {
@@ -221,7 +177,7 @@ public class MyProfileTenth extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                outof10.setError(null);
+                marks10_outOf.setError(null);
                 edittedFlag = 1;
             }
 
@@ -244,7 +200,7 @@ public class MyProfileTenth extends AppCompatActivity {
 //                } catch (Exception e) {
 //                }
 
-                outof10.setError(null);
+                marks10_outOf.setError(null);
 
                 try {
                     double percentage = 0;
@@ -257,16 +213,15 @@ public class MyProfileTenth extends AppCompatActivity {
                         if (n1 <= n2) {
                             percentage = (n1 * 100 / n2);
 
-                            if (percentage >= 0 && percentage <= 100)
+                            if (percentage > 0 && percentage <= 100)
                                 percent10.setText("" + (new DecimalFormat("##.##").format(percentage)));
 
+
                         } else {
-                            outof10.setError("Invalid Out Of Marks");
+                            marks10_outOf.setError("Kindly enter valid Out Of Marks");
                             percent10.setText("");
                         }
-                    }
-                    else
-                    {
+                    } else {
                         percent10.setText("");
                     }
                 } catch (Exception e) {
@@ -282,7 +237,7 @@ public class MyProfileTenth extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                otherboard.setError(null);
+                otherboardinput.setError(null);
                 edittedFlag = 1;
             }
 
@@ -299,7 +254,7 @@ public class MyProfileTenth extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                schoolname10.setError(null);
+                schoolname10input.setError(null);
                 edittedFlag = 1;
             }
 
@@ -316,7 +271,7 @@ public class MyProfileTenth extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                yearofpassing10.setError(null);
+                yearofpassing10inpute.setError(null);
                 edittedFlag = 1;
             }
 
@@ -343,19 +298,28 @@ public class MyProfileTenth extends AppCompatActivity {
                 }
             }
 
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
+                View view= super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfileTenth.this));
+                return view;
+            }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+                tv.setTypeface(MyConstants.getBold(MyProfileTenth.this));
 
                 if (position == 0) {
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 } else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -468,7 +432,7 @@ public class MyProfileTenth extends AppCompatActivity {
                 setselectionview.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        yearofpassing10.setError(null);
+                        yearofpassing10inpute.setError(null);
                         int monthPosition = monthView.getCurrentPosition();
                         int yearPosition = yearView.getCurrentPosition();
 
@@ -509,12 +473,12 @@ public class MyProfileTenth extends AppCompatActivity {
     }
 
     void validateandSave() {
-        marks10.setError(null);
-        outof10.setError(null);
-        percent10.setError(null);
-        schoolname10.setError(null);
-        otherboard.setError(null);
-        yearofpassing10.setError(null);
+//        marks10.setError(null);
+//        outof10.setError(null);
+//        percent10.setError(null);
+//        schoolname10.setError(null);
+//        otherboard.setError(null);
+//        yearofpassing10.setError(null);
 
         int errorflag1 = 0, errorflag2 = 0, errorflag3 = 0, errorflag4 = 0, errorflag5 = 0, errorflag6 = 0, errorflag7 = 0;
 
@@ -526,53 +490,36 @@ public class MyProfileTenth extends AppCompatActivity {
 
         if (marksobtained.length() < 1) {
             errorflag1 = 1;
-            marks10.setError("Incorrect Marks");
+            marks10input.setError("Kindly enter valid marks");
         } else {
             if (outofmarks.length() < 1) {
                 errorflag2 = 1;
-                marks10.setError(null);
-                outof10.setError("Incorrect Marks");
+
+                marks10_outOf.setError("Kindly enter valid marks");
             } else {
                 if (percentage.length() < 1) {
                     errorflag3 = 1;
-                    marks10.setError(null);
-                    outof10.setError(null);
-                    percent10.setError("Incorrect Percentage");
+                    marks10_percentage.setError("Incorrect Percentage");
                 } else {
                     if (schoolname.length() < 3) {
                         errorflag4 = 1;
-                        marks10.setError(null);
-                        outof10.setError(null);
-                        percent10.setError(null);
-                        schoolname10.setError("Invalid Schoolname");
+
+                        schoolname10input.setError("Kindly enter valid school name");
                     } else {
                         if (selectedBoard == "" || selectedBoard == null || selectedBoard.equals("- Select Board -")) {
                             errorflag5 = 1;
-                            marks10.setError(null);
-                            outof10.setError(null);
-                            percent10.setError(null);
-                            schoolname10.setError(null);
                             Toast.makeText(MyProfileTenth.this, "Select Board", Toast.LENGTH_LONG).show();
                         } else {
                             if (selectedBoard.equals("Other")) {
                                 otherspecifiedboard = otherboard.getText().toString();
                                 if (otherspecifiedboard.length() < 3) {
                                     errorflag6 = 1;
-                                    marks10.setError(null);
-                                    outof10.setError(null);
-                                    percent10.setError(null);
-                                    schoolname10.setError(null);
-                                    otherboard.setError("Invalid Board");
+                                    otherboardinput.setError("Kindly enter valid board");
                                 }
                             }
                             if (monthandyearofpassing.length() < 9 || monthandyearofpassing.length() > 9) {
                                 errorflag7 = 1;
-                                marks10.setError(null);
-                                outof10.setError(null);
-                                percent10.setError(null);
-                                schoolname10.setError(null);
-                                otherboard.setError(null);
-                                yearofpassing10.setError("Invalid Month,Year");
+                                yearofpassing10inpute.setError("Kindly select valid Month,Year");
                             }
                         }
                     }
@@ -585,68 +532,21 @@ public class MyProfileTenth extends AppCompatActivity {
         if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0 && errorflag5 == 0 && errorflag6 == 0 && errorflag7 == 0) {
             try {
 
-                Log.d("TAG", "validateandSave: before objstr" +marksobtained +" "+outofmarks +" "+percentage+" "+ schoolname+" "+ monthandyearofpassing +" "+selectedBoard  );
+                Log.d("TAG", "validateandSave: before objstr" + marksobtained + " " + outofmarks + " " + percentage + " " + schoolname + " " + monthandyearofpassing + " " + selectedBoard);
 
-                MyProfileTenthModal obj2 = new MyProfileTenthModal(marksobtained, outofmarks , percentage, schoolname , monthandyearofpassing , selectedBoard);
+                MyProfileTenthModal obj2 = new MyProfileTenthModal(marksobtained, outofmarks, percentage, schoolname, monthandyearofpassing, selectedBoard);
 
-                Log.d("TAG", "validateandSave: " +obj2.marksobtained +" "+obj2.outofmarks +" "+obj2.percentage+" "+ obj2.schoolname+" "+ obj2.monthandyearofpassing +" "+obj2.selectedBoard);
+                Log.d("TAG", "validateandSave: " + obj2.marksobtained + " " + obj2.outofmarks + " " + obj2.percentage + " " + obj2.schoolname + " " + obj2.monthandyearofpassing + " " + obj2.selectedBoard);
 //                Log.d("TAG", "validateandSave: "+obj2.marksobtained+" "+);
 
-                encobj =OtoString(obj2,MySharedPreferencesManager.getDigest1(MyProfileTenth.this),MySharedPreferencesManager.getDigest2(MyProfileTenth.this));
-                Log.d("TAG", "validateandSave: encobj - "+encobj);
+                encobj = OtoString(obj2, MySharedPreferencesManager.getDigest1(MyProfileTenth.this), MySharedPreferencesManager.getDigest2(MyProfileTenth.this));
+                Log.d("TAG", "validateandSave: encobj - " + encobj);
 
 
                 new SaveData().execute();
 
             } catch (Exception e) {
 
-            }
-        }
-    }
-
-    class SaveData extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));    //0
-            params.add(new BasicNameValuePair("m", encobj));        //1
-
-            json = jParser.makeHttpRequest(MyConstants.url_savedata, "GET", params);
-            try {
-                r = json.getString("info");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            if (result.equals("success")) {
-                Toast.makeText(MyProfileTenth.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
-
-
-                ProfileRole r = new ProfileRole();
-                String role = r.getRole();
-                if (role.equals("student"))
-                    setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
-                else if (role.equals("alumni"))
-                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
-
-                s.setMarks10(marksobtained);
-                s.setOutof10(outofmarks);
-                s.setPercentage10(percentage);
-                s.setSchoolname10(schoolname);
-                s.setYearofpassing10(monthandyearofpassing);
-                s.setBoard10(selectedBoard);
-//                oldBoard=selectedBoard;
-
-                MyProfileTenth.super.onBackPressed();
             }
         }
     }
@@ -706,14 +606,60 @@ public class MyProfileTenth extends AppCompatActivity {
             alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialogInterface) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileTenth.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileTenth.this));
                 }
             });
 
             alertDialog.show();
         } else
             MyProfileTenth.super.onBackPressed();
+    }
+
+    class SaveData extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));    //0
+            params.add(new BasicNameValuePair("m", encobj));        //1
+
+            json = jParser.makeHttpRequest(MyConstants.url_SaveTenth, "GET", params);
+            try {
+                r = json.getString("info");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (result.equals("success")) {
+                Toast.makeText(MyProfileTenth.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+
+                if (role.equals("student"))
+                    setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+                else if (role.equals("alumni"))
+                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+
+                s.setMarks10(marksobtained);
+                s.setOutof10(outofmarks);
+                s.setPercentage10(percentage);
+                s.setSchoolname10(schoolname);
+                s.setYearofpassing10(monthandyearofpassing);
+                s.setBoard10(selectedBoard);
+//                oldBoard=selectedBoard;
+
+                MyProfileTenth.super.onBackPressed();
+            }
+        }
     }
 
 }

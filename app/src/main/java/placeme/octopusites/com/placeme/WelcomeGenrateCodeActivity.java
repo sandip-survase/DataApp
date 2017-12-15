@@ -6,9 +6,13 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,11 +24,13 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,45 +39,53 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
 
     String CODE, COUNTRY;
-    private ViewPager viewPager;
-    private MyViewPagerAdapter myViewPagerAdapter;
+    private CustomViewPager viewPager;
+    private MyAdapter myViewPagerAdapter;
     private Button btnNext;
     ProgressBar nextProgress;
-    private ImageView resultView;
     private TextView[] dots;
-    FrameLayout mainfragment;
     int currentPosition = 0, lastPosition = 0;
     private LinearLayout dotsLayout;
     String ROLE;
     public int pos;
     Boolean errorFlagInstitute = false, errorFlagCompany = false;
     String digest1, digest2;
-    String CompanyType = "";
+    String CompanyType = "",resultofop;
     private int path;
     JSONParser jsonParser = new JSONParser();
     JSONObject json;
     View WelComeCompanyView, WelComeInstituteView, WelComeShowCodeView;
     String encUsername, encFirstName, encLastName, encPassword, encAdminPhone, encrole, encProfessionalEmail, enccountry;
-    EditText instituteName, instituteAddress, instituteEmail, institutewebsite, institutephone, instituteAlternatephone, university, regNumber;
+    TextInputEditText instituteName, instituteAddress, instituteEmail, institutewebsite, institutephone, instituteAlternatephone, university, regNumber;
+    TextInputLayout instituteNameTextInputLayout,countryinputlayout,addressTextInputLayout,instituteEmailTextInputLayout,websiteTextInputLayout,phoneTextInputLayout,alternatePhoneTextInputLayout,univercityTextInputLayout,regNumTextInputLayout;
     String sInstituteName, sInstituteAddress, sInstituteEmail, sInstitutewebsite, sInstitutephone, sInstituteAlternatephone = "", sUniversity, sRegNumber;
     String encInstituteName, encInstituteAddress, encInstituteEmail, encInstituteInstitutewebsite, encInstitutephone, encInstituteAlternatephone = "", encUniversity, encRegNumber;
-    EditText companyName, companyAddress, companyEmail, companyWebsite, companyPhone, companyAlternatephone, CIN, otherNature;
+    TextInputEditText companyName, companyAddress, companyEmail, companyWebsite, companyPhone, companyAlternatephone, CIN, otherNature;
     String sCompanyName, sCompanyAddress, sCompanyEmail, sCompanyWebsite, sCompanyPhone, sCompanyAlternatephone = "", sCIN, nature, sOtherNature = "";
     String encCompanyName, encCompanyAddress, encCompanyEmail, encCompanyWebsite, encCompanyPhone, encCompanyAlternatephone = "", encCIN, encOtherNature;
-    String[] Nature = {"-Select Company Nature-", "Partnership", "Proprietory", "LLP (Limited Liability)", "Private Limited", "Public Limited", "Inc", "other"};
+    String[] Nature = {"-Select Company Nature-", "Partnership", "Proprietory", "LLP (Limited Liability)", "Private Limited", "Public Limited", "Inc", "Other"};
     Spinner companyNature;
     ArrayAdapter<String> dataAdapter;
     List<String> countrieslist = new ArrayList<String>();
@@ -80,7 +94,8 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
     int countrycount;
     private static  String android_id,device_id;
     TextView helloMsgcode, genratedCode,headerMsgcode;
-
+    ImageView ucodeicon;
+    TextInputLayout companyNameTextInputLayout,companycountryinputlayout,companyaddressTextInputLayout,companyemailTextInputLayout,companywebsiteTextInputLayout,companyphoneTextInputLayout,companyalternatePhoneTextInputLayout,companyCINTextInputLayout,ocompanytherNatureTextInputLayout;
 
     public void setWelComeShowCodeView(View v) {
         WelComeShowCodeView = v;
@@ -88,18 +103,27 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         genratedCode = (TextView) WelComeShowCodeView.findViewById(R.id.genratedCode);
         headerMsgcode = (TextView) WelComeShowCodeView.findViewById(R.id.headerMsgcode);
 
+        ucodeicon=(ImageView) WelComeShowCodeView.findViewById(R.id.ucodeicon);
+
+        helloMsgcode.setTypeface(MyConstants.getBold(this));
+        headerMsgcode.setTypeface(MyConstants.getBold(this));
+        genratedCode.setTypeface(MyConstants.getRighteous(this));
+
+
+
+
     }
 
     public void setWelComeInstituteView(View v) {
         WelComeInstituteView = v;
-        instituteName = (EditText) WelComeInstituteView.findViewById(R.id.instituteName);
-        instituteAddress = (EditText) WelComeInstituteView.findViewById(R.id.instituteAddress);
-        instituteEmail = (EditText) WelComeInstituteView.findViewById(R.id.instituteEmail);
-        institutewebsite = (EditText) WelComeInstituteView.findViewById(R.id.institutewebsite);
-        institutephone = (EditText) WelComeInstituteView.findViewById(R.id.institutephone);
-        instituteAlternatephone = (EditText) WelComeInstituteView.findViewById(R.id.instituteAlternatephone);
-        university = (EditText) WelComeInstituteView.findViewById(R.id.university);
-        regNumber = (EditText) WelComeInstituteView.findViewById(R.id.regNumber);
+        instituteName = (TextInputEditText) WelComeInstituteView.findViewById(R.id.instituteName);
+        instituteAddress = (TextInputEditText) WelComeInstituteView.findViewById(R.id.instituteAddress);
+        instituteEmail = (TextInputEditText) WelComeInstituteView.findViewById(R.id.instituteEmail);
+        institutewebsite = (TextInputEditText) WelComeInstituteView.findViewById(R.id.institutewebsite);
+        institutephone = (TextInputEditText) WelComeInstituteView.findViewById(R.id.institutephone);
+        instituteAlternatephone = (TextInputEditText) WelComeInstituteView.findViewById(R.id.instituteAlternatephone);
+        university = (TextInputEditText) WelComeInstituteView.findViewById(R.id.university);
+        regNumber = (TextInputEditText) WelComeInstituteView.findViewById(R.id.regNumber);
         countryAutoBox = (AutoCompleteTextView) WelComeInstituteView.findViewById(R.id.countryAutoBox);
 
         countrycount = getResources().getStringArray(R.array.countries_array).length;
@@ -114,40 +138,73 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, countrieslist);
         countryAutoBox.setAdapter(adapter);
 
-        instituteAlternatephone.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
+        TextView welcometextviewcontext1=(TextView)WelComeInstituteView.findViewById(R.id.welcometextviewcontext1);
+        TextView welcometextviewcontext2=(TextView)WelComeInstituteView.findViewById(R.id.welcometextviewcontext2);
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(instituteAlternatephone.length()>0){
-                    if(instituteAlternatephone.length()<8 || instituteAlternatephone.length()>10){
-                        errorFlagCompany=true;
-                    }
-                }
-            }
+        welcometextviewcontext2.setText("\"Education is the most powerful weapon which you can use to change the world.\" - Nelson Mandela");
+        welcometextviewcontext1.setTypeface(MyConstants.getBold(this));
+        welcometextviewcontext2.setTypeface(MyConstants.getBoldItalic(this));
 
-            @Override
-            public void afterTextChanged(Editable s) {
+        instituteNameTextInputLayout=(TextInputLayout)WelComeInstituteView.findViewById(R.id.instituteNameTextInputLayout);
+        countryinputlayout=(TextInputLayout)WelComeInstituteView.findViewById(R.id.countryinputlayout);
+        addressTextInputLayout=(TextInputLayout)WelComeInstituteView.findViewById(R.id.addressTextInputLayout);
+        instituteEmailTextInputLayout=(TextInputLayout)WelComeInstituteView.findViewById(R.id.instituteEmailTextInputLayout);
+        websiteTextInputLayout=(TextInputLayout)WelComeInstituteView.findViewById(R.id.websiteTextInputLayout);
+        phoneTextInputLayout=(TextInputLayout)WelComeInstituteView.findViewById(R.id.phoneTextInputLayout);
+        alternatePhoneTextInputLayout=(TextInputLayout)WelComeInstituteView.findViewById(R.id.alternatePhoneTextInputLayout);
+        univercityTextInputLayout=(TextInputLayout)WelComeInstituteView.findViewById(R.id.univercityTextInputLayout);
+        regNumTextInputLayout=(TextInputLayout)WelComeInstituteView.findViewById(R.id.regNumTextInputLayout);
 
-            }
-        });
+        instituteName.setTypeface(MyConstants.getBold(this));
+        countryAutoBox.setTypeface(MyConstants.getBold(this));
+        instituteAddress.setTypeface(MyConstants.getBold(this));
+        instituteEmail.setTypeface(MyConstants.getBold(this));
+        institutewebsite.setTypeface(MyConstants.getBold(this));
+        institutephone.setTypeface(MyConstants.getBold(this));
+        instituteAlternatephone.setTypeface(MyConstants.getBold(this));
+        university.setTypeface(MyConstants.getBold(this));
+        regNumber.setTypeface(MyConstants.getBold(this));
+        instituteNameTextInputLayout.setTypeface(MyConstants.getLight(this));
+        countryinputlayout.setTypeface(MyConstants.getLight(this));
+        addressTextInputLayout.setTypeface(MyConstants.getLight(this));
+        instituteEmailTextInputLayout.setTypeface(MyConstants.getLight(this));
+        websiteTextInputLayout.setTypeface(MyConstants.getLight(this));
+        phoneTextInputLayout.setTypeface(MyConstants.getLight(this));
+        alternatePhoneTextInputLayout.setTypeface(MyConstants.getLight(this));
+        univercityTextInputLayout.setTypeface(MyConstants.getLight(this));
+        regNumTextInputLayout.setTypeface(MyConstants.getLight(this));
+
+        ImageView enterinstdetailsimage=(ImageView)WelComeInstituteView.findViewById(R.id.enterinstdetailsimage);
+        slideinleft1(welcometextviewcontext1);
+        slideinleft2(welcometextviewcontext2);
+        fade(enterinstdetailsimage);
+        fadeandmove(instituteNameTextInputLayout);
+        fadeandmove(countryinputlayout);
+        fadeandmove(addressTextInputLayout);
+        fadeandmove(instituteEmailTextInputLayout);
+        fadeandmove(websiteTextInputLayout);
+        fadeandmove(phoneTextInputLayout);
+        fadeandmove(alternatePhoneTextInputLayout);
+        fadeandmove(univercityTextInputLayout);
+        fadeandmove(regNumTextInputLayout);
+
+
+
     }
 
 
     public void setWelComeCompanyView(View v) {     // --------------   WelComeCompanyView
 
         WelComeCompanyView = v;
-        companyName = (EditText) WelComeCompanyView.findViewById(R.id.companyName);
-        companyAddress = (EditText) WelComeCompanyView.findViewById(R.id.companyAddress);
-        companyEmail = (EditText) WelComeCompanyView.findViewById(R.id.companyEmail);
-        companyWebsite = (EditText) WelComeCompanyView.findViewById(R.id.companyWebsite);
-        companyPhone = (EditText) WelComeCompanyView.findViewById(R.id.companyPhone);
-        companyAlternatephone = (EditText) WelComeCompanyView.findViewById(R.id.companyAlternatephone);
-        CIN = (EditText) WelComeCompanyView.findViewById(R.id.CIN);
-        otherNature = (EditText) WelComeCompanyView.findViewById(R.id.otherNature);
+        companyName = (TextInputEditText) WelComeCompanyView.findViewById(R.id.companyName);
+        companyAddress = (TextInputEditText) WelComeCompanyView.findViewById(R.id.companyAddress);
+        companyEmail = (TextInputEditText) WelComeCompanyView.findViewById(R.id.companyEmail);
+        companyWebsite = (TextInputEditText) WelComeCompanyView.findViewById(R.id.companyWebsite);
+        companyPhone = (TextInputEditText) WelComeCompanyView.findViewById(R.id.companyPhone);
+        companyAlternatephone = (TextInputEditText) WelComeCompanyView.findViewById(R.id.companyAlternatephone);
+        CIN = (TextInputEditText) WelComeCompanyView.findViewById(R.id.CIN);
+        otherNature = (TextInputEditText) WelComeCompanyView.findViewById(R.id.otherNature);
 
         countryAutoBoxCompany = (AutoCompleteTextView) WelComeCompanyView.findViewById(R.id.countryAutoBoxCompany);
 
@@ -176,19 +233,26 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 }
             }
 
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View v = super.getView(position, convertView, parent);
+
+                ((TextView) v).setTypeface(MyConstants.getBold(WelcomeGenrateCodeActivity.this));
+
+                return v;
+            }
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+//                    Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
+                tv.setTypeface(MyConstants.getBold(WelcomeGenrateCodeActivity.this));
 
                 if (position == 0) {
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(Color.parseColor("#00bcd4"));
                 } else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(Color.parseColor("#03353e"));
                 }
                 return view;
             }
@@ -205,10 +269,10 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 pos = position;
                 CompanyType = Nature[position];
 
-                if (CompanyType.equals("other")) {
-                    otherNature.setVisibility(View.VISIBLE);
+                if (CompanyType.equals("Other")) {
+                    ocompanytherNatureTextInputLayout.setVisibility(View.VISIBLE);
                 } else
-                    otherNature.setVisibility(View.GONE);
+                    ocompanytherNatureTextInputLayout.setVisibility(View.GONE);
             }
 
             @Override
@@ -216,20 +280,100 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             }
         });
 
-    }
+        TextView welcometextviewcontext1=(TextView)WelComeCompanyView.findViewById(R.id.welcometextviewcontext1);
+        TextView welcometextviewcontext2=(TextView)WelComeCompanyView.findViewById(R.id.welcometextviewcontext2);
 
+        welcometextviewcontext2.setText("\"The mechanics of industry is easy. The real engine is the peeople: Their motivation and direction.\" - Ken Gilbert");
+        welcometextviewcontext1.setTypeface(MyConstants.getBold(this));
+        welcometextviewcontext2.setTypeface(MyConstants.getBoldItalic(this));
+
+        companyNameTextInputLayout=(TextInputLayout)WelComeCompanyView.findViewById(R.id.companyNameTextInputLayout);
+        companycountryinputlayout=(TextInputLayout)WelComeCompanyView.findViewById(R.id.countryinputlayout);
+        companyaddressTextInputLayout=(TextInputLayout)WelComeCompanyView.findViewById(R.id.addressTextInputLayout);
+        companyemailTextInputLayout=(TextInputLayout)WelComeCompanyView.findViewById(R.id.emailTextInputLayout);
+        companywebsiteTextInputLayout=(TextInputLayout)WelComeCompanyView.findViewById(R.id.websiteTextInputLayout);
+        companyphoneTextInputLayout=(TextInputLayout)WelComeCompanyView.findViewById(R.id.phoneTextInputLayout);
+        companyalternatePhoneTextInputLayout=(TextInputLayout)WelComeCompanyView.findViewById(R.id.alternatePhoneTextInputLayout);
+        companyCINTextInputLayout=(TextInputLayout)WelComeCompanyView.findViewById(R.id.CINTextInputLayout);
+        ocompanytherNatureTextInputLayout=(TextInputLayout)WelComeCompanyView.findViewById(R.id.otherNatureTextInputLayout);
+
+        companyName.setTypeface(MyConstants.getBold(this));
+        countryAutoBoxCompany.setTypeface(MyConstants.getBold(this));
+        companyAddress.setTypeface(MyConstants.getBold(this));
+        companyEmail.setTypeface(MyConstants.getBold(this));
+        companyWebsite.setTypeface(MyConstants.getBold(this));
+        companyPhone.setTypeface(MyConstants.getBold(this));
+        companyAlternatephone.setTypeface(MyConstants.getBold(this));
+        CIN.setTypeface(MyConstants.getBold(this));
+        otherNature.setTypeface(MyConstants.getBold(this));
+        companyNameTextInputLayout.setTypeface(MyConstants.getLight(this));
+        companycountryinputlayout.setTypeface(MyConstants.getLight(this));
+        companyaddressTextInputLayout.setTypeface(MyConstants.getLight(this));
+        companyemailTextInputLayout.setTypeface(MyConstants.getLight(this));
+        companywebsiteTextInputLayout.setTypeface(MyConstants.getLight(this));
+        companyphoneTextInputLayout.setTypeface(MyConstants.getLight(this));
+        companyalternatePhoneTextInputLayout.setTypeface(MyConstants.getLight(this));
+        companyCINTextInputLayout.setTypeface(MyConstants.getLight(this));
+        ocompanytherNatureTextInputLayout.setTypeface(MyConstants.getLight(this));
+
+        ImageView enterindustrydetailsscreen=(ImageView)WelComeCompanyView.findViewById(R.id.enterindustrydetailsscreen);
+        slideinleft1(welcometextviewcontext1);
+        slideinleft2(welcometextviewcontext2);
+        fade(enterindustrydetailsscreen);
+        fadeandmove(companyNameTextInputLayout);
+        fadeandmove(companycountryinputlayout);
+        fadeandmove(companyaddressTextInputLayout);
+        fadeandmove(companyemailTextInputLayout);
+        fadeandmove(companywebsiteTextInputLayout);
+        fadeandmove(companyphoneTextInputLayout);
+        fadeandmove(companyalternatePhoneTextInputLayout);
+        fadeandmove(companyCINTextInputLayout);
+        fadeandmove(ocompanytherNatureTextInputLayout);
+
+    }
+    public void fade(View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(getApplicationContext(),
+                        R.anim.fadein);
+        view.startAnimation(animation1);
+    }
+    public void fadeandmove(View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(getApplicationContext(),
+                        R.anim.fadeinmove);
+        view.startAnimation(animation1);
+    }  //test
+    public void slideinleft1(View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(getApplicationContext(),
+                        R.anim.slideinleft1);
+        view.startAnimation(animation1);
+    }
+    public void slideinleft2(View view){
+
+        Animation animation1 =
+                AnimationUtils.loadAnimation(getApplicationContext(),
+                        R.anim.slideinleft2);
+        view.startAnimation(animation1);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_genrate_code);
 
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
+        viewPager = (CustomViewPager) findViewById(R.id.view_pager);
+        viewPager.setPagingEnabled(false);
+
+        viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
         dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
         btnNext = (Button) findViewById(R.id.btn_next);
-        resultView = (ImageView) findViewById(R.id.result_image);
+        btnNext.setTypeface(MyConstants.getBold(this));
         nextProgress = (ProgressBar) findViewById(R.id.nextProgress);
-        mainfragment = (FrameLayout) findViewById(R.id.mainfragment);
+
 
         MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"otp","no");
         MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","yes");
@@ -263,6 +407,13 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 currentPosition = position;
+                if(currentPosition==1)
+                {
+                    slideinleft1(helloMsgcode);
+                    slideinleft2(headerMsgcode);
+                    fade(genratedCode);
+                    fade(ucodeicon);
+                }
 
             }
 
@@ -276,18 +427,18 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
         if (ROLE != null && ROLE.equals("admin")) {
 
-            myViewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
-            myViewPagerAdapter.addFrag(new WelcomeInstituteDetailsFragment(), "InstituteDetails");
-            myViewPagerAdapter.addFrag(new WelcomeShowGeneratedCodeFragment(), "genrateCode");
+            myViewPagerAdapter = new MyAdapter(getSupportFragmentManager());
+            myViewPagerAdapter.addFrag(new WelcomeInstituteDetailsFragment());
+            myViewPagerAdapter.addFrag(new WelcomeShowGeneratedCodeFragment());
             viewPager.setAdapter(myViewPagerAdapter);
             viewPager.setCurrentItem(0);
             addBottomDots(0, 2);
 
         } else if (ROLE != null && ROLE.equals("hr")) {            // OR
 
-            myViewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager());
-            myViewPagerAdapter.addFrag(new WelcomeCompanyDetailsFragment(), "CompanyDetails");
-            myViewPagerAdapter.addFrag(new WelcomeShowGeneratedCodeFragment(), "genrateCode");
+            myViewPagerAdapter = new MyAdapter(getSupportFragmentManager());
+            myViewPagerAdapter.addFrag(new WelcomeCompanyDetailsFragment());
+            myViewPagerAdapter.addFrag(new WelcomeShowGeneratedCodeFragment());
             viewPager.setAdapter(myViewPagerAdapter);
             viewPager.setCurrentItem(0);
             addBottomDots(0, 2);
@@ -305,6 +456,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                     Log.d("TAG", "onClick: curent pos " + currentPosition);
 
                     if (currentPosition == 0) {
+                        errorFlagInstitute = false;
                         sInstituteName = instituteName.getText().toString();
                         sInstituteAddress = instituteAddress.getText().toString();
                         Log.d("TAG", "onClick: sInstituteAddress " + sInstituteAddress);
@@ -318,28 +470,31 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
                         if (sInstituteName.length() < 2) {
                             errorFlagInstitute = true;
-                            instituteName.setError("Enter valid Institute name");
+                            instituteNameTextInputLayout.setError("Enter valid Institute name");
                         } else if (COUNTRY.length() < 1) {
                             errorFlagInstitute = true;
-                            countryAutoBox.setError("select country");
+                            countryinputlayout.setError("select country");
                         } else if (sInstituteAddress.length() < 5) {
                             errorFlagInstitute = true;
-                            instituteAddress.setError("Enter valid address");
+                            addressTextInputLayout.setError("Enter valid address");
                         } else if (!sInstituteEmail.contains("@")) {
                             errorFlagInstitute = true;
-                            instituteEmail.setError("Invalid Email");
+                            instituteEmailTextInputLayout.setError("Invalid Email");
                         } else if (!sInstitutewebsite.contains(".")) {
                             errorFlagInstitute = true;
-                            institutewebsite.setError("Enter valid Website url");
+                            websiteTextInputLayout.setError("Enter valid Website url");
                         } else if (sInstitutephone.length() < 8) {
                             errorFlagInstitute = true;
-                            institutephone.setError("Invalid phone");
+                            phoneTextInputLayout.setError("Invalid phone number");
+                        }else if(instituteAlternatephone.length()>0 && instituteAlternatephone.length()<8){
+                            errorFlagInstitute = true;
+                            alternatePhoneTextInputLayout.setError("Invalid phone number");
                         } else if (sUniversity.length() < 2) {
                             errorFlagInstitute = true;
-                            university.setError("Enter Valid University Name");
+                            univercityTextInputLayout.setError("Enter Valid University Name");
                         } else if (sRegNumber.length() < 2) {
                             errorFlagInstitute = true;
-                            regNumber.setError("Invalid Registration Number");
+                            regNumTextInputLayout.setError("Invalid Registration Number");
                         } else if (COUNTRY.length() > 1) {
                             boolean flag = false;
                             for (String compareCountry : countrieslist) {
@@ -350,7 +505,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                             }
                             if (flag == false) {
                                 errorFlagInstitute = true;
-                                countryAutoBox.setError("please select country from suggestions");
+                                countryinputlayout.setError("please select country from suggestions");
                             }
                         }
                         if (errorFlagInstitute == false) {
@@ -367,6 +522,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 } else if (ROLE != null && ROLE.equals("hr")) {            // OR  Hr
 
                     if (currentPosition == 0) {
+                        errorFlagCompany=false;
                         sCompanyName = companyName.getText().toString();
                         sCompanyAddress = companyAddress.getText().toString();
                         sCompanyEmail = companyEmail.getText().toString();
@@ -381,35 +537,38 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
                         if (sCompanyName.length() < 2) {
                             errorFlagCompany = true;
-                            companyName.setError("Enter valid Company name");
+                            companyNameTextInputLayout.setError("Kindly provide valid company name");
                         }else if (COUNTRY.length() < 1) {
                             errorFlagCompany = true;
-                            countryAutoBoxCompany.setError("select country");
+                            companycountryinputlayout.setError("Kindly provide country name");
                         } else if (sCompanyAddress.length() < 2 ) {
                             errorFlagCompany = true;
-                            companyAddress.setError("Enter valid address");
+                            companyaddressTextInputLayout.setError("Kindly provide valid address");
                         } else if (!sCompanyEmail.contains("@")) {
                             errorFlagCompany = true;
-                            companyEmail.setError("Enter valid Email");
+                            companyemailTextInputLayout.setError("Kindly provide valid email");
                         } else if (!sCompanyWebsite.contains(".")) {
                             errorFlagCompany = true;
-                            companyWebsite.setError("Enter valid website url");
+                            companywebsiteTextInputLayout.setError("Kindly provide valid website");
                         } else if (sCompanyPhone.length() < 8) {
                             errorFlagCompany = true;
-                            companyPhone.setError("Invalid phone");
+                            companyphoneTextInputLayout.setError("Kindly provide correct phone number");
+                        }else if(companyAlternatephone.length()>0 && companyAlternatephone.length()<8){
+                            errorFlagCompany = true;
+                            companyalternatePhoneTextInputLayout.setError("Kindly provide correct phone number");
                         } else if (sCIN.length() < 3) {
                             errorFlagCompany = true;
-                            CIN.setError("Invalid CIN");
+                            companyCINTextInputLayout.setError("KIndly provide valid CIN (Company Identification Number)");
                         } else  if (CompanyType== null) {
                             errorFlagCompany = true;
                         }else  if (CompanyType != null && CompanyType.equals("-Select Company Nature-")) {
                             errorFlagCompany = true;
                             Toast.makeText(WelcomeGenrateCodeActivity.this, "select company nature", Toast.LENGTH_SHORT).show();
                         } if (CompanyType != null && !CompanyType.equals("")) {
-                            if (CompanyType.equals("other")) {
+                            if (CompanyType.equals("Other")) {
                                 if (sOtherNature.length() < 2) {
                                     errorFlagCompany = true;
-                                    otherNature.setError("Enter valid company nature");
+                                    ocompanytherNatureTextInputLayout.setError("Kindly provide valid company nature");
                                 } else
                                     nature = sOtherNature;
                             }
@@ -423,7 +582,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                             }
                             if (flag == false) {
                                 errorFlagCompany = true;
-                                countryAutoBoxCompany.setError("please select country from suggestions");
+                                companycountryinputlayout.setError("Please select country from suggestions");
                             }
                         }
                         if (errorFlagCompany == false) {
@@ -442,29 +601,32 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         });
 
     }
-
-
     private void addBottomDots(int currentPage, int totalPages) {
         dots = new TextView[totalPages];
 
-        int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
-        int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(5,5,5,5);
+
+
+        int colorsActive = getResources().getColor(R.color.array_dot_active);
+        int colorsInactive = getResources().getColor(R.color.array_dot_inactive);
 
         dotsLayout.removeAllViews();
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new TextView(this);
-            dots[i].setText(Html.fromHtml("&#8226;"));
-            dots[i].setTextSize(35);
-            dots[i].setTextColor(colorsInactive[currentPage]);
+            dots[i].setTypeface(MyConstants.getFA(this));
+            dots[i].setLayoutParams(params);
+            dots[i].setText(getString(R.string.dot_unselected));
+            dots[i].setTextSize(8);
+            dots[i].setTextColor(colorsInactive);
             dotsLayout.addView(dots[i]);
         }
 
-        if (dots.length > 0)
-            dots[currentPage].setTextColor(colorsActive[currentPage]);
-    }
-
-    private int getItem(int i) {
-        return viewPager.getCurrentItem() + i;
+        if (dots.length > 0) {
+            dots[currentPage].setTextColor(colorsActive);
+            dots[currentPage].setText(getString(R.string.dot_selected));
+            dots[currentPage].setTextSize(10);
+        }
     }
 
 
@@ -500,20 +662,17 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
         }
     };
-
-
-    public class MyViewPagerAdapter extends FragmentPagerAdapter {
+    @Override
+    public void onBackPressed() {
+        // do nothing
+    }
+    public class MyAdapter extends FragmentStatePagerAdapter {
 
         private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        public MyViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
+        MyAdapter(FragmentManager fm) {
+            super(fm);
 
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
         }
 
         @Override
@@ -521,26 +680,78 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             return mFragmentList.size();
         }
 
-        public void addFrag(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
+        public void clear() {
+            mFragmentList.clear();
         }
 
         @Override
-        public CharSequence getPageTitle(int position) {
+        public Fragment getItem(int position) {
 
-
-            return mFragmentTitleList.get(position);
+            Fragment fragment = mFragmentList.get(position);
+            return fragment;
         }
 
+        public void addFrag(Fragment fragment) {
+            mFragmentList.add(fragment);
+        }
+
+        void deletePage(int position) {
+            if (canDelete()) {
+
+                mFragmentList.remove(position);
+                notifyDataSetChanged();
+            }
+        }
+
+        boolean canDelete() {
+            return mFragmentList.size() > 0;
+        }
+
+        // This is called when notifyDataSetChanged() is called
+        @Override
+        public int getItemPosition(Object object) {
+            // refresh all fragments when data set changed
+            return PagerAdapter.POSITION_NONE;
+        }
     }
+    public class ZoomOutPageTransformer implements ViewPager.PageTransformer {
+        private static final float MIN_SCALE = 0.85f;
+        private static final float MIN_ALPHA = 0.5f;
 
-    @Override
-    public void onBackPressed() {
-        // do nothing
+        public void transformPage(View view, float position) {
+            int pageWidth = view.getWidth();
+            int pageHeight = view.getHeight();
+
+            if (position < -1) { // [-Infinity,-1)
+                // This page is way off-screen to the left.
+                view.setAlpha(0);
+
+            } else if (position <= 1) { // [-1,1]
+                // Modify the default slide transition to shrink the page as well
+                float scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position));
+                float vertMargin = pageHeight * (1 - scaleFactor) / 2;
+                float horzMargin = pageWidth * (1 - scaleFactor) / 2;
+                if (position < 0) {
+                    view.setTranslationX(horzMargin - vertMargin / 2);
+                } else {
+                    view.setTranslationX(-horzMargin + vertMargin / 2);
+                }
+
+                // Scale the page down (between MIN_SCALE and 1)
+                view.setScaleX(scaleFactor);
+                view.setScaleY(scaleFactor);
+
+                // Fade the page relative to its size.
+                view.setAlpha(MIN_ALPHA +
+                        (scaleFactor - MIN_SCALE) /
+                                (1 - MIN_SCALE) * (1 - MIN_ALPHA));
+
+            } else { // (1,+Infinity]
+                // This page is way off-screen to the right.
+                view.setAlpha(0);
+            }
+        }
     }
-
-
     class SaveInstititeData extends AsyncTask<String, String, String> {
 
         protected String doInBackground(String... param) {
@@ -659,15 +870,20 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             if (result.equals("success")) {
                 Toast.makeText(WelcomeGenrateCodeActivity.this, CODE, Toast.LENGTH_SHORT).show();
+
+                new CreateFirebaseUser(encUsername,encPassword).execute();
+
                 Log.d("TAG", "admin code ===============================   " + CODE);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
                 viewPager.setCurrentItem(1);
                 addBottomDots(1, 2);
-                helloMsgcode.setText("Hello Admin!");
-                genratedCode.setText(CODE);
-                headerMsgcode.setText("This is your Institute Code provided by PlaceMe..!!");
-
+                try {
+                    helloMsgcode.setText("Hello "+Decrypt(MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this,"fname"),digest1,digest2)+", your account has been successfully created under Training and Placement Officer / Coordinator.");
+                    genratedCode.setText(CODE);
+                    headerMsgcode.setText("This is your Institute Code provided by PlaceMe..!!");
+                }
+                catch (Exception e){}
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"intro","yes");
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","no");
 
@@ -744,7 +960,8 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 Log.d("TAG", "shared encLastName:          " + encFirstName);
                 Log.d("TAG", "shared encPassword:          " + encLastName);
                 Log.d("TAG", "shared encAdminPhone:        " + encAdminPhone);
-                Log.d("TAG", "shared encrole:              " + encProfessionalEmail);
+                Log.d("TAG", "shared proEmail:              " + encProfessionalEmail);
+                Log.d("TAG", "shared role              " + ROLE);
 
 
             } catch (Exception e) {
@@ -755,7 +972,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
 
-            params.add(new BasicNameValuePair("u", encUsername));                       // 0
+            params.add(new BasicNameValuePair("u", encUsername));                      // 0
             params.add(new BasicNameValuePair("pass", encPassword));                  //  1
             params.add(new BasicNameValuePair("fname", encFirstName));                //  2
             params.add(new BasicNameValuePair("lname", encLastName));                 //  3
@@ -767,7 +984,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("web", encCompanyWebsite));            //    8
             params.add(new BasicNameValuePair("cp", encCompanyPhone));              //     9
             params.add(new BasicNameValuePair("cap", encCompanyAlternatephone));     //    10
-            params.add(new BasicNameValuePair("cin", encCIN));                     //      11
+            params.add(new BasicNameValuePair("cin", encCIN));                      //      11
             params.add(new BasicNameValuePair("nature", encOtherNature));             //   12
             params.add(new BasicNameValuePair("proEmail", encProfessionalEmail));             //13
             params.add(new BasicNameValuePair("country", enccountry));                       //14
@@ -792,21 +1009,122 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             if (result!=null && result.equals("success")) {
+
+                new CreateFirebaseUser(encUsername,encPassword).execute();
+
                 Toast.makeText(WelcomeGenrateCodeActivity.this, CODE, Toast.LENGTH_SHORT).show();
                 Log.d("TAG", "hr comp code ===============================   " + CODE);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
                 viewPager.setCurrentItem(1);
                 addBottomDots(1, 2);
-                helloMsgcode.setText("Hello Hr!");
-                genratedCode.setText(CODE);
-                headerMsgcode.setText("This is your Company Code provided by PlaceMe..!!");
+                try {
+                    helloMsgcode.setText("Hello "+Decrypt(MySharedPreferencesManager.getData(WelcomeGenrateCodeActivity.this,"fname"),digest1,digest2)+", your account has been successfully created under HR Manager / Recruiter.");
+                    genratedCode.setText(CODE);
+                    headerMsgcode.setText("This is your Company Code provided by PlaceMe..!!");
+                }catch (Exception e){}
+
                 // back press next will move to base activity
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"intro","yes");
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","no");
 
             }
         }
+    }
+
+    class CreateFirebaseUser extends AsyncTask<String, String, String> {
+
+        String u, p;
+
+        CreateFirebaseUser(String u, String p) {
+            this.u = u;
+            this.p = p;
+            Log.d("TAG", "CreateFirebaseUser input : "+u+"   "+p);
+        }
+
+        protected String doInBackground(String... param) {
+
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", u));
+            params.add(new BasicNameValuePair("p", p));
+            params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken")));
+            json = jsonParser.makeHttpRequest(MyConstants.url_create_firebase, "GET", params);
+            Log.d("TAG", "CreateFirebaseUser json : "+json);
+            try {
+                resultofop = json.getString("info");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return resultofop;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            Log.d("TAG", "CreateFirebaseUser onPostExecute: "+resultofop);
+
+            String plainusername = null;
+            String plainPassword = null;
+
+            try {
+                plainusername = AES4all.Decrypt(encUsername,digest1,digest2);
+                plainPassword = AES4all.Decrypt(encPassword,digest1,digest2);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            String hash=md5(plainPassword + MySharedPreferencesManager.getDigest3(WelcomeGenrateCodeActivity.this));
+
+            loginFirebase(plainusername, hash);
+            Toast.makeText(WelcomeGenrateCodeActivity.this, "fire "+resultofop, Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+
+    void loginFirebase(String username, String hash) {
+
+        FirebaseAuth.getInstance()
+                .signInWithEmailAndPassword(username, hash)
+                .addOnCompleteListener(WelcomeGenrateCodeActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+
+                        if (task.isSuccessful()) {
+                            Toast.makeText(WelcomeGenrateCodeActivity.this, "Successfully logged in to Firebase", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(WelcomeGenrateCodeActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+
+    public static String md5(String input) {
+
+        String md5 = null;
+
+        if (null == input) return null;
+
+        try {
+
+            //Create MessageDigest object for MD5
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+
+            //Update input string in message digest
+            digest.update(input.getBytes(), 0, input.length());
+
+            //Converts message digest value in base 16 (hex)
+            md5 = new BigInteger(1, digest.digest()).toString(16);
+
+        } catch (NoSuchAlgorithmException e) {
+
+            e.printStackTrace();
+        }
+        return md5;
     }
 
 

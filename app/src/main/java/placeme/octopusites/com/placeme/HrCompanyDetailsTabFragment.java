@@ -1,14 +1,13 @@
 package placeme.octopusites.com.placeme;
 
-
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,9 +19,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
+import android.support.design.widget.TextInputEditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,66 +31,117 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
+import placeme.octopusites.com.placeme.modal.CompanyDetailsModal;
+
+import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class HrCompanyDetailsTabFragment extends Fragment {
+    public static final String USERNAME = "nameKey";
+    public static final String MyPREFERENCES = "MyPrefs";
+    public static String HRlog = "HRlog";
     public int pos;
     String digest1, digest2;
-    String CompanyType;
-    public static String HRlog = "HRlog";
-    String CompanyNamestr="", CompanyEmailstr="", CompanyWebstr="", Companyphonestr="", CompanyAltPhonestr="", CompanyCIINstr="", CompanyNaturestr="", CompanyAddressLine1str="", CompanyAddressLine2str="", CompanyAddressLine3str="";
-    EditText CompanyName, CompanyEmail, CompanyWebsite, CompanyPhone, CompanyAlternatePhone, CompanyCIN, CompanyAddressLine1, CompanyAddressLine2, CompanyAddressLine3;
+    String ComName = "", ComMail = "", ComWeb = "", ComPhone = "", ComAlterPhone = "", ComCIIN = "", ComAdd1 = "", ComAdd2 = "", ComAdd3 = "";
+    String CompanyType, encobj = "";
+    String CompanyNamestr = "", CompanyEmailstr = "", CompanyWebstr = "", Companyphonestr = "", CompanyAltPhonestr = "", CompanyCIINstr = "", CompanyNaturestr = "", CompanyAddressLine1str = "", CompanyAddressLine2str = "", CompanyAddressLine3str = "";
+    TextInputEditText CompanyName, CompanyEmail, CompanyWebsite, CompanyPhone, CompanyAlternatePhone, CompanyCIN, CompanyAddressLine1, CompanyAddressLine2, CompanyAddressLine3;
+    TextInputLayout instnameinput, addressline1input, addressline2input, addressline3input, instemailinput, instwebinput, instphoneinput, instphoneainput, instreginput;
     Spinner Company_Nature;
     String encComName, encUsername, encComMail, encComWeb, encComPhone, encComAlterPhone, encComCIIN, encComType, encComAddL1, encComAddL2, encComAddL3;
     String[] Nature = {"-Select Company Nature-", "Partnership", "Propietorship", "LLP (Limited Liability)", "Private Limited", "Public Limited", "Inc"};
     JSONParser jsonParser = new JSONParser();
-//    private static String url_savedata = "http://192.168.100.10/AESTest/SaveHrCompany";
+    //    private static String url_savedata = "http://192.168.100.10/AESTest/SaveHrCompany";
     JSONObject json;
-//    ProgressBar personalprogress;
-    private SharedPreferences sharedPreferences;
-    public static final String USERNAME = "nameKey";
-    public static final String MyPREFERENCES = "MyPrefs";
+    TextView loctxt;
     String userName;
-//    Button savepersonal;
+    //    Button savepersonal;
     HrData h = new HrData();
     ArrayAdapter<String> dataAdapter;
     int flag1 = 0, flag2 = 0, flag3 = 0, flag4 = 0, flag5 = 0, flag6 = 0, flag7 = 0, flag8 = 0, flag9 = 0, flag10 = 0;
     int errorflag1 = 0;
+    //    ProgressBar personalprogress;
+
 
     public HrCompanyDetailsTabFragment() {
         // Required empty public constructor
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View rootView = inflater.inflate(R.layout.fragment_hr_company_details_tab, container, false);
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
 
-        sharedPreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        userName = sharedPreferences.getString(USERNAME, null);
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
+        userName = MySharedPreferencesManager.getUsername(getActivity());
         encUsername = userName;
-        CompanyName = (EditText)rootView.findViewById(R.id.instname);
-        CompanyEmail = (EditText)rootView.findViewById(R.id.instemail);
-        CompanyWebsite = (EditText)rootView.findViewById(R.id.instweb);
-        CompanyPhone = (EditText)rootView.findViewById(R.id.instphone);
-        CompanyAlternatePhone = (EditText)rootView.findViewById(R.id.instphonea);
-        CompanyCIN = (EditText)rootView.findViewById(R.id.instreg);
+        loctxt=(TextView) rootView.findViewById(R.id.loctxt);
+        CompanyName = (TextInputEditText) rootView.findViewById(R.id.instname);
+        CompanyEmail = (TextInputEditText) rootView.findViewById(R.id.instemail);
+        CompanyWebsite = (TextInputEditText) rootView.findViewById(R.id.instweb);
+        CompanyPhone = (TextInputEditText) rootView.findViewById(R.id.instphone);
+        CompanyAlternatePhone = (TextInputEditText) rootView.findViewById(R.id.instphonea);
+        CompanyCIN = (TextInputEditText) rootView.findViewById(R.id.instreg);
 
-        CompanyAddressLine1 = (EditText)rootView.findViewById(R.id.compaddressline1);
-        CompanyAddressLine2 = (EditText)rootView.findViewById(R.id.compaddressline2);
-        CompanyAddressLine3 = (EditText)rootView.findViewById(R.id.compaddressline3);
+        CompanyAddressLine1 = (TextInputEditText) rootView.findViewById(R.id.compaddressline1);
+        CompanyAddressLine2 = (TextInputEditText) rootView.findViewById(R.id.compaddressline2);
+        CompanyAddressLine3 = (TextInputEditText) rootView.findViewById(R.id.compaddressline3);
+
+        CompanyName = (TextInputEditText)rootView.findViewById(R.id.instname);
+        CompanyEmail = (TextInputEditText)rootView.findViewById(R.id.instemail);
+        CompanyWebsite = (TextInputEditText)rootView.findViewById(R.id.instweb);
+        CompanyPhone = (TextInputEditText)rootView.findViewById(R.id.instphone);
+        CompanyAlternatePhone = (TextInputEditText)rootView.findViewById(R.id.instphonea);
+        CompanyCIN = (TextInputEditText)rootView.findViewById(R.id.instreg);
+
+        CompanyAddressLine1 = (TextInputEditText)rootView.findViewById(R.id.compaddressline1);
+        CompanyAddressLine2 = (TextInputEditText)rootView.findViewById(R.id.compaddressline2);
+        CompanyAddressLine3 = (TextInputEditText)rootView.findViewById(R.id.compaddressline3);
 //        savepersonal = (Button)rootView.findViewById(R.id.savepersonal);
 //        personalprogress = (ProgressBar)rootView.findViewById(R.id.personalprogress);
-        Company_Nature = (Spinner)rootView.findViewById(R.id.board10);
+        Company_Nature = (Spinner) rootView.findViewById(R.id.board10);
+
+
+        instnameinput = (TextInputLayout) rootView.findViewById(R.id.instnameinput);
+        addressline1input = (TextInputLayout) rootView.findViewById(R.id.addressline1input);
+        addressline2input = (TextInputLayout) rootView.findViewById(R.id.addressline2input);
+        addressline3input = (TextInputLayout)rootView. findViewById(R.id.addressline3input);
+        instemailinput = (TextInputLayout) rootView.findViewById(R.id.instemailinput);
+        instwebinput = (TextInputLayout)rootView. findViewById(R.id.instwebinput);
+        instphoneinput = (TextInputLayout)rootView. findViewById(R.id.instphoneinput);
+        instphoneainput = (TextInputLayout)rootView. findViewById(R.id.instphoneainput);
+        instreginput = (TextInputLayout)rootView. findViewById(R.id.instreginput);
+
+        loctxt.setTypeface(MyConstants.getBold(getActivity()));
+        CompanyName.setTypeface(MyConstants.getBold(getActivity()));
+        CompanyEmail.setTypeface(MyConstants.getBold(getActivity()));
+        CompanyWebsite.setTypeface(MyConstants.getBold(getActivity()));
+        CompanyPhone.setTypeface(MyConstants.getBold(getActivity()));
+        CompanyAlternatePhone.setTypeface(MyConstants.getBold(getActivity()));
+        CompanyCIN.setTypeface(MyConstants.getBold(getActivity()));
+        CompanyAddressLine1.setTypeface(MyConstants.getBold(getActivity()));
+        CompanyAddressLine2.setTypeface(MyConstants.getBold(getActivity()));
+        CompanyAddressLine3.setTypeface(MyConstants.getBold(getActivity()));
+
+
+        instnameinput.setTypeface(MyConstants.getLight(getActivity()));
+        addressline1input.setTypeface(MyConstants.getLight(getActivity()));
+        addressline2input.setTypeface(MyConstants.getLight(getActivity()));
+        addressline3input.setTypeface(MyConstants.getLight(getActivity()));
+        instemailinput.setTypeface(MyConstants.getLight(getActivity()));
+        instwebinput.setTypeface(MyConstants.getLight(getActivity()));
+        instphoneinput.setTypeface(MyConstants.getLight(getActivity()));
+        instphoneainput.setTypeface(MyConstants.getLight(getActivity()));
+        instreginput.setTypeface(MyConstants.getLight(getActivity()));
+
+
+
+
 
         CompanyNamestr = h.getCompanyName();
         CompanyEmailstr = h.getCompanyEmail();
@@ -102,6 +150,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
         CompanyAltPhonestr = h.getCompanyAltPhone();
         CompanyCIINstr = h.getCompanyCIIN();
         CompanyNaturestr = h.getCompanyNature();
+
         CompanyAddressLine1str = h.getCompanyaddl1();
         CompanyAddressLine2str = h.getCompanyaddl2();
         CompanyAddressLine3str = h.getCompanyaddl3();
@@ -117,19 +166,29 @@ public class HrCompanyDetailsTabFragment extends Fragment {
                     return true;
                 }
             }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view= super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTextColor(getResources().getColor(R.color.dark_color));
+                tv.setTypeface(MyConstants.getBold(getActivity()));
+                return view;
+            }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+                tv.setTypeface(MyConstants.getBold(getActivity()));
 
                 if (position == 0) {
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 } else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -138,15 +197,15 @@ public class HrCompanyDetailsTabFragment extends Fragment {
         Company_Nature.setAdapter(dataAdapter);
 
 
-
         Company_Nature.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 pos = position;
                 CompanyType = Nature[position];
-                if(!CompanyNaturestr.equals(CompanyType))
-                {
-                    flag1=1;
+                if (CompanyNaturestr != null) {
+                    if (!CompanyNaturestr.equals(CompanyType)) {
+                        flag1 = 1;
+                    }
                 }
 
             }
@@ -220,7 +279,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                instnameinput.setError(null);
             }
 
             @Override
@@ -237,7 +296,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                addressline1input.setError(null);
             }
 
             @Override
@@ -254,7 +313,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                addressline2input.setError(null);
             }
 
             @Override
@@ -271,7 +330,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                addressline3input.setError(null);
             }
 
             @Override
@@ -288,7 +347,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                instemailinput.setError(null);
             }
 
             @Override
@@ -305,7 +364,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                instwebinput.setError(null);
             }
 
             @Override
@@ -313,6 +372,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
 
             }
         });
+
         CompanyPhone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -322,7 +382,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                instphoneinput.setError(null);
             }
 
             @Override
@@ -330,6 +390,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
 
             }
         });
+
         CompanyAlternatePhone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -339,7 +400,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                instphoneainput.setError(null);
             }
 
             @Override
@@ -347,6 +408,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
 
             }
         });
+
         CompanyCIN.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -356,7 +418,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 flag1 = 1;
-
+                instreginput.setError(null);
             }
 
             @Override
@@ -365,34 +427,20 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             }
         });
 
-
-
-//        savepersonal.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                savepersonal.setVisibility(View.GONE);
-//                personalprogress.setVisibility(View.VISIBLE);
-//                validateandSave();
-//            }
-//        });
-
-        flag1=0;
+        flag1 = 0;
         return rootView;
     }
 
     public void validateandSave() {
 //         errorflag2 = 0, errorflag3 = 0, errorflag4 = 0, errorflag5 = 0, errorflag6 = 0, errorflag7 = 0, errorflag8 = 0, errorflag9 = 0, errorflag10 = 0;
-        if(validate())
-        {
+        if (validate()) {
             save();
         }
 
     }
-    public boolean validate()
-    {
-        errorflag1=0;
 
-        String ComName, ComMail, ComWeb, ComPhone, ComAlterPhone, ComCIIN, ComAdd1, ComAdd2, ComAdd3;
+    public boolean validate() {
+        errorflag1 = 0;
         ComName = CompanyName.getText().toString();
         ComMail = CompanyEmail.getText().toString();
         ComWeb = CompanyWebsite.getText().toString();
@@ -405,165 +453,56 @@ public class HrCompanyDetailsTabFragment extends Fragment {
         ComAdd3 = CompanyAddressLine3.getText().toString();
 
         if (ComName.length() < 1) {
-            CompanyName.setError("Please Enter valid Company Name");
+            instnameinput.setError("Kindly enter valid Company Name");
             errorflag1 = 1;
         } else if (ComAdd1.length() < 1) {
-            CompanyAddressLine1.setError("Please Enter valid Address ");
+            addressline1input.setError("Kindly enter valid Address ");
             errorflag1 = 1;
         } else if (ComAdd2.length() < 1) {
-            CompanyAddressLine2.setError("Please Enter valid Address ");
+            addressline2input.setError("Kindly enter valid Address ");
             errorflag1 = 1;
         } else if (ComAdd3.length() < 1) {
-            CompanyAddressLine3.setError("Please Enter valid Address ");
+            addressline3input.setError("Kindly enter valid Address ");
             errorflag1 = 1;
         } else if (ComMail.length() < 1) {
-            CompanyEmail.setError("Please Enter valid EMail Id");
+            instemailinput.setError("Kindly enter valid EMail Id");
             errorflag1 = 1;
         } else if (!ComMail.contains("@")) {
-            CompanyEmail.setError("Please Enter valid EMail Id");
+            instemailinput.setError("Kindly enter EMail Id");
             errorflag1 = 1;
         } else if (ComWeb.length() < 1 || !ComWeb.contains(".")) {
-            CompanyWebsite.setError("Please Enter valid Company Website");
+            instwebinput.setError("Please Enter valid Company Website");
             errorflag1 = 1;
         } else if (ComPhone.length() < 7) {
-            CompanyPhone.setError("Please Enter valid Phone number");
+            instphoneinput.setError("Kindly enter valid Phone number");
             errorflag1 = 1;
-        } else if (ComAlterPhone.length() < 7) {
-            CompanyAlternatePhone.setError("Please Enter valid Alternate Phone");
-            errorflag1 = 1;
-        } else if (ComCIIN.length() < 3) {
-            CompanyCIN.setError("Please Enter valid Company CIIN");
+        }  else if (ComCIIN.length() < 3) {
+            instreginput.setError("Kindly enter valid Company CIIN");
             errorflag1 = 1;
         } else if (pos == 0) {
             Toast.makeText(getActivity(), "Select Valid Company Type ", Toast.LENGTH_SHORT).show();
             errorflag1 = 1;
         }
-        if(errorflag1 == 0)
-        {
+        if (errorflag1 == 0) {
             return true;
-        }
-        else
+        } else
             return false;
 
     }
-    public void save()
-    {
+
+    public void save() {
         if (errorflag1 == 0) {
 
             try {
-
-                byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-                byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-
-                String sPadding = "ISO10126Padding";
-
-
-                byte[] ComNameBytes = CompanyName.getText().toString().getBytes("UTF-8");
-                byte[] ComMailBytes = CompanyEmail.getText().toString().getBytes("UTF-8");
-                byte[] ComWebBytes = CompanyWebsite.getText().toString().getBytes("UTF-8");
-                byte[] ComPhoneBytes = CompanyPhone.getText().toString().getBytes("UTF-8");
-                byte[] ComPhoneAlterBytes = CompanyAlternatePhone.getText().toString().getBytes("UTF-8");
-                byte[] ComCIINBytes = CompanyCIN.getText().toString().getBytes("UTF-8");
-                byte[] ComTypeBytes = CompanyType.toString().getBytes("UTF-8");
-
-                byte[] ComAddL1Bytes = CompanyAddressLine1.getText().toString().getBytes("UTF-8");
-                byte[] ComAddL2Bytes = CompanyAddressLine2.getText().toString().getBytes("UTF-8");
-                byte[] ComAddL3Bytes = CompanyAddressLine3.getText().toString().getBytes("UTF-8");
-
-
-                byte[] ComNameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, ComNameBytes);
-                encComName = new String(SimpleBase64Encoder.encode(ComNameEncryptedBytes));
-
-
-                byte[] ComMailEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, ComMailBytes);
-                encComMail = new String(SimpleBase64Encoder.encode(ComMailEncryptedBytes));
-
-
-                byte[] ComWebEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, ComWebBytes);
-                encComWeb = new String(SimpleBase64Encoder.encode(ComWebEncryptedBytes));
-
-
-                byte[] ComPhoneEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, ComPhoneBytes);
-                encComPhone = new String(SimpleBase64Encoder.encode(ComPhoneEncryptedBytes));
-
-                byte[] ComAlterPhoneEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, ComPhoneAlterBytes);
-                encComAlterPhone = new String(SimpleBase64Encoder.encode(ComAlterPhoneEncryptedBytes));
-
-                byte[] ComCIINEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, ComCIINBytes);
-                encComCIIN = new String(SimpleBase64Encoder.encode(ComCIINEncryptedBytes));
-
-                byte[] ComTypeEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, ComTypeBytes);
-                encComType = new String(SimpleBase64Encoder.encode(ComTypeEncryptedBytes));
-
-                byte[] ComAddL1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, ComAddL1Bytes);
-                encComAddL1 = new String(SimpleBase64Encoder.encode(ComAddL1EncryptedBytes));
-
-                byte[] ComAddL2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, ComAddL2Bytes);
-                encComAddL2 = new String(SimpleBase64Encoder.encode(ComAddL2EncryptedBytes));
-
-                byte[] ComAddL3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, ComAddL3Bytes);
-                encComAddL3 = new String(SimpleBase64Encoder.encode(ComAddL3EncryptedBytes));
-
-                Log.d(HRlog, "" + encComAddL1);
-                Log.d(HRlog, "" + encComAddL2);
-                Log.d(HRlog, "" + encComAddL3);
-
+                ArrayList<CompanyDetailsModal> modalList = new ArrayList<>();
+                CompanyDetailsModal obj2 = new CompanyDetailsModal(ComName, ComMail, ComWeb, ComPhone, ComAlterPhone, ComCIIN, ComAdd1, ComAdd2, ComAdd3, CompanyType);
+                Log.d("TAG", "validateandSave:-" + obj2.ComName + "   " + obj2.ComMail + "" + obj2.ComWeb + "  " + obj2.ComPhone + "   " + obj2.ComAlterPhone + "   " + obj2.ComCIIN + "   " + obj2.ComAdd1 + "   " + obj2.ComAdd2 + "   " + obj2.ComAdd3 + "   " + obj2.CompanyNature);
+                Log.d("TAG", "validateandSave: - modallist size " + modalList.size());
+                encobj = OtoString(obj2, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
+                Log.d("TAG", "validateandSave: encobj - " + encobj);
                 new SaveDataHr().execute();
-
             } catch (Exception company) {
-
                 Toast.makeText(getActivity(), company.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
-
-
-    class SaveDataHr extends AsyncTask<String, String, String> {
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", encUsername));    //0
-            params.add(new BasicNameValuePair("n", encComName)); //1
-            params.add(new BasicNameValuePair("m", encComMail)); //2
-            params.add(new BasicNameValuePair("w", encComWeb));  //3
-            params.add(new BasicNameValuePair("p", encComPhone)); //4
-            params.add(new BasicNameValuePair("a", encComAlterPhone)); //5
-            params.add(new BasicNameValuePair("c", encComCIIN)); //6
-            params.add(new BasicNameValuePair("cn", encComType));  //7
-            params.add(new BasicNameValuePair("al1", encComAddL1));  //8
-            params.add(new BasicNameValuePair("al2", encComAddL2));  //9
-            params.add(new BasicNameValuePair("al3", encComAddL3));  //10
-
-            json = jsonParser.makeHttpRequest(MyConstants.url_savedata_SaveHrCompany, "GET", params);
-
-            try {
-                r = json.getString("info");
-
-
-            } catch (Exception e) {
-
-                e.printStackTrace();
-            }
-            return r;
-        }
-
-        protected void onPostExecute(String result) {
-//            savepersonal.setVisibility(View.VISIBLE);
-//            personalprogress.setVisibility(View.GONE);
-            if (result.equals("success")) {
-
-                flag1=0;
-
-                h.setCompanyNature(CompanyType);
-//                Toast.makeText(getActivity(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
-
-                getActivity().setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
-
-
-//                HrCompanyDetails.super.onBackPressed();
-
             }
         }
     }
@@ -594,12 +533,37 @@ public class HrCompanyDetailsTabFragment extends Fragment {
                     public void onAnimationRepeat(Animation animation) {
 
                     }
-
-                    // ...other AnimationListener methods go here...
                 });
             }
         }
 
         return animation;
+    }
+
+    class SaveDataHr extends AsyncTask<String, String, String> {
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", encUsername));
+            params.add(new BasicNameValuePair("d", encobj));       //1
+
+            json = jsonParser.makeHttpRequest(MyConstants.url_SaveHrCompany, "GET", params);
+            try {
+                r = json.getString("info");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        protected void onPostExecute(String result) {
+            if (result.equals("success")) {
+                flag1 = 0;
+                h.setCompanyNature(CompanyType);
+                getActivity().setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
+            }
+        }
     }
 }

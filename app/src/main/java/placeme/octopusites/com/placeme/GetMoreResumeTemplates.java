@@ -1,7 +1,6 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
@@ -36,9 +35,7 @@ public class GetMoreResumeTemplates extends AppCompatActivity {
     int count=0;
     int resumeIds[];
     String resumeNames[],resumeDownloadStatus[];
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
+
     private static String load_resume_ids = "http://192.168.100.100/AESTest/GetResumeIds";
     String username;
 
@@ -47,10 +44,7 @@ public class GetMoreResumeTemplates extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_more_resume_templates);
 
-        sharedpreferences=getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-
-
+        username=MySharedPreferencesManager.getUsername(GetMoreResumeTemplates.this);
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Resume Templates");

@@ -4,11 +4,10 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,12 +17,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
@@ -32,10 +27,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 
@@ -57,7 +49,6 @@ public class ShowUsers extends AppCompatActivity {
     int searchFlag=0;
     FloatingActionButton fab;
     SwipeRefreshLayout swipeRefreshLayout;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,7 +180,7 @@ public class ShowUsers extends AppCompatActivity {
                 intent.putExtra("role",role);
                 intent.putExtra("isactivated",isactivated);
 
-                startActivity(intent);
+                startActivityForResult(intent, 0);
 
             }
 
@@ -204,6 +195,7 @@ public class ShowUsers extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d("TAG", "onActivityResult: ------------------------------------ " + resultCode);
         if(resultCode==MyConstants.USER_DATA_CHANGE_RESULT_CODE){
             refreshContent();
         }
@@ -247,9 +239,10 @@ public class ShowUsers extends AppCompatActivity {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));
+            Log.d("TAG", "GetRegisteredUsersUnderAdmin: input username  " + username);
 
             json = jParser.makeHttpRequest(MyConstants.url_GetRegisteredUsersUnderAdmin, "GET", params);
-            Log.d("TAG", "doInBackground: user "+username);
+            Log.d("TAG", "GetRegisteredUsersUnderAdmin: json  " + json);
 
 
             try {
@@ -393,6 +386,26 @@ public class ShowUsers extends AppCompatActivity {
 
         return true;
     }
+
+    // add spinner in action bar  do it later
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.spinner_and_search, menu);
+//
+//        MenuItem item = menu.findItem(R.id.spinner);
+//        Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
+//
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//                R.array.spinner_list_item_array, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//        searchView.setMenuItem(item);
+//
+//
+//        spinner.setAdapter(adapter);
+//        return true;
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

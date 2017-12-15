@@ -24,15 +24,13 @@ public class ProSplashScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pro_splash_screen);
 
-        Typeface custom_font10 = Typeface.createFromAsset(getAssets(),  "fonts/hint.ttf");
-        Typeface custom_font11 = Typeface.createFromAsset(getAssets(),  "fonts/hamm.ttf");
-        TextView trytxt2=(TextView)findViewById(R.id.trytxt);
-        TextView protxt2=(TextView)findViewById(R.id.protxt);
-        trytxt2.setTypeface(custom_font11);
-        protxt2.setTypeface(custom_font10);
 
-        ProfileRole r=new ProfileRole();
-        role=r.getRole();
+        TextView trytxt2=(TextView)findViewById(R.id.trytxt);
+        trytxt2.setTypeface(MyConstants.getBold(this));
+
+//        ProfileRole r=new ProfileRole();
+//        role=r.getRole();
+        role=MySharedPreferencesManager.getRole(ProSplashScreen.this);
 
         new Timer().schedule(new TimerTask() {
             @Override

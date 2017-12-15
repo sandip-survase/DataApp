@@ -41,6 +41,9 @@ public class PushNotificationPreferences extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_push_notification_preferences);
 
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Push Notifications");
         ab.setDisplayHomeAsUpEnabled(true);
@@ -104,16 +107,14 @@ public class PushNotificationPreferences extends AppCompatActivity {
         TextView notifplacemetxt=(TextView)findViewById(R.id.notifplacemetxt);
         TextView blogtxt=(TextView)findViewById(R.id.blogtxt);
 
+        pushtxt.setTypeface(MyConstants.getLight(this));
+        placeinsttxt.setTypeface(MyConstants.getBold(this));
+        placeplacemetxt.setTypeface(MyConstants.getBold(this));
+        notiftxt.setTypeface(MyConstants.getBold(this));
+        notifplacemetxt.setTypeface(MyConstants.getBold(this));
+        blogtxt.setTypeface(MyConstants.getBold(this));
 
-        Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/cabinsemibold.ttf");
-        Typeface custom_font4 = Typeface.createFromAsset(getAssets(),  "fonts/maven.ttf");
 
-        pushtxt.setTypeface(custom_font4);
-        placeinsttxt.setTypeface(custom_font3);
-        placeplacemetxt.setTypeface(custom_font3);
-        notiftxt.setTypeface(custom_font3);
-        notifplacemetxt.setTypeface(custom_font3);
-        blogtxt.setTypeface(custom_font3);
 
         sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         username=sharedpreferences.getString(Username,null);
@@ -123,21 +124,9 @@ public class PushNotificationPreferences extends AppCompatActivity {
         preference4=sharedpreferences.getString("pref4",null);
         preference5=sharedpreferences.getString("pref5",null);
 
+
         role=sharedpreferences.getString("role",null);
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
 
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
         if(role.equals("hr"))
         {
             placeinsttxt.setText("Incoming Placement Registrations");

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/myprofileintroscrollview"
-    android:background="#282f35">
+    android:background="@color/while_color">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_admin_experiences"
@@ -20,15 +20,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Experiences"
-            android:textSize="20dp"
-            android:textColor="#eee"
+            android:textSize="18dp"
+            android:textColor="@color/while_color"
             android:id="@+id/exptxt"
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:background="@drawable/textviewborder2"
+            android:background="@drawable/textviewborder"
+            android:elevation="2dp"
             />
 
 
@@ -37,7 +38,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/exptxt"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashexp1"
             />
@@ -56,12 +57,15 @@
                 android:id="@+id/postinput1"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:singleLine="true"
                     android:id="@+id/post1"/>
 
@@ -73,12 +77,15 @@
                 android:layout_below="@+id/postinput1"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:singleLine="true"
                     android:id="@+id/inst1"/>
 
@@ -105,15 +112,15 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/fromdate1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:focusable="false"
                         android:hint="From Date"
                         android:singleLine="true"
-                        android:textColor="#eee"
-                        android:textSize="15dp" />
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -137,14 +144,15 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/todate1"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -155,8 +163,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
                 android:text="I currently work here"
+                android:id="@+id/work1"
                 android:layout_below="@+id/todaterl1"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch1"
@@ -176,7 +185,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/exprl1"
             android:id="@+id/expline1"
             android:layout_marginTop="20dp"
@@ -187,7 +196,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/expline1"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashexp2"
             />
@@ -207,12 +216,16 @@
                 android:id="@+id/postinput2"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:singleLine="true"
                     android:id="@+id/post2"/>
 
@@ -224,12 +237,15 @@
                 android:layout_below="@+id/postinput2"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:singleLine="true"
                     android:id="@+id/inst2"/>
 
@@ -256,14 +272,15 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/fromdate2"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -288,14 +305,15 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/todate2"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -306,8 +324,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
                 android:text="I currently work here"
+                android:id="@+id/work2"
                 android:layout_below="@+id/todaterl2"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch2"
@@ -327,7 +346,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/exprl2"
             android:id="@+id/expline2"
             android:layout_marginTop="20dp"
@@ -338,7 +357,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/expline2"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashexp3"
             />
@@ -358,12 +377,15 @@
                 android:id="@+id/postinput3"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:singleLine="true"
                     android:id="@+id/post3"/>
 
@@ -375,12 +397,15 @@
                 android:layout_below="@+id/postinput3"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:singleLine="true"
                     android:id="@+id/inst3"/>
 
@@ -407,14 +432,15 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/fromdate3"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -439,14 +465,15 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/todate3"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -457,8 +484,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
                 android:text="I currently work here"
+                android:id="@+id/work3"
                 android:layout_below="@+id/todaterl3"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch3"
@@ -478,7 +506,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/exprl3"
             android:id="@+id/expline3"
             android:layout_marginTop="20dp"
@@ -489,7 +517,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/expline3"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashexp4"
             />
@@ -509,12 +537,15 @@
                 android:id="@+id/postinput4"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:singleLine="true"
                     android:id="@+id/post4"/>
 
@@ -526,12 +557,15 @@
                 android:layout_below="@+id/postinput4"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:singleLine="true"
                     android:id="@+id/inst4"/>
 
@@ -556,14 +590,14 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
                         android:id="@+id/fromdate4"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -588,14 +622,15 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/todate4"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -606,8 +641,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
                 android:text="I currently work here"
+                android:id="@+id/work4"
                 android:layout_below="@+id/todaterl4"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch4"
@@ -627,7 +663,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/exprl4"
             android:id="@+id/expline4"
             android:layout_marginTop="20dp"
@@ -639,7 +675,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/expline4"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashexp5"
             />
@@ -659,12 +695,15 @@
                 android:id="@+id/postinput5"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:singleLine="true"
                     android:id="@+id/post5"/>
 
@@ -676,12 +715,15 @@
                 android:layout_below="@+id/postinput5"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:singleLine="true"
                     android:id="@+id/inst5"/>
 
@@ -708,14 +750,15 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/fromdate5"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -740,14 +783,15 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/todate5"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -758,8 +802,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
                 android:text="I currently work here"
+                android:id="@+id/work5"
                 android:layout_below="@+id/todaterl5"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch5"
@@ -779,7 +824,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/exprl5"
             android:id="@+id/expline5"
             android:layout_marginTop="20dp"
@@ -790,7 +835,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/expline5"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashexp6"
             />
@@ -810,12 +855,15 @@
                 android:id="@+id/postinput6"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:singleLine="true"
                     android:id="@+id/post6"/>
 
@@ -827,12 +875,15 @@
                 android:layout_below="@+id/postinput6"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:singleLine="true"
                     android:id="@+id/inst6"/>
 
@@ -859,14 +910,15 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/fromdate6"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -891,14 +943,15 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/todate6"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -909,8 +962,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
                 android:text="I currently work here"
+                android:id="@+id/work6"
                 android:layout_below="@+id/todaterl6"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch6"
@@ -930,7 +984,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/exprl6"
             android:id="@+id/expline6"
             android:layout_marginTop="20dp"
@@ -942,7 +996,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/expline6"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashexp7"
             />
@@ -962,12 +1016,15 @@
                 android:id="@+id/postinput7"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:singleLine="true"
                     android:id="@+id/post7"/>
 
@@ -979,12 +1036,15 @@
                 android:layout_below="@+id/postinput7"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:singleLine="true"
                     android:id="@+id/inst7"/>
 
@@ -1011,14 +1071,15 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/fromdate7"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1043,14 +1104,15 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/todate7"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1061,8 +1123,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
                 android:text="I currently work here"
+                android:id="@+id/work7"
                 android:layout_below="@+id/todaterl7"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch7"
@@ -1082,7 +1145,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/exprl7"
             android:id="@+id/expline7"
             android:layout_marginTop="20dp"
@@ -1094,7 +1157,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/expline7"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashexp8"
             />
@@ -1114,12 +1177,15 @@
                 android:id="@+id/postinput8"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:singleLine="true"
                     android:id="@+id/post8"/>
 
@@ -1131,12 +1197,15 @@
                 android:layout_below="@+id/postinput8"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:singleLine="true"
                     android:id="@+id/inst8"/>
 
@@ -1163,14 +1232,15 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/fromdate8"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1195,14 +1265,15 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/todate8"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1213,8 +1284,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
                 android:text="I currently work here"
+                android:id="@+id/work8"
                 android:layout_below="@+id/todaterl8"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch8"
@@ -1234,7 +1306,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/exprl8"
             android:id="@+id/expline8"
             android:layout_marginTop="20dp"
@@ -1246,7 +1318,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/expline8"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashexp9"
             />
@@ -1266,12 +1338,15 @@
                 android:id="@+id/postinput9"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:singleLine="true"
                     android:id="@+id/post9"/>
 
@@ -1283,12 +1358,15 @@
                 android:layout_below="@+id/postinput9"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:singleLine="true"
                     android:id="@+id/inst9"/>
 
@@ -1315,14 +1393,15 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/fromdate9"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1347,14 +1426,15 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/todate9"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1365,8 +1445,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
                 android:text="I currently work here"
+                android:id="@+id/work9"
                 android:layout_below="@+id/todaterl9"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@+id/switch9"
@@ -1386,7 +1467,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/exprl9"
             android:id="@+id/expline9"
             android:layout_marginTop="20dp"
@@ -1398,7 +1479,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/expline9"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashexp10"
             />
@@ -1418,12 +1499,15 @@
                 android:id="@+id/postinput10"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:singleLine="true"
                     android:id="@+id/post10"/>
 
@@ -1435,12 +1519,15 @@
                 android:layout_below="@+id/postinput10"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="200"
                     android:singleLine="true"
                     android:id="@+id/inst10"/>
 
@@ -1467,14 +1554,15 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
-                        android:textSize="15dp"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/fromdate10"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1499,14 +1587,15 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
-                        android:textSize="15dp"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp"
                         android:singleLine="true"
                         android:focusable="false"
-                        android:textColor="#eee"
+
                         android:id="@+id/todate10"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -1517,10 +1606,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
                 android:text="I currently work here"
+                android:id="@+id/work10"
                 android:layout_below="@+id/todaterl10"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="80dp"
                 android:layout_toLeftOf="@+id/switch10"
                 />
 
@@ -1532,13 +1623,14 @@
                 android:layout_below="@+id/todaterl10"
                 android:layout_marginTop="10dp"
                 android:theme="@style/SCBSwitch"
+                android:layout_marginBottom="80dp"
                 />
 
         </RelativeLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/exprl10"
             android:id="@+id/expline10"
             android:layout_marginTop="20dp"
@@ -1548,7 +1640,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/boxborderwhite"
+            android:background="@drawable/textviewborder"
+            android:elevation="2dp"
             android:layout_below="@+id/exprl10"
             android:id="@+id/addmoreexp"
             android:layout_marginTop="20dp"
@@ -1559,8 +1652,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/exprl10"
             android:text="Add Another Experience"
-            android:textColor="#eee"
-            android:textSize="20dp"
+            android:textColor="@color/while_color"
+            android:textSize="18dp"
+            android:elevation="3dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
             android:id="@+id/addmoreexptxt"
@@ -1570,7 +1664,8 @@
             android:layout_height="30dp"
             android:layout_below="@+id/exprl10"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:src="@drawable/add_icon_white"
+            android:elevation="3dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
             android:id="@+id/addmoreexpimg"

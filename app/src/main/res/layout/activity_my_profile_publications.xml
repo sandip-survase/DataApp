@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/myprofilepublications"
-    android:background="#282f35">
+    android:background="@color/while_color">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_my_profile_publications"
@@ -17,22 +17,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Publications"
-            android:textSize="20dp"
-            android:textColor="#eee"
+            android:textSize="18dp"
+            android:textColor="@color/while_color"
             android:id="@+id/publicationtxt"
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:background="@drawable/textviewborder2"
+            android:elevation="2dp"
+
+            android:background="@drawable/textviewborder"
             />
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_below="@+id/publicationtxt"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashpublication1"
             />
@@ -58,14 +60,15 @@
                 android:id="@+id/titleinput1"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Title *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/title1"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -77,14 +80,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publisher/Publication Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
-                    android:singleLine="true"
+                    android:hint="Publisher/Publication Name *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/publication1"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -97,14 +101,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Authors (Comma Seperated)"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Authors (Comma Seperated) *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/author1"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -116,14 +121,16 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date"
+                    android:hint="Publication Date *"
                     android:singleLine="true"
                     android:focusable="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:maxLength="500"
+                    android:inputType="textCapWords"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/publicationdate1"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -135,13 +142,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/url1"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -151,9 +160,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput1"
                 android:layout_marginTop="10dp"
+                android:id="@+id/descriptioninput1"
+
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
@@ -161,8 +172,10 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/description1"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -171,7 +184,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl1"
             android:id="@+id/publicationline1"
             android:layout_marginTop="20dp"
@@ -182,7 +195,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/publicationline1"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashpublication2"
             />
@@ -211,14 +224,15 @@
                 android:id="@+id/titleinput2"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:hint="Title *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/title2"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -230,14 +244,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publisher/Publication Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
-                    android:singleLine="true"
+                    android:hint="Publisher/Publication Name *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/publication2"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -250,14 +265,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Authors (Comma Seperated)"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Authors (Comma Seperated) *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/author2"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -269,14 +285,16 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date"
-                    android:textSize="15dp"
-                    android:singleLine="true"
+                    android:hint="Publication Date *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:focusable="false"
-                    android:textColor="#eee"
+                    android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/publicationdate2"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -288,13 +306,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/url2"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -302,11 +322,12 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/descriptioninput2"
                 android:layout_below="@+id/urlinput2"
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
@@ -314,8 +335,10 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/description2"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -323,7 +346,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl2"
             android:id="@+id/publicationline2"
             android:layout_marginTop="20dp"
@@ -335,7 +358,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/publicationline2"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashpublication3"
 
@@ -365,14 +388,15 @@
                 android:id="@+id/titleinput3"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:hint="Title *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/title3"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -384,14 +408,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publisher/Publication Name"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Publisher/Publication Name *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/publication3"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -404,14 +429,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Authors (Comma Seperated)"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Authors (Comma Seperated) *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/author3"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -423,14 +449,17 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date"
-                    android:textSize="15dp"
-                    android:singleLine="true"
+                    android:hint="Publication Date *"
+                    android:textSize="16dp"
                     android:focusable="false"
-                    android:textColor="#eee"
+
+                    android:maxLength="500"
+                    android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/publicationdate3"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -442,13 +471,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:textSize="15dp"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/url3"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -458,9 +489,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput3"
                 android:layout_marginTop="10dp"
+                android:id="@+id/descriptioninput3"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
@@ -468,8 +500,10 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/description3"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -477,7 +511,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl3"
             android:id="@+id/publicationline3"
             android:layout_marginTop="20dp"
@@ -488,7 +522,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/publicationline3"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashpublication4"
             />
@@ -517,14 +551,15 @@
                 android:id="@+id/titleinput4"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Title *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/title4"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -536,14 +571,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publisher/Publication Name"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Publisher/Publication Name *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/publication4"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -556,14 +592,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Authors (Comma Seperated)"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Authors (Comma Seperated) *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/author4"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -575,14 +612,17 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date"
-                    android:textSize="15dp"
-                    android:singleLine="true"
+                    android:hint="Publication Date *"
                     android:focusable="false"
-                    android:textColor="#eee"
+
+                    android:textSize="16dp"
+                    android:maxLength="500"
+                    android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/publicationdate4"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -594,13 +634,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/url4"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -608,11 +650,12 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/descriptioninput4"
                 android:layout_below="@+id/urlinput4"
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
@@ -620,8 +663,10 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/description4"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -630,7 +675,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl4"
             android:id="@+id/publicationline4"
             android:layout_marginTop="20dp"
@@ -641,7 +686,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/publicationline4"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashpublication5"
             />
@@ -670,14 +715,15 @@
                 android:id="@+id/titleinput5"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Title *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/title5"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -689,14 +735,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publisher/Publication Name"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Publisher/Publication Name *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/publication5"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -709,14 +756,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Authors (Comma Seperated)"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Authors (Comma Seperated) *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/author5"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -728,14 +776,17 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date"
-                    android:textSize="15dp"
-                    android:singleLine="true"
+                    android:hint="Publication Date *"
                     android:focusable="false"
-                    android:textColor="#eee"
+
+                    android:textSize="16dp"
+                    android:maxLength="500"
+                    android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/publicationdate5"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -747,13 +798,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/url5"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -761,11 +814,12 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/descriptioninput5"
                 android:layout_below="@+id/urlinput5"
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
@@ -773,8 +827,10 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/description5"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -783,7 +839,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl5"
             android:id="@+id/publicationline5"
             android:layout_marginTop="20dp"
@@ -794,7 +850,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/publicationline5"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashpublication6"
             />
@@ -823,14 +879,15 @@
                 android:id="@+id/titleinput6"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Title *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/title6"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -842,14 +899,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publisher/Publication Name"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
-                    android:singleLine="true"
+                    android:hint="Publisher/Publication Name *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/publication6"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -862,14 +920,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Authors (Comma Seperated)"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Authors (Comma Seperated) *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/author6"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -881,14 +940,17 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date"
-                    android:textSize="15dp"
-                    android:singleLine="true"
+                    android:hint="Publication Date *"
                     android:focusable="false"
-                    android:textColor="#eee"
+
+                    android:textSize="16dp"
+                    android:maxLength="500"
+                    android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/publicationdate6"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -900,13 +962,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/url6"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -915,10 +979,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput6"
+                android:id="@+id/descriptioninput6"
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
@@ -926,8 +991,10 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/description6"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -936,7 +1003,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl6"
             android:id="@+id/publicationline6"
             android:layout_marginTop="20dp"
@@ -947,7 +1014,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/publicationline6"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashpublication7"
             />
@@ -976,14 +1043,15 @@
                 android:id="@+id/titleinput7"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:hint="Title *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/title7"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -995,14 +1063,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publisher/Publication Name"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Publisher/Publication Name *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/publication7"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1015,14 +1084,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Authors (Comma Seperated)"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Authors (Comma Seperated) *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/author7"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1034,13 +1104,16 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:hint="Publication Date *"
+
+                    android:textSize="16dp"
+                    android:maxLength="500"
+                    android:inputType="textCapWords"
                     android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:focusable="false"
                     android:id="@+id/publicationdate7"/>
 
@@ -1053,13 +1126,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/url7"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1068,10 +1143,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput7"
+                android:id="@+id/descriptioninput7"
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
@@ -1079,8 +1155,10 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/description7"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1089,7 +1167,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl7"
             android:id="@+id/publicationline7"
             android:layout_marginTop="20dp"
@@ -1100,7 +1178,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/publicationline7"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashpublication8"
             />
@@ -1129,14 +1207,15 @@
                 android:id="@+id/titleinput8"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Title *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/title8"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1148,14 +1227,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publisher/Publication Name"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Publisher/Publication Name *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/publication8"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1168,14 +1248,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Authors (Comma Seperated)"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:hint="Authors (Comma Seperated) *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/author8"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1187,14 +1268,17 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date"
-                    android:singleLine="true"
+                    android:hint="Publication Date *"
                     android:focusable="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+
+                    android:textSize="16dp"
+                    android:maxLength="500"
+                    android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/publicationdate8"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1206,13 +1290,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:inputType="textCapWords"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/url8"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1222,9 +1308,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput8"
                 android:layout_marginTop="10dp"
+                android:id="@+id/descriptioninput8"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
@@ -1232,8 +1319,10 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/description8"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1242,7 +1331,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl8"
             android:id="@+id/publicationline8"
             android:layout_marginTop="20dp"
@@ -1253,7 +1342,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/publicationline8"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashpublication9"
             />
@@ -1282,14 +1371,15 @@
                 android:id="@+id/titleinput9"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:hint="Title *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/title9"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1301,14 +1391,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publisher/Publication Name"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Publisher/Publication Name *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/publication9"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1321,14 +1412,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Authors (Comma Seperated)"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Authors (Comma Seperated) *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/author9"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1340,14 +1432,16 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date"
-                    android:singleLine="true"
+                    android:hint="Publication Date *"
                     android:focusable="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:maxLength="500"
+                    android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/publicationdate9"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1359,13 +1453,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/url9"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1375,18 +1471,22 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput9"
                 android:layout_marginTop="10dp"
+                android:id="@+id/descriptioninput9"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
+
                     android:hint="Description"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/description9"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1395,7 +1495,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl9"
             android:id="@+id/publicationline9"
             android:layout_marginTop="20dp"
@@ -1406,7 +1506,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/publicationline9"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashpublication10"
             />
@@ -1435,14 +1535,15 @@
                 android:id="@+id/titleinput10"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:hint="Title *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/title10"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1454,14 +1555,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publisher/Publication Name"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Publisher/Publication Name *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/publication10"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1474,14 +1576,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Authors (Comma Seperated)"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:textColor="#eee"
+                    android:hint="Authors (Comma Seperated) *"
+                    android:textSize="16dp"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/author10"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1493,13 +1596,16 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:hint="Publication Date *"
+
+                    android:textSize="16dp"
+                    android:maxLength="500"
+                    android:inputType="textCapWords"
                     android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:focusable="false"
                     android:id="@+id/publicationdate10"/>
 
@@ -1512,13 +1618,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/url10"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1528,9 +1636,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput10"
                 android:layout_marginTop="10dp"
+                android:id="@+id/descriptioninput10"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
@@ -1538,8 +1647,10 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:maxLength="1000"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/description10"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1548,7 +1659,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/boxborderwhite"
+            android:background="@drawable/textviewborder"
+            android:elevation="2dp"
             android:layout_below="@+id/publicationrl10"
             android:id="@+id/addmorepublication"
             android:layout_marginTop="20dp"
@@ -1559,8 +1671,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/publicationrl10"
             android:text="Add Another Publication"
-            android:textColor="#eee"
-            android:textSize="20dp"
+            android:textColor="@color/while_color"
+            android:textSize="18dp"
+            android:elevation="3dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
             android:id="@+id/addmorepublicationtxt"
@@ -1568,11 +1681,13 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:elevation="3dp"
             android:layout_below="@+id/publicationrl10"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:src="@drawable/add_icon_white"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
+
             android:id="@+id/addmorepublicationimg"
             />
 

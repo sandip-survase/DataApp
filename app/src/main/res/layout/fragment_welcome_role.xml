@@ -1,125 +1,264 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="placeme.octopusites.com.placeme.WelcomeRoleFragment">
-
+    android:background="#fcfdfd"
+    >
 
     <RelativeLayout
-        android:id="@+id/activity_my_profile_intro"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="40dp"
-        android:focusableInTouchMode="true"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        >
 
         <TextView
-            android:id="@+id/selectRoleMsg"
+            android:id="@+id/welcometextviewcontext1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Select Role"
-            android:textSize="20dp" />
-
-        <View
-            android:id="@+id/studentBlock"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/boxborderwhite" />
-
-        <TextView
-            android:id="@+id/knownlangtxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="60dp"
-            android:text="Student"
-            android:textColor="#eee"
-            android:textSize="20dp" />
-
-        <View
-            android:id="@+id/alumniBlock"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/studentBlock"
             android:layout_marginTop="20dp"
-            android:background="@drawable/boxborderwhite" />
+            android:layout_marginBottom="20dp"
+            android:text="Choose your role !"
+            android:textColor="#03353e"
+            android:textSize="16dp" />
 
-        <TextView
-            android:id="@+id/skillstxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/studentBlock"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            android:text="Alumni"
-            android:textColor="#eee"
-            android:textSize="20dp" />
-
-        <View
-            android:id="@+id/adminBlock"
-            android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_below="@+id/alumniBlock"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/boxborderwhite" />
-
+            android:layout_below="@+id/welcometextviewcontext1"
+            android:src="@drawable/logo"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/logo"
+            />
         <TextView
-            android:id="@+id/honortxt"
+            android:id="@+id/welcometextviewcontext2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/alumniBlock"
+            android:layout_below="@+id/logo"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            android:text="TPO / Admin"
-            android:textColor="#eee"
-            android:textSize="20dp" />
-
-        <View
-            android:id="@+id/hrBlock"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/adminBlock"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/boxborderwhite" />
-
+            android:layout_marginTop="10dp"
+            android:textColor="#00bcd4"
+            android:text="Our Thought"
+            android:textSize="16dp"
+        />
         <TextView
-            android:id="@+id/patenttxt"
+            android:id="@+id/welcometextviewcontext3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/adminBlock"
+            android:layout_below="@+id/welcometextviewcontext2"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            android:text="Hr"
-            android:textColor="#eee"
-            android:textSize="20dp" />
-
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/passwordTextInputLayout"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:text="Choose your role wisely. Place Me offers you distinct features and services as per the role you select."
+            android:textColor="#03353e"
+            android:textSize="11dp"
+        />
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/patenttxt"
-            android:layout_marginTop="30dp"
-            android:theme="@style/TextLabelNew">
+            android:layout_below="@+id/welcometextviewcontext3"
+            android:id="@+id/rolesrl"
+            >
 
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/instOrEmail"
+            <View
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/section"
+                />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/studentrl"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:imeOptions="actionNext"
-                android:singleLine="true"
-                android:textSize="15dp" />
+                android:layout_height="150dp"
+                android:layout_toLeftOf="@+id/section"
+                app:cardElevation="8dp"
+                android:layout_marginRight="5dp"
+                app:cardCornerRadius="0dp"
+                >
 
-        </android.support.design.widget.TextInputLayout>
+                <RelativeLayout
+                    android:id="@+id/student_rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:elevation="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/role_background"
+                    >
+                    <ImageView
+                        android:id="@+id/iv_icon_student"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/student_role"
+                        android:layout_centerHorizontal="true"
+                        android:transitionName="student_transition"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_name_student"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_icon_student"
+                        android:layout_marginTop="5dp"
+                        android:text="Student"
+                        android:textSize="12dp"
+                        android:textColor="#03353e"
+                        android:layout_centerHorizontal="true"
+                        android:textAlignment="center"
+                        android:gravity="center"
+                        />
+
+                </RelativeLayout>
 
 
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_toRightOf="@+id/section"
+                app:cardElevation="8dp"
+                android:layout_marginLeft="5dp"
+                app:cardCornerRadius="0dp"
+                android:id="@+id/alumnirl"
+                >
+
+            <RelativeLayout
+                android:id="@+id/alumni_rl"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/role_background"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                >
+                <ImageView
+                    android:id="@+id/iv_icon_alumni"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/alumni_role"
+                    android:layout_centerHorizontal="true"
+                    />
+                <TextView
+                    android:id="@+id/tv_name_alumni"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_icon_alumni"
+                    android:layout_marginTop="5dp"
+                    android:text="Alumni / Current Working Employee"
+                    android:textSize="12dp"
+                    android:textAlignment="center"
+                    android:textColor="#03353e"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    />
+            </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/tporl"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_toLeftOf="@+id/section"
+                app:cardElevation="8dp"
+                android:layout_marginTop="160dp"
+                android:layout_marginRight="5dp"
+                app:cardCornerRadius="0dp"
+                >
+
+                    <RelativeLayout
+                        android:id="@+id/tpo_rl"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:background="@drawable/role_background"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        >
+                        <ImageView
+                            android:id="@+id/iv_icon_tpo"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/tpo_role"
+                            android:layout_centerHorizontal="true"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_name_tpo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_icon_tpo"
+                            android:layout_marginTop="5dp"
+                            android:text="Training and Placement Officer"
+                            android:textSize="12dp"
+                            android:textColor="#03353e"
+                            android:layout_centerHorizontal="true"
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            />
+                    </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/hrrl"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_toRightOf="@+id/section"
+                app:cardElevation="8dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="160dp"
+                app:cardCornerRadius="0dp"
+                >
+
+                    <RelativeLayout
+                        android:id="@+id/hr_rl"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:background="@drawable/role_background"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        >
+                        <ImageView
+                            android:id="@+id/iv_icon_hr"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/hr_role"
+                            android:layout_centerHorizontal="true"
+                            />
+                        <TextView
+                            android:id="@+id/tv_name_hr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_icon_hr"
+                            android:layout_marginTop="5dp"
+                            android:text="HR Manager / Recruiter"
+                            android:textSize="12dp"
+                            android:textAlignment="center"
+                            android:textColor="#03353e"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"
+                            />
+                    </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+
+        </RelativeLayout>
     </RelativeLayout>
-
-</FrameLayout>
+</ScrollView>

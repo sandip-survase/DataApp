@@ -1,6 +1,5 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -19,10 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,26 +31,28 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
+import placeme.octopusites.com.placeme.modal.Projects;
+
+import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 
-public class ProjectsProfileTabFragment extends Fragment implements TextWatcher {
-    private int projectscount = 0;
-    private int projectscount2 = 0;
-
+public class ProjectsProfileTabFragment extends Fragment {
+    public static final String MyPREFERENCES = "MyPrefs";
+    public static final String Username = "nameKey";
+    ArrayList<Projects> projectsList = new ArrayList<>();
 
     View addmoreproject;
-    public static final String MyPREFERENCES = "MyPrefs";
     SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
-    String username;
+    String username, role;
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-    int errorflag = 0;
+    int errorflag = 0,editproj=0;
     String resultofop = "";
     //    private static String url_saveprojects= "http://192.168.100.100/AESTest/SaveProjects";
     EditText proj1, domain1, team1, duration1, proj2, domain2, team2, duration2, proj3, domain3, team3, duration3, proj4, domain4, team4, duration4, proj5, domain5, team5, duration5, proj6, domain6, team6, duration6, proj7, domain7, team7, duration7, proj8, domain8, team8, duration8, proj9, domain9, team9, duration9, proj10, domain10, team10, duration10;
+    TextInputLayout projinput1, domaininput1, teaminput1, durationinput1, projinput2, domaininput2, teaminput2, durationinput2, projinput3, domaininput3, teaminput3, durationinput3, projinput4, domaininput4, teaminput4, durationinput4, projinput5, domaininput5, teaminput5, durationinput5, projinput6, domaininput6, teaminput6, durationinput6, projinput7, domaininput7, teaminput7, durationinput7, projinput8, domaininput8, teaminput8, durationinput8, projinput9, domaininput9, teaminput9, durationinput9, projinput10, domaininput10, teaminput10, durationinput10;
+
     String sproj1 = "", sdomain1 = "", steam1 = "", sduration1 = "", sproj2 = "", sdomain2 = "", steam2 = "", sduration2 = "", sproj3 = "", sdomain3 = "", steam3 = "", sduration3 = "", sproj4 = "", sdomain4 = "", steam4 = "", sduration4 = "", sproj5 = "", sdomain5 = "", steam5 = "", sduration5 = "", sproj6 = "", sdomain6 = "", steam6 = "", sduration6 = "", sproj7 = "", sdomain7 = "", steam7 = "", sduration7 = "", sproj8 = "", sdomain8 = "", steam8 = "", sduration8 = "", sproj9 = "", sdomain9 = "", steam9 = "", sduration9 = "", sproj10 = "", sdomain10 = "", steam10 = "", sduration10 = "";
     String encproj1, encdomain1, encteam1, encduration1, encproj2, encdomain2, encteam2, encduration2, encproj3, encdomain3, encteam3, encduration3, encproj4, encdomain4, encteam4, encduration4, encproj5, encdomain5, encteam5, encduration5, encproj6, encdomain6, encteam6, encduration6, encproj7, encdomain7, encteam7, encduration7, encproj8, encdomain8, encteam8, encduration8, encproj9, encdomain9, encteam9, encduration9, encproj10, encdomain10, encteam10, encduration10;
     View trash1selectionview, trash2selectionview, trash3selectionview, trash4selectionview, trash5selectionview, trash6selectionview, trash7selectionview, trash8selectionview, trash9selectionview, trash10selectionview;
@@ -61,20 +60,27 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
     int d = 0;
     StudentData s = new StudentData();
     View rootView;
-//    Button save;
-//    ProgressBar projectsprogress;
-
     byte[] demoKeyBytes;
     byte[] demoIVBytes;
+    //    Button save;
+//    ProgressBar projectsprogress;
     String sPadding;
+    private int projectscount = 0;
+    private int projectscount2 = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_edit_profile_projects, container, false);
 
+        username = MySharedPreferencesManager.getUsername(getActivity());
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
+        role = MySharedPreferencesManager.getRole(getActivity());
+
         TextView projtxt = (TextView) rootView.findViewById(R.id.projtxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/arba.ttf");
-        projtxt.setTypeface(custom_font1);
+        projtxt.setTypeface(MyConstants.getBold(getActivity()));
+        TextView addmoreprojecttxt=(TextView) rootView.findViewById(R.id.addmoreprojecttxt);
+        addmoreprojecttxt.setTypeface(MyConstants.getBold(getActivity()));
         Log.d("dfgs", "onCreateView:COUNT2 " + projectscount2);
 
 
@@ -203,54 +209,852 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         team10 = (EditText) rootView.findViewById(R.id.team10);
         duration10 = (EditText) rootView.findViewById(R.id.duration10);
 
-        proj1.addTextChangedListener(this);
-        domain1.addTextChangedListener(this);
-        team1.addTextChangedListener(this);
-        duration1.addTextChangedListener(this);
-        proj2.addTextChangedListener(this);
-        domain2.addTextChangedListener(this);
-        team2.addTextChangedListener(this);
-        duration2.addTextChangedListener(this);
-        proj3.addTextChangedListener(this);
-        domain3.addTextChangedListener(this);
-        team3.addTextChangedListener(this);
-        duration3.addTextChangedListener(this);
-        proj4.addTextChangedListener(this);
-        domain4.addTextChangedListener(this);
-        team4.addTextChangedListener(this);
-        duration4.addTextChangedListener(this);
-        proj5.addTextChangedListener(this);
-        domain5.addTextChangedListener(this);
-        team5.addTextChangedListener(this);
-        duration5.addTextChangedListener(this);
-        proj6.addTextChangedListener(this);
-        domain6.addTextChangedListener(this);
-        team6.addTextChangedListener(this);
-        duration6.addTextChangedListener(this);
-        proj7.addTextChangedListener(this);
-        domain7.addTextChangedListener(this);
-        team7.addTextChangedListener(this);
-        duration7.addTextChangedListener(this);
-        proj8.addTextChangedListener(this);
-        domain8.addTextChangedListener(this);
-        team8.addTextChangedListener(this);
-        duration8.addTextChangedListener(this);
-        proj9.addTextChangedListener(this);
-        domain9.addTextChangedListener(this);
-        team9.addTextChangedListener(this);
-        duration9.addTextChangedListener(this);
-        proj10.addTextChangedListener(this);
-        domain10.addTextChangedListener(this);
-        team10.addTextChangedListener(this);
-        duration10.addTextChangedListener(this);
+        proj1 = (EditText) rootView.findViewById(R.id.proj1);
+        domain1 = (EditText) rootView.findViewById(R.id.domain1);
+        team1 = (EditText) rootView.findViewById(R.id.team1);
+        duration1 = (EditText) rootView.findViewById(R.id.duration1);
+
+
+        projinput1 = (TextInputLayout) rootView.findViewById(R.id.proj1input);
+        domaininput1 = (TextInputLayout) rootView.findViewById(R.id.domain1input);
+        teaminput1 = (TextInputLayout) rootView.findViewById(R.id.team1input);
+        durationinput1 = (TextInputLayout) rootView.findViewById(R.id.duration1input);
+
+        projinput2 = (TextInputLayout) rootView.findViewById(R.id.proj2input);
+        domaininput2 = (TextInputLayout) rootView.findViewById(R.id.domain2input);
+        teaminput2 = (TextInputLayout) rootView.findViewById(R.id.team2input);
+        durationinput2 = (TextInputLayout) rootView.findViewById(R.id.duration2input);
+
+        projinput3 = (TextInputLayout) rootView.findViewById(R.id.proj3input);
+        domaininput3 = (TextInputLayout) rootView.findViewById(R.id.domain3input);
+        teaminput3 = (TextInputLayout) rootView.findViewById(R.id.team3input);
+        durationinput3 = (TextInputLayout) rootView.findViewById(R.id.duration3input);
+
+        projinput4 = (TextInputLayout) rootView.findViewById(R.id.proj4input);
+        domaininput4 = (TextInputLayout) rootView.findViewById(R.id.domain4input);
+        teaminput4 = (TextInputLayout) rootView.findViewById(R.id.team4input);
+        durationinput4 = (TextInputLayout) rootView.findViewById(R.id.duration4input);
+
+        projinput5 = (TextInputLayout) rootView.findViewById(R.id.proj5input);
+        domaininput5 = (TextInputLayout) rootView.findViewById(R.id.domain5input);
+        teaminput5 = (TextInputLayout) rootView.findViewById(R.id.team5input);
+        durationinput5 = (TextInputLayout) rootView.findViewById(R.id.duration5input);
+
+        projinput6 = (TextInputLayout) rootView.findViewById(R.id.proj6input);
+        domaininput6 = (TextInputLayout) rootView.findViewById(R.id.domain6input);
+        teaminput6 = (TextInputLayout) rootView.findViewById(R.id.team6input);
+        durationinput6 = (TextInputLayout) rootView.findViewById(R.id.duration6input);
+
+        projinput7 = (TextInputLayout) rootView.findViewById(R.id.proj7input);
+        domaininput7 = (TextInputLayout) rootView.findViewById(R.id.domain7input);
+        teaminput7 = (TextInputLayout) rootView.findViewById(R.id.team7input);
+        durationinput7 = (TextInputLayout) rootView.findViewById(R.id.duration7input);
+
+
+        projinput8 = (TextInputLayout) rootView.findViewById(R.id.proj8input);
+        domaininput8 = (TextInputLayout) rootView.findViewById(R.id.domain8input);
+        teaminput8 = (TextInputLayout) rootView.findViewById(R.id.team8input);
+        durationinput8 = (TextInputLayout) rootView.findViewById(R.id.duration8input);
+
+        projinput9 = (TextInputLayout) rootView.findViewById(R.id.proj9input);
+        domaininput9 = (TextInputLayout) rootView.findViewById(R.id.domain9input);
+        teaminput9 = (TextInputLayout) rootView.findViewById(R.id.team9input);
+        durationinput9 = (TextInputLayout) rootView.findViewById(R.id.duration9input);
+
+        projinput10 = (TextInputLayout) rootView.findViewById(R.id.proj10input);
+        domaininput10 = (TextInputLayout) rootView.findViewById(R.id.domain10input);
+        teaminput10 = (TextInputLayout) rootView.findViewById(R.id.team10input);
+        durationinput10 = (TextInputLayout) rootView.findViewById(R.id.duration10input);
+
+
+        proj1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput1.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+        domain1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                edittedFlag = 1;
+                domaininput1.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                edittedFlag = 1;
+                teaminput1.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                edittedFlag = 1;
+                durationinput1.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        proj2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput2.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        domain2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                domaininput2 .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                teaminput2.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                durationinput2.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+       proj3.addTextChangedListener(new TextWatcher() {
+             @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput3.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        domain3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                domaininput3.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                teaminput3 .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                durationinput3 .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        proj4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput4 .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        domain4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                domaininput4 .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                teaminput4 .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                durationinput4.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        proj5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput5 .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        domain5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                domaininput5 .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                teaminput5.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                durationinput5 .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        proj6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput6 .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        domain6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                domaininput6 .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                teaminput6 .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                durationinput6 .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        proj7.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput7.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        domain7.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                domaininput7 .setError(null);
+                edittedFlag = 1;
+            }
+
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team7.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                teaminput7.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration7.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                durationinput7 .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        proj8.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput8.setError(null);
+                edittedFlag = 1;
+            }
+
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        domain8.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                domaininput8.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team8.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                teaminput8 .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration8.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                durationinput8  .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        proj9.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput9 .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        domain9.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                domaininput9 .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team9.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                teaminput9 .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration9.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                durationinput9  .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        proj10.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                projinput10.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        domain10.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                domaininput10 .setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        team10.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                teaminput10.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        duration10.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                durationinput10.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+        proj1.setTypeface(MyConstants.getBold(getActivity()));
+        domain1.setTypeface(MyConstants.getBold(getActivity()));
+        team1.setTypeface(MyConstants.getBold(getActivity()));
+        duration1.setTypeface(MyConstants.getBold(getActivity()));
+
+        proj2.setTypeface(MyConstants.getBold(getActivity()));
+        domain2.setTypeface(MyConstants.getBold(getActivity()));
+        team2.setTypeface(MyConstants.getBold(getActivity()));
+        duration2.setTypeface(MyConstants.getBold(getActivity()));
+
+        proj3.setTypeface(MyConstants.getBold(getActivity()));
+        domain3.setTypeface(MyConstants.getBold(getActivity()));
+        team3.setTypeface(MyConstants.getBold(getActivity()));
+        duration3.setTypeface(MyConstants.getBold(getActivity()));
+
+        proj4.setTypeface(MyConstants.getBold(getActivity()));
+        domain4.setTypeface(MyConstants.getBold(getActivity()));
+        team4.setTypeface(MyConstants.getBold(getActivity()));
+        duration4.setTypeface(MyConstants.getBold(getActivity()));
+
+        proj5.setTypeface(MyConstants.getBold(getActivity()));
+        domain5.setTypeface(MyConstants.getBold(getActivity()));
+        team5.setTypeface(MyConstants.getBold(getActivity()));
+        duration5.setTypeface(MyConstants.getBold(getActivity()));
+
+        proj6.setTypeface(MyConstants.getBold(getActivity()));
+        domain6.setTypeface(MyConstants.getBold(getActivity()));
+        team6.setTypeface(MyConstants.getBold(getActivity()));
+        duration6.setTypeface(MyConstants.getBold(getActivity()));
+
+        proj7.setTypeface(MyConstants.getBold(getActivity()));
+        domain7.setTypeface(MyConstants.getBold(getActivity()));
+        team7.setTypeface(MyConstants.getBold(getActivity()));
+        duration7.setTypeface(MyConstants.getBold(getActivity()));
+
+        proj8.setTypeface(MyConstants.getBold(getActivity()));
+        domain8.setTypeface(MyConstants.getBold(getActivity()));
+        team8.setTypeface(MyConstants.getBold(getActivity()));
+        duration8.setTypeface(MyConstants.getBold(getActivity()));
+
+        proj9.setTypeface(MyConstants.getBold(getActivity()));
+        domain9.setTypeface(MyConstants.getBold(getActivity()));
+        team9.setTypeface(MyConstants.getBold(getActivity()));
+        duration9.setTypeface(MyConstants.getBold(getActivity()));
+
+        proj10.setTypeface(MyConstants.getBold(getActivity()));
+        domain10.setTypeface(MyConstants.getBold(getActivity()));
+        team10.setTypeface(MyConstants.getBold(getActivity()));
+        duration10.setTypeface(MyConstants.getBold(getActivity()));
+
+        projinput1.setTypeface(MyConstants.getLight(getActivity()));
+        domaininput1.setTypeface(MyConstants.getLight(getActivity()));
+        teaminput1.setTypeface(MyConstants.getLight(getActivity()));
+        durationinput1.setTypeface(MyConstants.getLight(getActivity()));
+        projinput2.setTypeface(MyConstants.getLight(getActivity()));
+        domaininput2.setTypeface(MyConstants.getLight(getActivity()));
+        teaminput2.setTypeface(MyConstants.getLight(getActivity()));
+        durationinput2.setTypeface(MyConstants.getLight(getActivity()));
+        projinput3.setTypeface(MyConstants.getLight(getActivity()));
+        domaininput3.setTypeface(MyConstants.getLight(getActivity()));
+        teaminput3.setTypeface(MyConstants.getLight(getActivity()));
+        durationinput3.setTypeface(MyConstants.getLight(getActivity()));
+
+        projinput4.setTypeface(MyConstants.getLight(getActivity()));
+        domaininput4.setTypeface(MyConstants.getLight(getActivity()));
+        teaminput4.setTypeface(MyConstants.getLight(getActivity()));
+        durationinput4.setTypeface(MyConstants.getLight(getActivity()));
+        projinput5.setTypeface(MyConstants.getLight(getActivity()));
+        domaininput5.setTypeface(MyConstants.getLight(getActivity()));
+        teaminput5.setTypeface(MyConstants.getLight(getActivity()));
+        durationinput5.setTypeface(MyConstants.getLight(getActivity()));
+        projinput6.setTypeface(MyConstants.getLight(getActivity()));
+        domaininput6.setTypeface(MyConstants.getLight(getActivity()));
+        teaminput6.setTypeface(MyConstants.getLight(getActivity()));
+        durationinput6.setTypeface(MyConstants.getLight(getActivity()));
+        projinput7.setTypeface(MyConstants.getLight(getActivity()));
+        domaininput7.setTypeface(MyConstants.getLight(getActivity()));
+        teaminput7.setTypeface(MyConstants.getLight(getActivity()));
+        durationinput7.setTypeface(MyConstants.getLight(getActivity()));
+        projinput8.setTypeface(MyConstants.getLight(getActivity()));
+        domaininput8.setTypeface(MyConstants.getLight(getActivity()));
+        teaminput8.setTypeface(MyConstants.getLight(getActivity()));
+        durationinput8.setTypeface(MyConstants.getLight(getActivity()));
+        projinput9.setTypeface(MyConstants.getLight(getActivity()));
+        domaininput9.setTypeface(MyConstants.getLight(getActivity()));
+        teaminput9.setTypeface(MyConstants.getLight(getActivity()));
+        durationinput9.setTypeface(MyConstants.getLight(getActivity()));
+        projinput10.setTypeface(MyConstants.getLight(getActivity()));
+        domaininput10.setTypeface(MyConstants.getLight(getActivity()));
+
+        teaminput10.setTypeface(MyConstants.getLight(getActivity()));
+        durationinput10.setTypeface(MyConstants.getLight(getActivity()));
+
 
         addmoreproject = (View) rootView.findViewById(R.id.addmoreproject);
         addmoreproject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                editproj=0;
                 if (projectscount == 0) {
-//                    if(proj1.getText().toString()!=null && domain1.getText().toString()!=null && team1.getText().toString()!=null && duration1.getText().toString()!=null) {
+                    if(proj1.getText().toString()!=null && domain1.getText().toString()!=null && team1.getText().toString()!=null && duration1.getText().toString()!=null) {
                     if (!proj1.getText().toString().equals("") && !domain1.getText().toString().equals("") && !team1.getText().toString().equals("") && !duration1.getText().toString().equals("")) {
 
                         View v = (View) rootView.findViewById(R.id.projectline1);
@@ -261,13 +1065,13 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
 
                         projectscount++;
                     } else
-                        Toast.makeText(getActivity(), "Please Enter First Project Details", Toast.LENGTH_SHORT).show();
-//                    }
-//                    else
-//                        Toast.makeText(getActivity(), "Please Enter First Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
                 } else if (projectscount == 1) {
-//                    if(proj2.getText().toString()!=null && domain2.getText().toString()!=null && team2.getText().toString()!=null && duration2.getText().toString()!=null) {
+                    if(proj2.getText().toString()!=null && domain2.getText().toString()!=null && team2.getText().toString()!=null && duration2.getText().toString()!=null) {
                     if (!proj2.getText().toString().equals("") && !domain2.getText().toString().equals("") && !team2.getText().toString().equals("") && !duration2.getText().toString().equals("")) {
 
                         View v = (View) rootView.findViewById(R.id.projectline2);
@@ -278,14 +1082,14 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
                         projectscount++;
 
                     } else
-                        Toast.makeText(getActivity(), "Please Enter Second Project Details1", Toast.LENGTH_SHORT).show();
-//                    }
-//                    else
-//                        Toast.makeText(getActivity(), "Please Enter Second Project Details2", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
                 } else if (projectscount == 2) {
 
-//                    if(proj3.getText().toString()!=null && domain3.getText().toString()!=null && team3.getText().toString()!=null && duration3.getText().toString()!=null) {
+                    if(proj3.getText().toString()!=null && domain3.getText().toString()!=null && team3.getText().toString()!=null && duration3.getText().toString()!=null) {
                     if (!proj3.getText().toString().equals("") && !domain3.getText().toString().equals("") && !team3.getText().toString().equals("") && !duration3.getText().toString().equals("")) {
 
                         View v = (View) rootView.findViewById(R.id.projectline3);
@@ -296,10 +1100,10 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
                         projectscount++;
 
                     } else
-                        Toast.makeText(getActivity(), "Please Enter Third Project Details", Toast.LENGTH_SHORT).show();
-//                    }
-//                    else
-//                        Toast.makeText(getActivity(), "Please Enter Third Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
 
                 } else if (projectscount == 3) {
@@ -316,9 +1120,9 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
                             projectscount++;
 
                         } else
-                            Toast.makeText(getActivity(), "Please Enter Fourth Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(getActivity(), "Please Enter Fourth Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
 
                 } else if (projectscount == 4) {
@@ -335,9 +1139,9 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
                             projectscount++;
 
                         } else
-                            Toast.makeText(getActivity(), "Please Enter Fifth Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(getActivity(), "Please Enter Fifth Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
 
                 } else if (projectscount == 5) {
@@ -353,9 +1157,9 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
                             projectscount++;
 
                         } else
-                            Toast.makeText(getActivity(), "Please Enter Sixth Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(getActivity(), "Please Enter Sixth Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
                 } else if (projectscount == 6) {
                     if (proj7.getText().toString() != null && domain7.getText().toString() != null && team7.getText().toString() != null && duration7.getText().toString() != null) {
@@ -369,9 +1173,9 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
                             projectscount++;
 
                         } else
-                            Toast.makeText(getActivity(), "Please Enter Seventh Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(getActivity(), "Please Enter Seventh Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
                 } else if (projectscount == 7) {
                     if (proj8.getText().toString() != null && domain8.getText().toString() != null && team8.getText().toString() != null && duration8.getText().toString() != null) {
@@ -386,9 +1190,9 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
                             projectscount++;
 
                         } else
-                            Toast.makeText(getActivity(), "Please Enter Eighth Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(getActivity(), "Please Enter Eighth Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
                 } else if (projectscount == 8) {
 
@@ -410,53 +1214,20 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
                             i.setVisibility(View.GONE);
 
                         } else
-                            Toast.makeText(getActivity(), "Please Enter Nineth Project Details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(getActivity(), "Please Enter Nineth Project Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty project details", Toast.LENGTH_SHORT).show();
 
                 }
 
             }
         });
 
-//
-//        save = (Button) rootView.findViewById(R.id.saveprojects);
-//        projectsprogress = (ProgressBar) rootView.findViewById(R.id.projectprogress);
-//
-//
-//        save.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                projectsprogress.setVisibility(View.VISIBLE);
-//                save.setVisibility(View.GONE);
-//                validateandSave();
-//            }
-//        });
 
-        sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, null);
-        String role = sharedpreferences.getString("role", null);
-
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
-
-        if (digest1 == null || digest2 == null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
 
         demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         demoIVBytes = SimpleBase64Encoder.decode(digest2);
         sPadding = "ISO10126Padding";
-
-
         sproj1 = s.getProj1();
         sdomain1 = s.getDomain1();
         steam1 = s.getTeam1();
@@ -646,6 +1417,7 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
 
         return rootView;
     }
+
 /*
 
     @Override
@@ -871,46 +1643,55 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
     public boolean myvalidate() {
         errorflag = 0;
 
-        proj1.setError(null);
-        domain1.setError(null);
-        team1.setError(null);
-        duration1.setError(null);
-        proj2.setError(null);
-        domain2.setError(null);
-        team2.setError(null);
-        duration2.setError(null);
-        proj3.setError(null);
-        domain3.setError(null);
-        team3.setError(null);
-        duration3.setError(null);
-        proj4.setError(null);
-        domain4.setError(null);
-        team4.setError(null);
-        duration4.setError(null);
-        proj5.setError(null);
-        domain5.setError(null);
-        team5.setError(null);
-        duration5.setError(null);
-        proj6.setError(null);
-        domain6.setError(null);
-        team6.setError(null);
-        duration6.setError(null);
-        proj7.setError(null);
-        domain7.setError(null);
-        team7.setError(null);
-        duration7.setError(null);
-        proj8.setError(null);
-        domain8.setError(null);
-        team8.setError(null);
-        duration8.setError(null);
-        proj9.setError(null);
-        domain9.setError(null);
-        team9.setError(null);
-        duration9.setError(null);
-        proj10.setError(null);
-        domain10.setError(null);
-        team10.setError(null);
-        duration10.setError(null);
+        projinput1.setError(null);
+        domaininput1.setError(null);
+        teaminput1.setError(null);
+        durationinput1.setError(null);
+
+        projinput2.setError(null);
+        domaininput2.setError(null);
+        teaminput2.setError(null);
+        durationinput2.setError(null);
+
+        projinput3.setError(null);
+        domaininput3.setError(null);
+        teaminput3.setError(null);
+        durationinput3.setError(null);
+
+        projinput4.setError(null);
+        domaininput4.setError(null);
+        teaminput4.setError(null);
+        durationinput4.setError(null);
+
+        projinput5.setError(null);
+        domaininput5.setError(null);
+        teaminput5.setError(null);
+        durationinput5.setError(null);
+
+        projinput6.setError(null);
+        domaininput6.setError(null);
+        teaminput6.setError(null);
+        durationinput6.setError(null);
+
+        projinput7.setError(null);
+        domaininput7.setError(null);
+        teaminput7.setError(null);
+        durationinput7.setError(null);
+
+        projinput8.setError(null);
+        domaininput8.setError(null);
+        teaminput8.setError(null);
+        durationinput8.setError(null);
+
+        projinput9.setError(null);
+        domaininput9.setError(null);
+        teaminput9.setError(null);
+        durationinput9.setError(null);
+
+        projinput10.setError(null);
+        domaininput10.setError(null);
+        teaminput10.setError(null);
+        durationinput10.setError(null);
 
         sproj1 = proj1.getText().toString();
         sdomain1 = domain1.getText().toString();
@@ -957,702 +1738,702 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         if (projectscount == 0) {
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                proj1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domain1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                team1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                duration1.setError("Invalid Duration");
-
+                durationinput1.setError("Kindly enter valid duration in months");
             }
+
         } else if (projectscount == 1) {
 
 
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                proj1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domain1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                team1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                duration1.setError("Invalid Duration");
+                durationinput1.setError("Kindly enter valid duration in months");
 
             } else if (sproj2.length() < 3) {
                 errorflag = 1;
-                proj2.setError("Invalid Project Name");
+                projinput2.setError("Kindly enter valid project name");
             } else if (sdomain2.length() < 3) {
                 errorflag = 1;
-                domain2.setError("Invalid Domain");
+                domaininput2.setError("Kindly enter valid domain");
             } else if (steam2.length() < 1) {
                 errorflag = 1;
-                team2.setError("Invalid Teamsize");
+                teaminput2.setError("Kindly enter valid team size");
             } else if (sduration2.length() < 1) {
                 errorflag = 1;
-                duration2.setError("Invalid Duration");
+                durationinput2.setError("Kindly enter valid duration in months");
             }
         } else if (projectscount == 2) {
 
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                proj1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domain1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                team1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                duration1.setError("Invalid Duration");
+                durationinput1.setError("Kindly enter valid duration in months");
 
             } else if (sproj2.length() < 3) {
                 errorflag = 1;
-                proj2.setError("Invalid Project Name");
+                projinput2.setError("Kindly enter valid project name");
             } else if (sdomain2.length() < 3) {
                 errorflag = 1;
-                domain2.setError("Invalid Domain");
+                domaininput2.setError("Kindly enter valid domain");
             } else if (steam2.length() < 1) {
                 errorflag = 1;
-                team2.setError("Invalid Teamsize");
+                teaminput2.setError("Kindly enter valid team size");
             } else if (sduration2.length() < 1) {
                 errorflag = 1;
-                duration2.setError("Invalid Duration");
+                durationinput2.setError("Kindly enter valid duration in months");
             } else if (sproj3.length() < 3) {
                 errorflag = 1;
-                proj3.setError("Invalid Project Name");
+                projinput3.setError("Kindly enter valid project name");
             } else if (sdomain3.length() < 3) {
                 errorflag = 1;
-                domain3.setError("Invalid Domain");
+                domaininput3.setError("Kindly enter valid domain");
             } else if (steam3.length() < 1) {
                 errorflag = 1;
-                team3.setError("Invalid Teamsize");
+                teaminput3.setError("Kindly enter valid team size");
             } else if (sduration3.length() < 1) {
                 errorflag = 1;
-                duration3.setError("Invalid Duration");
+                durationinput3.setError("Kindly enter valid duration in months");
             }
         } else if (projectscount == 3) {
 
 
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                proj1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domain1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                team1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                duration1.setError("Invalid Duration");
+                durationinput1.setError("Kindly enter valid duration in months");
 
             } else if (sproj2.length() < 3) {
                 errorflag = 1;
-                proj2.setError("Invalid Project Name");
+                projinput2.setError("Kindly enter valid project name");
             } else if (sdomain2.length() < 3) {
                 errorflag = 1;
-                domain2.setError("Invalid Domain");
+                domaininput2.setError("Kindly enter valid domain");
             } else if (steam2.length() < 1) {
                 errorflag = 1;
-                team2.setError("Invalid Teamsize");
+                teaminput2.setError("Kindly enter valid team size");
             } else if (sduration2.length() < 1) {
                 errorflag = 1;
-                duration2.setError("Invalid Duration");
+                durationinput2.setError("Kindly enter valid duration in months");
             } else if (sproj3.length() < 3) {
                 errorflag = 1;
-                proj3.setError("Invalid Project Name");
+                projinput3.setError("Kindly enter valid project name");
             } else if (sdomain3.length() < 3) {
                 errorflag = 1;
-                domain3.setError("Invalid Domain");
+                domaininput3.setError("Kindly enter valid domain");
             } else if (steam3.length() < 1) {
                 errorflag = 1;
-                team3.setError("Invalid Teamsize");
+                teaminput3.setError("Kindly enter valid team size");
             } else if (sduration3.length() < 1) {
                 errorflag = 1;
-                duration3.setError("Invalid Duration");
+                durationinput3.setError("Kindly enter valid duration in months");
             } else if (sproj4.length() < 3) {
                 errorflag = 1;
-                proj4.setError("Invalid Project Name");
+                projinput4.setError("Kindly enter valid project name");
             } else if (sdomain4.length() < 3) {
                 errorflag = 1;
-                domain4.setError("Invalid Domain");
+                domaininput4.setError("Kindly enter valid domain");
             } else if (steam4.length() < 1) {
                 errorflag = 1;
-                team4.setError("Invalid Teamsize");
+                teaminput4.setError("Kindly enter valid team size");
             } else if (sduration4.length() < 1) {
                 errorflag = 1;
-                duration4.setError("Invalid Duration");
+                durationinput4.setError("Kindly enter valid duration in months");
             }
         } else if (projectscount == 4) {
 
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                proj1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domain1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                team1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                duration1.setError("Invalid Duration");
+                durationinput1.setError("Kindly enter valid duration in months");
 
             } else if (sproj2.length() < 3) {
                 errorflag = 1;
-                proj2.setError("Invalid Project Name");
+                projinput2.setError("Kindly enter valid project name");
             } else if (sdomain2.length() < 3) {
                 errorflag = 1;
-                domain2.setError("Invalid Domain");
+                domaininput2.setError("Kindly enter valid domain");
             } else if (steam2.length() < 1) {
                 errorflag = 1;
-                team2.setError("Invalid Teamsize");
+                teaminput2.setError("Kindly enter valid team size");
             } else if (sduration2.length() < 1) {
                 errorflag = 1;
-                duration2.setError("Invalid Duration");
+                durationinput2.setError("Kindly enter valid duration in months");
             } else if (sproj3.length() < 3) {
                 errorflag = 1;
-                proj3.setError("Invalid Project Name");
+                projinput3.setError("Kindly enter valid project name");
             } else if (sdomain3.length() < 3) {
                 errorflag = 1;
-                domain3.setError("Invalid Domain");
+                domaininput3.setError("Kindly enter valid domain");
             } else if (steam3.length() < 1) {
                 errorflag = 1;
-                team3.setError("Invalid Teamsize");
+                teaminput3.setError("Kindly enter valid team size");
             } else if (sduration3.length() < 1) {
                 errorflag = 1;
-                duration3.setError("Invalid Duration");
+                durationinput3.setError("Kindly enter valid duration in months");
             } else if (sproj4.length() < 3) {
                 errorflag = 1;
-                proj4.setError("Invalid Project Name");
+                projinput4.setError("Kindly enter valid project name");
             } else if (sdomain4.length() < 3) {
                 errorflag = 1;
-                domain4.setError("Invalid Domain");
+                domaininput4.setError("Kindly enter valid domain");
             } else if (steam4.length() < 1) {
                 errorflag = 1;
-                team4.setError("Invalid Teamsize");
+                teaminput4.setError("Kindly enter valid team size");
             } else if (sduration4.length() < 1) {
                 errorflag = 1;
-                duration4.setError("Invalid Duration");
+                durationinput4.setError("Kindly enter valid duration in months");
             } else if (sproj5.length() < 3) {
                 errorflag = 1;
-                proj5.setError("Invalid Project Name");
+                projinput5.setError("Kindly enter valid project name");
             } else if (sdomain5.length() < 3) {
                 errorflag = 1;
-                domain5.setError("Invalid Domain");
+                domaininput5.setError("Kindly enter valid domain");
             } else if (steam5.length() < 1) {
                 errorflag = 1;
-                team5.setError("Invalid Teamsize");
+                teaminput5.setError("Kindly enter valid team size");
             } else if (sduration5.length() < 1) {
                 errorflag = 1;
-                duration5.setError("Invalid Duration");             //
+                durationinput5.setError("Kindly enter valid duration in months");             //
             }
         } else if (projectscount == 5) {
 
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                proj1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domain1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                team1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                duration1.setError("Invalid Duration");
+                durationinput1.setError("Kindly enter valid duration in months");
 
             } else if (sproj2.length() < 3) {
                 errorflag = 1;
-                proj2.setError("Invalid Project Name");
+                projinput2.setError("Kindly enter valid project name");
             } else if (sdomain2.length() < 3) {
                 errorflag = 1;
-                domain2.setError("Invalid Domain");
+                domaininput2.setError("Kindly enter valid domain");
             } else if (steam2.length() < 1) {
                 errorflag = 1;
-                team2.setError("Invalid Teamsize");
+                teaminput2.setError("Kindly enter valid team size");
             } else if (sduration2.length() < 1) {
                 errorflag = 1;
-                duration2.setError("Invalid Duration");
+                durationinput2.setError("Kindly enter valid duration in months");
             } else if (sproj3.length() < 3) {
                 errorflag = 1;
-                proj3.setError("Invalid Project Name");
+                projinput3.setError("Kindly enter valid project name");
             } else if (sdomain3.length() < 3) {
                 errorflag = 1;
-                domain3.setError("Invalid Domain");
+                domaininput3.setError("Kindly enter valid domain");
             } else if (steam3.length() < 1) {
                 errorflag = 1;
-                team3.setError("Invalid Teamsize");
+                teaminput3.setError("Kindly enter valid team size");
             } else if (sduration3.length() < 1) {
                 errorflag = 1;
-                duration3.setError("Invalid Duration");
+                durationinput3.setError("Kindly enter valid duration in months");
             } else if (sproj4.length() < 3) {
                 errorflag = 1;
-                proj4.setError("Invalid Project Name");
+                projinput4.setError("Kindly enter valid project name");
             } else if (sdomain4.length() < 3) {
                 errorflag = 1;
-                domain4.setError("Invalid Domain");
+                domaininput4.setError("Kindly enter valid domain");
             } else if (steam4.length() < 1) {
                 errorflag = 1;
-                team4.setError("Invalid Teamsize");
+                teaminput4.setError("Kindly enter valid team size");
             } else if (sduration4.length() < 1) {
                 errorflag = 1;
-                duration4.setError("Invalid Duration");
+                durationinput4.setError("Kindly enter valid duration in months");
             } else if (sproj5.length() < 3) {
                 errorflag = 1;
-                proj5.setError("Invalid Project Name");
+                projinput5.setError("Kindly enter valid project name");
             } else if (sdomain5.length() < 3) {
                 errorflag = 1;
-                domain5.setError("Invalid Domain");
+                domaininput5.setError("Kindly enter valid domain");
             } else if (steam5.length() < 1) {
                 errorflag = 1;
-                team5.setError("Invalid Teamsize");
+                teaminput5.setError("Kindly enter valid team size");
             } else if (sduration5.length() < 1) {
                 errorflag = 1;
-                duration5.setError("Invalid Duration");             //
+                durationinput5.setError("Kindly enter valid duration in months");             //
             } else if (sproj6.length() < 3) {
                 errorflag = 1;
-                proj6.setError("Invalid Project Name");
+                projinput6.setError("Kindly enter valid project name");
             } else if (sdomain6.length() < 3) {
                 errorflag = 1;
-                domain6.setError("Invalid Domain");
+                domaininput6.setError("Kindly enter valid domain");
             } else if (steam6.length() < 1) {
                 errorflag = 1;
-                team6.setError("Invalid Teamsize");
+                teaminput6.setError("Kindly enter valid team size");
             } else if (sduration6.length() < 1) {
                 errorflag = 1;
-                duration6.setError("Invalid Duration");
+                durationinput6.setError("Kindly enter valid duration in months");
             }
 
         } else if (projectscount == 6) {
 
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                proj1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domain1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                team1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                duration1.setError("Invalid Duration");
+                durationinput1.setError("Kindly enter valid duration in months");
             } else if (sproj2.length() < 3) {
                 errorflag = 1;
-                proj2.setError("Invalid Project Name");
+                projinput2.setError("Kindly enter valid project name");
             } else if (sdomain2.length() < 3) {
                 errorflag = 1;
-                domain2.setError("Invalid Domain");
+                domaininput2.setError("Kindly enter valid domain");
             } else if (steam2.length() < 1) {
                 errorflag = 1;
-                team2.setError("Invalid Teamsize");
+                teaminput2.setError("Kindly enter valid team size");
             } else if (sduration2.length() < 1) {
                 errorflag = 1;
-                duration2.setError("Invalid Duration");
+                durationinput2.setError("Kindly enter valid duration in months");
             } else if (sproj3.length() < 3) {
                 errorflag = 1;
-                proj3.setError("Invalid Project Name");
+                projinput3.setError("Kindly enter valid project name");
             } else if (sdomain3.length() < 3) {
                 errorflag = 1;
-                domain3.setError("Invalid Domain");
+                domaininput3.setError("Kindly enter valid domain");
             } else if (steam3.length() < 1) {
                 errorflag = 1;
-                team3.setError("Invalid Teamsize");
+                teaminput3.setError("Kindly enter valid team size");
             } else if (sduration3.length() < 1) {
                 errorflag = 1;
-                duration3.setError("Invalid Duration");
+                durationinput3.setError("Kindly enter valid duration in months");
             } else if (sproj4.length() < 3) {
                 errorflag = 1;
-                proj4.setError("Invalid Project Name");
+                projinput4.setError("Kindly enter valid project name");
             } else if (sdomain4.length() < 3) {
                 errorflag = 1;
-                domain4.setError("Invalid Domain");
+                domaininput4.setError("Kindly enter valid domain");
             } else if (steam4.length() < 1) {
                 errorflag = 1;
-                team4.setError("Invalid Teamsize");
+                teaminput4.setError("Kindly enter valid team size");
             } else if (sduration4.length() < 1) {
                 errorflag = 1;
-                duration4.setError("Invalid Duration");
+                durationinput4.setError("Kindly enter valid duration in months");
             } else if (sproj5.length() < 3) {
                 errorflag = 1;
-                proj5.setError("Invalid Project Name");
+                projinput5.setError("Kindly enter valid project name");
             } else if (sdomain5.length() < 3) {
                 errorflag = 1;
-                domain5.setError("Invalid Domain");
+                domaininput5.setError("Kindly enter valid domain");
             } else if (steam5.length() < 1) {
                 errorflag = 1;
-                team5.setError("Invalid Teamsize");
+                teaminput5.setError("Kindly enter valid team size");
             } else if (sduration5.length() < 1) {
                 errorflag = 1;
-                duration5.setError("Invalid Duration");             //
+                durationinput5.setError("Kindly enter valid duration in months");             //
             } else if (sproj6.length() < 3) {
                 errorflag = 1;
-                proj6.setError("Invalid Project Name");
+                projinput6.setError("Kindly enter valid project name");
             } else if (sdomain6.length() < 3) {
                 errorflag = 1;
-                domain6.setError("Invalid Domain");
+                domaininput6.setError("Kindly enter valid domain");
             } else if (steam6.length() < 1) {
                 errorflag = 1;
-                team6.setError("Invalid Teamsize");
+                teaminput6.setError("Kindly enter valid team size");
             } else if (sduration6.length() < 1) {
                 errorflag = 1;
-                duration6.setError("Invalid Duration");
+                durationinput6.setError("Kindly enter valid duration in months");
             } else if (sproj7.length() < 3) {
                 errorflag = 1;
-                proj7.setError("Invalid Project Name");
+                projinput7.setError("Kindly enter valid project name");
             } else if (sdomain7.length() < 3) {
                 errorflag = 1;
-                domain7.setError("Invalid Domain");
+                domaininput7.setError("Kindly enter valid domain");
             } else if (steam7.length() < 1) {
                 errorflag = 1;
-                team7.setError("Invalid Teamsize");
+                teaminput7.setError("Kindly enter valid team size");
             } else if (sduration7.length() < 1) {
                 errorflag = 1;
-                duration7.setError("Invalid Duration");
+                durationinput7.setError("Kindly enter valid duration in months");
             }
 
         } else if (projectscount == 7) {
 
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                proj1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domain1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                team1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                duration1.setError("Invalid Duration");
+                durationinput1.setError("Kindly enter valid duration in months");
             } else if (sproj2.length() < 3) {
                 errorflag = 1;
-                proj2.setError("Invalid Project Name");
+                projinput2.setError("Kindly enter valid project name");
             } else if (sdomain2.length() < 3) {
                 errorflag = 1;
-                domain2.setError("Invalid Domain");
+                domaininput2.setError("Kindly enter valid domain");
             } else if (steam2.length() < 1) {
                 errorflag = 1;
-                team2.setError("Invalid Teamsize");
+                teaminput2.setError("Kindly enter valid team size");
             } else if (sduration2.length() < 1) {
                 errorflag = 1;
-                duration2.setError("Invalid Duration");
+                durationinput2.setError("Kindly enter valid duration in months");
             } else if (sproj3.length() < 3) {
                 errorflag = 1;
-                proj3.setError("Invalid Project Name");
+                projinput3.setError("Kindly enter valid project name");
             } else if (sdomain3.length() < 3) {
                 errorflag = 1;
-                domain3.setError("Invalid Domain");
+                domaininput3.setError("Kindly enter valid domain");
             } else if (steam3.length() < 1) {
                 errorflag = 1;
-                team3.setError("Invalid Teamsize");
+                teaminput3.setError("Kindly enter valid team size");
             } else if (sduration3.length() < 1) {
                 errorflag = 1;
-                duration3.setError("Invalid Duration");
+                durationinput3.setError("Kindly enter valid duration in months");
             } else if (sproj4.length() < 3) {
                 errorflag = 1;
-                proj4.setError("Invalid Project Name");
+                projinput4.setError("Kindly enter valid project name");
             } else if (sdomain4.length() < 3) {
                 errorflag = 1;
-                domain4.setError("Invalid Domain");
+                domaininput4.setError("Kindly enter valid domain");
             } else if (steam4.length() < 1) {
                 errorflag = 1;
-                team4.setError("Invalid Teamsize");
+                teaminput4.setError("Kindly enter valid team size");
             } else if (sduration4.length() < 1) {
                 errorflag = 1;
-                duration4.setError("Invalid Duration");
+                durationinput4.setError("Kindly enter valid duration in months");
             } else if (sproj5.length() < 3) {
                 errorflag = 1;
-                proj5.setError("Invalid Project Name");
+                projinput5.setError("Kindly enter valid project name");
             } else if (sdomain5.length() < 3) {
                 errorflag = 1;
-                domain5.setError("Invalid Domain");
+                domaininput5.setError("Kindly enter valid domain");
             } else if (steam5.length() < 1) {
                 errorflag = 1;
-                team5.setError("Invalid Teamsize");
+                teaminput5.setError("Kindly enter valid team size");
             } else if (sduration5.length() < 1) {
                 errorflag = 1;
-                duration5.setError("Invalid Duration");             //
+                durationinput5.setError("Kindly enter valid duration in months");             //
             } else if (sproj6.length() < 3) {
                 errorflag = 1;
-                proj6.setError("Invalid Project Name");
+                projinput6.setError("Kindly enter valid project name");
             } else if (sdomain6.length() < 3) {
                 errorflag = 1;
-                domain6.setError("Invalid Domain");
+                domaininput6.setError("Kindly enter valid domain");
             } else if (steam6.length() < 1) {
                 errorflag = 1;
-                team6.setError("Invalid Teamsize");
+                teaminput6.setError("Kindly enter valid team size");
             } else if (sduration6.length() < 1) {
                 errorflag = 1;
-                duration6.setError("Invalid Duration");
+                durationinput6.setError("Kindly enter valid duration in months");
             } else if (sproj7.length() < 3) {
                 errorflag = 1;
-                proj7.setError("Invalid Project Name");
+                projinput7.setError("Kindly enter valid project name");
             } else if (sdomain7.length() < 3) {
                 errorflag = 1;
-                domain7.setError("Invalid Domain");
+                domaininput7.setError("Kindly enter valid domain");
             } else if (steam7.length() < 1) {
                 errorflag = 1;
-                team7.setError("Invalid Teamsize");
+                teaminput7.setError("Kindly enter valid team size");
             } else if (sduration7.length() < 1) {
                 errorflag = 1;
-                duration7.setError("Invalid Duration");
+                durationinput7.setError("Kindly enter valid duration in months");
             } else if (sproj8.length() < 3) {
                 errorflag = 1;
-                proj8.setError("Invalid Project Name");
+                projinput8.setError("Kindly enter valid project name");
             } else if (sdomain8.length() < 3) {
                 errorflag = 1;
-                domain8.setError("Invalid Domain");
+                domaininput8.setError("Kindly enter valid domain");
             } else if (steam8.length() < 1) {
                 errorflag = 1;
-                team8.setError("Invalid Teamsize");
+                teaminput8.setError("Kindly enter valid team size");
             } else if (sduration8.length() < 1) {
                 errorflag = 1;
-                duration8.setError("Invalid Duration");
+                durationinput8.setError("Kindly enter valid duration in months");
             }
 //
         } else if (projectscount == 8) {
 
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                proj1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domain1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                team1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                duration1.setError("Invalid Duration");
+                durationinput1.setError("Kindly enter valid duration in months");
             } else if (sproj2.length() < 3) {
                 errorflag = 1;
-                proj2.setError("Invalid Project Name");
+                projinput2.setError("Kindly enter valid project name");
             } else if (sdomain2.length() < 3) {
                 errorflag = 1;
-                domain2.setError("Invalid Domain");
+                domaininput2.setError("Kindly enter valid domain");
             } else if (steam2.length() < 1) {
                 errorflag = 1;
-                team2.setError("Invalid Teamsize");
+                teaminput2.setError("Kindly enter valid team size");
             } else if (sduration2.length() < 1) {
                 errorflag = 1;
-                duration2.setError("Invalid Duration");
+                durationinput2.setError("Kindly enter valid duration in months");
             } else if (sproj3.length() < 3) {
                 errorflag = 1;
-                proj3.setError("Invalid Project Name");
+                projinput3.setError("Kindly enter valid project name");
             } else if (sdomain3.length() < 3) {
                 errorflag = 1;
-                domain3.setError("Invalid Domain");
+                domaininput3.setError("Kindly enter valid domain");
             } else if (steam3.length() < 1) {
                 errorflag = 1;
-                team3.setError("Invalid Teamsize");
+                teaminput3.setError("Kindly enter valid team size");
             } else if (sduration3.length() < 1) {
                 errorflag = 1;
-                duration3.setError("Invalid Duration");
+                durationinput3.setError("Kindly enter valid duration in months");
             } else if (sproj4.length() < 3) {
                 errorflag = 1;
-                proj4.setError("Invalid Project Name");
+                projinput4.setError("Kindly enter valid project name");
             } else if (sdomain4.length() < 3) {
                 errorflag = 1;
-                domain4.setError("Invalid Domain");
+                domaininput4.setError("Kindly enter valid domain");
             } else if (steam4.length() < 1) {
                 errorflag = 1;
-                team4.setError("Invalid Teamsize");
+                teaminput4.setError("Kindly enter valid team size");
             } else if (sduration4.length() < 1) {
                 errorflag = 1;
-                duration4.setError("Invalid Duration");
+                durationinput4.setError("Kindly enter valid duration in months");
             } else if (sproj5.length() < 3) {
                 errorflag = 1;
-                proj5.setError("Invalid Project Name");
+                projinput5.setError("Kindly enter valid project name");
             } else if (sdomain5.length() < 3) {
                 errorflag = 1;
-                domain5.setError("Invalid Domain");
+                domaininput5.setError("Kindly enter valid domain");
             } else if (steam5.length() < 1) {
                 errorflag = 1;
-                team5.setError("Invalid Teamsize");
+                teaminput5.setError("Kindly enter valid team size");
             } else if (sduration5.length() < 1) {
                 errorflag = 1;
-                duration5.setError("Invalid Duration");             //
+                durationinput5.setError("Kindly enter valid duration in months");             //
             } else if (sproj6.length() < 3) {
                 errorflag = 1;
-                proj6.setError("Invalid Project Name");
+                projinput6.setError("Kindly enter valid project name");
             } else if (sdomain6.length() < 3) {
                 errorflag = 1;
-                domain6.setError("Invalid Domain");
+                domaininput6.setError("Kindly enter valid domain");
             } else if (steam6.length() < 1) {
                 errorflag = 1;
-                team6.setError("Invalid Teamsize");
+                teaminput6.setError("Kindly enter valid team size");
             } else if (sduration6.length() < 1) {
                 errorflag = 1;
-                duration6.setError("Invalid Duration");
+                durationinput6.setError("Kindly enter valid duration in months");
             } else if (sproj7.length() < 3) {
                 errorflag = 1;
-                proj7.setError("Invalid Project Name");
+                projinput7.setError("Kindly enter valid project name");
             } else if (sdomain7.length() < 3) {
                 errorflag = 1;
-                domain7.setError("Invalid Domain");
+                domaininput7.setError("Kindly enter valid domain");
             } else if (steam7.length() < 1) {
                 errorflag = 1;
-                team7.setError("Invalid Teamsize");
+                teaminput7.setError("Kindly enter valid team size");
             } else if (sduration7.length() < 1) {
                 errorflag = 1;
-                duration7.setError("Invalid Duration");
+                durationinput7.setError("Kindly enter valid duration in months");
             } else if (sproj8.length() < 3) {
                 errorflag = 1;
-                proj8.setError("Invalid Project Name");
+                projinput8.setError("Kindly enter valid project name");
             } else if (sdomain8.length() < 3) {
                 errorflag = 1;
-                domain8.setError("Invalid Domain");
+                domaininput8.setError("Kindly enter valid domain");
             } else if (steam8.length() < 1) {
                 errorflag = 1;
-                team8.setError("Invalid Teamsize");
+                teaminput8.setError("Kindly enter valid team size");
             } else if (sduration8.length() < 1) {
                 errorflag = 1;
-                duration8.setError("Invalid Duration");
+                durationinput8.setError("Kindly enter valid duration in months");
             } else if (sproj9.length() < 3) {
                 errorflag = 1;
-                proj9.setError("Invalid Project Name");
+                projinput9.setError("Kindly enter valid project name");
             } else if (sdomain9.length() < 3) {
                 errorflag = 1;
-                domain9.setError("Invalid Domain");
+                domaininput9.setError("Kindly enter valid domain");
             } else if (steam9.length() < 1) {
                 errorflag = 1;
-                team9.setError("Invalid Teamsize");
+                teaminput9.setError("Kindly enter valid team size");
             } else if (sduration9.length() < 1) {
                 errorflag = 1;
-                duration9.setError("Invalid Duration");
+                durationinput9.setError("Kindly enter valid duration in months");
             }
 
         } else if (projectscount == 9) {
             if (sproj1.length() < 3) {
                 errorflag = 1;
-                proj1.setError("Invalid Project Name");
+                projinput1.setError("Kindly enter valid project name");
             } else if (sdomain1.length() < 3) {
                 errorflag = 1;
-                domain1.setError("Invalid Domain");
+                domaininput1.setError("Kindly enter valid domain");
             } else if (steam1.length() < 1) {
                 errorflag = 1;
-                team1.setError("Invalid Teamsize");
+                teaminput1.setError("Kindly enter valid team size");
             } else if (sduration1.length() < 1) {
                 errorflag = 1;
-                duration1.setError("Invalid Duration");
+                durationinput1.setError("Kindly enter valid duration in months");
             } else if (sproj2.length() < 3) {
                 errorflag = 1;
-                proj2.setError("Invalid Project Name");
+                projinput2.setError("Kindly enter valid project name");
             } else if (sdomain2.length() < 3) {
                 errorflag = 1;
-                domain2.setError("Invalid Domain");
+                domaininput2.setError("Kindly enter valid domain");
             } else if (steam2.length() < 1) {
                 errorflag = 1;
-                team2.setError("Invalid Teamsize");
+                teaminput2.setError("Kindly enter valid team size");
             } else if (sduration2.length() < 1) {
                 errorflag = 1;
-                duration2.setError("Invalid Duration");
+                durationinput2.setError("Kindly enter valid duration in months");
             } else if (sproj3.length() < 3) {
                 errorflag = 1;
-                proj3.setError("Invalid Project Name");
+                projinput3.setError("Kindly enter valid project name");
             } else if (sdomain3.length() < 3) {
                 errorflag = 1;
-                domain3.setError("Invalid Domain");
+                domaininput3.setError("Kindly enter valid domain");
             } else if (steam3.length() < 1) {
                 errorflag = 1;
-                team3.setError("Invalid Teamsize");
+                teaminput3.setError("Kindly enter valid team size");
             } else if (sduration3.length() < 1) {
                 errorflag = 1;
-                duration3.setError("Invalid Duration");
+                durationinput3.setError("Kindly enter valid duration in months");
             } else if (sproj4.length() < 3) {
                 errorflag = 1;
-                proj4.setError("Invalid Project Name");
+                projinput4.setError("Kindly enter valid project name");
             } else if (sdomain4.length() < 3) {
                 errorflag = 1;
-                domain4.setError("Invalid Domain");
+                domaininput4.setError("Kindly enter valid domain");
             } else if (steam4.length() < 1) {
                 errorflag = 1;
-                team4.setError("Invalid Teamsize");
+                teaminput4.setError("Kindly enter valid team size");
             } else if (sduration4.length() < 1) {
                 errorflag = 1;
-                duration4.setError("Invalid Duration");
+                durationinput4.setError("Kindly enter valid duration in months");
             } else if (sproj5.length() < 3) {
                 errorflag = 1;
-                proj5.setError("Invalid Project Name");
+                projinput5.setError("Kindly enter valid project name");
             } else if (sdomain5.length() < 3) {
                 errorflag = 1;
-                domain5.setError("Invalid Domain");
+                domaininput5.setError("Kindly enter valid domain");
             } else if (steam5.length() < 1) {
                 errorflag = 1;
-                team5.setError("Invalid Teamsize");
+                teaminput5.setError("Kindly enter valid team size");
             } else if (sduration5.length() < 1) {
                 errorflag = 1;
-                duration5.setError("Invalid Duration");             //
+                durationinput5.setError("Kindly enter valid duration in months");             //
             } else if (sproj6.length() < 3) {
                 errorflag = 1;
-                proj6.setError("Invalid Project Name");
+                projinput6.setError("Kindly enter valid project name");
             } else if (sdomain6.length() < 3) {
                 errorflag = 1;
-                domain6.setError("Invalid Domain");
+                domaininput6.setError("Kindly enter valid domain");
             } else if (steam6.length() < 1) {
                 errorflag = 1;
-                team6.setError("Invalid Teamsize");
+                teaminput6.setError("Kindly enter valid team size");
             } else if (sduration6.length() < 1) {
                 errorflag = 1;
-                duration6.setError("Invalid Duration");
+                durationinput6.setError("Kindly enter valid duration in months");
             } else if (sproj7.length() < 3) {
                 errorflag = 1;
-                proj7.setError("Invalid Project Name");
+                projinput7.setError("Kindly enter valid project name");
             } else if (sdomain7.length() < 3) {
                 errorflag = 1;
-                domain7.setError("Invalid Domain");
+                domaininput7.setError("Kindly enter valid domain");
             } else if (steam7.length() < 1) {
                 errorflag = 1;
-                team7.setError("Invalid Teamsize");
+                teaminput7.setError("Kindly enter valid team size");
             } else if (sduration7.length() < 1) {
                 errorflag = 1;
-                duration7.setError("Invalid Duration");
+                durationinput7.setError("Kindly enter valid duration in months");
             } else if (sproj8.length() < 3) {
                 errorflag = 1;
-                proj8.setError("Invalid Project Name");
+                projinput8.setError("Kindly enter valid project name");
             } else if (sdomain8.length() < 3) {
                 errorflag = 1;
-                domain8.setError("Invalid Domain");
+                domaininput8.setError("Kindly enter valid domain");
             } else if (steam8.length() < 1) {
                 errorflag = 1;
-                team8.setError("Invalid Teamsize");
+                teaminput8.setError("Kindly enter valid team size");
             } else if (sduration8.length() < 1) {
                 errorflag = 1;
-                duration8.setError("Invalid Duration");
+                durationinput8.setError("Kindly enter valid duration in months");
             } else if (sproj9.length() < 3) {
                 errorflag = 1;
-                proj9.setError("Invalid Project Name");
+                projinput9.setError("Kindly enter valid project name");
             } else if (sdomain9.length() < 3) {
                 errorflag = 1;
-                domain9.setError("Invalid Domain");
+                domaininput9.setError("Kindly enter valid domain");
             } else if (steam9.length() < 1) {
                 errorflag = 1;
-                team9.setError("Invalid Teamsize");
+                teaminput9.setError("Kindly enter valid team size");
             } else if (sduration9.length() < 1) {
                 errorflag = 1;
-                duration9.setError("Invalid Duration");
+                durationinput9.setError("Kindly enter valid duration in months");
             } else if (sproj10.length() < 3) {
                 errorflag = 1;
-                proj10.setError("Invalid Project Name");
+                projinput10.setError("Kindly enter valid project name");
             } else if (sdomain10.length() < 3) {
                 errorflag = 1;
-                domain10.setError("Invalid Domain");
+                domaininput10.setError("Kindly enter valid domain");
             } else if (steam10.length() < 1) {
                 errorflag = 1;
-                team10.setError("Invalid Teamsize");
+                teaminput10.setError("Kindly enter valid team size");
             } else if (sduration10.length() < 1) {
                 errorflag = 1;
-                duration10.setError("Invalid Duration");
+                durationinput10.setError("Kindly enter valid duration in months");
             }
         }
 
@@ -1662,628 +2443,422 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         else
             return false;
 
+    }
 
-    }//fun
+    //fun
 
-
-    public Boolean validate() {
-
-        errorflag = 0;
-
-        proj1.setError(null);
-        domain1.setError(null);
-        team1.setError(null);
-        duration1.setError(null);
-        proj2.setError(null);
-        domain2.setError(null);
-        team2.setError(null);
-        duration2.setError(null);
-        proj3.setError(null);
-        domain3.setError(null);
-        team3.setError(null);
-        duration3.setError(null);
-        proj4.setError(null);
-        domain4.setError(null);
-        team4.setError(null);
-        duration4.setError(null);
-        proj5.setError(null);
-        domain5.setError(null);
-        team5.setError(null);
-        duration5.setError(null);
-        proj6.setError(null);
-        domain6.setError(null);
-        team6.setError(null);
-        duration6.setError(null);
-        proj7.setError(null);
-        domain7.setError(null);
-        team7.setError(null);
-        duration7.setError(null);
-        proj8.setError(null);
-        domain8.setError(null);
-        team8.setError(null);
-        duration8.setError(null);
-        proj9.setError(null);
-        domain9.setError(null);
-        team9.setError(null);
-        duration9.setError(null);
-        proj10.setError(null);
-        domain10.setError(null);
-        team10.setError(null);
-        duration10.setError(null);
-
-        sproj1 = proj1.getText().toString();
-        sdomain1 = domain1.getText().toString();
-        steam1 = team1.getText().toString();
-        sduration1 = duration1.getText().toString();
-        sproj2 = proj2.getText().toString();
-        sdomain2 = domain2.getText().toString();
-        steam2 = team2.getText().toString();
-        sduration2 = duration2.getText().toString();
-        sproj3 = proj3.getText().toString();
-        sdomain3 = domain3.getText().toString();
-        steam3 = team3.getText().toString();
-        sduration3 = duration3.getText().toString();
-        sproj4 = proj4.getText().toString();
-        sdomain4 = domain4.getText().toString();
-        steam4 = team4.getText().toString();
-        sduration4 = duration4.getText().toString();
-        sproj5 = proj5.getText().toString();
-        sdomain5 = domain5.getText().toString();
-        steam5 = team5.getText().toString();
-        sduration5 = duration5.getText().toString();
-        sproj6 = proj6.getText().toString();
-        sdomain6 = domain6.getText().toString();
-        steam6 = team6.getText().toString();
-        sduration6 = duration6.getText().toString();
-        sproj7 = proj7.getText().toString();
-        sdomain7 = domain7.getText().toString();
-        steam7 = team7.getText().toString();
-        sduration7 = duration7.getText().toString();
-        sproj8 = proj8.getText().toString();
-        sdomain8 = domain8.getText().toString();
-        steam8 = team8.getText().toString();
-        sduration8 = duration8.getText().toString();
-        sproj9 = proj9.getText().toString();
-        sdomain9 = domain9.getText().toString();
-        steam9 = team9.getText().toString();
-        sduration9 = duration9.getText().toString();
-        sproj10 = proj10.getText().toString();
-        sdomain10 = domain10.getText().toString();
-        steam10 = team10.getText().toString();
-        sduration10 = duration10.getText().toString();
-
-        if (projectscount == 0) {
-            if (sproj1.length() < 3) {
-                errorflag = 1;
-                proj1.setError("Invalid Project Name");
-            } else {
-                errorflag = 0;
-                if (sdomain1.length() < 3) {
-                    errorflag = 1;
-                    domain1.setError("Invalid Domain");
-                } else {
-                    errorflag = 0;
-                    if (steam1.length() < 1) {
-                        errorflag = 1;
-                        team1.setError("Invalid Teamsize");
-                    } else {
-                        errorflag = 0;
-                        if (sduration1.length() < 1) {
-                            errorflag = 1;
-                            duration1.setError("Invalid Duration");
-                        }
-                    }
-                }
-            }
-        }
-        if (projectscount == 1) {
+//    public Boolean validate() {
+//
+//        errorflag = 0;
+//
+//        projinput1.setError(null);
+//        domaininput1.setError(null);
+//        teaminput1.setError(null);
+//        durationinput1.setError(null);
+//        projinput2.setError(null);
+//        domaininput2.setError(null);
+//        teaminput2.setError(null);
+//        durationinput2.setError(null);
+//        projinput3.setError(null);
+//        domaininput3.setError(null);
+//        teaminput3.setError(null);
+//        durationinput3.setError(null);
+//        projinput4.setError(null);
+//        domaininput4.setError(null);
+//        teaminput4.setError(null);
+//        durationinput4.setError(null);
+//        projinput5.setError(null);
+//        domaininput5.setError(null);
+//        teaminput5.setError(null);
+//        durationinput5.setError(null);
+//        projinput6.setError(null);
+//        domaininput6.setError(null);
+//        teaminput6.setError(null);
+//        durationinput6.setError(null);
+//        projinput7.setError(null);
+//        domaininput7.setError(null);
+//        teaminput7.setError(null);
+//        durationinput7.setError(null);
+//        projinput8.setError(null);
+//        domaininput8.setError(null);
+//        teaminput8.setError(null);
+//        durationinput8.setError(null);
+//        projinput9.setError(null);
+//        domaininput9.setError(null);
+//        teaminput9.setError(null);
+//        durationinput9.setError(null);
+//        projinput10.setError(null);
+//        domaininput10.setError(null);
+//        teaminput10.setError(null);
+//        durationinput10.setError(null);
+//
+//        sproj1 = proj1.getText().toString();
+//        sdomain1 = domain1.getText().toString();
+//        steam1 = team1.getText().toString();
+//        sduration1 = duration1.getText().toString();
+//        sproj2 = proj2.getText().toString();
+//        sdomain2 = domain2.getText().toString();
+//        steam2 = team2.getText().toString();
+//        sduration2 = duration2.getText().toString();
+//        sproj3 = proj3.getText().toString();
+//        sdomain3 = domain3.getText().toString();
+//        steam3 = team3.getText().toString();
+//        sduration3 = duration3.getText().toString();
+//        sproj4 = proj4.getText().toString();
+//        sdomain4 = domain4.getText().toString();
+//        steam4 = team4.getText().toString();
+//        sduration4 = duration4.getText().toString();
+//        sproj5 = proj5.getText().toString();
+//        sdomain5 = domain5.getText().toString();
+//        steam5 = team5.getText().toString();
+//        sduration5 = duration5.getText().toString();
+//        sproj6 = proj6.getText().toString();
+//        sdomain6 = domain6.getText().toString();
+//        steam6 = team6.getText().toString();
+//        sduration6 = duration6.getText().toString();
+//        sproj7 = proj7.getText().toString();
+//        sdomain7 = domain7.getText().toString();
+//        steam7 = team7.getText().toString();
+//        sduration7 = duration7.getText().toString();
+//        sproj8 = proj8.getText().toString();
+//        sdomain8 = domain8.getText().toString();
+//        steam8 = team8.getText().toString();
+//        sduration8 = duration8.getText().toString();
+//        sproj9 = proj9.getText().toString();
+//        sdomain9 = domain9.getText().toString();
+//        steam9 = team9.getText().toString();
+//        sduration9 = duration9.getText().toString();
+//        sproj10 = proj10.getText().toString();
+//        sdomain10 = domain10.getText().toString();
+//        steam10 = team10.getText().toString();
+//        sduration10 = duration10.getText().toString();
+//
+//        if(editproj==1){
+//            save();
+//        }
+//        else {
+//        if (projectscount == 0) {
 //            if (sproj1.length() < 3) {
 //                errorflag = 1;
-//                proj1.setError("Invalid Project Name");
+//                proj1.setError("Kindly enter valid project name");
 //            } else {
 //                errorflag = 0;
 //                if (sdomain1.length() < 3) {
 //                    errorflag = 1;
-//                    domain1.setError("Invalid Domain");
+//                    domain1.setError("Kindly enter valid domain");
 //                } else {
 //                    errorflag = 0;
 //                    if (steam1.length() < 1) {
 //                        errorflag = 1;
-//                        team1.setError("Invalid Teamsize");
+//                        team1.setError("Kindly enter valid team size");
 //                    } else {
 //                        errorflag = 0;
 //                        if (sduration1.length() < 1) {
 //                            errorflag = 1;
-//                            duration1.setError("Invalid Duration");
-//                        } else {
-//                            errorflag = 0;
-            if (sproj2.length() < 3) {
-                errorflag = 1;
-                proj2.setError("Invalid Project Name");
-            } else {
-                errorflag = 0;
-                if (sdomain2.length() < 3) {
-                    errorflag = 1;
-                    domain2.setError("Invalid Domain");
-                } else {
-                    errorflag = 0;
-                    if (steam2.length() < 1) {
-                        errorflag = 1;
-                        team2.setError("Invalid Teamsize");
-                    } else {
-                        errorflag = 0;
-                        if (sduration2.length() < 1) {
-                            errorflag = 1;
-                            duration2.setError("Invalid Duration");
-                        }
-
-                    }
-
-
-                }
-
-            }
-
-
-        }
-
-        if (projectscount == 2) {
-            if (sproj3.length() < 3) {
-                errorflag = 1;
-                proj3.setError("Invalid Project Name");
-            } else {
-                errorflag = 0;
-                if (sdomain3.length() < 3) {
-                    errorflag = 1;
-                    domain3.setError("Invalid Domain");
-                } else {
-                    errorflag = 0;
-                    if (steam3.length() < 1) {
-                        errorflag = 1;
-                        team3.setError("Invalid Teamsize");
-                    } else {
-                        errorflag = 0;
-                        if (sduration3.length() < 1) {
-                            errorflag = 1;
-                            duration3.setError("Invalid Duration");
-                        }
-
-                    }
-                }
-            }
-        }
-        if (projectscount == 3) {
-            if (sproj4.length() < 3) {
-                errorflag = 1;
-                proj4.setError("Invalid Project Name");
-            } else {
-                errorflag = 0;
-                if (sdomain4.length() < 3) {
-                    errorflag = 1;
-                    domain4.setError("Invalid Domain");
-                } else {
-                    errorflag = 0;
-                    if (steam4.length() < 1) {
-                        errorflag = 1;
-                        team4.setError("Invalid Teamsize");
-                    } else {
-                        errorflag = 0;
-                        if (sduration4.length() < 1) {
-                            errorflag = 1;
-                            duration4.setError("Invalid Duration");
-                        }
-
-                    }
-                }
-            }
-        }
-        if (projectscount == 4) {
-            if (sproj5.length() < 3) {
-                errorflag = 1;
-                proj5.setError("Invalid Project Name");
-            } else {
-                errorflag = 0;
-                if (sdomain5.length() < 3) {
-                    errorflag = 1;
-                    domain5.setError("Invalid Domain");
-                } else {
-                    errorflag = 0;
-                    if (steam5.length() < 1) {
-                        errorflag = 1;
-                        team5.setError("Invalid Teamsize");
-                    } else {
-                        errorflag = 0;
-                        if (sduration5.length() < 1) {
-                            errorflag = 1;
-                            duration5.setError("Invalid Duration");
-                        }
-
-                    }
-                }
-            }
-        }
-        if (projectscount == 5) {
-            if (sproj6.length() < 3) {
-                errorflag = 1;
-                proj6.setError("Invalid Project Name");
-            } else {
-                errorflag = 0;
-                if (sdomain6.length() < 3) {
-                    errorflag = 1;
-                    domain6.setError("Invalid Domain");
-                } else {
-                    errorflag = 0;
-                    if (steam6.length() < 1) {
-                        errorflag = 1;
-                        team6.setError("Invalid Teamsize");
-                    } else {
-                        errorflag = 0;
-                        if (sduration6.length() < 1) {
-                            errorflag = 1;
-                            duration6.setError("Invalid Duration");
-                        }
-
-                    }
-                }
-            }
-        }
-        if (projectscount == 6) {
-            if (sproj7.length() < 3) {
-                errorflag = 1;
-                proj7.setError("Invalid Project Name");
-            } else {
-                errorflag = 0;
-                if (sdomain7.length() < 3) {
-                    errorflag = 1;
-                    domain7.setError("Invalid Domain");
-                } else {
-                    errorflag = 0;
-                    if (steam7.length() < 1) {
-                        errorflag = 1;
-                        team7.setError("Invalid Teamsize");
-                    } else {
-                        errorflag = 0;
-                        if (sduration7.length() < 1) {
-                            errorflag = 1;
-                            duration7.setError("Invalid Duration");
-                        }
-
-                    }
-                }
-            }
-        }
-        if (projectscount == 7) {
-            if (sproj8.length() < 3) {
-                errorflag = 1;
-                proj8.setError("Invalid Project Name");
-            } else {
-                errorflag = 0;
-                if (sdomain8.length() < 3) {
-                    errorflag = 1;
-                    domain8.setError("Invalid Domain");
-                } else {
-                    errorflag = 0;
-                    if (steam8.length() < 1) {
-                        errorflag = 1;
-                        team8.setError("Invalid Teamsize");
-                    } else {
-                        errorflag = 0;
-                        if (sduration8.length() < 1) {
-                            errorflag = 1;
-                            duration8.setError("Invalid Duration");
-                        }
-
-                    }
-                }
-            }
-        }
-        if (projectscount == 8) {
-            if (sproj9.length() < 3) {
-                errorflag = 1;
-                proj9.setError("Invalid Project Name");
-            } else {
-                errorflag = 0;
-                if (sdomain9.length() < 3) {
-                    errorflag = 1;
-                    domain9.setError("Invalid Domain");
-                } else {
-                    errorflag = 0;
-                    if (steam9.length() < 1) {
-                        errorflag = 1;
-                        team9.setError("Invalid Teamsize");
-                    } else {
-                        errorflag = 0;
-                        if (sduration9.length() < 1) {
-                            errorflag = 1;
-                            duration9.setError("Invalid Duration");
-                        }
-
-                    }
-                }
-            }
-        }
-        if (projectscount == 9) {
-            if (sproj10.length() < 3) {
-                errorflag = 1;
-                proj10.setError("Invalid Project Name");
-            } else {
-                errorflag = 0;
-                if (sdomain10.length() < 3) {
-                    errorflag = 1;
-                    domain10.setError("Invalid Domain");
-                } else {
-                    errorflag = 0;
-                    if (steam10.length() < 1) {
-                        errorflag = 1;
-                        team10.setError("Invalid Teamsize");
-                    } else {
-                        errorflag = 0;
-                        if (sduration10.length() < 1) {
-                            errorflag = 1;
-                            duration10.setError("Invalid Duration");
-                        }
-
-                    }
-                }
-            }
-        }
-        if (errorflag == 0)
-            return true;
-        else
-            return false;
-    }
+//                            duration1.setError("Kindly enter valid duration in months");
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        if (projectscount == 1) {
+////            if (sproj1.length() < 3) {
+////                errorflag = 1;
+////                proj1.setError("Kindly enter valid project name");
+////            } else {
+////                errorflag = 0;
+////                if (sdomain1.length() < 3) {
+////                    errorflag = 1;
+////                    domain1.setError("Kindly enter valid domain");
+////                } else {
+////                    errorflag = 0;
+////                    if (steam1.length() < 1) {
+////                        errorflag = 1;
+////                        team1.setError("Kindly enter valid team size");
+////                    } else {
+////                        errorflag = 0;
+////                        if (sduration1.length() < 1) {
+////                            errorflag = 1;
+////                            duration1.setError("Kindly enter valid duration in months");
+////                        } else {
+////                            errorflag = 0;
+//            if (sproj2.length() < 3) {
+//                errorflag = 1;
+//                proj2.setError("Kindly enter valid project name");
+//            } else {
+//                errorflag = 0;
+//                if (sdomain2.length() < 3) {
+//                    errorflag = 1;
+//                    domain2.setError("Kindly enter valid domain");
+//                } else {
+//                    errorflag = 0;
+//                    if (steam2.length() < 1) {
+//                        errorflag = 1;
+//                        team2.setError("Kindly enter valid team size");
+//                    } else {
+//                        errorflag = 0;
+//                        if (sduration2.length() < 1) {
+//                            errorflag = 1;
+//                            duration2.setError("Kindly enter valid duration in months");
+//                        }
+//
+//                    }
+//
+//
+//                }
+//
+//            }
+//
+//
+//        }
+//
+//        if (projectscount == 2) {
+//            if (sproj3.length() < 3) {
+//                errorflag = 1;
+//                proj3.setError("Kindly enter valid project name");
+//            } else {
+//                errorflag = 0;
+//                if (sdomain3.length() < 3) {
+//                    errorflag = 1;
+//                    domain3.setError("Kindly enter valid domain");
+//                } else {
+//                    errorflag = 0;
+//                    if (steam3.length() < 1) {
+//                        errorflag = 1;
+//                        team3.setError("Kindly enter valid team size");
+//                    } else {
+//                        errorflag = 0;
+//                        if (sduration3.length() < 1) {
+//                            errorflag = 1;
+//                            duration3.setError("Kindly enter valid duration in months");
+//                        }
+//
+//                    }
+//                }
+//            }
+//        }
+//        if (projectscount == 3) {
+//            if (sproj4.length() < 3) {
+//                errorflag = 1;
+//                proj4.setError("Kindly enter valid project name");
+//            } else {
+//                errorflag = 0;
+//                if (sdomain4.length() < 3) {
+//                    errorflag = 1;
+//                    domain4.setError("Kindly enter valid domain");
+//                } else {
+//                    errorflag = 0;
+//                    if (steam4.length() < 1) {
+//                        errorflag = 1;
+//                        team4.setError("Kindly enter valid team size");
+//                    } else {
+//                        errorflag = 0;
+//                        if (sduration4.length() < 1) {
+//                            errorflag = 1;
+//                            duration4.setError("Kindly enter valid duration in months");
+//                        }
+//
+//                    }
+//                }
+//            }
+//        }
+//        if (projectscount == 4) {
+//            if (sproj5.length() < 3) {
+//                errorflag = 1;
+//                proj5.setError("Kindly enter valid project name");
+//            } else {
+//                errorflag = 0;
+//                if (sdomain5.length() < 3) {
+//                    errorflag = 1;
+//                    domain5.setError("Kindly enter valid domain");
+//                } else {
+//                    errorflag = 0;
+//                    if (steam5.length() < 1) {
+//                        errorflag = 1;
+//                        team5.setError("Kindly enter valid team size");
+//                    } else {
+//                        errorflag = 0;
+//                        if (sduration5.length() < 1) {
+//                            errorflag = 1;
+//                            duration5.setError("Kindly enter valid duration in months");
+//                        }
+//
+//                    }
+//                }
+//            }
+//        }
+//        if (projectscount == 5) {
+//            if (sproj6.length() < 3) {
+//                errorflag = 1;
+//                proj6.setError("Kindly enter valid project name");
+//            } else {
+//                errorflag = 0;
+//                if (sdomain6.length() < 3) {
+//                    errorflag = 1;
+//                    domain6.setError("Kindly enter valid domain");
+//                } else {
+//                    errorflag = 0;
+//                    if (steam6.length() < 1) {
+//                        errorflag = 1;
+//                        team6.setError("Kindly enter valid team size");
+//                    } else {
+//                        errorflag = 0;
+//                        if (sduration6.length() < 1) {
+//                            errorflag = 1;
+//                            duration6.setError("Kindly enter valid duration in months");
+//                        }
+//
+//                    }
+//                }
+//            }
+//        }
+//        if (projectscount == 6) {
+//            if (sproj7.length() < 3) {
+//                errorflag = 1;
+//                proj7.setError("Kindly enter valid project name");
+//            } else {
+//                errorflag = 0;
+//                if (sdomain7.length() < 3) {
+//                    errorflag = 1;
+//                    domain7.setError("Kindly enter valid domain");
+//                } else {
+//                    errorflag = 0;
+//                    if (steam7.length() < 1) {
+//                        errorflag = 1;
+//                        team7.setError("Kindly enter valid team size");
+//                    } else {
+//                        errorflag = 0;
+//                        if (sduration7.length() < 1) {
+//                            errorflag = 1;
+//                            duration7.setError("Kindly enter valid duration in months");
+//                        }
+//
+//                    }
+//                }
+//            }
+//        }
+//        if (projectscount == 7) {
+//            if (sproj8.length() < 3) {
+//                errorflag = 1;
+//                proj8.setError("Kindly enter valid project name");
+//            } else {
+//                errorflag = 0;
+//                if (sdomain8.length() < 3) {
+//                    errorflag = 1;
+//                    domain8.setError("Kindly enter valid domain");
+//                } else {
+//                    errorflag = 0;
+//                    if (steam8.length() < 1) {
+//                        errorflag = 1;
+//                        team8.setError("Kindly enter valid team size");
+//                    } else {
+//                        errorflag = 0;
+//                        if (sduration8.length() < 1) {
+//                            errorflag = 1;
+//                            duration8.setError("Kindly enter valid duration in months");
+//                        }
+//
+//                    }
+//                }
+//            }
+//        }
+//        if (projectscount == 8) {
+//            if (sproj9.length() < 3) {
+//                errorflag = 1;
+//                proj9.setError("Kindly enter valid project name");
+//            } else {
+//                errorflag = 0;
+//                if (sdomain9.length() < 3) {
+//                    errorflag = 1;
+//                    domain9.setError("Kindly enter valid domain");
+//                } else {
+//                    errorflag = 0;
+//                    if (steam9.length() < 1) {
+//                        errorflag = 1;
+//                        team9.setError("Kindly enter valid team size");
+//                    } else {
+//                        errorflag = 0;
+//                        if (sduration9.length() < 1) {
+//                            errorflag = 1;
+//                            duration9.setError("Kindly enter valid duration in months");
+//                        }
+//
+//                    }
+//                }
+//            }
+//        }
+//        if (projectscount == 9) {
+//            if (sproj10.length() < 3) {
+//                errorflag = 1;
+//                proj10.setError("Kindly enter valid project name");
+//            } else {
+//                errorflag = 0;
+//                if (sdomain10.length() < 3) {
+//                    errorflag = 1;
+//                    domain10.setError("Kindly enter valid domain");
+//                } else {
+//                    errorflag = 0;
+//                    if (steam10.length() < 1) {
+//                        errorflag = 1;
+//                        team10.setError("Kindly enter valid team size");
+//                    } else {
+//                        errorflag = 0;
+//                        if (sduration10.length() < 1) {
+//                            errorflag = 1;
+//                            duration10.setError("Kindly enter valid duration in months");
+//                        }
+//
+//                    }
+//                }
+//            }
+//        }
+//        }
+//        if (errorflag == 0)
+//            return true;
+//        else
+//            return false;
+//    }
 
     public void save() {
 
         try {
-            byte[] proj1Bytes = sproj1.getBytes("UTF-8");
-            byte[] domain1Bytes = sdomain1.getBytes("UTF-8");
-            byte[] team1Bytes = steam1.getBytes("UTF-8");
-            byte[] duration1Bytes = sduration1.getBytes("UTF-8");
+            Projects obj1 = new Projects(sproj1, sdomain1, steam1, sduration1);
+            Projects obj2 = new Projects(sproj2, sdomain2, steam2, sduration2);
+            Projects obj3 = new Projects(sproj3, sdomain3, steam3, sduration3);
+            Projects obj4 = new Projects(sproj4, sdomain4, steam4, sduration4);
+            Projects obj5 = new Projects(sproj5, sdomain5, steam5, sduration5);
+            Projects obj6 = new Projects(sproj6, sdomain6, steam6, sduration6);
+            Projects obj7 = new Projects(sproj7, sdomain7, steam7, sduration7);
+            Projects obj8 = new Projects(sproj8, sdomain8, steam8, sduration8);
+            Projects obj9 = new Projects(sproj9, sdomain9, steam9, sduration9);
+            Projects obj10 = new Projects(sproj10, sdomain10, steam10, sduration10);
 
-            byte[] proj1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj1Bytes);
-            encproj1 = new String(SimpleBase64Encoder.encode(proj1EncryptedBytes));
-            byte[] domain1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain1Bytes);
-            encdomain1 = new String(SimpleBase64Encoder.encode(domain1EncryptedBytes));
-            byte[] team1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team1Bytes);
-            encteam1 = new String(SimpleBase64Encoder.encode(team1EncryptedBytes));
-            byte[] duration1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration1Bytes);
-            encduration1 = new String(SimpleBase64Encoder.encode(duration1EncryptedBytes));
+            Log.d("TAG", "objects created");
 
-            byte[] proj2Bytes = sproj2.getBytes("UTF-8");
-            byte[] domain2Bytes = sdomain2.getBytes("UTF-8");
-            byte[] team2Bytes = steam2.getBytes("UTF-8");
-            byte[] duration2Bytes = sduration2.getBytes("UTF-8");
+            projectsList.add(obj1);
+            projectsList.add(obj2);
+            projectsList.add(obj3);
+            projectsList.add(obj4);
+            projectsList.add(obj5);
+            projectsList.add(obj6);
+            projectsList.add(obj7);
+            projectsList.add(obj8);
+            projectsList.add(obj9);
+            projectsList.add(obj10);
 
-            byte[] proj2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj2Bytes);
-            encproj2 = new String(SimpleBase64Encoder.encode(proj2EncryptedBytes));
-            byte[] domain2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain2Bytes);
-            encdomain2 = new String(SimpleBase64Encoder.encode(domain2EncryptedBytes));
-            byte[] team2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team2Bytes);
-            encteam2 = new String(SimpleBase64Encoder.encode(team2EncryptedBytes));
-            byte[] duration2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration2Bytes);
-            encduration2 = new String(SimpleBase64Encoder.encode(duration2EncryptedBytes));
+            Log.d("TAG", "objects added in arraylist");
 
-            byte[] proj3Bytes = sproj3.getBytes("UTF-8");
-            byte[] domain3Bytes = sdomain3.getBytes("UTF-8");
-            byte[] team3Bytes = steam3.getBytes("UTF-8");
-            byte[] duration3Bytes = sduration3.getBytes("UTF-8");
+            String encObjString = OtoString(projectsList, MySharedPreferencesManager.getDigest1(getActivity()), MySharedPreferencesManager.getDigest2(getActivity()));
 
-            byte[] proj3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj3Bytes);
-            encproj3 = new String(SimpleBase64Encoder.encode(proj3EncryptedBytes));
-            byte[] domain3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain3Bytes);
-            encdomain3 = new String(SimpleBase64Encoder.encode(domain3EncryptedBytes));
-            byte[] team3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team3Bytes);
-            encteam3 = new String(SimpleBase64Encoder.encode(team3EncryptedBytes));
-            byte[] duration3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration3Bytes);
-            encduration3 = new String(SimpleBase64Encoder.encode(duration3EncryptedBytes));
-
-            byte[] proj4Bytes = sproj4.getBytes("UTF-8");
-            byte[] domain4Bytes = sdomain4.getBytes("UTF-8");
-            byte[] team4Bytes = steam4.getBytes("UTF-8");
-            byte[] duration4Bytes = sduration4.getBytes("UTF-8");
-
-            byte[] proj4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj4Bytes);
-            encproj4 = new String(SimpleBase64Encoder.encode(proj4EncryptedBytes));
-            byte[] domain4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain4Bytes);
-            encdomain4 = new String(SimpleBase64Encoder.encode(domain4EncryptedBytes));
-            byte[] team4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team4Bytes);
-            encteam4 = new String(SimpleBase64Encoder.encode(team4EncryptedBytes));
-            byte[] duration4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration4Bytes);
-            encduration4 = new String(SimpleBase64Encoder.encode(duration4EncryptedBytes));
-
-            byte[] proj5Bytes = sproj5.getBytes("UTF-8");
-            byte[] domain5Bytes = sdomain5.getBytes("UTF-8");
-            byte[] team5Bytes = steam5.getBytes("UTF-8");
-            byte[] duration5Bytes = sduration5.getBytes("UTF-8");
-
-            byte[] proj5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj5Bytes);
-            encproj5 = new String(SimpleBase64Encoder.encode(proj5EncryptedBytes));
-            byte[] domain5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain5Bytes);
-            encdomain5 = new String(SimpleBase64Encoder.encode(domain5EncryptedBytes));
-            byte[] team5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team5Bytes);
-            encteam5 = new String(SimpleBase64Encoder.encode(team5EncryptedBytes));
-            byte[] duration5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration5Bytes);
-            encduration5 = new String(SimpleBase64Encoder.encode(duration5EncryptedBytes));
-
-            byte[] proj6Bytes = sproj6.getBytes("UTF-8");
-            byte[] domain6Bytes = sdomain6.getBytes("UTF-8");
-            byte[] team6Bytes = steam6.getBytes("UTF-8");
-            byte[] duration6Bytes = sduration6.getBytes("UTF-8");
-
-            byte[] proj6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj6Bytes);
-            encproj6 = new String(SimpleBase64Encoder.encode(proj6EncryptedBytes));
-            byte[] domain6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain6Bytes);
-            encdomain6 = new String(SimpleBase64Encoder.encode(domain6EncryptedBytes));
-            byte[] team6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team6Bytes);
-            encteam6 = new String(SimpleBase64Encoder.encode(team6EncryptedBytes));
-            byte[] duration6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration6Bytes);
-            encduration6 = new String(SimpleBase64Encoder.encode(duration6EncryptedBytes));
-
-            byte[] proj7Bytes = sproj7.getBytes("UTF-8");
-            byte[] domain7Bytes = sdomain7.getBytes("UTF-8");
-            byte[] team7Bytes = steam7.getBytes("UTF-8");
-            byte[] duration7Bytes = sduration7.getBytes("UTF-8");
-
-            byte[] proj7EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj7Bytes);
-            encproj7 = new String(SimpleBase64Encoder.encode(proj7EncryptedBytes));
-            byte[] domain7EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain7Bytes);
-            encdomain7 = new String(SimpleBase64Encoder.encode(domain7EncryptedBytes));
-            byte[] team7EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team7Bytes);
-            encteam7 = new String(SimpleBase64Encoder.encode(team7EncryptedBytes));
-            byte[] duration7EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration7Bytes);
-            encduration7 = new String(SimpleBase64Encoder.encode(duration7EncryptedBytes));
-
-            byte[] proj8Bytes = sproj8.getBytes("UTF-8");
-            byte[] domain8Bytes = sdomain8.getBytes("UTF-8");
-            byte[] team8Bytes = steam8.getBytes("UTF-8");
-            byte[] duration8Bytes = sduration8.getBytes("UTF-8");
-
-            byte[] proj8EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj8Bytes);
-            encproj8 = new String(SimpleBase64Encoder.encode(proj8EncryptedBytes));
-            byte[] domain8EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain8Bytes);
-            encdomain8 = new String(SimpleBase64Encoder.encode(domain8EncryptedBytes));
-            byte[] team8EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team8Bytes);
-            encteam8 = new String(SimpleBase64Encoder.encode(team8EncryptedBytes));
-            byte[] duration8EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration8Bytes);
-            encduration8 = new String(SimpleBase64Encoder.encode(duration8EncryptedBytes));
-
-            byte[] proj9Bytes = sproj9.getBytes("UTF-8");
-            byte[] domain9Bytes = sdomain9.getBytes("UTF-8");
-            byte[] team9Bytes = steam9.getBytes("UTF-8");
-            byte[] duration9Bytes = sduration9.getBytes("UTF-8");
-
-            byte[] proj9EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj9Bytes);
-            encproj9 = new String(SimpleBase64Encoder.encode(proj9EncryptedBytes));
-            byte[] domain9EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain9Bytes);
-            encdomain9 = new String(SimpleBase64Encoder.encode(domain9EncryptedBytes));
-            byte[] team9EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team9Bytes);
-            encteam9 = new String(SimpleBase64Encoder.encode(team9EncryptedBytes));
-            byte[] duration9EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration9Bytes);
-            encduration9 = new String(SimpleBase64Encoder.encode(duration9EncryptedBytes));
-
-            byte[] proj10Bytes = sproj10.getBytes("UTF-8");
-            byte[] domain10Bytes = sdomain10.getBytes("UTF-8");
-            byte[] team10Bytes = steam10.getBytes("UTF-8");
-            byte[] duration10Bytes = sduration10.getBytes("UTF-8");
-
-            byte[] proj10EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, proj10Bytes);
-            encproj10 = new String(SimpleBase64Encoder.encode(proj10EncryptedBytes));
-            byte[] domain10EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, domain10Bytes);
-            encdomain10 = new String(SimpleBase64Encoder.encode(domain10EncryptedBytes));
-            byte[] team10EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, team10Bytes);
-            encteam10 = new String(SimpleBase64Encoder.encode(team10EncryptedBytes));
-            byte[] duration10EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, duration10Bytes);
-            encduration10 = new String(SimpleBase64Encoder.encode(duration10EncryptedBytes));
-
-
-            new SaveProjects().execute();
+            new SaveProjects().execute(encObjString);
 
         } catch (Exception e) {
             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
-    class SaveProjects extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("p1", encproj1));      //1
-            params.add(new BasicNameValuePair("do1", encdomain1));   //2
-            params.add(new BasicNameValuePair("t1", encteam1));      //3
-            params.add(new BasicNameValuePair("du1", encduration1)); //4
-            params.add(new BasicNameValuePair("p2", encproj2));      //5
-            params.add(new BasicNameValuePair("do2", encdomain2));   //6
-            params.add(new BasicNameValuePair("t2", encteam2));      //7
-            params.add(new BasicNameValuePair("du2", encduration2)); //8
-            params.add(new BasicNameValuePair("p3", encproj3));      //9
-            params.add(new BasicNameValuePair("do3", encdomain3));   //10
-            params.add(new BasicNameValuePair("t3", encteam3));      //11
-            params.add(new BasicNameValuePair("du3", encduration3)); //12
-            params.add(new BasicNameValuePair("p4", encproj4));      //13
-            params.add(new BasicNameValuePair("do4", encdomain4));   //14
-            params.add(new BasicNameValuePair("t4", encteam4));      //15
-            params.add(new BasicNameValuePair("du4", encduration4)); //16
-            params.add(new BasicNameValuePair("p5", encproj5));      //17
-            params.add(new BasicNameValuePair("do5", encdomain5));   //18
-            params.add(new BasicNameValuePair("t5", encteam5));      //19
-            params.add(new BasicNameValuePair("du5", encduration5)); //20
-            params.add(new BasicNameValuePair("p6", encproj6));      //21
-            params.add(new BasicNameValuePair("do6", encdomain6));   //22
-            params.add(new BasicNameValuePair("t6", encteam6));      //23
-            params.add(new BasicNameValuePair("du6", encduration6)); //24
-            params.add(new BasicNameValuePair("p7", encproj7));      //25
-            params.add(new BasicNameValuePair("do7", encdomain7));   //26
-            params.add(new BasicNameValuePair("t7", encteam7));      //27
-            params.add(new BasicNameValuePair("du7", encduration7)); //28
-            params.add(new BasicNameValuePair("p8", encproj8));      //29
-            params.add(new BasicNameValuePair("do8", encdomain8));   //30
-            params.add(new BasicNameValuePair("t8", encteam8));      //31
-            params.add(new BasicNameValuePair("du8", encduration8)); //32
-            params.add(new BasicNameValuePair("p9", encproj9));      //33
-            params.add(new BasicNameValuePair("do9", encdomain9));   //34
-            params.add(new BasicNameValuePair("t9", encteam9));      //35
-            params.add(new BasicNameValuePair("du9", encduration9)); //36
-            params.add(new BasicNameValuePair("p10", encproj10));    //37
-            params.add(new BasicNameValuePair("do10", encdomain10)); //38
-            params.add(new BasicNameValuePair("t10", encteam10));    //39
-            params.add(new BasicNameValuePair("du10", encduration10));//40
-
-//            json = jParser.makeHttpRequest(MyConstants.url_saveprojects, "GET", params);
-//            try {
-//                r = json.getString("info");
-//
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-            ProfileRole r1 = new ProfileRole();
-            String Myrole = r1.getRole();
-            if (Myrole.equals("student")) {
-                json = jParser.makeHttpRequest(MyConstants.url_saveprojects, "GET", params);
-            }
-            if (Myrole.equals("alumni")) {
-                json = jParser.makeHttpRequest(MyConstants.URL_SAVE_ALUMNI_PROJECTS, "GET", params);
-            }
-
-            try {
-                resultofop = json.getString("info");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return resultofop;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            if (result.equals("success")) {
-                Toast.makeText(getActivity(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
-
-                ProfileRole r = new ProfileRole();
-                String role = r.getRole();
-                if (role.equals("student"))
-                    getActivity().setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
-                else if (role.equals("alumni"))
-                    getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
-
-                edittedFlag = 0;
-
-            }
-//            projectsprogress.setVisibility(View.GONE);
-//            save.setVisibility(View.VISIBLE);
-        }
-
-    }
-
     void showDeletDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-
         alertDialogBuilder
                 .setMessage("Do you want to delete this project ?")
                 .setCancelable(false)
@@ -2307,8 +2882,11 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialogInterface) {
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(getActivity()));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(getActivity()));
             }
         });
 
@@ -3331,24 +3909,23 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
             team9.setText(steam9);
             duration9.setText(sduration9);
 
+            sproj1 = proj1.getText().toString();
+
+            if(sproj1.equals("")){
+                Log.d("TAG", "deleteLang: strength1 1");
+                editproj =1;
+            }
+
+            if(editproj==1){
+                Log.d("TAG", "deleteLang: strength1 - "+editproj);
+                save();
+            }
+
         }
 
     }
 
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-        edittedFlag = 1;
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-
-    }
 
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
         Animation animation = super.onCreateAnimation(transit, enter, nextAnim);
@@ -3382,5 +3959,44 @@ public class ProjectsProfileTabFragment extends Fragment implements TextWatcher 
         }
 
         return animation;
+    }
+
+    class SaveProjects extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+
+            Log.d("TAG", "encrypted objec string2: " + param[0]);
+            params.add(new BasicNameValuePair("d", param[0]));       //0
+
+            json = jParser.makeHttpRequest(MyConstants.url_saveprojects, "GET", params);
+            try {
+                r = json.getString("info");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (result.equals("success")) {
+//                Toast.makeText(getActivity(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
+
+                if (role.equals("student"))
+                    getActivity().setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+                else if (role.equals("alumni"))
+                    getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+                edittedFlag = 0;
+            }
+        }
+
     }
 }

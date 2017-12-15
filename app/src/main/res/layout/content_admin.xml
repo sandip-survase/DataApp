@@ -159,10 +159,11 @@
             >
 
             <TextView
+                android:id="@+id/bluePanelTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="100 Users under your supervision. Click to view the list."
                 android:layout_marginLeft="10dp"
+                android:text=" Users under your supervision. Click to view the list."
                 android:layout_marginRight="70dp"
                 android:layout_centerVertical="true"
                 android:gravity="center"

@@ -1,47 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:showIn="@layout/activity_welcome">
-
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="gone"
-    android:id="@+id/crop_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:focusableInTouchMode="true"
+    android:background="#fcfdfd"
     >
 
-    <ImageView
-        android:id="@+id/result_image"
+    <placeme.octopusites.com.placeme.CustomViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerInside"
-        android:background="#000" />
-
-</FrameLayout>
-
-<android.support.v4.view.ViewPager
-    android:id="@+id/view_pager"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+        android:layout_marginBottom="45dp"
+        />
 
 <LinearLayout
     android:id="@+id/layoutDots"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dots_height"
+    android:layout_height="30dp"
     android:layout_alignParentBottom="true"
-    android:layout_marginBottom="@dimen/dots_margin_bottom"
+    android:layout_marginBottom="20dp"
     android:gravity="center"
     android:orientation="horizontal"></LinearLayout>
 
-<View
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:alpha=".5"
-    android:layout_above="@id/layoutDots"
-    android:background="@android:color/white" />
 
 <ProgressBar
     android:layout_width="30dp"
@@ -53,23 +35,25 @@ tools:showIn="@layout/activity_welcome">
     android:visibility="gone"
     android:id="@+id/nextProgress"
     />
-<Button
-    android:id="@+id/btn_next"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_alignParentRight="true"
-    android:background="@null"
-    android:text="NEXT"
-    />
+    <com.andexert.library.RippleView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        app:rv_rippleDuration="80"
+        app:rv_color="#00bcd4"
+        app:rv_centered="true"
+        >
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#03353e"
+            android:text="NEXT"
+            android:background="@color/transparent"
+            />
+    </com.andexert.library.RippleView>
 
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/mainfragment"
-    android:layout_above="@+id/bottompanel">
-
-</FrameLayout>
 
 </RelativeLayout>
 

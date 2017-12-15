@@ -1,26 +1,24 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -43,7 +41,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
@@ -51,10 +48,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
-import static placeme.octopusites.com.placeme.Digest.digest2;
-import static placeme.octopusites.com.placeme.JSONParser.json;
-import static placeme.octopusites.com.placeme.MyConstants.url_savedata;
 
 public class AddUsersActivity extends AppCompatActivity {
 
@@ -62,16 +57,17 @@ public class AddUsersActivity extends AppCompatActivity {
 
     RadioGroup radioGroupUsers;
     RadioButton radioButtonsinle, radioButtonmulti;
-    EditText email;
+    TextInputEditText email;
+    TextInputLayout adduserinput;
     RelativeLayout multiusersrl;
     String param="single";
 
     JSONObject json;
     JSONParser jParser = new JSONParser();
 
-//filework
+    //filework
     String username="",userEmail,plainUsername="";
-    private String digest1;
+    private String digest1,digest2;
 
     String encadminUsername;
 
@@ -110,19 +106,40 @@ public class AddUsersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_users);
 
-        email = (EditText) findViewById(R.id.email);
+        email = (TextInputEditText) findViewById(R.id.email);
+        adduserinput=(TextInputLayout)findViewById(R.id.adduserinput);
         multiusersrl = (RelativeLayout) findViewById(R.id.multiusersrl);
         radioGroupUsers = (RadioGroup) findViewById(R.id.radioGroupUsers);
-        radioButtonsinle = (RadioButton) findViewById(R.id.radioButtonmulti);
+        radioButtonsinle = (RadioButton) findViewById(R.id.radioButtonsinle);
         radioButtonmulti = (RadioButton) findViewById(R.id.radioButtonmulti);
         fab= (FloatingActionButton) findViewById(R.id.fab);
 
+
+        adduserinput.setTypeface(MyConstants.getLight(this));
+        email.setTypeface(MyConstants.getBold(this));
+
         encadminUsername=MySharedPreferencesManager.getUsername(AddUsersActivity.this);
 
-        Digest d = new Digest();
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
 
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
+        email.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adduserinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         radioGroupUsers.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -131,11 +148,14 @@ public class AddUsersActivity extends AppCompatActivity {
                     case R.id.radioButtonsinle:
                         multiusersrl.setVisibility(View.GONE);
                         email.setVisibility(View.VISIBLE);
+                        adduserinput.setVisibility(View.VISIBLE);
                         param="single";
                         break;
                     case R.id.radioButtonmulti:
+                        radioButtonsinle.setTextColor(getResources().getColor(R.color.dark_color));
                         multiusersrl.setVisibility(View.VISIBLE);
                         email.setVisibility(View.GONE);
+                        adduserinput.setVisibility(View.GONE);
                         param="multi";
                         break;
                 }
@@ -149,9 +169,6 @@ public class AddUsersActivity extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-        Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/cabinsemibold.ttf");
-        Typeface custom_font4 = Typeface.createFromAsset(getAssets(), "fonts/maven.ttf");
-
         TextView createpasstxt = (TextView) findViewById(R.id.createpasstxt);
         TextView passsenstxt = (TextView) findViewById(R.id.passsenstxt);
         TextView passsens1txt = (TextView) findViewById(R.id.passsens1txt);
@@ -161,17 +178,17 @@ public class AddUsersActivity extends AppCompatActivity {
         attchrl1=(RelativeLayout)findViewById(R.id.file1);
         t1=(TextView)findViewById(R.id.filename) ;
 
+        createpasstxt.setTypeface(MyConstants.getBold(this));
+        passsenstxt.setTypeface(MyConstants.getLight(this));
+        passsens1txt.setTypeface(MyConstants.getLight(this));
+        radioButtonsinle.setTypeface(MyConstants.getBold(this));
+        radioButtonmulti.setTypeface(MyConstants.getBold(this));
+        note.setTypeface(MyConstants.getLight(this));
+        note1.setTypeface(MyConstants.getBold(this));
+        note2.setTypeface(MyConstants.getBold(this));
 
 
         prg1 = (ProgressBar) findViewById(R.id.PROGRESS_BAR);
-
-
-        createpasstxt.setTypeface(custom_font3);
-        passsenstxt.setTypeface(custom_font4);
-        passsens1txt.setTypeface(custom_font4);
-        note.setTypeface(custom_font4);
-        note1.setTypeface(custom_font4);
-        note2.setTypeface(custom_font4);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,19 +217,6 @@ public class AddUsersActivity extends AppCompatActivity {
 
         });
 
-
-        Log.d("share", "role "+MySharedPreferencesManager.getRole(AddUsersActivity.this));
-        Log.d("share", "digest1 "+MySharedPreferencesManager.getDigest1(AddUsersActivity.this));
-        Log.d("share", "digest2 "+MySharedPreferencesManager.getDigest2(AddUsersActivity.this));
-        Log.d("share", "digest3 "+MySharedPreferencesManager.getDigest3(AddUsersActivity.this));
-        Log.d("share", "username "+MySharedPreferencesManager.getUsername(AddUsersActivity.this));
-        Log.d("share", "plainUsername "+MySharedPreferencesManager.getPlainUsername(AddUsersActivity.this));
-        Log.d("share", "password "+MySharedPreferencesManager.getPassword(AddUsersActivity.this));
-
-
-
-
-
     }
     void cancelDialog1()
     {
@@ -229,7 +233,7 @@ public class AddUsersActivity extends AppCompatActivity {
                                 try {
 
                                     t1.setText("");
-                                   attchrl1.setVisibility(View.GONE);
+                                    attchrl1.setVisibility(View.GONE);
                                     new deleteFile().execute();
                                     filename="";
 
@@ -279,8 +283,7 @@ public class AddUsersActivity extends AppCompatActivity {
     class deleteFile extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
 
-            ProfileRole r=new ProfileRole();
-            String encUsername=r.getUsername();
+            String encUsername=MySharedPreferencesManager.getUsername(AddUsersActivity.this);
             Log.d("TAG", "delete :filename "+plainFilename+"\nuser"+encUsername);
             filename=plainFilename;
 
@@ -360,18 +363,21 @@ public class AddUsersActivity extends AppCompatActivity {
                         Log.d("TAG", "validate: AddUsersActivity");
                     }
                 } else
-                    email.setError("Invalid email address");
+                    adduserinput.setError("Kindly enter valid email address");
             }
             else
-                email.setError("please Enter user's email address");
+                adduserinput.setError("Kindly enter valid email address");
         }
         if(param.equals("multi")){
             Toast.makeText(this, "mul", Toast.LENGTH_SHORT).show();
             if(!filename.equals("")){
 
-                ProfileRole r = new ProfileRole();
-                plainUsername=r.getPlainusername();
-                String adminUsername = r.getUsername();
+                String adminUsername = MySharedPreferencesManager.getUsername(AddUsersActivity.this);
+                try {
+                    plainUsername=Decrypt(adminUsername,digest1,digest2);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 Toast.makeText(this, "multi selected "+filename+"\n"+adminUsername, Toast.LENGTH_SHORT).show();
                 Log.d("TAG", "multi selected "+filename+"\n"+adminUsername);
@@ -425,12 +431,13 @@ public class AddUsersActivity extends AppCompatActivity {
 
             String fileName[]=filename.split("\\.");
             if(fileName.length==2) {
-                    Log.d("TAG", "onActivityResult:  " + fileName[0] + " two " + fileName[1]);
-                    if (fileName[1].equals("xls") || fileName[1].equals("xlsx")) {
-                        filesame = 0;
-                    }
-                    else
-                        filesame=1;
+                Log.d("TAG", "onActivityResult:  " + fileName[0] + " two " + fileName[1]);
+                if (fileName[1].equals("xls") || fileName[1].equals("xlsx")) {
+                    filesame = 0;
+                } else {
+                    filesame = 1;
+                    Toast.makeText(this, "File format must be .xls or .xlsx", Toast.LENGTH_SHORT).show();
+                }
 
             }else
                 Toast.makeText(this, "File format must be .xls or .xlsx", Toast.LENGTH_SHORT).show();
@@ -653,16 +660,11 @@ public class AddUsersActivity extends AppCompatActivity {
             super.onProgressUpdate(progress);
             Log.d("LAst","progressOnUpdate1:"+data_for_progressbar+"");
 //
-
             prg1.setProgress(data_for_progressbar);
-
-
         }
 
     }
     class CreateUser extends AsyncTask<String, String, String> {
-
-
         protected String doInBackground(String... param) {
 
             String r = null;
@@ -715,8 +717,8 @@ public class AddUsersActivity extends AppCompatActivity {
 
             try {
                 result = json.getString("info");
-                Log.d("TAG", "multiple user  total = "+json.getString("totallistcount")+"\ncreate = "+json.getString("createduser")+"\nfail = "+json.getString("failuser"));
-                Log.d("TAG", " path"+json.getString("filepath"));
+//                Log.d("TAG", "multiple user  total = "+json.getString("totallistcount")+"\ncreate = "+json.getString("createduser")+"\nfail = "+json.getString("failuser"));
+//                Log.d("TAG", " path"+json.getString("filepath"));
 
             } catch (Exception e) {
                 e.printStackTrace();

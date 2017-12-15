@@ -25,10 +25,7 @@ public class ViewNotificationAdmin extends AppCompatActivity {
         ab.setTitle("Notification");
         ab.setDisplayHomeAsUpEnabled(true);
 
-
-        ProfileRole r=new ProfileRole();
-        role=r.getRole();
-
+        role=MySharedPreferencesManager.getRole(this);
 
         editnotification=(ImageView)findViewById(R.id.editnotification);
         editnotification.setOnClickListener(new View.OnClickListener() {

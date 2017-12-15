@@ -18,7 +18,7 @@
             android:id="@+id/aptiinput"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Number of Aptitude Tests"
@@ -38,7 +38,7 @@
             android:layout_below="@+id/aptiinput"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Number of Technical Tests"
@@ -57,7 +57,7 @@
             android:layout_below="@+id/techtestinput"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Number of Group Discussions"
@@ -76,7 +76,7 @@
             android:layout_below="@+id/gdinput"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Number of Technical Interviews"
@@ -95,7 +95,7 @@
             android:layout_below="@+id/techinterviewinput"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Number of HR Interviews"

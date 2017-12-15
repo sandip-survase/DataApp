@@ -8,6 +8,8 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -54,6 +56,7 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 public class MyProfileUg extends AppCompatActivity {
 
     EditText umarkssem1,uoutofsem1,upercentsem1,umarkssem2,uoutofsem2,upercentsem2,umarkssem3,uoutofsem3,upercentsem3,umarkssem4,uoutofsem4,upercentsem4,umarkssem5,uoutofsem5,upercentsem5,umarkssem6,uoutofsem6,upercentsem6,umarkssem7,uoutofsem7,upercentsem7,umarkssem8,uoutofsem8,upercentsem8,uaggregate;
+    TextInputLayout umarksusem1input,uoutofsem1input,upercentsem1input,umarksusem2input,uoutofsem2input,upercentsem2input,umarksusem3input,uoutofsem3input,upercentsem3input,umarksusem4input,uoutofsem4input,upercentsem4input,umarksusem5input,uoutofsem5input,upercentsem5input,umarksusem6input,uoutofsem6input,upercentsem6input,umarksusem7input,uoutofsem7input,upercentsem7input,umarksusem8input,uoutofsem8input,upercentsem8input,uaggregateinput,othercourseinput,otherstreaminput,otheruniversityinput,schoolnameuinput,yearofpassinguinput;
     Spinner ucourse,ustream,uuniversity;
     EditText othercourse,otherstream,otheruniversity,schoolnameu,yearofpassingu;
     String markssem1,outofsem1,percentsem1,markssem2,outofsem2,percentsem2,markssem3,outofsem3,percentsem3,markssem4,outofsem4,percentsem4,markssem5,outofsem5,percentsem5,markssem6,outofsem6,percentsem6,markssem7,outofsem7,percentsem7,markssem8,outofsem8,percentsem8,aggregate,schoolname,monthandyearofpassing,otherspecifiedcourse,otherspecifiedstream,otherspecifieduniversity;
@@ -124,10 +127,106 @@ public class MyProfileUg extends AppCompatActivity {
         uaggregate=(EditText)findViewById(R.id.uaggregate);
         schoolnameu=(EditText)findViewById(R.id.schoolnameu);
         yearofpassingu=(EditText)findViewById(R.id.yearofpassingu);
-
         othercourse=(EditText)findViewById(R.id.othercourse);
         otherstream=(EditText)findViewById(R.id.otherstream);
         otheruniversity=(EditText)findViewById(R.id.otheruniversity);
+
+
+        uoutofsem1input= (TextInputLayout) findViewById(R.id.uoutofsem1input);
+        upercentsem1input= (TextInputLayout) findViewById(R.id.upercentsem1input);
+        umarksusem2input= (TextInputLayout) findViewById(R.id.umarksusem2input);
+        uoutofsem2input= (TextInputLayout) findViewById(R.id.uoutofsem2input);
+        upercentsem2input= (TextInputLayout) findViewById(R.id.upercentsem2input);
+        umarksusem3input= (TextInputLayout) findViewById(R.id.umarksusem3input);
+        uoutofsem3input= (TextInputLayout) findViewById(R.id.uoutofsem3input);
+        upercentsem3input= (TextInputLayout) findViewById(R.id.upercentsem3input);
+        umarksusem4input= (TextInputLayout) findViewById(R.id.umarksusem4input);
+        uoutofsem4input= (TextInputLayout) findViewById(R.id.uoutofsem4input);
+        upercentsem4input= (TextInputLayout) findViewById(R.id.upercentsem4input);
+        umarksusem5input= (TextInputLayout) findViewById(R.id.umarksusem5input);
+        uoutofsem5input= (TextInputLayout) findViewById(R.id.uoutofsem5input);
+        upercentsem5input= (TextInputLayout) findViewById(R.id.upercentsem5input);
+        umarksusem6input= (TextInputLayout) findViewById(R.id.umarksusem6input);
+        uoutofsem6input= (TextInputLayout) findViewById(R.id.uoutofsem6input);
+        upercentsem6input= (TextInputLayout) findViewById(R.id.upercentsem6input);
+        umarksusem7input= (TextInputLayout) findViewById(R.id.umarksusem7input);
+        uoutofsem7input= (TextInputLayout) findViewById(R.id.uoutofsem7input);
+        upercentsem7input= (TextInputLayout) findViewById(R.id.upercentsem7input);
+        umarksusem8input= (TextInputLayout) findViewById(R.id.umarksusem8input);
+        uoutofsem8input= (TextInputLayout) findViewById(R.id.uoutofsem8input);
+        upercentsem8input= (TextInputLayout) findViewById(R.id.upercentsem8input);
+        uaggregateinput= (TextInputLayout) findViewById(R.id.uaggregateinput);
+        othercourseinput= (TextInputLayout) findViewById(R.id.othercourseinput);
+        otherstreaminput= (TextInputLayout) findViewById(R.id.otherstreaminput);
+        otheruniversityinput= (TextInputLayout) findViewById(R.id.otheruniversityinput);
+        schoolnameuinput= (TextInputLayout) findViewById(R.id.schoolnameuinput);
+        yearofpassinguinput= (TextInputLayout) findViewById(R.id.yearofpassinguinput);
+        umarksusem1input= (TextInputLayout) findViewById(R.id.umarksusem1input);
+
+
+        umarkssem1.setTypeface(MyConstants.getBold(this));
+        uoutofsem1.setTypeface(MyConstants.getBold(this));
+        upercentsem1.setTypeface(MyConstants.getBold(this));
+        umarkssem2.setTypeface(MyConstants.getBold(this));
+        uoutofsem2.setTypeface(MyConstants.getBold(this));
+        upercentsem2.setTypeface(MyConstants.getBold(this));
+        umarkssem3.setTypeface(MyConstants.getBold(this));
+        uoutofsem3.setTypeface(MyConstants.getBold(this));
+        upercentsem3.setTypeface(MyConstants.getBold(this));
+        umarkssem4.setTypeface(MyConstants.getBold(this));
+        uoutofsem4.setTypeface(MyConstants.getBold(this));
+        upercentsem4.setTypeface(MyConstants.getBold(this));
+        umarkssem5.setTypeface(MyConstants.getBold(this));
+        uoutofsem5.setTypeface(MyConstants.getBold(this));
+        upercentsem5.setTypeface(MyConstants.getBold(this));
+        umarkssem6.setTypeface(MyConstants.getBold(this));
+        uoutofsem6.setTypeface(MyConstants.getBold(this));
+        upercentsem6.setTypeface(MyConstants.getBold(this));
+        umarkssem7.setTypeface(MyConstants.getBold(this));
+        uoutofsem7.setTypeface(MyConstants.getBold(this));
+        upercentsem7.setTypeface(MyConstants.getBold(this));
+        umarkssem8.setTypeface(MyConstants.getBold(this));
+        uoutofsem8.setTypeface(MyConstants.getBold(this));
+        upercentsem8.setTypeface(MyConstants.getBold(this));
+        uaggregate.setTypeface(MyConstants.getBold(this));
+        schoolnameu.setTypeface(MyConstants.getBold(this));
+        yearofpassingu.setTypeface(MyConstants.getBold(this));
+
+        umarksusem1input.setTypeface(MyConstants.getLight(this));
+        uoutofsem1input.setTypeface(MyConstants.getLight(this));
+        upercentsem1input.setTypeface(MyConstants.getLight(this));
+        umarksusem2input.setTypeface(MyConstants.getLight(this));
+        uoutofsem2input.setTypeface(MyConstants.getLight(this));
+        upercentsem2input.setTypeface(MyConstants.getLight(this));
+        umarksusem3input.setTypeface(MyConstants.getLight(this));
+        uoutofsem3input.setTypeface(MyConstants.getLight(this));
+        upercentsem3input.setTypeface(MyConstants.getLight(this));
+        umarksusem4input.setTypeface(MyConstants.getLight(this));
+        uoutofsem4input.setTypeface(MyConstants.getLight(this));
+        upercentsem4input.setTypeface(MyConstants.getLight(this));
+        umarksusem5input.setTypeface(MyConstants.getLight(this));
+        uoutofsem5input.setTypeface(MyConstants.getLight(this));
+        upercentsem5input.setTypeface(MyConstants.getLight(this));
+        umarksusem6input.setTypeface(MyConstants.getLight(this));
+        uoutofsem6input.setTypeface(MyConstants.getLight(this));
+        upercentsem6input.setTypeface(MyConstants.getLight(this));
+        umarksusem7input.setTypeface(MyConstants.getLight(this));
+        uoutofsem7input.setTypeface(MyConstants.getLight(this));
+        upercentsem7input.setTypeface(MyConstants.getLight(this));
+        umarksusem8input.setTypeface(MyConstants.getLight(this));
+        uoutofsem8input.setTypeface(MyConstants.getLight(this));
+        upercentsem8input.setTypeface(MyConstants.getLight(this));
+        uaggregateinput.setTypeface(MyConstants.getLight(this));
+        othercourseinput.setTypeface(MyConstants.getLight(this));
+        otherstreaminput.setTypeface(MyConstants.getLight(this));
+        otheruniversityinput.setTypeface(MyConstants.getLight(this));
+        schoolnameuinput.setTypeface(MyConstants.getLight(this));
+        yearofpassinguinput.setTypeface(MyConstants.getLight(this));
+
+        TextView ugtxt=(TextView)findViewById(R.id.ugtxt);
+        ugtxt.setTypeface(MyConstants.getBold(this));
+
+
 
         umarkssem1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -137,31 +236,14 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                umarkssem1.setError(null);
+                umarksusem1input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
-
-
-//                try {
-//
-//                    String s1=umarkssem1.getText().toString();
-//                    String s2=uoutofsem1.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem1.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-                uoutofsem1.setError(null);
+                uoutofsem1input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -179,7 +261,7 @@ public class MyProfileUg extends AppCompatActivity {
                                 upercentsem1.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            uoutofsem1.setError("Invalid Out Of Marks");
+                            uoutofsem1input.setError("Kindly enter valid out of marks");
                             upercentsem1.setText("");
                         }
                     }
@@ -201,29 +283,14 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                uoutofsem1.setError(null);
+                uoutofsem1input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=umarkssem1.getText().toString();
-//                    String s2=uoutofsem1.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem1.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
-
-                uoutofsem1.setError(null);
+                uoutofsem1input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -241,7 +308,7 @@ public class MyProfileUg extends AppCompatActivity {
                                 upercentsem1.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            uoutofsem1.setError("Invalid Out Of Marks");
+                            uoutofsem1input.setError("Kindly enter valid out of marks.");
                             upercentsem1.setText("");
                         }
                     }
@@ -262,32 +329,14 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                umarkssem2.setError(null);
+                umarksusem2input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
-
-//
-//                try {
-//
-//                    String s1=umarkssem2.getText().toString();
-//                    String s2=uoutofsem2.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem2.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
-                uoutofsem2.setError(null);
+                uoutofsem2input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -305,7 +354,7 @@ public class MyProfileUg extends AppCompatActivity {
                                 upercentsem2.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            uoutofsem2.setError("Invalid Out Of Marks");
+                            uoutofsem2input.setError("Kindly enter valid out of marks.");
                             upercentsem2.setText("");
                         }
                     }
@@ -326,31 +375,13 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                uoutofsem2.setError(null);
+                uoutofsem2input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=umarkssem2.getText().toString();
-//                    String s2=uoutofsem2.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem2.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
-
-
-                uoutofsem2.setError(null);
+                uoutofsem2input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -368,7 +399,7 @@ public class MyProfileUg extends AppCompatActivity {
                                 upercentsem2.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            uoutofsem2.setError("Invalid Out Of Marks");
+                            uoutofsem2input.setError("Kindly enter valid out of marks.");
                             upercentsem2.setText("");
                         }
                     }
@@ -389,7 +420,7 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                umarkssem3.setError(null);
+                umarksusem3input.setError(null);
                 edittedFlag=1;
             }
 
@@ -398,24 +429,8 @@ public class MyProfileUg extends AppCompatActivity {
 
 
 
-//                try {
-//
-//                    String s1=umarkssem3.getText().toString();
-//                    String s2=uoutofsem3.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem3.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
-
-
-                uoutofsem3.setError(null);
+                uoutofsem3input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -433,7 +448,7 @@ public class MyProfileUg extends AppCompatActivity {
                                 upercentsem3.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            uoutofsem3.setError("Invalid Out Of Marks");
+                            uoutofsem3input.setError("Kindly enter valid out of marks.");
                             upercentsem3.setText("");
                         }
                     }
@@ -454,29 +469,14 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                uoutofsem3.setError(null);
+                uoutofsem3input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=umarkssem3.getText().toString();
-//                    String s2=uoutofsem3.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem3.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
-
-                uoutofsem3.setError(null);
+                uoutofsem3input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -494,7 +494,7 @@ public class MyProfileUg extends AppCompatActivity {
                                 upercentsem3.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            uoutofsem3.setError("Invalid Out Of Marks");
+                            uoutofsem3input.setError("Kindly enter valid out of marks.");
                             upercentsem3.setText("");
                         }
                     }
@@ -515,7 +515,7 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                umarkssem4.setError(null);
+                umarksusem4input.setError(null);
                 edittedFlag=1;
             }
 
@@ -524,23 +524,9 @@ public class MyProfileUg extends AppCompatActivity {
 
 
 
-//                try {
-//
-//                    String s1=umarkssem4.getText().toString();
-//                    String s2=uoutofsem4.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem4.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
 
-                uoutofsem4.setError(null);
+                uoutofsem4input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -558,7 +544,7 @@ public class MyProfileUg extends AppCompatActivity {
                                 upercentsem4.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            uoutofsem4.setError("Invalid Out Of Marks");
+                            uoutofsem4input.setError("Kindly enter valid out of marks.");
                             upercentsem4.setText("");
                         }
                     }
@@ -579,27 +565,14 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                uoutofsem4.setError(null);
+                uoutofsem4input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=umarkssem4.getText().toString();
-//                    String s2=uoutofsem4.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem4.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-                uoutofsem4.setError(null);
+                uoutofsem4input.setError(null);
                 try {
                     double percentage = 0;
                     String s1 = umarkssem4.getText().toString();
@@ -616,7 +589,7 @@ public class MyProfileUg extends AppCompatActivity {
                                 upercentsem4.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            uoutofsem4.setError("Invalid Out Of Marks");
+                            uoutofsem4input.setError("Kindly enter valid out of marks.");
                             upercentsem4.setText("");
                         }
                     }
@@ -637,7 +610,7 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                umarkssem5.setError(null);
+                umarksusem5input.setError(null);
                 edittedFlag=1;
             }
 
@@ -645,22 +618,7 @@ public class MyProfileUg extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
 //
-//
-//                try {
-//
-//                    String s1=umarkssem5.getText().toString();
-//                    String s2=uoutofsem5.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem5.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-                uoutofsem5.setError(null);
+                uoutofsem5input.setError(null);
                 try {
                     double percentage = 0;
                     String s1 = umarkssem5.getText().toString();
@@ -677,7 +635,7 @@ public class MyProfileUg extends AppCompatActivity {
                                 upercentsem5.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            uoutofsem5.setError("Invalid Out Of Marks");
+                            uoutofsem5input.setError("Kindly enter valid out of marks.");
                             upercentsem5.setText("");
                         }
                     }
@@ -698,29 +656,15 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                uoutofsem5.setError(null);
+                uoutofsem5input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=umarkssem5.getText().toString();
-//                    String s2=uoutofsem5.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem5.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
 
-                uoutofsem5.setError(null);
+                uoutofsem5input.setError(null);
                 try {
                     double percentage = 0;
                     String s1 = umarkssem5.getText().toString();
@@ -737,7 +681,7 @@ public class MyProfileUg extends AppCompatActivity {
                                 upercentsem5.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            uoutofsem5.setError("Invalid Out Of Marks");
+                            uoutofsem5input.setError("Kindly enter valid out of marks.");
                             upercentsem5.setText("");
                         }
                     }
@@ -758,29 +702,15 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                umarkssem6.setError(null);
+                umarksusem6input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=umarkssem6.getText().toString();
-//                    String s2=uoutofsem6.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem6.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
 
-                uoutofsem6.setError(null);
+                uoutofsem6input.setError(null);
                 try {
                     double percentage = 0;
                     String s1 = umarkssem6.getText().toString();
@@ -797,7 +727,7 @@ public class MyProfileUg extends AppCompatActivity {
                                 upercentsem6.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            uoutofsem6.setError("Invalid Out Of Marks");
+                            uoutofsem6input.setError("Kindly enter valid out of marks.");
                             upercentsem6.setText("");
                         }
                     }
@@ -817,28 +747,14 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                uoutofsem6.setError(null);
+                uoutofsem6input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=umarkssem6.getText().toString();
-//                    String s2=uoutofsem6.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem6.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
-                uoutofsem6.setError(null);
+                uoutofsem6input.setError(null);
                 try {
                     double percentage = 0;
                     String s1 = umarkssem6.getText().toString();
@@ -855,7 +771,7 @@ public class MyProfileUg extends AppCompatActivity {
                                 upercentsem6.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            uoutofsem6.setError("Invalid Out Of Marks");
+                            uoutofsem6input.setError("Kindly enter valid out of marks.");
                             upercentsem6.setText("");
                         }
                     }
@@ -876,7 +792,7 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                umarkssem7.setError(null);
+                umarksusem7input.setError(null);
                 edittedFlag=1;
             }
 
@@ -885,23 +801,7 @@ public class MyProfileUg extends AppCompatActivity {
 
 
 
-//                try {
-//
-//                    String s1=umarkssem7.getText().toString();
-//                    String s2=uoutofsem7.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem7.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
-                uoutofsem7.setError(null);
+                uoutofsem7input.setError(null);
                 try {
                     double percentage = 0;
                     String s1 = umarkssem7.getText().toString();
@@ -918,7 +818,7 @@ public class MyProfileUg extends AppCompatActivity {
                                 upercentsem7.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            uoutofsem7.setError("Invalid Out Of Marks");
+                            uoutofsem7input.setError("Kindly enter valid out of marks.");
                             upercentsem7.setText("");
                         }
                     }
@@ -939,29 +839,15 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                uoutofsem7.setError(null);
+                uoutofsem7input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=umarkssem7.getText().toString();
-//                    String s2=uoutofsem7.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem7.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
 
-                uoutofsem7.setError(null);
+                uoutofsem7input.setError(null);
                 try {
                     double percentage = 0;
                     String s1 = umarkssem7.getText().toString();
@@ -978,7 +864,7 @@ public class MyProfileUg extends AppCompatActivity {
                                 upercentsem7.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            uoutofsem7.setError("Invalid Out Of Marks");
+                            uoutofsem7input.setError("Kindly enter valid out of marks.");
                             upercentsem7.setText("");
                         }
                     }
@@ -1000,7 +886,7 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                umarkssem8.setError(null);
+                umarksusem8input.setError(null);
                 edittedFlag=1;
             }
 
@@ -1009,23 +895,8 @@ public class MyProfileUg extends AppCompatActivity {
 
 
 
-//                try {
-//
-//                    String s1=umarkssem8.getText().toString();
-//                    String s2=uoutofsem8.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem8.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
-
-                uoutofsem8.setError(null);
+                uoutofsem8input.setError(null);
                 try {
                     double percentage = 0;
                     String s1 = umarkssem8.getText().toString();
@@ -1042,7 +913,7 @@ public class MyProfileUg extends AppCompatActivity {
                                 upercentsem8.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            uoutofsem8.setError("Invalid Out Of Marks");
+                            uoutofsem8input.setError("Kindly enter valid out of marks.");
                             upercentsem8.setText("");
                         }
                     }
@@ -1063,29 +934,15 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                uoutofsem8.setError(null);
+                uoutofsem8input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=umarkssem8.getText().toString();
-//                    String s2=uoutofsem8.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            upercentsem8.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
 
-                uoutofsem8.setError(null);
+                uoutofsem8input.setError(null);
                 try {
                     double percentage = 0;
                     String s1 = umarkssem8.getText().toString();
@@ -1102,7 +959,7 @@ public class MyProfileUg extends AppCompatActivity {
                                 upercentsem8.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            uoutofsem8.setError("Invalid Out Of Marks");
+                            uoutofsem8input.setError("Kindly enter valid out of marks.");
                             upercentsem8.setText("");
                         }
                     }
@@ -1123,7 +980,7 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                schoolnameu.setError(null);
+                schoolnameuinput.setError(null);
                 edittedFlag=1;
             }
 
@@ -1140,7 +997,7 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                uaggregate.setError(null);
+                uaggregateinput.setError(null);
                 edittedFlag=1;
             }
 
@@ -1157,7 +1014,7 @@ public class MyProfileUg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                yearofpassingu.setError(null);
+                yearofpassinguinput.setError(null);
                 edittedFlag=1;
             }
 
@@ -1178,13 +1035,11 @@ public class MyProfileUg extends AppCompatActivity {
             public void onClick(View view) {
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyProfileUg.this);
                 LayoutInflater inflater = MyProfileUg.this.getLayoutInflater();
+
                 View dialog = inflater.inflate(R.layout.monthyeardialog,null);
                 dialogBuilder.setView(dialog);
 
-
-
                 final WheelView monthView,yearView;
-
                 final List<String> monthList= new ArrayList<String>();
                 final List<String> yearList= new ArrayList<String>();
 
@@ -1205,7 +1060,7 @@ public class MyProfileUg extends AppCompatActivity {
                 monthList.add("Dec");
 
                 Calendar cur=Calendar.getInstance();
-                for(int i=1975;i<=cur.get(Calendar.YEAR)+5;i++)
+                for(int i=1975;i<=cur.get(Calendar.YEAR)+2;i++)
                     yearList.add(""+i);
 
 
@@ -1259,9 +1114,6 @@ public class MyProfileUg extends AppCompatActivity {
 
 
 
-        TextView ugtxt=(TextView)findViewById(R.id.ugtxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");
-        ugtxt.setTypeface(custom_font1);
 
         ScrollView myprofileug=(ScrollView)findViewById(R.id.myprofileug);
         disableScrollbars(myprofileug);
@@ -1494,20 +1346,30 @@ public class MyProfileUg extends AppCompatActivity {
                     return true;
                 }
             }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view= super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTextColor(getResources().getColor(R.color.dark_color));
+                tv.setTypeface(MyConstants.getBold(MyProfileUg.this));
+                return view;
+            }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+                tv.setTypeface(MyConstants.getBold(MyProfileUg.this));
 
                 if(position == 0){
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 }
                 else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -1520,7 +1382,6 @@ public class MyProfileUg extends AppCompatActivity {
                 selectedCourse = (String) parent.getItemAtPosition(position);
                 TextInputLayout otherboardinput=(TextInputLayout)findViewById(R.id.othercourseinput);
                 if(selectedCourse.equals("Other")) {
-
                     otherboardinput.setVisibility(View.VISIBLE);
                 }
                 else {
@@ -1567,20 +1428,30 @@ public class MyProfileUg extends AppCompatActivity {
                     return true;
                 }
             }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view= super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfileUg.this));
+                tv.setTextColor(getResources().getColor(R.color.dark_color));
+                return view;
+            }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+                tv.setTypeface(MyConstants.getBold(MyProfileUg.this));
 
                 if(position == 0){
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 }
                 else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -1640,20 +1511,30 @@ public class MyProfileUg extends AppCompatActivity {
                     return true;
                 }
             }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view= super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfileUg.this));
+                tv.setTextColor(getResources().getColor(R.color.dark_color));
+                return view;
+            }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+                tv.setTypeface(MyConstants.getBold(MyProfileUg.this));
 
                 if(position == 0){
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 }
                 else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -1730,36 +1611,36 @@ public class MyProfileUg extends AppCompatActivity {
     }
     void validateandSave()
     {
-        umarkssem1.setError(null);
-        uoutofsem1.setError(null);
-        upercentsem1.setError(null);
-        umarkssem2.setError(null);
-        uoutofsem2.setError(null);
-        upercentsem2.setError(null);
-        umarkssem3.setError(null);
-        uoutofsem3.setError(null);
-        upercentsem3.setError(null);
-        umarkssem4.setError(null);
-        uoutofsem4.setError(null);
-        upercentsem4.setError(null);
-        umarkssem5.setError(null);
-        uoutofsem5.setError(null);
-        upercentsem5.setError(null);
-        umarkssem6.setError(null);
-        uoutofsem6.setError(null);
-        upercentsem6.setError(null);
-        umarkssem7.setError(null);
-        uoutofsem7.setError(null);
-        upercentsem7.setError(null);
-        umarkssem8.setError(null);
-        uoutofsem8.setError(null);
-        upercentsem8.setError(null);
-        uaggregate.setError(null);
-        othercourse.setError(null);
-        otherstream.setError(null);
-        otheruniversity.setError(null);
-        schoolnameu.setError(null);
-        yearofpassingu.setError(null);
+//        umarkssem1.setError(null);
+//        uoutofsem1.setError(null);
+//        upercentsem1.setError(null);
+//        umarkssem2.setError(null);
+//        uoutofsem2.setError(null);
+//        upercentsem2.setError(null);
+//        umarkssem3.setError(null);
+//        uoutofsem3.setError(null);
+//        upercentsem3.setError(null);
+//        umarkssem4.setError(null);
+//        uoutofsem4.setError(null);
+//        upercentsem4.setError(null);
+//        umarkssem5.setError(null);
+//        uoutofsem5.setError(null);
+//        upercentsem5.setError(null);
+//        umarkssem6.setError(null);
+//        uoutofsem6.setError(null);
+//        upercentsem6.setError(null);
+//        umarkssem7.setError(null);
+//        uoutofsem7.setError(null);
+//        upercentsem7.setError(null);
+//        umarkssem8.setError(null);
+//        uoutofsem8.setError(null);
+//        upercentsem8.setError(null);
+//        uaggregate.setError(null);
+//        othercourse.setError(null);
+//        otherstream.setError(null);
+//        otheruniversity.setError(null);
+//        schoolnameu.setError(null);
+//        yearofpassingu.setError(null);
 
 
         markssem1 = umarkssem1.getText().toString();
@@ -1793,200 +1674,177 @@ public class MyProfileUg extends AppCompatActivity {
         int errorflag1 = 0, errorflag2 = 0, errorflag3 = 0, errorflag4 = 0, errorflag5 = 0;
         if (markssem1.length() < 1) {
             errorflag1 = 1;
-            umarkssem1.setError("Incorrect Marks");
+            umarksusem1input.setError("Kindly enter valid marks.");
         } else {
             errorflag1 = 0;
             if (outofsem1.length() < 1) {
                 errorflag1 = 1;
-                umarkssem1.setError(null);
-                uoutofsem1.setError("Incorrect Marks");
+                uoutofsem1input.setError("Kindly enter valid marks.");
             } else {
                 errorflag1 = 0;
                 if (percentsem1.length() < 1) {
                     errorflag1 = 1;
-                    umarkssem1.setError(null);
-                    uoutofsem1.setError(null);
-                    upercentsem1.setError("Incorrect Percentage");
+                    upercentsem1input.setError("Incorrect Percentage");
                 } else {
                     errorflag1 = 0;
                     if (markssem2.length() < 1) {
                         errorflag1 = 1;
-                        umarkssem2.setError("Incorrect Marks");
+                        umarksusem2input.setError("Kindly enter valid marks.");
                     } else {
                         errorflag1 = 0;
                         if (outofsem2.length() < 1) {
                             errorflag1 = 1;
-                            umarkssem2.setError(null);
-                            uoutofsem2.setError("Incorrect Marks");
+                            uoutofsem2input.setError("Kindly enter valid marks.");
                         } else {
                             errorflag1 = 0;
                             if (percentsem2.length() < 1) {
                                 errorflag1 = 1;
-                                umarkssem2.setError(null);
-                                uoutofsem2.setError(null);
-                                upercentsem2.setError("Incorrect Percentage");
+                                upercentsem2input.setError("Incorrect Percentage");
                             } else {
                                 errorflag1 = 0;
                                 if (markssem3.length() < 1) {
                                     errorflag1 = 1;
-                                    umarkssem3.setError("Incorrect Marks");
+                                    umarksusem3input.setError("Kindly enter valid marks.");
                                 } else {
                                     errorflag1 = 0;
                                     if (outofsem3.length() < 1) {
                                         errorflag1 = 1;
-                                        umarkssem3.setError(null);
-                                        uoutofsem3.setError("Incorrect Marks");
+                                        uoutofsem3input.setError("Kindly enter valid marks.");
                                     } else {
                                         errorflag1 = 0;
                                         if (percentsem3.length() < 1) {
                                             errorflag1 = 1;
-                                            umarkssem3.setError(null);
-                                            uoutofsem3.setError(null);
-                                            upercentsem3.setError("Incorrect Percentage");
+                                            upercentsem3input.setError("Incorrect Percentage");
                                         } else {
                                             errorflag1 = 0;
                                             if (markssem4.length() < 1) {
                                                 errorflag1 = 1;
-                                                umarkssem4.setError("Incorrect Marks");
+                                                umarksusem4input.setError("Kindly enter valid marks.");
                                             } else {
                                                 errorflag1 = 0;
                                                 if (outofsem4.length() < 1) {
                                                     errorflag1 = 1;
-                                                    umarkssem4.setError(null);
-                                                    uoutofsem4.setError("Incorrect Marks");
+                                                    uoutofsem4input.setError("Kindly enter valid marks.");
                                                 } else {
                                                     errorflag1 = 0;
                                                     if (percentsem4.length() < 1) {
                                                         errorflag1 = 1;
-                                                        umarkssem4.setError(null);
-                                                        uoutofsem4.setError(null);
-                                                        upercentsem4.setError("Incorrect Percentage");
+                                                        upercentsem4input.setError("Incorrect Percentage");
                                                     } else {
                                                         errorflag1 = 0;
                                                         if (markssem5.length() < 1) {
                                                             errorflag1 = 1;
-                                                            umarkssem5.setError("Incorrect Marks");
+                                                            umarksusem5input.setError("Kindly enter valid marks.");
                                                         } else {
                                                             errorflag1 = 0;
                                                             if (outofsem5.length() < 1) {
                                                                 errorflag1 = 1;
-                                                                umarkssem5.setError(null);
-                                                                uoutofsem5.setError("Incorrect Marks");
+                                                                uoutofsem5input.setError("Kindly enter valid marks.");
                                                             } else {
                                                                 errorflag1 = 0;
                                                                 if (percentsem5.length() < 1) {
                                                                     errorflag1 = 1;
-                                                                    umarkssem5.setError(null);
-                                                                    uoutofsem5.setError(null);
-                                                                    upercentsem5.setError("Incorrect Percentage");
+                                                                    upercentsem5input.setError("Incorrect Percentage");
                                                                 } else {
                                                                     errorflag1 = 0;
                                                                     if (markssem6.length() < 1) {
                                                                         errorflag1 = 1;
-                                                                        umarkssem6.setError("Incorrect Marks");
+                                                                        umarksusem6input.setError("Kindly enter valid marks.");
                                                                     } else {
                                                                         errorflag1 = 0;
                                                                         if (outofsem6.length() < 1) {
                                                                             errorflag1 = 1;
-                                                                            umarkssem6.setError(null);
-                                                                            uoutofsem6.setError("Incorrect Marks");
+                                                                            uoutofsem6input.setError("Kindly enter valid marks.");
                                                                         } else {
                                                                             errorflag1 = 0;
                                                                             if (percentsem6.length() < 1) {
                                                                                 errorflag1 = 1;
-                                                                                umarkssem6.setError(null);
-                                                                                uoutofsem6.setError(null);
-                                                                                upercentsem6.setError("Incorrect Percentage");
+                                                                                upercentsem6input.setError("Incorrect Percentage");
                                                                             } else {
                                                                                 errorflag1 = 0;
                                                                                 if (markssem7.length() < 1) {
                                                                                     errorflag1 = 1;
-                                                                                    umarkssem7.setError("Incorrect Marks");
+                                                                                    umarksusem7input.setError("Kindly enter valid marks.");
                                                                                 } else {
                                                                                     errorflag1 = 0;
                                                                                     if (outofsem7.length() < 1) {
                                                                                         errorflag1 = 1;
-                                                                                        umarkssem7.setError(null);
-                                                                                        uoutofsem7.setError("Incorrect Marks");
+                                                                                        uoutofsem7input.setError("Kindly enter valid marks.");
                                                                                     } else {
                                                                                         errorflag1 = 0;
                                                                                         if (percentsem7.length() < 1) {
                                                                                             errorflag1 = 1;
-                                                                                            umarkssem7.setError(null);
-                                                                                            uoutofsem7.setError(null);
-                                                                                            upercentsem7.setError("Incorrect Percentage");
+                                                                                            upercentsem7input.setError("Incorrect Percentage");
                                                                                         } else {
                                                                                             errorflag1 = 0;
                                                                                             if (markssem8.length() < 1) {
                                                                                                 errorflag1 = 1;
-                                                                                                umarkssem8.setError("Incorrect Marks");
+                                                                                                umarksusem8input.setError("Kindly enter valid marks.");
                                                                                             } else {
                                                                                                 errorflag1 = 0;
                                                                                                 if (outofsem8.length() < 1) {
                                                                                                     errorflag1 = 1;
-                                                                                                    umarkssem8.setError(null);
-                                                                                                    uoutofsem8.setError("Incorrect Marks");
+                                                                                                    uoutofsem8input.setError("Kindly enter valid marks.");
                                                                                                 } else {
                                                                                                     errorflag1 = 0;
                                                                                                     if (percentsem8.length() < 1) {
                                                                                                         errorflag1 = 1;
-                                                                                                        umarkssem8.setError(null);
-                                                                                                        uoutofsem8.setError(null);
-                                                                                                        upercentsem8.setError("Incorrect Percentage");
+                                                                                                        upercentsem8input.setError("Incorrect Percentage");
                                                                                                     } else {
                                                                                                         errorflag1 = 0;
                                                                                                         float aggg=0;
-                                                                                                        try{
-                                                                                                            aggg=Float.parseFloat(aggregate);}catch (NumberFormatException e){errorflag1 = 1; uaggregate.setError("Incorrect Aggregate");}
-                                                                                                        if (aggg<0||aggg>100) {
+
+                                                                                                        Log.d("TAG", "validateandSave: try  aggregate");
+
+
+                                                                                                        if(!aggregate.equals(""))
+                                                                                                            aggg = Float.parseFloat(aggregate);
+                                                                                                        if (aggg<=0||aggg>=100) {
                                                                                                             errorflag1 = 1;
-                                                                                                            umarkssem6.setError(null);
-                                                                                                            uoutofsem6.setError(null);
-                                                                                                            uoutofsem6.setError(null);
-                                                                                                            uaggregate.setError("Incorrect Aggregate");
-                                                                                                        } else {
+                                                                                                            uaggregateinput.setError("Kindly enter valid Aggregate");
+                                                                                                        }
+
+
+
+
+                                                                                                        else {
                                                                                                             errorflag1 = 0;
                                                                                                             if (selectedCourse.equals("- Select Course -")) {
                                                                                                                 errorflag1 = 1;
-                                                                                                                uaggregate.setError(null);
                                                                                                                 Toast.makeText(MyProfileUg.this, "Select Course", Toast.LENGTH_LONG).show();
                                                                                                             } else {
                                                                                                                 if (selectedCourse.equals("Other")) {
                                                                                                                     otherspecifiedcourse = othercourse.getText().toString();
                                                                                                                     if (otherspecifiedcourse.length() < 3) {
                                                                                                                         errorflag2 = 1;
-                                                                                                                        uaggregate.setError(null);
-                                                                                                                        othercourse.setError("Invalid Course");
+                                                                                                                        othercourseinput.setError("Kindly enter valid Course");
                                                                                                                     }
                                                                                                                 }
 
 
                                                                                                                 if (selectedUniversity.equals("- Select University -")) {
                                                                                                                     errorflag3 = 1;
-                                                                                                                    uaggregate.setError(null);
-                                                                                                                    othercourse.setError(null);
                                                                                                                     Toast.makeText(MyProfileUg.this, "Select University", Toast.LENGTH_LONG).show();
                                                                                                                 }
                                                                                                                 else {
                                                                                                                     if(schoolname.length()<3)
                                                                                                                     {
                                                                                                                         errorflag4=1;
-                                                                                                                        schoolnameu.setError("Invalid College Name");
+                                                                                                                        schoolnameuinput.setError("Kindly enter valid college name");
                                                                                                                     }
-                                                                                                                    if (selectedUniversity.equals("Other")) {
+                                                                                                                    else if (selectedUniversity.equals("Other")) {
                                                                                                                         otherspecifieduniversity = otheruniversity.getText().toString();
 
                                                                                                                         if (otherspecifieduniversity.length() < 3) {
                                                                                                                             errorflag4 = 1;
 
-                                                                                                                            otheruniversity.setError("Invalid University");
+                                                                                                                            otheruniversityinput.setError("Kindly enter vali University");
                                                                                                                         }
                                                                                                                     }
 
-                                                                                                                    if (monthandyearofpassing.length() < 9 || monthandyearofpassing.length() > 9) {
+                                                                                                                    else if (monthandyearofpassing.length() < 9 || monthandyearofpassing.length() > 9) {
                                                                                                                         errorflag5 = 1;
-                                                                                                                        otheruniversity.setError(null);
-                                                                                                                        yearofpassingu.setError("Invalid Month,Year");
+                                                                                                                        yearofpassinguinput.setError("Kindly select valid Month,Year");
                                                                                                                     }
                                                                                                                 }
                                                                                                             }
@@ -2266,8 +2124,10 @@ public class MyProfileUg extends AppCompatActivity {
             alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialogInterface) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileUg.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileUg.this));
                 }
             });
 

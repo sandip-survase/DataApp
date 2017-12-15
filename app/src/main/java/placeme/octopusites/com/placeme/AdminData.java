@@ -16,6 +16,31 @@ public class AdminData {
     static   String  post1,inst1,post2,inst2,post3,inst3,post4,inst4,post5,inst5,post6,inst6,post7,inst7,post8,inst8,post9,inst9,post10,inst10;
     static String  fromdate1,todate1,fromdate2,todate2,fromdate3,todate3,fromdate4,todate4,fromdate5,todate5,fromdate6,todate6,fromdate7,todate7,fromdate8,todate8,fromdate9,todate9,fromdate10,todate10;
 
+    public static String getInstcaddrline3() {
+        return instcaddrline3;
+    }
+
+    public static void setInstcaddrline3(String instcaddrline3) {
+        AdminData.instcaddrline3 = instcaddrline3;
+    }
+
+    public static String getInstcaddrline1() {
+        return instcaddrline1;
+    }
+
+    public static void setInstcaddrline1(String instcaddrline1) {
+        AdminData.instcaddrline1 = instcaddrline1;
+    }
+
+    public static String getInstcaddrline2() {
+        return instcaddrline2;
+    }
+
+    public static void setInstcaddrline2(String instcaddrline2) {
+        AdminData.instcaddrline2 = instcaddrline2;
+    }
+
+    static String  instcaddrline1, instcaddrline2, instcaddrline3;
 
 
 

@@ -3,7 +3,6 @@ package placeme.octopusites.com.placeme;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -29,7 +28,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -83,7 +82,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     TextView createnotitxt, createnotinotitxt, lastmodifiedtxt;
     ImageView trashnotification;
     RelativeLayout file1;
-    EditText title, notiffication;
+    TextInputEditText title, notiffication;
     CheckBox stud, allum;
     String stitle = "", snotiffication = "";
     String username = "", srole = "", plainusername = "", forwhom = "", encRole = "";
@@ -135,6 +134,11 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     private OutputStream outputStream;
     private PrintWriter writer;
     private TagsEditText batchesTags;
+    ArrayAdapter<String> dataAdapter;
+    ArrayList<String> TagCreateList=new ArrayList<>();
+    int edittedFlag=0,containsall=0;
+    String digest1,digest2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -222,8 +226,8 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         choosetxt.setTypeface(custom_font2);
         attachmentstxt.setTypeface(custom_font2);
 
-        title = (EditText) findViewById(R.id.title);
-        notiffication = (EditText) findViewById(R.id.notification);
+        title = (TextInputEditText) findViewById(R.id.title);
+        notiffication = (TextInputEditText) findViewById(R.id.notification);
         stud = (CheckBox) findViewById(R.id.CheckBoxstudent);
         allum = (CheckBox) findViewById(R.id.CheckBoxsAlumni);
 

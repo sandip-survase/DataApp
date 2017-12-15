@@ -390,10 +390,10 @@ public class LicenseActivity extends AppCompatActivity {
 //        Typeface custom_font4 = Typeface.createFromAsset(getAssets(),  "fonts/meriitalic.ttf");
 //        Typeface custom_font5 = Typeface.createFromAsset(getAssets(),  "fonts/righteous.ttf");
 
-        Typeface custom_font6 = Typeface.createFromAsset(getAssets(),  "fonts/rockitbold.ttf");
-        Typeface custom_font7 = Typeface.createFromAsset(getAssets(),  "fonts/portano.ttf");
+        Typeface custom_font6 = MyConstants.getLight(this);
+        Typeface custom_font7 = MyConstants.getBold(this);
 
-        mainheading.setTypeface(custom_font7);
+        mainheading.setTypeface(MyConstants.getBold(this));
         subheading.setTypeface(custom_font6);
 
         license1.setTypeface(custom_font7);

@@ -1,28 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:padding="20dp"
-tools:context="placeme.octopusites.com.placeme.WelcomeCompanyDetailsFragment">
+<ScrollView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fcfdfd"
+    android:focusableInTouchMode="true"
+    >
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:background="@android:color/transparent"
-        android:layout_height="match_parent">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/headerMsg"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:text="Enter Company Details"
-        android:textSize="20dp" />
+        android:padding="16dp"
+        >
+        <TextView
+            android:id="@+id/welcometextviewcontext1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="Enter Company Details"
+            android:textColor="#03353e"
+            android:textSize="16dp" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/welcometextviewcontext1"
+            android:src="@drawable/logo"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/logo"
+            />
+
+        <TextView
+            android:id="@+id/welcometextviewcontext2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/sky_blue_color"
+            android:textSize="14dp" />
+        <ImageView
+            android:id="@+id/enterindustrydetailsscreen"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/welcometextviewcontext2"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/enterindustrydetailsscreen"
+            />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/companyNameTextInputLayout"
@@ -30,37 +60,46 @@ tools:context="placeme.octopusites.com.placeme.WelcomeCompanyDetailsFragment">
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/headerMsg"
-        android:theme="@style/TextLabelNew">
-
+        android:layout_below="@+id/enterindustrydetailsscreen"
+        android:layout_marginTop="20dp"
+        android:theme="@style/TextLabelNew"
+        app:errorEnabled="true"
+        >
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/companyName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity=""
-            android:hint="Company Name"
-            android:imeOptions="actionNext"
+            android:hint="Enter company name"
             android:singleLine="true"
-            android:textSize="15sp" />
+            android:textColor="#03353e"
+            android:maxLength="500"
+            android:inputType="textCapWords"
+            android:imeOptions="actionNext"
+            android:textSize="16dp" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/countryinputlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/countryinputlayout"
         android:layout_below="@+id/companyNameTextInputLayout"
-        android:layout_marginTop="20dp"
-        android:theme="@style/TextLabelNew">
+        android:theme="@style/TextLabelNew"
+        app:errorEnabled="true"
+        >
 
         <AutoCompleteTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="select country"
-            android:textSize="15dp"
+            android:hint="Enter country"
             android:singleLine="true"
             android:maxLines="1"
-            android:textColor="#000"
-            android:id="@+id/countryAutoBoxCompany"/>
+            android:id="@+id/countryAutoBoxCompany"
+            android:textColor="#03353e"
+            android:maxLength="50"
+            android:inputType="textCapWords"
+            android:imeOptions="actionNext"
+            android:textSize="16dp"
+            />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -69,17 +108,22 @@ tools:context="placeme.octopusites.com.placeme.WelcomeCompanyDetailsFragment">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/countryinputlayout"
-        android:theme="@style/TextLabelNew">
+        android:theme="@style/TextLabelNew"
+        app:errorEnabled="true"
+        >
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/companyAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Company Address"
-            android:gravity=""
-            android:imeOptions="actionNext"
+            android:hint="Enter company address"
             android:singleLine="true"
-            android:textSize="15sp" />
+            android:textColor="#03353e"
+            android:maxLength="500"
+            android:inputType="textCapWords"
+            android:imeOptions="actionNext"
+            android:textSize="16dp"
+             />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -88,17 +132,21 @@ tools:context="placeme.octopusites.com.placeme.WelcomeCompanyDetailsFragment">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/addressTextInputLayout"
-        android:theme="@style/TextLabelNew">
+        android:theme="@style/TextLabelNew"
+        app:errorEnabled="true"
+        >
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/companyEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Company Email"
-            android:gravity=""
-            android:imeOptions="actionNext"
+            android:hint="Enter company email"
             android:singleLine="true"
-            android:textSize="15sp" />
+            android:textColor="#03353e"
+            android:maxLength="100"
+            android:inputType="textEmailAddress"
+            android:imeOptions="actionNext"
+            android:textSize="16dp" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -107,17 +155,21 @@ tools:context="placeme.octopusites.com.placeme.WelcomeCompanyDetailsFragment">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/emailTextInputLayout"
-        android:theme="@style/TextLabelNew">
+        android:theme="@style/TextLabelNew"
+        app:errorEnabled="true"
+        >
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/companyWebsite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Company Website"
-            android:gravity=""
-            android:imeOptions="actionNext"
+            android:hint="Enter company website"
             android:singleLine="true"
-            android:textSize="15sp" />
+            android:textColor="#03353e"
+            android:maxLength="100"
+            android:inputType="textWebEmailAddress"
+            android:imeOptions="actionNext"
+            android:textSize="16dp" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -126,17 +178,21 @@ tools:context="placeme.octopusites.com.placeme.WelcomeCompanyDetailsFragment">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/websiteTextInputLayout"
-        android:theme="@style/TextLabelNew">
+        android:theme="@style/TextLabelNew"
+        app:errorEnabled="true"
+        >
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/companyPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Company Phone"
+            android:hint="Enter company phone"
             android:inputType="number"
-            android:imeOptions="actionNext"
             android:singleLine="true"
-            android:textSize="15sp" />
+            android:textColor="#03353e"
+            android:maxLength="11"
+            android:imeOptions="actionNext"
+            android:textSize="16dp"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -145,17 +201,21 @@ tools:context="placeme.octopusites.com.placeme.WelcomeCompanyDetailsFragment">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/phoneTextInputLayout"
-        android:theme="@style/TextLabelNew">
+        android:theme="@style/TextLabelNew"
+        app:errorEnabled="true"
+        >
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/companyAlternatephone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Company Alternate phone"
-            android:imeOptions="actionNext"
-            android:inputType="number"
+            android:hint="Enter company alternate phone"
             android:singleLine="true"
-            android:textSize="15sp" />
+            android:textColor="#03353e"
+            android:maxLength="11"
+            android:inputType="number"
+            android:imeOptions="actionNext"
+            android:textSize="16dp" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -164,16 +224,21 @@ tools:context="placeme.octopusites.com.placeme.WelcomeCompanyDetailsFragment">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/alternatePhoneTextInputLayout"
-        android:theme="@style/TextLabelNew">
+        android:theme="@style/TextLabelNew"
+        app:errorEnabled="true"
+        >
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/CIN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="CIN"
-            android:imeOptions="actionNext"
+            android:hint="Enter CIN"
             android:singleLine="true"
-            android:textSize="15sp" />
+            android:textColor="#03353e"
+            android:maxLength="500"
+            android:inputType="textCapCharacters"
+            android:imeOptions="actionDone"
+            android:textSize="16dp"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -182,7 +247,6 @@ tools:context="placeme.octopusites.com.placeme.WelcomeCompanyDetailsFragment">
         android:layout_height="wrap_content"
         android:layout_below="@+id/CINTextInputLayout"
         android:id="@+id/companyNatureSpinner"
-        android:layout_marginTop="20dp"
         android:layout_marginRight="3dp"
         android:layout_weight=".28"
         android:orientation="horizontal">
@@ -193,11 +257,12 @@ tools:context="placeme.octopusites.com.placeme.WelcomeCompanyDetailsFragment">
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_gravity="center"
-            android:background="#001111"
-            android:gravity="center"
-            android:popupBackground="#001111"
+            android:background="@color/transparent"
+            android:popupBackground="#fcfdfd"
             android:layout_marginLeft="5dp"
-            android:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown"
+            android:textSize="16dp"
+            />
 
         <ImageView
             android:layout_width="40dp"
@@ -206,14 +271,14 @@ tools:context="placeme.octopusites.com.placeme.WelcomeCompanyDetailsFragment">
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:id="@+id/spinnerimg1"
-            android:tint="#eee"
+            android:tint="#03353e"
             android:src="@drawable/drop" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/spinnerimg1"
-            android:background="#eee"
+            android:background="#03353e"
             />
 
     </RelativeLayout>
@@ -223,19 +288,25 @@ tools:context="placeme.octopusites.com.placeme.WelcomeCompanyDetailsFragment">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/companyNatureSpinner"
-        android:theme="@style/TextLabelNew">
+        android:theme="@style/TextLabelNew"
+        app:errorEnabled="true"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        >
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/otherNature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="other Nature"
-            android:imeOptions="actionNext"
+            android:hint="Enter nature of company"
             android:singleLine="true"
-            android:textSize="15sp" />
+            android:textColor="#03353e"
+            android:maxLength="100"
+            android:inputType="textCapWords"
+            android:imeOptions="actionDone"
+            android:textSize="16dp"/>
 
     </android.support.design.widget.TextInputLayout>
-        </RelativeLayout>
-    </ScrollView>
 
 </RelativeLayout>
+</ScrollView>

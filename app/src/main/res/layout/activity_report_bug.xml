@@ -2,100 +2,106 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_report_bug"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    android:focusableInTouchMode="true"
-    tools:context="placeme.octopusites.com.placeme.ReportBug">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Report Bug / Feedback"
-        android:textSize="18dp"
-        android:textColor="#eee"
-        android:id="@+id/createreporttxt"
-        android:layout_marginTop="15dp"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/createreporttxt"
-        android:textColor="#bbb"
-        android:text="Developer feedback goes a long way towards making our product even better. With Bug Reporter, you can submit bug reports and request enhancements to Place Me."
-        android:layout_marginTop="10dp"
-        android:id="@+id/reportsenstxt"
-        />
-
-
-
-    <android.support.design.widget.TextInputLayout
+    android:background="@color/while_color">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_report_bug"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:id="@+id/titleinput"
-        android:layout_below="@+id/reportsenstxt"
-        android:theme="@style/TextLabel">
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:focusableInTouchMode="true"
+        tools:context="placeme.octopusites.com.placeme.ReportBug">
 
-        <android.support.v7.widget.AppCompatEditText
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Report Bug / Feedback"
+            android:textSize="16dp"
+            android:textColor="@color/dark_color"
+            android:id="@+id/createreporttxt"
+            android:layout_marginTop="15dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/createreporttxt"
+            android:textColor="@color/dark_color"
+            android:text="Developer feedback goes a long way towards making our product even better. With Bug Reporter, you can submit bug reports and request enhancements to Place Me."
+            android:layout_marginTop="10dp"
+            android:textSize="12dp"
+            android:id="@+id/reportsenstxt"
+            />
+
+
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Title"
-            android:textSize="15dp"
-            android:textColor="#eee"
-            android:singleLine="true"
-            android:id="@+id/title"/>
+            android:layout_marginTop="20dp"
+            android:id="@+id/titleinput"
+            android:layout_below="@+id/reportsenstxt"
+            android:theme="@style/TextLabel">
 
-    </android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/titleinput"
-        android:id="@+id/commentsinput"
-        android:theme="@style/TextLabel">
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Title"
+                android:textSize="16dp"
+                android:textColor="@color/dark_color"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:id="@+id/title"/>
 
-        <android.support.v7.widget.AppCompatEditText
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lines="5"
-            android:hint="Description"
-            android:gravity="top|left"
-            android:inputType="textMultiLine"
-            android:scrollHorizontally="false"
-            android:textSize="15dp"
-            android:textColor="#eee"
-            android:id="@+id/comments"/>
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/titleinput"
+            android:id="@+id/commentsinput"
+            android:theme="@style/TextLabel">
 
-    </android.support.design.widget.TextInputLayout>
-    <ProgressBar
-        android:id="@+id/reportprogress"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone"
-        android:layout_below="@+id/commentsinput"
-        />
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="5"
+                android:hint="Description"
+                android:gravity="top|left"
+                android:inputType="textMultiLine"
+                android:scrollHorizontally="false"
+                android:textSize="16dp"
+                android:textColor="@color/dark_color"
+                android:textStyle="bold"
+                android:id="@+id/comments"/>
 
-    <Button
-        android:id="@+id/reportbug_button"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        android:textAllCaps="false"
-        android:textSize="20dp"
-        android:textColor="#eeeeee"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/button_round"
-        android:layout_below="@+id/commentsinput"
-        />
+        </android.support.design.widget.TextInputLayout>
+        <ProgressBar
+            android:id="@+id/reportprogress"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            android:layout_below="@+id/commentsinput"
+            />
+
+        <Button
+            android:id="@+id/reportbug_button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:textSize="18dp"
+            android:textColor="@color/while_color"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:elevation="6dp"
+            android:translationZ="6dp"
+            android:stateListAnimator="@null"
+            android:background="@drawable/textviewborder"
+            android:layout_below="@+id/commentsinput"
+            />
 
 
-</RelativeLayout>
+    </RelativeLayout>
 </ScrollView>

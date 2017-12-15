@@ -3,12 +3,12 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SwitchCompat;
@@ -41,6 +41,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import placeme.octopusites.com.placeme.modal.Experiences;
+
+import static placeme.octopusites.com.placeme.AES4all.OtoString;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 import static placeme.octopusites.com.placeme.HrCompanyDetailsTabFragment.HRlog;
 
@@ -51,20 +54,18 @@ import static placeme.octopusites.com.placeme.HrCompanyDetailsTabFragment.HRlog;
 public class HrExperiencesTabFragment extends Fragment {
 
 
-    int d = 0, expcount = 0;
+    int d = 0, expcount = 0,editexp=0;
     int edittedFlag = 0;
     View addmoreexp;
     ProgressBar   personalprogress1;
     JSONObject json;
     JSONParser jParser = new JSONParser();
     String digest1, digest2;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
     View trash1selectionview, trash2selectionview, trash3selectionview, trash4selectionview, trash5selectionview, trash6selectionview, trash7selectionview, trash8selectionview, trash9selectionview, trash10selectionview;
     EditText fromdate1, todate1, fromdate2, todate2, fromdate3, todate3, fromdate4, todate4, fromdate5, todate5, fromdate6, todate6, fromdate7, todate7, fromdate8, todate8, fromdate9, todate9, fromdate10, todate10;
     EditText post1, post2, post3, post4, post5, post6, post7, post8, post9, post10;
     EditText inst11, inst12, inst13, inst14, inst15, inst16, inst17, inst18, inst19, inst110;
+    TextView addmoreexptxt,work1,work2,work3,work4,work5,work6,work7,work8,work9,work10;
     String posts1 = "", posts2 = "", posts3 = "", posts4 = "", posts5 = "", posts6 = "", posts7 = "", posts8 = "", posts9 = "", posts10 = "";
     String inst1s1 = "", inst1s2 = "", inst1s3 = "", inst1s4 = "", inst1s5 = "", inst1s6 = "", inst1s7 = "", inst1s8 = "", inst1s9 = "", inst1s10 = "";
     String fromdates1 = "", todates1 = "", fromdates2 = "", todates2 = "", fromdates3 = "", todates3 = "", fromdates4 = "", todates4 = "", fromdates5 = "", todates5 = "", fromdates6 = "", todates6 = "", fromdates7 = "", todates7 = "", fromdates8 = "", todates8 = "", fromdates9 = "", todates9 = "", fromdates10 = "", todates10 = "";
@@ -73,7 +74,8 @@ public class HrExperiencesTabFragment extends Fragment {
     String encfromdate1 = "", encfromdate2 = "", encfromdate3 = "", encfromdate4 = "", encfromdate5 = "", encfromdate6 = "", encfromdate7 = "", encfromdate8 = "", encfromdate9 = "", encfromdate10 = "";
     String enctodate1 = "", enctodate2 = "", enctodate3 = "", enctodate4 = "", enctodate5 = "", enctodate6 = "", enctodate7 = "", enctodate8 = "", enctodate9 = "", enctodate10 = "";
 //    Button savepersonal;
-    String status = "false";
+    String status = "false",encObjString="";
+    AdminData a = new AdminData();
     SwitchCompat switch1, switch2, switch3, switch4, switch5, switch6, switch7, switch8, switch9, switch10;
     boolean blnswitch1, blnswitch2, blnswitch3, blnswitch4, blnswitch5, blnswitch6, blnswitch7, blnswitch8, blnswitch9, blnswitch10;
     private String username = "";
@@ -81,33 +83,24 @@ public class HrExperiencesTabFragment extends Fragment {
     int errorflag = 0;
     byte[] demoKeyBytes, demoIVBytes;
     String sPadding;
+    String role;
     HrData hr = new HrData();
-
+    ArrayList<Experiences> experiencesList=new ArrayList<>();
     View rootView;
+    TextInputLayout postinput1,instinput1,fromdateinput1,todateinput1,postinput2,instinput2,fromdateinput2,todateinput2,postinput3,instinput3,fromdateinput3,todateinput3,postinput4,instinput4,fromdateinput4,todateinput4,postinput5,instinput5,fromdateinput5,todateinput5;
+    TextInputLayout postinput6,instinput6,fromdateinput6,todateinput6,postinput7,instinput7,fromdateinput7,todateinput7,postinput8,instinput8,fromdateinput8,todateinput8,postinput9,instinput9,fromdateinput9,todateinput9,postinput10,instinput10,fromdateinput10,todateinput10;
+
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.fragment_hr_experiences_tab, container, false);
-        sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, null);
-        String role = sharedpreferences.getString("role", null);
 
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest digest = new Digest();
-        digest1 = digest.getDigest1();
-        digest2 = digest.getDigest2();
-
-        if (digest1 == null || digest2 == null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            digest.setDigest1(digest1);
-            digest.setDigest2(digest2);
-        }
+        digest1 = MySharedPreferencesManager.getDigest1(getActivity());
+        digest2 = MySharedPreferencesManager.getDigest2(getActivity());
+        username=MySharedPreferencesManager.getUsername(getActivity());
+        role=MySharedPreferencesManager.getRole(getActivity());
 
         demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -127,6 +120,117 @@ public class HrExperiencesTabFragment extends Fragment {
         trash9selectionview = (View)rootView. findViewById(R.id.trashexp9);
         trash10selectionview = (View)rootView. findViewById(R.id.trashexp10);
 
+        addmoreexptxt=(TextView)rootView.findViewById(R.id.addmoreexptxt);
+        work1=(TextView)rootView.findViewById(R.id.work1);
+        work2=(TextView)rootView.findViewById(R.id.work2);
+        work3=(TextView)rootView.findViewById(R.id.work3);
+        work4=(TextView)rootView.findViewById(R.id.work4);
+        work5=(TextView)rootView.findViewById(R.id.work5);
+        work6=(TextView)rootView.findViewById(R.id.work6);
+        work7=(TextView)rootView.findViewById(R.id.work7);
+        work8=(TextView)rootView.findViewById(R.id.work8);
+        work9=(TextView)rootView.findViewById(R.id.work9);
+        work10=(TextView)rootView.findViewById(R.id.work10);
+
+        addmoreexptxt.setTypeface(MyConstants.getBold(getActivity()));
+        work1.setTypeface(MyConstants.getBold(getActivity()));
+        work2.setTypeface(MyConstants.getBold(getActivity()));
+        work3.setTypeface(MyConstants.getBold(getActivity()));
+        work4.setTypeface(MyConstants.getBold(getActivity()));
+        work5.setTypeface(MyConstants.getBold(getActivity()));
+        work6.setTypeface(MyConstants.getBold(getActivity()));
+        work7.setTypeface(MyConstants.getBold(getActivity()));
+        work8.setTypeface(MyConstants.getBold(getActivity()));
+        work9.setTypeface(MyConstants.getBold(getActivity()));
+        work10.setTypeface(MyConstants.getBold(getActivity()));
+
+        postinput1=(TextInputLayout)rootView.findViewById(R.id.postinput1);
+        postinput2=(TextInputLayout)rootView.findViewById(R.id.postinput2);
+        postinput3=(TextInputLayout)rootView.findViewById(R.id.postinput3);
+        postinput4=(TextInputLayout)rootView.findViewById(R.id.postinput4);
+        postinput5=(TextInputLayout)rootView.findViewById(R.id.postinput5);
+        postinput6=(TextInputLayout)rootView.findViewById(R.id.postinput6);
+        postinput7=(TextInputLayout)rootView.findViewById(R.id.postinput7);
+        postinput8=(TextInputLayout)rootView.findViewById(R.id.postinput8);
+        postinput9=(TextInputLayout)rootView.findViewById(R.id.postinput9);
+        postinput10=(TextInputLayout)rootView.findViewById(R.id.postinput10);
+
+        instinput1=(TextInputLayout)rootView.findViewById(R.id.instinput1);
+        instinput2=(TextInputLayout)rootView.findViewById(R.id.instinput2);
+        instinput3=(TextInputLayout)rootView.findViewById(R.id.instinput3);
+        instinput4=(TextInputLayout)rootView.findViewById(R.id.instinput4);
+        instinput5=(TextInputLayout)rootView.findViewById(R.id.instinput5);
+        instinput6=(TextInputLayout)rootView.findViewById(R.id.instinput6);
+        instinput7=(TextInputLayout)rootView.findViewById(R.id.instinput7);
+        instinput8=(TextInputLayout)rootView.findViewById(R.id.instinput8);
+        instinput9=(TextInputLayout)rootView.findViewById(R.id.instinput9);
+        instinput10=(TextInputLayout)rootView.findViewById(R.id.instinput10);
+
+        fromdateinput1=(TextInputLayout)rootView.findViewById(R.id.fromdateinput1);
+        fromdateinput2=(TextInputLayout)rootView.findViewById(R.id.fromdateinput2);
+        fromdateinput3=(TextInputLayout)rootView.findViewById(R.id.fromdateinput3);
+        fromdateinput4=(TextInputLayout)rootView.findViewById(R.id.fromdateinput4);
+        fromdateinput5=(TextInputLayout)rootView.findViewById(R.id.fromdateinput5);
+        fromdateinput6=(TextInputLayout)rootView.findViewById(R.id.fromdateinput6);
+        fromdateinput7=(TextInputLayout)rootView.findViewById(R.id.fromdateinput7);
+        fromdateinput8=(TextInputLayout)rootView.findViewById(R.id.fromdateinput8);
+        fromdateinput9=(TextInputLayout)rootView.findViewById(R.id.fromdateinput9);
+        fromdateinput10=(TextInputLayout)rootView.findViewById(R.id.fromdateinput10);
+
+        todateinput1=(TextInputLayout)rootView.findViewById(R.id.todateinput1);
+        todateinput2=(TextInputLayout)rootView.findViewById(R.id.todateinput2);
+        todateinput3=(TextInputLayout)rootView.findViewById(R.id.todateinput3);
+        todateinput4=(TextInputLayout)rootView.findViewById(R.id.todateinput4);
+        todateinput5=(TextInputLayout)rootView.findViewById(R.id.todateinput5);
+        todateinput6=(TextInputLayout)rootView.findViewById(R.id.todateinput6);
+        todateinput7=(TextInputLayout)rootView.findViewById(R.id.todateinput7);
+        todateinput8=(TextInputLayout)rootView.findViewById(R.id.todateinput8);
+        todateinput9=(TextInputLayout)rootView.findViewById(R.id.todateinput9);
+        todateinput10=(TextInputLayout)rootView.findViewById(R.id.todateinput10);
+
+        todateinput1.setTypeface(MyConstants.getLight(getActivity()));
+        todateinput2.setTypeface(MyConstants.getLight(getActivity()));
+        todateinput3.setTypeface(MyConstants.getLight(getActivity()));
+        todateinput4.setTypeface(MyConstants.getLight(getActivity()));
+        todateinput5.setTypeface(MyConstants.getLight(getActivity()));
+        todateinput6.setTypeface(MyConstants.getLight(getActivity()));
+        todateinput7.setTypeface(MyConstants.getLight(getActivity()));
+        todateinput8.setTypeface(MyConstants.getLight(getActivity()));
+        todateinput9.setTypeface(MyConstants.getLight(getActivity()));
+        todateinput10.setTypeface(MyConstants.getLight(getActivity()));
+
+        postinput1.setTypeface(MyConstants.getLight(getActivity()));
+        postinput2.setTypeface(MyConstants.getLight(getActivity()));
+        postinput3.setTypeface(MyConstants.getLight(getActivity()));
+        postinput4.setTypeface(MyConstants.getLight(getActivity()));
+        postinput5.setTypeface(MyConstants.getLight(getActivity()));
+        postinput6.setTypeface(MyConstants.getLight(getActivity()));
+        postinput7.setTypeface(MyConstants.getLight(getActivity()));
+        postinput8.setTypeface(MyConstants.getLight(getActivity()));
+        postinput9.setTypeface(MyConstants.getLight(getActivity()));
+        postinput10.setTypeface(MyConstants.getLight(getActivity()));
+
+        instinput1.setTypeface(MyConstants.getLight(getActivity()));
+        instinput2.setTypeface(MyConstants.getLight(getActivity()));
+        instinput3.setTypeface(MyConstants.getLight(getActivity()));
+        instinput4.setTypeface(MyConstants.getLight(getActivity()));
+        instinput5.setTypeface(MyConstants.getLight(getActivity()));
+        instinput6.setTypeface(MyConstants.getLight(getActivity()));
+        instinput7.setTypeface(MyConstants.getLight(getActivity()));
+        instinput8.setTypeface(MyConstants.getLight(getActivity()));
+        instinput9.setTypeface(MyConstants.getLight(getActivity()));
+        instinput10.setTypeface(MyConstants.getLight(getActivity()));
+
+        fromdateinput1.setTypeface(MyConstants.getLight(getActivity()));
+        fromdateinput2.setTypeface(MyConstants.getLight(getActivity()));
+        fromdateinput3.setTypeface(MyConstants.getLight(getActivity()));
+        fromdateinput4.setTypeface(MyConstants.getLight(getActivity()));
+        fromdateinput5.setTypeface(MyConstants.getLight(getActivity()));
+        fromdateinput6.setTypeface(MyConstants.getLight(getActivity()));
+        fromdateinput7.setTypeface(MyConstants.getLight(getActivity()));
+        fromdateinput8.setTypeface(MyConstants.getLight(getActivity()));
+        fromdateinput9.setTypeface(MyConstants.getLight(getActivity()));
+        fromdateinput10.setTypeface(MyConstants.getLight(getActivity()));
 
         //Edittext
         post1 = (EditText)rootView. findViewById(R.id.post1);
@@ -150,6 +254,29 @@ public class HrExperiencesTabFragment extends Fragment {
         inst18 = (EditText)rootView. findViewById(R.id.inst8);
         inst19 = (EditText)rootView. findViewById(R.id.inst9);
         inst110 = (EditText)rootView. findViewById(R.id.inst10);
+
+        post1.setTypeface(MyConstants.getBold(getActivity()));
+        post2.setTypeface(MyConstants.getBold(getActivity()));
+        post3.setTypeface(MyConstants.getBold(getActivity()));
+        post4.setTypeface(MyConstants.getBold(getActivity()));
+        post5.setTypeface(MyConstants.getBold(getActivity()));
+        post6.setTypeface(MyConstants.getBold(getActivity()));
+        post7.setTypeface(MyConstants.getBold(getActivity()));
+        post8.setTypeface(MyConstants.getBold(getActivity()));
+        post9.setTypeface(MyConstants.getBold(getActivity()));
+        post10.setTypeface(MyConstants.getBold(getActivity()));
+
+        inst11.setTypeface(MyConstants.getBold(getActivity()));
+        inst12.setTypeface(MyConstants.getBold(getActivity()));
+        inst13.setTypeface(MyConstants.getBold(getActivity()));
+        inst14.setTypeface(MyConstants.getBold(getActivity()));
+        inst15.setTypeface(MyConstants.getBold(getActivity()));
+        inst16.setTypeface(MyConstants.getBold(getActivity()));
+        inst17.setTypeface(MyConstants.getBold(getActivity()));
+        inst18.setTypeface(MyConstants.getBold(getActivity()));
+        inst19.setTypeface(MyConstants.getBold(getActivity()));
+        inst110.setTypeface(MyConstants.getBold(getActivity()));
+
 
         switch1 = (SwitchCompat)rootView. findViewById(R.id.switch1);
         switch2 = (SwitchCompat)rootView. findViewById(R.id.switch2);
@@ -185,9 +312,31 @@ public class HrExperiencesTabFragment extends Fragment {
         fromdate10=(EditText)rootView.findViewById(R.id.fromdate10);
         todate10=(EditText)rootView.findViewById(R.id.todate10);
 
+
+        fromdate1.setTypeface(MyConstants.getBold(getActivity()));
+        todate1.setTypeface(MyConstants.getBold(getActivity()));
+        fromdate2.setTypeface(MyConstants.getBold(getActivity()));
+        todate2.setTypeface(MyConstants.getBold(getActivity()));
+        fromdate3.setTypeface(MyConstants.getBold(getActivity()));
+        todate3.setTypeface(MyConstants.getBold(getActivity()));
+        fromdate4.setTypeface(MyConstants.getBold(getActivity()));
+        todate4.setTypeface(MyConstants.getBold(getActivity()));
+        fromdate5.setTypeface(MyConstants.getBold(getActivity()));
+        todate5.setTypeface(MyConstants.getBold(getActivity()));
+        fromdate6.setTypeface(MyConstants.getBold(getActivity()));
+        todate6.setTypeface(MyConstants.getBold(getActivity()));
+        fromdate7.setTypeface(MyConstants.getBold(getActivity()));
+        todate7.setTypeface(MyConstants.getBold(getActivity()));
+        fromdate8.setTypeface(MyConstants.getBold(getActivity()));
+        todate8.setTypeface(MyConstants.getBold(getActivity()));
+        fromdate9.setTypeface(MyConstants.getBold(getActivity()));
+        todate9.setTypeface(MyConstants.getBold(getActivity()));
+        fromdate10.setTypeface(MyConstants.getBold(getActivity()));
+        todate10.setTypeface(MyConstants.getBold(getActivity()));
+
         TextView exptxt=(TextView)rootView.findViewById(R.id.exptxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/arba.ttf");
-        exptxt.setTypeface(custom_font1);
+        exptxt.setTypeface(MyConstants.getBold(getActivity()));
+
         //my code
         trash1selectionview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -261,327 +410,328 @@ public class HrExperiencesTabFragment extends Fragment {
                 showDeletDialog();
             }
         });
-        fromdate1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                // 1- id   2- isFromDateSelected 3-fromYear   4- month in str
-
-                String toDate = todate1.getText().toString();
-                showDateDialog(fromdate1, false, 0, "", toDate);
-
-
-            }
-        });
-        todate1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate1.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate1.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate1, isFromDateSelected, fromYear, fromMonth, "");
-
-            }
-        });
-        fromdate2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String toDate = todate2.getText().toString();
-                showDateDialog(fromdate2, false, 0, "", toDate);
-
-
-            }
-        });
-        todate2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate2.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate2.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate2, isFromDateSelected, fromYear, fromMonth, "");
-            }
-        });
-        fromdate3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String toDate = todate3.getText().toString();
-                showDateDialog(fromdate3, false, 0, "", toDate);
-
-
-            }
-        });
-        todate3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate3.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate3.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate3, isFromDateSelected, fromYear, fromMonth, "");
-            }
-
-        });
-        fromdate4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String toDate = todate4.getText().toString();
-                showDateDialog(fromdate4, false, 0, "", toDate);
-
-
-            }
-        });
-        todate4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate4.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate4.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate4, isFromDateSelected, fromYear, fromMonth, "");
-            }
-        });
-        fromdate5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String toDate = todate5.getText().toString();
-                showDateDialog(fromdate5, false, 0, "", toDate);
-
-            }
-        });
-        todate5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate5.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate5.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate5, isFromDateSelected, fromYear, fromMonth, "");
-            }
-        });
-        fromdate6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String toDate = todate6.getText().toString();
-                showDateDialog(fromdate6, false, 0, "", toDate);
-
-            }
-        });
-        todate6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate6.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate6.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate6, isFromDateSelected, fromYear, fromMonth, "");
-            }
-        });
-        fromdate7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String toDate = todate7.getText().toString();
-                showDateDialog(fromdate7, false, 0, "", toDate);
-
-            }
-        });
-        todate7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate7.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate7.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate7, isFromDateSelected, fromYear, fromMonth, "");
-            }
-        });
-        fromdate8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String toDate = todate8.getText().toString();
-                showDateDialog(fromdate8, false, 0, "", toDate);
-
-            }
-        });
-        todate8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate8.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate8.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate8, isFromDateSelected, fromYear, fromMonth, "");
-            }
-        });
-        fromdate9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String toDate = todate9.getText().toString();
-                showDateDialog(fromdate9, false, 0, "", toDate);
-
-            }
-        });
-        todate9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate9.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate9.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate9, isFromDateSelected, fromYear, fromMonth, "");
-            }
-        });
-        fromdate10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String toDate = todate10.getText().toString();
-                showDateDialog(fromdate10, false, 0, "", toDate);
-
-            }
-        });
-        todate10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int fromYear = 0;
-                String fromMonth = "";
-                boolean isFromDateSelected = false;
-
-                if (!fromdate10.getText().toString().equals("")) {
-                    isFromDateSelected = true;
-                    String[] splited = fromdate10.getText().toString().split(", ");
-                    if (splited.length == 2) {
-                        fromMonth = splited[0];
-                        fromYear = Integer.parseInt(splited[1]);
-                    }
-                } else {
-                    isFromDateSelected = false;
-                    fromYear = 0;
-                    fromMonth = "";
-                }
-                showDateDialog(todate10, isFromDateSelected, fromYear, fromMonth, "");
-            }
-        });
-
+//
+//        fromdate1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//
+//                // 1- id   2- isFromDateSelected 3-fromYear   4- month in str
+//
+//                String toDate = todate1.getText().toString();
+//                showDateDialog(fromdate1, false, 0, "", toDate);
+//
+//
+//            }
+//        });
+//        todate1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate1.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate1.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate1, isFromDateSelected, fromYear, fromMonth, "");
+//
+//            }
+//        });
+//        fromdate2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                String toDate = todate2.getText().toString();
+//                showDateDialog(fromdate2, false, 0, "", toDate);
+//
+//
+//            }
+//        });
+//        todate2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate2.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate2.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate2, isFromDateSelected, fromYear, fromMonth, "");
+//            }
+//        });
+//        fromdate3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                String toDate = todate3.getText().toString();
+//                showDateDialog(fromdate3, false, 0, "", toDate);
+//
+//
+//            }
+//        });
+//        todate3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate3.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate3.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate3, isFromDateSelected, fromYear, fromMonth, "");
+//            }
+//
+//        });
+//        fromdate4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                String toDate = todate4.getText().toString();
+//                showDateDialog(fromdate4, false, 0, "", toDate);
+//
+//
+//            }
+//        });
+//        todate4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate4.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate4.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate4, isFromDateSelected, fromYear, fromMonth, "");
+//            }
+//        });
+//        fromdate5.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                String toDate = todate5.getText().toString();
+//                showDateDialog(fromdate5, false, 0, "", toDate);
+//
+//            }
+//        });
+//        todate5.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate5.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate5.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate5, isFromDateSelected, fromYear, fromMonth, "");
+//            }
+//        });
+//        fromdate6.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                String toDate = todate6.getText().toString();
+//                showDateDialog(fromdate6, false, 0, "", toDate);
+//
+//            }
+//        });
+//        todate6.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate6.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate6.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate6, isFromDateSelected, fromYear, fromMonth, "");
+//            }
+//        });
+//        fromdate7.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                String toDate = todate7.getText().toString();
+//                showDateDialog(fromdate7, false, 0, "", toDate);
+//
+//            }
+//        });
+//        todate7.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate7.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate7.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate7, isFromDateSelected, fromYear, fromMonth, "");
+//            }
+//        });
+//        fromdate8.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                String toDate = todate8.getText().toString();
+//                showDateDialog(fromdate8, false, 0, "", toDate);
+//
+//            }
+//        });
+//        todate8.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate8.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate8.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate8, isFromDateSelected, fromYear, fromMonth, "");
+//            }
+//        });
+//        fromdate9.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                String toDate = todate9.getText().toString();
+//                showDateDialog(fromdate9, false, 0, "", toDate);
+//
+//            }
+//        });
+//        todate9.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate9.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate9.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate9, isFromDateSelected, fromYear, fromMonth, "");
+//            }
+//        });
+//        fromdate10.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                String toDate = todate10.getText().toString();
+//                showDateDialog(fromdate10, false, 0, "", toDate);
+//
+//            }
+//        });
+//        todate10.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int fromYear = 0;
+//                String fromMonth = "";
+//                boolean isFromDateSelected = false;
+//
+//                if (!fromdate10.getText().toString().equals("")) {
+//                    isFromDateSelected = true;
+//                    String[] splited = fromdate10.getText().toString().split(", ");
+//                    if (splited.length == 2) {
+//                        fromMonth = splited[0];
+//                        fromYear = Integer.parseInt(splited[1]);
+//                    }
+//                } else {
+//                    isFromDateSelected = false;
+//                    fromYear = 0;
+//                    fromMonth = "";
+//                }
+//                showDateDialog(todate10, isFromDateSelected, fromYear, fromMonth, "");
+//            }
+//        });
+//
 
         switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -793,7 +943,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post1.setError(null);
+                postinput1.setError(null);
                 edittedFlag = 1;
             }
 
@@ -810,7 +960,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post2.setError(null);
+                postinput2.setError(null);
                 edittedFlag = 1;
             }
 
@@ -827,7 +977,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post3.setError(null);
+                postinput3.setError(null);
                 edittedFlag = 1;
             }
 
@@ -844,7 +994,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post4.setError(null);
+                postinput4.setError(null);
                 edittedFlag = 1;
             }
 
@@ -861,7 +1011,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post5.setError(null);
+                postinput5.setError(null);
                 edittedFlag = 1;
             }
 
@@ -879,7 +1029,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post6.setError(null);
+                postinput6.setError(null);
                 edittedFlag = 1;
             }
 
@@ -896,7 +1046,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post7.setError(null);
+                postinput7.setError(null);
                 edittedFlag = 1;
             }
 
@@ -914,7 +1064,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post8.setError(null);
+                postinput8.setError(null);
                 edittedFlag = 1;
             }
 
@@ -931,7 +1081,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post9.setError(null);
+                postinput9.setError(null);
                 edittedFlag = 1;
             }
 
@@ -948,7 +1098,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                post10.setError(null);
+                postinput10.setError(null);
                 edittedFlag = 1;
             }
 
@@ -965,7 +1115,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst11.setError(null);
+                instinput1.setError(null);
                 edittedFlag = 1;
             }
 
@@ -982,7 +1132,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst12.setError(null);
+                instinput2.setError(null);
                 edittedFlag = 1;
             }
 
@@ -999,7 +1149,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst13.setError(null);
+                instinput3.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1016,7 +1166,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst14.setError(null);
+                instinput4.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1033,7 +1183,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst15.setError(null);
+                instinput5.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1050,7 +1200,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst16.setError(null);
+                instinput6.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1067,7 +1217,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst17.setError(null);
+                instinput7.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1084,7 +1234,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst18.setError(null);
+                instinput8.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1101,7 +1251,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst19.setError(null);
+                instinput9.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1118,7 +1268,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                inst110.setError(null);
+                instinput10.setError(null);
                 edittedFlag = 1;
             }
 
@@ -1137,6 +1287,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput1.setError(null);
             }
 
             @Override
@@ -1153,6 +1304,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput2.setError(null);
             }
 
             @Override
@@ -1169,6 +1321,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput3.setError(null);
             }
 
             @Override
@@ -1186,6 +1339,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput4.setError(null);
             }
 
             @Override
@@ -1202,6 +1356,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput5.setError(null);
             }
 
             @Override
@@ -1219,6 +1374,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput6.setError(null);
             }
 
             @Override
@@ -1235,6 +1391,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput7.setError(null);
             }
 
             @Override
@@ -1251,6 +1408,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput8.setError(null);
             }
 
             @Override
@@ -1267,6 +1425,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput9.setError(null);
             }
 
             @Override
@@ -1283,6 +1442,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                fromdateinput10.setError(null);
             }
 
             @Override
@@ -1300,6 +1460,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput1.setError(null);
             }
 
             @Override
@@ -1318,6 +1479,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput2.setError(null);
             }
 
             @Override
@@ -1334,6 +1496,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput3.setError(null);
             }
 
             @Override
@@ -1351,6 +1514,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput4.setError(null);
             }
 
             @Override
@@ -1367,6 +1531,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput5.setError(null);
             }
 
             @Override
@@ -1384,6 +1549,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput6.setError(null);
             }
 
             @Override
@@ -1400,6 +1566,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput7.setError(null);
             }
 
             @Override
@@ -1416,6 +1583,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput8.setError(null);
             }
 
             @Override
@@ -1432,6 +1600,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput9.setError(null);
             }
 
             @Override
@@ -1448,6 +1617,7 @@ public class HrExperiencesTabFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
+                todateinput10.setError(null);
             }
 
             @Override
@@ -1460,14 +1630,9 @@ public class HrExperiencesTabFragment extends Fragment {
         fromdate1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 // 1- id   2- isFromDateSelected 3-fromYear   4- month in str
-
                 String toDate = todate1.getText().toString();
-                showDateDialog(fromdate1, false, 0, "", toDate);
-
-
+                showDateDialog(fromdate1,fromdateinput1, false, 0, "", toDate);
             }
         });
         todate1.setOnClickListener(new View.OnClickListener() {
@@ -1490,7 +1655,7 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate1, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate1,todateinput1, isFromDateSelected, fromYear, fromMonth, "");
 
             }
         });
@@ -1499,7 +1664,7 @@ public class HrExperiencesTabFragment extends Fragment {
             public void onClick(View view) {
 
                 String toDate = todate2.getText().toString();
-                showDateDialog(fromdate2, false, 0, "", toDate);
+                showDateDialog(fromdate2,fromdateinput2, false, 0, "", toDate);
 
 
             }
@@ -1523,7 +1688,7 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate2, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate2,todateinput2, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
         fromdate3.setOnClickListener(new View.OnClickListener() {
@@ -1531,7 +1696,7 @@ public class HrExperiencesTabFragment extends Fragment {
             public void onClick(View view) {
 
                 String toDate = todate3.getText().toString();
-                showDateDialog(fromdate3, false, 0, "", toDate);
+                showDateDialog(fromdate3,fromdateinput3, false, 0, "", toDate);
 
 
             }
@@ -1555,7 +1720,7 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate3, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate3,todateinput3, isFromDateSelected, fromYear, fromMonth, "");
             }
 
         });
@@ -1564,7 +1729,7 @@ public class HrExperiencesTabFragment extends Fragment {
             public void onClick(View view) {
 
                 String toDate = todate4.getText().toString();
-                showDateDialog(fromdate4, false, 0, "", toDate);
+                showDateDialog(fromdate4,fromdateinput4, false, 0, "", toDate);
 
 
             }
@@ -1588,7 +1753,7 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate4, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate4,todateinput4, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
         fromdate5.setOnClickListener(new View.OnClickListener() {
@@ -1596,7 +1761,7 @@ public class HrExperiencesTabFragment extends Fragment {
             public void onClick(View view) {
 
                 String toDate = todate5.getText().toString();
-                showDateDialog(fromdate5, false, 0, "", toDate);
+                showDateDialog(fromdate5,fromdateinput5, false, 0, "", toDate);
 
             }
         });
@@ -1619,7 +1784,7 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate5, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate5,todateinput5 ,isFromDateSelected, fromYear, fromMonth, "");
             }
         });
         fromdate6.setOnClickListener(new View.OnClickListener() {
@@ -1627,7 +1792,7 @@ public class HrExperiencesTabFragment extends Fragment {
             public void onClick(View view) {
 
                 String toDate = todate6.getText().toString();
-                showDateDialog(fromdate6, false, 0, "", toDate);
+                showDateDialog(fromdate6,fromdateinput6, false, 0, "", toDate);
 
             }
         });
@@ -1650,7 +1815,7 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate6, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate6,todateinput6, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
         fromdate7.setOnClickListener(new View.OnClickListener() {
@@ -1658,7 +1823,7 @@ public class HrExperiencesTabFragment extends Fragment {
             public void onClick(View view) {
 
                 String toDate = todate7.getText().toString();
-                showDateDialog(fromdate7, false, 0, "", toDate);
+                showDateDialog(fromdate7,fromdateinput7,false, 0, "", toDate);
 
             }
         });
@@ -1681,7 +1846,7 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate7, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate7,todateinput7, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
         fromdate8.setOnClickListener(new View.OnClickListener() {
@@ -1689,7 +1854,7 @@ public class HrExperiencesTabFragment extends Fragment {
             public void onClick(View view) {
 
                 String toDate = todate8.getText().toString();
-                showDateDialog(fromdate8, false, 0, "", toDate);
+                showDateDialog(fromdate8,fromdateinput8, false, 0, "", toDate);
 
             }
         });
@@ -1712,7 +1877,7 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate8, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate8,todateinput8, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
         fromdate9.setOnClickListener(new View.OnClickListener() {
@@ -1720,7 +1885,7 @@ public class HrExperiencesTabFragment extends Fragment {
             public void onClick(View view) {
 
                 String toDate = todate9.getText().toString();
-                showDateDialog(fromdate9, false, 0, "", toDate);
+                showDateDialog(fromdate9,fromdateinput9, false, 0, "", toDate);
 
             }
         });
@@ -1743,7 +1908,7 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate9, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate9,todateinput9, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
         fromdate10.setOnClickListener(new View.OnClickListener() {
@@ -1751,7 +1916,7 @@ public class HrExperiencesTabFragment extends Fragment {
             public void onClick(View view) {
 
                 String toDate = todate10.getText().toString();
-                showDateDialog(fromdate10, false, 0, "", toDate);
+                showDateDialog(fromdate10,fromdateinput10, false, 0, "", toDate);
 
             }
         });
@@ -1774,57 +1939,198 @@ public class HrExperiencesTabFragment extends Fragment {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate10, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(todate10,todateinput10, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
-        posts1 = hr.getPosts1();
-        posts2 = hr.getPosts2();
-        posts3 = hr.getPosts3();
-        posts4 = hr.getPosts4();
-        posts5 = hr.getPosts5();
-        posts6 = hr.getPosts6();
-        posts7 = hr.getPosts7();
-        posts8 = hr.getPosts8();
-        posts9 = hr.getPosts9();
-        posts10 = hr.getPosts10();
 
-        inst1s1 = hr.getInst1s1();
-        inst1s2 = hr.getInst1s2();
+        posts1 = a.getPost1e();
+        posts2 = a.getPost2e();
+        posts3 = a.getPost3e();
+        posts4 = a.getPost4e();
+        posts5 = a.getPost5e();
+        posts6 = a.getPost6e();
+        posts7 = a.getPost7e();
+        posts8 = a.getPost8e();
+        posts9 = a.getPost9e();
+        posts10 = a.getPost10e();
 
-        inst1s3 = hr.getInst1s3();
-        inst1s4 = hr.getInst1s4();
-        inst1s5 = hr.getInst1s5();
-        inst1s6 = hr.getInst1s6();
+        inst1s1 = a.getInst1e();
+        inst1s2 = a.getInst2e();
+        inst1s3 = a.getInst3e();
+        inst1s4 = a.getInst4e();
+        inst1s5 = a.getInst5e();
+        inst1s6 = a.getInst6e();
+        inst1s7 = a.getInst7e();
+        inst1s8 = a.getInst8e();
+        inst1s9 = a.getInst9e();
+        inst1s10 = a.getInst10e();
 
-        inst1s7 = hr.getInst1s7();
-        inst1s8 = hr.getInst1s8();
-        inst1s9 = hr.getInst1s9();
-        inst1s10 = hr.getInst1s10();
+        fromdates1 = a.getFromdate1e();
+        fromdates2 = a.getFromdate2e();
+        fromdates3 = a.getFromdate3e();
+        fromdates4 = a.getFromdate4e();
+        fromdates5 = a.getFromdate5e();
+        fromdates6 = a.getFromdate6e();
+        fromdates7 = a.getFromdate7e();
+        fromdates8 = a.getFromdate8e();
+        fromdates9 = a.getFromdate9e();
+        fromdates10 = a.getFromdate10e();
 
-        fromdates1 = hr.getFromdates1();
-        fromdates2 = hr.getFromdates2();
-        fromdates3 = hr.getFromdates3();
-        fromdates4 = hr.getFromdates4();
-        fromdates5 = hr.getFromdates5();
-        fromdates6 = hr.getFromdates6();
+        todates1 = a.getTodate1e();
+        todates2 = a.getTodate2e();
+        todates3 = a.getTodate3e();
+        todates4 = a.getTodate4e();
+        todates5 = a.getTodate5e();
+        todates6 = a.getTodate6e();
+        todates7 = a.getTodate7e();
+        todates8 = a.getTodate8e();
+        todates9 = a.getTodate9e();
+        todates10 = a.getTodate10e();
 
 
-        fromdates7 = hr.getFromdates7();
-        fromdates8 = hr.getFromdates8();
-        fromdates9 = hr.getFromdates9();
-        fromdates10 = hr.getFromdates10();
+        if(posts1==null)
+           posts1="";
+        if(inst1s1==null)
+            inst1s1="";
+        if(fromdates1==null)
+            fromdates1="";
+        if(todates1==null)
+            todates1="";
 
-        todates1 = hr.getTodates1();
-        todates2 = hr.getTodates2();
-        todates3 = hr.getTodates3();
-        todates4 = hr.getTodates4();
-        todates5 = hr.getTodates5();
-        todates6 = hr.getTodates6();
-        todates7 = hr.getTodates7();
-        todates8 = hr.getTodates8();
-        todates9 = hr.getTodates9();
-        todates10 = hr.getTodates10();
+        if(posts2==null)
+            posts2="";
+        if(inst1s2==null)
+            inst1s2="";
+        if(fromdates2==null)
+            fromdates2="";
+        if(todates2==null)
+            todates2="";
+
+        if(posts3==null)
+            posts3="";
+        if(inst1s3==null)
+            inst1s3="";
+        if(fromdates3==null)
+            fromdates3="";
+        if(todates3==null)
+            todates3="";
+
+        if(posts4==null)
+            posts4="";
+        if(inst1s4==null)
+            inst1s4="";
+        if(fromdates4==null)
+            fromdates4="";
+        if(todates4==null)
+            todates4="";
+
+        if(posts5==null)
+            posts5="";
+        if(inst1s5==null)
+            inst1s5="";
+        if(fromdates5==null)
+            fromdates5="";
+        if(todates5==null)
+            todates5="";
+
+        if(posts6==null)
+            posts6="";
+        if(inst1s6==null)
+            inst1s6="";
+        if(fromdates6==null)
+            fromdates6="";
+        if(todates6==null)
+            todates6="";
+
+        if(posts7==null)
+            posts7="";
+        if(inst1s7==null)
+            inst1s7="";
+        if(fromdates7==null)
+            fromdates7="";
+        if(todates7==null)
+            todates7="";
+
+        if(posts8==null)
+            posts8="";
+        if(inst1s8==null)
+            inst1s8="";
+        if(fromdates8==null)
+            fromdates8="";
+        if(todates8==null)
+            todates8="";
+
+        if(posts9==null)
+            posts9="";
+        if(inst1s9==null)
+            inst1s9="";
+        if(fromdates9==null)
+            fromdates9="";
+        if(todates9==null)
+            todates9="";
+
+        if(posts10==null)
+            posts10="";
+        if(inst1s10==null)
+            inst1s10="";
+        if(fromdates10==null)
+            fromdates10="";
+        if(todates10==null)
+            todates10="";
+
+
+
+//        posts1 = hr.getPosts1();
+//        posts2 = hr.getPosts2();
+//        posts3 = hr.getPosts3();
+//        posts4 = hr.getPosts4();
+//        posts5 = hr.getPosts5();
+//        posts6 = hr.getPosts6();
+//        posts7 = hr.getPosts7();
+//        posts8 = hr.getPosts8();
+//        posts9 = hr.getPosts9();
+//        posts10 = hr.getPosts10();
+//
+//        inst1s1 = hr.getInst1s1();
+//        inst1s2 = hr.getInst1s2();
+//
+//        inst1s3 = hr.getInst1s3();
+//        inst1s4 = hr.getInst1s4();
+//        inst1s5 = hr.getInst1s5();
+//        inst1s6 = hr.getInst1s6();
+//
+//        inst1s7 = hr.getInst1s7();
+//        inst1s8 = hr.getInst1s8();
+//        inst1s9 = hr.getInst1s9();
+//        inst1s10 = hr.getInst1s10();
+//
+//        fromdates1 = hr.getFromdates1();
+//        fromdates2 = hr.getFromdates2();
+//        fromdates3 = hr.getFromdates3();
+//        fromdates4 = hr.getFromdates4();
+//        fromdates5 = hr.getFromdates5();
+//        fromdates6 = hr.getFromdates6();
+//
+//
+//        fromdates7 = hr.getFromdates7();
+//        fromdates8 = hr.getFromdates8();
+//        fromdates9 = hr.getFromdates9();
+//        fromdates10 = hr.getFromdates10();
+//
+//        todates1 = hr.getTodates1();
+//        todates2 = hr.getTodates2();
+//        todates3 = hr.getTodates3();
+//        todates4 = hr.getTodates4();
+//        todates5 = hr.getTodates5();
+//        todates6 = hr.getTodates6();
+//        todates7 = hr.getTodates7();
+//        todates8 = hr.getTodates8();
+//        todates9 = hr.getTodates9();
+//        todates10 = hr.getTodates10();
+
         // if posts1 is not equal ""  i.e  inst,fromdate,todate has some value from hr object
+
+
         if (!posts1.equals("")) {
             post1.setText(posts1);
             inst11.setText(inst1s1);
@@ -1986,7 +2292,7 @@ public class HrExperiencesTabFragment extends Fragment {
         addmoreexp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                editexp=0;
                 if (expcount == 0) {
 
                     if(post1.getText().toString()!=null && inst11.getText().toString()!=null && fromdate1.getText().toString()!=null )
@@ -1994,7 +2300,7 @@ public class HrExperiencesTabFragment extends Fragment {
                         if(!post1.getText().toString().equals("") && !inst11.getText().toString().equals("") && !fromdate1.getText().toString().equals("") )
                         {
                             if(!switch1.isChecked() && todate1.getText().toString().equals("") ) {
-                                Toast.makeText(getActivity(), "Please fill the first Experience", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please fill the first experience", Toast.LENGTH_SHORT).show();
                             }
 
 
@@ -2024,10 +2330,10 @@ public class HrExperiencesTabFragment extends Fragment {
                             }
                         }
                         else
-                            Toast.makeText(getActivity(), "Please fill the first Experience", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                     }
                     else
-                        Toast.makeText(getActivity(), "Please fill the first Experience", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
 
                 }
                 else if (expcount == 1) {
@@ -2035,7 +2341,7 @@ public class HrExperiencesTabFragment extends Fragment {
                         if (!post2.getText().toString().equals("") && !inst12.getText().toString().equals("") && !fromdate2.getText().toString().equals("")) {
 
                             if (!switch2.isChecked() && todate2.getText().toString().equals("")) {
-                                Toast.makeText(getActivity(), "Please fill the Second Experience", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                             }
 
                             if (!switch2.isChecked()) {
@@ -2064,11 +2370,11 @@ public class HrExperiencesTabFragment extends Fragment {
 
                         else
                         {
-                            Toast.makeText(getActivity(), "Please fill the Second Experience", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(getActivity(), "Please fill the Second Experience", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
 
 
 
@@ -2082,7 +2388,7 @@ public class HrExperiencesTabFragment extends Fragment {
                         if(!post3.getText().toString().equals("") && !inst13.getText().toString().equals("") && !fromdate3.getText().toString().equals("") )
                         {
                             if (!switch3.isChecked() && todate3.getText().toString().equals("")) {
-                                Toast.makeText(getActivity(), "Please fill the Third Experience", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                             }
 
                             if (!switch3.isChecked()) {
@@ -2108,11 +2414,10 @@ public class HrExperiencesTabFragment extends Fragment {
                             }
                         }
                         else
-                            Toast.makeText(getActivity(), "Please fill the Third Experience", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                     }
                     else
-                        Toast.makeText(getActivity(), "Please fill the Third Experience", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
 
                 }
                 else if (expcount == 3) {
@@ -2121,9 +2426,8 @@ public class HrExperiencesTabFragment extends Fragment {
                         if(!post4.getText().toString().equals("") && !inst14.getText().toString().equals("") && !fromdate4.getText().toString().equals("") )
                         {
                             if (!switch4.isChecked() && todate4.getText().toString().equals("")) {
-                                Toast.makeText(getActivity(), "Please fill the Fourth Experience", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                             }
-
 
                             if (!switch4.isChecked()) {
 
@@ -2151,12 +2455,11 @@ public class HrExperiencesTabFragment extends Fragment {
                         }
                         else
                         {
-                            Toast.makeText(getActivity(), "Please fill the Fourth Experience", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(getActivity(), "Please fill the Fourth Experience", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -2166,7 +2469,7 @@ public class HrExperiencesTabFragment extends Fragment {
                         if(!post5.getText().toString().equals("") && !inst15.getText().toString().equals("") && !fromdate5.getText().toString().equals("") )
                         {
                             if (!switch5.isChecked() && todate5.getText().toString().equals("")) {
-                                Toast.makeText(getActivity(), "Please fill the Fifth Experience", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                             }
 
                             if (!switch5.isChecked()) {
@@ -2193,14 +2496,11 @@ public class HrExperiencesTabFragment extends Fragment {
                         }
                         else
                         {
-                            Toast.makeText(getActivity(), "Please fill the Fifth Experience", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(getActivity(), "Please fill the Fifth Experience", Toast.LENGTH_SHORT).show();
-
-
-
+                        Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -2211,7 +2511,7 @@ public class HrExperiencesTabFragment extends Fragment {
                         if(!post6.getText().toString().equals("") && !inst16.getText().toString().equals("") && !fromdate6.getText().toString().equals("") )
                         {
                             if (!switch6.isChecked() && todate6.getText().toString().equals("")) {
-                                Toast.makeText(getActivity(), "Please fill the Sixth Experience", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                             }
 
 
@@ -2240,13 +2540,11 @@ public class HrExperiencesTabFragment extends Fragment {
                         }
                         else
                         {
-                            Toast.makeText(getActivity(), "Please fill the Sixth Experience", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(getActivity(), "Please fill the Sixth Experience", Toast.LENGTH_SHORT).show();
-
-
+                        Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
 
                 }
                 else if (expcount == 6) {
@@ -2256,15 +2554,10 @@ public class HrExperiencesTabFragment extends Fragment {
                         if(!post7.getText().toString().equals("") && !inst17.getText().toString().equals("") && !fromdate7.getText().toString().equals("") )
                         {
                             if (!switch7.isChecked() && todate7.getText().toString().equals("")) {
-                                Toast.makeText(getActivity(), "Please fill the Seventh Experience", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                             }
-
-
-
-                            if (!switch7.isChecked()) {
-
+                           if (!switch7.isChecked()) {
                                 if (todate7.getText().toString() != null) {
-
                                     if (!todate7.getText().toString().equals("")) {
                                         View v = (View)rootView. findViewById(R.id.expline7);
                                         v.setVisibility(View.VISIBLE);
@@ -2285,11 +2578,11 @@ public class HrExperiencesTabFragment extends Fragment {
                         }
                         else
                         {
-                            Toast.makeText(getActivity(), "Please fill the Seventh Experience", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(getActivity(), "Please fill the Seventh Experience", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
 
 
                 } else if (expcount == 7) {
@@ -2299,10 +2592,8 @@ public class HrExperiencesTabFragment extends Fragment {
                         if(!post8.getText().toString().equals("") && !inst18.getText().toString().equals("") && !fromdate8.getText().toString().equals("") )
                         {
                             if (!switch8.isChecked() && todate8.getText().toString().equals("")) {
-                                Toast.makeText(getActivity(), "Please fill the Eighth Experience", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                             }
-
-
 
                             if (!switch8.isChecked()) {
 
@@ -2328,12 +2619,11 @@ public class HrExperiencesTabFragment extends Fragment {
                         }
                         else
                         {
-                            Toast.makeText(getActivity(), "Please fill the Eighth Experience", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(getActivity(), "Please fill the Eighth Experience", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
 
                 }
                 else if (expcount == 8) {
@@ -2342,7 +2632,7 @@ public class HrExperiencesTabFragment extends Fragment {
                         if(!post9.getText().toString().equals("") && !inst19.getText().toString().equals("") && !fromdate9.getText().toString().equals("") )
                         {
                             if (!switch9.isChecked() && todate9.getText().toString().equals("")) {
-                                Toast.makeText(getActivity(), "Please fill the Nineth Experience", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                             }
 
                             if (!switch9.isChecked()) {
@@ -2387,11 +2677,11 @@ public class HrExperiencesTabFragment extends Fragment {
                         }
                         else
                         {
-                            Toast.makeText(getActivity(), "Please fill the Nineth Experience", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else
-                        Toast.makeText(getActivity(), "Please fill the Nineth Experience", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Please fill the empty experience", Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -2399,18 +2689,11 @@ public class HrExperiencesTabFragment extends Fragment {
             }
         });
 
-//        savepersonal.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                savepersonal.setVisibility(View.GONE);
-//                personalprogress1.setVisibility(View.VISIBLE);
-//                validateAndSaveData();
-//            }
-//        });
         edittedFlag=0;
         return rootView;
     }
-    void showDateDialog(final EditText id, boolean isFromDateSelected, final int fromYear, final String fromMonth, final String todate) {
+    void showDateDialog(final EditText id,final TextInputLayout idinput, boolean isFromDateSelected, final int fromYear, final String fromMonth, final String todate) {
+
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -2549,7 +2832,12 @@ public class HrExperiencesTabFragment extends Fragment {
                     isvalid = false;
                 }
 
-                setMonthYear(id, selectedMonth, selectedYear, isvalid);
+             boolean bln = setMonthYear(id, selectedMonth, selectedYear, isvalid);
+                if(!bln) {
+                    idinput.setError("kindly enter valid date");
+//                    Toast.makeText(getActivity(), "bln "+bln, Toast.LENGTH_SHORT).show();
+                }
+
                 alertDialog.cancel();
             }
         });
@@ -2596,16 +2884,18 @@ public class HrExperiencesTabFragment extends Fragment {
         }
 
     }
-    void setMonthYear(EditText id, String selectedMonth, String selectedYear, boolean isValid) {
-        id.setError(null);
+    boolean setMonthYear(EditText id, String selectedMonth, String selectedYear, boolean isValid) {
+
         if (isValid == true) {
             id.setText(selectedMonth + ", " + selectedYear);
+            return true;
         } else {
-            id.setError("Choose valid date");
-            Toast.makeText(getActivity(), "Invalid date", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(), "Kindly enter valid date", Toast.LENGTH_SHORT).show();
             id.setText("");
+            return false;
         }
     }
+
     void showDeletDialog() {
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
@@ -3684,6 +3974,26 @@ public class HrExperiencesTabFragment extends Fragment {
             fromdate10.setText("");
             todate10.setText("");
             switch10.setChecked(false);
+
+            posts1= post1.getText().toString();
+            inst1s1= inst11.getText().toString();
+            fromdates1= fromdate1.getText().toString();
+            todates1=   todate1.getText().toString();
+
+
+
+            if(posts1.equals("") && inst1s1.equals("") && fromdates1.equals("") && todates1.equals("")){
+                Log.d("TAG", "deleteLang: strength1 1");
+                editexp =1;
+            }
+
+            if(editexp==1){
+                Log.d("TAG", "deleteLang: strength1 - "+editexp);
+                save();
+            }
+
+
+
             //set value 9
             // you are here........................................
         }
@@ -3694,23 +4004,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts1.equals("")) {
             errorflag = 1;
-            post1.setError("Field can not be Empty");
+            postinput1.setError("Kindly enter valid position");
         } else if (posts1.length() < 2) {
             errorflag = 1;
-            post1.setError("Invalid position");
+            postinput1.setError("Kindly enter valid position");
         } else if (inst1s1.equals("")) {
             errorflag = 1;
-            inst11.setError("Field can not be Empty");
+            instinput1.setError("Kindly enter valid institute");
         } else if (inst1s1.length() < 2) {
             errorflag = 1;
-            inst11.setError("Invalid Institute");
+            instinput1.setError("Kindly enter valid institute");
         } else if (fromdates1.equals("")) {
             errorflag = 1;
-            fromdate1.setError("Enter From date");
+            fromdateinput1.setError("Enter From date");
         } else if (blnswitch1 == false) {
             if (todates1.equals("")) {
                 errorflag = 1;
-                todate1.setError("Enter To date");
+                todateinput1.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -3727,23 +4037,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts2.equals("")) {
             errorflag = 1;
-            post2.setError("Field can not be Empty");
+            postinput2.setError("Kindly enter valid position");
         } else if (posts2.length() < 2) {
             errorflag = 1;
-            post2.setError("Invalid position");
+            postinput2.setError("Kindly enter valid position");
         } else if (inst1s2.equals("")) {
             errorflag = 1;
-            inst12.setError("Field can not be Empty");
+            instinput2.setError("Kindly enter valid institute");
         } else if (inst1s2.length() < 2) {
             errorflag = 1;
-            inst12.setError("Invalid Institute");
+            instinput2.setError("Kindly enter valid institute");
         } else if (fromdates2.equals("")) {
             errorflag = 1;
-            fromdate2.setError("Enter From date");
+            fromdateinput2.setError("Enter From date");
         } else if (blnswitch2 == false) {
             if (todates2.equals("")) {
                 errorflag = 1;
-                todate2.setError("Enter To date");
+                todateinput2.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -3760,23 +4070,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts3.equals("")) {
             errorflag = 1;
-            post3.setError("Field can not be Empty");
+            postinput3.setError("Kindly enter valid position");
         } else if (posts3.length() < 2) {
             errorflag = 1;
-            post3.setError("Invalid position");
+            postinput3.setError("Kindly enter valid position");
         } else if (inst1s3.equals("")) {
             errorflag = 1;
-            inst13.setError("Field can not be Empty");
+            instinput3.setError("Kindly enter valid institute");
         } else if (inst1s3.length() < 2) {
             errorflag = 1;
-            inst13.setError("Invalid Institute");
+            instinput3.setError("Kindly enter valid institute");
         } else if (fromdates3.equals("")) {
             errorflag = 1;
-            fromdate3.setError("Enter From date");
+            fromdateinput3.setError("Enter From date");
         } else if (blnswitch3 == false) {
             if (todates3.equals("")) {
                 errorflag = 1;
-                todate3.setError("Enter To date");
+                todateinput3.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -3793,23 +4103,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts4.equals("")) {
             errorflag = 1;
-            post4.setError("Field can not be Empty");
+            postinput4.setError("Kindly enter valid position");
         } else if (posts4.length() < 2) {
             errorflag = 1;
-            post4.setError("Invalid position");
+            postinput4.setError("Kindly enter valid position");
         } else if (inst1s4.equals("")) {
             errorflag = 1;
-            inst14.setError("Field can not be Empty");
+            instinput4.setError("Kindly enter valid institute");
         } else if (inst1s4.length() < 2) {
             errorflag = 1;
-            inst14.setError("Invalid Institute");
+            instinput4.setError("Kindly enter valid institute");
         } else if (fromdates4.equals("")) {
             errorflag = 1;
-            fromdate4.setError("Enter From date");
+            fromdateinput4.setError("Enter From date");
         } else if (blnswitch4 == false) {
             if (todates4.equals("")) {
                 errorflag = 1;
-                todate4.setError("Enter To date");
+                todateinput4.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -3822,23 +4132,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts5.equals("")) {
             errorflag = 1;
-            post5.setError("Field can not be Empty");
+            postinput5.setError("Kindly enter valid position");
         } else if (posts5.length() < 2) {
             errorflag = 1;
-            post5.setError("Invalid position");
+            postinput5.setError("Kindly enter valid position");
         } else if (inst1s5.equals("")) {
             errorflag = 1;
-            inst15.setError("Field can not be Empty");
+            instinput5.setError("Kindly enter valid institute");
         } else if (inst1s5.length() < 2) {
             errorflag = 1;
-            inst15.setError("Invalid Institute");
+            instinput5.setError("Kindly enter valid institute");
         } else if (fromdates5.equals("")) {
             errorflag = 1;
-            fromdate5.setError("Enter From date");
+            fromdateinput5.setError("Enter From date");
         } else if (blnswitch5 == false) {
             if (todates5.equals("")) {
                 errorflag = 1;
-                todate5.setError("Enter To date");
+                todateinput5.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -3851,23 +4161,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts6.equals("")) {
             errorflag = 1;
-            post6.setError("Field can not be Empty");
+            postinput6.setError("Kindly enter valid position");
         } else if (posts6.length() < 2) {
             errorflag = 1;
-            post6.setError("Invalid position");
+            postinput6.setError("Kindly enter valid position");
         } else if (inst1s6.equals("")) {
             errorflag = 1;
-            inst16.setError("Field can not be Empty");
+            instinput6.setError("Kindly enter valid institute");
         } else if (inst1s6.length() < 2) {
             errorflag = 1;
-            inst16.setError("Invalid Institute");
+            instinput6.setError("Kindly enter valid institute");
         } else if (fromdates6.equals("")) {
             errorflag = 1;
-            fromdate6.setError("Enter From date");
+            fromdateinput6.setError("Enter From date");
         } else if (blnswitch6 == false) {
             if (todates6.equals("")) {
                 errorflag = 1;
-                todate6.setError("Enter To date");
+                todateinput6.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -3880,23 +4190,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts7.equals("")) {
             errorflag = 1;
-            post7.setError("Field can not be Empty");
+            postinput7.setError("Kindly enter valid position");
         } else if (posts7.length() < 2) {
             errorflag = 1;
-            post7.setError("Invalid position");
+            postinput7.setError("Kindly enter valid position");
         } else if (inst1s7.equals("")) {
             errorflag = 1;
-            inst17.setError("Field can not be Empty");
+            instinput7.setError("Kindly enter valid institute");
         } else if (inst1s7.length() < 2) {
             errorflag = 1;
-            inst17.setError("Invalid Institute");
+            instinput7.setError("Kindly enter valid institute");
         } else if (fromdates7.equals("")) {
             errorflag = 1;
-            fromdate7.setError("Enter From date");
+            fromdateinput7.setError("Enter From date");
         } else if (blnswitch7 == false) {
             if (todates7.equals("")) {
                 errorflag = 1;
-                todate7.setError("Enter To date");
+                todateinput7.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -3909,23 +4219,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts8.equals("")) {
             errorflag = 1;
-            post8.setError("Field can not be Empty");
+            postinput8.setError("Kindly enter valid position");
         } else if (posts8.length() < 2) {
             errorflag = 1;
-            post8.setError("Invalid position");
+            postinput8.setError("Kindly enter valid position");
         } else if (inst1s8.equals("")) {
             errorflag = 1;
-            inst18.setError("Field can not be Empty");
+            instinput8.setError("Kindly enter valid institute");
         } else if (inst1s8.length() < 2) {
             errorflag = 1;
-            inst18.setError("Invalid Institute");
+            instinput8.setError("Kindly enter valid institute");
         } else if (fromdates8.equals("")) {
             errorflag = 1;
-            fromdate8.setError("Enter From date");
+            fromdateinput8.setError("Enter From date");
         } else if (blnswitch8 == false) {
             if (todates8.equals("")) {
                 errorflag = 1;
-                todate8.setError("Enter To date");
+                todateinput8.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -3938,23 +4248,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts9.equals("")) {
             errorflag = 1;
-            post9.setError("Field can not be Empty");
+            postinput9.setError("Kindly enter valid position");
         } else if (posts9.length() < 2) {
             errorflag = 1;
-            post9.setError("Invalid position");
+            postinput9.setError("Kindly enter valid position");
         } else if (inst1s9.equals("")) {
             errorflag = 1;
-            inst19.setError("Field can not be Empty");
+            instinput9.setError("Kindly enter valid institute");
         } else if (inst1s9.length() < 2) {
             errorflag = 1;
-            inst19.setError("Invalid Institute");
+            instinput9.setError("Kindly enter valid institute");
         } else if (fromdates9.equals("")) {
             errorflag = 1;
-            fromdate9.setError("Enter From date");
+            fromdateinput9.setError("Enter From date");
         } else if (blnswitch9 == false) {
             if (todates9.equals("")) {
                 errorflag = 1;
-                todate9.setError("Enter To date");
+                todateinput9.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -3967,23 +4277,23 @@ public class HrExperiencesTabFragment extends Fragment {
         errorflag = 0;
         if (posts10.equals("")) {
             errorflag = 1;
-            post10.setError("Field can not be Empty");
+            postinput10.setError("Kindly enter valid position");
         } else if (posts10.length() < 2) {
             errorflag = 1;
-            post10.setError("Invalid position");
+            postinput10.setError("Kindly enter valid position");
         } else if (inst1s10.equals("")) {
             errorflag = 1;
-            inst110.setError("Field can not be Empty");
+            instinput10.setError("Kindly enter valid institute");
         } else if (inst1s10.length() < 2) {
             errorflag = 1;
-            inst110.setError("Invalid Institute");
+            instinput10.setError("Kindly enter valid institute");
         } else if (fromdates10.equals("")) {
             errorflag = 1;
-            fromdate10.setError("Enter From date");
+            fromdateinput10.setError("Enter From date");
         } else if (blnswitch10 == false) {
             if (todates10.equals("")) {
                 errorflag = 1;
-                todate10.setError("Enter To date");
+                todateinput10.setError("Enter To date");
             }
         }
         if (errorflag == 1) {
@@ -3991,161 +4301,45 @@ public class HrExperiencesTabFragment extends Fragment {
         }
         return true;
     }
-//
-//    public void validateAndSaveData() {
-//
-//
-//        if(validate())
-//        {
-//            save();
-//        }
-//
-//    }
+
 
     public void save() {
 
         try {
 
-            byte[] posts1Bytes1 = posts1.getBytes("UTF-8");
-            byte[] insts1Bytes1 = inst1s1.getBytes("UTF-8");
-            byte[] fromDateBytes1 = fromdates1.getBytes("UTF-8");
-            byte[] toDateBytes1 = todates1.getBytes("UTF-8");
 
-            byte[] posts1Bytes2 = posts2.getBytes("UTF-8");
-            byte[] insts1Bytes2 = inst1s2.getBytes("UTF-8");
-            byte[] fromDateBytes2 = fromdates2.getBytes("UTF-8");
-            byte[] toDateBytes2 = todates2.getBytes("UTF-8");
-
-            byte[] posts1Bytes3 = posts3.getBytes("UTF-8");
-            byte[] insts1Bytes3 = inst1s3.getBytes("UTF-8");
-            byte[] fromDateBytes3 = fromdates3.getBytes("UTF-8");
-            byte[] toDateBytes3 = todates3.getBytes("UTF-8");
-
-            byte[] posts1Bytes4 = posts4.getBytes("UTF-8");
-            byte[] insts1Bytes4 = inst1s4.getBytes("UTF-8");
-            byte[] fromDateBytes4 = fromdates4.getBytes("UTF-8");
-            byte[] toDateBytes4 = todates4.getBytes("UTF-8");
-
-            byte[] posts1Bytes5 = posts5.getBytes("UTF-8");
-            byte[] insts1Bytes5 = inst1s5.getBytes("UTF-8");
-            byte[] fromDateBytes5 = fromdates5.getBytes("UTF-8");
-            byte[] toDateBytes5 = todates5.getBytes("UTF-8");
-
-            byte[] posts1Bytes6 = posts6.getBytes("UTF-8");
-            byte[] insts1Bytes6 = inst1s6.getBytes("UTF-8");
-            byte[] fromDateBytes6 = fromdates6.getBytes("UTF-8");
-            byte[] toDateBytes6 = todates6.getBytes("UTF-8");
-
-            byte[] posts1Bytes7 = posts7.getBytes("UTF-8");
-            byte[] insts1Bytes7 = inst1s7.getBytes("UTF-8");
-            byte[] fromDateBytes7 = fromdates7.getBytes("UTF-8");
-            byte[] toDateBytes7 = todates7.getBytes("UTF-8");
-
-            byte[] posts1Bytes8 = posts8.getBytes("UTF-8");
-            byte[] insts1Bytes8 = inst1s8.getBytes("UTF-8");
-            byte[] fromDateBytes8 = fromdates8.getBytes("UTF-8");
-            byte[] toDateBytes8 = todates8.getBytes("UTF-8");
-
-            byte[] posts1Bytes9 = posts9.getBytes("UTF-8");
-            byte[] insts1Bytes9 = inst1s9.getBytes("UTF-8");
-            byte[] fromDateBytes9 = fromdates9.getBytes("UTF-8");
-            byte[] toDateBytes9 = todates9.getBytes("UTF-8");
-
-            byte[] posts1Bytes10 = posts10.getBytes("UTF-8");
-            byte[] insts1Bytes10 = inst1s10.getBytes("UTF-8");
-            byte[] fromDateBytes10 = fromdates10.getBytes("UTF-8");
-            byte[] toDateBytes10 = todates10.getBytes("UTF-8");
+            Experiences obj1=new Experiences(posts1,inst1s1,fromdates1,todates1);
+            Experiences obj2=new Experiences(posts2,inst1s2,fromdates2,todates2);
+            Experiences obj3=new Experiences(posts3,inst1s3,fromdates3,todates3);
+            Experiences obj4=new Experiences(posts4,inst1s4,fromdates4,todates4);
+            Experiences obj5=new Experiences(posts5,inst1s5,fromdates5,todates5);
+            Experiences obj6=new Experiences(posts6,inst1s6,fromdates6,todates6);
+            Experiences obj7=new Experiences(posts7,inst1s7,fromdates7,todates7);
+            Experiences obj8=new Experiences(posts8,inst1s8,fromdates8,todates8);
+            Experiences obj9=new Experiences(posts9,inst1s9,fromdates9,todates9);
+            Experiences obj10=new Experiences(posts10,inst1s10,fromdates10,todates10);
 
 
-            byte[] post1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes1);
-            encpost1 = new String(SimpleBase64Encoder.encode(post1EncryptedBytes));
-            byte[] post2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes2);
-            encpost2 = new String(SimpleBase64Encoder.encode(post2EncryptedBytes));
-            byte[] post3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes3);
-            encpost3 = new String(SimpleBase64Encoder.encode(post3EncryptedBytes));
-            byte[] post4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes4);
-            encpost4 = new String(SimpleBase64Encoder.encode(post4EncryptedBytes));
-            byte[] post5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes5);
-            encpost5 = new String(SimpleBase64Encoder.encode(post5EncryptedBytes));
-            byte[] post6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes6);
-            encpost6 = new String(SimpleBase64Encoder.encode(post6EncryptedBytes));
-            byte[] post7EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes7);
-            encpost7 = new String(SimpleBase64Encoder.encode(post7EncryptedBytes));
-            byte[] post8EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes8);
-            encpost8 = new String(SimpleBase64Encoder.encode(post8EncryptedBytes));
-            byte[] post9EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes9);
-            encpost9 = new String(SimpleBase64Encoder.encode(post9EncryptedBytes));
-            byte[] post10EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, posts1Bytes10);
-            encpost10 = new String(SimpleBase64Encoder.encode(post10EncryptedBytes));
+            experiencesList.add(obj1);
+            experiencesList.add(obj2);
+            experiencesList.add(obj3);
+            experiencesList.add(obj4);
+            experiencesList.add(obj5);
+            experiencesList.add(obj6);
+            experiencesList.add(obj7);
+            experiencesList.add(obj8);
+            experiencesList.add(obj9);
+            experiencesList.add(obj10);
 
-            byte[] instEncryptedBytes1 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes1);
-            encinst1 = new String(SimpleBase64Encoder.encode(instEncryptedBytes1));
-            byte[] instEncryptedBytes2 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes2);
-            encinst2 = new String(SimpleBase64Encoder.encode(instEncryptedBytes2));
-            byte[] instEncryptedBytes3 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes3);
-            encinst3 = new String(SimpleBase64Encoder.encode(instEncryptedBytes3));
-            byte[] instEncryptedBytes4 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes4);
-            encinst4 = new String(SimpleBase64Encoder.encode(instEncryptedBytes4));
-            byte[] instEncryptedBytes5 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes5);
-            encinst5 = new String(SimpleBase64Encoder.encode(instEncryptedBytes5));
-            byte[] instEncryptedBytes6 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes6);
-            encinst6 = new String(SimpleBase64Encoder.encode(instEncryptedBytes6));
-            byte[] instEncryptedBytes7 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes7);
-            encinst7 = new String(SimpleBase64Encoder.encode(instEncryptedBytes7));
-            byte[] instEncryptedBytes8 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes8);
-            encinst8 = new String(SimpleBase64Encoder.encode(instEncryptedBytes8));
-            byte[] instEncryptedBytes9 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes9);
-            encinst9 = new String(SimpleBase64Encoder.encode(instEncryptedBytes9));
-            byte[] instEncryptedBytes10 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, insts1Bytes10);
-            encinst10 = new String(SimpleBase64Encoder.encode(instEncryptedBytes10));
+             encObjString=OtoString(experiencesList,MySharedPreferencesManager.getDigest1(getActivity()),MySharedPreferencesManager.getDigest2(getActivity()));
 
-            byte[] fromDateEncryptedBytes1 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes1);
-            encfromdate1 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes1));
-            byte[] fromDateEncryptedBytes2 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes2);
-            encfromdate2 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes2));
-            byte[] fromDateEncryptedBytes3 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes3);
-            encfromdate3 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes3));
-            byte[] fromDateEncryptedBytes4 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes4);
-            encfromdate4 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes4));
-            byte[] fromDateEncryptedBytes5 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes5);
-            encfromdate5 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes5));
-            byte[] fromDateEncryptedBytes6 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes6);
-            encfromdate6 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes6));
-            byte[] fromDateEncryptedBytes7 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes7);
-            encfromdate7 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes7));
-            byte[] fromDateEncryptedBytes8 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes8);
-            encfromdate8 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes8));
-            byte[] fromDateEncryptedBytes9 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes9);
-            encfromdate9 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes9));
-            byte[] fromDateEncryptedBytes10 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, fromDateBytes10);
-            encfromdate10 = new String(SimpleBase64Encoder.encode(fromDateEncryptedBytes10));
 
-            byte[] toDateEncryptedBytes1 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes1);
-            enctodate1 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes1));
-            byte[] toDateEncryptedBytes2 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes2);
-            enctodate2 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes2));
-            byte[] toDateEncryptedBytes3 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes3);
-            enctodate3 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes3));
-            byte[] toDateEncryptedBytes4 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes4);
-            enctodate4 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes4));
-            byte[] toDateEncryptedBytes5 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes5);
-            enctodate5 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes5));
-            byte[] toDateEncryptedBytes6 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes6);
-            enctodate6 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes6));
-            byte[] toDateEncryptedBytes7 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes7);
-            enctodate7 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes7));
-            byte[] toDateEncryptedBytes8 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes8);
-            enctodate8 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes8));
-            byte[] toDateEncryptedBytes9 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes9);
-            enctodate9 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes9));
-            byte[] toDateEncryptedBytes10 = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, toDateBytes10);
-            enctodate10 = new String(SimpleBase64Encoder.encode(toDateEncryptedBytes10));
-
+            new saveHrExperienceTask().execute();
 
         } catch (Exception e) {
             Log.d(HRlog," "+e.getMessage());
         }
-        new saveHrExperienceTask().execute();
+//        new saveHrExperienceTask().execute();
     }
     public boolean validate()
     {
@@ -4208,164 +4402,168 @@ public class HrExperiencesTabFragment extends Fragment {
 
         //validate_1 function return true if all filed are OK fro 1 block
         boolean v0 = false, v1 = false, v2 = false, v3 = false, v4 = false, v5 = false, v6 = false, v7 = false, v8 = false, v9 = false;
+        if(editexp==1){
+            save();
+        }
+        else {
+            if (expcount == 0) {
+                v0 = validate_0();
+            } else if (expcount == 1) {
+                v0 = validate_0();
+                if (v0 == true) {
+                    validate_1();
+                }
+            } else if (expcount == 2) {
+                v0 = validate_0();
+                if (v0 == true) {
+                    v1 = validate_1();
+                }
+                if (v1 == true) {
+                    validate_2();
+                }
+            } else if (expcount == 3) {
+                v0 = validate_0();
+                if (v0 == true) {
+                    v1 = validate_1();
+                }
+                if (v1 == true) {
+                    v2 = validate_2();
+                }
+                if (v2 == true) {
+                    validate_3();
+                }
+            } else if (expcount == 4) {
+                v0 = validate_0();
+                if (v0 == true) {
+                    v1 = validate_1();
+                }
+                if (v1 == true) {
+                    v2 = validate_2();
+                }
+                if (v2 == true) {
+                    v3 = validate_3();
+                }
+                if (v3 == true) {
+                    v4 = validate_4();
+                }
 
-        if (expcount == 0) {
-            v0 = validate_0();
-        } else if (expcount == 1) {
-            v0 = validate_0();
-            if (v0 == true) {
-                validate_1();
-            }
-        } else if (expcount == 2) {
-            v0 = validate_0();
-            if (v0 == true) {
-                v1 = validate_1();
-            }
-            if (v1 == true) {
-                validate_2();
-            }
-        } else if (expcount == 3) {
-            v0 = validate_0();
-            if (v0 == true) {
-                v1 = validate_1();
-            }
-            if (v1 == true) {
-                v2 = validate_2();
-            }
-            if (v2 == true) {
-                validate_3();
-            }
-        } else if (expcount == 4) {
-            v0 = validate_0();
-            if (v0 == true) {
-                v1 = validate_1();
-            }
-            if (v1 == true) {
-                v2 = validate_2();
-            }
-            if (v2 == true) {
-                v3 = validate_3();
-            }
-            if (v3 == true) {
-                v4 = validate_4();
-            }
+            } else if (expcount == 5) {
 
-        } else if (expcount == 5) {
+                v0 = validate_0();
+                if (v0 == true) {
+                    v1 = validate_1();
+                }
+                if (v1 == true) {
+                    v2 = validate_2();
+                }
+                if (v2 == true) {
+                    v3 = validate_3();
+                }
+                if (v3 == true) {
+                    v4 = validate_4();
+                }
+                if (v4 == true) {
+                    v5 = validate_5();
+                }
+            } else if (expcount == 6) {
 
-            v0 = validate_0();
-            if (v0 == true) {
-                v1 = validate_1();
-            }
-            if (v1 == true) {
-                v2 = validate_2();
-            }
-            if (v2 == true) {
-                v3 = validate_3();
-            }
-            if (v3 == true) {
-                v4 = validate_4();
-            }
-            if (v4 == true) {
-                v5 = validate_5();
-            }
-        } else if (expcount == 6) {
-
-            v0 = validate_0();
-            if (v0 == true) {
-                v1 = validate_1();
-            }
-            if (v1 == true) {
-                v2 = validate_2();
-            }
-            if (v2 == true) {
-                v3 = validate_3();
-            }
-            if (v3 == true) {
-                v4 = validate_4();
-            }
-            if (v4 == true) {
-                v5 = validate_5();
-            }
-            if (v5 == true) {
-                v6 = validate_6();
-            }
-        } else if (expcount == 7) {
-            v0 = validate_0();
-            if (v0 == true) {
-                v1 = validate_1();
-            }
-            if (v1 == true) {
-                v2 = validate_2();
-            }
-            if (v2 == true) {
-                v3 = validate_3();
-            }
-            if (v3 == true) {
-                v4 = validate_4();
-            }
-            if (v4 == true) {
-                v5 = validate_5();
-            }
-            if (v5 == true) {
-                v6 = validate_6();
-            }
-            if (v6 == true) {
-                v7 = validate_7();
-            }
-        } else if (expcount == 8) {
-            v0 = validate_0();
-            if (v0 == true) {
-                v1 = validate_1();
-            }
-            if (v1 == true) {
-                v2 = validate_2();
-            }
-            if (v2 == true) {
-                v3 = validate_3();
-            }
-            if (v3 == true) {
-                v4 = validate_4();
-            }
-            if (v4 == true) {
-                v5 = validate_5();
-            }
-            if (v5 == true) {
-                v6 = validate_6();
-            }
-            if (v6 == true) {
-                v7 = validate_7();
-            }
-            if (v7 == true) {
-                v8 = validate_8();
-            }
-        } else if (expcount == 9) {
-            v0 = validate_0();
-            if (v0 == true) {
-                v1 = validate_1();
-            }
-            if (v1 == true) {
-                v2 = validate_2();
-            }
-            if (v2 == true) {
-                v3 = validate_3();
-            }
-            if (v3 == true) {
-                v4 = validate_4();
-            }
-            if (v4 == true) {
-                v5 = validate_5();
-            }
-            if (v5 == true) {
-                v6 = validate_6();
-            }
-            if (v6 == true) {
-                v7 = validate_7();
-            }
-            if (v7 == true) {
-                v8 = validate_8();
-            }
-            if (v8 == true) {
-                validate_9();
+                v0 = validate_0();
+                if (v0 == true) {
+                    v1 = validate_1();
+                }
+                if (v1 == true) {
+                    v2 = validate_2();
+                }
+                if (v2 == true) {
+                    v3 = validate_3();
+                }
+                if (v3 == true) {
+                    v4 = validate_4();
+                }
+                if (v4 == true) {
+                    v5 = validate_5();
+                }
+                if (v5 == true) {
+                    v6 = validate_6();
+                }
+            } else if (expcount == 7) {
+                v0 = validate_0();
+                if (v0 == true) {
+                    v1 = validate_1();
+                }
+                if (v1 == true) {
+                    v2 = validate_2();
+                }
+                if (v2 == true) {
+                    v3 = validate_3();
+                }
+                if (v3 == true) {
+                    v4 = validate_4();
+                }
+                if (v4 == true) {
+                    v5 = validate_5();
+                }
+                if (v5 == true) {
+                    v6 = validate_6();
+                }
+                if (v6 == true) {
+                    v7 = validate_7();
+                }
+            } else if (expcount == 8) {
+                v0 = validate_0();
+                if (v0 == true) {
+                    v1 = validate_1();
+                }
+                if (v1 == true) {
+                    v2 = validate_2();
+                }
+                if (v2 == true) {
+                    v3 = validate_3();
+                }
+                if (v3 == true) {
+                    v4 = validate_4();
+                }
+                if (v4 == true) {
+                    v5 = validate_5();
+                }
+                if (v5 == true) {
+                    v6 = validate_6();
+                }
+                if (v6 == true) {
+                    v7 = validate_7();
+                }
+                if (v7 == true) {
+                    v8 = validate_8();
+                }
+            } else if (expcount == 9) {
+                v0 = validate_0();
+                if (v0 == true) {
+                    v1 = validate_1();
+                }
+                if (v1 == true) {
+                    v2 = validate_2();
+                }
+                if (v2 == true) {
+                    v3 = validate_3();
+                }
+                if (v3 == true) {
+                    v4 = validate_4();
+                }
+                if (v4 == true) {
+                    v5 = validate_5();
+                }
+                if (v5 == true) {
+                    v6 = validate_6();
+                }
+                if (v6 == true) {
+                    v7 = validate_7();
+                }
+                if (v7 == true) {
+                    v8 = validate_8();
+                }
+                if (v8 == true) {
+                    validate_9();
+                }
             }
         }
         if (errorflag == 0) {
@@ -4378,81 +4576,28 @@ public class HrExperiencesTabFragment extends Fragment {
 
     class saveHrExperienceTask extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
-
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("p1", encpost1));
-            params.add(new BasicNameValuePair("i1", encinst1));
-            params.add(new BasicNameValuePair("f1", encfromdate1));
-            params.add(new BasicNameValuePair("t1", enctodate1));
 
-            params.add(new BasicNameValuePair("p2", encpost2));
-            params.add(new BasicNameValuePair("i2", encinst2));
-            params.add(new BasicNameValuePair("f2", encfromdate2));
-            params.add(new BasicNameValuePair("t2", enctodate2));
-
-            params.add(new BasicNameValuePair("p3", encpost3));
-            params.add(new BasicNameValuePair("i3", encinst3));
-            params.add(new BasicNameValuePair("f3", encfromdate3));
-            params.add(new BasicNameValuePair("t3", enctodate3));
-
-            params.add(new BasicNameValuePair("p4", encpost4));
-            params.add(new BasicNameValuePair("i4", encinst4));
-            params.add(new BasicNameValuePair("f4", encfromdate4));
-            params.add(new BasicNameValuePair("t4", enctodate4));
-
-            params.add(new BasicNameValuePair("p5", encpost5));
-            params.add(new BasicNameValuePair("i5", encinst5));
-            params.add(new BasicNameValuePair("f5", encfromdate5));
-            params.add(new BasicNameValuePair("t5", enctodate5));
-            //5
-            params.add(new BasicNameValuePair("p6", encpost6));
-            params.add(new BasicNameValuePair("i6", encinst6));
-            params.add(new BasicNameValuePair("f6", encfromdate6));
-            params.add(new BasicNameValuePair("t6", enctodate6));
-
-            params.add(new BasicNameValuePair("p7", encpost7));
-            params.add(new BasicNameValuePair("i7", encinst7));
-            params.add(new BasicNameValuePair("f7", encfromdate7));
-            params.add(new BasicNameValuePair("t7", enctodate7));
-
-            params.add(new BasicNameValuePair("p8", encpost8));
-            params.add(new BasicNameValuePair("i8", encinst8));
-            params.add(new BasicNameValuePair("f8", encfromdate8));
-            params.add(new BasicNameValuePair("t8", enctodate8));
-
-            params.add(new BasicNameValuePair("p9", encpost9));
-            params.add(new BasicNameValuePair("i9", encinst9));
-            params.add(new BasicNameValuePair("f9", encfromdate9));
-            params.add(new BasicNameValuePair("t9", enctodate9));
-
-            params.add(new BasicNameValuePair("p10", encpost10));
-            params.add(new BasicNameValuePair("i10", encinst10));
-            params.add(new BasicNameValuePair("f10", encfromdate10));
-            params.add(new BasicNameValuePair("t10", enctodate10));
-
-
-            json = jParser.makeHttpRequest(MyConstants.url_saveHrExperience, "GET", params);
+            params.add(new BasicNameValuePair("u",username));      //0
+            params.add(new BasicNameValuePair("d",encObjString));      //1
+            json = jParser.makeHttpRequest(MyConstants.url_SaveExperiences, "GET", params);
 
             try {
                 r = json.getString("info");
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
+            }catch (Exception e){e.printStackTrace();}
             return r;
         }
 
         @Override
         protected void onPostExecute(String result) {
-//            savepersonal.setVisibility(View.VISIBLE);
-//            personalprogress1.setVisibility(View.GONE);
             if (result.equals("success")) {
-//                Toast.makeText(getActivity(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
 
-                ProfileRole r = new ProfileRole();
-                String role = r.getRole();
+//                Toast.makeText(getActivity(),"Successfully Saved !",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
+
                 if (role.equals("alumni"))
                     getActivity().setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("hr"))

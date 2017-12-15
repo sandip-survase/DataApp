@@ -4,7 +4,7 @@
     android:id="@+id/activity_add_users"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35"
+    android:background="@color/while_color"
     android:padding="16dp"
     android:focusableInTouchMode="true"
     tools:context="placeme.octopusites.com.placeme.AddUsersActivity">
@@ -14,8 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create new User(s)"
-        android:textSize="18dp"
-        android:textColor="#eee"
+        android:textSize="16dp"
+        android:textColor="@color/dark_color"
         android:id="@+id/createpasstxt"
         />
 
@@ -23,9 +23,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/createpasstxt"
-        android:textColor="#bbb"
+        android:textColor="@color/dark_color"
         android:text="You can create either single user by entering his/her email or number of users by uploading the excel sheet."
         android:layout_marginTop="10dp"
+        android:textSize="14dp"
         android:id="@+id/passsenstxt"
         />
 
@@ -33,9 +34,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/passsenstxt"
-        android:textColor="#bbb"
+        android:textColor="@color/dark_color"
         android:text="User(s) you create will get an email containing link to download the app, their username as entered email and dynamically generated password to start using Place Me."
         android:layout_marginTop="10dp"
+        android:textSize="14dp"
         android:id="@+id/passsens1txt"
         />
     <RadioGroup
@@ -53,9 +55,9 @@
             android:layout_height="wrap_content"
             android:text="Single User"
             android:id="@+id/radioButtonsinle"
-            app:buttonTint="#eee"
+            app:buttonTint="@color/sky_blue_color"
             android:layout_weight="1"
-            android:textColor="#eee"
+            android:textColor="@color/sky_blue_color"
             android:checked="true"
             />
         <android.support.v7.widget.AppCompatRadioButton
@@ -63,9 +65,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Multiple Users"
-            app:buttonTint="#eee"
+            app:buttonTint="@color/sky_blue_color"
             android:layout_weight="1"
-            android:textColor="#eee"
+            android:textColor="@color/dark_color"
             android:id="@+id/radioButtonmulti"
             android:checked="false"
             />
@@ -80,13 +82,17 @@
         android:layout_marginTop="10dp"
         android:theme="@style/TextLabel">
 
-        <android.support.v7.widget.AppCompatEditText
+        <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
-            android:textSize="15dp"
+            android:textSize="16dp"
+            android:imeOptions="actionDone"
+            android:maxLength="100"
+            android:digits="abcdefghijklmnopqrstuvwxyz1234567890.@_"
             android:singleLine="true"
-            android:textColor="#eee"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/dark_color"
             android:id="@+id/email"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -102,15 +108,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#bbb"
+            android:textColor="@color/dark_color"
             android:text="Follow the below instructions to create multiple users."
             android:layout_marginTop="10dp"
+            android:textSize="11dp"
             android:id="@+id/note"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#bbb"
+            android:textColor="@color/dark_color"
+            android:textSize="14dp"
             android:text="1. You must upload a file in '.xls' or '.xlsx' format."
             android:layout_marginTop="10dp"
             android:layout_below="@+id/note"
@@ -119,8 +127,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#bbb"
-            android:text="2. The file must contain column named 'email' followed by list of email addresses of users to be created."
+            android:textColor="@color/dark_color"
+            android:textSize="14dp"
+            android:text="2. The file must contain one column named 'email' followed by list of email addresses of users to be created."
             android:layout_marginTop="10dp"
             android:layout_below="@+id/note1"
             android:id="@+id/note2"
@@ -152,13 +161,15 @@
                 android:layout_height="wrap_content"
                 android:text="a.txt"
                 android:id="@+id/filename"
+                android:singleLine="true"
                 android:layout_marginLeft="5dp"
                 android:layout_centerVertical="true"
-                android:textColor="#eee"
+                android:textColor="@color/while_color"
                 android:paddingTop="5dp"
-                android:paddingBottom="10dp"
-                android:textSize="12dp"
-                android:layout_marginRight="28dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:textSize="10dp"
+                android:layout_marginRight="10dp"
                 />
 
 
@@ -169,7 +180,8 @@
                 android:src="@drawable/close"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@+id/filename"
                 />
         </RelativeLayout>
 
@@ -184,8 +196,9 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_margin="@dimen/fab_margin"
-            app:srcCompat="@drawable/attachnoti"
-            app:backgroundTint="#fff"
+            app:srcCompat="@drawable/attachment_white_icon"
+            app:backgroundTint="@color/dark_color"
+            android:elevation="8dp"
             />
     </RelativeLayout>
 

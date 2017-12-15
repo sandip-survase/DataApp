@@ -68,6 +68,8 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
         try {
             android_id = Secure.getString(getApplication().getContentResolver(), Secure.ANDROID_ID);
             TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
@@ -76,7 +78,6 @@ public class SignupActivity extends AppCompatActivity {
 
 
         new GetDigest().execute();
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
 
 
@@ -316,18 +317,24 @@ public class SignupActivity extends AppCompatActivity {
             if(resultofop.equals("success")) {
                 Toast.makeText(SignupActivity.this,"Enter OTP sent on your Email..!", Toast.LENGTH_LONG).show();
 
-                ProfileRole r=new ProfileRole();
-                r.setUsername(usernameenc);
-                r.setRole(role);
+                MySharedPreferencesManager.save(SignupActivity.this,"role",role);
+                MySharedPreferencesManager.save(SignupActivity.this,"nameKey",usernameenc);
+
+//                ProfileRole r=new ProfileRole();
+//                r.setUsername(usernameenc);
+//                r.setRole(role);
 
                 startActivity(new Intent(SignupActivity.this,OTPActivity.class).putExtra("encusername",usernameenc).putExtra("password",passwordenc).putExtra("hash",hash));
                 finish();
             }
             else if(resultofop.equals("notactivated")) {
                 //send otp verify,if ok activate
-                ProfileRole r=new ProfileRole();
-                r.setUsername(usernameenc);
-                r.setRole(role);
+                MySharedPreferencesManager.save(SignupActivity.this,"role",role);
+                MySharedPreferencesManager.save(SignupActivity.this,"nameKey",usernameenc);
+
+//                ProfileRole r=new ProfileRole();
+//                r.setUsername(usernameenc);
+//                r.setRole(role);
                 Toast.makeText(SignupActivity.this,"You are already registered but not verified.Enter OTP sent on your Email..!", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(SignupActivity.this,OTPActivity.class).putExtra("encusername",usernameenc).putExtra("password",passwordenc).putExtra("hash",hash));
                 finish();
@@ -363,9 +370,9 @@ public class SignupActivity extends AppCompatActivity {
                 digest2 = json.getString("digest2");
                 digest3 = json.getString("digest3");
 
-                Digest d=new Digest();
-                d.setDigest1(digest1);
-                d.setDigest2(digest2);
+//                Digest d=new Digest();
+//                d.setDigest1(digest1);
+//                d.setDigest2(digest2);
 
                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedpreferences.edit();

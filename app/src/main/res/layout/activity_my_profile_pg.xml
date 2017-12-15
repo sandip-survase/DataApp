@@ -1,537 +1,566 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/myprofilepg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/myprofilepg"
-    android:background="#282f35">
+    android:background="@color/while_color">
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
 
         android:id="@+id/activity_my_profile_pg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:focusableInTouchMode="true"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="com.octopusites.placeme.MyProfilePg">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PG Details"
-            android:textSize="20dp"
-            android:textColor="#eee"
             android:id="@+id/pgtxt"
+            android:layout_width="wrap_content"
+            android:elevation="2dp"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:paddingTop="10dp"
+            android:background="@drawable/textviewborder"
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:background="@drawable/textviewborder2"
-            />
-
+            android:paddingTop="10dp"
+            android:text="PG Details"
+            android:textColor="@color/while_color"
+            android:textSize="20dp" />
 
 
         <RadioGroup
+            android:id="@+id/radioGroupPg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/radioGroupPg"
-            android:orientation="horizontal"
             android:layout_below="@+id/pgtxt"
             android:layout_marginTop="10dp"
+            android:orientation="horizontal"
 
             >
-            <android.support.v7.widget.AppCompatRadioButton
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Semester Pattern"
+
+            <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/radioButtonPgSem"
-                app:buttonTint="#eee"
-                android:layout_weight="1"
-                android:textColor="#eee"
-                android:checked="true"
-                />
-            <android.support.v7.widget.AppCompatRadioButton
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Yearly Pattern"
-                app:buttonTint="#eee"
                 android:layout_weight="1"
-                android:textColor="#eee"
+                android:checked="true"
+                android:text="Semester Pattern"
+                android:textColor="@color/dark_color"
+                app:buttonTint="@color/sky_blue_color" />
+
+            <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/radioButtonPgYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:checked="false"
-                />
+                android:text="Yearly Pattern"
+                android:textColor="@color/dark_color"
+                app:buttonTint="@color/sky_blue_color" />
 
         </RadioGroup>
 
         <RelativeLayout
+            android:id="@+id/pgsemform"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/pgsemform"
-            android:layout_below="@+id/radioGroupPg"
+            android:layout_below="@+id/radioGroupPg">
 
-            >
             <View
+                android:id="@+id/section"
                 android:layout_width="1dp"
                 android:layout_height="50dp"
-                android:id="@+id/section"
-                android:layout_centerHorizontal="true"
-                />
+                android:layout_centerHorizontal="true" />
+
             <RelativeLayout
+                android:id="@+id/edur17"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/section"
-                android:id="@+id/edur17"
                 android:layout_marginTop="20dp"
-                >
+                android:layout_toLeftOf="@+id/section">
+
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/pmarkssem1input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/pmarksusem1input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/pmarkssem1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Marks Sem 1"
-                        android:textSize="15dp"
                         android:inputType="number"
-                        android:textColor="#eee"
-                        android:id="@+id/pmarkssem1"/>
+                        android:maxLength="5"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/poutofsem1input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/pmarksusem1input"
+                    android:layout_below="@+id/pmarkssem1input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/poutofsem1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Out Of Sem 1"
                         android:inputType="number"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
-                        android:id="@+id/poutofsem1"/>
+                        android:maxLength="5"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/section"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="30dp"
-                >
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/section">
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/ppercentsem1input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/ppercentsem1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Percentage Sem 1"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
                         android:focusable="false"
-                        android:id="@+id/ppercentsem1"/>
+                        android:hint="Percentage Sem 1"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
+                android:id="@+id/edur18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/section"
                 android:layout_below="@+id/edur17"
-                android:id="@+id/edur18"
                 android:layout_marginTop="20dp"
-                >
+                android:layout_toLeftOf="@+id/section">
+
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/pmarksusem2input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/pmarksusem2input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/pmarkssem2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Marks Sem 2"
-                        android:textSize="15dp"
                         android:inputType="number"
-                        android:textColor="#eee"
-                        android:id="@+id/pmarkssem2"/>
+                        android:maxLength="5"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/poutofsem2input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pmarksusem2input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/poutofsem2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Out Of Sem 2"
                         android:inputType="number"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
-                        android:id="@+id/poutofsem2"/>
+                        android:maxLength="5"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/section"
                 android:layout_below="@+id/edur17"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="30dp"
-                >
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/section">
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/ppercentsem2input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/ppercentsem2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Percentage Sem 2"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
                         android:focusable="false"
-                        android:id="@+id/ppercentsem2"/>
+                        android:hint="Percentage Sem 2"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
             </RelativeLayout>
+
             <RelativeLayout
+                android:id="@+id/edur19"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/section"
                 android:layout_below="@+id/edur18"
-                android:id="@+id/edur19"
                 android:layout_marginTop="20dp"
-                >
+                android:layout_toLeftOf="@+id/section">
+
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/pmarksusem3input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/pmarksusem3input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/pmarkssem3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Marks Sem 3"
-                        android:textSize="15dp"
                         android:inputType="number"
-                        android:textColor="#eee"
-                        android:id="@+id/pmarkssem3"/>
+                        android:maxLength="5"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/poutofsem3input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pmarksusem3input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/poutofsem3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Out Of Sem 3"
-                        android:textSize="15dp"
                         android:inputType="number"
-                        android:textColor="#eee"
-                        android:id="@+id/poutofsem3"/>
+                        android:maxLength="5"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/section"
                 android:layout_below="@+id/edur18"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="30dp"
-                >
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/section">
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/ppercentsem3input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/ppercentsem3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Percentage Sem 3"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
                         android:focusable="false"
-                        android:id="@+id/ppercentsem3"/>
+                        android:hint="Percentage Sem 3"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
+                android:id="@+id/edur20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/section"
                 android:layout_below="@+id/edur19"
-                android:id="@+id/edur20"
                 android:layout_marginTop="20dp"
-                >
+                android:layout_toLeftOf="@+id/section">
+
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/pmarksusem4input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/pmarksusem4input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/pmarkssem4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Marks Sem 4"
-                        android:textSize="15dp"
                         android:inputType="number"
-                        android:textColor="#eee"
-                        android:id="@+id/pmarkssem4"/>
+                        android:maxLength="5"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/poutofsem4input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pmarksusem4input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/poutofsem4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Out Of Sem 4"
-                        android:textSize="15dp"
                         android:inputType="number"
-                        android:textColor="#eee"
-                        android:id="@+id/poutofsem4"/>
+                        android:maxLength="5"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/section"
                 android:layout_below="@+id/edur19"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="30dp"
-                >
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/section">
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/ppercentsem4input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/ppercentsem4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Percentage Sem 4"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
                         android:focusable="false"
-                        android:id="@+id/ppercentsem4"/>
+                        android:hint="Percentage Sem 4"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
+                android:id="@+id/edur21"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/section"
                 android:layout_below="@+id/edur20"
-                android:id="@+id/edur21"
                 android:layout_marginTop="20dp"
-                >
+                android:layout_toLeftOf="@+id/section">
+
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/pmarksusem5input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/pmarksusem5input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/pmarkssem5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Marks Sem 5"
-                        android:textSize="15dp"
                         android:inputType="number"
-                        android:textColor="#eee"
-                        android:id="@+id/pmarkssem5"/>
+                        android:maxLength="5"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/poutofsem5input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pmarksusem5input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/poutofsem5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Out Of Sem 5"
-                        android:textSize="15dp"
                         android:inputType="number"
-                        android:textColor="#eee"
-                        android:id="@+id/poutofsem5"/>
+                        android:maxLength="5"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/section"
                 android:layout_below="@+id/edur20"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="30dp"
-                >
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/section">
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/ppercentsem5input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/ppercentsem5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Percentage Sem 5"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
                         android:focusable="false"
-                        android:id="@+id/ppercentsem5"/>
+                        android:hint="Percentage Sem 5"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
+                android:id="@+id/edur22"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/section"
                 android:layout_below="@+id/edur21"
-                android:id="@+id/edur22"
                 android:layout_marginTop="20dp"
-                >
+                android:layout_toLeftOf="@+id/section">
+
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/pmarksusem6input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/pmarksusem6input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/pmarkssem6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Marks Sem 6"
-                        android:textSize="15dp"
                         android:inputType="number"
-                        android:textColor="#eee"
-                        android:id="@+id/pmarkssem6"/>
+                        android:maxLength="5"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/poutofsem6input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pmarksusem6input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/poutofsem6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Out Of Sem 6"
-                        android:textSize="15dp"
                         android:inputType="number"
-                        android:textColor="#eee"
-                        android:id="@+id/poutofsem6"/>
+                        android:maxLength="5"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/section"
                 android:layout_below="@+id/edur21"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="30dp"
-                >
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/section">
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/ppercentsem6input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/ppercentsem6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Percentage Sem 6"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
                         android:focusable="false"
-                        android:id="@+id/ppercentsem6"/>
+                        android:hint="Percentage Sem 6"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </RelativeLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/pgsemaggregateinput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:id="@+id/pgsemaggregateinput"
                 android:layout_below="@+id/edur22"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/pgsemaggregate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Aggregate"
-                    android:inputType="numberDecimal"
                     android:imeOptions="actionDone"
+                    android:inputType="numberDecimal"
+                    android:maxLength="5"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
-                    android:id="@+id/pgsemaggregate"/>
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <RelativeLayout
+                android:id="@+id/pgsemcoursespinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pgsemaggregateinput"
-                android:id="@+id/pgsemcoursespinner"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="3dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -541,55 +570,57 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:gravity="center"
-                    android:popupBackground="#001111"
                     android:layout_marginLeft="5dp"
+                    android:background="@color/while_color"
+                    android:gravity="center"
+                    android:popupBackground="@color/while_color"
                     android:spinnerMode="dropdown" />
 
                 <ImageView
+                    android:id="@+id/spinnerimg1"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/spinnerimg1"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:tint="#eee"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/drop"
+                    android:tint="@color/dark_color" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg1"
-                    android:background="#eee"
-                    />
+                    android:background="@color/dark_color" />
 
             </RelativeLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/othersemcourseinput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pgsemcoursespinner"
                 android:layout_marginTop="15dp"
-                android:id="@+id/othersemcourseinput"
-                android:visibility="gone"
-                android:theme="@style/TextLabel">
-                <android.support.v7.widget.AppCompatEditText
+                android:theme="@style/TextLabel"
+                android:visibility="gone">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/othersemcourse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Please Specify"
-                    android:singleLine="true"
                     android:inputType="textCapWords"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
-                    android:id="@+id/othersemcourse"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
             </android.support.design.widget.TextInputLayout>
+
             <RelativeLayout
+                android:id="@+id/pgsemstreamspinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/othersemcourseinput"
-                android:id="@+id/pgsemstreamspinner"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="3dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -599,55 +630,57 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:gravity="center"
-                    android:popupBackground="#001111"
                     android:layout_marginLeft="5dp"
+                    android:background="@color/while_color"
+                    android:gravity="center"
+                    android:popupBackground="@color/while_color"
                     android:spinnerMode="dropdown" />
 
                 <ImageView
+                    android:id="@+id/spinnerimg2"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/spinnerimg2"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:tint="#eee"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/drop"
+                    android:tint="@color/dark_color" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg2"
-                    android:background="#eee"
-                    />
+                    android:background="@color/dark_color" />
 
             </RelativeLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/othersemstreaminput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pgsemstreamspinner"
                 android:layout_marginTop="15dp"
-                android:id="@+id/othersemstreaminput"
-                android:visibility="gone"
-                android:theme="@style/TextLabel">
-                <android.support.v7.widget.AppCompatEditText
+                android:theme="@style/TextLabel"
+                android:visibility="gone">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/othersemstream"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Please Specify"
-                    android:singleLine="true"
                     android:inputType="textCapWords"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
-                    android:id="@+id/othersemstream"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
             </android.support.design.widget.TextInputLayout>
+
             <RelativeLayout
+                android:id="@+id/pgsemuniversityspinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/othersemstreaminput"
-                android:id="@+id/pgsemuniversityspinner"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="3dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -657,348 +690,366 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:gravity="center"
-                    android:popupBackground="#001111"
                     android:layout_marginLeft="5dp"
+                    android:background="@color/while_color"
+                    android:gravity="center"
+                    android:popupBackground="@color/while_color"
                     android:spinnerMode="dropdown" />
 
                 <ImageView
+                    android:id="@+id/spinnerimg3"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/spinnerimg3"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:tint="#eee"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/drop"
+                    android:tint="@color/dark_color" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg3"
-                    android:background="#eee"
-                    />
+                    android:background="@color/dark_color" />
 
             </RelativeLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/othersemuniversityinput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pgsemuniversityspinner"
                 android:layout_marginTop="15dp"
-                android:id="@+id/othersemuniversityinput"
-                android:visibility="gone"
-                android:theme="@style/TextLabel">
-                <android.support.v7.widget.AppCompatEditText
+                android:theme="@style/TextLabel"
+                android:visibility="gone">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/othersemuniversity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Please Specify"
-                    android:singleLine="true"
                     android:inputType="textCapWords"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
-                    android:id="@+id/othersemuniversity"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/schoolnamepgseminput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/othersemuniversityinput"
-                android:layout_marginTop="10dp"
-                android:id="@+id/schoolnamepgseminput"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/schoolnamepgsem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="College Name"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
-                    android:id="@+id/schoolnamepgsem"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
             </android.support.design.widget.TextInputLayout>
 
             <RelativeLayout
+                android:id="@+id/yearofpassingpgsemspinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/section"
-                android:id="@+id/yearofpassingpgsemspinner"
                 android:layout_below="@+id/schoolnamepgseminput"
-                >
+                android:layout_toLeftOf="@+id/section">
+
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/yearofpassingpgseminput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/yearofpassingpgsem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Month, Year of Passing"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
                         android:focusable="false"
-                        android:id="@+id/yearofpassingpgsem"/>
+                        android:hint="Month, Year of Passing"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
             </RelativeLayout>
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/pgyearform"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/pgyearform"
             android:layout_below="@+id/radioGroupPg"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
+
             <View
+                android:id="@+id/section2"
                 android:layout_width="1dp"
                 android:layout_height="50dp"
-                android:id="@+id/section2"
-                android:layout_centerHorizontal="true"
-                />
+                android:layout_centerHorizontal="true" />
 
 
             <RelativeLayout
+                android:id="@+id/edur23"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/section2"
-                android:id="@+id/edur23"
                 android:layout_marginTop="20dp"
-                >
+                android:layout_toLeftOf="@+id/section2">
+
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/pmarksuyear1input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/pmarksuyear1input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/pmarksyear1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Marks Year 1"
                         android:inputType="number"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
-                        android:id="@+id/pmarksyear1"/>
+                        android:maxLength="5"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/poutofyear1input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pmarksuyear1input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/poutofyear1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Out Of Year 1"
-                        android:textSize="15dp"
                         android:inputType="number"
-                        android:textColor="#eee"
-                        android:id="@+id/poutofyear1"/>
+                        android:maxLength="5"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/section2"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="30dp"
-                >
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/section2">
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/ppercentyear1input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/ppercentyear1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Percentage Year 1"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
                         android:focusable="false"
-                        android:id="@+id/ppercentyear1"/>
+                        android:hint="Percentage Year 1"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
+                android:id="@+id/edur24"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/section2"
                 android:layout_below="@+id/edur23"
-                android:id="@+id/edur24"
                 android:layout_marginTop="20dp"
-                >
+                android:layout_toLeftOf="@+id/section2">
+
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/pmarksuyear2input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/pmarksuyear2input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/pmarksyear2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Marks Year 2"
-                        android:textSize="15dp"
                         android:inputType="number"
-                        android:textColor="#eee"
-                        android:id="@+id/pmarksyear2"/>
+                        android:maxLength="5"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/poutofyear2input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pmarksuyear2input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/poutofyear2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Out Of Year 2"
-                        android:textSize="15dp"
                         android:inputType="number"
-                        android:textColor="#eee"
-                        android:id="@+id/poutofyear2"/>
+                        android:maxLength="5"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/section2"
                 android:layout_below="@+id/edur23"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="30dp"
-                >
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/section2">
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/ppercentyear2input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/ppercentyear2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Percentage Year 2"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
                         android:focusable="false"
-                        android:id="@+id/ppercentyear2"/>
+                        android:hint="Percentage Year 2"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
             </RelativeLayout>
+
             <RelativeLayout
+                android:id="@+id/edur25"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/section2"
                 android:layout_below="@+id/edur24"
-                android:id="@+id/edur25"
                 android:layout_marginTop="20dp"
-                >
+                android:layout_toLeftOf="@+id/section2">
+
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/pmarksuyear3input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/pmarksuyear3input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/pmarksyear3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Marks Year 3"
-                        android:textSize="15dp"
                         android:inputType="number"
-                        android:textColor="#eee"
-                        android:id="@+id/pmarksyear3"/>
+                        android:maxLength="5"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/poutofyear3input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pmarksuyear3input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/poutofyear3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Out Of Year 3"
-                        android:textSize="15dp"
                         android:inputType="number"
-                        android:textColor="#eee"
-                        android:id="@+id/poutofyear3"/>
+                        android:maxLength="5"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/section2"
                 android:layout_below="@+id/edur24"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="30dp"
-                >
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/section2">
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/ppercentyear3input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/ppercentyear3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Percentage Year 3"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
                         android:focusable="false"
-                        android:id="@+id/ppercentyear3"/>
+                        android:hint="Percentage Year 3"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
             </RelativeLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/pgyearaggregateinput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:id="@+id/pgyearaggregateinput"
                 android:layout_below="@+id/edur25"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/pgyearaggregate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Aggregate"
-                    android:inputType="numberDecimal"
+                    android:maxLength="5"
                     android:imeOptions="actionDone"
+                    android:inputType="numberDecimal"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
-                    android:id="@+id/pgyearaggregate"/>
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <RelativeLayout
+                android:id="@+id/pgyearcoursespinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pgyearaggregateinput"
-                android:id="@+id/pgyearcoursespinner"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="3dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -1008,54 +1059,57 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:gravity="center"
-                    android:popupBackground="#001111"
                     android:layout_marginLeft="5dp"
+                    android:background="@color/while_color"
+                    android:gravity="center"
+                    android:popupBackground="@color/while_color"
                     android:spinnerMode="dropdown" />
+
                 <ImageView
+                    android:id="@+id/spinnerimg4"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/spinnerimg4"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:tint="#eee"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/drop"
+                    android:tint="@color/dark_color" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg4"
-                    android:background="#eee"
-                    />
+                    android:background="@color/dark_color" />
 
             </RelativeLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/otheryearcourseinput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pgyearcoursespinner"
                 android:layout_marginTop="15dp"
-                android:id="@+id/otheryearcourseinput"
-                android:visibility="gone"
-                android:theme="@style/TextLabel">
-                <android.support.v7.widget.AppCompatEditText
+                android:theme="@style/TextLabel"
+                android:visibility="gone">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/otheryearcourse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Please Specify"
-                    android:singleLine="true"
                     android:inputType="textCapWords"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
-                    android:id="@+id/otheryearcourse"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
             </android.support.design.widget.TextInputLayout>
+
             <RelativeLayout
+                android:id="@+id/pgyearstreamspinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/otheryearcourseinput"
-                android:id="@+id/pgyearstreamspinner"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="3dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -1065,55 +1119,57 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:gravity="center"
-                    android:popupBackground="#001111"
                     android:layout_marginLeft="5dp"
+                    android:background="@color/while_color"
+                    android:gravity="center"
+                    android:popupBackground="@color/while_color"
                     android:spinnerMode="dropdown" />
 
                 <ImageView
+                    android:id="@+id/spinnerimg5"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/spinnerimg5"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:tint="#eee"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/drop"
+                    android:tint="@color/dark_color" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg5"
-                    android:background="#eee"
-                    />
+                    android:background="@color/dark_color" />
 
             </RelativeLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/otheryearstreaminput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pgyearstreamspinner"
                 android:layout_marginTop="15dp"
-                android:id="@+id/otheryearstreaminput"
-                android:visibility="gone"
-                android:theme="@style/TextLabel">
-                <android.support.v7.widget.AppCompatEditText
+                android:theme="@style/TextLabel"
+                android:visibility="gone">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/otheryearstream"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Please Specify"
-                    android:singleLine="true"
                     android:inputType="textCapWords"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
-                    android:id="@+id/otheryearstream"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
             </android.support.design.widget.TextInputLayout>
+
             <RelativeLayout
+                android:id="@+id/pgyearuniversityspinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/otheryearstreaminput"
-                android:id="@+id/pgyearuniversityspinner"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="3dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -1123,95 +1179,96 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:gravity="center"
-                    android:popupBackground="#001111"
                     android:layout_marginLeft="5dp"
+                    android:background="@color/while_color"
+                    android:gravity="center"
+                    android:popupBackground="@color/while_color"
                     android:spinnerMode="dropdown" />
 
                 <ImageView
+                    android:id="@+id/spinnerimg6"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:id="@+id/spinnerimg6"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:tint="#eee"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/drop"
+                    android:tint="@color/dark_color" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg6"
-                    android:background="#eee"
-                    />
+                    android:background="@color/dark_color" />
 
             </RelativeLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/otheryearuniversityinput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pgyearuniversityspinner"
                 android:layout_marginTop="15dp"
-                android:id="@+id/otheryearuniversityinput"
-                android:visibility="gone"
-                android:theme="@style/TextLabel">
-                <android.support.v7.widget.AppCompatEditText
+                android:theme="@style/TextLabel"
+                android:visibility="gone">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/otheryearuniversity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Please Specify"
-                    android:singleLine="true"
                     android:inputType="textCapWords"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
-                    android:id="@+id/otheryearuniversity"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/schoolnamepgyearinput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/otheryearuniversityinput"
-                android:layout_marginTop="10dp"
-                android:id="@+id/schoolnamepgyearinput"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/schoolnamepgyear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="College Name"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
                     android:inputType="textCapWords"
-                    android:id="@+id/schoolnamepgyear"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
             </android.support.design.widget.TextInputLayout>
 
             <RelativeLayout
+                android:id="@+id/yearofpassingpgyearspinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/section2"
-                android:id="@+id/yearofpassingpgyearspinner"
                 android:layout_below="@+id/schoolnamepgyearinput"
-                >
+                android:layout_toLeftOf="@+id/section2">
+
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/yearofpassingpgyearinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/yearofpassingpgyear"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Month, Year of Passing"
-                        android:textSize="15dp"
-                        android:textColor="#eee"
                         android:focusable="false"
-                        android:id="@+id/yearofpassingpgyear"/>
+                        android:hint="Month, Year of Passing"
+                        android:textColor="@color/dark_color"
+                        android:textSize="15dp" />
 
                 </android.support.design.widget.TextInputLayout>
             </RelativeLayout>
-
 
 
         </RelativeLayout>

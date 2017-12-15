@@ -15,15 +15,8 @@ import android.widget.TextView;
 
 public class AchievementsProfileTabFragment extends Fragment {
 
-    //    String achievements;
-//    EditText achievementsedittext;
-//    ProgressBar achievementsprogress;
-//    Button save;
     String username;
-    //    JSONParser jParser = new JSONParser();
-//    private static String saveachievementsinfo = "http://192.168.0.6/HandleMobileRequests/SaveAchievementsData";
-//    JSONObject json;
-//    String resultofop="";
+
     View knownlang,certifications,courses,skills,honors,patents,publications;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,14 +31,15 @@ public class AchievementsProfileTabFragment extends Fragment {
         TextView honortxt=(TextView)rootView.findViewById(R.id.honortxt);
         TextView patenttxt=(TextView)rootView.findViewById(R.id.patenttxt);
         TextView publicationtxt=(TextView)rootView.findViewById(R.id.publicationtxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/arba.ttf");
-        knownlangtxt.setTypeface(custom_font1);
-        certitxt.setTypeface(custom_font1);
-        coursetxt.setTypeface(custom_font1);
-        skillstxt.setTypeface(custom_font1);
-        honortxt.setTypeface(custom_font1);
-        patenttxt.setTypeface(custom_font1);
-        publicationtxt.setTypeface(custom_font1);
+
+
+        knownlangtxt.setTypeface(MyConstants.getBold(getActivity()));
+        certitxt.setTypeface(MyConstants.getBold(getActivity()));
+        coursetxt.setTypeface(MyConstants.getBold(getActivity()));
+        skillstxt.setTypeface(MyConstants.getBold(getActivity()));
+        honortxt.setTypeface(MyConstants.getBold(getActivity()));
+        patenttxt.setTypeface(MyConstants.getBold(getActivity()));
+        publicationtxt.setTypeface(MyConstants.getBold(getActivity()));
 
         knownlang=(View)rootView.findViewById(R.id.studentBlock);
         skills=(View)rootView.findViewById(R.id.alumniBlock);

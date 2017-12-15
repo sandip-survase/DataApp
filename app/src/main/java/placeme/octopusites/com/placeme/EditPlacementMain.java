@@ -3,7 +3,6 @@ package placeme.octopusites.com.placeme;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -72,7 +71,7 @@ public class EditPlacementMain extends AppCompatActivity {
     int errorflag=0;
     String forwhom="";
     String username="", srole = "",instname="";
-    String digest1="",digest2="";
+    String digest1,digest2;
 
     String role;
     String sid,scompanyname,spackage,spost,sforwhichcourse,sforwhichstream,svacancies,slastdateofregistration,sdateofarrival,sbond,snoofapti;
@@ -93,6 +92,8 @@ public class EditPlacementMain extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Edit Placement");
+
+        role=MySharedPreferencesManager.getRole(this);
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);

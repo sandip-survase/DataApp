@@ -17,7 +17,6 @@ public class CompanyDetailsModal implements Serializable {
         this.ComPhone=ComPhone;
         this.ComAlterPhone=ComAlterPhone;
         this.ComCIIN=ComCIIN;
-
         this.ComAdd1=ComAdd1;
         this.ComAdd2=ComAdd2;
         this.ComAdd3=ComAdd3;

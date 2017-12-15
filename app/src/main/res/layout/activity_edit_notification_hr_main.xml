@@ -63,10 +63,11 @@
                 android:layout_below="@+id/lastmodifiedtxt"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title"
+                    android:imeOptions="actionNext"
                     android:textSize="15dp"
                     android:textColor="#eee"
                     android:singleLine="true"
@@ -81,11 +82,12 @@
                 android:id="@+id/notificationinput"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
                     android:hint="Notification"
+                    android:imeOptions="actionDone"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"

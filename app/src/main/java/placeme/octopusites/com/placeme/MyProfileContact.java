@@ -2,13 +2,13 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +17,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,39 +37,69 @@ public class MyProfileContact extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
-    private static String url_savedata = "http://192.168.100.10:8080/ProfileObjects/SaveAdminContact";
-    SharedPreferences sharedpreferences;
-    String username;
+
+
+    String username,role;
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
     int edittedFlag = 0;
     StudentData s = new StudentData();
-    EditText fname, lname, email, email2, addressline1, addressline2, addressline3, phone, mobile, mobile2;
+    TextInputEditText fname, lname, email, email2, addressline1, addressline2, addressline3, phone, mobile, mobile2;
     String sfname = "", slname = "", semail2 = "", saddressline1 = "", saddressline2 = "", saddressline3 = "", sphone = "", smobile = "", smobile2 = "";
     String encfname, enclname, encemail2, encaddressline1, encaddressline2, encaddressline3, encphone, encmobile, encmobile2;
     String plainusername = "";
-    String strobj;
+    String strobj="";
+
+    TextInputLayout fnameTextInputLayout, lnameTextInputLayout,emai2input,addressline2input,addressline1input,addressline3input,phoneinput,mobileinput,mobile2input;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_contact);
 
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        role=MySharedPreferencesManager.getRole(this);
+
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Contact Details");
         ab.setDisplayHomeAsUpEnabled(true);
 
-        fname = (EditText) findViewById(R.id.fname);
-        lname = (EditText) findViewById(R.id.lname);
-        email = (EditText) findViewById(R.id.email);
-        email2 = (EditText) findViewById(R.id.email2);
-        addressline1 = (EditText) findViewById(R.id.addressline1);
-        addressline2 = (EditText) findViewById(R.id.addressline2);
-        addressline3 = (EditText) findViewById(R.id.addressline3);
-        phone = (EditText) findViewById(R.id.phone);
-        mobile = (EditText) findViewById(R.id.mobile);
-        mobile2 = (EditText) findViewById(R.id.mobile2);
+        fname = (TextInputEditText) findViewById(R.id.fname);
+        lname = (TextInputEditText) findViewById(R.id.lname);
+        email = (TextInputEditText) findViewById(R.id.email);
+        email2 = (TextInputEditText) findViewById(R.id.email2);
+        addressline1 = (TextInputEditText) findViewById(R.id.addressline1);
+        addressline2 = (TextInputEditText) findViewById(R.id.addressline2);
+        addressline3 = (TextInputEditText) findViewById(R.id.addressline3);
+        phone = (TextInputEditText) findViewById(R.id.phone);
+        mobile = (TextInputEditText) findViewById(R.id.mobile);
+        mobile2 = (TextInputEditText) findViewById(R.id.mobile2);
+
+
+        fnameTextInputLayout =  (TextInputLayout) findViewById(R.id.fnameTextInputLayout);
+        lnameTextInputLayout=  (TextInputLayout) findViewById(R.id.lnameTextInputLayout);
+        emai2input=  (TextInputLayout) findViewById(R.id.emai2input);
+        addressline2input=  (TextInputLayout) findViewById(R.id.addressline2input);
+        addressline1input=  (TextInputLayout) findViewById(R.id.addressline1input);
+        addressline3input=  (TextInputLayout) findViewById(R.id.addressline3input);
+        phoneinput=  (TextInputLayout) findViewById(R.id.phoneinput);
+        mobileinput=  (TextInputLayout) findViewById(R.id.mobileinput);
+        mobile2input=  (TextInputLayout) findViewById(R.id.mobile2input);
+
+
+        fnameTextInputLayout.setTypeface(MyConstants.getLight(this));
+        lnameTextInputLayout.setTypeface(MyConstants.getLight(this));
+        emai2input.setTypeface(MyConstants.getLight(this));
+        addressline2input.setTypeface(MyConstants.getLight(this));
+        addressline1input.setTypeface(MyConstants.getLight(this));
+        addressline3input.setTypeface(MyConstants.getLight(this));
+        phoneinput.setTypeface(MyConstants.getLight(this));
+        mobileinput.setTypeface(MyConstants.getLight(this));
+        mobile2input.setTypeface(MyConstants.getLight(this));
+
 
         email.setFocusable(false);
         email.setFocusableInTouchMode(false);
@@ -84,7 +114,7 @@ public class MyProfileContact extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                fname.setError(null);
+                fnameTextInputLayout.setError(null);
             }
 
             @Override
@@ -101,7 +131,7 @@ public class MyProfileContact extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                lname.setError(null);
+                lnameTextInputLayout.setError(null);
             }
 
             @Override
@@ -109,23 +139,23 @@ public class MyProfileContact extends AppCompatActivity {
 
             }
         });
-        email.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                edittedFlag = 1;
-                email.setError(null);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+//        email.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                edittedFlag = 1;
+////                emailinput.setError(null);
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
         email2.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -135,7 +165,7 @@ public class MyProfileContact extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                email2.setError(null);
+                emai2input .setError(null);
             }
 
             @Override
@@ -152,7 +182,8 @@ public class MyProfileContact extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                addressline1.setError(null);
+                addressline1input.setError(null);
+//                addressline1.setError(null);
             }
 
             @Override
@@ -169,7 +200,7 @@ public class MyProfileContact extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                addressline2.setError(null);
+                addressline2input.setError(null);
             }
 
             @Override
@@ -186,7 +217,7 @@ public class MyProfileContact extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                addressline3.setError(null);
+                addressline3input.setError(null);
             }
 
             @Override
@@ -203,7 +234,7 @@ public class MyProfileContact extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                phone.setError(null);
+                phoneinput.setError(null);
             }
 
             @Override
@@ -220,7 +251,7 @@ public class MyProfileContact extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                mobile.setError(null);
+                mobileinput.setError(null);
             }
 
             @Override
@@ -237,7 +268,7 @@ public class MyProfileContact extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                mobile2.setError(null);
+                mobile2input.setError(null);
             }
 
             @Override
@@ -250,31 +281,26 @@ public class MyProfileContact extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-
+//
         TextView addresstxt = (TextView) findViewById(R.id.addresstxt);
         TextView contactnotxt = (TextView) findViewById(R.id.contactnotxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/arba.ttf");
-        addresstxt.setTypeface(custom_font1);
-        contactnotxt.setTypeface(custom_font1);
+//        Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/arba.ttf");
+//        addresstxt.setTypeface(custom_font1);
+//        contactnotxt.setTypeface(custom_font1);
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = MySharedPreferencesManager.getUsername(this);
-        String role = sharedpreferences.getString("role", null);
+        fname.setTypeface(MyConstants.getBold(this));
+        lname.setTypeface(MyConstants.getBold(this));
 
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
-
-        if (digest1 == null || digest2 == null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
+        email.setTypeface(MyConstants.getBold(this));
+        email2.setTypeface(MyConstants.getBold(this));
+        addressline1.setTypeface(MyConstants.getBold(this));
+        addressline2.setTypeface(MyConstants.getBold(this));
+        addressline3.setTypeface(MyConstants.getBold(this));
+        phone.setTypeface(MyConstants.getBold(this));
+        mobile.setTypeface(MyConstants.getBold(this));
+        mobile2.setTypeface(MyConstants.getBold(this));
+        addresstxt.setTypeface(MyConstants.getBold(this));
+        contactnotxt.setTypeface(MyConstants.getBold(this));
 
         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -305,46 +331,78 @@ public class MyProfileContact extends AppCompatActivity {
                 fname.setText(sfname);
             }
         }
+        else
+            sfname="";
+
         if (slname != null) {
             if (slname.length() > 1) {
                 lname.setText(slname);
             }
         }
+        else
+            slname="";
+
         if (smobile != null) {
             if (smobile.length() > 3) {
                 mobile.setText(smobile);
             }
         }
+        else
+            smobile="";
+
         if (semail2 != null) {
             if (semail2.length() > 3) {
                 email2.setText(semail2);
             }
         }
+        else
+            semail2="";
+
+
         if (saddressline1 != null) {
-            if (saddressline1.length() > 3) {
+            if (saddressline1.length() > 2) {
                 addressline1.setText(saddressline1);
             }
         }
+        else
+            saddressline1="";
+
+
+
         if (saddressline2 != null) {
-            if (saddressline2.length() > 3) {
+            if (saddressline2.length() > 2) {
                 addressline2.setText(saddressline2);
             }
         }
+        else
+            saddressline2="";
+
         if (saddressline3 != null) {
-            if (saddressline3.length() > 3) {
+            if (saddressline3.length() > 2) {
                 addressline3.setText(saddressline3);
             }
         }
+        else
+            saddressline3="";
+
+
+
         if (sphone != null) {
-            if (sphone.length() > 3) {
+            if (sphone.length() > 9) {
                 phone.setText(sphone);
             }
         }
+        else
+            sphone="";
+
         if (smobile2 != null) {
             if (smobile2.length() > 3) {
                 mobile2.setText(smobile2);
             }
         }
+        else
+            smobile2="";
+
         edittedFlag = 0;
     }
 
@@ -361,20 +419,67 @@ public class MyProfileContact extends AppCompatActivity {
         smobile = mobile.getText().toString();
         smobile2 = mobile2.getText().toString();
 
+//        Log.d("TAG", "validateandSave: sfname - "+sfname);
+//        Log.d("TAG", "validateandSave: sphone - "+sphone);
+
         int errorflag = 0;
 
         if (sfname.length() < 2) {
             errorflag = 1;
-            fname.setError("Invalid Name");
+            fnameTextInputLayout.setError("Kindly enter valid First name");
         } else {
             errorflag = 0;
-            if (smobile.length() < 10 || smobile.length() > 10) {
+
+            fnameTextInputLayout.setError(null);
+            if (slname.length() < 1) {
+                lnameTextInputLayout.setError("Kindly enter valid last name");
                 errorflag = 1;
-                mobile.setError("Mobile Number should have 10 digits");
-            } else {
-                if (plainusername.equals(semail2)) {
+            }
+            else {
+                errorflag = 0;
+                lnameTextInputLayout.setError(null);
+//                if(semail2.length()<5){
+//                    emai2input.setError("Kindly enter valid Email");
+//                    errorflag = 1;
+//                }
+//acsfvvsfsd
+//                else {
+//                    errorflag = 0;
+//                    emai2input.setError(null);
+                if(saddressline1.length()<2){
                     errorflag = 1;
-                    email2.setError("Priamry and Alternate Email cannot be same");
+                    addressline1input.setError("Kindly enter valid Address");
+//                        addressline1.setError("Kindly enter valid Address");
+                }
+                else {
+                    errorflag = 0;
+                    addressline1input.setError(null);
+
+                    if (saddressline2.length() < 2) {
+                        errorflag = 1;
+                        addressline2input.setError("Kindly enter valid Address");
+
+                    } else {
+                        errorflag = 0;
+                        addressline3input.setError(null);
+                        if (saddressline3.length() < 2) {
+                            errorflag = 1;
+                            addressline3input.setError("Kindly enter valid Address");
+
+                        } else {
+                            errorflag = 0;
+                            addressline3input.setError(null);
+                            if (smobile.length() < 10) {
+                                errorflag = 1;
+                                mobileinput.setError("Mobile Number should have 10 digits");
+                            } else {
+                                errorflag = 0;
+                                mobileinput.setError(null);
+
+                            }
+                        }
+                    }
+//                    }
                 }
             }
         }
@@ -382,13 +487,9 @@ public class MyProfileContact extends AppCompatActivity {
         if (errorflag == 0) {
             try {
                 AdminContactDetailsModal obj = new AdminContactDetailsModal(sfname, slname, plainusername, semail2, saddressline1, saddressline2, saddressline3, sphone, smobile, smobile2);
-                try {
-                    strobj = OtoString(obj, digest1, digest2);
-                    Log.d("encstrobj", "strobj: " + strobj);
 
-                } catch (Exception e) {
-                    Log.d("TAG", "validateandSave: - " + e.getMessage());
-                }
+                strobj = OtoString(obj, digest1, digest2);
+                Log.d("encstrobj", "strobj: " + strobj);
                 new SaveDetails().execute();
 
             } catch (Exception e) {
@@ -403,7 +504,6 @@ public class MyProfileContact extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_save:
-
                 validateandSave();
                 break;
 
@@ -453,8 +553,11 @@ public class MyProfileContact extends AppCompatActivity {
             alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialogInterface) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileContact.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileContact.this));
+
                 }
             });
 
@@ -472,20 +575,18 @@ public class MyProfileContact extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("obj", strobj));               //1
 
-            json = jParser.makeHttpRequest(url_savedata, "GET", params);
+            if (role.equals("hr"))
+                json = jParser.makeHttpRequest(MyConstants.url_SaveHrContact, "GET", params);
+
+            else if (role.equals("admin"))
+                json = jParser.makeHttpRequest(MyConstants.url_SaveAdminContact, "GET", params);
+
+            else
+                json = jParser.makeHttpRequest(MyConstants.url_SaveStdalmContact, "GET", params);
+
             try {
 
                 r = json.getString("info");
-                Log.d("reverse check", ": info" + json.getString("info"));
-
-                Log.d("reverse check", ": fnameToreplace" + json.getString("fnameToreplace"));
-                Log.d("reverse check", ":lnametoreplace" + json.getString("lnametoreplace"));
-                Log.d("reverse check", ": entry" + json.getString("entry"));
-                Log.d("reverse check", ": info1" + json.getString("info1"));
-                Log.d("reverse check", ": introobj" + json.getString("introobj"));
-                Log.d("reverse check", ": updatedobj" + json.getString("updatedobj"));
-                Log.d("reverse check", ": updatedobj" + json.getString("updatedobj"));
-                Log.d("reverse check", ": info" + json.getString("info"));
 
 
             } catch (Exception e) {
@@ -497,20 +598,23 @@ public class MyProfileContact extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            if(result.equals("success"))
-            {
-                Toast.makeText(MyProfileContact.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
+            if (result.equals("success")) {
+                Toast.makeText(MyProfileContact.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
 
-                ProfileRole r=new ProfileRole();
-                String role=r.getRole();
-                if(role.equals("student"))
+                if (role.equals("student"))
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
-                else if(role.equals("alumni"))
+                else if (role.equals("alumni"))
                     setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+                else if (role.equals("hr"))
+                    setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
+                else  {
+                    Log.d("TAG", "onPostExecute: admin");
+                    setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
+                }
                 MyProfileContact.super.onBackPressed();
-            }
-            else
-                Toast.makeText(MyProfileContact.this,result,Toast.LENGTH_SHORT).show();
+
+            } else
+                Toast.makeText(MyProfileContact.this, result, Toast.LENGTH_SHORT).show();
 
         }
     }

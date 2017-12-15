@@ -16,6 +16,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,19 +54,24 @@ public class PrintProfileTabFragment extends Fragment {
     JSONParser jParser = new JSONParser();
     JSONObject json;
     int count=0;
+    int template=1;
     int resumeIds[];
     String resumeNames[];
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
     public static final String Username = "nameKey";
     private static String load_resume_ids = "http://192.168.100.100/AESTest/GetMyResumeIds";
-    String username;
+    String username,resultofop="";
     RadioGroup radioGroupFormat;
     RadioButton radioButtonWord,radioButtonPdf;
-    String format="PDF";
+    String format="pdf";
     Button downloadresume;
     View getmoreselectionview;
+    TextView getmore,selectformattxt;
     ProgressBar resumeprogress;
+    int found_box1=0,found_tenth=0,found_twelth=0,found_diploma=0,found_ug=0,found_pgsem=0,found_pgyear=0,found_projects=0,found_lang=0,found_certificates=0;
+    int found_courses=0,found_skills=0,found_honors=0,found_patents=0,found_publications=0,found_careerobj=0,found_strengths=0,found_weaknesses=0,found_locationpreferences=0;
+    int found_contact_details=0,found_personal=0;
 
     int selectedResumeTemplate=0;
     @Override
@@ -73,24 +79,34 @@ public class PrintProfileTabFragment extends Fragment {
 
         final View rootView = inflater.inflate(R.layout.fragment_edit_profile_printprofile, container, false);
 
+
+        getmore=(TextView)rootView.findViewById(R.id.getmore);
+        selectformattxt=(TextView)rootView.findViewById(R.id.selectformattxt);
+
+        getmore.setTypeface(MyConstants.getBold(getActivity()));
+        selectformattxt.setTypeface(MyConstants.getLight(getActivity()));
         sharedpreferences=getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         username=sharedpreferences.getString(Username,null);
+        MySharedPreferencesManager.save(getActivity(),"template",template+"");
 
         radioGroupFormat=(RadioGroup)rootView.findViewById(R.id.radioGroupFormat);
         radioButtonWord=(RadioButton)rootView.findViewById(R.id.radioButtonWord);
         radioButtonPdf=(RadioButton)rootView.findViewById(R.id.radioButtonPdf);
+
+        radioButtonWord.setTypeface(MyConstants.getBold(getActivity()));
+        radioButtonPdf.setTypeface(MyConstants.getBold(getActivity()));
 
         radioGroupFormat.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch(i) {
                     case R.id.radioButtonPdf:
-                        format="PDF";
+                        format="pdf";
                         break;
                     case R.id.radioButtonWord:
-                        format="WORD";
+                        format="word";
                         radioButtonPdf.setChecked(true);
-                        Toast.makeText(getActivity(),"Word option is not available right now, but will be available soon.",Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(),"Word option is not available right now, but will be available soon.",Toast.LENGTH_LONG).show();
                         break;
                 }
             }
@@ -111,7 +127,10 @@ public class PrintProfileTabFragment extends Fragment {
             public void onClick(View view, int position) {
 
                 selectedResumeTemplate=position;
-                MySharedPreferencesManager.save(getActivity(),"selectedResumeTemplate",""+selectedResumeTemplate);
+                template= resumeIds[selectedResumeTemplate];
+                MySharedPreferencesManager.save(getActivity(),"template",template+"");
+                Log.d("TAG", "onClick: radio button  template - "+template);
+
             }
 
             @Override
@@ -131,32 +150,40 @@ public class PrintProfileTabFragment extends Fragment {
             }
         });
 
+
+
         downloadresume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 downloadresume.setVisibility(View.GONE);
                 resumeprogress.setVisibility(View.VISIBLE);
-
                 //start downloading resumr
-
-                DownloadManager localDownloadManager = (DownloadManager)getContext().getSystemService(DOWNLOAD_SERVICE);
-                Uri uri = new Uri.Builder()
-                        .scheme("http")
-                        .authority("192.168.100.100")
-                        .path("AESTest/DownloadResume")
-                        .appendQueryParameter("u", username)
-                        .appendQueryParameter("f", format)
-                        .appendQueryParameter("t", resumeIds[selectedResumeTemplate]+"")
-                        .build();
-                DownloadManager.Request localRequest = new DownloadManager.Request(uri);
-                localRequest.setNotificationVisibility(1);
-                localDownloadManager.enqueue(localRequest);
+                Log.d("tag","template id -"+resumeIds[selectedResumeTemplate]+"");
+                Log.d("tag", "username - : "+username);
+                Log.d("tag", "format - : "+format);
+//                Log.d("tag","temp id -"+temp);
 
 
-                downloadresume.setVisibility(View.VISIBLE);
-                resumeprogress.setVisibility(View.GONE);
-                Toast.makeText(getContext(),"Downloading Started..",Toast.LENGTH_SHORT).show();
+//                DownloadManager localDownloadManager = (DownloadManager)getContext().getSystemService(DOWNLOAD_SERVICE);
+//                Uri uri = new Uri.Builder()
+//                        .scheme("http")
+//                        .authority("192.168.100.10")
+//                        .path("GenerateResumeWithJODConverter3/DownloadResume")
+//                        .appendQueryParameter("u", username)
+//                        .appendQueryParameter("f", format)
+//                        .appendQueryParameter("t", resumeIds[selectedResumeTemplate]+"")
+//                        .build();
+//
+//                DownloadManager.Request localRequest = new DownloadManager.Request(uri);
+//                localRequest.setNotificationVisibility(1);
+//                localDownloadManager.enqueue(localRequest);
+
+                new GetStudentData().execute();
+
+//                downloadresume.setVisibility(View.VISIBLE);
+//                resumeprogress.setVisibility(View.GONE);
+//                Toast.makeText(getContext(),"Downloading Started..",Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -292,6 +319,218 @@ public class PrintProfileTabFragment extends Fragment {
             Toast.makeText(getActivity(), "refreshed", Toast.LENGTH_SHORT).show();
             refreshContent();
             obj.setIsDownloaded(false);
+        }
+    }
+
+    private class GetStudentData extends AsyncTask<String, Void, Bitmap> {
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+            Bitmap map = null;
+            try {
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("u", username));
+                json = jParser.makeHttpRequest(MyConstants.load_student_data, "GET", params);
+
+                resultofop = json.getString("info");
+                if (resultofop.equals("found")) {
+                    String s = json.getString("intro");
+                    if (s.equals("found")) {
+                        found_box1 = 1;
+                    }
+                    s = json.getString("tenth");
+                    if (s.equals("found")) {
+                        found_tenth = 1;
+                    }
+                    s = json.getString("twelth");
+                    if (s.equals("found")) {
+                        found_twelth = 1;
+                    }
+                    s = json.getString("diploma");
+                    if (s.equals("found")) {
+                        found_diploma = 1;
+                    }
+                    s = json.getString("ug");
+                    if (s.equals("found")) {
+                        found_ug = 1;
+                    }
+                    s = json.getString("pgsem");
+
+                    if (s.equals("found")) {
+                        found_pgsem = 1;
+                    }
+
+                    s = json.getString("pgyear");
+                    if (s.equals("found")) {
+                        found_pgyear = 1;
+                    }
+
+                    s = json.getString("projects");
+                    if (s.equals("found")) {
+                        found_projects = 1;
+                    }
+                    s = json.getString("knownlang");
+                    if (s.equals("found")) {
+                        found_lang = 1;
+                    }
+                    s = json.getString("certificates");
+                    if (s.equals("found")) {
+                        found_certificates = 1;
+                    }
+                    s = json.getString("courses");
+                    if (s.equals("found")) {
+                        found_courses = 1;
+                    }
+                    s = json.getString("skills");
+                    if (s.equals("found")) {
+                        found_skills = 1;
+                    }
+                    s = json.getString("honors");
+                    if (s.equals("found")) {
+                        found_honors = 1;
+                    }
+                    s = json.getString("patents");
+                    if (s.equals("found")) {
+                        found_patents = 1;
+                    }
+                    s = json.getString("publications");
+                    if (s.equals("found")) {
+                        found_publications = 1;
+                    }
+                    s = json.getString("career");
+                    if (s.equals("found")) {
+                        found_careerobj = 1;
+                    }
+                    s = json.getString("strengths");
+                    if (s.equals("found")) {
+                        found_strengths = 1;
+                    }
+                    s = json.getString("weaknesses");
+                    if (s.equals("found")) {
+                        found_weaknesses = 1;
+                    }
+                    s = json.getString("locationpreferences");
+                    if (s.equals("found")) {
+                        found_locationpreferences = 1;
+                    }
+                    s = json.getString("contact_details");
+                    if (s.equals("found")) {
+                        found_contact_details = 1;
+                    }
+                    s = json.getString("personal");
+                    if (s.equals("found")) {
+                        found_personal = 1;
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return map;
+        }
+        @Override
+        protected void onPostExecute(Bitmap result) {
+//            int found_box1=0,found_tenth=0,found_twelth=0,found_diploma=0,found_ug=0,found_pgsem=0,found_pgyear=0,found_projects=0,found_lang=0,found_certificates=0;
+//            int found_courses=0,found_skills=0,found_honors=0,found_patents=0,found_publications=0,found_careerobj=0,found_strengths=0,found_weaknesses=0,found_locationpreferences=0;
+//            int found_contact_details=0,found_personal=0;
+
+            if(found_box1==0){
+//                    please fill intro information
+                Toast.makeText(getActivity(), " please fill introduction information", Toast.LENGTH_SHORT).show();
+            }else{
+                if(found_tenth==0){
+//                        please fill tenth information
+                    Toast.makeText(getActivity(), " please fill tenth information", Toast.LENGTH_SHORT).show();
+
+                }
+                else{
+                    if(found_twelth==0 && found_diploma==0){
+//                        please fill twelth or diploma information
+                        Toast.makeText(getActivity(), " please fill twelth or diploma information", Toast.LENGTH_SHORT).show();
+
+                    }else{
+                        if(found_ug==0){
+//                        please fill ug information
+                            Toast.makeText(getActivity(), " please fill gradution information", Toast.LENGTH_SHORT).show();
+
+                        }else{
+                            if(found_projects==0){
+//                        please fill project information
+                                Toast.makeText(getActivity(), " please fill project information", Toast.LENGTH_SHORT).show();
+
+                            }else{
+                                if(found_lang==0){
+//                        please fill language information
+                                    Toast.makeText(getActivity(), " please fill language information", Toast.LENGTH_SHORT).show();
+
+                                }else{
+                                    if(found_skills==0){
+//                        please fill skill information
+                                        Toast.makeText(getActivity(), " please fill skill information", Toast.LENGTH_SHORT).show();
+
+                                    }else{
+                                        if(found_careerobj==0){
+//                        please fill career objective information
+                                            Toast.makeText(getActivity(), " please fill career objective information", Toast.LENGTH_SHORT).show();
+
+                                        }else{
+                                            if(found_strengths==0){
+//                        please fill strength information
+                                                Toast.makeText(getActivity(), " please fill strength information", Toast.LENGTH_SHORT).show();
+
+                                            }else{
+                                                if(found_weaknesses==0){
+//                        please fill weaknesses information
+                                                    Toast.makeText(getActivity(), " please fill weaknesses information", Toast.LENGTH_SHORT).show();
+
+                                                }
+                                                else{
+                                                    if(found_contact_details==0){
+//                        please fill contact details information
+                                                        Toast.makeText(getActivity(), " please fill contact details information", Toast.LENGTH_SHORT).show();
+
+                                                    }else{
+                                                        if(found_personal==0){
+//                        please fill personal information
+                                                            Toast.makeText(getActivity(), " please fill personal information", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                }
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+            if( found_box1 == 1 && found_tenth==1 && (found_diploma==1 || found_twelth==1 )&& found_ug==1 && found_projects==1 && found_lang==1 && found_contact_details==1 && found_skills==1 && found_careerobj==1 && found_strengths==1 && found_weaknesses==1 && found_personal==1){
+                downloadresume.setVisibility(View.GONE);
+                resumeprogress.setVisibility(View.VISIBLE);
+
+                DownloadManager localDownloadManager = (DownloadManager)getContext().getSystemService(DOWNLOAD_SERVICE);
+                Uri uri = new Uri.Builder()
+                        .scheme("http")
+                        .authority("192.168.100.10")
+                        .path("GenerateResumeWithJODConverter3/DownloadResume")
+                        .appendQueryParameter("username",username)
+                        .appendQueryParameter("format",format)
+                        .appendQueryParameter("template",resumeIds[selectedResumeTemplate]+"")
+                        .build();
+
+                DownloadManager.Request localRequest = new DownloadManager.Request(uri);
+                localRequest.setNotificationVisibility(1);
+                localDownloadManager.enqueue(localRequest);
+
+                downloadresume.setVisibility(View.VISIBLE);
+                resumeprogress.setVisibility(View.GONE);
+                Toast.makeText(getContext(),"Downloading Started..",Toast.LENGTH_SHORT).show();
+            }
+//              else{
+//                Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+//            }
+
         }
     }
 }

@@ -3,13 +3,13 @@ package placeme.octopusites.com.placeme;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -18,9 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,10 +37,11 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
 
     int flag = 0;
     CheckBox checkboxplaced, checkboxnotplaced, CheckBoxdebar, CheckBoxsnotdebar, checkboxstudent, checkboxalumni;
-    EditText email, companyname;
+    TextInputEditText email, companyname;
+    TextInputLayout emailinput, companynameinput;
     String PLACED = "", DEBAR = "", ROLE = "";
-    String username,strcompanyname,isactivated;
-    String encUsername,encCompanyname,encPlaced,encdebar,encadminUsername;
+    String username, strcompanyname, isactivated, encRole;
+    String encUsername, encCompanyname, encPlaced, encdebar, encadminUsername;
     JSONParser jParser = new JSONParser();
     JSONObject json;
     private byte[] demo1DecryptedBytes;
@@ -49,8 +49,9 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
     byte[] demoIVBytes;
     String sPadding;
     ImageView trash2ImageView;
-    Boolean changeFlag=false;
-
+    Boolean changeFlag = false;
+    String digest1, digest2;
+    TextView ass2txt, passpasstxt, placementstatus2txt, debarstatus2txt, rolestatus2txt;
 
 
     @Override
@@ -62,6 +63,9 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
         ab.setTitle("Edit User");
         ab.setDisplayHomeAsUpEnabled(true);
 
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
@@ -72,30 +76,65 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
         CheckBoxsnotdebar = (CheckBox) findViewById(R.id.CheckBoxsnotdebar);
         checkboxstudent = (CheckBox) findViewById(R.id.checkboxstudent);
         checkboxalumni = (CheckBox) findViewById(R.id.checkboxalumni);
-        trash2ImageView= (ImageView) findViewById(R.id.trash2);
+        trash2ImageView = (ImageView) findViewById(R.id.trash2);
         //default
 
+        checkboxplaced.setTypeface(MyConstants.getBold(this));
+        checkboxnotplaced.setTypeface(MyConstants.getBold(this));
+        CheckBoxdebar.setTypeface(MyConstants.getBold(this));
+        CheckBoxsnotdebar.setTypeface(MyConstants.getBold(this));
+        checkboxstudent.setTypeface(MyConstants.getBold(this));
+        checkboxalumni.setTypeface(MyConstants.getBold(this));
 
-        email = (EditText) findViewById(R.id.email);
-        companyname = (EditText) findViewById(R.id.companyname);
+
+        ass2txt = (TextView) findViewById(R.id.ass2txt);
+        passpasstxt = (TextView) findViewById(R.id.passpasstxt);
+        placementstatus2txt = (TextView) findViewById(R.id.placementstatus2txt);
+        debarstatus2txt = (TextView) findViewById(R.id.debarstatus2txt);
+        rolestatus2txt = (TextView) findViewById(R.id.rolestatus2txt);
+
+        ass2txt.setTypeface(MyConstants.getBold(this));
+        passpasstxt.setTypeface(MyConstants.getLight(this));
+        placementstatus2txt.setTypeface(MyConstants.getLight(this));
+        debarstatus2txt.setTypeface(MyConstants.getLight(this));
+        rolestatus2txt.setTypeface(MyConstants.getLight(this));
+
+
+        emailinput = (TextInputLayout) findViewById(R.id.emailinput);
+        companynameinput = (TextInputLayout) findViewById(R.id.companynameinput);
+        email = (TextInputEditText) findViewById(R.id.email);
+        companyname = (TextInputEditText) findViewById(R.id.companyname);
+
+        emailinput.setTypeface(MyConstants.getLight(this));
+        companynameinput.setTypeface(MyConstants.getLight(this));
+
+        email.setTypeface(MyConstants.getBold(this));
+        companyname.setTypeface(MyConstants.getBold(this));
 
         demoKeyBytes = SimpleBase64Encoder.decode(MySharedPreferencesManager.getDigest1(AdminSingleUserViewDialog.this));
         demoIVBytes = SimpleBase64Encoder.decode(MySharedPreferencesManager.getDigest2(AdminSingleUserViewDialog.this));
         sPadding = "ISO10126Padding";
-        encadminUsername=MySharedPreferencesManager.getUsername(AdminSingleUserViewDialog.this);
+        encadminUsername = MySharedPreferencesManager.getUsername(AdminSingleUserViewDialog.this);
 
-        username=getIntent().getStringExtra("studentUsername");
-        ROLE=getIntent().getStringExtra("role");
-        isactivated=getIntent().getStringExtra("isactivated");
+        username = getIntent().getStringExtra("studentUsername");
+        ROLE = getIntent().getStringExtra("role");
+        Log.d("TAG", "onCreate: role got from back activity " + ROLE);
+        isactivated = getIntent().getStringExtra("isactivated");
         email.setText(username);
-        if(ROLE.equals("student"))
+
+        if (ROLE.equals("student")) {
             checkboxstudent.setChecked(true);
-        else
+            checkboxalumni.setChecked(false);
+        } else if (ROLE.equals("alumni")) {
             checkboxalumni.setChecked(true);
+            checkboxstudent.setChecked(false);
+        } else
+            checkboxstudent.setChecked(true);
+
 
         View trash2 = (View) findViewById(R.id.trash2selectionview);
 
-        if(isactivated.equals("Activated")){
+        if (isactivated.equals("Activated")) {
             trash2.setVisibility(View.GONE);
             trash2ImageView.setVisibility(View.GONE);
             email.setFocusable(false);
@@ -113,7 +152,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
                         .setPositiveButton("Yes",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
-                                            new DeleteNonActiveUser().execute();
+                                        new DeleteNonActiveUser().execute();
                                         AdminSingleUserViewDialog.super.onBackPressed();
                                     }
                                 })
@@ -139,21 +178,22 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
             }
         });
 
+        companyname.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-        TextView ass2txt = (TextView) findViewById(R.id.ass2txt);
-        TextView passpasstxt = (TextView) findViewById(R.id.passpasstxt);
-        TextView placementstatus2txt = (TextView) findViewById(R.id.placementstatus2txt);
-        TextView debarstatus2txt = (TextView) findViewById(R.id.debarstatus2txt);
-        TextView rolestatus2txt = (TextView) findViewById(R.id.rolestatus2txt);
+            }
 
-        Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/cabinsemibold.ttf");
-        Typeface custom_font4 = Typeface.createFromAsset(getAssets(), "fonts/maven.ttf");
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                companyname.setError(null);
+            }
 
-        ass2txt.setTypeface(custom_font4);
-        placementstatus2txt.setTypeface(custom_font4);
-        debarstatus2txt.setTypeface(custom_font4);
-        rolestatus2txt.setTypeface(custom_font4);
-        passpasstxt.setTypeface(custom_font4);
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         checkboxplaced.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -163,26 +203,32 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
                     companyname.setError(null);
                     PLACED = "yes";
                     companyname.setVisibility(View.VISIBLE);
+                } else {
+                    checkboxnotplaced.setChecked(true);
+                    PLACED = "no";
                 }
-                changeFlag=true;
+                changeFlag = true;
             }
         });
 
         checkboxnotplaced.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                companyname.setError(null);
                 if (isChecked) {
                     checkboxplaced.setChecked(false);
-                    companyname.setError(null);
+                    companyname.setText("");
                     PLACED = "no";
                     companyname.setVisibility(View.GONE);
+                } else {
+                    checkboxplaced.setChecked(true);
+                    PLACED = "yes";
                 }
-                changeFlag=true;
+                changeFlag = true;
             }
         });
-        checkboxnotplaced.setChecked(true);
-        CheckBoxsnotdebar.setChecked(true);
-        checkboxstudent.setChecked(true);
+
 
         CheckBoxdebar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -190,8 +236,11 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
                 if (isChecked) {
                     CheckBoxsnotdebar.setChecked(false);
                     DEBAR = "yes";
+                } else {
+                    CheckBoxsnotdebar.setChecked(true);
+                    DEBAR = "no";
                 }
-                changeFlag=true;
+                changeFlag = true;
             }
         });
 
@@ -201,8 +250,11 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
                 if (isChecked) {
                     CheckBoxdebar.setChecked(false);
                     DEBAR = "no";
+                } else {
+                    CheckBoxdebar.setChecked(true);
+                    DEBAR = "yes";
                 }
-                changeFlag=true;
+                changeFlag = true;
             }
         });
 
@@ -212,8 +264,11 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
                 if (isChecked) {
                     checkboxalumni.setChecked(false);
                     ROLE = "student";
+                } else {
+                    checkboxalumni.setChecked(true);
+                    ROLE = "alumni";
                 }
-                changeFlag=true;
+                changeFlag = true;
             }
         });
 
@@ -223,8 +278,11 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
                 if (isChecked) {
                     checkboxstudent.setChecked(false);
                     ROLE = "alumni";
+                } else {
+                    checkboxstudent.setChecked(true);
+                    ROLE = "student";
                 }
-                changeFlag=true;
+                changeFlag = true;
             }
         });
 
@@ -233,8 +291,8 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isactivated.equals("Activated")){
-                    Toast.makeText(AdminSingleUserViewDialog.this,"You can not edit username of Activated user", Toast.LENGTH_SHORT).show();
+                if (isactivated.equals("Activated")) {
+                    Toast.makeText(AdminSingleUserViewDialog.this, "You can not edit username of Activated user", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -247,7 +305,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                changeFlag=true;
+                changeFlag = true;
             }
 
             @Override
@@ -256,10 +314,9 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
             }
         });
 
-        changeFlag=false;
+        changeFlag = false;
 
     }//onc
-
 
 
     void showmenu() {
@@ -307,37 +364,36 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
         protected String doInBackground(String... param) {
 
 
-
             try {
 
                 byte[] usernameBytes = username.getBytes("UTF-8");
 
 
                 byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
-                encUsername=new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
+                encUsername = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", encUsername));
-                Log.d("TAG", "doInBackground: pass username "+username);
+                Log.d("TAG", "doInBackground: pass username " + username);
 
                 json = jParser.makeHttpRequest(MyConstants.url_GetPlacedDebarInfo, "GET", params);
 
                 String info = json.getString("info");
-                Log.d("TAG", "doInBackground: GetRegisteredUsersUnderAdmin info "+info);
+                Log.d("TAG", "doInBackground: GetRegisteredUsersUnderAdmin info " + info);
                 if (info.equals("success")) {
 
-                    String isplaced=json.getString("isplaced");
-                    strcompanyname=json.getString("companyname");
-                    String isdebar=json.getString("isdebar");
+                    String isplaced = json.getString("isplaced");
+                    strcompanyname = json.getString("companyname");
+                    String isdebar = json.getString("isdebar");
 
-                    Log.d("TAG", "doInBackground: isplaced "+isplaced);
-                    Log.d("TAG", "doInBackground: isdebar "+isdebar);
+                    Log.d("TAG", "doInBackground: isplaced " + isplaced);
+                    Log.d("TAG", "doInBackground: isdebar " + isdebar);
 
                     if (!isplaced.equals("null")) {
                         byte[] demo1EncryptedBytes = SimpleBase64Encoder.decode(isplaced);
                         demo1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes);
                         isplaced = new String(demo1DecryptedBytes);
-                        PLACED=isplaced;
+                        PLACED = isplaced;
 
                     }
 
@@ -353,7 +409,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
                         byte[] demo1EncryptedBytes = SimpleBase64Encoder.decode(isdebar);
                         demo1DecryptedBytes = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes);
                         isdebar = new String(demo1DecryptedBytes);
-                        DEBAR=isdebar;
+                        DEBAR = isdebar;
 
                     }
 
@@ -362,7 +418,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.d("TAG", "doInBackground: exp "+e.getMessage());
+                Log.d("TAG", "doInBackground: exp " + e.getMessage());
             }
             return "";
         }
@@ -373,70 +429,82 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
 //            Log.d("TAG", "onPostExecute: PLACED "+PLACED);
 //            Log.d("TAG", "onPostExecute: DEBAR "+DEBAR);
 //            Log.d("TAG", "onPostExecute: strcompanyname "+strcompanyname);
-                if(PLACED.equals("yes"))
-                    checkboxplaced.setChecked(true);
+            if (PLACED.equals("yes")) {
+                checkboxplaced.setChecked(true);
+                checkboxnotplaced.setChecked(false);
+            } else {
+                checkboxnotplaced.setChecked(true);
+                checkboxplaced.setChecked(false);
+            }
 
-                if(DEBAR.equals("yes"))
-                    CheckBoxdebar.setChecked(true);
+            if (DEBAR.equals("yes")) {
+                CheckBoxdebar.setChecked(true);
+                CheckBoxsnotdebar.setChecked(false);
+            } else {
+                CheckBoxsnotdebar.setChecked(true);
+                CheckBoxdebar.setChecked(false);
+            }
 
-            if(strcompanyname!=null && !strcompanyname.equals(""))
+            if (strcompanyname != null && !strcompanyname.equals(""))
                 companyname.setText(strcompanyname);
 
+            changeFlag = false;
         }
+
     }
 
-    void validateandSave()
-    {
+    void validateandSave() {
 
-            int errorflag=0;
+        int errorflag = 0;
+        companyname.setError(null);
 
-            username = email.getText().toString();
-            strcompanyname = companyname.getText().toString();
-
-
-
-            if(!username.contains("@"))
-            {
-                email.setError("Incorrect Username");
-                errorflag=1;
-            }
-            if(checkboxplaced.isChecked()) {
-                if(strcompanyname.length()<1) {
-                    errorflag=1;
-                    companyname.setError("If candidate is placed company name field can not be empty");
-                }
-            }
-
-            if (errorflag == 0 ) {
-                try {
-
-                    byte[] usernameBytes = username.getBytes("UTF-8");
-                    byte[] companynameBytes = strcompanyname.getBytes("UTF-8");
-
-                    byte[] placedBytes = PLACED.getBytes("UTF-8");
-                    byte[] debarBytes = DEBAR.getBytes("UTF-8");
+        username = email.getText().toString();
+        strcompanyname = companyname.getText().toString();
 
 
-                    byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
-                    encUsername = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
-
-                    byte[] companynameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, companynameBytes);
-                    encCompanyname = new String(SimpleBase64Encoder.encode(companynameEncryptedBytes));
-
-                    byte[] placedBytesEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, placedBytes);
-                    encPlaced = new String(SimpleBase64Encoder.encode(placedBytesEncryptedBytes));
-
-                    byte[] debarEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, debarBytes);
-                    encdebar = new String(SimpleBase64Encoder.encode(debarEncryptedBytes));
-
-
-                    new SaveData().execute();
-
-                } catch (Exception e) {
-
-                }
+        if (!username.contains("@")) {
+            email.setError("Incorrect Username");
+            errorflag = 1;
+        }
+        if (checkboxplaced.isChecked()) {
+            if (strcompanyname.length() < 1) {
+                errorflag = 1;
+                companynameinput.setError("Kindly enter valid company name");
             }
         }
+
+        if (errorflag == 0) {
+            try {
+
+                byte[] usernameBytes = username.getBytes("UTF-8");
+                byte[] companynameBytes = strcompanyname.getBytes("UTF-8");
+
+                byte[] placedBytes = PLACED.getBytes("UTF-8");
+                byte[] debarBytes = DEBAR.getBytes("UTF-8");
+
+
+                byte[] usernameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, usernameBytes);
+                encUsername = new String(SimpleBase64Encoder.encode(usernameEncryptedBytes));
+
+                byte[] companynameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, companynameBytes);
+                encCompanyname = new String(SimpleBase64Encoder.encode(companynameEncryptedBytes));
+
+                byte[] placedBytesEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, placedBytes);
+                encPlaced = new String(SimpleBase64Encoder.encode(placedBytesEncryptedBytes));
+
+                byte[] debarEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, debarBytes);
+                encdebar = new String(SimpleBase64Encoder.encode(debarEncryptedBytes));
+
+
+                encRole = AES4all.Encrypt(ROLE, digest1, digest2);
+
+                new SaveData().execute();
+
+            } catch (Exception e) {
+                Log.d("TAG", "validateandSave: enc exp : " + e.getMessage());
+            }
+        }
+    }
 
 
     class SaveData extends AsyncTask<String, String, String> {
@@ -444,37 +512,42 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
 
         protected String doInBackground(String... param) {
 
-            String r=null;
+            String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u",encUsername));    //0
-            params.add(new BasicNameValuePair("p",encPlaced));       //1
-            params.add(new BasicNameValuePair("c",encCompanyname));       //2
-            params.add(new BasicNameValuePair("d",encdebar));     //3
+            params.add(new BasicNameValuePair("u", encUsername));          //    0
+            params.add(new BasicNameValuePair("p", encPlaced));           //     1
+            params.add(new BasicNameValuePair("c", encCompanyname));      //     2
+            params.add(new BasicNameValuePair("d", encdebar));            //     3
+            params.add(new BasicNameValuePair("r", encRole));            //     4
+
+            Log.d("TAG", "validateandSave: input role" + encRole);
 
 
             json = jParser.makeHttpRequest(MyConstants.url_SavePlacedDebarInfo, "GET", params);
             try {
                 r = json.getString("info");
+                Log.d("TAG", ": SavePlacedDebarInfo json " + json);
 
 
-            }catch (Exception e){e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return r;
         }
 
         @Override
         protected void onPostExecute(String result) {
 
-            if(result.equals("success"))
-            {
-                Toast.makeText(AdminSingleUserViewDialog.this,"Successfully updated..!",Toast.LENGTH_SHORT).show();
+            if (result.equals("success")) {
+                Toast.makeText(AdminSingleUserViewDialog.this, "Successfully updated..!", Toast.LENGTH_SHORT).show();
 
+                setResult(MyConstants.USER_DATA_CHANGE_RESULT_CODE);
 //                Intent returnIntent = new Intent();
 //                returnIntent.putExtra("result", result);
 
                 AdminSingleUserViewDialog.super.onBackPressed();
-            }
-            else {
-                Toast.makeText(AdminSingleUserViewDialog.this,result,Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(AdminSingleUserViewDialog.this, result, Toast.LENGTH_SHORT).show();
 
             }
         }
@@ -490,21 +563,22 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encadminUsername));    //0
             params.add(new BasicNameValuePair("ue", encUsername));//1
-            Log.d("TAG", "doInBackground: delete admin "+encadminUsername);
-            Log.d("TAG", "doInBackground: delete admin "+encUsername);
+            Log.d("TAG", "doInBackground: delete admin " + encadminUsername);
+            Log.d("TAG", "doInBackground: delete admin " + encUsername);
             json = jParser.makeHttpRequest(MyConstants.url_DeleteNonActiveUser, "GET", params);
             try {
                 r = json.getString("info");
-                Log.d("TAG", "DeleteNonActiveUser: info "+r);
+                Log.d("TAG", "DeleteNonActiveUser: json " + json);
             } catch (Exception e) {
                 e.printStackTrace();
-                Toast.makeText(AdminSingleUserViewDialog.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("TAG", "DeleteNonActiveUser: exp " + e.getMessage());
             }
             return r;
         }
+
         @Override
         protected void onPostExecute(String result) {
-            if(result.equals("success"))
+            if (result != null && result.equals("success"))
                 Toast.makeText(AdminSingleUserViewDialog.this, "Successfully deleted..!", Toast.LENGTH_SHORT).show();
 
         }
@@ -512,8 +586,9 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        Log.d("TAG", "changeFlag : " + changeFlag);
 
-        if(changeFlag) {
+        if (changeFlag) {
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
@@ -545,8 +620,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
             });
 
             alertDialog.show();
-        }
-        else
-        AdminSingleUserViewDialog.super.onBackPressed();
+        } else
+            AdminSingleUserViewDialog.super.onBackPressed();
     }
 }

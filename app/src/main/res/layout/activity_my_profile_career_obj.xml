@@ -2,138 +2,144 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_my_profile_career_obj"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    android:focusableInTouchMode="true"
-    tools:context="com.octopusites.placeme.MyProfileCareerObj">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Career Objective"
-        android:textSize="20dp"
-        android:textColor="#eee"
-        android:id="@+id/careerobjtxt"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:background="@drawable/textviewborder2"
-        />
+    android:background="@color/while_color">
 
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_my_profile_career_obj"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/careerobjtxt"
-        android:layout_marginTop="20dp"
-        >
-        <RadioGroup
-            android:layout_width="match_parent"
+        android:focusableInTouchMode="true"
+        android:padding="16dp"
+        tools:context="com.octopusites.placeme.MyProfileCareerObj">
+
+        <TextView
+            android:id="@+id/careerobjtxt"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/radioGroupCareerobj"
-            android:orientation="vertical"
-            >
-            <android.support.v7.widget.AppCompatRadioButton
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#eee"
-                app:buttonTint="#eee"
-                android:paddingLeft="10dp"
-                android:text="To secure a promising position in the company of repute that offers both a challenging assignments and ample opportunity for growth in terms of due recognition and added responsibilities."
-                android:id="@+id/radioButtonObj1"
-                android:checked="true"
-                />
-            <android.support.v7.widget.AppCompatRadioButton
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#eee"
-                app:buttonTint="#eee"
-                android:layout_marginTop="20dp"
-                android:paddingLeft="10dp"
-                android:text="To work with the company, belonging to professionally managed group, that is offering enough opportunities for career advancement and professional growth of an individual."
-                android:id="@+id/radioButtonObj2"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/textviewborder"
+            android:elevation="2dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="10dp"
+            android:text="Career Objective"
+            android:textColor="@color/while_color"
+            android:textSize="18dp" />
 
-                />
 
-            <android.support.v7.widget.AppCompatRadioButton
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#eee"
-                app:buttonTint="#eee"
-                android:layout_marginTop="20dp"
-                android:paddingLeft="10dp"
-                android:text="To work in a stimulating work culture and environment where I am allowed to freely apply the management principles learned to the best interest of the company and gain rich experience thereby enhancing my knowledge."
-                android:id="@+id/radioButtonObj3"
-
-                />
-            <android.support.v7.widget.AppCompatRadioButton
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#eee"
-                app:buttonTint="#eee"
-                android:layout_marginTop="20dp"
-                android:paddingLeft="10dp"
-                android:text="To achieve success in competitive environment of the corporate world and making a mark by my hard work, passion for the job and strong will to fulfill management expectations following ethical values."
-                android:id="@+id/radioButtonObj4"
-
-                />
-            <android.support.v7.widget.AppCompatRadioButton
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#eee"
-                app:buttonTint="#eee"
-                android:layout_marginTop="20dp"
-                android:paddingLeft="10dp"
-                android:text="To represent myself as one of the important members of the team and driving my team towards fulfillment of company's goals and objectives and make long lasting impression of my team on senior management."
-                android:id="@+id/radioButtonObj5"
-
-                />
-            <android.support.v7.widget.AppCompatRadioButton
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#eee"
-                app:buttonTint="#eee"
-                android:layout_marginTop="20dp"
-                android:paddingLeft="10dp"
-                android:text="Other"
-                android:id="@+id/radioButtonObj6"
-
-                />
-        </RadioGroup>
-
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/otherobjinput"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/careerobjtxt"
             android:layout_marginTop="20dp"
-            android:theme="@style/TextLabel">
+            android:orientation="vertical">
 
-            <android.support.v7.widget.AppCompatEditText
+            <RadioGroup
+                android:id="@+id/radioGroupCareerobj"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Career Objective"
-                android:textSize="15dp"
-                android:focusable="false"
-                android:textColor="#eee"
-                android:id="@+id/otherobj"/>
+                android:orientation="vertical">
 
-        </android.support.design.widget.TextInputLayout>
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/radioButtonObj1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+                    android:checked="true"
+                    android:paddingLeft="10dp"
+                    android:text="To secure a promising position in the company of repute that offers both a challenging assignments and ample opportunity for growth in terms of due recognition and added responsibilities."
+                    android:textColor="@color/sky_blue_color"
+                    app:buttonTint="@color/sky_blue_color" />
 
-    </LinearLayout>
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/radioButtonObj2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:paddingLeft="10dp"
+                    android:textSize="14dp"
+                    android:text="To work with the company, belonging to professionally managed group, that is offering enough opportunities for career advancement and professional growth of an individual."
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color"
+
+                    />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/radioButtonObj3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:paddingLeft="10dp"
+                    android:textSize="14dp"
+                    android:text="To work in a stimulating work culture and environment where I am allowed to freely apply the management principles learned to the best interest of the company and gain rich experience thereby enhancing my knowledge."
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color"
+
+                    />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/radioButtonObj4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:paddingLeft="10dp"
+                    android:textSize="14dp"
+                    android:text="To achieve success in competitive environment of the corporate world and making a mark by my hard work, passion for the job and strong will to fulfill management expectations following ethical values."
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color"
+
+                    />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/radioButtonObj5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:paddingLeft="10dp"
+                    android:textSize="14dp"
+                    android:text="To represent myself as one of the important members of the team and driving my team towards fulfillment of company's goals and objectives and make long lasting impression of my team on senior management."
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color"
+
+                    />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/radioButtonObj6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:paddingLeft="10dp"
+                    android:text="Other"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color"
+
+                    />
+            </RadioGroup>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/otherobjinput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/otherobj"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLength="1000"
+                    android:focusable="false"
+                    android:visibility="gone"
+                    android:hint="Career Objective"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
 
 
-</RelativeLayout>
+    </RelativeLayout>
 </ScrollView>

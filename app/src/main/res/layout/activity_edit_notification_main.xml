@@ -63,11 +63,12 @@
                 android:layout_below="@+id/lastmodifiedtxt"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title"
                     android:textSize="15dp"
+                    android:imeOptions="actionNext"
                     android:textColor="#eee"
                     android:singleLine="true"
                     android:id="@+id/title"/>
@@ -81,12 +82,13 @@
                 android:id="@+id/notificationinput"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
                     android:hint="Notification"
                     android:gravity="top|left"
+                    android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
                     android:textSize="15dp"
@@ -187,7 +189,7 @@
                 android:id="@+id/batchesinput"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Batches"

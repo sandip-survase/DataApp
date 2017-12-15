@@ -55,11 +55,12 @@
                 android:id="@+id/postinput1"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
                     android:textSize="15dp"
+                    android:imeOptions="actionNext"
                     android:textColor="#eee"
                     android:singleLine="true"
                     android:id="@+id/post1"/>
@@ -72,10 +73,11 @@
                 android:layout_below="@+id/postinput1"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
+                    android:imeOptions="actionDone"
                     android:textSize="15dp"
                     android:textColor="#eee"
                     android:singleLine="true"
@@ -104,7 +106,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/fromdate1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -136,7 +138,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
@@ -206,11 +208,12 @@
                 android:id="@+id/postinput2"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
                     android:textSize="15dp"
+                    android:imeOptions="actionNext"
                     android:textColor="#eee"
                     android:singleLine="true"
                     android:id="@+id/post2"/>
@@ -223,11 +226,12 @@
                 android:layout_below="@+id/postinput2"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
                     android:textSize="15dp"
+                    android:imeOptions="actionDone"
                     android:textColor="#eee"
                     android:singleLine="true"
                     android:id="@+id/inst2"/>
@@ -255,7 +259,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
@@ -287,7 +291,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
@@ -357,7 +361,7 @@
                 android:id="@+id/postinput3"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
@@ -374,7 +378,7 @@
                 android:layout_below="@+id/postinput3"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
@@ -406,7 +410,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
@@ -438,7 +442,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
@@ -508,7 +512,7 @@
                 android:id="@+id/postinput4"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
@@ -525,7 +529,7 @@
                 android:layout_below="@+id/postinput4"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
@@ -555,7 +559,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
@@ -587,7 +591,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
@@ -658,7 +662,7 @@
                 android:id="@+id/postinput5"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
@@ -675,7 +679,7 @@
                 android:layout_below="@+id/postinput5"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
@@ -707,7 +711,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
@@ -739,7 +743,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
@@ -809,7 +813,7 @@
                 android:id="@+id/postinput6"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
@@ -826,7 +830,7 @@
                 android:layout_below="@+id/postinput6"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
@@ -858,7 +862,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
@@ -890,7 +894,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
@@ -961,7 +965,7 @@
                 android:id="@+id/postinput7"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
@@ -978,7 +982,7 @@
                 android:layout_below="@+id/postinput7"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
@@ -1010,7 +1014,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
@@ -1042,7 +1046,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
@@ -1113,7 +1117,7 @@
                 android:id="@+id/postinput8"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
@@ -1130,7 +1134,7 @@
                 android:layout_below="@+id/postinput8"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
@@ -1162,7 +1166,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
@@ -1194,7 +1198,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
@@ -1265,7 +1269,7 @@
                 android:id="@+id/postinput9"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
@@ -1282,7 +1286,7 @@
                 android:layout_below="@+id/postinput9"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
@@ -1314,7 +1318,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
@@ -1346,7 +1350,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"
@@ -1417,7 +1421,7 @@
                 android:id="@+id/postinput10"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position Held"
@@ -1434,7 +1438,7 @@
                 android:layout_below="@+id/postinput10"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization Name"
@@ -1466,7 +1470,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="From Date"
@@ -1498,7 +1502,7 @@
                     android:layout_marginTop="10dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="To Date"

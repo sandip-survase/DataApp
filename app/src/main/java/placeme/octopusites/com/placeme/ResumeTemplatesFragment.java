@@ -1,7 +1,6 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.AsyncTask;
@@ -37,9 +36,7 @@ public class ResumeTemplatesFragment extends Fragment {
     int count=0;
     int resumeIds[];
     String resumeNames[],resumeDownloadStatus[];
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
+
     private static String load_resume_ids = "http://192.168.100.100/AESTest/GetResumeIds";
     private static String load_resume_thumbnail= "http://192.168.100.100/AESTest/GetResumeThumbnail";
     String username;
@@ -50,8 +47,7 @@ public class ResumeTemplatesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_resumetemplates, container, false);
 
-        sharedpreferences=getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
+        username=MySharedPreferencesManager.getUsername(getActivity());
 
 
         recyclerView = (RecyclerView)rootView.findViewById(R.id.recycler_view);

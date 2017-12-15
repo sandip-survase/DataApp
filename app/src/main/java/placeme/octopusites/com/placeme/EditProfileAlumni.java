@@ -4,7 +4,6 @@ package placeme.octopusites.com.placeme;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -119,37 +118,35 @@ public class EditProfileAlumni extends AppCompatActivity {
                 // 0 2 5
                 if(currentPosition==0){
                     PersonalProfileTabFragment fragment = (PersonalProfileTabFragment) adapter.getItem(0);
+                    Boolean personal_success = fragment.validate();
                     if(fragment.edittedFlag==1){
-                        Boolean personal_success = fragment.validate();
                         if(personal_success){
                             fragment.save();
-                            Toast.makeText(getApplicationContext(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
                 if(currentPosition==2) {
                     ProjectsProfileTabFragment projFrag = (ProjectsProfileTabFragment) adapter.getItem(2);
+                    Boolean project_success = projFrag.myvalidate();
                     if (projFrag.edittedFlag == 1) {
-                        Boolean project_success = projFrag.myvalidate();
+
                         if (project_success) {
                             projFrag.save();
-                            Toast.makeText(getApplicationContext(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
                 if(currentPosition==5) {
                     HrExperiencesTabFragment   expFrag= (HrExperiencesTabFragment) adapter.getItem(5);
+                    Boolean project_success = expFrag.validate();
                     if (expFrag.edittedFlag == 1) {
-                        Boolean project_success = expFrag.validate();
+
                         if (project_success) {
                             expFrag.save();
-                            Toast.makeText(getApplicationContext(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
 
                 setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
-
             }
         });
 
@@ -373,74 +370,5 @@ public class EditProfileAlumni extends AppCompatActivity {
     }
 
 
-//    @Override
-//    public void onBackPressed() {
-//        PersonalProfileTabFragment fragment = (PersonalProfileTabFragment) adapter.getItem(0);
-//        ProjectsProfileTabFragment projFrag = (ProjectsProfileTabFragment) adapter.getItem(2);
-//        HrExperiencesTabFragment   expFrag= (HrExperiencesTabFragment) adapter.getItem(5);
-//
-//
-//        if(fragment.edittedFlag==1 || projFrag.edittedFlag==1 || expFrag.edittedFlag==1) {
-//            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-//            alertDialogBuilder
-//                    .setMessage("Do you want to save all changes ?")
-//                    .setCancelable(false)
-//                    .setPositiveButton("save",
-//                            new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int id) {
-//
-//                                    PersonalProfileTabFragment fragment = (PersonalProfileTabFragment) adapter.getItem(0);
-//                                    ProjectsProfileTabFragment projFrag = (ProjectsProfileTabFragment) adapter.getItem(2);
-//                                    HrExperiencesTabFragment   expFrag= (HrExperiencesTabFragment) adapter.getItem(5);
-//
-//                                    if(fragment.edittedFlag==1){
-//                                        Boolean personal_success = fragment.validate();
-//                                        if(personal_success){
-//                                            fragment.save();
-//                                        }
-//                                    }
-//                                    if(projFrag.edittedFlag==1){
-//                                        Boolean project_success = projFrag.validate();
-//                                        if(project_success){
-//                                            projFrag.save();
-//                                        }
-//                                    }
-//                                    if(expFrag.edittedFlag==1){
-//                                        Boolean project_success = expFrag.validate();
-//                                        if(project_success){
-//                                            expFrag.save();
-//                                        }
-//                                    }
-//
-//                                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
-//
-//
-//                                }
-//                            })
-//
-//                    .setNegativeButton("Discard", new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int id) {
-//
-//                            dialog.cancel();
-//                            EditProfileAlumni.super.onBackPressed();
-//                        }
-//                    });
-//
-//            final AlertDialog alertDialog = alertDialogBuilder.create();
-//
-//            alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-//                @Override
-//                public void onShow(DialogInterface dialogInterface) {
-//                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-//                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
-//                }
-//            });
-//
-//            alertDialog.show();
-//
-//        }
-//        else
-//            EditProfileAlumni.super.onBackPressed();
-//    }
 }
 

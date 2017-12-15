@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="placeme.octopusites.com.placeme">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -27,6 +27,12 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
+        <receiver android:name=".NetworkChangeReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
 
         <activity
             android:name=".SplashScreen"
@@ -57,7 +63,7 @@
         <activity
             android:name=".Welcome"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppFullScreenTheme" />
         <activity
             android:name=".SignupActivity"
             android:screenOrientation="portrait"
@@ -262,10 +268,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/MyFormTheme" />
         <activity
-            android:name=".AdminContactDetails"
-            android:screenOrientation="portrait"
-            android:theme="@style/MyFormTheme" />
-        <activity
             android:name=".EditProfileAdmin"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -316,16 +318,7 @@
             android:name=".HRActivity"
             android:label="@string/title_activity_hr"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.VIEW" /> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ShowRegisteredUsers"
             android:screenOrientation="portrait"
@@ -391,28 +384,60 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".GetMoreResumeTemplates" />
         <activity android:name=".HR_Experiences" />
-        <activity android:name=".HrContactDetails" />
         <activity
             android:name=".EditProfileHr"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AlumniIntro" />
-        <activity android:name=".AlumniContactDetails" />
-        <activity android:name=".AlumniProfileProjects" />
         <activity
             android:name=".EditProfileAlumni"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AdminSingleUserViewDialog" />
-        <activity android:name=".WelcomeActivity" />
-        <activity android:name=".WelcomePasswordActivity" />
-        <activity android:name=".WelcomeProfileActivity" />
-        <activity android:name=".WelcomeIntroActivity" />
-        <activity android:name=".WelcomeGenrateCodeActivity" />
+
+        <activity
+            android:name=".AdminSingleUserViewDialog"
+            android:theme="@style/MyFormTheme" />
+
+        <activity
+            android:name=".WelcomeGenrateCodeActivity"
+            android:theme="@style/AppFullScreenTheme" />
         <activity android:name=".MyCustomErrorActivity" />
         <activity android:name=".NoInternet" />
         <activity
             android:name=".UserSelection"
+            android:label="@string/title_activity_user_selection" />
+        <activity android:name=".NewsFeedWebView" />
+        <activity
+            android:name=".StudentRoleSelected"
+            android:theme="@style/Theme.Transparent" />
+        <activity
+            android:name=".AlumniRoleSelected"
+            android:theme="@style/Theme.Transparent" />
+        <activity
+            android:name=".TPORoleSelected"
+            android:theme="@style/Theme.Transparent" />
+        <activity
+            android:name=".HRRoleSelected"
+            android:theme="@style/Theme.Transparent"></activity>
+
+        <meta-data
+            android:name="com.sec.android.support.multiwindow"
+            android:value="true" />
+        <meta-data
+            android:name="com.samsung.android.sdk.multiwindow.penwindow.enable"
+            android:value="true" />
+
+        <meta-data
+            android:name="com.sec.android.multiwindow.DEFAULT_SIZE_W"
+            android:value="632.0dip" />
+        <meta-data
+            android:name="com.sec.android.multiwindow.DEFAULT_SIZE_H"
+            android:value="598.0dip" />
+        <meta-data
+            android:name="com.sec.android.multiwindow.MINIMUM_SIZE_W"
+            android:value="632.0dip" />
+        <meta-data
+            android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H"
+            android:value="598.0dip" />
             android:label="@string/title_activity_user_selection" />
         <activity
             android:name=".CreatePlacementHr"

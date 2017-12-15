@@ -2,13 +2,14 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -63,6 +64,7 @@ public class MyProfilePg extends AppCompatActivity {
     String pattern="sem";
     EditText yearofpassingpgsem,yearofpassingpgyear;
     EditText pmarkssem1,poutofsem1,ppercentsem1,pmarkssem2,poutofsem2,ppercentsem2,pmarkssem3,poutofsem3,ppercentsem3,pmarkssem4,poutofsem4,ppercentsem4,pmarkssem5,poutofsem5,ppercentsem5,pmarkssem6,poutofsem6,ppercentsem6,pgsemaggregate,othersemcourse,othersemstream,othersemuniversity,schoolnamepgsem;
+    TextInputLayout pmarkssem1input,poutofsem1input,ppercentsem1input,pmarksusem2input,poutofsem2input,ppercentsem2input,pmarksusem3input,poutofsem3input,ppercentsem3input,pmarksusem4input,poutofsem4input,ppercentsem4input,pmarksusem5input,poutofsem5input,ppercentsem5input,pmarksusem6input,poutofsem6input,ppercentsem6input,pgsemaggregateinput,othersemcourseinput,othersemstreaminput,othersemuniversityinput,schoolnamepgseminput,yearofpassingpgseminput,pmarksuyear1input,poutofyear1input,ppercentyear1input,pmarksuyear2input,poutofyear2input,ppercentyear2input,pmarksuyear3input,poutofyear3input,ppercentyear3input,pgyearaggregateinput,otheryearcourseinput,otheryearstreaminput,otheryearuniversityinput,schoolnamepgyearinput,yearofpassingpgyearinput;
     Spinner pgsemcourse,pgsemstream,pgsemuniversity;
     EditText pmarksyear1,poutofyear1,ppercentyear1,pmarksyear2,poutofyear2,ppercentyear2,pmarksyear3,poutofyear3,ppercentyear3,pgyearaggregate,otheryearcourse,otheryearstream,otheryearuniversity,schoolnamepgyear;
     Spinner pgyearcourse,pgyearstream,pgyearuniversity;
@@ -73,15 +75,11 @@ public class MyProfilePg extends AppCompatActivity {
     String selectedCoursepgyear="",selectedStreampgyear="",selectedUniversitypgyear="";
     String encmarksyear1,encoutofyear1,encpercentyear1,encmarksyear2,encoutofyear2,encpercentyear2,encmarksyear3,encoutofyear3,encpercentyear3,encaggregatepgyear,encschoolnamepgyear,encmonthandyearofpassingpgyear,encselectedcoursepgyear,encselectedstreampgyear,encselecteduniversitypgyear;
     int coursecount=0,streamcount=0,universitycount=0;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
-    String username;
+
+    String username,role;
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-
-
 
     List<String> courseslist = new ArrayList<String>();
     List<String> streamlist = new ArrayList<String>();
@@ -99,24 +97,11 @@ public class MyProfilePg extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_pg);
 
-        sharedpreferences=getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        String role=sharedpreferences.getString("role",null);
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        role=MySharedPreferencesManager.getRole(this);
 
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Educational Info");
@@ -173,6 +158,137 @@ public class MyProfilePg extends AppCompatActivity {
         schoolnamepgsem=(EditText)findViewById(R.id.schoolnamepgsem);
         yearofpassingpgsem=(EditText)findViewById(R.id.yearofpassingpgsem);
 
+
+        pmarkssem1input= (TextInputLayout) findViewById(R.id.pmarkssem1input);
+        ppercentsem1input= (TextInputLayout) findViewById(R.id.ppercentsem1input);
+        pmarksusem2input= (TextInputLayout) findViewById(R.id.pmarksusem2input);
+        poutofsem2input= (TextInputLayout) findViewById(R.id.poutofsem2input);
+        ppercentsem2input= (TextInputLayout) findViewById(R.id.ppercentsem2input);
+        pmarksusem3input= (TextInputLayout) findViewById(R.id.pmarksusem3input);
+        poutofsem3input= (TextInputLayout) findViewById(R.id.poutofsem3input);
+        ppercentsem3input= (TextInputLayout) findViewById(R.id.ppercentsem3input);
+        pmarksusem4input= (TextInputLayout) findViewById(R.id.pmarksusem4input);
+        poutofsem4input= (TextInputLayout) findViewById(R.id.poutofsem4input);
+        ppercentsem4input= (TextInputLayout) findViewById(R.id.ppercentsem4input);
+        pmarksusem5input= (TextInputLayout) findViewById(R.id.pmarksusem5input);
+        poutofsem5input= (TextInputLayout) findViewById(R.id.poutofsem5input);
+        ppercentsem5input= (TextInputLayout) findViewById(R.id.ppercentsem5input);
+        pmarksusem6input= (TextInputLayout) findViewById(R.id.pmarksusem6input);
+        poutofsem6input= (TextInputLayout) findViewById(R.id.poutofsem6input);
+        ppercentsem6input= (TextInputLayout) findViewById(R.id.ppercentsem6input);
+        pgsemaggregateinput= (TextInputLayout) findViewById(R.id.pgsemaggregateinput);
+        othersemcourseinput= (TextInputLayout) findViewById(R.id.othersemcourseinput);
+        othersemstreaminput= (TextInputLayout) findViewById(R.id.othersemstreaminput);
+        othersemuniversityinput= (TextInputLayout) findViewById(R.id.othersemuniversityinput);
+        schoolnamepgseminput= (TextInputLayout) findViewById(R.id.schoolnamepgseminput);
+        yearofpassingpgseminput= (TextInputLayout) findViewById(R.id.yearofpassingpgseminput);
+        pmarksuyear1input= (TextInputLayout) findViewById(R.id.pmarksuyear1input);
+        poutofyear1input= (TextInputLayout) findViewById(R.id.poutofyear1input);
+        ppercentyear1input= (TextInputLayout) findViewById(R.id.ppercentyear1input);
+        pmarksuyear2input= (TextInputLayout) findViewById(R.id.pmarksuyear2input);
+        poutofyear2input= (TextInputLayout) findViewById(R.id.poutofyear2input);
+        ppercentyear2input= (TextInputLayout) findViewById(R.id.ppercentyear2input);
+        pmarksuyear3input= (TextInputLayout) findViewById(R.id.pmarksuyear3input);
+        poutofyear3input= (TextInputLayout) findViewById(R.id.poutofyear3input);
+        ppercentyear3input= (TextInputLayout) findViewById(R.id.ppercentyear3input);
+        pgyearaggregateinput= (TextInputLayout) findViewById(R.id.pgyearaggregateinput);
+        otheryearcourseinput= (TextInputLayout) findViewById(R.id.otheryearcourseinput);
+        otheryearstreaminput= (TextInputLayout) findViewById(R.id.otheryearstreaminput);
+        otheryearuniversityinput= (TextInputLayout) findViewById(R.id.otheryearuniversityinput);
+        schoolnamepgyearinput= (TextInputLayout) findViewById(R.id.schoolnamepgyearinput);
+        yearofpassingpgyearinput= (TextInputLayout) findViewById(R.id.yearofpassingpgyearinput);
+        poutofsem1input= (TextInputLayout) findViewById(R.id.poutofsem1input);
+
+
+        pmarkssem1.setTypeface(MyConstants.getBold(this));
+        poutofsem1.setTypeface(MyConstants.getBold(this));
+        ppercentsem1.setTypeface(MyConstants.getBold(this));
+        pmarkssem2.setTypeface(MyConstants.getBold(this));
+        poutofsem2.setTypeface(MyConstants.getBold(this));
+        ppercentsem2.setTypeface(MyConstants.getBold(this));
+        pmarkssem3.setTypeface(MyConstants.getBold(this));
+        poutofsem3.setTypeface(MyConstants.getBold(this));
+        ppercentsem3.setTypeface(MyConstants.getBold(this));
+        pmarkssem4.setTypeface(MyConstants.getBold(this));
+        poutofsem4.setTypeface(MyConstants.getBold(this));
+        ppercentsem4.setTypeface(MyConstants.getBold(this));
+        pmarkssem5.setTypeface(MyConstants.getBold(this));
+        poutofsem5.setTypeface(MyConstants.getBold(this));
+        ppercentsem5.setTypeface(MyConstants.getBold(this));
+        pmarkssem6.setTypeface(MyConstants.getBold(this));
+        poutofsem6.setTypeface(MyConstants.getBold(this));
+        ppercentsem6.setTypeface(MyConstants.getBold(this));
+        pgsemaggregate.setTypeface(MyConstants.getBold(this));
+        othersemcourse.setTypeface(MyConstants.getBold(this));
+        othersemstream.setTypeface(MyConstants.getBold(this));
+        othersemuniversity.setTypeface(MyConstants.getBold(this));
+        schoolnamepgsem.setTypeface(MyConstants.getBold(this));
+        yearofpassingpgsem.setTypeface(MyConstants.getBold(this));
+        yearofpassingpgyear.setTypeface(MyConstants.getBold(this));
+
+        pmarksyear1.setTypeface(MyConstants.getBold(this));
+                poutofyear1.setTypeface(MyConstants.getBold(this));
+                ppercentyear1.setTypeface(MyConstants.getBold(this));
+                pmarksyear2.setTypeface(MyConstants.getBold(this));
+                poutofyear2.setTypeface(MyConstants.getBold(this));
+                ppercentyear2.setTypeface(MyConstants.getBold(this));
+                pmarksyear3.setTypeface(MyConstants.getBold(this));
+                poutofyear3.setTypeface(MyConstants.getBold(this));
+                ppercentyear3.setTypeface(MyConstants.getBold(this));
+                pgyearaggregate.setTypeface(MyConstants.getBold(this));
+                otheryearcourse.setTypeface(MyConstants.getBold(this));
+                otheryearstream.setTypeface(MyConstants.getBold(this));
+                otheryearuniversity.setTypeface(MyConstants.getBold(this));
+                schoolnamepgyear.setTypeface(MyConstants.getBold(this));
+
+
+
+        pmarkssem1input.setTypeface(MyConstants.getLight(this));
+        ppercentsem1input.setTypeface(MyConstants.getLight(this));
+        pmarksusem2input.setTypeface(MyConstants.getLight(this));
+        poutofsem2input.setTypeface(MyConstants.getLight(this));
+        ppercentsem2input.setTypeface(MyConstants.getLight(this));
+        pmarksusem3input.setTypeface(MyConstants.getLight(this));
+        poutofsem3input.setTypeface(MyConstants.getLight(this));
+        ppercentsem3input.setTypeface(MyConstants.getLight(this));
+        pmarksusem4input.setTypeface(MyConstants.getLight(this));
+        poutofsem4input.setTypeface(MyConstants.getLight(this));
+        ppercentsem4input.setTypeface(MyConstants.getLight(this));
+        pmarksusem5input.setTypeface(MyConstants.getLight(this));
+        poutofsem5input.setTypeface(MyConstants.getLight(this));
+        ppercentsem5input.setTypeface(MyConstants.getLight(this));
+        pmarksusem6input.setTypeface(MyConstants.getLight(this));
+        poutofsem6input.setTypeface(MyConstants.getLight(this));
+        ppercentsem6input.setTypeface(MyConstants.getLight(this));
+        pgsemaggregateinput.setTypeface(MyConstants.getLight(this));
+        othersemcourseinput.setTypeface(MyConstants.getLight(this));
+        othersemstreaminput.setTypeface(MyConstants.getLight(this));
+        othersemuniversityinput.setTypeface(MyConstants.getLight(this));
+        schoolnamepgseminput.setTypeface(MyConstants.getLight(this));
+        yearofpassingpgseminput.setTypeface(MyConstants.getLight(this));
+
+        pmarksuyear1input.setTypeface(MyConstants.getLight(this));
+        poutofyear1input.setTypeface(MyConstants.getLight(this));
+        ppercentyear1input.setTypeface(MyConstants.getLight(this));
+        pmarksuyear2input.setTypeface(MyConstants.getLight(this));
+        poutofyear2input.setTypeface(MyConstants.getLight(this));
+        ppercentyear2input.setTypeface(MyConstants.getLight(this));
+        pmarksuyear3input.setTypeface(MyConstants.getLight(this));
+        poutofyear3input.setTypeface(MyConstants.getLight(this));
+        ppercentyear3input.setTypeface(MyConstants.getLight(this));
+        pgyearaggregateinput.setTypeface(MyConstants.getLight(this));
+        otheryearcourseinput.setTypeface(MyConstants.getLight(this));
+        otheryearstreaminput.setTypeface(MyConstants.getLight(this));
+        otheryearuniversityinput.setTypeface(MyConstants.getLight(this));
+        schoolnamepgyearinput.setTypeface(MyConstants.getLight(this));
+        yearofpassingpgyearinput.setTypeface(MyConstants.getLight(this));
+        poutofsem1input.setTypeface(MyConstants.getLight(this));
+
+
+
+        TextView pgtxt=(TextView)findViewById(R.id.pgtxt);
+        pgtxt.setTypeface(MyConstants.getBold(this));
+
         new GetCourses().execute();
         new GetUniversities().execute();
 
@@ -184,7 +300,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                pmarkssem1.setError(null);
+                pmarkssem1input.setError(null);
                 edittedFlag=1;
             }
 
@@ -192,23 +308,8 @@ public class MyProfilePg extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
 //
-//
-//                try {
-//
-//                    String s1=pmarkssem1.getText().toString();
-//                    String s2=poutofsem1.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem1.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
-                poutofsem1.setError(null);
+                poutofsem1input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -226,7 +327,7 @@ public class MyProfilePg extends AppCompatActivity {
                                 ppercentsem1.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            poutofsem1.setError("Invalid Out Of Marks");
+                            poutofsem1input.setError("Kindly enter valid out of marks.");
                             ppercentsem1.setText("");
                         }
                     }
@@ -247,28 +348,14 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                poutofsem1.setError(null);
+                poutofsem1input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=pmarkssem1.getText().toString();
-//                    String s2=poutofsem1.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem1.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
-                poutofsem1.setError(null);
+                poutofsem1input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -286,7 +373,7 @@ public class MyProfilePg extends AppCompatActivity {
                                 ppercentsem1.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            poutofsem1.setError("Invalid Out Of Marks");
+                            poutofsem1input.setError("Kindly enter valid out of marks.");
                             ppercentsem1.setText("");
                         }
                     }
@@ -307,30 +394,15 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                pmarkssem2.setError(null);
+                pmarksusem2input.setError(null);
+
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
-//                try {
-//
-//                    String s1=pmarkssem2.getText().toString();
-//                    String s2=poutofsem2.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem2.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
-                poutofsem2.setError(null);
+                poutofsem2input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -348,7 +420,7 @@ public class MyProfilePg extends AppCompatActivity {
                                 ppercentsem2.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            poutofsem2.setError("Invalid Out Of Marks");
+                            poutofsem2input.setError("Kindly enter valid out of marks.");
                             ppercentsem2.setText("");
                         }
                     }
@@ -369,29 +441,14 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                poutofsem2.setError(null);
+                poutofsem2input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=pmarkssem2.getText().toString();
-//                    String s2=poutofsem2.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem2.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
-
-                poutofsem2.setError(null);
+                poutofsem2input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -409,7 +466,7 @@ public class MyProfilePg extends AppCompatActivity {
                                 ppercentsem2.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            poutofsem2.setError("Invalid Out Of Marks");
+                            poutofsem2input.setError("Kindly enter valid out of marks.");
                             ppercentsem2.setText("");
                         }
                     }
@@ -430,28 +487,14 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                pmarkssem3.setError(null);
+                pmarksusem3input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=pmarkssem3.getText().toString();
-//                    String s2=poutofsem3.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem3.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
-                poutofsem3.setError(null);
+                poutofsem3input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -469,7 +512,7 @@ public class MyProfilePg extends AppCompatActivity {
                                 ppercentsem3.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            poutofsem3.setError("Invalid Out Of Marks");
+                            poutofsem3input.setError("Kindly enter valid out of marks.");
                             ppercentsem3.setText("");
                         }
                     }
@@ -490,29 +533,14 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                poutofsem3.setError(null);
+                poutofsem3input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=pmarkssem3.getText().toString();
-//                    String s2=poutofsem3.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem3.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
-                poutofsem3.setError(null);
+                poutofsem3input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -530,7 +558,7 @@ public class MyProfilePg extends AppCompatActivity {
                                 ppercentsem3.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            poutofsem3.setError("Invalid Out Of Marks");
+                            poutofsem3input.setError("Kindly enter valid out of marks.");
                             ppercentsem3.setText("");
                         }
                     }
@@ -551,29 +579,14 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                pmarkssem4.setError(null);
+                pmarksusem4input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=pmarkssem4.getText().toString();
-//                    String s2=poutofsem4.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem4.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
-
-                poutofsem4.setError(null);
+                poutofsem4input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -591,7 +604,7 @@ public class MyProfilePg extends AppCompatActivity {
                                 ppercentsem4.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            poutofsem4.setError("Invalid Out Of Marks");
+                            poutofsem4input.setError("Kindly enter valid out of marks.");
                             ppercentsem4.setText("");
                         }
                     }
@@ -612,29 +625,15 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                poutofsem4.setError(null);
+                poutofsem4input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=pmarkssem4.getText().toString();
-//                    String s2=poutofsem4.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem4.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
-
-                poutofsem4.setError(null);
+                poutofsem4input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -652,7 +651,7 @@ public class MyProfilePg extends AppCompatActivity {
                                 ppercentsem4.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            poutofsem4.setError("Invalid Out Of Marks");
+                            poutofsem4input.setError("Kindly enter valid out of marks.");
                             ppercentsem4.setText("");
                         }
                     }
@@ -673,29 +672,15 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                pmarkssem5.setError(null);
+                pmarksusem5input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=pmarkssem5.getText().toString();
-//                    String s2=poutofsem5.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem5.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
-
-                poutofsem5.setError(null);
+                poutofsem5input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -713,7 +698,7 @@ public class MyProfilePg extends AppCompatActivity {
                                 ppercentsem5.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            poutofsem5.setError("Invalid Out Of Marks");
+                            poutofsem5input.setError("Kindly enter valid out of marks.");
                             ppercentsem5.setText("");
                         }
                     }
@@ -734,29 +719,14 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                poutofsem5.setError(null);
+                poutofsem5input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=pmarkssem5.getText().toString();
-//                    String s2=poutofsem5.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem5.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
-                poutofsem5.setError(null);
+                poutofsem5input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -774,7 +744,7 @@ public class MyProfilePg extends AppCompatActivity {
                                 ppercentsem5.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            poutofsem5.setError("Invalid Out Of Marks");
+                            poutofsem5input.setError("Kindly enter valid out of marks.");
                             ppercentsem5.setText("");
                         }
                     }
@@ -795,29 +765,14 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                pmarkssem6.setError(null);
+                pmarksusem6input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=pmarkssem6.getText().toString();
-//                    String s2=poutofsem6.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem6.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
-
-                poutofsem6.setError(null);
+                poutofsem6input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -835,7 +790,7 @@ public class MyProfilePg extends AppCompatActivity {
                                 ppercentsem6.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            poutofsem6.setError("Invalid Out Of Marks");
+                            poutofsem6input.setError("Kindly enter valid out of marks.");
                             ppercentsem6.setText("");
                         }
                     }
@@ -856,29 +811,14 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                poutofsem6.setError(null);
+                poutofsem6input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=pmarkssem6.getText().toString();
-//                    String s2=poutofsem6.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentsem6.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
-                poutofsem6.setError(null);
+                poutofsem6input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -896,7 +836,7 @@ public class MyProfilePg extends AppCompatActivity {
                                 ppercentsem6.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            poutofsem6.setError("Invalid Out Of Marks");
+                            poutofsem6input.setError("Kindly enter valid out of marks.");
                             ppercentsem6.setText("");
                         }
                     }
@@ -917,7 +857,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                pgsemaggregate.setError(null);
+                pgsemaggregateinput.setError(null);
                 edittedFlag=1;
             }
 
@@ -934,7 +874,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                schoolnamepgsem.setError(null);
+                schoolnamepgseminput.setError(null);
                 edittedFlag=1;
             }
 
@@ -951,7 +891,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                yearofpassingpgsem.setError(null);
+                yearofpassingpgseminput.setError(null);
                 edittedFlag=1;
             }
 
@@ -970,29 +910,14 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                pmarksyear1.setError(null);
+                pmarksuyear1input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=pmarksyear1.getText().toString();
-//                    String s2=poutofyear1.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentyear1.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
-
-                poutofyear1.setError(null);
+                poutofyear1input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -1010,7 +935,7 @@ public class MyProfilePg extends AppCompatActivity {
                                 ppercentyear1.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            poutofyear1.setError("Invalid Out Of Marks");
+                            poutofyear1input.setError("Kindly enter valid out of marks.");
                             ppercentyear1.setText("");
                         }
                     }
@@ -1031,30 +956,13 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                poutofyear1.setError(null);
+                poutofyear1input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=pmarksyear1.getText().toString();
-//                    String s2=poutofyear1.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentyear1.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
-
-
-                poutofyear1.setError(null);
-
+                poutofyear1input.setError(null);
                 try {
                     double percentage = 0;
                     String s1 = pmarksyear1.getText().toString();
@@ -1071,7 +979,7 @@ public class MyProfilePg extends AppCompatActivity {
                                 ppercentyear1.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            poutofyear1.setError("Invalid Out Of Marks");
+                            poutofyear1input.setError("Kindly enter valid out of marks.");
                             ppercentyear1.setText("");
                         }
                     }
@@ -1092,29 +1000,15 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                pmarksyear2.setError(null);
+                pmarksuyear2input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
-//
-//                    String s1=pmarksyear2.getText().toString();
-//                    String s2=poutofyear2.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentyear2.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
 
-                poutofyear2.setError(null);
+                poutofyear2input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -1132,7 +1026,7 @@ public class MyProfilePg extends AppCompatActivity {
                                 ppercentyear2.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            poutofyear2.setError("Invalid Out Of Marks");
+                            poutofyear2input.setError("Kindly enter valid out of marks.");
                             ppercentyear2.setText("");
                         }
                     }
@@ -1153,29 +1047,15 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                poutofyear2.setError(null);
+                poutofyear2input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=pmarksyear2.getText().toString();
-//                    String s2=poutofyear2.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentyear2.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
-
-                poutofyear2.setError(null);
+                poutofyear2input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -1193,7 +1073,7 @@ public class MyProfilePg extends AppCompatActivity {
                                 ppercentyear2.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            poutofyear2.setError("Invalid Out Of Marks");
+                            poutofyear2input.setError("Kindly enter valid out of marks.");
                             ppercentyear2.setText("");
                         }
                     }
@@ -1214,29 +1094,15 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                pmarksyear3.setError(null);
+                pmarksuyear3input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=pmarksyear3.getText().toString();
-//                    String s2=poutofyear3.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentyear3.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
-
-                poutofyear3.setError(null);
+                poutofyear3input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -1254,7 +1120,7 @@ public class MyProfilePg extends AppCompatActivity {
                                 ppercentyear3.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            poutofyear3.setError("Invalid Out Of Marks");
+                            poutofyear3input.setError("Kindly enter valid out of marks.");
                             ppercentyear3.setText("");
                         }
                     }
@@ -1275,29 +1141,15 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                poutofyear3.setError(null);
+                poutofyear3input.setError(null);
                 edittedFlag=1;
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-//                try {
 //
-//                    String s1=pmarksyear3.getText().toString();
-//                    String s2=poutofyear3.getText().toString();
-//                    if(!s1.equals("")&&!s2.equals("")) {
-//                        double n1 = Double.parseDouble(s1);
-//                        double n2 = Double.parseDouble(s2);
-//
-//                        double percentage = (n1 * 100/ n2);
-//
-//                        if(percentage>=0&&percentage<=100)
-//                            ppercentyear3.setText("" +(new DecimalFormat("##.##").format(percentage)));
-//                    }
-//                }catch (Exception e){}
 
-
-                poutofyear3.setError(null);
+                poutofyear3input.setError(null);
 
                 try {
                     double percentage = 0;
@@ -1315,7 +1167,7 @@ public class MyProfilePg extends AppCompatActivity {
                                 ppercentyear3.setText("" + (new DecimalFormat("##.##").format(percentage)));
                             }
                         } else {
-                            poutofyear3.setError("Invalid Out Of Marks");
+                            poutofyear3input.setError("Kindly enter valid out of marks.");
                             ppercentsem3.setText("");
                         }
                     }
@@ -1337,7 +1189,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                pgyearaggregate.setError(null);
+                pgyearaggregateinput.setError(null);
                 edittedFlag=1;
             }
 
@@ -1354,7 +1206,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                schoolnamepgyear.setError(null);
+                schoolnamepgyearinput.setError(null);
                 edittedFlag=1;
             }
 
@@ -1372,7 +1224,7 @@ public class MyProfilePg extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                yearofpassingpgyear.setError(null);
+                yearofpassingpgyearinput.setError(null);
                 edittedFlag=1;
             }
 
@@ -1414,7 +1266,7 @@ public class MyProfilePg extends AppCompatActivity {
                 monthList.add("Dec");
 
                 Calendar cur=Calendar.getInstance();
-                for(int i=1975;i<=cur.get(Calendar.YEAR);i++)
+                for(int i=1975;i<=cur.get(Calendar.YEAR)+2;i++)
                     yearList.add(""+i);
 
 
@@ -1470,8 +1322,6 @@ public class MyProfilePg extends AppCompatActivity {
                 View dialog = inflater.inflate(R.layout.monthyeardialog,null);
                 dialogBuilder.setView(dialog);
 
-
-
                 final WheelView monthView,yearView;
 
                 final List<String> monthList= new ArrayList<String>();
@@ -1494,7 +1344,7 @@ public class MyProfilePg extends AppCompatActivity {
                 monthList.add("Dec");
 
                 Calendar cur=Calendar.getInstance();
-                for(int i=1975;i<=cur.get(Calendar.YEAR);i++)
+                for(int i=1975;i<=cur.get(Calendar.YEAR)+2;i++)
                     yearList.add(""+i);
 
 
@@ -1527,7 +1377,6 @@ public class MyProfilePg extends AppCompatActivity {
                     }
                 });
 
-
                 cancelselectionview.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -1544,14 +1393,14 @@ public class MyProfilePg extends AppCompatActivity {
             }
         });
 
-
-        TextView pgtxt=(TextView)findViewById(R.id.pgtxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(),  "fonts/arba.ttf");
-        pgtxt.setTypeface(custom_font1);
-
         radioGroupPg=(RadioGroup)findViewById(R.id.radioGroupPg);
         radioButtonPgSem=(RadioButton)findViewById(R.id.radioButtonPgSem);
         radioButtonPgYear=(RadioButton)findViewById(R.id.radioButtonPgYear);
+
+
+        radioButtonPgSem.setTypeface(MyConstants.getBold(this));
+        radioButtonPgYear.setTypeface(MyConstants.getBold(this));
+
 
         radioGroupPg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -1602,6 +1451,7 @@ public class MyProfilePg extends AppCompatActivity {
         selectedCoursepgsem=s.getCoursepgsem();
         if(s.getStreampgsem()!=null)
             selectedStreampgsem=s.getStreampgsem();
+
         selectedUniversitypgsem=s.getUniversitypgsem();
         oldUniversitysem=selectedUniversitypgsem;
         schoolnamepgsemester=s.getCollegenamepgsem();
@@ -1620,8 +1470,24 @@ public class MyProfilePg extends AppCompatActivity {
         percentyear3=s.getPercentageyear3pgyear();
         aggregatepgyear=s.getAggregatepgyear();
         selectedCoursepgyear=s.getCoursepgyear();
+        if(selectedCoursepgyear==null){
+            selectedCoursepgyear="- Select Course -";
+        }
+
         selectedStreampgyear=s.getStreampgyear();
+
+
+        if(selectedStreampgyear==null){
+            selectedStreampgyear="Select Stream/Specialization -";
+        }
+
+
         selectedUniversitypgyear=s.getUniversitypgyear();
+
+//        if(selectedUniversitypgyear==null){
+//            selectedUniversitypgyear="- Select University -";
+//        }
+
         oldUniversityyear=selectedUniversitypgyear;
         schoolnamepgyears=s.getCollegenamepgyear();
         monthandyearofpassingpgyear=s.getYearofpassingpgyear();
@@ -1763,20 +1629,30 @@ public class MyProfilePg extends AppCompatActivity {
                     return true;
                 }
             }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view= super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfilePg.this));
+                tv.setTextColor(getResources().getColor(R.color.dark_color));
+                return view;
+            }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+                tv.setTypeface(MyConstants.getBold(MyProfilePg.this));
 
                 if(position == 0){
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 }
                 else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -1911,20 +1787,30 @@ public class MyProfilePg extends AppCompatActivity {
                     return true;
                 }
             }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view= super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfilePg.this));
+                tv.setTextColor(getResources().getColor(R.color.dark_color));
+                return view;
+            }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+                tv.setTypeface(MyConstants.getBold(MyProfilePg.this));
 
                 if(position == 0){
-                    // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    // Set the hint text color sky_blue_color
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 }
                 else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -2028,20 +1914,29 @@ public class MyProfilePg extends AppCompatActivity {
                     return true;
                 }
             }
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view= super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfilePg.this));
+                tv.setTextColor(getResources().getColor(R.color.dark_color));
+                return view;
+            }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+                tv.setTypeface(MyConstants.getBold(MyProfilePg.this));
 
                 if(position == 0){
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 }
                 else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -2052,9 +1947,10 @@ public class MyProfilePg extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedStreampgyear= (String) parent.getItemAtPosition(position);
+                Log.d("TAG", " setOnItemSelectedListener selectedStreampgyear - "+selectedStreampgyear);
                 TextInputLayout othersemstreaminput=(TextInputLayout)findViewById(R.id.otheryearstreaminput);
                 if(selectedStreampgyear.equals("Other")) {
-
+                    Log.d("TAG", " setOnItemSelectedListener Other - "+selectedStreampgyear);
                     othersemstreaminput.setVisibility(View.VISIBLE);
                 }
                 else {
@@ -2071,6 +1967,8 @@ public class MyProfilePg extends AppCompatActivity {
 
             }
         });
+
+
         if(isStreamSetyear==0) {
             isStreamSetyear=1;
             if(s.getStreampgyear()!=null) {
@@ -2084,6 +1982,9 @@ public class MyProfilePg extends AppCompatActivity {
 
 
     }
+
+
+
     class GetUniversities extends AsyncTask<String, String, String> {
 
 
@@ -2119,6 +2020,7 @@ public class MyProfilePg extends AppCompatActivity {
             universitieslist.add("Other");
         }
     }
+
     void populateUniversities()
     {
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item_long, universitieslist)
@@ -2136,20 +2038,30 @@ public class MyProfilePg extends AppCompatActivity {
                     return true;
                 }
             }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view= super.getView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                tv.setTypeface(MyConstants.getBold(MyProfilePg.this));
+                tv.setTextColor(getResources().getColor(R.color.dark_color));
+                return view;
+            }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/abz.ttf");
-                tv.setTypeface(custom_font3);
+                tv.setTypeface(MyConstants.getBold(MyProfilePg.this));
 
                 if(position == 0){
                     // Set the hint text color gray
-                    tv.setTextColor(Color.GRAY);
+                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
                 }
                 else {
-                    tv.setTextColor(Color.parseColor("#eeeeee"));
+                    tv.setTextColor(getResources().getColor(R.color.dark_color));
                 }
                 return view;
             }
@@ -2161,6 +2073,7 @@ public class MyProfilePg extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedUniversitypgsem= (String) parent.getItemAtPosition(position);
+
                 TextInputLayout otheruniversityinput=(TextInputLayout)findViewById(R.id.othersemuniversityinput);
                 if(selectedUniversitypgsem.equals("Other")) {
 
@@ -2265,32 +2178,15 @@ public class MyProfilePg extends AppCompatActivity {
 
     void validateandSave()
     {
+        Log.d("TAG", "validateandSave: selectedStreampgyear - "+selectedStreampgyear);
 
         if(pattern.equals("sem"))
         {
             setBlankYear();
 
-            pmarkssem1.setError(null);
-            poutofsem1.setError(null);
-            ppercentsem1.setError(null);
-            pmarkssem2.setError(null);
-            poutofsem2.setError(null);
-            ppercentsem2.setError(null);
-            pmarkssem3.setError(null);
-            poutofsem3.setError(null);
-            ppercentsem3.setError(null);
-            pmarkssem4.setError(null);
-            poutofsem4.setError(null);
-            ppercentsem4.setError(null);
-            pmarkssem5.setError(null);
-            poutofsem5.setError(null);
-            ppercentsem5.setError(null);
-            pmarkssem6.setError(null);
-            poutofsem6.setError(null);
-            ppercentsem6.setError(null);
-            pgsemaggregate.setError(null);
-            schoolnamepgsem.setError(null);
-            yearofpassingpgsem.setError(null);
+            Log.d("TAG", "validateandSave: setBlankYear selectedStreampgyear - "+selectedStreampgyear);
+            Log.d("TAG", "validateandSave: setBlankYear courseYear - "+selectedCoursepgyear);
+
 
             markssem1 = pmarkssem1.getText().toString();
             outofsem1 = poutofsem1.getText().toString();
@@ -2317,164 +2213,138 @@ public class MyProfilePg extends AppCompatActivity {
             int errorflag1 = 0, errorflag2 = 0, errorflag3 = 0, errorflag4 = 0, errorflag5 = 0;
             if (markssem1.length() < 1) {
                 errorflag1 = 1;
-                pmarkssem1.setError("Incorrect Marks");
+                pmarkssem1input.setError("Kindly enter valid marks");
             } else {
                 errorflag1 = 0;
                 if (outofsem1.length() < 1) {
                     errorflag1 = 1;
-                    pmarkssem1.setError(null);
-                    poutofsem1.setError("Incorrect Marks");
+                    poutofsem1input.setError("Kindly enter valid marks");
                 } else {
                     errorflag1 = 0;
                     if (percentsem1.length() < 1) {
                         errorflag1 = 1;
-                        pmarkssem1.setError(null);
-                        poutofsem1.setError(null);
-                        ppercentsem1.setError("Incorrect Percentage");
+                        ppercentsem1input.setError("Incorrect Percentage");
                     } else {
                         errorflag1 = 0;
                         if (markssem2.length() < 1) {
                             errorflag1 = 1;
-                            pmarkssem2.setError("Incorrect Marks");
+                            pmarksusem2input.setError("Kindly enter valid marks");
                         } else {
                             errorflag1 = 0;
                             if (outofsem2.length() < 1) {
                                 errorflag1 = 1;
-                                pmarkssem2.setError(null);
-                                poutofsem2.setError("Incorrect Marks");
+                                poutofsem2input.setError("Kindly enter valid marks");
                             } else {
                                 errorflag1 = 0;
                                 if (percentsem2.length() < 1) {
                                     errorflag1 = 1;
-                                    pmarkssem2.setError(null);
-                                    poutofsem2.setError(null);
-                                    ppercentsem2.setError("Incorrect Percentage");
+                                    ppercentsem2input.setError("Incorrect Percentage");
                                 } else {
                                     errorflag1 = 0;
                                     if (markssem3.length() < 1) {
                                         errorflag1 = 1;
-                                        pmarkssem3.setError("Incorrect Marks");
+                                        pmarksusem3input.setError("Kindly enter valid marks");
                                     } else {
                                         errorflag1 = 0;
                                         if (outofsem3.length() < 1) {
                                             errorflag1 = 1;
-                                            pmarkssem3.setError(null);
-                                            poutofsem3.setError("Incorrect Marks");
+                                            poutofsem3input.setError("Kindly enter valid marks");
                                         } else {
                                             errorflag1 = 0;
                                             if (percentsem3.length() < 1) {
                                                 errorflag1 = 1;
-                                                pmarkssem3.setError(null);
-                                                poutofsem3.setError(null);
-                                                ppercentsem3.setError("Incorrect Percentage");
+                                                ppercentsem3input.setError("Incorrect Percentage");
                                             } else {
                                                 errorflag1 = 0;
                                                 if (markssem4.length() < 1) {
                                                     errorflag1 = 1;
-                                                    pmarkssem4.setError("Incorrect Marks");
+                                                    pmarksusem4input.setError("Kindly enter valid marks");
                                                 } else {
                                                     errorflag1 = 0;
                                                     if (outofsem4.length() < 1) {
                                                         errorflag1 = 1;
-                                                        pmarkssem4.setError(null);
-                                                        poutofsem4.setError("Incorrect Marks");
+                                                        poutofsem4input.setError("Kindly enter valid marks");
                                                     } else {
                                                         errorflag1 = 0;
                                                         if (percentsem4.length() < 1) {
                                                             errorflag1 = 1;
-                                                            pmarkssem4.setError(null);
-                                                            poutofsem4.setError(null);
-                                                            ppercentsem4.setError("Incorrect Percentage");
+                                                            ppercentsem4input.setError("Incorrect Percentage");
                                                         } else {
                                                             errorflag1 = 0;
                                                             if (markssem5.length() < 1) {
                                                                 errorflag1 = 1;
-                                                                pmarkssem5.setError("Incorrect Marks");
+                                                                pmarksusem5input.setError("Kindly enter valid marks");
                                                             } else {
                                                                 errorflag1 = 0;
                                                                 if (outofsem5.length() < 1) {
                                                                     errorflag1 = 1;
-                                                                    pmarkssem5.setError(null);
-                                                                    poutofsem5.setError("Incorrect Marks");
+                                                                    poutofsem5input.setError("Kindly enter valid marks");
                                                                 } else {
                                                                     errorflag1 = 0;
                                                                     if (percentsem5.length() < 1) {
                                                                         errorflag1 = 1;
-                                                                        pmarkssem5.setError(null);
-                                                                        poutofsem5.setError(null);
-                                                                        ppercentsem5.setError("Incorrect Percentage");
+                                                                        ppercentsem5input.setError("Incorrect Percentage");
                                                                     } else {
                                                                         errorflag1 = 0;
                                                                         if (markssem6.length() < 1) {
                                                                             errorflag1 = 1;
-                                                                            pmarkssem6.setError("Incorrect Marks");
+                                                                            pmarksusem6input.setError("Kindly enter valid marks");
                                                                         } else {
                                                                             errorflag1 = 0;
                                                                             if (outofsem6.length() < 1) {
                                                                                 errorflag1 = 1;
-                                                                                pmarkssem6.setError(null);
-                                                                                poutofsem6.setError("Incorrect Marks");
+                                                                                poutofsem6input.setError("Kindly enter valid marks");
                                                                             } else {
                                                                                 errorflag1 = 0;
                                                                                 if (percentsem6.length() < 1) {
                                                                                     errorflag1 = 1;
-                                                                                    pmarkssem6.setError(null);
-                                                                                    poutofsem6.setError(null);
-                                                                                    ppercentsem6.setError("Incorrect Percentage");
+                                                                                    ppercentsem6input.setError("Incorrect Percentage");
                                                                                 } {
                                                                                     errorflag1 = 0;
                                                                                     float aggg=0;
-                                                                                    try{
-                                                                                        aggg=Float.parseFloat(aggregatepgsem);}catch (NumberFormatException e){errorflag1 = 1; pgsemaggregate.setError("Incorrect Aggregate");}
-                                                                                    if (aggg<0||aggg>100) {
+                                                                                    if(!aggregatepgsem.equals(""))
+                                                                                        aggg=Float.parseFloat(aggregatepgsem);
+                                                                                    if (aggg<=0||aggg>=100) {
                                                                                         errorflag1 = 1;
-                                                                                        pmarkssem6.setError(null);
-                                                                                        poutofsem6.setError(null);
-                                                                                        poutofsem6.setError(null);
-                                                                                        pgsemaggregate.setError("Incorrect Aggregate");
+                                                                                        pgsemaggregateinput.setError("Incorrect Aggregate");
                                                                                     } else {
                                                                                         errorflag1 = 0;
                                                                                         if (selectedCoursepgsem.equals("- Select Course -")) {
                                                                                             errorflag1 = 1;
-                                                                                            pgsemaggregate.setError(null);
                                                                                             Toast.makeText(MyProfilePg.this, "Select Course", Toast.LENGTH_LONG).show();
                                                                                         } else {
                                                                                             if (selectedCoursepgsem.equals("Other")) {
                                                                                                 otherspecifiedcoursepgsem = othersemcourse.getText().toString();
                                                                                                 if (otherspecifiedcoursepgsem.length() < 3) {
                                                                                                     errorflag2 = 1;
-                                                                                                    pgsemaggregate.setError(null);
-                                                                                                    othersemcourse.setError("Invalid Course");
+                                                                                                    othersemcourseinput.setError("Kindly enter valid course.");
                                                                                                 }
                                                                                             }
 
 
                                                                                             if (selectedUniversitypgsem.equals("- Select University -")) {
                                                                                                 errorflag3 = 1;
-                                                                                                pgsemaggregate.setError(null);
-                                                                                                othersemcourse.setError(null);
                                                                                                 Toast.makeText(MyProfilePg.this, "Select University", Toast.LENGTH_LONG).show();
                                                                                             }
                                                                                             else {
                                                                                                 if(schoolnamepgsemester.length()<3)
                                                                                                 {
                                                                                                     errorflag4=1;
-                                                                                                    schoolnamepgsem.setError("Invalid College Name");
+                                                                                                    schoolnamepgseminput.setError("Kindly enter valid college name");
                                                                                                 }
-                                                                                                if (selectedUniversitypgsem.equals("Other")) {
+                                                                                                else if (selectedUniversitypgsem.equals("Other")) {
                                                                                                     otherspecifieduniversitypgsem = othersemuniversity.getText().toString();
 
                                                                                                     if (otherspecifieduniversitypgsem.length() < 3) {
                                                                                                         errorflag4 = 1;
 
-                                                                                                        othersemuniversity.setError("Invalid University");
+                                                                                                        othersemuniversityinput.setError("Kindly enter valid university");
                                                                                                     }
                                                                                                 }
 
-                                                                                                if (monthandyearofpassingpgsem.length() < 9 || monthandyearofpassingpgsem.length() > 9) {
+                                                                                                else if (monthandyearofpassingpgsem.length() < 9 || monthandyearofpassingpgsem.length() > 9) {
                                                                                                     errorflag5 = 1;
-                                                                                                    othersemuniversity.setError(null);
-                                                                                                    yearofpassingpgsem.setError("Invalid Month,Year");
+                                                                                                    yearofpassingpgseminput.setError("Kindly select valid Month,Year");
                                                                                                 }
                                                                                             }
                                                                                         }
@@ -2523,9 +2393,12 @@ public class MyProfilePg extends AppCompatActivity {
                     else
                         universitySem=selectedUniversitypgsem;
 
-                    PgSem objSem=new PgSem(markssem1,outofsem1,percentsem1,markssem2,outofsem2,percentsem2,markssem3,outofsem3,percentsem3,markssem4,outofsem4,percentsem4,markssem5,outofsem5,percentsem5,markssem6,outofsem6,percentsem6,schoolnamepgsemester,aggregatepgsem,monthandyearofpassingpgsem,courseSem,streamSem,universitySem);
+                    Log.d("TAG", "validateandSave: setBlankYear selectedStreampgyear - "+selectedStreampgyear);
+                    Log.d("TAG", "validateandSave: setBlankYear courseYear - "+selectedCoursepgyear);
+
+                    PgSem objSem=new PgSem(markssem1,outofsem1,percentsem1,markssem2,outofsem2,percentsem2,markssem3,outofsem3,percentsem3,markssem4,outofsem4,percentsem4,markssem5,outofsem5,percentsem5,markssem6,outofsem6,percentsem6,schoolnamepgsemester,aggregatepgsem,monthandyearofpassingpgsem,selectedCoursepgsem,selectedStreampgsem,universitySem);
                     String encObjStringSem=OtoString(objSem,MySharedPreferencesManager.getDigest1(MyProfilePg.this),MySharedPreferencesManager.getDigest2(MyProfilePg.this));
-                    PgYear objYear=new PgYear(marksyear1,outofyear1,percentyear1,marksyear2,outofyear2,percentyear2,marksyear3,outofyear3,percentyear3,aggregatepgyear,schoolnamepgyears,monthandyearofpassingpgyear,courseYear,streamYear,selectedUniversitypgyear);
+                    PgYear objYear=new PgYear(marksyear1,outofyear1,percentyear1,marksyear2,outofyear2,percentyear2,marksyear3,outofyear3,percentyear3,aggregatepgyear,schoolnamepgyears,monthandyearofpassingpgyear,selectedCoursepgyear,selectedStreampgyear,selectedUniversitypgyear);
                     String encObjStringYear=OtoString(objYear,MySharedPreferencesManager.getDigest1(MyProfilePg.this),MySharedPreferencesManager.getDigest2(MyProfilePg.this));
 
                     new SaveDataPgSem().execute(encObjStringSem);
@@ -2540,19 +2413,19 @@ public class MyProfilePg extends AppCompatActivity {
         else if(pattern.equals("year")) {
 
             setBlankSem();
-
-            pmarksyear1.setError(null);
-            poutofyear1.setError(null);
-            ppercentyear1.setError(null);
-            pmarksyear2.setError(null);
-            poutofyear2.setError(null);
-            ppercentyear2.setError(null);
-            pmarksyear3.setError(null);
-            poutofyear3.setError(null);
-            ppercentyear3.setError(null);
-            pgyearaggregate.setError(null);
-            schoolnamepgyear.setError(null);
-            yearofpassingpgyear.setError(null);
+            Log.d("TAG", "validateandSave: after blank sem");
+//            pmarksyear1.setError(null);
+//            poutofyear1.setError(null);
+//            ppercentyear1.setError(null);
+//            pmarksyear2.setError(null);
+//            poutofyear2.setError(null);
+//            ppercentyear2.setError(null);
+//            pmarksyear3.setError(null);
+//            poutofyear3.setError(null);
+//            ppercentyear3.setError(null);
+//            pgyearaggregate.setError(null);
+//            schoolnamepgyear.setError(null);
+//            yearofpassingpgyear.setError(null);
 
             marksyear1 = pmarksyear1.getText().toString();
             outofyear1 = poutofyear1.getText().toString();
@@ -2570,97 +2443,78 @@ public class MyProfilePg extends AppCompatActivity {
             int errorflag1 = 0, errorflag2 = 0, errorflag3 = 0, errorflag4 = 0, errorflag5 = 0;
             if (marksyear1.length() < 1) {
                 errorflag1 = 1;
-                pmarksyear1.setError("Incorrect Marks");
+                pmarksuyear1input.setError("Kindly enter valid marks");
             } else {
                 errorflag1 = 0;
                 if (outofyear1.length() < 1) {
                     errorflag1 = 1;
-                    pmarksyear1.setError(null);
-                    poutofyear1.setError("Incorrect Marks");
+                    poutofyear1input.setError("Kindly enter valid marks");
                 } else {
                     errorflag1 = 0;
                     if (percentyear1.length() < 1) {
                         errorflag1 = 1;
-                        pmarksyear1.setError(null);
-                        poutofyear1.setError(null);
-                        ppercentyear1.setError("Incorrect Percentage");
+                        ppercentyear1input.setError("Incorrect Percentage");
                     } else {
                         errorflag1 = 0;
                         if (marksyear2.length() < 1) {
                             errorflag1 = 1;
-                            pmarksyear2.setError("Incorrect Marks");
+                            pmarksusem2input.setError("Kindly enter valid marks");
                         } else {
                             errorflag1 = 0;
                             if (outofyear2.length() < 1) {
                                 errorflag1 = 1;
-                                pmarksyear2.setError(null);
-                                poutofyear2.setError("Incorrect Marks");
+                                poutofyear2input.setError("Kindly enter valid marks");
                             } else {
                                 errorflag1 = 0;
                                 if (percentyear2.length() < 1) {
                                     errorflag1 = 1;
-                                    pmarksyear2.setError(null);
-                                    poutofyear2.setError(null);
-                                    ppercentyear2.setError("Incorrect Percentage");
+                                    ppercentyear2input.setError("Incorrect Percentage");
                                 } else {
                                     errorflag1 = 0;
                                     if (marksyear3.length() < 1) {
                                         errorflag1 = 1;
-                                        pmarksyear3.setError("Incorrect Marks");
+                                        pmarksusem3input.setError("Kindly enter valid marks");
                                     } else {
                                         errorflag1 = 0;
                                         if (outofyear3.length() < 1) {
                                             errorflag1 = 1;
-                                            pmarksyear3.setError(null);
-                                            poutofyear3.setError("Incorrect Marks");
+                                            poutofyear3input.setError("Kindly enter valid marks");
                                         } else {
                                             errorflag1 = 0;
                                             if (percentyear3.length() < 1) {
                                                 errorflag1 = 1;
-                                                pmarksyear3.setError(null);
-                                                poutofyear3.setError(null);
-                                                ppercentyear3.setError("Incorrect Percentage");
+                                                ppercentyear3input.setError("Incorrect Percentage");
                                             } else {
                                                 errorflag1 = 0;
                                                 float aggg = 0;
-                                                try {
+
+                                                if(!aggregatepgyear.equals(""))
                                                     aggg = Float.parseFloat(aggregatepgyear);
-                                                } catch (NumberFormatException e) {
+                                                if (aggg <= 0 || aggg >= 100) {
                                                     errorflag1 = 1;
-                                                    pgyearaggregate.setError("Incorrect Aggregate");
-                                                }
-                                                if (aggg < 0 || aggg > 100) {
-                                                    errorflag1 = 1;
-                                                    pmarksyear3.setError(null);
-                                                    poutofyear3.setError(null);
-                                                    poutofyear3.setError(null);
-                                                    pgyearaggregate.setError("Incorrect Aggregate");
+                                                    pgyearaggregateinput.setError("Incorrect Aggregate");
                                                 } else {
                                                     errorflag1 = 0;
                                                     if (selectedCoursepgyear.equals("- Select Course -")) {
                                                         errorflag1 = 1;
-                                                        pgyearaggregate.setError(null);
                                                         Toast.makeText(MyProfilePg.this, "Select Course", Toast.LENGTH_LONG).show();
                                                     } else {
                                                         if (selectedCoursepgyear.equals("Other")) {
                                                             otherspecifiedcoursepgyear = otheryearcourse.getText().toString();
                                                             if (otherspecifiedcoursepgyear.length() < 3) {
                                                                 errorflag2 = 1;
-                                                                pgyearaggregate.setError(null);
-                                                                otheryearcourse.setError("Invalid Course");
+                                                                otheryearcourseinput.setError("Kindly enter valid course.");
                                                             }
                                                         }
 
 
                                                         if (selectedUniversitypgyear.equals("- Select University -")) {
                                                             errorflag3 = 1;
-                                                            pgyearaggregate.setError(null);
-                                                            otheryearcourse.setError(null);
                                                             Toast.makeText(MyProfilePg.this, "Select University", Toast.LENGTH_LONG).show();
                                                         } else {
                                                             if (schoolnamepgyears.length() < 3) {
                                                                 errorflag4 = 1;
-                                                                schoolnamepgyear.setError("Invalid College Name");
+                                                                schoolnamepgyearinput.setError("Kindly enter valid college name");
                                                             }
                                                             if (selectedUniversitypgyear.equals("Other")) {
                                                                 otherspecifieduniversitypgyear = otheryearuniversity.getText().toString();
@@ -2668,14 +2522,13 @@ public class MyProfilePg extends AppCompatActivity {
                                                                 if (otherspecifieduniversitypgyear.length() < 3) {
                                                                     errorflag4 = 1;
 
-                                                                    otheryearuniversity.setError("Invalid University");
+                                                                    otheryearuniversityinput.setError("Kindly enter valid university");
                                                                 }
                                                             }
 
                                                             if (monthandyearofpassingpgyear.length() < 9 || monthandyearofpassingpgyear.length() > 9) {
                                                                 errorflag5 = 1;
-                                                                otheryearuniversity.setError(null);
-                                                                yearofpassingpgyear.setError("Invalid Month,Year");
+                                                                yearofpassingpgyearinput.setError("Kindly select valid Month,Year");
                                                             }
                                                         }
                                                     }
@@ -2695,9 +2548,6 @@ public class MyProfilePg extends AppCompatActivity {
 
                 try {
 
-
-
-
                     if(selectedCoursepgyear.equals("Other"))
                         courseYear=otherspecifiedcoursepgyear;
                     else
@@ -2707,28 +2557,35 @@ public class MyProfilePg extends AppCompatActivity {
                         streamYear=otherspecifiedstreampgyear;
                     else
                         streamYear=selectedStreampgyear;
+
                     if(selectedUniversitypgyear.equals("Other"))
                         universityYear=otherspecifieduniversitypgyear;
                     else
                         universityYear=selectedUniversitypgyear;
 
 
+
                     PgSem objSem=new PgSem(markssem1,outofsem1,percentsem1,markssem2,outofsem2,percentsem2,markssem3,outofsem3,percentsem3,markssem4,outofsem4,percentsem4,markssem5,outofsem5,percentsem5,markssem6,outofsem6,percentsem6,schoolnamepgsemester,aggregatepgsem,monthandyearofpassingpgsem,courseSem,streamSem,universitySem);
                     String encObjStringSem=OtoString(objSem,MySharedPreferencesManager.getDigest1(MyProfilePg.this),MySharedPreferencesManager.getDigest2(MyProfilePg.this));
                     PgYear objYear=new PgYear(marksyear1,outofyear1,percentyear1,marksyear2,outofyear2,percentyear2,marksyear3,outofyear3,percentyear3,aggregatepgyear,schoolnamepgyears,monthandyearofpassingpgyear,courseYear,streamYear,universityYear);
                     String encObjStringYear=OtoString(objYear,MySharedPreferencesManager.getDigest1(MyProfilePg.this),MySharedPreferencesManager.getDigest2(MyProfilePg.this));
+                    Log.d("TAG", "validateandSave: encObjStringSem :-"+encObjStringSem);
+                    Log.d("TAG", "validateandSave: encObjStringYear :-"+encObjStringYear);
 
                     new SaveDataPgYear().execute(encObjStringYear);
                     new SaveDataPgSem().execute(encObjStringSem);
 
-                }catch (Exception e){}
+                }catch (Exception e){
+
+                    Log.d("TAG", "validateandSave: exception "+e.getMessage());
+
+                }
             }
         }
 
 
     }
     class SaveDataPgSem extends AsyncTask<String, String, String> {
-
 
         protected String doInBackground(String... param) {
 
@@ -2751,10 +2608,14 @@ public class MyProfilePg extends AppCompatActivity {
 
             if(result.equals("success"))
             {
+                if(!markssem1.equals(""))
                 Toast.makeText(MyProfilePg.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
-                setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
-                setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+
+                if(role.equals("student"))
+                    setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+                else if(role.equals("alumni"))
+                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
 
                 s.setMarkssem1pgsem(markssem1);
                 s.setOutofsem1pgsem(outofsem1);
@@ -2811,6 +2672,9 @@ public class MyProfilePg extends AppCompatActivity {
             params.add(new BasicNameValuePair("u",username));    //0
             params.add(new BasicNameValuePair("d",param[0]));    //0
 
+            Log.d("TAG", "doInBackground: "+param[0]);
+
+
             json = jParser.makeHttpRequest(MyConstants.url_savedata_pg_year, "GET", params);
             try {
                 r = json.getString("info");
@@ -2825,17 +2689,16 @@ public class MyProfilePg extends AppCompatActivity {
 
             if(result.equals("success"))
             {
-                Toast.makeText(MyProfilePg.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
+                if(!marksyear1.equals(""))
+                    Toast.makeText(MyProfilePg.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
-                ProfileRole r=new ProfileRole();
-                String role=r.getRole();
                 if(role.equals("student"))
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("alumni"))
-                  setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
                 MyProfilePg.super.onBackPressed();
             }
-            Toast.makeText(MyProfilePg.this,result,Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MyProfilePg.this,result,Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -2867,27 +2730,27 @@ public class MyProfilePg extends AppCompatActivity {
         s.setCollegenamepgsem("");
         s.setYearofpassingpgsem("");
 
-            pmarkssem1.setText("");
-            poutofsem1.setText("");
-            ppercentsem1.setText("");
-            pmarkssem2.setText("");
-            poutofsem2.setText("");
-            ppercentsem2.setText("");
-            pmarkssem3.setText("");
-            poutofsem3.setText("");
-            ppercentsem3.setText("");
-            pmarkssem4.setText("");
-            poutofsem4.setText("");
-            ppercentsem4.setText("");
-            pmarkssem5.setText("");
-            poutofsem5.setText("");
-            ppercentsem5.setText("");
-            pmarkssem6.setText("");
-            poutofsem6.setText("");
-            ppercentsem6.setText("");
-            pgsemaggregate.setText("");
-            schoolnamepgsem.setText("");
-            yearofpassingpgsem.setText("");
+        pmarkssem1.setText("");
+        poutofsem1.setText("");
+        ppercentsem1.setText("");
+        pmarkssem2.setText("");
+        poutofsem2.setText("");
+        ppercentsem2.setText("");
+        pmarkssem3.setText("");
+        poutofsem3.setText("");
+        ppercentsem3.setText("");
+        pmarkssem4.setText("");
+        poutofsem4.setText("");
+        ppercentsem4.setText("");
+        pmarkssem5.setText("");
+        poutofsem5.setText("");
+        ppercentsem5.setText("");
+        pmarkssem6.setText("");
+        poutofsem6.setText("");
+        ppercentsem6.setText("");
+        pgsemaggregate.setText("");
+        schoolnamepgsem.setText("");
+        yearofpassingpgsem.setText("");
 
 
         markssem1="";
@@ -2909,120 +2772,12 @@ public class MyProfilePg extends AppCompatActivity {
         outofsem6="";
         percentsem6="";
         aggregatepgsem="";
-        selectedCoursepgsem="";
-            selectedStreampgsem="";
-        selectedUniversitypgsem="";
+        selectedCoursepgsem="- Select Course -";
+        selectedStreampgsem="- Select Stream/Specialization -";
+        selectedUniversitypgsem="- Select University -";
         schoolnamepgsemester="";
         monthandyearofpassingpgsem="";
 
-
-        try {
-            byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-            byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-            String sPadding = "ISO10126Padding";
-
-
-            byte[] markssem1Bytes = markssem1.getBytes("UTF-8");
-            byte[] outofsem1Bytes = outofsem1.getBytes("UTF-8");
-            byte[] percentsem1Bytes = percentsem1.getBytes("UTF-8");
-            byte[] markssem2Bytes = markssem2.getBytes("UTF-8");
-            byte[] outofsem2Bytes = outofsem2.getBytes("UTF-8");
-            byte[] percentsem2Bytes = percentsem2.getBytes("UTF-8");
-            byte[] markssem3Bytes = markssem3.getBytes("UTF-8");
-            byte[] outofsem3Bytes = outofsem3.getBytes("UTF-8");
-            byte[] percentsem3Bytes = percentsem3.getBytes("UTF-8");
-            byte[] markssem4Bytes = markssem4.getBytes("UTF-8");
-            byte[] outofsem4Bytes = outofsem4.getBytes("UTF-8");
-            byte[] percentsem4Bytes = percentsem4.getBytes("UTF-8");
-            byte[] markssem5Bytes = markssem5.getBytes("UTF-8");
-            byte[] outofsem5Bytes = outofsem5.getBytes("UTF-8");
-            byte[] percentsem5Bytes = percentsem5.getBytes("UTF-8");
-            byte[] markssem6Bytes = markssem6.getBytes("UTF-8");
-            byte[] outofsem6Bytes = outofsem6.getBytes("UTF-8");
-            byte[] percentsem6Bytes = percentsem6.getBytes("UTF-8");
-            byte[] aggregateBytes = aggregatepgsem.getBytes("UTF-8");
-            byte[] schoolnameBytes = schoolnamepgsemester.getBytes("UTF-8");
-            byte[] monthandyearofpassingBytes = monthandyearofpassingpgsem.getBytes("UTF-8");
-
-            byte[] selectedcourseBytes=null,selectedstreamBytes=null,selecteduniversityBytes=null;
-            if(selectedCoursepgsem.equals("Other"))
-                selectedcourseBytes=otherspecifiedcoursepgsem.getBytes("UTF-8");
-            else
-                selectedcourseBytes=selectedCoursepgsem.getBytes("UTF-8");
-            Log.d(alumniLog,"selectedcourseBytes "+selectedCoursepgsem);
-            Log.d(alumniLog,"selectedstreamBytes "+selectedStreampgsem);
-
-
-            if(selectedStreampgsem.equals("Other")){
-                Log.d(alumniLog, "validateandSave: before"+otherspecifiedstreampgsem);
-                selectedstreamBytes=otherspecifiedstreampgsem.getBytes("UTF-8");
-                Log.d(alumniLog, "validateandSave: after"+otherspecifiedstreampgsem);
-            }
-
-            else
-                selectedstreamBytes=selectedStreampgsem.getBytes("UTF-8");
-            Log.d(alumniLog,"selectedstreamBytes "+selectedStreampgsem);
-
-
-            if(selectedUniversitypgsem.equals("Other"))
-                selecteduniversityBytes=otherspecifieduniversitypgsem.getBytes("UTF-8");
-            else
-                selecteduniversityBytes=selectedUniversitypgsem.getBytes("UTF-8");
-            Log.d(alumniLog,"u r in after utf");
-
-            byte[] markssem1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem1Bytes);
-            encmarkssem1=new String(SimpleBase64Encoder.encode(markssem1EncryptedBytes));
-            byte[] markssem2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem2Bytes);
-            encmarkssem2=new String(SimpleBase64Encoder.encode(markssem2EncryptedBytes));
-            byte[] markssem3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem3Bytes);
-            encmarkssem3=new String(SimpleBase64Encoder.encode(markssem3EncryptedBytes));
-            byte[] markssem4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem4Bytes);
-            encmarkssem4=new String(SimpleBase64Encoder.encode(markssem4EncryptedBytes));
-            byte[] markssem5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem5Bytes);
-            encmarkssem5=new String(SimpleBase64Encoder.encode(markssem5EncryptedBytes));
-            byte[] markssem6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem6Bytes);
-            encmarkssem6=new String(SimpleBase64Encoder.encode(markssem6EncryptedBytes));
-            byte[] outofsem1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem1Bytes);
-            encoutofsem1=new String(SimpleBase64Encoder.encode(outofsem1EncryptedBytes));
-            byte[] outofsem2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem2Bytes);
-            encoutofsem2=new String(SimpleBase64Encoder.encode(outofsem2EncryptedBytes));
-            byte[] outofsem3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem3Bytes);
-            encoutofsem3=new String(SimpleBase64Encoder.encode(outofsem3EncryptedBytes));
-            byte[] outofsem4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem4Bytes);
-            encoutofsem4=new String(SimpleBase64Encoder.encode(outofsem4EncryptedBytes));
-            byte[] outofsem5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem5Bytes);
-            encoutofsem5=new String(SimpleBase64Encoder.encode(outofsem5EncryptedBytes));
-            byte[] outofsem6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem6Bytes);
-            encoutofsem6=new String(SimpleBase64Encoder.encode(outofsem6EncryptedBytes));
-            byte[] percentsem1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem1Bytes);
-            encpercentsem1=new String(SimpleBase64Encoder.encode(percentsem1EncryptedBytes));
-            byte[] percentsem2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem2Bytes);
-            encpercentsem2=new String(SimpleBase64Encoder.encode(percentsem2EncryptedBytes));
-            byte[] percentsem3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem3Bytes);
-            encpercentsem3=new String(SimpleBase64Encoder.encode(percentsem3EncryptedBytes));
-            byte[] percentsem4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem4Bytes);
-            encpercentsem4=new String(SimpleBase64Encoder.encode(percentsem4EncryptedBytes));
-            byte[] percentsem5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem5Bytes);
-            encpercentsem5=new String(SimpleBase64Encoder.encode(percentsem5EncryptedBytes));
-            byte[] percentsem6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem6Bytes);
-            encpercentsem6=new String(SimpleBase64Encoder.encode(percentsem6EncryptedBytes));
-            byte[] aggregateEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, aggregateBytes);
-            encaggregatepgsem=new String(SimpleBase64Encoder.encode(aggregateEncryptedBytes));
-            byte[] schoolnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, schoolnameBytes);
-            encschoolnamepgsem=new String(SimpleBase64Encoder.encode(schoolnameEncryptedBytes));
-            byte[] monthandyearofpassingEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, monthandyearofpassingBytes);
-            encmonthandyearofpassingpgsem=new String(SimpleBase64Encoder.encode(monthandyearofpassingEncryptedBytes));
-            byte[] selectedcourseEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, selectedcourseBytes);
-            encselectedcoursepgsem=new String(SimpleBase64Encoder.encode(selectedcourseEncryptedBytes));
-            byte[] selectedstreamEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, selectedstreamBytes);
-            encselectedstreampgsem=new String(SimpleBase64Encoder.encode(selectedstreamEncryptedBytes));
-            byte[] selecteduniversityEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, selecteduniversityBytes);
-            encselecteduniversitypgsem=new String(SimpleBase64Encoder.encode(selecteduniversityEncryptedBytes));
-
-        } catch (Exception e) {
-            Toast.makeText(MyProfilePg.this,e.getMessage(),Toast.LENGTH_LONG).show();
-            Log.d(alumniLog,"exception -"+e.getMessage());
-        }
 
     }
 
@@ -3044,19 +2799,18 @@ public class MyProfilePg extends AppCompatActivity {
         s.setCollegenamepgyear("");
         s.setYearofpassingpgyear("");
 
-
-            pmarksyear1.setText("");
-            poutofyear1.setText("");
-            ppercentyear1.setText("");
-            pmarksyear2.setText("");
-            poutofyear2.setText("");
-            ppercentyear2.setText("");
-            pmarksyear3.setText("");
-            poutofyear3.setText("");
-            ppercentyear3.setText("");
-            pgyearaggregate.setText("");
-            schoolnamepgyear.setText("");
-            yearofpassingpgyear.setText("");
+        pmarksyear1.setText("");
+        poutofyear1.setText("");
+        ppercentyear1.setText("");
+        pmarksyear2.setText("");
+        poutofyear2.setText("");
+        ppercentyear2.setText("");
+        pmarksyear3.setText("");
+        poutofyear3.setText("");
+        ppercentyear3.setText("");
+        pgyearaggregate.setText("");
+        schoolnamepgyear.setText("");
+        yearofpassingpgyear.setText("");
 
         marksyear1="";
         outofyear1="";
@@ -3068,81 +2822,12 @@ public class MyProfilePg extends AppCompatActivity {
         outofyear3="";
         percentyear3="";
         aggregatepgyear="";
-        selectedCoursepgyear="";
-        selectedStreampgyear="";
-        selectedUniversitypgyear="";
+        selectedCoursepgyear="- Select Course -";
+        selectedStreampgyear="- Select Stream/Specialization -";
+        selectedUniversitypgyear="- Select University -";
         oldUniversityyear="";
         schoolnamepgyears="";
         monthandyearofpassingpgyear="";
-
-
-        try {
-            byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
-            byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
-            String sPadding = "ISO10126Padding";
-
-            byte[] marksyear1Bytes = marksyear1.getBytes("UTF-8");
-            byte[] outofyear1Bytes = outofyear1.getBytes("UTF-8");
-            byte[] percentyear1Bytes = percentyear1.getBytes("UTF-8");
-            byte[] marksyear2Bytes = marksyear2.getBytes("UTF-8");
-            byte[] outofyear2Bytes = outofyear2.getBytes("UTF-8");
-            byte[] percentyear2Bytes = percentyear2.getBytes("UTF-8");
-            byte[] marksyear3Bytes = marksyear3.getBytes("UTF-8");
-            byte[] outofyear3Bytes = outofyear3.getBytes("UTF-8");
-            byte[] percentyear3Bytes = percentyear3.getBytes("UTF-8");
-
-            byte[] aggregateBytes = aggregatepgyear.getBytes("UTF-8");
-            byte[] schoolnameBytes = schoolnamepgyears.getBytes("UTF-8");
-            byte[] monthandyearofpassingBytes = monthandyearofpassingpgyear.getBytes("UTF-8");
-
-            byte[] selectedcourseBytes=null,selectedstreamBytes=null,selecteduniversityBytes=null;
-            if(selectedCoursepgyear.equals("Other"))
-                selectedcourseBytes=otherspecifiedcoursepgyear.getBytes("UTF-8");
-            else
-                selectedcourseBytes=selectedCoursepgyear.getBytes("UTF-8");
-            if(selectedStreampgyear.equals("Other"))
-                selectedstreamBytes=otherspecifiedstreampgyear.getBytes("UTF-8");
-            else
-                selectedstreamBytes=selectedStreampgyear.getBytes("UTF-8");
-            if(selectedUniversitypgyear.equals("Other"))
-                selecteduniversityBytes=otherspecifieduniversitypgyear.getBytes("UTF-8");
-            else
-                selecteduniversityBytes=selectedUniversitypgyear.getBytes("UTF-8");
-
-            byte[] marksyear1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, marksyear1Bytes);
-            encmarksyear1=new String(SimpleBase64Encoder.encode(marksyear1EncryptedBytes));
-            byte[] marksyear2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, marksyear2Bytes);
-            encmarksyear2=new String(SimpleBase64Encoder.encode(marksyear2EncryptedBytes));
-            byte[] marksyear3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, marksyear3Bytes);
-            encmarksyear3=new String(SimpleBase64Encoder.encode(marksyear3EncryptedBytes));
-            byte[] outofyear1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofyear1Bytes);
-            encoutofyear1=new String(SimpleBase64Encoder.encode(outofyear1EncryptedBytes));
-            byte[] outofyear2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofyear2Bytes);
-            encoutofyear2=new String(SimpleBase64Encoder.encode(outofyear2EncryptedBytes));
-            byte[] outofyear3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofyear3Bytes);
-            encoutofyear3=new String(SimpleBase64Encoder.encode(outofyear3EncryptedBytes));
-            byte[] percentyear1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentyear1Bytes);
-            encpercentyear1=new String(SimpleBase64Encoder.encode(percentyear1EncryptedBytes));
-            byte[] percentyear2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentyear2Bytes);
-            encpercentyear2=new String(SimpleBase64Encoder.encode(percentyear2EncryptedBytes));
-            byte[] percentyear3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentyear3Bytes);
-            encpercentyear3=new String(SimpleBase64Encoder.encode(percentyear3EncryptedBytes));
-            byte[] aggregateEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, aggregateBytes);
-            encaggregatepgyear=new String(SimpleBase64Encoder.encode(aggregateEncryptedBytes));
-            byte[] schoolnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, schoolnameBytes);
-            encschoolnamepgyear=new String(SimpleBase64Encoder.encode(schoolnameEncryptedBytes));
-            byte[] monthandyearofpassingEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, monthandyearofpassingBytes);
-            encmonthandyearofpassingpgyear=new String(SimpleBase64Encoder.encode(monthandyearofpassingEncryptedBytes));
-            byte[] selectedcourseEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, selectedcourseBytes);
-            encselectedcoursepgyear=new String(SimpleBase64Encoder.encode(selectedcourseEncryptedBytes));
-            byte[] selectedstreamEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, selectedstreamBytes);
-            encselectedstreampgyear=new String(SimpleBase64Encoder.encode(selectedstreamEncryptedBytes));
-            byte[] selecteduniversityEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, selecteduniversityBytes);
-            encselecteduniversitypgyear=new String(SimpleBase64Encoder.encode(selecteduniversityEncryptedBytes));
-
-        }catch (Exception e){
-            Log.d("TAG", "setBlankYear: "+e.getMessage());
-        }
 
     }
 
@@ -3177,8 +2862,10 @@ public class MyProfilePg extends AppCompatActivity {
             alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialogInterface) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfilePg.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfilePg.this));
                 }
             });
 

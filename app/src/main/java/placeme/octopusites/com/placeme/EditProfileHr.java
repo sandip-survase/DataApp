@@ -97,42 +97,48 @@ public class EditProfileHr extends AppCompatActivity {
 
                 if (currentPosition == 0) {
                     HrPersonalTabFragment fragment = (HrPersonalTabFragment) adapter.getItem(0);
-
+                    Boolean personal_success = fragment.validate();
                     if (fragment.edittedFlagp == 1) {
-                        Boolean personal_success = fragment.validate();
                         if (personal_success) {
                             fragment.save();
-                            Toast.makeText(getApplicationContext(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
                 if (currentPosition == 1) {
                     HrCompanyDetailsTabFragment hrCompanyDetailsTabFragment = (HrCompanyDetailsTabFragment) adapter.getItem(1);
+                    Boolean project_success = hrCompanyDetailsTabFragment.validate();
                     if (hrCompanyDetailsTabFragment.flag1 == 1) {
-                        Boolean project_success = hrCompanyDetailsTabFragment.validate();
                         if (project_success) {
                             hrCompanyDetailsTabFragment.save();
-                            Toast.makeText(getApplicationContext(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
                 if (currentPosition == 3) {
                     HrExperiencesTabFragment hrExperiencesTabFragment = (HrExperiencesTabFragment) adapter.getItem(3);
-                    if (hrExperiencesTabFragment.edittedFlag == 1) {
-                        Boolean project_success = hrExperiencesTabFragment.validate();
-                        if (project_success) {
-                            hrExperiencesTabFragment.save();
-                            Toast.makeText(getApplicationContext(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+                    if(hrExperiencesTabFragment.editexp == 1){
+                        hrExperiencesTabFragment.save();
+                        Toast.makeText(EditProfileHr.this, "Successfully Updated !", Toast.LENGTH_SHORT).show();
+
+                    }else {
+                        Boolean Exp_success = hrExperiencesTabFragment.validate();
+                        if (hrExperiencesTabFragment.edittedFlag == 1) {
+                               if (Exp_success) {
+                                hrExperiencesTabFragment.save();
+                                Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
+
                 }
                 if (currentPosition == 4) {
                     HrContactTabFragment hrContactTabFragment = (HrContactTabFragment) adapter.getItem(4);
+                    Boolean contact_success = hrContactTabFragment.validate();
                     if (hrContactTabFragment.edittedFlag == 1) {
-                        Boolean project_success = hrContactTabFragment.validate();
-                        if (project_success) {
+                        if (contact_success) {
                             hrContactTabFragment.save();
-                            Toast.makeText(getApplicationContext(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -283,18 +289,25 @@ public class EditProfileHr extends AppCompatActivity {
                                         }
 
                                     }
-                                    if (hrExperiencesTabFragment.edittedFlag == 1) {
-                                        hr_exp = hrExperiencesTabFragment.validate();
-                                        if (!hr_exp) {
-                                            if (personalflag != 1 && companyflag != 1) {
+
+                                    if(hrExperiencesTabFragment.editexp == 1){
+                                        hrExperiencesTabFragment.save();
+                                        personal_success=true;
+                                    }
+                                    else {
+                                        if (hrExperiencesTabFragment.edittedFlag == 1) {
+                                            hr_exp = hrExperiencesTabFragment.validate();
+                                            if (!hr_exp) {
+                                                if (personalflag != 1 && companyflag != 1) {
 //                                                hrExperiencesTabFragment.setCount();
-                                                mViewPager.setCurrentItem(3);
-                                                hrExperiencesTabFragment.validate();
-                                                expflag = 1;
+                                                    mViewPager.setCurrentItem(3);
+                                                    hrExperiencesTabFragment.validate();
+                                                    expflag = 1;
+                                                }
+                                            } else {
+                                                hrExperiencesTabFragment.save();
+                                                expflag = 0;
                                             }
-                                        } else {
-                                            hrExperiencesTabFragment.save();
-                                            expflag = 0;
                                         }
                                     }
                                     if (hrContactTabFragment.edittedFlag == 1) {
@@ -309,9 +322,8 @@ public class EditProfileHr extends AppCompatActivity {
                                         }
                                     }
 
-
                                     if (personal_success && project_success && hr_exp && hr_contact) {
-                                        Toast.makeText(getApplicationContext(), "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "Successfully Updated !", Toast.LENGTH_SHORT).show();
                                         setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
                                         EditProfileHr.super.onBackPressed();
                                     }
@@ -344,85 +356,6 @@ public class EditProfileHr extends AppCompatActivity {
 
     }
 
-
-//    @Override
-//    public void onBackPressed() {
-//        HrPersonalTabFragment fragment = (HrPersonalTabFragment) adapter.getItem(0);
-//        HrCompanyDetailsTabFragment hrCompanyDetailsTabFragment= (HrCompanyDetailsTabFragment) adapter.getItem(1);
-//        HrExperiencesTabFragment hrExperiencesTabFragment= (HrExperiencesTabFragment) adapter.getItem(3);
-//        HrContactTabFragment hrContactTabFragment= (HrContactTabFragment) adapter.getItem(4);
-//
-//
-//        if(fragment.edittedFlagp==1 || hrCompanyDetailsTabFragment.flag1==1  || hrExperiencesTabFragment.edittedFlag==1 || hrContactTabFragment.edittedFlag==1) {
-//            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-//            alertDialogBuilder
-//                    .setMessage("Do you want to save all changes ?")
-//                    .setCancelable(false)
-//                    .setPositiveButton("save",
-//                            new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int id) {
-//                                    HrPersonalTabFragment fragment = (HrPersonalTabFragment) adapter.getItem(0);
-//                                    HrCompanyDetailsTabFragment hrCompanyDetailsTabFragment= (HrCompanyDetailsTabFragment) adapter.getItem(1);
-//                                    HrExperiencesTabFragment hrExperiencesTabFragment= (HrExperiencesTabFragment) adapter.getItem(3);
-//                                    HrContactTabFragment hrContactTabFragment= (HrContactTabFragment) adapter.getItem(4);
-//
-//                                    if(fragment.edittedFlagp==1){
-//                                        Boolean personal_success = fragment.validate();
-//                                        if(personal_success){
-//                                            fragment.save();
-//                                        }
-//                                    }
-////
-//                                    if(hrCompanyDetailsTabFragment.flag1==1){
-//                                        Boolean project_success = hrCompanyDetailsTabFragment.validate();
-//                                        if(project_success){
-//                                            hrCompanyDetailsTabFragment.save();
-//                                        }
-//                                    }
-//
-//                                    if(hrExperiencesTabFragment.edittedFlag==1){
-//                                        Boolean project_success = hrExperiencesTabFragment.validate();
-//                                        if(project_success){
-//                                            hrExperiencesTabFragment.save();
-//                                        }
-//                                    }
-//                                    if(hrContactTabFragment.edittedFlag==1){
-//                                        Boolean project_success = hrContactTabFragment.validate();
-//                                        if(project_success){
-//                                            hrContactTabFragment.save();
-//                                        }
-//                                    }
-//
-//                                    setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
-//
-//                                    EditProfileHr.super.onBackPressed();
-//                                }
-//                            })
-//
-//                    .setNegativeButton("Discard", new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int id) {
-//
-//                            dialog.cancel();
-//                            EditProfileHr.super.onBackPressed();
-//                        }
-//                    });
-//
-//            final AlertDialog alertDialog = alertDialogBuilder.create();
-//
-//            alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-//                @Override
-//                public void onShow(DialogInterface dialogInterface) {
-//                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-//                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
-//                }
-//            });
-//
-//            alertDialog.show();
-//
-//        }
-//        else
-//            EditProfileHr.super.onBackPressed();
-//    }
 
 
 }

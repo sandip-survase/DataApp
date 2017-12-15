@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -10,8 +9,11 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -46,22 +48,17 @@ public class LoginActivity extends AppCompatActivity {
     Button login, signup;
     ProgressBar loginprogress;
     TextView forgotpassword;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
-    public static final String Password = "passKey";
+
     private String EmailCred = "";
     JSONParser jParser = new JSONParser();
 
     JSONObject json;
     String resultofop = "";
-    private static String url_login = "http://192.168.100.100/AESTest/Auth";
-    private static String url_savesessiondetails = "http://192.168.100.100/PlaceMe/SaveSessionDetails";
     //private static String url_sessiondetails = "http://ip-api.com/json";
     String country = "", regionName = "", city = "", isp = "", countryCode = "", query = "";
     String enccountry, encregionName, enccity, encisp, enccountryCode, encquery;
     String digest1, digest2;
-
+    TextInputLayout usernameTextInputLayout,passwordTextInputLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,10 +69,53 @@ public class LoginActivity extends AppCompatActivity {
 
         usernameedittext = (EditText) findViewById(R.id.email);
         passwordedittext = (EditText) findViewById(R.id.password);
-        passwordedittext.setTypeface(Typeface.DEFAULT);
+        usernameTextInputLayout = (TextInputLayout) findViewById(R.id.usernameTextInputLayout);
+        passwordTextInputLayout = (TextInputLayout) findViewById(R.id.passwordTextInputLayout);
+
+        usernameedittext.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                usernameTextInputLayout.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        passwordedittext.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                passwordTextInputLayout.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        usernameedittext.setTypeface(MyConstants.getBold(this));
+        passwordedittext.setTypeface(MyConstants.getBold(this));
+        usernameTextInputLayout.setTypeface(MyConstants.getLight(this));
+        passwordTextInputLayout.setTypeface(MyConstants.getLight(this));
+
+
         login = (Button) findViewById(R.id.login);
+        login.setTypeface(MyConstants.getBold(this));
         loginprogress = (ProgressBar) findViewById(R.id.loginprogress);
         forgotpassword = (TextView) findViewById(R.id.forgot);
+        forgotpassword.setTypeface(MyConstants.getBold(this));
         forgotpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,21 +123,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         signup = (Button) findViewById(R.id.signup);
+        signup.setTypeface(MyConstants.getBold(this));
 
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/button.ttf");
-        signup.setTypeface(custom_font);
-        login.setTypeface(custom_font);
+        TextView newp = (TextView)findViewById(R.id.newp);
+        newp.setTypeface(MyConstants.getBold(this));
 
-        Typeface custom_font2 = Typeface.createFromAsset(getAssets(), "fonts/hint.ttf");
-        forgotpassword.setTypeface(custom_font2);
-
-        Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
-        usernameedittext.setTypeface(custom_font3);
-        passwordedittext.setTypeface(custom_font3);
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-
-        String otp = sharedpreferences.getString("otp", null);
+        String otp = MySharedPreferencesManager.getData(LoginActivity.this,"otp");
 
         if (otp != null) {
             if (otp.equals("yes")) {
@@ -120,19 +151,19 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (username.equals("")) {
                     flag1 = 1;
-                    usernameedittext.setError("Username cannot be blank");
+                    usernameTextInputLayout.setError("Kindly provide your email address");
                 }
                 if (!username.contains("@")) {
                     flag1 = 1;
-                    usernameedittext.setError("Invalid Username");
+                    usernameTextInputLayout.setError("Kindly provide valid email address");
                 }
                 if (password.equals("")) {
                     flag2 = 1;
-                    passwordedittext.setError("Password cannot be blank");
+                    passwordTextInputLayout.setError("Kindly provide your password");
                 }
                 if (password.length() < 4) {
                     flag2 = 1;
-                    passwordedittext.setError("Invalid Password");
+                    passwordTextInputLayout.setError("Kindly provide valid password");
                 }
                 if (flag1 == 0 && flag2 == 0) {
 
@@ -159,13 +190,8 @@ public class LoginActivity extends AppCompatActivity {
                         String plainusername = new String(demo1DecryptedBytes1);
                         Log.d("login", "onClick: plain " + plainusername);
                         //
-                        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                        editor.putString(Username, usernameenc);
-                        editor.putString(Password, passwordenc);
-
-                        editor.commit();
+                        MySharedPreferencesManager.save(LoginActivity.this,MyConstants.USERNAME_KEY, usernameenc);
+                        MySharedPreferencesManager.save(LoginActivity.this,MyConstants.PASSWORD_KEY, passwordenc);
 
                         attemptLogin(usernameenc, passwordenc);
                     } catch (Exception e) {
@@ -188,6 +214,9 @@ public class LoginActivity extends AppCompatActivity {
         if (newUserCheck!=null && newUserCheck.equals("yes")) {
             startActivity(new Intent(LoginActivity.this, OTPActivity.class));
         }
+
+        if(MySharedPreferencesManager.getUsername(this)!=null&&MySharedPreferencesManager.getPassword(this)!=null)
+            attemptLogin(MySharedPreferencesManager.getUsername(this),MySharedPreferencesManager.getPassword(this));
     }
 
     void attemptLogin(String u, String p) {
@@ -213,7 +242,7 @@ public class LoginActivity extends AppCompatActivity {
                     params.add(new BasicNameValuePair("u", mEmail));
                     params.add(new BasicNameValuePair("p", mPassword));
 //                    params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken")));
-                    json = jParser.makeHttpRequest(url_login, "GET", params);
+                    json = jParser.makeHttpRequest(MyConstants.url_login, "GET", params);
                     Log.d("TAG", "loginActivity json : "+json);
                     String s = null;
 
@@ -223,11 +252,7 @@ public class LoginActivity extends AppCompatActivity {
                     resultofop = s;
                     Log.d("Msg", json.getString("info"));
 
-                    sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                    editor.putString("role", s);
-                    editor.commit();
+                    MySharedPreferencesManager.save(LoginActivity.this,"role", s);
 
                     if (s.equals("student")) {
 
@@ -256,13 +281,8 @@ public class LoginActivity extends AppCompatActivity {
 
                         String role = json.getString("role");
                         Log.d("Msg role ", role);
-                        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                        editor = sharedpreferences.edit();
 
-                        editor.putString("role", role);
-                        editor.commit();
-
-
+                        MySharedPreferencesManager.save(LoginActivity.this,"role", role);
                         EmailCred = mEmail;
 
                         return 6;
@@ -289,7 +309,7 @@ public class LoginActivity extends AppCompatActivity {
             if (success == 2) {
 
                 passwordedittext.setText("");
-                Toast.makeText(LoginActivity.this, "No Internet Connection..!", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "No internet connection ! Please check your internet connection", Toast.LENGTH_LONG).show();
             } else {
                 new Thread(new Runnable() {
                     @Override
@@ -336,13 +356,13 @@ public class LoginActivity extends AppCompatActivity {
                 }).start();
             }
             if (success == 6) {
-                Toast.makeText(LoginActivity.this, "You are already registered but not verified.Enter OTP sent on Email", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "You are already registered but not verified. Enter OTP sent on your registered email address", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(LoginActivity.this, OTPActivity.class));
             } else if (resultofop.equals("notpresent")) {
-                Toast.makeText(LoginActivity.this, "Incorrect Username. If you are a new user, please Sign Up.", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "Incorrect email address. If you are a new user, please Sign Up.", Toast.LENGTH_LONG).show();
                 passwordedittext.setText("");
             } else if (resultofop.equals("fail")) {
-                Toast.makeText(LoginActivity.this, "Incorrect Password..!", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "Incorrect Password !", Toast.LENGTH_LONG).show();
                 passwordedittext.setText("");
             } else {
                 passwordedittext.setText("");
@@ -374,7 +394,7 @@ public class LoginActivity extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));    //0
             params.add(new BasicNameValuePair("m", getDeviceName()));      //1
-            json = jParser.makeHttpRequest(url_savesessiondetails, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_savesessiondetails, "GET", params);
             try {
                 r = json.getString("info");
 

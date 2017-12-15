@@ -13,6 +13,9 @@
     <string name="title_activity_hr">HRActivity</string>
     <string name="title_activity_alumni">AlumniActivity</string>
 
+    <string name="dot_selected">&#xf111;</string>
+    <string name="dot_unselected">&#xf1db;</string>
+    <string name="next_button">&#xf054;</string>
     <string-array name="CountryCodes">
         <item>93,AF</item>
         <item>355,AL</item>
@@ -470,10 +473,13 @@
         <item>Zimbabwe</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_user_selection">UserSelection</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

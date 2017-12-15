@@ -1,31 +1,26 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.CompoundButton;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -46,28 +41,28 @@ import java.util.List;
 import placeme.octopusites.com.placeme.modal.Certificates;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 public class MyProfileCertifications extends AppCompatActivity {
 
     int certicount = 0;
     View addmorecerti;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
-    String username;
+
+    String username, role;
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-
+    int editcertfi = 0;
     boolean blnswitch1, blnswitch2, blnswitch3, blnswitch4, blnswitch5, blnswitch6, blnswitch7, blnswitch8, blnswitch9, blnswitch10;
-    EditText title1, issuer1, license1, title2, issuer2, license2, title3, issuer3, license3, title4, issuer4, license4, title5, issuer5, license5, title6, issuer6, license6, title7, issuer7, license7, title8, issuer8, license8, title9, issuer9, license9, title10, issuer10, license10;
-    EditText startdate1, enddate1, startdate2, enddate2, startdate3, enddate3, startdate4, enddate4, startdate5, enddate5, startdate6, enddate6, startdate7, enddate7, startdate8, enddate8, startdate9, enddate9, startdate10, enddate10;
-    String encstartdate1, encenddate1, encstartdate2, encenddate2, encstartdate3, encenddate3, encstartdate4, encenddate4, encstartdate5, encenddate5, encstartdate6, encenddate6, encstartdate7, encenddate7, encstartdate8, encenddate8, encstartdate9, encenddate9, encstartdate10, encenddate10;
+    TextInputEditText title1, issuer1, license1, title2, issuer2, license2, title3, issuer3, license3, title4, issuer4, license4, title5, issuer5, license5, title6, issuer6, license6, title7, issuer7, license7, title8, issuer8, license8, title9, issuer9, license9, title10, issuer10, license10;
+    TextInputEditText startdate1, enddate1, startdate2, enddate2, startdate3, enddate3, startdate4, enddate4, startdate5, enddate5, startdate6, enddate6, startdate7, enddate7, startdate8, enddate8, startdate9, enddate9, startdate10, enddate10;
+    TextInputLayout certistartdate1, certienddate1, certistartdate2, certienddate2, certistartdate3, certienddate3, certistartdate4, certienddate4, certistartdate5, certienddate5, certistartdate6, certienddate6, certistartdate7, certienddate7, certistartdate8, certienddate8, certistartdate9, certienddate9, certistartdate10, certienddate10;
     String stitle1 = "", sissuer1 = "", slicense1 = "", sstartdate1 = "", senddate1 = "", stitle2 = "", sissuer2 = "", slicense2 = "", sstartdate2 = "", senddate2 = "", stitle3 = "", sissuer3 = "", slicense3 = "", sstartdate3 = "", senddate3 = "", stitle4 = "", sissuer4 = "", slicense4 = "", sstartdate4 = "", senddate4 = "", stitle5 = "", sissuer5 = "", slicense5 = "", sstartdate5 = "", senddate5 = "", stitle6 = "", sissuer6 = "", slicense6 = "", sstartdate6 = "", senddate6 = "", stitle7 = "", sissuer7 = "", slicense7 = "", sstartdate7 = "", senddate7 = "", stitle8 = "", sissuer8 = "", slicense8 = "", sstartdate8 = "", senddate8 = "", stitle9 = "", sissuer9 = "", slicense9 = "", sstartdate9 = "", senddate9 = "", stitle10 = "", sissuer10 = "", slicense10 = "", sstartdate10 = "", senddate10 = "";
     String willexpire1 = "yes", willexpire2 = "yes", willexpire3 = "yes", willexpire4 = "yes", willexpire5 = "yes", willexpire6 = "yes", willexpire7 = "yes", willexpire8 = "yes", willexpire9 = "yes", willexpire10 = "yes";
     String encwillexpire1, encwillexpire2, encwillexpire3, encwillexpire4, encwillexpire5, encwillexpire6, encwillexpire7, encwillexpire8, encwillexpire9, encwillexpire10;
-    String enctitle1, encissuer1, enclicense1, enctitle2, encissuer2, enclicense2, enctitle3, encissuer3, enclicense3, enctitle4, encissuer4, enclicense4, enctitle5, encissuer5, enclicense5, enctitle6, encissuer6, enclicense6, enctitle7, encissuer7, enclicense7, enctitle8, encissuer8, enclicense8, enctitle9, encissuer9, enclicense9, enctitle10, encissuer10, enclicense10;
+    TextInputLayout titleinput1, issuerinput1, licenseinput1, titleinput2, issuerinput2, licenseinput2, titleinput3, issuerinput3, licenseinput3, titleinput4, issuerinput4, licenseinput4, titleinput5, issuerinput5, licenseinput5, titleinput6, issuerinput6, licenseinput6, titleinput7, issuerinput7, licenseinput7, titleinput8, issuerinput8, licenseinput8, titleinput9, issuerinput9, licenseinput9, titleinput10, issuerinput10, licenseinput10;
+
+    TextView expire1, expire2, expire3, expire4, expire5, expire6, expire7, expire8, expire9, expire10;
+    TextView aadt;
     SwitchCompat switch1, switch2, switch3, switch4, switch5, switch6, switch7, switch8, switch9, switch10;
     View trash1selectionview, trash2selectionview, trash3selectionview, trash4selectionview, trash5selectionview, trash6selectionview, trash7selectionview, trash8selectionview, trash9selectionview, trash10selectionview;
     int edittedFlag = 0;
@@ -75,11 +70,17 @@ public class MyProfileCertifications extends AppCompatActivity {
     int d = 0;
     StudentData s = new StudentData();
 
-    ArrayList<Certificates> certificatesList=new ArrayList<>();
+    ArrayList<Certificates> certificatesList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_certifications);
+
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username = MySharedPreferencesManager.getUsername(this);
+        role = MySharedPreferencesManager.getRole(this);
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Certification Info");
@@ -172,36 +173,247 @@ public class MyProfileCertifications extends AppCompatActivity {
             }
         });
 
-        title1 = (EditText) findViewById(R.id.title1);
-        issuer1 = (EditText) findViewById(R.id.issuer1);
-        license1 = (EditText) findViewById(R.id.license1);
-        title2 = (EditText) findViewById(R.id.title2);
-        issuer2 = (EditText) findViewById(R.id.issuer2);
-        license2 = (EditText) findViewById(R.id.license2);
-        title3 = (EditText) findViewById(R.id.title3);
-        issuer3 = (EditText) findViewById(R.id.issuer3);
-        license3 = (EditText) findViewById(R.id.license3);
-        title4 = (EditText) findViewById(R.id.title4);
-        issuer4 = (EditText) findViewById(R.id.issuer4);
-        license4 = (EditText) findViewById(R.id.license4);
-        title5 = (EditText) findViewById(R.id.title5);
-        issuer5 = (EditText) findViewById(R.id.issuer5);
-        license5 = (EditText) findViewById(R.id.license5);
-        title6 = (EditText) findViewById(R.id.title6);
-        issuer6 = (EditText) findViewById(R.id.issuer6);
-        license6 = (EditText) findViewById(R.id.license6);
-        title7 = (EditText) findViewById(R.id.title7);
-        issuer7 = (EditText) findViewById(R.id.issuer7);
-        license7 = (EditText) findViewById(R.id.license7);
-        title8 = (EditText) findViewById(R.id.title8);
-        issuer8 = (EditText) findViewById(R.id.issuer8);
-        license8 = (EditText) findViewById(R.id.license8);
-        title9 = (EditText) findViewById(R.id.title9);
-        issuer9 = (EditText) findViewById(R.id.issuer9);
-        license9 = (EditText) findViewById(R.id.license9);
-        title10 = (EditText) findViewById(R.id.title10);
-        issuer10 = (EditText) findViewById(R.id.issuer10);
-        license10 = (EditText) findViewById(R.id.license10);
+        title1 = (TextInputEditText) findViewById(R.id.title1);
+        issuer1 = (TextInputEditText) findViewById(R.id.issuer1);
+        license1 = (TextInputEditText) findViewById(R.id.license1);
+        title2 = (TextInputEditText) findViewById(R.id.title2);
+        issuer2 = (TextInputEditText) findViewById(R.id.issuer2);
+        license2 = (TextInputEditText) findViewById(R.id.license2);
+        title3 = (TextInputEditText) findViewById(R.id.title3);
+        issuer3 = (TextInputEditText) findViewById(R.id.issuer3);
+        license3 = (TextInputEditText) findViewById(R.id.license3);
+        title4 = (TextInputEditText) findViewById(R.id.title4);
+        issuer4 = (TextInputEditText) findViewById(R.id.issuer4);
+        license4 = (TextInputEditText) findViewById(R.id.license4);
+        title5 = (TextInputEditText) findViewById(R.id.title5);
+        issuer5 = (TextInputEditText) findViewById(R.id.issuer5);
+        license5 = (TextInputEditText) findViewById(R.id.license5);
+        title6 = (TextInputEditText) findViewById(R.id.title6);
+        issuer6 = (TextInputEditText) findViewById(R.id.issuer6);
+        license6 = (TextInputEditText) findViewById(R.id.license6);
+        title7 = (TextInputEditText) findViewById(R.id.title7);
+        issuer7 = (TextInputEditText) findViewById(R.id.issuer7);
+        license7 = (TextInputEditText) findViewById(R.id.license7);
+        title8 = (TextInputEditText) findViewById(R.id.title8);
+        issuer8 = (TextInputEditText) findViewById(R.id.issuer8);
+        license8 = (TextInputEditText) findViewById(R.id.license8);
+        title9 = (TextInputEditText) findViewById(R.id.title9);
+        issuer9 = (TextInputEditText) findViewById(R.id.issuer9);
+        license9 = (TextInputEditText) findViewById(R.id.license9);
+        title10 = (TextInputEditText) findViewById(R.id.title10);
+        issuer10 = (TextInputEditText) findViewById(R.id.issuer10);
+        license10 = (TextInputEditText) findViewById(R.id.license10);
+
+        startdate1 = (TextInputEditText) findViewById(R.id.startdate1);
+        enddate1 = (TextInputEditText) findViewById(R.id.enddate1);
+        startdate2 = (TextInputEditText) findViewById(R.id.startdate2);
+        enddate2 = (TextInputEditText) findViewById(R.id.enddate2);
+        startdate3 = (TextInputEditText) findViewById(R.id.startdate3);
+        enddate3 = (TextInputEditText) findViewById(R.id.enddate3);
+        startdate4 = (TextInputEditText) findViewById(R.id.startdate4);
+        enddate4 = (TextInputEditText) findViewById(R.id.enddate4);
+        startdate5 = (TextInputEditText) findViewById(R.id.startdate5);
+        enddate5 = (TextInputEditText) findViewById(R.id.enddate5);
+        startdate6 = (TextInputEditText) findViewById(R.id.startdate6);
+        enddate6 = (TextInputEditText) findViewById(R.id.enddate6);
+        startdate7 = (TextInputEditText) findViewById(R.id.startdate7);
+        enddate7 = (TextInputEditText) findViewById(R.id.enddate7);
+        startdate8 = (TextInputEditText) findViewById(R.id.startdate8);
+        enddate8 = (TextInputEditText) findViewById(R.id.enddate8);
+        startdate9 = (TextInputEditText) findViewById(R.id.startdate9);
+        enddate9 = (TextInputEditText) findViewById(R.id.enddate9);
+        startdate10 = (TextInputEditText) findViewById(R.id.startdate10);
+        enddate10 = (TextInputEditText) findViewById(R.id.enddate10);
+
+        expire1 = (TextView) findViewById(R.id.expire1);
+        expire2 = (TextView) findViewById(R.id.expire2);
+        expire3 = (TextView) findViewById(R.id.expire3);
+        expire4 = (TextView) findViewById(R.id.expire4);
+        expire5 = (TextView) findViewById(R.id.expire5);
+        expire6 = (TextView) findViewById(R.id.expire6);
+        expire7 = (TextView) findViewById(R.id.expire7);
+        expire8 = (TextView) findViewById(R.id.expire8);
+        expire9 = (TextView) findViewById(R.id.expire9);
+        expire10 = (TextView) findViewById(R.id.expire10);
+        aadt = (TextView) findViewById(R.id.addmorecertitxt);
+
+
+        titleinput1 = (TextInputLayout) findViewById(R.id.titleinput1);
+        issuerinput1 = (TextInputLayout) findViewById(R.id.issuerinput1);
+        licenseinput1 = (TextInputLayout) findViewById(R.id.licenseinput1);
+        certistartdate1 = (TextInputLayout) findViewById(R.id.certistartdate1);
+        certienddate1 = (TextInputLayout) findViewById(R.id.certienddate1);
+
+        titleinput2 = (TextInputLayout) findViewById(R.id.titleinput2);
+        issuerinput2 = (TextInputLayout) findViewById(R.id.issuerinput2);
+        licenseinput2 = (TextInputLayout) findViewById(R.id.licenseinput2);
+        certistartdate2 = (TextInputLayout) findViewById(R.id.certistartdate2);
+        certienddate2 = (TextInputLayout) findViewById(R.id.certienddate2);
+
+        titleinput3 = (TextInputLayout) findViewById(R.id.titleinput3);
+        issuerinput3 = (TextInputLayout) findViewById(R.id.issuerinput3);
+        licenseinput3 = (TextInputLayout) findViewById(R.id.licenseinput3);
+        certistartdate3 = (TextInputLayout) findViewById(R.id.certistartdate3);
+        certienddate3 = (TextInputLayout) findViewById(R.id.certienddate3);
+
+        titleinput4 = (TextInputLayout) findViewById(R.id.titleinput4);
+        issuerinput4 = (TextInputLayout) findViewById(R.id.issuerinput4);
+        licenseinput4 = (TextInputLayout) findViewById(R.id.licenseinput4);
+        certistartdate4 = (TextInputLayout) findViewById(R.id.certistartdate4);
+        certienddate4 = (TextInputLayout) findViewById(R.id.certienddate4);
+
+        titleinput5 = (TextInputLayout) findViewById(R.id.titleinput5);
+        issuerinput5 = (TextInputLayout) findViewById(R.id.issuerinput5);
+        licenseinput5 = (TextInputLayout) findViewById(R.id.licenseinput5);
+        certistartdate5 = (TextInputLayout) findViewById(R.id.certistartdate5);
+        certienddate5 = (TextInputLayout) findViewById(R.id.certienddate5);
+
+        titleinput6 = (TextInputLayout) findViewById(R.id.titleinput6);
+        issuerinput6 = (TextInputLayout) findViewById(R.id.issuerinput6);
+        licenseinput6 = (TextInputLayout) findViewById(R.id.licenseinput6);
+        certistartdate6 = (TextInputLayout) findViewById(R.id.certistartdate6);
+        certienddate6 = (TextInputLayout) findViewById(R.id.certienddate6);
+
+        titleinput7 = (TextInputLayout) findViewById(R.id.titleinput7);
+        issuerinput7 = (TextInputLayout) findViewById(R.id.issuerinput7);
+        licenseinput7 = (TextInputLayout) findViewById(R.id.licenseinput7);
+        certistartdate7 = (TextInputLayout) findViewById(R.id.certistartdate7);
+        certienddate7 = (TextInputLayout) findViewById(R.id.certienddate7);
+
+        titleinput8 = (TextInputLayout) findViewById(R.id.titleinput8);
+        issuerinput8 = (TextInputLayout) findViewById(R.id.issuerinput8);
+        licenseinput8 = (TextInputLayout) findViewById(R.id.licenseinput8);
+        certistartdate8 = (TextInputLayout) findViewById(R.id.certistartdate8);
+        certienddate8 = (TextInputLayout) findViewById(R.id.certienddate8);
+
+        titleinput9 = (TextInputLayout) findViewById(R.id.titleinput9);
+        issuerinput9 = (TextInputLayout) findViewById(R.id.issuerinput9);
+        licenseinput9 = (TextInputLayout) findViewById(R.id.licenseinput9);
+        certistartdate9 = (TextInputLayout) findViewById(R.id.certistartdate9);
+        certienddate9 = (TextInputLayout) findViewById(R.id.certienddate9);
+
+        titleinput10 = (TextInputLayout) findViewById(R.id.titleinput10);
+        issuerinput10 = (TextInputLayout) findViewById(R.id.issuerinput10);
+        licenseinput10 = (TextInputLayout) findViewById(R.id.licenseinput10);
+        certistartdate10 = (TextInputLayout) findViewById(R.id.certistartdate10);
+        certienddate10 = (TextInputLayout) findViewById(R.id.certienddate10);
+
+        aadt.setTypeface(MyConstants.getBold(this));
+        title1.setTypeface(MyConstants.getBold(this));
+        issuer1.setTypeface(MyConstants.getBold(this));
+        license1.setTypeface(MyConstants.getBold(this));
+        title2.setTypeface(MyConstants.getBold(this));
+        issuer2.setTypeface(MyConstants.getBold(this));
+        license2.setTypeface(MyConstants.getBold(this));
+        title3.setTypeface(MyConstants.getBold(this));
+        issuer3.setTypeface(MyConstants.getBold(this));
+        license3.setTypeface(MyConstants.getBold(this));
+        title4.setTypeface(MyConstants.getBold(this));
+        issuer4.setTypeface(MyConstants.getBold(this));
+        license4.setTypeface(MyConstants.getBold(this));
+        title5.setTypeface(MyConstants.getBold(this));
+        issuer5.setTypeface(MyConstants.getBold(this));
+        license5.setTypeface(MyConstants.getBold(this));
+        title6.setTypeface(MyConstants.getBold(this));
+        issuer6.setTypeface(MyConstants.getBold(this));
+        license6.setTypeface(MyConstants.getBold(this));
+        title7.setTypeface(MyConstants.getBold(this));
+        issuer7.setTypeface(MyConstants.getBold(this));
+        license7.setTypeface(MyConstants.getBold(this));
+        title8.setTypeface(MyConstants.getBold(this));
+        issuer8.setTypeface(MyConstants.getBold(this));
+        license8.setTypeface(MyConstants.getBold(this));
+        title9.setTypeface(MyConstants.getBold(this));
+        issuer9.setTypeface(MyConstants.getBold(this));
+        license9.setTypeface(MyConstants.getBold(this));
+        title10.setTypeface(MyConstants.getBold(this));
+        issuer10.setTypeface(MyConstants.getBold(this));
+        license10.setTypeface(MyConstants.getBold(this));
+        startdate1.setTypeface(MyConstants.getBold(this));
+
+        enddate1.setTypeface(MyConstants.getBold(this));
+        startdate2.setTypeface(MyConstants.getBold(this));
+        enddate2.setTypeface(MyConstants.getBold(this));
+        startdate3.setTypeface(MyConstants.getBold(this));
+        enddate3.setTypeface(MyConstants.getBold(this));
+        startdate4.setTypeface(MyConstants.getBold(this));
+        enddate4.setTypeface(MyConstants.getBold(this));
+        startdate5.setTypeface(MyConstants.getBold(this));
+        enddate5.setTypeface(MyConstants.getBold(this));
+        startdate6.setTypeface(MyConstants.getBold(this));
+        enddate6.setTypeface(MyConstants.getBold(this));
+        startdate7.setTypeface(MyConstants.getBold(this));
+        enddate7.setTypeface(MyConstants.getBold(this));
+        startdate8.setTypeface(MyConstants.getBold(this));
+        enddate8.setTypeface(MyConstants.getBold(this));
+        startdate9.setTypeface(MyConstants.getBold(this));
+        enddate9.setTypeface(MyConstants.getBold(this));
+        startdate10.setTypeface(MyConstants.getBold(this));
+        enddate10.setTypeface(MyConstants.getBold(this));
+
+        expire1.setTypeface(MyConstants.getLight(this));
+        expire2.setTypeface(MyConstants.getLight(this));
+        expire3.setTypeface(MyConstants.getLight(this));
+        expire4.setTypeface(MyConstants.getLight(this));
+        expire5.setTypeface(MyConstants.getLight(this));
+        expire6.setTypeface(MyConstants.getLight(this));
+        expire7.setTypeface(MyConstants.getLight(this));
+        expire8.setTypeface(MyConstants.getLight(this));
+        expire9.setTypeface(MyConstants.getLight(this));
+        expire10.setTypeface(MyConstants.getLight(this));
+
+
+        titleinput1.setTypeface(MyConstants.getLight(this));
+        issuerinput1.setTypeface(MyConstants.getLight(this));
+        licenseinput1.setTypeface(MyConstants.getLight(this));
+        titleinput2.setTypeface(MyConstants.getLight(this));
+        issuerinput2.setTypeface(MyConstants.getLight(this));
+        licenseinput2.setTypeface(MyConstants.getLight(this));
+        titleinput3.setTypeface(MyConstants.getLight(this));
+        issuerinput3.setTypeface(MyConstants.getLight(this));
+        licenseinput3.setTypeface(MyConstants.getLight(this));
+        titleinput4.setTypeface(MyConstants.getLight(this));
+        issuerinput4.setTypeface(MyConstants.getLight(this));
+        licenseinput4.setTypeface(MyConstants.getLight(this));
+        titleinput5.setTypeface(MyConstants.getLight(this));
+        issuerinput5.setTypeface(MyConstants.getLight(this));
+        licenseinput5.setTypeface(MyConstants.getLight(this));
+        titleinput6.setTypeface(MyConstants.getLight(this));
+        issuerinput6.setTypeface(MyConstants.getLight(this));
+        licenseinput6.setTypeface(MyConstants.getLight(this));
+        titleinput7.setTypeface(MyConstants.getLight(this));
+        issuerinput7.setTypeface(MyConstants.getLight(this));
+        licenseinput7.setTypeface(MyConstants.getLight(this));
+        titleinput8.setTypeface(MyConstants.getLight(this));
+        issuerinput8.setTypeface(MyConstants.getLight(this));
+        licenseinput8.setTypeface(MyConstants.getLight(this));
+        titleinput9.setTypeface(MyConstants.getLight(this));
+        issuerinput9.setTypeface(MyConstants.getLight(this));
+        licenseinput9.setTypeface(MyConstants.getLight(this));
+        titleinput10.setTypeface(MyConstants.getLight(this));
+        issuerinput10.setTypeface(MyConstants.getLight(this));
+        licenseinput10.setTypeface(MyConstants.getLight(this));
+        certistartdate1.setTypeface(MyConstants.getLight(this));
+        certienddate1.setTypeface(MyConstants.getLight(this));
+        certistartdate2.setTypeface(MyConstants.getLight(this));
+        certienddate2.setTypeface(MyConstants.getLight(this));
+        certistartdate3.setTypeface(MyConstants.getLight(this));
+        certienddate3.setTypeface(MyConstants.getLight(this));
+        certistartdate4.setTypeface(MyConstants.getLight(this));
+        certienddate4.setTypeface(MyConstants.getLight(this));
+        certistartdate5.setTypeface(MyConstants.getLight(this));
+        certienddate5.setTypeface(MyConstants.getLight(this));
+        certistartdate6.setTypeface(MyConstants.getLight(this));
+        certienddate6.setTypeface(MyConstants.getLight(this));
+        certistartdate7.setTypeface(MyConstants.getLight(this));
+        certienddate7.setTypeface(MyConstants.getLight(this));
+        certistartdate8.setTypeface(MyConstants.getLight(this));
+        certienddate8.setTypeface(MyConstants.getLight(this));
+        certistartdate9.setTypeface(MyConstants.getLight(this));
+        certienddate9.setTypeface(MyConstants.getLight(this));
+        certistartdate10.setTypeface(MyConstants.getLight(this));
+        certienddate10.setTypeface(MyConstants.getLight(this));
+
 
         title1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -212,7 +424,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                title1.setError(null);
+                titleinput1.setError(null);
             }
 
             @Override
@@ -229,7 +441,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                issuer1.setError(null);
+                issuerinput1.setError(null);
             }
 
             @Override
@@ -246,7 +458,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                license1.setError(null);
+                licenseinput1.setError(null);
             }
 
             @Override
@@ -263,7 +475,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                title2.setError(null);
+                titleinput2.setError(null);
             }
 
             @Override
@@ -280,7 +492,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                issuer2.setError(null);
+                issuerinput2.setError(null);
             }
 
             @Override
@@ -297,7 +509,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                license2.setError(null);
+                licenseinput2.setError(null);
             }
 
             @Override
@@ -314,7 +526,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                title3.setError(null);
+                titleinput3.setError(null);
             }
 
             @Override
@@ -331,7 +543,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                issuer3.setError(null);
+                issuerinput3.setError(null);
             }
 
             @Override
@@ -348,7 +560,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                license3.setError(null);
+                licenseinput3.setError(null);
             }
 
             @Override
@@ -365,7 +577,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                title4.setError(null);
+                titleinput4.setError(null);
             }
 
             @Override
@@ -382,7 +594,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                issuer4.setError(null);
+                issuerinput4.setError(null);
             }
 
             @Override
@@ -399,7 +611,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                license4.setError(null);
+                licenseinput4.setError(null);
             }
 
             @Override
@@ -416,7 +628,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                title5.setError(null);
+                titleinput5.setError(null);
             }
 
             @Override
@@ -433,7 +645,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                issuer5.setError(null);
+                issuerinput5.setError(null);
             }
 
             @Override
@@ -450,7 +662,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                license5.setError(null);
+                licenseinput5.setError(null);
             }
 
             @Override
@@ -467,7 +679,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                title6.setError(null);
+                titleinput6.setError(null);
             }
 
             @Override
@@ -484,7 +696,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                issuer6.setError(null);
+                issuerinput6.setError(null);
             }
 
             @Override
@@ -501,7 +713,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                license6.setError(null);
+                licenseinput6.setError(null);
             }
 
             @Override
@@ -518,7 +730,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                title7.setError(null);
+                titleinput7.setError(null);
             }
 
             @Override
@@ -535,7 +747,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                issuer7.setError(null);
+                issuerinput7.setError(null);
             }
 
             @Override
@@ -552,7 +764,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                license7.setError(null);
+                licenseinput7.setError(null);
             }
 
             @Override
@@ -569,7 +781,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                title8.setError(null);
+                titleinput8.setError(null);
             }
 
             @Override
@@ -586,7 +798,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                issuer8.setError(null);
+                issuerinput8.setError(null);
             }
 
             @Override
@@ -603,7 +815,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                license8.setError(null);
+                licenseinput8.setError(null);
             }
 
             @Override
@@ -620,7 +832,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                title9.setError(null);
+                titleinput9.setError(null);
             }
 
             @Override
@@ -637,7 +849,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                issuer9.setError(null);
+                issuerinput9.setError(null);
             }
 
             @Override
@@ -654,7 +866,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                license9.setError(null);
+                licenseinput9.setError(null);
             }
 
             @Override
@@ -671,7 +883,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                title10.setError(null);
+                titleinput10.setError(null);
             }
 
             @Override
@@ -688,7 +900,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                issuer10.setError(null);
+                issuerinput10.setError(null);
             }
 
             @Override
@@ -705,7 +917,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                license10.setError(null);
+                licenseinput10.setError(null);
             }
 
             @Override
@@ -731,13 +943,12 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,
                                          boolean isChecked) {
-
                 edittedFlag = 1;
                 if (isChecked) {
-                    enddate1.setVisibility(View.GONE);
+                    certienddate1.setVisibility(View.GONE);
                     enddate1.setText("");
                 } else
-                    enddate1.setVisibility(View.VISIBLE);
+                    certienddate1.setVisibility(View.VISIBLE);
 
             }
         });
@@ -748,9 +959,10 @@ public class MyProfileCertifications extends AppCompatActivity {
                                          boolean isChecked) {
                 edittedFlag = 1;
                 if (isChecked) {
-                    enddate2.setVisibility(View.GONE);
+                    certienddate2.setVisibility(View.GONE);
+                    enddate2.setText("");
                 } else
-                    enddate2.setVisibility(View.VISIBLE);
+                    certienddate2.setVisibility(View.VISIBLE);
 
             }
         });
@@ -761,9 +973,10 @@ public class MyProfileCertifications extends AppCompatActivity {
                                          boolean isChecked) {
                 edittedFlag = 1;
                 if (isChecked) {
-                    enddate3.setVisibility(View.GONE);
+                    certienddate3.setVisibility(View.GONE);
+                    enddate3.setText("");
                 } else
-                    enddate3.setVisibility(View.VISIBLE);
+                    certienddate3.setVisibility(View.VISIBLE);
 
             }
         });
@@ -774,9 +987,10 @@ public class MyProfileCertifications extends AppCompatActivity {
                                          boolean isChecked) {
                 edittedFlag = 1;
                 if (isChecked) {
-                    enddate4.setVisibility(View.GONE);
+                    certienddate4.setVisibility(View.GONE);
+                    enddate4.setText("");
                 } else
-                    enddate4.setVisibility(View.VISIBLE);
+                    certienddate4.setVisibility(View.VISIBLE);
 
             }
         });
@@ -787,9 +1001,10 @@ public class MyProfileCertifications extends AppCompatActivity {
                                          boolean isChecked) {
                 edittedFlag = 1;
                 if (isChecked) {
-                    enddate5.setVisibility(View.GONE);
+                    certienddate5.setVisibility(View.GONE);
+                    enddate5.setText("");
                 } else
-                    enddate5.setVisibility(View.VISIBLE);
+                    certienddate5.setVisibility(View.VISIBLE);
 
             }
         });
@@ -800,9 +1015,10 @@ public class MyProfileCertifications extends AppCompatActivity {
                                          boolean isChecked) {
                 edittedFlag = 1;
                 if (isChecked) {
-                    enddate6.setVisibility(View.GONE);
+                    certienddate6.setVisibility(View.GONE);
+                    enddate6.setText("");
                 } else
-                    enddate6.setVisibility(View.VISIBLE);
+                    certienddate6.setVisibility(View.VISIBLE);
 
             }
         });
@@ -813,9 +1029,10 @@ public class MyProfileCertifications extends AppCompatActivity {
                                          boolean isChecked) {
                 edittedFlag = 1;
                 if (isChecked) {
-                    enddate7.setVisibility(View.GONE);
+                    certienddate7.setVisibility(View.GONE);
+                    enddate7.setText("");
                 } else
-                    enddate7.setVisibility(View.VISIBLE);
+                    certienddate7.setVisibility(View.VISIBLE);
 
             }
         });
@@ -826,9 +1043,10 @@ public class MyProfileCertifications extends AppCompatActivity {
                                          boolean isChecked) {
                 edittedFlag = 1;
                 if (isChecked) {
-                    enddate8.setVisibility(View.GONE);
+                    certienddate8.setVisibility(View.GONE);
+                    enddate8.setText("");
                 } else
-                    enddate8.setVisibility(View.VISIBLE);
+                    certienddate8.setVisibility(View.VISIBLE);
 
             }
         });
@@ -839,9 +1057,10 @@ public class MyProfileCertifications extends AppCompatActivity {
                                          boolean isChecked) {
                 edittedFlag = 1;
                 if (isChecked) {
-                    enddate9.setVisibility(View.GONE);
+                    certienddate9.setVisibility(View.GONE);
+                    enddate9.setText("");
                 } else
-                    enddate9.setVisibility(View.VISIBLE);
+                    certienddate9.setVisibility(View.VISIBLE);
 
             }
         });
@@ -852,34 +1071,15 @@ public class MyProfileCertifications extends AppCompatActivity {
                                          boolean isChecked) {
                 edittedFlag = 1;
                 if (isChecked) {
-                    enddate10.setVisibility(View.GONE);
+                    certienddate10.setVisibility(View.GONE);
+                    enddate10.setText("");
                 } else
-                    enddate10.setVisibility(View.VISIBLE);
+                    certienddate10.setVisibility(View.VISIBLE);
 
             }
         });
 
 
-        startdate1 = (EditText) findViewById(R.id.startdate1);
-        enddate1 = (EditText) findViewById(R.id.enddate1);
-        startdate2 = (EditText) findViewById(R.id.startdate2);
-        enddate2 = (EditText) findViewById(R.id.enddate2);
-        startdate3 = (EditText) findViewById(R.id.startdate3);
-        enddate3 = (EditText) findViewById(R.id.enddate3);
-        startdate4 = (EditText) findViewById(R.id.startdate4);
-        enddate4 = (EditText) findViewById(R.id.enddate4);
-        startdate5 = (EditText) findViewById(R.id.startdate5);
-        enddate5 = (EditText) findViewById(R.id.enddate5);
-        startdate6 = (EditText) findViewById(R.id.startdate6);
-        enddate6 = (EditText) findViewById(R.id.enddate6);
-        startdate7 = (EditText) findViewById(R.id.startdate7);
-        enddate7 = (EditText) findViewById(R.id.enddate7);
-        startdate8 = (EditText) findViewById(R.id.startdate8);
-        enddate8 = (EditText) findViewById(R.id.enddate8);
-        startdate9 = (EditText) findViewById(R.id.startdate9);
-        enddate9 = (EditText) findViewById(R.id.enddate9);
-        startdate10 = (EditText) findViewById(R.id.startdate10);
-        enddate10 = (EditText) findViewById(R.id.enddate10);
 
         startdate1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -890,7 +1090,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                startdate1.setError(null);
+                certistartdate1.setError(null);
             }
 
             @Override
@@ -907,7 +1107,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                enddate1.setError(null);
+                certienddate1.setError(null);
             }
 
             @Override
@@ -924,7 +1124,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                startdate2.setError(null);
+                certistartdate2.setError(null);
             }
 
             @Override
@@ -941,7 +1141,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                enddate2.setError(null);
+                certienddate2.setError(null);
             }
 
             @Override
@@ -958,7 +1158,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                startdate3.setError(null);
+                certistartdate3.setError(null);
             }
 
             @Override
@@ -975,7 +1175,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                enddate3.setError(null);
+                certienddate3.setError(null);
             }
 
             @Override
@@ -992,7 +1192,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                startdate4.setError(null);
+                certistartdate4.setError(null);
             }
 
             @Override
@@ -1009,7 +1209,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                enddate4.setError(null);
+                certienddate4.setError(null);
             }
 
             @Override
@@ -1026,7 +1226,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                startdate5.setError(null);
+                certistartdate5.setError(null);
             }
 
             @Override
@@ -1043,7 +1243,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                enddate5.setError(null);
+                certienddate5.setError(null);
             }
 
             @Override
@@ -1060,7 +1260,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                startdate6.setError(null);
+                certistartdate6.setError(null);
             }
 
             @Override
@@ -1077,7 +1277,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                enddate6.setError(null);
+                certienddate6.setError(null);
             }
 
             @Override
@@ -1094,7 +1294,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                startdate7.setError(null);
+                certistartdate7.setError(null);
             }
 
             @Override
@@ -1111,7 +1311,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                enddate7.setError(null);
+                certienddate7.setError(null);
             }
 
             @Override
@@ -1128,7 +1328,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                startdate8.setError(null);
+                certistartdate8.setError(null);
             }
 
             @Override
@@ -1145,7 +1345,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                enddate8.setError(null);
+                certienddate8.setError(null);
             }
 
             @Override
@@ -1162,7 +1362,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                startdate9.setError(null);
+                certistartdate9.setError(null);
             }
 
             @Override
@@ -1179,7 +1379,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                enddate9.setError(null);
+                certienddate9.setError(null);
             }
 
             @Override
@@ -1196,7 +1396,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                startdate10.setError(null);
+                certistartdate10.setError(null);
             }
 
             @Override
@@ -1213,7 +1413,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-                enddate10.setError(null);
+                certienddate10.setError(null);
             }
 
             @Override
@@ -1230,7 +1430,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                 // 1- id   2- isFromDateSelected 3-fromYear   4- month in str
 
                 String toDate = enddate1.getText().toString();
-                showDateDialog(startdate1, false, 0, "", toDate);
+                showDateDialog(startdate1,certistartdate1, false, 0, "", toDate);
 
 
             }
@@ -1254,7 +1454,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate1, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate1,certienddate1, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1263,7 +1463,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             public void onClick(View view) {
 
                 String toDate = enddate2.getText().toString();
-                showDateDialog(startdate2, false, 0, "", toDate);
+                showDateDialog(startdate2,certistartdate2, false, 0, "", toDate);
             }
         });
         enddate2.setOnClickListener(new View.OnClickListener() {
@@ -1285,7 +1485,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate2, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate2,certienddate2, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1293,9 +1493,8 @@ public class MyProfileCertifications extends AppCompatActivity {
         startdate3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String toDate = enddate3.getText().toString();
-                showDateDialog(startdate3, false, 0, "", toDate);
+                showDateDialog(startdate3,certistartdate3, false, 0, "", toDate);
             }
         });
         enddate3.setOnClickListener(new View.OnClickListener() {
@@ -1317,7 +1516,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate3, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate3,certienddate3, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1327,7 +1526,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             public void onClick(View view) {
 
                 String toDate = enddate4.getText().toString();
-                showDateDialog(startdate4, false, 0, "", toDate);
+                showDateDialog(startdate4,certistartdate4, false, 0, "", toDate);
 
             }
         });
@@ -1350,7 +1549,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate4, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate4,certienddate4, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1360,7 +1559,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             public void onClick(View view) {
 
                 String toDate = enddate5.getText().toString();
-                showDateDialog(startdate5, false, 0, "", toDate);
+                showDateDialog(startdate5,certistartdate5, false, 0, "", toDate);
             }
         });
         enddate5.setOnClickListener(new View.OnClickListener() {
@@ -1382,7 +1581,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate5, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate5,certienddate5, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1392,7 +1591,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             public void onClick(View view) {
 
                 String toDate = enddate6.getText().toString();
-                showDateDialog(startdate6, false, 0, "", toDate);
+                showDateDialog(startdate6,certistartdate6, false, 0, "", toDate);
 
             }
         });
@@ -1415,7 +1614,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate6, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate6,certienddate6, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1425,7 +1624,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             public void onClick(View view) {
 
                 String toDate = enddate7.getText().toString();
-                showDateDialog(startdate7, false, 0, "", toDate);
+                showDateDialog(startdate7,certistartdate7, false, 0, "", toDate);
 
             }
         });
@@ -1448,7 +1647,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate7, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate7,certienddate7, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1458,7 +1657,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             public void onClick(View view) {
 
                 String toDate = enddate8.getText().toString();
-                showDateDialog(startdate8, false, 0, "", toDate);
+                showDateDialog(startdate8,certistartdate8, false, 0, "", toDate);
 
             }
         });
@@ -1481,7 +1680,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate8, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate8,certienddate8, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1491,7 +1690,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             public void onClick(View view) {
 
                 String toDate = enddate9.getText().toString();
-                showDateDialog(startdate9, false, 0, "", toDate);
+                showDateDialog(startdate9,certistartdate9, false, 0, "", toDate);
             }
         });
         enddate9.setOnClickListener(new View.OnClickListener() {
@@ -1513,7 +1712,7 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate9, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate9,certienddate9, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1522,7 +1721,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String toDate = enddate10.getText().toString();
-                showDateDialog(startdate10, false, 0, "", toDate);
+                showDateDialog(startdate10,certistartdate10, false, 0, "", toDate);
             }
         });
         enddate10.setOnClickListener(new View.OnClickListener() {
@@ -1544,26 +1743,25 @@ public class MyProfileCertifications extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(enddate10, isFromDateSelected, fromYear, fromMonth, "");
+                showDateDialog(enddate10,certienddate10, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
 
-
         TextView certitxt = (TextView) findViewById(R.id.certitxt);
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/arba.ttf");
-        certitxt.setTypeface(custom_font1);
+        certitxt.setTypeface(MyConstants.getBold(this));
 
         addmorecerti = (View) findViewById(R.id.addmorecerti);
         addmorecerti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                editcertfi = 0;
+
+
                 if (certicount == 0) {
-                    if(title1.getText().toString()!=null && issuer1.getText().toString()!=null && license1.getText().toString()!=null && startdate1.getText().toString()!=null && enddate1.getText().toString()!=null)
-                    {
-                        if(!title1.getText().toString().equals("") && !issuer1.getText().toString().equals("") && !license1.getText().toString().equals("") && !startdate1.getText().toString().equals("") && !enddate1.getText().toString().equals(""))
-                        {
+                    if (title1.getText().toString() != null && issuer1.getText().toString() != null && startdate1.getText().toString() != null && enddate1.getText().toString() != null) {
+                        if (!title1.getText().toString().equals("") && !issuer1.getText().toString().equals("") && !startdate1.getText().toString().equals("") && !enddate1.getText().toString().equals("")) {
 
                             View v = (View) findViewById(R.id.certiline1);
                             v.setVisibility(View.VISIBLE);
@@ -1571,20 +1769,15 @@ public class MyProfileCertifications extends AppCompatActivity {
                             RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.certirl2);
                             relativeLayout1.setVisibility(View.VISIBLE);
                             certicount++;
-                        }
-                        else
-                            Toast.makeText(MyProfileCertifications.this, "Please fill the first Certificate", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                        Toast.makeText(MyProfileCertifications.this, "Please fill the first Certificate", Toast.LENGTH_SHORT).show();
-
+                        } else
+                            Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
+                    } else
+                        Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
 
 
                 } else if (certicount == 1) {
-                    if(title2.getText().toString()!=null && issuer2.getText().toString()!=null && license2.getText().toString()!=null && startdate2.getText().toString()!=null && enddate2.getText().toString()!=null)
-                    {
-                        if(!title2.getText().toString().equals("") && !issuer2.getText().toString().equals("") && !license2.getText().toString().equals("") && !startdate2.getText().toString().equals("") && !enddate2.getText().toString().equals(""))
-                        {
+                    if (title2.getText().toString() != null && issuer2.getText().toString() != null && startdate2.getText().toString() != null && enddate2.getText().toString() != null) {
+                        if (!title2.getText().toString().equals("") && !issuer2.getText().toString().equals("") && !startdate2.getText().toString().equals("") && !enddate2.getText().toString().equals("")) {
 
                             View v = (View) findViewById(R.id.certiline2);
                             v.setVisibility(View.VISIBLE);
@@ -1592,151 +1785,121 @@ public class MyProfileCertifications extends AppCompatActivity {
                             RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.certirl3);
                             relativeLayout1.setVisibility(View.VISIBLE);
                             certicount++;
-                        }
-                        else
-                            Toast.makeText(MyProfileCertifications.this, "Please fill the Second Certificate", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                        Toast.makeText(MyProfileCertifications.this, "Please fill the Second Certificate", Toast.LENGTH_SHORT).show();
+                        } else
+                            Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
+                    } else
+                        Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
 
 
                 } else if (certicount == 2) {
-                    if(title3.getText().toString()!=null && issuer3.getText().toString()!=null && license3.getText().toString()!=null && startdate3.getText().toString()!=null && enddate3.getText().toString()!=null)
-                    {
-                        if(!title3.getText().toString().equals("") && !issuer3.getText().toString().equals("") && !license3.getText().toString().equals("") && !startdate3.getText().toString().equals("") && !enddate3.getText().toString().equals(""))
-                        {
+                    if (title3.getText().toString() != null && issuer3.getText().toString() != null && startdate3.getText().toString() != null && enddate3.getText().toString() != null) {
+                        if (!title3.getText().toString().equals("") && !issuer3.getText().toString().equals("") && !startdate3.getText().toString().equals("") && !enddate3.getText().toString().equals("")) {
                             View v = (View) findViewById(R.id.certiline3);
                             v.setVisibility(View.VISIBLE);
 
                             RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.certirl4);
                             relativeLayout1.setVisibility(View.VISIBLE);
                             certicount++;
-                        }
-                        else
-                            Toast.makeText(MyProfileCertifications.this, "Please fill the Third Certificate", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                        Toast.makeText(MyProfileCertifications.this, "Please fill the Third Certificate", Toast.LENGTH_SHORT).show();
+                        } else
+                            Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
+                    } else
+                        Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
 
 
                 } else if (certicount == 3) {
-                    if(title4.getText().toString()!=null && issuer4.getText().toString()!=null && license4.getText().toString()!=null && startdate4.getText().toString()!=null && enddate4.getText().toString()!=null)
-                    {
-                        if(!title4.getText().toString().equals("") && !issuer4.getText().toString().equals("") && !license4.getText().toString().equals("") && !startdate4.getText().toString().equals("") && !enddate4.getText().toString().equals(""))
-                        {
+                    if (title4.getText().toString() != null && issuer4.getText().toString() != null && startdate4.getText().toString() != null && enddate4.getText().toString() != null) {
+                        if (!title4.getText().toString().equals("") && !issuer4.getText().toString().equals("") && !startdate4.getText().toString().equals("") && !enddate4.getText().toString().equals("")) {
                             View v = (View) findViewById(R.id.certiline4);
                             v.setVisibility(View.VISIBLE);
 
                             RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.certirl5);
                             relativeLayout1.setVisibility(View.VISIBLE);
                             certicount++;
-                        }
-                        else
-                            Toast.makeText(MyProfileCertifications.this, "Please fill the Fourth Certificate", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                        Toast.makeText(MyProfileCertifications.this, "Please fill the Fourth Certificate", Toast.LENGTH_SHORT).show();
+                        } else
+                            Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
+                    } else
+                        Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
 
 
                 } else if (certicount == 4) {
-                    if(title5.getText().toString()!=null && issuer5.getText().toString()!=null && license5.getText().toString()!=null && startdate5.getText().toString()!=null && enddate5.getText().toString()!=null)
-                    {
-                        if(!title5.getText().toString().equals("") && !issuer5.getText().toString().equals("") && !license5.getText().toString().equals("") && !startdate5.getText().toString().equals("") && !enddate5.getText().toString().equals(""))
-                        {
+                    if (title5.getText().toString() != null && issuer5.getText().toString() != null && startdate5.getText().toString() != null && enddate5.getText().toString() != null) {
+                        if (!title5.getText().toString().equals("") && !issuer5.getText().toString().equals("") && !startdate5.getText().toString().equals("") && !enddate5.getText().toString().equals("")) {
                             View v = (View) findViewById(R.id.certiline5);
                             v.setVisibility(View.VISIBLE);
 
                             RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.certirl6);
                             relativeLayout1.setVisibility(View.VISIBLE);
                             certicount++;
-                        }
-                        else
-                            Toast.makeText(MyProfileCertifications.this, "Please fill the Fifth Certificate", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                        Toast.makeText(MyProfileCertifications.this, "Please fill the Fifth Certificate", Toast.LENGTH_SHORT).show();
+                        } else
+                            Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
+                    } else
+                        Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
 
 
                 } else if (certicount == 5) {
 
-                    if(title6.getText().toString()!=null && issuer6.getText().toString()!=null && license6.getText().toString()!=null && startdate6.getText().toString()!=null && enddate6.getText().toString()!=null)
-                    {
-                        if(!title6.getText().toString().equals("") && !issuer6.getText().toString().equals("") && !license6.getText().toString().equals("") && !startdate6.getText().toString().equals("") && !enddate6.getText().toString().equals(""))
-                        {
+                    if (title6.getText().toString() != null && issuer6.getText().toString() != null && startdate6.getText().toString() != null && enddate6.getText().toString() != null) {
+                        if (!title6.getText().toString().equals("") && !issuer6.getText().toString().equals("") && !startdate6.getText().toString().equals("") && !enddate6.getText().toString().equals("")) {
                             View v = (View) findViewById(R.id.certiline6);
                             v.setVisibility(View.VISIBLE);
 
                             RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.certirl7);
                             relativeLayout1.setVisibility(View.VISIBLE);
                             certicount++;
-                        }
-                        else
-                            Toast.makeText(MyProfileCertifications.this, "Please fill the Sixth Certificate", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                        Toast.makeText(MyProfileCertifications.this, "Please fill the Sixth Certificate", Toast.LENGTH_SHORT).show();
+                        } else
+                            Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
+                    } else
+                        Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
 
 
                 } else if (certicount == 6) {
-                    if(title7.getText().toString()!=null && issuer7.getText().toString()!=null && license7.getText().toString()!=null && startdate7.getText().toString()!=null && enddate7.getText().toString()!=null)
-                    {
-                        if(!title7.getText().toString().equals("") && !issuer7.getText().toString().equals("") && !license7.getText().toString().equals("") && !startdate7.getText().toString().equals("") && !enddate7.getText().toString().equals(""))
-                        {
+                    if (title7.getText().toString() != null && issuer7.getText().toString() != null && startdate7.getText().toString() != null && enddate7.getText().toString() != null) {
+                        if (!title7.getText().toString().equals("") && !issuer7.getText().toString().equals("") && !startdate7.getText().toString().equals("") && !enddate7.getText().toString().equals("")) {
                             View v = (View) findViewById(R.id.certiline7);
                             v.setVisibility(View.VISIBLE);
 
                             RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.certirl8);
                             relativeLayout1.setVisibility(View.VISIBLE);
                             certicount++;
-                        }
-                        else
-                            Toast.makeText(MyProfileCertifications.this, "Please fill the Seventh Certificate", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                        Toast.makeText(MyProfileCertifications.this, "Please fill the Seventh Certificate", Toast.LENGTH_SHORT).show();
+                        } else
+                            Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
+                    } else
+                        Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
 
 
                 } else if (certicount == 7) {
-                    if(title8.getText().toString()!=null && issuer8.getText().toString()!=null && license8.getText().toString()!=null && startdate8.getText().toString()!=null && enddate8.getText().toString()!=null)
-                    {
-                        if(!title8.getText().toString().equals("") && !issuer8.getText().toString().equals("") && !license8.getText().toString().equals("") && !startdate8.getText().toString().equals("") && !enddate8.getText().toString().equals(""))
-                        {
+                    if (title8.getText().toString() != null && issuer8.getText().toString() != null && startdate8.getText().toString() != null && enddate8.getText().toString() != null) {
+                        if (!title8.getText().toString().equals("") && !issuer8.getText().toString().equals("") && !startdate8.getText().toString().equals("") && !enddate8.getText().toString().equals("")) {
                             View v = (View) findViewById(R.id.certiline8);
                             v.setVisibility(View.VISIBLE);
 
                             RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.certirl9);
                             relativeLayout1.setVisibility(View.VISIBLE);
                             certicount++;
-                        }
-                        else
-                            Toast.makeText(MyProfileCertifications.this, "Please fill the Eighth Certificate", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                        Toast.makeText(MyProfileCertifications.this, "Please fill the Eighth Certificate", Toast.LENGTH_SHORT).show();
+                        } else
+                            Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
+                    } else
+                        Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
 
 
                 } else if (certicount == 8) {
-                    if(title9.getText().toString()!=null && issuer9.getText().toString()!=null && license9.getText().toString()!=null && startdate9.getText().toString()!=null && enddate9.getText().toString()!=null)
-                    {
-                        if(!title9.getText().toString().equals("") && !issuer9.getText().toString().equals("") && !license9.getText().toString().equals("") && !startdate9.getText().toString().equals("") && !enddate9.getText().toString().equals(""))
-                        {
+                    if (title9.getText().toString() != null && issuer9.getText().toString() != null && startdate9.getText().toString() != null && enddate9.getText().toString() != null) {
+                        if (!title9.getText().toString().equals("") && !issuer9.getText().toString().equals("") && !startdate9.getText().toString().equals("") && !enddate9.getText().toString().equals("")) {
                             View v = (View) findViewById(R.id.certiline9);
                             v.setVisibility(View.VISIBLE);
 
                             RelativeLayout relativeLayout1 = (RelativeLayout) findViewById(R.id.certirl10);
                             relativeLayout1.setVisibility(View.VISIBLE);
                             certicount++;
-                            TextView t = (TextView) findViewById(R.id.addmorecertitxt);
+
                             ImageView i = (ImageView) findViewById(R.id.addmorecertiimg);
                             addmorecerti.setVisibility(View.GONE);
-                            t.setVisibility(View.GONE);
+                            aadt.setVisibility(View.GONE);
                             i.setVisibility(View.GONE);
-                        }
-                        else
-                            Toast.makeText(MyProfileCertifications.this, "Please fill the Nineth Certificate", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                        Toast.makeText(MyProfileCertifications.this, "Please fill the Nineth Certificate", Toast.LENGTH_SHORT).show();
+                        } else
+                            Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
+                    } else
+                        Toast.makeText(MyProfileCertifications.this, "Please fill the empty certificate", Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -1747,24 +1910,6 @@ public class MyProfileCertifications extends AppCompatActivity {
         ScrollView myprofileintroscrollview = (ScrollView) findViewById(R.id.myprofilecertification);
         disableScrollbars(myprofileintroscrollview);
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username = sharedpreferences.getString(Username, null);
-        String role = sharedpreferences.getString("role", null);
-
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
-
-        if (digest1 == null || digest2 == null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
 
         stitle1 = s.getTitle1();
         sissuer1 = s.getIssuer1();
@@ -1782,6 +1927,7 @@ public class MyProfileCertifications extends AppCompatActivity {
         slicense2 = s.getLicense2();
         sstartdate2 = s.getStartdate2certificate();
         senddate2 = s.getEnddate2certificate();
+
         if (s.getWillexpire2certificate() != null)
             willexpire2 = s.getWillexpire2certificate();
 
@@ -1795,6 +1941,9 @@ public class MyProfileCertifications extends AppCompatActivity {
 
         stitle4 = s.getTitle4();
         sissuer4 = s.getIssuer4();
+
+        Log.d("TAG", "doInBackground: sissuer4 - " + sissuer4);
+
         slicense4 = s.getLicense4();
         sstartdate4 = s.getStartdate4certificate();
         senddate4 = s.getEnddate4certificate();
@@ -1856,10 +2005,12 @@ public class MyProfileCertifications extends AppCompatActivity {
                 license1.setText(slicense1);
                 startdate1.setText(sstartdate1);
                 enddate1.setText(senddate1);
+
                 if (willexpire1.equals("no")) {
                     switch1.setChecked(true);
                     enddate1.setVisibility(View.GONE);
                 }
+
             }
         }
         if (stitle2 != null) {
@@ -2039,56 +2190,56 @@ public class MyProfileCertifications extends AppCompatActivity {
     }
 
     void validateandSave() {
-        title1.setError(null);
-        issuer1.setError(null);
-        license1.setError(null);
-        startdate1.setError(null);
-        enddate1.setError(null);
-        title2.setError(null);
-        issuer2.setError(null);
-        license2.setError(null);
-        startdate2.setError(null);
-        enddate2.setError(null);
-        title3.setError(null);
-        issuer3.setError(null);
-        license3.setError(null);
-        startdate3.setError(null);
-        enddate3.setError(null);
-        title4.setError(null);
-        issuer4.setError(null);
-        license4.setError(null);
-        startdate4.setError(null);
-        enddate4.setError(null);
-        title5.setError(null);
-        issuer5.setError(null);
-        license5.setError(null);
-        startdate5.setError(null);
-        enddate5.setError(null);
-        title6.setError(null);
-        issuer6.setError(null);
-        license6.setError(null);
-        startdate6.setError(null);
-        enddate6.setError(null);
-        title7.setError(null);
-        issuer7.setError(null);
-        license7.setError(null);
-        startdate7.setError(null);
-        enddate7.setError(null);
-        title8.setError(null);
-        issuer8.setError(null);
-        license8.setError(null);
-        startdate8.setError(null);
-        enddate8.setError(null);
-        title9.setError(null);
-        issuer9.setError(null);
-        license9.setError(null);
-        startdate9.setError(null);
-        enddate9.setError(null);
-        title10.setError(null);
-        issuer10.setError(null);
-        license10.setError(null);
-        startdate10.setError(null);
-        enddate10.setError(null);
+        titleinput1.setError(null);
+        issuerinput1.setError(null);
+        licenseinput1.setError(null);
+        certistartdate1.setError(null);
+        certienddate1.setError(null);
+        titleinput2.setError(null);
+        issuerinput2.setError(null);
+        licenseinput2.setError(null);
+        certistartdate2.setError(null);
+        certienddate2.setError(null);
+        titleinput3.setError(null);
+        issuerinput3.setError(null);
+        licenseinput3.setError(null);
+        certistartdate3.setError(null);
+        certienddate3.setError(null);
+        titleinput4.setError(null);
+        issuerinput4.setError(null);
+        licenseinput4.setError(null);
+        certistartdate4.setError(null);
+        certienddate4.setError(null);
+        titleinput5.setError(null);
+        issuerinput5.setError(null);
+        licenseinput5.setError(null);
+        certistartdate5.setError(null);
+        certienddate5.setError(null);
+        titleinput6.setError(null);
+        issuerinput6.setError(null);
+        licenseinput6.setError(null);
+        certistartdate6.setError(null);
+        certienddate6.setError(null);
+        titleinput7.setError(null);
+        issuerinput7.setError(null);
+        licenseinput7.setError(null);
+        certistartdate7.setError(null);
+        certienddate7.setError(null);
+        titleinput8.setError(null);
+        issuerinput8.setError(null);
+        licenseinput8.setError(null);
+        certistartdate8.setError(null);
+        certienddate8.setError(null);
+        titleinput9.setError(null);
+        issuerinput9.setError(null);
+        licenseinput9.setError(null);
+        certistartdate9.setError(null);
+        certienddate9.setError(null);
+        titleinput10.setError(null);
+        issuerinput10.setError(null);
+        licenseinput10.setError(null);
+        certistartdate10.setError(null);
+        certienddate10.setError(null);
 
         stitle1 = title1.getText().toString();
         sissuer1 = issuer1.getText().toString();
@@ -2169,1768 +2320,1674 @@ public class MyProfileCertifications extends AppCompatActivity {
 
         int errorflag = 0;
 
-        if (certicount == 0) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                title1.setError("Invalid Certificate Name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+        if (editcertfi == 1) {
+            savecertifi();
+        } else {
+            if (certicount == 0) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuer1.setError("Invalid Issuer");
+                    titleinput1.setError("Kindly enter valid name");
                 } else {
                     errorflag = 0;
-                    if (sstartdate1.length() < 1) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        startdate1.setError("Invalid Date");
+                        issuerinput1.setError("Kindly enter valid name");
                     } else {
                         errorflag = 0;
-                        if (willexpire1.equals("yes")) {
-                            if (senddate1.length() < 1) {
-                                errorflag = 1;
-                                enddate1.setError("Invalid Date");
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
+                            errorflag = 0;
+                            if (willexpire1.equals("yes")) {
+                                if (senddate1.length() < 4) {
+                                    errorflag = 1;
+                                    certienddate1.setError("Kindly select valid date");
+                                }
                             }
+
                         }
+
 
                     }
-
-
                 }
-            }
-        } else if (certicount == 1) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                title1.setError("Invalid Certificate Name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            } else if (certicount == 1) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuer1.setError("Invalid Issuer");
+                    titleinput1.setError("Kindly enter valid name");
                 } else {
                     errorflag = 0;
-                    if (sstartdate1.length() < 1) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        startdate1.setError("Invalid Date");
+                        issuerinput1.setError("Kindly enter valid name");
                     } else {
-                        if (willexpire1.equals("yes")) {
-                            errorflag = 0;
-                            if (senddate1.length() < 1) {
-                                errorflag = 1;
-                                enddate1.setError("Invalid Date");
-                            }
-                        }
-
-
-                        {
-                            errorflag = 0;
-                            if (stitle2.length() < 3) {
-                                errorflag = 1;
-                                title2.setError("Invalid Certificate Name");
-                            } else {
+                        errorflag = 0;
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
+                            if (willexpire1.equals("yes")) {
                                 errorflag = 0;
-                                if (sissuer2.length() < 3) {
+                                if (senddate1.length() < 4) {
                                     errorflag = 1;
-                                    issuer2.setError("Invalid Issuer");
-                                } else {
-
-                                    errorflag = 0;
-                                    if (sstartdate2.length() < 2) {
-                                        errorflag = 1;
-                                        startdate2.setError("Invalid Date");
-                                    } else {
-                                        errorflag = 0;
-                                        if (willexpire2.equals("yes")) {
-                                            if (senddate2.length() < 2) {
-                                                errorflag = 1;
-                                                enddate2.setError("Invalid Date");
-                                            }
-                                        }
-
-                                    }
-
-
+                                    certienddate1.setError("Kindly select valid date");
                                 }
                             }
 
 
-                        }
-
-                    }
-                }
-            }
-        }
-        if (certicount == 2) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                title1.setError("Invalid Certificate Name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
-                    errorflag = 1;
-                    issuer1.setError("Invalid Issuer");
-                } else {
-
-                    errorflag = 0;
-                    if (sstartdate1.length() < 1) {
-                        errorflag = 1;
-                        startdate1.setError("Invalid Date");
-                    } else {
-                        errorflag = 0;
-                        if (willexpire1.equals("yes")) {
-                            if (senddate1.length() < 1) {
-                                errorflag = 1;
-                                enddate1.setError("Invalid Date");
-                            }
-                        }
-
-                        {
-                            errorflag = 0;
-                            if (stitle2.length() < 3) {
-                                errorflag = 1;
-                                title2.setError("Invalid Certificate Name");
-                            } else {
+                            {
                                 errorflag = 0;
-                                if (sissuer2.length() < 3) {
+                                if (stitle2.length() < 3) {
                                     errorflag = 1;
-                                    issuer2.setError("Invalid Issuer");
+                                    titleinput2.setError("Kindly enter valid name");
                                 } else {
-
                                     errorflag = 0;
-                                    if (sstartdate2.length() < 2) {
+                                    if (sissuer2.length() < 3) {
                                         errorflag = 1;
-                                        startdate2.setError("Invalid Date");
+                                        issuerinput2.setError("Kindly enter valid name");
                                     } else {
                                         errorflag = 0;
-                                        if (willexpire2.equals("yes")) {
-                                            if (senddate2.length() < 2) {
-                                                errorflag = 1;
-                                                enddate2.setError("Invalid Date");
-                                            }
-                                        }
-
-
-                                        {
+                                        if (sstartdate2.length() < 2) {
+                                            errorflag = 1;
+                                            certistartdate2.setError("Kindly select valid date");
+                                        } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 3) {
-                                                errorflag = 1;
-                                                title3.setError("Invalid Certificate Name");
-                                            } else {
-                                                errorflag = 0;
-                                                if (sissuer3.length() < 3) {
+                                            if (willexpire2.equals("yes")) {
+                                                if (senddate2.length() < 4) {
                                                     errorflag = 1;
-                                                    issuer3.setError("Invalid Issuer");
-                                                } else {
-
-                                                    errorflag = 0;
-                                                    if (sstartdate3.length() < 3) {
-                                                        errorflag = 1;
-                                                        startdate3.setError("Invalid Date");
-                                                    } else {
-                                                        errorflag = 0;
-                                                        if (willexpire3.equals("yes")) {
-                                                            if (senddate3.length() < 3) {
-                                                                errorflag = 1;
-                                                                enddate3.setError("Invalid Date");
-                                                            }
-                                                        }
-
-                                                    }
-
+                                                    certienddate2.setError("Kindly select valid date");
                                                 }
                                             }
+
                                         }
+
                                     }
                                 }
 
                             }
 
                         }
-
                     }
                 }
             }
-        }
-        if (certicount == 3) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                title1.setError("Invalid Certificate Name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            if (certicount == 2) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuer1.setError("Invalid Issuer");
+                    titleinput1.setError("Kindly enter valid name");
                 } else {
-
                     errorflag = 0;
-                    if (sstartdate1.length() < 1) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        startdate1.setError("Invalid Date");
+                        issuerinput1.setError("Kindly enter valid name");
                     } else {
+
                         errorflag = 0;
-                        if (willexpire1.equals("yes")) {
-                            if (senddate1.length() < 1) {
-                                errorflag = 1;
-                                enddate1.setError("Invalid Date");
-                            }
-                        }
-
-                        {
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
                             errorflag = 0;
-                            if (stitle2.length() < 3) {
-                                errorflag = 1;
-                                title2.setError("Invalid Certificate Name");
-                            } else {
-                                errorflag = 0;
-                                if (sissuer2.length() < 3) {
+                            if (willexpire1.equals("yes")) {
+                                if (senddate1.length() < 4) {
                                     errorflag = 1;
-                                    issuer2.setError("Invalid Issuer");
+                                    certienddate1.setError("Kindly select valid date");
+                                }
+                            }
+
+                            {
+                                errorflag = 0;
+                                if (stitle2.length() < 3) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid name");
                                 } else {
-
                                     errorflag = 0;
-                                    if (sstartdate2.length() < 2) {
+                                    if (sissuer2.length() < 3) {
                                         errorflag = 1;
-                                        startdate2.setError("Invalid Date");
+                                        issuerinput2.setError("Kindly enter valid name");
                                     } else {
-                                        errorflag = 0;
-                                        if (willexpire2.equals("yes")) {
-                                            if (senddate2.length() < 2) {
-                                                errorflag = 1;
-                                                enddate2.setError("Invalid Date");
-                                            }
-                                        }
 
-                                        {
+                                        errorflag = 0;
+                                        if (sstartdate2.length() < 2) {
+                                            errorflag = 1;
+                                            certistartdate2.setError("Kindly select valid date");
+                                        } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 3) {
-                                                errorflag = 1;
-                                                title3.setError("Invalid Certificate Name");
-                                            } else {
-                                                errorflag = 0;
-                                                if (sissuer3.length() < 3) {
+                                            if (willexpire2.equals("yes")) {
+                                                if (senddate2.length() < 4) {
                                                     errorflag = 1;
-                                                    issuer3.setError("Invalid Issuer");
+                                                    certienddate2.setError("Kindly select valid date");
+                                                }
+                                            }
+
+
+                                            {
+                                                errorflag = 0;
+                                                if (stitle3.length() < 3) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid name");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sstartdate3.length() < 3) {
+                                                    if (sissuer3.length() < 3) {
                                                         errorflag = 1;
-                                                        startdate3.setError("Invalid Date");
+                                                        issuerinput3.setError("Kindly enter valid name");
                                                     } else {
+
                                                         errorflag = 0;
-                                                        if (willexpire3.equals("yes")) {
-                                                            if (senddate3.length() < 3) {
-                                                                errorflag = 1;
-                                                                enddate3.setError("Invalid Date");
-                                                            }
-                                                        }
-
-                                                        {
+                                                        if (sstartdate3.length() < 3) {
+                                                            errorflag = 1;
+                                                            certistartdate3.setError("Kindly select valid date");
+                                                        } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 3) {
-                                                                errorflag = 1;
-                                                                title4.setError("Invalid Certificate Name");
-                                                            } else {
-                                                                errorflag = 0;
-                                                                if (sissuer4.length() < 3) {
+                                                            if (willexpire3.equals("yes")) {
+                                                                if (senddate3.length() < 4) {
                                                                     errorflag = 1;
-                                                                    issuer4.setError("Invalid Issuer");
-                                                                } else {
-
-                                                                    errorflag = 0;
-                                                                    if (sstartdate4.length() < 3) {
-                                                                        errorflag = 1;
-                                                                        startdate4.setError("Invalid Date");
-                                                                    } else {
-                                                                        errorflag = 0;
-                                                                        if (willexpire4.equals("yes")) {
-                                                                            if (senddate4.length() < 3) {
-                                                                                errorflag = 1;
-                                                                                enddate4.setError("Invalid Date");
-                                                                            }
-                                                                        }
-
-                                                                    }
-
+                                                                    certienddate3.setError("Kindly select valid date");
                                                                 }
-
                                                             }
+
                                                         }
+
                                                     }
-
                                                 }
-
                                             }
-
                                         }
                                     }
+
                                 }
 
                             }
 
                         }
-
                     }
                 }
             }
-        }
-        if (certicount == 4) {
-
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                title1.setError("Invalid Certificate Name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            if (certicount == 3) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuer1.setError("Invalid Issuer");
+                    titleinput1.setError("Kindly enter valid name");
                 } else {
-
                     errorflag = 0;
-                    if (sstartdate1.length() < 1) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        startdate1.setError("Invalid Date");
+                        issuerinput1.setError("Kindly enter valid name");
                     } else {
-                        errorflag = 0;
-                        if (willexpire1.equals("yes")) {
-                            if (senddate1.length() < 1) {
-                                errorflag = 1;
-                                enddate1.setError("Invalid Date");
-                            }
-                        }
 
-                        {
+                        errorflag = 0;
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
                             errorflag = 0;
-                            if (stitle2.length() < 3) {
-                                errorflag = 1;
-                                title2.setError("Invalid Certificate Name");
-                            } else {
-                                errorflag = 0;
-                                if (sissuer2.length() < 3) {
+                            if (willexpire1.equals("yes")) {
+                                if (senddate1.length() < 4) {
                                     errorflag = 1;
-                                    issuer2.setError("Invalid Issuer");
+                                    certienddate1.setError("Kindly select valid date");
+                                }
+                            }
+
+                            {
+                                errorflag = 0;
+                                if (stitle2.length() < 3) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid name");
                                 } else {
                                     errorflag = 0;
-                                    if (sstartdate2.length() < 2) {
+                                    if (sissuer2.length() < 3) {
                                         errorflag = 1;
-                                        startdate2.setError("Invalid Date");
+                                        issuerinput2.setError("Kindly enter valid name");
                                     } else {
-                                        errorflag = 0;
-                                        if (willexpire2.equals("yes")) {
-                                            if (senddate2.length() < 2) {
-                                                errorflag = 1;
-                                                enddate2.setError("Invalid Date");
-                                            }
-                                        }
 
-                                        {
+                                        errorflag = 0;
+                                        if (sstartdate2.length() < 2) {
+                                            errorflag = 1;
+                                            certistartdate2.setError("Kindly select valid date");
+                                        } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 3) {
-                                                errorflag = 1;
-                                                title3.setError("Invalid Certificate Name");
-                                            } else {
-                                                errorflag = 0;
-                                                if (sissuer3.length() < 3) {
+                                            if (willexpire2.equals("yes")) {
+                                                if (senddate2.length() < 4) {
                                                     errorflag = 1;
-                                                    issuer3.setError("Invalid Issuer");
+                                                    certienddate2.setError("Kindly select valid date");
+                                                }
+                                            }
+
+                                            {
+                                                errorflag = 0;
+                                                if (stitle3.length() < 3) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid name");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sstartdate3.length() < 3) {
+                                                    if (sissuer3.length() < 3) {
                                                         errorflag = 1;
-                                                        startdate3.setError("Invalid Date");
+                                                        issuerinput3.setError("Kindly enter valid name");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (willexpire3.equals("yes")) {
-                                                            if (senddate3.length() < 3) {
-                                                                errorflag = 1;
-                                                                enddate3.setError("Invalid Date");
-                                                            }
-                                                        }
-
-                                                        {
+                                                        if (sstartdate3.length() < 3) {
+                                                            errorflag = 1;
+                                                            certistartdate3.setError("Kindly select valid date");
+                                                        } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 3) {
-                                                                errorflag = 1;
-                                                                title4.setError("Invalid Certificate Name");
-                                                            } else {
-                                                                errorflag = 0;
-                                                                if (sissuer4.length() < 3) {
+                                                            if (willexpire3.equals("yes")) {
+                                                                if (senddate3.length() < 4) {
                                                                     errorflag = 1;
-                                                                    issuer4.setError("Invalid Issuer");
+                                                                    certienddate3.setError("Kindly select valid date");
+                                                                }
+                                                            }
+
+                                                            {
+                                                                errorflag = 0;
+                                                                if (stitle4.length() < 3) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid name");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (sstartdate4.length() < 3) {
+                                                                    if (sissuer4.length() < 3) {
                                                                         errorflag = 1;
-                                                                        startdate4.setError("Invalid Date");
+                                                                        issuerinput4.setError("Kindly enter valid name");
                                                                     } else {
+
                                                                         errorflag = 0;
-                                                                        if (willexpire4.equals("yes")) {
-                                                                            if (senddate4.length() < 3) {
-                                                                                errorflag = 1;
-                                                                                enddate4.setError("Invalid Date");
-                                                                            }
-                                                                        }
-
-                                                                        {
+                                                                        if (sstartdate4.length() < 3) {
+                                                                            errorflag = 1;
+                                                                            certistartdate4.setError("Kindly select valid date");
+                                                                        } else {
                                                                             errorflag = 0;
-                                                                            if (stitle5.length() < 3) {
-                                                                                errorflag = 1;
-                                                                                title5.setError("Invalid Certificate Name");
-                                                                            } else {
-                                                                                errorflag = 0;
-                                                                                if (sissuer5.length() < 3) {
+                                                                            if (willexpire4.equals("yes")) {
+                                                                                if (senddate4.length() < 4) {
                                                                                     errorflag = 1;
-                                                                                    issuer5.setError("Invalid Issuer");
-                                                                                } else {
-                                                                                    errorflag = 0;
-                                                                                    if (sstartdate5.length() < 3) {
-                                                                                        errorflag = 1;
-                                                                                        startdate5.setError("Invalid Date");
-                                                                                    } else {
-                                                                                        errorflag = 0;
-                                                                                        if (willexpire5.equals("yes")) {
-                                                                                            if (senddate5.length() < 3) {
-                                                                                                errorflag = 1;
-                                                                                                enddate5.setError("Invalid Date");
-                                                                                            }
-                                                                                        }
-
-                                                                                    }
-
-
+                                                                                    certienddate4.setError("Kindly select valid date");
                                                                                 }
                                                                             }
+
                                                                         }
 
                                                                     }
 
                                                                 }
-
                                                             }
                                                         }
+
                                                     }
 
                                                 }
 
                                             }
-
                                         }
                                     }
+
                                 }
 
                             }
 
                         }
-
                     }
                 }
             }
-        }
-        if (certicount == 5) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                title1.setError("Invalid Certificate Name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            if (certicount == 4) {
+
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuer1.setError("Invalid Issuer");
+                    titleinput1.setError("Kindly enter valid name");
                 } else {
-
                     errorflag = 0;
-                    if (sstartdate1.length() < 1) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        startdate1.setError("Invalid Date");
+                        issuerinput1.setError("Kindly enter valid name");
                     } else {
-                        errorflag = 0;
-                        if (willexpire1.equals("yes")) {
-                            if (senddate1.length() < 1) {
-                                errorflag = 1;
-                                enddate1.setError("Invalid Date");
-                            }
-                        }
 
-                        {
+                        errorflag = 0;
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
                             errorflag = 0;
-                            if (stitle2.length() < 3) {
-                                errorflag = 1;
-                                title2.setError("Invalid Certificate Name");
-                            } else {
-                                errorflag = 0;
-                                if (sissuer2.length() < 3) {
+                            if (willexpire1.equals("yes")) {
+                                if (senddate1.length() < 4) {
                                     errorflag = 1;
-                                    issuer2.setError("Invalid Issuer");
+                                    certienddate1.setError("Kindly select valid date");
+                                }
+                            }
+
+                            {
+                                errorflag = 0;
+                                if (stitle2.length() < 3) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid name");
                                 } else {
                                     errorflag = 0;
-                                    if (sstartdate2.length() < 2) {
+                                    if (sissuer2.length() < 3) {
                                         errorflag = 1;
-                                        startdate2.setError("Invalid Date");
+                                        issuerinput2.setError("Kindly enter valid name");
                                     } else {
                                         errorflag = 0;
-                                        if (willexpire2.equals("yes")) {
-                                            if (senddate2.length() < 2) {
-                                                errorflag = 1;
-                                                enddate2.setError("Invalid Date");
-                                            }
-                                        }
-
-                                        {
+                                        if (sstartdate2.length() < 2) {
+                                            errorflag = 1;
+                                            certistartdate2.setError("Kindly select valid date");
+                                        } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 3) {
-                                                errorflag = 1;
-                                                title3.setError("Invalid Certificate Name");
-                                            } else {
-                                                errorflag = 0;
-                                                if (sissuer3.length() < 3) {
+                                            if (willexpire2.equals("yes")) {
+                                                if (senddate2.length() < 4) {
                                                     errorflag = 1;
-                                                    issuer3.setError("Invalid Issuer");
+                                                    certienddate2.setError("Kindly select valid date");
+                                                }
+                                            }
+
+                                            {
+                                                errorflag = 0;
+                                                if (stitle3.length() < 3) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid name");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sstartdate3.length() < 3) {
+                                                    if (sissuer3.length() < 3) {
                                                         errorflag = 1;
-                                                        startdate3.setError("Invalid Date");
+                                                        issuerinput3.setError("Kindly enter valid name");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (willexpire3.equals("yes")) {
-                                                            if (senddate3.length() < 3) {
-                                                                errorflag = 1;
-                                                                enddate3.setError("Invalid Date");
-                                                            }
-                                                        }
-
-                                                        {
+                                                        if (sstartdate3.length() < 3) {
+                                                            errorflag = 1;
+                                                            certistartdate3.setError("Kindly select valid date");
+                                                        } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 3) {
-                                                                errorflag = 1;
-                                                                title4.setError("Invalid Certificate Name");
-                                                            } else {
-                                                                errorflag = 0;
-                                                                if (sissuer4.length() < 3) {
+                                                            if (willexpire3.equals("yes")) {
+                                                                if (senddate3.length() < 4) {
                                                                     errorflag = 1;
-                                                                    issuer4.setError("Invalid Issuer");
+                                                                    certienddate3.setError("Kindly select valid date");
+                                                                }
+                                                            }
+
+                                                            {
+                                                                errorflag = 0;
+                                                                if (stitle4.length() < 3) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid name");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (sstartdate4.length() < 3) {
+                                                                    if (sissuer4.length() < 3) {
                                                                         errorflag = 1;
-                                                                        startdate4.setError("Invalid Date");
+                                                                        issuerinput4.setError("Kindly enter valid name");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (willexpire4.equals("yes")) {
-                                                                            if (senddate4.length() < 3) {
-                                                                                errorflag = 1;
-                                                                                enddate4.setError("Invalid Date");
-                                                                            }
-                                                                        }
-
-                                                                        {
+                                                                        if (sstartdate4.length() < 3) {
+                                                                            errorflag = 1;
+                                                                            certistartdate4.setError("Kindly select valid date");
+                                                                        } else {
                                                                             errorflag = 0;
-                                                                            if (stitle5.length() < 3) {
-                                                                                errorflag = 1;
-                                                                                title5.setError("Invalid Certificate Name");
-                                                                            } else {
-                                                                                errorflag = 0;
-                                                                                if (sissuer5.length() < 3) {
+                                                                            if (willexpire4.equals("yes")) {
+                                                                                if (senddate4.length() < 4) {
                                                                                     errorflag = 1;
-                                                                                    issuer5.setError("Invalid Issuer");
+                                                                                    certienddate4.setError("Kindly select valid date");
+                                                                                }
+                                                                            }
+
+                                                                            {
+                                                                                errorflag = 0;
+                                                                                if (stitle5.length() < 3) {
+                                                                                    errorflag = 1;
+                                                                                    titleinput5.setError("Kindly enter valid name");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (sstartdate5.length() < 3) {
+                                                                                    if (sissuer5.length() < 3) {
                                                                                         errorflag = 1;
-                                                                                        startdate5.setError("Invalid Date");
+                                                                                        issuerinput5.setError("Kindly enter valid name");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (willexpire5.equals("yes")) {
-                                                                                            if (senddate5.length() < 3) {
-                                                                                                errorflag = 1;
-                                                                                                enddate5.setError("Invalid Date");
-                                                                                            }
-                                                                                        }
-
-                                                                                        {
+                                                                                        if (sstartdate5.length() < 3) {
+                                                                                            errorflag = 1;
+                                                                                            certistartdate5.setError("Kindly select valid date");
+                                                                                        } else {
                                                                                             errorflag = 0;
-                                                                                            if (stitle6.length() < 3) {
-                                                                                                errorflag = 1;
-                                                                                                title6.setError("Invalid Certificate Name");
-                                                                                            } else {
-                                                                                                errorflag = 0;
-                                                                                                if (sissuer6.length() < 3) {
+                                                                                            if (willexpire5.equals("yes")) {
+                                                                                                if (senddate5.length() < 4) {
                                                                                                     errorflag = 1;
-                                                                                                    issuer6.setError("Invalid Issuer");
-                                                                                                } else {
-                                                                                                    errorflag = 0;
-                                                                                                    if (sstartdate6.length() < 3) {
-                                                                                                        errorflag = 1;
-                                                                                                        startdate6.setError("Invalid Date");
-                                                                                                    } else {
-                                                                                                        errorflag = 0;
-                                                                                                        if (willexpire6.equals("yes")) {
-                                                                                                            if (senddate6.length() < 3) {
-                                                                                                                errorflag = 1;
-                                                                                                                enddate6.setError("Invalid Date");
-                                                                                                            }
-                                                                                                        }
-
-                                                                                                    }
+                                                                                                    certienddate5.setError("Kindly select valid date");
                                                                                                 }
                                                                                             }
 
                                                                                         }
 
+
                                                                                     }
                                                                                 }
                                                                             }
+
                                                                         }
 
                                                                     }
 
                                                                 }
-
                                                             }
                                                         }
+
                                                     }
 
                                                 }
 
                                             }
-
                                         }
                                     }
+
                                 }
 
                             }
 
                         }
-
                     }
                 }
             }
-        }
-        if (certicount == 6) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                title1.setError("Invalid Certificate Name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            if (certicount == 5) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuer1.setError("Invalid Issuer");
+                    titleinput1.setError("Kindly enter valid name");
                 } else {
-
                     errorflag = 0;
-                    if (sstartdate1.length() < 1) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        startdate1.setError("Invalid Date");
+                        issuerinput1.setError("Kindly enter valid name");
                     } else {
-                        errorflag = 0;
-                        if (willexpire1.equals("yes")) {
-                            if (senddate1.length() < 1) {
-                                errorflag = 1;
-                                enddate1.setError("Invalid Date");
-                            }
-                        }
 
-                        {
+                        errorflag = 0;
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
                             errorflag = 0;
-                            if (stitle2.length() < 3) {
-                                errorflag = 1;
-                                title2.setError("Invalid Certificate Name");
-                            } else {
-                                errorflag = 0;
-                                if (sissuer2.length() < 3) {
+                            if (willexpire1.equals("yes")) {
+                                if (senddate1.length() < 4) {
                                     errorflag = 1;
-                                    issuer2.setError("Invalid Issuer");
+                                    certienddate1.setError("Kindly select valid date");
+                                }
+                            }
+
+                            {
+                                errorflag = 0;
+                                if (stitle2.length() < 3) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid name");
                                 } else {
                                     errorflag = 0;
-                                    if (sstartdate2.length() < 2) {
+                                    if (sissuer2.length() < 3) {
                                         errorflag = 1;
-                                        startdate2.setError("Invalid Date");
+                                        issuerinput2.setError("Kindly enter valid name");
                                     } else {
                                         errorflag = 0;
-                                        if (willexpire2.equals("yes")) {
-                                            if (senddate2.length() < 2) {
-                                                errorflag = 1;
-                                                enddate2.setError("Invalid Date");
-                                            }
-                                        }
-
-                                        {
+                                        if (sstartdate2.length() < 2) {
+                                            errorflag = 1;
+                                            certistartdate2.setError("Kindly select valid date");
+                                        } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 3) {
-                                                errorflag = 1;
-                                                title3.setError("Invalid Certificate Name");
-                                            } else {
-                                                errorflag = 0;
-                                                if (sissuer3.length() < 3) {
+                                            if (willexpire2.equals("yes")) {
+                                                if (senddate2.length() < 4) {
                                                     errorflag = 1;
-                                                    issuer3.setError("Invalid Issuer");
+                                                    certienddate2.setError("Kindly select valid date");
+                                                }
+                                            }
+
+                                            {
+                                                errorflag = 0;
+                                                if (stitle3.length() < 3) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid name");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sstartdate3.length() < 3) {
+                                                    if (sissuer3.length() < 3) {
                                                         errorflag = 1;
-                                                        startdate3.setError("Invalid Date");
+                                                        issuerinput3.setError("Kindly enter valid name");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (willexpire3.equals("yes")) {
-                                                            if (senddate3.length() < 3) {
-                                                                errorflag = 1;
-                                                                enddate3.setError("Invalid Date");
-                                                            }
-                                                        }
-
-                                                        {
+                                                        if (sstartdate3.length() < 3) {
+                                                            errorflag = 1;
+                                                            certistartdate3.setError("Kindly select valid date");
+                                                        } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 3) {
-                                                                errorflag = 1;
-                                                                title4.setError("Invalid Certificate Name");
-                                                            } else {
-                                                                errorflag = 0;
-                                                                if (sissuer4.length() < 3) {
+                                                            if (willexpire3.equals("yes")) {
+                                                                if (senddate3.length() < 4) {
                                                                     errorflag = 1;
-                                                                    issuer4.setError("Invalid Issuer");
+                                                                    certienddate3.setError("Kindly select valid date");
+                                                                }
+                                                            }
+
+                                                            {
+                                                                errorflag = 0;
+                                                                if (stitle4.length() < 3) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid name");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (sstartdate4.length() < 3) {
+                                                                    if (sissuer4.length() < 3) {
                                                                         errorflag = 1;
-                                                                        startdate4.setError("Invalid Date");
+                                                                        issuerinput4.setError("Kindly enter valid name");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (willexpire4.equals("yes")) {
-                                                                            if (senddate4.length() < 3) {
-                                                                                errorflag = 1;
-                                                                                enddate4.setError("Invalid Date");
-                                                                            }
-                                                                        }
-
-                                                                        {
+                                                                        if (sstartdate4.length() < 3) {
+                                                                            errorflag = 1;
+                                                                            certistartdate4.setError("Kindly select valid date");
+                                                                        } else {
                                                                             errorflag = 0;
-                                                                            if (stitle5.length() < 3) {
-                                                                                errorflag = 1;
-                                                                                title5.setError("Invalid Certificate Name");
-                                                                            } else {
-                                                                                errorflag = 0;
-                                                                                if (sissuer5.length() < 3) {
+                                                                            if (willexpire4.equals("yes")) {
+                                                                                if (senddate4.length() < 4) {
                                                                                     errorflag = 1;
-                                                                                    issuer5.setError("Invalid Issuer");
+                                                                                    certienddate4.setError("Kindly select valid date");
+                                                                                }
+                                                                            }
+
+                                                                            {
+                                                                                errorflag = 0;
+                                                                                if (stitle5.length() < 3) {
+                                                                                    errorflag = 1;
+                                                                                    titleinput5.setError("Kindly enter valid name");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (sstartdate5.length() < 3) {
+                                                                                    if (sissuer5.length() < 3) {
                                                                                         errorflag = 1;
-                                                                                        startdate5.setError("Invalid Date");
+                                                                                        issuerinput5.setError("Kindly enter valid name");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (willexpire5.equals("yes")) {
-                                                                                            if (senddate5.length() < 3) {
-                                                                                                errorflag = 1;
-                                                                                                enddate5.setError("Invalid Date");
-                                                                                            }
-                                                                                        }
-                                                                                        {
+                                                                                        if (sstartdate5.length() < 3) {
+                                                                                            errorflag = 1;
+                                                                                            certistartdate5.setError("Kindly select valid date");
+                                                                                        } else {
                                                                                             errorflag = 0;
-                                                                                            if (stitle6.length() < 3) {
-                                                                                                errorflag = 1;
-                                                                                                title6.setError("Invalid Certificate Name");
-                                                                                            } else {
-                                                                                                errorflag = 0;
-                                                                                                if (sissuer6.length() < 3) {
+                                                                                            if (willexpire5.equals("yes")) {
+                                                                                                if (senddate5.length() < 4) {
                                                                                                     errorflag = 1;
-                                                                                                    issuer6.setError("Invalid Issuer");
+                                                                                                    certienddate5.setError("Kindly select valid date");
+                                                                                                }
+                                                                                            }
+
+                                                                                            {
+                                                                                                errorflag = 0;
+                                                                                                if (stitle6.length() < 3) {
+                                                                                                    errorflag = 1;
+                                                                                                    titleinput6.setError("Kindly enter valid name");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sstartdate6.length() < 3) {
+                                                                                                    if (sissuer6.length() < 3) {
                                                                                                         errorflag = 1;
-                                                                                                        startdate6.setError("Invalid Date");
+                                                                                                        issuerinput6.setError("Kindly enter valid name");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (willexpire6.equals("yes")) {
-                                                                                                            if (senddate6.length() < 3) {
-                                                                                                                errorflag = 1;
-                                                                                                                enddate6.setError("Invalid Date");
-                                                                                                            }
-                                                                                                        }
-
-                                                                                                        {
+                                                                                                        if (sstartdate6.length() < 3) {
+                                                                                                            errorflag = 1;
+                                                                                                            certistartdate6.setError("Kindly select valid date");
+                                                                                                        } else {
                                                                                                             errorflag = 0;
-                                                                                                            if (stitle7.length() < 3) {
-                                                                                                                errorflag = 1;
-                                                                                                                title7.setError("Invalid Certificate Name");
-                                                                                                            } else {
-                                                                                                                errorflag = 0;
-                                                                                                                if (sissuer7.length() < 3) {
+                                                                                                            if (willexpire6.equals("yes")) {
+                                                                                                                if (senddate6.length() < 4) {
                                                                                                                     errorflag = 1;
-                                                                                                                    issuer7.setError("Invalid Issuer");
-                                                                                                                } else {
-                                                                                                                    errorflag = 0;
-                                                                                                                    if (sstartdate7.length() < 3) {
-                                                                                                                        errorflag = 1;
-                                                                                                                        startdate7.setError("Invalid Date");
-                                                                                                                    } else {
-                                                                                                                        errorflag = 0;
-                                                                                                                        if (willexpire7.equals("yes")) {
-                                                                                                                            if (senddate7.length() < 3) {
-                                                                                                                                errorflag = 1;
-                                                                                                                                enddate7.setError("Invalid Date");
-                                                                                                                            }
-                                                                                                                        }
-
-                                                                                                                    }
+                                                                                                                    certienddate6.setError("Kindly select valid date");
                                                                                                                 }
                                                                                                             }
 
                                                                                                         }
-
                                                                                                     }
                                                                                                 }
+
                                                                                             }
 
                                                                                         }
-
                                                                                     }
                                                                                 }
                                                                             }
+
                                                                         }
 
                                                                     }
 
                                                                 }
-
                                                             }
                                                         }
+
                                                     }
 
                                                 }
 
                                             }
-
                                         }
                                     }
+
                                 }
 
                             }
 
                         }
-
                     }
                 }
             }
-        }
-        if (certicount == 7) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                title1.setError("Invalid Certificate Name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            if (certicount == 6) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuer1.setError("Invalid Issuer");
+                    titleinput1.setError("Kindly enter valid name");
                 } else {
-
                     errorflag = 0;
-                    if (sstartdate1.length() < 1) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        startdate1.setError("Invalid Date");
+                        issuerinput1.setError("Kindly enter valid name");
                     } else {
-                        errorflag = 0;
-                        if (willexpire1.equals("yes")) {
-                            if (senddate1.length() < 1) {
-                                errorflag = 1;
-                                enddate1.setError("Invalid Date");
-                            }
-                        }
 
-                        {
+                        errorflag = 0;
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
                             errorflag = 0;
-                            if (stitle2.length() < 3) {
-                                errorflag = 1;
-                                title2.setError("Invalid Certificate Name");
-                            } else {
-                                errorflag = 0;
-                                if (sissuer2.length() < 3) {
+                            if (willexpire1.equals("yes")) {
+                                if (senddate1.length() < 4) {
                                     errorflag = 1;
-                                    issuer2.setError("Invalid Issuer");
+                                    certienddate1.setError("Kindly select valid date");
+                                }
+                            }
+
+                            {
+                                errorflag = 0;
+                                if (stitle2.length() < 3) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid name");
                                 } else {
                                     errorflag = 0;
-                                    if (sstartdate2.length() < 2) {
+                                    if (sissuer2.length() < 3) {
                                         errorflag = 1;
-                                        startdate2.setError("Invalid Date");
+                                        issuerinput2.setError("Kindly enter valid name");
                                     } else {
                                         errorflag = 0;
-                                        if (willexpire2.equals("yes")) {
-                                            if (senddate2.length() < 2) {
-                                                errorflag = 1;
-                                                enddate2.setError("Invalid Date");
-                                            }
-                                        }
-                                        {
+                                        if (sstartdate2.length() < 2) {
+                                            errorflag = 1;
+                                            certistartdate2.setError("Kindly select valid date");
+                                        } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 3) {
-                                                errorflag = 1;
-                                                title3.setError("Invalid Certificate Name");
-                                            } else {
-                                                errorflag = 0;
-                                                if (sissuer3.length() < 3) {
+                                            if (willexpire2.equals("yes")) {
+                                                if (senddate2.length() < 4) {
                                                     errorflag = 1;
-                                                    issuer3.setError("Invalid Issuer");
+                                                    certienddate2.setError("Kindly select valid date");
+                                                }
+                                            }
+
+                                            {
+                                                errorflag = 0;
+                                                if (stitle3.length() < 3) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid name");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sstartdate3.length() < 3) {
+                                                    if (sissuer3.length() < 3) {
                                                         errorflag = 1;
-                                                        startdate3.setError("Invalid Date");
+                                                        issuerinput3.setError("Kindly enter valid name");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (willexpire3.equals("yes")) {
-                                                            if (senddate3.length() < 3) {
-                                                                errorflag = 1;
-                                                                enddate3.setError("Invalid Date");
-                                                            }
-                                                        }
-                                                        {
+                                                        if (sstartdate3.length() < 3) {
+                                                            errorflag = 1;
+                                                            certistartdate3.setError("Kindly select valid date");
+                                                        } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 3) {
-                                                                errorflag = 1;
-                                                                title4.setError("Invalid Certificate Name");
-                                                            } else {
-                                                                errorflag = 0;
-                                                                if (sissuer4.length() < 3) {
+                                                            if (willexpire3.equals("yes")) {
+                                                                if (senddate3.length() < 4) {
                                                                     errorflag = 1;
-                                                                    issuer4.setError("Invalid Issuer");
+                                                                    certienddate3.setError("Kindly select valid date");
+                                                                }
+                                                            }
+
+                                                            {
+                                                                errorflag = 0;
+                                                                if (stitle4.length() < 3) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid name");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (sstartdate4.length() < 3) {
+                                                                    if (sissuer4.length() < 3) {
                                                                         errorflag = 1;
-                                                                        startdate4.setError("Invalid Date");
+                                                                        issuerinput4.setError("Kindly enter valid name");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (willexpire4.equals("yes")) {
-                                                                            if (senddate4.length() < 3) {
-                                                                                errorflag = 1;
-                                                                                enddate4.setError("Invalid Date");
-                                                                            }
-                                                                        }
-                                                                        {
+                                                                        if (sstartdate4.length() < 3) {
+                                                                            errorflag = 1;
+                                                                            certistartdate4.setError("Kindly select valid date");
+                                                                        } else {
                                                                             errorflag = 0;
-                                                                            if (stitle5.length() < 3) {
-                                                                                errorflag = 1;
-                                                                                title5.setError("Invalid Certificate Name");
-                                                                            } else {
-                                                                                errorflag = 0;
-                                                                                if (sissuer5.length() < 3) {
+                                                                            if (willexpire4.equals("yes")) {
+                                                                                if (senddate4.length() < 4) {
                                                                                     errorflag = 1;
-                                                                                    issuer5.setError("Invalid Issuer");
+                                                                                    certienddate4.setError("Kindly select valid date");
+                                                                                }
+                                                                            }
+
+                                                                            {
+                                                                                errorflag = 0;
+                                                                                if (stitle5.length() < 3) {
+                                                                                    errorflag = 1;
+                                                                                    titleinput5.setError("Kindly enter valid name");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (sstartdate5.length() < 3) {
+                                                                                    if (sissuer5.length() < 3) {
                                                                                         errorflag = 1;
-                                                                                        startdate5.setError("Invalid Date");
+                                                                                        issuerinput5.setError("Kindly enter valid name");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (willexpire5.equals("yes")) {
-                                                                                            if (senddate5.length() < 3) {
-                                                                                                errorflag = 1;
-                                                                                                enddate5.setError("Invalid Date");
-                                                                                            }
-                                                                                        }
-                                                                                        {
+                                                                                        if (sstartdate5.length() < 3) {
+                                                                                            errorflag = 1;
+                                                                                            certistartdate5.setError("Kindly select valid date");
+                                                                                        } else {
                                                                                             errorflag = 0;
-                                                                                            if (stitle6.length() < 3) {
-                                                                                                errorflag = 1;
-                                                                                                title6.setError("Invalid Certificate Name");
-                                                                                            } else {
-                                                                                                errorflag = 0;
-                                                                                                if (sissuer6.length() < 3) {
+                                                                                            if (willexpire5.equals("yes")) {
+                                                                                                if (senddate5.length() < 4) {
                                                                                                     errorflag = 1;
-                                                                                                    issuer6.setError("Invalid Issuer");
+                                                                                                    certienddate5.setError("Kindly select valid date");
+                                                                                                }
+                                                                                            }
+                                                                                            {
+                                                                                                errorflag = 0;
+                                                                                                if (stitle6.length() < 3) {
+                                                                                                    errorflag = 1;
+                                                                                                    titleinput6.setError("Kindly enter valid name");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sstartdate6.length() < 3) {
+                                                                                                    if (sissuer6.length() < 3) {
                                                                                                         errorflag = 1;
-                                                                                                        startdate6.setError("Invalid Date");
+                                                                                                        issuerinput6.setError("Kindly enter valid name");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (willexpire6.equals("yes")) {
-                                                                                                            if (senddate6.length() < 3) {
-                                                                                                                errorflag = 1;
-                                                                                                                enddate6.setError("Invalid Date");
-                                                                                                            }
-                                                                                                        }
-                                                                                                        {
+                                                                                                        if (sstartdate6.length() < 3) {
+                                                                                                            errorflag = 1;
+                                                                                                            certistartdate6.setError("Kindly select valid date");
+                                                                                                        } else {
                                                                                                             errorflag = 0;
-                                                                                                            if (stitle7.length() < 3) {
-                                                                                                                errorflag = 1;
-                                                                                                                title7.setError("Invalid Certificate Name");
-                                                                                                            } else {
-                                                                                                                errorflag = 0;
-                                                                                                                if (sissuer7.length() < 3) {
+                                                                                                            if (willexpire6.equals("yes")) {
+                                                                                                                if (senddate6.length() < 4) {
                                                                                                                     errorflag = 1;
-                                                                                                                    issuer7.setError("Invalid Issuer");
+                                                                                                                    certienddate6.setError("Kindly select valid date");
+                                                                                                                }
+                                                                                                            }
+
+                                                                                                            {
+                                                                                                                errorflag = 0;
+                                                                                                                if (stitle7.length() < 3) {
+                                                                                                                    errorflag = 1;
+                                                                                                                    titleinput7.setError("Kindly enter valid name");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
-                                                                                                                    if (sstartdate7.length() < 3) {
+                                                                                                                    if (sissuer7.length() < 3) {
                                                                                                                         errorflag = 1;
-                                                                                                                        startdate7.setError("Invalid Date");
+                                                                                                                        issuerinput7.setError("Kindly enter valid name");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
-                                                                                                                        if (willexpire7.equals("yes")) {
-                                                                                                                            if (senddate7.length() < 3) {
-                                                                                                                                errorflag = 1;
-                                                                                                                                enddate7.setError("Invalid Date");
-                                                                                                                            }
-                                                                                                                        }
-                                                                                                                        {
+                                                                                                                        if (sstartdate7.length() < 3) {
+                                                                                                                            errorflag = 1;
+                                                                                                                            certistartdate7.setError("Kindly select valid date");
+                                                                                                                        } else {
                                                                                                                             errorflag = 0;
-                                                                                                                            if (stitle8.length() < 3) {
-                                                                                                                                errorflag = 1;
-                                                                                                                                title8.setError("Invalid Certificate Name");
-                                                                                                                            } else {
-                                                                                                                                errorflag = 0;
-                                                                                                                                if (sissuer8.length() < 3) {
+                                                                                                                            if (willexpire7.equals("yes")) {
+                                                                                                                                if (senddate7.length() < 4) {
                                                                                                                                     errorflag = 1;
-                                                                                                                                    issuer8.setError("Invalid Issuer");
-                                                                                                                                } else {
-                                                                                                                                    errorflag = 0;
-                                                                                                                                    if (sstartdate8.length() < 3) {
-                                                                                                                                        errorflag = 1;
-                                                                                                                                        startdate8.setError("Invalid Date");
-                                                                                                                                    } else {
-                                                                                                                                        errorflag = 0;
-                                                                                                                                        if (willexpire8.equals("yes")) {
-                                                                                                                                            if (senddate8.length() < 3) {
-                                                                                                                                                errorflag = 1;
-                                                                                                                                                enddate8.setError("Invalid Date");
-                                                                                                                                            }
-                                                                                                                                        }
-                                                                                                                                    }
+                                                                                                                                    certienddate7.setError("Kindly select valid date");
                                                                                                                                 }
                                                                                                                             }
 
                                                                                                                         }
-
                                                                                                                     }
                                                                                                                 }
+
                                                                                                             }
 
                                                                                                         }
-
                                                                                                     }
                                                                                                 }
+
                                                                                             }
 
                                                                                         }
-
                                                                                     }
                                                                                 }
                                                                             }
+
                                                                         }
 
                                                                     }
 
                                                                 }
-
                                                             }
                                                         }
+
                                                     }
 
                                                 }
 
                                             }
-
                                         }
                                     }
+
                                 }
 
                             }
 
                         }
-
                     }
                 }
             }
-        }
-        if (certicount == 8) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                title1.setError("Invalid Certificate Name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            if (certicount == 7) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuer1.setError("Invalid Issuer");
+                    titleinput1.setError("Kindly enter valid name");
                 } else {
-
                     errorflag = 0;
-                    if (sstartdate1.length() < 1) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        startdate1.setError("Invalid Date");
+                        issuerinput1.setError("Kindly enter valid name");
                     } else {
+
                         errorflag = 0;
-                        if (willexpire1.equals("yes")) {
-                            if (senddate1.length() < 1) {
-                                errorflag = 1;
-                                enddate1.setError("Invalid Date");
-                            }
-                        }
-                        {
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
                             errorflag = 0;
-                            if (stitle2.length() < 3) {
-                                errorflag = 1;
-                                title2.setError("Invalid Certificate Name");
-                            } else {
-                                errorflag = 0;
-                                if (sissuer2.length() < 3) {
+                            if (willexpire1.equals("yes")) {
+                                if (senddate1.length() < 4) {
                                     errorflag = 1;
-                                    issuer2.setError("Invalid Issuer");
+                                    certienddate1.setError("Kindly select valid date");
+                                }
+                            }
+
+                            {
+                                errorflag = 0;
+                                if (stitle2.length() < 3) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid name");
                                 } else {
                                     errorflag = 0;
-                                    if (sstartdate2.length() < 2) {
+                                    if (sissuer2.length() < 3) {
                                         errorflag = 1;
-                                        startdate2.setError("Invalid Date");
+                                        issuerinput2.setError("Kindly enter valid name");
                                     } else {
                                         errorflag = 0;
-                                        if (willexpire2.equals("yes")) {
-                                            if (senddate2.length() < 2) {
-                                                errorflag = 1;
-                                                enddate2.setError("Invalid Date");
-                                            }
-                                        }
-                                        {
+                                        if (sstartdate2.length() < 2) {
+                                            errorflag = 1;
+                                            certistartdate2.setError("Kindly select valid date");
+                                        } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 3) {
-                                                errorflag = 1;
-                                                title3.setError("Invalid Certificate Name");
-                                            } else {
-                                                errorflag = 0;
-                                                if (sissuer3.length() < 3) {
+                                            if (willexpire2.equals("yes")) {
+                                                if (senddate2.length() < 4) {
                                                     errorflag = 1;
-                                                    issuer3.setError("Invalid Issuer");
+                                                    certienddate2.setError("Kindly select valid date");
+                                                }
+                                            }
+                                            {
+                                                errorflag = 0;
+                                                if (stitle3.length() < 3) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid name");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sstartdate3.length() < 3) {
+                                                    if (sissuer3.length() < 3) {
                                                         errorflag = 1;
-                                                        startdate3.setError("Invalid Date");
+                                                        issuerinput3.setError("Kindly enter valid name");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (willexpire3.equals("yes")) {
-                                                            if (senddate3.length() < 3) {
-                                                                errorflag = 1;
-                                                                enddate3.setError("Invalid Date");
-                                                            }
-                                                        }
-                                                        {
+                                                        if (sstartdate3.length() < 3) {
+                                                            errorflag = 1;
+                                                            certistartdate3.setError("Kindly select valid date");
+                                                        } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 3) {
-                                                                errorflag = 1;
-                                                                title4.setError("Invalid Certificate Name");
-                                                            } else {
-                                                                errorflag = 0;
-                                                                if (sissuer4.length() < 3) {
+                                                            if (willexpire3.equals("yes")) {
+                                                                if (senddate3.length() < 4) {
                                                                     errorflag = 1;
-                                                                    issuer4.setError("Invalid Issuer");
+                                                                    certienddate3.setError("Kindly select valid date");
+                                                                }
+                                                            }
+                                                            {
+                                                                errorflag = 0;
+                                                                if (stitle4.length() < 3) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid name");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (sstartdate4.length() < 3) {
+                                                                    if (sissuer4.length() < 3) {
                                                                         errorflag = 1;
-                                                                        startdate4.setError("Invalid Date");
+                                                                        issuerinput4.setError("Kindly enter valid name");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (willexpire4.equals("yes")) {
-                                                                            if (senddate4.length() < 3) {
-                                                                                errorflag = 1;
-                                                                                enddate4.setError("Invalid Date");
-                                                                            }
-                                                                        }
-                                                                        {
+                                                                        if (sstartdate4.length() < 3) {
+                                                                            errorflag = 1;
+                                                                            certistartdate4.setError("Kindly select valid date");
+                                                                        } else {
                                                                             errorflag = 0;
-                                                                            if (stitle5.length() < 3) {
-                                                                                errorflag = 1;
-                                                                                title5.setError("Invalid Certificate Name");
-                                                                            } else {
-                                                                                errorflag = 0;
-                                                                                if (sissuer5.length() < 3) {
+                                                                            if (willexpire4.equals("yes")) {
+                                                                                if (senddate4.length() < 4) {
                                                                                     errorflag = 1;
-                                                                                    issuer5.setError("Invalid Issuer");
+                                                                                    certienddate4.setError("Kindly select valid date");
+                                                                                }
+                                                                            }
+                                                                            {
+                                                                                errorflag = 0;
+                                                                                if (stitle5.length() < 3) {
+                                                                                    errorflag = 1;
+                                                                                    titleinput5.setError("Kindly enter valid name");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (sstartdate5.length() < 3) {
+                                                                                    if (sissuer5.length() < 3) {
                                                                                         errorflag = 1;
-                                                                                        startdate5.setError("Invalid Date");
+                                                                                        issuerinput5.setError("Kindly enter valid name");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (willexpire5.equals("yes")) {
-                                                                                            if (senddate5.length() < 3) {
-                                                                                                errorflag = 1;
-                                                                                                enddate5.setError("Invalid Date");
-                                                                                            }
-                                                                                        }
-                                                                                        {
+                                                                                        if (sstartdate5.length() < 3) {
+                                                                                            errorflag = 1;
+                                                                                            certistartdate5.setError("Kindly select valid date");
+                                                                                        } else {
                                                                                             errorflag = 0;
-                                                                                            if (stitle6.length() < 3) {
-                                                                                                errorflag = 1;
-                                                                                                title6.setError("Invalid Certificate Name");
-                                                                                            } else {
-                                                                                                errorflag = 0;
-                                                                                                if (sissuer6.length() < 3) {
+                                                                                            if (willexpire5.equals("yes")) {
+                                                                                                if (senddate5.length() < 4) {
                                                                                                     errorflag = 1;
-                                                                                                    issuer6.setError("Invalid Issuer");
+                                                                                                    certienddate5.setError("Kindly select valid date");
+                                                                                                }
+                                                                                            }
+                                                                                            {
+                                                                                                errorflag = 0;
+                                                                                                if (stitle6.length() < 3) {
+                                                                                                    errorflag = 1;
+                                                                                                    titleinput6.setError("Kindly enter valid name");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sstartdate6.length() < 3) {
+                                                                                                    if (sissuer6.length() < 3) {
                                                                                                         errorflag = 1;
-                                                                                                        startdate6.setError("Invalid Date");
+                                                                                                        issuerinput6.setError("Kindly enter valid name");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (willexpire6.equals("yes")) {
-                                                                                                            if (senddate6.length() < 3) {
-                                                                                                                errorflag = 1;
-                                                                                                                enddate6.setError("Invalid Date");
-                                                                                                            }
-                                                                                                        }
-                                                                                                        {
+                                                                                                        if (sstartdate6.length() < 3) {
+                                                                                                            errorflag = 1;
+                                                                                                            certistartdate6.setError("Kindly select valid date");
+                                                                                                        } else {
                                                                                                             errorflag = 0;
-                                                                                                            if (stitle7.length() < 3) {
-                                                                                                                errorflag = 1;
-                                                                                                                title7.setError("Invalid Certificate Name");
-                                                                                                            } else {
-                                                                                                                errorflag = 0;
-                                                                                                                if (sissuer7.length() < 3) {
+                                                                                                            if (willexpire6.equals("yes")) {
+                                                                                                                if (senddate6.length() < 4) {
                                                                                                                     errorflag = 1;
-                                                                                                                    issuer7.setError("Invalid Issuer");
+                                                                                                                    certienddate6.setError("Kindly select valid date");
+                                                                                                                }
+                                                                                                            }
+                                                                                                            {
+                                                                                                                errorflag = 0;
+                                                                                                                if (stitle7.length() < 3) {
+                                                                                                                    errorflag = 1;
+                                                                                                                    titleinput7.setError("Kindly enter valid name");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
-                                                                                                                    if (sstartdate7.length() < 3) {
+                                                                                                                    if (sissuer7.length() < 3) {
                                                                                                                         errorflag = 1;
-                                                                                                                        startdate7.setError("Invalid Date");
+                                                                                                                        issuerinput7.setError("Kindly enter valid name");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
-                                                                                                                        if (willexpire7.equals("yes")) {
-                                                                                                                            if (senddate7.length() < 3) {
-                                                                                                                                errorflag = 1;
-                                                                                                                                enddate7.setError("Invalid Date");
-                                                                                                                            }
-                                                                                                                        }
-                                                                                                                        {
+                                                                                                                        if (sstartdate7.length() < 3) {
+                                                                                                                            errorflag = 1;
+                                                                                                                            certistartdate7.setError("Kindly select valid date");
+                                                                                                                        } else {
                                                                                                                             errorflag = 0;
-                                                                                                                            if (stitle8.length() < 3) {
-                                                                                                                                errorflag = 1;
-                                                                                                                                title8.setError("Invalid Certificate Name");
-                                                                                                                            } else {
-                                                                                                                                errorflag = 0;
-                                                                                                                                if (sissuer8.length() < 3) {
+                                                                                                                            if (willexpire7.equals("yes")) {
+                                                                                                                                if (senddate7.length() < 4) {
                                                                                                                                     errorflag = 1;
-                                                                                                                                    issuer8.setError("Invalid Issuer");
+                                                                                                                                    certienddate7.setError("Kindly select valid date");
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                            {
+                                                                                                                                errorflag = 0;
+                                                                                                                                if (stitle8.length() < 3) {
+                                                                                                                                    errorflag = 1;
+                                                                                                                                    titleinput8.setError("Kindly enter valid name");
                                                                                                                                 } else {
                                                                                                                                     errorflag = 0;
-                                                                                                                                    if (sstartdate8.length() < 3) {
+                                                                                                                                    if (sissuer8.length() < 3) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        startdate8.setError("Invalid Date");
+                                                                                                                                        issuerinput8.setError("Kindly enter valid name");
                                                                                                                                     } else {
                                                                                                                                         errorflag = 0;
-                                                                                                                                        if (willexpire8.equals("yes")) {
-                                                                                                                                            if (senddate8.length() < 3) {
-                                                                                                                                                errorflag = 1;
-                                                                                                                                                enddate8.setError("Invalid Date");
+                                                                                                                                        if (sstartdate8.length() < 3) {
+                                                                                                                                            errorflag = 1;
+                                                                                                                                            certistartdate8.setError("Kindly select valid date");
+                                                                                                                                        } else {
+                                                                                                                                            errorflag = 0;
+                                                                                                                                            if (willexpire8.equals("yes")) {
+                                                                                                                                                if (senddate8.length() < 4) {
+                                                                                                                                                    errorflag = 1;
+                                                                                                                                                    certienddate8.setError("Kindly select valid date");
+                                                                                                                                                }
                                                                                                                                             }
                                                                                                                                         }
-                                                                                                                                        {
+                                                                                                                                    }
+                                                                                                                                }
+
+                                                                                                                            }
+
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+
+                                                                                                            }
+
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+
+                                                                                            }
+
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+
+                                                                        }
+
+                                                                    }
+
+                                                                }
+                                                            }
+                                                        }
+
+                                                    }
+
+                                                }
+
+                                            }
+                                        }
+                                    }
+
+                                }
+
+                            }
+
+                        }
+                    }
+                }
+            }
+            if (certicount == 8) {
+                if (stitle1.length() < 3) {
+                    errorflag = 1;
+                    titleinput1.setError("Kindly enter valid name");
+                } else {
+                    errorflag = 0;
+                    if (sissuer1.length() < 3) {
+                        errorflag = 1;
+                        issuerinput1.setError("Kindly enter valid name");
+                    } else {
+
+                        errorflag = 0;
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
+                            errorflag = 0;
+                            if (willexpire1.equals("yes")) {
+                                if (senddate1.length() < 4) {
+                                    errorflag = 1;
+                                    certienddate1.setError("Kindly select valid date");
+                                }
+                            }
+                            {
+                                errorflag = 0;
+                                if (stitle2.length() < 3) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid name");
+                                } else {
+                                    errorflag = 0;
+                                    if (sissuer2.length() < 3) {
+                                        errorflag = 1;
+                                        issuerinput2.setError("Kindly enter valid name");
+                                    } else {
+                                        errorflag = 0;
+                                        if (sstartdate2.length() < 2) {
+                                            errorflag = 1;
+                                            certistartdate2.setError("Kindly select valid date");
+                                        } else {
+                                            errorflag = 0;
+                                            if (willexpire2.equals("yes")) {
+                                                if (senddate2.length() < 4) {
+                                                    errorflag = 1;
+                                                    certienddate2.setError("Kindly select valid date");
+                                                }
+                                            }
+                                            {
+                                                errorflag = 0;
+                                                if (stitle3.length() < 3) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid name");
+                                                } else {
+                                                    errorflag = 0;
+                                                    if (sissuer3.length() < 3) {
+                                                        errorflag = 1;
+                                                        issuerinput3.setError("Kindly enter valid name");
+                                                    } else {
+                                                        errorflag = 0;
+                                                        if (sstartdate3.length() < 3) {
+                                                            errorflag = 1;
+                                                            certistartdate3.setError("Kindly select valid date");
+                                                        } else {
+                                                            errorflag = 0;
+                                                            if (willexpire3.equals("yes")) {
+                                                                if (senddate3.length() < 4) {
+                                                                    errorflag = 1;
+                                                                    certienddate3.setError("Kindly select valid date");
+                                                                }
+                                                            }
+                                                            {
+                                                                errorflag = 0;
+                                                                if (stitle4.length() < 3) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid name");
+                                                                } else {
+                                                                    errorflag = 0;
+                                                                    if (sissuer4.length() < 3) {
+                                                                        errorflag = 1;
+                                                                        issuerinput4.setError("Kindly enter valid name");
+                                                                    } else {
+                                                                        errorflag = 0;
+                                                                        if (sstartdate4.length() < 3) {
+                                                                            errorflag = 1;
+                                                                            certistartdate4.setError("Kindly select valid date");
+                                                                        } else {
+                                                                            errorflag = 0;
+                                                                            if (willexpire4.equals("yes")) {
+                                                                                if (senddate4.length() < 4) {
+                                                                                    errorflag = 1;
+                                                                                    certienddate4.setError("Kindly select valid date");
+                                                                                }
+                                                                            }
+                                                                            {
+                                                                                errorflag = 0;
+                                                                                if (stitle5.length() < 3) {
+                                                                                    errorflag = 1;
+                                                                                    titleinput5.setError("Kindly enter valid name");
+                                                                                } else {
+                                                                                    errorflag = 0;
+                                                                                    if (sissuer5.length() < 3) {
+                                                                                        errorflag = 1;
+                                                                                        issuerinput5.setError("Kindly enter valid name");
+                                                                                    } else {
+                                                                                        errorflag = 0;
+                                                                                        if (sstartdate5.length() < 3) {
+                                                                                            errorflag = 1;
+                                                                                            certistartdate5.setError("Kindly select valid date");
+                                                                                        } else {
+                                                                                            errorflag = 0;
+                                                                                            if (willexpire5.equals("yes")) {
+                                                                                                if (senddate5.length() < 4) {
+                                                                                                    errorflag = 1;
+                                                                                                    certienddate5.setError("Kindly select valid date");
+                                                                                                }
+                                                                                            }
+                                                                                            {
+                                                                                                errorflag = 0;
+                                                                                                if (stitle6.length() < 3) {
+                                                                                                    errorflag = 1;
+                                                                                                    titleinput6.setError("Kindly enter valid name");
+                                                                                                } else {
+                                                                                                    errorflag = 0;
+                                                                                                    if (sissuer6.length() < 3) {
+                                                                                                        errorflag = 1;
+                                                                                                        issuerinput6.setError("Kindly enter valid name");
+                                                                                                    } else {
+                                                                                                        errorflag = 0;
+                                                                                                        if (sstartdate6.length() < 3) {
+                                                                                                            errorflag = 1;
+                                                                                                            certistartdate6.setError("Kindly select valid date");
+                                                                                                        } else {
+                                                                                                            errorflag = 0;
+                                                                                                            if (willexpire6.equals("yes")) {
+                                                                                                                if (senddate6.length() < 4) {
+                                                                                                                    errorflag = 1;
+                                                                                                                    certienddate6.setError("Kindly select valid date");
+                                                                                                                }
+                                                                                                            }
+                                                                                                            {
+                                                                                                                errorflag = 0;
+                                                                                                                if (stitle7.length() < 3) {
+                                                                                                                    errorflag = 1;
+                                                                                                                    titleinput7.setError("Kindly enter valid name");
+                                                                                                                } else {
+                                                                                                                    errorflag = 0;
+                                                                                                                    if (sissuer7.length() < 3) {
+                                                                                                                        errorflag = 1;
+                                                                                                                        issuerinput7.setError("Kindly enter valid name");
+                                                                                                                    } else {
+                                                                                                                        errorflag = 0;
+                                                                                                                        if (sstartdate7.length() < 3) {
+                                                                                                                            errorflag = 1;
+                                                                                                                            certistartdate7.setError("Kindly select valid date");
+                                                                                                                        } else {
+                                                                                                                            errorflag = 0;
+                                                                                                                            if (willexpire7.equals("yes")) {
+                                                                                                                                if (senddate7.length() < 4) {
+                                                                                                                                    errorflag = 1;
+                                                                                                                                    certienddate7.setError("Kindly select valid date");
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                            {
+                                                                                                                                errorflag = 0;
+                                                                                                                                if (stitle8.length() < 3) {
+                                                                                                                                    errorflag = 1;
+                                                                                                                                    titleinput8.setError("Kindly enter valid name");
+                                                                                                                                } else {
+                                                                                                                                    errorflag = 0;
+                                                                                                                                    if (sissuer8.length() < 3) {
+                                                                                                                                        errorflag = 1;
+                                                                                                                                        issuerinput8.setError("Kindly enter valid name");
+                                                                                                                                    } else {
+                                                                                                                                        errorflag = 0;
+                                                                                                                                        if (sstartdate8.length() < 3) {
+                                                                                                                                            errorflag = 1;
+                                                                                                                                            certistartdate8.setError("Kindly select valid date");
+                                                                                                                                        } else {
                                                                                                                                             errorflag = 0;
-                                                                                                                                            if (stitle9.length() < 3) {
-                                                                                                                                                errorflag = 1;
-                                                                                                                                                title9.setError("Invalid Certificate Name");
-                                                                                                                                            } else {
-                                                                                                                                                errorflag = 0;
-                                                                                                                                                if (sissuer9.length() < 3) {
+                                                                                                                                            if (willexpire8.equals("yes")) {
+                                                                                                                                                if (senddate8.length() < 4) {
                                                                                                                                                     errorflag = 1;
-                                                                                                                                                    issuer9.setError("Invalid Issuer");
+                                                                                                                                                    certienddate8.setError("Kindly select valid date");
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                            {
+                                                                                                                                                errorflag = 0;
+                                                                                                                                                if (stitle9.length() < 3) {
+                                                                                                                                                    errorflag = 1;
+                                                                                                                                                    titleinput9.setError("Kindly enter valid name");
                                                                                                                                                 } else {
                                                                                                                                                     errorflag = 0;
-                                                                                                                                                    if (sstartdate9.length() < 3) {
+                                                                                                                                                    if (sissuer9.length() < 3) {
                                                                                                                                                         errorflag = 1;
-                                                                                                                                                        startdate9.setError("Invalid Date");
+                                                                                                                                                        issuerinput9.setError("Kindly enter valid name");
                                                                                                                                                     } else {
                                                                                                                                                         errorflag = 0;
-                                                                                                                                                        if (willexpire9.equals("yes")) {
-                                                                                                                                                            if (senddate9.length() < 3) {
-                                                                                                                                                                errorflag = 1;
-                                                                                                                                                                enddate9.setError("Invalid Date");
+                                                                                                                                                        if (sstartdate9.length() < 3) {
+                                                                                                                                                            errorflag = 1;
+                                                                                                                                                            certistartdate9.setError("Kindly select valid date");
+                                                                                                                                                        } else {
+                                                                                                                                                            errorflag = 0;
+                                                                                                                                                            if (willexpire9.equals("yes")) {
+                                                                                                                                                                if (senddate9.length() < 4) {
+                                                                                                                                                                    errorflag = 1;
+                                                                                                                                                                    certienddate9.setError("Kindly select valid date");
+                                                                                                                                                                }
                                                                                                                                                             }
                                                                                                                                                         }
                                                                                                                                                     }
                                                                                                                                                 }
+
                                                                                                                                             }
 
                                                                                                                                         }
-
                                                                                                                                     }
                                                                                                                                 }
+
                                                                                                                             }
 
                                                                                                                         }
-
                                                                                                                     }
                                                                                                                 }
+
                                                                                                             }
 
                                                                                                         }
-
                                                                                                     }
                                                                                                 }
+
                                                                                             }
 
                                                                                         }
-
                                                                                     }
                                                                                 }
                                                                             }
+
                                                                         }
 
                                                                     }
 
                                                                 }
-
                                                             }
                                                         }
+
                                                     }
 
                                                 }
 
                                             }
-
                                         }
                                     }
+
                                 }
 
                             }
 
                         }
-
                     }
                 }
             }
-        }
-        if (certicount == 9) {
-            if (stitle1.length() < 3) {
-                errorflag = 1;
-                title1.setError("Invalid Certificate Name");
-            } else {
-                errorflag = 0;
-                if (sissuer1.length() < 3) {
+            if (certicount == 9) {
+                if (stitle1.length() < 3) {
                     errorflag = 1;
-                    issuer1.setError("Invalid Issuer");
+                    titleinput1.setError("Kindly enter valid name");
                 } else {
-
                     errorflag = 0;
-                    if (sstartdate1.length() < 1) {
+                    if (sissuer1.length() < 3) {
                         errorflag = 1;
-                        startdate1.setError("Invalid Date");
+                        issuerinput1.setError("Kindly enter valid name");
                     } else {
+
                         errorflag = 0;
-                        if (willexpire1.equals("yes")) {
-                            if (senddate1.length() < 1) {
-                                errorflag = 1;
-                                enddate1.setError("Invalid Date");
-                            }
-                        }
-                        {
+                        if (sstartdate1.length() < 1) {
+                            errorflag = 1;
+                            certistartdate1.setError("Kindly select valid date");
+                        } else {
                             errorflag = 0;
-                            if (stitle2.length() < 3) {
-                                errorflag = 1;
-                                title2.setError("Invalid Certificate Name");
-                            } else {
-                                errorflag = 0;
-                                if (sissuer2.length() < 3) {
+                            if (willexpire1.equals("yes")) {
+                                if (senddate1.length() < 4) {
                                     errorflag = 1;
-                                    issuer2.setError("Invalid Issuer");
+                                    certienddate1.setError("Kindly select valid date");
+                                }
+                            }
+                            {
+                                errorflag = 0;
+                                if (stitle2.length() < 3) {
+                                    errorflag = 1;
+                                    titleinput2.setError("Kindly enter valid name");
                                 } else {
                                     errorflag = 0;
-                                    if (sstartdate2.length() < 2) {
+                                    if (sissuer2.length() < 3) {
                                         errorflag = 1;
-                                        startdate2.setError("Invalid Date");
+                                        issuerinput2.setError("Kindly enter valid name");
                                     } else {
                                         errorflag = 0;
-                                        if (willexpire2.equals("yes")) {
-                                            if (senddate2.length() < 2) {
-                                                errorflag = 1;
-                                                enddate2.setError("Invalid Date");
-                                            }
-                                        }
-                                        {
+                                        if (sstartdate2.length() < 2) {
+                                            errorflag = 1;
+                                            certistartdate2.setError("Kindly select valid date");
+                                        } else {
                                             errorflag = 0;
-                                            if (stitle3.length() < 3) {
-                                                errorflag = 1;
-                                                title3.setError("Invalid Certificate Name");
-                                            } else {
-                                                errorflag = 0;
-                                                if (sissuer3.length() < 3) {
+                                            if (willexpire2.equals("yes")) {
+                                                if (senddate2.length() < 4) {
                                                     errorflag = 1;
-                                                    issuer3.setError("Invalid Issuer");
+                                                    certienddate2.setError("Kindly select valid date");
+                                                }
+                                            }
+                                            {
+                                                errorflag = 0;
+                                                if (stitle3.length() < 3) {
+                                                    errorflag = 1;
+                                                    titleinput3.setError("Kindly enter valid name");
                                                 } else {
                                                     errorflag = 0;
-                                                    if (sstartdate3.length() < 3) {
+                                                    if (sissuer3.length() < 3) {
                                                         errorflag = 1;
-                                                        startdate3.setError("Invalid Date");
+                                                        issuerinput3.setError("Kindly enter valid name");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (willexpire3.equals("yes")) {
-                                                            if (senddate3.length() < 3) {
-                                                                errorflag = 1;
-                                                                enddate3.setError("Invalid Date");
-                                                            }
-                                                        }
-                                                        {
+                                                        if (sstartdate3.length() < 3) {
+                                                            errorflag = 1;
+                                                            certistartdate3.setError("Kindly select valid date");
+                                                        } else {
                                                             errorflag = 0;
-                                                            if (stitle4.length() < 3) {
-                                                                errorflag = 1;
-                                                                title4.setError("Invalid Certificate Name");
-                                                            } else {
-                                                                errorflag = 0;
-                                                                if (sissuer4.length() < 3) {
+                                                            if (willexpire3.equals("yes")) {
+                                                                if (senddate3.length() < 4) {
                                                                     errorflag = 1;
-                                                                    issuer4.setError("Invalid Issuer");
+                                                                    certienddate3.setError("Kindly select valid date");
+                                                                }
+                                                            }
+                                                            {
+                                                                errorflag = 0;
+                                                                if (stitle4.length() < 3) {
+                                                                    errorflag = 1;
+                                                                    titleinput4.setError("Kindly enter valid name");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (sstartdate4.length() < 3) {
+                                                                    if (sissuer4.length() < 3) {
                                                                         errorflag = 1;
-                                                                        startdate4.setError("Invalid Date");
+                                                                        issuerinput4.setError("Kindly enter valid name");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        if (willexpire4.equals("yes")) {
-                                                                            if (senddate4.length() < 3) {
-                                                                                errorflag = 1;
-                                                                                enddate4.setError("Invalid Date");
-                                                                            }
-                                                                        }
-                                                                        {
+                                                                        if (sstartdate4.length() < 3) {
+                                                                            errorflag = 1;
+                                                                            certistartdate4.setError("Kindly select valid date");
+                                                                        } else {
                                                                             errorflag = 0;
-                                                                            if (stitle5.length() < 3) {
-                                                                                errorflag = 1;
-                                                                                title5.setError("Invalid Certificate Name");
-                                                                            } else {
-                                                                                errorflag = 0;
-                                                                                if (sissuer5.length() < 3) {
+                                                                            if (willexpire4.equals("yes")) {
+                                                                                if (senddate4.length() < 4) {
                                                                                     errorflag = 1;
-                                                                                    issuer5.setError("Invalid Issuer");
+                                                                                    certienddate4.setError("Kindly select valid date");
+                                                                                }
+                                                                            }
+                                                                            {
+                                                                                errorflag = 0;
+                                                                                if (stitle5.length() < 3) {
+                                                                                    errorflag = 1;
+                                                                                    titleinput5.setError("Kindly enter valid name");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (sstartdate5.length() < 3) {
+                                                                                    if (sissuer5.length() < 3) {
                                                                                         errorflag = 1;
-                                                                                        startdate5.setError("Invalid Date");
+                                                                                        issuerinput5.setError("Kindly enter valid name");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (willexpire5.equals("yes")) {
-                                                                                            if (senddate5.length() < 3) {
-                                                                                                errorflag = 1;
-                                                                                                enddate5.setError("Invalid Date");
-                                                                                            }
-                                                                                        }
-                                                                                        {
+                                                                                        if (sstartdate5.length() < 3) {
+                                                                                            errorflag = 1;
+                                                                                            certistartdate5.setError("Kindly select valid date");
+                                                                                        } else {
                                                                                             errorflag = 0;
-                                                                                            if (stitle6.length() < 3) {
-                                                                                                errorflag = 1;
-                                                                                                title6.setError("Invalid Certificate Name");
-                                                                                            } else {
-                                                                                                errorflag = 0;
-                                                                                                if (sissuer6.length() < 3) {
+                                                                                            if (willexpire5.equals("yes")) {
+                                                                                                if (senddate5.length() < 4) {
                                                                                                     errorflag = 1;
-                                                                                                    issuer6.setError("Invalid Issuer");
+                                                                                                    certienddate5.setError("Kindly select valid date");
+                                                                                                }
+                                                                                            }
+                                                                                            {
+                                                                                                errorflag = 0;
+                                                                                                if (stitle6.length() < 3) {
+                                                                                                    errorflag = 1;
+                                                                                                    titleinput6.setError("Kindly enter valid name");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sstartdate6.length() < 3) {
+                                                                                                    if (sissuer6.length() < 3) {
                                                                                                         errorflag = 1;
-                                                                                                        startdate6.setError("Invalid Date");
+                                                                                                        issuerinput6.setError("Kindly enter valid name");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (willexpire6.equals("yes")) {
-                                                                                                            if (senddate6.length() < 3) {
-                                                                                                                errorflag = 1;
-                                                                                                                enddate6.setError("Invalid Date");
-                                                                                                            }
-                                                                                                        }
-
-                                                                                                        {
+                                                                                                        if (sstartdate6.length() < 3) {
+                                                                                                            errorflag = 1;
+                                                                                                            certistartdate6.setError("Kindly select valid date");
+                                                                                                        } else {
                                                                                                             errorflag = 0;
-                                                                                                            if (stitle7.length() < 3) {
-                                                                                                                errorflag = 1;
-                                                                                                                title7.setError("Invalid Certificate Name");
-                                                                                                            } else {
-                                                                                                                errorflag = 0;
-                                                                                                                if (sissuer7.length() < 3) {
+                                                                                                            if (willexpire6.equals("yes")) {
+                                                                                                                if (senddate6.length() < 4) {
                                                                                                                     errorflag = 1;
-                                                                                                                    issuer7.setError("Invalid Issuer");
+                                                                                                                    certienddate6.setError("Kindly select valid date");
+                                                                                                                }
+                                                                                                            }
+
+                                                                                                            {
+                                                                                                                errorflag = 0;
+                                                                                                                if (stitle7.length() < 3) {
+                                                                                                                    errorflag = 1;
+                                                                                                                    titleinput7.setError("Kindly enter valid name");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
-                                                                                                                    if (sstartdate7.length() < 3) {
+                                                                                                                    if (sissuer7.length() < 3) {
                                                                                                                         errorflag = 1;
-                                                                                                                        startdate7.setError("Invalid Date");
+                                                                                                                        issuerinput7.setError("Kindly enter valid name");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
-                                                                                                                        if (willexpire7.equals("yes")) {
-                                                                                                                            if (senddate7.length() < 3) {
-                                                                                                                                errorflag = 1;
-                                                                                                                                enddate7.setError("Invalid Date");
-                                                                                                                            }
-                                                                                                                        }
-                                                                                                                        {
+                                                                                                                        if (sstartdate7.length() < 3) {
+                                                                                                                            errorflag = 1;
+                                                                                                                            certistartdate7.setError("Kindly select valid date");
+                                                                                                                        } else {
                                                                                                                             errorflag = 0;
-                                                                                                                            if (stitle8.length() < 3) {
-                                                                                                                                errorflag = 1;
-                                                                                                                                title8.setError("Invalid Certificate Name");
-                                                                                                                            } else {
-                                                                                                                                errorflag = 0;
-                                                                                                                                if (sissuer8.length() < 3) {
+                                                                                                                            if (willexpire7.equals("yes")) {
+                                                                                                                                if (senddate7.length() < 4) {
                                                                                                                                     errorflag = 1;
-                                                                                                                                    issuer8.setError("Invalid Issuer");
+                                                                                                                                    certienddate7.setError("Kindly select valid date");
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                            {
+                                                                                                                                errorflag = 0;
+                                                                                                                                if (stitle8.length() < 3) {
+                                                                                                                                    errorflag = 1;
+                                                                                                                                    titleinput8.setError("Kindly enter valid name");
                                                                                                                                 } else {
                                                                                                                                     errorflag = 0;
-                                                                                                                                    if (sstartdate8.length() < 3) {
+                                                                                                                                    if (sissuer8.length() < 3) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        startdate8.setError("Invalid Date");
+                                                                                                                                        issuerinput8.setError("Kindly enter valid name");
                                                                                                                                     } else {
                                                                                                                                         errorflag = 0;
-                                                                                                                                        if (willexpire8.equals("yes")) {
-                                                                                                                                            if (senddate8.length() < 3) {
-                                                                                                                                                errorflag = 1;
-                                                                                                                                                enddate8.setError("Invalid Date");
-                                                                                                                                            }
-                                                                                                                                        }
-                                                                                                                                        {
+                                                                                                                                        if (sstartdate8.length() < 3) {
+                                                                                                                                            errorflag = 1;
+                                                                                                                                            certistartdate8.setError("Kindly select valid date");
+                                                                                                                                        } else {
                                                                                                                                             errorflag = 0;
-                                                                                                                                            if (stitle9.length() < 3) {
-                                                                                                                                                errorflag = 1;
-                                                                                                                                                title9.setError("Invalid Certificate Name");
-                                                                                                                                            } else {
-                                                                                                                                                errorflag = 0;
-                                                                                                                                                if (sissuer9.length() < 3) {
+                                                                                                                                            if (willexpire8.equals("yes")) {
+                                                                                                                                                if (senddate8.length() < 4) {
                                                                                                                                                     errorflag = 1;
-                                                                                                                                                    issuer9.setError("Invalid Issuer");
+                                                                                                                                                    certienddate8.setError("Kindly select valid date");
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                            {
+                                                                                                                                                errorflag = 0;
+                                                                                                                                                if (stitle9.length() < 3) {
+                                                                                                                                                    errorflag = 1;
+                                                                                                                                                    titleinput9.setError("Kindly enter valid name");
                                                                                                                                                 } else {
                                                                                                                                                     errorflag = 0;
-                                                                                                                                                    if (sstartdate9.length() < 3) {
+                                                                                                                                                    if (sissuer9.length() < 3) {
                                                                                                                                                         errorflag = 1;
-                                                                                                                                                        startdate9.setError("Invalid Date");
+                                                                                                                                                        issuerinput9.setError("Kindly enter valid name");
                                                                                                                                                     } else {
                                                                                                                                                         errorflag = 0;
-                                                                                                                                                        if (willexpire9.equals("yes")) {
-                                                                                                                                                            if (senddate9.length() < 3) {
-                                                                                                                                                                errorflag = 1;
-                                                                                                                                                                enddate9.setError("Invalid Date");
-                                                                                                                                                            }
-                                                                                                                                                        }
-                                                                                                                                                        {
+                                                                                                                                                        if (sstartdate9.length() < 3) {
+                                                                                                                                                            errorflag = 1;
+                                                                                                                                                            certistartdate9.setError("Kindly select valid date");
+                                                                                                                                                        } else {
                                                                                                                                                             errorflag = 0;
-                                                                                                                                                            if (stitle10.length() < 3) {
-                                                                                                                                                                errorflag = 1;
-                                                                                                                                                                title10.setError("Invalid Certificate Name");
-                                                                                                                                                            } else {
-                                                                                                                                                                errorflag = 0;
-                                                                                                                                                                if (sissuer10.length() < 3) {
+                                                                                                                                                            if (willexpire9.equals("yes")) {
+                                                                                                                                                                if (senddate9.length() < 4) {
                                                                                                                                                                     errorflag = 1;
-                                                                                                                                                                    issuer10.setError("Invalid Issuer");
+                                                                                                                                                                    certienddate9.setError("Kindly select valid date");
+                                                                                                                                                                }
+                                                                                                                                                            }
+                                                                                                                                                            {
+                                                                                                                                                                errorflag = 0;
+                                                                                                                                                                if (stitle10.length() < 3) {
+                                                                                                                                                                    errorflag = 1;
+                                                                                                                                                                    titleinput10.setError("Kindly enter valid name");
                                                                                                                                                                 } else {
                                                                                                                                                                     errorflag = 0;
-                                                                                                                                                                    if (sstartdate10.length() < 3) {
+                                                                                                                                                                    if (sissuer10.length() < 3) {
                                                                                                                                                                         errorflag = 1;
-                                                                                                                                                                        startdate10.setError("Invalid Date");
+                                                                                                                                                                        issuerinput10.setError("Kindly enter valid name");
                                                                                                                                                                     } else {
                                                                                                                                                                         errorflag = 0;
-                                                                                                                                                                        if (willexpire10.equals("yes")) {
-                                                                                                                                                                            if (senddate10.length() < 3) {
-                                                                                                                                                                                errorflag = 1;
-                                                                                                                                                                                enddate10.setError("Invalid Date");
+                                                                                                                                                                        if (sstartdate10.length() < 3) {
+                                                                                                                                                                            errorflag = 1;
+                                                                                                                                                                            certistartdate10.setError("Kindly select valid date");
+                                                                                                                                                                        } else {
+                                                                                                                                                                            errorflag = 0;
+                                                                                                                                                                            if (willexpire10.equals("yes")) {
+                                                                                                                                                                                if (senddate10.length() < 4) {
+                                                                                                                                                                                    errorflag = 1;
+                                                                                                                                                                                    certienddate10.setError("Kindly select valid date");
+                                                                                                                                                                                }
                                                                                                                                                                             }
                                                                                                                                                                         }
                                                                                                                                                                     }
                                                                                                                                                                 }
+
                                                                                                                                                             }
 
                                                                                                                                                         }
-
                                                                                                                                                     }
                                                                                                                                                 }
+
                                                                                                                                             }
 
                                                                                                                                         }
-
                                                                                                                                     }
                                                                                                                                 }
+
                                                                                                                             }
 
                                                                                                                         }
-
                                                                                                                     }
                                                                                                                 }
+
                                                                                                             }
 
                                                                                                         }
-
                                                                                                     }
                                                                                                 }
+
                                                                                             }
 
                                                                                         }
-
                                                                                     }
                                                                                 }
                                                                             }
+
                                                                         }
 
                                                                     }
 
                                                                 }
-
                                                             }
                                                         }
+
                                                     }
 
                                                 }
 
                                             }
-
                                         }
                                     }
+
                                 }
 
                             }
 
                         }
-
                     }
                 }
             }
+
         }
+
         if (errorflag == 0) {
-            try {
-
-                Certificates obj1=new Certificates(stitle1,sissuer1,slicense1,sstartdate1,senddate1,willexpire1);
-                Certificates obj2=new Certificates(stitle2,sissuer2,slicense2,sstartdate2,senddate2,willexpire2);
-                Certificates obj3=new Certificates(stitle3,sissuer3,slicense3,sstartdate3,senddate3,willexpire3);
-                Certificates obj4=new Certificates(stitle4,sissuer4,slicense4,sstartdate4,senddate4,willexpire4);
-                Certificates obj5=new Certificates(stitle5,sissuer5,slicense5,sstartdate5,senddate5,willexpire5);
-                Certificates obj6=new Certificates(stitle6,sissuer6,slicense6,sstartdate6,senddate6,willexpire6);
-                Certificates obj7=new Certificates(stitle7,sissuer7,slicense7,sstartdate7,senddate7,willexpire7);
-                Certificates obj8=new Certificates(stitle8,sissuer8,slicense8,sstartdate8,senddate8,willexpire8);
-                Certificates obj9=new Certificates(stitle9,sissuer9,slicense9,sstartdate9,senddate9,willexpire9);
-                Certificates obj10=new Certificates(stitle10,sissuer10,slicense10,sstartdate10,senddate10,willexpire10);
-
-
-                certificatesList.add(obj1);
-                certificatesList.add(obj2);
-                certificatesList.add(obj3);
-                certificatesList.add(obj4);
-                certificatesList.add(obj5);
-                certificatesList.add(obj6);
-                certificatesList.add(obj7);
-                certificatesList.add(obj8);
-                certificatesList.add(obj9);
-                certificatesList.add(obj10);
-
-                String encObjString=OtoString(certificatesList,MySharedPreferencesManager.getDigest1(MyProfileCertifications.this),MySharedPreferencesManager.getDigest2(MyProfileCertifications.this));
-
-                new SaveCertificates().execute(encObjString);
-
-            } catch (Exception e) {
-                Log.d("TAG", "validateandSave:  " + e.getMessage());
-            }
-
+            savecertifi();
         }
 
     }
 
-    class SaveCertificates extends AsyncTask<String, String, String> {
+    public void savecertifi() {
+
+        try {
+
+            Certificates obj1 = new Certificates(stitle1, sissuer1, slicense1, sstartdate1, senddate1, willexpire1);
+            Certificates obj2 = new Certificates(stitle2, sissuer2, slicense2, sstartdate2, senddate2, willexpire2);
+            Certificates obj3 = new Certificates(stitle3, sissuer3, slicense3, sstartdate3, senddate3, willexpire3);
+            Certificates obj4 = new Certificates(stitle4, sissuer4, slicense4, sstartdate4, senddate4, willexpire4);
+            Certificates obj5 = new Certificates(stitle5, sissuer5, slicense5, sstartdate5, senddate5, willexpire5);
+            Certificates obj6 = new Certificates(stitle6, sissuer6, slicense6, sstartdate6, senddate6, willexpire6);
+            Certificates obj7 = new Certificates(stitle7, sissuer7, slicense7, sstartdate7, senddate7, willexpire7);
+            Certificates obj8 = new Certificates(stitle8, sissuer8, slicense8, sstartdate8, senddate8, willexpire8);
+            Certificates obj9 = new Certificates(stitle9, sissuer9, slicense9, sstartdate9, senddate9, willexpire9);
+            Certificates obj10 = new Certificates(stitle10, sissuer10, slicense10, sstartdate10, senddate10, willexpire10);
 
 
-        protected String doInBackground(String... param) {
+            certificatesList.add(obj1);
+            certificatesList.add(obj2);
+            certificatesList.add(obj3);
+            certificatesList.add(obj4);
+            certificatesList.add(obj5);
+            certificatesList.add(obj6);
+            certificatesList.add(obj7);
+            certificatesList.add(obj8);
+            certificatesList.add(obj9);
+            certificatesList.add(obj10);
 
-            String r = null;
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("u", username));       //0
-            params.add(new BasicNameValuePair("d", param[0]));       //0
+            String encObjString = OtoString(certificatesList, MySharedPreferencesManager.getDigest1(MyProfileCertifications.this), MySharedPreferencesManager.getDigest2(MyProfileCertifications.this));
 
+            new SaveCertificates().execute(encObjString);
 
-            json = jParser.makeHttpRequest(MyConstants.url_savecertifications, "GET", params);
-            try {
-                r = json.getString("info");
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return r;
+        } catch (Exception e) {
+            Log.d("TAG", "validateandSave:  " + e.getMessage());
         }
 
-        @Override
-        protected void onPostExecute(String result) {
-
-            if (result.equals("success")) {
-                Toast.makeText(MyProfileCertifications.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
-
-                ProfileRole r=new ProfileRole();
-                String role=r.getRole();
-                if(role.equals("student"))
-                    setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
-                else if(role.equals("alumni"))
-                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
-
-                s.setTitle1(stitle1);
-                s.setIssuer1(sissuer1);
-                s.setLicense1(slicense1);
-                s.setStartdate1certificate(sstartdate1);
-                s.setEnddate1certificate(senddate1);
-                s.setWillexpire1certificate(willexpire1);
-                s.setTitle2(stitle2);
-                s.setIssuer2(sissuer2);
-                s.setLicense2(slicense2);
-                s.setStartdate2certificate(sstartdate2);
-                s.setEnddate2certificate(senddate2);
-                s.setWillexpire2certificate(willexpire2);
-                s.setTitle3(stitle3);
-                s.setIssuer3(sissuer3);
-                s.setLicense3(slicense3);
-                s.setStartdate3certificate(sstartdate3);
-                s.setEnddate3certificate(senddate3);
-                s.setWillexpire3certificate(willexpire3);
-                s.setTitle4(stitle4);
-                s.setLicense4(slicense4);
-                s.setStartdate4certificate(sstartdate4);
-                s.setEnddate4certificate(senddate4);
-                s.setWillexpire4certificate(willexpire4);
-                s.setTitle5(stitle5);
-                s.setIssuer5(sissuer5);
-                s.setLicense5(slicense5);
-                s.setStartdate5certificate(sstartdate5);
-                s.setEnddate5certificate(senddate5);
-                s.setWillexpire5certificate(willexpire5);
-                s.setTitle6(stitle6);
-                s.setIssuer6(sissuer6);
-                s.setLicense6(slicense6);
-                s.setStartdate6certificate(sstartdate6);
-                s.setEnddate6certificate(senddate6);
-                s.setWillexpire6certificate(willexpire6);
-                s.setTitle7(stitle7);
-                s.setIssuer7(sissuer7);
-                s.setLicense7(slicense7);
-                s.setStartdate7certificate(sstartdate7);
-                s.setEnddate7certificate(senddate7);
-                s.setWillexpire7certificate(willexpire7);
-                s.setTitle8(stitle8);
-                s.setIssuer8(sissuer8);
-                s.setLicense8(slicense8);
-                s.setStartdate8certificate(sstartdate8);
-                s.setEnddate8certificate(senddate8);
-                s.setWillexpire8certificate(willexpire8);
-                s.setTitle9(stitle9);
-                s.setIssuer9(sissuer9);
-                s.setLicense9(slicense9);
-                s.setStartdate9certificate(sstartdate9);
-                s.setEnddate9certificate(senddate9);
-                s.setWillexpire9certificate(willexpire9);
-                s.setTitle10(stitle10);
-                s.setIssuer10(sissuer10);
-                s.setLicense10(slicense10);
-                s.setStartdate10certificate(sstartdate10);
-                s.setEnddate10certificate(senddate10);
-                s.setWillexpire10certificate(willexpire10);
-
-                MyProfileCertifications.super.onBackPressed();
-            } else
-                Toast.makeText(MyProfileCertifications.this, result, Toast.LENGTH_SHORT).show();
-
-        }
     }
 
     private void disableScrollbars(ScrollView scrollView) {
@@ -3995,8 +4052,11 @@ public class MyProfileCertifications extends AppCompatActivity {
         alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialogInterface) {
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileCertifications.this));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileCertifications.this));
+
             }
         });
 
@@ -4120,7 +4180,7 @@ public class MyProfileCertifications extends AppCompatActivity {
 
                                         }
 //                                        if (certicount == 0) {
-                                        else{
+                                        else {
                                             title1.setText("");
                                             issuer1.setText("");
                                             license1.setText("");
@@ -4454,7 +4514,6 @@ public class MyProfileCertifications extends AppCompatActivity {
             sstartdate6 = startdate6.getText().toString();
             senddate6 = enddate6.getText().toString();
             blnswitch6 = switch6.isChecked();
-
 
 
             stitle5 = stitle6;
@@ -4915,8 +4974,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             enddate9.setText(senddate9);
             switch9.setChecked(blnswitch10);
 
-        }
-        else if (d == 2) {
+        } else if (d == 2) {
             stitle10 = title10.getText().toString();
             sissuer10 = issuer10.getText().toString();
             slicense10 = license10.getText().toString();
@@ -5134,8 +5192,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             startdate9.setText(sstartdate9);
             enddate9.setText(senddate9);
             switch9.setChecked(blnswitch10);
-        }
-        else if (d == 1) {
+        } else if (d == 1) {
             stitle10 = title10.getText().toString();
             sissuer10 = issuer10.getText().toString();
             slicense10 = license10.getText().toString();
@@ -5381,6 +5438,16 @@ public class MyProfileCertifications extends AppCompatActivity {
             enddate9.setText(senddate9);
             switch9.setChecked(blnswitch10);
 
+            if (stitle1.equals("") && sissuer1.equals("") && slicense1.equals("") && sstartdate1.equals("") && senddate1.equals("") && !blnswitch1) {
+                Log.d("TAG", "deleteLang: lang 1");
+                editcertfi = 1;
+            }
+
+            if (editcertfi == 1) {
+                Log.d("TAG", "deleteLang: editcertfi - " + editcertfi);
+                savecertifi();
+            }
+
         }
 
 
@@ -5414,8 +5481,11 @@ public class MyProfileCertifications extends AppCompatActivity {
             alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialogInterface) {
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#282f35"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#282f35"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileCertifications.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileCertifications.this));
+
                 }
             });
 
@@ -5424,95 +5494,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             MyProfileCertifications.super.onBackPressed();
     }
 
-
-//    void showDateDialog(final EditText id)
-//    {
-//
-//
-//        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyProfileCertifications.this);
-//        LayoutInflater inflater = MyProfileCertifications.this.getLayoutInflater();
-//        View dialog = inflater.inflate(R.layout.monthyeardialog,null);
-//        dialogBuilder.setView(dialog);
-//
-//
-//
-//        final WheelView monthView,yearView;
-//
-//        final List<String> monthList= new ArrayList<String>();
-//        final List<String> yearList= new ArrayList<String>();
-//
-//        monthView= (WheelView)dialog.findViewById(R.id.monthwheel);
-//        yearView= (WheelView)dialog.findViewById(R.id.yearwheel);
-//
-//        monthList.add("Jan");
-//        monthList.add("Feb");
-//        monthList.add("Mar");
-//        monthList.add("Apr");
-//        monthList.add("May");
-//        monthList.add("Jun");
-//        monthList.add("Jul");
-//        monthList.add("Aug");
-//        monthList.add("Sep");
-//        monthList.add("Oct");
-//        monthList.add("Nov");
-//        monthList.add("Dec");
-//
-//        Calendar currentCal=Calendar.getInstance();
-//        for(int i=1975;i<=currentCal.get(Calendar.YEAR);i++)
-//            yearList.add(""+i);
-//
-//
-//        monthView.setWheelAdapter(new ArrayWheelAdapter(MyProfileCertifications.this));
-//        monthView.setWheelData(monthList);
-//        yearView.setWheelAdapter(new ArrayWheelAdapter(MyProfileCertifications.this));
-//        yearView.setWheelData(yearList);
-//
-//
-//
-//        View setselectionview=(View)dialog.findViewById(R.id.setselectionview);
-//        View cancelselectionview=(View)dialog.findViewById(R.id.cancelselectionview);
-//
-//        final AlertDialog alertDialog = dialogBuilder.create();
-//
-//
-//
-//        setselectionview.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                int monthPosition=monthView.getCurrentPosition();
-//                int yearPosition=yearView.getCurrentPosition();
-//
-//                String selectedMonth=monthList.get(monthPosition);
-//                String selectedYear=yearList.get(yearPosition);
-//
-//                setMonthYear(id,selectedMonth,selectedYear);
-//
-//                alertDialog.cancel();
-//            }
-//        });
-//
-//        cancelselectionview.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                alertDialog.cancel();
-//            }
-//        });
-//
-//        alertDialog.show();
-//
-//        int w= (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 180, getResources().getDisplayMetrics());
-//        int h= (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 215, getResources().getDisplayMetrics());
-//        alertDialog.getWindow().setLayout(w, h);
-//
-//    }
-//    void setMonthYear(EditText id,String selectedMonth,String selectedYear)
-//    {
-//        id.setText(selectedMonth+", "+selectedYear);
-//    }
-
-
-    void showDateDialog(final EditText id, boolean isFromDateSelected, final int fromYear, final String fromMonth, final String todate) {
+    void showDateDialog(final TextInputEditText id,final TextInputLayout idinput, boolean isFromDateSelected, final int fromYear, final String fromMonth, final String todate) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyProfileCertifications.this);
         LayoutInflater inflater = MyProfileCertifications.this.getLayoutInflater();
@@ -5651,7 +5633,13 @@ public class MyProfileCertifications extends AppCompatActivity {
                     isvalid = false;
                 }
 
-                setMonthYear(id, selectedMonth, selectedYear, isvalid);
+//                setMonthYear(id, selectedMonth, selectedYear, isvalid);
+
+                boolean bln = setMonthYear(id, selectedMonth, selectedYear, isvalid);
+                if(!bln) {
+                    idinput.setError("kindly enter valid date");
+//                    Toast.makeText(getActivity(), "bln "+bln, Toast.LENGTH_SHORT).show();
+                }
                 alertDialog.cancel();
             }
         });
@@ -5667,19 +5655,121 @@ public class MyProfileCertifications extends AppCompatActivity {
 
         alertDialog.show();
 
-        int w= (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 180, getResources().getDisplayMetrics());
-        int h= (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 215, getResources().getDisplayMetrics());
+        int w = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 180, getResources().getDisplayMetrics());
+        int h = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 215, getResources().getDisplayMetrics());
         alertDialog.getWindow().setLayout(w, h);
     }
 
-    void setMonthYear(EditText id, String selectedMonth, String selectedYear, boolean isValid) {
+
+    boolean setMonthYear(TextInputEditText id, String selectedMonth, String selectedYear, boolean isValid) {
         id.setError(null);
         if (isValid == true) {
             id.setText(selectedMonth + ", " + selectedYear);
+            return  true;
+
         } else {
-            id.setError("Choose valid date");
-            Toast.makeText(this, "Invalid date", Toast.LENGTH_SHORT).show();
             id.setText("");
+            return  false;
+        }
+    }
+
+    class SaveCertificates extends AsyncTask<String, String, String> {
+
+
+        protected String doInBackground(String... param) {
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("u", username));       //0
+            params.add(new BasicNameValuePair("d", param[0]));       //0
+
+
+            json = jParser.makeHttpRequest(MyConstants.url_savecertifications, "GET", params);
+            try {
+                r = json.getString("info");
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (result.equals("success")) {
+                Toast.makeText(MyProfileCertifications.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+
+                if (role.equals("student"))
+                    setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+                else if (role.equals("alumni"))
+                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+
+                s.setTitle1(stitle1);
+                s.setIssuer1(sissuer1);
+                s.setLicense1(slicense1);
+                s.setStartdate1certificate(sstartdate1);
+                s.setEnddate1certificate(senddate1);
+                s.setWillexpire1certificate(willexpire1);
+                s.setTitle2(stitle2);
+                s.setIssuer2(sissuer2);
+                s.setLicense2(slicense2);
+                s.setStartdate2certificate(sstartdate2);
+                s.setEnddate2certificate(senddate2);
+                s.setWillexpire2certificate(willexpire2);
+                s.setTitle3(stitle3);
+                s.setIssuer3(sissuer3);
+                s.setLicense3(slicense3);
+                s.setStartdate3certificate(sstartdate3);
+                s.setEnddate3certificate(senddate3);
+                s.setWillexpire3certificate(willexpire3);
+                s.setTitle4(stitle4);
+                s.setLicense4(slicense4);
+                s.setStartdate4certificate(sstartdate4);
+                s.setEnddate4certificate(senddate4);
+                s.setWillexpire4certificate(willexpire4);
+                s.setTitle5(stitle5);
+                s.setIssuer5(sissuer5);
+                s.setLicense5(slicense5);
+                s.setStartdate5certificate(sstartdate5);
+                s.setEnddate5certificate(senddate5);
+                s.setWillexpire5certificate(willexpire5);
+                s.setTitle6(stitle6);
+                s.setIssuer6(sissuer6);
+                s.setLicense6(slicense6);
+                s.setStartdate6certificate(sstartdate6);
+                s.setEnddate6certificate(senddate6);
+                s.setWillexpire6certificate(willexpire6);
+                s.setTitle7(stitle7);
+                s.setIssuer7(sissuer7);
+                s.setLicense7(slicense7);
+                s.setStartdate7certificate(sstartdate7);
+                s.setEnddate7certificate(senddate7);
+                s.setWillexpire7certificate(willexpire7);
+                s.setTitle8(stitle8);
+                s.setIssuer8(sissuer8);
+                s.setLicense8(slicense8);
+                s.setStartdate8certificate(sstartdate8);
+                s.setEnddate8certificate(senddate8);
+                s.setWillexpire8certificate(willexpire8);
+                s.setTitle9(stitle9);
+                s.setIssuer9(sissuer9);
+                s.setLicense9(slicense9);
+                s.setStartdate9certificate(sstartdate9);
+                s.setEnddate9certificate(senddate9);
+                s.setWillexpire9certificate(willexpire9);
+                s.setTitle10(stitle10);
+                s.setIssuer10(sissuer10);
+                s.setLicense10(slicense10);
+                s.setStartdate10certificate(sstartdate10);
+                s.setEnddate10certificate(senddate10);
+                s.setWillexpire10certificate(willexpire10);
+
+                MyProfileCertifications.super.onBackPressed();
+            } else
+                Toast.makeText(MyProfileCertifications.this, result, Toast.LENGTH_SHORT).show();
+
         }
     }
 

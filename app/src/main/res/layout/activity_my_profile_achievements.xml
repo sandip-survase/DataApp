@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/myprofilehonorsandawards"
-    android:background="#282f35">
+    android:background="@color/while_color">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_my_profile_achievements"
@@ -21,22 +21,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Honors and Awards"
-            android:textSize="20dp"
-            android:textColor="#eee"
+            android:textSize="18dp"
+            android:textColor="@color/while_color"
             android:id="@+id/achievementstxt"
             android:layout_centerHorizontal="true"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:background="@drawable/textviewborder2"
+            android:elevation="2dp"
+            android:background="@drawable/textviewborder"
             />
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_below="@+id/achievementstxt"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashhonor1"
             />
@@ -64,13 +65,15 @@
                 android:id="@+id/titleinput1"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
-                    android:textSize="15dp"
+                    android:hint="Title*"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:imeOptions="actionNext"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/title1"/>
 
@@ -84,13 +87,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
-                    android:textSize="15dp"
+                    android:hint="Issuer*"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:imeOptions="actionNext"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:inputType="textCapWords"
                     android:id="@+id/issuer1"/>
 
@@ -101,18 +106,21 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput1"
                 android:layout_marginTop="10dp"
+                android:id="@+id/decrinput1"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
                     android:hint="Description"
                     android:gravity="top|left"
+                    android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/description1"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -128,12 +136,12 @@
             android:layout_centerHorizontal="true"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
-                android:textSize="15dp"
-                android:textColor="#eee"
+                android:hint="Month, Year*"
+                android:textSize="16dp"
+                android:textColor="@color/dark_color"
                 android:singleLine="true"
                 android:focusable="false"
                 android:id="@+id/yearofhonor1"/>
@@ -143,7 +151,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/yearhonor1"
             android:id="@+id/honorline1"
             android:layout_marginTop="20dp"
@@ -155,7 +163,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/honorline1"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashhonor2"
             />
@@ -184,13 +192,15 @@
                 android:id="@+id/titleinput2"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
+                    android:hint="Title*"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:imeOptions="actionNext"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/title2"/>
 
@@ -204,14 +214,16 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
-                    android:textSize="15dp"
+                    android:hint="Issuer*"
+                    android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:inputType="textCapWords"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:id="@+id/issuer2"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -220,19 +232,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput2"
+
+                android:id="@+id/decrinput2"
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
                     android:hint="Description"
                     android:gravity="top|left"
+                    android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/description2"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -248,12 +264,12 @@
             android:id="@+id/yearhonor2"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
-                android:textSize="15dp"
-                android:textColor="#eee"
+                android:hint="Month, Year*"
+                android:textSize="16dp"
+                android:textColor="@color/dark_color"
                 android:focusable="false"
                 android:singleLine="true"
                 android:id="@+id/yearofhonor2"/>
@@ -262,7 +278,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/yearhonor2"
             android:id="@+id/honorline2"
             android:layout_marginTop="20dp"
@@ -273,7 +289,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/honorline2"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashhonor3"
             />
@@ -302,13 +318,15 @@
                 android:id="@+id/titleinput3"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
-                    android:textSize="15dp"
+                    android:hint="Title*"
+                    android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/title3"/>
 
@@ -322,13 +340,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
-                    android:textSize="15dp"
+                    android:hint="Issuer*"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:imeOptions="actionNext"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:inputType="textCapWords"
                     android:id="@+id/issuer3"/>
 
@@ -339,18 +359,21 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput3"
                 android:layout_marginTop="10dp"
+                android:id="@+id/decrinput3"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
                     android:hint="Description"
+                    android:imeOptions="actionDone"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/description3"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -366,13 +389,13 @@
             android:id="@+id/yearhonor3"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
+                android:hint="Month, Year*"
                 android:singleLine="true"
-                android:textSize="15dp"
-                android:textColor="#eee"
+                android:textSize="16dp"
+                android:textColor="@color/dark_color"
                 android:focusable="false"
                 android:id="@+id/yearofhonor3"/>
         </android.support.design.widget.TextInputLayout>
@@ -380,7 +403,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/yearhonor3"
             android:id="@+id/honorline3"
             android:layout_marginTop="20dp"
@@ -391,7 +414,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/honorline3"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashhonor4"
             />
@@ -420,13 +443,15 @@
                 android:id="@+id/titleinput4"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
-                    android:textSize="15dp"
+                    android:hint="Title*"
+                    android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/title4"/>
 
@@ -440,13 +465,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
+                    android:hint="Issuer*"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:imeOptions="actionNext"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:inputType="textCapWords"
                     android:id="@+id/issuer4"/>
 
@@ -457,18 +484,21 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput4"
                 android:layout_marginTop="10dp"
+                android:id="@+id/decrinput4"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
                     android:hint="Description"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
+                    android:imeOptions="actionDone"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/description4"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -484,13 +514,13 @@
             android:id="@+id/yearhonor4"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
+                android:hint="Month, Year*"
                 android:textSize="15dp"
                 android:singleLine="true"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:focusable="false"
                 android:id="@+id/yearofhonor4"/>
         </android.support.design.widget.TextInputLayout>
@@ -498,7 +528,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/yearhonor4"
             android:id="@+id/honorline4"
             android:layout_marginTop="20dp"
@@ -509,7 +539,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/honorline4"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashhonor5"
             />
@@ -538,13 +568,15 @@
                 android:id="@+id/titleinput5"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
+                    android:hint="Title*"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:imeOptions="actionNext"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/title5"/>
 
@@ -558,13 +590,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
+                    android:hint="Issuer*"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:imeOptions="actionNext"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:inputType="textCapWords"
                     android:id="@+id/issuer5"/>
 
@@ -575,18 +609,21 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput5"
                 android:layout_marginTop="10dp"
+                android:id="@+id/decrinput5"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
                     android:hint="Description"
+                    android:imeOptions="actionDone"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/description5"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -602,13 +639,13 @@
             android:id="@+id/yearhonor5"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
+                android:hint="Month, Year*"
                 android:singleLine="true"
-                android:textSize="15dp"
-                android:textColor="#eee"
+                android:textSize="16dp"
+                android:textColor="@color/dark_color"
                 android:focusable="false"
                 android:id="@+id/yearofhonor5"/>
         </android.support.design.widget.TextInputLayout>
@@ -616,7 +653,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/yearhonor5"
             android:id="@+id/honorline5"
             android:layout_marginTop="20dp"
@@ -627,7 +664,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/honorline5"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashhonor6"
             />
@@ -656,13 +693,15 @@
                 android:id="@+id/titleinput6"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
-                    android:textSize="15dp"
+                    android:hint="Title*"
+                    android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/title6"/>
 
@@ -676,12 +715,14 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:hint="Issuer*"
+                    android:imeOptions="actionNext"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:id="@+id/issuer6"/>
@@ -693,18 +734,21 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput6"
                 android:layout_marginTop="10dp"
+                android:id="@+id/decrinput6"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
+                    android:imeOptions="actionDone"
                     android:hint="Description"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/description6"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -720,13 +764,13 @@
             android:id="@+id/yearhonor6"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
+                android:hint="Month, Year*"
                 android:singleLine="true"
-                android:textSize="15dp"
-                android:textColor="#eee"
+                android:textSize="16dp"
+                android:textColor="@color/dark_color"
                 android:focusable="false"
                 android:id="@+id/yearofhonor6"/>
         </android.support.design.widget.TextInputLayout>
@@ -734,7 +778,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/yearhonor6"
             android:id="@+id/honorline6"
             android:layout_marginTop="20dp"
@@ -745,7 +789,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/honorline6"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashhonor7"
             />
@@ -774,13 +818,15 @@
                 android:id="@+id/titleinput7"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
+                    android:hint="Title*"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:imeOptions="actionNext"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/title7"/>
 
@@ -794,13 +840,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
-                    android:textSize="15dp"
+                    android:hint="Issuer*"
+                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:imeOptions="actionNext"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:inputType="textCapWords"
                     android:id="@+id/issuer7"/>
 
@@ -811,18 +859,21 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput7"
                 android:layout_marginTop="10dp"
+                android:id="@+id/decrinput7"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
                     android:hint="Description"
                     android:gravity="top|left"
+                    android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/description7"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -838,13 +889,13 @@
             android:id="@+id/yearhonor7"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
-                android:textSize="15dp"
+                android:hint="Month, Year*"
+                android:textSize="16dp"
                 android:singleLine="true"
-                android:textColor="#eee"
+                android:textColor="@color/dark_color"
                 android:focusable="false"
                 android:id="@+id/yearofhonor7"/>
         </android.support.design.widget.TextInputLayout>
@@ -852,7 +903,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/yearhonor7"
             android:id="@+id/honorline7"
             android:layout_marginTop="20dp"
@@ -863,7 +914,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/honorline7"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashhonor8"
             />
@@ -892,13 +943,15 @@
                 android:id="@+id/titleinput8"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
+                    android:hint="Title*"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:imeOptions="actionNext"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/title8"/>
 
@@ -912,13 +965,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
+                    android:hint="Issuer*"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:imeOptions="actionNext"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:inputType="textCapWords"
                     android:id="@+id/issuer8"/>
 
@@ -929,18 +984,21 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput8"
                 android:layout_marginTop="10dp"
+                android:id="@+id/decrinput8"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
                     android:hint="Description"
+                    android:imeOptions="actionDone"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/description8"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -956,13 +1014,13 @@
             android:id="@+id/yearhonor8"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
+                android:hint="Month, Year*"
                 android:singleLine="true"
-                android:textSize="15dp"
-                android:textColor="#eee"
+                android:textSize="16dp"
+                android:textColor="@color/dark_color"
                 android:focusable="false"
                 android:id="@+id/yearofhonor8"/>
         </android.support.design.widget.TextInputLayout>
@@ -970,7 +1028,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/yearhonor8"
             android:id="@+id/honorline8"
             android:layout_marginTop="20dp"
@@ -983,7 +1041,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/honorline8"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashhonor9"
             />
@@ -1012,13 +1070,15 @@
                 android:id="@+id/titleinput9"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
-                    android:textSize="15dp"
+                    android:hint="Title*"
+                    android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
-                    android:textColor="#eee"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/title9"/>
 
@@ -1032,12 +1092,14 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:hint="Issuer*"
+                    android:imeOptions="actionNext"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:inputType="textCapWords"
                     android:singleLine="true"
                     android:id="@+id/issuer9"/>
@@ -1049,18 +1111,21 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput9"
                 android:layout_marginTop="10dp"
+                android:id="@+id/decrinput9"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
+                    android:imeOptions="actionDone"
                     android:hint="Description"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/description9"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1076,13 +1141,13 @@
             android:id="@+id/yearhonor9"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
+                android:hint="Month, Year*"
                 android:singleLine="true"
-                android:textSize="15dp"
-                android:textColor="#eee"
+                android:textSize="16dp"
+                android:textColor="@color/dark_color"
                 android:focusable="false"
                 android:id="@+id/yearofhonor9"/>
         </android.support.design.widget.TextInputLayout>
@@ -1090,7 +1155,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/yearhonor9"
             android:id="@+id/honorline9"
             android:layout_marginTop="20dp"
@@ -1101,7 +1166,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/honorline9"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
+            android:src="@drawable/delete_icon"
             android:layout_marginTop="35dp"
             android:id="@+id/trashhonor10"
             />
@@ -1129,13 +1194,15 @@
                 android:id="@+id/titleinput10"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Title"
+                    android:hint="Title*"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:imeOptions="actionNext"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="500"
                     android:inputType="textCapWords"
                     android:id="@+id/title10"/>
 
@@ -1149,13 +1216,15 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issuer"
+                    android:hint="Issuer*"
                     android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:imeOptions="actionNext"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:inputType="textCapWords"
                     android:id="@+id/issuer10"/>
 
@@ -1166,18 +1235,21 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/issuerinput10"
                 android:layout_marginTop="10dp"
+                android:id="@+id/decrinput10"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
+                    android:imeOptions="actionDone"
                     android:hint="Description"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="1000"
                     android:id="@+id/description10"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1193,12 +1265,12 @@
             android:id="@+id/yearhonor10"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Month, Year"
-                android:textSize="15dp"
-                android:textColor="#eee"
+                android:hint="Month, Year*"
+                android:textSize="16dp"
+                android:textColor="@color/dark_color"
                 android:singleLine="true"
                 android:focusable="false"
                 android:id="@+id/yearofhonor10"/>
@@ -1207,7 +1279,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#c59a6d"
+            android:background="@color/sky_blue_color"
             android:layout_below="@+id/yearhonor10"
             android:id="@+id/honorline10"
             android:layout_marginTop="20dp"
@@ -1217,10 +1289,11 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/boxborderwhite"
+            android:background="@drawable/textviewborder"
             android:layout_below="@+id/honorline10"
             android:id="@+id/addmorehonor"
             android:layout_marginTop="20dp"
+            android:elevation="2dp"
             />
 
         <TextView
@@ -1228,10 +1301,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/honorline10"
             android:text="Add Honor/Award"
-            android:textColor="#eee"
-            android:textSize="20dp"
+            android:textColor="@color/while_color"
+            android:textSize="18dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
+            android:elevation="3dp"
             android:id="@+id/addmorehonortxt"
             />
         <ImageView
@@ -1239,7 +1313,8 @@
             android:layout_height="30dp"
             android:layout_below="@+id/honorline10"
             android:layout_alignParentRight="true"
-            android:src="@drawable/plus"
+            android:src="@drawable/add_icon_white"
+            android:elevation="3dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
             android:id="@+id/addmorehonorimg"
