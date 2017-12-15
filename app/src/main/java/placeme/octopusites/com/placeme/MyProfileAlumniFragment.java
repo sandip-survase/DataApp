@@ -2,6 +2,7 @@ package placeme.octopusites.com.placeme;
 
 
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -115,7 +116,7 @@ public class MyProfileAlumniFragment extends Fragment {
     JSONParser jParserlang = new JSONParser();
     JSONObject json, jsonlang;
     RelativeLayout edutab4;
-    RelativeLayout editprofilerl, exptab2, exptab3;
+    RelativeLayout box1,editprofilerl, exptab2, exptab3;
     View rootView;
     SwipeRefreshLayout swipe_refresh_layout;
     byte[] demoKeyBytes;
@@ -145,7 +146,7 @@ public class MyProfileAlumniFragment extends Fragment {
     int found_certificates = 0, found_courses = 0, found_skills = 0, found_honors = 0, found_patents = 0, found_publications = 0, found_lang = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_locationpreferences = 0;
     private String signature = "";
     private String mname = "";
-
+    View box2;
     private ProgressBar profileprogress,updateProgress;
 
     public MyProfileAlumniFragment() {
@@ -168,17 +169,51 @@ public class MyProfileAlumniFragment extends Fragment {
         }
         return null;
     }
+    public void bottomupbox2(Activity activity, View view){
 
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.bottom_up_box2);
+        view.startAnimation(animation1);
+        animation1.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                profileprogress.setVisibility(View.VISIBLE);
+                View box2section=rootView.findViewById(R.id.box2section);
+                box2section.setVisibility(View.VISIBLE);
+                editprofiletxt.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_my_profile_alumni, container, false);
+
+        box1=(RelativeLayout)rootView.findViewById(R.id.box1);
+        box2=rootView.findViewById(R.id.box2);
+        ImageView box2pencil=(ImageView) rootView.findViewById(R.id.box2pencil);
 
         username = MySharedPreferencesManager.getUsername(getActivity());
         String pass=MySharedPreferencesManager.getPassword(getActivity());
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
         digest2 = MySharedPreferencesManager.getDigest2(getActivity());
         role = MySharedPreferencesManager.getRole(getActivity());
+
+        TextView noedudetailstxt = (TextView) rootView.findViewById(R.id.noedudetailstxt);
+        TextView nomyprofileproj = (TextView) rootView.findViewById(R.id.nomyprofileproj);
+        TextView extraprojectscount = (TextView) rootView.findViewById(R.id.extraprojectscount);
 
         myprofileimg = (CircleImageView) rootView.findViewById(R.id.myprofileimg);
         iv_camera=(ImageButton)  rootView.findViewById(R.id.iv_camera);
@@ -360,7 +395,8 @@ public class MyProfileAlumniFragment extends Fragment {
         acc5txttxt.setTypeface(MyConstants.getBold(getActivity()));
         acc6txttxt.setTypeface(MyConstants.getBold(getActivity()));
         acc7txttxt.setTypeface(MyConstants.getBold(getActivity()));
-
+        noedudetailstxt.setTypeface(MyConstants.getBold(getActivity()));
+        nomyprofileproj.setTypeface(MyConstants.getBold(getActivity()));
         contactmobile.setTypeface(MyConstants.getBold(getActivity()));
         contactemail.setTypeface(MyConstants.getBold(getActivity()));
         myprofilepreview.setTypeface(MyConstants.getBold(getActivity()));
@@ -379,6 +415,25 @@ public class MyProfileAlumniFragment extends Fragment {
         updateProgress = (ProgressBar) rootView.findViewById(R.id.updateProgress);
 
 
+        if(!ShouldAnimateProfile.shouldAnimate)
+        {
+            MyConstants.bottomupbox1(getActivity(),box1);
+            bottomupbox2(getActivity(),box2);
+            MyConstants.bottomupbox4(getActivity(),edutab4);
+            MyConstants.fade(getActivity(),myprofileimg);
+            MyConstants.fade(getActivity(),iv_camera);
+            MyConstants.bottomupbox3(getActivity(),eduboxtxt);
+            MyConstants.bottomupbox3(getActivity(),box2pencil);
+            MyConstants.fadeandmovedown(getActivity(),myprofilepreview);
+            ShouldAnimateProfile.shouldAnimate=true;
+        }
+        else
+        {
+            profileprogress.setVisibility(View.VISIBLE);
+            View box2section=rootView.findViewById(R.id.box2section);
+            box2section.setVisibility(View.VISIBLE);
+            editprofiletxt.setVisibility(View.VISIBLE);
+        }
 
         demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         demoIVBytes = SimpleBase64Encoder.decode(digest2);
