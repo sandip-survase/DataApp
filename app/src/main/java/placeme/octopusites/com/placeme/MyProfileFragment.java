@@ -126,7 +126,7 @@ public class MyProfileFragment extends Fragment {
     String nameasten = "", mothername = "", dob = "", gender = "", mothertongue = "", hobbies = "", bloodgroup = "", category = "", religion = "", caste = "", prn = "", paddrline1 = "", paddrline2 = "", paddrline3 = "", handicapped = "", sports = "", defenceex = "";
     ProgressBar updateProgress;
     SwipeRefreshLayout swipe_refresh_layout;
-    RelativeLayout box1,edutab4,edutab1,edutab2,edutab3,projtab1,projtab2,projtab3,acctab1,acctab2,acctab3,acctab4,acctab5,acctab6,acctab7,careertab1,careertab2,careertab3,careertab4,contacttab1,contacttab2,contacttab3;
+    RelativeLayout box1,edutab4,edutab1,edutab2,edutab3,noedutab,projtab1,projtab2,projtab3,acctab1,acctab2,acctab3,acctab4,acctab5,acctab6,acctab7,careertab1,careertab2,careertab3,careertab4,contacttab1,contacttab2,contacttab3;
     int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0, found_pgsem = 0, found_pgyear = 0, found_projects = 0, found_lang = 0, found_certificates = 0;
     int found_courses = 0, found_skills = 0, found_honors = 0, found_patents = 0, found_publications = 0, found_careerobj = 0, found_strengths = 0, found_weaknesses = 0, found_locationpreferences = 0;
     int found_contact_details = 0, found_personal = 0;
@@ -178,6 +178,7 @@ public class MyProfileFragment extends Fragment {
 
         edutab2=(RelativeLayout)rootView.findViewById(R.id.edutab2);
         edutab1=(RelativeLayout)rootView.findViewById(R.id.edutab1);
+        noedutab=(RelativeLayout)rootView.findViewById(R.id.noedutab);
         edutab3=(RelativeLayout)rootView.findViewById(R.id.edutab3);
         projtab1=(RelativeLayout)rootView.findViewById(R.id.projtab1);
         projtab2=(RelativeLayout)rootView.findViewById(R.id.projtab2);
@@ -230,6 +231,11 @@ public class MyProfileFragment extends Fragment {
         myprofilecource = (TextView) rootView.findViewById(R.id.myprofilecource);
         myprofilecource2 = (TextView) rootView.findViewById(R.id.myprofilecource2);
         myprofilecource3 = (TextView) rootView.findViewById(R.id.myprofilecource3);
+
+        TextView noedudetailstxt = (TextView) rootView.findViewById(R.id.noedudetailstxt);
+        TextView nomyprofileproj = (TextView) rootView.findViewById(R.id.nomyprofileproj);
+        TextView extraprojectscount = (TextView) rootView.findViewById(R.id.extraprojectscount);
+
         myprofilecource4 = (TextView) rootView.findViewById(R.id.myprofilecource4);
         myprofileproj1 = (TextView) rootView.findViewById(R.id.myprofileproj1);
         myprofileproj2 = (TextView) rootView.findViewById(R.id.myprofileproj2);
@@ -302,6 +308,8 @@ public class MyProfileFragment extends Fragment {
         myprofileclgname2.setTypeface(MyConstants.getLight(getActivity()));
         myprofileclgyearofpassing2.setTypeface(MyConstants.getLight(getActivity()));
         myprofilecource3.setTypeface(MyConstants.getBold(getActivity()));
+        noedudetailstxt.setTypeface(MyConstants.getBold(getActivity()));
+        nomyprofileproj.setTypeface(MyConstants.getBold(getActivity()));
         myprofileclgname3.setTypeface(MyConstants.getLight(getActivity()));
         myprofileclgyearofpassing3.setTypeface(MyConstants.getLight(getActivity()));
 
@@ -316,6 +324,7 @@ public class MyProfileFragment extends Fragment {
         myprofiledomain3.setTypeface(MyConstants.getLight(getActivity()));
         myprofileduration3.setTypeface(MyConstants.getLight(getActivity()));
 
+        extraprojectscount.setTypeface(MyConstants.getLight(getActivity()));
         accomplishmentsboxtxt.setTypeface(MyConstants.getBold(getActivity()));
         acc1txt.setTypeface(MyConstants.getLight(getActivity()));
         acc1txttxt.setTypeface(MyConstants.getBold(getActivity()));
@@ -361,6 +370,13 @@ public class MyProfileFragment extends Fragment {
             MyConstants.fadeandmovedown(getActivity(),myprofilepreview);
             ShouldAnimateProfile.shouldAnimate=true;
         }
+        else
+        {
+            profileprogress.setVisibility(View.VISIBLE);
+            View box2section=rootView.findViewById(R.id.box2section);
+            box2section.setVisibility(View.VISIBLE);
+            editprofiletxt.setVisibility(View.VISIBLE);
+        }
 
 
 
@@ -382,6 +398,7 @@ public class MyProfileFragment extends Fragment {
         introedit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("TAG", "intro called");
                 startActivityForResult(new Intent(getActivity(), MyProfileIntro.class), 0);
             }
         });

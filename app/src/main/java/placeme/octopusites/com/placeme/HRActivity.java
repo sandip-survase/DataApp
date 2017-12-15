@@ -135,7 +135,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         searchView.setVoiceSearch(false);
         searchView.setCursorDrawable(R.drawable.custom_cursor);
-        searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
+
 
 
         digest1 = MySharedPreferencesManager.getDigest1(this);

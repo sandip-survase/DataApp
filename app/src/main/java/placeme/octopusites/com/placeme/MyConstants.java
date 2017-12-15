@@ -114,17 +114,6 @@ public class MyConstants {
     public static final String load_last_updated = "http://192.168.100.100/AESTest/GetLastUpdated";
     public static final String url_remove_profile = "http://192.168.100.100/AESTest/RemoveImage";
 
-//    public static final String url_getlanguages = "http://192.168.100.100/AESTest/GetLanguages";
-//    public static final String URL_SAVE_ALUMNI_CONTACT_DETAILS = "http://192.168.100.100/AESTest/SaveAlumniContact";
-//    public static final String LOAD_ALUMNI_DATA = "http://192.168.100.100/AESTest/GetAlumniData";
-//    public static final String URL_SAVE_ALUMNI_PROJECTS = "http://192.168.100.100/AESTest/SaveAlumniProjects";
-//    public static final String URL_SAVE_HR_CONTACT_DETAILS = "http://192.168.100.100/AESTest/SaveHrContact";
-//    public static final String url_savedata_SaveContact = "http://192.168.100.100/AESTest/SaveContact";
-//    public static final String url_SaveExperiences_admin = "http://192.168.100.100/AESTest/SaveExperiences";
-//    public static String url_getcountries = "http://192.168.100.100/AESTest/GetCountries";
-//    public static String url_getstates = "http://192.168.100.100/AESTest/GetStates";
-//    public static String url_getcities = "http://192.168.100.100/AESTest/GetCities";
-
 
     public static final String url_saveHrExperience = "http://192.168.100.100/AESTest/SaveHrExperiences";
     public static final String url = "http://192.168.100.100/HandleMobileRequests/getimg.jsp?username=";
