@@ -182,8 +182,6 @@ public class MyProfileFragment extends Fragment {
         box1=(RelativeLayout)rootView.findViewById(R.id.box1);
         box2=rootView.findViewById(R.id.box2);
 
-
-
         edutab2=(RelativeLayout)rootView.findViewById(R.id.edutab2);
         edutab1=(RelativeLayout)rootView.findViewById(R.id.edutab1);
         noedutab=(RelativeLayout)rootView.findViewById(R.id.noedutab);
@@ -410,6 +408,7 @@ public class MyProfileFragment extends Fragment {
         accomplishmentsedit = (ImageView) rootView.findViewById(R.id.accomplishmentsedit);
         careeredit = (ImageView) rootView.findViewById(R.id.careeredit);
         contactedit = (ImageView) rootView.findViewById(R.id.contactedit);
+
         introedit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -678,7 +677,6 @@ public class MyProfileFragment extends Fragment {
 
                         if(!strength4.equals(""))
                             strength_count=1;
-
                         if(!strength5.equals(""))
                             strength_count=2;
                         if(!strength6.equals(""))
@@ -2831,7 +2829,6 @@ public class MyProfileFragment extends Fragment {
                 projtab3.setVisibility(View.GONE);
 
                 noprojtab.setVisibility(View.GONE);
-                projtab2.setVisibility(View.VISIBLE);
             }
             if (!proj3.equals("")) {
                 myprofileproj3.setText(proj3);
@@ -2850,7 +2847,6 @@ public class MyProfileFragment extends Fragment {
                 projtab3.setVisibility(View.VISIBLE);
 
                 noprojtab.setVisibility(View.GONE);
-                projtab3.setVisibility(View.VISIBLE);
 
                 if(!proj4.equals(""))
                 {

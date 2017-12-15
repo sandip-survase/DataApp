@@ -1235,6 +1235,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:textSize="12dp"
+                        android:visibility="gone"
                         android:textColor="@color/dark_color"
                         android:text="and 3 more"
                         android:layout_below="@+id/noexptab"

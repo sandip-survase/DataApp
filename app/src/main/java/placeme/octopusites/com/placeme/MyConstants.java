@@ -38,60 +38,60 @@ public class MyConstants {
 //    --------------------------------------Load fragment data-------------------------------------
 
     public static final String load_HR_data = "http://192.168.100.100/ProfileObjects/GetHrData";
-    public static String url_load_alumni_data = "http://192.168.100.100/ProfileObjects/GetAlumniData";
-    public static final String load_student_data = "http://192.168.100.100/ProfileObjects/GetStudentData";
-    public static final String load_Admin_data = "http://192.168.100.100/ProfileObjects/GetAdminData";
+    public static String url_load_alumni_data = "http://192.168.100.10/ProfileObjects/GetAlumniData";
+    public static final String load_student_data = "http://192.168.100.10/ProfileObjects/GetStudentData";
+    public static final String load_Admin_data = "http://192.168.100.10/ProfileObjects/GetAdminData";
 
 //    --------------------------------------Intro-------------------------------------
 
-    public static final String url_SaveIntro = "http://192.168.100.100/ProfileObjects/SaveIntro";
+    public static final String url_SaveIntro = "http://192.168.100.10/ProfileObjects/SaveIntro";
     public static final String url_SaveHrIntro = "http://192.168.100.100/ProfileObjects/SaveHrIntro";
-    public static String url_SaveAdminIntro= "http://192.168.100.100/ProfileObjects/SaveAdminIntro";
+    public static String url_SaveAdminIntro= "http://192.168.100.10/ProfileObjects/SaveAdminIntro";
 
 //    --------------------------------------project-------------------------------------
 
-    public static final String url_saveprojects = "http://192.168.100.100/ProfileObjects/SaveProjects";
+    public static final String url_saveprojects = "http://192.168.100.10/ProfileObjects/SaveProjects";
 
 //    -----------------------------------Education details--------------------------
 
-    public static final String url_SaveTenth = "http://192.168.100.100/ProfileObjects/SaveTenth";
-    public static final String url_savedata_twelth = "http://192.168.100.100/ProfileObjects/SaveTwelth";
-    public static final String url_savedata_diploma = "http://192.168.100.100/ProfileObjects/SaveDiploma";
-    public static String url_savedata_ug = "http://192.168.100.100/ProfileObjects/SaveUg";
-    public static String url_savedata_pg_sem = "http://192.168.100.100/ProfileObjects/SavePgSem";
-    public static String url_savedata_pg_year = "http://192.168.100.100/ProfileObjects/SavePgYear";
+    public static final String url_SaveTenth = "http://192.168.100.10/ProfileObjects/SaveTenth";
+    public static final String url_savedata_twelth = "http://192.168.100.10/ProfileObjects/SaveTwelth";
+    public static final String url_savedata_diploma = "http://192.168.100.10/ProfileObjects/SaveDiploma";
+    public static String url_savedata_ug = "http://192.168.100.10/ProfileObjects/SaveUg";
+    public static String url_savedata_pg_sem = "http://192.168.100.10/ProfileObjects/SavePgSem";
+    public static String url_savedata_pg_year = "http://192.168.100.10/ProfileObjects/SavePgYear";
 
 //    ----------------------------------------Accomplishments-----------------------------
 
-    public static final String url_savelanguages = "http://192.168.100.100/ProfileObjects/SaveLanguages";
-    public static final String url_savecertifications = "http://192.168.100.100/ProfileObjects/SaveCertificates";
-    public static final String url_savecourses = "http://192.168.100.100/ProfileObjects/SaveCourses";
-    public static final String url_saveskills = "http://192.168.100.100/ProfileObjects/SaveSkills";
-    public static final String url_savehonors = "http://192.168.100.100/ProfileObjects/SaveHonors";
-    public static final String url_savepatents = "http://192.168.100.100/ProfileObjects/SavePatents";
-    public static final String url_savepublications = "http://192.168.100.100/ProfileObjects/SavePublications";
+    public static final String url_savelanguages = "http://192.168.100.10/ProfileObjects/SaveLanguages";
+    public static final String url_savecertifications = "http://192.168.100.10/ProfileObjects/SaveCertificates";
+    public static final String url_savecourses = "http://192.168.100.10/ProfileObjects/SaveCourses";
+    public static final String url_saveskills = "http://192.168.100.10/ProfileObjects/SaveSkills";
+    public static final String url_savehonors = "http://192.168.100.10/ProfileObjects/SaveHonors";
+    public static final String url_savepatents = "http://192.168.100.10/ProfileObjects/SavePatents";
+    public static final String url_savepublications = "http://192.168.100.10/ProfileObjects/SavePublications";
 
 //    -----------------------------------------MyProfileCareerDetails---------------------------------
 
-    public static final String url_savecareerobj = "http://192.168.100.100/ProfileObjects/SaveCareerObj";
-    public static final String url_savestrengths = "http://192.168.100.100/ProfileObjects/SaveStrengths";
-    public static final String url_saveweaknesses = "http://192.168.100.100/ProfileObjects/SaveWeaknesses";
-    public static final String url_savelocationpreferences = "http://192.168.100.100/ProfileObjects/SaveLocationPreferences";
+    public static final String url_savecareerobj = "http://192.168.100.10/ProfileObjects/SaveCareerObj";
+    public static final String url_savestrengths = "http://192.168.100.10/ProfileObjects/SaveStrengths";
+    public static final String url_saveweaknesses = "http://192.168.100.10/ProfileObjects/SaveWeaknesses";
+    public static final String url_savelocationpreferences = "http://192.168.100.10/ProfileObjects/SaveLocationPreferences";
 
 //    --------------------------------------------MyProfileContact---------------------------------
 
-    public static final String url_SaveStdalmContact= "http://192.168.100.100/ProfileObjects/SaveStdAlmContact";
-    public static final String url_SaveAdminContact = "http://192.168.100.100/ProfileObjects/SaveAdminContact";
+    public static final String url_SaveStdalmContact= "http://192.168.100.10/ProfileObjects/SaveStdAlmContact";
+    public static final String url_SaveAdminContact = "http://192.168.100.10/ProfileObjects/SaveAdminContact";
     public static final String url_SaveHrContact= "http://192.168.100.100/ProfileObjects/SaveHrContact";
 
 //   --------------------------------------------Experience---------------------------------
 
-    public static final String url_SaveExperiences= "http://192.168.100.100/ProfileObjects/SaveExperiences";
+    public static final String url_SaveExperiences= "http://192.168.100.10/ProfileObjects/SaveExperiences";
 
 //  --------------------------------------------Tabfragment---------------------------------
 
-    public static String savepersonalinfo = "http://192.168.100.100/ProfileObjects/SavePersonalInfo";
-    public static final String url_SaveAdminPersonal = "http://192.168.100.100/ProfileObjects/SaveAdminPersonal";
+    public static String savepersonalinfo = "http://192.168.100.10/ProfileObjects/SavePersonalInfo";
+    public static final String url_SaveAdminPersonal = "http://192.168.100.10/ProfileObjects/SaveAdminPersonal";
 
 //    ------------------------------------------company details---------------------------------
 
@@ -99,7 +99,7 @@ public class MyConstants {
 
 //    ------------------------------------------Institute details---------------------------------
 
-    public static final String url_SaveAdminInstituteData= "http://192.168.100.100/ProfileObjects/SaveAdminInstituteData";
+    public static final String url_SaveAdminInstituteData= "http://192.168.100.10/ProfileObjects/SaveAdminInstituteData";
 
 //    ------------------------------------------Education details---------------------------------
 

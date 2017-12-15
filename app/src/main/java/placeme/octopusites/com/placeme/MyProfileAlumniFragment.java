@@ -86,7 +86,7 @@ public class MyProfileAlumniFragment extends Fragment {
     public static final String alumniLog = "alumniLog";
     final static CharSequence[] items = {"Update Profile Picture", "Delete Profile Picture"};
     public String role = "",ucode="";
-    ImageView insti4, exp2, exp3;
+    ImageView insti4, exp2, exp3,exp1;
     CircleImageView myprofileimg;
     ImageButton iv_camera;
     ImageView introedit, eduedit, projectsedit, accomplishmentsedit, expedit, careeredit, contactedit;
@@ -107,16 +107,19 @@ public class MyProfileAlumniFragment extends Fragment {
     int found_exp = 0, found_personal = 0;
     int found_box1 = 0, found_tenth = 0, found_twelth = 0, found_diploma = 0, found_ug = 0, found_pgsem = 0, found_pgyear = 0;
     int found_intro_box = 0, found_tenth_box = 0;
-    ;
+    int proj_count=0,exps_count=0,lang_count=0,cert_count=0,courses_count=0,skills_count=0,patent_count=0,public_count=0,honor_count=0,strength_count=0,weakness_count=0,location_count=0;
     int percentProfile = 0;
     TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt, editprofiletxt, eduboxtxt, projboxtxt, accomplishmentsboxtxt, careerboxtxt, contactboxtxt, myprofilecource, myprofilecource2, myprofilecource3;
     TextView myprofilecource4, myprofileproj1, myprofileproj2, myprofileproj3, acc1txt, acc2txt, acc3txt, acc4txt, acc5txt, acc6txt, acc7txt, careerobjtxt, strengthtxt, weaktxt, locpretxt, nametxt, mobiletxt, emailtxt, myprofileclgname, myprofileclgyearofpassing, myprofileclgname2, myprofileclgyearofpassing2, myprofileclgname3, myprofileclgname4, myprofileclgyearofpassing3, myprofileclgyearofpassing4, myprofiledomain1, myprofileduration1, myprofiledomain2, myprofileduration2, myprofiledomain3, myprofileduration3, careerobjtxttxt, strengthstxt, weaknessestxt, locationpreferences, contactaddr1, contactmobile, contactemail, myprofilepreview, acc1txttxt, acc2txttxt, acc3txttxt, acc4txttxt, acc5txttxt, acc6txttxt, acc7txttxt;
     TextView exp1txt, myprofileexpfromto, myprofileexp1name, myprofileexp2name, exp2txt, myprofileexpfromto2, myprofileexp3name, exp3txt, myprofileexpfromto3;
+    TextView  extraprojectscount,extraexpcount;
+
     JSONParser jParser = new JSONParser();
     JSONParser jParserlang = new JSONParser();
     JSONObject json, jsonlang;
-    RelativeLayout edutab4;
-    RelativeLayout box1,editprofilerl, exptab2, exptab3;
+    RelativeLayout edutab4,edutab1,edutab2,edutab3,noedutab;
+    RelativeLayout box1,editprofilerl, exptab2, exptab3,exptab1;
+    RelativeLayout  noprojtab,projtab1,noexptab;
     View rootView;
     SwipeRefreshLayout swipe_refresh_layout;
     byte[] demoKeyBytes;
@@ -279,9 +282,22 @@ public class MyProfileAlumniFragment extends Fragment {
         contactemail = (TextView) rootView.findViewById(R.id.contactemail);
         myprofilepreview = (TextView) rootView.findViewById(R.id.myprofilepreview);
 
-        insti4 = (ImageView) rootView.findViewById(R.id.insti4);
-        edutab4 = (RelativeLayout) rootView.findViewById(R.id.edutab4);
+        extraprojectscount = (TextView) rootView.findViewById(R.id.extraprojectscount);
+        extraexpcount= (TextView) rootView.findViewById(R.id.extraexpcount);
 
+        insti4 = (ImageView) rootView.findViewById(R.id.insti4);
+        edutab2=(RelativeLayout)rootView.findViewById(R.id.edutab2);
+        edutab1=(RelativeLayout)rootView.findViewById(R.id.edutab1);
+        noedutab=(RelativeLayout)rootView.findViewById(R.id.noedutab);
+        edutab3=(RelativeLayout)rootView.findViewById(R.id.edutab3);
+        edutab4=(RelativeLayout)rootView.findViewById(R.id.edutab4);
+        projtab1=(RelativeLayout)rootView.findViewById(R.id.projtab1);
+        noprojtab=(RelativeLayout)rootView.findViewById(R.id.noprojtab);
+        noexptab= (RelativeLayout) rootView.findViewById(R.id.noexptab);
+
+
+        exptab1 = (RelativeLayout) rootView.findViewById(R.id.exptab1);
+        exp1 = (ImageView) rootView.findViewById(R.id.exp1);
         exptab2 = (RelativeLayout) rootView.findViewById(R.id.exptab2);
         exptab3 = (RelativeLayout) rootView.findViewById(R.id.exptab3);
         exp2 = (ImageView) rootView.findViewById(R.id.exp2);
@@ -299,10 +315,10 @@ public class MyProfileAlumniFragment extends Fragment {
         SwipeRefreshLayout tswipe_refresh_layout = (SwipeRefreshLayout) getActivity().findViewById(R.id.swipe_refresh_layout);
         tswipe_refresh_layout.setVisibility(View.GONE);
 
-
 //        exp
 
         exp1txt = (TextView) rootView.findViewById(R.id.exp1txt);
+
         myprofileexp1name = (TextView) rootView.findViewById(R.id.myprofileexp1name);
         myprofileexpfromto = (TextView) rootView.findViewById(R.id.myprofileexpfromto);
 
@@ -367,6 +383,8 @@ public class MyProfileAlumniFragment extends Fragment {
         mobiletxt.setTypeface(MyConstants.getLight(getActivity()));
         emailtxt.setTypeface(MyConstants.getLight(getActivity()));
 
+        extraexpcount.setTypeface(MyConstants.getLight(getActivity()));
+        extraprojectscount.setTypeface(MyConstants.getLight(getActivity()));
 
         myprofileclgname.setTypeface(MyConstants.getLight(getActivity()));
         myprofileclgyearofpassing.setTypeface(MyConstants.getLight(getActivity()));
@@ -583,24 +601,59 @@ public class MyProfileAlumniFragment extends Fragment {
 
 //        Log.d(HRlog, "exp count " + exp_count);
 
-        exptab2.setVisibility(View.VISIBLE);
-        exp2.setVisibility(View.VISIBLE);
+        if(exp_count>3){
+            extraexpcount.setVisibility(View.VISIBLE);
+            extraexpcount.setText("and "+ exps_count +" more");
+        }
 
-        exptab3.setVisibility(View.VISIBLE);
-        exp3.setVisibility(View.VISIBLE);
-
-        if (exp_count == 1 || exp_count == 0) {
+        if (!fromdate1.equals("")){
+            exptab1.setVisibility(View.VISIBLE);
+            exp1.setVisibility(View.VISIBLE);
+            noexptab.setVisibility(View.GONE);
 
             exptab2.setVisibility(View.GONE);
             exp2.setVisibility(View.GONE);
+            exptab3.setVisibility(View.GONE);
+            exp3.setVisibility(View.GONE);
+
+        }
+
+        if (!fromdate2.equals(""))
+        {
+            exptab2.setVisibility(View.VISIBLE);
+            exp2.setVisibility(View.VISIBLE);
+            noexptab.setVisibility(View.GONE);
 
             exptab3.setVisibility(View.GONE);
             exp3.setVisibility(View.GONE);
         }
-        if (exp_count == 2) {
-            exptab3.setVisibility(View.GONE);
-            exp3.setVisibility(View.GONE);
+
+        if (!fromdate3.equals("")){
+
+            exptab3.setVisibility(View.VISIBLE);
+            exp3.setVisibility(View.VISIBLE);
+            noexptab.setVisibility(View.GONE);
+
         }
+
+//        exptab2.setVisibility(View.VISIBLE);
+//        exp2.setVisibility(View.VISIBLE);
+//
+//        exptab3.setVisibility(View.VISIBLE);
+//        exp3.setVisibility(View.VISIBLE);
+//
+//        if (exp_count == 1 || exp_count == 0) {
+//
+//            exptab2.setVisibility(View.GONE);
+//            exp2.setVisibility(View.GONE);
+//
+//            exptab3.setVisibility(View.GONE);
+//            exp3.setVisibility(View.GONE);
+//        }
+//        if (exp_count == 2) {
+//            exptab3.setVisibility(View.GONE);
+//            exp3.setVisibility(View.GONE);
+//        }
     }
 
 
@@ -634,6 +687,9 @@ public class MyProfileAlumniFragment extends Fragment {
 
         if (found_tenth == 1) {
             if (!board10.equals("")) {
+//                noedutab
+                noedutab.setVisibility(View.GONE);
+                edutab3.setVisibility(View.VISIBLE);
 
                 Hashtable<String, Integer> source = new Hashtable<String, Integer>();
                 HashMap<String, Integer> map = new HashMap(source);
@@ -697,6 +753,9 @@ public class MyProfileAlumniFragment extends Fragment {
 
             if (!schoolname12.equals("")) {
 
+                noedutab.setVisibility(View.GONE);
+                edutab2.setVisibility(View.VISIBLE);
+
                 Hashtable<String, Integer> source = new Hashtable<String, Integer>();
                 HashMap<String, Integer> map = new HashMap(source);
 
@@ -758,6 +817,9 @@ public class MyProfileAlumniFragment extends Fragment {
             Log.d("TAG", "populateData: welcome to diploma");
             if (!collegenamediploma.equals("")) {
 
+                noedutab.setVisibility(View.GONE);
+                edutab2.setVisibility(View.VISIBLE);
+
                 Hashtable<String, Integer> source = new Hashtable<String, Integer>();
                 HashMap<String, Integer> map = new HashMap(source);
 
@@ -815,7 +877,11 @@ public class MyProfileAlumniFragment extends Fragment {
             percentProfile++;
         }
         if (found_ug == 1) {
-            if (!universityug.equals("")) {
+            if (!collegenameug.equals("")) {
+
+                noedutab.setVisibility(View.GONE);
+                edutab1.setVisibility(View.VISIBLE);
+
                 percentProfile++;
                 Hashtable<String, Integer> source = new Hashtable<String, Integer>();
                 HashMap<String, Integer> map = new HashMap(source);
@@ -883,6 +949,9 @@ public class MyProfileAlumniFragment extends Fragment {
             Log.d("TAG", "populateData: universitypgsem" + universitypgsem);
             if (!collegenamepgsem.equals("")) {
 
+                noedutab.setVisibility(View.GONE);
+                edutab4.setVisibility(View.VISIBLE);
+
                 Hashtable<String, Integer> source = new Hashtable<String, Integer>();
                 HashMap<String, Integer> map = new HashMap(source);
 
@@ -946,6 +1015,11 @@ public class MyProfileAlumniFragment extends Fragment {
         if (found_pgyear == 1) {
             Log.d("TAG", "populateData: universitypgyear" + universitypgyear);
             if (!collegenamepgyear.equals("")) {
+
+
+                noedutab.setVisibility(View.GONE);
+                edutab4.setVisibility(View.VISIBLE);
+
 
                 Hashtable<String, Integer> source = new Hashtable<String, Integer>();
                 HashMap<String, Integer> map = new HashMap(source);
@@ -1027,6 +1101,7 @@ public class MyProfileAlumniFragment extends Fragment {
         if (found_projects == 1) {
             percentProfile++;
             if (!proj1.equals("")) {
+
                 myprofileproj1.setText(proj1);
                 myprofiledomain1.setText(domain1);
                 myprofileduration1.setText(duration1 + " Months");
@@ -1038,8 +1113,13 @@ public class MyProfileAlumniFragment extends Fragment {
 
                 gear2.setVisibility(View.GONE);
                 projtab2.setVisibility(View.GONE);
+
                 gear3.setVisibility(View.GONE);
                 projtab3.setVisibility(View.GONE);
+
+                noprojtab.setVisibility(View.GONE);
+                projtab1.setVisibility(View.VISIBLE);
+
             }
             if (!proj2.equals("")) {
                 myprofileproj2.setText(proj2);
@@ -1055,6 +1135,8 @@ public class MyProfileAlumniFragment extends Fragment {
                 projtab2.setVisibility(View.VISIBLE);
                 gear3.setVisibility(View.GONE);
                 projtab3.setVisibility(View.GONE);
+
+                noprojtab.setVisibility(View.GONE);
             }
             if (!proj3.equals("")) {
                 myprofileproj3.setText(proj3);
@@ -1068,13 +1150,102 @@ public class MyProfileAlumniFragment extends Fragment {
 
                 gear2.setVisibility(View.VISIBLE);
                 projtab2.setVisibility(View.VISIBLE);
+
                 gear3.setVisibility(View.VISIBLE);
                 projtab3.setVisibility(View.VISIBLE);
+
+                noprojtab.setVisibility(View.GONE);
+                if(!proj4.equals(""))
+                {
+                    extraprojectscount.setVisibility(View.VISIBLE);
+                    extraprojectscount.setText("and "+ proj_count +" more");
+                }
+
             }
         }
 
         // career details
 
+
+        if (found_lang == 1) {
+            if (!lang1.equals("") && !lang1.equals("- Select Language -"))
+                acc1txttxt.setText(lang1);
+            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
+                acc1txttxt.setText(lang1 + ", " + lang2);
+            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -"))
+                acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3);
+            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -") && !lang4.equals("") && !lang4.equals("- Select Language -"))
+                acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " and "+ lang_count +" more");
+            percentProfile++;
+        }
+
+        if (found_certificates == 1) {
+            if (!title1.equals(""))
+                acc2txttxt.setText(title1);
+            if (!title1.equals("") && !title2.equals(""))
+                acc2txttxt.setText(title1 + ", " + title2);
+            if (!title1.equals("") && !title2.equals("") && !title3.equals(""))
+                acc2txttxt.setText(title1 + ", " + title2 + ", " + title3);
+            if (!title1.equals("") && !title2.equals("") && !title3.equals("") && !title4.equals(""))
+                acc2txttxt.setText(title1 + ", " + title2 + ", " + title3 + " and "+ cert_count +" more");
+            percentProfile++;
+        }
+        if (found_courses == 1) {
+            if (!course1.equals(""))
+                acc3txttxt.setText(course1);
+            if (!course1.equals("") && !course2.equals(""))
+                acc3txttxt.setText(course1 + ", " + course2);
+            if (!course1.equals("") && !course2.equals("") && !course3.equals(""))
+                acc3txttxt.setText(course1 + ", " + course2 + ", " + course3);
+            if (!course1.equals("") && !course2.equals("") && !course3.equals("") && !course4.equals(""))
+                acc3txttxt.setText(course1 + ", " + course2 + ", " + course3 + " and "+ courses_count +" more");
+            percentProfile++;
+        }
+        if (found_skills == 1) {
+            if (!skill1.equals(""))
+                acc4txttxt.setText(skill1);
+            if (!skill1.equals("") && !skill2.equals(""))
+                acc4txttxt.setText(skill1 + ", " + skill2);
+            if (!skill1.equals("") && !skill2.equals("") && !skill3.equals(""))
+                acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3);
+            if (!skill1.equals("") && !skill2.equals("") && !skill3.equals("") && !skill4.equals(""))
+                acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " and "+ skills_count +" more");
+
+            percentProfile++;
+        }
+        if (found_honors == 1) {
+            if (!htitle1.equals(""))
+                acc5txttxt.setText(htitle1);
+            if (!htitle1.equals("") && !htitle2.equals(""))
+                acc5txttxt.setText(htitle1 + ", " + htitle2);
+            if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals(""))
+                acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3);
+            if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals("") && !htitle4.equals(""))
+                acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3 + " and "+ honor_count +" more");
+            percentProfile++;
+        }
+        if (found_patents == 1) {
+            if (!ptitle1.equals(""))
+                acc6txttxt.setText(ptitle1);
+            if (!ptitle1.equals("") && !ptitle2.equals(""))
+                acc6txttxt.setText(ptitle1 + ", " + ptitle2);
+            if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals(""))
+                acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3);
+            if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals("") && !ptitle4.equals(""))
+                acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3 + " and "+ patent_count +" more");
+            percentProfile++;
+        }
+        if (found_publications == 1) {
+            if (!pubtitle1.equals(""))
+                acc7txttxt.setText(pubtitle1);
+            if (!pubtitle1.equals("") && !pubtitle2.equals(""))
+                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2);
+            if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals(""))
+                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3);
+            if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals("") && !pubtitle4.equals(""))
+                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3 + " and "+ public_count +" more");
+            percentProfile++;
+        }
         if (found_careerobj == 1) {
             if (!careerobj.equals(""))
                 careerobjtxttxt.setText(careerobj);
@@ -1088,7 +1259,7 @@ public class MyProfileAlumniFragment extends Fragment {
             if (!strength1.equals("") && !strength2.equals("") && !strength3.equals(""))
                 strengthstxt.setText(strength1 + ", " + strength2 + ", " + strength3);
             if (!strength1.equals("") && !strength2.equals("") && !strength3.equals("") && !strength4.equals(""))
-                strengthstxt.setText(strength1 + ", " + strength2 + ", " + strength3 + " ...");
+                strengthstxt.setText(strength1 + ", " + strength2 + ", " + strength3 + " and "+ strength_count +" more");
             percentProfile++;
         }
         if (found_weaknesses == 1) {
@@ -1099,7 +1270,7 @@ public class MyProfileAlumniFragment extends Fragment {
             if (!weak1.equals("") && !weak2.equals("") && !weak3.equals(""))
                 weaknessestxt.setText(weak1 + ", " + weak2 + ", " + weak3);
             if (!weak1.equals("") && !weak2.equals("") && !weak3.equals("") && !weak4.equals(""))
-                weaknessestxt.setText(weak1 + ", " + weak2 + ", " + weak3 + " ...");
+                weaknessestxt.setText(weak1 + ", " + weak2 + ", " + weak3 + " and "+ weakness_count +" more");
             percentProfile++;
         }
         if (found_locationpreferences == 1) {
@@ -1110,89 +1281,9 @@ public class MyProfileAlumniFragment extends Fragment {
             if (!location1.equals("") && !location2.equals("") && !location3.equals(""))
                 locationpreferences.setText(location1 + ", " + location2 + ", " + location3);
             if (!location1.equals("") && !location2.equals("") && !location3.equals("") && !location4.equals(""))
-                locationpreferences.setText(location1 + ", " + location2 + ", " + location3 + " ...");
+                locationpreferences.setText(location1 + ", " + location2 + ", " + location3 + " and "+ location_count +" more");
             percentProfile++;
         }
-        if (found_lang == 1) {
-            if (!lang1.equals("") && !lang1.equals("- Select Language -"))
-                acc1txttxt.setText(lang1);
-            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -"))
-                acc1txttxt.setText(lang1 + ", " + lang2);
-            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -"))
-                acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3);
-            if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -") && !lang4.equals("") && !lang4.equals("- Select Language -"))
-                acc1txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " ...");
-            percentProfile++;
-        }
-
-        if (found_certificates == 1) {
-            if (!title1.equals(""))
-                acc2txttxt.setText(title1);
-            if (!title1.equals("") && !title2.equals(""))
-                acc2txttxt.setText(title1 + ", " + title2);
-            if (!title1.equals("") && !title2.equals("") && !title3.equals(""))
-                acc2txttxt.setText(title1 + ", " + title2 + ", " + title3);
-            if (!title1.equals("") && !title2.equals("") && !title3.equals("") && !title4.equals(""))
-                acc2txttxt.setText(title1 + ", " + title2 + ", " + title3 + " ...");
-            percentProfile++;
-        }
-        if (found_courses == 1) {
-            if (!course1.equals(""))
-                acc3txttxt.setText(course1);
-            if (!course1.equals("") && !course2.equals(""))
-                acc3txttxt.setText(course1 + ", " + course2);
-            if (!course1.equals("") && !course2.equals("") && !course3.equals(""))
-                acc3txttxt.setText(course1 + ", " + course2 + ", " + course3);
-            if (!course1.equals("") && !course2.equals("") && !course3.equals("") && !course4.equals(""))
-                acc3txttxt.setText(course1 + ", " + course2 + ", " + course3 + " ...");
-            percentProfile++;
-        }
-        if (found_skills == 1) {
-            if (!skill1.equals(""))
-                acc4txttxt.setText(skill1);
-            if (!skill1.equals("") && !skill2.equals(""))
-                acc4txttxt.setText(skill1 + ", " + skill2);
-            if (!skill1.equals("") && !skill2.equals("") && !skill3.equals(""))
-                acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3);
-            if (!skill1.equals("") && !skill2.equals("") && !skill3.equals("") && !skill4.equals(""))
-                acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " ...");
-
-            percentProfile++;
-        }
-        if (found_honors == 1) {
-            if (!htitle1.equals(""))
-                acc5txttxt.setText(htitle1);
-            if (!htitle1.equals("") && !htitle2.equals(""))
-                acc5txttxt.setText(htitle1 + ", " + htitle2);
-            if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals(""))
-                acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3);
-            if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals("") && !htitle4.equals(""))
-                acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3 + " ...");
-            percentProfile++;
-        }
-        if (found_patents == 1) {
-            if (!ptitle1.equals(""))
-                acc6txttxt.setText(ptitle1);
-            if (!ptitle1.equals("") && !ptitle2.equals(""))
-                acc6txttxt.setText(ptitle1 + ", " + ptitle2);
-            if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals(""))
-                acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3);
-            if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals("") && !ptitle4.equals(""))
-                acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3 + " ...");
-            percentProfile++;
-        }
-        if (found_publications == 1) {
-            if (!pubtitle1.equals(""))
-                acc7txttxt.setText(pubtitle1);
-            if (!pubtitle1.equals("") && !pubtitle2.equals(""))
-                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2);
-            if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals(""))
-                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3);
-            if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals("") && !pubtitle4.equals(""))
-                acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3 + " ...");
-            percentProfile++;
-        }
-
         populateHrInfo();
 
 
@@ -2904,6 +2995,20 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setStrength9(strength9);
                         studentData.setStrength10(strength10);
 
+                        if(!strength4.equals(""))
+                            strength_count=1;
+                        if(!strength5.equals(""))
+                            strength_count=2;
+                        if(!strength6.equals(""))
+                            strength_count=3;
+                        if(!strength7.equals(""))
+                            strength_count=4;
+                        if(!strength8.equals(""))
+                            strength_count=5;
+                        if(!strength9.equals(""))
+                            strength_count=6;
+                        if(!strength10.equals(""))
+                            strength_count=7;
 
                     }
                     s = json.getString("weaknesses");
@@ -2939,6 +3044,23 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setWeak9(weak9);
                         studentData.setWeak10(weak10);
 
+                        if(!weak5.equals(""))
+                            weakness_count=2;
+
+                        if(!weak6.equals(""))
+                            weakness_count=3;
+
+                        if(!weak7.equals(""))
+                            weakness_count=4;
+
+                        if(!weak8.equals(""))
+                            weakness_count=5;
+
+                        if(!weak9.equals(""))
+                            weakness_count=6;
+
+                        if(!weak10.equals(""))
+                            weakness_count=7;
 
                     }
 
@@ -2961,6 +3083,11 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setLocation4(location4);
                         studentData.setLocation5(location5);
 
+                        if(!location4.equals(""))
+                            location_count=1;
+
+                        if(!location5.equals(""))
+                            location_count=2;
 
                     }
 
@@ -3332,6 +3459,20 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setTeam10(team10);
                         studentData.setDuration10(duration10);
 
+                        if(!proj4.equals(""))
+                            proj_count=1;
+                        if(!proj5.equals(""))
+                            proj_count=2;
+                        if(!proj6.equals(""))
+                            proj_count=3;
+                        if(!proj7.equals(""))
+                            proj_count=4;
+                        if(!proj8.equals(""))
+                            proj_count=5;
+                        if(!proj9.equals(""))
+                            proj_count=6;
+                        if(!proj10.equals(""))
+                            proj_count=7;
 
                     }
                     s = json.getString("knownlang");
@@ -3393,6 +3534,22 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setProficiency9(proficiency9);
                         studentData.setLang10(lang10);
                         studentData.setProficiency10(proficiency10);
+
+
+                        if(!lang4.equals("") && !lang4.equals("- Select Language -"))
+                            lang_count =1;
+                        if(!lang5.equals("") && !lang5.equals("- Select Language -"))
+                            lang_count=2;
+                        if(!lang6.equals("") && !lang6.equals("- Select Language -"))
+                            lang_count=3;
+                        if(!lang7.equals("") && !lang7.equals("- Select Language -"))
+                            lang_count=4;
+                        if(!lang8.equals("") && !lang8.equals("- Select Language -"))
+                            lang_count=5;
+                        if(!lang9.equals("") && !lang9.equals("- Select Language -"))
+                            lang_count=6;
+                        if(!lang10.equals("") && !lang10.equals("- Select Language -"))
+                            lang_count=7;
 
 
                     }
@@ -3544,6 +3701,21 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setEnddate10certificate(enddate10certificate);
                         studentData.setWillexpire10certificate(willexpire10certificate);
 
+                        if(!title4.equals(""))
+                            cert_count=1;
+                        if(!title5.equals(""))
+                            cert_count=2;
+                        if(!title6.equals(""))
+                            cert_count=3;
+                        if(!title7.equals(""))
+                            cert_count=4;
+                        if(!title8.equals(""))
+                            cert_count=5;
+                        if(!title9.equals(""))
+                            cert_count=6;
+                        if(!title10.equals(""))
+                            cert_count=7;
+
                     }
                     s = json.getString("courses");
                     if (s.equals("found")) {
@@ -3653,6 +3825,26 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setFromdate10(fromdate10);
                         studentData.setTodate10(todate10);
 
+                        if(!course4.equals(""))
+                            courses_count=1;
+
+                        if(!course5.equals(""))
+                            courses_count=2;
+
+                        if(!course6.equals(""))
+                            courses_count=3;
+
+                        if(!course7.equals(""))
+                            courses_count=4;
+
+                        if(!course8.equals(""))
+                            courses_count=5;
+
+                        if(!course9.equals(""))
+                            courses_count=6;
+
+                        if(!course10.equals(""))
+                            courses_count=7;
                     }
                     s = json.getString("skills");
                     if (s.equals("found")) {
@@ -3782,6 +3974,56 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setSkill20(skill20);
                         studentData.setSproficiency20(sproficiency20);
 
+                        if(!skill4.equals(""))
+                            skills_count=1;
+
+                        if(!skill5.equals(""))
+                            skills_count=2;
+
+                        if(!skill6.equals(""))
+                            skills_count=3;
+
+                        if(!skill7.equals(""))
+                            skills_count=4;
+
+                        if(!skill8.equals(""))
+                            skills_count=5;
+
+                        if(!skill9.equals(""))
+                            skills_count=6;
+
+                        if(!skill10.equals(""))
+                            skills_count=7;
+
+                        if(!skill11.equals(""))
+                            skills_count=8;
+
+                        if(!skill12.equals(""))
+                            skills_count=9;
+
+                        if(!skill13.equals(""))
+                            skills_count=10;
+
+                        if(!skill14.equals(""))
+                            skills_count=11;
+
+                        if(!skill15.equals(""))
+                            skills_count=12;
+
+                        if(!skill16.equals(""))
+                            skills_count=13;
+
+                        if(!skill17.equals(""))
+                            skills_count=14;
+
+                        if(!skill18.equals(""))
+                            skills_count=15;
+
+                        if(!skill19.equals(""))
+                            skills_count=16;
+
+                        if(!skill20.equals(""))
+                            skills_count=17;
 
                     }
                     s = json.getString("honors");
@@ -3891,6 +4133,22 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setHissuer10(hissuer10);
                         studentData.setHdescription10(hdescription10);
                         studentData.setYearofhonor10(yearofhonor10);
+
+                        if(!htitle4.equals(""))
+                            honor_count=1;
+
+                        if(!htitle5.equals(""))
+                            honor_count=2;
+                        if(!htitle6.equals(""))
+                            honor_count=3;
+                        if(!htitle7.equals(""))
+                            honor_count=4;
+                        if(!htitle8.equals(""))
+                            honor_count=5;
+                        if(!htitle9.equals(""))
+                            honor_count=6;
+                        if(!htitle10.equals(""))
+                            honor_count=7;
 
 
                     }
@@ -4103,6 +4361,22 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setPselectedcountry10(pselectedcountry10);
                         studentData.setIssuedorpending10(issuedorpending10);
 
+                        if(!ptitle4.equals(""))
+                            patent_count=1;
+
+                        if(!ptitle5.equals(""))
+                            patent_count=2;
+                        if(!ptitle6.equals(""))
+                            patent_count=3;
+                        if(!ptitle7.equals(""))
+                            patent_count=4;
+                        if(!ptitle8.equals(""))
+                            patent_count=5;
+                        if(!ptitle9.equals(""))
+                            patent_count=6;
+                        if(!ptitle10.equals(""))
+                            patent_count=7;
+
                     }
                     s = json.getString("publications");
                     if (s.equals("found")) {
@@ -4250,6 +4524,23 @@ public class MyProfileAlumniFragment extends Fragment {
                         studentData.setPublicationdate10(publicationdate10);
                         studentData.setPuburl10(puburl10);
                         studentData.setPubdescription10(pubdescription10);
+
+
+                        if(!pubtitle4.equals(""))
+                            public_count=1;
+                        if(!pubtitle5.equals(""))
+                            public_count=2;
+                        if(!pubtitle6.equals(""))
+                            public_count=3;
+                        if(!pubtitle7.equals(""))
+                            public_count=4;
+                        if(!pubtitle8.equals(""))
+                            public_count=5;
+                        if(!pubtitle9.equals(""))
+                            public_count=6;
+                        if(!pubtitle10.equals(""))
+                            public_count=7;
+
                     }
                     s = json.getString("personal");
                     if (s.equals("found")) {
@@ -4488,6 +4779,28 @@ public class MyProfileAlumniFragment extends Fragment {
                         a.setInst10e(inst1s10);
                         a.setFromdate10e(fromdates10);
                         a.setTodate10e(todates10);
+
+
+                        if(!posts4.equals(""))
+                            exps_count=1;
+
+                        if(!posts5.equals(""))
+                            exps_count=2;
+
+                        if(!posts6.equals(""))
+                            exps_count=3;
+
+                        if(!posts7.equals(""))
+                            exps_count=4;
+
+                        if(!posts8.equals(""))
+                            exps_count=5;
+
+                        if(!posts9.equals(""))
+                            exps_count=6;
+
+                        if(!posts10.equals(""))
+                            exps_count=7;
 
                     }
 
