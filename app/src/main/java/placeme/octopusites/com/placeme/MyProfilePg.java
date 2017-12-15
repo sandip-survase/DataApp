@@ -1266,7 +1266,7 @@ public class MyProfilePg extends AppCompatActivity {
                 monthList.add("Dec");
 
                 Calendar cur=Calendar.getInstance();
-                for(int i=1975;i<=cur.get(Calendar.YEAR);i++)
+                for(int i=1975;i<=cur.get(Calendar.YEAR)+2;i++)
                     yearList.add(""+i);
 
 
@@ -1322,8 +1322,6 @@ public class MyProfilePg extends AppCompatActivity {
                 View dialog = inflater.inflate(R.layout.monthyeardialog,null);
                 dialogBuilder.setView(dialog);
 
-
-
                 final WheelView monthView,yearView;
 
                 final List<String> monthList= new ArrayList<String>();
@@ -1346,7 +1344,7 @@ public class MyProfilePg extends AppCompatActivity {
                 monthList.add("Dec");
 
                 Calendar cur=Calendar.getInstance();
-                for(int i=1975;i<=cur.get(Calendar.YEAR);i++)
+                for(int i=1975;i<=cur.get(Calendar.YEAR)+2;i++)
                     yearList.add(""+i);
 
 

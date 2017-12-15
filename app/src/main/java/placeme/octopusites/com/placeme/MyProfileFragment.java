@@ -582,7 +582,9 @@ public class MyProfileFragment extends Fragment {
 
                 String s = "";
                 Log.d("TAG", "doInBackround: after " + username);
+
                 resultofop = json.getString("info");
+
                 Log.d("TAG", "info1 " + resultofop);
 
                 if (resultofop.equals("found")) {

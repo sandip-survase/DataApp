@@ -1029,7 +1029,7 @@ public class MyProfileCourses extends AppCompatActivity {
                 // 1- id   2- isFromDateSelected 3-fromYear   4- month in str
 
                 String toDate = todate1.getText().toString();
-                showDateDialog(fromdate1, false, 0, "", toDate, fromdateinput1);
+                showDateDialog(fromdate1,fromdateinput1, false, 0, "", toDate);
 
             }
         });
@@ -1054,7 +1054,7 @@ public class MyProfileCourses extends AppCompatActivity {
                     fromMonth = "";
                 }
                 Log.d("TAG", "onClick: id before " + todateinput1);
-                showDateDialog(todate1, isFromDateSelected, fromYear, fromMonth, "", todateinput1);
+                showDateDialog(todate1,todateinput1, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1064,7 +1064,7 @@ public class MyProfileCourses extends AppCompatActivity {
             public void onClick(View view) {
                 fromdateinput2.setError(null);
                 String toDate = todate2.getText().toString();
-                showDateDialog(fromdate2, false, 0, "", toDate, fromdateinput2);
+                showDateDialog(fromdate2,fromdateinput2, false, 0, "", toDate);
 
             }
         });
@@ -1088,7 +1088,7 @@ public class MyProfileCourses extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate2, isFromDateSelected, fromYear, fromMonth, "", todateinput2);
+                showDateDialog(todate2,todateinput2, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1098,7 +1098,7 @@ public class MyProfileCourses extends AppCompatActivity {
             public void onClick(View view) {
                 fromdateinput3.setError(null);
                 String toDate = todate3.getText().toString();
-                showDateDialog(fromdate3, false, 0, "", toDate, fromdateinput3);
+                showDateDialog(fromdate3,fromdateinput3, false, 0, "", toDate);
 
             }
         });
@@ -1122,7 +1122,7 @@ public class MyProfileCourses extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate3, isFromDateSelected, fromYear, fromMonth, "", todateinput3);
+                showDateDialog(todate3,todateinput3, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1132,7 +1132,7 @@ public class MyProfileCourses extends AppCompatActivity {
             public void onClick(View view) {
                 fromdateinput4.setError(null);
                 String toDate = todate4.getText().toString();
-                showDateDialog(fromdate4, false, 0, "", toDate, fromdateinput4);
+                showDateDialog(fromdate4,fromdateinput4, false, 0, "", toDate);
             }
         });
         todate4.setOnClickListener(new View.OnClickListener() {
@@ -1155,7 +1155,7 @@ public class MyProfileCourses extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate4, isFromDateSelected, fromYear, fromMonth, "", todateinput4);
+                showDateDialog(todate4,todateinput4, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1165,7 +1165,7 @@ public class MyProfileCourses extends AppCompatActivity {
             public void onClick(View view) {
                 fromdateinput5.setError(null);
                 String toDate = todate5.getText().toString();
-                showDateDialog(fromdate5, false, 0, "", toDate, fromdateinput5);
+                showDateDialog(fromdate5,fromdateinput5, false, 0, "", toDate);
 
             }
         });
@@ -1190,7 +1190,7 @@ public class MyProfileCourses extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate5, isFromDateSelected, fromYear, fromMonth, "", todateinput5);
+                showDateDialog(todate5,todateinput5, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1200,7 +1200,7 @@ public class MyProfileCourses extends AppCompatActivity {
             public void onClick(View view) {
                 fromdateinput6.setError(null);
                 String toDate = todate6.getText().toString();
-                showDateDialog(fromdate6, false, 0, "", toDate, fromdateinput6);
+                showDateDialog(fromdate6,fromdateinput6, false, 0, "", toDate);
 
             }
         });
@@ -1225,7 +1225,7 @@ public class MyProfileCourses extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate6, isFromDateSelected, fromYear, fromMonth, "", todateinput6);
+                showDateDialog(todate6,todateinput6, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1235,7 +1235,7 @@ public class MyProfileCourses extends AppCompatActivity {
             public void onClick(View view) {
                 fromdateinput7.setError(null);
                 String toDate = todate7.getText().toString();
-                showDateDialog(fromdate7, false, 0, "", toDate, fromdateinput7);
+                showDateDialog(fromdate7,fromdateinput7, false, 0, "", toDate);
             }
         });
         todate7.setOnClickListener(new View.OnClickListener() {
@@ -1258,7 +1258,7 @@ public class MyProfileCourses extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate7, isFromDateSelected, fromYear, fromMonth, "", todateinput7);
+                showDateDialog(todate7,todateinput7, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1268,7 +1268,7 @@ public class MyProfileCourses extends AppCompatActivity {
             public void onClick(View view) {
                 fromdateinput8.setError(null);
                 String toDate = todate8.getText().toString();
-                showDateDialog(fromdate8, false, 0, "", toDate, fromdateinput8);
+                showDateDialog(fromdate8,fromdateinput8, false, 0, "", toDate);
             }
         });
         todate8.setOnClickListener(new View.OnClickListener() {
@@ -1291,7 +1291,7 @@ public class MyProfileCourses extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate8, isFromDateSelected, fromYear, fromMonth, "", todateinput8);
+                showDateDialog(todate8,todateinput8, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1301,7 +1301,7 @@ public class MyProfileCourses extends AppCompatActivity {
             public void onClick(View view) {
                 fromdateinput9.setError(null);
                 String toDate = todate9.getText().toString();
-                showDateDialog(fromdate9, false, 0, "", toDate, fromdateinput9);
+                showDateDialog(fromdate9,fromdateinput9, false, 0, "", toDate);
             }
         });
         todate9.setOnClickListener(new View.OnClickListener() {
@@ -1324,7 +1324,7 @@ public class MyProfileCourses extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate9, isFromDateSelected, fromYear, fromMonth, "", todateinput9);
+                showDateDialog(todate9,todateinput9, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1334,7 +1334,7 @@ public class MyProfileCourses extends AppCompatActivity {
             public void onClick(View view) {
                 fromdateinput10.setError(null);
                 String toDate = todate10.getText().toString();
-                showDateDialog(fromdate10, false, 0, "", toDate, fromdateinput10);
+                showDateDialog(fromdate10,fromdateinput10, false, 0, "", toDate);
 
             }
         });
@@ -1358,7 +1358,7 @@ public class MyProfileCourses extends AppCompatActivity {
                     fromYear = 0;
                     fromMonth = "";
                 }
-                showDateDialog(todate10, isFromDateSelected, fromYear, fromMonth, "", todateinput10);
+                showDateDialog(todate10,todateinput10, isFromDateSelected, fromYear, fromMonth, "");
             }
         });
 
@@ -1380,9 +1380,9 @@ public class MyProfileCourses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             coursecount++;
                         } else
-                            Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCourses.this, "Please fill the empty course", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCourses.this, "Please fill the empty course", Toast.LENGTH_SHORT).show();
 
                 } else if (coursecount == 1) {
                     if (name2.getText().toString() != null && inst2.getText().toString() != null && fromdate2.getText().toString() != null && todate2.getText().toString() != null) {
@@ -1395,9 +1395,9 @@ public class MyProfileCourses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             coursecount++;
                         } else
-                            Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCourses.this, "Please fill the empty course", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCourses.this, "Please fill the empty course", Toast.LENGTH_SHORT).show();
 
 
                 } else if (coursecount == 2) {
@@ -1410,9 +1410,9 @@ public class MyProfileCourses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             coursecount++;
                         } else
-                            Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCourses.this, "Please fill the empty course", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCourses.this, "Please fill the empty course", Toast.LENGTH_SHORT).show();
 
 
                 } else if (coursecount == 3) {
@@ -1426,9 +1426,9 @@ public class MyProfileCourses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             coursecount++;
                         } else
-                            Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCourses.this, "Please fill the empty course", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCourses.this, "Please fill the empty course", Toast.LENGTH_SHORT).show();
 
 
                 } else if (coursecount == 4) {
@@ -1442,9 +1442,9 @@ public class MyProfileCourses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             coursecount++;
                         } else
-                            Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCourses.this, "Please fill the empty course", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCourses.this, "Please fill the empty course", Toast.LENGTH_SHORT).show();
 
                 } else if (coursecount == 5) {
                     if (name6.getText().toString() != null && inst6.getText().toString() != null && fromdate6.getText().toString() != null && todate6.getText().toString() != null) {
@@ -1456,9 +1456,9 @@ public class MyProfileCourses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             coursecount++;
                         } else
-                            Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCourses.this, "Please fill the empty course", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCourses.this, "Please fill the empty course", Toast.LENGTH_SHORT).show();
 
 
                 } else if (coursecount == 6) {
@@ -1472,9 +1472,9 @@ public class MyProfileCourses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             coursecount++;
                         } else
-                            Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCourses.this, "Please fill the empty course", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCourses.this, "Please fill the empty course", Toast.LENGTH_SHORT).show();
 
 
                 } else if (coursecount == 7) {
@@ -1487,9 +1487,9 @@ public class MyProfileCourses extends AppCompatActivity {
                             relativeLayout1.setVisibility(View.VISIBLE);
                             coursecount++;
                         } else
-                            Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCourses.this, "Please fill the empty course", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCourses.this, "Please fill the empty course", Toast.LENGTH_SHORT).show();
 
 
                 } else if (coursecount == 8) {
@@ -1507,9 +1507,9 @@ public class MyProfileCourses extends AppCompatActivity {
                             t.setVisibility(View.GONE);
                             i.setVisibility(View.GONE);
                         } else
-                            Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MyProfileCourses.this, "Please fill the empty course", Toast.LENGTH_SHORT).show();
                     } else
-                        Toast.makeText(MyProfileCourses.this, "Please fill the empty Course", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyProfileCourses.this, "Please fill the empty course", Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -1717,7 +1717,7 @@ public class MyProfileCourses extends AppCompatActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
         alertDialogBuilder
-                .setMessage("Do you want to delete this Course ?")
+                .setMessage("Do you want to delete this course ?")
                 .setCancelable(false)
                 .setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
@@ -2879,7 +2879,7 @@ public class MyProfileCourses extends AppCompatActivity {
     // my date validation
 
 
-    void showDateDialog(final EditText id, boolean isFromDateSelected, final int fromYear, final String fromMonth, final String todate, final TextInputLayout textInputLayout) {
+    void showDateDialog(final EditText id,final TextInputLayout idinput, boolean isFromDateSelected, final int fromYear, final String fromMonth, final String todate) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyProfileCourses.this);
         LayoutInflater inflater = MyProfileCourses.this.getLayoutInflater();
@@ -3013,12 +3013,17 @@ public class MyProfileCourses extends AppCompatActivity {
                     }
 
                 }
-                // invalid future date
+                // kindly enter future date
                 if (current_month_pos < monthPosition && current_year == Integer.parseInt(selectedYear)) {
                     isvalid = false;
                 }
 
-                setMonthYear(id, selectedMonth, selectedYear, isvalid, textInputLayout);
+//                setMonthYear(id, selectedMonth, selectedYear, isvalid, textInputLayout);
+                boolean bln = setMonthYear(id, selectedMonth, selectedYear, isvalid);
+                if(!bln) {
+                    idinput.setError("kindly enter valid date");
+//                    Toast.makeText(getActivity(), "bln "+bln, Toast.LENGTH_SHORT).show();
+                }
                 alertDialog.cancel();
             }
         });
@@ -3037,19 +3042,16 @@ public class MyProfileCourses extends AppCompatActivity {
         int h = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 215, getResources().getDisplayMetrics());
         alertDialog.getWindow().setLayout(w, h);
 
-
     }
 
-    void setMonthYear(EditText id, String selectedMonth, String selectedYear, boolean isValid, TextInputLayout textInputLayout) {
+    boolean setMonthYear(EditText id, String selectedMonth, String selectedYear, boolean isValid) {
         id.setError(null);
-        Log.d("TAG", "onClick: id after " + textInputLayout);
         if (isValid == true) {
             id.setText(selectedMonth + ", " + selectedYear);
+            return  true;
         } else {
-//            textInputLayout.setError("Choose valid date 123");
-            todateinput1.setError("please fill todate");
-            Toast.makeText(this, "Invalid date " + textInputLayout, Toast.LENGTH_LONG).show();
             id.setText("");
+            return  false;
         }
     }
 
@@ -3152,22 +3154,22 @@ public class MyProfileCourses extends AppCompatActivity {
             if (coursecount == 0) {
                 if (sname1.length() < 3) {
                     errorflag = 1;
-                    nameinput1.setError("Invalid Course Name");
+                    nameinput1.setError("kindly enter course Name");
                 } else {
                     errorflag = 0;
                     if (sinst1.length() < 3) {
                         errorflag = 1;
-                        instinput1.setError("Invalid Institute Name");
+                        instinput1.setError("kindly enter Institute Name");
                     } else {
                         errorflag = 0;
                         if (sfromdate1.length() < 3) {
                             errorflag = 1;
-                            fromdateinput1.setError("Invalid Date");
+                            fromdateinput1.setError("kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (stodate1.length() < 3) {
                                 errorflag = 1;
-                                todateinput1.setError("Invalid Date");
+                                todateinput1.setError("kindly enter valid date");
                             }
                         }
                     }
@@ -3175,42 +3177,42 @@ public class MyProfileCourses extends AppCompatActivity {
             } else if (coursecount == 1) {
                 if (sname1.length() < 3) {
                     errorflag = 1;
-                    nameinput1.setError("Invalid Course Name");
+                    nameinput1.setError("kindly enter course Name");
                 } else {
                     errorflag = 0;
                     if (sinst1.length() < 3) {
                         errorflag = 1;
-                        instinput1.setError("Invalid Institute Name");
+                        instinput1.setError("kindly enter Institute Name");
                     } else {
                         errorflag = 0;
                         if (sfromdate1.length() < 3) {
                             errorflag = 1;
-                            fromdateinput1.setError("Invalid Date");
+                            fromdateinput1.setError("kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (stodate1.length() < 3) {
                                 errorflag = 1;
-                                todateinput1.setError("Invalid Date");
+                                todateinput1.setError("kindly enter valid date");
                             } else {
                                 errorflag = 0;
                                 if (sname2.length() < 3) {
                                     errorflag = 1;
-                                    nameinput2.setError("Invalid Course Name");
+                                    nameinput2.setError("kindly enter course Name");
                                 } else {
                                     errorflag = 0;
                                     if (sinst2.length() < 3) {
                                         errorflag = 1;
-                                        instinput2.setError("Invalid Institute Name");
+                                        instinput2.setError("kindly enter Institute Name");
                                     } else {
                                         errorflag = 0;
                                         if (sfromdate2.length() < 3) {
                                             errorflag = 1;
-                                            fromdateinput2.setError("Invalid Date");
+                                            fromdateinput2.setError("kindly enter valid date");
                                         } else {
                                             errorflag = 0;
                                             if (stodate2.length() < 3) {
                                                 errorflag = 1;
-                                                todateinput2.setError("Invalid Date");
+                                                todateinput2.setError("kindly enter valid date");
                                             }
                                         }
                                     }
@@ -3222,62 +3224,62 @@ public class MyProfileCourses extends AppCompatActivity {
             } else if (coursecount == 2) {
                 if (sname1.length() < 3) {
                     errorflag = 1;
-                    nameinput1.setError("Invalid Course Name");
+                    nameinput1.setError("kindly enter course Name");
                 } else {
                     errorflag = 0;
                     if (sinst1.length() < 3) {
                         errorflag = 1;
-                        instinput1.setError("Invalid Institute Name");
+                        instinput1.setError("kindly enter Institute Name");
                     } else {
                         errorflag = 0;
                         if (sfromdate1.length() < 3) {
                             errorflag = 1;
-                            fromdateinput1.setError("Invalid Date");
+                            fromdateinput1.setError("kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (stodate1.length() < 3) {
                                 errorflag = 1;
-                                todateinput1.setError("Invalid Date");
+                                todateinput1.setError("kindly enter valid date");
                             } else {
                                 errorflag = 0;
                                 if (sname2.length() < 3) {
                                     errorflag = 1;
-                                    nameinput2.setError("Invalid Course Name");
+                                    nameinput2.setError("kindly enter course Name");
                                 } else {
                                     errorflag = 0;
                                     if (sinst2.length() < 3) {
                                         errorflag = 1;
-                                        instinput2.setError("Invalid Institute Name");
+                                        instinput2.setError("kindly enter Institute Name");
                                     } else {
                                         errorflag = 0;
                                         if (sfromdate2.length() < 3) {
                                             errorflag = 1;
-                                            fromdateinput2.setError("Invalid Date");
+                                            fromdateinput2.setError("kindly enter valid date");
                                         } else {
                                             errorflag = 0;
                                             if (stodate2.length() < 3) {
                                                 errorflag = 1;
-                                                todateinput2.setError("Invalid Date");
+                                                todateinput2.setError("kindly enter valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (sname3.length() < 3) {
                                                     errorflag = 1;
-                                                    nameinput3.setError("Invalid Course Name");
+                                                    nameinput3.setError("kindly enter course Name");
                                                 } else {
                                                     errorflag = 0;
                                                     if (sinst3.length() < 3) {
                                                         errorflag = 1;
-                                                        instinput3.setError("Invalid Institute Name");
+                                                        instinput3.setError("kindly enter Institute Name");
                                                     } else {
                                                         errorflag = 0;
                                                         if (sfromdate3.length() < 3) {
                                                             errorflag = 1;
-                                                            fromdateinput3.setError("Invalid Date");
+                                                            fromdateinput3.setError("kindly enter valid date");
                                                         } else {
                                                             errorflag = 0;
                                                             if (stodate3.length() < 3) {
                                                                 errorflag = 1;
-                                                                todateinput3.setError("Invalid Date");
+                                                                todateinput3.setError("kindly enter valid date");
                                                             }
                                                         }
                                                     }
@@ -3293,82 +3295,82 @@ public class MyProfileCourses extends AppCompatActivity {
             } else if (coursecount == 3) {
                 if (sname1.length() < 3) {
                     errorflag = 1;
-                    nameinput1.setError("Invalid Course Name");
+                    nameinput1.setError("kindly enter course Name");
                 } else {
                     errorflag = 0;
                     if (sinst1.length() < 3) {
                         errorflag = 1;
-                        instinput1.setError("Invalid Institute Name");
+                        instinput1.setError("kindly enter Institute Name");
                     } else {
                         errorflag = 0;
                         if (sfromdate1.length() < 3) {
                             errorflag = 1;
-                            fromdateinput1.setError("Invalid Date");
+                            fromdateinput1.setError("kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (stodate1.length() < 3) {
                                 errorflag = 1;
-                                todateinput1.setError("Invalid Date");
+                                todateinput1.setError("kindly enter valid date");
                             } else {
                                 errorflag = 0;
                                 if (sname2.length() < 3) {
                                     errorflag = 1;
-                                    nameinput2.setError("Invalid Course Name");
+                                    nameinput2.setError("kindly enter course Name");
                                 } else {
                                     errorflag = 0;
                                     if (sinst2.length() < 3) {
                                         errorflag = 1;
-                                        instinput2.setError("Invalid Institute Name");
+                                        instinput2.setError("kindly enter Institute Name");
                                     } else {
                                         errorflag = 0;
                                         if (sfromdate2.length() < 3) {
                                             errorflag = 1;
-                                            fromdateinput2.setError("Invalid Date");
+                                            fromdateinput2.setError("kindly enter valid date");
                                         } else {
                                             errorflag = 0;
                                             if (stodate2.length() < 3) {
                                                 errorflag = 1;
-                                                todateinput2.setError("Invalid Date");
+                                                todateinput2.setError("kindly enter valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (sname3.length() < 3) {
                                                     errorflag = 1;
-                                                    nameinput3.setError("Invalid Course Name");
+                                                    nameinput3.setError("kindly enter course Name");
                                                 } else {
                                                     errorflag = 0;
                                                     if (sinst3.length() < 3) {
                                                         errorflag = 1;
-                                                        instinput3.setError("Invalid Institute Name");
+                                                        instinput3.setError("kindly enter Institute Name");
                                                     } else {
                                                         errorflag = 0;
                                                         if (sfromdate3.length() < 3) {
                                                             errorflag = 1;
-                                                            fromdateinput3.setError("Invalid Date");
+                                                            fromdateinput3.setError("kindly enter valid date");
                                                         } else {
                                                             errorflag = 0;
                                                             if (stodate3.length() < 3) {
                                                                 errorflag = 1;
-                                                                todateinput3.setError("Invalid Date");
+                                                                todateinput3.setError("kindly enter valid date");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (sname4.length() < 3) {
                                                                     errorflag = 1;
-                                                                    nameinput4.setError("Invalid Course Name");
+                                                                    nameinput4.setError("kindly enter course Name");
                                                                 } else {
                                                                     errorflag = 0;
                                                                     if (sinst4.length() < 3) {
                                                                         errorflag = 1;
-                                                                        instinput4.setError("Invalid Institute Name");
+                                                                        instinput4.setError("kindly enter Institute Name");
                                                                     } else {
                                                                         errorflag = 0;
                                                                         if (sfromdate4.length() < 3) {
                                                                             errorflag = 1;
-                                                                            fromdateinput4.setError("Invalid Date");
+                                                                            fromdateinput4.setError("kindly enter valid date");
                                                                         } else {
                                                                             errorflag = 0;
                                                                             if (stodate4.length() < 3) {
                                                                                 errorflag = 1;
-                                                                                todateinput4.setError("Invalid Date");
+                                                                                todateinput4.setError("kindly enter valid date");
                                                                             }
                                                                         }
                                                                     }
@@ -3388,102 +3390,102 @@ public class MyProfileCourses extends AppCompatActivity {
             } else if (coursecount == 4) {
                 if (sname1.length() < 3) {
                     errorflag = 1;
-                    nameinput1.setError("Invalid Course Name");
+                    nameinput1.setError("kindly enter course Name");
                 } else {
                     errorflag = 0;
                     if (sinst1.length() < 3) {
                         errorflag = 1;
-                        instinput1.setError("Invalid Institute Name");
+                        instinput1.setError("kindly enter Institute Name");
                     } else {
                         errorflag = 0;
                         if (sfromdate1.length() < 3) {
                             errorflag = 1;
-                            fromdateinput1.setError("Invalid Date");
+                            fromdateinput1.setError("kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (stodate1.length() < 3) {
                                 errorflag = 1;
-                                todateinput1.setError("Invalid Date");
+                                todateinput1.setError("kindly enter valid date");
                             } else {
                                 errorflag = 0;
                                 if (sname2.length() < 3) {
                                     errorflag = 1;
-                                    nameinput2.setError("Invalid Course Name");
+                                    nameinput2.setError("kindly enter course Name");
                                 } else {
                                     errorflag = 0;
                                     if (sinst2.length() < 3) {
                                         errorflag = 1;
-                                        instinput2.setError("Invalid Institute Name");
+                                        instinput2.setError("kindly enter Institute Name");
                                     } else {
                                         errorflag = 0;
                                         if (sfromdate2.length() < 3) {
                                             errorflag = 1;
-                                            fromdateinput2.setError("Invalid Date");
+                                            fromdateinput2.setError("kindly enter valid date");
                                         } else {
                                             errorflag = 0;
                                             if (stodate2.length() < 3) {
                                                 errorflag = 1;
-                                                todateinput2.setError("Invalid Date");
+                                                todateinput2.setError("kindly enter valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (sname3.length() < 3) {
                                                     errorflag = 1;
-                                                    nameinput3.setError("Invalid Course Name");
+                                                    nameinput3.setError("kindly enter course Name");
                                                 } else {
                                                     errorflag = 0;
                                                     if (sinst3.length() < 3) {
                                                         errorflag = 1;
-                                                        instinput3.setError("Invalid Institute Name");
+                                                        instinput3.setError("kindly enter Institute Name");
                                                     } else {
                                                         errorflag = 0;
                                                         if (sfromdate3.length() < 3) {
                                                             errorflag = 1;
-                                                            fromdateinput3.setError("Invalid Date");
+                                                            fromdateinput3.setError("kindly enter valid date");
                                                         } else {
                                                             errorflag = 0;
                                                             if (stodate3.length() < 3) {
                                                                 errorflag = 1;
-                                                                todateinput3.setError("Invalid Date");
+                                                                todateinput3.setError("kindly enter valid date");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (sname4.length() < 3) {
                                                                     errorflag = 1;
-                                                                    nameinput4.setError("Invalid Course Name");
+                                                                    nameinput4.setError("kindly enter course Name");
                                                                 } else {
                                                                     errorflag = 0;
                                                                     if (sinst4.length() < 3) {
                                                                         errorflag = 1;
-                                                                        instinput4.setError("Invalid Institute Name");
+                                                                        instinput4.setError("kindly enter Institute Name");
                                                                     } else {
                                                                         errorflag = 0;
                                                                         if (sfromdate4.length() < 3) {
                                                                             errorflag = 1;
-                                                                            fromdateinput4.setError("Invalid Date");
+                                                                            fromdateinput4.setError("kindly enter valid date");
                                                                         } else {
                                                                             errorflag = 0;
                                                                             if (stodate4.length() < 3) {
                                                                                 errorflag = 1;
-                                                                                todateinput4.setError("Invalid Date");
+                                                                                todateinput4.setError("kindly enter valid date");
                                                                             } else {
                                                                                 errorflag = 0;
                                                                                 if (sname5.length() < 3) {
                                                                                     errorflag = 1;
-                                                                                    nameinput5.setError("Invalid Course Name");
+                                                                                    nameinput5.setError("kindly enter course Name");
                                                                                 } else {
                                                                                     errorflag = 0;
                                                                                     if (sinst5.length() < 3) {
                                                                                         errorflag = 1;
-                                                                                        instinput5.setError("Invalid Institute Name");
+                                                                                        instinput5.setError("kindly enter Institute Name");
                                                                                     } else {
                                                                                         errorflag = 0;
                                                                                         if (sfromdate5.length() < 3) {
                                                                                             errorflag = 1;
-                                                                                            fromdateinput5.setError("Invalid Date");
+                                                                                            fromdateinput5.setError("kindly enter valid date");
                                                                                         } else {
                                                                                             errorflag = 0;
                                                                                             if (stodate5.length() < 3) {
                                                                                                 errorflag = 1;
-                                                                                                todateinput5.setError("Invalid Date");
+                                                                                                todateinput5.setError("kindly enter valid date");
                                                                                             }
                                                                                         }
                                                                                     }
@@ -3507,122 +3509,122 @@ public class MyProfileCourses extends AppCompatActivity {
             } else if (coursecount == 5) {
                 if (sname1.length() < 3) {
                     errorflag = 1;
-                    nameinput1.setError("Invalid Course Name");
+                    nameinput1.setError("kindly enter course Name");
                 } else {
                     errorflag = 0;
                     if (sinst1.length() < 3) {
                         errorflag = 1;
-                        instinput1.setError("Invalid Institute Name");
+                        instinput1.setError("kindly enter Institute Name");
                     } else {
                         errorflag = 0;
                         if (sfromdate1.length() < 3) {
                             errorflag = 1;
-                            fromdateinput1.setError("Invalid Date");
+                            fromdateinput1.setError("kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (stodate1.length() < 3) {
                                 errorflag = 1;
-                                todateinput1.setError("Invalid Date");
+                                todateinput1.setError("kindly enter valid date");
                             } else {
                                 errorflag = 0;
                                 if (sname2.length() < 3) {
                                     errorflag = 1;
-                                    nameinput2.setError("Invalid Course Name");
+                                    nameinput2.setError("kindly enter course Name");
                                 } else {
                                     errorflag = 0;
                                     if (sinst2.length() < 3) {
                                         errorflag = 1;
-                                        instinput2.setError("Invalid Institute Name");
+                                        instinput2.setError("kindly enter Institute Name");
                                     } else {
                                         errorflag = 0;
                                         if (sfromdate2.length() < 3) {
                                             errorflag = 1;
-                                            fromdateinput2.setError("Invalid Date");
+                                            fromdateinput2.setError("kindly enter valid date");
                                         } else {
                                             errorflag = 0;
                                             if (stodate2.length() < 3) {
                                                 errorflag = 1;
-                                                todateinput2.setError("Invalid Date");
+                                                todateinput2.setError("kindly enter valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (sname3.length() < 3) {
                                                     errorflag = 1;
-                                                    nameinput3.setError("Invalid Course Name");
+                                                    nameinput3.setError("kindly enter course Name");
                                                 } else {
                                                     errorflag = 0;
                                                     if (sinst3.length() < 3) {
                                                         errorflag = 1;
-                                                        instinput3.setError("Invalid Institute Name");
+                                                        instinput3.setError("kindly enter Institute Name");
                                                     } else {
                                                         errorflag = 0;
                                                         if (sfromdate3.length() < 3) {
                                                             errorflag = 1;
-                                                            fromdateinput3.setError("Invalid Date");
+                                                            fromdateinput3.setError("kindly enter valid date");
                                                         } else {
                                                             errorflag = 0;
                                                             if (stodate3.length() < 3) {
                                                                 errorflag = 1;
-                                                                todateinput3.setError("Invalid Date");
+                                                                todateinput3.setError("kindly enter valid date");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (sname4.length() < 3) {
                                                                     errorflag = 1;
-                                                                    nameinput4.setError("Invalid Course Name");
+                                                                    nameinput4.setError("kindly enter course Name");
                                                                 } else {
                                                                     errorflag = 0;
                                                                     if (sinst4.length() < 3) {
                                                                         errorflag = 1;
-                                                                        instinput4.setError("Invalid Institute Name");
+                                                                        instinput4.setError("kindly enter Institute Name");
                                                                     } else {
                                                                         errorflag = 0;
                                                                         if (sfromdate4.length() < 3) {
                                                                             errorflag = 1;
-                                                                            fromdateinput4.setError("Invalid Date");
+                                                                            fromdateinput4.setError("kindly enter valid date");
                                                                         } else {
                                                                             errorflag = 0;
                                                                             if (stodate4.length() < 3) {
                                                                                 errorflag = 1;
-                                                                                todateinput4.setError("Invalid Date");
+                                                                                todateinput4.setError("kindly enter valid date");
                                                                             } else {
                                                                                 errorflag = 0;
                                                                                 if (sname5.length() < 3) {
                                                                                     errorflag = 1;
-                                                                                    nameinput5.setError("Invalid Course Name");
+                                                                                    nameinput5.setError("kindly enter course Name");
                                                                                 } else {
                                                                                     errorflag = 0;
                                                                                     if (sinst5.length() < 3) {
                                                                                         errorflag = 1;
-                                                                                        instinput5.setError("Invalid Institute Name");
+                                                                                        instinput5.setError("kindly enter Institute Name");
                                                                                     } else {
                                                                                         errorflag = 0;
                                                                                         if (sfromdate5.length() < 3) {
                                                                                             errorflag = 1;
-                                                                                            fromdateinput5.setError("Invalid Date");
+                                                                                            fromdateinput5.setError("kindly enter valid date");
                                                                                         } else {
                                                                                             errorflag = 0;
                                                                                             if (stodate5.length() < 3) {
                                                                                                 errorflag = 1;
-                                                                                                todateinput5.setError("Invalid Date");
+                                                                                                todateinput5.setError("kindly enter valid date");
                                                                                             } else {
                                                                                                 errorflag = 0;
                                                                                                 if (sname6.length() < 3) {
                                                                                                     errorflag = 1;
-                                                                                                    nameinput6.setError("Invalid Course Name");
+                                                                                                    nameinput6.setError("kindly enter course Name");
                                                                                                 } else {
                                                                                                     errorflag = 0;
                                                                                                     if (sinst6.length() < 3) {
                                                                                                         errorflag = 1;
-                                                                                                        instinput6.setError("Invalid Institute Name");
+                                                                                                        instinput6.setError("kindly enter Institute Name");
                                                                                                     } else {
                                                                                                         errorflag = 0;
                                                                                                         if (sfromdate6.length() < 3) {
                                                                                                             errorflag = 1;
-                                                                                                            fromdateinput6.setError("Invalid Date");
+                                                                                                            fromdateinput6.setError("kindly enter valid date");
                                                                                                         } else {
                                                                                                             errorflag = 0;
                                                                                                             if (stodate6.length() < 3) {
                                                                                                                 errorflag = 1;
-                                                                                                                todateinput6.setError("Invalid Date");
+                                                                                                                todateinput6.setError("kindly enter valid date");
                                                                                                             }
                                                                                                         }
                                                                                                     }
@@ -3650,142 +3652,142 @@ public class MyProfileCourses extends AppCompatActivity {
             } else if (coursecount == 6) {
                 if (sname1.length() < 3) {
                     errorflag = 1;
-                    nameinput1.setError("Invalid Course Name");
+                    nameinput1.setError("kindly enter course Name");
                 } else {
                     errorflag = 0;
                     if (sinst1.length() < 3) {
                         errorflag = 1;
-                        instinput1.setError("Invalid Institute Name");
+                        instinput1.setError("kindly enter Institute Name");
                     } else {
                         errorflag = 0;
                         if (sfromdate1.length() < 3) {
                             errorflag = 1;
-                            fromdateinput1.setError("Invalid Date");
+                            fromdateinput1.setError("kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (stodate1.length() < 3) {
                                 errorflag = 1;
-                                todateinput1.setError("Invalid Date");
+                                todateinput1.setError("kindly enter valid date");
                             } else {
                                 errorflag = 0;
                                 if (sname2.length() < 3) {
                                     errorflag = 1;
-                                    nameinput2.setError("Invalid Course Name");
+                                    nameinput2.setError("kindly enter course Name");
                                 } else {
                                     errorflag = 0;
                                     if (sinst2.length() < 3) {
                                         errorflag = 1;
-                                        instinput2.setError("Invalid Institute Name");
+                                        instinput2.setError("kindly enter Institute Name");
                                     } else {
                                         errorflag = 0;
                                         if (sfromdate2.length() < 3) {
                                             errorflag = 1;
-                                            fromdateinput2.setError("Invalid Date");
+                                            fromdateinput2.setError("kindly enter valid date");
                                         } else {
                                             errorflag = 0;
                                             if (stodate2.length() < 3) {
                                                 errorflag = 1;
-                                                todateinput2.setError("Invalid Date");
+                                                todateinput2.setError("kindly enter valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (sname3.length() < 3) {
                                                     errorflag = 1;
-                                                    nameinput3.setError("Invalid Course Name");
+                                                    nameinput3.setError("kindly enter course Name");
                                                 } else {
                                                     errorflag = 0;
                                                     if (sinst3.length() < 3) {
                                                         errorflag = 1;
-                                                        instinput3.setError("Invalid Institute Name");
+                                                        instinput3.setError("kindly enter Institute Name");
                                                     } else {
                                                         errorflag = 0;
                                                         if (sfromdate3.length() < 3) {
                                                             errorflag = 1;
-                                                            fromdateinput3.setError("Invalid Date");
+                                                            fromdateinput3.setError("kindly enter valid date");
                                                         } else {
                                                             errorflag = 0;
                                                             if (stodate3.length() < 3) {
                                                                 errorflag = 1;
-                                                                todateinput3.setError("Invalid Date");
+                                                                todateinput3.setError("kindly enter valid date");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (sname4.length() < 3) {
                                                                     errorflag = 1;
-                                                                    nameinput4.setError("Invalid Course Name");
+                                                                    nameinput4.setError("kindly enter course Name");
                                                                 } else {
                                                                     errorflag = 0;
                                                                     if (sinst4.length() < 3) {
                                                                         errorflag = 1;
-                                                                        instinput4.setError("Invalid Institute Name");
+                                                                        instinput4.setError("kindly enter Institute Name");
                                                                     } else {
                                                                         errorflag = 0;
                                                                         if (sfromdate4.length() < 3) {
                                                                             errorflag = 1;
-                                                                            fromdateinput4.setError("Invalid Date");
+                                                                            fromdateinput4.setError("kindly enter valid date");
                                                                         } else {
                                                                             errorflag = 0;
                                                                             if (stodate4.length() < 3) {
                                                                                 errorflag = 1;
-                                                                                todateinput4.setError("Invalid Date");
+                                                                                todateinput4.setError("kindly enter valid date");
                                                                             } else {
                                                                                 errorflag = 0;
                                                                                 if (sname5.length() < 3) {
                                                                                     errorflag = 1;
-                                                                                    nameinput5.setError("Invalid Course Name");
+                                                                                    nameinput5.setError("kindly enter course Name");
                                                                                 } else {
                                                                                     errorflag = 0;
                                                                                     if (sinst5.length() < 3) {
                                                                                         errorflag = 1;
-                                                                                        instinput5.setError("Invalid Institute Name");
+                                                                                        instinput5.setError("kindly enter Institute Name");
                                                                                     } else {
                                                                                         errorflag = 0;
                                                                                         if (sfromdate5.length() < 3) {
                                                                                             errorflag = 1;
-                                                                                            fromdateinput5.setError("Invalid Date");
+                                                                                            fromdateinput5.setError("kindly enter valid date");
                                                                                         } else {
                                                                                             errorflag = 0;
                                                                                             if (stodate5.length() < 3) {
                                                                                                 errorflag = 1;
-                                                                                                todateinput5.setError("Invalid Date");
+                                                                                                todateinput5.setError("kindly enter valid date");
                                                                                             } else {
                                                                                                 errorflag = 0;
                                                                                                 if (sname6.length() < 3) {
                                                                                                     errorflag = 1;
-                                                                                                    nameinput6.setError("Invalid Course Name");
+                                                                                                    nameinput6.setError("kindly enter course Name");
                                                                                                 } else {
                                                                                                     errorflag = 0;
                                                                                                     if (sinst6.length() < 3) {
                                                                                                         errorflag = 1;
-                                                                                                        instinput6.setError("Invalid Institute Name");
+                                                                                                        instinput6.setError("kindly enter Institute Name");
                                                                                                     } else {
                                                                                                         errorflag = 0;
                                                                                                         if (sfromdate6.length() < 3) {
                                                                                                             errorflag = 1;
-                                                                                                            fromdateinput6.setError("Invalid Date");
+                                                                                                            fromdateinput6.setError("kindly enter valid date");
                                                                                                         } else {
                                                                                                             errorflag = 0;
                                                                                                             if (stodate6.length() < 3) {
                                                                                                                 errorflag = 1;
-                                                                                                                todateinput6.setError("Invalid Date");
+                                                                                                                todateinput6.setError("kindly enter valid date");
                                                                                                             } else {
                                                                                                                 errorflag = 0;
                                                                                                                 if (sname7.length() < 3) {
                                                                                                                     errorflag = 1;
-                                                                                                                    nameinput7.setError("Invalid Course Name");
+                                                                                                                    nameinput7.setError("kindly enter course Name");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
                                                                                                                     if (sinst7.length() < 3) {
                                                                                                                         errorflag = 1;
-                                                                                                                        instinput7.setError("Invalid Institute Name");
+                                                                                                                        instinput7.setError("kindly enter Institute Name");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
                                                                                                                         if (sfromdate7.length() < 3) {
                                                                                                                             errorflag = 1;
-                                                                                                                            fromdateinput7.setError("Invalid Date");
+                                                                                                                            fromdateinput7.setError("kindly enter valid date");
                                                                                                                         } else {
                                                                                                                             errorflag = 0;
                                                                                                                             if (stodate7.length() < 3) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                todateinput7.setError("Invalid Date");
+                                                                                                                                todateinput7.setError("kindly enter valid date");
                                                                                                                             }
                                                                                                                         }
                                                                                                                     }
@@ -3817,162 +3819,162 @@ public class MyProfileCourses extends AppCompatActivity {
             } else if (coursecount == 7) {
                 if (sname1.length() < 3) {
                     errorflag = 1;
-                    nameinput1.setError("Invalid Course Name");
+                    nameinput1.setError("kindly enter course Name");
                 } else {
                     errorflag = 0;
                     if (sinst1.length() < 3) {
                         errorflag = 1;
-                        instinput1.setError("Invalid Institute Name");
+                        instinput1.setError("kindly enter Institute Name");
                     } else {
                         errorflag = 0;
                         if (sfromdate1.length() < 3) {
                             errorflag = 1;
-                            fromdateinput1.setError("Invalid Date");
+                            fromdateinput1.setError("kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (stodate1.length() < 3) {
                                 errorflag = 1;
-                                todateinput1.setError("Invalid Date");
+                                todateinput1.setError("kindly enter valid date");
                             } else {
                                 errorflag = 0;
                                 if (sname2.length() < 3) {
                                     errorflag = 1;
-                                    nameinput2.setError("Invalid Course Name");
+                                    nameinput2.setError("kindly enter course Name");
                                 } else {
                                     errorflag = 0;
                                     if (sinst2.length() < 3) {
                                         errorflag = 1;
-                                        instinput2.setError("Invalid Institute Name");
+                                        instinput2.setError("kindly enter Institute Name");
                                     } else {
                                         errorflag = 0;
                                         if (sfromdate2.length() < 3) {
                                             errorflag = 1;
-                                            fromdateinput2.setError("Invalid Date");
+                                            fromdateinput2.setError("kindly enter valid date");
                                         } else {
                                             errorflag = 0;
                                             if (stodate2.length() < 3) {
                                                 errorflag = 1;
-                                                todateinput2.setError("Invalid Date");
+                                                todateinput2.setError("kindly enter valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (sname3.length() < 3) {
                                                     errorflag = 1;
-                                                    nameinput3.setError("Invalid Course Name");
+                                                    nameinput3.setError("kindly enter course Name");
                                                 } else {
                                                     errorflag = 0;
                                                     if (sinst3.length() < 3) {
                                                         errorflag = 1;
-                                                        instinput3.setError("Invalid Institute Name");
+                                                        instinput3.setError("kindly enter Institute Name");
                                                     } else {
                                                         errorflag = 0;
                                                         if (sfromdate3.length() < 3) {
                                                             errorflag = 1;
-                                                            fromdateinput3.setError("Invalid Date");
+                                                            fromdateinput3.setError("kindly enter valid date");
                                                         } else {
                                                             errorflag = 0;
                                                             if (stodate3.length() < 3) {
                                                                 errorflag = 1;
-                                                                todateinput3.setError("Invalid Date");
+                                                                todateinput3.setError("kindly enter valid date");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (sname4.length() < 3) {
                                                                     errorflag = 1;
-                                                                    nameinput4.setError("Invalid Course Name");
+                                                                    nameinput4.setError("kindly enter course Name");
                                                                 } else {
                                                                     errorflag = 0;
                                                                     if (sinst4.length() < 3) {
                                                                         errorflag = 1;
-                                                                        instinput4.setError("Invalid Institute Name");
+                                                                        instinput4.setError("kindly enter Institute Name");
                                                                     } else {
                                                                         errorflag = 0;
                                                                         if (sfromdate4.length() < 3) {
                                                                             errorflag = 1;
-                                                                            fromdateinput4.setError("Invalid Date");
+                                                                            fromdateinput4.setError("kindly enter valid date");
                                                                         } else {
                                                                             errorflag = 0;
                                                                             if (stodate4.length() < 3) {
                                                                                 errorflag = 1;
-                                                                                todateinput4.setError("Invalid Date");
+                                                                                todateinput4.setError("kindly enter valid date");
                                                                             } else {
                                                                                 errorflag = 0;
                                                                                 if (sname5.length() < 3) {
                                                                                     errorflag = 1;
-                                                                                    nameinput5.setError("Invalid Course Name");
+                                                                                    nameinput5.setError("kindly enter course Name");
                                                                                 } else {
                                                                                     errorflag = 0;
                                                                                     if (sinst5.length() < 3) {
                                                                                         errorflag = 1;
-                                                                                        instinput5.setError("Invalid Institute Name");
+                                                                                        instinput5.setError("kindly enter Institute Name");
                                                                                     } else {
                                                                                         errorflag = 0;
                                                                                         if (sfromdate5.length() < 3) {
                                                                                             errorflag = 1;
-                                                                                            fromdateinput5.setError("Invalid Date");
+                                                                                            fromdateinput5.setError("kindly enter valid date");
                                                                                         } else {
                                                                                             errorflag = 0;
                                                                                             if (stodate5.length() < 3) {
                                                                                                 errorflag = 1;
-                                                                                                todateinput5.setError("Invalid Date");
+                                                                                                todateinput5.setError("kindly enter valid date");
                                                                                             } else {
                                                                                                 errorflag = 0;
                                                                                                 if (sname6.length() < 3) {
                                                                                                     errorflag = 1;
-                                                                                                    nameinput6.setError("Invalid Course Name");
+                                                                                                    nameinput6.setError("kindly enter course Name");
                                                                                                 } else {
                                                                                                     errorflag = 0;
                                                                                                     if (sinst6.length() < 3) {
                                                                                                         errorflag = 1;
-                                                                                                        instinput6.setError("Invalid Institute Name");
+                                                                                                        instinput6.setError("kindly enter Institute Name");
                                                                                                     } else {
                                                                                                         errorflag = 0;
                                                                                                         if (sfromdate6.length() < 3) {
                                                                                                             errorflag = 1;
-                                                                                                            fromdateinput6.setError("Invalid Date");
+                                                                                                            fromdateinput6.setError("kindly enter valid date");
                                                                                                         } else {
                                                                                                             errorflag = 0;
                                                                                                             if (stodate6.length() < 3) {
                                                                                                                 errorflag = 1;
-                                                                                                                todateinput6.setError("Invalid Date");
+                                                                                                                todateinput6.setError("kindly enter valid date");
                                                                                                             } else {
                                                                                                                 errorflag = 0;
                                                                                                                 if (sname7.length() < 3) {
                                                                                                                     errorflag = 1;
-                                                                                                                    nameinput7.setError("Invalid Course Name");
+                                                                                                                    nameinput7.setError("kindly enter course Name");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
                                                                                                                     if (sinst7.length() < 3) {
                                                                                                                         errorflag = 1;
-                                                                                                                        instinput7.setError("Invalid Institute Name");
+                                                                                                                        instinput7.setError("kindly enter Institute Name");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
                                                                                                                         if (sfromdate7.length() < 3) {
                                                                                                                             errorflag = 1;
-                                                                                                                            fromdateinput7.setError("Invalid Date");
+                                                                                                                            fromdateinput7.setError("kindly enter valid date");
                                                                                                                         } else {
                                                                                                                             errorflag = 0;
                                                                                                                             if (stodate7.length() < 3) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                todateinput7.setError("Invalid Date");
+                                                                                                                                todateinput7.setError("kindly enter valid date");
                                                                                                                             } else {
                                                                                                                                 errorflag = 0;
                                                                                                                                 if (sname8.length() < 3) {
                                                                                                                                     errorflag = 1;
-                                                                                                                                    nameinput8.setError("Invalid Course Name");
+                                                                                                                                    nameinput8.setError("kindly enter course Name");
                                                                                                                                 } else {
                                                                                                                                     errorflag = 0;
                                                                                                                                     if (sinst8.length() < 3) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        instinput8.setError("Invalid Institute Name");
+                                                                                                                                        instinput8.setError("kindly enter Institute Name");
                                                                                                                                     } else {
                                                                                                                                         errorflag = 0;
                                                                                                                                         if (sfromdate8.length() < 3) {
                                                                                                                                             errorflag = 1;
-                                                                                                                                            fromdateinput8.setError("Invalid Date");
+                                                                                                                                            fromdateinput8.setError("kindly enter valid date");
                                                                                                                                         } else {
                                                                                                                                             errorflag = 0;
                                                                                                                                             if (stodate8.length() < 3) {
                                                                                                                                                 errorflag = 1;
-                                                                                                                                                todateinput8.setError("Invalid Date");
+                                                                                                                                                todateinput8.setError("kindly enter valid date");
                                                                                                                                             }
                                                                                                                                         }
                                                                                                                                     }
@@ -4008,182 +4010,182 @@ public class MyProfileCourses extends AppCompatActivity {
             } else if (coursecount == 8) {
                 if (sname1.length() < 3) {
                     errorflag = 1;
-                    nameinput1.setError("Invalid Course Name");
+                    nameinput1.setError("kindly enter course Name");
                 } else {
                     errorflag = 0;
                     if (sinst1.length() < 3) {
                         errorflag = 1;
-                        instinput1.setError("Invalid Institute Name");
+                        instinput1.setError("kindly enter Institute Name");
                     } else {
                         errorflag = 0;
                         if (sfromdate1.length() < 3) {
                             errorflag = 1;
-                            fromdateinput1.setError("Invalid Date");
+                            fromdateinput1.setError("kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (stodate1.length() < 3) {
                                 errorflag = 1;
-                                todateinput1.setError("Invalid Date");
+                                todateinput1.setError("kindly enter valid date");
                             } else {
                                 errorflag = 0;
                                 if (sname2.length() < 3) {
                                     errorflag = 1;
-                                    nameinput2.setError("Invalid Course Name");
+                                    nameinput2.setError("kindly enter course Name");
                                 } else {
                                     errorflag = 0;
                                     if (sinst2.length() < 3) {
                                         errorflag = 1;
-                                        instinput2.setError("Invalid Institute Name");
+                                        instinput2.setError("kindly enter Institute Name");
                                     } else {
                                         errorflag = 0;
                                         if (sfromdate2.length() < 3) {
                                             errorflag = 1;
-                                            fromdateinput2.setError("Invalid Date");
+                                            fromdateinput2.setError("kindly enter valid date");
                                         } else {
                                             errorflag = 0;
                                             if (stodate2.length() < 3) {
                                                 errorflag = 1;
-                                                todateinput2.setError("Invalid Date");
+                                                todateinput2.setError("kindly enter valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (sname3.length() < 3) {
                                                     errorflag = 1;
-                                                    nameinput3.setError("Invalid Course Name");
+                                                    nameinput3.setError("kindly enter course Name");
                                                 } else {
                                                     errorflag = 0;
                                                     if (sinst3.length() < 3) {
                                                         errorflag = 1;
-                                                        instinput3.setError("Invalid Institute Name");
+                                                        instinput3.setError("kindly enter Institute Name");
                                                     } else {
                                                         errorflag = 0;
                                                         if (sfromdate3.length() < 3) {
                                                             errorflag = 1;
-                                                            fromdateinput3.setError("Invalid Date");
+                                                            fromdateinput3.setError("kindly enter valid date");
                                                         } else {
                                                             errorflag = 0;
                                                             if (stodate3.length() < 3) {
                                                                 errorflag = 1;
-                                                                todateinput3.setError("Invalid Date");
+                                                                todateinput3.setError("kindly enter valid date");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (sname4.length() < 3) {
                                                                     errorflag = 1;
-                                                                    nameinput4.setError("Invalid Course Name");
+                                                                    nameinput4.setError("kindly enter course Name");
                                                                 } else {
                                                                     errorflag = 0;
                                                                     if (sinst4.length() < 3) {
                                                                         errorflag = 1;
-                                                                        instinput4.setError("Invalid Institute Name");
+                                                                        instinput4.setError("kindly enter Institute Name");
                                                                     } else {
                                                                         errorflag = 0;
                                                                         if (sfromdate4.length() < 3) {
                                                                             errorflag = 1;
-                                                                            fromdateinput4.setError("Invalid Date");
+                                                                            fromdateinput4.setError("kindly enter valid date");
                                                                         } else {
                                                                             errorflag = 0;
                                                                             if (stodate4.length() < 3) {
                                                                                 errorflag = 1;
-                                                                                todateinput4.setError("Invalid Date");
+                                                                                todateinput4.setError("kindly enter valid date");
                                                                             } else {
                                                                                 errorflag = 0;
                                                                                 if (sname5.length() < 3) {
                                                                                     errorflag = 1;
-                                                                                    nameinput5.setError("Invalid Course Name");
+                                                                                    nameinput5.setError("kindly enter course Name");
                                                                                 } else {
                                                                                     errorflag = 0;
                                                                                     if (sinst5.length() < 3) {
                                                                                         errorflag = 1;
-                                                                                        instinput5.setError("Invalid Institute Name");
+                                                                                        instinput5.setError("kindly enter Institute Name");
                                                                                     } else {
                                                                                         errorflag = 0;
                                                                                         if (sfromdate5.length() < 3) {
                                                                                             errorflag = 1;
-                                                                                            fromdateinput5.setError("Invalid Date");
+                                                                                            fromdateinput5.setError("kindly enter valid date");
                                                                                         } else {
                                                                                             errorflag = 0;
                                                                                             if (stodate5.length() < 3) {
                                                                                                 errorflag = 1;
-                                                                                                todateinput5.setError("Invalid Date");
+                                                                                                todateinput5.setError("kindly enter valid date");
                                                                                             } else {
                                                                                                 errorflag = 0;
                                                                                                 if (sname6.length() < 3) {
                                                                                                     errorflag = 1;
-                                                                                                    nameinput6.setError("Invalid Course Name");
+                                                                                                    nameinput6.setError("kindly enter course Name");
                                                                                                 } else {
                                                                                                     errorflag = 0;
                                                                                                     if (sinst6.length() < 3) {
                                                                                                         errorflag = 1;
-                                                                                                        instinput6.setError("Invalid Institute Name");
+                                                                                                        instinput6.setError("kindly enter Institute Name");
                                                                                                     } else {
                                                                                                         errorflag = 0;
                                                                                                         if (sfromdate6.length() < 3) {
                                                                                                             errorflag = 1;
-                                                                                                            fromdateinput6.setError("Invalid Date");
+                                                                                                            fromdateinput6.setError("kindly enter valid date");
                                                                                                         } else {
                                                                                                             errorflag = 0;
                                                                                                             if (stodate6.length() < 3) {
                                                                                                                 errorflag = 1;
-                                                                                                                todateinput6.setError("Invalid Date");
+                                                                                                                todateinput6.setError("kindly enter valid date");
                                                                                                             } else {
                                                                                                                 errorflag = 0;
                                                                                                                 if (sname7.length() < 3) {
                                                                                                                     errorflag = 1;
-                                                                                                                    nameinput7.setError("Invalid Course Name");
+                                                                                                                    nameinput7.setError("kindly enter course Name");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
                                                                                                                     if (sinst7.length() < 3) {
                                                                                                                         errorflag = 1;
-                                                                                                                        instinput7.setError("Invalid Institute Name");
+                                                                                                                        instinput7.setError("kindly enter Institute Name");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
                                                                                                                         if (sfromdate7.length() < 3) {
                                                                                                                             errorflag = 1;
-                                                                                                                            fromdateinput7.setError("Invalid Date");
+                                                                                                                            fromdateinput7.setError("kindly enter valid date");
                                                                                                                         } else {
                                                                                                                             errorflag = 0;
                                                                                                                             if (stodate7.length() < 3) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                todateinput7.setError("Invalid Date");
+                                                                                                                                todateinput7.setError("kindly enter valid date");
                                                                                                                             } else {
                                                                                                                                 errorflag = 0;
                                                                                                                                 if (sname8.length() < 3) {
                                                                                                                                     errorflag = 1;
-                                                                                                                                    nameinput8.setError("Invalid Course Name");
+                                                                                                                                    nameinput8.setError("kindly enter course Name");
                                                                                                                                 } else {
                                                                                                                                     errorflag = 0;
                                                                                                                                     if (sinst8.length() < 3) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        instinput8.setError("Invalid Institute Name");
+                                                                                                                                        instinput8.setError("kindly enter Institute Name");
                                                                                                                                     } else {
                                                                                                                                         errorflag = 0;
                                                                                                                                         if (sfromdate8.length() < 3) {
                                                                                                                                             errorflag = 1;
-                                                                                                                                            fromdateinput8.setError("Invalid Date");
+                                                                                                                                            fromdateinput8.setError("kindly enter valid date");
                                                                                                                                         } else {
                                                                                                                                             errorflag = 0;
                                                                                                                                             if (stodate8.length() < 3) {
                                                                                                                                                 errorflag = 1;
-                                                                                                                                                todateinput8.setError("Invalid Date");
+                                                                                                                                                todateinput8.setError("kindly enter valid date");
                                                                                                                                             } else {
                                                                                                                                                 errorflag = 0;
                                                                                                                                                 if (sname9.length() < 3) {
                                                                                                                                                     errorflag = 1;
-                                                                                                                                                    nameinput9.setError("Invalid Course Name");
+                                                                                                                                                    nameinput9.setError("kindly enter course Name");
                                                                                                                                                 } else {
                                                                                                                                                     errorflag = 0;
                                                                                                                                                     if (sinst9.length() < 3) {
                                                                                                                                                         errorflag = 1;
-                                                                                                                                                        instinput9.setError("Invalid Institute Name");
+                                                                                                                                                        instinput9.setError("kindly enter Institute Name");
                                                                                                                                                     } else {
                                                                                                                                                         errorflag = 0;
                                                                                                                                                         if (sfromdate9.length() < 3) {
                                                                                                                                                             errorflag = 1;
-                                                                                                                                                            fromdateinput9.setError("Invalid Date");
+                                                                                                                                                            fromdateinput9.setError("kindly enter valid date");
                                                                                                                                                         } else {
                                                                                                                                                             errorflag = 0;
                                                                                                                                                             if (stodate9.length() < 3) {
                                                                                                                                                                 errorflag = 1;
-                                                                                                                                                                todateinput9.setError("Invalid Date");
+                                                                                                                                                                todateinput9.setError("kindly enter valid date");
                                                                                                                                                             }
                                                                                                                                                         }
                                                                                                                                                     }
@@ -4223,202 +4225,202 @@ public class MyProfileCourses extends AppCompatActivity {
             } else if (coursecount == 9) {
                 if (sname1.length() < 3) {
                     errorflag = 1;
-                    nameinput1.setError("Invalid Course Name");
+                    nameinput1.setError("kindly enter course Name");
                 } else {
                     errorflag = 0;
                     if (sinst1.length() < 3) {
                         errorflag = 1;
-                        instinput1.setError("Invalid Institute Name");
+                        instinput1.setError("kindly enter Institute Name");
                     } else {
                         errorflag = 0;
                         if (sfromdate1.length() < 3) {
                             errorflag = 1;
-                            fromdateinput1.setError("Invalid Date");
+                            fromdateinput1.setError("kindly enter valid date");
                         } else {
                             errorflag = 0;
                             if (stodate1.length() < 3) {
                                 errorflag = 1;
-                                todateinput1.setError("Invalid Date");
+                                todateinput1.setError("kindly enter valid date");
                             } else {
                                 errorflag = 0;
                                 if (sname2.length() < 3) {
                                     errorflag = 1;
-                                    nameinput2.setError("Invalid Course Name");
+                                    nameinput2.setError("kindly enter course Name");
                                 } else {
                                     errorflag = 0;
                                     if (sinst2.length() < 3) {
                                         errorflag = 1;
-                                        instinput2.setError("Invalid Institute Name");
+                                        instinput2.setError("kindly enter Institute Name");
                                     } else {
                                         errorflag = 0;
                                         if (sfromdate2.length() < 3) {
                                             errorflag = 1;
-                                            fromdateinput2.setError("Invalid Date");
+                                            fromdateinput2.setError("kindly enter valid date");
                                         } else {
                                             errorflag = 0;
                                             if (stodate2.length() < 3) {
                                                 errorflag = 1;
-                                                todateinput2.setError("Invalid Date");
+                                                todateinput2.setError("kindly enter valid date");
                                             } else {
                                                 errorflag = 0;
                                                 if (sname3.length() < 3) {
                                                     errorflag = 1;
-                                                    nameinput3.setError("Invalid Course Name");
+                                                    nameinput3.setError("kindly enter course Name");
                                                 } else {
                                                     errorflag = 0;
                                                     if (sinst3.length() < 3) {
                                                         errorflag = 1;
-                                                        instinput3.setError("Invalid Institute Name");
+                                                        instinput3.setError("kindly enter Institute Name");
                                                     } else {
                                                         errorflag = 0;
                                                         if (sfromdate3.length() < 3) {
                                                             errorflag = 1;
-                                                            fromdateinput3.setError("Invalid Date");
+                                                            fromdateinput3.setError("kindly enter valid date");
                                                         } else {
                                                             errorflag = 0;
                                                             if (stodate3.length() < 3) {
                                                                 errorflag = 1;
-                                                                todateinput3.setError("Invalid Date");
+                                                                todateinput3.setError("kindly enter valid date");
                                                             } else {
                                                                 errorflag = 0;
                                                                 if (sname4.length() < 3) {
                                                                     errorflag = 1;
-                                                                    nameinput4.setError("Invalid Course Name");
+                                                                    nameinput4.setError("kindly enter course Name");
                                                                 } else {
                                                                     errorflag = 0;
                                                                     if (sinst4.length() < 3) {
                                                                         errorflag = 1;
-                                                                        instinput4.setError("Invalid Institute Name");
+                                                                        instinput4.setError("kindly enter Institute Name");
                                                                     } else {
                                                                         errorflag = 0;
                                                                         if (sfromdate4.length() < 3) {
                                                                             errorflag = 1;
-                                                                            fromdateinput4.setError("Invalid Date");
+                                                                            fromdateinput4.setError("kindly enter valid date");
                                                                         } else {
                                                                             errorflag = 0;
                                                                             if (stodate4.length() < 3) {
                                                                                 errorflag = 1;
-                                                                                todateinput4.setError("Invalid Date");
+                                                                                todateinput4.setError("kindly enter valid date");
                                                                             } else {
                                                                                 errorflag = 0;
                                                                                 if (sname5.length() < 3) {
                                                                                     errorflag = 1;
-                                                                                    nameinput5.setError("Invalid Course Name");
+                                                                                    nameinput5.setError("kindly enter course Name");
                                                                                 } else {
                                                                                     errorflag = 0;
                                                                                     if (sinst5.length() < 3) {
                                                                                         errorflag = 1;
-                                                                                        instinput5.setError("Invalid Institute Name");
+                                                                                        instinput5.setError("kindly enter Institute Name");
                                                                                     } else {
                                                                                         errorflag = 0;
                                                                                         if (sfromdate5.length() < 3) {
                                                                                             errorflag = 1;
-                                                                                            fromdateinput5.setError("Invalid Date");
+                                                                                            fromdateinput5.setError("kindly enter valid date");
                                                                                         } else {
                                                                                             errorflag = 0;
                                                                                             if (stodate5.length() < 3) {
                                                                                                 errorflag = 1;
-                                                                                                todateinput5.setError("Invalid Date");
+                                                                                                todateinput5.setError("kindly enter valid date");
                                                                                             } else {
                                                                                                 errorflag = 0;
                                                                                                 if (sname6.length() < 3) {
                                                                                                     errorflag = 1;
-                                                                                                    nameinput6.setError("Invalid Course Name");
+                                                                                                    nameinput6.setError("kindly enter course Name");
                                                                                                 } else {
                                                                                                     errorflag = 0;
                                                                                                     if (sinst6.length() < 3) {
                                                                                                         errorflag = 1;
-                                                                                                        instinput6.setError("Invalid Institute Name");
+                                                                                                        instinput6.setError("kindly enter Institute Name");
                                                                                                     } else {
                                                                                                         errorflag = 0;
                                                                                                         if (sfromdate6.length() < 3) {
                                                                                                             errorflag = 1;
-                                                                                                            fromdateinput6.setError("Invalid Date");
+                                                                                                            fromdateinput6.setError("kindly enter valid date");
                                                                                                         } else {
                                                                                                             errorflag = 0;
                                                                                                             if (stodate6.length() < 3) {
                                                                                                                 errorflag = 1;
-                                                                                                                todateinput6.setError("Invalid Date");
+                                                                                                                todateinput6.setError("kindly enter valid date");
                                                                                                             } else {
                                                                                                                 errorflag = 0;
                                                                                                                 if (sname7.length() < 3) {
                                                                                                                     errorflag = 1;
-                                                                                                                    nameinput7.setError("Invalid Course Name");
+                                                                                                                    nameinput7.setError("kindly enter course Name");
                                                                                                                 } else {
                                                                                                                     errorflag = 0;
                                                                                                                     if (sinst7.length() < 3) {
                                                                                                                         errorflag = 1;
-                                                                                                                        instinput7.setError("Invalid Institute Name");
+                                                                                                                        instinput7.setError("kindly enter Institute Name");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
                                                                                                                         if (sfromdate7.length() < 3) {
                                                                                                                             errorflag = 1;
-                                                                                                                            fromdateinput7.setError("Invalid Date");
+                                                                                                                            fromdateinput7.setError("kindly enter valid date");
                                                                                                                         } else {
                                                                                                                             errorflag = 0;
                                                                                                                             if (stodate7.length() < 3) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                todateinput7.setError("Invalid Date");
+                                                                                                                                todateinput7.setError("kindly enter valid date");
                                                                                                                             } else {
                                                                                                                                 errorflag = 0;
                                                                                                                                 if (sname8.length() < 3) {
                                                                                                                                     errorflag = 1;
-                                                                                                                                    nameinput8.setError("Invalid Course Name");
+                                                                                                                                    nameinput8.setError("kindly enter course Name");
                                                                                                                                 } else {
                                                                                                                                     errorflag = 0;
                                                                                                                                     if (sinst8.length() < 3) {
                                                                                                                                         errorflag = 1;
-                                                                                                                                        instinput8.setError("Invalid Institute Name");
+                                                                                                                                        instinput8.setError("kindly enter Institute Name");
                                                                                                                                     } else {
                                                                                                                                         errorflag = 0;
                                                                                                                                         if (sfromdate8.length() < 3) {
                                                                                                                                             errorflag = 1;
-                                                                                                                                            fromdateinput8.setError("Invalid Date");
+                                                                                                                                            fromdateinput8.setError("kindly enter valid date");
                                                                                                                                         } else {
                                                                                                                                             errorflag = 0;
                                                                                                                                             if (stodate8.length() < 3) {
                                                                                                                                                 errorflag = 1;
-                                                                                                                                                todateinput8.setError("Invalid Date");
+                                                                                                                                                todateinput8.setError("kindly enter valid date");
                                                                                                                                             } else {
                                                                                                                                                 errorflag = 0;
                                                                                                                                                 if (sname9.length() < 3) {
                                                                                                                                                     errorflag = 1;
-                                                                                                                                                    nameinput9.setError("Invalid Course Name");
+                                                                                                                                                    nameinput9.setError("kindly enter course Name");
                                                                                                                                                 } else {
                                                                                                                                                     errorflag = 0;
                                                                                                                                                     if (sinst9.length() < 3) {
                                                                                                                                                         errorflag = 1;
-                                                                                                                                                        instinput9.setError("Invalid Institute Name");
+                                                                                                                                                        instinput9.setError("kindly enter Institute Name");
                                                                                                                                                     } else {
                                                                                                                                                         errorflag = 0;
                                                                                                                                                         if (sfromdate9.length() < 3) {
                                                                                                                                                             errorflag = 1;
-                                                                                                                                                            fromdateinput9.setError("Invalid Date");
+                                                                                                                                                            fromdateinput9.setError("kindly enter valid date");
                                                                                                                                                         } else {
                                                                                                                                                             errorflag = 0;
                                                                                                                                                             if (stodate9.length() < 3) {
                                                                                                                                                                 errorflag = 1;
-                                                                                                                                                                todateinput9.setError("Invalid Date");
+                                                                                                                                                                todateinput9.setError("kindly enter valid date");
                                                                                                                                                             } else {
                                                                                                                                                                 errorflag = 0;
                                                                                                                                                                 if (sname10.length() < 3) {
                                                                                                                                                                     errorflag = 1;
-                                                                                                                                                                    nameinput10.setError("Invalid Course Name");
+                                                                                                                                                                    nameinput10.setError("kindly enter course Name");
                                                                                                                                                                 } else {
                                                                                                                                                                     errorflag = 0;
                                                                                                                                                                     if (sinst10.length() < 3) {
                                                                                                                                                                         errorflag = 1;
-                                                                                                                                                                        instinput10.setError("Invalid Institute Name");
+                                                                                                                                                                        instinput10.setError("kindly enter Institute Name");
                                                                                                                                                                     } else {
                                                                                                                                                                         errorflag = 0;
                                                                                                                                                                         if (sfromdate10.length() < 3) {
                                                                                                                                                                             errorflag = 1;
-                                                                                                                                                                            fromdateinput10.setError("Invalid Date");
+                                                                                                                                                                            fromdateinput10.setError("kindly enter valid date");
                                                                                                                                                                         } else {
                                                                                                                                                                             errorflag = 0;
                                                                                                                                                                             if (stodate10.length() < 3) {
                                                                                                                                                                                 errorflag = 1;
-                                                                                                                                                                                todateinput10.setError("Invalid Date");
+                                                                                                                                                                                todateinput10.setError("kindly enter valid date");
                                                                                                                                                                             }
                                                                                                                                                                         }
                                                                                                                                                                     }

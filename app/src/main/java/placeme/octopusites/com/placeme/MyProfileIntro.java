@@ -173,6 +173,7 @@ public class MyProfileIntro extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, listAll);
         citystaecountry.setAdapter(adapter);
 
@@ -305,12 +306,9 @@ public class MyProfileIntro extends AppCompatActivity {
 
         if (errorflag1 == 0 && errorflag2 == 0 && errorflag3 == 0 && errorflag4 == 0) {
             try {
-
                 Modelmyprofileintro obj2 = new Modelmyprofileintro(firstname, lastname, selectedCity, selectedState, selectedCountry);
-
                 encobj = OtoString(obj2, digest1, digest2);
                 Log.d("TAG", "validateandSave: encobj - " + encobj);
-
                 new SaveData().execute(encobj);
 
             } catch (Exception e) {

@@ -59,15 +59,29 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/location1"
+                <!--<android.support.v7.widget.AppCompatEditText-->
+                    <!--android:id="@+id/location1"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:hint="Location Preference"-->
+                    <!--android:inputType="textCapWords"-->
+                    <!--android:singleLine="true"-->
+                    <!--android:textColor="@color/dark_color"-->
+                    <!--android:textSize="15dp" />-->
+
+                <AutoCompleteTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Location Preference"
+                    android:textSize="15dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:textColor="@color/dark_color"
-                    android:textSize="15dp" />
+                    android:imeOptions="actionNext"
+                    android:id="@+id/location1"
+                    />
+
 
             </android.support.design.widget.TextInputLayout>
 
@@ -114,15 +128,18 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/location2"
+                <AutoCompleteTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Location Preference"
+                    android:textSize="15dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:textColor="@color/dark_color"
-                    android:textSize="15dp" />
+                    android:imeOptions="actionNext"
+                    android:id="@+id/location2"
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -169,16 +186,18 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/location3"
+                <AutoCompleteTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Location Preference"
+                    android:textSize="15dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:textColor="@color/dark_color"
-                    android:textSize="15dp" />
-
+                    android:imeOptions="actionNext"
+                    android:id="@+id/location3"
+                    />
             </android.support.design.widget.TextInputLayout>
 
         </RelativeLayout>
@@ -225,15 +244,18 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/location4"
+                <AutoCompleteTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Location Preference"
+                    android:textSize="15dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:textColor="@color/dark_color"
-                    android:textSize="15dp" />
+                    android:imeOptions="actionNext"
+                    android:id="@+id/location4"
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -280,15 +302,18 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/location5"
+                <AutoCompleteTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Location Preference"
+                    android:textSize="15dp"
+                    android:textColor="@color/dark_color"
+                    android:maxLength="100"
                     android:inputType="textCapWords"
                     android:singleLine="true"
-                    android:textColor="@color/dark_color"
-                    android:textSize="15dp" />
+                    android:imeOptions="actionNext"
+                    android:id="@+id/location5"
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
