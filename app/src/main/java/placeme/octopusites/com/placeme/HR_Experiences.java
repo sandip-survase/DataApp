@@ -24,7 +24,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -57,9 +57,9 @@ public class HR_Experiences extends AppCompatActivity {
     JSONParser jParser = new JSONParser();
     String digest1, digest2;
     View trash1selectionview, trash2selectionview, trash3selectionview, trash4selectionview, trash5selectionview, trash6selectionview, trash7selectionview, trash8selectionview, trash9selectionview, trash10selectionview;
-    EditText fromdate1, todate1, fromdate2, todate2, fromdate3, todate3, fromdate4, todate4, fromdate5, todate5, fromdate6, todate6, fromdate7, todate7, fromdate8, todate8, fromdate9, todate9, fromdate10, todate10;
-    EditText post1, post2, post3, post4, post5, post6, post7, post8, post9, post10;
-    EditText inst11, inst12, inst13, inst14, inst15, inst16, inst17, inst18, inst19, inst110;
+    TextInputEditText fromdate1, todate1, fromdate2, todate2, fromdate3, todate3, fromdate4, todate4, fromdate5, todate5, fromdate6, todate6, fromdate7, todate7, fromdate8, todate8, fromdate9, todate9, fromdate10, todate10;
+    TextInputEditText post1, post2, post3, post4, post5, post6, post7, post8, post9, post10;
+    TextInputEditText inst11, inst12, inst13, inst14, inst15, inst16, inst17, inst18, inst19, inst110;
     String posts1 = "", posts2 = "", posts3 = "", posts4 = "", posts5 = "", posts6 = "", posts7 = "", posts8 = "", posts9 = "", posts10 = "";
     String inst1s1 = "", inst1s2 = "", inst1s3 = "", inst1s4 = "", inst1s5 = "", inst1s6 = "", inst1s7 = "", inst1s8 = "", inst1s9 = "", inst1s10 = "";
     String fromdates1 = "", todates1 = "", fromdates2 = "", todates2 = "", fromdates3 = "", todates3 = "", fromdates4 = "", todates4 = "", fromdates5 = "", todates5 = "", fromdates6 = "", todates6 = "", fromdates7 = "", todates7 = "", fromdates8 = "", todates8 = "", fromdates9 = "", todates9 = "", fromdates10 = "", todates10 = "";
@@ -115,28 +115,28 @@ public class HR_Experiences extends AppCompatActivity {
         trash10selectionview = (View) findViewById(R.id.trashexp10);
 
 
-        //Edittext
-        post1 = (EditText) findViewById(R.id.post1);
-        post2 = (EditText) findViewById(R.id.post2);
-        post3 = (EditText) findViewById(R.id.post3);
-        post4 = (EditText) findViewById(R.id.post4);
-        post5 = (EditText) findViewById(R.id.post5);
-        post6 = (EditText) findViewById(R.id.post6);
-        post7 = (EditText) findViewById(R.id.post7);
-        post8 = (EditText) findViewById(R.id.post8);
-        post9 = (EditText) findViewById(R.id.post9);
-        post10 = (EditText) findViewById(R.id.post10);
+        //TextInputEditText
+        post1 = (TextInputEditText) findViewById(R.id.post1);
+        post2 = (TextInputEditText) findViewById(R.id.post2);
+        post3 = (TextInputEditText) findViewById(R.id.post3);
+        post4 = (TextInputEditText) findViewById(R.id.post4);
+        post5 = (TextInputEditText) findViewById(R.id.post5);
+        post6 = (TextInputEditText) findViewById(R.id.post6);
+        post7 = (TextInputEditText) findViewById(R.id.post7);
+        post8 = (TextInputEditText) findViewById(R.id.post8);
+        post9 = (TextInputEditText) findViewById(R.id.post9);
+        post10 = (TextInputEditText) findViewById(R.id.post10);
 
-        inst11 = (EditText) findViewById(R.id.inst1);
-        inst12 = (EditText) findViewById(R.id.inst2);
-        inst13 = (EditText) findViewById(R.id.inst3);
-        inst14 = (EditText) findViewById(R.id.inst4);
-        inst15 = (EditText) findViewById(R.id.inst5);
-        inst16 = (EditText) findViewById(R.id.inst6);
-        inst17 = (EditText) findViewById(R.id.inst7);
-        inst18 = (EditText) findViewById(R.id.inst8);
-        inst19 = (EditText) findViewById(R.id.inst9);
-        inst110 = (EditText) findViewById(R.id.inst10);
+        inst11 = (TextInputEditText) findViewById(R.id.inst1);
+        inst12 = (TextInputEditText) findViewById(R.id.inst2);
+        inst13 = (TextInputEditText) findViewById(R.id.inst3);
+        inst14 = (TextInputEditText) findViewById(R.id.inst4);
+        inst15 = (TextInputEditText) findViewById(R.id.inst5);
+        inst16 = (TextInputEditText) findViewById(R.id.inst6);
+        inst17 = (TextInputEditText) findViewById(R.id.inst7);
+        inst18 = (TextInputEditText) findViewById(R.id.inst8);
+        inst19 = (TextInputEditText) findViewById(R.id.inst9);
+        inst110 = (TextInputEditText) findViewById(R.id.inst10);
 
         switch1 = (SwitchCompat) findViewById(R.id.switch1);
         switch2 = (SwitchCompat) findViewById(R.id.switch2);
@@ -157,26 +157,26 @@ public class HR_Experiences extends AppCompatActivity {
 //        Log.d(HRlog,"post -"+post1);
 
 
-        fromdate1 = (EditText) findViewById(R.id.fromdate1);
-        todate1 = (EditText) findViewById(R.id.todate1);
-        fromdate2 = (EditText) findViewById(R.id.fromdate2);
-        todate2 = (EditText) findViewById(R.id.todate2);
-        fromdate3 = (EditText) findViewById(R.id.fromdate3);
-        todate3 = (EditText) findViewById(R.id.todate3);
-        fromdate4 = (EditText) findViewById(R.id.fromdate4);
-        todate4 = (EditText) findViewById(R.id.todate4);
-        fromdate5 = (EditText) findViewById(R.id.fromdate5);
-        todate5 = (EditText) findViewById(R.id.todate5);
-        fromdate6 = (EditText) findViewById(R.id.fromdate6);
-        todate6 = (EditText) findViewById(R.id.todate6);
-        fromdate7 = (EditText) findViewById(R.id.fromdate7);
-        todate7 = (EditText) findViewById(R.id.todate7);
-        fromdate8 = (EditText) findViewById(R.id.fromdate8);
-        todate8 = (EditText) findViewById(R.id.todate8);
-        fromdate9 = (EditText) findViewById(R.id.fromdate9);
-        todate9 = (EditText) findViewById(R.id.todate9);
-        fromdate10 = (EditText) findViewById(R.id.fromdate10);
-        todate10 = (EditText) findViewById(R.id.todate10);
+        fromdate1 = (TextInputEditText) findViewById(R.id.fromdate1);
+        todate1 = (TextInputEditText) findViewById(R.id.todate1);
+        fromdate2 = (TextInputEditText) findViewById(R.id.fromdate2);
+        todate2 = (TextInputEditText) findViewById(R.id.todate2);
+        fromdate3 = (TextInputEditText) findViewById(R.id.fromdate3);
+        todate3 = (TextInputEditText) findViewById(R.id.todate3);
+        fromdate4 = (TextInputEditText) findViewById(R.id.fromdate4);
+        todate4 = (TextInputEditText) findViewById(R.id.todate4);
+        fromdate5 = (TextInputEditText) findViewById(R.id.fromdate5);
+        todate5 = (TextInputEditText) findViewById(R.id.todate5);
+        fromdate6 = (TextInputEditText) findViewById(R.id.fromdate6);
+        todate6 = (TextInputEditText) findViewById(R.id.todate6);
+        fromdate7 = (TextInputEditText) findViewById(R.id.fromdate7);
+        todate7 = (TextInputEditText) findViewById(R.id.todate7);
+        fromdate8 = (TextInputEditText) findViewById(R.id.fromdate8);
+        todate8 = (TextInputEditText) findViewById(R.id.todate8);
+        fromdate9 = (TextInputEditText) findViewById(R.id.fromdate9);
+        todate9 = (TextInputEditText) findViewById(R.id.todate9);
+        fromdate10 = (TextInputEditText) findViewById(R.id.fromdate10);
+        todate10 = (TextInputEditText) findViewById(R.id.todate10);
 
         TextView exptxt = (TextView) findViewById(R.id.exptxt);
         Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/arba.ttf");
@@ -2159,7 +2159,7 @@ public class HR_Experiences extends AppCompatActivity {
 
     }
 
-    void showDateDialog(final EditText id, boolean isFromDateSelected, final int fromYear, final String fromMonth, final String todate) {
+    void showDateDialog(final TextInputEditText id, boolean isFromDateSelected, final int fromYear, final String fromMonth, final String todate) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(HR_Experiences.this);
         LayoutInflater inflater = HR_Experiences.this.getLayoutInflater();
@@ -2346,7 +2346,7 @@ public class HR_Experiences extends AppCompatActivity {
 
     }
 
-    void setMonthYear(EditText id, String selectedMonth, String selectedYear, boolean isValid) {
+    void setMonthYear(TextInputEditText id, String selectedMonth, String selectedYear, boolean isValid) {
         id.setError(null);
         if (isValid == true) {
             id.setText(selectedMonth + ", " + selectedYear);

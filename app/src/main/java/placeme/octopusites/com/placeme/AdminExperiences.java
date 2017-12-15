@@ -25,7 +25,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -71,8 +71,8 @@ public class AdminExperiences extends AppCompatActivity {
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-    EditText post1,inst1,post2,inst2,post3,inst3,post4,inst4,post5,inst5,post6,inst6,post7,inst7,post8,inst8,post9,inst9,post10,inst10;
-    EditText fromdate1,todate1,fromdate2,todate2,fromdate3,todate3,fromdate4,todate4,fromdate5,todate5,fromdate6,todate6,fromdate7,todate7,fromdate8,todate8,fromdate9,todate9,fromdate10,todate10;
+    TextInputEditText post1,inst1,post2,inst2,post3,inst3,post4,inst4,post5,inst5,post6,inst6,post7,inst7,post8,inst8,post9,inst9,post10,inst10;
+    TextInputEditText fromdate1,todate1,fromdate2,todate2,fromdate3,todate3,fromdate4,todate4,fromdate5,todate5,fromdate6,todate6,fromdate7,todate7,fromdate8,todate8,fromdate9,todate9,fromdate10,todate10;
 
     String  spost1="",sinst1="",spost2="",sinst2="",spost3="",sinst3="",spost4="",sinst4="",spost5="",sinst5="", spost6="",sinst6="",spost7="",sinst7="",spost8="",sinst8="",spost9="",sinst9="",spost10="",sinst10="";
     String  sfromdate1="",stodate1="",sfromdate2="",stodate2="",sfromdate3="",stodate3="",sfromdate4="",stodate4="",sfromdate5="",stodate5="",sfromdate6="",stodate6="",sfromdate7="",stodate7="",sfromdate8="",stodate8="",sfromdate9="",stodate9="",sfromdate10="",stodate10="";
@@ -147,26 +147,26 @@ public class AdminExperiences extends AppCompatActivity {
         instinput9.setTypeface(MyConstants.getLight(this));
         instinput10.setTypeface(MyConstants.getLight(this));
 
-        fromdate1=(EditText)findViewById(R.id.fromdate1);
-        todate1=(EditText)findViewById(R.id.todate1);
-        fromdate2=(EditText)findViewById(R.id.fromdate2);
-        todate2=(EditText)findViewById(R.id.todate2);
-        fromdate3=(EditText)findViewById(R.id.fromdate3);
-        todate3=(EditText)findViewById(R.id.todate3);
-        fromdate4=(EditText)findViewById(R.id.fromdate4);
-        todate4=(EditText)findViewById(R.id.todate4);
-        fromdate5=(EditText)findViewById(R.id.fromdate5);
-        todate5=(EditText)findViewById(R.id.todate5);
-        fromdate6=(EditText)findViewById(R.id.fromdate6);
-        todate6=(EditText)findViewById(R.id.todate6);
-        fromdate7=(EditText)findViewById(R.id.fromdate7);
-        todate7=(EditText)findViewById(R.id.todate7);
-        fromdate8=(EditText)findViewById(R.id.fromdate8);
-        todate8=(EditText)findViewById(R.id.todate8);
-        fromdate9=(EditText)findViewById(R.id.fromdate9);
-        todate9=(EditText)findViewById(R.id.todate9);
-        fromdate10=(EditText)findViewById(R.id.fromdate10);
-        todate10=(EditText)findViewById(R.id.todate10);
+        fromdate1=(TextInputEditText)findViewById(R.id.fromdate1);
+        todate1=(TextInputEditText)findViewById(R.id.todate1);
+        fromdate2=(TextInputEditText)findViewById(R.id.fromdate2);
+        todate2=(TextInputEditText)findViewById(R.id.todate2);
+        fromdate3=(TextInputEditText)findViewById(R.id.fromdate3);
+        todate3=(TextInputEditText)findViewById(R.id.todate3);
+        fromdate4=(TextInputEditText)findViewById(R.id.fromdate4);
+        todate4=(TextInputEditText)findViewById(R.id.todate4);
+        fromdate5=(TextInputEditText)findViewById(R.id.fromdate5);
+        todate5=(TextInputEditText)findViewById(R.id.todate5);
+        fromdate6=(TextInputEditText)findViewById(R.id.fromdate6);
+        todate6=(TextInputEditText)findViewById(R.id.todate6);
+        fromdate7=(TextInputEditText)findViewById(R.id.fromdate7);
+        todate7=(TextInputEditText)findViewById(R.id.todate7);
+        fromdate8=(TextInputEditText)findViewById(R.id.fromdate8);
+        todate8=(TextInputEditText)findViewById(R.id.todate8);
+        fromdate9=(TextInputEditText)findViewById(R.id.fromdate9);
+        todate9=(TextInputEditText)findViewById(R.id.todate9);
+        fromdate10=(TextInputEditText)findViewById(R.id.fromdate10);
+        todate10=(TextInputEditText)findViewById(R.id.todate10);
 
         fromdate1.setTypeface(MyConstants.getBold(this));
         todate1.setTypeface(MyConstants.getBold(this));
@@ -357,27 +357,27 @@ public class AdminExperiences extends AppCompatActivity {
             }
         });
 
-        post1=(EditText)findViewById(R.id.post1);
+        post1=(TextInputEditText)findViewById(R.id.post1);
 
-        inst1 = (EditText)findViewById(R.id.inst1);
-        post2=(EditText)findViewById(R.id.post2);
-        inst2 = (EditText)findViewById(R.id.inst2);
-        post3=(EditText)findViewById(R.id.post3);
-        inst3 = (EditText)findViewById(R.id.inst3);
-        post4=(EditText)findViewById(R.id.post4);
-        inst4 = (EditText)findViewById(R.id.inst4);
-        post5=(EditText)findViewById(R.id.post5);
-        inst5 = (EditText)findViewById(R.id.inst5);
-        post6=(EditText)findViewById(R.id.post6);
-        inst6 = (EditText)findViewById(R.id.inst6);
-        post7=(EditText)findViewById(R.id.post7);
-        inst7 = (EditText)findViewById(R.id.inst7);
-        post8=(EditText)findViewById(R.id.post8);
-        inst8 = (EditText)findViewById(R.id.inst8);
-        post9=(EditText)findViewById(R.id.post9);
-        inst9 = (EditText)findViewById(R.id.inst9);
-        post10=(EditText)findViewById(R.id.post10);
-        inst10 = (EditText)findViewById(R.id.inst10);
+        inst1 = (TextInputEditText)findViewById(R.id.inst1);
+        post2=(TextInputEditText)findViewById(R.id.post2);
+        inst2 = (TextInputEditText)findViewById(R.id.inst2);
+        post3=(TextInputEditText)findViewById(R.id.post3);
+        inst3 = (TextInputEditText)findViewById(R.id.inst3);
+        post4=(TextInputEditText)findViewById(R.id.post4);
+        inst4 = (TextInputEditText)findViewById(R.id.inst4);
+        post5=(TextInputEditText)findViewById(R.id.post5);
+        inst5 = (TextInputEditText)findViewById(R.id.inst5);
+        post6=(TextInputEditText)findViewById(R.id.post6);
+        inst6 = (TextInputEditText)findViewById(R.id.inst6);
+        post7=(TextInputEditText)findViewById(R.id.post7);
+        inst7 = (TextInputEditText)findViewById(R.id.inst7);
+        post8=(TextInputEditText)findViewById(R.id.post8);
+        inst8 = (TextInputEditText)findViewById(R.id.inst8);
+        post9=(TextInputEditText)findViewById(R.id.post9);
+        inst9 = (TextInputEditText)findViewById(R.id.inst9);
+        post10=(TextInputEditText)findViewById(R.id.post10);
+        inst10 = (TextInputEditText)findViewById(R.id.inst10);
 
         expsw1=(SwitchCompat)findViewById(R.id.switch1);
         expsw2=(SwitchCompat)findViewById(R.id.switch2);
@@ -4994,1895 +4994,1895 @@ public class AdminExperiences extends AppCompatActivity {
         }
 
         else {
-        if (expcount == 0) {
-            if (spost1.length() < 2) {
-                errorflag = 1;
-                postinput1.setError("Kindly enter valid post");
-            } else {
-                errorflag = 0;
-                if (sinst1.length() < 2) {
+            if (expcount == 0) {
+                if (spost1.length() < 2) {
                     errorflag = 1;
-                    instinput1.setError("Kindly enter valid institute");
+                    postinput1.setError("Kindly enter valid post");
                 } else {
                     errorflag = 0;
-                    if (sfromdate1.length() < 2) {
+                    if (sinst1.length() < 2) {
                         errorflag = 1;
-                        fromdateinput1.setError("Kindly enter valid date ");
+                        instinput1.setError("Kindly enter valid institute");
                     } else {
                         errorflag = 0;
-                        if (workinghereflag1 == 0 && stodate1.length() < 2) {
+                        if (sfromdate1.length() < 2) {
                             errorflag = 1;
-                            todateinput1.setError("Kindly enter valid date");
+                            fromdateinput1.setError("Kindly enter valid date ");
                         } else {
                             errorflag = 0;
-                            if (todateflag1 == 1) {
-                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                            if (workinghereflag1 == 0 && stodate1.length() < 2) {
                                 errorflag = 1;
-
+                                todateinput1.setError("Kindly enter valid date");
                             } else {
                                 errorflag = 0;
+                                if (todateflag1 == 1) {
+                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                    errorflag = 1;
+
+                                } else {
+                                    errorflag = 0;
 
 //                                Toast.makeText(AdminExperiences.this, "success1", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
+
                     }
 
                 }
-
             }
-        }
-        else if (expcount == 1) {
-            if (spost1.length() < 2) {
-                errorflag = 1;
-                postinput1.setError("Kindly enter valid post");
-            } else {
-                errorflag = 0;
-                if (sinst1.length() < 2) {
+            else if (expcount == 1) {
+                if (spost1.length() < 2) {
                     errorflag = 1;
-                    instinput1.setError("Kindly enter valid institute");
+                    postinput1.setError("Kindly enter valid post");
                 } else {
                     errorflag = 0;
-                    if (sfromdate1.length() < 2) {
+                    if (sinst1.length() < 2) {
                         errorflag = 1;
-                        fromdateinput1.setError("Kindly enter valid date ");
+                        instinput1.setError("Kindly enter valid institute");
                     } else {
                         errorflag = 0;
-                        if (workinghereflag1 == 0 && stodate1.length() < 2) {
+                        if (sfromdate1.length() < 2) {
                             errorflag = 1;
-                            todateinput1.setError("Kindly enter valid date");
+                            fromdateinput1.setError("Kindly enter valid date ");
                         } else {
                             errorflag = 0;
-                            if (todateflag1 == 1) {
+                            if (workinghereflag1 == 0 && stodate1.length() < 2) {
                                 errorflag = 1;
-
-//                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                todateinput1.setError("Kindly enter valid date");
                             } else {
                                 errorflag = 0;
-
-                                //2
-                                if (spost2.length() < 2) {
+                                if (todateflag1 == 1) {
                                     errorflag = 1;
-                                    postinput2.setError("Kindly enter valid post");
+
+//                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                 } else {
                                     errorflag = 0;
-                                    if (sinst2.length() < 2) {
+
+                                    //2
+                                    if (spost2.length() < 2) {
                                         errorflag = 1;
-                                        instinput2.setError("Kindly enter valid institute");
+                                        postinput2.setError("Kindly enter valid post");
                                     } else {
                                         errorflag = 0;
-                                        if (sfromdate2.length() < 2) {
+                                        if (sinst2.length() < 2) {
                                             errorflag = 1;
-                                            fromdateinput2.setError("Kindly enter valid date ");
+                                            instinput2.setError("Kindly enter valid institute");
                                         } else {
                                             errorflag = 0;
-                                            if (workinghereflag2 == 0 && stodate2.length() < 2) {
+                                            if (sfromdate2.length() < 2) {
                                                 errorflag = 1;
-                                                todateinput2.setError("Kindly enter valid date");
+                                                fromdateinput2.setError("Kindly enter valid date ");
                                             } else {
                                                 errorflag = 0;
-                                                if (todateflag1 == 1) {
+                                                if (workinghereflag2 == 0 && stodate2.length() < 2) {
                                                     errorflag = 1;
-
-                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                    todateinput2.setError("Kindly enter valid date");
                                                 } else {
                                                     errorflag = 0;
+                                                    if (todateflag1 == 1) {
+                                                        errorflag = 1;
 
-                                                    //3
+                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                    } else {
+                                                        errorflag = 0;
+
+                                                        //3
 
 //                                                    Toast.makeText(AdminExperiences.this, "success2", Toast.LENGTH_SHORT).show();
+                                                    }
                                                 }
                                             }
+
                                         }
 
                                     }
-
                                 }
                             }
                         }
+
                     }
 
                 }
-
-            }
-        } else if (expcount == 2) {
-            if (spost1.length() < 2) {
-                errorflag = 1;
-                postinput1.setError("Kindly enter valid post");
-            } else {
-                errorflag = 0;
-                if (sinst1.length() < 2) {
+            } else if (expcount == 2) {
+                if (spost1.length() < 2) {
                     errorflag = 1;
-                    instinput1.setError("Kindly enter valid institute");
+                    postinput1.setError("Kindly enter valid post");
                 } else {
                     errorflag = 0;
-                    if (sfromdate1.length() < 2) {
+                    if (sinst1.length() < 2) {
                         errorflag = 1;
-                        fromdateinput1.setError("Kindly enter valid date ");
+                        instinput1.setError("Kindly enter valid institute");
                     } else {
                         errorflag = 0;
-                        if (workinghereflag1 == 0 && stodate1.length() < 2) {
+                        if (sfromdate1.length() < 2) {
                             errorflag = 1;
-                            todateinput1.setError("Kindly enter valid date");
+                            fromdateinput1.setError("Kindly enter valid date ");
                         } else {
                             errorflag = 0;
-                            if (todateflag1 == 1) {
+                            if (workinghereflag1 == 0 && stodate1.length() < 2) {
                                 errorflag = 1;
-
+                                todateinput1.setError("Kindly enter valid date");
                             } else {
                                 errorflag = 0;
-
-                                //2
-                                if (spost2.length() < 2) {
+                                if (todateflag1 == 1) {
                                     errorflag = 1;
-                                    postinput2.setError("Kindly enter valid post");
+
                                 } else {
                                     errorflag = 0;
-                                    if (sinst2.length() < 2) {
+
+                                    //2
+                                    if (spost2.length() < 2) {
                                         errorflag = 1;
-                                        instinput2.setError("Kindly enter valid institute");
+                                        postinput2.setError("Kindly enter valid post");
                                     } else {
                                         errorflag = 0;
-                                        if (sfromdate2.length() < 2) {
+                                        if (sinst2.length() < 2) {
                                             errorflag = 1;
-                                            fromdateinput2.setError("Kindly enter valid date ");
+                                            instinput2.setError("Kindly enter valid institute");
                                         } else {
                                             errorflag = 0;
-                                            if (workinghereflag2 == 0 && stodate2.length() < 2) {
+                                            if (sfromdate2.length() < 2) {
                                                 errorflag = 1;
-                                                todateinput2.setError("Kindly enter valid date");
+                                                fromdateinput2.setError("Kindly enter valid date ");
                                             } else {
                                                 errorflag = 0;
-                                                if (todateflag1 == 1) {
+                                                if (workinghereflag2 == 0 && stodate2.length() < 2) {
                                                     errorflag = 1;
+                                                    todateinput2.setError("Kindly enter valid date");
                                                 } else {
                                                     errorflag = 0;
-
-                                                    //3
-                                                    if (spost3.length() < 2) {
+                                                    if (todateflag1 == 1) {
                                                         errorflag = 1;
-                                                        postinput3.setError("Kindly enter valid post");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (sinst3.length() < 2) {
+
+                                                        //3
+                                                        if (spost3.length() < 2) {
                                                             errorflag = 1;
-                                                            instinput3.setError("Kindly enter valid institute");
+                                                            postinput3.setError("Kindly enter valid post");
                                                         } else {
                                                             errorflag = 0;
-                                                            if (sfromdate3.length() < 2) {
+                                                            if (sinst3.length() < 2) {
                                                                 errorflag = 1;
-                                                                fromdateinput3.setError("Kindly enter valid date ");
+                                                                instinput3.setError("Kindly enter valid institute");
                                                             } else {
                                                                 errorflag = 0;
-                                                                if (workinghereflag3 == 0 && stodate3.length() < 2) {
+                                                                if (sfromdate3.length() < 2) {
                                                                     errorflag = 1;
-                                                                    todateinput3.setError("Kindly enter valid date");
+                                                                    fromdateinput3.setError("Kindly enter valid date ");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (todateflag1 == 1) {
-                                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                    if (workinghereflag3 == 0 && stodate3.length() < 2) {
                                                                         errorflag = 1;
-
+                                                                        todateinput3.setError("Kindly enter valid date");
                                                                     } else {
                                                                         errorflag = 0;
+                                                                        if (todateflag1 == 1) {
+                                                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                            errorflag = 1;
+
+                                                                        } else {
+                                                                            errorflag = 0;
 
 //                                                                        Toast.makeText(AdminExperiences.this, "success3", Toast.LENGTH_SHORT).show();
+                                                                        }
                                                                     }
                                                                 }
+
                                                             }
 
                                                         }
-
                                                     }
                                                 }
                                             }
+
                                         }
 
                                     }
-
                                 }
                             }
                         }
+
                     }
 
                 }
-
             }
-        }
-        else if (expcount == 3) {
-            if (spost1.length() < 2) {
-                errorflag = 1;
-                postinput1.setError("Kindly enter valid post");
-            } else {
-                errorflag = 0;
-                if (sinst1.length() < 2) {
+            else if (expcount == 3) {
+                if (spost1.length() < 2) {
                     errorflag = 1;
-                    instinput1.setError("Kindly enter valid institute");
+                    postinput1.setError("Kindly enter valid post");
                 } else {
                     errorflag = 0;
-                    if (sfromdate1.length() < 2) {
+                    if (sinst1.length() < 2) {
                         errorflag = 1;
-                        fromdateinput1.setError("Kindly enter valid date ");
+                        instinput1.setError("Kindly enter valid institute");
                     } else {
                         errorflag = 0;
-                        if (workinghereflag1 == 0 && stodate1.length() < 2) {
+                        if (sfromdate1.length() < 2) {
                             errorflag = 1;
-                            todateinput1.setError("Kindly enter valid date");
+                            fromdateinput1.setError("Kindly enter valid date ");
                         } else {
                             errorflag = 0;
-                            if (todateflag1 == 1) {
+                            if (workinghereflag1 == 0 && stodate1.length() < 2) {
                                 errorflag = 1;
-
-//                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                todateinput1.setError("Kindly enter valid date");
                             } else {
                                 errorflag = 0;
-
-                                //2
-                                if (spost2.length() < 2) {
+                                if (todateflag1 == 1) {
                                     errorflag = 1;
-                                    postinput2.setError("Kindly enter valid post");
+
+//                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                 } else {
                                     errorflag = 0;
-                                    if (sinst2.length() < 2) {
+
+                                    //2
+                                    if (spost2.length() < 2) {
                                         errorflag = 1;
-                                        instinput2.setError("Kindly enter valid institute");
+                                        postinput2.setError("Kindly enter valid post");
                                     } else {
                                         errorflag = 0;
-                                        if (sfromdate2.length() < 2) {
+                                        if (sinst2.length() < 2) {
                                             errorflag = 1;
-                                            fromdateinput2.setError("Kindly enter valid date ");
+                                            instinput2.setError("Kindly enter valid institute");
                                         } else {
                                             errorflag = 0;
-                                            if (workinghereflag2 == 0 && stodate2.length() < 2) {
+                                            if (sfromdate2.length() < 2) {
                                                 errorflag = 1;
-                                                todateinput2.setError("Kindly enter valid date");
+                                                fromdateinput2.setError("Kindly enter valid date ");
                                             } else {
                                                 errorflag = 0;
-                                                if (todateflag1 == 1) {
+                                                if (workinghereflag2 == 0 && stodate2.length() < 2) {
                                                     errorflag = 1;
-
-//                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                    todateinput2.setError("Kindly enter valid date");
                                                 } else {
                                                     errorflag = 0;
-
-                                                    //3
-                                                    if (spost3.length() < 2) {
+                                                    if (todateflag1 == 1) {
                                                         errorflag = 1;
-                                                        postinput3.setError("Kindly enter valid post");
+
+//                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                                     } else {
                                                         errorflag = 0;
-                                                        if (sinst3.length() < 2) {
+
+                                                        //3
+                                                        if (spost3.length() < 2) {
                                                             errorflag = 1;
-                                                            instinput3.setError("Kindly enter valid institute");
+                                                            postinput3.setError("Kindly enter valid post");
                                                         } else {
                                                             errorflag = 0;
-                                                            if (sfromdate3.length() < 2) {
+                                                            if (sinst3.length() < 2) {
                                                                 errorflag = 1;
-                                                                fromdateinput3.setError("Kindly enter valid date ");
+                                                                instinput3.setError("Kindly enter valid institute");
                                                             } else {
                                                                 errorflag = 0;
-                                                                if (workinghereflag3 == 0 && stodate3.length() < 2) {
+                                                                if (sfromdate3.length() < 2) {
                                                                     errorflag = 1;
-                                                                    todateinput3.setError("Kindly enter valid date");
+                                                                    fromdateinput3.setError("Kindly enter valid date ");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (todateflag1 == 1) {
-//                                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                    if (workinghereflag3 == 0 && stodate3.length() < 2) {
                                                                         errorflag = 1;
-
+                                                                        todateinput3.setError("Kindly enter valid date");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        //4
-                                                                        if (spost4.length() < 2) {
+                                                                        if (todateflag1 == 1) {
+//                                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                                                             errorflag = 1;
-                                                                            postinput4.setError("Kindly enter valid post");
+
                                                                         } else {
                                                                             errorflag = 0;
-                                                                            if (sinst4.length() < 2) {
+                                                                            //4
+                                                                            if (spost4.length() < 2) {
                                                                                 errorflag = 1;
-                                                                                instinput4.setError("Kindly enter valid institute");
+                                                                                postinput4.setError("Kindly enter valid post");
                                                                             } else {
                                                                                 errorflag = 0;
-                                                                                if (sfromdate4.length() < 2) {
+                                                                                if (sinst4.length() < 2) {
                                                                                     errorflag = 1;
-                                                                                    fromdateinput4.setError("Kindly enter valid date ");
+                                                                                    instinput4.setError("Kindly enter valid institute");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (workinghereflag4 == 0 && stodate4.length() < 2) {
+                                                                                    if (sfromdate4.length() < 2) {
                                                                                         errorflag = 1;
-                                                                                        todateinput4.setError("Kindly enter valid date");
+                                                                                        fromdateinput4.setError("Kindly enter valid date ");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (todateflag1 == 1) {
-                                                                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                        if (workinghereflag4 == 0 && stodate4.length() < 2) {
                                                                                             errorflag = 1;
-
+                                                                                            todateinput4.setError("Kindly enter valid date");
                                                                                         } else {
                                                                                             errorflag = 0;
+                                                                                            if (todateflag1 == 1) {
+                                                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                errorflag = 1;
+
+                                                                                            } else {
+                                                                                                errorflag = 0;
 
 //                                                                                            Toast.makeText(AdminExperiences.this, "success4", Toast.LENGTH_SHORT).show();
+                                                                                            }
                                                                                         }
                                                                                     }
+
                                                                                 }
 
                                                                             }
-
                                                                         }
                                                                     }
                                                                 }
+
                                                             }
 
                                                         }
-
                                                     }
                                                 }
                                             }
+
                                         }
 
                                     }
-
                                 }
                             }
                         }
+
                     }
 
                 }
 
             }
-
-        }
-        else if (expcount == 4) {
-            if (spost1.length() < 2) {
-                errorflag = 1;
-                postinput1.setError("Kindly enter valid post");
-            } else {
-                errorflag = 0;
-                if (sinst1.length() < 2) {
+            else if (expcount == 4) {
+                if (spost1.length() < 2) {
                     errorflag = 1;
-                    instinput1.setError("Kindly enter valid institute");
+                    postinput1.setError("Kindly enter valid post");
                 } else {
                     errorflag = 0;
-                    if (sfromdate1.length() < 2) {
+                    if (sinst1.length() < 2) {
                         errorflag = 1;
-                        fromdateinput1.setError("Kindly enter valid date ");
+                        instinput1.setError("Kindly enter valid institute");
                     } else {
                         errorflag = 0;
-                        if (workinghereflag1 == 0 && stodate1.length() < 2) {
+                        if (sfromdate1.length() < 2) {
                             errorflag = 1;
-                            todateinput1.setError("Kindly enter valid date");
+                            fromdateinput1.setError("Kindly enter valid date ");
                         } else {
                             errorflag = 0;
-                            if (todateflag1 == 1) {
+                            if (workinghereflag1 == 0 && stodate1.length() < 2) {
                                 errorflag = 1;
+                                todateinput1.setError("Kindly enter valid date");
+                            } else {
+                                errorflag = 0;
+                                if (todateflag1 == 1) {
+                                    errorflag = 1;
 
 //                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                            } else {
-                                errorflag = 0;
-
-                                //2
-                                if (spost2.length() < 2) {
-                                    errorflag = 1;
-                                    postinput2.setError("Kindly enter valid post");
                                 } else {
                                     errorflag = 0;
-                                    if (sinst2.length() < 2) {
+
+                                    //2
+                                    if (spost2.length() < 2) {
                                         errorflag = 1;
-                                        instinput2.setError("Kindly enter valid institute");
+                                        postinput2.setError("Kindly enter valid post");
                                     } else {
                                         errorflag = 0;
-                                        if (sfromdate2.length() < 2) {
+                                        if (sinst2.length() < 2) {
                                             errorflag = 1;
-                                            fromdateinput2.setError("Kindly enter valid date ");
+                                            instinput2.setError("Kindly enter valid institute");
                                         } else {
                                             errorflag = 0;
-                                            if (workinghereflag2 == 0 && stodate2.length() < 2) {
+                                            if (sfromdate2.length() < 2) {
                                                 errorflag = 1;
-                                                todateinput2.setError("Kindly enter valid date");
+                                                fromdateinput2.setError("Kindly enter valid date ");
                                             } else {
                                                 errorflag = 0;
-                                                if (todateflag1 == 1) {
+                                                if (workinghereflag2 == 0 && stodate2.length() < 2) {
                                                     errorflag = 1;
+                                                    todateinput2.setError("Kindly enter valid date");
+                                                } else {
+                                                    errorflag = 0;
+                                                    if (todateflag1 == 1) {
+                                                        errorflag = 1;
 
 //                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                                                } else {
-                                                    errorflag = 0;
-
-                                                    //3
-                                                    if (spost3.length() < 2) {
-                                                        errorflag = 1;
-                                                        postinput3.setError("Kindly enter valid post");
                                                     } else {
                                                         errorflag = 0;
-                                                        if (sinst3.length() < 2) {
+
+                                                        //3
+                                                        if (spost3.length() < 2) {
                                                             errorflag = 1;
-                                                            instinput3.setError("Kindly enter valid institute");
+                                                            postinput3.setError("Kindly enter valid post");
                                                         } else {
                                                             errorflag = 0;
-                                                            if (sfromdate3.length() < 2) {
+                                                            if (sinst3.length() < 2) {
                                                                 errorflag = 1;
-                                                                fromdateinput3.setError("Kindly enter valid date ");
+                                                                instinput3.setError("Kindly enter valid institute");
                                                             } else {
                                                                 errorflag = 0;
-                                                                if (workinghereflag3 == 0 && stodate3.length() < 2) {
+                                                                if (sfromdate3.length() < 2) {
                                                                     errorflag = 1;
-                                                                    todateinput3.setError("Kindly enter valid date");
+                                                                    fromdateinput3.setError("Kindly enter valid date ");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (todateflag1 == 1) {
-//                                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                    if (workinghereflag3 == 0 && stodate3.length() < 2) {
                                                                         errorflag = 1;
-
+                                                                        todateinput3.setError("Kindly enter valid date");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        //4
-                                                                        if (spost4.length() < 2) {
+                                                                        if (todateflag1 == 1) {
+//                                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                                                             errorflag = 1;
-                                                                            postinput4.setError("Kindly enter valid post");
+
                                                                         } else {
                                                                             errorflag = 0;
-                                                                            if (sinst4.length() < 2) {
+                                                                            //4
+                                                                            if (spost4.length() < 2) {
                                                                                 errorflag = 1;
-                                                                                instinput4.setError("Kindly enter valid institute");
+                                                                                postinput4.setError("Kindly enter valid post");
                                                                             } else {
                                                                                 errorflag = 0;
-                                                                                if (sfromdate4.length() < 2) {
+                                                                                if (sinst4.length() < 2) {
                                                                                     errorflag = 1;
-                                                                                    fromdateinput4.setError("Kindly enter valid date ");
+                                                                                    instinput4.setError("Kindly enter valid institute");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (workinghereflag4 == 0 && stodate4.length() < 2) {
+                                                                                    if (sfromdate4.length() < 2) {
                                                                                         errorflag = 1;
-                                                                                        todateinput4.setError("Kindly enter valid date");
+                                                                                        fromdateinput4.setError("Kindly enter valid date ");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (todateflag1 == 1) {
-//                                                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                        if (workinghereflag4 == 0 && stodate4.length() < 2) {
                                                                                             errorflag = 1;
-
+                                                                                            todateinput4.setError("Kindly enter valid date");
                                                                                         } else {
-                                                                                            //5
                                                                                             errorflag = 0;
-                                                                                            if (spost5.length() < 2) {
+                                                                                            if (todateflag1 == 1) {
+//                                                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                                                                                 errorflag = 1;
-                                                                                                postinput5.setError("Kindly enter valid post");
+
                                                                                             } else {
+                                                                                                //5
                                                                                                 errorflag = 0;
-                                                                                                if (sinst5.length() < 2) {
+                                                                                                if (spost5.length() < 2) {
                                                                                                     errorflag = 1;
-                                                                                                    instinput5.setError("Kindly enter valid institute");
+                                                                                                    postinput5.setError("Kindly enter valid post");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sfromdate5.length() < 2) {
+                                                                                                    if (sinst5.length() < 2) {
                                                                                                         errorflag = 1;
-                                                                                                        fromdateinput5.setError("Kindly enter valid date ");
+                                                                                                        instinput5.setError("Kindly enter valid institute");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (workinghereflag5 == 0 && stodate5.length() < 2) {
+                                                                                                        if (sfromdate5.length() < 2) {
                                                                                                             errorflag = 1;
-                                                                                                            todateinput5.setError("Kindly enter valid date");
+                                                                                                            fromdateinput5.setError("Kindly enter valid date ");
                                                                                                         } else {
                                                                                                             errorflag = 0;
-                                                                                                            if (todateflag1 == 1) {
-                                                                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                            if (workinghereflag5 == 0 && stodate5.length() < 2) {
                                                                                                                 errorflag = 1;
-                                                                                                            }
-                                                                                                            else {
-
+                                                                                                                todateinput5.setError("Kindly enter valid date");
+                                                                                                            } else {
                                                                                                                 errorflag = 0;
+                                                                                                                if (todateflag1 == 1) {
+                                                                                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                    errorflag = 1;
+                                                                                                                }
+                                                                                                                else {
+
+                                                                                                                    errorflag = 0;
 
 //                                                                                                            Toast.makeText(AdminExperiences.this, "success5", Toast.LENGTH_SHORT).show();
+                                                                                                                }
                                                                                                             }
                                                                                                         }
+
                                                                                                     }
 
                                                                                                 }
-
                                                                                             }
                                                                                         }
                                                                                     }
+
                                                                                 }
 
                                                                             }
-
                                                                         }
                                                                     }
                                                                 }
+
                                                             }
 
                                                         }
-
                                                     }
                                                 }
                                             }
+
                                         }
 
                                     }
-
                                 }
                             }
                         }
+
                     }
 
                 }
-
             }
-        }
-        else if (expcount == 5) {
-            if (spost1.length() < 2) {
-                errorflag = 1;
-                postinput1.setError("Kindly enter valid post");
-            } else {
-                errorflag = 0;
-                if (sinst1.length() < 2) {
+            else if (expcount == 5) {
+                if (spost1.length() < 2) {
                     errorflag = 1;
-                    instinput1.setError("Kindly enter valid institute");
+                    postinput1.setError("Kindly enter valid post");
                 } else {
                     errorflag = 0;
-                    if (sfromdate1.length() < 2) {
+                    if (sinst1.length() < 2) {
                         errorflag = 1;
-                        fromdateinput1.setError("Kindly enter valid date ");
+                        instinput1.setError("Kindly enter valid institute");
                     } else {
                         errorflag = 0;
-                        if (workinghereflag1 == 0 && stodate1.length() < 2) {
+                        if (sfromdate1.length() < 2) {
                             errorflag = 1;
-                            todateinput1.setError("Kindly enter valid date");
+                            fromdateinput1.setError("Kindly enter valid date ");
                         } else {
                             errorflag = 0;
-                            if (todateflag1 == 1) {
+                            if (workinghereflag1 == 0 && stodate1.length() < 2) {
                                 errorflag = 1;
-
-//                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                todateinput1.setError("Kindly enter valid date");
                             } else {
                                 errorflag = 0;
-
-                                //2
-                                if (spost2.length() < 2) {
+                                if (todateflag1 == 1) {
                                     errorflag = 1;
-                                    postinput2.setError("Kindly enter valid post");
+
+//                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                 } else {
                                     errorflag = 0;
-                                    if (sinst2.length() < 2) {
+
+                                    //2
+                                    if (spost2.length() < 2) {
                                         errorflag = 1;
-                                        instinput2.setError("Kindly enter valid institute");
+                                        postinput2.setError("Kindly enter valid post");
                                     } else {
                                         errorflag = 0;
-                                        if (sfromdate2.length() < 2) {
+                                        if (sinst2.length() < 2) {
                                             errorflag = 1;
-                                            fromdateinput2.setError("Kindly enter valid date ");
+                                            instinput2.setError("Kindly enter valid institute");
                                         } else {
                                             errorflag = 0;
-                                            if (workinghereflag2 == 0 && stodate2.length() < 2) {
+                                            if (sfromdate2.length() < 2) {
                                                 errorflag = 1;
-                                                todateinput2.setError("Kindly enter valid date");
+                                                fromdateinput2.setError("Kindly enter valid date ");
                                             } else {
                                                 errorflag = 0;
-                                                if (todateflag1 == 1) {
+                                                if (workinghereflag2 == 0 && stodate2.length() < 2) {
                                                     errorflag = 1;
-
-//                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                    todateinput2.setError("Kindly enter valid date");
                                                 } else {
                                                     errorflag = 0;
-
-                                                    //3
-                                                    if (spost3.length() < 2) {
+                                                    if (todateflag1 == 1) {
                                                         errorflag = 1;
-                                                        postinput3.setError("Kindly enter valid post");
+
+//                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                                     } else {
                                                         errorflag = 0;
-                                                        if (sinst3.length() < 2) {
+
+                                                        //3
+                                                        if (spost3.length() < 2) {
                                                             errorflag = 1;
-                                                            instinput3.setError("Kindly enter valid institute");
+                                                            postinput3.setError("Kindly enter valid post");
                                                         } else {
                                                             errorflag = 0;
-                                                            if (sfromdate3.length() < 2) {
+                                                            if (sinst3.length() < 2) {
                                                                 errorflag = 1;
-                                                                fromdateinput3.setError("Kindly enter valid date ");
+                                                                instinput3.setError("Kindly enter valid institute");
                                                             } else {
                                                                 errorflag = 0;
-                                                                if (workinghereflag3 == 0 && stodate3.length() < 2) {
+                                                                if (sfromdate3.length() < 2) {
                                                                     errorflag = 1;
-                                                                    todateinput3.setError("Kindly enter valid date");
+                                                                    fromdateinput3.setError("Kindly enter valid date ");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (todateflag1 == 1) {
-//                                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                    if (workinghereflag3 == 0 && stodate3.length() < 2) {
                                                                         errorflag = 1;
-
+                                                                        todateinput3.setError("Kindly enter valid date");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        //4
-                                                                        if (spost4.length() < 2) {
+                                                                        if (todateflag1 == 1) {
+//                                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                                                             errorflag = 1;
-                                                                            postinput4.setError("Kindly enter valid post");
+
                                                                         } else {
                                                                             errorflag = 0;
-                                                                            if (sinst4.length() < 2) {
+                                                                            //4
+                                                                            if (spost4.length() < 2) {
                                                                                 errorflag = 1;
-                                                                                instinput4.setError("Kindly enter valid institute");
+                                                                                postinput4.setError("Kindly enter valid post");
                                                                             } else {
                                                                                 errorflag = 0;
-                                                                                if (sfromdate4.length() < 2) {
+                                                                                if (sinst4.length() < 2) {
                                                                                     errorflag = 1;
-                                                                                    fromdateinput4.setError("Kindly enter valid date ");
+                                                                                    instinput4.setError("Kindly enter valid institute");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (workinghereflag4 == 0 && stodate4.length() < 2) {
+                                                                                    if (sfromdate4.length() < 2) {
                                                                                         errorflag = 1;
-                                                                                        todateinput4.setError("Kindly enter valid date");
+                                                                                        fromdateinput4.setError("Kindly enter valid date ");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (todateflag1 == 1) {
-//                                                                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                        if (workinghereflag4 == 0 && stodate4.length() < 2) {
                                                                                             errorflag = 1;
-
+                                                                                            todateinput4.setError("Kindly enter valid date");
                                                                                         } else {
-                                                                                            //5
                                                                                             errorflag = 0;
-                                                                                            if (spost5.length() < 2) {
+                                                                                            if (todateflag1 == 1) {
+//                                                                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                                                                                 errorflag = 1;
-                                                                                                postinput5.setError("Kindly enter valid post");
+
                                                                                             } else {
+                                                                                                //5
                                                                                                 errorflag = 0;
-                                                                                                if (sinst5.length() < 2) {
+                                                                                                if (spost5.length() < 2) {
                                                                                                     errorflag = 1;
-                                                                                                    instinput5.setError("Kindly enter valid institute");
+                                                                                                    postinput5.setError("Kindly enter valid post");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sfromdate5.length() < 2) {
+                                                                                                    if (sinst5.length() < 2) {
                                                                                                         errorflag = 1;
-                                                                                                        fromdateinput5.setError("Kindly enter valid date ");
+                                                                                                        instinput5.setError("Kindly enter valid institute");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (workinghereflag5 == 0 && stodate5.length() < 2) {
+                                                                                                        if (sfromdate5.length() < 2) {
                                                                                                             errorflag = 1;
-                                                                                                            todateinput5.setError("Kindly enter valid date");
+                                                                                                            fromdateinput5.setError("Kindly enter valid date ");
                                                                                                         } else {
                                                                                                             errorflag = 0;
-                                                                                                            if (todateflag1 == 1) {
-//                                                                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                            if (workinghereflag5 == 0 && stodate5.length() < 2) {
                                                                                                                 errorflag = 1;
+                                                                                                                todateinput5.setError("Kindly enter valid date");
                                                                                                             } else {
-                                                                                                                //6
                                                                                                                 errorflag = 0;
-                                                                                                                if (spost6.length() < 2) {
+                                                                                                                if (todateflag1 == 1) {
+//                                                                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                                                                                                     errorflag = 1;
-                                                                                                                    postinput6.setError("Kindly enter valid post");
                                                                                                                 } else {
+                                                                                                                    //6
                                                                                                                     errorflag = 0;
-                                                                                                                    if (sinst6.length() < 2) {
+                                                                                                                    if (spost6.length() < 2) {
                                                                                                                         errorflag = 1;
-                                                                                                                        instinput6.setError("Kindly enter valid institute");
+                                                                                                                        postinput6.setError("Kindly enter valid post");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
-                                                                                                                        if (sfromdate6.length() < 2) {
+                                                                                                                        if (sinst6.length() < 2) {
                                                                                                                             errorflag = 1;
-                                                                                                                            fromdateinput6.setError("Kindly enter valid date ");
+                                                                                                                            instinput6.setError("Kindly enter valid institute");
                                                                                                                         } else {
                                                                                                                             errorflag = 0;
-                                                                                                                            if (workinghereflag6 == 0 && stodate6.length() < 2) {
+                                                                                                                            if (sfromdate6.length() < 2) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                todateinput6.setError("Kindly enter valid date");
+                                                                                                                                fromdateinput6.setError("Kindly enter valid date ");
                                                                                                                             } else {
                                                                                                                                 errorflag = 0;
-                                                                                                                                if (todateflag1 == 1) {
-//                                                                                                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                                if (workinghereflag6 == 0 && stodate6.length() < 2) {
                                                                                                                                     errorflag = 1;
+                                                                                                                                    todateinput6.setError("Kindly enter valid date");
                                                                                                                                 } else {
                                                                                                                                     errorflag = 0;
+                                                                                                                                    if (todateflag1 == 1) {
+//                                                                                                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                                        errorflag = 1;
+                                                                                                                                    } else {
+                                                                                                                                        errorflag = 0;
 
 //                                                                                                                                    Toast.makeText(AdminExperiences.this, "success6", Toast.LENGTH_SHORT).show();
+                                                                                                                                    }
                                                                                                                                 }
                                                                                                                             }
-                                                                                                                        }
 
+                                                                                                                        }
                                                                                                                     }
                                                                                                                 }
                                                                                                             }
                                                                                                         }
+
                                                                                                     }
 
                                                                                                 }
-
                                                                                             }
                                                                                         }
                                                                                     }
+
                                                                                 }
 
                                                                             }
-
                                                                         }
                                                                     }
                                                                 }
+
                                                             }
 
                                                         }
-
                                                     }
                                                 }
                                             }
+
                                         }
 
                                     }
-
                                 }
                             }
                         }
+
                     }
 
                 }
-
             }
-        }
-        else if (expcount == 6) {
-            if (spost1.length() < 2) {
-                errorflag = 1;
-                postinput1.setError("Kindly enter valid post");
-            } else {
-                errorflag = 0;
-                if (sinst1.length() < 2) {
+            else if (expcount == 6) {
+                if (spost1.length() < 2) {
                     errorflag = 1;
-                    instinput1.setError("Kindly enter valid institute");
+                    postinput1.setError("Kindly enter valid post");
                 } else {
                     errorflag = 0;
-                    if (sfromdate1.length() < 2) {
+                    if (sinst1.length() < 2) {
                         errorflag = 1;
-                        fromdateinput1.setError("Kindly enter valid date ");
+                        instinput1.setError("Kindly enter valid institute");
                     } else {
                         errorflag = 0;
-                        if (workinghereflag1 == 0 && stodate1.length() < 2) {
+                        if (sfromdate1.length() < 2) {
                             errorflag = 1;
-                            todateinput1.setError("Kindly enter valid date");
+                            fromdateinput1.setError("Kindly enter valid date ");
                         } else {
                             errorflag = 0;
-                            if (todateflag1 == 1) {
+                            if (workinghereflag1 == 0 && stodate1.length() < 2) {
                                 errorflag = 1;
-
-//                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                todateinput1.setError("Kindly enter valid date");
                             } else {
                                 errorflag = 0;
-
-                                //2
-                                if (spost2.length() < 2) {
+                                if (todateflag1 == 1) {
                                     errorflag = 1;
-                                    postinput2.setError("Kindly enter valid post");
+
+//                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                 } else {
                                     errorflag = 0;
-                                    if (sinst2.length() < 2) {
+
+                                    //2
+                                    if (spost2.length() < 2) {
                                         errorflag = 1;
-                                        instinput2.setError("Kindly enter valid institute");
+                                        postinput2.setError("Kindly enter valid post");
                                     } else {
                                         errorflag = 0;
-                                        if (sfromdate2.length() < 2) {
+                                        if (sinst2.length() < 2) {
                                             errorflag = 1;
-                                            fromdateinput2.setError("Kindly enter valid date ");
+                                            instinput2.setError("Kindly enter valid institute");
                                         } else {
                                             errorflag = 0;
-                                            if (workinghereflag2 == 0 && stodate2.length() < 2) {
+                                            if (sfromdate2.length() < 2) {
                                                 errorflag = 1;
-                                                todateinput2.setError("Kindly enter valid date");
+                                                fromdateinput2.setError("Kindly enter valid date ");
                                             } else {
                                                 errorflag = 0;
-                                                if (todateflag1 == 1) {
+                                                if (workinghereflag2 == 0 && stodate2.length() < 2) {
                                                     errorflag = 1;
-
-//                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                    todateinput2.setError("Kindly enter valid date");
                                                 } else {
                                                     errorflag = 0;
-
-                                                    //3
-                                                    if (spost3.length() < 2) {
+                                                    if (todateflag1 == 1) {
                                                         errorflag = 1;
-                                                        postinput3.setError("Kindly enter valid post");
+
+//                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                                     } else {
                                                         errorflag = 0;
-                                                        if (sinst3.length() < 2) {
+
+                                                        //3
+                                                        if (spost3.length() < 2) {
                                                             errorflag = 1;
-                                                            instinput3.setError("Kindly enter valid institute");
+                                                            postinput3.setError("Kindly enter valid post");
                                                         } else {
                                                             errorflag = 0;
-                                                            if (sfromdate3.length() < 2) {
+                                                            if (sinst3.length() < 2) {
                                                                 errorflag = 1;
-                                                                fromdateinput3.setError("Kindly enter valid date ");
+                                                                instinput3.setError("Kindly enter valid institute");
                                                             } else {
                                                                 errorflag = 0;
-                                                                if (workinghereflag3 == 0 && stodate3.length() < 2) {
+                                                                if (sfromdate3.length() < 2) {
                                                                     errorflag = 1;
-                                                                    todateinput3.setError("Kindly enter valid date");
+                                                                    fromdateinput3.setError("Kindly enter valid date ");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (todateflag1 == 1) {
-//                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                    if (workinghereflag3 == 0 && stodate3.length() < 2) {
                                                                         errorflag = 1;
-
+                                                                        todateinput3.setError("Kindly enter valid date");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        //4
-                                                                        if (spost4.length() < 2) {
+                                                                        if (todateflag1 == 1) {
+//                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                                                             errorflag = 1;
-                                                                            postinput4.setError("Kindly enter valid post");
+
                                                                         } else {
                                                                             errorflag = 0;
-                                                                            if (sinst4.length() < 2) {
+                                                                            //4
+                                                                            if (spost4.length() < 2) {
                                                                                 errorflag = 1;
-                                                                                instinput4.setError("Kindly enter valid institute");
+                                                                                postinput4.setError("Kindly enter valid post");
                                                                             } else {
                                                                                 errorflag = 0;
-                                                                                if (sfromdate4.length() < 2) {
+                                                                                if (sinst4.length() < 2) {
                                                                                     errorflag = 1;
-                                                                                    fromdateinput4.setError("Kindly enter valid date ");
+                                                                                    instinput4.setError("Kindly enter valid institute");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (workinghereflag4 == 0 && stodate4.length() < 2) {
+                                                                                    if (sfromdate4.length() < 2) {
                                                                                         errorflag = 1;
-                                                                                        todateinput4.setError("Kindly enter valid date");
+                                                                                        fromdateinput4.setError("Kindly enter valid date ");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (todateflag1 == 1) {
-//                                                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                        if (workinghereflag4 == 0 && stodate4.length() < 2) {
                                                                                             errorflag = 1;
-
+                                                                                            todateinput4.setError("Kindly enter valid date");
                                                                                         } else {
-                                                                                            //5
                                                                                             errorflag = 0;
-                                                                                            if (spost5.length() < 2) {
+                                                                                            if (todateflag1 == 1) {
+//                                                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                                                                                 errorflag = 1;
-                                                                                                postinput5.setError("Kindly enter valid post");
+
                                                                                             } else {
+                                                                                                //5
                                                                                                 errorflag = 0;
-                                                                                                if (sinst5.length() < 2) {
+                                                                                                if (spost5.length() < 2) {
                                                                                                     errorflag = 1;
-                                                                                                    instinput5.setError("Kindly enter valid institute");
+                                                                                                    postinput5.setError("Kindly enter valid post");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sfromdate5.length() < 2) {
+                                                                                                    if (sinst5.length() < 2) {
                                                                                                         errorflag = 1;
-                                                                                                        fromdateinput5.setError("Kindly enter valid date ");
+                                                                                                        instinput5.setError("Kindly enter valid institute");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (workinghereflag5 == 0 && stodate5.length() < 2) {
+                                                                                                        if (sfromdate5.length() < 2) {
                                                                                                             errorflag = 1;
-                                                                                                            todateinput5.setError("Kindly enter valid date");
+                                                                                                            fromdateinput5.setError("Kindly enter valid date ");
                                                                                                         } else {
                                                                                                             errorflag = 0;
-                                                                                                            if (todateflag1 == 1) {
-//                                                                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                            if (workinghereflag5 == 0 && stodate5.length() < 2) {
                                                                                                                 errorflag = 1;
+                                                                                                                todateinput5.setError("Kindly enter valid date");
                                                                                                             } else {
-                                                                                                                //6
                                                                                                                 errorflag = 0;
-                                                                                                                if (spost6.length() < 2) {
+                                                                                                                if (todateflag1 == 1) {
+//                                                                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                                                                                                     errorflag = 1;
-                                                                                                                    postinput6.setError("Kindly enter valid post");
                                                                                                                 } else {
+                                                                                                                    //6
                                                                                                                     errorflag = 0;
-                                                                                                                    if (sinst6.length() < 2) {
+                                                                                                                    if (spost6.length() < 2) {
                                                                                                                         errorflag = 1;
-                                                                                                                        instinput6.setError("Kindly enter valid institute");
+                                                                                                                        postinput6.setError("Kindly enter valid post");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
-                                                                                                                        if (sfromdate6.length() < 2) {
+                                                                                                                        if (sinst6.length() < 2) {
                                                                                                                             errorflag = 1;
-                                                                                                                            fromdateinput6.setError("Kindly enter valid date ");
+                                                                                                                            instinput6.setError("Kindly enter valid institute");
                                                                                                                         } else {
                                                                                                                             errorflag = 0;
-                                                                                                                            if (workinghereflag6 == 0 && stodate6.length() < 2) {
+                                                                                                                            if (sfromdate6.length() < 2) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                todateinput6.setError("Kindly enter valid date");
+                                                                                                                                fromdateinput6.setError("Kindly enter valid date ");
                                                                                                                             } else {
                                                                                                                                 errorflag = 0;
-                                                                                                                                if (todateflag1 == 1) {
-//                                                                                                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                                if (workinghereflag6 == 0 && stodate6.length() < 2) {
                                                                                                                                     errorflag = 1;
+                                                                                                                                    todateinput6.setError("Kindly enter valid date");
                                                                                                                                 } else {
-                                                                                                                                    //7
                                                                                                                                     errorflag = 0;
-                                                                                                                                    if (spost7.length() < 2) {
+                                                                                                                                    if (todateflag1 == 1) {
+//                                                                                                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                                                                                                                         errorflag = 1;
-                                                                                                                                        postinput7.setError("Kindly enter valid post");
                                                                                                                                     } else {
+                                                                                                                                        //7
                                                                                                                                         errorflag = 0;
-                                                                                                                                        if (sinst7.length() < 2) {
+                                                                                                                                        if (spost7.length() < 2) {
                                                                                                                                             errorflag = 1;
-                                                                                                                                            instinput7.setError("Kindly enter valid institute");
+                                                                                                                                            postinput7.setError("Kindly enter valid post");
                                                                                                                                         } else {
                                                                                                                                             errorflag = 0;
-                                                                                                                                            if (sfromdate7.length() < 2) {
+                                                                                                                                            if (sinst7.length() < 2) {
                                                                                                                                                 errorflag = 1;
-                                                                                                                                                fromdateinput7.setError("Kindly enter valid date ");
+                                                                                                                                                instinput7.setError("Kindly enter valid institute");
                                                                                                                                             } else {
                                                                                                                                                 errorflag = 0;
-                                                                                                                                                if (workinghereflag7 == 0 && stodate7.length() < 2) {
+                                                                                                                                                if (sfromdate7.length() < 2) {
                                                                                                                                                     errorflag = 1;
-                                                                                                                                                    todateinput7.setError("Kindly enter valid date");
+                                                                                                                                                    fromdateinput7.setError("Kindly enter valid date ");
                                                                                                                                                 } else {
                                                                                                                                                     errorflag = 0;
-                                                                                                                                                    if (todateflag1 == 1) {
-//                                                                                                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                                                    if (workinghereflag7 == 0 && stodate7.length() < 2) {
                                                                                                                                                         errorflag = 1;
-
+                                                                                                                                                        todateinput7.setError("Kindly enter valid date");
                                                                                                                                                     } else {
-
                                                                                                                                                         errorflag = 0;
+                                                                                                                                                        if (todateflag1 == 1) {
+//                                                                                                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                                                            errorflag = 1;
+
+                                                                                                                                                        } else {
+
+                                                                                                                                                            errorflag = 0;
 
 //                                                                                                                                                Toast.makeText(AdminExperiences.this, "success7", Toast.LENGTH_SHORT).show();
+                                                                                                                                                        }
                                                                                                                                                     }
                                                                                                                                                 }
-                                                                                                                                            }
 
+                                                                                                                                            }
                                                                                                                                         }
                                                                                                                                     }
                                                                                                                                 }
                                                                                                                             }
-                                                                                                                        }
 
+                                                                                                                        }
                                                                                                                     }
                                                                                                                 }
                                                                                                             }
                                                                                                         }
+
                                                                                                     }
 
                                                                                                 }
-
                                                                                             }
                                                                                         }
                                                                                     }
+
                                                                                 }
 
                                                                             }
-
                                                                         }
                                                                     }
                                                                 }
+
                                                             }
 
                                                         }
-
                                                     }
                                                 }
                                             }
+
                                         }
 
                                     }
-
                                 }
                             }
                         }
+
                     }
 
                 }
-
             }
-        }
-        else if (expcount == 7) {
-            if (spost1.length() < 2) {
-                errorflag = 1;
-                postinput1.setError("Kindly enter valid post");
-            } else {
-                errorflag = 0;
-                if (sinst1.length() < 2) {
+            else if (expcount == 7) {
+                if (spost1.length() < 2) {
                     errorflag = 1;
-                    instinput1.setError("Kindly enter valid institute");
+                    postinput1.setError("Kindly enter valid post");
                 } else {
                     errorflag = 0;
-                    if (sfromdate1.length() < 2) {
+                    if (sinst1.length() < 2) {
                         errorflag = 1;
-                        fromdateinput1.setError("Kindly enter valid date ");
+                        instinput1.setError("Kindly enter valid institute");
                     } else {
                         errorflag = 0;
-                        if (workinghereflag1 == 0 && stodate1.length() < 2) {
+                        if (sfromdate1.length() < 2) {
                             errorflag = 1;
-                            todateinput1.setError("Kindly enter valid date");
+                            fromdateinput1.setError("Kindly enter valid date ");
                         } else {
                             errorflag = 0;
-                            if (todateflag1 == 1) {
+                            if (workinghereflag1 == 0 && stodate1.length() < 2) {
                                 errorflag = 1;
-
-//                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                todateinput1.setError("Kindly enter valid date");
                             } else {
                                 errorflag = 0;
-
-                                //2
-                                if (spost2.length() < 2) {
+                                if (todateflag1 == 1) {
                                     errorflag = 1;
-                                    postinput2.setError("Kindly enter valid post");
+
+//                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                 } else {
                                     errorflag = 0;
-                                    if (sinst2.length() < 2) {
+
+                                    //2
+                                    if (spost2.length() < 2) {
                                         errorflag = 1;
-                                        instinput2.setError("Kindly enter valid institute");
+                                        postinput2.setError("Kindly enter valid post");
                                     } else {
                                         errorflag = 0;
-                                        if (sfromdate2.length() < 2) {
+                                        if (sinst2.length() < 2) {
                                             errorflag = 1;
-                                            fromdateinput2.setError("Kindly enter valid date ");
+                                            instinput2.setError("Kindly enter valid institute");
                                         } else {
                                             errorflag = 0;
-                                            if (workinghereflag2 == 0 && stodate2.length() < 2) {
+                                            if (sfromdate2.length() < 2) {
                                                 errorflag = 1;
-                                                todateinput2.setError("Kindly enter valid date");
+                                                fromdateinput2.setError("Kindly enter valid date ");
                                             } else {
                                                 errorflag = 0;
-                                                if (todateflag1 == 1) {
+                                                if (workinghereflag2 == 0 && stodate2.length() < 2) {
                                                     errorflag = 1;
-
-//                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                    todateinput2.setError("Kindly enter valid date");
                                                 } else {
                                                     errorflag = 0;
-
-                                                    //3
-                                                    if (spost3.length() < 2) {
+                                                    if (todateflag1 == 1) {
                                                         errorflag = 1;
-                                                        postinput3.setError("Kindly enter valid post");
+
+//                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                                     } else {
                                                         errorflag = 0;
-                                                        if (sinst3.length() < 2) {
+
+                                                        //3
+                                                        if (spost3.length() < 2) {
                                                             errorflag = 1;
-                                                            instinput3.setError("Kindly enter valid institute");
+                                                            postinput3.setError("Kindly enter valid post");
                                                         } else {
                                                             errorflag = 0;
-                                                            if (sfromdate3.length() < 2) {
+                                                            if (sinst3.length() < 2) {
                                                                 errorflag = 1;
-                                                                fromdateinput3.setError("Kindly enter valid date ");
+                                                                instinput3.setError("Kindly enter valid institute");
                                                             } else {
                                                                 errorflag = 0;
-                                                                if (workinghereflag3 == 0 && stodate3.length() < 2) {
+                                                                if (sfromdate3.length() < 2) {
                                                                     errorflag = 1;
-                                                                    todateinput3.setError("Kindly enter valid date");
+                                                                    fromdateinput3.setError("Kindly enter valid date ");
                                                                 } else {
                                                                     errorflag = 0;
-                                                                    if (todateflag1 == 1) {
-//                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                    if (workinghereflag3 == 0 && stodate3.length() < 2) {
                                                                         errorflag = 1;
-
+                                                                        todateinput3.setError("Kindly enter valid date");
                                                                     } else {
                                                                         errorflag = 0;
-                                                                        //4
-                                                                        if (spost4.length() < 2) {
+                                                                        if (todateflag1 == 1) {
+//                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                                                             errorflag = 1;
-                                                                            postinput4.setError("Kindly enter valid post");
+
                                                                         } else {
                                                                             errorflag = 0;
-                                                                            if (sinst4.length() < 2) {
+                                                                            //4
+                                                                            if (spost4.length() < 2) {
                                                                                 errorflag = 1;
-                                                                                instinput4.setError("Kindly enter valid institute");
+                                                                                postinput4.setError("Kindly enter valid post");
                                                                             } else {
                                                                                 errorflag = 0;
-                                                                                if (sfromdate4.length() < 2) {
+                                                                                if (sinst4.length() < 2) {
                                                                                     errorflag = 1;
-                                                                                    fromdateinput4.setError("Kindly enter valid date ");
+                                                                                    instinput4.setError("Kindly enter valid institute");
                                                                                 } else {
                                                                                     errorflag = 0;
-                                                                                    if (workinghereflag4 == 0 && stodate4.length() < 2) {
+                                                                                    if (sfromdate4.length() < 2) {
                                                                                         errorflag = 1;
-                                                                                        todateinput4.setError("Kindly enter valid date");
+                                                                                        fromdateinput4.setError("Kindly enter valid date ");
                                                                                     } else {
                                                                                         errorflag = 0;
-                                                                                        if (todateflag1 == 1) {
-//                                                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                        if (workinghereflag4 == 0 && stodate4.length() < 2) {
                                                                                             errorflag = 1;
-
+                                                                                            todateinput4.setError("Kindly enter valid date");
                                                                                         } else {
-                                                                                            //5
                                                                                             errorflag = 0;
-                                                                                            if (spost5.length() < 2) {
+                                                                                            if (todateflag1 == 1) {
+//                                                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                                                                                 errorflag = 1;
-                                                                                                postinput5.setError("Kindly enter valid post");
+
                                                                                             } else {
+                                                                                                //5
                                                                                                 errorflag = 0;
-                                                                                                if (sinst5.length() < 2) {
+                                                                                                if (spost5.length() < 2) {
                                                                                                     errorflag = 1;
-                                                                                                    instinput5.setError("Kindly enter valid institute");
+                                                                                                    postinput5.setError("Kindly enter valid post");
                                                                                                 } else {
                                                                                                     errorflag = 0;
-                                                                                                    if (sfromdate5.length() < 2) {
+                                                                                                    if (sinst5.length() < 2) {
                                                                                                         errorflag = 1;
-                                                                                                        fromdateinput5.setError("Kindly enter valid date ");
+                                                                                                        instinput5.setError("Kindly enter valid institute");
                                                                                                     } else {
                                                                                                         errorflag = 0;
-                                                                                                        if (workinghereflag5 == 0 && stodate5.length() < 2) {
+                                                                                                        if (sfromdate5.length() < 2) {
                                                                                                             errorflag = 1;
-                                                                                                            todateinput5.setError("Kindly enter valid date");
+                                                                                                            fromdateinput5.setError("Kindly enter valid date ");
                                                                                                         } else {
                                                                                                             errorflag = 0;
-                                                                                                            if (todateflag1 == 1) {
-//                                                                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                            if (workinghereflag5 == 0 && stodate5.length() < 2) {
                                                                                                                 errorflag = 1;
+                                                                                                                todateinput5.setError("Kindly enter valid date");
                                                                                                             } else {
-                                                                                                                //6
                                                                                                                 errorflag = 0;
-                                                                                                                if (spost6.length() < 2) {
+                                                                                                                if (todateflag1 == 1) {
+//                                                                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                                                                                                     errorflag = 1;
-                                                                                                                    postinput6.setError("Kindly enter valid post");
                                                                                                                 } else {
+                                                                                                                    //6
                                                                                                                     errorflag = 0;
-                                                                                                                    if (sinst6.length() < 2) {
+                                                                                                                    if (spost6.length() < 2) {
                                                                                                                         errorflag = 1;
-                                                                                                                        instinput6.setError("Kindly enter valid institute");
+                                                                                                                        postinput6.setError("Kindly enter valid post");
                                                                                                                     } else {
                                                                                                                         errorflag = 0;
-                                                                                                                        if (sfromdate6.length() < 2) {
+                                                                                                                        if (sinst6.length() < 2) {
                                                                                                                             errorflag = 1;
-                                                                                                                            fromdateinput6.setError("Kindly enter valid date ");
+                                                                                                                            instinput6.setError("Kindly enter valid institute");
                                                                                                                         } else {
                                                                                                                             errorflag = 0;
-                                                                                                                            if (workinghereflag6 == 0 && stodate6.length() < 2) {
+                                                                                                                            if (sfromdate6.length() < 2) {
                                                                                                                                 errorflag = 1;
-                                                                                                                                todateinput6.setError("Kindly enter valid date");
+                                                                                                                                fromdateinput6.setError("Kindly enter valid date ");
                                                                                                                             } else {
                                                                                                                                 errorflag = 0;
-                                                                                                                                if (todateflag1 == 1) {
-//                                                                                                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                                if (workinghereflag6 == 0 && stodate6.length() < 2) {
                                                                                                                                     errorflag = 1;
+                                                                                                                                    todateinput6.setError("Kindly enter valid date");
                                                                                                                                 } else {
-                                                                                                                                    //7
                                                                                                                                     errorflag = 0;
-                                                                                                                                    if (spost7.length() < 2) {
+                                                                                                                                    if (todateflag1 == 1) {
+//                                                                                                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                                                                                                                         errorflag = 1;
-                                                                                                                                        postinput7.setError("Kindly enter valid post");
                                                                                                                                     } else {
+                                                                                                                                        //7
                                                                                                                                         errorflag = 0;
-                                                                                                                                        if (sinst7.length() < 2) {
+                                                                                                                                        if (spost7.length() < 2) {
                                                                                                                                             errorflag = 1;
-                                                                                                                                            instinput7.setError("Kindly enter valid institute");
+                                                                                                                                            postinput7.setError("Kindly enter valid post");
                                                                                                                                         } else {
                                                                                                                                             errorflag = 0;
-                                                                                                                                            if (sfromdate7.length() < 2) {
+                                                                                                                                            if (sinst7.length() < 2) {
                                                                                                                                                 errorflag = 1;
-                                                                                                                                                fromdateinput7.setError("Kindly enter valid date ");
+                                                                                                                                                instinput7.setError("Kindly enter valid institute");
                                                                                                                                             } else {
                                                                                                                                                 errorflag = 0;
-                                                                                                                                                if (workinghereflag7 == 0 && stodate7.length() < 2) {
+                                                                                                                                                if (sfromdate7.length() < 2) {
                                                                                                                                                     errorflag = 1;
-                                                                                                                                                    todateinput7.setError("Kindly enter valid date");
+                                                                                                                                                    fromdateinput7.setError("Kindly enter valid date ");
                                                                                                                                                 } else {
                                                                                                                                                     errorflag = 0;
-                                                                                                                                                    if (todateflag1 == 1) {
-//                                                                                                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                                                    if (workinghereflag7 == 0 && stodate7.length() < 2) {
                                                                                                                                                         errorflag = 1;
-
+                                                                                                                                                        todateinput7.setError("Kindly enter valid date");
                                                                                                                                                     } else {
-                                                                                                                                                        //8
                                                                                                                                                         errorflag = 0;
-                                                                                                                                                        if (spost8.length() < 2) {
+                                                                                                                                                        if (todateflag1 == 1) {
+//                                                                                                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
                                                                                                                                                             errorflag = 1;
-                                                                                                                                                            postinput8.setError("Kindly enter valid post");
+
                                                                                                                                                         } else {
+                                                                                                                                                            //8
                                                                                                                                                             errorflag = 0;
-                                                                                                                                                            if (sinst8.length() < 2) {
+                                                                                                                                                            if (spost8.length() < 2) {
                                                                                                                                                                 errorflag = 1;
-                                                                                                                                                                instinput8.setError("Kindly enter valid institute");
+                                                                                                                                                                postinput8.setError("Kindly enter valid post");
                                                                                                                                                             } else {
                                                                                                                                                                 errorflag = 0;
-                                                                                                                                                                if (sfromdate8.length() < 2) {
+                                                                                                                                                                if (sinst8.length() < 2) {
                                                                                                                                                                     errorflag = 1;
-                                                                                                                                                                    fromdateinput8.setError("Kindly enter valid date ");
+                                                                                                                                                                    instinput8.setError("Kindly enter valid institute");
                                                                                                                                                                 } else {
                                                                                                                                                                     errorflag = 0;
-                                                                                                                                                                    if (workinghereflag8 == 0 && stodate8.length() < 2) {
+                                                                                                                                                                    if (sfromdate8.length() < 2) {
                                                                                                                                                                         errorflag = 1;
-                                                                                                                                                                        todateinput1.setError("Kindly enter valid date");
+                                                                                                                                                                        fromdateinput8.setError("Kindly enter valid date ");
                                                                                                                                                                     } else {
                                                                                                                                                                         errorflag = 0;
-                                                                                                                                                                        if (todateflag1 == 1) {
-//                                                                                                                                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                                                                        if (workinghereflag8 == 0 && stodate8.length() < 2) {
                                                                                                                                                                             errorflag = 1;
+                                                                                                                                                                            todateinput1.setError("Kindly enter valid date");
                                                                                                                                                                         } else {
                                                                                                                                                                             errorflag = 0;
+                                                                                                                                                                            if (todateflag1 == 1) {
+//                                                                                                                                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                                                                                errorflag = 1;
+                                                                                                                                                                            } else {
+                                                                                                                                                                                errorflag = 0;
 
 //                                                                                                                                                                    Toast.makeText(AdminExperiences.this, "success8", Toast.LENGTH_SHORT).show();
-                                                                                                                                                                        }
-                                                                                                                                                                    }
-                                                                                                                                                                }
-
-                                                                                                                                                            }
-
-                                                                                                                                                        }
-                                                                                                                                                    }
-                                                                                                                                                }
-                                                                                                                                            }
-
-                                                                                                                                        }
-                                                                                                                                    }
-                                                                                                                                }
-                                                                                                                            }
-                                                                                                                        }
-
-                                                                                                                    }
-                                                                                                                }
-                                                                                                            }
-                                                                                                        }
-                                                                                                    }
-
-                                                                                                }
-
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                }
-
-                                                                            }
-
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-
-                                                        }
-
-                                                    }
-                                                }
-                                            }
-                                        }
-
-                                    }
-
-                                }
-                            }
-                        }
-                    }
-
-                }
-
-            }
-        }
-        else if (expcount == 8) {
-            if (spost1.length() < 2) {
-                errorflag = 1;
-                postinput1.setError("Kindly enter valid post");
-            } else {
-                errorflag = 0;
-                if (sinst1.length() < 2) {
-                    errorflag = 1;
-                    instinput1.setError("Kindly enter valid institute");
-                } else {
-                    errorflag = 0;
-                    if (sfromdate1.length() < 2) {
-                        errorflag = 1;
-                        fromdateinput1.setError("Kindly enter valid date ");
-                    } else {
-                        errorflag = 0;
-                        if (workinghereflag1 == 0 && stodate1.length() < 2) {
-                            errorflag = 1;
-                            todateinput1.setError("Kindly enter valid date");
-                        } else {
-                            errorflag = 0;
-                            if (todateflag1 == 1) {
-                                errorflag = 1;
-
-//                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                            } else {
-                                errorflag = 0;
-
-                                //2
-                                if (spost2.length() < 2) {
-                                    errorflag = 1;
-                                    postinput2.setError("Kindly enter valid post");
-                                } else {
-                                    errorflag = 0;
-                                    if (sinst2.length() < 2) {
-                                        errorflag = 1;
-                                        instinput2.setError("Kindly enter valid institute");
-                                    } else {
-                                        errorflag = 0;
-                                        if (sfromdate2.length() < 2) {
-                                            errorflag = 1;
-                                            fromdateinput2.setError("Kindly enter valid date ");
-                                        } else {
-                                            errorflag = 0;
-                                            if (workinghereflag2 == 0 && stodate2.length() < 2) {
-                                                errorflag = 1;
-                                                todateinput2.setError("Kindly enter valid date");
-                                            } else {
-                                                errorflag = 0;
-                                                if (todateflag1 == 1) {
-                                                    errorflag = 1;
-
-//                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                                                } else {
-                                                    errorflag = 0;
-
-                                                    //3
-                                                    if (spost3.length() < 2) {
-                                                        errorflag = 1;
-                                                        postinput3.setError("Kindly enter valid post");
-                                                    } else {
-                                                        errorflag = 0;
-                                                        if (sinst3.length() < 2) {
-                                                            errorflag = 1;
-                                                            instinput3.setError("Kindly enter valid institute");
-                                                        } else {
-                                                            errorflag = 0;
-                                                            if (sfromdate3.length() < 2) {
-                                                                errorflag = 1;
-                                                                fromdateinput3.setError("Kindly enter valid date ");
-                                                            } else {
-                                                                errorflag = 0;
-                                                                if (workinghereflag3 == 0 && stodate3.length() < 2) {
-                                                                    errorflag = 1;
-                                                                    todateinput3.setError("Kindly enter valid date");
-                                                                } else {
-                                                                    errorflag = 0;
-                                                                    if (todateflag1 == 1) {
-//                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                                                                        errorflag = 1;
-
-                                                                    } else {
-                                                                        errorflag = 0;
-                                                                        //4
-                                                                        if (spost4.length() < 2) {
-                                                                            errorflag = 1;
-                                                                            postinput4.setError("Kindly enter valid post");
-                                                                        } else {
-                                                                            errorflag = 0;
-                                                                            if (sinst4.length() < 2) {
-                                                                                errorflag = 1;
-                                                                                instinput4.setError("Kindly enter valid institute");
-                                                                            } else {
-                                                                                errorflag = 0;
-                                                                                if (sfromdate4.length() < 2) {
-                                                                                    errorflag = 1;
-                                                                                    fromdateinput4.setError("Kindly enter valid date ");
-                                                                                } else {
-                                                                                    errorflag = 0;
-                                                                                    if (workinghereflag4 == 0 && stodate4.length() < 2) {
-                                                                                        errorflag = 1;
-                                                                                        todateinput4.setError("Kindly enter valid date");
-                                                                                    } else {
-                                                                                        errorflag = 0;
-                                                                                        if (todateflag1 == 1) {
-//                                                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                                                                                            errorflag = 1;
-
-                                                                                        } else {
-                                                                                            //5
-                                                                                            errorflag = 0;
-                                                                                            if (spost5.length() < 2) {
-                                                                                                errorflag = 1;
-                                                                                                postinput5.setError("Kindly enter valid post");
-                                                                                            } else {
-                                                                                                errorflag = 0;
-                                                                                                if (sinst5.length() < 2) {
-                                                                                                    errorflag = 1;
-                                                                                                    instinput5.setError("Kindly enter valid institute");
-                                                                                                } else {
-                                                                                                    errorflag = 0;
-                                                                                                    if (sfromdate5.length() < 2) {
-                                                                                                        errorflag = 1;
-                                                                                                        fromdateinput5.setError("Kindly enter valid date ");
-                                                                                                    } else {
-                                                                                                        errorflag = 0;
-                                                                                                        if (workinghereflag5 == 0 && stodate5.length() < 2) {
-                                                                                                            errorflag = 1;
-                                                                                                            todateinput5.setError("Kindly enter valid date");
-                                                                                                        } else {
-                                                                                                            errorflag = 0;
-                                                                                                            if (todateflag1 == 1) {
-//                                                                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                                                                                                                errorflag = 1;
-                                                                                                            } else {
-                                                                                                                //6
-                                                                                                                errorflag = 0;
-                                                                                                                if (spost6.length() < 2) {
-                                                                                                                    errorflag = 1;
-                                                                                                                    postinput6.setError("Kindly enter valid post");
-                                                                                                                } else {
-                                                                                                                    errorflag = 0;
-                                                                                                                    if (sinst6.length() < 2) {
-                                                                                                                        errorflag = 1;
-                                                                                                                        instinput6.setError("Kindly enter valid institute");
-                                                                                                                    } else {
-                                                                                                                        errorflag = 0;
-                                                                                                                        if (sfromdate6.length() < 2) {
-                                                                                                                            errorflag = 1;
-                                                                                                                            fromdateinput6.setError("Kindly enter valid date ");
-                                                                                                                        } else {
-                                                                                                                            errorflag = 0;
-                                                                                                                            if (workinghereflag6 == 0 && stodate6.length() < 2) {
-                                                                                                                                errorflag = 1;
-                                                                                                                                todateinput6.setError("Kindly enter valid date");
-                                                                                                                            } else {
-                                                                                                                                errorflag = 0;
-                                                                                                                                if (todateflag1 == 1) {
-//                                                                                                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                                                                                                                                    errorflag = 1;
-                                                                                                                                } else {
-                                                                                                                                    //7
-                                                                                                                                    errorflag = 0;
-                                                                                                                                    if (spost7.length() < 2) {
-                                                                                                                                        errorflag = 1;
-                                                                                                                                        postinput7.setError("Kindly enter valid post");
-                                                                                                                                    } else {
-                                                                                                                                        errorflag = 0;
-                                                                                                                                        if (sinst7.length() < 2) {
-                                                                                                                                            errorflag = 1;
-                                                                                                                                            instinput7.setError("Kindly enter valid institute");
-                                                                                                                                        } else {
-                                                                                                                                            errorflag = 0;
-                                                                                                                                            if (sfromdate7.length() < 2) {
-                                                                                                                                                errorflag = 1;
-                                                                                                                                                fromdateinput7.setError("Kindly enter valid date ");
-                                                                                                                                            } else {
-                                                                                                                                                errorflag = 0;
-                                                                                                                                                if (workinghereflag7 == 0 && stodate7.length() < 2) {
-                                                                                                                                                    errorflag = 1;
-                                                                                                                                                    todateinput7.setError("Kindly enter valid date");
-                                                                                                                                                } else {
-                                                                                                                                                    errorflag = 0;
-                                                                                                                                                    if (todateflag1 == 1) {
-//                                                                                                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                                                                                                                                                        errorflag = 1;
-
-                                                                                                                                                    } else {
-                                                                                                                                                        //8
-                                                                                                                                                        errorflag = 0;
-                                                                                                                                                        if (spost8.length() < 2) {
-                                                                                                                                                            errorflag = 1;
-                                                                                                                                                            postinput8.setError("Kindly enter valid post");
-                                                                                                                                                        } else {
-                                                                                                                                                            errorflag = 0;
-                                                                                                                                                            if (sinst8.length() < 2) {
-                                                                                                                                                                errorflag = 1;
-                                                                                                                                                                instinput8.setError("Kindly enter valid institute");
-                                                                                                                                                            } else {
-                                                                                                                                                                errorflag = 0;
-                                                                                                                                                                if (sfromdate8.length() < 2) {
-                                                                                                                                                                    errorflag = 1;
-                                                                                                                                                                    fromdateinput8.setError("Kindly enter valid date ");
-                                                                                                                                                                } else {
-                                                                                                                                                                    errorflag = 0;
-                                                                                                                                                                    if (workinghereflag8 == 0 && stodate8.length() < 2) {
-                                                                                                                                                                        errorflag = 1;
-                                                                                                                                                                        todateinput1.setError("Kindly enter valid date");
-                                                                                                                                                                    } else {
-                                                                                                                                                                        errorflag = 0;
-                                                                                                                                                                        if (todateflag1 == 1) {
-//                                                                                                                                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                                                                                                                                                                            errorflag = 1;
-                                                                                                                                                                        } else {
-                                                                                                                                                                            //9
-                                                                                                                                                                            errorflag = 0;
-                                                                                                                                                                            if (spost9.length() < 2) {
-                                                                                                                                                                                errorflag = 1;
-                                                                                                                                                                                postinput9.setError("Kindly enter valid post");
-                                                                                                                                                                            } else {
-                                                                                                                                                                                errorflag = 0;
-                                                                                                                                                                                if (sinst9.length() < 2) {
-                                                                                                                                                                                    errorflag = 1;
-                                                                                                                                                                                    instinput9.setError("Kindly enter valid institute");
-                                                                                                                                                                                } else {
-                                                                                                                                                                                    errorflag = 0;
-                                                                                                                                                                                    if (sfromdate9.length() < 2) {
-                                                                                                                                                                                        errorflag = 1;
-                                                                                                                                                                                        fromdateinput9.setError("Kindly enter valid date ");
-                                                                                                                                                                                    } else {
-                                                                                                                                                                                        errorflag = 0;
-                                                                                                                                                                                        if (workinghereflag9 == 0 && stodate9.length() < 2) {
-                                                                                                                                                                                            errorflag = 1;
-                                                                                                                                                                                            todateinput9.setError("Kindly enter valid date");
-                                                                                                                                                                                        } else {
-                                                                                                                                                                                            errorflag = 0;
-                                                                                                                                                                                            if (todateflag1 == 1) {
-//                                                                                                                                                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                                                                                                                                                                                                errorflag = 1;
-                                                                                                                                                                                            } else {
-                                                                                                                                                                                                errorflag = 0;
-//                                                                                                                                                                                        Toast.makeText(AdminExperiences.this, "success9", Toast.LENGTH_SHORT).show();
-                                                                                                                                                                                            }
-                                                                                                                                                                                        }
-                                                                                                                                                                                    }
-
-                                                                                                                                                                                }
-
-                                                                                                                                                                            }                                                                                                                                                                }
-                                                                                                                                                                    }
-                                                                                                                                                                }
-
-                                                                                                                                                            }
-
-                                                                                                                                                        }
-                                                                                                                                                    }
-                                                                                                                                                }
-                                                                                                                                            }
-
-                                                                                                                                        }
-                                                                                                                                    }
-                                                                                                                                }
-                                                                                                                            }
-                                                                                                                        }
-
-                                                                                                                    }
-                                                                                                                }
-                                                                                                            }
-                                                                                                        }
-                                                                                                    }
-
-                                                                                                }
-
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                }
-
-                                                                            }
-
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-
-                                                        }
-
-                                                    }
-                                                }
-                                            }
-                                        }
-
-                                    }
-
-                                }
-                            }
-                        }
-                    }
-
-                }
-
-            }
-        }
-        else if (expcount == 9) {
-            if (spost1.length() < 2) {
-                errorflag = 1;
-                postinput1.setError("Kindly enter valid post");
-            } else {
-                errorflag = 0;
-                if (sinst1.length() < 2) {
-                    errorflag = 1;
-                    instinput1.setError("Kindly enter valid institute");
-                } else {
-                    errorflag = 0;
-                    if (sfromdate1.length() < 2) {
-                        errorflag = 1;
-                        fromdateinput1.setError("Kindly enter valid date ");
-                    } else {
-                        errorflag = 0;
-                        if (workinghereflag1 == 0 && stodate1.length() < 2) {
-                            errorflag = 1;
-                            todateinput1.setError("Kindly enter valid date");
-                        } else {
-                            errorflag = 0;
-                            if (todateflag1 == 1) {
-                                errorflag = 1;
-
-//                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                            } else {
-                                errorflag = 0;
-
-                                //2
-                                if (spost2.length() < 2) {
-                                    errorflag = 1;
-                                    postinput2.setError("Kindly enter valid post");
-                                } else {
-                                    errorflag = 0;
-                                    if (sinst2.length() < 2) {
-                                        errorflag = 1;
-                                        instinput2.setError("Kindly enter valid institute");
-                                    } else {
-                                        errorflag = 0;
-                                        if (sfromdate2.length() < 2) {
-                                            errorflag = 1;
-                                            fromdateinput2.setError("Kindly enter valid date ");
-                                        } else {
-                                            errorflag = 0;
-                                            if (workinghereflag2 == 0 && stodate2.length() < 2) {
-                                                errorflag = 1;
-                                                todateinput2.setError("Kindly enter valid date");
-                                            } else {
-                                                errorflag = 0;
-                                                if (todateflag1 == 1) {
-                                                    errorflag = 1;
-
-//                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                                                } else {
-                                                    errorflag = 0;
-
-                                                    //3
-                                                    if (spost3.length() < 2) {
-                                                        errorflag = 1;
-                                                        postinput3.setError("Kindly enter valid post");
-                                                    } else {
-                                                        errorflag = 0;
-                                                        if (sinst3.length() < 2) {
-                                                            errorflag = 1;
-                                                            instinput3.setError("Kindly enter valid institute");
-                                                        } else {
-                                                            errorflag = 0;
-                                                            if (sfromdate3.length() < 2) {
-                                                                errorflag = 1;
-                                                                fromdateinput3.setError("Kindly enter valid date ");
-                                                            } else {
-                                                                errorflag = 0;
-                                                                if (workinghereflag3 == 0 && stodate3.length() < 2) {
-                                                                    errorflag = 1;
-                                                                    todateinput3.setError("Kindly enter valid date");
-                                                                } else {
-                                                                    errorflag = 0;
-                                                                    if (todateflag1 == 1) {
-//                                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                                                                        errorflag = 1;
-
-                                                                    } else {
-                                                                        errorflag = 0;
-                                                                        //4
-                                                                        if (spost4.length() < 2) {
-                                                                            errorflag = 1;
-                                                                            postinput4.setError("Kindly enter valid post");
-                                                                        } else {
-                                                                            errorflag = 0;
-                                                                            if (sinst4.length() < 2) {
-                                                                                errorflag = 1;
-                                                                                instinput4.setError("Kindly enter valid institute");
-                                                                            } else {
-                                                                                errorflag = 0;
-                                                                                if (sfromdate4.length() < 2) {
-                                                                                    errorflag = 1;
-                                                                                    fromdateinput4.setError("Kindly enter valid date ");
-                                                                                } else {
-                                                                                    errorflag = 0;
-                                                                                    if (workinghereflag4 == 0 && stodate4.length() < 2) {
-                                                                                        errorflag = 1;
-                                                                                        todateinput4.setError("Kindly enter valid date");
-                                                                                    } else {
-                                                                                        errorflag = 0;
-                                                                                        if (todateflag1 == 1) {
-//                                                                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                                                                                            errorflag = 1;
-
-                                                                                        } else {
-                                                                                            //5
-                                                                                            errorflag = 0;
-                                                                                            if (spost5.length() < 2) {
-                                                                                                errorflag = 1;
-                                                                                                postinput5.setError("Kindly enter valid post");
-                                                                                            } else {
-                                                                                                errorflag = 0;
-                                                                                                if (sinst5.length() < 2) {
-                                                                                                    errorflag = 1;
-                                                                                                    instinput5.setError("Kindly enter valid institute");
-                                                                                                } else {
-                                                                                                    errorflag = 0;
-                                                                                                    if (sfromdate5.length() < 2) {
-                                                                                                        errorflag = 1;
-                                                                                                        fromdateinput5.setError("Kindly enter valid date ");
-                                                                                                    } else {
-                                                                                                        errorflag = 0;
-                                                                                                        if (workinghereflag5 == 0 && stodate5.length() < 2) {
-                                                                                                            errorflag = 1;
-                                                                                                            todateinput5.setError("Kindly enter valid date");
-                                                                                                        } else {
-                                                                                                            errorflag = 0;
-                                                                                                            if (todateflag1 == 1) {
-//                                                                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                                                                                                                errorflag = 1;
-                                                                                                            } else {
-                                                                                                                //6
-                                                                                                                errorflag = 0;
-                                                                                                                if (spost6.length() < 2) {
-                                                                                                                    errorflag = 1;
-                                                                                                                    postinput6.setError("Kindly enter valid post");
-                                                                                                                } else {
-                                                                                                                    errorflag = 0;
-                                                                                                                    if (sinst6.length() < 2) {
-                                                                                                                        errorflag = 1;
-                                                                                                                        instinput6.setError("Kindly enter valid institute");
-                                                                                                                    } else {
-                                                                                                                        errorflag = 0;
-                                                                                                                        if (sfromdate6.length() < 2) {
-                                                                                                                            errorflag = 1;
-                                                                                                                            fromdateinput6.setError("Kindly enter valid date ");
-                                                                                                                        } else {
-                                                                                                                            errorflag = 0;
-                                                                                                                            if (workinghereflag6 == 0 && stodate6.length() < 2) {
-                                                                                                                                errorflag = 1;
-                                                                                                                                todateinput6.setError("Kindly enter valid date");
-                                                                                                                            } else {
-                                                                                                                                errorflag = 0;
-                                                                                                                                if (todateflag1 == 1) {
-//                                                                                                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                                                                                                                                    errorflag = 1;
-                                                                                                                                } else {
-                                                                                                                                    //7
-                                                                                                                                    errorflag = 0;
-                                                                                                                                    if (spost7.length() < 2) {
-                                                                                                                                        errorflag = 1;
-                                                                                                                                        postinput7.setError("Kindly enter valid post");
-                                                                                                                                    } else {
-                                                                                                                                        errorflag = 0;
-                                                                                                                                        if (sinst7.length() < 2) {
-                                                                                                                                            errorflag = 1;
-                                                                                                                                            instinput7.setError("Kindly enter valid institute");
-                                                                                                                                        } else {
-                                                                                                                                            errorflag = 0;
-                                                                                                                                            if (sfromdate7.length() < 2) {
-                                                                                                                                                errorflag = 1;
-                                                                                                                                                fromdateinput7.setError("Kindly enter valid date ");
-                                                                                                                                            } else {
-                                                                                                                                                errorflag = 0;
-                                                                                                                                                if (workinghereflag7 == 0 && stodate7.length() < 2) {
-                                                                                                                                                    errorflag = 1;
-                                                                                                                                                    todateinput7.setError("Kindly enter valid date");
-                                                                                                                                                } else {
-                                                                                                                                                    errorflag = 0;
-                                                                                                                                                    if (todateflag1 == 1) {
-//                                                                                                                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                                                                                                                                                        errorflag = 1;
-
-                                                                                                                                                    } else {
-                                                                                                                                                        //8
-                                                                                                                                                        errorflag = 0;
-                                                                                                                                                        if (spost8.length() < 2) {
-                                                                                                                                                            errorflag = 1;
-                                                                                                                                                            postinput8.setError("Kindly enter valid post");
-                                                                                                                                                        } else {
-                                                                                                                                                            errorflag = 0;
-                                                                                                                                                            if (sinst8.length() < 2) {
-                                                                                                                                                                errorflag = 1;
-                                                                                                                                                                instinput8.setError("Kindly enter valid institute");
-                                                                                                                                                            } else {
-                                                                                                                                                                errorflag = 0;
-                                                                                                                                                                if (sfromdate8.length() < 2) {
-                                                                                                                                                                    errorflag = 1;
-                                                                                                                                                                    fromdateinput8.setError("Kindly enter valid date ");
-                                                                                                                                                                } else {
-                                                                                                                                                                    errorflag = 0;
-                                                                                                                                                                    if (workinghereflag8 == 0 && stodate8.length() < 2) {
-                                                                                                                                                                        errorflag = 1;
-                                                                                                                                                                        todateinput1.setError("Kindly enter valid date");
-                                                                                                                                                                    } else {
-                                                                                                                                                                        errorflag = 0;
-                                                                                                                                                                        if (todateflag1 == 1) {
-//                                                                                                                                                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                                                                                                                                                                            errorflag = 1;
-                                                                                                                                                                        } else {
-                                                                                                                                                                            //9
-                                                                                                                                                                            errorflag = 0;
-                                                                                                                                                                            if (spost9.length() < 2) {
-                                                                                                                                                                                errorflag = 1;
-                                                                                                                                                                                postinput9.setError("Kindly enter valid post");
-                                                                                                                                                                            } else {
-                                                                                                                                                                                errorflag = 0;
-                                                                                                                                                                                if (sinst9.length() < 2) {
-                                                                                                                                                                                    errorflag = 1;
-                                                                                                                                                                                    instinput9.setError("Kindly enter valid institute");
-                                                                                                                                                                                } else {
-                                                                                                                                                                                    errorflag = 0;
-                                                                                                                                                                                    if (sfromdate9.length() < 2) {
-                                                                                                                                                                                        errorflag = 1;
-                                                                                                                                                                                        fromdateinput9.setError("Kindly enter valid date ");
-                                                                                                                                                                                    } else {
-                                                                                                                                                                                        errorflag = 0;
-                                                                                                                                                                                        if (workinghereflag9 == 0 && stodate9.length() < 2) {
-                                                                                                                                                                                            errorflag = 1;
-                                                                                                                                                                                            todateinput9.setError("Kindly enter valid date");
-                                                                                                                                                                                        } else {
-                                                                                                                                                                                            errorflag = 0;
-                                                                                                                                                                                            if (todateflag1 == 1) {
-//                                                                                                                                                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                                                                                                                                                                                                errorflag = 1;
-                                                                                                                                                                                            } else {
-                                                                                                                                                                                                //10
-                                                                                                                                                                                                errorflag = 0;
-                                                                                                                                                                                                if (spost10.length() < 2) {
-                                                                                                                                                                                                    errorflag = 1;
-                                                                                                                                                                                                    postinput10.setError("Kindly enter valid post");
-                                                                                                                                                                                                } else {
-                                                                                                                                                                                                    errorflag = 0;
-                                                                                                                                                                                                    if (sinst10.length() < 2) {
-                                                                                                                                                                                                        errorflag = 1;
-                                                                                                                                                                                                        instinput10.setError("Kindly enter valid institute");
-                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                        errorflag = 0;
-                                                                                                                                                                                                        if (sfromdate10.length() < 2) {
-                                                                                                                                                                                                            errorflag = 1;
-                                                                                                                                                                                                            fromdateinput10.setError("Kindly enter valid date ");
-                                                                                                                                                                                                        } else {
-                                                                                                                                                                                                            errorflag = 0;
-                                                                                                                                                                                                            if (workinghereflag10 == 0 && stodate10.length() < 2) {
-                                                                                                                                                                                                                errorflag = 1;
-                                                                                                                                                                                                                todateinput1.setError("Kindly enter valid date");
-                                                                                                                                                                                                            } else {
-                                                                                                                                                                                                                errorflag = 0;
-                                                                                                                                                                                                                if (todateflag1 == 1) {
-//                                                                                                                                                                                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
-                                                                                                                                                                                                                    errorflag = 1;
-                                                                                                                                                                                                                } else {
-                                                                                                                                                                                                                    errorflag = 0;
-//                                                                                                                                                                                                                    Toast.makeText(AdminExperiences.this, "success10", Toast.LENGTH_SHORT).show();
-                                                                                                                                                                                                                }
-                                                                                                                                                                                                            }
-                                                                                                                                                                                                        }
-
-                                                                                                                                                                                                    }
-
-                                                                                                                                                                                                }
-                                                                                                                                                                                                ;
-                                                                                                                                                                                            }
-                                                                                                                                                                                        }
-                                                                                                                                                                                    }
-
-                                                                                                                                                                                }
-
                                                                                                                                                                             }
                                                                                                                                                                         }
                                                                                                                                                                     }
+
                                                                                                                                                                 }
 
                                                                                                                                                             }
-
                                                                                                                                                         }
                                                                                                                                                     }
                                                                                                                                                 }
-                                                                                                                                            }
 
+                                                                                                                                            }
                                                                                                                                         }
                                                                                                                                     }
                                                                                                                                 }
                                                                                                                             }
-                                                                                                                        }
 
+                                                                                                                        }
                                                                                                                     }
                                                                                                                 }
                                                                                                             }
                                                                                                         }
+
                                                                                                     }
 
                                                                                                 }
-
                                                                                             }
                                                                                         }
                                                                                     }
+
                                                                                 }
 
                                                                             }
-
                                                                         }
                                                                     }
                                                                 }
+
                                                             }
 
                                                         }
-
                                                     }
                                                 }
                                             }
+
                                         }
 
                                     }
-
                                 }
                             }
                         }
+
                     }
 
                 }
             }
+            else if (expcount == 8) {
+                if (spost1.length() < 2) {
+                    errorflag = 1;
+                    postinput1.setError("Kindly enter valid post");
+                } else {
+                    errorflag = 0;
+                    if (sinst1.length() < 2) {
+                        errorflag = 1;
+                        instinput1.setError("Kindly enter valid institute");
+                    } else {
+                        errorflag = 0;
+                        if (sfromdate1.length() < 2) {
+                            errorflag = 1;
+                            fromdateinput1.setError("Kindly enter valid date ");
+                        } else {
+                            errorflag = 0;
+                            if (workinghereflag1 == 0 && stodate1.length() < 2) {
+                                errorflag = 1;
+                                todateinput1.setError("Kindly enter valid date");
+                            } else {
+                                errorflag = 0;
+                                if (todateflag1 == 1) {
+                                    errorflag = 1;
+
+//                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    errorflag = 0;
+
+                                    //2
+                                    if (spost2.length() < 2) {
+                                        errorflag = 1;
+                                        postinput2.setError("Kindly enter valid post");
+                                    } else {
+                                        errorflag = 0;
+                                        if (sinst2.length() < 2) {
+                                            errorflag = 1;
+                                            instinput2.setError("Kindly enter valid institute");
+                                        } else {
+                                            errorflag = 0;
+                                            if (sfromdate2.length() < 2) {
+                                                errorflag = 1;
+                                                fromdateinput2.setError("Kindly enter valid date ");
+                                            } else {
+                                                errorflag = 0;
+                                                if (workinghereflag2 == 0 && stodate2.length() < 2) {
+                                                    errorflag = 1;
+                                                    todateinput2.setError("Kindly enter valid date");
+                                                } else {
+                                                    errorflag = 0;
+                                                    if (todateflag1 == 1) {
+                                                        errorflag = 1;
+
+//                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                    } else {
+                                                        errorflag = 0;
+
+                                                        //3
+                                                        if (spost3.length() < 2) {
+                                                            errorflag = 1;
+                                                            postinput3.setError("Kindly enter valid post");
+                                                        } else {
+                                                            errorflag = 0;
+                                                            if (sinst3.length() < 2) {
+                                                                errorflag = 1;
+                                                                instinput3.setError("Kindly enter valid institute");
+                                                            } else {
+                                                                errorflag = 0;
+                                                                if (sfromdate3.length() < 2) {
+                                                                    errorflag = 1;
+                                                                    fromdateinput3.setError("Kindly enter valid date ");
+                                                                } else {
+                                                                    errorflag = 0;
+                                                                    if (workinghereflag3 == 0 && stodate3.length() < 2) {
+                                                                        errorflag = 1;
+                                                                        todateinput3.setError("Kindly enter valid date");
+                                                                    } else {
+                                                                        errorflag = 0;
+                                                                        if (todateflag1 == 1) {
+//                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                            errorflag = 1;
+
+                                                                        } else {
+                                                                            errorflag = 0;
+                                                                            //4
+                                                                            if (spost4.length() < 2) {
+                                                                                errorflag = 1;
+                                                                                postinput4.setError("Kindly enter valid post");
+                                                                            } else {
+                                                                                errorflag = 0;
+                                                                                if (sinst4.length() < 2) {
+                                                                                    errorflag = 1;
+                                                                                    instinput4.setError("Kindly enter valid institute");
+                                                                                } else {
+                                                                                    errorflag = 0;
+                                                                                    if (sfromdate4.length() < 2) {
+                                                                                        errorflag = 1;
+                                                                                        fromdateinput4.setError("Kindly enter valid date ");
+                                                                                    } else {
+                                                                                        errorflag = 0;
+                                                                                        if (workinghereflag4 == 0 && stodate4.length() < 2) {
+                                                                                            errorflag = 1;
+                                                                                            todateinput4.setError("Kindly enter valid date");
+                                                                                        } else {
+                                                                                            errorflag = 0;
+                                                                                            if (todateflag1 == 1) {
+//                                                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                errorflag = 1;
+
+                                                                                            } else {
+                                                                                                //5
+                                                                                                errorflag = 0;
+                                                                                                if (spost5.length() < 2) {
+                                                                                                    errorflag = 1;
+                                                                                                    postinput5.setError("Kindly enter valid post");
+                                                                                                } else {
+                                                                                                    errorflag = 0;
+                                                                                                    if (sinst5.length() < 2) {
+                                                                                                        errorflag = 1;
+                                                                                                        instinput5.setError("Kindly enter valid institute");
+                                                                                                    } else {
+                                                                                                        errorflag = 0;
+                                                                                                        if (sfromdate5.length() < 2) {
+                                                                                                            errorflag = 1;
+                                                                                                            fromdateinput5.setError("Kindly enter valid date ");
+                                                                                                        } else {
+                                                                                                            errorflag = 0;
+                                                                                                            if (workinghereflag5 == 0 && stodate5.length() < 2) {
+                                                                                                                errorflag = 1;
+                                                                                                                todateinput5.setError("Kindly enter valid date");
+                                                                                                            } else {
+                                                                                                                errorflag = 0;
+                                                                                                                if (todateflag1 == 1) {
+//                                                                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                    errorflag = 1;
+                                                                                                                } else {
+                                                                                                                    //6
+                                                                                                                    errorflag = 0;
+                                                                                                                    if (spost6.length() < 2) {
+                                                                                                                        errorflag = 1;
+                                                                                                                        postinput6.setError("Kindly enter valid post");
+                                                                                                                    } else {
+                                                                                                                        errorflag = 0;
+                                                                                                                        if (sinst6.length() < 2) {
+                                                                                                                            errorflag = 1;
+                                                                                                                            instinput6.setError("Kindly enter valid institute");
+                                                                                                                        } else {
+                                                                                                                            errorflag = 0;
+                                                                                                                            if (sfromdate6.length() < 2) {
+                                                                                                                                errorflag = 1;
+                                                                                                                                fromdateinput6.setError("Kindly enter valid date ");
+                                                                                                                            } else {
+                                                                                                                                errorflag = 0;
+                                                                                                                                if (workinghereflag6 == 0 && stodate6.length() < 2) {
+                                                                                                                                    errorflag = 1;
+                                                                                                                                    todateinput6.setError("Kindly enter valid date");
+                                                                                                                                } else {
+                                                                                                                                    errorflag = 0;
+                                                                                                                                    if (todateflag1 == 1) {
+//                                                                                                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                                        errorflag = 1;
+                                                                                                                                    } else {
+                                                                                                                                        //7
+                                                                                                                                        errorflag = 0;
+                                                                                                                                        if (spost7.length() < 2) {
+                                                                                                                                            errorflag = 1;
+                                                                                                                                            postinput7.setError("Kindly enter valid post");
+                                                                                                                                        } else {
+                                                                                                                                            errorflag = 0;
+                                                                                                                                            if (sinst7.length() < 2) {
+                                                                                                                                                errorflag = 1;
+                                                                                                                                                instinput7.setError("Kindly enter valid institute");
+                                                                                                                                            } else {
+                                                                                                                                                errorflag = 0;
+                                                                                                                                                if (sfromdate7.length() < 2) {
+                                                                                                                                                    errorflag = 1;
+                                                                                                                                                    fromdateinput7.setError("Kindly enter valid date ");
+                                                                                                                                                } else {
+                                                                                                                                                    errorflag = 0;
+                                                                                                                                                    if (workinghereflag7 == 0 && stodate7.length() < 2) {
+                                                                                                                                                        errorflag = 1;
+                                                                                                                                                        todateinput7.setError("Kindly enter valid date");
+                                                                                                                                                    } else {
+                                                                                                                                                        errorflag = 0;
+                                                                                                                                                        if (todateflag1 == 1) {
+//                                                                                                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                                                            errorflag = 1;
+
+                                                                                                                                                        } else {
+                                                                                                                                                            //8
+                                                                                                                                                            errorflag = 0;
+                                                                                                                                                            if (spost8.length() < 2) {
+                                                                                                                                                                errorflag = 1;
+                                                                                                                                                                postinput8.setError("Kindly enter valid post");
+                                                                                                                                                            } else {
+                                                                                                                                                                errorflag = 0;
+                                                                                                                                                                if (sinst8.length() < 2) {
+                                                                                                                                                                    errorflag = 1;
+                                                                                                                                                                    instinput8.setError("Kindly enter valid institute");
+                                                                                                                                                                } else {
+                                                                                                                                                                    errorflag = 0;
+                                                                                                                                                                    if (sfromdate8.length() < 2) {
+                                                                                                                                                                        errorflag = 1;
+                                                                                                                                                                        fromdateinput8.setError("Kindly enter valid date ");
+                                                                                                                                                                    } else {
+                                                                                                                                                                        errorflag = 0;
+                                                                                                                                                                        if (workinghereflag8 == 0 && stodate8.length() < 2) {
+                                                                                                                                                                            errorflag = 1;
+                                                                                                                                                                            todateinput1.setError("Kindly enter valid date");
+                                                                                                                                                                        } else {
+                                                                                                                                                                            errorflag = 0;
+                                                                                                                                                                            if (todateflag1 == 1) {
+//                                                                                                                                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                                                                                errorflag = 1;
+                                                                                                                                                                            } else {
+                                                                                                                                                                                //9
+                                                                                                                                                                                errorflag = 0;
+                                                                                                                                                                                if (spost9.length() < 2) {
+                                                                                                                                                                                    errorflag = 1;
+                                                                                                                                                                                    postinput9.setError("Kindly enter valid post");
+                                                                                                                                                                                } else {
+                                                                                                                                                                                    errorflag = 0;
+                                                                                                                                                                                    if (sinst9.length() < 2) {
+                                                                                                                                                                                        errorflag = 1;
+                                                                                                                                                                                        instinput9.setError("Kindly enter valid institute");
+                                                                                                                                                                                    } else {
+                                                                                                                                                                                        errorflag = 0;
+                                                                                                                                                                                        if (sfromdate9.length() < 2) {
+                                                                                                                                                                                            errorflag = 1;
+                                                                                                                                                                                            fromdateinput9.setError("Kindly enter valid date ");
+                                                                                                                                                                                        } else {
+                                                                                                                                                                                            errorflag = 0;
+                                                                                                                                                                                            if (workinghereflag9 == 0 && stodate9.length() < 2) {
+                                                                                                                                                                                                errorflag = 1;
+                                                                                                                                                                                                todateinput9.setError("Kindly enter valid date");
+                                                                                                                                                                                            } else {
+                                                                                                                                                                                                errorflag = 0;
+                                                                                                                                                                                                if (todateflag1 == 1) {
+//                                                                                                                                                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                                                                                                    errorflag = 1;
+                                                                                                                                                                                                } else {
+                                                                                                                                                                                                    errorflag = 0;
+//                                                                                                                                                                                        Toast.makeText(AdminExperiences.this, "success9", Toast.LENGTH_SHORT).show();
+                                                                                                                                                                                                }
+                                                                                                                                                                                            }
+                                                                                                                                                                                        }
+
+                                                                                                                                                                                    }
+
+                                                                                                                                                                                }                                                                                                                                                                }
+                                                                                                                                                                        }
+                                                                                                                                                                    }
+
+                                                                                                                                                                }
+
+                                                                                                                                                            }
+                                                                                                                                                        }
+                                                                                                                                                    }
+                                                                                                                                                }
+
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }
+
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+
+                                                                                                    }
+
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+
+                                                                                }
+
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+
+                                                            }
+
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+            }
+            else if (expcount == 9) {
+                if (spost1.length() < 2) {
+                    errorflag = 1;
+                    postinput1.setError("Kindly enter valid post");
+                } else {
+                    errorflag = 0;
+                    if (sinst1.length() < 2) {
+                        errorflag = 1;
+                        instinput1.setError("Kindly enter valid institute");
+                    } else {
+                        errorflag = 0;
+                        if (sfromdate1.length() < 2) {
+                            errorflag = 1;
+                            fromdateinput1.setError("Kindly enter valid date ");
+                        } else {
+                            errorflag = 0;
+                            if (workinghereflag1 == 0 && stodate1.length() < 2) {
+                                errorflag = 1;
+                                todateinput1.setError("Kindly enter valid date");
+                            } else {
+                                errorflag = 0;
+                                if (todateflag1 == 1) {
+                                    errorflag = 1;
+
+//                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    errorflag = 0;
+
+                                    //2
+                                    if (spost2.length() < 2) {
+                                        errorflag = 1;
+                                        postinput2.setError("Kindly enter valid post");
+                                    } else {
+                                        errorflag = 0;
+                                        if (sinst2.length() < 2) {
+                                            errorflag = 1;
+                                            instinput2.setError("Kindly enter valid institute");
+                                        } else {
+                                            errorflag = 0;
+                                            if (sfromdate2.length() < 2) {
+                                                errorflag = 1;
+                                                fromdateinput2.setError("Kindly enter valid date ");
+                                            } else {
+                                                errorflag = 0;
+                                                if (workinghereflag2 == 0 && stodate2.length() < 2) {
+                                                    errorflag = 1;
+                                                    todateinput2.setError("Kindly enter valid date");
+                                                } else {
+                                                    errorflag = 0;
+                                                    if (todateflag1 == 1) {
+                                                        errorflag = 1;
+
+//                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                    } else {
+                                                        errorflag = 0;
+
+                                                        //3
+                                                        if (spost3.length() < 2) {
+                                                            errorflag = 1;
+                                                            postinput3.setError("Kindly enter valid post");
+                                                        } else {
+                                                            errorflag = 0;
+                                                            if (sinst3.length() < 2) {
+                                                                errorflag = 1;
+                                                                instinput3.setError("Kindly enter valid institute");
+                                                            } else {
+                                                                errorflag = 0;
+                                                                if (sfromdate3.length() < 2) {
+                                                                    errorflag = 1;
+                                                                    fromdateinput3.setError("Kindly enter valid date ");
+                                                                } else {
+                                                                    errorflag = 0;
+                                                                    if (workinghereflag3 == 0 && stodate3.length() < 2) {
+                                                                        errorflag = 1;
+                                                                        todateinput3.setError("Kindly enter valid date");
+                                                                    } else {
+                                                                        errorflag = 0;
+                                                                        if (todateflag1 == 1) {
+//                                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                            errorflag = 1;
+
+                                                                        } else {
+                                                                            errorflag = 0;
+                                                                            //4
+                                                                            if (spost4.length() < 2) {
+                                                                                errorflag = 1;
+                                                                                postinput4.setError("Kindly enter valid post");
+                                                                            } else {
+                                                                                errorflag = 0;
+                                                                                if (sinst4.length() < 2) {
+                                                                                    errorflag = 1;
+                                                                                    instinput4.setError("Kindly enter valid institute");
+                                                                                } else {
+                                                                                    errorflag = 0;
+                                                                                    if (sfromdate4.length() < 2) {
+                                                                                        errorflag = 1;
+                                                                                        fromdateinput4.setError("Kindly enter valid date ");
+                                                                                    } else {
+                                                                                        errorflag = 0;
+                                                                                        if (workinghereflag4 == 0 && stodate4.length() < 2) {
+                                                                                            errorflag = 1;
+                                                                                            todateinput4.setError("Kindly enter valid date");
+                                                                                        } else {
+                                                                                            errorflag = 0;
+                                                                                            if (todateflag1 == 1) {
+//                                                                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                errorflag = 1;
+
+                                                                                            } else {
+                                                                                                //5
+                                                                                                errorflag = 0;
+                                                                                                if (spost5.length() < 2) {
+                                                                                                    errorflag = 1;
+                                                                                                    postinput5.setError("Kindly enter valid post");
+                                                                                                } else {
+                                                                                                    errorflag = 0;
+                                                                                                    if (sinst5.length() < 2) {
+                                                                                                        errorflag = 1;
+                                                                                                        instinput5.setError("Kindly enter valid institute");
+                                                                                                    } else {
+                                                                                                        errorflag = 0;
+                                                                                                        if (sfromdate5.length() < 2) {
+                                                                                                            errorflag = 1;
+                                                                                                            fromdateinput5.setError("Kindly enter valid date ");
+                                                                                                        } else {
+                                                                                                            errorflag = 0;
+                                                                                                            if (workinghereflag5 == 0 && stodate5.length() < 2) {
+                                                                                                                errorflag = 1;
+                                                                                                                todateinput5.setError("Kindly enter valid date");
+                                                                                                            } else {
+                                                                                                                errorflag = 0;
+                                                                                                                if (todateflag1 == 1) {
+//                                                                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                    errorflag = 1;
+                                                                                                                } else {
+                                                                                                                    //6
+                                                                                                                    errorflag = 0;
+                                                                                                                    if (spost6.length() < 2) {
+                                                                                                                        errorflag = 1;
+                                                                                                                        postinput6.setError("Kindly enter valid post");
+                                                                                                                    } else {
+                                                                                                                        errorflag = 0;
+                                                                                                                        if (sinst6.length() < 2) {
+                                                                                                                            errorflag = 1;
+                                                                                                                            instinput6.setError("Kindly enter valid institute");
+                                                                                                                        } else {
+                                                                                                                            errorflag = 0;
+                                                                                                                            if (sfromdate6.length() < 2) {
+                                                                                                                                errorflag = 1;
+                                                                                                                                fromdateinput6.setError("Kindly enter valid date ");
+                                                                                                                            } else {
+                                                                                                                                errorflag = 0;
+                                                                                                                                if (workinghereflag6 == 0 && stodate6.length() < 2) {
+                                                                                                                                    errorflag = 1;
+                                                                                                                                    todateinput6.setError("Kindly enter valid date");
+                                                                                                                                } else {
+                                                                                                                                    errorflag = 0;
+                                                                                                                                    if (todateflag1 == 1) {
+//                                                                                                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                                        errorflag = 1;
+                                                                                                                                    } else {
+                                                                                                                                        //7
+                                                                                                                                        errorflag = 0;
+                                                                                                                                        if (spost7.length() < 2) {
+                                                                                                                                            errorflag = 1;
+                                                                                                                                            postinput7.setError("Kindly enter valid post");
+                                                                                                                                        } else {
+                                                                                                                                            errorflag = 0;
+                                                                                                                                            if (sinst7.length() < 2) {
+                                                                                                                                                errorflag = 1;
+                                                                                                                                                instinput7.setError("Kindly enter valid institute");
+                                                                                                                                            } else {
+                                                                                                                                                errorflag = 0;
+                                                                                                                                                if (sfromdate7.length() < 2) {
+                                                                                                                                                    errorflag = 1;
+                                                                                                                                                    fromdateinput7.setError("Kindly enter valid date ");
+                                                                                                                                                } else {
+                                                                                                                                                    errorflag = 0;
+                                                                                                                                                    if (workinghereflag7 == 0 && stodate7.length() < 2) {
+                                                                                                                                                        errorflag = 1;
+                                                                                                                                                        todateinput7.setError("Kindly enter valid date");
+                                                                                                                                                    } else {
+                                                                                                                                                        errorflag = 0;
+                                                                                                                                                        if (todateflag1 == 1) {
+//                                                                                                                                                        Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                                                            errorflag = 1;
+
+                                                                                                                                                        } else {
+                                                                                                                                                            //8
+                                                                                                                                                            errorflag = 0;
+                                                                                                                                                            if (spost8.length() < 2) {
+                                                                                                                                                                errorflag = 1;
+                                                                                                                                                                postinput8.setError("Kindly enter valid post");
+                                                                                                                                                            } else {
+                                                                                                                                                                errorflag = 0;
+                                                                                                                                                                if (sinst8.length() < 2) {
+                                                                                                                                                                    errorflag = 1;
+                                                                                                                                                                    instinput8.setError("Kindly enter valid institute");
+                                                                                                                                                                } else {
+                                                                                                                                                                    errorflag = 0;
+                                                                                                                                                                    if (sfromdate8.length() < 2) {
+                                                                                                                                                                        errorflag = 1;
+                                                                                                                                                                        fromdateinput8.setError("Kindly enter valid date ");
+                                                                                                                                                                    } else {
+                                                                                                                                                                        errorflag = 0;
+                                                                                                                                                                        if (workinghereflag8 == 0 && stodate8.length() < 2) {
+                                                                                                                                                                            errorflag = 1;
+                                                                                                                                                                            todateinput1.setError("Kindly enter valid date");
+                                                                                                                                                                        } else {
+                                                                                                                                                                            errorflag = 0;
+                                                                                                                                                                            if (todateflag1 == 1) {
+//                                                                                                                                                                            Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                                                                                errorflag = 1;
+                                                                                                                                                                            } else {
+                                                                                                                                                                                //9
+                                                                                                                                                                                errorflag = 0;
+                                                                                                                                                                                if (spost9.length() < 2) {
+                                                                                                                                                                                    errorflag = 1;
+                                                                                                                                                                                    postinput9.setError("Kindly enter valid post");
+                                                                                                                                                                                } else {
+                                                                                                                                                                                    errorflag = 0;
+                                                                                                                                                                                    if (sinst9.length() < 2) {
+                                                                                                                                                                                        errorflag = 1;
+                                                                                                                                                                                        instinput9.setError("Kindly enter valid institute");
+                                                                                                                                                                                    } else {
+                                                                                                                                                                                        errorflag = 0;
+                                                                                                                                                                                        if (sfromdate9.length() < 2) {
+                                                                                                                                                                                            errorflag = 1;
+                                                                                                                                                                                            fromdateinput9.setError("Kindly enter valid date ");
+                                                                                                                                                                                        } else {
+                                                                                                                                                                                            errorflag = 0;
+                                                                                                                                                                                            if (workinghereflag9 == 0 && stodate9.length() < 2) {
+                                                                                                                                                                                                errorflag = 1;
+                                                                                                                                                                                                todateinput9.setError("Kindly enter valid date");
+                                                                                                                                                                                            } else {
+                                                                                                                                                                                                errorflag = 0;
+                                                                                                                                                                                                if (todateflag1 == 1) {
+//                                                                                                                                                                                                Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                                                                                                    errorflag = 1;
+                                                                                                                                                                                                } else {
+                                                                                                                                                                                                    //10
+                                                                                                                                                                                                    errorflag = 0;
+                                                                                                                                                                                                    if (spost10.length() < 2) {
+                                                                                                                                                                                                        errorflag = 1;
+                                                                                                                                                                                                        postinput10.setError("Kindly enter valid post");
+                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                        errorflag = 0;
+                                                                                                                                                                                                        if (sinst10.length() < 2) {
+                                                                                                                                                                                                            errorflag = 1;
+                                                                                                                                                                                                            instinput10.setError("Kindly enter valid institute");
+                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                            errorflag = 0;
+                                                                                                                                                                                                            if (sfromdate10.length() < 2) {
+                                                                                                                                                                                                                errorflag = 1;
+                                                                                                                                                                                                                fromdateinput10.setError("Kindly enter valid date ");
+                                                                                                                                                                                                            } else {
+                                                                                                                                                                                                                errorflag = 0;
+                                                                                                                                                                                                                if (workinghereflag10 == 0 && stodate10.length() < 2) {
+                                                                                                                                                                                                                    errorflag = 1;
+                                                                                                                                                                                                                    todateinput1.setError("Kindly enter valid date");
+                                                                                                                                                                                                                } else {
+                                                                                                                                                                                                                    errorflag = 0;
+                                                                                                                                                                                                                    if (todateflag1 == 1) {
+//                                                                                                                                                                                                                    Toast.makeText(AdminExperiences.this, "To Date must be Greater than From Date", Toast.LENGTH_SHORT).show();
+                                                                                                                                                                                                                        errorflag = 1;
+                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                        errorflag = 0;
+//                                                                                                                                                                                                                    Toast.makeText(AdminExperiences.this, "success10", Toast.LENGTH_SHORT).show();
+                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                }
+                                                                                                                                                                                                            }
+
+                                                                                                                                                                                                        }
+
+                                                                                                                                                                                                    }
+                                                                                                                                                                                                    ;
+                                                                                                                                                                                                }
+                                                                                                                                                                                            }
+                                                                                                                                                                                        }
+
+                                                                                                                                                                                    }
+
+                                                                                                                                                                                }
+                                                                                                                                                                            }
+                                                                                                                                                                        }
+                                                                                                                                                                    }
+
+                                                                                                                                                                }
+
+                                                                                                                                                            }
+                                                                                                                                                        }
+                                                                                                                                                    }
+                                                                                                                                                }
+
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }
+
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+
+                                                                                                    }
+
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+
+                                                                                }
+
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+
+                                                            }
+
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
             }
         }
         if(errorflag==0) {
@@ -7042,7 +7042,7 @@ public class AdminExperiences extends AppCompatActivity {
 
 
     }
-    void showDateDialog(final EditText id)
+    void showDateDialog(final TextInputEditText id)
     {
 
 
@@ -7123,7 +7123,7 @@ public class AdminExperiences extends AppCompatActivity {
         alertDialog.getWindow().setLayout(w, h);
 
     }
-    void setMonthYear(EditText id,String selectedMonth,String selectedYear)
+    void setMonthYear(TextInputEditText id,String selectedMonth,String selectedYear)
     {
         id.setText(selectedMonth+", "+selectedYear);
     }

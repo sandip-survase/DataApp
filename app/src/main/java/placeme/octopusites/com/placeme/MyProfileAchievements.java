@@ -19,7 +19,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -50,10 +50,10 @@ public class MyProfileAchievements extends AppCompatActivity {
     JSONParser jParser = new JSONParser();
     JSONObject json;
     //    private static String url_savehonors= "http://192.168.100.10/AESTest/SaveHonors";
-    EditText title1, issuer1, description1, title2, issuer2, description2, title3, issuer3, description3, title4, issuer4, description4, title5, issuer5, description5, title6, issuer6, description6, title7, issuer7, description7, title8, issuer8, description8, title9, issuer9, description9, title10, issuer10, description10;
+    TextInputEditText title1, issuer1, description1, title2, issuer2, description2, title3, issuer3, description3, title4, issuer4, description4, title5, issuer5, description5, title6, issuer6, description6, title7, issuer7, description7, title8, issuer8, description8, title9, issuer9, description9, title10, issuer10, description10;
     String stitle1 = "", sissuer1 = "", sdescription1 = "", stitle2 = "", sissuer2 = "", sdescription2 = "", stitle3 = "", sissuer3 = "", sdescription3 = "", stitle4 = "", sissuer4 = "", sdescription4 = "", stitle5 = "", sissuer5 = "", sdescription5 = "", stitle6 = "", sissuer6 = "", sdescription6 = "", stitle7 = "", sissuer7 = "", sdescription7 = "", stitle8 = "", sissuer8 = "", sdescription8 = "", stitle9 = "", sissuer9 = "", sdescription9 = "", stitle10 = "", sissuer10 = "", sdescription10 = "", syearofhonor1 = "", syearofhonor2 = "", syearofhonor3 = "", syearofhonor4 = "", syearofhonor5 = "", syearofhonor6 = "", syearofhonor7 = "", syearofhonor8 = "", syearofhonor9 = "", syearofhonor10 = "";
     TextInputLayout titleinput1, issuerinput1, decrinput1, titleinput2, issuerinput2, decrinput2, titleinput3, issuerinput3, decrinput3, titleinput4, issuerinput4, decrinput4, titleinput5, issuerinput5, decrinput5, titleinput6, issuerinput6, decrinput6, titleinput7, issuerinput7, decrinput7, titleinput8, issuerinput8, decrinput8, titleinput9, issuerinput9, decrinput9, titleinput10, issuerinput10, decrinput10, yearhonor1, yearhonor2, yearhonor3, yearhonor4, yearhonor5, yearhonor6, yearhonor7, yearhonor8, yearhonor9, yearhonor10;
-    EditText yearofhonor1, yearofhonor2, yearofhonor3, yearofhonor4, yearofhonor5, yearofhonor6, yearofhonor7, yearofhonor8, yearofhonor9, yearofhonor10;
+    TextInputEditText yearofhonor1, yearofhonor2, yearofhonor3, yearofhonor4, yearofhonor5, yearofhonor6, yearofhonor7, yearofhonor8, yearofhonor9, yearofhonor10;
     View trash1selectionview, trash2selectionview, trash3selectionview, trash4selectionview, trash5selectionview, trash6selectionview, trash7selectionview, trash8selectionview, trash9selectionview, trash10selectionview;
     int edittedFlag = 0;
 
@@ -162,47 +162,47 @@ public class MyProfileAchievements extends AppCompatActivity {
         });
 
 
-        title1 = (EditText) findViewById(R.id.title1);
-        issuer1 = (EditText) findViewById(R.id.issuer1);
-        description1 = (EditText) findViewById(R.id.description1);
+        title1 = (TextInputEditText) findViewById(R.id.title1);
+        issuer1 = (TextInputEditText) findViewById(R.id.issuer1);
+        description1 = (TextInputEditText) findViewById(R.id.description1);
 
-        title2 = (EditText) findViewById(R.id.title2);
-        issuer2 = (EditText) findViewById(R.id.issuer2);
-        description2 = (EditText) findViewById(R.id.description2);
-        title3 = (EditText) findViewById(R.id.title3);
-        issuer3 = (EditText) findViewById(R.id.issuer3);
-        description3 = (EditText) findViewById(R.id.description3);
-        title4 = (EditText) findViewById(R.id.title4);
-        issuer4 = (EditText) findViewById(R.id.issuer4);
-        description4 = (EditText) findViewById(R.id.description4);
-        title5 = (EditText) findViewById(R.id.title5);
-        issuer5 = (EditText) findViewById(R.id.issuer5);
-        description5 = (EditText) findViewById(R.id.description5);
-        title6 = (EditText) findViewById(R.id.title6);
-        issuer6 = (EditText) findViewById(R.id.issuer6);
-        description6 = (EditText) findViewById(R.id.description6);
-        title7 = (EditText) findViewById(R.id.title7);
-        issuer7 = (EditText) findViewById(R.id.issuer7);
-        description7 = (EditText) findViewById(R.id.description7);
-        title8 = (EditText) findViewById(R.id.title8);
-        issuer8 = (EditText) findViewById(R.id.issuer8);
-        description8 = (EditText) findViewById(R.id.description8);
-        title9 = (EditText) findViewById(R.id.title9);
-        issuer9 = (EditText) findViewById(R.id.issuer9);
-        description9 = (EditText) findViewById(R.id.description9);
-        title10 = (EditText) findViewById(R.id.title10);
-        issuer10 = (EditText) findViewById(R.id.issuer10);
-        description10 = (EditText) findViewById(R.id.description10);
-        yearofhonor1 = (EditText) findViewById(R.id.yearofhonor1);
-        yearofhonor2 = (EditText) findViewById(R.id.yearofhonor2);
-        yearofhonor3 = (EditText) findViewById(R.id.yearofhonor3);
-        yearofhonor4 = (EditText) findViewById(R.id.yearofhonor4);
-        yearofhonor5 = (EditText) findViewById(R.id.yearofhonor5);
-        yearofhonor6 = (EditText) findViewById(R.id.yearofhonor6);
-        yearofhonor7 = (EditText) findViewById(R.id.yearofhonor7);
-        yearofhonor8 = (EditText) findViewById(R.id.yearofhonor8);
-        yearofhonor9 = (EditText) findViewById(R.id.yearofhonor9);
-        yearofhonor10 = (EditText) findViewById(R.id.yearofhonor10);
+        title2 = (TextInputEditText) findViewById(R.id.title2);
+        issuer2 = (TextInputEditText) findViewById(R.id.issuer2);
+        description2 = (TextInputEditText) findViewById(R.id.description2);
+        title3 = (TextInputEditText) findViewById(R.id.title3);
+        issuer3 = (TextInputEditText) findViewById(R.id.issuer3);
+        description3 = (TextInputEditText) findViewById(R.id.description3);
+        title4 = (TextInputEditText) findViewById(R.id.title4);
+        issuer4 = (TextInputEditText) findViewById(R.id.issuer4);
+        description4 = (TextInputEditText) findViewById(R.id.description4);
+        title5 = (TextInputEditText) findViewById(R.id.title5);
+        issuer5 = (TextInputEditText) findViewById(R.id.issuer5);
+        description5 = (TextInputEditText) findViewById(R.id.description5);
+        title6 = (TextInputEditText) findViewById(R.id.title6);
+        issuer6 = (TextInputEditText) findViewById(R.id.issuer6);
+        description6 = (TextInputEditText) findViewById(R.id.description6);
+        title7 = (TextInputEditText) findViewById(R.id.title7);
+        issuer7 = (TextInputEditText) findViewById(R.id.issuer7);
+        description7 = (TextInputEditText) findViewById(R.id.description7);
+        title8 = (TextInputEditText) findViewById(R.id.title8);
+        issuer8 = (TextInputEditText) findViewById(R.id.issuer8);
+        description8 = (TextInputEditText) findViewById(R.id.description8);
+        title9 = (TextInputEditText) findViewById(R.id.title9);
+        issuer9 = (TextInputEditText) findViewById(R.id.issuer9);
+        description9 = (TextInputEditText) findViewById(R.id.description9);
+        title10 = (TextInputEditText) findViewById(R.id.title10);
+        issuer10 = (TextInputEditText) findViewById(R.id.issuer10);
+        description10 = (TextInputEditText) findViewById(R.id.description10);
+        yearofhonor1 = (TextInputEditText) findViewById(R.id.yearofhonor1);
+        yearofhonor2 = (TextInputEditText) findViewById(R.id.yearofhonor2);
+        yearofhonor3 = (TextInputEditText) findViewById(R.id.yearofhonor3);
+        yearofhonor4 = (TextInputEditText) findViewById(R.id.yearofhonor4);
+        yearofhonor5 = (TextInputEditText) findViewById(R.id.yearofhonor5);
+        yearofhonor6 = (TextInputEditText) findViewById(R.id.yearofhonor6);
+        yearofhonor7 = (TextInputEditText) findViewById(R.id.yearofhonor7);
+        yearofhonor8 = (TextInputEditText) findViewById(R.id.yearofhonor8);
+        yearofhonor9 = (TextInputEditText) findViewById(R.id.yearofhonor9);
+        yearofhonor10 = (TextInputEditText) findViewById(R.id.yearofhonor10);
 
         titleinput1 = (TextInputLayout) findViewById(R.id.titleinput1);
         issuerinput1 = (TextInputLayout) findViewById(R.id.issuerinput1);
@@ -256,46 +256,46 @@ public class MyProfileAchievements extends AppCompatActivity {
         yearhonor10 = (TextInputLayout) findViewById(R.id.yearhonor10);
 
         title1.setTypeface(MyConstants.getBold(this));
-                issuer1.setTypeface(MyConstants.getBold(this));
-                 description1.setTypeface(MyConstants.getBold(this));
-                 title2.setTypeface(MyConstants.getBold(this));
-                 issuer2.setTypeface(MyConstants.getBold(this));
-                 description2.setTypeface(MyConstants.getBold(this));
-                 title3.setTypeface(MyConstants.getBold(this));
-                 issuer3.setTypeface(MyConstants.getBold(this));
-                 description3.setTypeface(MyConstants.getBold(this));
-                 title4.setTypeface(MyConstants.getBold(this));
-                 issuer4.setTypeface(MyConstants.getBold(this));
-                 description4.setTypeface(MyConstants.getBold(this));
-                 title5.setTypeface(MyConstants.getBold(this));
-                 issuer5.setTypeface(MyConstants.getBold(this));
-                 description5.setTypeface(MyConstants.getBold(this));
-                 title6.setTypeface(MyConstants.getBold(this));
-                 issuer6.setTypeface(MyConstants.getBold(this));
-                 description6.setTypeface(MyConstants.getBold(this));
-                 title7.setTypeface(MyConstants.getBold(this));
+        issuer1.setTypeface(MyConstants.getBold(this));
+        description1.setTypeface(MyConstants.getBold(this));
+        title2.setTypeface(MyConstants.getBold(this));
+        issuer2.setTypeface(MyConstants.getBold(this));
+        description2.setTypeface(MyConstants.getBold(this));
+        title3.setTypeface(MyConstants.getBold(this));
+        issuer3.setTypeface(MyConstants.getBold(this));
+        description3.setTypeface(MyConstants.getBold(this));
+        title4.setTypeface(MyConstants.getBold(this));
+        issuer4.setTypeface(MyConstants.getBold(this));
+        description4.setTypeface(MyConstants.getBold(this));
+        title5.setTypeface(MyConstants.getBold(this));
+        issuer5.setTypeface(MyConstants.getBold(this));
+        description5.setTypeface(MyConstants.getBold(this));
+        title6.setTypeface(MyConstants.getBold(this));
+        issuer6.setTypeface(MyConstants.getBold(this));
+        description6.setTypeface(MyConstants.getBold(this));
+        title7.setTypeface(MyConstants.getBold(this));
 
-                issuer7.setTypeface(MyConstants.getBold(this));
-                 description7.setTypeface(MyConstants.getBold(this));
-                 title8.setTypeface(MyConstants.getBold(this));
-                 issuer8.setTypeface(MyConstants.getBold(this));
-                 description8.setTypeface(MyConstants.getBold(this));
-                 title9.setTypeface(MyConstants.getBold(this));
-                 issuer9.setTypeface(MyConstants.getBold(this));
-                 description9.setTypeface(MyConstants.getBold(this));
-                 title10.setTypeface(MyConstants.getBold(this));
-                 issuer10.setTypeface(MyConstants.getBold(this));
-                 description10.setTypeface(MyConstants.getBold(this));
+        issuer7.setTypeface(MyConstants.getBold(this));
+        description7.setTypeface(MyConstants.getBold(this));
+        title8.setTypeface(MyConstants.getBold(this));
+        issuer8.setTypeface(MyConstants.getBold(this));
+        description8.setTypeface(MyConstants.getBold(this));
+        title9.setTypeface(MyConstants.getBold(this));
+        issuer9.setTypeface(MyConstants.getBold(this));
+        description9.setTypeface(MyConstants.getBold(this));
+        title10.setTypeface(MyConstants.getBold(this));
+        issuer10.setTypeface(MyConstants.getBold(this));
+        description10.setTypeface(MyConstants.getBold(this));
         yearofhonor1.setTypeface(MyConstants.getBold(this));
-                 yearofhonor2.setTypeface(MyConstants.getBold(this));
-                 yearofhonor3.setTypeface(MyConstants.getBold(this));
-                 yearofhonor4.setTypeface(MyConstants.getBold(this));
-                 yearofhonor5.setTypeface(MyConstants.getBold(this));
-                 yearofhonor6.setTypeface(MyConstants.getBold(this));
-                 yearofhonor7.setTypeface(MyConstants.getBold(this));
-                 yearofhonor8.setTypeface(MyConstants.getBold(this));
-                 yearofhonor9.setTypeface(MyConstants.getBold(this));
-                 yearofhonor10.setTypeface(MyConstants.getBold(this));
+        yearofhonor2.setTypeface(MyConstants.getBold(this));
+        yearofhonor3.setTypeface(MyConstants.getBold(this));
+        yearofhonor4.setTypeface(MyConstants.getBold(this));
+        yearofhonor5.setTypeface(MyConstants.getBold(this));
+        yearofhonor6.setTypeface(MyConstants.getBold(this));
+        yearofhonor7.setTypeface(MyConstants.getBold(this));
+        yearofhonor8.setTypeface(MyConstants.getBold(this));
+        yearofhonor9.setTypeface(MyConstants.getBold(this));
+        yearofhonor10.setTypeface(MyConstants.getBold(this));
 
 
 
@@ -364,7 +364,7 @@ public class MyProfileAchievements extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-titleinput1.setError(null);
+                titleinput1.setError(null);
             }
 
             @Override
@@ -381,7 +381,7 @@ titleinput1.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- issuerinput1.setError(null);
+                issuerinput1.setError(null);
             }
 
             @Override
@@ -398,7 +398,7 @@ titleinput1.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- decrinput1.setError(null);
+                decrinput1.setError(null);
             }
 
             @Override
@@ -415,7 +415,7 @@ titleinput1.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-yearhonor1.setError(null);
+                yearhonor1.setError(null);
             }
 
             @Override
@@ -432,7 +432,7 @@ yearhonor1.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-titleinput2.setError(null);
+                titleinput2.setError(null);
             }
 
             @Override
@@ -449,7 +449,7 @@ titleinput2.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- issuerinput2.setError(null);
+                issuerinput2.setError(null);
             }
 
             @Override
@@ -466,7 +466,7 @@ titleinput2.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- decrinput2.setError(null);
+                decrinput2.setError(null);
             }
 
             @Override
@@ -483,7 +483,7 @@ titleinput2.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-yearhonor2.setError(null);
+                yearhonor2.setError(null);
             }
 
             @Override
@@ -500,7 +500,7 @@ yearhonor2.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-titleinput3.setError(null);
+                titleinput3.setError(null);
             }
 
             @Override
@@ -517,7 +517,7 @@ titleinput3.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- issuerinput3.setError(null);
+                issuerinput3.setError(null);
             }
 
             @Override
@@ -534,7 +534,7 @@ titleinput3.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- decrinput3.setError(null);
+                decrinput3.setError(null);
             }
 
             @Override
@@ -551,7 +551,7 @@ titleinput3.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-yearhonor3.setError(null);
+                yearhonor3.setError(null);
             }
 
             @Override
@@ -568,7 +568,7 @@ yearhonor3.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-titleinput4.setError(null);
+                titleinput4.setError(null);
             }
 
             @Override
@@ -585,7 +585,7 @@ titleinput4.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- issuerinput4.setError(null);
+                issuerinput4.setError(null);
             }
 
             @Override
@@ -602,7 +602,7 @@ titleinput4.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- decrinput4.setError(null);
+                decrinput4.setError(null);
             }
 
             @Override
@@ -619,7 +619,7 @@ titleinput4.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-yearhonor4.setError(null);
+                yearhonor4.setError(null);
             }
 
             @Override
@@ -636,7 +636,7 @@ yearhonor4.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-titleinput5.setError(null);
+                titleinput5.setError(null);
             }
 
             @Override
@@ -653,7 +653,7 @@ titleinput5.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- issuerinput5.setError(null);
+                issuerinput5.setError(null);
             }
 
             @Override
@@ -670,7 +670,7 @@ titleinput5.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- decrinput5.setError(null);
+                decrinput5.setError(null);
             }
 
             @Override
@@ -687,7 +687,7 @@ titleinput5.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-yearhonor5.setError(null);
+                yearhonor5.setError(null);
             }
 
             @Override
@@ -704,7 +704,7 @@ yearhonor5.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-titleinput6.setError(null);
+                titleinput6.setError(null);
             }
 
             @Override
@@ -721,7 +721,7 @@ titleinput6.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- issuerinput6.setError(null);
+                issuerinput6.setError(null);
             }
 
             @Override
@@ -738,7 +738,7 @@ titleinput6.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- decrinput6.setError(null);
+                decrinput6.setError(null);
             }
 
             @Override
@@ -755,7 +755,7 @@ titleinput6.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-yearhonor6.setError(null);
+                yearhonor6.setError(null);
             }
 
             @Override
@@ -772,7 +772,7 @@ yearhonor6.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-titleinput7.setError(null);
+                titleinput7.setError(null);
             }
 
             @Override
@@ -789,7 +789,7 @@ titleinput7.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- issuerinput7.setError(null);
+                issuerinput7.setError(null);
             }
 
             @Override
@@ -806,7 +806,7 @@ titleinput7.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- decrinput7.setError(null);
+                decrinput7.setError(null);
             }
 
             @Override
@@ -823,7 +823,7 @@ titleinput7.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-yearhonor7.setError(null);
+                yearhonor7.setError(null);
             }
 
             @Override
@@ -840,7 +840,7 @@ yearhonor7.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-titleinput8.setError(null);
+                titleinput8.setError(null);
             }
 
             @Override
@@ -857,7 +857,7 @@ titleinput8.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- issuerinput8.setError(null);
+                issuerinput8.setError(null);
             }
 
             @Override
@@ -874,7 +874,7 @@ titleinput8.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- decrinput8.setError(null);
+                decrinput8.setError(null);
             }
 
             @Override
@@ -891,7 +891,7 @@ titleinput8.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-yearhonor8.setError(null);
+                yearhonor8.setError(null);
             }
 
             @Override
@@ -908,7 +908,7 @@ yearhonor8.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-titleinput9.setError(null);
+                titleinput9.setError(null);
             }
 
             @Override
@@ -925,7 +925,7 @@ titleinput9.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- issuerinput9.setError(null);
+                issuerinput9.setError(null);
             }
 
             @Override
@@ -942,7 +942,7 @@ titleinput9.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- decrinput9.setError(null);
+                decrinput9.setError(null);
             }
 
             @Override
@@ -959,7 +959,7 @@ titleinput9.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-yearhonor9.setError(null);
+                yearhonor9.setError(null);
             }
 
             @Override
@@ -976,7 +976,7 @@ yearhonor9.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
-titleinput10.setError(null);
+                titleinput10.setError(null);
             }
 
             @Override
@@ -993,7 +993,7 @@ titleinput10.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- issuerinput10.setError(null);
+                issuerinput10.setError(null);
             }
 
             @Override
@@ -1010,7 +1010,7 @@ titleinput10.setError(null);
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 edittedFlag = 1;
- decrinput10.setError(null);
+                decrinput10.setError(null);
             }
 
             @Override
@@ -2664,7 +2664,7 @@ titleinput10.setError(null);
         }
     }
 
-    void showDateDialog(final EditText id) {
+    void showDateDialog(final TextInputEditText id) {
 
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyProfileAchievements.this);
@@ -2752,7 +2752,7 @@ titleinput10.setError(null);
 
     }
 
-    void setMonthYear(EditText id, String selectedMonth, String selectedYear, int isInvalidDate) {
+    void setMonthYear(TextInputEditText id, String selectedMonth, String selectedYear, int isInvalidDate) {
         if (isInvalidDate == 1) {
             id.setText("");
             id.setError("Kindly select valid Date");

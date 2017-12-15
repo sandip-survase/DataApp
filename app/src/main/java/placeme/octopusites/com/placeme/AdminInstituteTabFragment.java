@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,10 +31,10 @@ import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 public class AdminInstituteTabFragment extends Fragment {
     public static final String MyPREFERENCES = "MyPrefs";
-//    Button save;
+    //    Button save;
 //    ProgressBar saveprogress;
     public static final String Username = "nameKey";
-    EditText iname, iemail, iweb, iphone, ialtphone, uniname,caddrline1, caddrline2, caddrline3, ireg;
+    TextInputEditText iname, iemail, iweb, iphone, ialtphone, uniname,caddrline1, caddrline2, caddrline3, ireg;
     String instname = "", instemail = "", instweb = "", instphone = "", instaltrphone = "", universityname = "", instreg = "", strobj = "", instcaddrline1 = "", instcaddrline2 = "", instcaddrline3 = "";
     TextInputLayout instnameinput,instemailinput,instwebinput,instphoneinput,instphoneainput,instuniversityinput,caddrline1input, caddrline2input, caddrline3input,instreginput;
     String encUsername, enciname, encinstemail, encinstweb, encinstphone, encinstaltrphone, encuniversityname, encCinstreg;
@@ -85,18 +85,18 @@ public class AdminInstituteTabFragment extends Fragment {
         caddrline3input.setTypeface(MyConstants.getLight(getActivity()));
 
 
-        iname = (EditText) rootView.findViewById(R.id.instname);
-        iemail = (EditText) rootView.findViewById(R.id.instemail);
-        iweb = (EditText) rootView.findViewById(R.id.instweb);
-        iphone = (EditText) rootView.findViewById(R.id.instphone);
-        ialtphone = (EditText) rootView.findViewById(R.id.instphonea);
-        uniname = (EditText) rootView.findViewById(R.id.instuniversity);
-        ireg = (EditText) rootView.findViewById(R.id.instreg);
+        iname = (TextInputEditText) rootView.findViewById(R.id.instname);
+        iemail = (TextInputEditText) rootView.findViewById(R.id.instemail);
+        iweb = (TextInputEditText) rootView.findViewById(R.id.instweb);
+        iphone = (TextInputEditText) rootView.findViewById(R.id.instphone);
+        ialtphone = (TextInputEditText) rootView.findViewById(R.id.instphonea);
+        uniname = (TextInputEditText) rootView.findViewById(R.id.instuniversity);
+        ireg = (TextInputEditText) rootView.findViewById(R.id.instreg);
         loctxt = (TextView)rootView.findViewById(R.id.loctxt);
 
-        caddrline1 = (EditText)rootView. findViewById(R.id.caddrline1);
-        caddrline2 = (EditText)rootView. findViewById(R.id.caddrline2);
-        caddrline3 = (EditText)rootView. findViewById(R.id.caddrline3);
+        caddrline1 = (TextInputEditText)rootView. findViewById(R.id.caddrline1);
+        caddrline2 = (TextInputEditText)rootView. findViewById(R.id.caddrline2);
+        caddrline3 = (TextInputEditText)rootView. findViewById(R.id.caddrline3);
 
         iname.setTypeface(MyConstants.getBold(getActivity()));
         iemail.setTypeface(MyConstants.getBold(getActivity()));
@@ -360,7 +360,7 @@ public class AdminInstituteTabFragment extends Fragment {
             errorflag7 = 1;
 
         } else {
-               instnameinput.setError(null);
+            instnameinput.setError(null);
             if (!instemail.contains("@") || (!instemail.contains(".edu"))) {
                 instemailinput.setError("Kindly enter valid email address (must contain .edu)");
                 errorflag1 = 1;

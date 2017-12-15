@@ -54,7 +54,7 @@
         android:layout_marginTop="20dp"
         android:theme="@style/MyEditTextTheme"
         >
-        <android.support.v7.widget.AppCompatEditText
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/otp"
             android:hint="OTP"
             android:layout_below="@+id/otptxt"

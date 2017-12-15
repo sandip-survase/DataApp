@@ -88,11 +88,12 @@
                     android:layout_height="wrap_content"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/marks12"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Marks Obtained"
+                        android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLength="5"
                         android:textColor="@color/dark_color"
@@ -107,11 +108,12 @@
                     android:layout_below="@+id/marks12input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/outof12"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Out Of Marks"
+                        android:imeOptions="actionDone"
                         android:inputType="number"
                         android:maxLength="5"
                         android:textColor="@color/dark_color"
@@ -136,7 +138,7 @@
                     android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/percent12"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -158,10 +160,11 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/schoolname12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
                     android:hint="School Name"
                     android:inputType="textCapWords"
                     android:singleLine="true"
@@ -218,7 +221,7 @@
                 android:theme="@style/TextLabel"
                 android:visibility="gone">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/otherstream12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -281,11 +284,12 @@
 
                 >
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/otherboard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Please Specify"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
@@ -308,7 +312,7 @@
                     android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/yearofpassing12"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -349,7 +353,7 @@
                     android:layout_height="wrap_content"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/dmarkssem1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -368,7 +372,7 @@
                     android:layout_below="@+id/marksdsem1input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/doutofsem1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -397,7 +401,7 @@
                     android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/dpercentsem1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -424,7 +428,7 @@
                     android:layout_height="wrap_content"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/dmarkssem2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -443,7 +447,7 @@
                     android:layout_below="@+id/marksdsem2input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/doutofsem2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -473,7 +477,7 @@
                     android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/dpercentsem2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -499,7 +503,7 @@
                     android:layout_height="wrap_content"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/dmarkssem3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -518,7 +522,7 @@
                     android:layout_below="@+id/marksdsem3input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/doutofsem3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -548,7 +552,7 @@
                     android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/dpercentsem3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -575,7 +579,7 @@
                     android:layout_height="wrap_content"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/dmarkssem4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -594,7 +598,7 @@
                     android:layout_below="@+id/marksdsem4input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/doutofsem4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -624,7 +628,7 @@
                     android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/dpercentsem4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -652,7 +656,7 @@
                     android:layout_height="wrap_content"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/dmarkssem5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -671,7 +675,7 @@
                     android:layout_below="@+id/marksdsem5input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/doutofsem5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -701,7 +705,7 @@
                     android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/dpercentsem5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -728,7 +732,7 @@
                     android:layout_height="wrap_content"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/dmarkssem6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -747,7 +751,7 @@
                     android:layout_below="@+id/marksdsem6input"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/doutofsem6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -777,7 +781,7 @@
                     android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/dpercentsem6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -799,7 +803,7 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/daggregate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -862,7 +866,7 @@
                 android:theme="@style/TextLabel"
                 android:visibility="gone">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/othercourse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -963,7 +967,7 @@
                 android:theme="@style/TextLabel"
                 android:visibility="gone">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/otherboardd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -984,7 +988,7 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/schoolnamed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1010,7 +1014,7 @@
                     android:layout_marginTop="25dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/yearofpassingd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

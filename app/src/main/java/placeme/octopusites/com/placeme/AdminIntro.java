@@ -9,6 +9,7 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -58,7 +59,8 @@ public class AdminIntro extends AppCompatActivity {
     String digest1,digest2;
     AutoCompleteTextView citystaecountry;
     ArrayList<String> listAll=new ArrayList<String>();
-    EditText fname,lname,role,email,inst;
+
+    TextInputEditText fname,lname,role,email,inst;
     JSONObject json;
     JSONParser jParser = new JSONParser();
     private String username="";
@@ -110,11 +112,11 @@ public class AdminIntro extends AppCompatActivity {
 //        new GetCountries().execute();
 
 
-        fname=(EditText)findViewById(R.id.fname);
-        lname=(EditText)findViewById(R.id.lname);
-        role=(EditText)findViewById(R.id.role);
-        email=(EditText)findViewById(R.id.email);
-        inst=(EditText)findViewById(R.id.inst);
+        fname=(TextInputEditText)findViewById(R.id.fname);
+        lname=(TextInputEditText)findViewById(R.id.lname);
+        role=(TextInputEditText)findViewById(R.id.role);
+        email=(TextInputEditText)findViewById(R.id.email);
+        inst=(TextInputEditText)findViewById(R.id.inst);
 
         citystaecountry=(AutoCompleteTextView)findViewById(R.id.citystaecountry);
 

@@ -65,12 +65,13 @@
                 android:id="@+id/titleinput1"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title*"
                     android:textSize="16dp"
                     android:singleLine="true"
+                    android:imeOptions="actionNext"
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
                     android:inputType="textCapWords"
@@ -86,12 +87,13 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Issuer*"
                     android:textSize="16dp"
                     android:singleLine="true"
+                    android:imeOptions="actionNext"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
                     android:inputType="textCapWords"
@@ -107,12 +109,13 @@
                 android:id="@+id/decrinput1"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
                     android:hint="Description"
                     android:gravity="top|left"
+                    android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
                     android:textSize="16dp"
@@ -133,7 +136,7 @@
             android:layout_centerHorizontal="true"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Month, Year*"
@@ -189,12 +192,13 @@
                 android:id="@+id/titleinput2"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title*"
                     android:singleLine="true"
                     android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
                     android:inputType="textCapWords"
@@ -210,11 +214,12 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Issuer*"
                     android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:textColor="@color/dark_color"
@@ -232,12 +237,13 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
                     android:hint="Description"
                     android:gravity="top|left"
+                    android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
                     android:textSize="16dp"
@@ -258,7 +264,7 @@
             android:id="@+id/yearhonor2"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Month, Year*"
@@ -312,11 +318,12 @@
                 android:id="@+id/titleinput3"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title*"
                     android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
@@ -333,12 +340,13 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Issuer*"
                     android:textSize="16dp"
                     android:singleLine="true"
+                    android:imeOptions="actionNext"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
                     android:inputType="textCapWords"
@@ -354,11 +362,12 @@
                 android:id="@+id/decrinput3"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
                     android:hint="Description"
+                    android:imeOptions="actionDone"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
@@ -380,7 +389,7 @@
             android:id="@+id/yearhonor3"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Month, Year*"
@@ -434,11 +443,12 @@
                 android:id="@+id/titleinput4"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title*"
                     android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
@@ -455,12 +465,13 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Issuer*"
                     android:singleLine="true"
                     android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
                     android:inputType="textCapWords"
@@ -476,13 +487,14 @@
                 android:id="@+id/decrinput4"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
                     android:hint="Description"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
+                    android:imeOptions="actionDone"
                     android:scrollHorizontally="false"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
@@ -502,7 +514,7 @@
             android:id="@+id/yearhonor4"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Month, Year*"
@@ -556,11 +568,12 @@
                 android:id="@+id/titleinput5"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title*"
                     android:singleLine="true"
+                    android:imeOptions="actionNext"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
@@ -577,12 +590,13 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Issuer*"
                     android:singleLine="true"
                     android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
                     android:inputType="textCapWords"
@@ -598,11 +612,12 @@
                 android:id="@+id/decrinput5"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
                     android:hint="Description"
+                    android:imeOptions="actionDone"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
@@ -624,7 +639,7 @@
             android:id="@+id/yearhonor5"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Month, Year*"
@@ -678,11 +693,12 @@
                 android:id="@+id/titleinput6"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title*"
                     android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
@@ -699,10 +715,11 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Issuer*"
+                    android:imeOptions="actionNext"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
@@ -720,10 +737,11 @@
                 android:id="@+id/decrinput6"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
+                    android:imeOptions="actionDone"
                     android:hint="Description"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
@@ -746,7 +764,7 @@
             android:id="@+id/yearhonor6"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Month, Year*"
@@ -800,11 +818,12 @@
                 android:id="@+id/titleinput7"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title*"
                     android:singleLine="true"
+                    android:imeOptions="actionNext"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
@@ -821,12 +840,13 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Issuer*"
                     android:textSize="16dp"
                     android:singleLine="true"
+                    android:imeOptions="actionNext"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
                     android:inputType="textCapWords"
@@ -842,12 +862,13 @@
                 android:id="@+id/decrinput7"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
                     android:hint="Description"
                     android:gravity="top|left"
+                    android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
                     android:textSize="16dp"
@@ -868,7 +889,7 @@
             android:id="@+id/yearhonor7"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Month, Year*"
@@ -922,11 +943,12 @@
                 android:id="@+id/titleinput8"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title*"
                     android:singleLine="true"
+                    android:imeOptions="actionNext"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
@@ -943,11 +965,12 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Issuer*"
                     android:singleLine="true"
+                    android:imeOptions="actionNext"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
@@ -964,11 +987,12 @@
                 android:id="@+id/decrinput8"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
                     android:hint="Description"
+                    android:imeOptions="actionDone"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
@@ -990,7 +1014,7 @@
             android:id="@+id/yearhonor8"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Month, Year*"
@@ -1046,11 +1070,12 @@
                 android:id="@+id/titleinput9"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title*"
                     android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
@@ -1067,10 +1092,11 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Issuer*"
+                    android:imeOptions="actionNext"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
@@ -1088,10 +1114,11 @@
                 android:id="@+id/decrinput9"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
+                    android:imeOptions="actionDone"
                     android:hint="Description"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
@@ -1114,7 +1141,7 @@
             android:id="@+id/yearhonor9"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Month, Year*"
@@ -1167,11 +1194,12 @@
                 android:id="@+id/titleinput10"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title*"
                     android:singleLine="true"
+                    android:imeOptions="actionNext"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
@@ -1188,11 +1216,12 @@
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Issuer*"
                     android:singleLine="true"
+                    android:imeOptions="actionNext"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
@@ -1209,10 +1238,11 @@
                 android:id="@+id/decrinput10"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
+                    android:imeOptions="actionDone"
                     android:hint="Description"
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
@@ -1235,7 +1265,7 @@
             android:id="@+id/yearhonor10"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Month, Year*"

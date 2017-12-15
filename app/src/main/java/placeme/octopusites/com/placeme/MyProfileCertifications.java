@@ -20,7 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -53,8 +53,8 @@ public class MyProfileCertifications extends AppCompatActivity {
     JSONObject json;
     int editcertfi = 0;
     boolean blnswitch1, blnswitch2, blnswitch3, blnswitch4, blnswitch5, blnswitch6, blnswitch7, blnswitch8, blnswitch9, blnswitch10;
-    EditText title1, issuer1, license1, title2, issuer2, license2, title3, issuer3, license3, title4, issuer4, license4, title5, issuer5, license5, title6, issuer6, license6, title7, issuer7, license7, title8, issuer8, license8, title9, issuer9, license9, title10, issuer10, license10;
-    EditText startdate1, enddate1, startdate2, enddate2, startdate3, enddate3, startdate4, enddate4, startdate5, enddate5, startdate6, enddate6, startdate7, enddate7, startdate8, enddate8, startdate9, enddate9, startdate10, enddate10;
+    TextInputEditText title1, issuer1, license1, title2, issuer2, license2, title3, issuer3, license3, title4, issuer4, license4, title5, issuer5, license5, title6, issuer6, license6, title7, issuer7, license7, title8, issuer8, license8, title9, issuer9, license9, title10, issuer10, license10;
+    TextInputEditText startdate1, enddate1, startdate2, enddate2, startdate3, enddate3, startdate4, enddate4, startdate5, enddate5, startdate6, enddate6, startdate7, enddate7, startdate8, enddate8, startdate9, enddate9, startdate10, enddate10;
     TextInputLayout certistartdate1, certienddate1, certistartdate2, certienddate2, certistartdate3, certienddate3, certistartdate4, certienddate4, certistartdate5, certienddate5, certistartdate6, certienddate6, certistartdate7, certienddate7, certistartdate8, certienddate8, certistartdate9, certienddate9, certistartdate10, certienddate10;
     String stitle1 = "", sissuer1 = "", slicense1 = "", sstartdate1 = "", senddate1 = "", stitle2 = "", sissuer2 = "", slicense2 = "", sstartdate2 = "", senddate2 = "", stitle3 = "", sissuer3 = "", slicense3 = "", sstartdate3 = "", senddate3 = "", stitle4 = "", sissuer4 = "", slicense4 = "", sstartdate4 = "", senddate4 = "", stitle5 = "", sissuer5 = "", slicense5 = "", sstartdate5 = "", senddate5 = "", stitle6 = "", sissuer6 = "", slicense6 = "", sstartdate6 = "", senddate6 = "", stitle7 = "", sissuer7 = "", slicense7 = "", sstartdate7 = "", senddate7 = "", stitle8 = "", sissuer8 = "", slicense8 = "", sstartdate8 = "", senddate8 = "", stitle9 = "", sissuer9 = "", slicense9 = "", sstartdate9 = "", senddate9 = "", stitle10 = "", sissuer10 = "", slicense10 = "", sstartdate10 = "", senddate10 = "";
     String willexpire1 = "yes", willexpire2 = "yes", willexpire3 = "yes", willexpire4 = "yes", willexpire5 = "yes", willexpire6 = "yes", willexpire7 = "yes", willexpire8 = "yes", willexpire9 = "yes", willexpire10 = "yes";
@@ -173,57 +173,57 @@ public class MyProfileCertifications extends AppCompatActivity {
             }
         });
 
-        title1 = (EditText) findViewById(R.id.title1);
-        issuer1 = (EditText) findViewById(R.id.issuer1);
-        license1 = (EditText) findViewById(R.id.license1);
-        title2 = (EditText) findViewById(R.id.title2);
-        issuer2 = (EditText) findViewById(R.id.issuer2);
-        license2 = (EditText) findViewById(R.id.license2);
-        title3 = (EditText) findViewById(R.id.title3);
-        issuer3 = (EditText) findViewById(R.id.issuer3);
-        license3 = (EditText) findViewById(R.id.license3);
-        title4 = (EditText) findViewById(R.id.title4);
-        issuer4 = (EditText) findViewById(R.id.issuer4);
-        license4 = (EditText) findViewById(R.id.license4);
-        title5 = (EditText) findViewById(R.id.title5);
-        issuer5 = (EditText) findViewById(R.id.issuer5);
-        license5 = (EditText) findViewById(R.id.license5);
-        title6 = (EditText) findViewById(R.id.title6);
-        issuer6 = (EditText) findViewById(R.id.issuer6);
-        license6 = (EditText) findViewById(R.id.license6);
-        title7 = (EditText) findViewById(R.id.title7);
-        issuer7 = (EditText) findViewById(R.id.issuer7);
-        license7 = (EditText) findViewById(R.id.license7);
-        title8 = (EditText) findViewById(R.id.title8);
-        issuer8 = (EditText) findViewById(R.id.issuer8);
-        license8 = (EditText) findViewById(R.id.license8);
-        title9 = (EditText) findViewById(R.id.title9);
-        issuer9 = (EditText) findViewById(R.id.issuer9);
-        license9 = (EditText) findViewById(R.id.license9);
-        title10 = (EditText) findViewById(R.id.title10);
-        issuer10 = (EditText) findViewById(R.id.issuer10);
-        license10 = (EditText) findViewById(R.id.license10);
+        title1 = (TextInputEditText) findViewById(R.id.title1);
+        issuer1 = (TextInputEditText) findViewById(R.id.issuer1);
+        license1 = (TextInputEditText) findViewById(R.id.license1);
+        title2 = (TextInputEditText) findViewById(R.id.title2);
+        issuer2 = (TextInputEditText) findViewById(R.id.issuer2);
+        license2 = (TextInputEditText) findViewById(R.id.license2);
+        title3 = (TextInputEditText) findViewById(R.id.title3);
+        issuer3 = (TextInputEditText) findViewById(R.id.issuer3);
+        license3 = (TextInputEditText) findViewById(R.id.license3);
+        title4 = (TextInputEditText) findViewById(R.id.title4);
+        issuer4 = (TextInputEditText) findViewById(R.id.issuer4);
+        license4 = (TextInputEditText) findViewById(R.id.license4);
+        title5 = (TextInputEditText) findViewById(R.id.title5);
+        issuer5 = (TextInputEditText) findViewById(R.id.issuer5);
+        license5 = (TextInputEditText) findViewById(R.id.license5);
+        title6 = (TextInputEditText) findViewById(R.id.title6);
+        issuer6 = (TextInputEditText) findViewById(R.id.issuer6);
+        license6 = (TextInputEditText) findViewById(R.id.license6);
+        title7 = (TextInputEditText) findViewById(R.id.title7);
+        issuer7 = (TextInputEditText) findViewById(R.id.issuer7);
+        license7 = (TextInputEditText) findViewById(R.id.license7);
+        title8 = (TextInputEditText) findViewById(R.id.title8);
+        issuer8 = (TextInputEditText) findViewById(R.id.issuer8);
+        license8 = (TextInputEditText) findViewById(R.id.license8);
+        title9 = (TextInputEditText) findViewById(R.id.title9);
+        issuer9 = (TextInputEditText) findViewById(R.id.issuer9);
+        license9 = (TextInputEditText) findViewById(R.id.license9);
+        title10 = (TextInputEditText) findViewById(R.id.title10);
+        issuer10 = (TextInputEditText) findViewById(R.id.issuer10);
+        license10 = (TextInputEditText) findViewById(R.id.license10);
 
-        startdate1 = (EditText) findViewById(R.id.startdate1);
-        enddate1 = (EditText) findViewById(R.id.enddate1);
-        startdate2 = (EditText) findViewById(R.id.startdate2);
-        enddate2 = (EditText) findViewById(R.id.enddate2);
-        startdate3 = (EditText) findViewById(R.id.startdate3);
-        enddate3 = (EditText) findViewById(R.id.enddate3);
-        startdate4 = (EditText) findViewById(R.id.startdate4);
-        enddate4 = (EditText) findViewById(R.id.enddate4);
-        startdate5 = (EditText) findViewById(R.id.startdate5);
-        enddate5 = (EditText) findViewById(R.id.enddate5);
-        startdate6 = (EditText) findViewById(R.id.startdate6);
-        enddate6 = (EditText) findViewById(R.id.enddate6);
-        startdate7 = (EditText) findViewById(R.id.startdate7);
-        enddate7 = (EditText) findViewById(R.id.enddate7);
-        startdate8 = (EditText) findViewById(R.id.startdate8);
-        enddate8 = (EditText) findViewById(R.id.enddate8);
-        startdate9 = (EditText) findViewById(R.id.startdate9);
-        enddate9 = (EditText) findViewById(R.id.enddate9);
-        startdate10 = (EditText) findViewById(R.id.startdate10);
-        enddate10 = (EditText) findViewById(R.id.enddate10);
+        startdate1 = (TextInputEditText) findViewById(R.id.startdate1);
+        enddate1 = (TextInputEditText) findViewById(R.id.enddate1);
+        startdate2 = (TextInputEditText) findViewById(R.id.startdate2);
+        enddate2 = (TextInputEditText) findViewById(R.id.enddate2);
+        startdate3 = (TextInputEditText) findViewById(R.id.startdate3);
+        enddate3 = (TextInputEditText) findViewById(R.id.enddate3);
+        startdate4 = (TextInputEditText) findViewById(R.id.startdate4);
+        enddate4 = (TextInputEditText) findViewById(R.id.enddate4);
+        startdate5 = (TextInputEditText) findViewById(R.id.startdate5);
+        enddate5 = (TextInputEditText) findViewById(R.id.enddate5);
+        startdate6 = (TextInputEditText) findViewById(R.id.startdate6);
+        enddate6 = (TextInputEditText) findViewById(R.id.enddate6);
+        startdate7 = (TextInputEditText) findViewById(R.id.startdate7);
+        enddate7 = (TextInputEditText) findViewById(R.id.enddate7);
+        startdate8 = (TextInputEditText) findViewById(R.id.startdate8);
+        enddate8 = (TextInputEditText) findViewById(R.id.enddate8);
+        startdate9 = (TextInputEditText) findViewById(R.id.startdate9);
+        enddate9 = (TextInputEditText) findViewById(R.id.enddate9);
+        startdate10 = (TextInputEditText) findViewById(R.id.startdate10);
+        enddate10 = (TextInputEditText) findViewById(R.id.enddate10);
 
         expire1 = (TextView) findViewById(R.id.expire1);
         expire2 = (TextView) findViewById(R.id.expire2);
@@ -5494,7 +5494,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             MyProfileCertifications.super.onBackPressed();
     }
 
-    void showDateDialog(final EditText id,final TextInputLayout idinput, boolean isFromDateSelected, final int fromYear, final String fromMonth, final String todate) {
+    void showDateDialog(final TextInputEditText id,final TextInputLayout idinput, boolean isFromDateSelected, final int fromYear, final String fromMonth, final String todate) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyProfileCertifications.this);
         LayoutInflater inflater = MyProfileCertifications.this.getLayoutInflater();
@@ -5661,7 +5661,7 @@ public class MyProfileCertifications extends AppCompatActivity {
     }
 
 
-    boolean setMonthYear(EditText id, String selectedMonth, String selectedYear, boolean isValid) {
+    boolean setMonthYear(TextInputEditText id, String selectedMonth, String selectedYear, boolean isValid) {
         id.setError(null);
         if (isValid == true) {
             id.setText(selectedMonth + ", " + selectedYear);

@@ -8,7 +8,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatEditText;
+import android.support.design.widget.TextInputEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -18,7 +18,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
+
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +35,7 @@ import static placeme.octopusites.com.placeme.R.id.cpass;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
-    EditText currentedittext,newpassedittetx,newpassaedittext;
+    TextInputEditText currentedittext,newpassedittetx,newpassaedittext;
     String username,currentpass,newpass,newpassa,resultofop="";
     String enccurrentpass,encnewpass;
     JSONObject json;
@@ -60,9 +60,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
         username=MySharedPreferencesManager.getUsername(this);
         String role=MySharedPreferencesManager.getRole(this);
 
-        currentedittext=(EditText)findViewById(R.id.current_password);
-        newpassedittetx=(EditText)findViewById(R.id.new_password);
-        newpassaedittext=(EditText)findViewById(R.id.new_password_again);
+        currentedittext=(TextInputEditText)findViewById(R.id.current_password);
+        newpassedittetx=(TextInputEditText)findViewById(R.id.new_password);
+        newpassaedittext=(TextInputEditText)findViewById(R.id.new_password_again);
 
         currentedittext.addTextChangedListener(new TextWatcher() {
             @Override
@@ -124,12 +124,12 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         TextView createpasstxt=(TextView)findViewById(R.id.createpasstxt);
         TextView passsenstxt=(TextView)findViewById(R.id.passsenstxt);
-         currentinput=(TextInputLayout)findViewById(R.id.currentinput);
-         newinput=(TextInputLayout)findViewById(R.id.newinput);
-         newainput=(TextInputLayout)findViewById(R.id.newainput);
-        AppCompatEditText current_password=(AppCompatEditText)findViewById(R.id.current_password);
-        AppCompatEditText new_password=(AppCompatEditText)findViewById(R.id.new_password);
-        AppCompatEditText new_password_again=(AppCompatEditText)findViewById(R.id.new_password_again);
+        currentinput=(TextInputLayout)findViewById(R.id.currentinput);
+        newinput=(TextInputLayout)findViewById(R.id.newinput);
+        newainput=(TextInputLayout)findViewById(R.id.newainput);
+        TextInputEditText current_password=(TextInputEditText)findViewById(R.id.current_password);
+        TextInputEditText new_password=(TextInputEditText)findViewById(R.id.new_password);
+        TextInputEditText new_password_again=(TextInputEditText)findViewById(R.id.new_password_again);
         progressBar=(ProgressBar)findViewById(R.id.changepassprogress);
         changepassbutton=(Button)findViewById(R.id.change_password_button);
 

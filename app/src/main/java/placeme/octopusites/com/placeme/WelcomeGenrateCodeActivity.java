@@ -30,7 +30,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -78,11 +78,11 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
     JSONObject json;
     View WelComeCompanyView, WelComeInstituteView, WelComeShowCodeView;
     String encUsername, encFirstName, encLastName, encPassword, encAdminPhone, encrole, encProfessionalEmail, enccountry;
-    EditText instituteName, instituteAddress, instituteEmail, institutewebsite, institutephone, instituteAlternatephone, university, regNumber;
+    TextInputEditText instituteName, instituteAddress, instituteEmail, institutewebsite, institutephone, instituteAlternatephone, university, regNumber;
     TextInputLayout instituteNameTextInputLayout,countryinputlayout,addressTextInputLayout,instituteEmailTextInputLayout,websiteTextInputLayout,phoneTextInputLayout,alternatePhoneTextInputLayout,univercityTextInputLayout,regNumTextInputLayout;
     String sInstituteName, sInstituteAddress, sInstituteEmail, sInstitutewebsite, sInstitutephone, sInstituteAlternatephone = "", sUniversity, sRegNumber;
     String encInstituteName, encInstituteAddress, encInstituteEmail, encInstituteInstitutewebsite, encInstitutephone, encInstituteAlternatephone = "", encUniversity, encRegNumber;
-    EditText companyName, companyAddress, companyEmail, companyWebsite, companyPhone, companyAlternatephone, CIN, otherNature;
+    TextInputEditText companyName, companyAddress, companyEmail, companyWebsite, companyPhone, companyAlternatephone, CIN, otherNature;
     String sCompanyName, sCompanyAddress, sCompanyEmail, sCompanyWebsite, sCompanyPhone, sCompanyAlternatephone = "", sCIN, nature, sOtherNature = "";
     String encCompanyName, encCompanyAddress, encCompanyEmail, encCompanyWebsite, encCompanyPhone, encCompanyAlternatephone = "", encCIN, encOtherNature;
     String[] Nature = {"-Select Company Nature-", "Partnership", "Proprietory", "LLP (Limited Liability)", "Private Limited", "Public Limited", "Inc", "Other"};
@@ -116,14 +116,14 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
     public void setWelComeInstituteView(View v) {
         WelComeInstituteView = v;
-        instituteName = (EditText) WelComeInstituteView.findViewById(R.id.instituteName);
-        instituteAddress = (EditText) WelComeInstituteView.findViewById(R.id.instituteAddress);
-        instituteEmail = (EditText) WelComeInstituteView.findViewById(R.id.instituteEmail);
-        institutewebsite = (EditText) WelComeInstituteView.findViewById(R.id.institutewebsite);
-        institutephone = (EditText) WelComeInstituteView.findViewById(R.id.institutephone);
-        instituteAlternatephone = (EditText) WelComeInstituteView.findViewById(R.id.instituteAlternatephone);
-        university = (EditText) WelComeInstituteView.findViewById(R.id.university);
-        regNumber = (EditText) WelComeInstituteView.findViewById(R.id.regNumber);
+        instituteName = (TextInputEditText) WelComeInstituteView.findViewById(R.id.instituteName);
+        instituteAddress = (TextInputEditText) WelComeInstituteView.findViewById(R.id.instituteAddress);
+        instituteEmail = (TextInputEditText) WelComeInstituteView.findViewById(R.id.instituteEmail);
+        institutewebsite = (TextInputEditText) WelComeInstituteView.findViewById(R.id.institutewebsite);
+        institutephone = (TextInputEditText) WelComeInstituteView.findViewById(R.id.institutephone);
+        instituteAlternatephone = (TextInputEditText) WelComeInstituteView.findViewById(R.id.instituteAlternatephone);
+        university = (TextInputEditText) WelComeInstituteView.findViewById(R.id.university);
+        regNumber = (TextInputEditText) WelComeInstituteView.findViewById(R.id.regNumber);
         countryAutoBox = (AutoCompleteTextView) WelComeInstituteView.findViewById(R.id.countryAutoBox);
 
         countrycount = getResources().getStringArray(R.array.countries_array).length;
@@ -197,14 +197,14 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
     public void setWelComeCompanyView(View v) {     // --------------   WelComeCompanyView
 
         WelComeCompanyView = v;
-        companyName = (EditText) WelComeCompanyView.findViewById(R.id.companyName);
-        companyAddress = (EditText) WelComeCompanyView.findViewById(R.id.companyAddress);
-        companyEmail = (EditText) WelComeCompanyView.findViewById(R.id.companyEmail);
-        companyWebsite = (EditText) WelComeCompanyView.findViewById(R.id.companyWebsite);
-        companyPhone = (EditText) WelComeCompanyView.findViewById(R.id.companyPhone);
-        companyAlternatephone = (EditText) WelComeCompanyView.findViewById(R.id.companyAlternatephone);
-        CIN = (EditText) WelComeCompanyView.findViewById(R.id.CIN);
-        otherNature = (EditText) WelComeCompanyView.findViewById(R.id.otherNature);
+        companyName = (TextInputEditText) WelComeCompanyView.findViewById(R.id.companyName);
+        companyAddress = (TextInputEditText) WelComeCompanyView.findViewById(R.id.companyAddress);
+        companyEmail = (TextInputEditText) WelComeCompanyView.findViewById(R.id.companyEmail);
+        companyWebsite = (TextInputEditText) WelComeCompanyView.findViewById(R.id.companyWebsite);
+        companyPhone = (TextInputEditText) WelComeCompanyView.findViewById(R.id.companyPhone);
+        companyAlternatephone = (TextInputEditText) WelComeCompanyView.findViewById(R.id.companyAlternatephone);
+        CIN = (TextInputEditText) WelComeCompanyView.findViewById(R.id.CIN);
+        otherNature = (TextInputEditText) WelComeCompanyView.findViewById(R.id.otherNature);
 
         countryAutoBoxCompany = (AutoCompleteTextView) WelComeCompanyView.findViewById(R.id.countryAutoBoxCompany);
 

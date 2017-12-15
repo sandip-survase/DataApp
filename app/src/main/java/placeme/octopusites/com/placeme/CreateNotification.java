@@ -28,7 +28,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -80,7 +80,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
     TextView createnotitxt, createnotinotitxt, lastmodifiedtxt;
     ImageView trashnotification;
     RelativeLayout file1;
-    EditText title, notiffication;
+    TextInputEditText title, notiffication;
     CheckBox stud, allum;
     String stitle = "", snotiffication = "";
     String username = "", srole = "", plainusername = "", forwhom = "", encRole;
@@ -223,8 +223,8 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
         choosetxt.setTypeface(custom_font2);
         attachmentstxt.setTypeface(custom_font2);
 
-        title = (EditText) findViewById(R.id.title);
-        notiffication = (EditText) findViewById(R.id.notification);
+        title = (TextInputEditText) findViewById(R.id.title);
+        notiffication = (TextInputEditText) findViewById(R.id.notification);
         stud = (CheckBox) findViewById(R.id.CheckBoxstudent);
         allum = (CheckBox) findViewById(R.id.CheckBoxsAlumni);
 

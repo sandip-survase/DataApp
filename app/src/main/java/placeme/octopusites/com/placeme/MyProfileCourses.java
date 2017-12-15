@@ -18,7 +18,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -49,8 +49,8 @@ public class MyProfileCourses extends AppCompatActivity {
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-    EditText fromdate1, todate1, fromdate2, todate2, fromdate3, todate3, fromdate4, todate4, fromdate5, todate5, fromdate6, todate6, fromdate7, todate7, fromdate8, todate8, fromdate9, todate9, fromdate10, todate10;
-    EditText name1, inst1, name2, inst2, name3, inst3, name4, inst4, name5, inst5, name6, inst6, name7, inst7, name8, inst8, name9, inst9, name10, inst10;
+    TextInputEditText fromdate1, todate1, fromdate2, todate2, fromdate3, todate3, fromdate4, todate4, fromdate5, todate5, fromdate6, todate6, fromdate7, todate7, fromdate8, todate8, fromdate9, todate9, fromdate10, todate10;
+    TextInputEditText name1, inst1, name2, inst2, name3, inst3, name4, inst4, name5, inst5, name6, inst6, name7, inst7, name8, inst8, name9, inst9, name10, inst10;
     TextInputLayout nameinput1, instinput1, fromdateinput1, todateinput1, nameinput2, instinput2, fromdateinput2, todateinput2, nameinput3, instinput3, fromdateinput3, todateinput3, nameinput4, instinput4, fromdateinput4, todateinput4, nameinput5, instinput5, fromdateinput5, todateinput5, nameinput6, instinput6, fromdateinput6, todateinput6, nameinput7, instinput7, fromdateinput7, todateinput7, nameinput8, instinput8, fromdateinput8, todateinput8, nameinput9, instinput9, fromdateinput9, todateinput9, nameinput10, instinput10, fromdateinput10, todateinput10;
 
     String sname1 = "", sinst1 = "", sname2 = "", sinst2 = "", sname3 = "", sinst3 = "", sname4 = "", sinst4 = "", sname5 = "", sinst5 = "", sname6 = "", sinst6 = "", sname7 = "", sinst7 = "", sname8 = "", sinst8 = "", sname9 = "", sinst9 = "", sname10 = "", sinst10 = "", sfromdate1 = "", stodate1 = "", sfromdate2 = "", stodate2 = "", sfromdate3 = "", stodate3 = "", sfromdate4 = "", stodate4 = "", sfromdate5 = "", stodate5 = "", sfromdate6 = "", stodate6 = "", sfromdate7 = "", stodate7 = "", sfromdate8 = "", stodate8 = "", sfromdate9 = "", stodate9 = "", sfromdate10 = "", stodate10 = "";
@@ -93,47 +93,47 @@ public class MyProfileCourses extends AppCompatActivity {
         trash9selectionview = (View) findViewById(R.id.trash9selectionview);
         trash10selectionview = (View) findViewById(R.id.trash10selectionview);
 
-        name1 = (EditText) findViewById(R.id.name1);
-        inst1 = (EditText) findViewById(R.id.inst1);
-        name2 = (EditText) findViewById(R.id.name2);
-        inst2 = (EditText) findViewById(R.id.inst2);
-        name3 = (EditText) findViewById(R.id.name3);
-        inst3 = (EditText) findViewById(R.id.inst3);
-        name4 = (EditText) findViewById(R.id.name4);
-        inst4 = (EditText) findViewById(R.id.inst4);
-        name5 = (EditText) findViewById(R.id.name5);
-        inst5 = (EditText) findViewById(R.id.inst5);
-        name6 = (EditText) findViewById(R.id.name6);
-        inst6 = (EditText) findViewById(R.id.inst6);
-        name7 = (EditText) findViewById(R.id.name7);
-        inst7 = (EditText) findViewById(R.id.inst7);
-        name8 = (EditText) findViewById(R.id.name8);
-        inst8 = (EditText) findViewById(R.id.inst8);
-        name9 = (EditText) findViewById(R.id.name9);
-        inst9 = (EditText) findViewById(R.id.inst9);
-        name10 = (EditText) findViewById(R.id.name10);
-        inst10 = (EditText) findViewById(R.id.inst10);
+        name1 = (TextInputEditText) findViewById(R.id.name1);
+        inst1 = (TextInputEditText) findViewById(R.id.inst1);
+        name2 = (TextInputEditText) findViewById(R.id.name2);
+        inst2 = (TextInputEditText) findViewById(R.id.inst2);
+        name3 = (TextInputEditText) findViewById(R.id.name3);
+        inst3 = (TextInputEditText) findViewById(R.id.inst3);
+        name4 = (TextInputEditText) findViewById(R.id.name4);
+        inst4 = (TextInputEditText) findViewById(R.id.inst4);
+        name5 = (TextInputEditText) findViewById(R.id.name5);
+        inst5 = (TextInputEditText) findViewById(R.id.inst5);
+        name6 = (TextInputEditText) findViewById(R.id.name6);
+        inst6 = (TextInputEditText) findViewById(R.id.inst6);
+        name7 = (TextInputEditText) findViewById(R.id.name7);
+        inst7 = (TextInputEditText) findViewById(R.id.inst7);
+        name8 = (TextInputEditText) findViewById(R.id.name8);
+        inst8 = (TextInputEditText) findViewById(R.id.inst8);
+        name9 = (TextInputEditText) findViewById(R.id.name9);
+        inst9 = (TextInputEditText) findViewById(R.id.inst9);
+        name10 = (TextInputEditText) findViewById(R.id.name10);
+        inst10 = (TextInputEditText) findViewById(R.id.inst10);
 
-        fromdate1 = (EditText) findViewById(R.id.fromdate1);
-        todate1 = (EditText) findViewById(R.id.todate1);
-        fromdate2 = (EditText) findViewById(R.id.fromdate2);
-        todate2 = (EditText) findViewById(R.id.todate2);
-        fromdate3 = (EditText) findViewById(R.id.fromdate3);
-        todate3 = (EditText) findViewById(R.id.todate3);
-        fromdate4 = (EditText) findViewById(R.id.fromdate4);
-        todate4 = (EditText) findViewById(R.id.todate4);
-        fromdate5 = (EditText) findViewById(R.id.fromdate5);
-        todate5 = (EditText) findViewById(R.id.todate5);
-        fromdate6 = (EditText) findViewById(R.id.fromdate6);
-        todate6 = (EditText) findViewById(R.id.todate6);
-        fromdate7 = (EditText) findViewById(R.id.fromdate7);
-        todate7 = (EditText) findViewById(R.id.todate7);
-        fromdate8 = (EditText) findViewById(R.id.fromdate8);
-        todate8 = (EditText) findViewById(R.id.todate8);
-        fromdate9 = (EditText) findViewById(R.id.fromdate9);
-        todate9 = (EditText) findViewById(R.id.todate9);
-        fromdate10 = (EditText) findViewById(R.id.fromdate10);
-        todate10 = (EditText) findViewById(R.id.todate10);
+        fromdate1 = (TextInputEditText) findViewById(R.id.fromdate1);
+        todate1 = (TextInputEditText) findViewById(R.id.todate1);
+        fromdate2 = (TextInputEditText) findViewById(R.id.fromdate2);
+        todate2 = (TextInputEditText) findViewById(R.id.todate2);
+        fromdate3 = (TextInputEditText) findViewById(R.id.fromdate3);
+        todate3 = (TextInputEditText) findViewById(R.id.todate3);
+        fromdate4 = (TextInputEditText) findViewById(R.id.fromdate4);
+        todate4 = (TextInputEditText) findViewById(R.id.todate4);
+        fromdate5 = (TextInputEditText) findViewById(R.id.fromdate5);
+        todate5 = (TextInputEditText) findViewById(R.id.todate5);
+        fromdate6 = (TextInputEditText) findViewById(R.id.fromdate6);
+        todate6 = (TextInputEditText) findViewById(R.id.todate6);
+        fromdate7 = (TextInputEditText) findViewById(R.id.fromdate7);
+        todate7 = (TextInputEditText) findViewById(R.id.todate7);
+        fromdate8 = (TextInputEditText) findViewById(R.id.fromdate8);
+        todate8 = (TextInputEditText) findViewById(R.id.todate8);
+        fromdate9 = (TextInputEditText) findViewById(R.id.fromdate9);
+        todate9 = (TextInputEditText) findViewById(R.id.todate9);
+        fromdate10 = (TextInputEditText) findViewById(R.id.fromdate10);
+        todate10 = (TextInputEditText) findViewById(R.id.todate10);
 
 
         nameinput1 = (TextInputLayout) findViewById(R.id.nameinput1);
@@ -2879,7 +2879,7 @@ public class MyProfileCourses extends AppCompatActivity {
     // my date validation
 
 
-    void showDateDialog(final EditText id,final TextInputLayout idinput, boolean isFromDateSelected, final int fromYear, final String fromMonth, final String todate) {
+    void showDateDialog(final TextInputEditText id,final TextInputLayout idinput, boolean isFromDateSelected, final int fromYear, final String fromMonth, final String todate) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MyProfileCourses.this);
         LayoutInflater inflater = MyProfileCourses.this.getLayoutInflater();
@@ -3044,7 +3044,7 @@ public class MyProfileCourses extends AppCompatActivity {
 
     }
 
-    boolean setMonthYear(EditText id, String selectedMonth, String selectedYear, boolean isValid) {
+    boolean setMonthYear(TextInputEditText id, String selectedMonth, String selectedYear, boolean isValid) {
         id.setError(null);
         if (isValid == true) {
             id.setText(selectedMonth + ", " + selectedYear);

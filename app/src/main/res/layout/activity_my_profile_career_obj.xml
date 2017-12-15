@@ -14,7 +14,7 @@
         tools:context="com.octopusites.placeme.MyProfileCareerObj">
 
         <TextView
-                android:id="@+id/careerobjtxt"
+            android:id="@+id/careerobjtxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -125,7 +125,7 @@
                 android:layout_marginTop="20dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/otherobj"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

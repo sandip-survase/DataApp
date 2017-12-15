@@ -17,7 +17,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,7 +45,7 @@ public class MyProfileContact extends AppCompatActivity {
     JSONObject json;
     int edittedFlag = 0;
     StudentData s = new StudentData();
-    EditText fname, lname, email, email2, addressline1, addressline2, addressline3, phone, mobile, mobile2;
+    TextInputEditText fname, lname, email, email2, addressline1, addressline2, addressline3, phone, mobile, mobile2;
     String sfname = "", slname = "", semail2 = "", saddressline1 = "", saddressline2 = "", saddressline3 = "", sphone = "", smobile = "", smobile2 = "";
     String encfname, enclname, encemail2, encaddressline1, encaddressline2, encaddressline3, encphone, encmobile, encmobile2;
     String plainusername = "";
@@ -67,16 +67,16 @@ public class MyProfileContact extends AppCompatActivity {
         ab.setTitle("Edit Contact Details");
         ab.setDisplayHomeAsUpEnabled(true);
 
-        fname = (EditText) findViewById(R.id.fname);
-        lname = (EditText) findViewById(R.id.lname);
-        email = (EditText) findViewById(R.id.email);
-        email2 = (EditText) findViewById(R.id.email2);
-        addressline1 = (EditText) findViewById(R.id.addressline1);
-        addressline2 = (EditText) findViewById(R.id.addressline2);
-        addressline3 = (EditText) findViewById(R.id.addressline3);
-        phone = (EditText) findViewById(R.id.phone);
-        mobile = (EditText) findViewById(R.id.mobile);
-        mobile2 = (EditText) findViewById(R.id.mobile2);
+        fname = (TextInputEditText) findViewById(R.id.fname);
+        lname = (TextInputEditText) findViewById(R.id.lname);
+        email = (TextInputEditText) findViewById(R.id.email);
+        email2 = (TextInputEditText) findViewById(R.id.email2);
+        addressline1 = (TextInputEditText) findViewById(R.id.addressline1);
+        addressline2 = (TextInputEditText) findViewById(R.id.addressline2);
+        addressline3 = (TextInputEditText) findViewById(R.id.addressline3);
+        phone = (TextInputEditText) findViewById(R.id.phone);
+        mobile = (TextInputEditText) findViewById(R.id.mobile);
+        mobile2 = (TextInputEditText) findViewById(R.id.mobile2);
 
 
         fnameTextInputLayout =  (TextInputLayout) findViewById(R.id.fnameTextInputLayout);
@@ -602,15 +602,15 @@ public class MyProfileContact extends AppCompatActivity {
                 Toast.makeText(MyProfileContact.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
 
                 if (role.equals("student"))
-                        setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
-                    else if (role.equals("alumni"))
-                        setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
-                    else if (role.equals("hr"))
-                        setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
-                    else  {
-                        Log.d("TAG", "onPostExecute: admin");
-                        setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
-                    }
+                    setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
+                else if (role.equals("alumni"))
+                    setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
+                else if (role.equals("hr"))
+                    setResult(HRActivity.HR_DATA_CHANGE_RESULT_CODE);
+                else  {
+                    Log.d("TAG", "onPostExecute: admin");
+                    setResult(AdminActivity.ADMIN_DATA_CHANGE_RESULT_CODE);
+                }
                 MyProfileContact.super.onBackPressed();
 
             } else

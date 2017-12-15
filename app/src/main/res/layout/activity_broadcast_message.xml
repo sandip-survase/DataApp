@@ -45,7 +45,7 @@
                 android:id="@+id/notificationinput"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="5"
@@ -101,8 +101,8 @@
                 android:id="@+id/linkedinicon"
                 />
 
-            </RelativeLayout>
-        </ScrollView>
+        </RelativeLayout>
+    </ScrollView>
     <android.support.design.widget.FloatingActionButton
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fab"
@@ -115,4 +115,4 @@
         app:srcCompat="@drawable/photo"
         app:backgroundTint="#fff"
         />
-    </RelativeLayout>
+</RelativeLayout>

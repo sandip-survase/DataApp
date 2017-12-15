@@ -18,7 +18,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +34,7 @@ public class AlumniRoleSelected extends AppCompatActivity {
 
     private boolean finishEnter;
     TextInputLayout instcodeTextInputLayout;
-    EditText instcode;
+    TextInputEditText instcode;
     View WelcomeRoleView;
     CardView studentrl,alumnirl,tporl,hrrl;
     TextView rolewelcometextviewcontext1;
@@ -71,7 +71,7 @@ public class AlumniRoleSelected extends AppCompatActivity {
                 });
 
         instcodeTextInputLayout = (TextInputLayout)findViewById(R.id.instcodeTextInputLayout);
-        instcode = (EditText)findViewById(R.id.instcode);
+        instcode = (TextInputEditText)findViewById(R.id.instcode);
         fadeandmove(instcodeTextInputLayout);
         instcode.setTypeface(MyConstants.getBold(this));
         instcodeTextInputLayout.setTypeface(MyConstants.getLight(this));

@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -474,7 +474,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -555,7 +555,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -636,7 +636,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -719,7 +719,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -799,7 +799,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -880,7 +880,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -961,7 +961,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1042,7 +1042,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1122,7 +1122,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1203,7 +1203,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1284,7 +1284,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1365,7 +1365,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1446,7 +1446,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1527,7 +1527,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1608,7 +1608,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill16"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1689,7 +1689,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill17"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1769,7 +1769,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill18"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1850,7 +1850,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill19"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -1931,7 +1931,7 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill20"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

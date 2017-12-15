@@ -15,7 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,7 +38,7 @@ public class ReportBug extends AppCompatActivity {
     private static String url_report= "http://192.168.100.100/AESTest/ReportBug";
 
     String digest1,digest2;
-    EditText title,comments;
+    TextInputEditText title,comments;
     ProgressBar reportprogress;
     String stitle="",scomments="";
     String enctitle,enccomments;
@@ -62,8 +62,8 @@ public class ReportBug extends AppCompatActivity {
         TextInputLayout titleinput=(TextInputLayout)findViewById(R.id.titleinput);
         TextInputLayout commentsinput=(TextInputLayout)findViewById(R.id.commentsinput);
         reportbug_button=(Button)findViewById(R.id.reportbug_button);
-        title=(EditText)findViewById(R.id.title);
-        comments=(EditText)findViewById(R.id.comments);
+        title=(TextInputEditText)findViewById(R.id.title);
+        comments=(TextInputEditText)findViewById(R.id.comments);
         reportprogress=(ProgressBar)findViewById(R.id.reportprogress);
 
         createreporttxt.setTypeface(MyConstants.getBold(this));

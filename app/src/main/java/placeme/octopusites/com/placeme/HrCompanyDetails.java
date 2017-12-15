@@ -23,7 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,7 +46,7 @@ public class HrCompanyDetails extends AppCompatActivity {
     String CompanyType = "", strobj = "";
     String encobj = "";
     String CompanyNamestr = "", CompanyEmailstr = "", CompanyWebstr = "", Companyphonestr = "", CompanyAltPhonestr = "", CompanyCIINstr = "", CompanyNaturestr = "", CompanyAddressLine1str = "", CompanyAddressLine2str = "", CompanyAddressLine3str = "";
-    EditText CompanyName, CompanyEmail, CompanyWebsite, CompanyPhone, CompanyAlternatePhone, CompanyCIN, CompanyAddressLine1, CompanyAddressLine2, CompanyAddressLine3;
+    TextInputEditText CompanyName, CompanyEmail, CompanyWebsite, CompanyPhone, CompanyAlternatePhone, CompanyCIN, CompanyAddressLine1, CompanyAddressLine2, CompanyAddressLine3;
     Spinner Company_Nature;
     String encComName = "", encUsername = "", encComMail = "", encComWeb = "", encComPhone = "", encComAlterPhone = "", encComCIIN = "", encComType = "", encComAddL1 = "", encComAddL2 = "", encComAddL3 = "";
     String[] Nature = {"-Select Company Nature-", "Partnership", "Propietorship", "LLP (Limited Liability)", "Private Limited", "Public Limited", "Inc"};
@@ -76,16 +76,16 @@ public class HrCompanyDetails extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
-        CompanyName = (EditText) findViewById(R.id.instname);
-        CompanyEmail = (EditText) findViewById(R.id.instemail);
-        CompanyWebsite = (EditText) findViewById(R.id.instweb);
-        CompanyPhone = (EditText) findViewById(R.id.instphone);
-        CompanyAlternatePhone = (EditText) findViewById(R.id.instphonea);
-        CompanyCIN = (EditText) findViewById(R.id.instreg);
+        CompanyName = (TextInputEditText) findViewById(R.id.instname);
+        CompanyEmail = (TextInputEditText) findViewById(R.id.instemail);
+        CompanyWebsite = (TextInputEditText) findViewById(R.id.instweb);
+        CompanyPhone = (TextInputEditText) findViewById(R.id.instphone);
+        CompanyAlternatePhone = (TextInputEditText) findViewById(R.id.instphonea);
+        CompanyCIN = (TextInputEditText) findViewById(R.id.instreg);
 
-        CompanyAddressLine1 = (EditText) findViewById(R.id.compaddressline1);
-        CompanyAddressLine2 = (EditText) findViewById(R.id.compaddressline2);
-        CompanyAddressLine3 = (EditText) findViewById(R.id.compaddressline3);
+        CompanyAddressLine1 = (TextInputEditText) findViewById(R.id.compaddressline1);
+        CompanyAddressLine2 = (TextInputEditText) findViewById(R.id.compaddressline2);
+        CompanyAddressLine3 = (TextInputEditText) findViewById(R.id.compaddressline3);
         loctxt=(TextView) findViewById(R.id.loctxt);
 
         Company_Nature = (Spinner) findViewById(R.id.board10);

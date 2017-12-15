@@ -19,7 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -49,7 +49,7 @@ public class MyProfileCareerObj extends AppCompatActivity {
     RadioGroup radioGroupCareerobj;
     TextView careerobjtxt;
     RadioButton radioButtonObj1,radioButtonObj2,radioButtonObj3,radioButtonObj4,radioButtonObj5,radioButtonObj6;
-    EditText otherobj;
+    TextInputEditText otherobj;
     TextInputLayout otherobjinput;
     String careerobj="To secure a promising position in the company of repute that offers both a challenging assignments and ample opportunity for growth in terms of due recognition and added responsibilities.";
     String enccareerobj,encobj="";
@@ -70,7 +70,7 @@ public class MyProfileCareerObj extends AppCompatActivity {
         ab.setTitle("Edit Career Objective");
         ab.setDisplayHomeAsUpEnabled(true);
 
-        otherobj=(EditText)findViewById(R.id.otherobj);
+        otherobj=(TextInputEditText)findViewById(R.id.otherobj);
         careerobjtxt=(TextView)findViewById(R.id.careerobjtxt);
 
         radioGroupCareerobj=(RadioGroup)findViewById(R.id.radioGroupCareerobj);

@@ -15,7 +15,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +34,7 @@ import static placeme.octopusites.com.placeme.AES4all.OtoString;
 public class AdminInstituteDetails extends AppCompatActivity {
 
     //sss
-    EditText iname, iemail, iweb, iphone, ialtphone, uniname, caddrline1, caddrline2, caddrline3, ireg;
+    TextInputEditText iname, iemail, iweb, iphone, ialtphone, uniname, caddrline1, caddrline2, caddrline3, ireg;
     String instname = "", instemail = "", instweb = "", instphone = "", instaltrphone = "", universityname = "", instreg = "", instcaddrline1 = "", instcaddrline2 = "", instcaddrline3 = "";
     String encUsername, enciname, encinstemail, encinstweb, encinstphone, encinstaltrphone, encuniversityname, encCinstreg;
     TextInputLayout instnameinput, instemailinput, instwebinput, instphoneinput, instphoneainput, instuniversityinput, caddrline1input, caddrline2input, caddrline3input, instreginput;
@@ -80,19 +80,19 @@ public class AdminInstituteDetails extends AppCompatActivity {
         caddrline2input = (TextInputLayout) findViewById(R.id.caddrline2input);
         caddrline3input = (TextInputLayout) findViewById(R.id.caddrline3input);
 
-        iname = (EditText) findViewById(R.id.instname);
-        iemail = (EditText) findViewById(R.id.instemail);
-        iweb = (EditText) findViewById(R.id.instweb);
-        iphone = (EditText) findViewById(R.id.instphone);
-        ialtphone = (EditText) findViewById(R.id.instphonea);
-        uniname = (EditText) findViewById(R.id.instuniversity);
-        ireg = (EditText) findViewById(R.id.instreg);
+        iname = (TextInputEditText) findViewById(R.id.instname);
+        iemail = (TextInputEditText) findViewById(R.id.instemail);
+        iweb = (TextInputEditText) findViewById(R.id.instweb);
+        iphone = (TextInputEditText) findViewById(R.id.instphone);
+        ialtphone = (TextInputEditText) findViewById(R.id.instphonea);
+        uniname = (TextInputEditText) findViewById(R.id.instuniversity);
+        ireg = (TextInputEditText) findViewById(R.id.instreg);
         loctxt = (TextView) findViewById(R.id.loctxt);
 
 
-        caddrline1 = (EditText) findViewById(R.id.caddrline1);
-        caddrline2 = (EditText) findViewById(R.id.caddrline2);
-        caddrline3 = (EditText) findViewById(R.id.caddrline3);
+        caddrline1 = (TextInputEditText) findViewById(R.id.caddrline1);
+        caddrline2 = (TextInputEditText) findViewById(R.id.caddrline2);
+        caddrline3 = (TextInputEditText) findViewById(R.id.caddrline3);
 
 
         instnameinput.setTypeface(MyConstants.getLight(this));

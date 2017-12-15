@@ -18,7 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +37,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
 
     int flag = 0;
     CheckBox checkboxplaced, checkboxnotplaced, CheckBoxdebar, CheckBoxsnotdebar, checkboxstudent, checkboxalumni;
-    EditText email, companyname;
+    TextInputEditText email, companyname;
     TextInputLayout emailinput, companynameinput;
     String PLACED = "", DEBAR = "", ROLE = "";
     String username, strcompanyname, isactivated, encRole;
@@ -102,8 +102,8 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
 
         emailinput = (TextInputLayout) findViewById(R.id.emailinput);
         companynameinput = (TextInputLayout) findViewById(R.id.companynameinput);
-        email = (EditText) findViewById(R.id.email);
-        companyname = (EditText) findViewById(R.id.companyname);
+        email = (TextInputEditText) findViewById(R.id.email);
+        companyname = (TextInputEditText) findViewById(R.id.companyname);
 
         emailinput.setTypeface(MyConstants.getLight(this));
         companynameinput.setTypeface(MyConstants.getLight(this));

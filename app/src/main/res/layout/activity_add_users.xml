@@ -82,11 +82,12 @@
         android:layout_marginTop="10dp"
         android:theme="@style/TextLabel">
 
-        <android.support.v7.widget.AppCompatEditText
+        <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
             android:textSize="16dp"
+            android:imeOptions="actionDone"
             android:maxLength="100"
             android:digits="abcdefghijklmnopqrstuvwxyz1234567890.@_"
             android:singleLine="true"

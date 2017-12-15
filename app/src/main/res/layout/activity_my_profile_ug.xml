@@ -52,12 +52,13 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/umarkssem1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Marks Sem 1"
                     android:inputType="number"
+                    android:imeOptions="actionNext"
                     android:maxLength="5"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
@@ -71,12 +72,13 @@
                 android:layout_below="@+id/umarksusem1input"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/uoutofsem1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Out Of Sem 1"
                     android:inputType="number"
+                    android:imeOptions="actionDone"
                     android:maxLength="5"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
@@ -101,7 +103,7 @@
                 android:layout_marginTop="25dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/upercentsem1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -128,12 +130,13 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/umarkssem2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Marks Sem 2"
                     android:inputType="number"
+                    android:imeOptions="actionNext"
                     android:maxLength="5"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
@@ -147,12 +150,13 @@
                 android:layout_below="@+id/umarksusem2input"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/uoutofsem2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Out Of Sem 2"
                     android:inputType="number"
+                    android:imeOptions="actionDone"
                     android:maxLength="5"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
@@ -177,7 +181,7 @@
                 android:layout_marginTop="25dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/upercentsem2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -203,12 +207,13 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/umarkssem3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Marks Sem 3"
                     android:inputType="number"
+                    android:imeOptions="actionNext"
                     android:maxLength="5"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
@@ -222,12 +227,13 @@
                 android:layout_below="@+id/umarksusem3input"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/uoutofsem3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Out Of Sem 3"
                     android:inputType="number"
+                    android:imeOptions="actionDone"
                     android:maxLength="5"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
@@ -252,7 +258,7 @@
                 android:layout_marginTop="25dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/upercentsem3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -279,12 +285,13 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/umarkssem4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Marks Sem 4"
                     android:inputType="number"
+                    android:imeOptions="actionNext"
                     android:maxLength="5"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
@@ -298,12 +305,13 @@
                 android:layout_below="@+id/umarksusem4input"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/uoutofsem4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Out Of Sem 4"
                     android:inputType="number"
+                    android:imeOptions="actionDone"
                     android:maxLength="5"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
@@ -328,7 +336,7 @@
                 android:layout_marginTop="25dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/upercentsem4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -355,11 +363,12 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/umarkssem5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Marks Sem 5"
+                    android:imeOptions="actionNext"
                     android:inputType="number"
                     android:maxLength="5"
                     android:textColor="@color/dark_color"
@@ -374,11 +383,12 @@
                 android:layout_below="@+id/umarksusem5input"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/uoutofsem5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Out Of Sem 5"
+                    android:imeOptions="actionDone"
                     android:inputType="number"
                     android:maxLength="5"
                     android:textColor="@color/dark_color"
@@ -404,7 +414,7 @@
                 android:layout_marginTop="25dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/upercentsem5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -431,11 +441,12 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/umarkssem6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Marks Sem 6"
+                    android:imeOptions="actionNext"
                     android:inputType="number"
                     android:maxLength="5"
                     android:textColor="@color/dark_color"
@@ -450,11 +461,12 @@
                 android:layout_below="@+id/umarksusem6input"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/uoutofsem6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Out Of Sem 6"
+                    android:imeOptions="actionDone"
                     android:inputType="number"
                     android:maxLength="5"
                     android:textColor="@color/dark_color"
@@ -480,7 +492,7 @@
                 android:layout_marginTop="25dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/upercentsem6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -507,12 +519,13 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/umarkssem7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Marks Sem 7"
                     android:inputType="number"
+                    android:imeOptions="actionNext"
                     android:maxLength="5"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
@@ -526,10 +539,11 @@
                 android:layout_below="@+id/umarksusem7input"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/uoutofsem7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
                     android:hint="Out Of Sem 7"
                     android:inputType="number"
                     android:maxLength="5"
@@ -556,7 +570,7 @@
                 android:layout_marginTop="25dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/upercentsem7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -583,11 +597,12 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/umarkssem8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Marks Sem 8"
+                    android:imeOptions="actionNext"
                     android:inputType="number"
                     android:maxLength="5"
                     android:textColor="@color/dark_color"
@@ -602,11 +617,12 @@
                 android:layout_below="@+id/umarksusem8input"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/uoutofsem8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Out Of Sem 8"
+                    android:imeOptions="actionDone"
                     android:inputType="number"
                     android:maxLength="5"
                     android:textColor="@color/dark_color"
@@ -632,7 +648,7 @@
                 android:layout_marginTop="25dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/upercentsem8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -654,7 +670,7 @@
             android:layout_marginTop="10dp"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/uaggregate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -717,12 +733,13 @@
             android:theme="@style/TextLabel"
             android:visibility="gone">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/othercourse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Please Specify"
                 android:inputType="textCapWords"
+                android:imeOptions="actionDone"
                 android:singleLine="true"
                 android:textColor="@color/dark_color"
                 android:textSize="15dp" />
@@ -777,11 +794,12 @@
             android:theme="@style/TextLabel"
             android:visibility="gone">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/otherstream"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Please Specify"
+                android:imeOptions="actionDone"
                 android:inputType="textCapWords"
                 android:singleLine="true"
                 android:textColor="@color/dark_color"
@@ -838,12 +856,13 @@
             android:theme="@style/TextLabel"
             android:visibility="gone">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/otheruniversity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Please Specify"
                 android:inputType="textCapWords"
+                android:imeOptions="actionDone"
                 android:singleLine="true"
                 android:textColor="@color/dark_color"
                 android:textSize="15dp" />
@@ -858,12 +877,13 @@
             android:layout_marginTop="10dp"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/schoolnameu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="College Name"
                 android:inputType="textCapWords"
+                android:imeOptions="actionDone"
                 android:singleLine="true"
                 android:textColor="@color/dark_color"
                 android:textSize="15dp" />
@@ -884,7 +904,7 @@
                 android:layout_marginTop="25dp"
                 android:theme="@style/TextLabel">
 
-                <android.support.v7.widget.AppCompatEditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/yearofpassingu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

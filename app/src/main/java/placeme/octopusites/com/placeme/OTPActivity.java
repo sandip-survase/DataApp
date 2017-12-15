@@ -12,7 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -38,7 +38,7 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 public class OTPActivity extends AppCompatActivity {
 
-    EditText otpedittext;
+    TextInputEditText otpedittext;
     TextView entertxt, otptxt, resend;
     Button verify;
     String enteredOTP, encOTP;
@@ -67,7 +67,7 @@ public class OTPActivity extends AppCompatActivity {
         setFinishOnTouchOutside(false);
 
         otplayout=(TextInputLayout)findViewById(R.id.otplayout);
-        otpedittext = (EditText) findViewById(R.id.otp);
+        otpedittext = (TextInputEditText) findViewById(R.id.otp);
         otpClose = (ImageView) findViewById(R.id.otpClose);
         verify = (Button) findViewById(R.id.submitotp);
 

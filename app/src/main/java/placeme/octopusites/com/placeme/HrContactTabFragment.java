@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,7 +39,7 @@ import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 public class HrContactTabFragment extends Fragment {
 
     TextInputLayout fnameinput,lnameinput,emailinput,emai2input,addressline1input,addressline2input,addressline3input,phoneinput,mobileinput,mobile2input;
-    EditText fname, lname, email, email2, addressline1, addressline2, addressline3, phone, mobile, mobile2;
+    TextInputEditText fname, lname, email, email2, addressline1, addressline2, addressline3, phone, mobile, mobile2;
 //    Button saveContactDetailsButton;
 //    ProgressBar contactDetailsProgress;
 
@@ -98,16 +98,16 @@ public class HrContactTabFragment extends Fragment {
         mobileinput.setTypeface(MyConstants.getLight(getActivity()));
         mobile2input.setTypeface(MyConstants.getLight(getActivity()));
 
-        fname = (EditText) rootView.findViewById(R.id.fname);
-        lname = (EditText) rootView.findViewById(R.id.lname);
-        email = (EditText) rootView.findViewById(R.id.email);
-        email2 = (EditText) rootView.findViewById(R.id.email2);
-        addressline1 = (EditText) rootView.findViewById(R.id.addressline1);
-        addressline2 = (EditText) rootView.findViewById(R.id.addressline2);
-        addressline3 = (EditText) rootView.findViewById(R.id.addressline3);
-        phone = (EditText) rootView.findViewById(R.id.phone);
-        mobile = (EditText) rootView.findViewById(R.id.mobile);
-        mobile2 = (EditText) rootView.findViewById(R.id.mobile2);
+        fname = (TextInputEditText) rootView.findViewById(R.id.fname);
+        lname = (TextInputEditText) rootView.findViewById(R.id.lname);
+        email = (TextInputEditText) rootView.findViewById(R.id.email);
+        email2 = (TextInputEditText) rootView.findViewById(R.id.email2);
+        addressline1 = (TextInputEditText) rootView.findViewById(R.id.addressline1);
+        addressline2 = (TextInputEditText) rootView.findViewById(R.id.addressline2);
+        addressline3 = (TextInputEditText) rootView.findViewById(R.id.addressline3);
+        phone = (TextInputEditText) rootView.findViewById(R.id.phone);
+        mobile = (TextInputEditText) rootView.findViewById(R.id.mobile);
+        mobile2 = (TextInputEditText) rootView.findViewById(R.id.mobile2);
 
         fname.setTypeface(MyConstants.getBold(getActivity()));
         lname.setTypeface(MyConstants.getBold(getActivity()));
@@ -447,25 +447,25 @@ public class HrContactTabFragment extends Fragment {
                     errorflag = 1;
                     emai2input.setError("Personal and professional email cannot be same");
                 }  else {
-                        if (hraddressline1.length() < 1) {
+                    if (hraddressline1.length() < 1) {
+                        errorflag = 1;
+                        addressline1input.setError("Kindly enter valid address");
+                    } else {
+                        if (hraddressline2.length() < 1) {
                             errorflag = 1;
-                            addressline1input.setError("Kindly enter valid address");
+                            addressline2input.setError("Kindly enter valid address");
                         } else {
-                            if (hraddressline2.length() < 1) {
+                            if (hraddressline3.length() < 1) {
                                 errorflag = 1;
-                                addressline2input.setError("Kindly enter valid address");
+                                addressline3input.setError("Kindly enter valid address");
                             } else {
-                                if (hraddressline3.length() < 1) {
+                                if (hrmobile.length() < 10 || hrmobile.length() > 10) {
                                     errorflag = 1;
-                                    addressline3input.setError("Kindly enter valid address");
-                                } else {
-                                        if (hrmobile.length() < 10 || hrmobile.length() > 10) {
-                                            errorflag = 1;
-                                            mobileinput.setError("Kindly enter valid 10-digit mobile number");
-                                        }
-                                    }
+                                    mobileinput.setError("Kindly enter valid 10-digit mobile number");
+                                }
                             }
                         }
+                    }
 
                 }
             }

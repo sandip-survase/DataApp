@@ -19,7 +19,7 @@
             android:id="@+id/instnameinput"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Institute Name*"
@@ -27,7 +27,7 @@
                 android:textColor="@color/dark_color"
                 android:maxLength="200"
                 android:singleLine="true"
-
+                android:imeOptions="actionNext"
                 android:id="@+id/instname"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -40,7 +40,7 @@
             android:layout_marginTop="10dp"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Institute Email Address*"
@@ -49,6 +49,7 @@
                 android:singleLine="true"
                 android:textColor="@color/dark_color"
                 android:maxLength="100"
+                android:imeOptions="actionNext"
                 android:digits="abcdefghijklmnopqrstuvwxyz0123456789@._"
                 android:id="@+id/instemail"/>
 
@@ -61,11 +62,12 @@
             android:layout_marginTop="10dp"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Institute Website*"
                 android:textSize="16dp"
+                android:imeOptions="actionNext"
                 android:inputType="textUri"
                 android:singleLine="true"
                 android:textColor="@color/dark_color"
@@ -81,13 +83,14 @@
             android:id="@+id/instphoneinput"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Institute Phone Number (with STD code)*"
                 android:textSize="16dp"
                 android:inputType="number"
                 android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:textColor="@color/dark_color"
                 android:maxLength="11"
                 android:id="@+id/instphone"/>
@@ -101,12 +104,13 @@
             android:id="@+id/instphoneainput"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Alternate Phone Number (with STD code)"
                 android:textSize="16dp"
                 android:inputType="number"
+                android:imeOptions="actionNext"
                 android:singleLine="true"
                 android:textColor="@color/dark_color"
                 android:maxLength="11"
@@ -121,12 +125,13 @@
             android:layout_marginTop="10dp"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="University Name*"
                 android:textSize="16dp"
                 android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:textColor="@color/dark_color"
                 android:maxLength="100"
                 android:id="@+id/instuniversity"/>
@@ -140,11 +145,12 @@
             android:layout_marginTop="10dp"
             android:theme="@style/TextLabel">
 
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Institute Registration Number*"
                 android:textSize="16dp"
+                android:imeOptions="actionDone"
                 android:singleLine="true"
                 android:textColor="@color/dark_color"
                 android:maxLength="20"
@@ -188,13 +194,14 @@
             android:id="@+id/caddrline1input"
             android:layout_below="@+id/caddrtxt"
             android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/caddrline1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
                 android:maxLength="200"
+                android:imeOptions="actionNext"
                 android:singleLine="true"
                 android:inputType="textCapWords"
                 android:maxLines="1"
@@ -208,7 +215,7 @@
             android:id="@+id/caddrline2input"
             android:layout_below="@+id/caddrline1input"
             android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/caddrline2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -216,6 +223,7 @@
                 android:textColor="@color/dark_color"
                 android:maxLength="200"
                 android:singleLine="true"
+                android:imeOptions="actionNext"
                 android:inputType="textCapWords"
                 android:maxLines="1"
                 android:hint="Street Name/Landmark*"
@@ -228,24 +236,20 @@
             android:id="@+id/caddrline3input"
             android:layout_below="@+id/caddrline2input"
             android:layout_height="wrap_content">
-            <android.support.v7.widget.AppCompatEditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/caddrline3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
                 android:maxLength="200"
+                android:imeOptions="actionDone"
                 android:inputType="textCapWords"
                 android:singleLine="true"
                 android:maxLines="1"
                 android:hint="City, Pincode*"
                 />
         </android.support.design.widget.TextInputLayout>
-
-
-
-
-
 
     </RelativeLayout>
 </ScrollView>

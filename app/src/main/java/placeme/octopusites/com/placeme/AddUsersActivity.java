@@ -18,7 +18,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.support.design.widget.TextInputEditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -57,7 +57,7 @@ public class AddUsersActivity extends AppCompatActivity {
 
     RadioGroup radioGroupUsers;
     RadioButton radioButtonsinle, radioButtonmulti;
-    EditText email;
+    TextInputEditText email;
     TextInputLayout adduserinput;
     RelativeLayout multiusersrl;
     String param="single";
@@ -65,7 +65,7 @@ public class AddUsersActivity extends AppCompatActivity {
     JSONObject json;
     JSONParser jParser = new JSONParser();
 
-//filework
+    //filework
     String username="",userEmail,plainUsername="";
     private String digest1,digest2;
 
@@ -106,7 +106,7 @@ public class AddUsersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_users);
 
-        email = (EditText) findViewById(R.id.email);
+        email = (TextInputEditText) findViewById(R.id.email);
         adduserinput=(TextInputLayout)findViewById(R.id.adduserinput);
         multiusersrl = (RelativeLayout) findViewById(R.id.multiusersrl);
         radioGroupUsers = (RadioGroup) findViewById(R.id.radioGroupUsers);
@@ -233,7 +233,7 @@ public class AddUsersActivity extends AppCompatActivity {
                                 try {
 
                                     t1.setText("");
-                                   attchrl1.setVisibility(View.GONE);
+                                    attchrl1.setVisibility(View.GONE);
                                     new deleteFile().execute();
                                     filename="";
 
@@ -431,13 +431,13 @@ public class AddUsersActivity extends AppCompatActivity {
 
             String fileName[]=filename.split("\\.");
             if(fileName.length==2) {
-                    Log.d("TAG", "onActivityResult:  " + fileName[0] + " two " + fileName[1]);
-                    if (fileName[1].equals("xls") || fileName[1].equals("xlsx")) {
-                        filesame = 0;
-                    } else {
-                        filesame = 1;
-                        Toast.makeText(this, "File format must be .xls or .xlsx", Toast.LENGTH_SHORT).show();
-                    }
+                Log.d("TAG", "onActivityResult:  " + fileName[0] + " two " + fileName[1]);
+                if (fileName[1].equals("xls") || fileName[1].equals("xlsx")) {
+                    filesame = 0;
+                } else {
+                    filesame = 1;
+                    Toast.makeText(this, "File format must be .xls or .xlsx", Toast.LENGTH_SHORT).show();
+                }
 
             }else
                 Toast.makeText(this, "File format must be .xls or .xlsx", Toast.LENGTH_SHORT).show();
