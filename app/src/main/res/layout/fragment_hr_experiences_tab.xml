@@ -29,7 +29,7 @@
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp"
+            android:elevation="2dp"
             />
 
 
@@ -1639,7 +1639,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp"
+            android:elevation="2dp"
             android:layout_below="@+id/exprl10"
             android:id="@+id/addmoreexp"
             android:layout_marginTop="20dp"
@@ -1652,7 +1652,7 @@
             android:text="Add Another Experience"
             android:textColor="@color/while_color"
             android:textSize="18dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
             android:id="@+id/addmoreexptxt"
@@ -1663,7 +1663,7 @@
             android:layout_below="@+id/exprl10"
             android:layout_alignParentRight="true"
             android:src="@drawable/add_icon_white"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
             android:id="@+id/addmoreexpimg"

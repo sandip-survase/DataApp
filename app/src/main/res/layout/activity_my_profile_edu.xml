@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp" />
+            android:elevation="2dp" />
 
         <TextView
             android:id="@+id/tenthtxt"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:text="Std. X Details"
             android:textColor="@color/while_color"
             android:textSize="20dp" />
@@ -37,7 +37,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:src="@drawable/add_icon_white" />
 
         <View
@@ -47,7 +47,7 @@
             android:layout_below="@+id/tenthbutton"
             android:layout_marginTop="20dp"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp" />
+            android:elevation="2dp" />
 
         <TextView
             android:id="@+id/twelthtxt"
@@ -56,7 +56,7 @@
             android:layout_below="@+id/tenthbutton"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:text="Std. XII/Diploma Details"
             android:textColor="@color/while_color"
             android:textSize="20dp" />
@@ -68,7 +68,7 @@
             android:layout_below="@+id/tenthbutton"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:src="@drawable/add_icon_white" />
 
         <View
@@ -78,7 +78,7 @@
             android:layout_below="@+id/twelfthbutton"
             android:layout_marginTop="20dp"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp" />
+            android:elevation="2dp" />
 
         <TextView
             android:id="@+id/ugtxt"
@@ -87,7 +87,7 @@
             android:layout_below="@+id/twelfthbutton"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:text="UG Details"
             android:textColor="@color/while_color"
             android:textSize="20dp" />
@@ -99,7 +99,7 @@
             android:layout_below="@+id/twelfthbutton"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:src="@drawable/add_icon_white" />
 
         <View
@@ -109,7 +109,7 @@
             android:layout_below="@+id/ugbutton"
             android:layout_marginTop="20dp"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp" />
+            android:elevation="2dp" />
 
         <View
             android:id="@+id/dummpy_view_for_shadow"
@@ -126,7 +126,7 @@
             android:layout_below="@+id/ugbutton"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:text="PG Details"
             android:textColor="@color/while_color"
             android:textSize="20dp" />
@@ -138,7 +138,7 @@
             android:layout_below="@+id/ugbutton"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:src="@drawable/add_icon_white" />
 
 

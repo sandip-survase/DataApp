@@ -25,7 +25,7 @@
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:elevation="6dp"
+            android:elevation="2dp"
 
             android:background="@drawable/textviewborder"
             />
@@ -1660,7 +1660,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/textviewborder"
-            android:elevation="6dp"
+            android:elevation="2dp"
             android:layout_below="@+id/publicationrl10"
             android:id="@+id/addmorepublication"
             android:layout_marginTop="20dp"
@@ -1673,7 +1673,7 @@
             android:text="Add Another Publication"
             android:textColor="@color/while_color"
             android:textSize="18dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
             android:id="@+id/addmorepublicationtxt"
@@ -1681,7 +1681,7 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:elevation="8dp"
+            android:elevation="3dp"
             android:layout_below="@+id/publicationrl10"
             android:layout_alignParentRight="true"
             android:src="@drawable/add_icon_white"
