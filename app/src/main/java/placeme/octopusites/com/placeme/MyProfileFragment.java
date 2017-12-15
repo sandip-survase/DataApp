@@ -21,6 +21,7 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -46,6 +47,10 @@ import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.signature.ObjectKey;
 
 
@@ -2400,10 +2405,9 @@ public class MyProfileFragment extends Fragment {
         @Override
         protected void onPostExecute(Bitmap result) {
 
-            myprofileimg.setImageBitmap(result);
             swipe_refresh_layout.setVisibility(View.VISIBLE);
             swipe_refresh_layout.setRefreshing(false);
-            updateProgress.setVisibility(View.GONE);
+
 
             Log.d("TAG", "in onPostExecute: ()- ");
             try {
@@ -3165,6 +3169,20 @@ public class MyProfileFragment extends Fragment {
         GlideApp.with(this)
                 .load(uri)
                 .signature(new ObjectKey(System.currentTimeMillis() + ""))
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        updateProgress.setVisibility(View.GONE);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        updateProgress.setVisibility(View.GONE);
+                        return false;
+                    }
+
+                })
                 .into(myprofileimg);
 
 
