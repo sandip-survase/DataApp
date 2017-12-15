@@ -48,8 +48,8 @@ public class RecyclerItemHrPlacementAdapter extends RecyclerView.Adapter<Recycle
 
         holder.companyname.setText(item.getCompanyname());
         holder.lastmodifiedtime.setText(item.getLastmodifiedtime());
-        holder.registerednumber.setText(item.getRegisterednumber());
-        holder.placednumber.setText(item.getPlacednumber());
+        holder.registerednumber.setText(item.getRegisterednumber()+" Candidates Registered.");
+        holder.placednumber.setText(item.getPlacednumber()+" Candidates Placed.");
         holder.lastdateofreg.setText(item.getLastdateofreg());
 
 

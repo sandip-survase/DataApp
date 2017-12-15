@@ -57,6 +57,28 @@ public class PlacementCreateTab2 extends Fragment {
                 Hrinterview.setText(sHrinterview);
             }
 
+        }else if(activitytag.contains("HrActivityEdit")){
+            sapti = getdata.getNoofapti();
+            stechtest = getdata.getNooftechtest();
+            sgroupdisc = getdata.getNoofgd();
+            stechinterview = getdata.getNoofti();
+            sHrinterview = getdata.getNoofhri();
+
+            if (sapti.length() > 0) {
+                apti.setText(sapti);
+            }
+            if (stechtest.length() > 0) {
+                techtest.setText(stechtest);
+            }
+            if (sgroupdisc.length() > 0) {
+                groupdisc.setText(sgroupdisc);
+            }
+            if (stechinterview.length() > 0) {
+                techinterview.setText(stechinterview);
+            }
+            if (sHrinterview.length() > 0) {
+                Hrinterview.setText(sHrinterview);
+            }
         }
 
 

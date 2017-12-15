@@ -1,6 +1,5 @@
 package placeme.octopusites.com.placeme;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,22 +14,20 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -46,6 +43,8 @@ import com.kbeanie.multipicker.api.entity.ChosenImage;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.soundcloud.android.crop.Crop;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -59,57 +58,65 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static placeme.octopusites.com.placeme.AES4all.OtoString;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
-import static placeme.octopusites.com.placeme.HrCompanyDetails.HRlog;
+import static placeme.octopusites.com.placeme.AES4all.fromString;
 import static placeme.octopusites.com.placeme.LoginActivity.md5;
 
-public class HRActivity extends AppCompatActivity implements ImagePickerCallback
-{
+public class HRActivity extends AppCompatActivity implements ImagePickerCallback {
 
-    public static final int HR_DATA_CHANGE_RESULT_CODE =444 ;
-
-    private String username="";
-    CircleImageView profile;
-    boolean doubleBackToExitPressedOnce = false;
-    int notificationorplacementflag=0;
-    private List<RecyclerItem> itemList = new ArrayList<>();
-    private RecyclerItemAdapter mAdapter;
-    int count=0,id[],pcount=0;
-    String heading[],notification[];
-    JSONParser jParser = new JSONParser();
-    JSONObject json;
-    FrameLayout mainfragment;
-    Handler handler=new Handler();
-    private MaterialSearchView searchView;
-    RelativeLayout createnotificationrl,editnotificationrl;
-    int notificationplacementflag=0;
-    private SharedPreferences sharedpreferences;
-    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final int HR_DATA_CHANGE_RESULT_CODE = 444;
+    public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
     public static final String Password = "passKey";
     public static final String Intro = "intro";
-    int navMenuFlag=0,oldNavMenuFlag=0;
-    int selectedMenuFlag=1;
-
-    //  our coding here
-    private ImageView resultView;
+    private static String url_getplacemenybyhr = "http://192.168.100.100:8080/CreateNotificationTemp/GetPlacementsCreatedByHr";
+    CircleImageView profile;
+    boolean doubleBackToExitPressedOnce = false;
+    int notificationorplacementflag = 0;
+    int count = 0, id[], pcount = 0;
+    String heading[], notification[];
+    JSONParser jParser = new JSONParser();
+    JSONObject json;
+    FrameLayout mainfragment;
+    Handler handler = new Handler();
+    RelativeLayout createnotificationrl, editnotificationrl;
+    int notificationplacementflag = 0;
+    int navMenuFlag = 0, oldNavMenuFlag = 0;
+    int selectedMenuFlag = 1;
     ImagePicker imagePicker;
     FrameLayout crop_layout;
-    private String finalPath;
-    int  crop_flag=0;
-    String digest1,digest2;
+    int crop_flag = 0;
+    String digest1, digest2;
     byte[] demoKeyBytes;
     byte[] demoIVBytes;
     String sPadding = "ISO10126Padding";
-    private String plainusername;
-    String filepath="",filename="";
+    String filepath = "", filename = "";
     String directory;
     List<String> response;
-    private RecyclerView recyclerView,recyclerViewPlacemetsHr;
-
+    //
+    ArrayList<ArrayList<RecyclerItemUsers>> registeredallListsfromserver = new ArrayList<>();
+    ArrayList<ArrayList<RecyclerItemUsers>> ShortlistedListsfromserver = new ArrayList<>();
+    ArrayList<ArrayList<RecyclerItemUsers>> placedallListsfromserver = new ArrayList<>();
+    int placemntscount;
+    private String username = "";
+    private List<RecyclerItem> itemList = new ArrayList<>();
+    private RecyclerItemAdapter mAdapter;
+    private MaterialSearchView searchView;
+    private SharedPreferences sharedpreferences;
+    //  our coding here
+    private ImageView resultView;
+    private String finalPath;
+    private String plainusername;
+    private RecyclerView recyclerView, recyclerViewPlacemetsHr;
     private List<RecyclerItemHrPlacement> itemList2 = new ArrayList<>();
     private RecyclerItemHrPlacementAdapter mAdapter2;
+    SwipeRefreshLayout tswipe_refresh_layout;
 
+
+
+
+    TextView createnotificationtxt,editnotificationtxt;
 
     //
     @Override
@@ -123,7 +130,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        username=getIntent().getStringExtra("username");
+        username = getIntent().getStringExtra("username");
 
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         searchView.setVoiceSearch(false);
@@ -134,23 +141,29 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
 
 
+
+         createnotificationtxt=(TextView)findViewById(R.id.createnotificationtxt);
+        editnotificationtxt =(TextView)findViewById(R.id.editnotificationtxt);
+
+
+
+
+
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
 
-//        digest1= "I09jdG9wdXMxMkl0ZXMjJQ==";
-//        digest2 = "I1BsYWNlMTJNZSMlJSopXg==";
 
-        digest1=MySharedPreferencesManager.getDigest1(this);
-        digest2=MySharedPreferencesManager.getDigest2(this);
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
 
 
-        MySharedPreferencesManager.save(HRActivity.this,"intro","yes");
-        MySharedPreferencesManager.save(HRActivity.this,"otp","no");
-        MySharedPreferencesManager.save(HRActivity.this,"activationMessage","no");
-        MySharedPreferencesManager.save(HRActivity.this,"activatedCode","no");
+        MySharedPreferencesManager.save(HRActivity.this, "intro", "yes");
+        MySharedPreferencesManager.save(HRActivity.this, "otp", "no");
+        MySharedPreferencesManager.save(HRActivity.this, "activationMessage", "no");
+        MySharedPreferencesManager.save(HRActivity.this, "activatedCode", "no");
 
         editor.putString("digest1", digest1);
-        editor.putString("digest2",digest2);
+        editor.putString("digest2", digest2);
         editor.commit();
 
         Digest d = new Digest();
@@ -161,16 +174,16 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         digest1 = d.getDigest1();
         digest2 = d.getDigest2();
 
-        MySharedPreferencesManager.save(HRActivity.this,"otp","no");
-        MySharedPreferencesManager.save(HRActivity.this,"activationMessage","no");
-        MySharedPreferencesManager.save(HRActivity.this,"activatedCode","no");
+        MySharedPreferencesManager.save(HRActivity.this, "otp", "no");
+        MySharedPreferencesManager.save(HRActivity.this, "activationMessage", "no");
+        MySharedPreferencesManager.save(HRActivity.this, "activatedCode", "no");
 
 
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                Toast.makeText(HRActivity.this,query,Toast.LENGTH_LONG).show();
+                Toast.makeText(HRActivity.this, query, Toast.LENGTH_LONG).show();
 
                 return false;
             }
@@ -213,13 +226,12 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 //        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        {
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
 
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
 
-                if(oldNavMenuFlag!=navMenuFlag) {
+                if (oldNavMenuFlag != navMenuFlag) {
                     if (navMenuFlag == 1) {
                         crop_layout.setVisibility(View.GONE);
                         HRProfileFragment fragment = new HRProfileFragment();
@@ -228,34 +240,44 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                         fragmentTransaction.replace(R.id.mainfragment, fragment);
                         fragmentTransaction.commit();
                         mainfragment.setVisibility(View.VISIBLE);
+
+                        recyclerView.setVisibility(View.GONE);
+                        recyclerViewPlacemetsHr.setVisibility(View.GONE);
                         getSupportActionBar().setTitle("My Profile");
 
                     } else if (navMenuFlag == 2) {
 
-                        notificationorplacementflag=1;
-
+                        notificationorplacementflag = 1;
                         crop_layout.setVisibility(View.GONE);
                         getSupportActionBar().setTitle("Notifications");
-                        mainfragment.setVisibility(View.GONE);
-//                        tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
-//                            getNotifications();
-                         mainfragment.setVisibility(View.GONE);
+                        createnotificationtxt.setText("Create Notification");
+                        editnotificationtxt.setText("Edit Notification");
+
+                        mainfragment.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.VISIBLE);
                         recyclerViewPlacemetsHr.setVisibility(View.GONE);
                     } else if (navMenuFlag == 3) {
 
-                        notificationorplacementflag=2;
+                        notificationorplacementflag = 2;
 
                         crop_layout.setVisibility(View.GONE);
                         getSupportActionBar().setTitle("Placements");
-                        mainfragment.setVisibility(View.GONE);
-//                        tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
-                        addTempPlacements();
+                        createnotificationtxt.setText("Create Placements");
+                        editnotificationtxt.setText("Edit Placements");
+
                         mainfragment.setVisibility(View.GONE);
                         recyclerView.setVisibility(View.GONE);
                         recyclerViewPlacemetsHr.setVisibility(View.VISIBLE);
+
+                        RelativeLayout rl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
+                        rl.setVisibility(View.VISIBLE);
+                        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+                        fab.setVisibility(View.VISIBLE);
+
+//                        initializerecyclerViewPlacements();
+                        getplacementbyhr();
                     } else if (navMenuFlag == 4) {
                         crop_layout.setVisibility(View.GONE);
                         MessagesFragment fragment = new MessagesFragment();
@@ -307,7 +329,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
 
-                oldNavMenuFlag=navMenuFlag;
+                oldNavMenuFlag = navMenuFlag;
 
             }
         };
@@ -317,17 +339,17 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        final View hView =  navigationView.getHeaderView(0);
-        profile = (CircleImageView)hView.findViewById(R.id.profile_image);
+        final View hView = navigationView.getHeaderView(0);
+        profile = (CircleImageView) hView.findViewById(R.id.profile_image);
 //        new GetProfileImage().execute();
 
-        final ImageView profilei=(ImageView)hView.findViewById(R.id.profile);
-        final ImageView notificationi=(ImageView)hView.findViewById(R.id.notification);
-        final ImageView placementi=(ImageView)hView.findViewById(R.id.placement);
-        final ImageView proi=(ImageView)hView.findViewById(R.id.pro);
-        final ImageView settingsi=(ImageView)hView.findViewById(R.id.settings);
-        final ImageView newsi=(ImageView)hView.findViewById(R.id.blog);
-        final ImageView chati=(ImageView)hView.findViewById(R.id.chat);
+        final ImageView profilei = (ImageView) hView.findViewById(R.id.profile);
+        final ImageView notificationi = (ImageView) hView.findViewById(R.id.notification);
+        final ImageView placementi = (ImageView) hView.findViewById(R.id.placement);
+        final ImageView proi = (ImageView) hView.findViewById(R.id.pro);
+        final ImageView settingsi = (ImageView) hView.findViewById(R.id.settings);
+        final ImageView newsi = (ImageView) hView.findViewById(R.id.blog);
+        final ImageView chati = (ImageView) hView.findViewById(R.id.chat);
         downloadImage();
 
 //        notificationcounttxt=(TextView) hView.findViewById(R.id.notificationcount);
@@ -343,68 +365,68 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 //        messagecount=(TextView)hView.findViewById(R.id.messagecount);
 //        messagecountrl=(RelativeLayout)hView.findViewById(R.id.messagecountrl);
 
-        View v1=(View)hView.findViewById(R.id.prifileselectionview);
-        View v2=(View)hView.findViewById(R.id.notificationselectionview);
-        View v3=(View)hView.findViewById(R.id.placementselectionview);
-        View v4=(View)hView.findViewById(R.id.proselectionview);
-        View v5=(View)hView.findViewById(R.id.settingselectionview);
-        View v6=(View)hView.findViewById(R.id.blogselectionview);
-        View v7=(View)hView.findViewById(R.id.abtselectionview);
-        View v8=(View)hView.findViewById(R.id.chatselectionview);
+        View v1 = (View) hView.findViewById(R.id.prifileselectionview);
+        View v2 = (View) hView.findViewById(R.id.notificationselectionview);
+        View v3 = (View) hView.findViewById(R.id.placementselectionview);
+        View v4 = (View) hView.findViewById(R.id.proselectionview);
+        View v5 = (View) hView.findViewById(R.id.settingselectionview);
+        View v6 = (View) hView.findViewById(R.id.blogselectionview);
+        View v7 = (View) hView.findViewById(R.id.abtselectionview);
+        View v8 = (View) hView.findViewById(R.id.chatselectionview);
 
-        mainfragment=(FrameLayout)findViewById(R.id.mainfragment);
+        mainfragment = (FrameLayout) findViewById(R.id.mainfragment);
 
         v1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
-                navMenuFlag=1;
+                navMenuFlag = 1;
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.profile_icon_selected);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTextColor(Color.parseColor("#4169e1"));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.chat);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.paper);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTextColor(Color.parseColor("#ffffff"));
 
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTextColor(Color.parseColor("#ffffff"));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -416,7 +438,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             @Override
             public void onClick(View view) {
 
-                navMenuFlag=2;
+                navMenuFlag = 2;
 
 
 //                tswipe_refresh_layout.setVisibility(View.VISIBLE);
@@ -424,46 +446,46 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_selected);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTextColor(Color.parseColor("#4169e1"));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.chat);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.paper);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTextColor(Color.parseColor("#ffffff"));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTextColor(Color.parseColor("#ffffff"));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -473,9 +495,9 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 mainfragment.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
                 recyclerViewPlacemetsHr.setVisibility(View.GONE);
-                RelativeLayout rl=(RelativeLayout)findViewById(R.id.admincontrolsrl);
+                RelativeLayout rl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
                 rl.setVisibility(View.VISIBLE);
-                FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
+                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
                 fab.setVisibility(View.VISIBLE);
 
             }
@@ -484,65 +506,57 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             @Override
             public void onClick(View view) {
 
-                navMenuFlag=3;
+                navMenuFlag = 3;
 
 //                tswipe_refresh_layout.setVisibility(View.VISIBLE);
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_selected);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTextColor(Color.parseColor("#4169e1"));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.chat);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.paper);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTextColor(Color.parseColor("#ffffff"));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTextColor(Color.parseColor("#ffffff"));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
-
-                mainfragment.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.GONE);
-                recyclerViewPlacemetsHr.setVisibility(View.VISIBLE);
-                RelativeLayout rl=(RelativeLayout)findViewById(R.id.admincontrolsrl);
-                rl.setVisibility(View.VISIBLE);
-                FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
-                fab.setVisibility(View.VISIBLE);
 
 
             }
@@ -551,51 +565,51 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             @Override
             public void onClick(View view) {
 
-                navMenuFlag=4;
+                navMenuFlag = 4;
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.chat_selected);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTextColor(Color.parseColor("#4169e1"));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.paper);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTextColor(Color.parseColor("#ffffff"));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTextColor(Color.parseColor("#ffffff"));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -607,8 +621,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             @Override
             public void onClick(View view) {
 
-                crop_flag=1;
-                startActivity(new Intent(HRActivity.this,ProSplashScreen.class));
+                crop_flag = 1;
+                startActivity(new Intent(HRActivity.this, ProSplashScreen.class));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
@@ -620,52 +634,52 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             @Override
             public void onClick(View view) {
 
-                navMenuFlag=5;
+                navMenuFlag = 5;
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.chat);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.paper);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_selected);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTextColor(Color.parseColor("#4169e1"));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTextColor(Color.parseColor("#ffffff"));
 
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTextColor(Color.parseColor("#ffffff"));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -678,57 +692,55 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             @Override
             public void onClick(View view) {
 
-                navMenuFlag=6;
+                navMenuFlag = 6;
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.chat);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.paper);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_selected);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTextColor(Color.parseColor("#4169e1"));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTextColor(Color.parseColor("#ffffff"));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
-
-
 
 
             }
@@ -737,51 +749,51 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             @Override
             public void onClick(View view) {
 
-                navMenuFlag=7;
+                navMenuFlag = 7;
 
                 Drawable myDrawable1 = getResources().getDrawable(R.drawable.profile_icon);
                 profilei.setImageDrawable(myDrawable1);
 
-                TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
+                TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
                 pt1.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification);
                 notificationi.setImageDrawable(myDrawable2);
 
-                TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
+                TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
                 pt2.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement);
                 placementi.setImageDrawable(myDrawable3);
 
-                TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
+                TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
                 pt3.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.chat);
                 chati.setImageDrawable(myDrawable8);
 
-                TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
+                TextView pt8 = (TextView) hView.findViewById(R.id.chattxt);
                 pt8.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.paper);
                 proi.setImageDrawable(myDrawable4);
 
-                TextView pt4=(TextView)hView.findViewById(R.id.protxt);
+                TextView pt4 = (TextView) hView.findViewById(R.id.protxt);
                 pt4.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings);
                 settingsi.setImageDrawable(myDrawable5);
 
-                TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
+                TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
                 pt5.setTextColor(Color.parseColor("#ffffff"));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog);
                 newsi.setImageDrawable(myDrawable6);
 
-                TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
+                TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
                 pt6.setTextColor(Color.parseColor("#ffffff"));
 
-                TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
+                TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
                 pt7.setTextColor(Color.parseColor("#4169e1"));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -794,7 +806,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         Drawable myDrawable = getResources().getDrawable(R.drawable.notification_selected);
         notificationi.setImageDrawable(myDrawable);
 
-        TextView pt=(TextView)hView.findViewById(R.id.notificationtxt);
+        TextView pt = (TextView) hView.findViewById(R.id.notificationtxt);
         pt.setTextColor(Color.parseColor("#4169e1"));
         getSupportActionBar().setTitle("Notifications");
 
@@ -802,7 +814,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         recyclerViewPlacemetsHr = (RecyclerView) findViewById(R.id.recyclerViewPlacemetsHr);
 
         mAdapter = new RecyclerItemAdapter(itemList);
-
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -810,14 +821,15 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
+
         mAdapter2 = new RecyclerItemHrPlacementAdapter(itemList2);
         recyclerViewPlacemetsHr.setHasFixedSize(true);
-
         RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(this);
         recyclerViewPlacemetsHr.setLayoutManager(mLayoutManager2);
         recyclerViewPlacemetsHr.addItemDecoration(new DividerItemDecorationHrPlacements(this, LinearLayoutManager.VERTICAL));
         recyclerViewPlacemetsHr.setItemAnimator(new DefaultItemAnimator());
         recyclerViewPlacemetsHr.setAdapter(mAdapter2);
+
 
         //temp work remove after
         addNotificationdatatoAdapter();
@@ -828,13 +840,11 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             public void onClick(View view, int position) {
                 RecyclerItem movie = itemList.get(position);
 
-                if(notificationorplacementflag==0) {
+                if (notificationorplacementflag == 0) {
 
-                    startActivity(new Intent(HRActivity.this,ViewNotificationAdmin.class).putExtra("username",username));
-                }
-                else if(notificationorplacementflag==1)
-                {
-                    startActivity(new Intent(HRActivity.this,ViewPlacementAdmin.class).putExtra("username",username));
+                    startActivity(new Intent(HRActivity.this, ViewNotificationAdmin.class).putExtra("username", username));
+                } else if (notificationorplacementflag == 1) {
+                    startActivity(new Intent(HRActivity.this, ViewPlacementAdmin.class).putExtra("username", username));
                 }
             }
 
@@ -847,18 +857,40 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         recyclerViewPlacemetsHr.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerViewPlacemetsHr, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                RecyclerItemHrPlacement item = itemList2.get(position);
+                try {
+                    RecyclerItemHrPlacement item = itemList2.get(position);
 
 
-                Intent i1 = new Intent(HRActivity.this, UserSelection.class);
+                    ArrayList<RecyclerItemUsers> RegisteredItemlistTemp = registeredallListsfromserver.get(position);
+                    ArrayList<RecyclerItemUsers> ShortlistedListsfromservertemp = ShortlistedListsfromserver.get(position);
+                    ArrayList<RecyclerItemUsers> placedItemlistTemp = placedallListsfromserver.get(position);
 
-                i1.putExtra("id",item.getId());
-                i1.putExtra("companyname",item.getCompanyname());
-                i1.putExtra("lastmodifiedtime",item.getLastmodifiedtime());
-                i1.putExtra("registerednumber",item.getRegisterednumber());
-                i1.putExtra("placednumber",item.getPlacednumber());
-                i1.putExtra("lastdateofreg",item.getLastdateofreg());
-                startActivity(i1);
+
+                    String sRegisteredItemlistTemp = OtoString(RegisteredItemlistTemp, digest1, digest2);
+                    String sShortlistedListsfromservertemp = OtoString(ShortlistedListsfromservertemp, digest1, digest2);
+                    String splacedItemlistTemp = OtoString(placedItemlistTemp, digest1, digest2);
+
+
+                    Log.d("TAG", "position  " + position);
+                    Intent i1 = new Intent(HRActivity.this, UserSelection.class);
+
+                    i1.putExtra("id", item.getId());
+                    Log.d("Tag", "id: " + item.getId());
+
+                    i1.putExtra("sRegisteredItemlistTemp", sRegisteredItemlistTemp);
+                    i1.putExtra("sShortlistedListsfromservertemp", sShortlistedListsfromservertemp);
+                    i1.putExtra("splacedItemlistTemp", splacedItemlistTemp);
+
+                    i1.putExtra("companyname", item.getCompanyname());
+                    i1.putExtra("lastmodifiedtime", item.getLastmodifiedtime());
+                    i1.putExtra("registerednumber", item.getRegisterednumber());
+                    i1.putExtra("placednumber", item.getPlacednumber());
+                    i1.putExtra("lastdateofreg", item.getLastdateofreg());
+                    startActivity(i1);
+                } catch (Exception e) {
+                    Toast.makeText(HRActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
 
             }
 
@@ -870,15 +902,15 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
         disableNavigationViewScrollbars(navigationView);
 
-        createnotificationrl=(RelativeLayout)findViewById(R.id.createnotificationrl);
-        editnotificationrl=(RelativeLayout)findViewById(R.id.editnotificationrl);
+        createnotificationrl = (RelativeLayout) findViewById(R.id.createnotificationrl);
+        editnotificationrl = (RelativeLayout) findViewById(R.id.editnotificationrl);
 
         createnotificationrl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (notificationorplacementflag == 1) {
                     //CreateNotification
-                    Intent i1 = new Intent(HRActivity.this, CreateNotification.class);
+                    Intent i1 = new Intent(HRActivity.this, CreateNotificationHR.class);
                     i1.putExtra("flag", "HrActivity");
                     startActivity(i1);
 
@@ -890,7 +922,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                     String Tag = "HrActivity";
                     PlacementEditData settag = new PlacementEditData();
                     settag.setActivityFromtag(Tag);
-                    startActivity(new Intent(HRActivity.this, CreatePlacement.class));
+                    startActivity(new Intent(HRActivity.this, CreatePlacementHr.class));
 
                 }
             }
@@ -901,12 +933,20 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             public void onClick(View view) {
                 if (notificationorplacementflag == 1) {
                     //EditNotification
+                    String Tag = "HrActivity";
+                    PlacementEditData settag = new PlacementEditData();
+                    settag.setActivityFromtag(Tag);
                     startActivity(new Intent(HRActivity.this, EditNotification.class));
                 } else if (notificationorplacementflag == 2) {
                     //EditPlacement
-                    startActivity(new Intent(HRActivity.this, EditPlacement.class));
+
+                    String Tag = "HrActivityEdit";
+                    PlacementEditData settag = new PlacementEditData();
+                    settag.setActivityFromtag(Tag);
+                    startActivity(new Intent(HRActivity.this, EditPlacementHr.class));
 
                 }
+
             }
         });
 
@@ -923,38 +963,35 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
 
 // our coding here
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        String pass=sharedpreferences.getString(Password,null);
-        String role=sharedpreferences.getString("role",null);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        username = MySharedPreferencesManager.getUsername(this);
+        String pass = sharedpreferences.getString(Password, null);
+        String role = sharedpreferences.getString("role", null);
 
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-        try
-        {
+
+        try {
 
             demoKeyBytes = SimpleBase64Encoder.decode(digest1);
             demoIVBytes = SimpleBase64Encoder.decode(digest2);
             sPadding = "ISO10126Padding";
 
-            byte[] demo1EncryptedBytes1=SimpleBase64Encoder.decode(username);
+            byte[] demo1EncryptedBytes1 = SimpleBase64Encoder.decode(username);
             byte[] demo1DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo1EncryptedBytes1);
-            plainusername=new String(demo1DecryptedBytes1);
-            r.setPlainusername(plainusername);
+            plainusername = new String(demo1DecryptedBytes1);
 
-            byte[] demo2EncryptedBytes1=SimpleBase64Encoder.decode(pass);
+            byte[] demo2EncryptedBytes1 = SimpleBase64Encoder.decode(pass);
             byte[] demo2DecryptedBytes1 = demo1decrypt(demoKeyBytes, demoIVBytes, sPadding, demo2EncryptedBytes1);
-            String data=new String(demo2DecryptedBytes1);
-            String hash=md5(data + sharedpreferences.getString("digest3",null));
+            String data = new String(demo2DecryptedBytes1);
+            String hash = md5(data + sharedpreferences.getString("digest3", null));
 
 //           loginFirebase(plainusername,hash);
 
-        }catch (Exception e){Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();}
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
 
 
-
-        crop_layout=(FrameLayout)findViewById(R.id.crop_layout);
+        crop_layout = (FrameLayout) findViewById(R.id.crop_layout);
 
 
         resultView = (ImageView) findViewById(R.id.result_image);
@@ -965,7 +1002,46 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         imagePicker.shouldGenerateThumbnails(false); // Default is true
         requestProfileImage();  //  update thumbanail first time activity Load
 
+
+
+
+
+
+
+
+
+        tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        tswipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                getplacementbyhr();
+
+//                if (selectedMenuFlag == 1)
+//                    getNotifications();
+//                else if (selectedMenuFlag == 2)
+//                    getPlacements();
+
+
+            }
+        });
+
+        tswipe_refresh_layout.setRefreshing(true);
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
+
     private void disableNavigationViewScrollbars(NavigationView navigationView) {
         if (navigationView != null) {
             NavigationMenuView navigationMenuView = (NavigationMenuView) navigationView.getChildAt(0);
@@ -974,6 +1050,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             }
         }
     }
+
     @Override
     public void onBackPressed() {
         if (searchView.isSearchOpen()) {
@@ -995,7 +1072,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
                 @Override
                 public void run() {
-                    doubleBackToExitPressedOnce=false;
+                    doubleBackToExitPressedOnce = false;
                 }
             }, 2000);
         }
@@ -1016,8 +1093,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
         return super.onOptionsItemSelected(item);
     }
-    void addNotificationdatatoAdapter()
-    {
+
+    void addNotificationdatatoAdapter() {
 //        for(int i=0;i<10;i++)
 //        {
 //            RecyclerItem item = new RecyclerItem(i,"Heading "+i, "Notification "+i,"21/07/2016", "yes",HRActivity.this);
@@ -1030,8 +1107,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 //        }
 //        mAdapter.notifyDataSetChanged();
     }
-    void addPlacementdatatoAdapter()
-    {
+
+    void addPlacementdatatoAdapter() {
 //        for(int i=0;i<5;i++)
 //        {
 //            RecyclerItem item = new RecyclerItem(i,"Company "+i, "3.2","21/07/2016", "Trainee");
@@ -1039,37 +1116,34 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 //        }
 //        mAdapter.notifyDataSetChanged();
     }
+
     // our coding here
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
 
-        Log.d("TAG", "onActivityResult: hr activity "+resultCode);
+        Log.d("TAG", "onActivityResult: hr activity " + resultCode);
 
-        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        plainusername=sharedpreferences.getString("plain",null);
-        digest1=sharedpreferences.getString("digest1",null);
-        digest2=sharedpreferences.getString("digest2",null);
-        username=sharedpreferences.getString(Username,null);
-        String role=sharedpreferences.getString("role",null);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        plainusername = sharedpreferences.getString("plain", null);
+        digest1 = sharedpreferences.getString("digest1", null);
+        digest2 = sharedpreferences.getString("digest2", null);
+        username = sharedpreferences.getString(Username, null);
+        String role = sharedpreferences.getString("role", null);
 
 
-        ProfileRole r=new ProfileRole();
+        ProfileRole r = new ProfileRole();
         r.setUsername(username);
         r.setPlainusername(plainusername);
         r.setRole(role);
 
-        Digest d=new Digest();
-        d.setDigest1(digest1);
-        d.setDigest2(digest2);
 
-
-        if(resultCode==HR_DATA_CHANGE_RESULT_CODE){
+        if (resultCode == HR_DATA_CHANGE_RESULT_CODE) {
 
             HRProfileFragment fragment = (HRProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
             fragment.refreshContent();
 
         }
-        if(requestCode== Picker.PICK_IMAGE_DEVICE) {
+        if (requestCode == Picker.PICK_IMAGE_DEVICE) {
 
             try {
 
@@ -1081,7 +1155,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 crop_layout.setVisibility(View.VISIBLE);
                 //            tswipe_refresh_layout.setVisibility(View.GONE);
                 mainfragment.setVisibility(View.GONE);
-                crop_flag=1;
+                crop_flag = 1;
                 beginCrop(result.getData());
                 // Toast.makeText(this, "crop initiated", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
@@ -1089,15 +1163,12 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 //            tswipe_refresh_layout.setVisibility(View.GONE);
                 mainfragment.setVisibility(View.VISIBLE);
             }
-        }
-        else if(resultCode==RESULT_CANCELED)
-        {
+        } else if (resultCode == RESULT_CANCELED) {
             crop_layout.setVisibility(View.GONE);
             //        tswipe_refresh_layout.setVisibility(View.GONE);
             mainfragment.setVisibility(View.VISIBLE);
-            crop_flag=0;
-        }
-        else if (requestCode == Crop.REQUEST_CROP) {
+            crop_flag = 0;
+        } else if (requestCode == Crop.REQUEST_CROP) {
             // Toast.makeText(this, "cropped", Toast.LENGTH_SHORT).show();
             handleCrop(resultCode, result);
         }
@@ -1107,19 +1178,20 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 //
 //    }
     }
+
     private void handleCrop(int resultCode, Intent result) {
         if (resultCode == RESULT_OK) {
-            File f=new File(getCacheDir(), "cropped");
-            filepath=f.getAbsolutePath();
+            File f = new File(getCacheDir(), "cropped");
+            filepath = f.getAbsolutePath();
 
-            filename="";
-            int index=filepath.lastIndexOf("/");
-            directory="";
-            for(int i=0;i<index;i++)
-                directory+=filepath.charAt(i);
+            filename = "";
+            int index = filepath.lastIndexOf("/");
+            directory = "";
+            for (int i = 0; i < index; i++)
+                directory += filepath.charAt(i);
 
-            for(int i=index+1;i<filepath.length();i++)
-                filename+=filepath.charAt(i);
+            for (int i = index + 1; i < filepath.length(); i++)
+                filename += filepath.charAt(i);
 
             crop_layout.setVisibility(View.GONE);
 //            tswipe_refresh_layout.setVisibility(View.GONE);
@@ -1142,8 +1214,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         Crop.of(source, destination).asSquare().start(this);
     }
 
-    public void requestCropImage()
-    {
+    public void requestCropImage() {
         resultView.setImageDrawable(null);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -1157,10 +1228,12 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
 
     }
+
     private void chooseImage() {
 
         imagePicker.pickImage();
     }
+
     @Override
     public void onError(String s) {
         crop_layout.setVisibility(View.GONE);
@@ -1169,9 +1242,10 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         Toast.makeText(HRActivity.this, s, Toast.LENGTH_SHORT).show();
 
     }
+
     @Override
     public void onImagesChosen(List<ChosenImage> list) {
-        final ChosenImage file=list.get(0);
+        final ChosenImage file = list.get(0);
 
         runOnUiThread(new Runnable() {
 
@@ -1184,66 +1258,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             }
         });
     }
-    class UploadProfile extends AsyncTask<String, String, String> {
-        protected String doInBackground(String... param) {
-            try {
-                File sourceFile = new File(filepath);
-                MultipartUtility multipart = new MultipartUtility(MyConstants.upload_profile, "UTF-8");
-                multipart.addFormField("u", username);
-                if(filename!="") {
-                    multipart.addFormField("f", filename);
-                    multipart.addFilePart("uf", sourceFile);
-                }
-                else
-                    multipart.addFormField("f", "null");
-                response = multipart.finish();
 
-
-            } catch (Exception ex) {
-
-            }
-
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            crop_layout.setVisibility(View.GONE);
-            //           tswipe_refresh_layout.setVisibility(View.GONE);
-            mainfragment.setVisibility(View.VISIBLE);
-
-            if(response.get(0).contains("success")) {
-                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString("crop", "no");
-                editor.commit();
-                Toast.makeText(HRActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
-                requestProfileImage();
-                HRProfileFragment fragment = (HRProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-                fragment.refreshContent();
-                DeleteRecursive(new File(directory));
-            }
-            else if(response.get(0).contains("null"))
-            {
-                requestProfileImage();
-                MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
-                fragment.refreshContent();
-                Toast.makeText(HRActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
-            }
-
-        }
-        void DeleteRecursive(File fileOrDirectory) {
-
-            if (fileOrDirectory.isDirectory())
-                for (File child : fileOrDirectory.listFiles())
-                    DeleteRecursive(child);
-
-            fileOrDirectory.delete();
-
-        }
-
-    }
     private void downloadImage() {
 
         String t = String.valueOf(System.currentTimeMillis());
@@ -1262,13 +1277,104 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 .into(profile);
 
     }
-    public void requestProfileImage()
-    {
+
+    public void requestProfileImage() {
         // Toast.makeText(this, "thumbnail Method()", Toast.LENGTH_SHORT).show();
 //        new GetProfileImage().execute();
         downloadImage();
 
     }
+
+    void addTempPlacements() {
+        Log.d("tag", "addTempPlacements:Accessed ");
+    }
+
+    void setserverlisttoadapter(List<RecyclerItemHrPlacement> itemlist) {
+
+        itemList2.clear();
+        itemList2.addAll(itemlist);
+//        mAdapter2 = new RecyclerItemHrPlacementAdapter(itemList2);
+//        recyclerViewPlacemetsHr.setAdapter(mAdapter2);
+        mAdapter2.notifyDataSetChanged();
+
+
+    }
+
+    void initializerecyclerViewPlacements() {
+
+        mAdapter2 = new RecyclerItemHrPlacementAdapter(itemList2);
+        recyclerViewPlacemetsHr.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(this);
+        recyclerViewPlacemetsHr.setLayoutManager(mLayoutManager2);
+        recyclerViewPlacemetsHr.addItemDecoration(new DividerItemDecorationHrPlacements(this, LinearLayoutManager.VERTICAL));
+        recyclerViewPlacemetsHr.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewPlacemetsHr.setAdapter(mAdapter2);
+    }
+
+    void getplacementbyhr() {
+//        initializerecyclerViewPlacements();
+        new Getplacementbyhr().execute();
+    }
+
+    class UploadProfile extends AsyncTask<String, String, String> {
+        protected String doInBackground(String... param) {
+            try {
+                File sourceFile = new File(filepath);
+                MultipartUtility multipart = new MultipartUtility(MyConstants.upload_profile, "UTF-8");
+                multipart.addFormField("u", username);
+                if (filename != "") {
+                    multipart.addFormField("f", filename);
+                    multipart.addFilePart("uf", sourceFile);
+                } else
+                    multipart.addFormField("f", "null");
+                response = multipart.finish();
+
+
+            } catch (Exception ex) {
+
+            }
+
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            crop_layout.setVisibility(View.GONE);
+            //           tswipe_refresh_layout.setVisibility(View.GONE);
+            mainfragment.setVisibility(View.VISIBLE);
+
+            if (response.get(0).contains("success")) {
+                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString("crop", "no");
+                editor.commit();
+                Toast.makeText(HRActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
+                requestProfileImage();
+                HRProfileFragment fragment = (HRProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+                fragment.refreshContent();
+                DeleteRecursive(new File(directory));
+            } else if (response.get(0).contains("null")) {
+                requestProfileImage();
+                MyProfileFragment fragment = (MyProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
+                fragment.refreshContent();
+                Toast.makeText(HRActivity.this, "Try Again", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
+        void DeleteRecursive(File fileOrDirectory) {
+
+            if (fileOrDirectory.isDirectory())
+                for (File child : fileOrDirectory.listFiles())
+                    DeleteRecursive(child);
+
+            fileOrDirectory.delete();
+
+        }
+
+    }
+
     // thumbanail
     public class GetProfileImage extends AsyncTask<String, Void, Bitmap> {
         @Override
@@ -1277,10 +1383,12 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             map = downloadImage(MyConstants.load_student_image);
             return map;
         }
+
         @Override
         protected void onPostExecute(Bitmap result) {
             profile.setImageBitmap(result);
         }
+
         private Bitmap downloadImage(String url) {
             Uri uri = new Uri.Builder()
                     .scheme("http")
@@ -1289,7 +1397,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                     .appendQueryParameter("u", username)
                     .build();
 
-            url=uri.toString();
+            url = uri.toString();
 
             Bitmap bitmap = null;
             InputStream stream = null;
@@ -1329,15 +1437,76 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         }
 
     }
-    void addTempPlacements()
-    {
-        Log.d("tag", "addTempPlacements:Accessed ");
-        for(int i=0;i<10;i++)
-        {
-            RecyclerItemHrPlacement item2=new RecyclerItemHrPlacement(i,"Cognizant","17-FEB-2017 5:20 PM","201 Candidates Registered","57 Candidates Placed","20-FEB-2017");
-            itemList2.add(item2);
+
+    class Getplacementbyhr extends AsyncTask<String, String, String> {
+
+        ArrayList<RecyclerItemHrPlacement> itemlistfromserver = new ArrayList<>();
+
+String username1=MySharedPreferencesManager.getUsername(getBaseContext());
+        private static final String TAG = "Getplacementbyhr";
+
+        protected String doInBackground(String... param) {
+            Log.d(TAG, "doInBackground:username1 "+username1);
+
+            String r = null;
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+//            params.add(new BasicNameValuePair("u", "JPmAnGBeJZXNGflV0GTTdQm/vhd32vqwKhPHylZ77kw="));       //0
+            params.add(new BasicNameValuePair("u", username1));       //0
+
+
+//            params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
+            digest1 = MySharedPreferencesManager.getDigest1(getBaseContext());
+            digest2 = MySharedPreferencesManager.getDigest2(getBaseContext());
+            Log.d("itemlistfromserver", "digest1: " + digest1);
+            Log.d("itemlistfromserver", "digest2: " + digest2);
+
+
+            json = jParser.makeHttpRequest(url_getplacemenybyhr, "GET", params);
+            try {
+
+                placemntscount = Integer.parseInt(json.getString("count"));
+                Log.d("itemlistfromserver", "doInBackground: " + placemntscount);
+
+                if (placemntscount != 0) {
+                    Log.d("json1", "jsonparamsList " + json.getString("jsonparamsList"));
+                    Log.d("json1", "jsonRegisteredAllLists " + json.getString("jsonRegisteredAllLists"));
+                    Log.d("json1", "jsonshortlistedallallLists" + json.getString("jsonshortlistedallallLists"));
+                    Log.d("json1", "jsonparamsplacedlistedallLists" + json.getString("jsonparamsplacedlistedallLists"));
+
+                    itemlistfromserver = (ArrayList<RecyclerItemHrPlacement>) fromString(json.getString("jsonparamsList"), digest1, digest2);
+                    Log.d("itemlistfromserver", "reg======================="+itemlistfromserver.get(0).getRegisterednumber());
+
+
+
+                    registeredallListsfromserver = (ArrayList<ArrayList<RecyclerItemUsers>>) fromString(json.getString("jsonRegisteredAllLists"), digest1, digest2);
+                    ShortlistedListsfromserver = (ArrayList<ArrayList<RecyclerItemUsers>>) fromString(json.getString("jsonshortlistedallallLists"), digest1, digest2);
+                    placedallListsfromserver = (ArrayList<ArrayList<RecyclerItemUsers>>) fromString(json.getString("jsonparamsplacedlistedallLists"), digest1, digest2);
+                    Log.d("itemlistfromserver", "itemlistfromserver size: " + itemlistfromserver.size());
+                    Log.d("itemlistfromserver", "registeredallListsfromserver: " + registeredallListsfromserver.size());
+                    Log.d("itemlistfromserver", "ShortlistedListsfromserver: " + ShortlistedListsfromserver.size());
+                    Log.d("itemlistfromserver", "placedallListsfromserver: " + placedallListsfromserver.size());
+
+                    Log.d("check", "----------------ci=ontentx of list--------------------------: "+ registeredallListsfromserver.get(0).size());
+
+
+                   }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return r;
         }
-        mAdapter2.notifyDataSetChanged();
+
+        @Override
+        protected void onPostExecute(String result) {
+            tswipe_refresh_layout.setVisibility(View.VISIBLE);
+            tswipe_refresh_layout.setRefreshing(false);
+
+            setserverlisttoadapter(itemlistfromserver);
+
+        }
     }
+
 
 }

@@ -77,15 +77,18 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
     private static String upload_profile = "http://192.168.100.100/AESTest/UploadProfile";
     private static String load_student_image = "http://192.168.100.100/AESTest/GetImage";
     //placement urls
-    private static String url_getplacementsmetadata = "http://192.168.100.30/CreateNotificationTemp/GetPlacementsAdminMetaData";
-    private static String url_getplacementsreadstatus = "http://192.168.100.30/CreateNotificationTemp/GetReadStatusOfPlacementsForAdmin";
-    private static String url_getplacements = "http://192.168.100.30/CreateNotificationTemp/GetPlacementsAdmin";
-    private static String url_changeplacementsreadstatus = "http://192.168.100.30/CreateNotificationTemp/ChangePlacementReadStatusAdmin";
+    private static String url_getplacementsmetadata = "http://192.168.100.100:8080/CreateNotificationTemp/GetPlacementsAdminMetaData";
+    private static String url_getplacementsreadstatus = "http://192.168.100.100:8080/CreateNotificationTemp/GetReadStatusOfPlacementsForAdmin";
+    private static String url_getplacements = "http://192.168.100.100:8080/CreateNotificationTemp/GetPlacementsAdmin";
+    private static String url_changeplacementsreadstatus = "http://192.168.100.100:8080/CreateNotificationTemp/ChangePlacementReadStatusAdmin";
+
+
     //notiffurl
-    private static String url_getnotificationsmetadata = "http://192.168.100.30/CreateNotificationTemp/GetNotificationsAdminMetaData";
-    private static String url_getnotificationsreadstatus = "http://192.168.100.30/CreateNotificationTemp/GetReadStatusOfNotificationsAdmin";
-    private static String url_getnotifications = "http://192.168.100.30/CreateNotificationTemp/GetNotificationsAdmin";
-    private static String url_changenotificationsreadstatus = "http://192.168.100.30/CreateNotificationTemp/ChangeNotificationReadStatusAdmin";
+    private static String url_getnotificationsmetadata = "http://192.168.100.100:8080/CreateNotificationTemp/GetNotificationsAdminMetaData";
+    private static String url_getnotificationsreadstatus = "http://192.168.100.100:8080/CreateNotificationTemp/GetReadStatusOfNotificationsAdmin";
+    private static String url_getnotifications = "http://192.168.100.100:8080/CreateNotificationTemp/GetNotificationsAdmin";
+    private static String url_changenotificationsreadstatus = "http://192.168.100.100:8080/CreateNotificationTemp/ChangeNotificationReadStatusAdmin";
+
     public static String url_getlastupdated = "http://192.168.100.30/CreateNotificationTemp/GetLastUpdatedAdmin";
 
     SharedPreferences sharedpreferences;
@@ -1434,7 +1437,7 @@ public class AdminActivity extends AppCompatActivity implements ImagePickerCallb
         plainusername = sharedpreferences.getString("plain", null);
         digest1 = sharedpreferences.getString("digest1", null);
         digest2 = sharedpreferences.getString("digest2", null);
-        username = sharedpreferences.getString(Username, null);
+        username = MySharedPreferencesManager.getUsername(this);
         String role = sharedpreferences.getString("role", null);
 
         ProfileRole r = new ProfileRole();

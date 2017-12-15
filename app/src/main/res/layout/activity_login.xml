@@ -52,6 +52,7 @@
             android:textColor="#eeeeee"
             android:gravity="center_horizontal"
             android:theme="@style/MyEditTextTheme"
+            android:text="sunny.gh.gm@gmail.com"
             />
 
     </LinearLayout>
@@ -80,6 +81,7 @@
             android:textSize="20dp"
             android:textColor="#eeeeee"
             android:ellipsize="start"
+            android:text="123456"
             android:layout_marginRight="10dp"
             android:inputType="textPassword"
             android:layout_width="match_parent"

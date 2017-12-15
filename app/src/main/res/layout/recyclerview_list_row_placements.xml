@@ -17,17 +17,36 @@
         android:layout_centerVertical="true"
         app:border_color="#FF000000"
         />
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/logo"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/logo"
+        app:border_color="#FF000000"
+        android:layout_marginLeft="50dp"
+        android:layout_alignBottom="@+id/uploadedbyprofile"
+
+
+
+
+        />
+
+
 
     <TextView
         android:id="@+id/companyname"
         android:textColor="@color/heading"
         android:textSize="16dp"
         android:text="companyname"
+        android:singleLine="true"
         android:textStyle="bold"
-        android:layout_toRightOf="@+id/uploadedbyprofile"
+        android:layout_toRightOf="@+id/logo"
         android:layout_width="match_parent"
         android:layout_marginLeft="10dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/cpackage"/>
 
 
     <TextView
@@ -37,7 +56,7 @@
         android:text="LDR 30-Apr-2017"
         android:textColor="@color/notification"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/uploadedbyprofile"
+        android:layout_toRightOf="@+id/logo"
         android:layout_marginTop="5dp"
         android:layout_height="wrap_content" />
     <TextView

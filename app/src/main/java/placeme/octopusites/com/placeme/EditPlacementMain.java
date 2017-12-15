@@ -45,6 +45,7 @@ import java.util.List;
 
 import mabbas007.tagsedittext.TagsEditText;
 
+import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
@@ -78,7 +79,7 @@ public class EditPlacementMain extends AppCompatActivity {
     String snooftechtest,snoofgd,snoofti,snoofhri,sstdx,sstdxiiordiploma,sug,spg,suploadtime,slastmodified,suploadedby,sforwhom="",snoofallowedliveatkt,snoofalloweddeadatkt;
     //
     private static String url_getforwhome = "http://192.168.100.30/CreateNotificationTemp/GetForWhomePlacements";
-    private static String url_modifyplacement= "http://192.168.100.30/CreateNotificationTemp/ModifyPlacement";
+    private static String url_modifyplacement= "http://192.168.100.100:8080/CreateNotificationTemp/ModifyPlacement";
 
 //
 
@@ -93,14 +94,12 @@ public class EditPlacementMain extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Edit Placement");
 
-        ProfileRole r=new ProfileRole();
-        role=r.getRole();
-
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
 
+        role = MySharedPreferencesManager.getRole(this);
         allumiselector=(RelativeLayout)findViewById(R.id.allumiselector);
         batchesTagsedittext=(TagsEditText)findViewById(R.id.batchesTags);
 
@@ -520,7 +519,7 @@ public class EditPlacementMain extends AppCompatActivity {
     }
 
     void validate(){
-
+ try{
         errorflag = 0;
 
         String selectedBatchesForWhome= android.text.TextUtils.join(",",TagCreateList );
@@ -541,7 +540,7 @@ public class EditPlacementMain extends AppCompatActivity {
 
             if (forstudflag==1) {
                 //notification for Student
-                forwhom=instname+"(ADMIN,STUDENT";                  //for testing  purpose ADMIN IS sTUDENT
+                forwhom=instname+"(" +Decrypt(encUsername,digest1,digest2)+ ",STUDENT";                  //for testing  purpose ADMIN IS sTUDENT
                 if(forallumflag==1){
                     //for Stud + alumni
                     forwhom=forwhom+","+selectedBatchesForWhome+")";
@@ -556,7 +555,7 @@ public class EditPlacementMain extends AppCompatActivity {
                 //notification not for Student
                 if(forallumflag==1){
                     //for ALLUMNI
-                    forwhom=instname+"("+selectedBatchesForWhome+")";
+                    forwhom=instname+"("+ Decrypt(encUsername,digest1,digest2)+" ," +selectedBatchesForWhome+")";
                     Log.d("forwhomeStringAppend", "onCreate: "+forwhom);
 
                 }else {
@@ -603,6 +602,10 @@ public class EditPlacementMain extends AppCompatActivity {
                 }
             }
         }
+    } catch (Exception e) {
+        e.printStackTrace();
+        Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+    }
     }
     class save extends AsyncTask<String,String,String> {
         @Override
@@ -645,8 +648,8 @@ public class EditPlacementMain extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            Toast.makeText(EditPlacementMain.this,result,Toast.LENGTH_SHORT).show();
-            EditPlacementMain.super.onBackPressed();
+//            Toast.makeText(EditPlacementMain.this,result,Toast.LENGTH_SHORT).show();
+//            EditPlacementMain.super.onBackPressed();
 
 
 

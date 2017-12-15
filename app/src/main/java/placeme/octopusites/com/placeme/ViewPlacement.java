@@ -203,6 +203,9 @@ public class ViewPlacement extends AppCompatActivity {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", username));
                 params.add(new BasicNameValuePair("id", id));
+
+                //get selected templte from preferences and send it as a parameter
+
                 json = jParser.makeHttpRequest(url_registerforplacement, "GET", params);
                 String s = null;
                 resultofop = json.getString("info");
@@ -312,6 +315,7 @@ public class ViewPlacement extends AppCompatActivity {
                 c10= Float.parseFloat(stdx);
                 c12= Float.parseFloat(stdxiiordiploma);
                 cu= Float.parseFloat(ug);
+
                 s10= Float.parseFloat(studenttenthmarks);
                 s12= Float.parseFloat(studenttwelthordiplomamarks);
                 su= Float.parseFloat(studentugmarks);

@@ -108,11 +108,12 @@ public class EditNotification extends AppCompatActivity {
     private List<RecyclerItem> itemListNotification = new ArrayList<>();
     private RecyclerItemAdapter mAdapterNotification;
 
-    private static String url_getnotificationsmetadata= "http://192.168.100.30/CreateNotificationTemp/GetNotificationsAdminMetaData";
-    private static String url_getnotificationsreadstatus= "http://192.168.100.30/CreateNotificationTemp/GetReadStatusOfNotificationsAdmin";
-    private static String url_getnotifications= "http://192.168.100.30/CreateNotificationTemp/GetNotificationsSentByAdmin";
-    private static String url_getlastupdated= "http://192.168.100.30/CreateNotificationTemp/GetLastUpdatedAdmin";
-    private static String url_Delete_Notification= "http://192.168.100.30/CreateNotificationTemp/DeleteNotification";
+    private static String url_getnotificationsmetadata= "http://192.168.100.100:8080/CreateNotificationTemp/GetNotificationsByAdminMetaData";
+    private static String url_getnotificationsreadstatus= "http://192.168.100.100:8080/CreateNotificationTemp/GetReadStatusOfNotificationsByAdmin";
+    private static String url_getnotifications= "http://192.168.100.100:8080/CreateNotificationTemp/GetNotificationsSentByAdmin";
+    private static String url_getlastupdated= "http://192.168.100.100:8080/CreateNotificationTemp/GetLastUpdatedAdmin";
+
+    private static String url_Delete_Notification= "http://192.168.100.100:8080/CreateNotificationTemp/DeleteNotification";
 
 
 

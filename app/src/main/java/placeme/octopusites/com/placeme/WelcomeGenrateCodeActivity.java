@@ -79,13 +79,14 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
     String countries[];
     int countrycount;
     private static  String android_id,device_id;
-    TextView helloMsgcode, genratedCode;
+    TextView helloMsgcode, genratedCode,headerMsgcode;
 
 
     public void setWelComeShowCodeView(View v) {
         WelComeShowCodeView = v;
         helloMsgcode = (TextView) WelComeShowCodeView.findViewById(R.id.helloMsgcode);
         genratedCode = (TextView) WelComeShowCodeView.findViewById(R.id.genratedCode);
+        headerMsgcode = (TextView) WelComeShowCodeView.findViewById(R.id.headerMsgcode);
 
     }
 
@@ -112,6 +113,27 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, countrieslist);
         countryAutoBox.setAdapter(adapter);
+
+        instituteAlternatephone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(instituteAlternatephone.length()>0){
+                    if(instituteAlternatephone.length()<8 || instituteAlternatephone.length()>10){
+                        errorFlagCompany=true;
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
 
@@ -212,6 +234,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"otp","no");
         MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","yes");
         ROLE = MySharedPreferencesManager.getRole(WelcomeGenrateCodeActivity.this);
+        Log.d("TAG", "WelcomeGenrateCodeActivity shared role ---------  "+ROLE);
 
         digest1=MySharedPreferencesManager.getDigest1(WelcomeGenrateCodeActivity.this);
         digest2=MySharedPreferencesManager.getDigest2(WelcomeGenrateCodeActivity.this);
@@ -282,7 +305,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                     Log.d("TAG", "onClick: curent pos " + currentPosition);
 
                     if (currentPosition == 0) {
-                        errorFlagInstitute = false;
                         sInstituteName = instituteName.getText().toString();
                         sInstituteAddress = instituteAddress.getText().toString();
                         Log.d("TAG", "onClick: sInstituteAddress " + sInstituteAddress);
@@ -345,7 +367,6 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 } else if (ROLE != null && ROLE.equals("hr")) {            // OR  Hr
 
                     if (currentPosition == 0) {
-                        errorFlagCompany = false;
                         sCompanyName = companyName.getText().toString();
                         sCompanyAddress = companyAddress.getText().toString();
                         sCompanyEmail = companyEmail.getText().toString();
@@ -638,14 +659,18 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             if (result.equals("success")) {
                 Toast.makeText(WelcomeGenrateCodeActivity.this, CODE, Toast.LENGTH_SHORT).show();
-                Log.d("TAG", "code ===============================   " + CODE);
+                Log.d("TAG", "admin code ===============================   " + CODE);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
                 viewPager.setCurrentItem(1);
                 addBottomDots(1, 2);
                 helloMsgcode.setText("Hello Admin!");
                 genratedCode.setText(CODE);
-                //start show code activity
+                headerMsgcode.setText("This is your Institute Code provided by PlaceMe..!!");
+
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"intro","yes");
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","no");
+
             }
         }
     }
@@ -768,13 +793,18 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
             if (result!=null && result.equals("success")) {
                 Toast.makeText(WelcomeGenrateCodeActivity.this, CODE, Toast.LENGTH_SHORT).show();
-                Log.d("TAG", "comp code ===============================   " + CODE);
+                Log.d("TAG", "hr comp code ===============================   " + CODE);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"nameKey",encUsername);
                 MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"passKey",encPassword);
                 viewPager.setCurrentItem(1);
                 addBottomDots(1, 2);
                 helloMsgcode.setText("Hello Hr!");
                 genratedCode.setText(CODE);
+                headerMsgcode.setText("This is your Company Code provided by PlaceMe..!!");
+                // back press next will move to base activity
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"intro","yes");
+                MySharedPreferencesManager.save(WelcomeGenrateCodeActivity.this,"activatedCode","no");
+
             }
         }
     }

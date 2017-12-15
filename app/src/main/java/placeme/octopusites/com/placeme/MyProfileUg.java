@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -61,10 +60,7 @@ public class MyProfileUg extends AppCompatActivity {
     String selectedCourse="",selectedStream="",selectedUniversity="";
     String encmarkssem1,encoutofsem1,encpercentsem1,encmarkssem2,encoutofsem2,encpercentsem2,encmarkssem3,encoutofsem3,encpercentsem3,encmarkssem4,encoutofsem4,encpercentsem4,encmarkssem5,encoutofsem5,encpercentsem5,encmarkssem6,encoutofsem6,encpercentsem6,encmarkssem7,encoutofsem7,encpercentsem7,encmarkssem8,encoutofsem8,encpercentsem8,encaggregate,encschoolname,encmonthandyearofpassing;
     String encselectedcourse,encselectedstream,encselecteduniversity;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    SharedPreferences sharedpreferences;
-    public static final String Username = "nameKey";
-    String username;
+    String username,role;
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
@@ -78,29 +74,19 @@ public class MyProfileUg extends AppCompatActivity {
     String oldCourse="",oldStream="",oldUniversity="",encobj="";
     int edittedFlag=0,isCourseSet=0,isStreamSet=0;
 
+    public static String url_savedata_ug= "http://192.168.100.30:8080/CreateNotificationTemp/SaveUg";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_ug);
 
-        sharedpreferences=getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        username=sharedpreferences.getString(Username,null);
-        String role=sharedpreferences.getString("role",null);
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
+        username=MySharedPreferencesManager.getUsername(this);
+        role=MySharedPreferencesManager.getRole(this);
 
-        ProfileRole r=new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-
-        Digest d=new Digest();
-        digest1=d.getDigest1();
-        digest2=d.getDigest2();
-
-        if(digest1==null||digest2==null) {
-            digest1 = sharedpreferences.getString("digest1", null);
-            digest2 = sharedpreferences.getString("digest2", null);
-            d.setDigest1(digest1);
-            d.setDigest2(digest2);
-        }
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Educational Info");
@@ -2043,6 +2029,112 @@ public class MyProfileUg extends AppCompatActivity {
                 encobj =OtoString(obj2,MySharedPreferencesManager.getDigest1(MyProfileUg.this),MySharedPreferencesManager.getDigest2(MyProfileUg.this));
                 Log.d("TAG", "validateandSave: encobj - "+encobj);
 
+//                byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
+//                byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
+//                String sPadding = "ISO10126Padding";
+//
+//                byte[] markssem1Bytes = markssem1.getBytes("UTF-8");
+//                byte[] outofsem1Bytes = outofsem1.getBytes("UTF-8");
+//                byte[] percentsem1Bytes = percentsem1.getBytes("UTF-8");
+//                byte[] markssem2Bytes = markssem2.getBytes("UTF-8");
+//                byte[] outofsem2Bytes = outofsem2.getBytes("UTF-8");
+//                byte[] percentsem2Bytes = percentsem2.getBytes("UTF-8");
+//                byte[] markssem3Bytes = markssem3.getBytes("UTF-8");
+//                byte[] outofsem3Bytes = outofsem3.getBytes("UTF-8");
+//                byte[] percentsem3Bytes = percentsem3.getBytes("UTF-8");
+//                byte[] markssem4Bytes = markssem4.getBytes("UTF-8");
+//                byte[] outofsem4Bytes = outofsem4.getBytes("UTF-8");
+//                byte[] percentsem4Bytes = percentsem4.getBytes("UTF-8");
+//                byte[] markssem5Bytes = markssem5.getBytes("UTF-8");
+//                byte[] outofsem5Bytes = outofsem5.getBytes("UTF-8");
+//                byte[] percentsem5Bytes = percentsem5.getBytes("UTF-8");
+//                byte[] markssem6Bytes = markssem6.getBytes("UTF-8");
+//                byte[] outofsem6Bytes = outofsem6.getBytes("UTF-8");
+//                byte[] percentsem6Bytes = percentsem6.getBytes("UTF-8");
+//                byte[] markssem7Bytes = markssem7.getBytes("UTF-8");
+//                byte[] outofsem7Bytes = outofsem7.getBytes("UTF-8");
+//                byte[] percentsem7Bytes = percentsem7.getBytes("UTF-8");
+//                byte[] markssem8Bytes = markssem8.getBytes("UTF-8");
+//                byte[] outofsem8Bytes = outofsem8.getBytes("UTF-8");
+//                byte[] percentsem8Bytes = percentsem8.getBytes("UTF-8");
+//                byte[] aggregateBytes = aggregate.getBytes("UTF-8");
+//                byte[] schoolnameBytes = schoolname.getBytes("UTF-8");
+//                byte[] monthandyearofpassingBytes = monthandyearofpassing.getBytes("UTF-8");
+//                byte[] selectedcourseBytes=null,selectedstreamBytes=null,selecteduniversityBytes=null;
+//                if(selectedCourse.equals("Other"))
+//                    selectedcourseBytes=otherspecifiedcourse.getBytes("UTF-8");
+//                else
+//                    selectedcourseBytes=selectedCourse.getBytes("UTF-8");
+//                if(selectedStream.equals("Other"))
+//                    selectedstreamBytes=otherspecifiedstream.getBytes("UTF-8");
+//                else
+//                    selectedstreamBytes=selectedStream.getBytes("UTF-8");
+//                if(selectedUniversity.equals("Other"))
+//                    selecteduniversityBytes=otherspecifieduniversity.getBytes("UTF-8");
+//                else
+//                    selecteduniversityBytes=selectedUniversity.getBytes("UTF-8");
+//
+//                byte[] markssem1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem1Bytes);
+//                encmarkssem1=new String(SimpleBase64Encoder.encode(markssem1EncryptedBytes));
+//                byte[] markssem2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem2Bytes);
+//                encmarkssem2=new String(SimpleBase64Encoder.encode(markssem2EncryptedBytes));
+//                byte[] markssem3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem3Bytes);
+//                encmarkssem3=new String(SimpleBase64Encoder.encode(markssem3EncryptedBytes));
+//                byte[] markssem4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem4Bytes);
+//                encmarkssem4=new String(SimpleBase64Encoder.encode(markssem4EncryptedBytes));
+//                byte[] markssem5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem5Bytes);
+//                encmarkssem5=new String(SimpleBase64Encoder.encode(markssem5EncryptedBytes));
+//                byte[] markssem6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem6Bytes);
+//                encmarkssem6=new String(SimpleBase64Encoder.encode(markssem6EncryptedBytes));
+//                byte[] markssem7EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem7Bytes);
+//                encmarkssem7=new String(SimpleBase64Encoder.encode(markssem7EncryptedBytes));
+//                byte[] markssem8EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, markssem8Bytes);
+//                encmarkssem8=new String(SimpleBase64Encoder.encode(markssem8EncryptedBytes));
+//                byte[] outofsem1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem1Bytes);
+//                encoutofsem1=new String(SimpleBase64Encoder.encode(outofsem1EncryptedBytes));
+//                byte[] outofsem2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem2Bytes);
+//                encoutofsem2=new String(SimpleBase64Encoder.encode(outofsem2EncryptedBytes));
+//                byte[] outofsem3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem3Bytes);
+//                encoutofsem3=new String(SimpleBase64Encoder.encode(outofsem3EncryptedBytes));
+//                byte[] outofsem4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem4Bytes);
+//                encoutofsem4=new String(SimpleBase64Encoder.encode(outofsem4EncryptedBytes));
+//                byte[] outofsem5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem5Bytes);
+//                encoutofsem5=new String(SimpleBase64Encoder.encode(outofsem5EncryptedBytes));
+//                byte[] outofsem6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem6Bytes);
+//                encoutofsem6=new String(SimpleBase64Encoder.encode(outofsem6EncryptedBytes));
+//                byte[] outofsem7EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem7Bytes);
+//                encoutofsem7=new String(SimpleBase64Encoder.encode(outofsem7EncryptedBytes));
+//                byte[] outofsem8EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, outofsem8Bytes);
+//                encoutofsem8=new String(SimpleBase64Encoder.encode(outofsem8EncryptedBytes));
+//                byte[] percentsem1EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem1Bytes);
+//                encpercentsem1=new String(SimpleBase64Encoder.encode(percentsem1EncryptedBytes));
+//                byte[] percentsem2EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem2Bytes);
+//                encpercentsem2=new String(SimpleBase64Encoder.encode(percentsem2EncryptedBytes));
+//                byte[] percentsem3EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem3Bytes);
+//                encpercentsem3=new String(SimpleBase64Encoder.encode(percentsem3EncryptedBytes));
+//                byte[] percentsem4EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem4Bytes);
+//                encpercentsem4=new String(SimpleBase64Encoder.encode(percentsem4EncryptedBytes));
+//                byte[] percentsem5EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem5Bytes);
+//                encpercentsem5=new String(SimpleBase64Encoder.encode(percentsem5EncryptedBytes));
+//                byte[] percentsem6EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem6Bytes);
+//                encpercentsem6=new String(SimpleBase64Encoder.encode(percentsem6EncryptedBytes));
+//                byte[] percentsem7EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem7Bytes);
+//                encpercentsem7=new String(SimpleBase64Encoder.encode(percentsem7EncryptedBytes));
+//                byte[] percentsem8EncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, percentsem8Bytes);
+//                encpercentsem8=new String(SimpleBase64Encoder.encode(percentsem8EncryptedBytes));
+//                byte[] aggregateEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, aggregateBytes);
+//                encaggregate=new String(SimpleBase64Encoder.encode(aggregateEncryptedBytes));
+//                byte[] schoolnameEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, schoolnameBytes);
+//                encschoolname=new String(SimpleBase64Encoder.encode(schoolnameEncryptedBytes));
+//                byte[] monthandyearofpassingEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, monthandyearofpassingBytes);
+//                encmonthandyearofpassing=new String(SimpleBase64Encoder.encode(monthandyearofpassingEncryptedBytes));
+//                byte[] selectedcourseEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, selectedcourseBytes);
+//                encselectedcourse=new String(SimpleBase64Encoder.encode(selectedcourseEncryptedBytes));
+//                byte[] selectedstreamEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, selectedstreamBytes);
+//                encselectedstream=new String(SimpleBase64Encoder.encode(selectedstreamEncryptedBytes));
+//                byte[] selecteduniversityEncryptedBytes = demo1encrypt(demoKeyBytes, demoIVBytes, sPadding, selecteduniversityBytes);
+//                encselecteduniversity=new String(SimpleBase64Encoder.encode(selecteduniversityEncryptedBytes));
+
                 new SaveDataUg().execute();
 
             }catch (Exception e){
@@ -2061,7 +2153,36 @@ public class MyProfileUg extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",username));    //0
             params.add(new BasicNameValuePair("m1",encobj));        //1
-            json = jParser.makeHttpRequest(MyConstants.url_savedata_ug, "GET", params);
+//            params.add(new BasicNameValuePair("o1",encoutofsem1));       //2
+//            params.add(new BasicNameValuePair("p1",encpercentsem1));     //3
+//            params.add(new BasicNameValuePair("m2",encmarkssem2));        //4
+//            params.add(new BasicNameValuePair("o2",encoutofsem2));       //5
+//            params.add(new BasicNameValuePair("p2",encpercentsem2));    //6
+//            params.add(new BasicNameValuePair("m3",encmarkssem3));        //7
+//            params.add(new BasicNameValuePair("o3",encoutofsem3));       //8
+//            params.add(new BasicNameValuePair("p3",encpercentsem3));    //9
+//            params.add(new BasicNameValuePair("m4",encmarkssem4));        //10
+//            params.add(new BasicNameValuePair("o4",encoutofsem4));       //11
+//            params.add(new BasicNameValuePair("p4",encpercentsem4));    //12
+//            params.add(new BasicNameValuePair("m5",encmarkssem5));        //13
+//            params.add(new BasicNameValuePair("o5",encoutofsem5));       //14
+//            params.add(new BasicNameValuePair("p5",encpercentsem5));    //15
+//            params.add(new BasicNameValuePair("m6",encmarkssem6));        //16
+//            params.add(new BasicNameValuePair("o6",encoutofsem6));       //17
+//            params.add(new BasicNameValuePair("p6",encpercentsem6));    //18
+//            params.add(new BasicNameValuePair("m7",encmarkssem7));        //19
+//            params.add(new BasicNameValuePair("o7",encoutofsem7));       //20
+//            params.add(new BasicNameValuePair("p7",encpercentsem7));    //21
+//            params.add(new BasicNameValuePair("m8",encmarkssem8));        //22
+//            params.add(new BasicNameValuePair("o8",encoutofsem8));       //23
+//            params.add(new BasicNameValuePair("p8",encpercentsem8));    //24
+//            params.add(new BasicNameValuePair("a",encaggregate));        //25
+//            params.add(new BasicNameValuePair("c",encselectedcourse));  //26
+//            params.add(new BasicNameValuePair("s1",encselectedstream)); //27
+//            params.add(new BasicNameValuePair("u1",encselecteduniversity));       //28
+//            params.add(new BasicNameValuePair("s",encschoolname));     //29
+//            params.add(new BasicNameValuePair("y",encmonthandyearofpassing));       //30
+            json = jParser.makeHttpRequest(url_savedata_ug, "GET", params);
             try {
                 r = json.getString("info");
 
@@ -2078,9 +2199,6 @@ public class MyProfileUg extends AppCompatActivity {
                 Toast.makeText(MyProfileUg.this,"Successfully Saved..!",Toast.LENGTH_SHORT).show();
 
 
-
-                ProfileRole r=new ProfileRole();
-                String role=r.getRole();
                 if(role.equals("student"))
                     setResult(MainActivity.STUDENT_DATA_CHANGE_RESULT_CODE);
                 else if(role.equals("alumni"))

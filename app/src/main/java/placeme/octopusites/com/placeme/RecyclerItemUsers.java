@@ -1,6 +1,5 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 
 import java.io.Serializable;
 
@@ -12,15 +11,7 @@ public class RecyclerItemUsers implements Serializable {
     int id;
     boolean isSelected=false;
 
-    public Context getmContext() {
-        return mContext;
-    }
 
-    public void setmContext(Context mContext) {
-        this.mContext = mContext;
-    }
-
-    Context mContext;
 
 
     public RecyclerItemUsers(int id, String name, String email,boolean isSelected ) {
@@ -28,7 +19,6 @@ public class RecyclerItemUsers implements Serializable {
         this.email = email;
         this.id=id;
         this.isSelected=isSelected;
-        this.mContext=mContext;
 
 
 

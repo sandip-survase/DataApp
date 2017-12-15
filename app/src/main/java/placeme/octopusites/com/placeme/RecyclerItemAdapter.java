@@ -14,6 +14,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,8 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static placeme.octopusites.com.placeme.AES4all.Decrypt;
+
 
 public class RecyclerItemAdapter extends RecyclerView.Adapter<RecyclerItemAdapter.MyViewHolder> {
 
@@ -44,7 +47,9 @@ public class RecyclerItemAdapter extends RecyclerView.Adapter<RecyclerItemAdapte
     public class MyViewHolder extends RecyclerView.ViewHolder {
     public CircleImageView uploadedbyprofile;
     public TextView title, notification, uploadtime;
-    public ImageView imageView;
+    public ImageView imageView,logo;
+        public ImageView imageView2;
+
 
 
         public MyViewHolder(View view) {
@@ -54,6 +59,8 @@ public class RecyclerItemAdapter extends RecyclerView.Adapter<RecyclerItemAdapte
             notification = (TextView) view.findViewById(R.id.notification);
             uploadtime = (TextView) view.findViewById(R.id.uploadtime);
             imageView=(ImageView)view.findViewById(R.id.attachment);
+            logo =( CircleImageView)view.findViewById(R.id.logo);
+
 
 
         }
@@ -136,6 +143,29 @@ public class RecyclerItemAdapter extends RecyclerView.Adapter<RecyclerItemAdapte
             holder.title.setTypeface(null, Typeface.BOLD);
 
         }
+
+
+        //
+        try {
+            Log.d("uploadedbysfdsdf", ": "+item.getUploadedby());
+            String s1=item.getUploadedby();
+            String s1Plain= Decrypt(s1,"I09jdG9wdXMxMkl0ZXMjJQ==","I1BsYWNlMTJNZSMlJSopXg==");
+            if(  s1Plain.equals("sandipsurvase1993@gmail.com")   ){
+                holder.logo.setVisibility(View.VISIBLE);
+            }else {
+                holder.logo.setVisibility(View.INVISIBLE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+
+
+
 
 
     }

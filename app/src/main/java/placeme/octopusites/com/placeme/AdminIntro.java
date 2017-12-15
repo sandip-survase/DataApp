@@ -760,6 +760,7 @@ public class AdminIntro extends AppCompatActivity {
 
         protected String doInBackground(String... param) {
 
+
             String r=null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",encUsername));    //0

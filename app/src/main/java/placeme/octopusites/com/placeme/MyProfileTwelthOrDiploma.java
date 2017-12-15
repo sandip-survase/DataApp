@@ -2348,6 +2348,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
 
 
+
             try{
                 digest1=MySharedPreferencesManager.getDigest1(MyProfileTwelthOrDiploma.this);
                 digest2=MySharedPreferencesManager.getDigest2(MyProfileTwelthOrDiploma.this);

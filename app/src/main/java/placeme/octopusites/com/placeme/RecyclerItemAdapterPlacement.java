@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static placeme.octopusites.com.placeme.AES4all.Decrypt;
+
 
 public class RecyclerItemAdapterPlacement extends RecyclerView.Adapter<RecyclerItemAdapterPlacement.MyViewHolder> {
 
@@ -29,8 +32,8 @@ public class RecyclerItemAdapterPlacement extends RecyclerView.Adapter<RecyclerI
     private String searchText;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-    public CircleImageView uploadedbyprofile;
-    public TextView companyname, lastdateofreg, cpackage,post;
+        public CircleImageView uploadedbyprofile,logo;
+        public TextView companyname, lastdateofreg, cpackage,post;
 
         public MyViewHolder(View view) {
             super(view);
@@ -39,6 +42,8 @@ public class RecyclerItemAdapterPlacement extends RecyclerView.Adapter<RecyclerI
             lastdateofreg = (TextView) view.findViewById(R.id.lastdateofreg);
             cpackage = (TextView) view.findViewById(R.id.cpackage);
             post=(TextView)view.findViewById(R.id.post);
+            logo =( CircleImageView)view.findViewById(R.id.logo);
+
 
 
         }
@@ -105,6 +110,24 @@ public class RecyclerItemAdapterPlacement extends RecyclerView.Adapter<RecyclerI
             holder.companyname.setTypeface(null, Typeface.BOLD);
 
         }
+
+
+        try {
+            Log.d("uploadedbysfdsdf", ": "+item.getUploadedby());
+            String s1=item.getUploadedby();
+            String s1Plain= Decrypt(s1,"I09jdG9wdXMxMkl0ZXMjJQ==","I1BsYWNlMTJNZSMlJSopXg==");
+            if(  s1Plain.equals("sandipsurvase1993@gmail.com")   ){
+                holder.logo.setVisibility(View.VISIBLE);
+            }else {
+                holder.logo.setVisibility(View.INVISIBLE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+
 
 
     }

@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import cat.ereza.customactivityoncrash.config.CaocConfig;
+//import cat.ereza.customactivityoncrash.config.CaocConfig;
 
 
 public class SplashScreen extends Activity {
@@ -89,16 +89,16 @@ public class SplashScreen extends Activity {
 
 
 // my code
-        CaocConfig.Builder.create()
-                .backgroundMode(CaocConfig.BACKGROUND_MODE_SILENT) //default: CaocConfig.BACKGROUND_MODE_SHOW_CUSTOM
-//                .showErrorDetails(false) //default: true
-//                .showRestartButton(false) //default: true
-                .trackActivities(true) //default: false
-//                .minTimeBetweenCrashesMs(2000) //default: 3000
-                .errorDrawable(R.mipmap.ic_launcher) //default: bug image
-                .restartActivity(SplashScreen.class) //default: null (your app's launch activity)
-                .errorActivity(MyCustomErrorActivity.class) //default: null (default error activity)
-                .apply();
+//        CaocConfig.Builder.create()
+//                .backgroundMode(CaocConfig.BACKGROUND_MODE_SILENT) //default: CaocConfig.BACKGROUND_MODE_SHOW_CUSTOM
+////                .showErrorDetails(false) //default: true
+////                .showRestartButton(false) //default: true
+//                .trackActivities(true) //default: false
+////                .minTimeBetweenCrashesMs(2000) //default: 3000
+//                .errorDrawable(R.mipmap.ic_launcher) //default: bug image
+//                .restartActivity(SplashScreen.class) //default: null (your app's launch activity)
+//                .errorActivity(MyCustomErrorActivity.class) //default: null (default error activity)
+//                .apply();
 
         // my code end
 
@@ -119,26 +119,22 @@ public class SplashScreen extends Activity {
                 String i = sharedpreferences.getString(Intro, null);
                 String u = sharedpreferences.getString(Username, null);
                 username = sharedpreferences.getString(Username, null);
-                ;
                 String p = sharedpreferences.getString(Password, null);
                 String otp = sharedpreferences.getString("otp", null);
 
                 String activatedCode = MySharedPreferencesManager.getData(SplashScreen.this, "activatedCode");
 
-                if (activatedCode != null) {
-                    if (activatedCode.equals("yes")) {
-                        new Timer().schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                startActivity(new Intent(getApplicationContext(), WelcomeGenrateCodeActivity.class));
-                                finish();
-                            }
-                        }, 2000);
+                if (activatedCode != null && activatedCode.equals("yes")) {
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            startActivity(new Intent(getApplicationContext(), WelcomeGenrateCodeActivity.class));
+                            finish();
+                        }
+                    }, 2000);
 
-                    }
                 }
-
-                if (otp != null) {
+                else if (otp != null) {
                     if (otp.equals("yes")) {
                         new Timer().schedule(new TimerTask() {
                             @Override
@@ -223,9 +219,12 @@ public class SplashScreen extends Activity {
                         new Timer().schedule(new TimerTask() {
                             @Override
                             public void run() {
-                                ProfileRole r = new ProfileRole();
-                                r.setRole("student");
-                                r.setUsername(EmailCred);
+                                MySharedPreferencesManager.save(SplashScreen.this,"role","student");
+                                MySharedPreferencesManager.save(SplashScreen.this,"nameKey",EmailCred);
+
+//                                ProfileRole r = new ProfileRole();
+//                                r.setRole("student");
+//                                r.setUsername(EmailCred);
                                 startActivity(new Intent(SplashScreen.this, MainActivity.class));
                                 finish();
                             }
@@ -236,9 +235,12 @@ public class SplashScreen extends Activity {
                         new Timer().schedule(new TimerTask() {
                             @Override
                             public void run() {
-                                ProfileRole r = new ProfileRole();
-                                r.setRole("admin");
-                                r.setUsername(EmailCred);
+                                MySharedPreferencesManager.save(SplashScreen.this,"role","admin");
+                                MySharedPreferencesManager.save(SplashScreen.this,"nameKey",EmailCred);
+
+//                                ProfileRole r = new ProfileRole();
+//                                r.setRole("admin");
+//                                r.setUsername(EmailCred);
                                 startActivity(new Intent(SplashScreen.this, AdminActivity.class));
                                 finish();
                             }
@@ -249,9 +251,12 @@ public class SplashScreen extends Activity {
                         new Timer().schedule(new TimerTask() {
                             @Override
                             public void run() {
-                                ProfileRole r = new ProfileRole();
-                                r.setRole("hr");
-                                r.setUsername(EmailCred);
+                                MySharedPreferencesManager.save(SplashScreen.this,"role","hr");
+                                MySharedPreferencesManager.save(SplashScreen.this,"nameKey",EmailCred);
+
+//                                ProfileRole r = new ProfileRole();
+//                                r.setRole("hr");
+//                                r.setUsername(EmailCred);
                                 startActivity(new Intent(SplashScreen.this, HRActivity.class));
                                 finish();
                             }
@@ -261,9 +266,13 @@ public class SplashScreen extends Activity {
                         new Timer().schedule(new TimerTask() {
                             @Override
                             public void run() {
-                                ProfileRole r = new ProfileRole();
-                                r.setRole("alumni");
-                                r.setUsername(EmailCred);
+                                MySharedPreferencesManager.save(SplashScreen.this,"role","alumni");
+                                MySharedPreferencesManager.save(SplashScreen.this,"nameKey",EmailCred);
+
+//                                ProfileRole r = new ProfileRole();
+//                                r.setRole("alumni");
+//                                r.setUsername(EmailCred);
+
                                 startActivity(new Intent(SplashScreen.this, AlumniActivity.class));
                                 finish();
                             }
@@ -382,10 +391,7 @@ public class SplashScreen extends Activity {
         @Override
         protected void onPostExecute(final Integer success) {
 
-
             processOutput(success);
-
-
         }
     }
 
@@ -429,9 +435,9 @@ public class SplashScreen extends Activity {
                 digest2 = json.getString("digest2");
                 digest3 = json.getString("digest3");
 
-                Digest d = new Digest();
-                d.setDigest1(digest1);
-                d.setDigest2(digest2);
+//                Digest d = new Digest();
+//                d.setDigest1(digest1);
+//                d.setDigest2(digest2);
 
                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -456,21 +462,29 @@ public class SplashScreen extends Activity {
 
     class UpdateFirebaseToken extends AsyncTask<String, String, String> {
 
+        // TODO move UpdateFirebaseToken code to all base activity
+        // TODO update AID,DID
         JSONObject json;
         JSONParser jParser = new JSONParser();
         String resultofop = null;
 
         protected String doInBackground(String... param) {
             try {
+                Log.d("firebaseWork", "Accessed\n");
 
                 String encUsername = MySharedPreferencesManager.getUsername(getApplicationContext());
-                String token = MySharedPreferencesManager.getData(SplashScreen.this, "firebaseToken");
-                Log.d("TAG", "splashScreen token\n" + token);
+                Log.d("firebaseWork", "encUsername"+encUsername);
+
+                String token = new SharedPrefUtil(getApplicationContext()).getString("firebaseToken");
+                Log.d("firebaseWork", "splashScreen token\n" + token);
 
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", encUsername));       //0
-                params.add(new BasicNameValuePair("t", ""));             //1
+                params.add(new BasicNameValuePair("t", token));             //1
                 json = jParser.makeHttpRequest(MyConstants.url_UpdateFirebaseToken, "GET", params);
+
+
+
 
 
                 resultofop = json.getString("info");
@@ -485,6 +499,8 @@ public class SplashScreen extends Activity {
         protected void onPostExecute(String result) {
             if (resultofop.equals("success")) {
                 Log.d("TAG_FIRE_IDService", "Successfully Updated token..!");
+            }else {
+                Log.d("TAG_FIRE_IDService", "no entry found");
             }
         }
     }

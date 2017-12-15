@@ -36,7 +36,8 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
-
+                <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
+                <category android:name="com.samsung.android.intent.category.PENWINDOW_LAUNCHER" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -315,7 +316,16 @@
             android:name=".HRActivity"
             android:label="@string/title_activity_hr"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.VIEW" /> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
         <activity
             android:name=".ShowRegisteredUsers"
             android:screenOrientation="portrait"
@@ -337,7 +347,8 @@
             android:theme="@style/AppTheme.Dialog" />
         <activity
             android:name=".ViewResume"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dialog" />
         <activity
             android:name=".AdminActions"
             android:screenOrientation="portrait" />
@@ -402,7 +413,28 @@
         <activity android:name=".NoInternet" />
         <activity
             android:name=".UserSelection"
-            android:label="@string/title_activity_user_selection"></activity>
+            android:label="@string/title_activity_user_selection" />
+        <activity
+            android:name=".CreatePlacementHr"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".EditPlacementHr"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".EditPlacementMainHr"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <meta-data android:name="com.sec.android.support.multiwindow" android:value="true" />
+        <meta-data android:name="com.samsung.android.sdk.multiwindow.penwindow.enable" android:value="true" />
+
+        <meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_W" android:value="632.0dip" />
+        <meta-data android:name="com.sec.android.multiwindow.DEFAULT_SIZE_H" android:value="598.0dip" />
+        <meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_W" android:value="632.0dip" />
+        <meta-data android:name="com.sec.android.multiwindow.MINIMUM_SIZE_H" android:value="598.0dip" />
     </application>
 
 </manifest>

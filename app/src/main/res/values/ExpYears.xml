@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>.
+    <array name="ExpYears">
+
+        <item>"No Experience"</item>
+        <item>"0 to 3 Months"</item>
+        <item>"3 to 6 Months"</item>
+        <item>"6 to 12 Months"</item>
+        <item>"1 to 2 Years"</item>
+        <item>"2 to 4 Years"</item>
+        <item>"4 to 8 Years"</item>
+        <item>"8 to 12 Years"</item>
+        <item>"More Than 12 Years"</item>
+
+
+    </array>
+
+</resources>

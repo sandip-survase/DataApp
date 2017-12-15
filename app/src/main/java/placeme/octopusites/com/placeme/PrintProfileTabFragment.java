@@ -111,6 +111,7 @@ public class PrintProfileTabFragment extends Fragment {
             public void onClick(View view, int position) {
 
                 selectedResumeTemplate=position;
+                MySharedPreferencesManager.save(getActivity(),"selectedResumeTemplate",""+selectedResumeTemplate);
             }
 
             @Override
@@ -139,18 +140,18 @@ public class PrintProfileTabFragment extends Fragment {
 
                 //start downloading resumr
 
-//                DownloadManager localDownloadManager = (DownloadManager)getContext().getSystemService(DOWNLOAD_SERVICE);
-//                Uri uri = new Uri.Builder()
-//                        .scheme("http")
-//                        .authority("192.168.100.100")
-//                        .path("AESTest/DownloadResume")
-//                        .appendQueryParameter("u", username)
-//                        .appendQueryParameter("f", format)
-//                        .appendQueryParameter("t", resumeIds[selectedResumeTemplate]+"")
-//                        .build();
-//                DownloadManager.Request localRequest = new DownloadManager.Request(uri);
-//                localRequest.setNotificationVisibility(1);
-//                localDownloadManager.enqueue(localRequest);
+                DownloadManager localDownloadManager = (DownloadManager)getContext().getSystemService(DOWNLOAD_SERVICE);
+                Uri uri = new Uri.Builder()
+                        .scheme("http")
+                        .authority("192.168.100.100")
+                        .path("AESTest/DownloadResume")
+                        .appendQueryParameter("u", username)
+                        .appendQueryParameter("f", format)
+                        .appendQueryParameter("t", resumeIds[selectedResumeTemplate]+"")
+                        .build();
+                DownloadManager.Request localRequest = new DownloadManager.Request(uri);
+                localRequest.setNotificationVisibility(1);
+                localDownloadManager.enqueue(localRequest);
 
 
                 downloadresume.setVisibility(View.VISIBLE);

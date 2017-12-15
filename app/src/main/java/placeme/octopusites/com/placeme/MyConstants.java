@@ -12,15 +12,15 @@ public class MyConstants {
     //-----------------------------------   PlaceMe   ---------------------------------
 
     public static final String url_savesessiondetails = "http://192.168.100.100/PlaceMe/SaveSessionDetails";
-    public static final String url_create_firebase= "http://192.168.100.100/PlaceMe/RegisterFirebaseUser";
-    public static final String url_UpdateFirebaseToken= "http://192.168.100.100/PlaceMe/UpdateFirebaseToken";
+    public static final String url_create_firebase= "http://192.168.100.30:8080/PlaceMe/RegisterFirebaseUser";
+    public static final String url_UpdateFirebaseToken= "http://192.168.100.100:8080/PlaceMe/UpdateFirebaseToken";
     public static final String url_ChangeUsernameFireBase= "http://192.168.100.100/PlaceMe/ChangeUsername";
 
 
     //-----------------------------------   AESTest   ---------------------------------
 
     public static final String url_Welcome = "http://192.168.100.100/AESTest/Welcome";
-    public static final String url_login = "http://192.168.100.100/AESTest/Auth";           // changed to AEStest.auth
+    public static final String url_login = "http://192.168.100.30/AESTest/Auth";           // changed to AEStest.auth
 //    public static final String url_savesessiondetails = "http://192.168.100.100/PlaceMe/SaveSessionDetails";
 
     public static final String load_last_updated = "http://192.168.100.100/AESTest/GetLastUpdated";
@@ -102,7 +102,7 @@ public static String savepersonalinfo = "http://192.168.100.10:8080/ProfileObjec
 
     public static final String url_savedata_SaveIntro= "http://192.168.100.10:8080/ProfileObjects/SaveIntro";
 
-    public static final String load_student_data = "http://192.168.100.10:8080/ProfileObjects/GetStudentData";
+    public static final String load_student_data = "http://192.168.100.10/ProfileObjects/GetStudentData";
 
     public static final String url_SaveExperiences_admin= "http://192.168.100.100/AESTest/SaveExperiences";
 
@@ -123,6 +123,7 @@ public static String savepersonalinfo = "http://192.168.100.10:8080/ProfileObjec
     public static final String url_SaveAndGenrateInstituteCode = "http://192.168.100.100/AESTest/SaveAndGenrateInstituteCode";
     public static final String url_SaveAndGenrateCompanyCode = "http://192.168.100.100/AESTest/SaveAndGenrateCompanyCode";
 
+    public static final String url_checkUcode = "http://192.168.100.100/AESTest/checkUcode";
 
 //    public static String url_getplacementsmetadata = "http://192.168.100.30/CreateNotificationTemp/GetPlacementsAdminMetaData";
 //    public static String url_getplacementsreadstatus = "http://192.168.100.30/CreateNotificationTemp/GetReadStatusOfPlacementsForAdmin";

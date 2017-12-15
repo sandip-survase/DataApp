@@ -67,10 +67,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
-        Digest d = new Digest();
-        digest1 = d.getDigest1();
-        digest2 = d.getDigest2();
+        digest1 = MySharedPreferencesManager.getDigest1(this);
+        digest2 = MySharedPreferencesManager.getDigest2(this);
 
         usernameedittext = (EditText) findViewById(R.id.email);
         passwordedittext = (EditText) findViewById(R.id.password);
@@ -181,8 +179,8 @@ public class LoginActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, SignupActivity.class));
-
+//                startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+                startActivity(new Intent(LoginActivity.this, Welcome.class));
             }
         });
 
@@ -264,8 +262,7 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString("role", role);
                         editor.commit();
 
-                        ProfileRole r = new ProfileRole();
-                        r.setRole(role);
+
                         EmailCred = mEmail;
 
                         return 6;
@@ -299,30 +296,39 @@ public class LoginActivity extends AppCompatActivity {
                     public void run() {
                         if (success == 1) {
                             new SaveSessionDetails().execute();
-                            ProfileRole r = new ProfileRole();
-                            r.setRole("student");
-                            r.setUsername(EmailCred);
+                            MySharedPreferencesManager.save(LoginActivity.this,"role","student");
+                            MySharedPreferencesManager.save(LoginActivity.this,"nameKey",EmailCred);
+//                            ProfileRole r = new ProfileRole();
+//                            r.setRole("student");
+//                            r.setUsername(EmailCred);
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             finish();
                         } else if (success == 3) {
                             new SaveSessionDetails().execute();
-                            ProfileRole r = new ProfileRole();
-                            r.setRole("admin");
-                            r.setUsername(EmailCred);
+                            MySharedPreferencesManager.save(LoginActivity.this,"role","admin");
+                            MySharedPreferencesManager.save(LoginActivity.this,"nameKey",EmailCred);
+//                            ProfileRole r = new ProfileRole();
+//                            r.setRole("admin");
+//                            r.setUsername(EmailCred);
                             startActivity(new Intent(LoginActivity.this, AdminActivity.class));
                             finish();
                         } else if (success == 4) {
                             new SaveSessionDetails().execute();
-                            ProfileRole r = new ProfileRole();
-                            r.setRole("hr");
-                            r.setUsername(EmailCred);
+                            MySharedPreferencesManager.save(LoginActivity.this,"role","hr");
+                            MySharedPreferencesManager.save(LoginActivity.this,"nameKey",EmailCred);
+//                            ProfileRole r = new ProfileRole();
+//                            r.setRole("hr");
+//                            r.setUsername(EmailCred);
                             startActivity(new Intent(LoginActivity.this, HRActivity.class));
                             finish();
                         } else if (success == 5) {
                             new SaveSessionDetails().execute();
-                            ProfileRole r = new ProfileRole();
-                            r.setRole("alumni");
-                            r.setUsername(EmailCred);
+                            MySharedPreferencesManager.save(LoginActivity.this,"role","alumni");
+                            MySharedPreferencesManager.save(LoginActivity.this,"nameKey",EmailCred);
+
+//                            ProfileRole r = new ProfileRole();
+//                            r.setRole("alumni");
+//                            r.setUsername(EmailCred);
                             startActivity(new Intent(LoginActivity.this, AlumniActivity.class));
                             finish();
                         }

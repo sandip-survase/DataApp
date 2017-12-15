@@ -249,6 +249,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
 //        vacancies=(EditText)rootView.findViewById(R.id.vacancies);
 //        lastdateofrr=(EditText)rootView.findViewById(R.id.ldr);   //date picker
 //        dateofarrival=(EditText)rootView.findViewById(R.i
+
         PlacementEditData getdata = new PlacementEditData();
 
         String activitytag = getdata.getActivityFromtag();
@@ -291,7 +292,7 @@ public class PlacementCreateTab1 extends Fragment implements TagsEditText.TagsEd
                 selected.setText(sselected);
             }
         }
-        if (activitytag.contains("EditPlacementHR")) {
+        if (activitytag.contains("HrActivityEdit")) {
             sid = getdata.getId();
             scompanyname = getdata.getCompanyname();
             scpackage = getdata.getCpackage();

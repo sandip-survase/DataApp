@@ -56,6 +56,7 @@ public class PlacementTab3 extends Fragment {
         c10= Float.parseFloat(tenth);
         c12= Float.parseFloat(twelthordiploma);
         cu= Float.parseFloat(ug);
+
         s10= Float.parseFloat(studenttenthmarks);
         s12= Float.parseFloat(studenttwelthordiplomamarks);
         su= Float.parseFloat(studentugmarks);
