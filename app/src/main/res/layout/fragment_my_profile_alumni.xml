@@ -983,7 +983,9 @@
                         android:text="and 3 more"
                         android:layout_below="@+id/noprojtab"
                         android:layout_marginRight="10dp"
+                        android:visibility="gone"
                         />
+
                 </RelativeLayout>
                 <TextView
                     android:id="@+id/accomplishmentsboxtxt"
@@ -1697,6 +1699,7 @@
                         android:text="and 3 more"
                         android:layout_below="@+id/noexptab"
                         android:layout_marginRight="10dp"
+                        android:visibility="gone"
                         />
 
 

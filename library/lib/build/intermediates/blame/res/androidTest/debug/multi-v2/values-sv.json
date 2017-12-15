@@ -14,21 +14,6 @@
                     }
                 }
             ]
-        },
-        {
-            "outputFile": "C:\\Git\\PlaceMe\\PlaceMe\\library\\lib\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-sv\\values-sv.xml",
-            "map": [
-                {
-                    "source": "C:\\Git\\PlaceMe\\PlaceMe\\library\\lib\\build\\intermediates\\bundles\\debug\\res\\values-sv\\values-sv.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6",
-                        "startColumns": "4,4,4,4,4",
-                        "startOffsets": "100,172,216,290,344",
-                        "endColumns": "71,43,73,53,53",
-                        "endOffsets": "167,211,285,339,393"
-                    }
-                }
-            ]
         }
     ]
 }

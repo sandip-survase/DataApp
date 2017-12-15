@@ -1611,6 +1611,7 @@
                 android:textColor="@color/dark_color"
                 android:textSize="14dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="80dp"
                 android:layout_toLeftOf="@+id/switch10"
                 />
 
@@ -1622,6 +1623,7 @@
                 android:layout_below="@+id/todaterl10"
                 android:layout_marginTop="10dp"
                 android:theme="@style/SCBSwitch"
+                android:layout_marginBottom="80dp"
                 />
 
         </RelativeLayout>

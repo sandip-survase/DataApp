@@ -217,6 +217,7 @@
             android:textColor="@color/while_color"
             android:textSize="18dp" />
 
+
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
