@@ -15,9 +15,7 @@
             android:id="@+id/profilepreviewscrollview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             >
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -601,7 +599,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_toRightOf="@+id/insti3"
                             android:text="Year Of Passing"
-                            android:textColor="#03353e"
+                            android:textColor="@color/dark_color"
                             android:textSize="13dp" />
                     </RelativeLayout>
 
@@ -957,6 +955,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:textSize="12dp"
+                        android:visibility="gone"
                         android:textColor="@color/dark_color"
                         android:text="and 3 more"
                         android:layout_below="@+id/noprojtab"
