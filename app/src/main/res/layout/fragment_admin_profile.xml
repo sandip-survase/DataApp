@@ -241,6 +241,7 @@
                     android:id="@+id/box2section"
                     android:layout_centerHorizontal="true"
                     android:elevation="4dp"
+                    android:visibility="gone"
                     />
 
                 <ProgressBar
@@ -259,6 +260,7 @@
                     android:indeterminate="false"
                     android:id="@+id/profileprogress"
                     android:elevation="10dp"
+                    android:visibility="gone"
                     />
 
                 <RelativeLayout
@@ -280,6 +282,7 @@
                         android:text="EDIT PROFILE"
                         android:layout_marginTop="13dp"
                         android:textSize="12dp"
+                        android:visibility="gone"
                         />
 
                 </RelativeLayout>
@@ -304,6 +307,7 @@
                     />
 
                 <ImageView
+                    android:id="@+id/insteditpencil"
                     android:layout_below="@+id/box2"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
@@ -395,15 +399,19 @@
 
 
                     <RelativeLayout
+
+                        android:id="@+id/instcontacttab1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_below="@+id/edutab1"
-                        android:id="@+id/instcontacttab1"
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
+
+
                         >
                         <ImageView
                             android:layout_width="30dp"
@@ -1212,7 +1220,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="10dp"
-                            android:layout_toRightOf="@+id/noeduinst"
+                            android:layout_toRightOf="@+id/noexp"
                             android:layout_centerVertical="true"
                             android:ellipsize="start"
                             android:text="No experiences filled."

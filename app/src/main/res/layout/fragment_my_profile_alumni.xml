@@ -248,6 +248,7 @@
                     android:id="@+id/box2section"
                     android:layout_centerHorizontal="true"
                     android:elevation="4dp"
+                    android:visibility="gone"
                     />
 
                 <ProgressBar
@@ -266,6 +267,7 @@
                     android:indeterminate="false"
                     android:id="@+id/profileprogress"
                     android:elevation="10dp"
+                    android:visibility="gone"
                     />
 
                 <RelativeLayout
@@ -287,6 +289,7 @@
                         android:text="EDIT PROFILE"
                         android:layout_marginTop="13dp"
                         android:textSize="12dp"
+                        android:visibility="gone"
                         />
 
                 </RelativeLayout>
@@ -311,6 +314,7 @@
                     />
 
                 <ImageView
+                    android:id="@+id/box2pencil"
                     android:layout_below="@+id/box2"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
@@ -360,6 +364,7 @@
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
+                        android:visibility="gone"
                         >
 
                         <ImageView
@@ -427,6 +432,7 @@
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
+                        android:visibility="gone"
                         >
                         <ImageView
                             android:layout_width="30dp"
@@ -497,6 +503,7 @@
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
                         android:layout_marginTop="15dp"
+                        android:visibility="gone"
                         >
                         <ImageView
                             android:layout_width="30dp"
@@ -567,6 +574,7 @@
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
                         android:layout_marginBottom="10dp"
+                        android:visibility="gone"
                         >
 
                         <ImageView
@@ -620,6 +628,48 @@
                             android:text="Year Of Passing"
                             android:textColor="#282f35"
                             android:ellipsize="start"
+                            />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/noedutab"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/edutab3"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
+                        >
+
+                        <ImageView
+                            android:id="@+id/noeduinst"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/institute_icon"
+                            android:layout_marginBottom="10dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/noedudetailstxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@+id/noeduinst"
+                            android:layout_centerVertical="true"
+                            android:ellipsize="start"
+                            android:text="No education details filled."
+                            android:textColor="#03353e"
+                            android:textSize="14dp"
+
                             />
 
                     </RelativeLayout>
@@ -692,6 +742,7 @@
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
+                        android:visibility="gone"
                         >
                         <ImageView
                             android:layout_width="40dp"
@@ -755,6 +806,7 @@
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
+                        android:visibility="gone"
                         >
                         <ImageView
                             android:layout_width="40dp"
@@ -820,6 +872,7 @@
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
+                        android:visibility="gone"
                         >
                         <ImageView
                             android:layout_width="40dp"
@@ -879,6 +932,58 @@
 
 
                     </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/noprojtab"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/projtab3"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
+                        >
+
+                        <ImageView
+                            android:id="@+id/nogear"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/projects_icon"
+                            android:layout_marginBottom="10dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/nomyprofileproj"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@+id/nogear"
+                            android:layout_centerVertical="true"
+                            android:ellipsize="start"
+                            android:text="No projects filled."
+                            android:textColor="#03353e"
+                            android:textSize="14dp"
+
+                            />
+
+                    </RelativeLayout>
+                    <TextView
+                        android:id="@+id/extraprojectscount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="12dp"
+                        android:textColor="@color/dark_color"
+                        android:text="and 3 more"
+                        android:layout_below="@+id/noprojtab"
+                        android:layout_marginRight="10dp"
+                        />
                 </RelativeLayout>
                 <TextView
                     android:id="@+id/accomplishmentsboxtxt"
@@ -981,7 +1086,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:textSize="14dp"
-                            android:text="Language1, Language 2."
+                            android:text="No known languages filled."
                             android:textColor="#03353e"
                             android:ellipsize="start"
                             />
@@ -1032,7 +1137,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:textSize="14dp"
-                            android:text="Certificate 1, Certificate 2."
+                            android:text="No certifications filled."
                             android:textColor="#03353e"
                             android:ellipsize="start"
 
@@ -1084,7 +1189,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:textSize="14dp"
-                            android:text="Certificate 1, Certificate 2."
+                            android:text="No courses filled."
                             android:textColor="#03353e"
                             android:ellipsize="start"
                             />
@@ -1133,7 +1238,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:textSize="14dp"
-                            android:text="Skill 1, Skill 2."
+                            android:text="No skills filled."
                             android:textColor="#03353e"
                             android:ellipsize="start"
                             />
@@ -1182,7 +1287,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:textSize="14dp"
-                            android:text="Honor 1, Award 2."
+                            android:text="No awards filled."
                             android:textColor="#03353e"
                             android:ellipsize="start"
 
@@ -1231,7 +1336,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:textSize="14dp"
-                            android:text="Patent 1, Patent 2."
+                            android:text="No patents filled."
                             android:textColor="#03353e"
                             android:ellipsize="start"
                             />
@@ -1283,7 +1388,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_centerHorizontal="true"
                             android:textSize="14dp"
-                            android:text="Publication 1, Publication 2."
+                            android:text="No publications filled."
                             android:textColor="#03353e"
                             android:ellipsize="start"
                             android:gravity="center_horizontal"
@@ -1360,6 +1465,7 @@
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
+                        android:visibility="gone"
                         >
                         <ImageView
                             android:layout_width="30dp"
@@ -1422,6 +1528,7 @@
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
+                        android:visibility="gone"
                         >
                         <ImageView
                             android:layout_width="30dp"
@@ -1486,6 +1593,7 @@
                         android:background="@drawable/boxborder"
                         android:elevation="2dp"
                         android:paddingBottom="10dp"
+                        android:visibility="gone"
                         >
                         <ImageView
                             android:layout_width="30dp"
@@ -1539,7 +1647,57 @@
                             />
 
                     </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/noexptab"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/exptab3"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/boxborder"
+                        android:elevation="2dp"
+                        android:paddingBottom="10dp"
+                        >
 
+                        <ImageView
+                            android:id="@+id/noexp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/experiences_icon"
+                            android:layout_marginBottom="10dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/noedudetailstxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@+id/noexp"
+                            android:layout_centerVertical="true"
+                            android:ellipsize="start"
+                            android:text="No experiences filled."
+                            android:textColor="#03353e"
+                            android:textSize="14dp"
+                            />
+
+                    </RelativeLayout>
+                    <TextView
+                        android:id="@+id/extraexpcount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="12dp"
+                        android:textColor="@color/dark_color"
+                        android:text="and 3 more"
+                        android:layout_below="@+id/noexptab"
+                        android:layout_marginRight="10dp"
+                        />
 
 
                 </RelativeLayout>
@@ -1635,7 +1793,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:textSize="13dp"
-                            android:text="Your Career Objective"
+                            android:text="No career objective filled."
                             android:textColor="#03353e"
                             android:ellipsize="start"
                             />
@@ -1677,7 +1835,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:textSize="13dp"
-                            android:text="Your Strengths"
+                            android:text="No strengths filled."
                             android:textColor="#03353e"
                             android:ellipsize="start"
                             />
@@ -1720,7 +1878,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:textSize="13dp"
-                            android:text="Your Weaknesses"
+                            android:text="No weaknesses filled."
                             android:textColor="#03353e"
                             android:ellipsize="start"
                             />
@@ -1765,7 +1923,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:textSize="13dp"
-                            android:text="Your Location Preferences"
+                            android:text="No location preferences filled."
                             android:textColor="#03353e"
                             android:ellipsize="start"
                             />
@@ -1871,7 +2029,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:textSize="13dp"
-                            android:text="Address line1, Address line2, Address line3."
+                            android:text="No address filled."
                             android:textColor="#03353e"
                             android:ellipsize="start"
                             />

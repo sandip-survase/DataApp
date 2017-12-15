@@ -143,7 +143,7 @@ public class MyConstants {
     public static final String url_checkUcode = "http://192.168.100.100/AESTest/checkUcode";
     public static final String url_ClearOTP = "http://192.168.100.100/AESTest/ClearOTP";
     public static final String url_AddStudentUnderAdmin = "http://192.168.100.100/AESTest/AddStudentUnderAdmin";
-    public static final String url_GetCountOfUsersUnderAdmin = "http://192.168.100.20:8080/AESTest/GetCountOfUsersUnderAdmin";
+    public static final String url_GetCountOfUsersUnderAdmin = "http://192.168.100.100/AESTest/GetCountOfUsersUnderAdmin";
 
 //    --------------------------------- function --------------------------------------------------------------
 

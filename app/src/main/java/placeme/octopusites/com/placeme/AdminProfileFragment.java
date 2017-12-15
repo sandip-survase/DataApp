@@ -2,6 +2,7 @@ package placeme.octopusites.com.placeme;
 
 
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -77,7 +78,8 @@ public class AdminProfileFragment extends Fragment {
     ImageButton iv_camera;
     TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt;
     RelativeLayout editprofilerl;
-    RelativeLayout exptab2, exptab3;
+    RelativeLayout box1,exptab2, exptab3;
+    View box2;
     String experiencesataobject = "";
     int val1 = 0, val2 = 0;
     TextView editprofiletxt, eduboxtxt, expboxtxt, accomplishmentsboxtxt, instemailtxt, contactboxtxt, instcontactemail, acc4txttxt, instwebtxt;
@@ -140,11 +142,40 @@ public class AdminProfileFragment extends Fragment {
         }
         return null;
     }
+    public void bottomupbox2(Activity activity, View view){
 
+        Animation animation1 =
+                AnimationUtils.loadAnimation(activity,
+                        R.anim.bottom_up_box2);
+        view.startAnimation(animation1);
+        animation1.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                profileprogress.setVisibility(View.VISIBLE);
+                View box2section=rootView.findViewById(R.id.box2section);
+                box2section.setVisibility(View.VISIBLE);
+                editprofiletxt.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_admin_profile, container, false);
+        rootView = inflater.inflate(R.layout.fragment_admin_profile, container, false);
+
+        box1=(RelativeLayout)rootView.findViewById(R.id.box1);
+        box2=rootView.findViewById(R.id.box2);
 
         digest1 = MySharedPreferencesManager.getDigest1(getActivity());
         digest2 = MySharedPreferencesManager.getDigest2(getActivity());
@@ -181,6 +212,7 @@ public class AdminProfileFragment extends Fragment {
         myprofilloc = (TextView) rootView.findViewById(R.id.myprofilloc);
         myprofilemail = (TextView) rootView.findViewById(R.id.myprofilemail);
 
+        ImageView insteditpencil=(ImageView) rootView.findViewById(R.id.insteditpencil);
         myprofilepercenttxt = (TextView) rootView.findViewById(R.id.myprofilepercenttxt);
         editprofiletxt = (TextView) rootView.findViewById(R.id.editprofiletxt);
 
@@ -195,6 +227,7 @@ public class AdminProfileFragment extends Fragment {
         exptab3 = (RelativeLayout) rootView.findViewById(R.id.exptab3);
         exp3 = (ImageView) rootView.findViewById(R.id.exp3);
 
+        TextView noedudetailstxt=(TextView)rootView.findViewById(R.id.noedudetailstxt);
 
         eduboxtxt = (TextView) rootView.findViewById(R.id.eduboxtxt);
         accomplishmentsboxtxt = (TextView) rootView.findViewById(R.id.accomplishmentsboxtxt);
@@ -296,6 +329,8 @@ public class AdminProfileFragment extends Fragment {
         acc6txttxt.setTypeface(MyConstants.getBold(getActivity()));
         acc7txttxt.setTypeface(MyConstants.getBold(getActivity()));
 
+        noedudetailstxt.setTypeface(MyConstants.getBold(getActivity()));
+
         exp1txt.setTypeface(MyConstants.getBold(getActivity()));
         myprofileexp1name.setTypeface(MyConstants.getLight(getActivity()));
         myprofileexpfromto.setTypeface(MyConstants.getLight(getActivity()));
@@ -322,6 +357,27 @@ public class AdminProfileFragment extends Fragment {
         accomplishmentsedit = (ImageView) rootView.findViewById(R.id.accomplishmentsedit);
         expedit = (ImageView) rootView.findViewById(R.id.expedit);
         contactedit = (ImageView) rootView.findViewById(R.id.contactedit);
+
+
+        if(!ShouldAnimateProfile.shouldAnimate)
+        {
+            MyConstants.bottomupbox1(getActivity(),box1);
+            bottomupbox2(getActivity(),box2);
+            MyConstants.bottomupbox4(getActivity(),eduboxtxt);
+            MyConstants.fade(getActivity(),myprofileimg);
+            MyConstants.fade(getActivity(),iv_camera);
+            MyConstants.bottomupbox3(getActivity(),eduboxtxt);
+            MyConstants.bottomupbox3(getActivity(),insteditpencil);
+            MyConstants.fadeandmovedown(getActivity(),myprofilepreview);
+            ShouldAnimateProfile.shouldAnimate=true;
+        }
+        else
+        {
+            profileprogress.setVisibility(View.VISIBLE);
+            View box2section=rootView.findViewById(R.id.box2section);
+            box2section.setVisibility(View.VISIBLE);
+            editprofiletxt.setVisibility(View.VISIBLE);
+        }
 
         introedit.setOnClickListener(new View.OnClickListener() {
             @Override
