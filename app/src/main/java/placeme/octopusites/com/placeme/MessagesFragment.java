@@ -75,8 +75,6 @@ public class MessagesFragment extends Fragment {
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-    private static String url_get_chatrooms = "http://192.168.100.100/PlaceMe/GetChatRooms";
-    private static String url_getmessagesreadstatus= "http://192.168.100.100/PlaceMe/GetReadStatusOfMessages";
     String messagesreadstatus[];
     int count;
     String sender_uid;
@@ -257,7 +255,7 @@ public class MessagesFragment extends Fragment {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", usernameenc));
-            json = jParser.makeHttpRequest(url_get_chatrooms, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_get_chatrooms, "GET", params);
             Bitmap map = null;
             try {
 
@@ -432,7 +430,7 @@ public class MessagesFragment extends Fragment {
 
             try {
 
-                json = jParser.makeHttpRequest(url_getmessagesreadstatus, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_getmessagesreadstatus, "GET", params);
                 unread_count[index] = json.getString("unreadcount");
 
 

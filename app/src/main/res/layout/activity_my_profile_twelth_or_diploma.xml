@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/myprofiletwelthordiplomascrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -23,8 +24,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:background="@drawable/textviewborder"
-            android:paddingBottom="10dp"
             android:elevation="2dp"
+            android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:paddingTop="10dp"
@@ -86,7 +87,9 @@
                     android:id="@+id/marks12input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/marks12"
@@ -106,7 +109,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/marks12input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/outof12"
@@ -136,7 +141,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/percent12"
@@ -158,14 +165,16 @@
                 android:layout_below="@+id/edurl2"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/schoolname12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:imeOptions="actionDone"
                     android:hint="School Name"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
@@ -219,7 +228,9 @@
                 android:layout_below="@+id/stream12spinner"
                 android:layout_marginTop="15dp"
                 android:theme="@style/TextLabel"
-                android:visibility="gone">
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/otherstream12"
@@ -280,6 +291,8 @@
                 android:layout_below="@+id/board12spinner"
                 android:layout_marginTop="15dp"
                 android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
 
 
                 >
@@ -310,7 +323,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/yearofpassing12"
@@ -351,13 +366,16 @@
                     android:id="@+id/marksdsem1input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/dmarkssem1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Marks Sem 1"
+                        android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLength="5"
                         android:textColor="@color/dark_color"
@@ -370,13 +388,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/marksdsem1input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/doutofsem1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Out Of Sem 1"
+                        android:imeOptions="actionDone"
                         android:inputType="number"
                         android:maxLength="5"
                         android:textColor="@color/dark_color"
@@ -399,7 +420,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/dpercentsem1"
@@ -426,13 +449,16 @@
                     android:id="@+id/marksdsem2input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/dmarkssem2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Marks Sem 2"
+                        android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLength="5"
                         android:textColor="@color/dark_color"
@@ -445,13 +471,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/marksdsem2input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/doutofsem2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Out Of Sem 2"
+                        android:imeOptions="actionDone"
                         android:inputType="number"
                         android:maxLength="5"
                         android:textColor="@color/dark_color"
@@ -475,7 +504,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/dpercentsem2"
@@ -501,13 +532,16 @@
                     android:id="@+id/marksdsem3input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/dmarkssem3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Marks Sem 3"
+                        android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLength="5"
                         android:textColor="@color/dark_color"
@@ -520,13 +554,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/marksdsem3input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/doutofsem3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Out Of Sem 3"
+                        android:imeOptions="actionDone"
                         android:inputType="number"
                         android:maxLength="5"
                         android:textColor="@color/dark_color"
@@ -550,7 +587,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/dpercentsem3"
@@ -577,13 +616,16 @@
                     android:id="@+id/marksdsem4input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/dmarkssem4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Marks Sem 4"
+                        android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLength="5"
                         android:textColor="@color/dark_color"
@@ -596,13 +638,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/marksdsem4input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/doutofsem4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Out Of Sem 4"
+                        android:imeOptions="actionDone"
                         android:inputType="number"
                         android:maxLength="5"
                         android:textColor="@color/dark_color"
@@ -626,7 +671,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/dpercentsem4"
@@ -654,13 +701,16 @@
                     android:id="@+id/marksdsem5input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/dmarkssem5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Marks Sem 5"
+                        android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLength="5"
                         android:textColor="@color/dark_color"
@@ -673,13 +723,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/marksdsem5input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/doutofsem5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Out Of Sem 5"
+                        android:imeOptions="actionDone"
                         android:inputType="number"
                         android:maxLength="5"
                         android:textColor="@color/dark_color"
@@ -703,7 +756,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/dpercentsem5"
@@ -730,13 +785,16 @@
                     android:id="@+id/marksdsem6input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/dmarkssem6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Marks Sem 6"
+                        android:imeOptions="actionNext"
                         android:inputType="number"
                         android:maxLength="5"
                         android:textColor="@color/dark_color"
@@ -749,13 +807,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/marksdsem6input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/doutofsem6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Out Of Sem 6"
+                        android:imeOptions="actionDone"
                         android:inputType="number"
                         android:maxLength="5"
                         android:textColor="@color/dark_color"
@@ -779,7 +840,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/dpercentsem6"
@@ -801,7 +864,9 @@
                 android:layout_below="@+id/edurl8"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/daggregate"
@@ -864,13 +929,16 @@
                 android:layout_below="@+id/dcoursespinner"
                 android:layout_marginTop="15dp"
                 android:theme="@style/TextLabel"
-                android:visibility="gone">
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/othercourse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Please Specify"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
@@ -965,7 +1033,9 @@
                 android:layout_below="@+id/duniversityspinner"
                 android:layout_marginTop="15dp"
                 android:theme="@style/TextLabel"
-                android:visibility="gone">
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/otherboardd"
@@ -986,13 +1056,16 @@
                 android:layout_below="@+id/otherboarddinput"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/schoolnamed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="College Name"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
@@ -1012,7 +1085,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/yearofpassingd"

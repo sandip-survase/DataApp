@@ -64,6 +64,7 @@
         android:layout_marginTop="20dp"
         android:theme="@style/TextLabelNew"
         app:errorEnabled="true"
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
         >
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/companyName"
@@ -85,6 +86,7 @@
         android:layout_below="@+id/companyNameTextInputLayout"
         android:theme="@style/TextLabelNew"
         app:errorEnabled="true"
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
         >
 
         <AutoCompleteTextView
@@ -110,6 +112,7 @@
         android:layout_below="@id/countryinputlayout"
         android:theme="@style/TextLabelNew"
         app:errorEnabled="true"
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
         >
 
         <android.support.v7.widget.AppCompatEditText
@@ -134,6 +137,7 @@
         android:layout_below="@id/addressTextInputLayout"
         android:theme="@style/TextLabelNew"
         app:errorEnabled="true"
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
         >
 
         <android.support.v7.widget.AppCompatEditText
@@ -157,6 +161,7 @@
         android:layout_below="@id/emailTextInputLayout"
         android:theme="@style/TextLabelNew"
         app:errorEnabled="true"
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
         >
 
         <android.support.v7.widget.AppCompatEditText
@@ -180,6 +185,7 @@
         android:layout_below="@id/websiteTextInputLayout"
         android:theme="@style/TextLabelNew"
         app:errorEnabled="true"
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
         >
 
         <android.support.v7.widget.AppCompatEditText
@@ -203,6 +209,7 @@
         android:layout_below="@id/phoneTextInputLayout"
         android:theme="@style/TextLabelNew"
         app:errorEnabled="true"
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
         >
 
         <android.support.v7.widget.AppCompatEditText
@@ -226,6 +233,7 @@
         android:layout_below="@id/alternatePhoneTextInputLayout"
         android:theme="@style/TextLabelNew"
         app:errorEnabled="true"
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
         >
 
         <android.support.v7.widget.AppCompatEditText
@@ -292,6 +300,7 @@
         app:errorEnabled="true"
         android:layout_marginTop="20dp"
         android:visibility="gone"
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
         >
 
         <android.support.v7.widget.AppCompatEditText

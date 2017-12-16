@@ -8,6 +8,7 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -26,6 +27,8 @@ import android.widget.Toast;
 public class BroadcastMessage extends AppCompatActivity {
 
     ImageView facebookicon,twittericon,linkedinicon;
+    TextInputLayout notificationinput;
+    TextInputEditText notification;
     int toggle1=0,toggle2=0,toggle3=0;
     FloatingActionButton fab;
     final static CharSequence[] items = {"Upload Picture", "Upload Video"};
@@ -47,6 +50,10 @@ public class BroadcastMessage extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
 
+        notificationinput=(TextInputLayout)findViewById(R.id.notificationinput);
+        notificationinput.setTypeface(MyConstants.getBold(this));
+        notification=(TextInputEditText)findViewById(R.id.notification);
+        notification.setTypeface(MyConstants.getBold(this));
         facebookicon=(ImageView)findViewById(R.id.facebookicon);
         twittericon=(ImageView)findViewById(R.id.twittericon);
         linkedinicon=(ImageView)findViewById(R.id.linkedinicon);
@@ -62,7 +69,7 @@ public class BroadcastMessage extends AppCompatActivity {
                 else
                 {
                     toggle1=0;
-                    facebookicon.setColorFilter(Color.parseColor("#bbbbbb"));
+                    facebookicon.setColorFilter(Color.parseColor("#03353e"));
                 }
             }
         });
@@ -77,7 +84,7 @@ public class BroadcastMessage extends AppCompatActivity {
                 else
                 {
                     toggle2=0;
-                    twittericon.setColorFilter(Color.parseColor("#bbbbbb"));
+                    twittericon.setColorFilter(Color.parseColor("#03353e"));
                 }
             }
         });
@@ -92,21 +99,20 @@ public class BroadcastMessage extends AppCompatActivity {
                 else
                 {
                     toggle3=0;
-                    linkedinicon.setColorFilter(Color.parseColor("#bbbbbb"));
+                    linkedinicon.setColorFilter(Color.parseColor("#03353e"));
                 }
             }
         });
 
-        Typeface custom_font3 = Typeface.createFromAsset(getAssets(),  "fonts/cabinsemibold.ttf");
-        Typeface custom_font4 = Typeface.createFromAsset(getAssets(),  "fonts/maven.ttf");
+
 
         TextView createpasstxt=(TextView)findViewById(R.id.createpasstxt);
         TextView passsenstxt=(TextView)findViewById(R.id.passsenstxt);
         TextView selecttxt=(TextView)findViewById(R.id.selecttxt);
 
-        createpasstxt.setTypeface(custom_font3);
-        passsenstxt.setTypeface(custom_font4);
-        selecttxt.setTypeface(custom_font4);
+        createpasstxt.setTypeface(MyConstants.getBold(this));
+        passsenstxt.setTypeface(MyConstants.getLight(this));
+        selecttxt.setTypeface(MyConstants.getLight(this));
 
         fab=(FloatingActionButton)findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

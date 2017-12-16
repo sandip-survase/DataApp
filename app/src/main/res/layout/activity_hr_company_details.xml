@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/myprofileintroscrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/myprofileintroscrollview"
     android:background="@color/while_color">
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_admin_institute_details"
@@ -14,219 +16,240 @@
         tools:context="placeme.octopusites.com.placeme.HrCompanyDetails">
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/instnameinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/instnameinput"
-            android:theme="@style/TextLabel">
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/instname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Company Name*"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
-                android:maxLength="100"
-                android:inputType="textCapWords"
                 android:imeOptions="actionNext"
+                android:inputType="textCapWords"
+                android:maxLength="100"
                 android:singleLine="true"
-                android:id="@+id/instname"/>
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/addressline1input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/addressline1input"
             android:layout_below="@+id/instnameinput"
-            android:theme="@style/TextLabel">
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/compaddressline1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="House no/Flat no/Plot no, Name*"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
-                android:maxLength="200"
-                android:inputType="textCapWords"
                 android:imeOptions="actionNext"
+                android:inputType="textCapWords"
+                android:maxLength="200"
                 android:singleLine="true"
-                android:id="@+id/compaddressline1"/>
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/addressline2input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/addressline1input"
-            android:id="@+id/addressline2input"
-            android:theme="@style/TextLabel">
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/compaddressline2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Street Name/Landmark*"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
-                android:maxLength="200"
-                android:inputType="textCapWords"
                 android:imeOptions="actionNext"
+                android:inputType="textCapWords"
+                android:maxLength="200"
                 android:singleLine="true"
-                android:id="@+id/compaddressline2"/>
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/addressline3input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/addressline2input"
-            android:id="@+id/addressline3input"
-            android:theme="@style/TextLabel">
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/compaddressline3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="City, Pincode*"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
-                android:singleLine="true"
                 android:imeOptions="actionNext"
                 android:inputType="textCapWords"
                 android:maxLength="200"
-                android:id="@+id/compaddressline3"/>
+                android:singleLine="true"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
         </android.support.design.widget.TextInputLayout>
 
 
-
-
-
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/instemailinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/addressline3input"
-            android:id="@+id/instemailinput"
             android:layout_marginTop="10dp"
-            android:theme="@style/TextLabel">
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/instemail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Company's Email Address*"
-                android:singleLine="true"
-                android:maxLength="100"
                 android:imeOptions="actionNext"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
                 android:inputType="textEmailAddress"
-                android:id="@+id/instemail"/>
+                android:maxLength="100"
+                android:singleLine="true"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/instwebinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/instemailinput"
-            android:id="@+id/instwebinput"
             android:layout_marginTop="10dp"
-            android:theme="@style/TextLabel">
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/instweb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Company's Website*"
-                android:inputType="textUri"
-                android:singleLine="true"
-                android:maxLength="100"
                 android:imeOptions="actionNext"
-                android:textSize="16dp"
+                android:inputType="textUri"
+                android:maxLength="100"
+                android:singleLine="true"
                 android:textColor="@color/dark_color"
-                android:id="@+id/instweb"/>
+                android:textSize="16dp" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/instphoneinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/instwebinput"
             android:layout_marginTop="10dp"
-            android:id="@+id/instphoneinput"
-            android:theme="@style/TextLabel">
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/instphone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Company's Phone Number (with STD code)*"
-                android:inputType="number"
-                android:textSize="16dp"
                 android:imeOptions="actionNext"
-                android:textColor="@color/dark_color"
-                android:singleLine="true"
+                android:inputType="number"
                 android:maxLength="11"
-                android:id="@+id/instphone"/>
+                android:singleLine="true"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/instphoneainput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/instphoneinput"
             android:layout_marginTop="10dp"
-            android:id="@+id/instphoneainput"
-            android:theme="@style/TextLabel">
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/instphonea"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Alternate Phone Number (with STD code)"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
-                android:maxLength="11"
                 android:imeOptions="actionNext"
                 android:inputType="number"
+                android:maxLength="11"
                 android:singleLine="true"
-                android:id="@+id/instphonea"/>
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/instreginput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/instreginput"
             android:layout_below="@+id/instphoneainput"
             android:layout_marginTop="10dp"
-            android:theme="@style/TextLabel">
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/instreg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Company CIN (Company Identification Number)"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
-                android:maxLength="20"
                 android:imeOptions="actionDone"
                 android:inputType="text"
+                android:maxLength="20"
                 android:singleLine="true"
-                android:id="@+id/instreg"/>
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
         </android.support.design.widget.TextInputLayout>
+
         <TextView
+            android:id="@+id/loctxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nature of Company"
             android:layout_below="@+id/instreginput"
-            android:textSize="20dp"
-            android:textColor="@color/while_color"
-            android:id="@+id/loctxt"
-            android:layout_marginTop="25dp"
             android:layout_centerHorizontal="true"
-            android:paddingTop="10dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/textviewborder"
+            android:elevation="6dp"
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
-            android:elevation="6dp"
             android:paddingRight="30dp"
-            android:background="@drawable/textviewborder"
-            />
+            android:paddingTop="10dp"
+            android:text="Nature of Company"
+            android:textColor="@color/while_color"
+            android:textSize="20dp" />
+
         <RelativeLayout
+            android:id="@+id/board10spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/loctxt"
-            android:id="@+id/board10spinner"
-            android:layout_marginTop="20dp"
             android:layout_marginRight="3dp"
+            android:layout_marginTop="20dp"
             android:layout_weight=".28"
             android:orientation="horizontal">
 
@@ -236,28 +259,27 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
                 android:background="@color/while_color"
                 android:gravity="center"
                 android:popupBackground="@color/while_color"
-                android:layout_marginLeft="5dp"
                 android:spinnerMode="dropdown" />
 
             <ImageView
+                android:id="@+id/spinnerimg1"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
-                android:id="@+id/spinnerimg1"
-                android:tint="@color/dark_color"
-                android:src="@drawable/drop" />
+                android:src="@drawable/drop"
+                android:tint="@color/dark_color" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_below="@+id/spinnerimg1"
-                android:background="@color/dark_color"
-                />
+                android:background="@color/dark_color" />
 
         </RelativeLayout>
     </RelativeLayout>
