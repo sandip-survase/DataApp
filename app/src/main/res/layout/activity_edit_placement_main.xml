@@ -89,7 +89,10 @@
             android:theme="@style/TextLabel"
             android:maxLines="1"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true">
+            android:layout_alignParentEnd="true"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+            >
 
             <TextView
                 android:layout_width="0dp"

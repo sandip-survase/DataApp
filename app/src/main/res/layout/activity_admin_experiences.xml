@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/myprofileintroscrollview"
     android:background="@color/while_color">
 
@@ -53,7 +54,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/postinput1"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -73,7 +77,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/instinput1"
                 android:layout_below="@+id/postinput1"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -108,7 +115,10 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/fromdateinput1"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
@@ -141,7 +151,10 @@
                     android:singleLine="true"
                     android:focusable="false"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
@@ -213,7 +226,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/postinput2"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -232,7 +248,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/instinput2"
-
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
                 android:layout_below="@+id/postinput2"
                 android:theme="@style/TextLabel">
 
@@ -269,7 +286,10 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/fromdateinput2"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
@@ -302,7 +322,10 @@
                     android:singleLine="true"
                     android:focusable="false"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
@@ -374,7 +397,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/postinput3"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -394,7 +420,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/instinput3"
                 android:layout_below="@+id/postinput3"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -429,7 +458,10 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/fromdateinput3"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
@@ -462,7 +494,10 @@
                     android:singleLine="true"
                     android:focusable="false"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
@@ -534,7 +569,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/postinput4"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -554,7 +592,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/instinput4"
                 android:layout_below="@+id/postinput4"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -587,7 +628,10 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/fromdateinput4"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
@@ -620,7 +664,10 @@
                     android:singleLine="true"
                     android:focusable="false"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
@@ -693,7 +740,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/postinput5"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -713,7 +763,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/instinput5"
                 android:layout_below="@+id/postinput5"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -748,7 +801,10 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/fromdateinput5"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
@@ -781,7 +837,10 @@
                     android:singleLine="true"
                     android:focusable="false"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
@@ -853,7 +912,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/postinput6"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -873,7 +935,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/instinput6"
                 android:layout_below="@+id/postinput6"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -908,7 +973,10 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/fromdateinput6"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
@@ -941,7 +1009,10 @@
                     android:singleLine="true"
                     android:focusable="false"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
@@ -1014,7 +1085,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/postinput7"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -1034,7 +1108,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/instinput7"
                 android:layout_below="@+id/postinput7"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -1069,7 +1146,10 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/fromdateinput7"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
@@ -1102,7 +1182,10 @@
                     android:singleLine="true"
                     android:focusable="false"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
@@ -1175,7 +1258,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/postinput8"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -1195,7 +1281,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/instinput8"
                 android:layout_below="@+id/postinput8"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -1230,7 +1319,10 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/fromdateinput8"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
@@ -1263,7 +1355,10 @@
                     android:singleLine="true"
                     android:focusable="false"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
@@ -1336,7 +1431,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/postinput9"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -1356,7 +1454,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/instinput9"
                 android:layout_below="@+id/postinput9"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -1391,7 +1492,10 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/fromdateinput9"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
@@ -1424,7 +1528,10 @@
                     android:singleLine="true"
                     android:focusable="false"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
@@ -1497,7 +1604,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/postinput10"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -1517,7 +1627,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/instinput10"
                 android:layout_below="@+id/postinput10"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -1552,7 +1665,10 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/fromdateinput10"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
@@ -1585,7 +1701,10 @@
                     android:singleLine="true"
                     android:focusable="false"
                     android:layout_marginTop="10dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                    >
 
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"

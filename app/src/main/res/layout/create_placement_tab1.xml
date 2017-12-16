@@ -1,143 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:TagsEditText="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:TagsEditText="http://schemas.android.com/apk/res-auto"
     android:background="#282f35">
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
         android:focusableInTouchMode="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/companynameinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:id="@+id/companynameinput"
-            android:theme="@style/TextLabel">
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/companyname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Company/Organization Name"
-                android:textSize="15dp"
-                android:textColor="#eee"
                 android:singleLine="true"
-                android:id="@+id/companyname"/>
+                android:textColor="#eee"
+                android:textSize="15dp" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/packageinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_below="@+id/companynameinput"
-            android:id="@+id/packageinput"
-            android:theme="@style/TextLabel">
+            android:layout_marginTop="10dp"
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/cpackage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Package (in LPA)"
-                android:textSize="15dp"
                 android:inputType="numberDecimal"
-                android:textColor="#eee"
                 android:singleLine="true"
-                android:id="@+id/cpackage"/>
+                android:textColor="#eee"
+                android:textSize="15dp" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/postinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/postinput"
             android:layout_below="@+id/packageinput"
-            android:theme="@style/TextLabel">
+            android:layout_marginTop="10dp"
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/post"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Post Opened"
-                android:textSize="15dp"
-                android:textColor="#eee"
                 android:singleLine="true"
-                android:id="@+id/post"/>
+                android:textColor="#eee"
+                android:textSize="15dp" />
 
         </android.support.design.widget.TextInputLayout>
 
         <TextView
+            android:id="@+id/choosetxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#bbb"
-            android:text="Choose for which courses you want to enable this placement."
             android:layout_below="@+id/postinput"
             android:layout_marginTop="5dp"
-            android:id="@+id/choosetxt"
-            />
+            android:text="Choose for which courses you want to enable this placement."
+            android:textColor="#bbb" />
 
         <RelativeLayout
+            android:id="@+id/courseselector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/choosetxt"
-            android:id="@+id/courseselector"
-            android:layout_marginTop="10dp"
             android:layout_marginRight="3dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="28"
             android:orientation="horizontal">
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/CoursecInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/CoursecInput"
-                android:theme="@style/TextLabel"
-                android:maxLines="1"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true">
+                android:maxLines="1"
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <TextView
+                    android:id="@+id/dummy2"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:textColor="#bbb"
-                    android:text=""
                     android:layout_marginTop="0dp"
-                    android:id="@+id/dummy2"
-                    />
+                    android:text=""
+                    android:textColor="#bbb" />
 
                 <AutoCompleteTextView
                     android:id="@+id/courses"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="select Course"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:maxLines="1"
-                    android:textColor="#eee"
-                    android:background="@android:color/transparent"
                     android:layout_marginLeft="5dp"
+                    android:background="@android:color/transparent"
+                    android:hint="select Course"
+                    android:maxLines="1"
                     android:popupBackground="#001111"
-                    />
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:textSize="15dp" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
+                android:id="@+id/dummy"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:textColor="#bbb"
-                android:text=""
                 android:layout_below="@+id/tagsEditText"
                 android:layout_marginTop="0dp"
-                android:id="@+id/dummy"
-                />
+                android:text=""
+                android:textColor="#bbb" />
 
         </RelativeLayout>
+
         <RelativeLayout
+            android:id="@+id/Streamselector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/courseselector"
-            android:id="@+id/Streamselector"
-            android:layout_marginTop="10dp"
             android:layout_marginRight="3dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="28"
             android:orientation="horizontal"
             android:visibility="gone">
@@ -146,35 +155,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
-
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
 
                 <AutoCompleteTextView
                     android:id="@+id/streams"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="select Streams"
-                    android:textSize="15dp"
-                    android:singleLine="true"
-                    android:maxLines="1"
-                    android:textColor="#eee"
-                    android:background="@android:color/transparent"
                     android:layout_marginLeft="5dp"
+                    android:background="@android:color/transparent"
+                    android:hint="select Streams"
+                    android:maxLines="1"
                     android:popupBackground="#001111"
-                    />
+                    android:singleLine="true"
+                    android:textColor="#eee"
+                    android:textSize="15dp" />
             </android.support.design.widget.TextInputLayout>
 
 
-
         </RelativeLayout>
+
         <RelativeLayout
+            android:id="@+id/selectedrl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/Streamselector"
-            android:id="@+id/selectedrl"
-            android:layout_marginTop="20dp"
             android:layout_marginRight="3dp"
+            android:layout_marginTop="20dp"
             android:layout_weight="28"
             android:orientation="horizontal"
             android:visibility="gone">
@@ -183,97 +192,107 @@
                 android:id="@+id/selected"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                TagsEditText:tagsTextColor="#282f35"
-                TagsEditText:allowSpaceInTag="true"
+                android:layout_toRightOf="@+id/spinnerimg1"
+                android:background="@android:color/transparent"
                 android:editable="false"
+                android:hint="Selected Course And  Streams"
+                android:maxLines="1"
+                android:popupBackground="#001111"
+                android:singleLine="true"
+                android:textColor="#eee"
+                android:textColorHint="#eee"
+                android:textSize="16dp"
+                TagsEditText:allowSpaceInTag="true"
                 TagsEditText:tagsBackground="@drawable/square_default"
                 TagsEditText:tagsCloseImageRight="@drawable/tag_close"
-                android:layout_toRightOf="@+id/spinnerimg1"
-                android:textColor="#eee"
-                android:textSize="16dp"
-                android:singleLine = "true"
-                android:maxLines="1"
-                android:hint="Selected Course And  Streams"
-                android:textColorHint="#eee"
-                android:background="@android:color/transparent"
-                android:popupBackground="#001111"
-                />
+                TagsEditText:tagsTextColor="#282f35" />
 
         </RelativeLayout>
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/vacanciesinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/vacanciesinput"
             android:layout_below="@+id/selectedrl"
-            android:theme="@style/TextLabel">
+            android:layout_marginTop="10dp"
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/vacancies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Vacancies"
-                android:textSize="15dp"
                 android:inputType="number"
-                android:textColor="#eee"
                 android:singleLine="true"
-                android:id="@+id/vacancies"/>
+                android:textColor="#eee"
+                android:textSize="15dp" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:id="@+id/ldrinput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/vacanciesinput"
-            android:theme="@style/TextLabel">
+            android:layout_marginTop="10dp"
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/ldr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusable="false"
                 android:hint="Last Date of Registration"
-                android:textSize="15dp"
-                android:textColor="#eee"
-                android:focusable="false"
                 android:singleLine="true"
-                android:id="@+id/ldr"/>
+                android:textColor="#eee"
+                android:textSize="15dp" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/dorinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/dorinput"
             android:layout_below="@+id/ldrinput"
-            android:theme="@style/TextLabel">
+            android:layout_marginTop="10dp"
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/dor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Date of Arrival"
-                android:textSize="15dp"
-                android:textColor="#eee"
                 android:focusable="false"
+                android:hint="Date of Arrival"
                 android:singleLine="true"
-                android:id="@+id/dor"/>
+                android:textColor="#eee"
+                android:textSize="15dp" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/bondinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/bondinput"
             android:layout_below="@+id/dorinput"
-            android:theme="@style/TextLabel">
+            android:layout_marginTop="10dp"
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/bond"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Bond (in Months)"
-                android:textSize="15dp"
-                android:textColor="#eee"
                 android:singleLine="true"
-                android:id="@+id/bond"/>
+                android:textColor="#eee"
+                android:textSize="15dp" />
 
         </android.support.design.widget.TextInputLayout>
 

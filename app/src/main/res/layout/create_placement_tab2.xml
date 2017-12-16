@@ -1,109 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#282f35">
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
         android:focusableInTouchMode="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/aptiinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:id="@+id/aptiinput"
-            android:theme="@style/TextLabel">
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/apti"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Number of Aptitude Tests"
-                android:textSize="15dp"
                 android:inputType="number"
-                android:textColor="#eee"
                 android:singleLine="true"
-                android:id="@+id/apti"/>
+                android:textColor="#eee"
+                android:textSize="15dp" />
 
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/techtestinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/techtestinput"
             android:layout_below="@+id/aptiinput"
-            android:theme="@style/TextLabel">
+            android:layout_marginTop="10dp"
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/techtest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Number of Technical Tests"
-                android:textSize="15dp"
-                android:textColor="#eee"
                 android:inputType="number"
                 android:singleLine="true"
-                android:id="@+id/techtest"/>
+                android:textColor="#eee"
+                android:textSize="15dp" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/gdinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/gdinput"
             android:layout_below="@+id/techtestinput"
-            android:theme="@style/TextLabel">
+            android:layout_marginTop="10dp"
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/gd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Number of Group Discussions"
-                android:textSize="15dp"
-                android:textColor="#eee"
                 android:inputType="number"
                 android:singleLine="true"
-                android:id="@+id/gd"/>
+                android:textColor="#eee"
+                android:textSize="15dp" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/techinterviewinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/techinterviewinput"
             android:layout_below="@+id/gdinput"
-            android:theme="@style/TextLabel">
+            android:layout_marginTop="10dp"
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/techinterview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Number of Technical Interviews"
-                android:textSize="15dp"
-                android:textColor="#eee"
                 android:inputType="number"
                 android:singleLine="true"
-                android:id="@+id/techinterview"/>
+                android:textColor="#eee"
+                android:textSize="15dp" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/hrinterviewinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/hrinterviewinput"
             android:layout_below="@+id/techinterviewinput"
-            android:theme="@style/TextLabel">
+            android:layout_marginTop="10dp"
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/hrinterview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Number of HR Interviews"
-                android:textSize="15dp"
-                android:textColor="#eee"
                 android:inputType="number"
                 android:singleLine="true"
-                android:id="@+id/hrinterview"/>
+                android:textColor="#eee"
+                android:textSize="15dp" />
 
         </android.support.design.widget.TextInputLayout>
 
