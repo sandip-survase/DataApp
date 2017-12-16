@@ -4,7 +4,7 @@
     android:id="@+id/activity_create_notification"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#282f35"
+    android:background="@color/while_color"
     android:focusableInTouchMode="true"
     tools:context="placeme.octopusites.com.placeme.CreateNotification">
 
@@ -22,8 +22,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Broadcast Post/Message"
-                android:textSize="18dp"
-                android:textColor="#eee"
+                android:textSize="14dp"
+                android:textColor="@color/dark_color"
                 android:id="@+id/createpasstxt"
                 />
 
@@ -31,7 +31,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/createpasstxt"
-                android:textColor="#bbb"
+                android:textColor="@color/dark_color"
+                android:textSize="12dp"
                 android:text="You can broadcast the post/message on social networking sites which are linked with Place Me."
                 android:layout_marginTop="10dp"
                 android:id="@+id/passsenstxt"
@@ -53,8 +54,8 @@
                     android:gravity="top|left"
                     android:inputType="textMultiLine"
                     android:scrollHorizontally="false"
-                    android:textSize="15dp"
-                    android:textColor="#eee"
+                    android:textSize="16dp"
+                    android:textColor="@color/dark_color"
                     android:id="@+id/notification"/>
             </android.support.design.widget.TextInputLayout>
 
@@ -62,7 +63,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/notificationinput"
-                android:textColor="#bbb"
+                android:textColor="@color/dark_color"
+                android:textSize="12dp"
                 android:text="Select social media network on which you want to share this post by clicking on respective icons."
                 android:layout_marginTop="20dp"
                 android:id="@+id/selecttxt"
@@ -75,11 +77,11 @@
                 android:layout_below="@+id/selecttxt"
                 android:layout_marginTop="10dp"
                 android:id="@+id/facebookicon"
-                android:tint="#bbb"
+                android:tint="@color/dark_color"
                 />
 
             <ImageView
-                android:tint="#bbb"
+                android:tint="@color/dark_color"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/twitter"
@@ -90,7 +92,7 @@
                 android:layout_marginLeft="10dp"
                 />
             <ImageView
-                android:tint="#bbb"
+                android:tint="@color/dark_color"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/linkedin"
@@ -112,7 +114,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/photo"
-        app:backgroundTint="#fff"
+        app:srcCompat="@drawable/camera_icon_new"
+        app:backgroundTint="@color/dark_color"
+        android:elevation="6dp"
         />
 </RelativeLayout>
