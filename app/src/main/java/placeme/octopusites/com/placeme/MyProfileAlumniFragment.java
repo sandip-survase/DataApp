@@ -297,9 +297,10 @@ public class MyProfileAlumniFragment extends Fragment {
 
 
         exptab1 = (RelativeLayout) rootView.findViewById(R.id.exptab1);
-        exp1 = (ImageView) rootView.findViewById(R.id.exp1);
         exptab2 = (RelativeLayout) rootView.findViewById(R.id.exptab2);
         exptab3 = (RelativeLayout) rootView.findViewById(R.id.exptab3);
+
+        exp1 = (ImageView) rootView.findViewById(R.id.exp1);
         exp2 = (ImageView) rootView.findViewById(R.id.exp2);
         exp3 = (ImageView) rootView.findViewById(R.id.exp3);
 
@@ -606,7 +607,8 @@ public class MyProfileAlumniFragment extends Fragment {
             extraexpcount.setText("and "+ exps_count +" more");
         }
 
-        if (!fromdate1.equals("")){
+        if (!fromdates1.equals("")){
+
             exptab1.setVisibility(View.VISIBLE);
             exp1.setVisibility(View.VISIBLE);
             noexptab.setVisibility(View.GONE);
@@ -618,7 +620,7 @@ public class MyProfileAlumniFragment extends Fragment {
 
         }
 
-        if (!fromdate2.equals(""))
+        if (!fromdates2.equals(""))
         {
             exptab2.setVisibility(View.VISIBLE);
             exp2.setVisibility(View.VISIBLE);
@@ -628,7 +630,7 @@ public class MyProfileAlumniFragment extends Fragment {
             exp3.setVisibility(View.GONE);
         }
 
-        if (!fromdate3.equals("")){
+        if (!fromdates3.equals("")){
 
             exptab3.setVisibility(View.VISIBLE);
             exp3.setVisibility(View.VISIBLE);

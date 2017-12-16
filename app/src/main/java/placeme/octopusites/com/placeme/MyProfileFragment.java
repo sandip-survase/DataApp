@@ -853,9 +853,10 @@ public class MyProfileFragment extends Fragment {
                     }
                     s = json.getString("twelth");
                     if (s.equals("found")) {
+
                         found_twelth = 1;
 
-                        Log.d("TAG", "found_twelth===:-" + found_twelth);
+                        Log.d("TAG", "twelth data found_twelth===:-" + found_twelth);
 
                         twelthdataobject = json.getString("twelthobj");
 
@@ -2523,7 +2524,8 @@ public class MyProfileFragment extends Fragment {
             }
         }
         if (found_twelth == 1) {
-            Log.d("TAG", "populateData: welcome to twelth");
+
+            Log.d("TAG", "populateData: twelth data  found_twelth "+found_twelth);
 
             if (!schoolname12.equals("")) {
 
