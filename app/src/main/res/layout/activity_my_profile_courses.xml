@@ -68,6 +68,7 @@
                     android:hint="Course Name"
                     android:inputType="textCapSentences"
                     android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -88,6 +89,7 @@
                     android:hint="Institute/Organization/Consultancy Name"
                     android:inputType="textCapWords"
                     android:maxLength="500"
+                    android:imeOptions="actionDone"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -210,6 +212,7 @@
                     android:hint="Course Name"
                     android:inputType="textCapSentences"
                     android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -230,6 +233,7 @@
                     android:hint="Institute/Organization/Consultancy Name"
                     android:inputType="textCapWords"
                     android:maxLength="500"
+                    android:imeOptions="actionDone"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -347,6 +351,7 @@
                     android:hint="Course Name"
                     android:inputType="textCapSentences"
                     android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -367,6 +372,7 @@
                     android:hint="Institute/Organization/Consultancy Name"
                     android:inputType="textCapWords"
                     android:maxLength="500"
+                    android:imeOptions="actionDone"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -486,6 +492,7 @@
                     android:hint="Course Name"
                     android:inputType="textCapSentences"
                     android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -506,6 +513,7 @@
                     android:hint="Institute/Organization/Consultancy Name"
                     android:inputType="textCapWords"
                     android:maxLength="500"
+                    android:imeOptions="actionDone"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -626,6 +634,7 @@
                     android:hint="Course Name"
                     android:inputType="textCapSentences"
                     android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -646,6 +655,7 @@
                     android:hint="Institute/Organization/Consultancy Name"
                     android:inputType="textCapWords"
                     android:maxLength="500"
+                    android:imeOptions="actionDone"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -765,6 +775,7 @@
                     android:hint="Course Name"
                     android:inputType="textCapSentences"
                     android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -785,6 +796,7 @@
                     android:hint="Institute/Organization/Consultancy Name"
                     android:inputType="textCapWords"
                     android:maxLength="500"
+                    android:imeOptions="actionDone"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -902,6 +914,7 @@
                     android:hint="Course Name"
                     android:inputType="textCapSentences"
                     android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -922,6 +935,7 @@
                     android:hint="Institute/Organization/Consultancy Name"
                     android:inputType="textCapWords"
                     android:maxLength="500"
+                    android:imeOptions="actionDone"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -1041,6 +1055,7 @@
                     android:hint="Course Name"
                     android:inputType="textCapSentences"
                     android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -1060,6 +1075,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization/Consultancy Name"
                     android:inputType="textCapWords"
+                    android:imeOptions="actionDone"
                     android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
@@ -1179,6 +1195,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Course Name"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapSentences"
                     android:maxLength="500"
                     android:singleLine="true"
@@ -1200,6 +1217,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization/Consultancy Name"
                     android:inputType="textCapWords"
+                    android:imeOptions="actionDone"
                     android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
@@ -1320,6 +1338,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Course Name"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapSentences"
                     android:maxLength="500"
                     android:singleLine="true"
@@ -1341,6 +1360,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Institute/Organization/Consultancy Name"
                     android:inputType="textCapWords"
+                    android:imeOptions="actionDone"
                     android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"

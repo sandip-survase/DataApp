@@ -109,7 +109,7 @@
                 android:hint="Alternate Email"
                 android:singleLine="true"
                 android:maxLength="100"
-                android:imeOptions="actionNext"
+                android:imeOptions="actionDone"
                 android:textSize="16dp"
                 android:textColor="@color/dark_color"
                 android:inputType="textEmailAddress"
@@ -195,6 +195,7 @@
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:singleLine="true"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="500"
                     android:id="@+id/addressline3"/>
@@ -239,6 +240,7 @@
                     android:hint="Phone Number"
                     android:inputType="number"
                     android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:textColor="@color/dark_color"
                     android:singleLine="true"
                     android:maxLength="11"
@@ -258,6 +260,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Mobile Number *"
                     android:inputType="number"
+                    android:imeOptions="actionNext"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:maxLength="10"
@@ -280,6 +283,7 @@
                     android:textColor="@color/dark_color"
                     android:maxLength="10"
                     android:inputType="number"
+                    android:imeOptions="actionDone"
                     android:singleLine="true"
                     android:id="@+id/mobile2"/>
 

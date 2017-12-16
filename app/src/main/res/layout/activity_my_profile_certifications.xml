@@ -67,6 +67,7 @@
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapSentences"
                     android:singleLine="true"
                     android:id="@+id/title1"/>
@@ -86,6 +87,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Certificate Issuer"
                     android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
                     android:inputType="textCapWords"
@@ -256,6 +258,7 @@
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:inputType="textCapSentences"
                     android:id="@+id/title2"/>
@@ -275,6 +278,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Certificate Issuer"
                     android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -301,7 +305,6 @@
                     android:maxLength="20"
                     android:singleLine="true"
                     android:imeOptions="actionDone"
-
                     android:id="@+id/license2"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -448,6 +451,7 @@
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
                     android:singleLine="true"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapSentences"
                     android:id="@+id/title3"/>
 
@@ -467,6 +471,7 @@
                     android:singleLine="true"
                     android:hint="Certificate Issuer"
                     android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
                     android:inputType="textCapWords"
@@ -491,7 +496,6 @@
                     android:maxLength="20"
                     android:singleLine="true"
                     android:imeOptions="actionDone"
-
                     android:id="@+id/license3"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -638,6 +642,7 @@
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:inputType="textCapSentences"
                     android:id="@+id/title4"/>
@@ -657,6 +662,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Certificate Issuer"
                     android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -830,6 +836,7 @@
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
                     android:singleLine="true"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapSentences"
                     android:id="@+id/title5"/>
 
@@ -848,6 +855,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Certificate Issuer"
                     android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -873,7 +881,6 @@
                     android:maxLength="20"
                     android:singleLine="true"
                     android:imeOptions="actionDone"
-
                     android:id="@+id/license5"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1022,6 +1029,7 @@
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
                     android:singleLine="true"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapSentences"
                     android:id="@+id/title6"/>
 
@@ -1041,6 +1049,7 @@
                     android:singleLine="true"
                     android:hint="Certificate Issuer"
                     android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
                     android:inputType="textCapWords"
@@ -1066,7 +1075,6 @@
                     android:maxLength="20"
                     android:singleLine="true"
                     android:imeOptions="actionDone"
-
                     android:id="@+id/license6"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1214,7 +1222,7 @@
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
                     android:singleLine="true"
-
+                    android:imeOptions="actionNext"
                     android:inputType="textCapSentences"
                     android:id="@+id/title7"/>
 
@@ -1233,6 +1241,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Certificate Issuer"
                     android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -1407,6 +1416,7 @@
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
                     android:inputType="textCapSentences"
+                    android:imeOptions="actionNext"
                     android:id="@+id/title8"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -1425,6 +1435,7 @@
                     android:hint="Certificate Issuer"
                     android:singleLine="true"
                     android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
                     android:inputType="textCapWords"
@@ -1597,6 +1608,7 @@
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapSentences"
                     android:id="@+id/title9"/>
 
@@ -1615,6 +1627,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Certificate Issuer"
                     android:textSize="16dp"
+                    android:imeOptions="actionNext"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -1640,7 +1653,6 @@
                     android:textColor="@color/dark_color"
                     android:maxLength="20"
                     android:singleLine="true"
-
                     android:imeOptions="actionDone"
                     android:id="@+id/license9"/>
 
@@ -1789,6 +1801,7 @@
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapSentences"
                     android:id="@+id/title10"/>
 
@@ -1806,6 +1819,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Certificate Issuer"
+                    android:imeOptions="actionNext"
                     android:textSize="16dp"
                     android:textColor="@color/dark_color"
                     android:maxLength="100"
@@ -1831,7 +1845,6 @@
                     android:textColor="@color/dark_color"
                     android:maxLength="20"
                     android:singleLine="true"
-
                     android:imeOptions="actionDone"
                     android:id="@+id/license10"/>
 
