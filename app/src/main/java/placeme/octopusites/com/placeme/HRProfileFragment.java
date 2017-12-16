@@ -85,17 +85,17 @@ public class HRProfileFragment extends Fragment {
 
     String dataobject = "",companydataobject="", careerdataobject = "", strengthdataobject = "", weaknessesdataobject = "", locationpreferencesdataobject = "", tenthdataobject = "", ugdataobject = "", personaldataobject = "", contact_details_dataobject = "", twelthdataobject = "", diplomadataobject = "", experiencesataobject;
 
-    TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt;
+    TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt,extraexpcount;
     TextView editprofiletxt, eduboxtxt, expboxtxt, accomplishmentsboxtxt, instemailtxt,caddinst,instcontactaddr, contactboxtxt, instcontactemail, acc4txttxt, instwebtxt;
     TextView myprofilecource, instteletxt, insttelephone, instwebsite, acc2txt, acc2txttxt, acc4txt, acc5txt, acc6txt, acc7txt, acc5txttxt, acc6txttxt, acc7txttxt;
     TextView exp1txt, myprofileexpfromto, myprofileexp1name, myprofileexp2name, exp2txt, myprofileexpfromto2, myprofileexp3name, exp3txt, myprofileexpfromto3, emailtxt, myprofileclgname, nametxt, mobiletxt, contactpersonalemail, contactaddr, contactprofesionalemail, myprofiledomain1, myprofileduration1, myprofiledomain2, myprofileduration2, myprofiledomain3, myprofileduration3, careerobjtxttxt, strengthstxt, weaknessestxt, locationpreferences, contactaddr1, contactmobile, contactemail, myprofilepreview;
     HashMap<String, Integer> hashMap;
-    ImageView introedit, eduedit, expedit, accomplishmentsedit, careeredit, contactedit, exp2, exp3;
+    ImageView introedit, eduedit, expedit, accomplishmentsedit, careeredit, contactedit, exp1,exp2, exp3;
     final static CharSequence[] items = {"Update Profile Picture", "Delete Profile Picture"};
-    RelativeLayout box1,edutab1,editprofilerl, exptab2, exptab3;
+    RelativeLayout box1,edutab1,editprofilerl,exptab1, exptab2, exptab3,noexptab;
     String username = "", resultofop="",ucode="";
     //
-
+   int lang_count=0,exps_count=0,courses_count=0,skills_count=0,patent_count=0,public_count=0,honor_count=0,strength_count=0,weakness_count=0,location_count=0;
     String fname = "", lname = "", country = "", state = "", city = "", designation = "", phone = "";
     int found_intro_box = 0, found_contact_details = 0, found_skills = 0, found_honors = 0, found_patents = 0, found_publications = 0;
     String email2 = "", addressline1 = "", addressline2 = "", addressline3 = "", telephone = "", mobile2 = "", instcaddrline1 = "", instcaddrline2 = "", instcaddrline3 = "";
@@ -222,6 +222,8 @@ public class HRProfileFragment extends Fragment {
         SwipeRefreshLayout tswipe_refresh_layout = (SwipeRefreshLayout) getActivity().findViewById(R.id.swipe_refresh_layout);
         tswipe_refresh_layout.setVisibility(View.GONE);
 
+
+
         myprofilecource = (TextView) rootView.findViewById(R.id.myprofilecource);
         instemailtxt = (TextView) rootView.findViewById(R.id.instemailtxt);
         instwebtxt = (TextView) rootView.findViewById(R.id.instwebtxt);
@@ -259,7 +261,8 @@ public class HRProfileFragment extends Fragment {
         myprofileexpfromto3 = (TextView) rootView.findViewById(R.id.myprofileexpfromto2);
 
         TextView noedudetailstxt= (TextView) rootView.findViewById(R.id.noedudetailstxt);
-        TextView extraexpcount= (TextView) rootView.findViewById(R.id.extraexpcount);
+
+
         nametxt = (TextView) rootView.findViewById(R.id.nametxt);
         emailtxt = (TextView) rootView.findViewById(R.id.emailtxt);
         mobiletxt = (TextView) rootView.findViewById(R.id.mobiletxt);
@@ -268,7 +271,7 @@ public class HRProfileFragment extends Fragment {
         contactprofesionalemail = (TextView) rootView.findViewById(R.id.contactprofesionalemail);
         contactpersonalemail = (TextView) rootView.findViewById(R.id.contactpersonalemail);
         contactmobile = (TextView) rootView.findViewById(R.id.contactmobile);
-
+        extraexpcount= (TextView) rootView.findViewById(R.id.extraexpcount);
 
         contactaddr1 = (TextView) rootView.findViewById(R.id.contactaddr);
         contactmobile = (TextView) rootView.findViewById(R.id.contactmobile);
@@ -290,12 +293,12 @@ public class HRProfileFragment extends Fragment {
         contactboxtxt.setTypeface(MyConstants.getBold(getActivity()));
         caddinst.setTypeface(MyConstants.getLight(getActivity()));
 
+        extraexpcount.setTypeface(MyConstants.getLight(getActivity()));
         myprofilecource.setTypeface(MyConstants.getLight(getActivity()));
         instemailtxt.setTypeface(MyConstants.getLight(getActivity()));
         instwebtxt.setTypeface(MyConstants.getLight(getActivity()));
         instteletxt.setTypeface(MyConstants.getLight(getActivity()));
 
-        extraexpcount.setTypeface(MyConstants.getLight(getActivity()));
         acc2txt.setTypeface(MyConstants.getLight(getActivity()));
         acc4txt.setTypeface(MyConstants.getLight(getActivity()));
         acc5txt.setTypeface(MyConstants.getLight(getActivity()));
@@ -339,10 +342,18 @@ public class HRProfileFragment extends Fragment {
         contactedit = (ImageView) rootView.findViewById(R.id.contactedit);
 
         editprofilerl = (RelativeLayout) rootView.findViewById(R.id.editprofilerl);
+
+
+
+        noexptab= (RelativeLayout) rootView.findViewById(R.id.noexptab);
+        exptab1 = (RelativeLayout) rootView.findViewById(R.id.exptab1);
+
         exptab2 = (RelativeLayout) rootView.findViewById(R.id.exptab2);
         exptab3 = (RelativeLayout) rootView.findViewById(R.id.exptab3);
+        exp1 = (ImageView) rootView.findViewById(R.id.exp1);
         exp2 = (ImageView) rootView.findViewById(R.id.exp2);
         exp3 = (ImageView) rootView.findViewById(R.id.exp3);
+
 
 //        eduedit=(ImageView)rootView.findViewById(R.id.eduedit);
 //        projectsedit=(ImageView)rootView.findViewById(R.id.projectsedit);
@@ -583,23 +594,62 @@ public class HRProfileFragment extends Fragment {
 
         Log.d(HRlog, "exp count " + exp_count);
 
-        exptab2.setVisibility(View.VISIBLE);
-        exp2.setVisibility(View.VISIBLE);
+        if(exp_count>3){
+            extraexpcount.setVisibility(View.VISIBLE);
+            extraexpcount.setText("and "+ exps_count +" more");
+        }
 
-        exptab3.setVisibility(View.VISIBLE);
-        exp3.setVisibility(View.VISIBLE);
+        if (!fromdates1.equals("")){
 
-        if (exp_count == 1 || exp_count == 0) {
+            exptab1.setVisibility(View.VISIBLE);
+            exp1.setVisibility(View.VISIBLE);
+            noexptab.setVisibility(View.GONE);
+
             exptab2.setVisibility(View.GONE);
             exp2.setVisibility(View.GONE);
 
             exptab3.setVisibility(View.GONE);
             exp3.setVisibility(View.GONE);
+
         }
-        if (exp_count == 2) {
+
+        if (!fromdates2.equals(""))
+        {
+            exptab2.setVisibility(View.VISIBLE);
+            exp2.setVisibility(View.VISIBLE);
+            noexptab.setVisibility(View.GONE);
+
             exptab3.setVisibility(View.GONE);
             exp3.setVisibility(View.GONE);
         }
+
+        if (!fromdates3.equals("")){
+
+            exptab3.setVisibility(View.VISIBLE);
+            exp3.setVisibility(View.VISIBLE);
+            noexptab.setVisibility(View.GONE);
+
+        }
+
+
+
+//        exptab2.setVisibility(View.VISIBLE);
+//        exp2.setVisibility(View.VISIBLE);
+//
+//        exptab3.setVisibility(View.VISIBLE);
+//        exp3.setVisibility(View.VISIBLE);
+//
+//        if (exp_count == 1 || exp_count == 0) {
+//            exptab2.setVisibility(View.GONE);
+//            exp2.setVisibility(View.GONE);
+//
+//            exptab3.setVisibility(View.GONE);
+//            exp3.setVisibility(View.GONE);
+//        }
+//        if (exp_count == 2) {
+//            exptab3.setVisibility(View.GONE);
+//            exp3.setVisibility(View.GONE);
+//        }
     }
 
     public static class FireMissilesDialogFragment extends DialogFragment {
@@ -852,6 +902,20 @@ public class HRProfileFragment extends Fragment {
                         studentData.setLang10(lang10);
                         studentData.setProficiency10(proficiency10);
 
+                        if(!lang4.equals("") && !lang4.equals("- Select Language -"))
+                            lang_count =1;
+                        if(!lang5.equals("") && !lang5.equals("- Select Language -"))
+                            lang_count=2;
+                        if(!lang6.equals("") && !lang6.equals("- Select Language -"))
+                            lang_count=3;
+                        if(!lang7.equals("") && !lang7.equals("- Select Language -"))
+                            lang_count=4;
+                        if(!lang8.equals("") && !lang8.equals("- Select Language -"))
+                            lang_count=5;
+                        if(!lang9.equals("") && !lang9.equals("- Select Language -"))
+                            lang_count=6;
+                        if(!lang10.equals("") && !lang10.equals("- Select Language -"))
+                            lang_count=7;
 
                     }
 
@@ -983,6 +1047,57 @@ public class HRProfileFragment extends Fragment {
                         studentData.setSkill20(skill20);
                         studentData.setSproficiency20(sproficiency20);
 
+                        if(!skill4.equals(""))
+                            skills_count=1;
+
+                        if(!skill5.equals(""))
+                            skills_count=2;
+
+                        if(!skill6.equals(""))
+                            skills_count=3;
+
+                        if(!skill7.equals(""))
+                            skills_count=4;
+
+                        if(!skill8.equals(""))
+                            skills_count=5;
+
+                        if(!skill9.equals(""))
+                            skills_count=6;
+
+                        if(!skill10.equals(""))
+                            skills_count=7;
+
+                        if(!skill11.equals(""))
+                            skills_count=8;
+
+                        if(!skill12.equals(""))
+                            skills_count=9;
+
+                        if(!skill13.equals(""))
+                            skills_count=10;
+
+                        if(!skill14.equals(""))
+                            skills_count=11;
+
+                        if(!skill15.equals(""))
+                            skills_count=12;
+
+                        if(!skill16.equals(""))
+                            skills_count=13;
+
+                        if(!skill17.equals(""))
+                            skills_count=14;
+
+                        if(!skill18.equals(""))
+                            skills_count=15;
+
+                        if(!skill19.equals(""))
+                            skills_count=16;
+
+                        if(!skill20.equals(""))
+                            skills_count=17;
+
 
                     }
                     s = json.getString("honors");
@@ -1093,7 +1208,21 @@ public class HRProfileFragment extends Fragment {
                         studentData.setHdescription10(hdescription10);
                         studentData.setYearofhonor10(yearofhonor10);
 
+                        if(!htitle4.equals(""))
+                            honor_count=1;
 
+                        if(!htitle5.equals(""))
+                            honor_count=2;
+                        if(!htitle6.equals(""))
+                            honor_count=3;
+                        if(!htitle7.equals(""))
+                            honor_count=4;
+                        if(!htitle8.equals(""))
+                            honor_count=5;
+                        if(!htitle9.equals(""))
+                            honor_count=6;
+                        if(!htitle10.equals(""))
+                            honor_count=7;
                     }
 
                     s = json.getString("patents");
@@ -1304,6 +1433,22 @@ public class HRProfileFragment extends Fragment {
                         studentData.setPselectedcountry10(pselectedcountry10);
                         studentData.setIssuedorpending10(issuedorpending10);
 
+                        if(!ptitle4.equals(""))
+                            patent_count=1;
+
+                        if(!ptitle5.equals(""))
+                            patent_count=2;
+                        if(!ptitle6.equals(""))
+                            patent_count=3;
+                        if(!ptitle7.equals(""))
+                            patent_count=4;
+                        if(!ptitle8.equals(""))
+                            patent_count=5;
+                        if(!ptitle9.equals(""))
+                            patent_count=6;
+                        if(!ptitle10.equals(""))
+                            patent_count=7;
+
                     }
                     s = json.getString("publications");
                     if (s.equals("found")) {
@@ -1451,6 +1596,23 @@ public class HRProfileFragment extends Fragment {
                         studentData.setPublicationdate10(publicationdate10);
                         studentData.setPuburl10(puburl10);
                         studentData.setPubdescription10(pubdescription10);
+
+
+                        if(!pubtitle4.equals(""))
+                            public_count=1;
+                        if(!pubtitle5.equals(""))
+                            public_count=2;
+                        if(!pubtitle6.equals(""))
+                            public_count=3;
+                        if(!pubtitle7.equals(""))
+                            public_count=4;
+                        if(!pubtitle8.equals(""))
+                            public_count=5;
+                        if(!pubtitle9.equals(""))
+                            public_count=6;
+                        if(!pubtitle10.equals(""))
+                            public_count=7;
+
                     }
 
                     s = json.getString("experiences");
@@ -1575,6 +1737,28 @@ public class HRProfileFragment extends Fragment {
                         a.setTodate10e(todates10);
 
 
+
+                        if(!posts4.equals(""))
+                            exps_count=1;
+
+                        if(!posts5.equals(""))
+                            exps_count=2;
+
+                        if(!posts6.equals(""))
+                            exps_count=3;
+
+                        if(!posts7.equals(""))
+                            exps_count=4;
+
+                        if(!posts8.equals(""))
+                            exps_count=5;
+
+                        if(!posts9.equals(""))
+                            exps_count=6;
+
+                        if(!posts10.equals(""))
+                            exps_count=7;
+
                     }
 
 
@@ -1688,7 +1872,7 @@ public class HRProfileFragment extends Fragment {
                 if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -"))
                     acc2txttxt.setText(lang1 + ", " + lang2 + ", " + lang3);
                 if (!lang1.equals("") && !lang1.equals("- Select Language -") && !lang2.equals("") && !lang2.equals("- Select Language -") && !lang3.equals("") && !lang3.equals("- Select Language -") && !lang4.equals("") && !lang4.equals("- Select Language -"))
-                    acc2txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " ...");
+                    acc2txttxt.setText(lang1 + ", " + lang2 + ", " + lang3 + " and "+ lang_count +" more");
                 percentProfile++;
             }
             if (found_contact_details == 1) {
@@ -1717,7 +1901,7 @@ public class HRProfileFragment extends Fragment {
                     acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3);
                 if (!skill1.equals("") && !skill2.equals("") && !skill3.equals("") && !skill4.equals(""))
                     acc4txttxt.setText(skill1 + ", " + skill2 + ", " + skill3 + " ...");
-                Log.d("TAG", skill1 + ", " + skill2 + ", " + skill3 + " ...");
+                Log.d("TAG", skill1 + ", " + skill2 + ", " + skill3 + "  and "+ skills_count +" more");
                 percentProfile++;
             }
             if (found_honors == 1) {
@@ -1728,7 +1912,7 @@ public class HRProfileFragment extends Fragment {
                 if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals(""))
                     acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3);
                 if (!htitle1.equals("") && !htitle2.equals("") && !htitle3.equals("") && !htitle4.equals(""))
-                    acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3 + " ...");
+                    acc5txttxt.setText(htitle1 + ", " + htitle2 + ", " + htitle3 + " and "+ honor_count +" more");
                 percentProfile++;
             }
             if (found_patents == 1) {
@@ -1739,7 +1923,7 @@ public class HRProfileFragment extends Fragment {
                 if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals(""))
                     acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3);
                 if (!ptitle1.equals("") && !ptitle2.equals("") && !ptitle3.equals("") && !ptitle4.equals(""))
-                    acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3 + " ...");
+                    acc6txttxt.setText(ptitle1 + ", " + ptitle2 + ", " + ptitle3 + " and "+ patent_count +" more");
                 percentProfile++;
             }
             if (found_publications == 1) {
@@ -1750,7 +1934,7 @@ public class HRProfileFragment extends Fragment {
                 if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals(""))
                     acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3);
                 if (!pubtitle1.equals("") && !pubtitle2.equals("") && !pubtitle3.equals("") && !pubtitle4.equals(""))
-                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3 + " ...");
+                    acc7txttxt.setText(pubtitle1 + ", " + pubtitle2 + ", " + pubtitle3 + " and "+ strength_count +" more");
                 percentProfile++;
             }
 

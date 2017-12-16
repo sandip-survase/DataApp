@@ -37,15 +37,15 @@ public class MyConstants {
 
 //    --------------------------------------Load fragment data-------------------------------------
 
-    public static final String load_HR_data = "http://192.168.100.100/ProfileObjects/GetHrData";
+    public static final String load_HR_data = "http://192.168.100.10/ProfileObjects/GetHrData";
     public static String url_load_alumni_data = "http://192.168.100.10/ProfileObjects/GetAlumniData";
-    public static final String load_student_data = "http://192.168.100.10/ProfileObjects/GetStudentData";
+    public static final String load_student_data = "http://192.168.100.10:8080/ProfileObjects/GetStudentData";
     public static final String load_Admin_data = "http://192.168.100.10/ProfileObjects/GetAdminData";
 
 //    --------------------------------------Intro-------------------------------------
 
     public static final String url_SaveIntro = "http://192.168.100.10/ProfileObjects/SaveIntro";
-    public static final String url_SaveHrIntro = "http://192.168.100.100/ProfileObjects/SaveHrIntro";
+    public static final String url_SaveHrIntro = "http://192.168.100.10/ProfileObjects/SaveHrIntro";
     public static String url_SaveAdminIntro= "http://192.168.100.10/ProfileObjects/SaveAdminIntro";
 
 //    --------------------------------------project-------------------------------------
@@ -55,11 +55,11 @@ public class MyConstants {
 //    -----------------------------------Education details--------------------------
 
     public static final String url_SaveTenth = "http://192.168.100.10/ProfileObjects/SaveTenth";
-    public static final String url_savedata_twelth = "http://192.168.100.10/ProfileObjects/SaveTwelth";
-    public static final String url_savedata_diploma = "http://192.168.100.10/ProfileObjects/SaveDiploma";
+    public static final String url_savedata_twelth = "http://192.168.100.10:8080/ProfileObjects/SaveTwelth";
+    public static final String url_savedata_diploma = "http://192.168.100.10:8080/ProfileObjects/SaveDiploma";
     public static String url_savedata_ug = "http://192.168.100.10/ProfileObjects/SaveUg";
-    public static String url_savedata_pg_sem = "http://192.168.100.10/ProfileObjects/SavePgSem";
-    public static String url_savedata_pg_year = "http://192.168.100.10/ProfileObjects/SavePgYear";
+    public static String url_savedata_pg_sem = "http://192.168.100.10:8080/ProfileObjects/SavePgSem";
+    public static String url_savedata_pg_year = "http://192.168.100.10:8080/ProfileObjects/SavePgYear";
 
 //    ----------------------------------------Accomplishments-----------------------------
 
@@ -82,7 +82,7 @@ public class MyConstants {
 
     public static final String url_SaveStdalmContact= "http://192.168.100.10/ProfileObjects/SaveStdAlmContact";
     public static final String url_SaveAdminContact = "http://192.168.100.10/ProfileObjects/SaveAdminContact";
-    public static final String url_SaveHrContact= "http://192.168.100.100/ProfileObjects/SaveHrContact";
+    public static final String url_SaveHrContact= "http://192.168.100.10/ProfileObjects/SaveHrContact";
 
 //   --------------------------------------------Experience---------------------------------
 
@@ -95,7 +95,7 @@ public class MyConstants {
 
 //    ------------------------------------------company details---------------------------------
 
-    public static final String url_SaveHrCompany = "http://192.168.100.100/ProfileObjects/SaveHrCompany";
+    public static final String url_SaveHrCompany = "http://192.168.100.10/ProfileObjects/SaveHrCompany";
 
 //    ------------------------------------------Institute details---------------------------------
 
@@ -134,7 +134,7 @@ public class MyConstants {
             "/AESTest/SaveNewUserWelcomeIntroData";
     public static final String url_SaveStudentFnameLnameMobile = "http://192.168.100.100/AESTest/SaveStudentFnameLnameMobile";
 
-//    private static String url = "http://192.168.100.100/HandleMobileRequests/getimg.jsp?username=";
+    //    private static String url = "http://192.168.100.100/HandleMobileRequests/getimg.jsp?username=";
     public static final String url_SendActivationCode = "http://192.168.100.100/AESTest/SendActivationCode";
     public static final String url_SaveAndGenrateInstituteCode = "http://192.168.100.100/AESTest/SaveAndGenrateInstituteCode";
     public static final String url_SaveAndGenrateCompanyCode = "http://192.168.100.100/AESTest/SaveAndGenrateCompanyCode";

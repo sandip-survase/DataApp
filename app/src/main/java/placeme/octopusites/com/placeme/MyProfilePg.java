@@ -1659,6 +1659,7 @@ public class MyProfilePg extends AppCompatActivity {
         };;
         pgsemcourse.setAdapter(dataAdapter);
         pgyearcourse.setAdapter(dataAdapter);
+
         pgsemcourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -2772,9 +2773,11 @@ public class MyProfilePg extends AppCompatActivity {
         outofsem6="";
         percentsem6="";
         aggregatepgsem="";
+
         selectedCoursepgsem="- Select Course -";
         selectedStreampgsem="- Select Stream/Specialization -";
         selectedUniversitypgsem="- Select University -";
+
         schoolnamepgsemester="";
         monthandyearofpassingpgsem="";
 

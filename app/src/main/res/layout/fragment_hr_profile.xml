@@ -1231,6 +1231,7 @@
                         android:textSize="12dp"
                         android:textColor="@color/dark_color"
                         android:text="and 3 more"
+                        android:visibility="gone"
                         android:layout_below="@+id/noexptab"
                         android:layout_marginRight="10dp"
                         />
