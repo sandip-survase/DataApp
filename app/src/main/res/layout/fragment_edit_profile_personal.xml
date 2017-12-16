@@ -24,7 +24,9 @@
                 android:id="@+id/fnameinput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/fname"
@@ -44,11 +46,13 @@
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/mnameinput"
                 android:layout_width="match_parent"
-                android:imeOptions="actionNext"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/fnameinput"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:imeOptions="actionNext"
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/mname"
@@ -67,11 +71,13 @@
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/snameinput"
                 android:layout_width="match_parent"
-                android:imeOptions="actionNext"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/mnameinput"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:imeOptions="actionNext"
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/sname"
@@ -90,11 +96,13 @@
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/nameas10input"
                 android:layout_width="match_parent"
-                android:imeOptions="actionNext"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/snameinput"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:imeOptions="actionNext"
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/nameas10"
@@ -112,11 +120,13 @@
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/profileemailinput"
                 android:layout_width="match_parent"
-                android:imeOptions="actionNext"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/nameas10input"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:imeOptions="actionNext"
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/profileemail"
@@ -134,11 +144,13 @@
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/profileaemailinput"
                 android:layout_width="match_parent"
-                android:imeOptions="actionNext"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profileemailinput"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:imeOptions="actionNext"
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/profileaemail"
@@ -156,11 +168,13 @@
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/mothernameinput"
                 android:layout_width="match_parent"
-                android:imeOptions="actionNext"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profileaemailinput"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:imeOptions="actionNext"
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/mothername"
@@ -179,11 +193,13 @@
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/dobinput"
                 android:layout_width="match_parent"
-                android:imeOptions="actionNext"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/mothernameinput"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:imeOptions="actionNext"
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/dob"
@@ -203,8 +219,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/dobinput"
-                android:imeOptions="actionNext"
                 android:layout_marginTop="20dp"
+                android:imeOptions="actionNext"
                 android:text="Gender"
                 android:textColor="@color/dark_color"
                 android:textSize="16dp" />
@@ -236,7 +252,7 @@
                     android:checked="false"
                     android:text="Female"
                     android:textColor="@color/dark_color"
-                    app:buttonTint="@color/sky_blue_color"/>
+                    app:buttonTint="@color/sky_blue_color" />
             </RadioGroup>
 
             <android.support.design.widget.TextInputLayout
@@ -245,7 +261,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/radioGroupGender"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/phone"
@@ -253,8 +271,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Phone Number"
                     android:inputType="number"
-                    android:maxLines="1"
                     android:maxLength="11"
+                    android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -266,7 +284,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/phoneinput"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/mobile"
@@ -274,8 +294,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Mobile Number*"
                     android:inputType="number"
-                    android:maxLines="1"
                     android:maxLength="10"
+                    android:maxLines="1"
 
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
@@ -288,7 +308,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/mobileinput"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/amobile"
@@ -309,7 +331,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/amobileinput"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/mothertongue"
@@ -317,8 +341,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Mothertongue"
                     android:inputType="textCapWords|textNoSuggestions"
-                    android:maxLines="1"
                     android:maxLength="25"
+                    android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -330,7 +354,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/mothertongueinput"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/hobbies"
@@ -338,8 +364,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Hobbies(Comma Seperated)*"
                     android:inputType="textCapWords|textNoSuggestions"
-                    android:maxLines="1"
                     android:maxLength="500"
+                    android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -365,7 +391,7 @@
                     android:background="@color/while_color"
                     android:gravity="center"
                     android:popupBackground="@color/while_color"
-                    android:spinnerMode="dropdown"/>
+                    android:spinnerMode="dropdown" />
 
                 <ImageView
                     android:id="@+id/spinnerimg1"
@@ -471,17 +497,19 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/religionspinner"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/cast"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:hint="Caste"
                     android:inputType="textCapWords|textNoSuggestions"
-                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                    android:maxLines="1"
                     android:maxLength="50"
+                    android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -493,16 +521,18 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/castinput"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/prn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="PRN/University Number"
-                    android:textAllCaps="true"
                     android:maxLines="1"
                     android:singleLine="true"
+                    android:textAllCaps="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
@@ -513,7 +543,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/prninput"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/knownlang"
@@ -552,7 +584,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/caddrtxt"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/caddrline1"
@@ -560,8 +594,8 @@
                     android:layout_height="wrap_content"
                     android:hint="House no/Flat no/Plot no, Name"
                     android:inputType="textCapWords|textNoSuggestions"
-                    android:maxLines="1"
                     android:maxLength="500"
+                    android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -574,7 +608,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/caddrline1input"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/caddrline2"
@@ -582,9 +618,9 @@
                     android:layout_height="wrap_content"
                     android:hint="Street Name/Landmark"
                     android:inputType="textCapWords|textNoSuggestions"
+                    android:maxLength="500"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:maxLength="500"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
             </android.support.design.widget.TextInputLayout>
@@ -595,7 +631,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/caddrline2input"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/caddrline3"
@@ -603,8 +641,8 @@
                     android:layout_height="wrap_content"
                     android:hint="City, Pincode"
                     android:inputType="textCapWords|textNoSuggestions"
-                    android:maxLines="1"
                     android:maxLength="500"
+                    android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -628,8 +666,8 @@
                 android:layout_below="@+id/paddrtxt"
                 android:layout_marginTop="10dp"
                 android:text="Same as Current Address"
-                android:textSize="14dp"
                 android:textColor="@color/dark_color"
+                android:textSize="14dp"
                 android:theme="@style/MyCheckBox" />
 
             <android.support.design.widget.TextInputLayout
@@ -638,7 +676,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/CheckBoxPSC"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/paddrline1"
@@ -646,8 +686,8 @@
                     android:layout_height="wrap_content"
                     android:hint="House no/Flat no/Plot no, Name"
                     android:inputType="textCapWords|textNoSuggestions"
-                    android:maxLines="1"
                     android:maxLength="500"
+                    android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -659,7 +699,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/paddrline1input"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/paddrline2"
@@ -667,8 +709,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Street Name/Landmark"
                     android:inputType="textCapWords|textNoSuggestions"
-                    android:maxLines="1"
                     android:maxLength="500"
+                    android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />
@@ -680,7 +722,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/paddrline2input"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/paddrline3"
@@ -688,8 +732,8 @@
                     android:layout_height="wrap_content"
                     android:hint="City, Pincode"
                     android:inputType="textCapWords|textNoSuggestions"
-                    android:maxLines="1"
                     android:maxLength="500"
+                    android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="16dp" />

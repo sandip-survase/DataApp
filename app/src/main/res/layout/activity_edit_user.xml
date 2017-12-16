@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#282f35">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -54,7 +55,10 @@
                 android:popupBackground="#001111"
                 android:layout_marginLeft="5dp"
                 android:id="@+id/usernameinput"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -297,6 +301,8 @@
                 android:id="@+id/emailinput"
                 android:layout_marginTop="10dp"
                 android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
                 >
 
                 <android.support.design.widget.TextInputEditText
@@ -372,7 +378,10 @@
                 android:layout_below="@+id/checkboxnotplaced"
                 android:layout_marginTop="5dp"
                 android:id="@+id/companynameinput"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+                >
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"

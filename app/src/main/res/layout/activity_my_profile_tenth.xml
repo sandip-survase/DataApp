@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/while_color">
@@ -49,16 +50,18 @@
                 android:id="@+id/marks10input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/marks10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Marks Obtained"
+                    android:imeOptions="actionNext"
                     android:inputType="number"
                     android:maxLength="5"
-                    android:imeOptions="actionNext"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
 
@@ -69,16 +72,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/marks10input"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/outof10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Out Of Marks"
-                    android:maxLength="5"
                     android:imeOptions="actionDone"
                     android:inputType="number"
+                    android:maxLength="5"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
 
@@ -100,7 +105,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="25dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/percent10"
@@ -122,16 +129,18 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/edurl1"
             android:layout_marginTop="10dp"
-            android:theme="@style/TextLabel">
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/schoolname10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="School Name"
+                android:imeOptions="actionDone"
                 android:inputType="textCapWords"
                 android:maxLength="100"
-                android:imeOptions="actionDone"
                 android:singleLine="true"
                 android:textColor="@color/dark_color"
                 android:textSize="15dp" />
@@ -184,7 +193,9 @@
             android:layout_below="@+id/board10spinner"
             android:layout_marginTop="15dp"
             android:theme="@style/TextLabel"
-            android:visibility="gone">
+            android:visibility="gone"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/otherboard"
@@ -210,7 +221,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="25dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/yearofpassing10"

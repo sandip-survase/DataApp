@@ -1,34 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/while_color"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
     >
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/activity_my_profile_intro"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:focusableInTouchMode="true"
-        >
+        android:focusableInTouchMode="true">
 
         <RelativeLayout
+            android:id="@+id/completepersonalrl"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:padding="16dp"
-            android:id="@+id/completepersonalrl"
             android:layout_marginTop="30dp"
-            >
+            android:padding="16dp">
 
             <View
                 android:id="@+id/section"
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                />
+                android:layout_centerHorizontal="true" />
 
 
             <RelativeLayout
@@ -39,252 +36,274 @@
                 >
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/fnameinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/TextLabel"
-                    android:id="@+id/fnameinput"
-                    >
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/fname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="First Name"
-                        android:textSize="16dp"
+                        android:imeOptions="actionNext"
+                        android:maxLength="50"
                         android:singleLine="true"
                         android:textColor="@color/dark_color"
-                        android:maxLength="50"
-                        android:imeOptions="actionNext"
-                        android:id="@+id/fname"/>
+                        android:textSize="16dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </RelativeLayout>
+
             <RelativeLayout
+                android:id="@+id/lnamerl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/section"
-                android:id="@+id/lnamerl"
-                >
+                android:layout_toRightOf="@+id/section">
+
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/lnameinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/TextLabel"
-                    android:id="@+id/lnameinput"
-                    >
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/lname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Last Name"
-                        android:singleLine="true"
-                        android:textSize="16dp"
-                        android:textColor="@color/dark_color"
                         android:maxLength="50"
-                        android:id="@+id/lname"/>
+                        android:singleLine="true"
+                        android:textColor="@color/dark_color"
+                        android:textSize="16dp" />
 
                 </android.support.design.widget.TextInputLayout>
             </RelativeLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/emailinput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/emailinput"
                 android:layout_below="@+id/lnamerl"
-                android:theme="@style/TextLabel"
                 android:layout_marginTop="15dp"
-                >
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
                     android:hint="Personal Email"
                     android:singleLine="true"
-                    android:focusable="false"
-                    android:textSize="16dp"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/email"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/emai2input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/emai2input"
                 android:layout_below="@+id/emailinput"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/email2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:digits="abcdefghijklmnopqrstuvwxyz0123456789@._"
+                    android:focusable="false"
                     android:hint="Professional Email"
-                    android:textSize="16dp"
+                    android:maxLength="100"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="100"
-                    android:focusable="false"
-                    android:digits="abcdefghijklmnopqrstuvwxyz0123456789@._"
-                    android:id="@+id/email2"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <TextView
+                android:id="@+id/addresstxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Address"
-                android:textSize="18dp"
-                android:textColor="@color/while_color"
-                android:id="@+id/addresstxt"
+                android:layout_below="@+id/emai2input"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:layout_below="@+id/emai2input"
-                android:paddingTop="10dp"
+                android:background="@drawable/textviewborder"
+                android:elevation="6dp"
                 android:paddingBottom="10dp"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:background="@drawable/textviewborder"
-                android:elevation="6dp"
-                />
+                android:paddingTop="10dp"
+                android:text="Address"
+                android:textColor="@color/while_color"
+                android:textSize="18dp" />
 
             <RelativeLayout
+                android:id="@+id/addressrl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/addresstxt"
-                android:id="@+id/addressrl"
                 android:layout_marginTop="20dp"
-                android:focusableInTouchMode="true"
-                >
+                android:focusableInTouchMode="true">
+
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/addressline1input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/addressline1input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/addressline1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="House no/Flat no/Plot no, Name"
-                        android:textSize="16dp"
+                        android:maxLength="200"
                         android:singleLine="true"
                         android:textColor="@color/dark_color"
-                        android:maxLength="200"
-                        android:id="@+id/addressline1"/>
+                        android:textSize="16dp" />
 
                 </android.support.design.widget.TextInputLayout>
+
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/addressline2input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/addressline1input"
-                    android:id="@+id/addressline2input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/addressline2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Street Name/Landmark"
-                        android:textSize="16dp"
+                        android:maxLength="200"
                         android:singleLine="true"
                         android:textColor="@color/dark_color"
-                        android:maxLength="200"
-                        android:id="@+id/addressline2"/>
+                        android:textSize="16dp" />
 
                 </android.support.design.widget.TextInputLayout>
+
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/addressline3input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/addressline2input"
-                    android:id="@+id/addressline3input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/addressline3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="City, Pincode"
-                        android:textSize="16dp"
+                        android:maxLength="200"
                         android:singleLine="true"
                         android:textColor="@color/dark_color"
-                        android:maxLength="200"
-                        android:id="@+id/addressline3"/>
+                        android:textSize="16dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </RelativeLayout>
+
             <TextView
+                android:id="@+id/contactnotxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Contact Info"
-                android:textSize="18dp"
-                android:textColor="@color/while_color"
-                android:id="@+id/contactnotxt"
+                android:layout_below="@+id/addressrl"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:layout_below="@+id/addressrl"
-                android:paddingTop="10dp"
+                android:background="@drawable/textviewborder"
+                android:elevation="6dp"
                 android:paddingBottom="10dp"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:background="@drawable/textviewborder"
-                android:elevation="6dp"
-                />
+                android:paddingTop="10dp"
+                android:text="Contact Info"
+                android:textColor="@color/while_color"
+                android:textSize="18dp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/contactnotxt"
-                android:layout_marginTop="20dp"
-                >
+                android:layout_marginTop="20dp">
+
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/phoneinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/phoneinput"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Phone Number"
-                        android:textSize="16dp"
                         android:inputType="number"
+                        android:maxLength="11"
                         android:singleLine="true"
                         android:textColor="@color/dark_color"
-                        android:maxLength="11"
-                        android:id="@+id/phone"/>
+                        android:textSize="16dp" />
 
                 </android.support.design.widget.TextInputLayout>
+
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/mobileinput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/phoneinput"
-                    android:id="@+id/mobileinput"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/mobile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Mobile Number"
-                        android:textSize="16dp"
                         android:inputType="number"
+                        android:maxLength="10"
                         android:singleLine="true"
                         android:textColor="@color/dark_color"
-                        android:maxLength="10"
-                        android:id="@+id/mobile"/>
+                        android:textSize="16dp" />
 
                 </android.support.design.widget.TextInputLayout>
+
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/mobile2input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/mobileinput"
-                    android:id="@+id/mobile2input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
+                        android:id="@+id/mobile2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Alternate Mobile Number"
-                        android:textSize="16dp"
                         android:inputType="number"
+                        android:maxLength="10"
                         android:singleLine="true"
                         android:textColor="@color/dark_color"
-                        android:maxLength="10"
-                        android:id="@+id/mobile2"/>
+                        android:textSize="16dp" />
 
                 </android.support.design.widget.TextInputLayout>
 

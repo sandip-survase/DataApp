@@ -47,6 +47,7 @@
         android:theme="@style/TextLabelNew"
         app:errorEnabled="true"
         android:layout_marginTop="20dp"
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
         >
 
         <android.support.v7.widget.AppCompatEditText

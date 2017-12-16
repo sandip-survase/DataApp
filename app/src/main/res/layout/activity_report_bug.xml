@@ -1,108 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/while_color">
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_report_bug"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
         android:focusableInTouchMode="true"
+        android:padding="16dp"
         tools:context="placeme.octopusites.com.placeme.ReportBug">
 
         <TextView
+            android:id="@+id/createreporttxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Report Bug / Feedback"
-            android:textSize="16dp"
-            android:textColor="@color/dark_color"
-            android:id="@+id/createreporttxt"
             android:layout_marginTop="15dp"
-            />
+            android:text="Report Bug / Feedback"
+            android:textColor="@color/dark_color"
+            android:textSize="16dp" />
 
         <TextView
+            android:id="@+id/reportsenstxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/createreporttxt"
-            android:textColor="@color/dark_color"
-            android:text="Developer feedback goes a long way towards making our product even better. With Bug Reporter, you can submit bug reports and request enhancements to Place Me."
             android:layout_marginTop="10dp"
-            android:textSize="12dp"
-            android:id="@+id/reportsenstxt"
-            />
-
+            android:text="Developer feedback goes a long way towards making our product even better. With Bug Reporter, you can submit bug reports and request enhancements to Place Me."
+            android:textColor="@color/dark_color"
+            android:textSize="12dp" />
 
 
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/titleinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:id="@+id/titleinput"
             android:layout_below="@+id/reportsenstxt"
-            android:theme="@style/TextLabel">
+            android:layout_marginTop="20dp"
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Title"
-                android:textSize="16dp"
                 android:imeOptions="actionNext"
-                android:textColor="@color/dark_color"
-                android:textStyle="bold"
                 android:singleLine="true"
-                android:id="@+id/title"/>
+                android:textColor="@color/dark_color"
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
+            android:id="@+id/commentsinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_below="@+id/titleinput"
-            android:id="@+id/commentsinput"
-            android:theme="@style/TextLabel">
+            android:layout_marginTop="10dp"
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/comments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lines="5"
-                android:hint="Description"
                 android:gravity="top|left"
+                android:hint="Description"
                 android:imeOptions="actionDone"
                 android:inputType="textMultiLine"
+                android:lines="5"
                 android:scrollHorizontally="false"
-                android:textSize="16dp"
                 android:textColor="@color/dark_color"
-                android:textStyle="bold"
-                android:id="@+id/comments"/>
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
         </android.support.design.widget.TextInputLayout>
+
         <ProgressBar
             android:id="@+id/reportprogress"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:visibility="gone"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/commentsinput"
-            />
+            android:layout_centerHorizontal="true"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/reportbug_button"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Submit"
-            android:textAllCaps="false"
-            android:textSize="18dp"
-            android:textColor="@color/while_color"
+            android:layout_below="@+id/commentsinput"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
-            android:elevation="6dp"
-            android:translationZ="6dp"
-            android:stateListAnimator="@null"
             android:background="@drawable/textviewborder"
-            android:layout_below="@+id/commentsinput"
-            />
+            android:elevation="6dp"
+            android:stateListAnimator="@null"
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:textColor="@color/while_color"
+            android:textSize="18dp"
+            android:translationZ="6dp" />
 
 
     </RelativeLayout>

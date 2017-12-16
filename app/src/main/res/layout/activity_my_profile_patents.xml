@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/myprofilepatents"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/myprofilepatents"
     android:background="@color/while_color">
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_my_profile_patents"
@@ -12,95 +14,98 @@
         android:focusableInTouchMode="true"
         android:padding="16dp"
         tools:context="com.octopusites.placeme.MyProfilePatents">
+
         <TextView
+            android:id="@+id/patenttxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Patents"
-            android:textSize="20dp"
-            android:textColor="@color/while_color"
-            android:id="@+id/patenttxt"
             android:layout_centerHorizontal="true"
-            android:paddingTop="10dp"
+            android:background="@drawable/textviewborder"
+            android:elevation="2dp"
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:background="@drawable/textviewborder"
-            android:elevation="2dp"
-            />
+            android:paddingTop="10dp"
+            android:text="Patents"
+            android:textColor="@color/while_color"
+            android:textSize="20dp" />
 
         <ImageView
+            android:id="@+id/trashpatent1"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/patenttxt"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/delete_icon"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashpatent1"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/patenttxt"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash1selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/patenttxt"
+            android:layout_marginTop="20dp" />
 
         <RelativeLayout
+            android:id="@+id/patentrl1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/patenttxt"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/patentrl1"
-            >
+            android:layout_marginTop="20dp">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput1"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
                     android:hint="Patent Name*"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
-                    android:maxLength="500"
                     android:inputType="textCapWords"
-                    android:id="@+id/title1"/>
+                    android:maxLength="500"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/appnoinput1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/appnoinput1"
                 android:layout_below="@id/titleinput1"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/appno1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number*"
-                    android:textSize="16dp"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="20"
-                    android:id="@+id/appno1"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
             <RelativeLayout
+                android:id="@+id/patofficerl1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/appnoinput1"
-                android:id="@+id/patofficerl1"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -116,41 +121,43 @@
                     android:spinnerMode="dropdown" />
 
                 <ImageView
+                    android:id="@+id/spinnerimg1"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:id="@+id/spinnerimg1"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/drop"
+                    android:tint="@color/dark_color" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg1"
-                    android:background="@color/dark_color"
-                    />
+                    android:background="@color/dark_color" />
 
             </RelativeLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/inventorinput1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/inventorinput1"
                 android:layout_below="@id/patofficerl1"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/inventor1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Inventors (Comma Seperated)*"
-                    android:textSize="16dp"
+                    android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="500"
-                    android:inputType="textCapWords"
-                    android:id="@+id/inventor1"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -158,95 +165,98 @@
                 android:id="@+id/statusradiotxt1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
-                android:text="Status*"
                 android:layout_below="@+id/inventorinput1"
                 android:layout_marginTop="20dp"
-                />
+                android:text="Status*"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
             <RadioGroup
+                android:id="@+id/radioGroupPatent1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioGroupPatent1"
-                android:orientation="horizontal"
                 android:layout_below="@+id/inventorinput1"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="30dp"
                 android:layout_toRightOf="@+id/statusradiotxt1"
-                android:layout_marginLeft="40dp"
-                >
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Issued"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonIssued1"
-                    app:buttonTint="@color/sky_blue_color"
-                    android:layout_weight="1"
-                    android:textColor="@color/dark_color"
-                    android:checked="true"
-                    />
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pending"
-                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Issued"
                     android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonPending1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:checked="false"
-                    />
+                    android:text="Pending"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
             </RadioGroup>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/issueinput1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/radioGroupPatent1"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/issue1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
                     android:hint="Issue Date*"
-                    android:textSize="16dp"
                     android:singleLine="true"
-                    android:focusable="false"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/issue1"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/filinginput1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/filinginput1"
-                android:visibility="gone"
-
                 android:layout_below="@id/radioGroupPatent1"
+
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/filing1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Filing Date*"
-                    android:textSize="16dp"
-                    android:singleLine="true"
                     android:focusable="false"
+                    android:hint="Filing Date*"
+                    android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/filing1"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput1"
                 android:layout_below="@id/radioGroupPatent1"
                 android:layout_marginTop="80dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/url1"
@@ -264,112 +274,119 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descinput1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput1"
                 android:layout_marginTop="10dp"
-                android:id="@+id/descinput1"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
+                    android:lines="5"
                     android:maxLength="1000"
+                    android:scrollHorizontally="false"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/description1"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
+
         <View
+            android:id="@+id/patentline1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/sky_blue_color"
             android:layout_below="@+id/patentrl1"
-            android:id="@+id/patentline1"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashpatent2"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/patentline1"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/delete_icon"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashpatent2"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/patentline1"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash2selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/patentline1"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
+            android:id="@+id/patentrl2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/patentline1"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/patentrl2"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput2"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent Name*"
-                    android:textSize="16dp"
+                    android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="500"
-                    android:inputType="textCapWords"
-                    android:id="@+id/title2"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/appnoinput2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/appnoinput2"
 
                 android:layout_below="@id/titleinput2"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/appno2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number*"
-                    android:textSize="16dp"
 
-                    android:textColor="@color/dark_color"
                     android:maxLength="20"
                     android:singleLine="true"
-                    android:id="@+id/appno2"/>
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
             <RelativeLayout
+                android:id="@+id/patofficerl2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/appnoinput2"
-                android:id="@+id/patofficerl2"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -379,48 +396,50 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
                     android:background="@color/while_color"
                     android:gravity="center"
                     android:popupBackground="@color/while_color"
-                    android:layout_marginLeft="5dp"
                     android:spinnerMode="dropdown" />
 
                 <ImageView
+                    android:id="@+id/spinnerimg2"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:id="@+id/spinnerimg2"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/drop"
+                    android:tint="@color/dark_color" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg2"
-                    android:background="@color/dark_color"
-                    />
+                    android:background="@color/dark_color" />
 
             </RelativeLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/inventorinput2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/inventorinput2"
                 android:layout_below="@id/patofficerl2"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/inventor2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Inventors (Comma Seperated)*"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
+                    android:inputType="textCapWords"
                     android:maxLength="500"
                     android:singleLine="true"
-                    android:inputType="textCapWords"
-                    android:id="@+id/inventor2"/>
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -428,218 +447,226 @@
                 android:id="@+id/statusradiotxt2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
-                android:text="Status*"
                 android:layout_below="@+id/inventorinput2"
                 android:layout_marginTop="20dp"
-                />
+                android:text="Status*"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
             <RadioGroup
+                android:id="@+id/radioGroupPatent2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioGroupPatent2"
-                android:orientation="horizontal"
                 android:layout_below="@+id/inventorinput2"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="30dp"
                 android:layout_toRightOf="@+id/statusradiotxt2"
-                android:layout_marginLeft="40dp"
-                >
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Issued"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonIssued2"
-                    app:buttonTint="@color/sky_blue_color"
-                    android:layout_weight="1"
-                    android:textColor="@color/dark_color"
-                    android:checked="true"
-                    />
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pending"
-                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Issued"
                     android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonPending2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:checked="false"
-                    />
+                    android:text="Pending"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
             </RadioGroup>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/issueinput2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/issueinput2"
                 android:layout_below="@id/radioGroupPatent2"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/issue2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
                     android:hint="Issue Date*"
                     android:singleLine="true"
-                    android:focusable="false"
-                    android:textSize="16dp"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/issue2"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/filinginput2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/filinginput2"
-                android:visibility="gone"
-
                 android:layout_below="@id/radioGroupPatent2"
+
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/filing2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Filing Date*"
-                    android:textSize="16dp"
-                    android:singleLine="true"
                     android:focusable="false"
+                    android:hint="Filing Date*"
+                    android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/filing2"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
-
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput2"
                 android:layout_below="@id/radioGroupPatent2"
                 android:layout_marginTop="80dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/url2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:singleLine="true"
-                    android:textSize="16dp"
                     android:maxLength="1000"
+                    android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/url2"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descinput2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput2"
                 android:layout_marginTop="10dp"
-                android:id="@+id/descinput2"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
+                    android:lines="5"
                     android:maxLength="1000"
+                    android:scrollHorizontally="false"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/description2"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
         <View
+            android:id="@+id/patentline2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/sky_blue_color"
             android:layout_below="@+id/patentrl2"
-            android:id="@+id/patentline2"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashpatent3"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/patentline2"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/delete_icon"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashpatent3"
-
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/patentline2"
-            android:layout_marginTop="20dp"
-            android:id="@+id/trash3selectionview"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon"
+
             />
+
+        <View
+            android:id="@+id/trash3selectionview"
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/patentline2"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
+            android:id="@+id/patentrl3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/patentline2"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/patentrl3"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput3"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent Name*"
-                    android:textSize="16dp"
+                    android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="500"
-                    android:inputType="textCapWords"
-                    android:id="@+id/title3"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/appnoinput3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/appnoinput3"
                 android:layout_below="@id/titleinput3"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/appno3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number*"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
-                    android:singleLine="true"
                     android:maxLength="20"
-                    android:id="@+id/appno3"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
             <RelativeLayout
+                android:id="@+id/patofficerl3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/appnoinput3"
-                android:id="@+id/patofficerl3"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -649,48 +676,50 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
                     android:background="@color/while_color"
                     android:gravity="center"
                     android:popupBackground="@color/while_color"
-                    android:layout_marginLeft="5dp"
                     android:spinnerMode="dropdown" />
 
                 <ImageView
+                    android:id="@+id/spinnerimg3"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:id="@+id/spinnerimg3"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/drop"
+                    android:tint="@color/dark_color" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg3"
-                    android:background="@color/dark_color"
-                    />
+                    android:background="@color/dark_color" />
 
             </RelativeLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/inventorinput3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/inventorinput3"
                 android:layout_below="@id/patofficerl3"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/inventor3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Inventors (Comma Seperated)*"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
+                    android:inputType="textCapWords"
                     android:maxLength="500"
                     android:singleLine="true"
-                    android:inputType="textCapWords"
-                    android:id="@+id/inventor3"/>
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -698,216 +727,224 @@
                 android:id="@+id/statusradiotxt3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
-                android:text="Status*"
                 android:layout_below="@+id/inventorinput3"
                 android:layout_marginTop="20dp"
-                />
+                android:text="Status*"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
             <RadioGroup
+                android:id="@+id/radioGroupPatent3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioGroupPatent3"
-                android:orientation="horizontal"
                 android:layout_below="@+id/inventorinput3"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="30dp"
                 android:layout_toRightOf="@+id/statusradiotxt3"
-                android:layout_marginLeft="40dp"
-                >
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Issued"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonIssued3"
-                    app:buttonTint="@color/sky_blue_color"
-                    android:layout_weight="1"
-                    android:textColor="@color/dark_color"
-                    android:checked="true"
-                    />
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pending"
-                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Issued"
                     android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonPending3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:checked="false"
-                    />
+                    android:text="Pending"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
             </RadioGroup>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/issueinput3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/issueinput3"
                 android:layout_below="@id/radioGroupPatent3"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/issue3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issue Date*"
-                    android:textSize="16dp"
-                    android:singleLine="true"
                     android:focusable="false"
+                    android:hint="Issue Date*"
+                    android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/issue3"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/filinginput3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/filinginput3"
-                android:visibility="gone"
-
                 android:layout_below="@id/radioGroupPatent3"
+
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/filing3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
                     android:hint="Filing Date*"
                     android:singleLine="true"
-                    android:focusable="false"
-                    android:textSize="16dp"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/filing3"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
-
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput3"
                 android:layout_below="@id/radioGroupPatent3"
                 android:layout_marginTop="80dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/url3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:textSize="16dp"
+                    android:maxLength="1000"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="1000"
-                    android:id="@+id/url3"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descinput3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput3"
                 android:layout_marginTop="10dp"
-                android:id="@+id/descinput3"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
+                    android:lines="5"
                     android:maxLength="1000"
-                    android:id="@+id/description3"/>
+                    android:scrollHorizontally="false"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
+
         <View
+            android:id="@+id/patentline3"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/sky_blue_color"
             android:layout_below="@+id/patentrl3"
-            android:id="@+id/patentline3"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashpatent4"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/patentline3"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/delete_icon"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashpatent4"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/patentline3"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash4selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/patentline3"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
+            android:id="@+id/patentrl4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/patentline3"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/patentrl4"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput4"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent Name*"
-                    android:textSize="16dp"
+                    android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="500"
-                    android:inputType="textCapWords"
-                    android:id="@+id/title4"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/appnoinput4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/appnoinput4"
                 android:layout_below="@id/titleinput4"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/appno4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number*"
-                    android:textSize="16dp"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="20"
-                    android:id="@+id/appno4"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
             <RelativeLayout
+                android:id="@+id/patofficerl4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/appnoinput4"
-                android:id="@+id/patofficerl4"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -917,48 +954,50 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
                     android:background="@color/while_color"
                     android:gravity="center"
                     android:popupBackground="@color/while_color"
-                    android:layout_marginLeft="5dp"
                     android:spinnerMode="dropdown" />
 
                 <ImageView
+                    android:id="@+id/spinnerimg4"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:id="@+id/spinnerimg4"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/drop"
+                    android:tint="@color/dark_color" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg4"
-                    android:background="@color/dark_color"
-                    />
+                    android:background="@color/dark_color" />
 
             </RelativeLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/inventorinput4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/inventorinput4"
                 android:layout_below="@id/patofficerl4"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/inventor4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Inventors (Comma Seperated)*"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
+                    android:inputType="textCapWords"
                     android:maxLength="500"
                     android:singleLine="true"
-                    android:inputType="textCapWords"
-                    android:id="@+id/inventor4"/>
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -966,217 +1005,224 @@
                 android:id="@+id/statusradiotxt4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
-                android:text="Status*"
                 android:layout_below="@+id/inventorinput4"
                 android:layout_marginTop="20dp"
-                />
+                android:text="Status*"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
             <RadioGroup
+                android:id="@+id/radioGroupPatent4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioGroupPatent4"
-                android:orientation="horizontal"
                 android:layout_below="@+id/inventorinput4"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="30dp"
                 android:layout_toRightOf="@+id/statusradiotxt4"
-                android:layout_marginLeft="40dp"
-                >
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Issued"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonIssued4"
-                    app:buttonTint="@color/sky_blue_color"
-                    android:layout_weight="1"
-                    android:textColor="@color/dark_color"
-                    android:checked="true"
-                    />
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pending"
-                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Issued"
                     android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonPending4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:checked="false"
-                    />
+                    android:text="Pending"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
             </RadioGroup>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/issueinput4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/issueinput4"
                 android:layout_below="@id/radioGroupPatent4"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/issue4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
                     android:hint="Issue Date*"
                     android:singleLine="true"
-                    android:focusable="false"
-                    android:textSize="16dp"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/issue4"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/filinginput4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/filinginput4"
-                android:visibility="gone"
-
                 android:layout_below="@id/radioGroupPatent4"
+
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/filing4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
                     android:hint="Filing Date*"
                     android:singleLine="true"
-                    android:focusable="false"
-                    android:textSize="16dp"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/filing4"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
-
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput4"
                 android:layout_below="@id/radioGroupPatent4"
                 android:layout_marginTop="80dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/url4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:singleLine="true"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
                     android:maxLength="1000"
-                    android:id="@+id/url4"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descinput4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput4"
                 android:layout_marginTop="10dp"
-                android:id="@+id/descinput4"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
+                    android:lines="5"
                     android:maxLength="1000"
-                    android:id="@+id/description4"/>
+                    android:scrollHorizontally="false"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
         <View
+            android:id="@+id/patentline4"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/sky_blue_color"
             android:layout_below="@+id/patentrl4"
-            android:id="@+id/patentline4"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashpatent5"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/patentline4"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/delete_icon"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashpatent5"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/patentline4"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash5selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/patentline4"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
+            android:id="@+id/patentrl5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/patentline4"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/patentrl5"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput5"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent Name*"
-                    android:singleLine="true"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
-                    android:maxLength="500"
                     android:inputType="textCapWords"
-                    android:id="@+id/title5"/>
+                    android:maxLength="500"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/appnoinput5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/appnoinput5"
                 android:layout_below="@id/titleinput5"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/appno5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number*"
-                    android:textSize="16dp"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="20"
-                    android:id="@+id/appno5"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
             <RelativeLayout
+                android:id="@+id/patofficerl5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/appnoinput5"
-                android:id="@+id/patofficerl5"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -1186,48 +1232,50 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
                     android:background="@color/while_color"
                     android:gravity="center"
                     android:popupBackground="@color/while_color"
-                    android:layout_marginLeft="5dp"
                     android:spinnerMode="dropdown" />
 
                 <ImageView
+                    android:id="@+id/spinnerimg5"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:id="@+id/spinnerimg5"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/drop"
+                    android:tint="@color/dark_color" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg5"
-                    android:background="@color/dark_color"
-                    />
+                    android:background="@color/dark_color" />
 
             </RelativeLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/inventorinput5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/inventorinput5"
                 android:layout_below="@id/patofficerl5"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/inventor5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Inventors (Comma Seperated)*"
-                    android:textSize="16dp"
+                    android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="500"
-                    android:inputType="textCapWords"
-                    android:id="@+id/inventor5"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -1235,217 +1283,224 @@
                 android:id="@+id/statusradiotxt5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
-                android:text="Status*"
                 android:layout_below="@+id/inventorinput5"
                 android:layout_marginTop="20dp"
-                />
+                android:text="Status*"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
             <RadioGroup
+                android:id="@+id/radioGroupPatent5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioGroupPatent5"
-                android:orientation="horizontal"
                 android:layout_below="@+id/inventorinput5"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="30dp"
                 android:layout_toRightOf="@+id/statusradiotxt5"
-                android:layout_marginLeft="40dp"
-                >
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Issued"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonIssued5"
-                    app:buttonTint="@color/sky_blue_color"
-                    android:layout_weight="1"
-                    android:textColor="@color/dark_color"
-                    android:checked="true"
-                    />
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pending"
-                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Issued"
                     android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonPending5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:checked="false"
-                    />
+                    android:text="Pending"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
             </RadioGroup>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/issueinput5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/issueinput5"
                 android:layout_below="@id/radioGroupPatent5"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/issue5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
                     android:hint="Issue Date*"
                     android:singleLine="true"
-                    android:focusable="false"
-                    android:textSize="16dp"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/issue5"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/filinginput5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/filinginput5"
-                android:visibility="gone"
-
                 android:layout_below="@id/radioGroupPatent5"
+
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/filing5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Filing Date*"
-                    android:textSize="16dp"
-                    android:singleLine="true"
                     android:focusable="false"
+                    android:hint="Filing Date*"
+                    android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/filing5"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
-
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput5"
                 android:layout_below="@id/radioGroupPatent5"
                 android:layout_marginTop="80dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/url5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:singleLine="true"
-                    android:textSize="16dp"
                     android:maxLength="1000"
+                    android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/url5"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descinput5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput5"
                 android:layout_marginTop="10dp"
-                android:id="@+id/descinput5"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
+                    android:lines="5"
                     android:maxLength="1000"
-                    android:id="@+id/description5"/>
+                    android:scrollHorizontally="false"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
         <View
+            android:id="@+id/patentline5"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/sky_blue_color"
             android:layout_below="@+id/patentrl5"
-            android:id="@+id/patentline5"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashpatent6"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/patentline5"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/delete_icon"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashpatent6"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/patentline5"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash6selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/patentline5"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
+            android:id="@+id/patentrl6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/patentline5"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/patentrl6"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput6"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent Name*"
-                    android:textSize="16dp"
+                    android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="500"
-                    android:inputType="textCapWords"
-                    android:id="@+id/title6"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/appnoinput6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/appnoinput6"
                 android:layout_below="@id/titleinput6"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/appno6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number*"
-                    android:textSize="16dp"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="20"
-                    android:id="@+id/appno6"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
             <RelativeLayout
+                android:id="@+id/patofficerl6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/appnoinput6"
-                android:id="@+id/patofficerl6"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -1455,47 +1510,49 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
                     android:background="@color/while_color"
                     android:gravity="center"
                     android:popupBackground="@color/while_color"
-                    android:layout_marginLeft="5dp"
                     android:spinnerMode="dropdown" />
 
                 <ImageView
+                    android:id="@+id/spinnerimg6"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:id="@+id/spinnerimg6"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/drop"
+                    android:tint="@color/dark_color" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg6"
-                    android:background="@color/dark_color"
-                    />
+                    android:background="@color/dark_color" />
 
             </RelativeLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/inventorinput6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/inventorinput6"
                 android:layout_below="@id/patofficerl6"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/inventor6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Inventors (Comma Seperated)*"
-                    android:textSize="16dp"
+                    android:inputType="textCapWords"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:inputType="textCapWords"
-                    android:id="@+id/inventor6"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -1503,217 +1560,224 @@
                 android:id="@+id/statusradiotxt6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
-                android:text="Status*"
                 android:layout_below="@+id/inventorinput6"
                 android:layout_marginTop="20dp"
-                />
+                android:text="Status*"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
             <RadioGroup
+                android:id="@+id/radioGroupPatent6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioGroupPatent6"
-                android:orientation="horizontal"
                 android:layout_below="@+id/inventorinput6"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="30dp"
                 android:layout_toRightOf="@+id/statusradiotxt6"
-                android:layout_marginLeft="40dp"
-                >
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Issued"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonIssued6"
-                    app:buttonTint="@color/sky_blue_color"
-                    android:layout_weight="1"
-                    android:textColor="@color/dark_color"
-                    android:checked="true"
-                    />
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pending"
-                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Issued"
                     android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonPending6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:checked="false"
-                    />
+                    android:text="Pending"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
             </RadioGroup>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/issueinput6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/issueinput6"
                 android:layout_below="@id/radioGroupPatent6"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/issue6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
                     android:focusable="false"
                     android:hint="Issue Date*"
-                    android:textSize="16dp"
+                    android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/issue6"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/filinginput6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/filinginput6"
-                android:visibility="gone"
-
                 android:layout_below="@id/radioGroupPatent6"
+
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/filing6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
                     android:hint="Filing Date*"
                     android:singleLine="true"
-                    android:focusable="false"
-                    android:textSize="16dp"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/filing6"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
-
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput6"
                 android:layout_below="@id/radioGroupPatent6"
                 android:layout_marginTop="80dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/url6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:singleLine="true"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
                     android:maxLength="1000"
-                    android:id="@+id/url6"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descinput6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput6"
-                android:id="@+id/descinput6"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
+                    android:lines="5"
                     android:maxLength="1000"
-                    android:id="@+id/description6"/>
+                    android:scrollHorizontally="false"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
         <View
+            android:id="@+id/patentline6"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/sky_blue_color"
             android:layout_below="@+id/patentrl6"
-            android:id="@+id/patentline6"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashpatent7"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/patentline6"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/delete_icon"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashpatent7"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/patentline6"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash7selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/patentline6"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
+            android:id="@+id/patentrl7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/patentline6"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/patentrl7"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput7"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent Name*"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
+                    android:inputType="textCapWords"
                     android:maxLength="500"
                     android:singleLine="true"
-                    android:inputType="textCapWords"
-                    android:id="@+id/title7"/>
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/appnoinput7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/appnoinput7"
                 android:layout_below="@id/titleinput7"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/appno7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number*"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
                     android:maxLength="20"
                     android:singleLine="true"
-                    android:id="@+id/appno7"/>
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
             <RelativeLayout
+                android:id="@+id/patofficerl7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/appnoinput7"
-                android:id="@+id/patofficerl7"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -1723,48 +1787,50 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
                     android:background="@color/while_color"
                     android:gravity="center"
                     android:popupBackground="@color/while_color"
-                    android:layout_marginLeft="5dp"
                     android:spinnerMode="dropdown" />
 
                 <ImageView
+                    android:id="@+id/spinnerimg7"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:id="@+id/spinnerimg7"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/drop"
+                    android:tint="@color/dark_color" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg7"
-                    android:background="@color/dark_color"
-                    />
+                    android:background="@color/dark_color" />
 
             </RelativeLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/inventorinput7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/inventorinput7"
                 android:layout_below="@id/patofficerl7"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/inventor7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Inventors (Comma Seperated)*"
-                    android:textSize="15dp"
+                    android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="500"
-                    android:inputType="textCapWords"
-                    android:id="@+id/inventor7"/>
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -1772,218 +1838,225 @@
                 android:id="@+id/statusradiotxt7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
-
-                android:text="Status*"
                 android:layout_below="@+id/inventorinput7"
                 android:layout_marginTop="20dp"
-                />
+
+                android:text="Status*"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
             <RadioGroup
+                android:id="@+id/radioGroupPatent7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioGroupPatent7"
-                android:orientation="horizontal"
                 android:layout_below="@+id/inventorinput7"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="30dp"
                 android:layout_toRightOf="@+id/statusradiotxt7"
-                android:layout_marginLeft="40dp"
-                >
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Issued"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonIssued7"
-                    app:buttonTint="@color/sky_blue_color"
-                    android:layout_weight="1"
-                    android:textColor="@color/dark_color"
-                    android:checked="true"
-                    />
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pending"
-                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Issued"
                     android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonPending7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:checked="false"
-                    />
+                    android:text="Pending"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
             </RadioGroup>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/issueinput7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/issueinput7"
                 android:layout_below="@id/radioGroupPatent7"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/issue7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issue Date*"
-                    android:textSize="16dp"
-                    android:singleLine="true"
                     android:focusable="false"
+                    android:hint="Issue Date*"
+                    android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/issue7"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/filinginput7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/filinginput7"
-                android:visibility="gone"
-
                 android:layout_below="@id/radioGroupPatent7"
+
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/filing7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
                     android:hint="Filing Date*"
                     android:singleLine="true"
-                    android:focusable="false"
-                    android:textSize="16dp"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/filing7"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
-
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput7"
                 android:layout_below="@id/radioGroupPatent7"
                 android:layout_marginTop="80dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/url7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:textSize="16dp"
+                    android:maxLength="1000"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="1000"
-                    android:id="@+id/url7"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descinput7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput7"
                 android:layout_marginTop="10dp"
-                android:id="@+id/descinput7"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
+                    android:lines="5"
                     android:maxLength="1000"
-                    android:id="@+id/description7"/>
+                    android:scrollHorizontally="false"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
         <View
+            android:id="@+id/patentline7"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/sky_blue_color"
             android:layout_below="@+id/patentrl7"
-            android:id="@+id/patentline7"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashpatent8"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/patentline7"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/trash"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashpatent8"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/patentline7"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/trash" />
+
+        <View
             android:id="@+id/trash8selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/patentline7"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
+            android:id="@+id/patentrl8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/patentline7"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/patentrl8"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput8"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent Name*"
-                    android:textSize="16dp"
+                    android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="500"
-                    android:inputType="textCapWords"
-                    android:id="@+id/title8"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/appnoinput8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/appnoinput8"
                 android:layout_below="@id/titleinput8"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/appno8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number*"
-                    android:textSize="16dp"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="20"
-                    android:id="@+id/appno8"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
             <RelativeLayout
+                android:id="@+id/patofficerl8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/appnoinput8"
-                android:id="@+id/patofficerl8"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -1993,48 +2066,50 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
                     android:background="@color/while_color"
                     android:gravity="center"
                     android:popupBackground="@color/while_color"
-                    android:layout_marginLeft="5dp"
                     android:spinnerMode="dropdown" />
 
                 <ImageView
+                    android:id="@+id/spinnerimg8"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:id="@+id/spinnerimg8"
-                    android:src="@drawable/delete_icon" />
+                    android:src="@drawable/delete_icon"
+                    android:tint="@color/dark_color" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg8"
-                    android:background="@color/dark_color"
-                    />
+                    android:background="@color/dark_color" />
 
             </RelativeLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/inventorinput8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/inventorinput8"
                 android:layout_below="@id/patofficerl8"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/inventor8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Inventors (Comma Seperated)*"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
+                    android:inputType="textCapWords"
                     android:maxLength="500"
                     android:singleLine="true"
-                    android:inputType="textCapWords"
-                    android:id="@+id/inventor8"/>
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -2042,217 +2117,224 @@
                 android:id="@+id/statusradiotxt8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
-                android:text="Status*"
                 android:layout_below="@+id/inventorinput8"
                 android:layout_marginTop="20dp"
-                />
+                android:text="Status*"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
             <RadioGroup
+                android:id="@+id/radioGroupPatent8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioGroupPatent8"
-                android:orientation="horizontal"
                 android:layout_below="@+id/inventorinput8"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="30dp"
                 android:layout_toRightOf="@+id/statusradiotxt8"
-                android:layout_marginLeft="40dp"
-                >
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Issued"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonIssued8"
-                    app:buttonTint="@color/sky_blue_color"
-                    android:layout_weight="1"
-                    android:textColor="@color/dark_color"
-                    android:checked="true"
-                    />
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pending"
-                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Issued"
                     android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonPending8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:checked="false"
-                    />
+                    android:text="Pending"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
             </RadioGroup>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/issueinput8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/issueinput8"
                 android:layout_below="@id/radioGroupPatent8"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/issue8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
                     android:hint="Issue Date*"
                     android:singleLine="true"
-                    android:focusable="false"
-                    android:textSize="16dp"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/issue8"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/filinginput8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/filinginput8"
-                android:visibility="gone"
-
                 android:layout_below="@id/radioGroupPatent8"
+
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/filing8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Filing Date*"
-                    android:textSize="16dp"
-                    android:singleLine="true"
                     android:focusable="false"
+                    android:hint="Filing Date*"
+                    android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/filing8"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
-
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput8"
                 android:layout_below="@id/radioGroupPatent8"
                 android:layout_marginTop="80dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/url8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:singleLine="true"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
                     android:maxLength="1000"
-                    android:id="@+id/url8"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descinput8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput8"
                 android:layout_marginTop="10dp"
-                android:id="@+id/descinput8"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
+                    android:lines="5"
                     android:maxLength="1000"
-                    android:id="@+id/description8"/>
+                    android:scrollHorizontally="false"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
         <View
+            android:id="@+id/patentline8"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/sky_blue_color"
             android:layout_below="@+id/patentrl8"
-            android:id="@+id/patentline8"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashpatent9"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/patentline8"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/delete_icon"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashpatent9"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/patentline8"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash9selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/patentline8"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
+            android:id="@+id/patentrl9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/patentline8"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/patentrl9"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput9"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent Name*"
-                    android:textSize="16dp"
+                    android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="500"
-                    android:inputType="textCapWords"
-                    android:id="@+id/title9"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/appnoinput9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/appnoinput9"
                 android:layout_below="@id/titleinput9"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/appno9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number*"
-                    android:textSize="16dp"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="20"
-                    android:id="@+id/appno9"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
             <RelativeLayout
+                android:id="@+id/patofficerl9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/appnoinput9"
-                android:id="@+id/patofficerl9"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -2262,48 +2344,50 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
                     android:background="@color/while_color"
                     android:gravity="center"
                     android:popupBackground="@color/while_color"
-                    android:layout_marginLeft="5dp"
                     android:spinnerMode="dropdown" />
 
                 <ImageView
+                    android:id="@+id/spinnerimg9"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:id="@+id/spinnerimg9"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/drop"
+                    android:tint="@color/dark_color" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg9"
-                    android:background="@color/dark_color"
-                    />
+                    android:background="@color/dark_color" />
 
             </RelativeLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/inventorinput9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/inventorinput9"
                 android:layout_below="@id/patofficerl9"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/inventor9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Inventors (Comma Seperated)*"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
+                    android:inputType="textCapWords"
                     android:maxLength="500"
                     android:singleLine="true"
-                    android:inputType="textCapWords"
-                    android:id="@+id/inventor9"/>
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -2311,217 +2395,224 @@
                 android:id="@+id/statusradiotxt9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
-                android:text="Status*"
                 android:layout_below="@+id/inventorinput9"
                 android:layout_marginTop="20dp"
-                />
+                android:text="Status*"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
             <RadioGroup
+                android:id="@+id/radioGroupPatent9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioGroupPatent9"
-                android:orientation="horizontal"
                 android:layout_below="@+id/inventorinput9"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="30dp"
                 android:layout_toRightOf="@+id/statusradiotxt9"
-                android:layout_marginLeft="40dp"
-                >
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Issued"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonIssued9"
-                    app:buttonTint="@color/sky_blue_color"
-                    android:layout_weight="1"
-                    android:textColor="@color/dark_color"
-                    android:checked="true"
-                    />
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pending"
-                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Issued"
                     android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonPending9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:checked="false"
-                    />
+                    android:text="Pending"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
             </RadioGroup>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/issueinput9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/issueinput9"
                 android:layout_below="@id/radioGroupPatent9"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/issue9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
                     android:hint="Issue Date*"
                     android:singleLine="true"
-                    android:focusable="false"
-                    android:textSize="16dp"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/issue9"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/filinginput9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/filinginput9"
-                android:visibility="gone"
-
                 android:layout_below="@id/radioGroupPatent9"
+
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/filing9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Filing Date*"
-                    android:textSize="16dp"
-                    android:singleLine="true"
                     android:focusable="false"
+                    android:hint="Filing Date*"
+                    android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/filing9"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
-
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput9"
                 android:layout_below="@id/radioGroupPatent9"
                 android:layout_marginTop="80dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/url9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
                     android:hint="URL"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
                     android:maxLength="1000"
-                    android:id="@+id/url9"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descinput9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput9"
                 android:layout_marginTop="10dp"
-                android:id="@+id/descinput9"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
+                    android:lines="5"
                     android:maxLength="1000"
-                    android:id="@+id/description9"/>
+                    android:scrollHorizontally="false"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
         <View
+            android:id="@+id/patentline9"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/sky_blue_color"
             android:layout_below="@+id/patentrl9"
-            android:id="@+id/patentline9"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashpatent10"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/patentline9"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/delete_icon"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashpatent10"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/patentline9"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash10selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/patentline9"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
+            android:id="@+id/patentrl10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/patentline9"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/patentrl10"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput10"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent Name*"
-                    android:textSize="16dp"
+                    android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="500"
-                    android:inputType="textCapWords"
-                    android:id="@+id/title10"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/appnoinput10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/appnoinput10"
                 android:layout_below="@id/titleinput10"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/appno10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Patent/Application Number*"
-                    android:singleLine="true"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
                     android:maxLength="20"
-                    android:id="@+id/appno10"/>
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
             <RelativeLayout
+                android:id="@+id/patofficerl10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/appnoinput10"
-                android:id="@+id/patofficerl10"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight=".28"
                 android:orientation="horizontal">
 
@@ -2531,48 +2622,50 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
                     android:background="@color/while_color"
                     android:gravity="center"
                     android:popupBackground="@color/while_color"
-                    android:layout_marginLeft="5dp"
                     android:spinnerMode="dropdown" />
 
                 <ImageView
+                    android:id="@+id/spinnerimg10"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:tint="@color/dark_color"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:id="@+id/spinnerimg10"
-                    android:src="@drawable/drop" />
+                    android:src="@drawable/drop"
+                    android:tint="@color/dark_color" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/spinnerimg10"
-                    android:background="@color/dark_color"
-                    />
+                    android:background="@color/dark_color" />
 
             </RelativeLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/inventorinput10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/inventorinput10"
                 android:layout_below="@id/patofficerl10"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/inventor10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Inventors (Comma Seperated)*"
-                    android:singleLine="true"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
-                    android:maxLength="500"
                     android:inputType="textCapWords"
-                    android:id="@+id/inventor10"/>
+                    android:maxLength="500"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -2580,168 +2673,169 @@
                 android:id="@+id/statusradiotxt10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:textColor="@color/dark_color"
-                android:text="Status*"
                 android:layout_below="@+id/inventorinput10"
                 android:layout_marginTop="20dp"
-                />
+                android:text="Status*"
+                android:textColor="@color/dark_color"
+                android:textSize="16dp" />
 
             <RadioGroup
+                android:id="@+id/radioGroupPatent10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioGroupPatent10"
-                android:orientation="horizontal"
                 android:layout_below="@+id/inventorinput10"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="30dp"
                 android:layout_toRightOf="@+id/statusradiotxt10"
-                android:layout_marginLeft="40dp"
-                >
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Issued"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonIssued10"
-                    app:buttonTint="@color/sky_blue_color"
-                    android:layout_weight="1"
-                    android:textColor="@color/dark_color"
-                    android:checked="true"
-                    />
-                <android.support.v7.widget.AppCompatRadioButton
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pending"
-                    app:buttonTint="@color/sky_blue_color"
                     android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Issued"
                     android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
+
+                <android.support.v7.widget.AppCompatRadioButton xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/radioButtonPending10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:checked="false"
-                    />
+                    android:text="Pending"
+                    android:textColor="@color/dark_color"
+                    app:buttonTint="@color/sky_blue_color" />
             </RadioGroup>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/issueinput10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/issueinput10"
                 android:layout_below="@id/radioGroupPatent10"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/issue10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Issue Date*"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
-                    android:singleLine="true"
                     android:focusable="false"
-                    android:id="@+id/issue10"/>
+                    android:hint="Issue Date*"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/filinginput10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/filinginput10"
-                android:visibility="gone"
                 android:layout_below="@id/radioGroupPatent10"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/filing10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
                     android:hint="Filing Date*"
                     android:singleLine="true"
-                    android:focusable="false"
-                    android:textSize="16dp"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/filing10"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
-
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput10"
                 android:layout_below="@id/radioGroupPatent10"
                 android:layout_marginTop="80dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/url10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:textSize="16dp"
+                    android:maxLength="1000"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:maxLength="1000"
-                    android:id="@+id/url10"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descinput10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput10"
                 android:layout_marginTop="10dp"
-                android:id="@+id/descinput10"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
+                    android:lines="5"
                     android:maxLength="1000"
-                    android:id="@+id/description10"/>
+                    android:scrollHorizontally="false"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
 
         <View
+            android:id="@+id/addmorepatent"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/textviewborder"
             android:layout_below="@+id/patentrl10"
-            android:id="@+id/addmorepatent"
             android:layout_marginTop="20dp"
-            android:elevation="2dp"
-            />
+            android:background="@drawable/textviewborder"
+            android:elevation="2dp" />
 
         <TextView
+            android:id="@+id/addmorepatenttxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/patentrl10"
-            android:text="Add Another Patent"
-            android:textColor="@color/while_color"
-            android:textSize="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            android:id="@+id/addmorepatenttxt"
             android:elevation="3dp"
-            />
+            android:text="Add Another Patent"
+            android:textColor="@color/while_color"
+            android:textSize="20dp" />
+
         <ImageView
+            android:id="@+id/addmorepatentimg"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_below="@+id/patentrl10"
             android:layout_alignParentRight="true"
-            android:src="@drawable/add_icon_white"
+            android:layout_below="@+id/patentrl10"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:id="@+id/addmorepatentimg"
             android:elevation="3dp"
-            />
+            android:src="@drawable/add_icon_white" />
 
     </RelativeLayout>
 </ScrollView>

@@ -29,6 +29,8 @@
             android:layout_toLeftOf="@+id/section"
             android:theme="@style/TextLabel"
             android:id="@+id/fnameTextInputLayout"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
             >
 
             <android.support.design.widget.TextInputEditText
@@ -54,7 +56,10 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/section"
             android:layout_toRightOf="@+id/section"
-            android:theme="@style/TextLabel">
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+            >
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/lname"
@@ -79,6 +84,8 @@
             android:theme="@style/TextLabel"
             android:layout_marginTop="20dp"
             android:id="@+id/roleinputlayout"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
             >
 
             <android.support.design.widget.TextInputEditText
@@ -103,6 +110,8 @@
             android:theme="@style/TextLabel"
             android:layout_marginTop="20dp"
             android:id="@+id/emailinputlayout"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
             >
 
             <android.support.design.widget.TextInputEditText
@@ -123,7 +132,10 @@
             android:id="@+id/instinputlayout"
             android:layout_below="@+id/emailinputlayout"
             android:layout_marginTop="10dp"
-            android:theme="@style/TextLabel">
+            android:theme="@style/TextLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
+            >
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -165,6 +177,8 @@
             android:theme="@style/TextLabel"
             android:layout_marginTop="20dp"
             android:id="@+id/citystaecountryinputlayout"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
             >
 
             <AutoCompleteTextView
