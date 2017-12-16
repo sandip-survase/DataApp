@@ -34,8 +34,7 @@ import java.util.List;
 import mabbas007.tagsedittext.TagsEditText;
 
 import static placeme.octopusites.com.placeme.AES4all.Encrypt;
-import static placeme.octopusites.com.placeme.Digest.digest1;
-import static placeme.octopusites.com.placeme.Digest.digest2;
+
 
 public class CreatePlacementHr extends AppCompatActivity {
 
@@ -62,7 +61,7 @@ public class CreatePlacementHr extends AppCompatActivity {
     String  sbatchesTags="",sexptaTags="";
 
 
-    private static String url_savedata = "http://192.168.100.100:8080/CreateNotificationTemp/CreatePlacementsHr";
+
 
 
 
@@ -462,8 +461,6 @@ public class CreatePlacementHr extends AppCompatActivity {
             PlacementCreateTab3 PlaceTab3 = (PlacementCreateTab3) adapter.getItem(2);
 
 
-            digest1 = MySharedPreferencesManager.getDigest1(this);
-            digest2 = MySharedPreferencesManager.getDigest2(this);
 
             Log.d("gettingtabData", "encforwhom: " + encforwhom);
 
@@ -526,9 +523,9 @@ public class CreatePlacementHr extends AppCompatActivity {
             Log.d("gettingtabData", "ugcriteria: " + ugcriteria);
             Log.d("gettingtabData", "pgcriteria: " + pgcriteria);
 
-              encRole = Encrypt(MySharedPreferencesManager.getRole(this), digest1, digest2);
+              encRole = Encrypt(MySharedPreferencesManager.getRole(this), MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
             encUsername =MySharedPreferencesManager.getUsername(this);
-            encforwhom = Encrypt(forwhom, digest1, digest2);
+            encforwhom = Encrypt(forwhom, MySharedPreferencesManager.getDigest1(this), MySharedPreferencesManager.getDigest2(this));
 
             new save().execute();
         } catch (Exception e) {
@@ -572,7 +569,7 @@ public class CreatePlacementHr extends AppCompatActivity {
 
 
 
-            json = jParser.makeHttpRequest(url_savedata, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_CreatePlacementsHr, "GET", params);
             try {
                 r = json.getString("info1");
 

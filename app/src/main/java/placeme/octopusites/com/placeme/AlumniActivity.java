@@ -86,17 +86,9 @@ import static placeme.octopusites.com.placeme.LoginActivity.md5;
 public class AlumniActivity extends AppCompatActivity implements ImagePickerCallback
 {
     //
-    private static String url_getnotificationsmetadata= "http://192.168.100.100:8080/CreateNotificationTemp/GetNotificationsAlumniMetaData";
-    private static String url_getnotificationsreadstatus= "http://192.168.100.100:8080/CreateNotificationTemp/GetReadStatusOfNotificationsAlumni";
-    private static String url_getnotifications= "http://192.168.100.100:8080/CreateNotificationTemp/GetNotificationsAlumni";
-    private static String url_changenotificationsreadstatus= "http://192.168.100.100:8080/CreateNotificationTemp/ChangeNotificationReadStatus";
 
-    private static String url_getplacementsmetadata= "http://192.168.100.100:8080/CreateNotificationTemp/GetPlacementsAlumniMetaData";
-    private static String url_getplacementsreadstatus= "http://192.168.100.100:8080/CreateNotificationTemp/GetReadStatusOfPlacementsAlumni";
-    private static String url_getplacements= "http://192.168.100.100:8080/CreateNotificationTemp/GetPlacementsAlumni";
-    private static String url_changeplacementsreadstatus= "http://192.168.100.100:8080/CreateNotificationTemp/ChangePlacementReadStatus";
 
-    private static String url_getlastupdated= "http://192.168.100.10/AESTest/GetLastUpdated";
+    
 //placement variable
 
     private int previousTotalPlacement = 0; // The total number of items in the dataset after the last load
@@ -1330,14 +1322,14 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
             try {
 
-                json = jParser.makeHttpRequest(url_getnotificationsmetadata, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_GetNotificationsAlumniAlumniMetaData, "GET", params);
                 notificationpages = Integer.parseInt(json.getString("pages"));
                 called_pages_notification=new int[notificationpages];
                 total_no_of_notifications = Integer.parseInt(json.getString("count"));
                 unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
 
 
-                json = jParser.makeHttpRequest(url_getnotificationsreadstatus, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_GetReadStatusOfNotificationsAlumni, "GET", params);
 
                 readstatuscountNotification  = Integer.parseInt(json.getString("count"));
                 notificationreadstatus=new String[readstatuscountNotification ];
@@ -1387,12 +1379,12 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
             try {
 
-                json = jParser.makeHttpRequest(url_getplacementsmetadata, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_GetPlacementsAlumniAlumniMetaData, "GET", params);
                 placementpages = Integer.parseInt(json.getString("pages"));
                 called_pages_placement=new int[placementpages];
                 total_no_of_placements = Integer.parseInt(json.getString("count"));
                 unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
-                json = jParser.makeHttpRequest(url_getplacementsreadstatus, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_GetReadStatusOfPlacementsAlumni, "GET", params);
                 readstatuscountPlacement = Integer.parseInt(json.getString("count"));
                 placementreadstatus=new String[readstatuscountPlacement];
                 for(int i=0;i<readstatuscountPlacement;i++)
@@ -1428,7 +1420,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",username));       //0
             params.add(new BasicNameValuePair("p",page_to_call_notification+""));
-            json = jParser.makeHttpRequest(url_getnotifications, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_GetNotificationsAlumni, "GET", params);
             try {
                 notificationcount = Integer.parseInt(json.getString("count"));
 
@@ -1568,7 +1560,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",username));       //0
             params.add(new BasicNameValuePair("p",page_to_call_placement+""));
-            json = jParser.makeHttpRequest(url_getplacements, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_GetPlacementsAlumni, "GET", params);
             try
             {
                 
@@ -1818,7 +1810,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                 // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+notificationuploadedby[i] , Toast.LENGTH_SHORT).show();
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u",uniqueUploadersEncNotification [i]));       //0
-                json = jParser.makeHttpRequest(url_getlastupdated, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_getlastupdated, "GET", params);
                 try {
                     String s = json.getString("lastupdated");
                     if(s.equals("noupdate"))
@@ -1884,7 +1876,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             for(int i=0;i<uniqueUploadersPlacement.length;i++) {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u",uniqueUploadersEncPlacement[i]));       //0
-                json = jParser.makeHttpRequest(url_getlastupdated, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_getlastupdated, "GET", params);
                 try {
                     String s = json.getString("lastupdated");
                     if(s.equals("noupdate"))
@@ -2026,7 +2018,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("id", param[0]));       //0
-            json = jParser.makeHttpRequest(url_changenotificationsreadstatus, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_ChangeNotificationReadStatus, "GET", params);
             return r;
         }
 
@@ -2044,7 +2036,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("id", param[0]));       //0
-            json = jParser.makeHttpRequest(url_changeplacementsreadstatus, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_ChangePlacementReadStatus, "GET", params);
             return r;
         }
 
@@ -2148,7 +2140,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                         List<NameValuePair> params = new ArrayList<NameValuePair>();
                         params.add(new BasicNameValuePair("u", username));       //0
                         params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-                        json = jParser.makeHttpRequest(url_getnotifications, "GET", params);
+                        json = jParser.makeHttpRequest(MyConstants.url_GetNotificationsAlumni, "GET", params);
 
                         notificationcount = Integer.parseInt(json.getString("count"));
 
@@ -2189,7 +2181,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                             List<NameValuePair> params = new ArrayList<NameValuePair>();
                             params.add(new BasicNameValuePair("u", username));       //0
                             params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-                            json = jParser.makeHttpRequest(url_getnotifications, "GET", params);
+                            json = jParser.makeHttpRequest(MyConstants.url_GetNotificationsAlumni, "GET", params);
 
                             notificationcount = Integer.parseInt(json.getString("count"));
 
@@ -2326,7 +2318,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                         List<NameValuePair> params = new ArrayList<NameValuePair>();
                         params.add(new BasicNameValuePair("u", username));
                         params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
-                        json = jParser.makeHttpRequest(url_getplacements, "GET", params);
+                        json = jParser.makeHttpRequest(MyConstants.url_GetPlacementsAlumni, "GET", params);
 
                         placementcount = Integer.parseInt(json.getString("count"));
                         placementids=new String[placementcount];
@@ -2393,7 +2385,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
                             List<NameValuePair> params = new ArrayList<NameValuePair>();
                             params.add(new BasicNameValuePair("u", username));
                             params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
-                            json = jParser.makeHttpRequest(url_getplacements, "GET", params);
+                            json = jParser.makeHttpRequest(MyConstants.url_GetPlacementsAlumni, "GET", params);
 
                             placementcount = Integer.parseInt(json.getString("count"));
 

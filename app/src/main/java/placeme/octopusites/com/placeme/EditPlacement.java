@@ -51,12 +51,6 @@ public class EditPlacement extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
-    private static String url_getplacementsmetadata = "http://192.168.100.100:8080/CreateNotificationTemp/GetPlacementsByAdminMetaData";
-    private static String url_getplacementsreadstatus = "http://192.168.100.100:8080/CreateNotificationTemp/GetReadStatusOfPlacementsByAdmin";
-    private static String url_getplacements = "http://192.168.100.100:8080/CreateNotificationTemp/GetPlacementSentByAdmin";
-    private static String url_changeplacementsreadstatus = "http://192.168.100.100:8080/CreateNotificationTemp/ChangePlacementReadStatusAdmin";
-    private static String url_Delete_Placements = "http://192.168.100.100:8080/CreateNotificationTemp/DeletePlacement";
-    private static String url_getlastupdated = "http://192.168.100.30:8080/AESTest/GetLastUpdatedAdmin";
     Toolbar toolbar;
     List<RecyclerItemPlacement> tempListPlacement;
     TextView selectedtxt;
@@ -67,7 +61,6 @@ public class EditPlacement extends AppCompatActivity {
     Vibrator myVib;
     View[] selectedViews;
 
-    SharedPreferences sharedpreferences;
     CircleImageView profile;
 
     JSONParser jParser = new JSONParser();
@@ -595,14 +588,14 @@ public class EditPlacement extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", username));       //0
 
             try {
-                json = jParser.makeHttpRequest(url_getplacementsmetadata, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_GetPlacementSentByAdminByAdminMetaData, "GET", params);
                 placementpages = Integer.parseInt(json.getString("pages"));
                 called_pages_placement = new int[placementpages];
                 total_no_of_placements = Integer.parseInt(json.getString("count"));
                 unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
 
 
-                json = jParser.makeHttpRequest(url_getplacementsreadstatus, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_GetReadStatusOfPlacementsByAdmin, "GET", params);
                 readstatuscountPlacement = Integer.parseInt(json.getString("count"));
                 placementreadstatus = new String[readstatuscountPlacement];
 
@@ -643,7 +636,7 @@ public class EditPlacement extends AppCompatActivity {
             params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
 
 
-            json = jParser.makeHttpRequest(url_getplacements, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_GetPlacementSentByAdmin, "GET", params);
             try {
                 placementcount = Integer.parseInt(json.getString("count"));
 
@@ -909,7 +902,7 @@ public class EditPlacement extends AppCompatActivity {
             for (int i = 0; i < uniqueUploadersPlacement.length; i++) {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", uniqueUploadersEncPlacement[i]));       //0
-                json = jParser.makeHttpRequest(url_getlastupdated, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_getlastupdated, "GET", params);
                 try {
                     String s = json.getString("lastupdated");
                     if (s.equals("noupdate")) {
@@ -953,7 +946,7 @@ public class EditPlacement extends AppCompatActivity {
             params.add(new BasicNameValuePair("ids", deletids));       //1
 
 
-            json = jParser.makeHttpRequest(url_Delete_Placements, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_Delete_Placements, "GET", params);
             try {
                 r = json.getString("info");
                 Log.d("TAG", "info" + r);

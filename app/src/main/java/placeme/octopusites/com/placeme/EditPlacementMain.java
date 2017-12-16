@@ -77,8 +77,7 @@ public class EditPlacementMain extends AppCompatActivity {
     String sid,scompanyname,spackage,spost,sforwhichcourse,sforwhichstream,svacancies,slastdateofregistration,sdateofarrival,sbond,snoofapti;
     String snooftechtest,snoofgd,snoofti,snoofhri,sstdx,sstdxiiordiploma,sug,spg,suploadtime,slastmodified,suploadedby,sforwhom="",snoofallowedliveatkt,snoofalloweddeadatkt;
     //
-    private static String url_getforwhome = "http://192.168.100.30/CreateNotificationTemp/GetForWhomePlacements";
-    private static String url_modifyplacement= "http://192.168.100.100:8080/CreateNotificationTemp/ModifyPlacement";
+
 
 //
 
@@ -450,7 +449,7 @@ public class EditPlacementMain extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("id", sid)); //0
 
-            json = jParser.makeHttpRequest(url_getforwhome, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_GetForWhomePlacements, "GET", params);
             try {
                 Forwhomefromdb = json.getString("forwhom");
 
@@ -639,7 +638,7 @@ public class EditPlacementMain extends AppCompatActivity {
             params.add(new BasicNameValuePair("id",sid));    //20
 
 
-            json = jParser.makeHttpRequest(url_modifyplacement, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_ModifyPlacement, "GET", params);
             try {
                 r = json.getString("info");
 

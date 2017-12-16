@@ -103,8 +103,8 @@ public class CreateNotificationHR extends AppCompatActivity {
     List<String> response = new ArrayList<String>();
     Drawable compleatesprogress;
 
-    private static String savefoleonserverURL = "http://192.168.100.30:8080/CreateNotificationTemp/SavefileOnServer";
-        private static String url_savedata1 = "http://192.168.100.30:8080/CreateNotificationTemp/CreateNotificationHrToEach" ;
+
+
 
 
     @Override
@@ -520,7 +520,7 @@ public class CreateNotificationHR extends AppCompatActivity {
             }
 
 
-            json = jParser.makeHttpRequest(url_savedata1, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_CreateNotificationHrToEach, "GET", params);
             try {
                 r = json.getString("info");
 
@@ -690,7 +690,7 @@ public class CreateNotificationHR extends AppCompatActivity {
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(savefoleonserverURL);
+                URL url = new URL(MyConstants.url_SavefileOnServer);
                 httpConn = (HttpURLConnection) url.openConnection();
                 httpConn.setUseCaches(false);
                 httpConn.setDoOutput(true);    // indicates POST method
@@ -880,7 +880,7 @@ public class CreateNotificationHR extends AppCompatActivity {
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(savefoleonserverURL);
+                URL url = new URL(MyConstants.url_SavefileOnServer);
                 httpConn = (HttpURLConnection) url.openConnection();
                 httpConn.setUseCaches(false);
                 httpConn.setDoOutput(true);    // indicates POST method
@@ -1045,7 +1045,7 @@ public class CreateNotificationHR extends AppCompatActivity {
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(savefoleonserverURL);
+                URL url = new URL(MyConstants.url_SavefileOnServer);
                 httpConn = (HttpURLConnection) url.openConnection();
                 httpConn.setUseCaches(false);
                 httpConn.setDoOutput(true);    // indicates POST method
@@ -1209,7 +1209,7 @@ public class CreateNotificationHR extends AppCompatActivity {
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(savefoleonserverURL);
+                URL url = new URL(MyConstants.url_SavefileOnServer);
                 httpConn = (HttpURLConnection) url.openConnection();
                 httpConn.setUseCaches(false);
                 httpConn.setDoOutput(true);    // indicates POST method
@@ -1370,7 +1370,7 @@ public class CreateNotificationHR extends AppCompatActivity {
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(savefoleonserverURL);
+                URL url = new URL(MyConstants.url_SavefileOnServer);
                 httpConn = (HttpURLConnection) url.openConnection();
                 httpConn.setUseCaches(false);
                 httpConn.setDoOutput(true);    // indicates POST method

@@ -35,10 +35,7 @@ import static placeme.octopusites.com.placeme.AES4all.fromString;
 public class UserSelection extends AppCompatActivity {
 
     //serverside
-    private static String url_SaveShortlisted = "http://192.168.100.100:8080/CreateNotificationTemp/SaveShortListedUsers";
-    private static String url_Saveplaced = "http://192.168.100.100:8080/CreateNotificationTemp/SavePlacedUsers";
 
-    private static String url_SaveRegistereduserStatus = "http://192.168.100.100:8080/CreateNotificationTemp/SaveRegistereduserStatus";
 
 
 
@@ -128,25 +125,25 @@ public class UserSelection extends AppCompatActivity {
 //                    }
                 case R.id.navigation_dashboard:
 //
-                        itemM.setVisible(true);
-                        placed = false;
-                        registerd = false;
-                        shortlisted = true;
-                        recycler_view_Registered.setVisibility(View.GONE);
-                        recycler_view_ShortListed.setVisibility(View.VISIBLE);
-                        recycler_view_Placed.setVisibility(View.GONE);
+                    itemM.setVisible(true);
+                    placed = false;
+                    registerd = false;
+                    shortlisted = true;
+                    recycler_view_Registered.setVisibility(View.GONE);
+                    recycler_view_ShortListed.setVisibility(View.VISIBLE);
+                    recycler_view_Placed.setVisibility(View.GONE);
 
 
-                        mAdapterShortlited = new RecyclerItemUsersAdapter(itemListShortlited, UserSelection.this, 2);
-                        recycler_view_ShortListed.setAdapter(mAdapterShortlited);
-                        mAdapterShortlited.notifyDataSetChanged();
-                        if (ShortlistedFabCount != 0) {
-                            fabminirl.setVisibility(View.VISIBLE);
-                            fabCountText.setText("" + ShortlistedFabCount);
-                        } else {
-                            fabminirl.setVisibility(View.GONE);
-                            fabCountText.setText("");
-                        }
+                    mAdapterShortlited = new RecyclerItemUsersAdapter(itemListShortlited, UserSelection.this, 2);
+                    recycler_view_ShortListed.setAdapter(mAdapterShortlited);
+                    mAdapterShortlited.notifyDataSetChanged();
+                    if (ShortlistedFabCount != 0) {
+                        fabminirl.setVisibility(View.VISIBLE);
+                        fabCountText.setText("" + ShortlistedFabCount);
+                    } else {
+                        fabminirl.setVisibility(View.GONE);
+                        fabCountText.setText("");
+                    }
 //                    }
                     return true;
                 case R.id.navigation_notifications:
@@ -278,12 +275,12 @@ public class UserSelection extends AppCompatActivity {
 
                     }
 
-                     Intent i1 = new Intent(UserSelection.this, CreateNotificationHR.class);
+                    Intent i1 = new Intent(UserSelection.this, CreateNotificationHR.class);
                     i1.putExtra("selection","registerd");
                     i1.putExtra("emailids",""+listString);
                     startActivity(i1);
 
-                      Log.d("Tag","listString"+ listString);
+                    Log.d("Tag","listString"+ listString);
                     Toast.makeText(UserSelection.this, "Send notification to:-" + listString + "-:user", Toast.LENGTH_SHORT).show();
                 } else if (shortlisted) {
                     StringBuilder listString2 =new StringBuilder();
@@ -324,7 +321,7 @@ public class UserSelection extends AppCompatActivity {
         Log.d("finaltestUsers", "itemListplacedListfromserver: " + placedListfromserver.size());
         Log.d("finaltestUsers", "=======================================: ");
 
-            RecyclerItemUsers item = new RecyclerItemUsers(100,"","",false);
+        RecyclerItemUsers item = new RecyclerItemUsers(100,"","",false);
         for (int k = 0; k < registerdListfromserver.size(); k++) {
 
 
@@ -657,7 +654,7 @@ public class UserSelection extends AppCompatActivity {
 
             }
 
-            json = jParser.makeHttpRequest(url_SaveShortlisted, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_SaveShortListedUsers, "GET", params);
             try {
 
                 r = json.getString("info");
@@ -702,7 +699,7 @@ public class UserSelection extends AppCompatActivity {
 
             }
 
-            json = jParser.makeHttpRequest(url_Saveplaced, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_SavePlacedUsers, "GET", params);
             try {
 
                 r = json.getString("info");

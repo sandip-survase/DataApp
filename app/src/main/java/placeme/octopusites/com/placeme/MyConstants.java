@@ -13,6 +13,82 @@ import android.view.animation.AnimationUtils;
 
 public class MyConstants {
 
+
+
+
+    //    ----------------------------------sunny---------------------------------------------------------------
+//                    --------------------MainActivity(student)-----------------
+    public static String url_getnotificationsmetadata = "http://104.237.4.236/CreateNotificationTemp/GetNotificationsMetaData";
+    public static String url_getnotificationsreadstatus = "http://104.237.4.236/CreateNotificationTemp/GetReadStatusOfNotifications";
+    public static String url_getnotifications = "http://104.237.4.236/CreateNotificationTemp/GetNotifications";
+    public static String url_changenotificationsreadstatus = "http://104.237.4.236/CreateNotificationTemp/ChangeNotificationReadStatus";
+    public static String url_getplacementsmetadata = "http://104.237.4.236/CreateNotificationTemp/GetPlacementsMetaData";
+    public static String url_getplacementsreadstatus = "http://104.237.4.236/CreateNotificationTemp/GetReadStatusOfPlacements";
+    public static String url_changeplacementsreadstatus = "http://104.237.4.236/CreateNotificationTemp/ChangePlacementReadStatus";
+    public static String url_getplacements = "http://104.237.4.236/CreateNotificationTemp/GetPlacements";
+    //                           --------------------alumniActivity(alumni)-----------------
+    public static String url_GetNotificationsAlumniAlumniMetaData= "http://104.237.4.236/CreateNotificationTemp/GetNotificationsAlumniMetaData";
+    public static String url_GetReadStatusOfNotificationsAlumni= "http://104.237.4.236/CreateNotificationTemp/GetReadStatusOfNotificationsAlumni";
+    public static String url_GetNotificationsAlumni= "http://104.237.4.236/CreateNotificationTemp/GetNotificationsAlumni";
+    public static String url_ChangeNotificationReadStatus= "http://104.237.4.236/CreateNotificationTemp/ChangeNotificationReadStatus";
+    public static String url_GetPlacementsAlumniAlumniMetaData= "http://104.237.4.236/CreateNotificationTemp/GetPlacementsAlumniMetaData";
+    public static String url_GetReadStatusOfPlacementsAlumni= "http://104.237.4.236/CreateNotificationTemp/GetReadStatusOfPlacementsAlumni";
+    public static String url_GetPlacementsAlumni= "http://104.237.4.236/CreateNotificationTemp/GetPlacementsAlumni";
+    public static String url_ChangePlacementReadStatus= "http://104.237.4.236/CreateNotificationTemp/ChangePlacementReadStatus";
+    //                                --------------------adminActivity)-----------------
+//placement urls
+    public static String url_GetPlacementsAdminAdminMetaData = "http://104.237.4.236/CreateNotificationTemp/GetPlacementsAdminMetaData";
+    public static String url_GetReadStatusOfPlacementsForAdmin = "http://104.237.4.236/CreateNotificationTemp/GetReadStatusOfPlacementsForAdmin";
+    public static String url_GetPlacementsAdmin = "http://104.237.4.236/CreateNotificationTemp/GetPlacementsAdmin";
+    public static String url_ChangePlacementReadStatusAdmin = "http://104.237.4.236/CreateNotificationTemp/ChangePlacementReadStatusAdmin";
+    //notiffurl
+    public static String url_GetNotificationsAdminAdminMetaData = "http://104.237.4.236/CreateNotificationTemp/GetNotificationsAdminMetaData";
+    public static String url_GetReadStatusOfNotificationsAdmin = "http://104.237.4.236/CreateNotificationTemp/GetReadStatusOfNotificationsAdmin";
+    public static String url_GetNotificationsAdmin = "http://104.237.4.236/CreateNotificationTemp/GetNotificationsAdmin";
+    public static String url_ChangeNotificationReadStatusAdmin = "http://104.237.4.236/CreateNotificationTemp/ChangeNotificationReadStatusAdmin";
+//    -------------------------------EditNotification-----------------------------------
+    public static String url_GetNotificationsByAdminMetaData = "http://104.237.4.236/CreateNotificationTemp/GetNotificationsByAdminMetaData";
+    public static String url_GetReadStatusOfNotificationsByAdmin = "http://104.237.4.236/CreateNotificationTemp/GetReadStatusOfNotificationsByAdmin";
+    public static String url_GetNotificationsSentByAdmin= "http://104.237.4.236/CreateNotificationTemp/GetNotificationsSentByAdmin";
+    public static String url_DeleteNotification = "http://104.237.4.236/CreateNotificationTemp/DeleteNotification";
+//    -------------------------------Editplacements -----------------------------------
+    public static String url_GetPlacementSentByAdminByAdminMetaData = "http://104.237.4.236/CreateNotificationTemp/GetPlacementsByAdminMetaData";
+    public static String url_GetReadStatusOfPlacementsByAdmin = "http://104.237.4.236/CreateNotificationTemp/GetReadStatusOfPlacementsByAdmin";
+    public static String url_GetPlacementSentByAdmin = "http://104.237.4.236/CreateNotificationTemp/GetPlacementSentByAdmin";
+    public static String url_Delete_Placements = "http://104.237.4.236/CreateNotificationTemp/DeletePlacement";
+    //    -------------------------------hractivity -----------------------------------
+    public static String url_GetPlacementsCreatedByHr = "http://104.237.4.236/CreateNotificationTemp/GetPlacementsCreatedByHr";
+    //    -------------------------------EditPlacementHr -----------------------------------
+    public static String url_GetPlacementSentByHr = "http://104.237.4.236/CreateNotificationTemp/GetPlacementSentByHr";
+    //    -------------------------------EditPlacementMainHr -----------------------------------
+    public static String url_ModifyPlacementHr= "http://104.237.4.236/CreateNotificationTemp/ModifyPlacementHr";
+    //    -------------------------------CreateNotification -----------------------------------
+    public static String url_UploadAttach1 = "http://104.237.4.236/CreateNotificationTemp/UploadAttach1";
+    public static String url_ModifyNotification = "http://104.237.4.236/CreateNotificationTemp/ModifyNotification";
+    public static String url_GetForWhomeNotification = "http://104.237.4.236/CreateNotificationTemp/GetForWhomeNotification";    //files variables
+    public static String url_SavefileOnServer = "http://104.237.4.236/CreateNotificationTemp/SavefileOnServer";
+    //    -------------------------------CreatePlacement -----------------------------------
+    public static String url_CreatePlacements = "http://104.237.4.236/CreateNotificationTemp/CreatePlacements";
+    //    -------------------------------CreatePlacementHr -----------------------------------
+    public static String url_CreatePlacementsHr = "http://104.237.4.236/CreateNotificationTemp/CreatePlacementsHr";
+    //    -------------------------------CreateNotificationHR -----------------------------------
+    public static String url_CreateNotificationHrToEach = "http://104.237.4.236/CreateNotificationTemp/CreateNotificationHrToEach" ;
+    //    -------------------------------EditPlacementMain -----------------------------------
+    public static String url_GetForWhomePlacements = "http://192.168.100.30/CreateNotificationTemp/GetForWhomePlacements";
+    public static String url_ModifyPlacement= "http://104.237.4.236/CreateNotificationTemp/ModifyPlacement";
+    //    -------------------------------ViewPlacement -----------------------------------
+    public static String url_RegisterForPlacement = "http://192.168.100.100/AESTest/RegisterForPlacement";
+    public static String url_GetStudentMarksInfo = "http://192.168.100.100/AESTest/GetStudentMarksInfo";
+    public static String url_SaveResume = "http://192.168.100.100/GenerateResumeWithJODConverter3/SaveResume";
+    //    -------------------------------EditPlacementMain -----------------------------------
+    public static String url_SaveShortListedUsers = "http://104.237.4.236/CreateNotificationTemp/SaveShortListedUsers";
+    public static String url_SavePlacedUsers = "http://104.237.4.236/CreateNotificationTemp/SavePlacedUsers";
+    public static String url_SaveRegistereduserStatus = "http://104.237.4.236/CreateNotificationTemp/SaveRegistereduserStatus";
+//    ----------------------------------/sunny---------------------------------------------------------------
+
+
+
+
     public static final int USER_DATA_CHANGE_RESULT_CODE=888;
     public static final String USERNAME_KEY = "nameKey";
     public static final String PASSWORD_KEY = "passKey";
@@ -38,8 +114,8 @@ public class MyConstants {
 //    --------------------------------------Load fragment data-------------------------------------
 
     public static final String load_HR_data = "http://192.168.100.100/ProfileObjects/GetHrData";
-    public static String url_load_alumni_data = "http://192.168.100.10/ProfileObjects/GetAlumniData";
-    public static final String load_student_data = "http://192.168.100.10/ProfileObjects/GetStudentData";
+    public static String url_load_alumni_data = "http://192.168.100.100/ProfileObjects/GetAlumniData";
+    public static final String load_student_data = "http://192.168.100.100/ProfileObjects/GetStudentData";
     public static final String load_Admin_data = "http://192.168.100.10/ProfileObjects/GetAdminData";
 
 //    --------------------------------------Intro-------------------------------------
@@ -134,7 +210,7 @@ public class MyConstants {
             "/AESTest/SaveNewUserWelcomeIntroData";
     public static final String url_SaveStudentFnameLnameMobile = "http://192.168.100.100/AESTest/SaveStudentFnameLnameMobile";
 
-//    private static String url = "http://192.168.100.100/HandleMobileRequests/getimg.jsp?username=";
+//    public static String url = "http://192.168.100.100/HandleMobileRequests/getimg.jsp?username=";
     public static final String url_SendActivationCode = "http://192.168.100.100/AESTest/SendActivationCode";
     public static final String url_SaveAndGenrateInstituteCode = "http://192.168.100.100/AESTest/SaveAndGenrateInstituteCode";
     public static final String url_SaveAndGenrateCompanyCode = "http://192.168.100.100/AESTest/SaveAndGenrateCompanyCode";

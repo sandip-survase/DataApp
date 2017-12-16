@@ -35,8 +35,6 @@ import mabbas007.tagsedittext.TagsEditText;
 
 import static placeme.octopusites.com.placeme.AES4all.Encrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
-import static placeme.octopusites.com.placeme.Digest.digest1;
-import static placeme.octopusites.com.placeme.Digest.digest2;
 
 public class EditPlacementMainHr extends AppCompatActivity {
 
@@ -68,9 +66,8 @@ public class EditPlacementMainHr extends AppCompatActivity {
 
     String username="", srole = "",instname="";
     String sbatchesTags="" ,sexptaTags="";
+     String digest1="",digest2="";
 
-
-    private static String url_modifyplacement= "http://192.168.100.100:8080/CreateNotificationTemp/ModifyPlacementHr";
 
 
 
@@ -315,6 +312,7 @@ public class EditPlacementMainHr extends AppCompatActivity {
         sid=getIntent().getStringExtra("id");
         passingyear=getIntent().getStringExtra("passingyear");
         experiences=getIntent().getStringExtra("experiences");
+if(passingyear!=null){
 
         if(passingyear.length()!=0){
 
@@ -327,6 +325,9 @@ public class EditPlacementMainHr extends AppCompatActivity {
             expTag.setTags(experiences);
 
         }
+}else{
+    Toast.makeText(this, "expwerience and passing year null (send it from server)", Toast.LENGTH_SHORT).show();
+}
 
 
 
@@ -577,7 +578,7 @@ public class EditPlacementMainHr extends AppCompatActivity {
 
 
 
-            json = jParser.makeHttpRequest(url_modifyplacement, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_ModifyPlacementHr, "GET", params);
             try {
                 r = json.getString("info");
 

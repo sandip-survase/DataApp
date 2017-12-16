@@ -32,9 +32,6 @@ import static placeme.octopusites.com.placeme.AES4all.Decrypt;
 public class EditPlacementHr extends AppCompatActivity {
 
 
-    private static String url_getplacementsByHr = "http://192.168.100.100:8080/CreateNotificationTemp/GetPlacementSentByHr";
-    private static String url_getlastupdated = "http://192.168.100.100/CreateNotificationTemp/GetLastUpdatedHr";
-
 
     Toolbar toolbar;
     Vibrator myVib;
@@ -87,17 +84,11 @@ public class EditPlacementHr extends AppCompatActivity {
         digest2 = MySharedPreferencesManager.getDigest2(this);
 
 
-        ProfileRole r = new ProfileRole();
-        r.setUsername(username);
-        r.setRole(role);
-        Digest d = new Digest();
-        d.setDigest1(digest1);
-        d.setDigest2(digest2);
+
 
         try {
 
             String plainusername = Decrypt(username, digest1, digest2);
-            r.setPlainusername(plainusername);
 
         } catch (Exception e) {
         }
@@ -105,7 +96,6 @@ public class EditPlacementHr extends AppCompatActivity {
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         searchView.setVoiceSearch(false);
         searchView.setCursorDrawable(R.drawable.custom_cursor);
-        searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
 
 
         recyclerViewPlacement = (RecyclerView) findViewById(R.id.recycler_view);
@@ -255,7 +245,7 @@ public class EditPlacementHr extends AppCompatActivity {
             params.add(new BasicNameValuePair("p", page_to_call_placement + ""));  //1
 
 
-            json = jParser.makeHttpRequest(url_getplacementsByHr, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_GetPlacementSentByHr, "GET", params);
             try {
                 placementcount = Integer.parseInt(json.getString("count"));
 
@@ -568,7 +558,7 @@ try{
             for (int i = 0; i < uniqueUploadersPlacement.length; i++) {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", uniqueUploadersEncPlacement[i]));       //0
-                json = jParser.makeHttpRequest(url_getlastupdated, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_getlastupdated, "GET", params);
                 try {
                     String s = json.getString("lastupdated");
                     if (s.equals("noupdate")) {

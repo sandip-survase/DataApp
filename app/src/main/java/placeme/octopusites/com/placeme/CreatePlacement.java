@@ -43,7 +43,7 @@ import static placeme.octopusites.com.placeme.AES4all.Encrypt;
 
 public class CreatePlacement extends AppCompatActivity {
 
-    private static String url_savedata = "http://192.168.100.100:8080/CreateNotificationTemp/CreatePlacements";
+
     String role;
     ViewPagerAdapter adapter;
     CheckBox CheckBoxstudent, CheckBoxsAlumni;
@@ -593,7 +593,7 @@ public class CreatePlacement extends AppCompatActivity {
             params.add(new BasicNameValuePair("v", sexptaTags));     //21
 
 
-            json = jParser.makeHttpRequest(url_savedata, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_CreatePlacements, "GET", params);
             try {
                 r = json.getString("info1");
 

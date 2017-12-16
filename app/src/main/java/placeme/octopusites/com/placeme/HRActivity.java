@@ -69,37 +69,19 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
     public static final int HR_DATA_CHANGE_RESULT_CODE = 444;
 
-    private String username = "";
-    public static final int HR_DATA_CHANGE_RESULT_CODE = 444;
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String Username = "nameKey";
     public static final String Password = "passKey";
     public static final String Intro = "intro";
-    private static String url_getplacemenybyhr = "http://192.168.100.100:8080/CreateNotificationTemp/GetPlacementsCreatedByHr";
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
-    int notificationorplacementflag = 0;
-    private List<RecyclerItem> itemList = new ArrayList<>();
-    private RecyclerItemAdapter mAdapter;
-    int count = 0, id[], pcount = 0;
-    String heading[], notification[];
     int notificationorplacementflag = 0;
     int count = 0, id[], pcount = 0;
     String heading[], notification[];
     JSONParser jParser = new JSONParser();
     JSONObject json;
     FrameLayout mainfragment;
-    Handler handler = new Handler();
-    private MaterialSearchView searchView;
-    RelativeLayout createnotificationrl, editnotificationrl;
-    int notificationplacementflag = 0;
-
-    public static final String Intro = "intro";
-    int navMenuFlag = 0, oldNavMenuFlag = 0;
-    int selectedMenuFlag = 1;
-
     //  our coding here
-    private ImageView resultView;
     Handler handler = new Handler();
     RelativeLayout createnotificationrl, editnotificationrl;
     int notificationplacementflag = 0;
@@ -107,31 +89,27 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     int selectedMenuFlag = 1;
     ImagePicker imagePicker;
     FrameLayout crop_layout;
-    private String finalPath;
-    int crop_flag = 0;
-    String digest1, digest2;
     int crop_flag = 0;
     String digest1, digest2;
     byte[] demoKeyBytes;
     byte[] demoIVBytes;
     String sPadding = "ISO10126Padding";
-    private String plainusername;
-    String filepath = "", filename = "";
     String filepath = "", filename = "";
     String directory;
     List<String> response;
-    private RecyclerView recyclerView, recyclerViewPlacemetsHr;
 
     //
     ArrayList<ArrayList<RecyclerItemUsers>> registeredallListsfromserver = new ArrayList<>();
     ArrayList<ArrayList<RecyclerItemUsers>> ShortlistedListsfromserver = new ArrayList<>();
     ArrayList<ArrayList<RecyclerItemUsers>> placedallListsfromserver = new ArrayList<>();
     int placemntscount;
+    Toolbar toolbar;
+    SwipeRefreshLayout tswipe_refresh_layout;
+    TextView createnotificationtxt, editnotificationtxt;
     private String username = "";
     private List<RecyclerItem> itemList = new ArrayList<>();
     private RecyclerItemAdapter mAdapter;
     private MaterialSearchView searchView;
-    private SharedPreferences sharedpreferences;
     //  our coding here
     private ImageView resultView;
     private String finalPath;
@@ -139,14 +117,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
     private RecyclerView recyclerView, recyclerViewPlacemetsHr;
     private List<RecyclerItemHrPlacement> itemList2 = new ArrayList<>();
     private RecyclerItemHrPlacementAdapter mAdapter2;
-    Toolbar toolbar;
     private TextView toolbar_title;
-    SwipeRefreshLayout tswipe_refresh_layout;
-
-
-
-
-    TextView createnotificationtxt,editnotificationtxt;
 
     //
     @Override
@@ -183,18 +154,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         searchView.setCursorDrawable(R.drawable.custom_cursor);
 
 
-
-
-
-         createnotificationtxt=(TextView)findViewById(R.id.createnotificationtxt);
-        editnotificationtxt =(TextView)findViewById(R.id.editnotificationtxt);
-
-
-
-
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
+        createnotificationtxt = (TextView) findViewById(R.id.createnotificationtxt);
+        editnotificationtxt = (TextView) findViewById(R.id.editnotificationtxt);
 
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
@@ -234,8 +195,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
             }
         });
-
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -302,8 +261,8 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
                         RelativeLayout rl = (RelativeLayout) findViewById(R.id.admincontrolsrl);
                         rl.setVisibility(View.VISIBLE);
-                        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-                        fab.setVisibility(View.VISIBLE);
+//                        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//                        fab.setVisibility(View.VISIBLE);
 
 //                        initializerecyclerViewPlacements();
                         getplacementbyhr();
@@ -373,9 +332,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
         final View hView = navigationView.getHeaderView(0);
         profile = (CircleImageView) hView.findViewById(R.id.profile_image);
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        final View hView = navigationView.getHeaderView(0);
-        profile = (CircleImageView) hView.findViewById(R.id.profile_image);
+
 //        new GetProfileImage().execute();
 
         final ImageView profilei = (ImageView) hView.findViewById(R.id.profile);
@@ -408,14 +365,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         View v6 = (View) hView.findViewById(R.id.blogselectionview);
         View v7 = (View) hView.findViewById(R.id.abtselectionview);
 //        View v8 = (View) hView.findViewById(R.id.chatselectionview);
-        View v1 = (View) hView.findViewById(R.id.prifileselectionview);
-        View v2 = (View) hView.findViewById(R.id.notificationselectionview);
-        View v3 = (View) hView.findViewById(R.id.placementselectionview);
-        View v4 = (View) hView.findViewById(R.id.proselectionview);
-        View v5 = (View) hView.findViewById(R.id.settingselectionview);
-        View v6 = (View) hView.findViewById(R.id.blogselectionview);
-        View v7 = (View) hView.findViewById(R.id.abtselectionview);
-        View v8 = (View) hView.findViewById(R.id.chatselectionview);
 
         mainfragment = (FrameLayout) findViewById(R.id.mainfragment);
 
@@ -839,21 +788,11 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
                     Log.d("TAG", "position  " + position);
                     Intent i1 = new Intent(HRActivity.this, UserSelection.class);
-
-                i1.putExtra("id", item.getId());
-                i1.putExtra("companyname", item.getCompanyname());
-                i1.putExtra("lastmodifiedtime", item.getLastmodifiedtime());
-                i1.putExtra("registerednumber", item.getRegisterednumber());
-                i1.putExtra("placednumber", item.getPlacednumber());
-                i1.putExtra("lastdateofreg", item.getLastdateofreg());
-                startActivity(i1);
                     i1.putExtra("id", item.getId());
                     Log.d("Tag", "id: " + item.getId());
-
                     i1.putExtra("sRegisteredItemlistTemp", sRegisteredItemlistTemp);
                     i1.putExtra("sShortlistedListsfromservertemp", sShortlistedListsfromservertemp);
                     i1.putExtra("splacedItemlistTemp", splacedItemlistTemp);
-
                     i1.putExtra("companyname", item.getCompanyname());
                     i1.putExtra("lastmodifiedtime", item.getLastmodifiedtime());
                     i1.putExtra("registerednumber", item.getRegisterednumber());
@@ -940,7 +879,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             String hash = md5(data + MySharedPreferencesManager.getDigest3(HRActivity.this));
 
 //           loginFirebase(plainusername,hash);
-            new LoginFirebaseTask().execute(plainusername,hash);
+            new LoginFirebaseTask().execute(plainusername, hash);
 
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -957,13 +896,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         imagePicker.shouldGenerateMetadata(false); // Default is true
         imagePicker.shouldGenerateThumbnails(false); // Default is true
         requestProfileImage();  //  update thumbanail first time activity Load
-
-
-
-
-
-
-
 
 
         tswipe_refresh_layout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
@@ -985,18 +917,24 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         tswipe_refresh_layout.setRefreshing(true);
 
 
+    }
 
+    void setserverlisttoadapter(List<RecyclerItemHrPlacement> itemlist) {
 
-
-
-
-
-
-
-
+        itemList2.clear();
+        itemList2.addAll(itemlist);
+//        mAdapter2 = new RecyclerItemHrPlacementAdapter(itemList2);
+//        recyclerViewPlacemetsHr.setAdapter(mAdapter2);
+        mAdapter2.notifyDataSetChanged();
 
 
     }
+
+    void getplacementbyhr() {
+//        initializerecyclerViewPlacements();
+        new Getplacementbyhr().execute();
+    }
+
 
     private void disableNavigationViewScrollbars(NavigationView navigationView) {
         if (navigationView != null) {
@@ -1193,6 +1131,45 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         });
     }
 
+    private void downloadImage() {
+
+        String t = String.valueOf(System.currentTimeMillis());
+
+        Uri uri = new Uri.Builder()
+                .scheme("http")
+                .authority("192.168.100.100")
+                .path("AESTest/GetImage")
+                .appendQueryParameter("u", username)
+                .build();
+
+        GlideApp.with(this)
+                .load(uri)
+                .signature(new ObjectKey(System.currentTimeMillis() + ""))
+                .into(profile);
+
+
+    }
+
+    public void requestProfileImage() {
+        // Toast.makeText(this, "thumbnail Method()", Toast.LENGTH_SHORT).show();
+//        new GetProfileImage().execute();
+        downloadImage();
+
+    }
+
+    void addTempPlacements() {
+
+        Log.d("tag", "addTempPlacements:Accessed ");
+        for (int i = 0; i < 10; i++) {
+            RecyclerItemHrPlacement item2 = new RecyclerItemHrPlacement(i, "Cognizant", "17-FEB-2017 5:20 PM", "201 Candidates Registered", "57 Candidates Placed", "20-FEB-2017");
+            itemList2.add(item2);
+
+
+        }
+    }
+
+    // thumbanail
+
     class UploadProfile extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
             try {
@@ -1223,7 +1200,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
             if (response.get(0).contains("success")) {
 
-                MySharedPreferencesManager.save(HRActivity.this,"crop", "no");
+                MySharedPreferencesManager.save(HRActivity.this, "crop", "no");
                 Toast.makeText(HRActivity.this, "Successfully Updated..!", Toast.LENGTH_SHORT).show();
                 requestProfileImage();
                 HRProfileFragment fragment = (HRProfileFragment) getSupportFragmentManager().findFragmentById(R.id.mainfragment);
@@ -1249,35 +1226,6 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         }
 
     }
-
-    private void downloadImage() {
-
-        String t = String.valueOf(System.currentTimeMillis());
-
-        Uri uri = new Uri.Builder()
-                .scheme("http")
-                .authority("192.168.100.100")
-                .path("AESTest/GetImage")
-                .appendQueryParameter("u", username)
-                .build();
-
-        GlideApp.with(this)
-                .load(uri)
-                .signature(new ObjectKey(System.currentTimeMillis() + ""))
-                .into(profile);
-
-
-    }
-
-    public void requestProfileImage() {
-        // Toast.makeText(this, "thumbnail Method()", Toast.LENGTH_SHORT).show();
-//        new GetProfileImage().execute();
-        downloadImage();
-
-    }
-
-    // thumbanail
-
 
     public class GetProfileImage extends AsyncTask<String, Void, Bitmap> {
         @Override
@@ -1341,22 +1289,43 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
     }
 
-    void addTempPlacements() {
+    class LoginFirebaseTask extends AsyncTask<String, String, String> {
+        protected String doInBackground(String... param) {
+            String user = param[0];
+            String hash = param[1];
+            FirebaseAuth.getInstance()
+                    .signInWithEmailAndPassword(user, hash)
+                    .addOnCompleteListener(HRActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                MySharedPreferencesManager.save(HRActivity.this, "fireLoginStatus", "Successfully logged in to Firebase");
+                            } else {
+                                MySharedPreferencesManager.save(HRActivity.this, "fireLoginStatus", "Failed to login to Firebase");
+                            }
+                        }
+                    });
+            return null;
+        }
 
-        Log.d("tag", "addTempPlacements:Accessed ");
-        for (int i = 0; i < 10; i++) {
-            RecyclerItemHrPlacement item2 = new RecyclerItemHrPlacement(i, "Cognizant", "17-FEB-2017 5:20 PM", "201 Candidates Registered", "57 Candidates Placed", "20-FEB-2017");
-            itemList2.add(item2);
+        @Override
+        protected void onPostExecute(String result) {
+            String status = MySharedPreferencesManager.getData(HRActivity.this, "fireLoginStatus");
+            Toast.makeText(HRActivity.this, status, Toast.LENGTH_SHORT).show();
+            // remove value from shared
+            MySharedPreferencesManager.removeKey(HRActivity.this, "fireLoginStatus");
+        }
+    }
+
 
     class Getplacementbyhr extends AsyncTask<String, String, String> {
 
-        ArrayList<RecyclerItemHrPlacement> itemlistfromserver = new ArrayList<>();
-
-String username1=MySharedPreferencesManager.getUsername(getBaseContext());
         private static final String TAG = "Getplacementbyhr";
+        ArrayList<RecyclerItemHrPlacement> itemlistfromserver = new ArrayList<>();
+        String username1 = MySharedPreferencesManager.getUsername(getBaseContext());
 
         protected String doInBackground(String... param) {
-            Log.d(TAG, "doInBackground:username1 "+username1);
+            Log.d(TAG, "doInBackground:username1 " + username1);
 
             String r = null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -1371,7 +1340,7 @@ String username1=MySharedPreferencesManager.getUsername(getBaseContext());
             Log.d("itemlistfromserver", "digest2: " + digest2);
 
 
-            json = jParser.makeHttpRequest(url_getplacemenybyhr, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_GetPlacementsCreatedByHr, "GET", params);
             try {
 
                 placemntscount = Integer.parseInt(json.getString("count"));
@@ -1384,8 +1353,7 @@ String username1=MySharedPreferencesManager.getUsername(getBaseContext());
                     Log.d("json1", "jsonparamsplacedlistedallLists" + json.getString("jsonparamsplacedlistedallLists"));
 
                     itemlistfromserver = (ArrayList<RecyclerItemHrPlacement>) fromString(json.getString("jsonparamsList"), digest1, digest2);
-                    Log.d("itemlistfromserver", "reg======================="+itemlistfromserver.get(0).getRegisterednumber());
-
+                    Log.d("itemlistfromserver", "reg=======================" + itemlistfromserver.get(0).getRegisterednumber());
 
 
                     registeredallListsfromserver = (ArrayList<ArrayList<RecyclerItemUsers>>) fromString(json.getString("jsonRegisteredAllLists"), digest1, digest2);
@@ -1396,10 +1364,10 @@ String username1=MySharedPreferencesManager.getUsername(getBaseContext());
                     Log.d("itemlistfromserver", "ShortlistedListsfromserver: " + ShortlistedListsfromserver.size());
                     Log.d("itemlistfromserver", "placedallListsfromserver: " + placedallListsfromserver.size());
 
-                    Log.d("check", "----------------ci=ontentx of list--------------------------: "+ registeredallListsfromserver.get(0).size());
+                    Log.d("check", "----------------ci=ontentx of list--------------------------: " + registeredallListsfromserver.get(0).size());
 
 
-                   }
+                }
 
 
             } catch (Exception e) {
@@ -1416,56 +1384,7 @@ String username1=MySharedPreferencesManager.getUsername(getBaseContext());
             setserverlisttoadapter(itemlistfromserver);
 
         }
+
+
     }
-
-
-    void loginFirebase(String username,String hash)
-    {
-        Log.d("TAG", "loginFirebase: input "+username+"    "+hash);
-        FirebaseAuth.getInstance()
-                .signInWithEmailAndPassword(username,hash)
-                .addOnCompleteListener(HRActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-
-
-                        if (task.isSuccessful()) {
-                            Toast.makeText(HRActivity.this, "Successfully logged in to Firebase from HRActivity", Toast.LENGTH_SHORT).show();
-                            Log.d("TAG", "Fire onComplete: logged in");
-
-                        } else {
-                            Toast.makeText(HRActivity.this, "Failed to login to Firebase", Toast.LENGTH_SHORT).show();
-                            Log.d("TAG", "Fire onComplete: NOT logged in");
-                        }
-                    }
-                });
-    }
-
-        class LoginFirebaseTask extends AsyncTask<String, String, String> {
-            protected String doInBackground(String... param) {
-                String user=param[0];
-                String hash=param[1];
-                FirebaseAuth.getInstance()
-                        .signInWithEmailAndPassword(user,hash)
-                        .addOnCompleteListener(HRActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    MySharedPreferencesManager.save(HRActivity.this,"fireLoginStatus","Successfully logged in to Firebase");
-                                } else {
-                                    MySharedPreferencesManager.save(HRActivity.this,"fireLoginStatus","Failed to login to Firebase");
-                                }
-                            }
-                        });
-                return null;
-            }
-            @Override
-            protected void onPostExecute(String result) {
-                String status=MySharedPreferencesManager.getData(HRActivity.this,"fireLoginStatus");
-                Toast.makeText(HRActivity.this, status, Toast.LENGTH_SHORT).show();
-                // remove value from shared
-                MySharedPreferencesManager.removeKey(HRActivity.this,"fireLoginStatus");
-            }
-        }
-
 }

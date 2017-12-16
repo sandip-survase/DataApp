@@ -49,7 +49,6 @@ public class ViewNotification extends AppCompatActivity {
     String username;
     TextView uploadedbytxt,lastmodifiedtxt;
 
-    private static String url_changenotificationsreadstatus= "http://192.168.100.30:8080/CreateNotificationTemp/ChangeNotificationReadStatus";
 
     byte[] demoKeyBytes;
     byte[] demoIVBytes;
@@ -150,7 +149,6 @@ public class ViewNotification extends AppCompatActivity {
 
 
         Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/meriweather.ttf");
-
         Log.d("gettingdata", "id"+getIntent().getStringExtra("id"));
 
         Log.d("gettingdata", "titile"+getIntent().getStringExtra("title"));
@@ -273,7 +271,7 @@ public class ViewNotification extends AppCompatActivity {
     {
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority("192.168.100.30")
+                .encodedAuthority("192.168.100.100:8080")
                 .path("CreateNotificationTemp/DownloadAttachmentFiles")
                 .appendQueryParameter("u", username)
                 .appendQueryParameter("id", id)
@@ -319,7 +317,7 @@ public class ViewNotification extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("id", param[0]));       //0
-            json = jParser.makeHttpRequest(url_changenotificationsreadstatus, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_changenotificationsreadstatus, "GET", params);
             return r;
         }
 

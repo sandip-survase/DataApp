@@ -38,9 +38,9 @@ public class ViewPlacement extends AppCompatActivity {
 
     JSONObject json;
     JSONParser jParser = new JSONParser();
-    private static String url_registerforplacement = "http://192.168.100.100/AESTest/RegisterForPlacement";
-    private static String url_getstudentmarksinfo = "http://192.168.100.100/AESTest/GetStudentMarksInfo";
-    public static String url_SaveResume = "http://192.168.100.10/GenerateResumeWithJODConverter3/SaveResume";
+    
+
+    
 
     String username, resultofop;
     String id, companyname, cpackage, post, forwhichcourse, forwhichstream, vacancies, lastdateofregistration, dateofarrival, bond, noofapti, nooftechtest, noofgd, noofti, noofhri, stdx, stdxiiordiploma, ug, pg, uploadtime, lastmodified, uploadedby, noofallowedliveatkt, noofalloweddeadatkt, studenttenthmarks, studenttwelthordiplomamarks, studentugmarks, studentpgmarks;
@@ -214,7 +214,7 @@ public class ViewPlacement extends AppCompatActivity {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", username));
                 params.add(new BasicNameValuePair("id", id));
-                json = jParser.makeHttpRequest(url_registerforplacement, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_RegisterForPlacement, "GET", params);
                 String s = null;
                 resultofop = json.getString("info");
 
@@ -252,7 +252,7 @@ public class ViewPlacement extends AppCompatActivity {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", username));
 
-                json = jParser.makeHttpRequest(url_getstudentmarksinfo, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_GetStudentMarksInfo, "GET", params);
 
                 String s = json.getString("tenth");
                 if (s.equals("found"))
@@ -578,7 +578,7 @@ public class ViewPlacement extends AppCompatActivity {
                 params.add(new BasicNameValuePair("format", format));
                 params.add(new BasicNameValuePair("template", template));
 
-                json = jParser.makeHttpRequest(url_SaveResume, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_SaveResume, "GET", params);
 
                  r = json.getString("info");
                 Log.d("TAG", "doInBackground: result -"+r);
