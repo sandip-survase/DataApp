@@ -92,6 +92,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
     String selectedboardBytes1 = null;
     String selectedstreamBytes1 = null;
     String selectedcourseBytes1 = null;
+    String selecteddiplomaboardBytes1 =null;
 
     String strobj, strobj2;
 
@@ -178,7 +179,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         schoolnamedinput = (TextInputLayout) findViewById(R.id.schoolnamedinput);
         yearofpassingdinput = (TextInputLayout) findViewById(R.id.yearofpassingdinput);
         percent12input = (TextInputLayout) findViewById(R.id.percent12input);
-
+//        otherboardinput = (TextInputLayout) findViewById(R.id.othercourseinput);
 
         marks12.setTypeface(MyConstants.getBold(this));
         outof12.setTypeface(MyConstants.getBold(this));
@@ -242,7 +243,59 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         yearofpassingdinput.setTypeface(MyConstants.getLight(this));
         percent12input.setTypeface(MyConstants.getLight(this));
 
-        new GetCourses().execute();
+//        new GetCourses().execute();
+
+        coursecount = getResources().getStringArray(R.array.dcourses).length;
+        courses = new String[coursecount];
+        courses = getResources().getStringArray(R.array.dcourses);
+        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, R.layout.spinner_item, courses) {
+        @Override
+        public boolean isEnabled(int position) {
+
+            if (position == 0) {
+
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            View view = super.getView(position, convertView, parent);
+            TextView tv = (TextView) view;
+            tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
+            return view;
+        }
+
+        @Override
+        public View getDropDownView(int position, View convertView,
+                ViewGroup parent) {
+            View view = super.getDropDownView(position, convertView, parent);
+            TextView tv = (TextView) view;
+            tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
+
+            if (position == 0) {
+                // Set the hint text color gray
+                tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
+            } else {
+                tv.setTextColor(getResources().getColor(R.color.dark_color));
+            }
+            return view;
+        }
+    };
+
+
+        dcourse.setAdapter(adapter4);
+
+
+
+
+
+
+
+
 
         dmarkssem1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -926,6 +979,25 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
             }
         });
+
+        otherboardd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                otherboarddinput.setError(null);
+                edittedFlag = 1;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         otherboard.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -1012,6 +1084,23 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             }
         });
 
+        othercourse.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                edittedFlag = 1;
+                othercourseinput.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         String[] dboards = new String[]{
                 "- Select Board -", "State Board", "Other"
@@ -1055,8 +1144,12 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 return view;
             }
         };
+
+
         ;
         duniversity.setAdapter(dataAdapter3);
+
+
         duniversity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -1133,10 +1226,10 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 selectedBoard12 = (String) parent.getItemAtPosition(position);
                 TextInputLayout otherboardinput = (TextInputLayout) findViewById(R.id.otherboardinput);
                 if (selectedBoard12.equals("Other")) {
-
+                    otherboard.setVisibility(View.VISIBLE);
                     otherboardinput.setVisibility(View.VISIBLE);
                 } else {
-
+                    otherboard.setVisibility(View.GONE);
                     otherboardinput.setVisibility(View.GONE);
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -1152,6 +1245,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         String[] streams = new String[]{
                 "- Select Stream -", "Science", "Commerce", "Arts", "Other"
         };
+
         final List<String> streamslist = new ArrayList<>(Arrays.asList(streams));
 
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, R.layout.spinner_item, streamslist) {
@@ -1208,6 +1302,31 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        dcourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedCourse = (String) parent.getItemAtPosition(position);
+
+                Log.d("TAG", "onItemSelected: selectedCourse- "+selectedCourse);
+                if (selectedCourse.equals("Other")) {
+
+                    othercourseinput.setVisibility(View.VISIBLE);
+
+                } else {
+
+                    othercourseinput.setVisibility(View.GONE);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+
             }
 
             @Override
@@ -1438,45 +1557,68 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         }
         if (outofmarks != null)
             outof12.setText(outofmarks);
+
         if (percentage != null)
             percent12.setText(percentage);
+
         if (schoolnametwelth != null)
             schoolname12.setText(schoolnametwelth);
+
         if (monthandyearofpassing12 != null)
             yearofpassing12.setText(monthandyearofpassing12);
+
+
+
+
         if (selectedBoard12 != null) {
-            int foundboard = 0;
-            for (int i = 1; i < boards.length - 1; i++)
-                if (selectedBoard12.equals(boards[i])) {
-                    foundboard = 1;
-                    break;
+            if(!selectedBoard12.equals("")) {
+
+                int foundboard = 0;
+                for (int i = 1; i < boards.length - 1; i++)
+                    if (selectedBoard12.equals(boards[i])) {
+                        foundboard = 1;
+                        break;
+                    }
+                if (foundboard == 1)
+                    board12.setSelection(dataAdapter.getPosition(selectedBoard12));
+                else {
+
+                    board12.setSelection(dataAdapter.getPosition("Other"));
+                    otherboard.setVisibility(View.VISIBLE);
+                    otherboard.setText(selectedBoard12);
                 }
-            if (foundboard == 1)
-                board12.setSelection(dataAdapter.getPosition(selectedBoard12));
-            else {
-                board12.setSelection(dataAdapter.getPosition("Other"));
-                otherboard.setVisibility(View.VISIBLE);
-                otherboard.setText(selectedBoard12);
+            }
+            else
+            {
+                selectedBoard12 = "-Select Board - ";
             }
         } else
             selectedBoard12 = "-Select Board - ";
 
+
         if (selectedStream12 != null) {
-            int foundstream = 0;
-            for (int i = 1; i < streams.length - 1; i++)
-                if (selectedStream12.equals(streams[i])) {
-                    foundstream = 1;
-                    break;
+            if (!selectedStream12.equals("")) {
+
+                int foundstream = 0;
+                for (int i = 1; i < streams.length - 1; i++)
+                    if (selectedStream12.equals(streams[i])) {
+                        foundstream = 1;
+                        break;
+                    }
+                if (foundstream == 1)
+                    stream12.setSelection(dataAdapter2.getPosition(selectedStream12));
+                else {
+                    stream12.setSelection(dataAdapter2.getPosition("Other"));
+                    otherstream12.setVisibility(View.VISIBLE);
+                    otherstream12.setText(selectedStream12);
                 }
-            if (foundstream == 1)
-                stream12.setSelection(dataAdapter2.getPosition(selectedStream12));
-            else {
-                stream12.setSelection(dataAdapter2.getPosition("Other"));
-                otherstream12.setVisibility(View.VISIBLE);
-                otherstream12.setText(selectedStream12);
             }
+            else {
+                selectedBoard12 = "- Select Stream -";
+            }
+
         } else
-            selectedStream12 = "-Select Board -";
+            selectedStream12 = "- Select Stream -";
 
         if (s.getMarkssem1diploma() != null)
             markssem1 = s.getMarkssem1diploma();
@@ -1530,14 +1672,13 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             selectedCourse = s.getCoursediploma();
 
         oldBoarddiploma = selectedBoarddiploma;
-        oldBoarddiploma = selectedCourse;
+        oldCourse = selectedCourse;
 
         if (markssem1 != null && !markssem1.equals("")) {
             dmarkssem1.setText(markssem1);
             pattern = "diploma";
             radioButtonDiploma.setChecked(true);
         }
-
 
         if (outofsem1 != null)
             doutofsem1.setText(outofsem1);
@@ -1595,19 +1736,18 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         if (monthandyearofpassingdiploma != null)
             yearofpassingd.setText(monthandyearofpassingdiploma);
 
+
+
+
         if (selectedBoarddiploma != null) {
-
             int foundboard = 0;
-
             for (int i = 1; i < dboards.length - 1; i++)
                 if (selectedBoarddiploma.equals(dboards[i])) {
                     foundboard = 1;
                     Log.d("TAG", "onCreate:  foundboard-" + foundboard);
                     break;
                 }
-
             Log.d("TAG", "onCreate: selectedBoarddiploma -" + selectedBoarddiploma);
-
             if (foundboard == 1)
                 duniversity.setSelection(dataAdapter3.getPosition(selectedBoarddiploma));
             else {
@@ -1622,86 +1762,49 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                     otherboardd.setText(selectedBoarddiploma);
                 }
             }
+
         } else
             selectedBoarddiploma = "- Select Board - ";
+
+
+//***************
+
+        if (selectedCourse != null) {
+
+            if(!selectedCourse.equals("")) {
+                int foundcourse = 0;
+                for (int i = 1; i < courses.length - 1; i++)
+                    if (selectedCourse.equals(courses[i])) {
+                        foundcourse = 1;
+                        break;
+                    }
+
+                Log.d("TAG", "onCreate: selectedCourse - " + selectedCourse);
+
+                if (foundcourse == 1)
+                    dcourse.setSelection(adapter4.getPosition(selectedCourse));
+                else {
+                    if (selectedCourse.equals("")) {
+                        dcourse.setSelection(adapter4.getPosition("- Select Course -"));
+                        othercourse.setVisibility(View.GONE);
+//                    othercourse.setText(selectedBoarddiploma);
+                    } else {
+
+                        dcourse.setSelection(adapter4.getPosition("Other"));
+                        othercourse.setVisibility(View.VISIBLE);
+                        othercourseinput.setVisibility(View.VISIBLE);
+                        othercourse.setText(selectedCourse);
+                    }
+                }
+            }
+
+        } else
+            selectedBoarddiploma = "- Select Course - ";
 
 
         edittedFlag = 0;
     }
 
-    void populateCourses() {
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, courseslist) {
-            @Override
-            public boolean isEnabled(int position) {
-
-                if (position == 0) {
-
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-
-            @NonNull
-            @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View view = super.getView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
-                return view;
-            }
-
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
-                if (position == 0) {
-                    // Set the hint text color gray
-                    tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
-                } else {
-                    tv.setTextColor(getResources().getColor(R.color.dark_color));
-                }
-                return view;
-            }
-        };
-        ;
-        dcourse.setAdapter(dataAdapter);
-
-        dcourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedCourse = (String) parent.getItemAtPosition(position);
-                TextInputLayout otherboardinput = (TextInputLayout) findViewById(R.id.othercourseinput);
-                if (selectedCourse.equals("Other")) {
-
-                    otherboardinput.setVisibility(View.VISIBLE);
-                } else {
-
-                    otherboardinput.setVisibility(View.GONE);
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        if (isCourseSet == 0) {
-            isCourseSet = 1;
-            if (s.getCoursediploma() != null) {
-                dcourse.setSelection(dataAdapter.getPosition(s.getCoursediploma()));
-                selectedCourse = s.getCoursediploma();
-                oldCourse = selectedCourse;
-            }
-        }
-
-
-    }
 
     void setMonthYear(String tod, String selectedMonth, String selectedYear) {
         if (tod.equals("twelth"))
@@ -1723,14 +1826,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
         if (pattern.equals("twelth")) {
             setBlankDelpoma();
-
-//            marks12.setError(null);
-//            outof12.setError(null);
-//            percent12.setError(null);
-//            schoolname12.setError(null);
-//            otherstream12.setError(null);
-//            otherboard.setError(null);
-//            yearofpassing12.setError(null);
 
             int errorflag1 = 0, errorflag2 = 0, errorflag3 = 0, errorflag4 = 0, errorflag5 = 0, errorflag6 = 0, errorflag7 = 0, errorflag8 = 0, errorflag9 = 0;
 
@@ -1996,11 +2091,12 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                                                                                     errorflag4 = 1;
                                                                                                     schoolnamedinput.setError("Kindly enter valid College Name");
                                                                                                 } else if (selectedBoarddiploma.equals("Other")) {
+
                                                                                                     otherspecifiedboard = otherboardd.getText().toString();
                                                                                                     if (otherspecifiedboard.length() < 3) {
                                                                                                         errorflag4 = 1;
 
-                                                                                                        otherboarddinput.setError("Invalid Board");
+                                                                                                        otherboarddinput.setError("Kindly enter valid board");
                                                                                                     }
                                                                                                 } else if (monthandyearofpassingdiploma.length() < 9 || monthandyearofpassingdiploma.length() > 9) {
                                                                                                     errorflag5 = 1;
@@ -2041,9 +2137,9 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                     else
                         selectedcourseBytes1 = selectedCourse;
                     if (selectedBoarddiploma.equals("Other"))
-                        selectedboardBytes1 = otherspecifiedboard;
+                        selecteddiplomaboardBytes1 = otherspecifiedboard;
                     else
-                        selectedboardBytes1 = selectedBoarddiploma;
+                        selecteddiplomaboardBytes1 = selectedBoarddiploma;
 
 
                     Log.d("TAG", "validateandSave: validate save 2 ()");
@@ -2066,6 +2162,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         schoolnametwelth = "";
         selectedStream12 = "";
         oldStream12 = selectedStream12;
+        selectedboardBytes1="";
         selectedBoard12 = "";
         oldBoard12 = "";
         monthandyearofpassing12 = "";
@@ -2075,8 +2172,11 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         percent12.setText("");
         schoolname12.setText("");
         yearofpassing12.setText("");
+
         board12.setSelection(0);
         stream12.setSelection(0);
+
+
 
         s.setMarks12("");
         s.setOutof12("");
@@ -2112,7 +2212,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         aggregate = "";
         schoolnamediploma = "";
         selectedBoarddiploma = "";
-        selectedCourse = "- Select Course -";
+        selectedCourse = "";
 
 
         dmarkssem1.setText("");
@@ -2165,14 +2265,14 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         s.setYearofpassingdiploma("");
         s.setCoursediploma("");
 
-
+        dcourse.setSelection(0);
         try {
-
 
             if (selectedCourse.equals("Other"))
                 selectedcourseBytes1 = otherspecifiedcourse;
             else
                 selectedcourseBytes1 = selectedCourse;
+
             if (selectedBoarddiploma.equals("Other"))
                 selectedboardBytes1 = otherspecifiedboard;
             else
@@ -2254,56 +2354,21 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             MyProfileTwelthOrDiploma.super.onBackPressed();
     }
 
-    class GetCourses extends AsyncTask<String, String, String> {
-
-
-        protected String doInBackground(String... param) {
-
-
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-            json = jParser.makeHttpRequest(MyConstants.url_getcourses, "GET", params);
-            try {
-                String s = json.getString("count");
-                coursecount = Integer.parseInt(s);
-                courses = new String[coursecount];
-                for (int i = 0; i < coursecount; i++) {
-                    courses[i] = json.getString("course" + i);
-                }
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            courseslist.clear();
-            courseslist.add("- Select Course -");
-            for (int i = 0; i < coursecount; i++) {
-                courseslist.add(courses[i]);
-            }
-            populateCourses();
-            courseslist.add("Other");
-        }
-    }
 
     class SaveDataTwelth extends AsyncTask<String, String, String> {
 
         protected String doInBackground(String... param) {
 
-            MyProfileTwelthModal obj = new MyProfileTwelthModal(marksobtained, outofmarks, percentage, schoolnametwelth, selectedStream12, selectedBoard12, monthandyearofpassing12);
+
+            MyProfileTwelthModal obj = new MyProfileTwelthModal(marksobtained, outofmarks, percentage, schoolnametwelth, selectedstreamBytes1, selectedboardBytes1, monthandyearofpassing12);
 
             Log.d("params", "marksobtained: " + marksobtained);
             Log.d("params", "outofmarks: " + outofmarks);
             Log.d("params", "percentage: " + percentage);
             Log.d("params", "schoolnametwelth: " + schoolnametwelth);
-            Log.d("params", "selectedstreamBytes1: " + selectedStream12);
+            Log.d("params", "selectedstreamBytes1: " + selectedstreamBytes1);
             Log.d("params", "monthandyearofpassing12: " + monthandyearofpassing12);
-            Log.d("params", "selectedboardBytes1: " + selectedBoard12);
+            Log.d("params", "selectedboardBytes1: " + selectedboardBytes1);
 
 
             try {
@@ -2373,9 +2438,11 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
 
         protected String doInBackground(String... param) {
-            Log.d("TAG", "doInBackground: SaveDataDiploma welcome ");
 
-            MyProfileDiplomaModal obj2 = new MyProfileDiplomaModal(markssem1, outofsem1, percentsem1, markssem2, outofsem2, percentsem2, markssem3, outofsem3, percentsem3, markssem4, outofsem4, percentsem4, markssem5, outofsem5, percentsem5, markssem6, outofsem6, percentsem6, aggregate, selectedCourse, selectedBoarddiploma, schoolnamediploma, monthandyearofpassingdiploma);
+            Log.d("TAG", "doInBackground: SaveDataDiploma selectedboardBytes1 -"+selectedboardBytes1);
+            Log.d("TAG", "doInBackground: SaveDataDiploma selectedcourseBytes1 -"+selectedcourseBytes1);
+
+            MyProfileDiplomaModal obj2 = new MyProfileDiplomaModal(markssem1, outofsem1, percentsem1, markssem2, outofsem2, percentsem2, markssem3, outofsem3, percentsem3, markssem4, outofsem4, percentsem4, markssem5, outofsem5, percentsem5, markssem6, outofsem6, percentsem6, aggregate, selectedcourseBytes1, selecteddiplomaboardBytes1, schoolnamediploma, monthandyearofpassingdiploma);
 
             try {
                 Log.d("encstrobj", "diploma before try block: ");
@@ -2416,6 +2483,8 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                     setResult(AlumniActivity.ALUMNI_DATA_CHANGE_RESULT_CODE);
                 if (!markssem1.equals(""))
                     Toast.makeText(MyProfileTwelthOrDiploma.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+
+
                 MyProfileTwelthOrDiploma.super.onBackPressed();
 
 

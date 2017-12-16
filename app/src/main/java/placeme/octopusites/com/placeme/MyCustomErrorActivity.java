@@ -22,6 +22,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
+import cat.ereza.customactivityoncrash.config.CaocConfig;
+
 
 //import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
 //import cat.ereza.customactivityoncrash.config.CaocConfig;
@@ -39,10 +42,10 @@ public class MyCustomErrorActivity extends AppCompatActivity {
     JSONParser jParser = new JSONParser();
     JSONObject json;
     String error = "";
-//    CaocConfig config;
+    CaocConfig config;
     String abd="";
+    TextView ohsnapmsg,ohsnapmsg2;
 
-//    private static String url_save_error = "http://192.168.100.10/ProfileObjects/Save_Error";
 
     private static String url_save_bug = "http://192.168.100.10/ProfileObjects/Save_Bug";
 
@@ -50,9 +53,6 @@ public class MyCustomErrorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_custom_error);
-
-
-
 
         username = MySharedPreferencesManager.getUsername(this);
         error=getlogcat();
@@ -62,26 +62,30 @@ public class MyCustomErrorActivity extends AppCompatActivity {
         Log.d("TAG", "onCreate: abd - "+abd);
         new ask().execute();
 
-//        config = CustomActivityOnCrash.getConfigFromIntent(getIntent());
+        config = CustomActivityOnCrash.getConfigFromIntent(getIntent());
 
+        ohsnapmsg=(TextView)findViewById(R.id.ohsnapmsg);
+        ohsnapmsg2=(TextView)findViewById(R.id.ohsnapmsg2);
+        ohsnapmsg.setTypeface(MyConstants.getBold(this));
+        ohsnapmsg2.setTypeface(MyConstants.getLight(this));
         Button restartButton = (Button) findViewById(R.id.restart_button);
 //
-//        if (config.isShowRestartButton() && config.getRestartActivityClass() != null) {
-//            restartButton.setText("Restart app");
-//            restartButton.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    CustomActivityOnCrash.restartApplication(MyCustomErrorActivity.this, config);
-//                }
-//            });
-//        } else {
-//            restartButton.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    CustomActivityOnCrash.closeApplication(MyCustomErrorActivity.this, config);
-//                }
-//            });
-//        }
+        if (config.isShowRestartButton() && config.getRestartActivityClass() != null) {
+            restartButton.setText("Restart app");
+            restartButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CustomActivityOnCrash.restartApplication(MyCustomErrorActivity.this, config);
+                }
+            });
+        } else {
+            restartButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CustomActivityOnCrash.closeApplication(MyCustomErrorActivity.this, config);
+                }
+            });
+        }
     }
     @Override
     public void onBackPressed() {
@@ -112,7 +116,7 @@ public class MyCustomErrorActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             if (result.equals("success")) {
-                Toast.makeText(MyCustomErrorActivity.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MyCustomErrorActivity.this, "Successfully Saved..!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(MyCustomErrorActivity.this, result, Toast.LENGTH_SHORT).show();
             }

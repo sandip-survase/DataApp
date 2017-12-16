@@ -64,6 +64,7 @@
         android:theme="@style/TextLabelNew"
         android:layout_centerInParent="true"
         app:errorEnabled="true"
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
         >
 
         <android.support.v7.widget.AppCompatEditText
@@ -87,6 +88,7 @@
         android:layout_below="@+id/instituteNameTextInputLayout"
         android:theme="@style/TextLabelNew"
         app:errorEnabled="true"
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
         >
 
         <AutoCompleteTextView
@@ -111,6 +113,7 @@
         android:layout_below="@id/countryinputlayout"
         android:theme="@style/TextLabelNew"
         app:errorEnabled="true"
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
         >
 
         <android.support.v7.widget.AppCompatEditText
@@ -134,6 +137,7 @@
         android:layout_below="@id/addressTextInputLayout"
         android:theme="@style/TextLabelNew"
         app:errorEnabled="true"
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
         >
 
         <android.support.v7.widget.AppCompatEditText
@@ -159,6 +163,7 @@
         android:layout_below="@id/instituteEmailTextInputLayout"
         android:theme="@style/TextLabelNew"
         app:errorEnabled="true"
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
         >
 
         <android.support.v7.widget.AppCompatEditText
@@ -182,6 +187,7 @@
         android:layout_below="@id/websiteTextInputLayout"
         android:theme="@style/TextLabelNew"
         app:errorEnabled="true"
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
         >
 
         <android.support.v7.widget.AppCompatEditText
@@ -206,6 +212,7 @@
         android:layout_below="@id/phoneTextInputLayout"
         android:theme="@style/TextLabelNew"
         app:errorEnabled="true"
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
         >
 
         <android.support.v7.widget.AppCompatEditText
@@ -229,6 +236,7 @@
         android:layout_below="@id/alternatePhoneTextInputLayout"
         android:theme="@style/TextLabelNew"
         app:errorEnabled="true"
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
         >
 
         <android.support.v7.widget.AppCompatEditText
@@ -252,6 +260,7 @@
         android:layout_below="@id/univercityTextInputLayout"
         android:theme="@style/TextLabelNew"
         app:errorEnabled="true"
+        app:errorTextAppearance="@style/MyAppTheme.TextInputLayout"
         >
 
         <android.support.v7.widget.AppCompatEditText

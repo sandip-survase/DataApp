@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/while_color">
@@ -17,9 +18,9 @@
             android:id="@+id/locationtxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:elevation="2dp"
             android:layout_centerHorizontal="true"
             android:background="@drawable/textviewborder"
+            android:elevation="2dp"
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
@@ -57,31 +58,21 @@
                 android:id="@+id/locationinput1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
-
-                <!--<android.support.design.widget.TextInputEditText-->
-                <!--android:id="@+id/location1"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:hint="Location Preference"-->
-                <!--android:inputType="textCapWords"-->
-                <!--android:singleLine="true"-->
-                <!--android:textColor="@color/dark_color"-->
-                <!--android:textSize="15dp" />-->
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <AutoCompleteTextView
+                    android:id="@+id/location1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Location Preference"
-                    android:textSize="15dp"
-                    android:textColor="@color/dark_color"
-                    android:maxLength="100"
-                    android:inputType="textCapWords"
-                    android:singleLine="true"
                     android:imeOptions="actionNext"
-                    android:id="@+id/location1"
-                    />
-
+                    android:inputType="textCapWords"
+                    android:maxLength="100"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -126,20 +117,21 @@
                 android:id="@+id/locationinput2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <AutoCompleteTextView
+                    android:id="@+id/location2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Location Preference"
-                    android:textSize="15dp"
-                    android:textColor="@color/dark_color"
-                    android:maxLength="100"
-                    android:inputType="textCapWords"
-                    android:singleLine="true"
                     android:imeOptions="actionNext"
-                    android:id="@+id/location2"
-                    />
+                    android:inputType="textCapWords"
+                    android:maxLength="100"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -184,20 +176,21 @@
                 android:id="@+id/locationinput3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <AutoCompleteTextView
+                    android:id="@+id/location3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Location Preference"
-                    android:textSize="15dp"
-                    android:textColor="@color/dark_color"
-                    android:maxLength="100"
-                    android:inputType="textCapWords"
-                    android:singleLine="true"
                     android:imeOptions="actionNext"
-                    android:id="@+id/location3"
-                    />
+                    android:inputType="textCapWords"
+                    android:maxLength="100"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
             </android.support.design.widget.TextInputLayout>
 
         </RelativeLayout>
@@ -242,20 +235,21 @@
                 android:id="@+id/locationinput4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <AutoCompleteTextView
+                    android:id="@+id/location4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Location Preference"
-                    android:textSize="15dp"
-                    android:textColor="@color/dark_color"
-                    android:maxLength="100"
-                    android:inputType="textCapWords"
-                    android:singleLine="true"
                     android:imeOptions="actionNext"
-                    android:id="@+id/location4"
-                    />
+                    android:inputType="textCapWords"
+                    android:maxLength="100"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -300,20 +294,21 @@
                 android:id="@+id/locationinput5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <AutoCompleteTextView
+                    android:id="@+id/location5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Location Preference"
-                    android:textSize="15dp"
-                    android:textColor="@color/dark_color"
-                    android:maxLength="100"
-                    android:inputType="textCapWords"
-                    android:singleLine="true"
                     android:imeOptions="actionNext"
-                    android:id="@+id/location5"
-                    />
+                    android:inputType="textCapWords"
+                    android:maxLength="100"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="15dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -324,16 +319,16 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/locationrl5"
-            android:elevation="2dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/textviewborder" />
+            android:background="@drawable/textviewborder"
+            android:elevation="2dp" />
 
         <View
             android:id="@+id/addmorelocation1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/addmorelocation"/>
+            android:layout_below="@+id/addmorelocation"
+            android:layout_marginTop="20dp" />
 
         <TextView
             android:id="@+id/addmorelocationtxt"
@@ -341,14 +336,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/locationrl5"
             android:layout_marginLeft="10dp"
-            android:elevation="2dp"
             android:layout_marginTop="30dp"
+            android:elevation="2dp"
             android:text="Add Another Location"
             android:textColor="@color/while_color"
             android:textSize="18dp" />
 
         <ImageView
-            android:elevation="2dp"
             android:id="@+id/addmorelocationimg"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -356,6 +350,7 @@
             android:layout_below="@+id/locationrl5"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
+            android:elevation="2dp"
             android:src="@drawable/add_icon_white" />
 
     </RelativeLayout>

@@ -21,50 +21,51 @@
             android:padding="16dp">
 
 
-
             <View
+                android:id="@+id/section"
                 android:layout_width="1dp"
                 android:layout_height="1dp"
-                android:id="@+id/section"
-                android:layout_centerHorizontal="true"
-                />
+                android:layout_centerHorizontal="true" />
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/fnameTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/section"
-                android:id="@+id/fnameTextInputLayout"
 
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/fname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="First Name *"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
-                    android:maxLength="50"
                     android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                    android:inputType="textCapWords"
+                    android:hint="First Name *"
                     android:imeOptions="actionNext"
-                    android:singleLine="true" />
+                    android:inputType="textCapWords"
+                    android:maxLength="50"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
 
-
-
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/lnameTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/section"
                 android:layout_marginLeft="5dp"
-                android:id="@+id/lnameTextInputLayout"
+                android:layout_toRightOf="@+id/section"
 
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/sname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -72,108 +73,117 @@
                     android:imeOptions="actionNext"
                     android:inputType="textCapWords"
                     android:maxLength="50"
-                    android:textSize="16dp"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/sname"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/roleinputlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lnameTextInputLayout"
-                android:id="@+id/roleinputlayout"
                 android:layout_marginTop="20dp"
 
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/role"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Role *"
-                    android:textSize="16dp"
                     android:focusable="false"
+                    android:hint="Role *"
+                    android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:singleLine="true"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/emailinputlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/emailinputlayout"
                 android:layout_below="@+id/roleinputlayout"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email *"
-                    android:textSize="16dp"
                     android:focusable="false"
-                    android:textColor="@color/dark_color"
+                    android:hint="Email *"
                     android:singleLine="true"
-                    android:id="@+id/email"/>
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/instinputlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/instinputlayout"
                 android:layout_below="@+id/emailinputlayout"
                 android:layout_marginTop="10dp"
 
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/inst"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Designation *"
-                    android:textSize="16dp"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/inst"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <TextView
+                android:id="@+id/loctxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Location Details"
                 android:layout_below="@+id/instinputlayout"
-                android:textSize="20dp"
-                android:textColor="@color/while_color"
-                android:id="@+id/loctxt"
-                android:layout_marginTop="25dp"
                 android:layout_centerHorizontal="true"
-                android:paddingTop="10dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/textviewborder"
+                android:elevation="6dp"
                 android:paddingBottom="10dp"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:background="@drawable/textviewborder"
-                android:elevation="6dp"
-                />
+                android:paddingTop="10dp"
+                android:text="Location Details"
+                android:textColor="@color/while_color"
+                android:textSize="20dp" />
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/citystaecountryinputlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/citystaecountryinputlayout"
                 android:layout_below="@+id/loctxt"
                 android:layout_marginTop="20dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <AutoCompleteTextView
+                    android:id="@+id/citystaecountry"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="City / District *"
-                    android:textSize="16dp"
-                    android:textColor="@color/dark_color"
-                    android:maxLength="100"
-                    android:inputType="textCapWords"
-                    android:singleLine="true"
                     android:imeOptions="actionNext"
-                    android:id="@+id/citystaecountry"/>
+                    android:inputType="textCapWords"
+                    android:maxLength="100"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_color"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -182,14 +192,13 @@
 
         <ProgressBar
             android:id="@+id/personalprogress"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="60dp"
             android:layout_width="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:visibility="gone"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/completepersonalrl"
-            />
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="60dp"
+            android:layout_marginTop="20dp"
+            android:visibility="gone" />
 
 
     </RelativeLayout>

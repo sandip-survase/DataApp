@@ -7,7 +7,10 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
     </style>
-
+    <style name="MyAppTheme.TextInputLayout" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@android:color/holo_red_light</item>
+        <item name="android:textSize">12dp</item>
+    </style>
     <style name="MyEditTextTheme">
         <item name="android:textColorHint">#fcfdfd</item>
         <item name="colorControlNormal">#fcfdfd</item>
@@ -40,10 +43,7 @@
         <item name="android:actionMenuTextColor">@color/sky_blue_color</item>
     </style>
 
-    <style name="ProTheme" parent="Theme.AppCompat.Light">
-        <item name="android:homeAsUpIndicator">@drawable/backarrow</item>
-        <item name="actionMenuTextColor">#282f35</item>
-    </style>
+
 
     <style name="AppFullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>

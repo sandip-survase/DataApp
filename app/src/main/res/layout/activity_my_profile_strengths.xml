@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/while_color">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -56,7 +57,9 @@
                 android:id="@+id/strengthinput1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+app:errorEnabled="true"
+app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength1"
@@ -66,6 +69,7 @@
                     android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"
+                    android:imeOptions="actionDone"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
 
@@ -110,7 +114,9 @@
                 android:id="@+id/strengthinput2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+app:errorEnabled="true"
+app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength2"
@@ -119,6 +125,7 @@
                     android:hint="Strength"
                     android:inputType="textCapWords"
                     android:maxLength="100"
+                    android:imeOptions="actionDone"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
@@ -165,7 +172,9 @@
                 android:id="@+id/strengthinput3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+app:errorEnabled="true"
+app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength3"
@@ -174,6 +183,7 @@
                     android:hint="Strength"
                     android:inputType="textCapWords"
                     android:maxLength="100"
+                    android:imeOptions="actionDone"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
@@ -220,7 +230,9 @@
                 android:id="@+id/strengthinput4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+app:errorEnabled="true"
+app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength4"
@@ -229,6 +241,7 @@
                     android:hint="Strength"
                     android:inputType="textCapWords"
                     android:maxLength="100"
+                    android:imeOptions="actionDone"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
@@ -275,7 +288,9 @@
                 android:id="@+id/strengthinput5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+app:errorEnabled="true"
+app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength5"
@@ -283,6 +298,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Strength"
                     android:inputType="textCapWords"
+                    android:imeOptions="actionDone"
                     android:maxLength="100"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
@@ -330,13 +346,16 @@
                 android:id="@+id/strengthinput6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+app:errorEnabled="true"
+app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -385,13 +404,16 @@
                 android:id="@+id/strengthinput7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+app:errorEnabled="true"
+app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -440,13 +462,16 @@
                 android:id="@+id/strengthinput8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+app:errorEnabled="true"
+app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -495,13 +520,16 @@
                 android:id="@+id/strengthinput9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+app:errorEnabled="true"
+app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -549,13 +577,16 @@
                 android:id="@+id/strengthinput10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+app:errorEnabled="true"
+app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/strength10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Strength"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"

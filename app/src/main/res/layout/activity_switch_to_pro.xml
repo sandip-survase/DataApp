@@ -8,9 +8,9 @@
     tools:context="placeme.octopusites.com.placeme.SwitchToProActivity">
 
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@mipmap/ic_launcher"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/logo"
         android:layout_below="@+id/versiontxt"
         android:id="@+id/placemelogo"
         android:layout_centerHorizontal="true"
@@ -28,47 +28,38 @@
             android:id="@+id/trytxt"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:textColor="#282f35"
-            android:textSize="20dp"
+            android:textColor="@color/dark_color"
+            android:textSize="16dp"
             android:text="Place Me"
             android:layout_marginTop="7dp"
 
 
             />
-        <TextView
-            android:id="@+id/protxt"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:textColor="#282f35"
-            android:textSize="12dp"
-            android:text="Pro"
-            android:layout_marginTop="2dp"
-            android:layout_toRightOf="@+id/trytxt"
 
-            />
     </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hi abcd, Thank You for choosing Place Me Pro. We are currently working on pro features. We will notify you once we enable Place Me Pro for you, Meanwhile, you can enjoy our free version."
+        android:text="Hey there ! We are currently working on this feature. We will notify you once we enable it for you, Meanwhile, you can enjoy other Place Me features."
         android:id="@+id/hitxt"
-        android:textColor="#282f35"
+        android:textColor="@color/dark_color"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:gravity="center"
+        android:textSize="14dp"
         android:layout_below="@+id/switchtorl"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#282f35"
+        android:textColor="@color/sky_blue_color"
         android:text="Stay tuned..."
         android:layout_below="@+id/hitxt"
         android:id="@+id/staytxt"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:textSize="20dp"
+        android:textSize="18dp"
         />
 
 </RelativeLayout>

@@ -154,8 +154,7 @@
                 android:maxLength="100"
                 android:inputType="textCapWords"
                 android:singleLine="true"
-                android:imeOptions="actionNext"
-
+                android:imeOptions="actionDone"
                 android:id="@+id/citystaecountry"
                 />
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/myprofileskills"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -52,13 +53,16 @@
                 android:id="@+id/skillinput1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Skill"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -472,7 +476,9 @@
                 android:id="@+id/skillinput2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill2"
@@ -553,7 +559,9 @@
                 android:id="@+id/skillinput3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill3"
@@ -634,7 +642,9 @@
                 android:id="@+id/skillinput4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill4"
@@ -717,7 +727,9 @@
                 android:id="@+id/skillinput5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill5"
@@ -797,7 +809,9 @@
                 android:id="@+id/skillinput6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill6"
@@ -878,7 +892,9 @@
                 android:id="@+id/skillinput7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill7"
@@ -959,7 +975,9 @@
                 android:id="@+id/skillinput8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill8"
@@ -1040,7 +1058,9 @@
                 android:id="@+id/skillinput9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill9"
@@ -1120,13 +1140,16 @@
                 android:id="@+id/skillinput10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Skill"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -1201,13 +1224,16 @@
                 android:id="@+id/skillinput11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Skill"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -1282,13 +1308,16 @@
                 android:id="@+id/skillinput12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Skill"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -1363,13 +1392,16 @@
                 android:id="@+id/skillinput13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Skill"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -1444,13 +1476,16 @@
                 android:id="@+id/skillinput14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Skill"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -1525,13 +1560,16 @@
                 android:id="@+id/skillinput15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Skill"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -1606,13 +1644,16 @@
                 android:id="@+id/skillinput16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill16"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Skill"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -1687,13 +1728,16 @@
                 android:id="@+id/skillinput17"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill17"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Skill"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -1767,13 +1811,16 @@
                 android:id="@+id/skillinput18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill18"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Skill"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -1848,13 +1895,16 @@
                 android:id="@+id/skillinput19"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill19"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Skill"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -1929,13 +1979,16 @@
                 android:id="@+id/skillinput20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/skill20"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Skill"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
                     android:maxLength="100"
                     android:singleLine="true"
@@ -2002,8 +2055,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_below="@+id/addmoreskill"
-            android:layout_marginTop="20dp"
-            />
+            android:layout_marginTop="20dp" />
 
         <TextView
             android:id="@+id/addmoreskilltxt"

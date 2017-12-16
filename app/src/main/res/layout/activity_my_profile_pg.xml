@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/myprofilepg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,10 +22,10 @@
         <TextView
             android:id="@+id/pgtxt"
             android:layout_width="wrap_content"
-            android:elevation="2dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:background="@drawable/textviewborder"
+            android:elevation="2dp"
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
@@ -89,7 +90,9 @@
                     android:id="@+id/pmarkssem1input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/pmarkssem1"
@@ -108,7 +111,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pmarkssem1input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/poutofsem1"
@@ -137,7 +142,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/ppercentsem1"
@@ -164,7 +171,9 @@
                     android:id="@+id/pmarksusem2input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/pmarkssem2"
@@ -183,7 +192,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pmarksusem2input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/poutofsem2"
@@ -213,7 +224,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/ppercentsem2"
@@ -239,7 +252,9 @@
                     android:id="@+id/pmarksusem3input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/pmarkssem3"
@@ -258,7 +273,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pmarksusem3input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/poutofsem3"
@@ -288,7 +305,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/ppercentsem3"
@@ -315,7 +334,9 @@
                     android:id="@+id/pmarksusem4input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/pmarkssem4"
@@ -334,7 +355,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pmarksusem4input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/poutofsem4"
@@ -364,7 +387,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/ppercentsem4"
@@ -391,7 +416,9 @@
                     android:id="@+id/pmarksusem5input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/pmarkssem5"
@@ -410,7 +437,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pmarksusem5input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/poutofsem5"
@@ -440,7 +469,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/ppercentsem5"
@@ -467,7 +498,9 @@
                     android:id="@+id/pmarksusem6input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/pmarkssem6"
@@ -486,7 +519,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pmarksusem6input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/poutofsem6"
@@ -516,7 +551,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/ppercentsem6"
@@ -538,7 +575,9 @@
                 android:layout_below="@+id/edur22"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/pgsemaggregate"
@@ -601,7 +640,9 @@
                 android:layout_below="@+id/pgsemcoursespinner"
                 android:layout_marginTop="15dp"
                 android:theme="@style/TextLabel"
-                android:visibility="gone">
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/othersemcourse"
@@ -661,7 +702,9 @@
                 android:layout_below="@+id/pgsemstreamspinner"
                 android:layout_marginTop="15dp"
                 android:theme="@style/TextLabel"
-                android:visibility="gone">
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/othersemstream"
@@ -721,7 +764,9 @@
                 android:layout_below="@+id/pgsemuniversityspinner"
                 android:layout_marginTop="15dp"
                 android:theme="@style/TextLabel"
-                android:visibility="gone">
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/othersemuniversity"
@@ -741,7 +786,9 @@
                 android:layout_below="@+id/othersemuniversityinput"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/schoolnamepgsem"
@@ -767,7 +814,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/yearofpassingpgsem"
@@ -807,7 +856,9 @@
                     android:id="@+id/pmarksuyear1input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/pmarksyear1"
@@ -826,7 +877,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pmarksuyear1input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/poutofyear1"
@@ -855,7 +908,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/ppercentyear1"
@@ -882,7 +937,9 @@
                     android:id="@+id/pmarksuyear2input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/pmarksyear2"
@@ -901,7 +958,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pmarksuyear2input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/poutofyear2"
@@ -931,7 +990,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/ppercentyear2"
@@ -957,7 +1018,9 @@
                     android:id="@+id/pmarksuyear3input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/pmarksyear3"
@@ -976,7 +1039,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/pmarksuyear3input"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/poutofyear3"
@@ -1006,7 +1071,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/ppercentyear3"
@@ -1027,16 +1094,18 @@
                 android:layout_below="@+id/edur25"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/pgyearaggregate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Aggregate"
-                    android:maxLength="5"
                     android:imeOptions="actionDone"
                     android:inputType="numberDecimal"
+                    android:maxLength="5"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
                     android:textSize="15dp" />
@@ -1090,7 +1159,9 @@
                 android:layout_below="@+id/pgyearcoursespinner"
                 android:layout_marginTop="15dp"
                 android:theme="@style/TextLabel"
-                android:visibility="gone">
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/otheryearcourse"
@@ -1150,7 +1221,9 @@
                 android:layout_below="@+id/pgyearstreamspinner"
                 android:layout_marginTop="15dp"
                 android:theme="@style/TextLabel"
-                android:visibility="gone">
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/otheryearstream"
@@ -1210,7 +1283,9 @@
                 android:layout_below="@+id/pgyearuniversityspinner"
                 android:layout_marginTop="15dp"
                 android:theme="@style/TextLabel"
-                android:visibility="gone">
+                android:visibility="gone"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/otheryearuniversity"
@@ -1230,7 +1305,9 @@
                 android:layout_below="@+id/otheryearuniversityinput"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/schoolnamepgyear"
@@ -1256,7 +1333,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="25dp"
-                    android:theme="@style/TextLabel">
+                    android:theme="@style/TextLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/yearofpassingpgyear"

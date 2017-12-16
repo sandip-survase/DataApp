@@ -31,7 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
-import static placeme.octopusites.com.placeme.R.id.cpass;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
@@ -40,7 +39,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     String enccurrentpass,encnewpass;
     JSONObject json;
     JSONParser jParser = new JSONParser();
-    private static String url_changepass = "http://192.168.100.100/PlaceMe/ChangePass";
+
     ProgressBar progressBar;
     Button changepassbutton;
     String digest1,digest2;
@@ -239,7 +238,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("p", enccurrentpass));
             params.add(new BasicNameValuePair("a", encnewpass));
 
-            json = jParser.makeHttpRequest(url_changepass, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_changepass, "GET", params);
 
             Log.d("TAG", "change password json "+json);
             try {

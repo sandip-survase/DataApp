@@ -68,15 +68,15 @@
                         >
 
                         <ImageButton
-                            android:padding="8dp"
                             android:id="@+id/iv_camera"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/camera_icon"
+                            android:src="@drawable/camera_icon_new"
                             android:background="@drawable/button_round_camera"
                             android:elevation="8dp"
                             android:cropToPadding="true"
-                            android:scaleType="centerCrop"
+                            android:padding="12dp"
+                            android:scaleType="centerInside"
                             />
 
                     </com.andexert.library.RippleView>
@@ -1231,6 +1231,7 @@
                         android:textSize="12dp"
                         android:textColor="@color/dark_color"
                         android:text="and 3 more"
+                        android:visibility="gone"
                         android:layout_below="@+id/noexptab"
                         android:layout_marginRight="10dp"
                         />

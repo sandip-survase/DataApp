@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/myprofilepublications"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/myprofilepublications"
     android:background="@color/while_color">
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_my_profile_publications"
@@ -14,1682 +16,1866 @@
         tools:context="com.octopusites.placeme.MyProfilePublications">
 
         <TextView
+            android:id="@+id/publicationtxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Publications"
-            android:textSize="18dp"
-            android:textColor="@color/while_color"
-            android:id="@+id/publicationtxt"
             android:layout_centerHorizontal="true"
-            android:paddingTop="10dp"
+            android:background="@drawable/textviewborder"
+            android:elevation="2dp"
             android:paddingBottom="10dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:elevation="2dp"
+            android:paddingTop="10dp"
+            android:text="Publications"
+            android:textColor="@color/while_color"
 
-            android:background="@drawable/textviewborder"
-            />
+            android:textSize="18dp" />
+
         <ImageView
+            android:id="@+id/trashpublication1"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/publicationtxt"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/delete_icon"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashpublication1"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/publicationtxt"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash1selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/publicationtxt"
+            android:layout_marginTop="20dp" />
+
         <RelativeLayout
+            android:id="@+id/publicationrl1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/publicationtxt"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/publicationrl1"
-            >
+            android:layout_marginTop="20dp">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput1"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/title1"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationinput1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationinput1"
                 android:layout_below="@id/titleinput1"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publication1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Publisher/Publication Name *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/publication1"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/authorsinput1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/authorsinput1"
                 android:layout_below="@id/publicationinput1"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/author1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Authors (Comma Seperated) *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/author1"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationdateinput1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationdateinput1"
                 android:layout_below="@id/authorsinput1"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publicationdate1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date *"
-                    android:singleLine="true"
                     android:focusable="false"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:hint="Publication Date *"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
+                    android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/publicationdate1"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput1"
                 android:layout_below="@id/publicationdateinput1"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/url1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:textSize="16dp"
-                    android:maxLength="1000"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="1000"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/url1"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descriptioninput1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput1"
                 android:layout_marginTop="10dp"
-                android:id="@+id/descriptioninput1"
 
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
+                    android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
+                    android:lines="5"
                     android:maxLength="1000"
+                    android:scrollHorizontally="false"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/description1"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
         <View
+            android:id="@+id/publicationline1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl1"
-            android:id="@+id/publicationline1"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashpublication2"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/publicationline1"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/delete_icon"
+            android:layout_below="@+id/publicationline1"
             android:layout_marginTop="35dp"
-            android:id="@+id/trashpublication2"
-            />
+            android:src="@drawable/delete_icon" />
 
         <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
-            android:layout_below="@+id/publicationline1"
-            android:layout_marginTop="20dp"
             android:id="@+id/trash2selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/publicationline1"
+            android:layout_marginTop="20dp" />
 
         <RelativeLayout
+            android:id="@+id/publicationrl2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/publicationline1"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/publicationrl2"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput2"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/title2"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationinput2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationinput2"
                 android:layout_below="@id/titleinput2"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publication2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Publisher/Publication Name *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/publication2"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/authorsinput2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/authorsinput2"
                 android:layout_below="@id/publicationinput2"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/author2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Authors (Comma Seperated) *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/author2"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationdateinput2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationdateinput2"
                 android:layout_below="@id/authorsinput2"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publicationdate2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
                     android:focusable="false"
+                    android:hint="Publication Date *"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/publicationdate2"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput2"
                 android:layout_below="@id/publicationdateinput2"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/url2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:textSize="16dp"
-                    android:maxLength="1000"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="1000"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/url2"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descriptioninput2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/descriptioninput2"
                 android:layout_below="@+id/urlinput2"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
+                    android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
+                    android:lines="5"
                     android:maxLength="1000"
+                    android:scrollHorizontally="false"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/description2"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
+
         <View
+            android:id="@+id/publicationline2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl2"
-            android:id="@+id/publicationline2"
             android:layout_marginTop="20dp"
+            android:background="@color/sky_blue_color"
             android:visibility="gone"
 
             />
+
         <ImageView
+            android:id="@+id/trashpublication3"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/publicationline2"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/delete_icon"
+            android:layout_below="@+id/publicationline2"
             android:layout_marginTop="35dp"
-            android:id="@+id/trashpublication3"
+            android:src="@drawable/delete_icon"
 
             />
 
         <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
-            android:layout_below="@+id/publicationline2"
-            android:layout_marginTop="20dp"
             android:id="@+id/trash3selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/publicationline2"
+            android:layout_marginTop="20dp" />
 
         <RelativeLayout
+            android:id="@+id/publicationrl3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/publicationline2"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/publicationrl3"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput3"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/title3"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationinput3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationinput3"
                 android:layout_below="@id/titleinput3"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publication3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Publisher/Publication Name *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/publication3"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/authorsinput3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/authorsinput3"
                 android:layout_below="@id/publicationinput3"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/author3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Authors (Comma Seperated) *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/author3"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationdateinput3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationdateinput3"
                 android:layout_below="@id/authorsinput3"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publicationdate3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date *"
-                    android:textSize="16dp"
                     android:focusable="false"
+                    android:hint="Publication Date *"
 
-                    android:maxLength="500"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/publicationdate3"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput3"
                 android:layout_below="@id/publicationdateinput3"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/url3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:textSize="16dp"
-                    android:maxLength="1000"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="1000"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/url3"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descriptioninput3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput3"
                 android:layout_marginTop="10dp"
-                android:id="@+id/descriptioninput3"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
+                    android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
+                    android:lines="5"
                     android:maxLength="1000"
+                    android:scrollHorizontally="false"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/description3"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
+
         <View
+            android:id="@+id/publicationline3"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl3"
-            android:id="@+id/publicationline3"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashpublication4"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/publicationline3"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/delete_icon"
+            android:layout_below="@+id/publicationline3"
             android:layout_marginTop="35dp"
-            android:id="@+id/trashpublication4"
-            />
+            android:src="@drawable/delete_icon" />
 
         <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
-            android:layout_below="@+id/publicationline3"
-            android:layout_marginTop="20dp"
             android:id="@+id/trash4selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/publicationline3"
+            android:layout_marginTop="20dp" />
 
         <RelativeLayout
+            android:id="@+id/publicationrl4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/publicationline3"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/publicationrl4"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput4"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/title4"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationinput4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationinput4"
                 android:layout_below="@id/titleinput4"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publication4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Publisher/Publication Name *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/publication4"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/authorsinput4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/authorsinput4"
                 android:layout_below="@id/publicationinput4"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/author4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Authors (Comma Seperated) *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/author4"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationdateinput4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationdateinput4"
                 android:layout_below="@id/authorsinput4"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publicationdate4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date *"
                     android:focusable="false"
 
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:hint="Publication Date *"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/publicationdate4"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput4"
                 android:layout_below="@id/publicationdateinput4"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/url4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:textSize="16dp"
-                    android:maxLength="1000"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="1000"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/url4"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descriptioninput4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/descriptioninput4"
                 android:layout_below="@+id/urlinput4"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
+                    android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
+                    android:lines="5"
                     android:maxLength="1000"
+                    android:scrollHorizontally="false"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/description4"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
         <View
+            android:id="@+id/publicationline4"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl4"
-            android:id="@+id/publicationline4"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashpublication5"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/publicationline4"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/delete_icon"
+            android:layout_below="@+id/publicationline4"
             android:layout_marginTop="35dp"
-            android:id="@+id/trashpublication5"
-            />
+            android:src="@drawable/delete_icon" />
 
         <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
-            android:layout_below="@+id/publicationline4"
-            android:layout_marginTop="20dp"
             android:id="@+id/trash5selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/publicationline4"
+            android:layout_marginTop="20dp" />
 
         <RelativeLayout
+            android:id="@+id/publicationrl5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/publicationline4"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/publicationrl5"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput5"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/title5"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationinput5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationinput5"
                 android:layout_below="@id/titleinput5"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publication5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Publisher/Publication Name *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/publication5"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/authorsinput5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/authorsinput5"
                 android:layout_below="@id/publicationinput5"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/author5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Authors (Comma Seperated) *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/author5"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationdateinput5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationdateinput5"
                 android:layout_below="@id/authorsinput5"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publicationdate5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date *"
                     android:focusable="false"
 
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:hint="Publication Date *"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/publicationdate5"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput5"
                 android:layout_below="@id/publicationdateinput5"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/url5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:textSize="16dp"
-                    android:maxLength="1000"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="1000"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/url5"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descriptioninput5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/descriptioninput5"
                 android:layout_below="@+id/urlinput5"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
+                    android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
+                    android:lines="5"
                     android:maxLength="1000"
+                    android:scrollHorizontally="false"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/description5"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
         <View
+            android:id="@+id/publicationline5"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl5"
-            android:id="@+id/publicationline5"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashpublication6"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/publicationline5"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/delete_icon"
+            android:layout_below="@+id/publicationline5"
             android:layout_marginTop="35dp"
-            android:id="@+id/trashpublication6"
-            />
+            android:src="@drawable/delete_icon" />
 
         <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
-            android:layout_below="@+id/publicationline5"
-            android:layout_marginTop="20dp"
             android:id="@+id/trash6selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/publicationline5"
+            android:layout_marginTop="20dp" />
 
         <RelativeLayout
+            android:id="@+id/publicationrl6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/publicationline5"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/publicationrl6"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput6"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/title6"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationinput6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationinput6"
                 android:layout_below="@id/titleinput6"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publication6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Publisher/Publication Name *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/publication6"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/authorsinput6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/authorsinput6"
                 android:layout_below="@id/publicationinput6"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/author6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Authors (Comma Seperated) *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/author6"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationdateinput6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationdateinput6"
                 android:layout_below="@id/authorsinput6"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publicationdate6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date *"
                     android:focusable="false"
 
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:hint="Publication Date *"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/publicationdate6"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput6"
                 android:layout_below="@id/publicationdateinput6"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/url6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:textSize="16dp"
-                    android:maxLength="1000"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="1000"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/url6"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descriptioninput6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput6"
-                android:id="@+id/descriptioninput6"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
+                    android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
+                    android:lines="5"
                     android:maxLength="1000"
+                    android:scrollHorizontally="false"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/description6"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
         <View
+            android:id="@+id/publicationline6"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl6"
-            android:id="@+id/publicationline6"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashpublication7"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/publicationline6"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/delete_icon"
+            android:layout_below="@+id/publicationline6"
             android:layout_marginTop="35dp"
-            android:id="@+id/trashpublication7"
-            />
+            android:src="@drawable/delete_icon" />
 
         <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
-            android:layout_below="@+id/publicationline6"
-            android:layout_marginTop="20dp"
             android:id="@+id/trash7selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/publicationline6"
+            android:layout_marginTop="20dp" />
 
         <RelativeLayout
+            android:id="@+id/publicationrl7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/publicationline6"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/publicationrl7"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput7"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/title7"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationinput7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationinput7"
                 android:layout_below="@id/titleinput7"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publication7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Publisher/Publication Name *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/publication7"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/authorsinput7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/authorsinput7"
                 android:layout_below="@id/publicationinput7"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/author7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Authors (Comma Seperated) *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/author7"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationdateinput7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationdateinput7"
                 android:layout_below="@id/authorsinput7"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publicationdate7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date *"
 
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:focusable="false"
+                    android:hint="Publication Date *"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:focusable="false"
-                    android:id="@+id/publicationdate7"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput7"
                 android:layout_below="@id/publicationdateinput7"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/url7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:textSize="16dp"
-                    android:maxLength="1000"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="1000"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/url7"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descriptioninput7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput7"
-                android:id="@+id/descriptioninput7"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
+                    android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
+                    android:lines="5"
                     android:maxLength="1000"
+                    android:scrollHorizontally="false"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/description7"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
         <View
+            android:id="@+id/publicationline7"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl7"
-            android:id="@+id/publicationline7"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashpublication8"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/publicationline7"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/delete_icon"
+            android:layout_below="@+id/publicationline7"
             android:layout_marginTop="35dp"
-            android:id="@+id/trashpublication8"
-            />
+            android:src="@drawable/delete_icon" />
 
         <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
-            android:layout_below="@+id/publicationline7"
-            android:layout_marginTop="20dp"
             android:id="@+id/trash8selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/publicationline7"
+            android:layout_marginTop="20dp" />
 
         <RelativeLayout
+            android:id="@+id/publicationrl8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/publicationline7"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/publicationrl8"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput8"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/title8"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationinput8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationinput8"
                 android:layout_below="@id/titleinput8"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publication8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Publisher/Publication Name *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/publication8"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/authorsinput8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/authorsinput8"
                 android:layout_below="@id/publicationinput8"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/author8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Authors (Comma Seperated) *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/author8"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationdateinput8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationdateinput8"
                 android:layout_below="@id/authorsinput8"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publicationdate8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date *"
                     android:focusable="false"
 
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:hint="Publication Date *"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/publicationdate8"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput8"
                 android:layout_below="@id/publicationdateinput8"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/url8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:singleLine="true"
-                    android:textSize="16dp"
-                    android:maxLength="1000"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="1000"
+                    android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/url8"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descriptioninput8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput8"
                 android:layout_marginTop="10dp"
-                android:id="@+id/descriptioninput8"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
+                    android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
+                    android:lines="5"
                     android:maxLength="1000"
+                    android:scrollHorizontally="false"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/description8"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
         <View
+            android:id="@+id/publicationline8"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl8"
-            android:id="@+id/publicationline8"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashpublication9"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/publicationline8"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/delete_icon"
+            android:layout_below="@+id/publicationline8"
             android:layout_marginTop="35dp"
-            android:id="@+id/trashpublication9"
-            />
+            android:src="@drawable/delete_icon" />
 
         <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
-            android:layout_below="@+id/publicationline8"
-            android:layout_marginTop="20dp"
             android:id="@+id/trash9selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/publicationline8"
+            android:layout_marginTop="20dp" />
 
         <RelativeLayout
+            android:id="@+id/publicationrl9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/publicationline8"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/publicationrl9"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput9"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/title9"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationinput9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationinput9"
                 android:layout_below="@id/titleinput9"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publication9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Publisher/Publication Name *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/publication9"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/authorsinput9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/authorsinput9"
                 android:layout_below="@id/publicationinput9"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/author9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Authors (Comma Seperated) *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/author9"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationdateinput9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationdateinput9"
                 android:layout_below="@id/authorsinput9"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publicationdate9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date *"
                     android:focusable="false"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:hint="Publication Date *"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/publicationdate9"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput9"
                 android:layout_below="@id/publicationdateinput9"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/url9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:textSize="16dp"
-                    android:maxLength="1000"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="1000"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/url9"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descriptioninput9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput9"
                 android:layout_marginTop="10dp"
-                android:id="@+id/descriptioninput9"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
+                    android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
+                    android:lines="5"
                     android:maxLength="1000"
+                    android:scrollHorizontally="false"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/description9"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
         <View
+            android:id="@+id/publicationline9"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/sky_blue_color"
             android:layout_below="@+id/publicationrl9"
-            android:id="@+id/publicationline9"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
-            />
+            android:background="@color/sky_blue_color"
+            android:visibility="gone" />
+
         <ImageView
+            android:id="@+id/trashpublication10"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/publicationline9"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/delete_icon"
-            android:layout_marginTop="35dp"
-            android:id="@+id/trashpublication10"
-            />
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-
             android:layout_below="@+id/publicationline9"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:src="@drawable/delete_icon" />
+
+        <View
             android:id="@+id/trash10selectionview"
-            />
+            android:layout_width="50dp"
+
+            android:layout_height="50dp"
+            android:layout_below="@+id/publicationline9"
+            android:layout_marginTop="20dp" />
 
 
         <RelativeLayout
+            android:id="@+id/publicationrl10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/publicationline9"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="40dp"
-            android:id="@+id/publicationrl10"
-            android:visibility="gone"
-            >
+            android:layout_marginTop="20dp"
+            android:visibility="gone">
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/titleinput10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleinput10"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/title10"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationinput10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationinput10"
                 android:layout_below="@id/titleinput10"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publication10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Publisher/Publication Name *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/publication10"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/authorsinput10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/authorsinput10"
                 android:layout_below="@id/publicationinput10"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/author10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Authors (Comma Seperated) *"
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:imeOptions="actionDone"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/author10"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/publicationdateinput10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicationdateinput10"
                 android:layout_below="@id/authorsinput10"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/publicationdate10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Publication Date *"
 
-                    android:textSize="16dp"
-                    android:maxLength="500"
+                    android:focusable="false"
+                    android:hint="Publication Date *"
                     android:inputType="textCapWords"
+                    android:maxLength="500"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:focusable="false"
-                    android:id="@+id/publicationdate10"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlinput10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/urlinput10"
                 android:layout_below="@id/publicationdateinput10"
                 android:layout_marginTop="10dp"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/url10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="URL"
-                    android:textSize="16dp"
-                    android:maxLength="1000"
+                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
+                    android:maxLength="1000"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/url10"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/descriptioninput10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/urlinput10"
                 android:layout_marginTop="10dp"
-                android:id="@+id/descriptioninput10"
-                android:theme="@style/TextLabel">
+                android:theme="@style/TextLabel"
+                app:errorEnabled="true"
+                app:errorTextAppearance="@style/MyAppTheme.TextInputLayout">
 
                 <android.support.design.widget.TextInputEditText
+                    android:id="@+id/description10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:lines="5"
-                    android:hint="Description"
                     android:gravity="top|left"
+                    android:hint="Description"
+                    android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
-                    android:textSize="16dp"
+                    android:lines="5"
                     android:maxLength="1000"
+                    android:scrollHorizontally="false"
                     android:singleLine="true"
                     android:textColor="@color/dark_color"
-                    android:id="@+id/description10"/>
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
         <View
+            android:id="@+id/addmorepublication"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/textviewborder"
-            android:elevation="2dp"
             android:layout_below="@+id/publicationrl10"
-            android:id="@+id/addmorepublication"
             android:layout_marginTop="20dp"
-            />
+            android:background="@drawable/textviewborder"
+            android:elevation="2dp" />
 
         <TextView
+            android:id="@+id/addmorepublicationtxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/publicationrl10"
-            android:text="Add Another Publication"
-            android:textColor="@color/while_color"
-            android:textSize="18dp"
-            android:elevation="3dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            android:id="@+id/addmorepublicationtxt"
-            />
+            android:elevation="3dp"
+            android:text="Add Another Publication"
+            android:textColor="@color/while_color"
+            android:textSize="18dp" />
+
         <ImageView
+            android:id="@+id/addmorepublicationimg"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:elevation="3dp"
-            android:layout_below="@+id/publicationrl10"
             android:layout_alignParentRight="true"
-            android:src="@drawable/add_icon_white"
+            android:layout_below="@+id/publicationrl10"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
+            android:elevation="3dp"
 
-            android:id="@+id/addmorepublicationimg"
-            />
+            android:src="@drawable/add_icon_white" />
 
 
     </RelativeLayout>
