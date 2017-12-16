@@ -12,12 +12,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class NoInternet extends AppCompatActivity {
 
     Button refreshButton;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
+    TextView msg,msg2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,13 @@ public class NoInternet extends AppCompatActivity {
         setContentView(R.layout.activity_no_internet);
 
         refreshButton = (Button) findViewById(R.id.refreshButton);
+        msg=(TextView)findViewById(R.id.msg);
+        msg2=(TextView)findViewById(R.id.msg2);
+        msg.setTypeface(MyConstants.getBold(this));
+        msg2.setTypeface(MyConstants.getLight(this));
+        refreshButton.setTypeface(MyConstants.getBold(this));
+
+
 
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
