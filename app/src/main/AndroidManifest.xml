@@ -213,16 +213,14 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".PlacemePro"
-            android:screenOrientation="portrait"
-            android:theme="@style/ProTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".KnowMoreActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dialog" />
         <activity
             android:name=".SwitchToProActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/ProTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".GetTemplatesActivity"
             android:screenOrientation="portrait" />

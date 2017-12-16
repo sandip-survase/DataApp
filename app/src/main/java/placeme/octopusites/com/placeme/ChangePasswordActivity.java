@@ -31,7 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
-import static placeme.octopusites.com.placeme.R.id.cpass;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
