@@ -252,7 +252,7 @@ public class HrIntro extends AppCompatActivity {
 
         new Thread(new Runnable() {
             public void run() {
-
+                android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND);
                 try {
                     JSONObject jsonObject = new JSONObject(getJson());
                     JSONArray array = jsonObject.getJSONArray("array");
