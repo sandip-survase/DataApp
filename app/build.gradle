@@ -52,7 +52,7 @@ dependencies {
     compile 'com.github.mabbas007:TagsEditText:1.0.5'
     compile 'cat.ereza:customactivityoncrash:2.1.0'
 
-    compile 'cat.ereza:customactivityoncrash:2.1.0'
+//    compile 'cat.ereza:customactivityoncrash:2.1.0'
     compile 'com.github.barteksc:android-pdf-viewer:2.8.1'
     testCompile 'junit:junit:4.12'
     compile 'com.github.traex.rippleeffect:library:1.3'

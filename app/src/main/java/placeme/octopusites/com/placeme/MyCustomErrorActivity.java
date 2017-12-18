@@ -53,19 +53,19 @@ public class MyCustomErrorActivity extends AppCompatActivity {
         username = MySharedPreferencesManager.getUsername(this);
         error=getlogcat();
 
-//        abd=error+CustomActivityOnCrash.getAllErrorDetailsFromIntent(this, getIntent());
+        abd=error+CustomActivityOnCrash.getAllErrorDetailsFromIntent(this, getIntent());
         Log.d("TAG", "onCreate: username -"+username);
         Log.d("TAG", "onCreate: abd - "+abd);
         new ask().execute();
 
-        config = CustomActivityOnCrash.getConfigFromIntent(getIntent());
+//        config = CustomActivityOnCrash.getConfigFromIntent(getIntent());
 
         ohsnapmsg=(TextView)findViewById(R.id.ohsnapmsg);
         ohsnapmsg2=(TextView)findViewById(R.id.ohsnapmsg2);
         ohsnapmsg.setTypeface(MyConstants.getBold(this));
         ohsnapmsg2.setTypeface(MyConstants.getLight(this));
         Button restartButton = (Button) findViewById(R.id.restart_button);
-//
+
         if (config.isShowRestartButton() && config.getRestartActivityClass() != null) {
             restartButton.setText("Restart app");
             restartButton.setOnClickListener(new View.OnClickListener() {
