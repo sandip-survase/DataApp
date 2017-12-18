@@ -1526,7 +1526,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             json = jParser.makeHttpRequest(Z.url_SendActivationCode, "GET", params);
             try {
                 s = json.getString("info");
-                Log.d("TAG2", "json: " + json);
+                Log.d("TAG2", "SendActivationCode json: " + json);
 
             } catch (Exception e) {
                 Log.d("TAG", "doInBackground: 2 " + e.getMessage());
