@@ -260,7 +260,7 @@ public class ViewNotification extends AppCompatActivity {
     {
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .encodedAuthority(MyConstants.VPS_IP)
+                .encodedAuthority(Z.VPS_IP)
                 .path("CreateNotificationTemp/DownloadAttachmentFiles")
                 .appendQueryParameter("u", username)
                 .appendQueryParameter("id", id)
@@ -306,7 +306,7 @@ public class ViewNotification extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("id", param[0]));       //0
-            json = jParser.makeHttpRequest(MyConstants.url_changenotificationsreadstatus, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_changenotificationsreadstatus, "GET", params);
             return r;
         }
 

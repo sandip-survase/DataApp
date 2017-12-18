@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar_title=(TextView)toolbar.findViewById(R.id.toolbar_title);
-        toolbar_title.setTypeface(MyConstants.getRighteous(MainActivity.this));
+        toolbar_title.setTypeface(Z.getRighteous(MainActivity.this));
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         toolbar_title.setText("Notifications");
@@ -564,54 +564,54 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
-                pt1.setTypeface(MyConstants.getBold(MainActivity.this));
+                pt1.setTypeface(Z.getBold(MainActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
-                pt2.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt2.setTypeface(Z.getLight(MainActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
-                pt3.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt3.setTypeface(Z.getLight(MainActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
                 TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
-                pt8.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt8.setTypeface(Z.getLight(MainActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
                 TextView pt4=(TextView)hView.findViewById(R.id.protxt);
-                pt4.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt4.setTypeface(Z.getLight(MainActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
-                pt5.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt5.setTypeface(Z.getLight(MainActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
-                pt6.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt6.setTypeface(Z.getLight(MainActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
 
                 TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
-                pt7.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt7.setTypeface(Z.getLight(MainActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -633,53 +633,53 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
-                pt1.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt1.setTypeface(Z.getLight(MainActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon_selected);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
-                pt2.setTypeface(MyConstants.getBold(MainActivity.this));
+                pt2.setTypeface(Z.getBold(MainActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
-                pt3.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt3.setTypeface(Z.getLight(MainActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
                 TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
-                pt8.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt8.setTypeface(Z.getLight(MainActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
                 TextView pt4=(TextView)hView.findViewById(R.id.protxt);
-                pt4.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt4.setTypeface(Z.getLight(MainActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
-                pt5.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt5.setTypeface(Z.getLight(MainActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
-                pt6.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt6.setTypeface(Z.getLight(MainActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
                 TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
-                pt7.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt7.setTypeface(Z.getLight(MainActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -699,53 +699,53 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
-                pt1.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt1.setTypeface(Z.getLight(MainActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
-                pt2.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt2.setTypeface(Z.getLight(MainActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon_selected);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
-                pt3.setTypeface(MyConstants.getBold(MainActivity.this));
+                pt3.setTypeface(Z.getBold(MainActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
                 TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
-                pt8.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt8.setTypeface(Z.getLight(MainActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
                 TextView pt4=(TextView)hView.findViewById(R.id.protxt);
-                pt4.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt4.setTypeface(Z.getLight(MainActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
-                pt5.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt5.setTypeface(Z.getLight(MainActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
-                pt6.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt6.setTypeface(Z.getLight(MainActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
                 TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
-                pt7.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt7.setTypeface(Z.getLight(MainActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -764,53 +764,53 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
-                pt1.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt1.setTypeface(Z.getLight(MainActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
-                pt2.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt2.setTypeface(Z.getLight(MainActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
-                pt3.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt3.setTypeface(Z.getLight(MainActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon_selected);
                 chati.setImageDrawable(myDrawable8);
 
                 TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
-                pt8.setTypeface(MyConstants.getBold(MainActivity.this));
+                pt8.setTypeface(Z.getBold(MainActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
                 TextView pt4=(TextView)hView.findViewById(R.id.protxt);
-                pt4.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt4.setTypeface(Z.getLight(MainActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
-                pt5.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt5.setTypeface(Z.getLight(MainActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
-                pt6.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt6.setTypeface(Z.getLight(MainActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
                 TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
-                pt7.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt7.setTypeface(Z.getLight(MainActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -842,53 +842,53 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
-                pt1.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt1.setTypeface(Z.getLight(MainActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
-                pt2.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt2.setTypeface(Z.getLight(MainActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
-                pt3.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt3.setTypeface(Z.getLight(MainActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
                 TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
-                pt8.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt8.setTypeface(Z.getLight(MainActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
                 TextView pt4=(TextView)hView.findViewById(R.id.protxt);
-                pt4.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt4.setTypeface(Z.getLight(MainActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon_selected);
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
-                pt5.setTypeface(MyConstants.getBold(MainActivity.this));
+                pt5.setTypeface(Z.getBold(MainActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
-                pt6.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt6.setTypeface(Z.getLight(MainActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
                 TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
-                pt7.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt7.setTypeface(Z.getLight(MainActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -906,53 +906,53 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
-                pt1.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt1.setTypeface(Z.getLight(MainActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
-                pt2.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt2.setTypeface(Z.getLight(MainActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
-                pt3.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt3.setTypeface(Z.getLight(MainActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
                 TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
-                pt8.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt8.setTypeface(Z.getLight(MainActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
                 TextView pt4=(TextView)hView.findViewById(R.id.protxt);
-                pt4.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt4.setTypeface(Z.getLight(MainActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
-                pt5.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt5.setTypeface(Z.getLight(MainActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon_selected);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
-                pt6.setTypeface(MyConstants.getBold(MainActivity.this));
+                pt6.setTypeface(Z.getBold(MainActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
-                pt7.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt7.setTypeface(Z.getLight(MainActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -973,53 +973,53 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
-                pt1.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt1.setTypeface(Z.getLight(MainActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2=(TextView)hView.findViewById(R.id.notificationtxt);
-                pt2.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt2.setTypeface(Z.getLight(MainActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
-                pt3.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt3.setTypeface(Z.getLight(MainActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable8 = getResources().getDrawable(R.drawable.messages_icon);
                 chati.setImageDrawable(myDrawable8);
 
                 TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
-                pt8.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt8.setTypeface(Z.getLight(MainActivity.this));
                 pt8.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable4 = getResources().getDrawable(R.drawable.pro_icon);
                 proi.setImageDrawable(myDrawable4);
 
                 TextView pt4=(TextView)hView.findViewById(R.id.protxt);
-                pt4.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt4.setTypeface(Z.getLight(MainActivity.this));
                 pt4.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
-                pt5.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt5.setTypeface(Z.getLight(MainActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
-                pt6.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt6.setTypeface(Z.getLight(MainActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
                 TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
-                pt7.setTypeface(MyConstants.getLight(MainActivity.this));
+                pt7.setTypeface(Z.getLight(MainActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -1034,35 +1034,35 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
         notificationi.setImageDrawable(myDrawable);
 
         TextView pt=(TextView)hView.findViewById(R.id.notificationtxt);
-        pt.setTypeface(MyConstants.getBold(MainActivity.this));
+        pt.setTypeface(Z.getBold(MainActivity.this));
         pt.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
         TextView pt1=(TextView)hView.findViewById(R.id.profiletxt);
-        pt1.setTypeface(MyConstants.getLight(MainActivity.this));
+        pt1.setTypeface(Z.getLight(MainActivity.this));
         pt1.setTextColor(getResources().getColor(R.color.while_color));
 
         TextView pt3=(TextView)hView.findViewById(R.id.placementtxt);
-        pt3.setTypeface(MyConstants.getLight(MainActivity.this));
+        pt3.setTypeface(Z.getLight(MainActivity.this));
         pt3.setTextColor(getResources().getColor(R.color.while_color));
 
         TextView pt8=(TextView)hView.findViewById(R.id.chattxt);
-        pt8.setTypeface(MyConstants.getLight(MainActivity.this));
+        pt8.setTypeface(Z.getLight(MainActivity.this));
         pt8.setTextColor(getResources().getColor(R.color.while_color));
 
         TextView pt4=(TextView)hView.findViewById(R.id.protxt);
-        pt4.setTypeface(MyConstants.getLight(MainActivity.this));
+        pt4.setTypeface(Z.getLight(MainActivity.this));
         pt4.setTextColor(getResources().getColor(R.color.while_color));
 
         TextView pt5=(TextView)hView.findViewById(R.id.settingstxt);
-        pt5.setTypeface(MyConstants.getLight(MainActivity.this));
+        pt5.setTypeface(Z.getLight(MainActivity.this));
         pt5.setTextColor(getResources().getColor(R.color.while_color));
 
         TextView pt6=(TextView)hView.findViewById(R.id.blogtxt);
-        pt6.setTypeface(MyConstants.getLight(MainActivity.this));
+        pt6.setTypeface(Z.getLight(MainActivity.this));
         pt6.setTextColor(getResources().getColor(R.color.while_color));
 
         TextView pt7=(TextView)hView.findViewById(R.id.abttxt);
-        pt7.setTypeface(MyConstants.getLight(MainActivity.this));
+        pt7.setTypeface(Z.getLight(MainActivity.this));
         pt7.setTextColor(getResources().getColor(R.color.while_color));
 
         recyclerViewNotification = (RecyclerView) findViewById(R.id.recycler_view);
@@ -1351,7 +1351,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));
-            json = jParser.makeHttpRequest(MyConstants.url_get_chatrooms, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_get_chatrooms, "GET", params);
 
             try {
 
@@ -1432,7 +1432,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
             try {
 
-                json = jParser.makeHttpRequest(MyConstants.url_getmessagesreadstatus, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_getmessagesreadstatus, "GET", params);
                 unread_count[index] = json.getString("unreadcount");
 
 
@@ -1472,9 +1472,9 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
             try {
 
-                json = jParser.makeHttpRequest(MyConstants.url_getnotificationsmetadata, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_getnotificationsmetadata, "GET", params);
                 unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
-                json = jParser.makeHttpRequest(MyConstants.url_getplacementsmetadata, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_getplacementsmetadata, "GET", params);
                 unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
 
 
@@ -1547,7 +1547,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         List<NameValuePair> params = new ArrayList<NameValuePair>();
                         params.add(new BasicNameValuePair("u", username));       //0
                         params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-                        json = jParser.makeHttpRequest(MyConstants.url_getnotifications, "GET", params);
+                        json = jParser.makeHttpRequest(Z.url_getnotifications, "GET", params);
 
                         notificationcount = Integer.parseInt(json.getString("count"));
 
@@ -1588,7 +1588,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                             List<NameValuePair> params = new ArrayList<NameValuePair>();
                             params.add(new BasicNameValuePair("u", username));       //0
                             params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-                            json = jParser.makeHttpRequest(MyConstants.url_getnotifications, "GET", params);
+                            json = jParser.makeHttpRequest(Z.url_getnotifications, "GET", params);
 
                             notificationcount = Integer.parseInt(json.getString("count"));
 
@@ -1728,7 +1728,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                         List<NameValuePair> params = new ArrayList<NameValuePair>();
                         params.add(new BasicNameValuePair("u", username));
                         params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
-                        json = jParser.makeHttpRequest(MyConstants.url_getplacements, "GET", params);
+                        json = jParser.makeHttpRequest(Z.url_getplacements, "GET", params);
 
                         placementcount = Integer.parseInt(json.getString("count"));
                         placementids = new String[placementcount];
@@ -1793,7 +1793,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                             List<NameValuePair> params = new ArrayList<NameValuePair>();
                             params.add(new BasicNameValuePair("u", username));
                             params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
-                            json = jParser.makeHttpRequest(MyConstants.url_getplacements, "GET", params);
+                            json = jParser.makeHttpRequest(Z.url_getplacements, "GET", params);
 
                             placementcount = Integer.parseInt(json.getString("count"));
 
@@ -2080,7 +2080,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
             try {
 
-                json = jParser.makeHttpRequest(MyConstants.url_getnotificationsmetadata, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_getnotificationsmetadata, "GET", params);
 
                 notificationpages = Integer.parseInt(json.getString("pages"));
                 called_pages_notification = new int[notificationpages];
@@ -2090,7 +2090,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 Log.d("backtrack", "**unread** count in GetNotificationsReadStatus:: " + unreadcountNotification);
 
 
-                json = jParser.makeHttpRequest(MyConstants.url_getnotificationsreadstatus, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_getnotificationsreadstatus, "GET", params);
 
                 readstatuscountNotification = Integer.parseInt(json.getString("count"));
                 Log.d("backtrack", "readstatuscountNotification:--- " + readstatuscountNotification);
@@ -2132,7 +2132,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
             try {
 
-                json = jParser.makeHttpRequest(MyConstants.url_getplacementsmetadata, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_getplacementsmetadata, "GET", params);
                 placementpages = Integer.parseInt(json.getString("pages"));
                 called_pages_placement = new int[placementpages];
                 total_no_of_placements = Integer.parseInt(json.getString("count"));
@@ -2141,7 +2141,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 unreadcountPlacement = Integer.parseInt(json.getString("unreadcount"));
 
 
-                json = jParser.makeHttpRequest(MyConstants.url_getplacementsreadstatus, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_getplacementsreadstatus, "GET", params);
                 readstatuscountPlacement = Integer.parseInt(json.getString("count"));
                 Log.d("pbacktrack", "count2: " + total_no_of_placements);
 
@@ -2180,7 +2180,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-            json = jParser.makeHttpRequest(MyConstants.url_getnotifications, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_getnotifications, "GET", params);
             try {
                 notificationcount = Integer.parseInt(json.getString("count"));
 
@@ -2314,7 +2314,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("p", page_to_call_placement + ""));
-            json = jParser.makeHttpRequest(MyConstants.url_getplacements, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_getplacements, "GET", params);
             try {
                 placementcount = Integer.parseInt(json.getString("count"));
                 Log.d("pbacktrack", "=======placementcount=======: " + placementcount);
@@ -2564,7 +2564,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
                 // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+notificationuploadedby[i] , Toast.LENGTH_SHORT).show();
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", uniqueUploadersEncNotification[i]));       //0
-                json = jParser.makeHttpRequest(MyConstants.url_getlastupdated, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_getlastupdated, "GET", params);
                 try {
                     String s = json.getString("lastupdated");
                     if (s.equals("noupdate")) {
@@ -2625,7 +2625,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             for (int i = 0; i < uniqueUploadersPlacement.length; i++) {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", uniqueUploadersEncPlacement[i]));       //0
-                json = jParser.makeHttpRequest(MyConstants.url_getlastupdated, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_getlastupdated, "GET", params);
                 try {
                     String s = json.getString("lastupdated");
                     if (s.equals("noupdate")) {
@@ -2973,7 +2973,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("id", param[0]));       //0
-            json = jParser.makeHttpRequest(MyConstants.url_changenotificationsreadstatus, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_changenotificationsreadstatus, "GET", params);
             return r;
         }
 
@@ -2991,7 +2991,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("id", param[0]));       //0
-            json = jParser.makeHttpRequest(MyConstants.url_changeplacementsreadstatus, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_changeplacementsreadstatus, "GET", params);
             return r;
         }
 
@@ -3192,7 +3192,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority(MyConstants.VPS_IP)
+                .authority(Z.VPS_IP)
                 .path("AESTest/GetImage")
                 .appendQueryParameter("u", username)
                 .build();
@@ -3215,7 +3215,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
 
 
-                MultipartUtility multipart = new MultipartUtility(MyConstants.upload_profile, "UTF-8");
+                MultipartUtility multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
 
                 multipart.addFormField("u", username);
 

@@ -76,8 +76,8 @@ public class PrintProfileTabFragment extends Fragment {
         getmore=(TextView)rootView.findViewById(R.id.getmore);
         selectformattxt=(TextView)rootView.findViewById(R.id.selectformattxt);
 
-        getmore.setTypeface(MyConstants.getBold(getActivity()));
-        selectformattxt.setTypeface(MyConstants.getLight(getActivity()));
+        getmore.setTypeface(Z.getBold(getActivity()));
+        selectformattxt.setTypeface(Z.getLight(getActivity()));
         sharedpreferences=getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         username=sharedpreferences.getString(Username,null);
         MySharedPreferencesManager.save(getActivity(),"template",template+"");
@@ -86,8 +86,8 @@ public class PrintProfileTabFragment extends Fragment {
         radioButtonWord=(RadioButton)rootView.findViewById(R.id.radioButtonWord);
         radioButtonPdf=(RadioButton)rootView.findViewById(R.id.radioButtonPdf);
 
-        radioButtonWord.setTypeface(MyConstants.getBold(getActivity()));
-        radioButtonPdf.setTypeface(MyConstants.getBold(getActivity()));
+        radioButtonWord.setTypeface(Z.getBold(getActivity()));
+        radioButtonPdf.setTypeface(Z.getBold(getActivity()));
 
         radioGroupFormat.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -180,7 +180,7 @@ public class PrintProfileTabFragment extends Fragment {
             itemList.clear();
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",username));
-            json = jParser.makeHttpRequest(MyConstants.url_GetMyResumeIds, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_GetMyResumeIds, "GET", params);
             try {
                 String s = json.getString("count");
                 count=Integer.parseInt(s);
@@ -205,9 +205,9 @@ public class PrintProfileTabFragment extends Fragment {
             for(int i=0;i<count;i++)
             {
                 if(i==0)
-                    item=new ResumeTemplateItem(resumeIds[i],MyConstants.IP+"AESTest/GetResumePage?a="+resumeIds[i]+"&b=1",resumeNames[i],"checked");
+                    item=new ResumeTemplateItem(resumeIds[i], Z.IP+"AESTest/GetResumePage?a="+resumeIds[i]+"&b=1",resumeNames[i],"checked");
                 else
-                    item=new ResumeTemplateItem(resumeIds[i],MyConstants.IP+"AESTest/GetResumePage?a="+resumeIds[i]+"&b=1",resumeNames[i],"unchecked");
+                    item=new ResumeTemplateItem(resumeIds[i], Z.IP+"AESTest/GetResumePage?a="+resumeIds[i]+"&b=1",resumeNames[i],"unchecked");
                 itemList.add(item);
             }
             adapter.notifyDataSetChanged();
@@ -303,7 +303,7 @@ public class PrintProfileTabFragment extends Fragment {
             try {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", username));
-                json = jParser.makeHttpRequest(MyConstants.load_student_data, "GET", params);
+                json = jParser.makeHttpRequest(Z.load_student_data, "GET", params);
 
                 resultofop = json.getString("info");
                 if (resultofop.equals("found")) {
@@ -486,7 +486,7 @@ public class PrintProfileTabFragment extends Fragment {
                 DownloadManager localDownloadManager = (DownloadManager)getContext().getSystemService(DOWNLOAD_SERVICE);
                 Uri uri = new Uri.Builder()
                         .scheme("http")
-                        .authority(MyConstants.VPS_IP)
+                        .authority(Z.VPS_IP)
                         .path("GenerateResumeWithJODConverter3/DownloadResume")
                         .appendQueryParameter("username",username)
                         .appendQueryParameter("format",format)

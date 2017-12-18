@@ -181,67 +181,67 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         percent12input = (TextInputLayout) findViewById(R.id.percent12input);
 //        otherboardinput = (TextInputLayout) findViewById(R.id.othercourseinput);
 
-        marks12.setTypeface(MyConstants.getBold(this));
-        outof12.setTypeface(MyConstants.getBold(this));
-        percent12.setTypeface(MyConstants.getBold(this));
-        schoolname12.setTypeface(MyConstants.getBold(this));
-        otherboard.setTypeface(MyConstants.getBold(this));
-        otherstream12.setTypeface(MyConstants.getBold(this));
-        dmarkssem1.setTypeface(MyConstants.getBold(this));
-        doutofsem1.setTypeface(MyConstants.getBold(this));
-        dpercentsem1.setTypeface(MyConstants.getBold(this));
-        dmarkssem2.setTypeface(MyConstants.getBold(this));
-        doutofsem2.setTypeface(MyConstants.getBold(this));
-        dpercentsem2.setTypeface(MyConstants.getBold(this));
-        dmarkssem3.setTypeface(MyConstants.getBold(this));
-        doutofsem3.setTypeface(MyConstants.getBold(this));
-        dpercentsem3.setTypeface(MyConstants.getBold(this));
-        dmarkssem4.setTypeface(MyConstants.getBold(this));
-        doutofsem4.setTypeface(MyConstants.getBold(this));
-        dpercentsem4.setTypeface(MyConstants.getBold(this));
-        dmarkssem5.setTypeface(MyConstants.getBold(this));
-        doutofsem5.setTypeface(MyConstants.getBold(this));
-        dpercentsem5.setTypeface(MyConstants.getBold(this));
-        dmarkssem6.setTypeface(MyConstants.getBold(this));
-        doutofsem6.setTypeface(MyConstants.getBold(this));
-        dpercentsem6.setTypeface(MyConstants.getBold(this));
-        daggregate.setTypeface(MyConstants.getBold(this));
-        schoolnamed.setTypeface(MyConstants.getBold(this));
-        othercourse.setTypeface(MyConstants.getBold(this));
-        otherboardd.setTypeface(MyConstants.getBold(this));
-        yearofpassing12.setTypeface(MyConstants.getBold(this));
-        yearofpassingd.setTypeface(MyConstants.getBold(this));
+        marks12.setTypeface(Z.getBold(this));
+        outof12.setTypeface(Z.getBold(this));
+        percent12.setTypeface(Z.getBold(this));
+        schoolname12.setTypeface(Z.getBold(this));
+        otherboard.setTypeface(Z.getBold(this));
+        otherstream12.setTypeface(Z.getBold(this));
+        dmarkssem1.setTypeface(Z.getBold(this));
+        doutofsem1.setTypeface(Z.getBold(this));
+        dpercentsem1.setTypeface(Z.getBold(this));
+        dmarkssem2.setTypeface(Z.getBold(this));
+        doutofsem2.setTypeface(Z.getBold(this));
+        dpercentsem2.setTypeface(Z.getBold(this));
+        dmarkssem3.setTypeface(Z.getBold(this));
+        doutofsem3.setTypeface(Z.getBold(this));
+        dpercentsem3.setTypeface(Z.getBold(this));
+        dmarkssem4.setTypeface(Z.getBold(this));
+        doutofsem4.setTypeface(Z.getBold(this));
+        dpercentsem4.setTypeface(Z.getBold(this));
+        dmarkssem5.setTypeface(Z.getBold(this));
+        doutofsem5.setTypeface(Z.getBold(this));
+        dpercentsem5.setTypeface(Z.getBold(this));
+        dmarkssem6.setTypeface(Z.getBold(this));
+        doutofsem6.setTypeface(Z.getBold(this));
+        dpercentsem6.setTypeface(Z.getBold(this));
+        daggregate.setTypeface(Z.getBold(this));
+        schoolnamed.setTypeface(Z.getBold(this));
+        othercourse.setTypeface(Z.getBold(this));
+        otherboardd.setTypeface(Z.getBold(this));
+        yearofpassing12.setTypeface(Z.getBold(this));
+        yearofpassingd.setTypeface(Z.getBold(this));
 
-        marks12input.setTypeface(MyConstants.getLight(this));
-        outof12input.setTypeface(MyConstants.getLight(this));
-        schoolname12input.setTypeface(MyConstants.getLight(this));
-        otherstream12input.setTypeface(MyConstants.getLight(this));
-        otherboardinput.setTypeface(MyConstants.getLight(this));
-        yearofpassing12inpute.setTypeface(MyConstants.getLight(this));
-        marksdsem1input.setTypeface(MyConstants.getLight(this));
-        doutofsem1input.setTypeface(MyConstants.getLight(this));
-        dpercentsem1input.setTypeface(MyConstants.getLight(this));
-        marksdsem2input.setTypeface(MyConstants.getLight(this));
-        doutofsem2input.setTypeface(MyConstants.getLight(this));
-        dpercentsem2inpute.setTypeface(MyConstants.getLight(this));
-        marksdsem3input.setTypeface(MyConstants.getLight(this));
-        doutofsem3input.setTypeface(MyConstants.getLight(this));
-        dpercentsem3input.setTypeface(MyConstants.getLight(this));
-        marksdsem4input.setTypeface(MyConstants.getLight(this));
-        doutofsem4inpute.setTypeface(MyConstants.getLight(this));
-        dpercentsem4inpute.setTypeface(MyConstants.getLight(this));
-        marksdsem5input.setTypeface(MyConstants.getLight(this));
-        doutofsem5input.setTypeface(MyConstants.getLight(this));
-        dpercentsem5input.setTypeface(MyConstants.getLight(this));
-        marksdsem6input.setTypeface(MyConstants.getLight(this));
-        doutofsem6input.setTypeface(MyConstants.getLight(this));
-        dpercentsem6input.setTypeface(MyConstants.getLight(this));
-        daggregateinput.setTypeface(MyConstants.getLight(this));
-        othercourseinput.setTypeface(MyConstants.getLight(this));
-        otherboarddinput.setTypeface(MyConstants.getLight(this));
-        schoolnamedinput.setTypeface(MyConstants.getLight(this));
-        yearofpassingdinput.setTypeface(MyConstants.getLight(this));
-        percent12input.setTypeface(MyConstants.getLight(this));
+        marks12input.setTypeface(Z.getLight(this));
+        outof12input.setTypeface(Z.getLight(this));
+        schoolname12input.setTypeface(Z.getLight(this));
+        otherstream12input.setTypeface(Z.getLight(this));
+        otherboardinput.setTypeface(Z.getLight(this));
+        yearofpassing12inpute.setTypeface(Z.getLight(this));
+        marksdsem1input.setTypeface(Z.getLight(this));
+        doutofsem1input.setTypeface(Z.getLight(this));
+        dpercentsem1input.setTypeface(Z.getLight(this));
+        marksdsem2input.setTypeface(Z.getLight(this));
+        doutofsem2input.setTypeface(Z.getLight(this));
+        dpercentsem2inpute.setTypeface(Z.getLight(this));
+        marksdsem3input.setTypeface(Z.getLight(this));
+        doutofsem3input.setTypeface(Z.getLight(this));
+        dpercentsem3input.setTypeface(Z.getLight(this));
+        marksdsem4input.setTypeface(Z.getLight(this));
+        doutofsem4inpute.setTypeface(Z.getLight(this));
+        dpercentsem4inpute.setTypeface(Z.getLight(this));
+        marksdsem5input.setTypeface(Z.getLight(this));
+        doutofsem5input.setTypeface(Z.getLight(this));
+        dpercentsem5input.setTypeface(Z.getLight(this));
+        marksdsem6input.setTypeface(Z.getLight(this));
+        doutofsem6input.setTypeface(Z.getLight(this));
+        dpercentsem6input.setTypeface(Z.getLight(this));
+        daggregateinput.setTypeface(Z.getLight(this));
+        othercourseinput.setTypeface(Z.getLight(this));
+        otherboarddinput.setTypeface(Z.getLight(this));
+        schoolnamedinput.setTypeface(Z.getLight(this));
+        yearofpassingdinput.setTypeface(Z.getLight(this));
+        percent12input.setTypeface(Z.getLight(this));
 
 //        new GetCourses().execute();
 
@@ -266,7 +266,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             View view = super.getView(position, convertView, parent);
             TextView tv = (TextView) view;
-            tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
+            tv.setTypeface(Z.getBold(MyProfileTwelthOrDiploma.this));
             return view;
         }
 
@@ -275,7 +275,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                 ViewGroup parent) {
             View view = super.getDropDownView(position, convertView, parent);
             TextView tv = (TextView) view;
-            tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
+            tv.setTypeface(Z.getBold(MyProfileTwelthOrDiploma.this));
 
             if (position == 0) {
                 // Set the hint text color gray
@@ -1125,7 +1125,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
+                tv.setTypeface(Z.getBold(MyProfileTwelthOrDiploma.this));
                 return view;
             }
 
@@ -1134,7 +1134,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
+                tv.setTypeface(Z.getBold(MyProfileTwelthOrDiploma.this));
 
                 if (position == 0) {
                     // Set the hint text color gray
@@ -1198,7 +1198,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
+                tv.setTypeface(Z.getBold(MyProfileTwelthOrDiploma.this));
                 return view;
             }
 
@@ -1207,7 +1207,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
+                tv.setTypeface(Z.getBold(MyProfileTwelthOrDiploma.this));
 
                 if (position == 0) {
                     // Set the hint text color gray
@@ -1266,7 +1266,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
+                tv.setTypeface(Z.getBold(MyProfileTwelthOrDiploma.this));
                 return view;
             }
 
@@ -1275,7 +1275,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
+                tv.setTypeface(Z.getBold(MyProfileTwelthOrDiploma.this));
 
                 if (position == 0) {
                     // Set the hint text color gray
@@ -1507,11 +1507,11 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         radioButtonTwelth = (RadioButton) findViewById(R.id.radioButtonTwelth);
         radioButtonDiploma = (RadioButton) findViewById(R.id.radioButtonDiploma);
 
-        radioButtonTwelth.setTypeface(MyConstants.getBold(this));
-        radioButtonDiploma.setTypeface(MyConstants.getBold(this));
+        radioButtonTwelth.setTypeface(Z.getBold(this));
+        radioButtonDiploma.setTypeface(Z.getBold(this));
 
         TextView twelthtxt = (TextView) findViewById(R.id.twelthtxt);
-        twelthtxt.setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
+        twelthtxt.setTypeface(Z.getBold(MyProfileTwelthOrDiploma.this));
 
         radioGrouptwelthdiploma.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -2343,8 +2343,8 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
                     alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
 
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileTwelthOrDiploma.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileTwelthOrDiploma.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileTwelthOrDiploma.this));
 
                 }
             });
@@ -2388,7 +2388,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             params.add(new BasicNameValuePair("obj", strobj));        //1
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_savedata_twelth, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_savedata_twelth, "GET", params);
             try {
                 r = json.getString("info");
 
@@ -2459,7 +2459,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", username));    //0
             params.add(new BasicNameValuePair("obj1", strobj2));        //1
 
-            json = jParser.makeHttpRequest(MyConstants.url_savedata_diploma, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_savedata_diploma, "GET", params);
             try {
                 r = json.getString("info");
 

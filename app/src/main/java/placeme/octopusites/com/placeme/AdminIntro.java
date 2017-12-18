@@ -1,33 +1,23 @@
 package placeme.octopusites.com.placeme;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,14 +33,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import placeme.octopusites.com.placeme.modal.AdminInstituteModal;
 import placeme.octopusites.com.placeme.modal.AdminIntroModal;
 
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
-import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
-
-import static placeme.octopusites.com.placeme.AES4all.fromString;
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 public class AdminIntro extends AppCompatActivity {
@@ -100,7 +85,7 @@ public class AdminIntro extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         TextView loctxt=(TextView)findViewById(R.id.loctxt);
-        loctxt.setTypeface(MyConstants.getBold(this));
+        loctxt.setTypeface(Z.getBold(this));
 //        country=(Spinner)findViewById(R.id.country);
 //        state=(Spinner)findViewById(R.id.state);
 //        city=(Spinner)findViewById(R.id.city);
@@ -123,19 +108,19 @@ public class AdminIntro extends AppCompatActivity {
         instinputlayout = (TextInputLayout) findViewById(R.id.instinputlayout);
         citystaecountryinputlayout = (TextInputLayout) findViewById(R.id.citystaecountryinputlayout);
 
-        fname.setTypeface(MyConstants.getBold(this));
-        lname.setTypeface(MyConstants.getBold(this));
-        role.setTypeface(MyConstants.getBold(this));
-        email.setTypeface(MyConstants.getBold(this));
-        inst.setTypeface(MyConstants.getBold(this));
-        citystaecountry.setTypeface(MyConstants.getBold(this));
+        fname.setTypeface(Z.getBold(this));
+        lname.setTypeface(Z.getBold(this));
+        role.setTypeface(Z.getBold(this));
+        email.setTypeface(Z.getBold(this));
+        inst.setTypeface(Z.getBold(this));
+        citystaecountry.setTypeface(Z.getBold(this));
 
-        fnameTextInputLayout.setTypeface(MyConstants.getLight(this));
-        lnameTextInputLayout.setTypeface(MyConstants.getLight(this));
-        roleinputlayout.setTypeface(MyConstants.getLight(this));
-        emailinputlayout.setTypeface(MyConstants.getLight(this));
-        instinputlayout.setTypeface(MyConstants.getLight(this));
-        citystaecountryinputlayout.setTypeface(MyConstants.getLight(this));
+        fnameTextInputLayout.setTypeface(Z.getLight(this));
+        lnameTextInputLayout.setTypeface(Z.getLight(this));
+        roleinputlayout.setTypeface(Z.getLight(this));
+        emailinputlayout.setTypeface(Z.getLight(this));
+        instinputlayout.setTypeface(Z.getLight(this));
+        citystaecountryinputlayout.setTypeface(Z.getLight(this));
 
         firstname=a.getFname();
         lastname=a.getLname();
@@ -485,7 +470,7 @@ public class AdminIntro extends AppCompatActivity {
             Log.d("TAG", "encUsername: "+encUsername);
             params.add(new BasicNameValuePair("obj",strobj));       //1
             Log.d("TAG", "strobj: "+encobj);
-            json = jParser.makeHttpRequest(MyConstants.url_SaveAdminIntro, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_SaveAdminIntro, "GET", params);
             try {
                 r = json.getString("info");
                 Log.d("TAG", " result r:-: "+r);

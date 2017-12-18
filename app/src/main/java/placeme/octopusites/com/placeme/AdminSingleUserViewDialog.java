@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -18,7 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -79,12 +79,12 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
         trash2ImageView = (ImageView) findViewById(R.id.trash2);
         //default
 
-        checkboxplaced.setTypeface(MyConstants.getBold(this));
-        checkboxnotplaced.setTypeface(MyConstants.getBold(this));
-        CheckBoxdebar.setTypeface(MyConstants.getBold(this));
-        CheckBoxsnotdebar.setTypeface(MyConstants.getBold(this));
-        checkboxstudent.setTypeface(MyConstants.getBold(this));
-        checkboxalumni.setTypeface(MyConstants.getBold(this));
+        checkboxplaced.setTypeface(Z.getBold(this));
+        checkboxnotplaced.setTypeface(Z.getBold(this));
+        CheckBoxdebar.setTypeface(Z.getBold(this));
+        CheckBoxsnotdebar.setTypeface(Z.getBold(this));
+        checkboxstudent.setTypeface(Z.getBold(this));
+        checkboxalumni.setTypeface(Z.getBold(this));
 
 
         ass2txt = (TextView) findViewById(R.id.ass2txt);
@@ -93,11 +93,11 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
         debarstatus2txt = (TextView) findViewById(R.id.debarstatus2txt);
         rolestatus2txt = (TextView) findViewById(R.id.rolestatus2txt);
 
-        ass2txt.setTypeface(MyConstants.getBold(this));
-        passpasstxt.setTypeface(MyConstants.getLight(this));
-        placementstatus2txt.setTypeface(MyConstants.getLight(this));
-        debarstatus2txt.setTypeface(MyConstants.getLight(this));
-        rolestatus2txt.setTypeface(MyConstants.getLight(this));
+        ass2txt.setTypeface(Z.getBold(this));
+        passpasstxt.setTypeface(Z.getLight(this));
+        placementstatus2txt.setTypeface(Z.getLight(this));
+        debarstatus2txt.setTypeface(Z.getLight(this));
+        rolestatus2txt.setTypeface(Z.getLight(this));
 
 
         emailinput = (TextInputLayout) findViewById(R.id.emailinput);
@@ -105,11 +105,11 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
         email = (TextInputEditText) findViewById(R.id.email);
         companyname = (TextInputEditText) findViewById(R.id.companyname);
 
-        emailinput.setTypeface(MyConstants.getLight(this));
-        companynameinput.setTypeface(MyConstants.getLight(this));
+        emailinput.setTypeface(Z.getLight(this));
+        companynameinput.setTypeface(Z.getLight(this));
 
-        email.setTypeface(MyConstants.getBold(this));
-        companyname.setTypeface(MyConstants.getBold(this));
+        email.setTypeface(Z.getBold(this));
+        companyname.setTypeface(Z.getBold(this));
 
         demoKeyBytes = SimpleBase64Encoder.decode(MySharedPreferencesManager.getDigest1(AdminSingleUserViewDialog.this));
         demoIVBytes = SimpleBase64Encoder.decode(MySharedPreferencesManager.getDigest2(AdminSingleUserViewDialog.this));
@@ -376,7 +376,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
                 params.add(new BasicNameValuePair("u", encUsername));
                 Log.d("TAG", "doInBackground: pass username " + username);
 
-                json = jParser.makeHttpRequest(MyConstants.url_GetPlacedDebarInfo, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_GetPlacedDebarInfo, "GET", params);
 
                 String info = json.getString("info");
                 Log.d("TAG", "doInBackground: GetRegisteredUsersUnderAdmin info " + info);
@@ -523,7 +523,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
             Log.d("TAG", "validateandSave: input role" + encRole);
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_SavePlacedDebarInfo, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_SavePlacedDebarInfo, "GET", params);
             try {
                 r = json.getString("info");
                 Log.d("TAG", ": SavePlacedDebarInfo json " + json);
@@ -541,7 +541,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
             if (result.equals("success")) {
                 Toast.makeText(AdminSingleUserViewDialog.this, "Successfully updated..!", Toast.LENGTH_SHORT).show();
 
-                setResult(MyConstants.USER_DATA_CHANGE_RESULT_CODE);
+                setResult(Z.USER_DATA_CHANGE_RESULT_CODE);
 //                Intent returnIntent = new Intent();
 //                returnIntent.putExtra("result", result);
 
@@ -565,7 +565,7 @@ public class AdminSingleUserViewDialog extends AppCompatActivity {
             params.add(new BasicNameValuePair("ue", encUsername));//1
             Log.d("TAG", "doInBackground: delete admin " + encadminUsername);
             Log.d("TAG", "doInBackground: delete admin " + encUsername);
-            json = jParser.makeHttpRequest(MyConstants.url_DeleteNonActiveUser, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_DeleteNonActiveUser, "GET", params);
             try {
                 r = json.getString("info");
                 Log.d("TAG", "DeleteNonActiveUser: json " + json);

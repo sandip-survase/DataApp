@@ -196,7 +196,7 @@ public class ShowUsers extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d("TAG", "onActivityResult: ------------------------------------ " + resultCode);
-        if(resultCode==MyConstants.USER_DATA_CHANGE_RESULT_CODE){
+        if(resultCode== Z.USER_DATA_CHANGE_RESULT_CODE){
             refreshContent();
         }
     }
@@ -241,7 +241,7 @@ public class ShowUsers extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", username));
             Log.d("TAG", "GetRegisteredUsersUnderAdmin: input username  " + username);
 
-            json = jParser.makeHttpRequest(MyConstants.url_GetRegisteredUsersUnderAdmin, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_GetRegisteredUsersUnderAdmin, "GET", params);
             Log.d("TAG", "GetRegisteredUsersUnderAdmin: json  " + json);
 
 
@@ -274,7 +274,7 @@ public class ShowUsers extends AppCompatActivity {
 
                             params = new ArrayList<NameValuePair>();
                             params.add(new BasicNameValuePair("u",registerUsersName[i]));       //0
-                            json2 = jParser.makeHttpRequest(MyConstants.url_getlastupdated, "GET", params);
+                            json2 = jParser.makeHttpRequest(Z.url_getlastupdated, "GET", params);
 
                             String s = json2.getString("lastupdated");
                             if(s.equals("noupdate"))
@@ -346,7 +346,7 @@ public class ShowUsers extends AppCompatActivity {
                 // Toast.makeText(MainActivity.this,notificationuploadedbyplain[i]+"\n"+notificationuploadedby[i] , Toast.LENGTH_SHORT).show();
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u",encUsersName [i]));       //0
-                json = jParser.makeHttpRequest(MyConstants.url_getlastupdated, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_getlastupdated, "GET", params);
                 try {
                     String s = json.getString("lastupdated");
                     Log.d("TAG", "signature "+s);

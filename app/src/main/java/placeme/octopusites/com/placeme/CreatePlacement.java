@@ -593,7 +593,7 @@ public class CreatePlacement extends AppCompatActivity {
             params.add(new BasicNameValuePair("v", sexptaTags));     //21
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_CreatePlacements, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_CreatePlacements, "GET", params);
             try {
                 r = json.getString("info1");
 

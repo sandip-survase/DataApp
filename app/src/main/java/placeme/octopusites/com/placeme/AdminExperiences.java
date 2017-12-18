@@ -1,31 +1,26 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.CompoundButton;
-import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -37,14 +32,10 @@ import com.wx.wheelview.widget.WheelView;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.joda.time.DateTime;
-import org.joda.time.Days;
 import org.joda.time.Months;
-import org.joda.time.Years;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
@@ -52,7 +43,7 @@ import java.util.List;
 import placeme.octopusites.com.placeme.modal.Experiences;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
+
 public class AdminExperiences extends AppCompatActivity {
     int expcount=0,editexp=0;
     View addmoreexp;
@@ -126,26 +117,26 @@ public class AdminExperiences extends AppCompatActivity {
         instinput9=(TextInputLayout)findViewById(R.id.instinput9);
         instinput10=(TextInputLayout)findViewById(R.id.instinput10);
 
-        postinput1.setTypeface(MyConstants.getLight(this));
-        postinput2.setTypeface(MyConstants.getLight(this));
-        postinput3.setTypeface(MyConstants.getLight(this));
-        postinput4.setTypeface(MyConstants.getLight(this));
-        postinput5.setTypeface(MyConstants.getLight(this));
-        postinput6.setTypeface(MyConstants.getLight(this));
-        postinput7.setTypeface(MyConstants.getLight(this));
-        postinput8.setTypeface(MyConstants.getLight(this));
-        postinput9.setTypeface(MyConstants.getLight(this));
-        postinput10.setTypeface(MyConstants.getLight(this));
-        instinput1.setTypeface(MyConstants.getLight(this));
-        instinput2.setTypeface(MyConstants.getLight(this));
-        instinput3.setTypeface(MyConstants.getLight(this));
-        instinput4.setTypeface(MyConstants.getLight(this));
-        instinput5.setTypeface(MyConstants.getLight(this));
-        instinput6.setTypeface(MyConstants.getLight(this));
-        instinput7.setTypeface(MyConstants.getLight(this));
-        instinput8.setTypeface(MyConstants.getLight(this));
-        instinput9.setTypeface(MyConstants.getLight(this));
-        instinput10.setTypeface(MyConstants.getLight(this));
+        postinput1.setTypeface(Z.getLight(this));
+        postinput2.setTypeface(Z.getLight(this));
+        postinput3.setTypeface(Z.getLight(this));
+        postinput4.setTypeface(Z.getLight(this));
+        postinput5.setTypeface(Z.getLight(this));
+        postinput6.setTypeface(Z.getLight(this));
+        postinput7.setTypeface(Z.getLight(this));
+        postinput8.setTypeface(Z.getLight(this));
+        postinput9.setTypeface(Z.getLight(this));
+        postinput10.setTypeface(Z.getLight(this));
+        instinput1.setTypeface(Z.getLight(this));
+        instinput2.setTypeface(Z.getLight(this));
+        instinput3.setTypeface(Z.getLight(this));
+        instinput4.setTypeface(Z.getLight(this));
+        instinput5.setTypeface(Z.getLight(this));
+        instinput6.setTypeface(Z.getLight(this));
+        instinput7.setTypeface(Z.getLight(this));
+        instinput8.setTypeface(Z.getLight(this));
+        instinput9.setTypeface(Z.getLight(this));
+        instinput10.setTypeface(Z.getLight(this));
 
         fromdate1=(TextInputEditText)findViewById(R.id.fromdate1);
         todate1=(TextInputEditText)findViewById(R.id.todate1);
@@ -168,26 +159,26 @@ public class AdminExperiences extends AppCompatActivity {
         fromdate10=(TextInputEditText)findViewById(R.id.fromdate10);
         todate10=(TextInputEditText)findViewById(R.id.todate10);
 
-        fromdate1.setTypeface(MyConstants.getBold(this));
-        todate1.setTypeface(MyConstants.getBold(this));
-        fromdate2.setTypeface(MyConstants.getBold(this));
-        todate2.setTypeface(MyConstants.getBold(this));
-        fromdate3.setTypeface(MyConstants.getBold(this));
-        todate3.setTypeface(MyConstants.getBold(this));
-        fromdate4.setTypeface(MyConstants.getBold(this));
-        todate4.setTypeface(MyConstants.getBold(this));
-        fromdate5.setTypeface(MyConstants.getBold(this));
-        todate5.setTypeface(MyConstants.getBold(this));
-        fromdate6.setTypeface(MyConstants.getBold(this));
-        todate6.setTypeface(MyConstants.getBold(this));
-        fromdate7.setTypeface(MyConstants.getBold(this));
-        todate7.setTypeface(MyConstants.getBold(this));
-        fromdate8.setTypeface(MyConstants.getBold(this));
-        todate8.setTypeface(MyConstants.getBold(this));
-        fromdate9.setTypeface(MyConstants.getBold(this));
-        todate9.setTypeface(MyConstants.getBold(this));
-        fromdate10.setTypeface(MyConstants.getBold(this));
-        todate10.setTypeface(MyConstants.getBold(this));
+        fromdate1.setTypeface(Z.getBold(this));
+        todate1.setTypeface(Z.getBold(this));
+        fromdate2.setTypeface(Z.getBold(this));
+        todate2.setTypeface(Z.getBold(this));
+        fromdate3.setTypeface(Z.getBold(this));
+        todate3.setTypeface(Z.getBold(this));
+        fromdate4.setTypeface(Z.getBold(this));
+        todate4.setTypeface(Z.getBold(this));
+        fromdate5.setTypeface(Z.getBold(this));
+        todate5.setTypeface(Z.getBold(this));
+        fromdate6.setTypeface(Z.getBold(this));
+        todate6.setTypeface(Z.getBold(this));
+        fromdate7.setTypeface(Z.getBold(this));
+        todate7.setTypeface(Z.getBold(this));
+        fromdate8.setTypeface(Z.getBold(this));
+        todate8.setTypeface(Z.getBold(this));
+        fromdate9.setTypeface(Z.getBold(this));
+        todate9.setTypeface(Z.getBold(this));
+        fromdate10.setTypeface(Z.getBold(this));
+        todate10.setTypeface(Z.getBold(this));
 
         fromdateinput1 =(TextInputLayout)findViewById(R.id.fromdateinput1);
         fromdateinput2 =(TextInputLayout)findViewById(R.id.fromdateinput2);
@@ -200,16 +191,16 @@ public class AdminExperiences extends AppCompatActivity {
         fromdateinput9 =(TextInputLayout)findViewById(R.id.fromdateinput9);
         fromdateinput10=(TextInputLayout)findViewById(R.id.fromdateinput10);
 
-        fromdateinput1.setTypeface(MyConstants.getLight(this));
-        fromdateinput2.setTypeface(MyConstants.getLight(this));
-        fromdateinput3.setTypeface(MyConstants.getLight(this));
-        fromdateinput4.setTypeface(MyConstants.getLight(this));
-        fromdateinput5.setTypeface(MyConstants.getLight(this));
-        fromdateinput6.setTypeface(MyConstants.getLight(this));
-        fromdateinput7.setTypeface(MyConstants.getLight(this));
-        fromdateinput8.setTypeface(MyConstants.getLight(this));
-        fromdateinput9.setTypeface(MyConstants.getLight(this));
-        fromdateinput10.setTypeface(MyConstants.getLight(this));
+        fromdateinput1.setTypeface(Z.getLight(this));
+        fromdateinput2.setTypeface(Z.getLight(this));
+        fromdateinput3.setTypeface(Z.getLight(this));
+        fromdateinput4.setTypeface(Z.getLight(this));
+        fromdateinput5.setTypeface(Z.getLight(this));
+        fromdateinput6.setTypeface(Z.getLight(this));
+        fromdateinput7.setTypeface(Z.getLight(this));
+        fromdateinput8.setTypeface(Z.getLight(this));
+        fromdateinput9.setTypeface(Z.getLight(this));
+        fromdateinput10.setTypeface(Z.getLight(this));
 
         todateinput1 =(TextInputLayout)findViewById(R.id.todateinput1);
         todateinput2 =(TextInputLayout)findViewById(R.id.todateinput2);
@@ -222,19 +213,19 @@ public class AdminExperiences extends AppCompatActivity {
         todateinput9 =(TextInputLayout)findViewById(R.id.todateinput9);
         todateinput10=(TextInputLayout)findViewById(R.id.todateinput10);
 
-        todateinput1.setTypeface(MyConstants.getLight(this));
-        todateinput2.setTypeface(MyConstants.getLight(this));
-        todateinput3.setTypeface(MyConstants.getLight(this));
-        todateinput4.setTypeface(MyConstants.getLight(this));
-        todateinput5.setTypeface(MyConstants.getLight(this));
-        todateinput6.setTypeface(MyConstants.getLight(this));
-        todateinput7.setTypeface(MyConstants.getLight(this));
-        todateinput8.setTypeface(MyConstants.getLight(this));
-        todateinput9.setTypeface(MyConstants.getLight(this));
-        todateinput10.setTypeface(MyConstants.getLight(this));
+        todateinput1.setTypeface(Z.getLight(this));
+        todateinput2.setTypeface(Z.getLight(this));
+        todateinput3.setTypeface(Z.getLight(this));
+        todateinput4.setTypeface(Z.getLight(this));
+        todateinput5.setTypeface(Z.getLight(this));
+        todateinput6.setTypeface(Z.getLight(this));
+        todateinput7.setTypeface(Z.getLight(this));
+        todateinput8.setTypeface(Z.getLight(this));
+        todateinput9.setTypeface(Z.getLight(this));
+        todateinput10.setTypeface(Z.getLight(this));
 
         TextView exptxt=(TextView)findViewById(R.id.exptxt);
-        exptxt.setTypeface(MyConstants.getBold(this));
+        exptxt.setTypeface(Z.getBold(this));
 
         fromdate1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -390,26 +381,26 @@ public class AdminExperiences extends AppCompatActivity {
         expsw9=(SwitchCompat)findViewById(R.id.switch9);
         expsw10=(SwitchCompat)findViewById(R.id.switch10);
 
-        post1.setTypeface(MyConstants.getBold(this));
-        inst1.setTypeface(MyConstants.getBold(this));
-        post2.setTypeface(MyConstants.getBold(this));
-        inst2.setTypeface(MyConstants.getBold(this));
-        post3.setTypeface(MyConstants.getBold(this));
-        inst3.setTypeface(MyConstants.getBold(this));
-        post4.setTypeface(MyConstants.getBold(this));
-        inst4.setTypeface(MyConstants.getBold(this));
-        post5.setTypeface(MyConstants.getBold(this));
-        inst5.setTypeface(MyConstants.getBold(this));
-        post6.setTypeface(MyConstants.getBold(this));
-        inst6.setTypeface(MyConstants.getBold(this));
-        post7.setTypeface(MyConstants.getBold(this));
-        inst7.setTypeface(MyConstants.getBold(this));
-        post8.setTypeface(MyConstants.getBold(this));
-        inst8.setTypeface(MyConstants.getBold(this));
-        post9.setTypeface(MyConstants.getBold(this));
-        inst9.setTypeface(MyConstants.getBold(this));
-        post10.setTypeface(MyConstants.getBold(this));
-        inst10.setTypeface(MyConstants.getBold(this));
+        post1.setTypeface(Z.getBold(this));
+        inst1.setTypeface(Z.getBold(this));
+        post2.setTypeface(Z.getBold(this));
+        inst2.setTypeface(Z.getBold(this));
+        post3.setTypeface(Z.getBold(this));
+        inst3.setTypeface(Z.getBold(this));
+        post4.setTypeface(Z.getBold(this));
+        inst4.setTypeface(Z.getBold(this));
+        post5.setTypeface(Z.getBold(this));
+        inst5.setTypeface(Z.getBold(this));
+        post6.setTypeface(Z.getBold(this));
+        inst6.setTypeface(Z.getBold(this));
+        post7.setTypeface(Z.getBold(this));
+        inst7.setTypeface(Z.getBold(this));
+        post8.setTypeface(Z.getBold(this));
+        inst8.setTypeface(Z.getBold(this));
+        post9.setTypeface(Z.getBold(this));
+        inst9.setTypeface(Z.getBold(this));
+        post10.setTypeface(Z.getBold(this));
+        inst10.setTypeface(Z.getBold(this));
 
 
         work1=(TextView)findViewById(R.id.work1);
@@ -423,20 +414,20 @@ public class AdminExperiences extends AppCompatActivity {
         work9=(TextView)findViewById(R.id.work9);
         work10=(TextView)findViewById(R.id.work10);
 
-        work1.setTypeface(MyConstants.getLight(this));
-        work2.setTypeface(MyConstants.getLight(this));
-        work3.setTypeface(MyConstants.getLight(this));
-        work4.setTypeface(MyConstants.getLight(this));
-        work5.setTypeface(MyConstants.getLight(this));
-        work6.setTypeface(MyConstants.getLight(this));
-        work7.setTypeface(MyConstants.getLight(this));
-        work8.setTypeface(MyConstants.getLight(this));
-        work9.setTypeface(MyConstants.getLight(this));
-        work10.setTypeface(MyConstants.getLight(this));
+        work1.setTypeface(Z.getLight(this));
+        work2.setTypeface(Z.getLight(this));
+        work3.setTypeface(Z.getLight(this));
+        work4.setTypeface(Z.getLight(this));
+        work5.setTypeface(Z.getLight(this));
+        work6.setTypeface(Z.getLight(this));
+        work7.setTypeface(Z.getLight(this));
+        work8.setTypeface(Z.getLight(this));
+        work9.setTypeface(Z.getLight(this));
+        work10.setTypeface(Z.getLight(this));
 
 
         t=(TextView)findViewById(R.id.addmoreexptxt);
-        t.setTypeface(MyConstants.getBold(this));
+        t.setTypeface(Z.getBold(this));
         i=(ImageView)findViewById(R.id.addmoreexpimg);
         addmoreexp=(View)findViewById(R.id.addmoreexp);
 
@@ -6941,7 +6932,7 @@ public class AdminExperiences extends AppCompatActivity {
             params.add(new BasicNameValuePair("d",param[0]));      //1
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_SaveExperiences, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_SaveExperiences, "GET", params);
 
             try {
                 r = json.getString("info");

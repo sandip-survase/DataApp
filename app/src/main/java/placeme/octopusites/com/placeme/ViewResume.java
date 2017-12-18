@@ -96,7 +96,7 @@ public class ViewResume extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             try {
 
-                input = new URL(MyConstants.IP+"CreateNotificationTemp/PDFView?u="+username).openStream();
+                input = new URL(Z.IP+"CreateNotificationTemp/PDFView?u="+username).openStream();
 
             } catch (Exception ex) {
                 Log.d("TAG", "exp: " + ex.getMessage());
@@ -120,7 +120,7 @@ public class ViewResume extends AppCompatActivity {
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority(MyConstants.VPS_IP)
+                .authority(Z.VPS_IP)
                 .path("CreateNotificationTemp/PDFDownload2")
                 .appendQueryParameter("u",username)
                 .build();

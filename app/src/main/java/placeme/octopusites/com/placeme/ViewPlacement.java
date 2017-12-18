@@ -1,7 +1,5 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,8 +13,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -25,8 +21,10 @@ import android.widget.Toast;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 
 
@@ -214,7 +212,7 @@ public class ViewPlacement extends AppCompatActivity {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", username));
                 params.add(new BasicNameValuePair("id", id));
-                json = jParser.makeHttpRequest(MyConstants.url_RegisterForPlacement, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_RegisterForPlacement, "GET", params);
                 String s = null;
                 resultofop = json.getString("info");
 
@@ -252,7 +250,7 @@ public class ViewPlacement extends AppCompatActivity {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", username));
 
-                json = jParser.makeHttpRequest(MyConstants.url_GetStudentMarksInfo, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_GetStudentMarksInfo, "GET", params);
 
                 String s = json.getString("tenth");
                 if (s.equals("found"))
@@ -369,7 +367,7 @@ public class ViewPlacement extends AppCompatActivity {
             try {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", username));
-                json = jParser.makeHttpRequest(MyConstants.load_student_data, "GET", params);
+                json = jParser.makeHttpRequest(Z.load_student_data, "GET", params);
 
                 resultofop = json.getString("info");
                 if (resultofop.equals("found")) {
@@ -578,7 +576,7 @@ public class ViewPlacement extends AppCompatActivity {
                 params.add(new BasicNameValuePair("format", format));
                 params.add(new BasicNameValuePair("template", template));
 
-                json = jParser.makeHttpRequest(MyConstants.url_SaveResume, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_SaveResume, "GET", params);
 
                  r = json.getString("info");
                 Log.d("TAG", "doInBackground: result -"+r);

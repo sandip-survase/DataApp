@@ -1,7 +1,6 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -34,13 +33,13 @@ public class MyProfileAccomplishments extends AppCompatActivity {
         TextView patenttxt=(TextView)findViewById(R.id.patenttxt);
         TextView publicationtxt=(TextView)findViewById(R.id.publicationtxt);
 
-        knownlangtxt.setTypeface(MyConstants.getBold(this));
-        certitxt.setTypeface(MyConstants.getBold(this));
-        coursetxt.setTypeface(MyConstants.getBold(this));
-        skillstxt.setTypeface(MyConstants.getBold(this));
-        honortxt.setTypeface(MyConstants.getBold(this));
-        patenttxt.setTypeface(MyConstants.getBold(this));
-        publicationtxt.setTypeface(MyConstants.getBold(this));
+        knownlangtxt.setTypeface(Z.getBold(this));
+        certitxt.setTypeface(Z.getBold(this));
+        coursetxt.setTypeface(Z.getBold(this));
+        skillstxt.setTypeface(Z.getBold(this));
+        honortxt.setTypeface(Z.getBold(this));
+        patenttxt.setTypeface(Z.getBold(this));
+        publicationtxt.setTypeface(Z.getBold(this));
 
 
         knownlang=(View)findViewById(R.id.studentBlock);

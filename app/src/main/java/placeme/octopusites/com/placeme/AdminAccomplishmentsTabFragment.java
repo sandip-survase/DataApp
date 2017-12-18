@@ -28,11 +28,11 @@ public class AdminAccomplishmentsTabFragment extends Fragment {
         TextView patenttxt=(TextView)rootView.findViewById(R.id.patenttxt);
         TextView publicationtxt=(TextView)rootView.findViewById(R.id.publicationtxt);
 
-        knownlangtxt.setTypeface(MyConstants.getBold(getActivity()));
-        skillstxt.setTypeface(MyConstants.getBold(getActivity()));
-        honortxt.setTypeface(MyConstants.getBold(getActivity()));
-        patenttxt.setTypeface(MyConstants.getBold(getActivity()));
-        publicationtxt.setTypeface(MyConstants.getBold(getActivity()));
+        knownlangtxt.setTypeface(Z.getBold(getActivity()));
+        skillstxt.setTypeface(Z.getBold(getActivity()));
+        honortxt.setTypeface(Z.getBold(getActivity()));
+        patenttxt.setTypeface(Z.getBold(getActivity()));
+        publicationtxt.setTypeface(Z.getBold(getActivity()));
 
         knownlang=(View)rootView.findViewById(R.id.studentBlock);
         skills=(View)rootView.findViewById(R.id.alumniBlock);

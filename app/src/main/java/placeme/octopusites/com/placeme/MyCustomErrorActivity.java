@@ -61,8 +61,8 @@ public class MyCustomErrorActivity extends AppCompatActivity {
 
         ohsnapmsg=(TextView)findViewById(R.id.ohsnapmsg);
         ohsnapmsg2=(TextView)findViewById(R.id.ohsnapmsg2);
-        ohsnapmsg.setTypeface(MyConstants.getBold(this));
-        ohsnapmsg2.setTypeface(MyConstants.getLight(this));
+        ohsnapmsg.setTypeface(Z.getBold(this));
+        ohsnapmsg2.setTypeface(Z.getLight(this));
         Button restartButton = (Button) findViewById(R.id.restart_button);
 
 //        if (config.isShowRestartButton() && config.getRestartActivityClass() != null) {
@@ -95,7 +95,7 @@ public class MyCustomErrorActivity extends AppCompatActivity {
 
             params.add(new BasicNameValuePair("u", username));  //0
             params.add(new BasicNameValuePair("k", str));     //1
-            json = jParser.makeHttpRequest(MyConstants.url_save_bug, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_save_bug, "GET", params);
             Log.d("TAG", "json - "+json);
             try {
                 r = json.getString("info");

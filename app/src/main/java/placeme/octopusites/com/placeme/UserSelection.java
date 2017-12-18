@@ -654,7 +654,7 @@ public class UserSelection extends AppCompatActivity {
 
             }
 
-            json = jParser.makeHttpRequest(MyConstants.url_SaveShortListedUsers, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_SaveShortListedUsers, "GET", params);
             try {
 
                 r = json.getString("info");
@@ -699,7 +699,7 @@ public class UserSelection extends AppCompatActivity {
 
             }
 
-            json = jParser.makeHttpRequest(MyConstants.url_SavePlacedUsers, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_SavePlacedUsers, "GET", params);
             try {
 
                 r = json.getString("info");

@@ -128,12 +128,12 @@ public class OTPActivity extends AppCompatActivity {
 
         MySharedPreferencesManager.save(this,"otp", "yes");
 
-        entertxt.setTypeface(MyConstants.getBold(this));
-        otptxt.setTypeface(MyConstants.getLight(this));
-        resendotp.setTypeface(MyConstants.getBold(this));
-        otplayout.setTypeface(MyConstants.getLight(this));
-        otpedittext.setTypeface(MyConstants.getBold(this));
-        verify.setTypeface(MyConstants.getBold(this));
+        entertxt.setTypeface(Z.getBold(this));
+        otptxt.setTypeface(Z.getLight(this));
+        resendotp.setTypeface(Z.getBold(this));
+        otplayout.setTypeface(Z.getLight(this));
+        otpedittext.setTypeface(Z.getBold(this));
+        verify.setTypeface(Z.getBold(this));
 
 
         verify.setOnClickListener(new View.OnClickListener() {
@@ -179,7 +179,7 @@ public class OTPActivity extends AppCompatActivity {
             Log.d("TAG", "otp input encuser " + encUsernameVerify);
             Log.d("TAG", "otp input encotp " + encOTP);
 
-            json = jParser.makeHttpRequest(MyConstants.url_verifyotp, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_verifyotp, "GET", params);
             Log.d("TAG", "doInBackground: verfy OTP sevlet call");
             Log.d("TAG", "otp verify json : " + json);
             try {
@@ -204,8 +204,8 @@ public class OTPActivity extends AppCompatActivity {
                     Log.d("TAG", "onPostExecute: activation 1 flag" + activationMessageflag);
                     //create new firebase user
 
-                    MySharedPreferencesManager.save(OTPActivity.this,MyConstants.USERNAME_KEY,encUsername);
-                    MySharedPreferencesManager.save(OTPActivity.this,MyConstants.PASSWORD_KEY,encpassword);
+                    MySharedPreferencesManager.save(OTPActivity.this, Z.USERNAME_KEY,encUsername);
+                    MySharedPreferencesManager.save(OTPActivity.this, Z.PASSWORD_KEY,encpassword);
                     MySharedPreferencesManager.save(OTPActivity.this,"otp", "no");
 
                     String role = MySharedPreferencesManager.getRole(OTPActivity.this);
@@ -304,7 +304,7 @@ public class OTPActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("l", enclname));
             Log.d("TAG", "doInBackground: resend otp usrename " + encUsername);
 
-            json = jParser.makeHttpRequest(MyConstants.url_resendotp, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_resendotp, "GET", params);
             try {
                 resultofop = json.getString("info");
 
@@ -329,7 +329,7 @@ public class OTPActivity extends AppCompatActivity {
     class ClearOTPTask extends AsyncTask<String, String, String> {
         protected String doInBackground(String... param) {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            jParser.makeHttpRequest(MyConstants.url_ClearOTP, "GET", params);
+            jParser.makeHttpRequest(Z.url_ClearOTP, "GET", params);
             return "";
         }
         @Override
@@ -345,7 +345,7 @@ public class OTPActivity extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("ud", encUsername));
 
-            json = jParser.makeHttpRequest(MyConstants.url_AddStudentUnderAdmin, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_AddStudentUnderAdmin, "GET", params);
             try {
                 resultofop = json.getString("info");
 
@@ -387,7 +387,7 @@ public class OTPActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", u));
             params.add(new BasicNameValuePair("p", p));
             params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
-            json = jParser.makeHttpRequest(MyConstants.url_create_firebase, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
             Log.d("TAG", "Firebase: "+json);
             try {
                 resultofop = json.getString("info");

@@ -114,27 +114,27 @@ public class HrCompanyDetailsTabFragment extends Fragment {
         instphoneainput = (TextInputLayout)rootView. findViewById(R.id.instphoneainput);
         instreginput = (TextInputLayout)rootView. findViewById(R.id.instreginput);
 
-        loctxt.setTypeface(MyConstants.getBold(getActivity()));
-        CompanyName.setTypeface(MyConstants.getBold(getActivity()));
-        CompanyEmail.setTypeface(MyConstants.getBold(getActivity()));
-        CompanyWebsite.setTypeface(MyConstants.getBold(getActivity()));
-        CompanyPhone.setTypeface(MyConstants.getBold(getActivity()));
-        CompanyAlternatePhone.setTypeface(MyConstants.getBold(getActivity()));
-        CompanyCIN.setTypeface(MyConstants.getBold(getActivity()));
-        CompanyAddressLine1.setTypeface(MyConstants.getBold(getActivity()));
-        CompanyAddressLine2.setTypeface(MyConstants.getBold(getActivity()));
-        CompanyAddressLine3.setTypeface(MyConstants.getBold(getActivity()));
+        loctxt.setTypeface(Z.getBold(getActivity()));
+        CompanyName.setTypeface(Z.getBold(getActivity()));
+        CompanyEmail.setTypeface(Z.getBold(getActivity()));
+        CompanyWebsite.setTypeface(Z.getBold(getActivity()));
+        CompanyPhone.setTypeface(Z.getBold(getActivity()));
+        CompanyAlternatePhone.setTypeface(Z.getBold(getActivity()));
+        CompanyCIN.setTypeface(Z.getBold(getActivity()));
+        CompanyAddressLine1.setTypeface(Z.getBold(getActivity()));
+        CompanyAddressLine2.setTypeface(Z.getBold(getActivity()));
+        CompanyAddressLine3.setTypeface(Z.getBold(getActivity()));
 
 
-        instnameinput.setTypeface(MyConstants.getLight(getActivity()));
-        addressline1input.setTypeface(MyConstants.getLight(getActivity()));
-        addressline2input.setTypeface(MyConstants.getLight(getActivity()));
-        addressline3input.setTypeface(MyConstants.getLight(getActivity()));
-        instemailinput.setTypeface(MyConstants.getLight(getActivity()));
-        instwebinput.setTypeface(MyConstants.getLight(getActivity()));
-        instphoneinput.setTypeface(MyConstants.getLight(getActivity()));
-        instphoneainput.setTypeface(MyConstants.getLight(getActivity()));
-        instreginput.setTypeface(MyConstants.getLight(getActivity()));
+        instnameinput.setTypeface(Z.getLight(getActivity()));
+        addressline1input.setTypeface(Z.getLight(getActivity()));
+        addressline2input.setTypeface(Z.getLight(getActivity()));
+        addressline3input.setTypeface(Z.getLight(getActivity()));
+        instemailinput.setTypeface(Z.getLight(getActivity()));
+        instwebinput.setTypeface(Z.getLight(getActivity()));
+        instphoneinput.setTypeface(Z.getLight(getActivity()));
+        instphoneainput.setTypeface(Z.getLight(getActivity()));
+        instreginput.setTypeface(Z.getLight(getActivity()));
 
 
 
@@ -170,7 +170,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
                 View view= super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
                 tv.setTextColor(getResources().getColor(R.color.dark_color));
-                tv.setTypeface(MyConstants.getBold(getActivity()));
+                tv.setTypeface(Z.getBold(getActivity()));
                 return view;
             }
 
@@ -179,7 +179,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(getActivity()));
+                tv.setTypeface(Z.getBold(getActivity()));
 
                 if (position == 0) {
                     // Set the hint text color gray
@@ -545,7 +545,7 @@ public class HrCompanyDetailsTabFragment extends Fragment {
             params.add(new BasicNameValuePair("u", encUsername));
             params.add(new BasicNameValuePair("d", encobj));       //1
 
-            json = jsonParser.makeHttpRequest(MyConstants.url_SaveHrCompany, "GET", params);
+            json = jsonParser.makeHttpRequest(Z.url_SaveHrCompany, "GET", params);
             try {
                 r = json.getString("info");
 

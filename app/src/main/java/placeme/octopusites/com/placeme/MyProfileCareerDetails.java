@@ -1,14 +1,11 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
 
 public class MyProfileCareerDetails extends AppCompatActivity {
@@ -31,10 +28,10 @@ public class MyProfileCareerDetails extends AppCompatActivity {
         TextView weaktxt=(TextView)findViewById(R.id.weaktxt);
         TextView locationtxt=(TextView)findViewById(R.id.locationtxt);
 
-        careerobjtxt.setTypeface(MyConstants.getBold(this));
-        strengthtxt.setTypeface(MyConstants.getBold(this));
-        weaktxt.setTypeface(MyConstants.getBold(this));
-        locationtxt.setTypeface(MyConstants.getBold(this));
+        careerobjtxt.setTypeface(Z.getBold(this));
+        strengthtxt.setTypeface(Z.getBold(this));
+        weaktxt.setTypeface(Z.getBold(this));
+        locationtxt.setTypeface(Z.getBold(this));
 
         careerobjbutton=(View)findViewById(R.id.careerobjbutton);
         strengthbutton=(View)findViewById(R.id.strengthbutton);

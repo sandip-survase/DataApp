@@ -5,19 +5,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.TextView;
 
 public class SettingsFragment extends Fragment {
@@ -91,24 +87,24 @@ public class SettingsFragment extends Fragment {
         }
 
 
-        emailtxt.setTypeface(MyConstants.getBold(getActivity()));
-        emailemailtxt.setTypeface(MyConstants.getLight(getActivity()));
-        notiftxt.setTypeface(MyConstants.getBold(getActivity()));
-        notifnotiftxt.setTypeface(MyConstants.getLight(getActivity()));
-        passtxt.setTypeface(MyConstants.getBold(getActivity()));
-        passpasstxt.setTypeface(MyConstants.getLight(getActivity()));
-        trytxt.setTypeface(MyConstants.getBold(getActivity()));
-        proprotxt.setTypeface(MyConstants.getLight(getActivity()));
-        logintxt.setTypeface(MyConstants.getBold(getActivity()));
-        loginlogintxt.setTypeface(MyConstants.getLight(getActivity()));
-        reporttxt.setTypeface(MyConstants.getBold(getActivity()));
-        reportreporttxt.setTypeface(MyConstants.getLight(getActivity()));
-        faqtxt.setTypeface(MyConstants.getBold(getActivity()));
-        helptxt.setTypeface(MyConstants.getBold(getActivity()));
-        privacytxt.setTypeface(MyConstants.getBold(getActivity()));
-        termstxt.setTypeface(MyConstants.getBold(getActivity()));
-        agreementtxt.setTypeface(MyConstants.getBold(getActivity()));
-        signouttxt.setTypeface(MyConstants.getBold(getActivity()));
+        emailtxt.setTypeface(Z.getBold(getActivity()));
+        emailemailtxt.setTypeface(Z.getLight(getActivity()));
+        notiftxt.setTypeface(Z.getBold(getActivity()));
+        notifnotiftxt.setTypeface(Z.getLight(getActivity()));
+        passtxt.setTypeface(Z.getBold(getActivity()));
+        passpasstxt.setTypeface(Z.getLight(getActivity()));
+        trytxt.setTypeface(Z.getBold(getActivity()));
+        proprotxt.setTypeface(Z.getLight(getActivity()));
+        logintxt.setTypeface(Z.getBold(getActivity()));
+        loginlogintxt.setTypeface(Z.getLight(getActivity()));
+        reporttxt.setTypeface(Z.getBold(getActivity()));
+        reportreporttxt.setTypeface(Z.getLight(getActivity()));
+        faqtxt.setTypeface(Z.getBold(getActivity()));
+        helptxt.setTypeface(Z.getBold(getActivity()));
+        privacytxt.setTypeface(Z.getBold(getActivity()));
+        termstxt.setTypeface(Z.getBold(getActivity()));
+        agreementtxt.setTypeface(Z.getBold(getActivity()));
+        signouttxt.setTypeface(Z.getBold(getActivity()));
 
         proselectionview.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -20,7 +21,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -298,121 +298,121 @@ public class MyProfileCertifications extends AppCompatActivity {
         certistartdate10 = (TextInputLayout) findViewById(R.id.certistartdate10);
         certienddate10 = (TextInputLayout) findViewById(R.id.certienddate10);
 
-        aadt.setTypeface(MyConstants.getBold(this));
-        title1.setTypeface(MyConstants.getBold(this));
-        issuer1.setTypeface(MyConstants.getBold(this));
-        license1.setTypeface(MyConstants.getBold(this));
-        title2.setTypeface(MyConstants.getBold(this));
-        issuer2.setTypeface(MyConstants.getBold(this));
-        license2.setTypeface(MyConstants.getBold(this));
-        title3.setTypeface(MyConstants.getBold(this));
-        issuer3.setTypeface(MyConstants.getBold(this));
-        license3.setTypeface(MyConstants.getBold(this));
-        title4.setTypeface(MyConstants.getBold(this));
-        issuer4.setTypeface(MyConstants.getBold(this));
-        license4.setTypeface(MyConstants.getBold(this));
-        title5.setTypeface(MyConstants.getBold(this));
-        issuer5.setTypeface(MyConstants.getBold(this));
-        license5.setTypeface(MyConstants.getBold(this));
-        title6.setTypeface(MyConstants.getBold(this));
-        issuer6.setTypeface(MyConstants.getBold(this));
-        license6.setTypeface(MyConstants.getBold(this));
-        title7.setTypeface(MyConstants.getBold(this));
-        issuer7.setTypeface(MyConstants.getBold(this));
-        license7.setTypeface(MyConstants.getBold(this));
-        title8.setTypeface(MyConstants.getBold(this));
-        issuer8.setTypeface(MyConstants.getBold(this));
-        license8.setTypeface(MyConstants.getBold(this));
-        title9.setTypeface(MyConstants.getBold(this));
-        issuer9.setTypeface(MyConstants.getBold(this));
-        license9.setTypeface(MyConstants.getBold(this));
-        title10.setTypeface(MyConstants.getBold(this));
-        issuer10.setTypeface(MyConstants.getBold(this));
-        license10.setTypeface(MyConstants.getBold(this));
-        startdate1.setTypeface(MyConstants.getBold(this));
+        aadt.setTypeface(Z.getBold(this));
+        title1.setTypeface(Z.getBold(this));
+        issuer1.setTypeface(Z.getBold(this));
+        license1.setTypeface(Z.getBold(this));
+        title2.setTypeface(Z.getBold(this));
+        issuer2.setTypeface(Z.getBold(this));
+        license2.setTypeface(Z.getBold(this));
+        title3.setTypeface(Z.getBold(this));
+        issuer3.setTypeface(Z.getBold(this));
+        license3.setTypeface(Z.getBold(this));
+        title4.setTypeface(Z.getBold(this));
+        issuer4.setTypeface(Z.getBold(this));
+        license4.setTypeface(Z.getBold(this));
+        title5.setTypeface(Z.getBold(this));
+        issuer5.setTypeface(Z.getBold(this));
+        license5.setTypeface(Z.getBold(this));
+        title6.setTypeface(Z.getBold(this));
+        issuer6.setTypeface(Z.getBold(this));
+        license6.setTypeface(Z.getBold(this));
+        title7.setTypeface(Z.getBold(this));
+        issuer7.setTypeface(Z.getBold(this));
+        license7.setTypeface(Z.getBold(this));
+        title8.setTypeface(Z.getBold(this));
+        issuer8.setTypeface(Z.getBold(this));
+        license8.setTypeface(Z.getBold(this));
+        title9.setTypeface(Z.getBold(this));
+        issuer9.setTypeface(Z.getBold(this));
+        license9.setTypeface(Z.getBold(this));
+        title10.setTypeface(Z.getBold(this));
+        issuer10.setTypeface(Z.getBold(this));
+        license10.setTypeface(Z.getBold(this));
+        startdate1.setTypeface(Z.getBold(this));
 
-        enddate1.setTypeface(MyConstants.getBold(this));
-        startdate2.setTypeface(MyConstants.getBold(this));
-        enddate2.setTypeface(MyConstants.getBold(this));
-        startdate3.setTypeface(MyConstants.getBold(this));
-        enddate3.setTypeface(MyConstants.getBold(this));
-        startdate4.setTypeface(MyConstants.getBold(this));
-        enddate4.setTypeface(MyConstants.getBold(this));
-        startdate5.setTypeface(MyConstants.getBold(this));
-        enddate5.setTypeface(MyConstants.getBold(this));
-        startdate6.setTypeface(MyConstants.getBold(this));
-        enddate6.setTypeface(MyConstants.getBold(this));
-        startdate7.setTypeface(MyConstants.getBold(this));
-        enddate7.setTypeface(MyConstants.getBold(this));
-        startdate8.setTypeface(MyConstants.getBold(this));
-        enddate8.setTypeface(MyConstants.getBold(this));
-        startdate9.setTypeface(MyConstants.getBold(this));
-        enddate9.setTypeface(MyConstants.getBold(this));
-        startdate10.setTypeface(MyConstants.getBold(this));
-        enddate10.setTypeface(MyConstants.getBold(this));
+        enddate1.setTypeface(Z.getBold(this));
+        startdate2.setTypeface(Z.getBold(this));
+        enddate2.setTypeface(Z.getBold(this));
+        startdate3.setTypeface(Z.getBold(this));
+        enddate3.setTypeface(Z.getBold(this));
+        startdate4.setTypeface(Z.getBold(this));
+        enddate4.setTypeface(Z.getBold(this));
+        startdate5.setTypeface(Z.getBold(this));
+        enddate5.setTypeface(Z.getBold(this));
+        startdate6.setTypeface(Z.getBold(this));
+        enddate6.setTypeface(Z.getBold(this));
+        startdate7.setTypeface(Z.getBold(this));
+        enddate7.setTypeface(Z.getBold(this));
+        startdate8.setTypeface(Z.getBold(this));
+        enddate8.setTypeface(Z.getBold(this));
+        startdate9.setTypeface(Z.getBold(this));
+        enddate9.setTypeface(Z.getBold(this));
+        startdate10.setTypeface(Z.getBold(this));
+        enddate10.setTypeface(Z.getBold(this));
 
-        expire1.setTypeface(MyConstants.getLight(this));
-        expire2.setTypeface(MyConstants.getLight(this));
-        expire3.setTypeface(MyConstants.getLight(this));
-        expire4.setTypeface(MyConstants.getLight(this));
-        expire5.setTypeface(MyConstants.getLight(this));
-        expire6.setTypeface(MyConstants.getLight(this));
-        expire7.setTypeface(MyConstants.getLight(this));
-        expire8.setTypeface(MyConstants.getLight(this));
-        expire9.setTypeface(MyConstants.getLight(this));
-        expire10.setTypeface(MyConstants.getLight(this));
+        expire1.setTypeface(Z.getLight(this));
+        expire2.setTypeface(Z.getLight(this));
+        expire3.setTypeface(Z.getLight(this));
+        expire4.setTypeface(Z.getLight(this));
+        expire5.setTypeface(Z.getLight(this));
+        expire6.setTypeface(Z.getLight(this));
+        expire7.setTypeface(Z.getLight(this));
+        expire8.setTypeface(Z.getLight(this));
+        expire9.setTypeface(Z.getLight(this));
+        expire10.setTypeface(Z.getLight(this));
 
 
-        titleinput1.setTypeface(MyConstants.getLight(this));
-        issuerinput1.setTypeface(MyConstants.getLight(this));
-        licenseinput1.setTypeface(MyConstants.getLight(this));
-        titleinput2.setTypeface(MyConstants.getLight(this));
-        issuerinput2.setTypeface(MyConstants.getLight(this));
-        licenseinput2.setTypeface(MyConstants.getLight(this));
-        titleinput3.setTypeface(MyConstants.getLight(this));
-        issuerinput3.setTypeface(MyConstants.getLight(this));
-        licenseinput3.setTypeface(MyConstants.getLight(this));
-        titleinput4.setTypeface(MyConstants.getLight(this));
-        issuerinput4.setTypeface(MyConstants.getLight(this));
-        licenseinput4.setTypeface(MyConstants.getLight(this));
-        titleinput5.setTypeface(MyConstants.getLight(this));
-        issuerinput5.setTypeface(MyConstants.getLight(this));
-        licenseinput5.setTypeface(MyConstants.getLight(this));
-        titleinput6.setTypeface(MyConstants.getLight(this));
-        issuerinput6.setTypeface(MyConstants.getLight(this));
-        licenseinput6.setTypeface(MyConstants.getLight(this));
-        titleinput7.setTypeface(MyConstants.getLight(this));
-        issuerinput7.setTypeface(MyConstants.getLight(this));
-        licenseinput7.setTypeface(MyConstants.getLight(this));
-        titleinput8.setTypeface(MyConstants.getLight(this));
-        issuerinput8.setTypeface(MyConstants.getLight(this));
-        licenseinput8.setTypeface(MyConstants.getLight(this));
-        titleinput9.setTypeface(MyConstants.getLight(this));
-        issuerinput9.setTypeface(MyConstants.getLight(this));
-        licenseinput9.setTypeface(MyConstants.getLight(this));
-        titleinput10.setTypeface(MyConstants.getLight(this));
-        issuerinput10.setTypeface(MyConstants.getLight(this));
-        licenseinput10.setTypeface(MyConstants.getLight(this));
-        certistartdate1.setTypeface(MyConstants.getLight(this));
-        certienddate1.setTypeface(MyConstants.getLight(this));
-        certistartdate2.setTypeface(MyConstants.getLight(this));
-        certienddate2.setTypeface(MyConstants.getLight(this));
-        certistartdate3.setTypeface(MyConstants.getLight(this));
-        certienddate3.setTypeface(MyConstants.getLight(this));
-        certistartdate4.setTypeface(MyConstants.getLight(this));
-        certienddate4.setTypeface(MyConstants.getLight(this));
-        certistartdate5.setTypeface(MyConstants.getLight(this));
-        certienddate5.setTypeface(MyConstants.getLight(this));
-        certistartdate6.setTypeface(MyConstants.getLight(this));
-        certienddate6.setTypeface(MyConstants.getLight(this));
-        certistartdate7.setTypeface(MyConstants.getLight(this));
-        certienddate7.setTypeface(MyConstants.getLight(this));
-        certistartdate8.setTypeface(MyConstants.getLight(this));
-        certienddate8.setTypeface(MyConstants.getLight(this));
-        certistartdate9.setTypeface(MyConstants.getLight(this));
-        certienddate9.setTypeface(MyConstants.getLight(this));
-        certistartdate10.setTypeface(MyConstants.getLight(this));
-        certienddate10.setTypeface(MyConstants.getLight(this));
+        titleinput1.setTypeface(Z.getLight(this));
+        issuerinput1.setTypeface(Z.getLight(this));
+        licenseinput1.setTypeface(Z.getLight(this));
+        titleinput2.setTypeface(Z.getLight(this));
+        issuerinput2.setTypeface(Z.getLight(this));
+        licenseinput2.setTypeface(Z.getLight(this));
+        titleinput3.setTypeface(Z.getLight(this));
+        issuerinput3.setTypeface(Z.getLight(this));
+        licenseinput3.setTypeface(Z.getLight(this));
+        titleinput4.setTypeface(Z.getLight(this));
+        issuerinput4.setTypeface(Z.getLight(this));
+        licenseinput4.setTypeface(Z.getLight(this));
+        titleinput5.setTypeface(Z.getLight(this));
+        issuerinput5.setTypeface(Z.getLight(this));
+        licenseinput5.setTypeface(Z.getLight(this));
+        titleinput6.setTypeface(Z.getLight(this));
+        issuerinput6.setTypeface(Z.getLight(this));
+        licenseinput6.setTypeface(Z.getLight(this));
+        titleinput7.setTypeface(Z.getLight(this));
+        issuerinput7.setTypeface(Z.getLight(this));
+        licenseinput7.setTypeface(Z.getLight(this));
+        titleinput8.setTypeface(Z.getLight(this));
+        issuerinput8.setTypeface(Z.getLight(this));
+        licenseinput8.setTypeface(Z.getLight(this));
+        titleinput9.setTypeface(Z.getLight(this));
+        issuerinput9.setTypeface(Z.getLight(this));
+        licenseinput9.setTypeface(Z.getLight(this));
+        titleinput10.setTypeface(Z.getLight(this));
+        issuerinput10.setTypeface(Z.getLight(this));
+        licenseinput10.setTypeface(Z.getLight(this));
+        certistartdate1.setTypeface(Z.getLight(this));
+        certienddate1.setTypeface(Z.getLight(this));
+        certistartdate2.setTypeface(Z.getLight(this));
+        certienddate2.setTypeface(Z.getLight(this));
+        certistartdate3.setTypeface(Z.getLight(this));
+        certienddate3.setTypeface(Z.getLight(this));
+        certistartdate4.setTypeface(Z.getLight(this));
+        certienddate4.setTypeface(Z.getLight(this));
+        certistartdate5.setTypeface(Z.getLight(this));
+        certienddate5.setTypeface(Z.getLight(this));
+        certistartdate6.setTypeface(Z.getLight(this));
+        certienddate6.setTypeface(Z.getLight(this));
+        certistartdate7.setTypeface(Z.getLight(this));
+        certienddate7.setTypeface(Z.getLight(this));
+        certistartdate8.setTypeface(Z.getLight(this));
+        certienddate8.setTypeface(Z.getLight(this));
+        certistartdate9.setTypeface(Z.getLight(this));
+        certienddate9.setTypeface(Z.getLight(this));
+        certistartdate10.setTypeface(Z.getLight(this));
+        certienddate10.setTypeface(Z.getLight(this));
 
 
         title1.addTextChangedListener(new TextWatcher() {
@@ -1749,7 +1749,7 @@ public class MyProfileCertifications extends AppCompatActivity {
 
 
         TextView certitxt = (TextView) findViewById(R.id.certitxt);
-        certitxt.setTypeface(MyConstants.getBold(this));
+        certitxt.setTypeface(Z.getBold(this));
 
         addmorecerti = (View) findViewById(R.id.addmorecerti);
         addmorecerti.setOnClickListener(new View.OnClickListener() {
@@ -4054,8 +4054,8 @@ public class MyProfileCertifications extends AppCompatActivity {
             public void onShow(DialogInterface dialogInterface) {
                 alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileCertifications.this));
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileCertifications.this));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileCertifications.this));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileCertifications.this));
 
             }
         });
@@ -5483,8 +5483,8 @@ public class MyProfileCertifications extends AppCompatActivity {
                 public void onShow(DialogInterface dialogInterface) {
                     alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileCertifications.this));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileCertifications.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileCertifications.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileCertifications.this));
 
                 }
             });
@@ -5684,7 +5684,7 @@ public class MyProfileCertifications extends AppCompatActivity {
             params.add(new BasicNameValuePair("d", param[0]));       //0
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_savecertifications, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_savecertifications, "GET", params);
             try {
                 r = json.getString("info");
 

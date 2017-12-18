@@ -3,23 +3,19 @@ package placeme.octopusites.com.placeme;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.telephony.TelephonyManager;
-import android.text.Editable;
-import android.text.Html;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,8 +26,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.support.design.widget.TextInputEditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -105,9 +99,9 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
         ucodeicon=(ImageView) WelComeShowCodeView.findViewById(R.id.ucodeicon);
 
-        helloMsgcode.setTypeface(MyConstants.getBold(this));
-        headerMsgcode.setTypeface(MyConstants.getBold(this));
-        genratedCode.setTypeface(MyConstants.getRighteous(this));
+        helloMsgcode.setTypeface(Z.getBold(this));
+        headerMsgcode.setTypeface(Z.getBold(this));
+        genratedCode.setTypeface(Z.getRighteous(this));
 
 
 
@@ -143,8 +137,8 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         TextView welcometextviewcontext2=(TextView)WelComeInstituteView.findViewById(R.id.welcometextviewcontext2);
 
         welcometextviewcontext2.setText("\"Education is the most powerful weapon which you can use to change the world.\" - Nelson Mandela");
-        welcometextviewcontext1.setTypeface(MyConstants.getBold(this));
-        welcometextviewcontext2.setTypeface(MyConstants.getBoldItalic(this));
+        welcometextviewcontext1.setTypeface(Z.getBold(this));
+        welcometextviewcontext2.setTypeface(Z.getBoldItalic(this));
 
         instituteNameTextInputLayout=(TextInputLayout)WelComeInstituteView.findViewById(R.id.instituteNameTextInputLayout);
         countryinputlayout=(TextInputLayout)WelComeInstituteView.findViewById(R.id.countryinputlayout);
@@ -156,24 +150,24 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         univercityTextInputLayout=(TextInputLayout)WelComeInstituteView.findViewById(R.id.univercityTextInputLayout);
         regNumTextInputLayout=(TextInputLayout)WelComeInstituteView.findViewById(R.id.regNumTextInputLayout);
 
-        instituteName.setTypeface(MyConstants.getBold(this));
-        countryAutoBox.setTypeface(MyConstants.getBold(this));
-        instituteAddress.setTypeface(MyConstants.getBold(this));
-        instituteEmail.setTypeface(MyConstants.getBold(this));
-        institutewebsite.setTypeface(MyConstants.getBold(this));
-        institutephone.setTypeface(MyConstants.getBold(this));
-        instituteAlternatephone.setTypeface(MyConstants.getBold(this));
-        university.setTypeface(MyConstants.getBold(this));
-        regNumber.setTypeface(MyConstants.getBold(this));
-        instituteNameTextInputLayout.setTypeface(MyConstants.getLight(this));
-        countryinputlayout.setTypeface(MyConstants.getLight(this));
-        addressTextInputLayout.setTypeface(MyConstants.getLight(this));
-        instituteEmailTextInputLayout.setTypeface(MyConstants.getLight(this));
-        websiteTextInputLayout.setTypeface(MyConstants.getLight(this));
-        phoneTextInputLayout.setTypeface(MyConstants.getLight(this));
-        alternatePhoneTextInputLayout.setTypeface(MyConstants.getLight(this));
-        univercityTextInputLayout.setTypeface(MyConstants.getLight(this));
-        regNumTextInputLayout.setTypeface(MyConstants.getLight(this));
+        instituteName.setTypeface(Z.getBold(this));
+        countryAutoBox.setTypeface(Z.getBold(this));
+        instituteAddress.setTypeface(Z.getBold(this));
+        instituteEmail.setTypeface(Z.getBold(this));
+        institutewebsite.setTypeface(Z.getBold(this));
+        institutephone.setTypeface(Z.getBold(this));
+        instituteAlternatephone.setTypeface(Z.getBold(this));
+        university.setTypeface(Z.getBold(this));
+        regNumber.setTypeface(Z.getBold(this));
+        instituteNameTextInputLayout.setTypeface(Z.getLight(this));
+        countryinputlayout.setTypeface(Z.getLight(this));
+        addressTextInputLayout.setTypeface(Z.getLight(this));
+        instituteEmailTextInputLayout.setTypeface(Z.getLight(this));
+        websiteTextInputLayout.setTypeface(Z.getLight(this));
+        phoneTextInputLayout.setTypeface(Z.getLight(this));
+        alternatePhoneTextInputLayout.setTypeface(Z.getLight(this));
+        univercityTextInputLayout.setTypeface(Z.getLight(this));
+        regNumTextInputLayout.setTypeface(Z.getLight(this));
 
         ImageView enterinstdetailsimage=(ImageView)WelComeInstituteView.findViewById(R.id.enterinstdetailsimage);
         slideinleft1(welcometextviewcontext1);
@@ -236,7 +230,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             public View getView(int position, View convertView, ViewGroup parent) {
                 View v = super.getView(position, convertView, parent);
 
-                ((TextView) v).setTypeface(MyConstants.getBold(WelcomeGenrateCodeActivity.this));
+                ((TextView) v).setTypeface(Z.getBold(WelcomeGenrateCodeActivity.this));
 
                 return v;
             }
@@ -246,7 +240,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
 //                    Typeface custom_font3 = Typeface.createFromAsset(getAssets(), "fonts/abz.ttf");
-                tv.setTypeface(MyConstants.getBold(WelcomeGenrateCodeActivity.this));
+                tv.setTypeface(Z.getBold(WelcomeGenrateCodeActivity.this));
 
                 if (position == 0) {
                     // Set the hint text color gray
@@ -284,8 +278,8 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         TextView welcometextviewcontext2=(TextView)WelComeCompanyView.findViewById(R.id.welcometextviewcontext2);
 
         welcometextviewcontext2.setText("\"The mechanics of industry is easy. The real engine is the peeople: Their motivation and direction.\" - Ken Gilbert");
-        welcometextviewcontext1.setTypeface(MyConstants.getBold(this));
-        welcometextviewcontext2.setTypeface(MyConstants.getBoldItalic(this));
+        welcometextviewcontext1.setTypeface(Z.getBold(this));
+        welcometextviewcontext2.setTypeface(Z.getBoldItalic(this));
 
         companyNameTextInputLayout=(TextInputLayout)WelComeCompanyView.findViewById(R.id.companyNameTextInputLayout);
         companycountryinputlayout=(TextInputLayout)WelComeCompanyView.findViewById(R.id.countryinputlayout);
@@ -297,24 +291,24 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         companyCINTextInputLayout=(TextInputLayout)WelComeCompanyView.findViewById(R.id.CINTextInputLayout);
         ocompanytherNatureTextInputLayout=(TextInputLayout)WelComeCompanyView.findViewById(R.id.otherNatureTextInputLayout);
 
-        companyName.setTypeface(MyConstants.getBold(this));
-        countryAutoBoxCompany.setTypeface(MyConstants.getBold(this));
-        companyAddress.setTypeface(MyConstants.getBold(this));
-        companyEmail.setTypeface(MyConstants.getBold(this));
-        companyWebsite.setTypeface(MyConstants.getBold(this));
-        companyPhone.setTypeface(MyConstants.getBold(this));
-        companyAlternatephone.setTypeface(MyConstants.getBold(this));
-        CIN.setTypeface(MyConstants.getBold(this));
-        otherNature.setTypeface(MyConstants.getBold(this));
-        companyNameTextInputLayout.setTypeface(MyConstants.getLight(this));
-        companycountryinputlayout.setTypeface(MyConstants.getLight(this));
-        companyaddressTextInputLayout.setTypeface(MyConstants.getLight(this));
-        companyemailTextInputLayout.setTypeface(MyConstants.getLight(this));
-        companywebsiteTextInputLayout.setTypeface(MyConstants.getLight(this));
-        companyphoneTextInputLayout.setTypeface(MyConstants.getLight(this));
-        companyalternatePhoneTextInputLayout.setTypeface(MyConstants.getLight(this));
-        companyCINTextInputLayout.setTypeface(MyConstants.getLight(this));
-        ocompanytherNatureTextInputLayout.setTypeface(MyConstants.getLight(this));
+        companyName.setTypeface(Z.getBold(this));
+        countryAutoBoxCompany.setTypeface(Z.getBold(this));
+        companyAddress.setTypeface(Z.getBold(this));
+        companyEmail.setTypeface(Z.getBold(this));
+        companyWebsite.setTypeface(Z.getBold(this));
+        companyPhone.setTypeface(Z.getBold(this));
+        companyAlternatephone.setTypeface(Z.getBold(this));
+        CIN.setTypeface(Z.getBold(this));
+        otherNature.setTypeface(Z.getBold(this));
+        companyNameTextInputLayout.setTypeface(Z.getLight(this));
+        companycountryinputlayout.setTypeface(Z.getLight(this));
+        companyaddressTextInputLayout.setTypeface(Z.getLight(this));
+        companyemailTextInputLayout.setTypeface(Z.getLight(this));
+        companywebsiteTextInputLayout.setTypeface(Z.getLight(this));
+        companyphoneTextInputLayout.setTypeface(Z.getLight(this));
+        companyalternatePhoneTextInputLayout.setTypeface(Z.getLight(this));
+        companyCINTextInputLayout.setTypeface(Z.getLight(this));
+        ocompanytherNatureTextInputLayout.setTypeface(Z.getLight(this));
 
         ImageView enterindustrydetailsscreen=(ImageView)WelComeCompanyView.findViewById(R.id.enterindustrydetailsscreen);
         slideinleft1(welcometextviewcontext1);
@@ -371,7 +365,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
         dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
         btnNext = (Button) findViewById(R.id.btn_next);
-        btnNext.setTypeface(MyConstants.getBold(this));
+        btnNext.setTypeface(Z.getBold(this));
         nextProgress = (ProgressBar) findViewById(R.id.nextProgress);
 
 
@@ -614,7 +608,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
         dotsLayout.removeAllViews();
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new TextView(this);
-            dots[i].setTypeface(MyConstants.getFA(this));
+            dots[i].setTypeface(Z.getFA(this));
             dots[i].setLayoutParams(params);
             dots[i].setText(getString(R.string.dot_unselected));
             dots[i].setTextSize(8);
@@ -852,7 +846,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("id",android_id));                              //15
             //static
 
-            json = jsonParser.makeHttpRequest(MyConstants.url_SaveAndGenrateInstituteCode, "GET", params);
+            json = jsonParser.makeHttpRequest(Z.url_SaveAndGenrateInstituteCode, "GET", params);
             try {
                 r = json.getString("info");
                 Log.d("TAG", "doInBackground: save comp data "+json);
@@ -992,7 +986,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
 
 
 
-            json = jsonParser.makeHttpRequest(MyConstants.url_SaveAndGenrateCompanyCode, "GET", params);
+            json = jsonParser.makeHttpRequest(Z.url_SaveAndGenrateCompanyCode, "GET", params);
             try {
                 r = json.getString("info");
                 if(r.equals("success")){
@@ -1049,7 +1043,7 @@ public class WelcomeGenrateCodeActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", u));
             params.add(new BasicNameValuePair("p", p));
             params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken")));
-            json = jsonParser.makeHttpRequest(MyConstants.url_create_firebase, "GET", params);
+            json = jsonParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
             Log.d("TAG", "CreateFirebaseUser json : "+json);
             try {
                 resultofop = json.getString("info");

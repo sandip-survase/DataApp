@@ -2,23 +2,19 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -113,7 +109,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         });
 
         TextView forgotpassword=(TextView)findViewById(R.id.forgot);
-        forgotpassword.setTypeface(MyConstants.getBold(this));
+        forgotpassword.setTypeface(Z.getBold(this));
         forgotpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,15 +128,15 @@ public class ChangePasswordActivity extends AppCompatActivity {
         progressBar=(ProgressBar)findViewById(R.id.changepassprogress);
         changepassbutton=(Button)findViewById(R.id.change_password_button);
 
-        changepassbutton.setTypeface(MyConstants.getBold(this));
-        createpasstxt.setTypeface(MyConstants.getBold(this));
-        passsenstxt.setTypeface(MyConstants.getLight(this));
-        currentinput.setTypeface(MyConstants.getLight(this));
-        newinput.setTypeface(MyConstants.getLight(this));
-        newainput.setTypeface(MyConstants.getLight(this));
-        current_password.setTypeface(MyConstants.getBold(this));
-        new_password.setTypeface(MyConstants.getBold(this));
-        new_password_again.setTypeface(MyConstants.getBold(this));
+        changepassbutton.setTypeface(Z.getBold(this));
+        createpasstxt.setTypeface(Z.getBold(this));
+        passsenstxt.setTypeface(Z.getLight(this));
+        currentinput.setTypeface(Z.getLight(this));
+        newinput.setTypeface(Z.getLight(this));
+        newainput.setTypeface(Z.getLight(this));
+        current_password.setTypeface(Z.getBold(this));
+        new_password.setTypeface(Z.getBold(this));
+        new_password_again.setTypeface(Z.getBold(this));
 
 
         changepassbutton.setOnClickListener(new View.OnClickListener() {
@@ -238,7 +234,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("p", enccurrentpass));
             params.add(new BasicNameValuePair("a", encnewpass));
 
-            json = jParser.makeHttpRequest(MyConstants.url_changepass, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_changepass, "GET", params);
 
             Log.d("TAG", "change password json "+json);
             try {

@@ -77,7 +77,7 @@ public class HrIntro extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         TextView loctxt = (TextView) findViewById(R.id.loctxt);
-        loctxt.setTypeface(MyConstants.getBold(this));
+        loctxt.setTypeface(Z.getBold(this));
 
         digest1 = MySharedPreferencesManager.getDigest1(this);
         digest2 = MySharedPreferencesManager.getDigest2(this);
@@ -91,12 +91,12 @@ public class HrIntro extends AppCompatActivity {
         designation = (EditText) findViewById(R.id.inst);
         citystaecountry = (AutoCompleteTextView) findViewById(R.id.citystaecountry);
 
-        fname.setTypeface(MyConstants.getBold(this));
-        lname.setTypeface(MyConstants.getBold(this));
-        role.setTypeface(MyConstants.getBold(this));
-        email.setTypeface(MyConstants.getBold(this));
-        designation.setTypeface(MyConstants.getBold(this));
-        citystaecountry.setTypeface(MyConstants.getBold(this));
+        fname.setTypeface(Z.getBold(this));
+        lname.setTypeface(Z.getBold(this));
+        role.setTypeface(Z.getBold(this));
+        email.setTypeface(Z.getBold(this));
+        designation.setTypeface(Z.getBold(this));
+        citystaecountry.setTypeface(Z.getBold(this));
 
 
         fnameTextInputLayout = (TextInputLayout) findViewById(R.id.fnameTextInputLayout);
@@ -106,13 +106,13 @@ public class HrIntro extends AppCompatActivity {
         designinputlayout = (TextInputLayout) findViewById(R.id.instinputlayout);
         citystaecountryinputlayout = (TextInputLayout) findViewById(R.id.citystaecountryinputlayout);
 
-        fnameTextInputLayout.setTypeface(MyConstants.getLight(this));
-        lnameTextInputLayout.setTypeface(MyConstants.getLight(this));
-        roleinputlayout.setTypeface(MyConstants.getLight(this));
+        fnameTextInputLayout.setTypeface(Z.getLight(this));
+        lnameTextInputLayout.setTypeface(Z.getLight(this));
+        roleinputlayout.setTypeface(Z.getLight(this));
 
-        designinputlayout.setTypeface(MyConstants.getLight(this));
-        emailinputlayout.setTypeface(MyConstants.getLight(this));
-        citystaecountryinputlayout.setTypeface(MyConstants.getLight(this));
+        designinputlayout.setTypeface(Z.getLight(this));
+        emailinputlayout.setTypeface(Z.getLight(this));
+        citystaecountryinputlayout.setTypeface(Z.getLight(this));
 
 
         ScrollView myprofileintroscrollview = (ScrollView) findViewById(R.id.myprofileintroscrollview);
@@ -422,7 +422,7 @@ public class HrIntro extends AppCompatActivity {
             params.add(new BasicNameValuePair("d", encobj));       //1
 
             Log.d("TAG", "doInBackground: HRintro activity-----------------------------------");
-            json = jParser.makeHttpRequest(MyConstants.url_SaveHrIntro, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_SaveHrIntro, "GET", params);
             try {
                 r = json.getString("info");
 

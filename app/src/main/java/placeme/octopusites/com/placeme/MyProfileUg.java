@@ -157,67 +157,67 @@ public class MyProfileUg extends AppCompatActivity {
         umarksusem1input= (TextInputLayout) findViewById(R.id.umarksusem1input);
 
 
-        umarkssem1.setTypeface(MyConstants.getBold(this));
-        uoutofsem1.setTypeface(MyConstants.getBold(this));
-        upercentsem1.setTypeface(MyConstants.getBold(this));
-        umarkssem2.setTypeface(MyConstants.getBold(this));
-        uoutofsem2.setTypeface(MyConstants.getBold(this));
-        upercentsem2.setTypeface(MyConstants.getBold(this));
-        umarkssem3.setTypeface(MyConstants.getBold(this));
-        uoutofsem3.setTypeface(MyConstants.getBold(this));
-        upercentsem3.setTypeface(MyConstants.getBold(this));
-        umarkssem4.setTypeface(MyConstants.getBold(this));
-        uoutofsem4.setTypeface(MyConstants.getBold(this));
-        upercentsem4.setTypeface(MyConstants.getBold(this));
-        umarkssem5.setTypeface(MyConstants.getBold(this));
-        uoutofsem5.setTypeface(MyConstants.getBold(this));
-        upercentsem5.setTypeface(MyConstants.getBold(this));
-        umarkssem6.setTypeface(MyConstants.getBold(this));
-        uoutofsem6.setTypeface(MyConstants.getBold(this));
-        upercentsem6.setTypeface(MyConstants.getBold(this));
-        umarkssem7.setTypeface(MyConstants.getBold(this));
-        uoutofsem7.setTypeface(MyConstants.getBold(this));
-        upercentsem7.setTypeface(MyConstants.getBold(this));
-        umarkssem8.setTypeface(MyConstants.getBold(this));
-        uoutofsem8.setTypeface(MyConstants.getBold(this));
-        upercentsem8.setTypeface(MyConstants.getBold(this));
-        uaggregate.setTypeface(MyConstants.getBold(this));
-        schoolnameu.setTypeface(MyConstants.getBold(this));
-        yearofpassingu.setTypeface(MyConstants.getBold(this));
+        umarkssem1.setTypeface(Z.getBold(this));
+        uoutofsem1.setTypeface(Z.getBold(this));
+        upercentsem1.setTypeface(Z.getBold(this));
+        umarkssem2.setTypeface(Z.getBold(this));
+        uoutofsem2.setTypeface(Z.getBold(this));
+        upercentsem2.setTypeface(Z.getBold(this));
+        umarkssem3.setTypeface(Z.getBold(this));
+        uoutofsem3.setTypeface(Z.getBold(this));
+        upercentsem3.setTypeface(Z.getBold(this));
+        umarkssem4.setTypeface(Z.getBold(this));
+        uoutofsem4.setTypeface(Z.getBold(this));
+        upercentsem4.setTypeface(Z.getBold(this));
+        umarkssem5.setTypeface(Z.getBold(this));
+        uoutofsem5.setTypeface(Z.getBold(this));
+        upercentsem5.setTypeface(Z.getBold(this));
+        umarkssem6.setTypeface(Z.getBold(this));
+        uoutofsem6.setTypeface(Z.getBold(this));
+        upercentsem6.setTypeface(Z.getBold(this));
+        umarkssem7.setTypeface(Z.getBold(this));
+        uoutofsem7.setTypeface(Z.getBold(this));
+        upercentsem7.setTypeface(Z.getBold(this));
+        umarkssem8.setTypeface(Z.getBold(this));
+        uoutofsem8.setTypeface(Z.getBold(this));
+        upercentsem8.setTypeface(Z.getBold(this));
+        uaggregate.setTypeface(Z.getBold(this));
+        schoolnameu.setTypeface(Z.getBold(this));
+        yearofpassingu.setTypeface(Z.getBold(this));
 
-        umarksusem1input.setTypeface(MyConstants.getLight(this));
-        uoutofsem1input.setTypeface(MyConstants.getLight(this));
-        upercentsem1input.setTypeface(MyConstants.getLight(this));
-        umarksusem2input.setTypeface(MyConstants.getLight(this));
-        uoutofsem2input.setTypeface(MyConstants.getLight(this));
-        upercentsem2input.setTypeface(MyConstants.getLight(this));
-        umarksusem3input.setTypeface(MyConstants.getLight(this));
-        uoutofsem3input.setTypeface(MyConstants.getLight(this));
-        upercentsem3input.setTypeface(MyConstants.getLight(this));
-        umarksusem4input.setTypeface(MyConstants.getLight(this));
-        uoutofsem4input.setTypeface(MyConstants.getLight(this));
-        upercentsem4input.setTypeface(MyConstants.getLight(this));
-        umarksusem5input.setTypeface(MyConstants.getLight(this));
-        uoutofsem5input.setTypeface(MyConstants.getLight(this));
-        upercentsem5input.setTypeface(MyConstants.getLight(this));
-        umarksusem6input.setTypeface(MyConstants.getLight(this));
-        uoutofsem6input.setTypeface(MyConstants.getLight(this));
-        upercentsem6input.setTypeface(MyConstants.getLight(this));
-        umarksusem7input.setTypeface(MyConstants.getLight(this));
-        uoutofsem7input.setTypeface(MyConstants.getLight(this));
-        upercentsem7input.setTypeface(MyConstants.getLight(this));
-        umarksusem8input.setTypeface(MyConstants.getLight(this));
-        uoutofsem8input.setTypeface(MyConstants.getLight(this));
-        upercentsem8input.setTypeface(MyConstants.getLight(this));
-        uaggregateinput.setTypeface(MyConstants.getLight(this));
-        othercourseinput.setTypeface(MyConstants.getLight(this));
-        otherstreaminput.setTypeface(MyConstants.getLight(this));
-        otheruniversityinput.setTypeface(MyConstants.getLight(this));
-        schoolnameuinput.setTypeface(MyConstants.getLight(this));
-        yearofpassinguinput.setTypeface(MyConstants.getLight(this));
+        umarksusem1input.setTypeface(Z.getLight(this));
+        uoutofsem1input.setTypeface(Z.getLight(this));
+        upercentsem1input.setTypeface(Z.getLight(this));
+        umarksusem2input.setTypeface(Z.getLight(this));
+        uoutofsem2input.setTypeface(Z.getLight(this));
+        upercentsem2input.setTypeface(Z.getLight(this));
+        umarksusem3input.setTypeface(Z.getLight(this));
+        uoutofsem3input.setTypeface(Z.getLight(this));
+        upercentsem3input.setTypeface(Z.getLight(this));
+        umarksusem4input.setTypeface(Z.getLight(this));
+        uoutofsem4input.setTypeface(Z.getLight(this));
+        upercentsem4input.setTypeface(Z.getLight(this));
+        umarksusem5input.setTypeface(Z.getLight(this));
+        uoutofsem5input.setTypeface(Z.getLight(this));
+        upercentsem5input.setTypeface(Z.getLight(this));
+        umarksusem6input.setTypeface(Z.getLight(this));
+        uoutofsem6input.setTypeface(Z.getLight(this));
+        upercentsem6input.setTypeface(Z.getLight(this));
+        umarksusem7input.setTypeface(Z.getLight(this));
+        uoutofsem7input.setTypeface(Z.getLight(this));
+        upercentsem7input.setTypeface(Z.getLight(this));
+        umarksusem8input.setTypeface(Z.getLight(this));
+        uoutofsem8input.setTypeface(Z.getLight(this));
+        upercentsem8input.setTypeface(Z.getLight(this));
+        uaggregateinput.setTypeface(Z.getLight(this));
+        othercourseinput.setTypeface(Z.getLight(this));
+        otherstreaminput.setTypeface(Z.getLight(this));
+        otheruniversityinput.setTypeface(Z.getLight(this));
+        schoolnameuinput.setTypeface(Z.getLight(this));
+        yearofpassinguinput.setTypeface(Z.getLight(this));
 
         TextView ugtxt=(TextView)findViewById(R.id.ugtxt);
-        ugtxt.setTypeface(MyConstants.getBold(this));
+        ugtxt.setTypeface(Z.getBold(this));
 
 
 
@@ -1208,7 +1208,7 @@ public class MyProfileUg extends AppCompatActivity {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
 
-            json = jParser.makeHttpRequest(MyConstants.url_getugcourses, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_getugcourses, "GET", params);
             try {
                 String s = json.getString("count");
                 coursecount=Integer.parseInt(s);
@@ -1246,7 +1246,7 @@ public class MyProfileUg extends AppCompatActivity {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("c",selectedCourse));
-            json = jParser.makeHttpRequest(MyConstants.url_getstreams, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_getstreams, "GET", params);
             try {
                 String s = json.getString("count");
                 streamcount=Integer.parseInt(s);
@@ -1292,7 +1292,7 @@ public class MyProfileUg extends AppCompatActivity {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
 
-            json = jParser.makeHttpRequest(MyConstants.url_getuniversities, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_getuniversities, "GET", params);
             try {
                 String s = json.getString("count");
                 universitycount=Integer.parseInt(s);
@@ -1346,7 +1346,7 @@ public class MyProfileUg extends AppCompatActivity {
                 View view= super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
                 tv.setTextColor(getResources().getColor(R.color.dark_color));
-                tv.setTypeface(MyConstants.getBold(MyProfileUg.this));
+                tv.setTypeface(Z.getBold(MyProfileUg.this));
                 return view;
             }
 
@@ -1355,7 +1355,7 @@ public class MyProfileUg extends AppCompatActivity {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileUg.this));
+                tv.setTypeface(Z.getBold(MyProfileUg.this));
 
                 if(position == 0){
                     // Set the hint text color gray
@@ -1427,7 +1427,7 @@ public class MyProfileUg extends AppCompatActivity {
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View view= super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileUg.this));
+                tv.setTypeface(Z.getBold(MyProfileUg.this));
                 tv.setTextColor(getResources().getColor(R.color.dark_color));
                 return view;
             }
@@ -1437,7 +1437,7 @@ public class MyProfileUg extends AppCompatActivity {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileUg.this));
+                tv.setTypeface(Z.getBold(MyProfileUg.this));
 
                 if(position == 0){
                     // Set the hint text color gray
@@ -1510,7 +1510,7 @@ public class MyProfileUg extends AppCompatActivity {
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View view= super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileUg.this));
+                tv.setTypeface(Z.getBold(MyProfileUg.this));
                 tv.setTextColor(getResources().getColor(R.color.dark_color));
                 return view;
             }
@@ -1520,7 +1520,7 @@ public class MyProfileUg extends AppCompatActivity {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileUg.this));
+                tv.setTypeface(Z.getBold(MyProfileUg.this));
 
                 if(position == 0){
                     // Set the hint text color gray
@@ -2033,7 +2033,7 @@ public class MyProfileUg extends AppCompatActivity {
 //            params.add(new BasicNameValuePair("u1",encselecteduniversity));       //28
 //            params.add(new BasicNameValuePair("s",encschoolname));     //29
 //            params.add(new BasicNameValuePair("y",encmonthandyearofpassing));       //30
-            json = jParser.makeHttpRequest(MyConstants.url_savedata_ug, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_savedata_ug, "GET", params);
             try {
                 r = json.getString("info");
 
@@ -2119,8 +2119,8 @@ public class MyProfileUg extends AppCompatActivity {
                 public void onShow(DialogInterface dialogInterface) {
                     alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileUg.this));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileUg.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileUg.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileUg.this));
                 }
             });
 

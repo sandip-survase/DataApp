@@ -1,8 +1,6 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -22,8 +20,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -32,13 +28,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -449,7 +443,7 @@ public class EditPlacementMain extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("id", sid)); //0
 
-            json = jParser.makeHttpRequest(MyConstants.url_GetForWhomePlacements, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_GetForWhomePlacements, "GET", params);
             try {
                 Forwhomefromdb = json.getString("forwhom");
 
@@ -638,7 +632,7 @@ public class EditPlacementMain extends AppCompatActivity {
             params.add(new BasicNameValuePair("id",sid));    //20
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_ModifyPlacement, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_ModifyPlacement, "GET", params);
             try {
                 r = json.getString("info");
 

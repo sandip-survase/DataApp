@@ -1,9 +1,9 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.support.design.widget.TextInputEditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,16 +72,16 @@ public class AdminInstituteTabFragment extends Fragment {
         caddrline2input = (TextInputLayout)rootView. findViewById(R.id.caddrline2input);
         caddrline3input = (TextInputLayout)rootView.findViewById(R.id.caddrline3input);
 
-        instnameinput.setTypeface(MyConstants.getLight(getActivity()));
-        instemailinput.setTypeface(MyConstants.getLight(getActivity()));
-        instwebinput.setTypeface(MyConstants.getLight(getActivity()));
-        instphoneinput.setTypeface(MyConstants.getLight(getActivity()));
-        instphoneainput.setTypeface(MyConstants.getLight(getActivity()));
-        instuniversityinput.setTypeface(MyConstants.getLight(getActivity()));
-        instreginput.setTypeface(MyConstants.getLight(getActivity()));
-        caddrline1input.setTypeface(MyConstants.getLight(getActivity()));
-        caddrline2input.setTypeface(MyConstants.getLight(getActivity()));
-        caddrline3input.setTypeface(MyConstants.getLight(getActivity()));
+        instnameinput.setTypeface(Z.getLight(getActivity()));
+        instemailinput.setTypeface(Z.getLight(getActivity()));
+        instwebinput.setTypeface(Z.getLight(getActivity()));
+        instphoneinput.setTypeface(Z.getLight(getActivity()));
+        instphoneainput.setTypeface(Z.getLight(getActivity()));
+        instuniversityinput.setTypeface(Z.getLight(getActivity()));
+        instreginput.setTypeface(Z.getLight(getActivity()));
+        caddrline1input.setTypeface(Z.getLight(getActivity()));
+        caddrline2input.setTypeface(Z.getLight(getActivity()));
+        caddrline3input.setTypeface(Z.getLight(getActivity()));
 
 
         iname = (TextInputEditText) rootView.findViewById(R.id.instname);
@@ -98,19 +97,19 @@ public class AdminInstituteTabFragment extends Fragment {
         caddrline2 = (TextInputEditText)rootView. findViewById(R.id.caddrline2);
         caddrline3 = (TextInputEditText)rootView. findViewById(R.id.caddrline3);
 
-        iname.setTypeface(MyConstants.getBold(getActivity()));
-        iemail.setTypeface(MyConstants.getBold(getActivity()));
-        iweb.setTypeface(MyConstants.getBold(getActivity()));
-        iphone.setTypeface(MyConstants.getBold(getActivity()));
-        ialtphone.setTypeface(MyConstants.getBold(getActivity()));
-        uniname.setTypeface(MyConstants.getBold(getActivity()));
-        ireg.setTypeface(MyConstants.getBold(getActivity()));
-        loctxt.setTypeface(MyConstants.getBold(getActivity()));
+        iname.setTypeface(Z.getBold(getActivity()));
+        iemail.setTypeface(Z.getBold(getActivity()));
+        iweb.setTypeface(Z.getBold(getActivity()));
+        iphone.setTypeface(Z.getBold(getActivity()));
+        ialtphone.setTypeface(Z.getBold(getActivity()));
+        uniname.setTypeface(Z.getBold(getActivity()));
+        ireg.setTypeface(Z.getBold(getActivity()));
+        loctxt.setTypeface(Z.getBold(getActivity()));
 
-        caddrline1.setTypeface(MyConstants.getBold(getActivity()));
-        caddrline2.setTypeface(MyConstants.getBold(getActivity()));
-        caddrline3.setTypeface(MyConstants.getBold(getActivity()));
-        loctxt.setTypeface(MyConstants.getBold(getActivity()));
+        caddrline1.setTypeface(Z.getBold(getActivity()));
+        caddrline2.setTypeface(Z.getBold(getActivity()));
+        caddrline3.setTypeface(Z.getBold(getActivity()));
+        loctxt.setTypeface(Z.getBold(getActivity()));
 
 //        save=(Button)rootView.findViewById(R.id.savepersonal);
 //        saveprogress=(ProgressBar) rootView.findViewById(R.id.personalprogress);
@@ -487,7 +486,7 @@ public class AdminInstituteTabFragment extends Fragment {
             params.add(new BasicNameValuePair("obj", strobj));    //1
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_SaveAdminInstituteData, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_SaveAdminInstituteData, "GET", params);
             try {
                 r = json.getString("info");
                 Log.d("TAG", "doInBackground: r - "+r);

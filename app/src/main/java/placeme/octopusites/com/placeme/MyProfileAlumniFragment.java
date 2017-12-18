@@ -332,92 +332,92 @@ public class MyProfileAlumniFragment extends Fragment {
         myprofileclgyearofpassing4 = (TextView) rootView.findViewById(R.id.myprofileclgyearofpassing4);
 
 
-        exp1txt.setTypeface(MyConstants.getBold(getActivity()));
-        myprofileexp1name.setTypeface(MyConstants.getLight(getActivity()));
-        myprofileexpfromto.setTypeface(MyConstants.getLight(getActivity()));
+        exp1txt.setTypeface(Z.getBold(getActivity()));
+        myprofileexp1name.setTypeface(Z.getLight(getActivity()));
+        myprofileexpfromto.setTypeface(Z.getLight(getActivity()));
 
-        exp2txt.setTypeface(MyConstants.getBold(getActivity()));
-        myprofileexp2name.setTypeface(MyConstants.getLight(getActivity()));
-        myprofileexpfromto2.setTypeface(MyConstants.getLight(getActivity()));
+        exp2txt.setTypeface(Z.getBold(getActivity()));
+        myprofileexp2name.setTypeface(Z.getLight(getActivity()));
+        myprofileexpfromto2.setTypeface(Z.getLight(getActivity()));
 
-        exp3txt.setTypeface(MyConstants.getBold(getActivity()));
-        myprofileexp3name.setTypeface(MyConstants.getLight(getActivity()));
-        myprofileexpfromto3.setTypeface(MyConstants.getLight(getActivity()));
+        exp3txt.setTypeface(Z.getBold(getActivity()));
+        myprofileexp3name.setTypeface(Z.getLight(getActivity()));
+        myprofileexpfromto3.setTypeface(Z.getLight(getActivity()));
 
 
-        myprofilename.setTypeface(MyConstants.getBold(getActivity()));
-        myprofilrole.setTypeface(MyConstants.getBold(getActivity()));
-        myprofiledu.setTypeface(MyConstants.getBold(getActivity()));
-        myprofilloc.setTypeface(MyConstants.getLight(getActivity()));
-        myprofilemail.setTypeface(MyConstants.getLight(getActivity()));
-        myprofilepercenttxt.setTypeface(MyConstants.getItalic(getActivity()));
-        editprofiletxt.setTypeface(MyConstants.getBold(getActivity()));
-        eduboxtxt.setTypeface(MyConstants.getBold(getActivity()));
-        projboxtxt.setTypeface(MyConstants.getBold(getActivity()));
-        accomplishmentsboxtxt.setTypeface(MyConstants.getBold(getActivity()));
-        careerboxtxt.setTypeface(MyConstants.getBold(getActivity()));
-        contactboxtxt.setTypeface(MyConstants.getBold(getActivity()));
-        expboxtxt.setTypeface(MyConstants.getBold(getActivity()));
-        myprofilecource.setTypeface(MyConstants.getBold(getActivity()));
-        myprofilecource2.setTypeface(MyConstants.getBold(getActivity()));
-        myprofilecource3.setTypeface(MyConstants.getBold(getActivity()));
-        myprofilecource4.setTypeface(MyConstants.getBold(getActivity()));
-        myprofileproj1.setTypeface(MyConstants.getBold(getActivity()));
-        myprofileproj2.setTypeface(MyConstants.getBold(getActivity()));
-        myprofileproj3.setTypeface(MyConstants.getBold(getActivity()));
+        myprofilename.setTypeface(Z.getBold(getActivity()));
+        myprofilrole.setTypeface(Z.getBold(getActivity()));
+        myprofiledu.setTypeface(Z.getBold(getActivity()));
+        myprofilloc.setTypeface(Z.getLight(getActivity()));
+        myprofilemail.setTypeface(Z.getLight(getActivity()));
+        myprofilepercenttxt.setTypeface(Z.getItalic(getActivity()));
+        editprofiletxt.setTypeface(Z.getBold(getActivity()));
+        eduboxtxt.setTypeface(Z.getBold(getActivity()));
+        projboxtxt.setTypeface(Z.getBold(getActivity()));
+        accomplishmentsboxtxt.setTypeface(Z.getBold(getActivity()));
+        careerboxtxt.setTypeface(Z.getBold(getActivity()));
+        contactboxtxt.setTypeface(Z.getBold(getActivity()));
+        expboxtxt.setTypeface(Z.getBold(getActivity()));
+        myprofilecource.setTypeface(Z.getBold(getActivity()));
+        myprofilecource2.setTypeface(Z.getBold(getActivity()));
+        myprofilecource3.setTypeface(Z.getBold(getActivity()));
+        myprofilecource4.setTypeface(Z.getBold(getActivity()));
+        myprofileproj1.setTypeface(Z.getBold(getActivity()));
+        myprofileproj2.setTypeface(Z.getBold(getActivity()));
+        myprofileproj3.setTypeface(Z.getBold(getActivity()));
 
-        acc1txt.setTypeface(MyConstants.getLight(getActivity()));
-        acc2txt.setTypeface(MyConstants.getLight(getActivity()));
-        acc3txt.setTypeface(MyConstants.getLight(getActivity()));
-        acc4txt.setTypeface(MyConstants.getLight(getActivity()));
-        acc5txt.setTypeface(MyConstants.getLight(getActivity()));
-        acc6txt.setTypeface(MyConstants.getLight(getActivity()));
-        acc7txt.setTypeface(MyConstants.getLight(getActivity()));
-        careerobjtxt.setTypeface(MyConstants.getBold(getActivity()));
-        strengthtxt.setTypeface(MyConstants.getBold(getActivity()));
-        weaktxt.setTypeface(MyConstants.getBold(getActivity()));
-        locpretxt.setTypeface(MyConstants.getBold(getActivity()));
-        nametxt.setTypeface(MyConstants.getBold(getActivity()));
-        mobiletxt.setTypeface(MyConstants.getLight(getActivity()));
-        emailtxt.setTypeface(MyConstants.getLight(getActivity()));
+        acc1txt.setTypeface(Z.getLight(getActivity()));
+        acc2txt.setTypeface(Z.getLight(getActivity()));
+        acc3txt.setTypeface(Z.getLight(getActivity()));
+        acc4txt.setTypeface(Z.getLight(getActivity()));
+        acc5txt.setTypeface(Z.getLight(getActivity()));
+        acc6txt.setTypeface(Z.getLight(getActivity()));
+        acc7txt.setTypeface(Z.getLight(getActivity()));
+        careerobjtxt.setTypeface(Z.getBold(getActivity()));
+        strengthtxt.setTypeface(Z.getBold(getActivity()));
+        weaktxt.setTypeface(Z.getBold(getActivity()));
+        locpretxt.setTypeface(Z.getBold(getActivity()));
+        nametxt.setTypeface(Z.getBold(getActivity()));
+        mobiletxt.setTypeface(Z.getLight(getActivity()));
+        emailtxt.setTypeface(Z.getLight(getActivity()));
 
-        extraexpcount.setTypeface(MyConstants.getLight(getActivity()));
-        extraprojectscount.setTypeface(MyConstants.getLight(getActivity()));
+        extraexpcount.setTypeface(Z.getLight(getActivity()));
+        extraprojectscount.setTypeface(Z.getLight(getActivity()));
 
-        myprofileclgname.setTypeface(MyConstants.getLight(getActivity()));
-        myprofileclgyearofpassing.setTypeface(MyConstants.getLight(getActivity()));
-        myprofileclgname2.setTypeface(MyConstants.getLight(getActivity()));
-        myprofileclgyearofpassing2.setTypeface(MyConstants.getLight(getActivity()));
-        myprofileclgname3.setTypeface(MyConstants.getLight(getActivity()));
-        myprofileclgyearofpassing3.setTypeface(MyConstants.getLight(getActivity()));
-        myprofileclgname4.setTypeface(MyConstants.getLight(getActivity()));
-        myprofileclgyearofpassing4.setTypeface(MyConstants.getLight(getActivity()));
+        myprofileclgname.setTypeface(Z.getLight(getActivity()));
+        myprofileclgyearofpassing.setTypeface(Z.getLight(getActivity()));
+        myprofileclgname2.setTypeface(Z.getLight(getActivity()));
+        myprofileclgyearofpassing2.setTypeface(Z.getLight(getActivity()));
+        myprofileclgname3.setTypeface(Z.getLight(getActivity()));
+        myprofileclgyearofpassing3.setTypeface(Z.getLight(getActivity()));
+        myprofileclgname4.setTypeface(Z.getLight(getActivity()));
+        myprofileclgyearofpassing4.setTypeface(Z.getLight(getActivity()));
 
-        myprofiledomain1.setTypeface(MyConstants.getLight(getActivity()));
-        myprofileduration1.setTypeface(MyConstants.getLight(getActivity()));
-        myprofiledomain2.setTypeface(MyConstants.getLight(getActivity()));
-        myprofileduration2.setTypeface(MyConstants.getLight(getActivity()));
-        myprofiledomain3.setTypeface(MyConstants.getLight(getActivity()));
-        myprofileduration3.setTypeface(MyConstants.getLight(getActivity()));
-        careerobjtxttxt.setTypeface(MyConstants.getLight(getActivity()));
-        strengthstxt.setTypeface(MyConstants.getLight(getActivity()));
-        weaknessestxt.setTypeface(MyConstants.getLight(getActivity()));
-        locationpreferences.setTypeface(MyConstants.getLight(getActivity()));
-        contactaddr1.setTypeface(MyConstants.getLight(getActivity()));
-        acc1txttxt.setTypeface(MyConstants.getBold(getActivity()));
-        acc2txttxt.setTypeface(MyConstants.getBold(getActivity()));
-        acc3txttxt.setTypeface(MyConstants.getBold(getActivity()));
-        acc4txttxt.setTypeface(MyConstants.getBold(getActivity()));
-        acc5txttxt.setTypeface(MyConstants.getBold(getActivity()));
-        acc6txttxt.setTypeface(MyConstants.getBold(getActivity()));
-        acc7txttxt.setTypeface(MyConstants.getBold(getActivity()));
-        noedudetailstxt.setTypeface(MyConstants.getBold(getActivity()));
-        nomyprofileproj.setTypeface(MyConstants.getBold(getActivity()));
-        contactmobile.setTypeface(MyConstants.getBold(getActivity()));
-        contactemail.setTypeface(MyConstants.getBold(getActivity()));
-        myprofilepreview.setTypeface(MyConstants.getBold(getActivity()));
+        myprofiledomain1.setTypeface(Z.getLight(getActivity()));
+        myprofileduration1.setTypeface(Z.getLight(getActivity()));
+        myprofiledomain2.setTypeface(Z.getLight(getActivity()));
+        myprofileduration2.setTypeface(Z.getLight(getActivity()));
+        myprofiledomain3.setTypeface(Z.getLight(getActivity()));
+        myprofileduration3.setTypeface(Z.getLight(getActivity()));
+        careerobjtxttxt.setTypeface(Z.getLight(getActivity()));
+        strengthstxt.setTypeface(Z.getLight(getActivity()));
+        weaknessestxt.setTypeface(Z.getLight(getActivity()));
+        locationpreferences.setTypeface(Z.getLight(getActivity()));
+        contactaddr1.setTypeface(Z.getLight(getActivity()));
+        acc1txttxt.setTypeface(Z.getBold(getActivity()));
+        acc2txttxt.setTypeface(Z.getBold(getActivity()));
+        acc3txttxt.setTypeface(Z.getBold(getActivity()));
+        acc4txttxt.setTypeface(Z.getBold(getActivity()));
+        acc5txttxt.setTypeface(Z.getBold(getActivity()));
+        acc6txttxt.setTypeface(Z.getBold(getActivity()));
+        acc7txttxt.setTypeface(Z.getBold(getActivity()));
+        noedudetailstxt.setTypeface(Z.getBold(getActivity()));
+        nomyprofileproj.setTypeface(Z.getBold(getActivity()));
+        contactmobile.setTypeface(Z.getBold(getActivity()));
+        contactemail.setTypeface(Z.getBold(getActivity()));
+        myprofilepreview.setTypeface(Z.getBold(getActivity()));
 
-        trytxt.setTypeface(MyConstants.getBold(getActivity()));
+        trytxt.setTypeface(Z.getBold(getActivity()));
 
 
         introedit = (ImageView) rootView.findViewById(R.id.introedit);
@@ -433,14 +433,14 @@ public class MyProfileAlumniFragment extends Fragment {
 
         if(!ShouldAnimateProfile.shouldAnimate)
         {
-            MyConstants.bottomupbox1(getActivity(),box1);
+            Z.bottomupbox1(getActivity(),box1);
             bottomupbox2(getActivity(),box2);
-            MyConstants.bottomupbox4(getActivity(),edutab4);
-            MyConstants.fade(getActivity(),myprofileimg);
-            MyConstants.fade(getActivity(),iv_camera);
-            MyConstants.bottomupbox3(getActivity(),eduboxtxt);
-            MyConstants.bottomupbox3(getActivity(),box2pencil);
-            MyConstants.fadeandmovedown(getActivity(),myprofilepreview);
+            Z.bottomupbox4(getActivity(),edutab4);
+            Z.fade(getActivity(),myprofileimg);
+            Z.fade(getActivity(),iv_camera);
+            Z.bottomupbox3(getActivity(),eduboxtxt);
+            Z.bottomupbox3(getActivity(),box2pencil);
+            Z.fadeandmovedown(getActivity(),myprofilepreview);
             ShouldAnimateProfile.shouldAnimate=true;
         }
         else
@@ -2841,7 +2841,7 @@ public class MyProfileAlumniFragment extends Fragment {
 //        String t = String.valueOf(System.currentTimeMillis());
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority(MyConstants.VPS_IP)
+                .authority(Z.VPS_IP)
                 .path("AESTest/GetImage")
                 .appendQueryParameter("u", username)
                 .build();
@@ -2911,7 +2911,7 @@ public class MyProfileAlumniFragment extends Fragment {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", username));
 
-                json = jParser.makeHttpRequest(MyConstants.url_load_alumni_data, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_load_alumni_data, "GET", params);
 
                 String s = "";
 
@@ -4835,7 +4835,7 @@ public class MyProfileAlumniFragment extends Fragment {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));
-            json = jParser.makeHttpRequest(MyConstants.url_remove_profile, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_remove_profile, "GET", params);
 
             try {
 
@@ -4871,7 +4871,7 @@ public class MyProfileAlumniFragment extends Fragment {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));
-            json = jParser.makeHttpRequest(MyConstants.load_last_updated, "GET", params);
+            json = jParser.makeHttpRequest(Z.load_last_updated, "GET", params);
             try {
 
                 signature = json.getString("lastupdated");

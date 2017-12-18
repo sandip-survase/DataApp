@@ -70,7 +70,7 @@ public class RecyclerItemAdapterPlacement extends RecyclerView.Adapter<RecyclerI
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority(MyConstants.VPS_IP)
+                .authority(Z.VPS_IP)
                 .path("AESTest/GetImageThumbnail")
                 .appendQueryParameter("u", item.getUploadedby())
                 .build();

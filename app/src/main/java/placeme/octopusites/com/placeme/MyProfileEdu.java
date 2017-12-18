@@ -1,16 +1,12 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MyProfileEdu extends AppCompatActivity {
 
@@ -28,10 +24,10 @@ public class MyProfileEdu extends AppCompatActivity {
         TextView ugtxt=(TextView)findViewById(R.id.ugtxt);
         TextView pgtxt=(TextView)findViewById(R.id.pgtxt);
 
-        tenthtxt.setTypeface(MyConstants.getBold(this));
-        twelthtxt.setTypeface(MyConstants.getBold(this));
-        ugtxt.setTypeface(MyConstants.getBold(this));
-        pgtxt.setTypeface(MyConstants.getBold(this));
+        tenthtxt.setTypeface(Z.getBold(this));
+        twelthtxt.setTypeface(Z.getBold(this));
+        ugtxt.setTypeface(Z.getBold(this));
+        pgtxt.setTypeface(Z.getBold(this));
 
         ActionBar ab = getSupportActionBar();
         ab.setTitle("Edit Educational Info");

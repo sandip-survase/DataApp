@@ -109,21 +109,21 @@ public class MyProfileTenth extends AppCompatActivity {
         otherboardinput= (TextInputLayout) findViewById(R.id.otherboardinput);
         marks10_percentage= (TextInputLayout) findViewById(R.id.marks10_percentage);
 
-        marks10input.setTypeface(MyConstants.getLight(this));
-        marks10_outOf.setTypeface(MyConstants.getLight(this));
-        marks10_percentage.setTypeface(MyConstants.getLight(this));
-        schoolname10input.setTypeface(MyConstants.getLight(this));
-        yearofpassing10inpute.setTypeface(MyConstants.getLight(this));
-        otherboardinput.setTypeface(MyConstants.getLight(this));
-        marks10_percentage.setTypeface(MyConstants.getLight(this));
+        marks10input.setTypeface(Z.getLight(this));
+        marks10_outOf.setTypeface(Z.getLight(this));
+        marks10_percentage.setTypeface(Z.getLight(this));
+        schoolname10input.setTypeface(Z.getLight(this));
+        yearofpassing10inpute.setTypeface(Z.getLight(this));
+        otherboardinput.setTypeface(Z.getLight(this));
+        marks10_percentage.setTypeface(Z.getLight(this));
 
-        marks10.setTypeface(MyConstants.getBold(this));
-        outof10.setTypeface(MyConstants.getBold(this));
-        percent10.setTypeface(MyConstants.getBold(this));
-        schoolname10.setTypeface(MyConstants.getBold(this));
-        yearofpassing10.setTypeface(MyConstants.getBold(this));
-        otherboard.setTypeface(MyConstants.getBold(this));
-        tenthtxt.setTypeface(MyConstants.getBold(this));
+        marks10.setTypeface(Z.getBold(this));
+        outof10.setTypeface(Z.getBold(this));
+        percent10.setTypeface(Z.getBold(this));
+        schoolname10.setTypeface(Z.getBold(this));
+        yearofpassing10.setTypeface(Z.getBold(this));
+        otherboard.setTypeface(Z.getBold(this));
+        tenthtxt.setTypeface(Z.getBold(this));
 
 
         marks10.addTextChangedListener(new TextWatcher() {
@@ -304,7 +304,7 @@ public class MyProfileTenth extends AppCompatActivity {
 
                 View view= super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileTenth.this));
+                tv.setTypeface(Z.getBold(MyProfileTenth.this));
                 return view;
             }
 
@@ -313,7 +313,7 @@ public class MyProfileTenth extends AppCompatActivity {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileTenth.this));
+                tv.setTypeface(Z.getBold(MyProfileTenth.this));
 
                 if (position == 0) {
                     // Set the hint text color gray
@@ -608,8 +608,8 @@ public class MyProfileTenth extends AppCompatActivity {
                 public void onShow(DialogInterface dialogInterface) {
                     alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileTenth.this));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileTenth.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileTenth.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileTenth.this));
                 }
             });
 
@@ -628,7 +628,7 @@ public class MyProfileTenth extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", username));    //0
             params.add(new BasicNameValuePair("m", encobj));        //1
 
-            json = jParser.makeHttpRequest(MyConstants.url_SaveTenth, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_SaveTenth, "GET", params);
             try {
                 r = json.getString("info");
 

@@ -1,10 +1,8 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,8 +16,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -31,16 +27,12 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import placeme.octopusites.com.placeme.modal.Projects;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 public class MyProfileProjects extends AppCompatActivity implements TextWatcher {
 
@@ -82,11 +74,11 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
 
 
         TextView addmoreprojecttxt=(TextView)findViewById(R.id.addmoreprojecttxt);
-        addmoreprojecttxt.setTypeface(MyConstants.getBold(this));
+        addmoreprojecttxt.setTypeface(Z.getBold(this));
 
 
         TextView projtxt=(TextView)findViewById(R.id.projtxt);
-        projtxt.setTypeface(MyConstants.getBold(this));
+        projtxt.setTypeface(Z.getBold(this));
 
         trash1selectionview=(View)findViewById(R.id.trash1selectionview);
         trash2selectionview=(View)findViewById(R.id.trash2selectionview);
@@ -266,90 +258,90 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
 
 
 
-        proj1.setTypeface(MyConstants.getBold(this));
-        domain1.setTypeface(MyConstants.getBold(this));
-        team1.setTypeface(MyConstants.getBold(this));
-        duration1.setTypeface(MyConstants.getBold(this));
-        proj2.setTypeface(MyConstants.getBold(this));
-        domain2.setTypeface(MyConstants.getBold(this));
-        team2.setTypeface(MyConstants.getBold(this));
-        duration2.setTypeface(MyConstants.getBold(this));
-        proj3.setTypeface(MyConstants.getBold(this));
-        domain3.setTypeface(MyConstants.getBold(this));
-        team3.setTypeface(MyConstants.getBold(this));
-        duration3.setTypeface(MyConstants.getBold(this));
-        proj4.setTypeface(MyConstants.getBold(this));
-        domain4.setTypeface(MyConstants.getBold(this));
-        team4.setTypeface(MyConstants.getBold(this));
-        duration4.setTypeface(MyConstants.getBold(this));
-        proj5.setTypeface(MyConstants.getBold(this));
-        domain5.setTypeface(MyConstants.getBold(this));
-        team5.setTypeface(MyConstants.getBold(this));
-        duration5.setTypeface(MyConstants.getBold(this));
-        proj6.setTypeface(MyConstants.getBold(this));
-        domain6.setTypeface(MyConstants.getBold(this));
-        team6.setTypeface(MyConstants.getBold(this));
-        duration6.setTypeface(MyConstants.getBold(this));
-        proj7.setTypeface(MyConstants.getBold(this));
-        domain7.setTypeface(MyConstants.getBold(this));
-        team7.setTypeface(MyConstants.getBold(this));
-        duration7.setTypeface(MyConstants.getBold(this));
-        proj8.setTypeface(MyConstants.getBold(this));
-        domain8.setTypeface(MyConstants.getBold(this));
-        team8.setTypeface(MyConstants.getBold(this));
-        duration8.setTypeface(MyConstants.getBold(this));
-        proj9.setTypeface(MyConstants.getBold(this));
-        domain9.setTypeface(MyConstants.getBold(this));
-        team9.setTypeface(MyConstants.getBold(this));
-        duration9.setTypeface(MyConstants.getBold(this));
-        proj10.setTypeface(MyConstants.getBold(this));
-        domain10.setTypeface(MyConstants.getBold(this));
-        team10.setTypeface(MyConstants.getBold(this));
-        duration10.setTypeface(MyConstants.getBold(this));
+        proj1.setTypeface(Z.getBold(this));
+        domain1.setTypeface(Z.getBold(this));
+        team1.setTypeface(Z.getBold(this));
+        duration1.setTypeface(Z.getBold(this));
+        proj2.setTypeface(Z.getBold(this));
+        domain2.setTypeface(Z.getBold(this));
+        team2.setTypeface(Z.getBold(this));
+        duration2.setTypeface(Z.getBold(this));
+        proj3.setTypeface(Z.getBold(this));
+        domain3.setTypeface(Z.getBold(this));
+        team3.setTypeface(Z.getBold(this));
+        duration3.setTypeface(Z.getBold(this));
+        proj4.setTypeface(Z.getBold(this));
+        domain4.setTypeface(Z.getBold(this));
+        team4.setTypeface(Z.getBold(this));
+        duration4.setTypeface(Z.getBold(this));
+        proj5.setTypeface(Z.getBold(this));
+        domain5.setTypeface(Z.getBold(this));
+        team5.setTypeface(Z.getBold(this));
+        duration5.setTypeface(Z.getBold(this));
+        proj6.setTypeface(Z.getBold(this));
+        domain6.setTypeface(Z.getBold(this));
+        team6.setTypeface(Z.getBold(this));
+        duration6.setTypeface(Z.getBold(this));
+        proj7.setTypeface(Z.getBold(this));
+        domain7.setTypeface(Z.getBold(this));
+        team7.setTypeface(Z.getBold(this));
+        duration7.setTypeface(Z.getBold(this));
+        proj8.setTypeface(Z.getBold(this));
+        domain8.setTypeface(Z.getBold(this));
+        team8.setTypeface(Z.getBold(this));
+        duration8.setTypeface(Z.getBold(this));
+        proj9.setTypeface(Z.getBold(this));
+        domain9.setTypeface(Z.getBold(this));
+        team9.setTypeface(Z.getBold(this));
+        duration9.setTypeface(Z.getBold(this));
+        proj10.setTypeface(Z.getBold(this));
+        domain10.setTypeface(Z.getBold(this));
+        team10.setTypeface(Z.getBold(this));
+        duration10.setTypeface(Z.getBold(this));
 
 
-        projinput1.setTypeface(MyConstants.getLight(this));
-        domaininput1.setTypeface(MyConstants.getLight(this));
-        teaminput1.setTypeface(MyConstants.getLight(this));
-        durationinput1.setTypeface(MyConstants.getLight(this));
-        projinput2.setTypeface(MyConstants.getLight(this));
-        domaininput2.setTypeface(MyConstants.getLight(this));
-        teaminput2.setTypeface(MyConstants.getLight(this));
-        durationinput2.setTypeface(MyConstants.getLight(this));
-        projinput3.setTypeface(MyConstants.getLight(this));
-        domaininput3.setTypeface(MyConstants.getLight(this));
-        teaminput3.setTypeface(MyConstants.getLight(this));
-        durationinput3.setTypeface(MyConstants.getLight(this));
+        projinput1.setTypeface(Z.getLight(this));
+        domaininput1.setTypeface(Z.getLight(this));
+        teaminput1.setTypeface(Z.getLight(this));
+        durationinput1.setTypeface(Z.getLight(this));
+        projinput2.setTypeface(Z.getLight(this));
+        domaininput2.setTypeface(Z.getLight(this));
+        teaminput2.setTypeface(Z.getLight(this));
+        durationinput2.setTypeface(Z.getLight(this));
+        projinput3.setTypeface(Z.getLight(this));
+        domaininput3.setTypeface(Z.getLight(this));
+        teaminput3.setTypeface(Z.getLight(this));
+        durationinput3.setTypeface(Z.getLight(this));
 
-        projinput4.setTypeface(MyConstants.getLight(this));
-        domaininput4.setTypeface(MyConstants.getLight(this));
-        teaminput4.setTypeface(MyConstants.getLight(this));
-        durationinput4.setTypeface(MyConstants.getLight(this));
-        projinput5.setTypeface(MyConstants.getLight(this));
-        domaininput5.setTypeface(MyConstants.getLight(this));
-        teaminput5.setTypeface(MyConstants.getLight(this));
-        durationinput5.setTypeface(MyConstants.getLight(this));
-        projinput6.setTypeface(MyConstants.getLight(this));
-        domaininput6.setTypeface(MyConstants.getLight(this));
-        teaminput6.setTypeface(MyConstants.getLight(this));
-        durationinput6.setTypeface(MyConstants.getLight(this));
-        projinput7.setTypeface(MyConstants.getLight(this));
-        domaininput7.setTypeface(MyConstants.getLight(this));
-        teaminput7.setTypeface(MyConstants.getLight(this));
-        durationinput7.setTypeface(MyConstants.getLight(this));
-        projinput8.setTypeface(MyConstants.getLight(this));
-        domaininput8.setTypeface(MyConstants.getLight(this));
-        teaminput8.setTypeface(MyConstants.getLight(this));
-        durationinput8.setTypeface(MyConstants.getLight(this));
-        projinput9.setTypeface(MyConstants.getLight(this));
-        domaininput9.setTypeface(MyConstants.getLight(this));
-        teaminput9.setTypeface(MyConstants.getLight(this));
-        durationinput9.setTypeface(MyConstants.getLight(this));
-        projinput10.setTypeface(MyConstants.getLight(this));
-        domaininput10.setTypeface(MyConstants.getLight(this));
+        projinput4.setTypeface(Z.getLight(this));
+        domaininput4.setTypeface(Z.getLight(this));
+        teaminput4.setTypeface(Z.getLight(this));
+        durationinput4.setTypeface(Z.getLight(this));
+        projinput5.setTypeface(Z.getLight(this));
+        domaininput5.setTypeface(Z.getLight(this));
+        teaminput5.setTypeface(Z.getLight(this));
+        durationinput5.setTypeface(Z.getLight(this));
+        projinput6.setTypeface(Z.getLight(this));
+        domaininput6.setTypeface(Z.getLight(this));
+        teaminput6.setTypeface(Z.getLight(this));
+        durationinput6.setTypeface(Z.getLight(this));
+        projinput7.setTypeface(Z.getLight(this));
+        domaininput7.setTypeface(Z.getLight(this));
+        teaminput7.setTypeface(Z.getLight(this));
+        durationinput7.setTypeface(Z.getLight(this));
+        projinput8.setTypeface(Z.getLight(this));
+        domaininput8.setTypeface(Z.getLight(this));
+        teaminput8.setTypeface(Z.getLight(this));
+        durationinput8.setTypeface(Z.getLight(this));
+        projinput9.setTypeface(Z.getLight(this));
+        domaininput9.setTypeface(Z.getLight(this));
+        teaminput9.setTypeface(Z.getLight(this));
+        durationinput9.setTypeface(Z.getLight(this));
+        projinput10.setTypeface(Z.getLight(this));
+        domaininput10.setTypeface(Z.getLight(this));
 
-        teaminput10.setTypeface(MyConstants.getLight(this));
-        durationinput10.setTypeface(MyConstants.getLight(this));
+        teaminput10.setTypeface(Z.getLight(this));
+        durationinput10.setTypeface(Z.getLight(this));
 
 
 
@@ -2296,7 +2288,7 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
             Log.d("TAG", "encrypted objec string2: "+param[0]);
             params.add(new BasicNameValuePair("d",param[0]));       //0
 
-            json = jParser.makeHttpRequest(MyConstants.url_saveprojects, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_saveprojects, "GET", params);
             try {
                 r = json.getString("info");
 
@@ -2357,8 +2349,8 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
             public void onShow(DialogInterface dialogInterface) {
                 alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileProjects.this));
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileProjects.this));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileProjects.this));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileProjects.this));
             }
         });
 
@@ -3500,8 +3492,8 @@ public class MyProfileProjects extends AppCompatActivity implements TextWatcher 
                 public void onShow(DialogInterface dialogInterface) {
                     alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileProjects.this));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileProjects.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileProjects.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileProjects.this));
 
                 }
             });

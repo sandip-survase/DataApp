@@ -59,11 +59,11 @@ public class ForgotPasswordDialog extends AppCompatActivity {
         reset=(Button)findViewById(R.id.submitforgot);
         forgotprogress=(ProgressBar)findViewById(R.id.forgotprogress);
 
-        forgottxt.setTypeface(MyConstants.getBold(this));
-        forgotemailinput.setTypeface(MyConstants.getLight(this));
-        forgotetxt.setTypeface(MyConstants.getLight(this));
-        forgotedittext.setTypeface(MyConstants.getBold(this));
-        reset.setTypeface(MyConstants.getBold(this));
+        forgottxt.setTypeface(Z.getBold(this));
+        forgotemailinput.setTypeface(Z.getLight(this));
+        forgotetxt.setTypeface(Z.getLight(this));
+        forgotedittext.setTypeface(Z.getBold(this));
+        reset.setTypeface(Z.getBold(this));
 
         forgotedittext.addTextChangedListener(new TextWatcher() {
             @Override
@@ -153,7 +153,7 @@ public class ForgotPasswordDialog extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("ud", encemailorphone));
 //            params.add(new BasicNameValuePair("aid", android_id));
-            json = jParser.makeHttpRequest(MyConstants.url_ForgotPassword, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_ForgotPassword, "GET", params);
             Log.d("TAG", "forgot password json: "+json);
             try {
                 resultofop = json.getString("info");
@@ -169,7 +169,7 @@ public class ForgotPasswordDialog extends AppCompatActivity {
 
             if(resultofop.equals("success"))
             {
-                MySharedPreferencesManager.save(ForgotPasswordDialog.this,MyConstants.USERNAME_KEY, encUsername);
+                MySharedPreferencesManager.save(ForgotPasswordDialog.this, Z.USERNAME_KEY, encUsername);
                 MySharedPreferencesManager.save(ForgotPasswordDialog.this,"role", role);
 
                 Toast.makeText(ForgotPasswordDialog.this,"OTP to reset your account has been sent to your Email.!",Toast.LENGTH_LONG).show();

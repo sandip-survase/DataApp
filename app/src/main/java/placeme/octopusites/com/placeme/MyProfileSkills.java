@@ -85,7 +85,7 @@ public class MyProfileSkills extends AppCompatActivity {
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
         TextView skilltxt = (TextView) findViewById(R.id.skilltxt);
-        skilltxt.setTypeface(MyConstants.getBold(this));
+        skilltxt.setTypeface(Z.getBold(this));
 
         trash1selectionview = (View) findViewById(R.id.trash1selectionview);
         trash2selectionview = (View) findViewById(R.id.trash2selectionview);
@@ -173,50 +173,50 @@ public class MyProfileSkills extends AppCompatActivity {
         proficiency20 = (Spinner) findViewById(R.id.proficiency20);
 
 
-        skillinput1.setTypeface(MyConstants.getLight(this));
-        skillinput2.setTypeface(MyConstants.getLight(this));
-        skillinput3.setTypeface(MyConstants.getLight(this));
-        skillinput4.setTypeface(MyConstants.getLight(this));
-        skillinput5.setTypeface(MyConstants.getLight(this));
-        skillinput6.setTypeface(MyConstants.getLight(this));
-        skillinput7.setTypeface(MyConstants.getLight(this));
-        skillinput8.setTypeface(MyConstants.getLight(this));
-        skillinput9.setTypeface(MyConstants.getLight(this));
-        skillinput10.setTypeface(MyConstants.getLight(this));
-        skillinput11.setTypeface(MyConstants.getLight(this));
-        skillinput12.setTypeface(MyConstants.getLight(this));
-        skillinput13.setTypeface(MyConstants.getLight(this));
-        skillinput14.setTypeface(MyConstants.getLight(this));
-        skillinput15.setTypeface(MyConstants.getLight(this));
-        skillinput16.setTypeface(MyConstants.getLight(this));
-        skillinput17.setTypeface(MyConstants.getLight(this));
-        skillinput18.setTypeface(MyConstants.getLight(this));
-        skillinput19.setTypeface(MyConstants.getLight(this));
-        skillinput20.setTypeface(MyConstants.getLight(this));
+        skillinput1.setTypeface(Z.getLight(this));
+        skillinput2.setTypeface(Z.getLight(this));
+        skillinput3.setTypeface(Z.getLight(this));
+        skillinput4.setTypeface(Z.getLight(this));
+        skillinput5.setTypeface(Z.getLight(this));
+        skillinput6.setTypeface(Z.getLight(this));
+        skillinput7.setTypeface(Z.getLight(this));
+        skillinput8.setTypeface(Z.getLight(this));
+        skillinput9.setTypeface(Z.getLight(this));
+        skillinput10.setTypeface(Z.getLight(this));
+        skillinput11.setTypeface(Z.getLight(this));
+        skillinput12.setTypeface(Z.getLight(this));
+        skillinput13.setTypeface(Z.getLight(this));
+        skillinput14.setTypeface(Z.getLight(this));
+        skillinput15.setTypeface(Z.getLight(this));
+        skillinput16.setTypeface(Z.getLight(this));
+        skillinput17.setTypeface(Z.getLight(this));
+        skillinput18.setTypeface(Z.getLight(this));
+        skillinput19.setTypeface(Z.getLight(this));
+        skillinput20.setTypeface(Z.getLight(this));
 
-        skill1.setTypeface(MyConstants.getBold(this));
-        skill2.setTypeface(MyConstants.getBold(this));
-        skill3.setTypeface(MyConstants.getBold(this));
-        skill4.setTypeface(MyConstants.getBold(this));
-        skill5.setTypeface(MyConstants.getBold(this));
-        skill6.setTypeface(MyConstants.getBold(this));
-        skill7.setTypeface(MyConstants.getBold(this));
-        skill8.setTypeface(MyConstants.getBold(this));
-        skill9.setTypeface(MyConstants.getBold(this));
-        skill10.setTypeface(MyConstants.getBold(this));
-        skill11.setTypeface(MyConstants.getBold(this));
-        skill12.setTypeface(MyConstants.getBold(this));
-        skill13.setTypeface(MyConstants.getBold(this));
-        skill14.setTypeface(MyConstants.getBold(this));
-        skill15.setTypeface(MyConstants.getBold(this));
-        skill16.setTypeface(MyConstants.getBold(this));
-        skill17.setTypeface(MyConstants.getBold(this));
-        skill18.setTypeface(MyConstants.getBold(this));
-        skill19.setTypeface(MyConstants.getBold(this));
-        skill20.setTypeface(MyConstants.getBold(this));
+        skill1.setTypeface(Z.getBold(this));
+        skill2.setTypeface(Z.getBold(this));
+        skill3.setTypeface(Z.getBold(this));
+        skill4.setTypeface(Z.getBold(this));
+        skill5.setTypeface(Z.getBold(this));
+        skill6.setTypeface(Z.getBold(this));
+        skill7.setTypeface(Z.getBold(this));
+        skill8.setTypeface(Z.getBold(this));
+        skill9.setTypeface(Z.getBold(this));
+        skill10.setTypeface(Z.getBold(this));
+        skill11.setTypeface(Z.getBold(this));
+        skill12.setTypeface(Z.getBold(this));
+        skill13.setTypeface(Z.getBold(this));
+        skill14.setTypeface(Z.getBold(this));
+        skill15.setTypeface(Z.getBold(this));
+        skill16.setTypeface(Z.getBold(this));
+        skill17.setTypeface(Z.getBold(this));
+        skill18.setTypeface(Z.getBold(this));
+        skill19.setTypeface(Z.getBold(this));
+        skill20.setTypeface(Z.getBold(this));
 
         final TextView addmoreskilltxt = (TextView) findViewById(R.id.addmoreskilltxt);
-        addmoreskilltxt.setTypeface(MyConstants.getBold(this));
+        addmoreskilltxt.setTypeface(Z.getBold(this));
 
         trash1selectionview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -912,7 +912,7 @@ public class MyProfileSkills extends AppCompatActivity {
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View view= super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileSkills.this));
+                tv.setTypeface(Z.getBold(MyProfileSkills.this));
                 tv.setTextColor(getResources().getColor(R.color.dark_color));
                 return view;
             }
@@ -922,7 +922,7 @@ public class MyProfileSkills extends AppCompatActivity {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileSkills.this));
+                tv.setTypeface(Z.getBold(MyProfileSkills.this));
                 if (position == 0) {
                     // Set the hint text color gray
                     tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
@@ -2016,8 +2016,8 @@ public class MyProfileSkills extends AppCompatActivity {
             public void onShow(DialogInterface dialogInterface) {
                 alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileSkills.this));
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileSkills.this));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileSkills.this));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileSkills.this));
 
             }
         });
@@ -7172,7 +7172,7 @@ public class MyProfileSkills extends AppCompatActivity {
             params.add(new BasicNameValuePair("d", param[0]));          //0
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_saveskills, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_saveskills, "GET", params);
             try {
                 r = json.getString("info");
 
@@ -7304,8 +7304,8 @@ public class MyProfileSkills extends AppCompatActivity {
                 public void onShow(DialogInterface dialogInterface) {
                     alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileSkills.this));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileSkills.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileSkills.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileSkills.this));
 
                 }
             });

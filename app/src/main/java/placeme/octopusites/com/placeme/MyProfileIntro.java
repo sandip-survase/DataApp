@@ -3,7 +3,6 @@ package placeme.octopusites.com.placeme;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -88,7 +87,7 @@ public class MyProfileIntro extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         TextView loctxt = (TextView) findViewById(R.id.loctxt);
-        loctxt.setTypeface(MyConstants.getBold(this));
+        loctxt.setTypeface(Z.getBold(this));
         ScrollView myprofileintroscrollview = (ScrollView) findViewById(R.id.myprofileintroscrollview);
         disableScrollbars(myprofileintroscrollview);
 
@@ -104,17 +103,17 @@ public class MyProfileIntro extends AppCompatActivity {
         emailinputlayout = (TextInputLayout) findViewById(R.id.emailinputlayout);
         citystaecountryinputlayout = (TextInputLayout) findViewById(R.id.citystaecountryinputlayout);
 
-        fname.setTypeface(MyConstants.getBold(this));
-        lname.setTypeface(MyConstants.getBold(this));
-        role.setTypeface(MyConstants.getBold(this));
-        email.setTypeface(MyConstants.getBold(this));
-        citystaecountry.setTypeface(MyConstants.getBold(this));
+        fname.setTypeface(Z.getBold(this));
+        lname.setTypeface(Z.getBold(this));
+        role.setTypeface(Z.getBold(this));
+        email.setTypeface(Z.getBold(this));
+        citystaecountry.setTypeface(Z.getBold(this));
 
-        fnameTextInputLayout.setTypeface(MyConstants.getLight(this));
-        lnameTextInputLayout.setTypeface(MyConstants.getLight(this));
-        roleinputlayout.setTypeface(MyConstants.getLight(this));
-        emailinputlayout.setTypeface(MyConstants.getLight(this));
-        citystaecountryinputlayout.setTypeface(MyConstants.getLight(this));
+        fnameTextInputLayout.setTypeface(Z.getLight(this));
+        lnameTextInputLayout.setTypeface(Z.getLight(this));
+        roleinputlayout.setTypeface(Z.getLight(this));
+        emailinputlayout.setTypeface(Z.getLight(this));
+        citystaecountryinputlayout.setTypeface(Z.getLight(this));
 
 
         firstname = s.getFname();
@@ -384,8 +383,8 @@ public class MyProfileIntro extends AppCompatActivity {
 
                     alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileIntro.this));
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileIntro.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileIntro.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileIntro.this));
                 }
             });
 
@@ -407,7 +406,7 @@ public class MyProfileIntro extends AppCompatActivity {
             Log.d("TAG", "encobj: " + encobj);
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_SaveIntro, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_SaveIntro, "GET", params);
             try {
                 r = json.getString("info");
                 Log.d("TAG", "doInBackground: r -" + r);

@@ -25,8 +25,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -717,7 +715,7 @@ public class EditNotification extends AppCompatActivity {
                         List<NameValuePair> params = new ArrayList<NameValuePair>();
                         params.add(new BasicNameValuePair("u", username));       //0
                         params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-                        json = jParser.makeHttpRequest(MyConstants.url_GetNotificationsSentByAdmin, "GET", params);
+                        json = jParser.makeHttpRequest(Z.url_GetNotificationsSentByAdmin, "GET", params);
 
                         notificationcount = Integer.parseInt(json.getString("count"));
 
@@ -755,7 +753,7 @@ public class EditNotification extends AppCompatActivity {
                             List<NameValuePair> params = new ArrayList<NameValuePair>();
                             params.add(new BasicNameValuePair("u", username));       //0
                             params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-                            json = jParser.makeHttpRequest(MyConstants.url_GetNotificationsSentByAdmin, "GET", params);
+                            json = jParser.makeHttpRequest(Z.url_GetNotificationsSentByAdmin, "GET", params);
 
                             notificationcount = Integer.parseInt(json.getString("count"));
 
@@ -887,13 +885,13 @@ public class EditNotification extends AppCompatActivity {
 
             try {
 
-                json = jParser.makeHttpRequest(MyConstants.url_GetNotificationsByAdminMetaData, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_GetNotificationsByAdminMetaData, "GET", params);
                 notificationpages = Integer.parseInt(json.getString("pages"));
                 called_pages_notification = new int[notificationpages];
                 total_no_of_notifications = Integer.parseInt(json.getString("count"));
                 unreadcountNotification = Integer.parseInt(json.getString("unreadcount"));
 
-                json = jParser.makeHttpRequest(MyConstants.url_GetReadStatusOfNotificationsByAdmin, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_GetReadStatusOfNotificationsByAdmin, "GET", params);
 
                 readstatuscountNotification = Integer.parseInt(json.getString("count"));
                 Log.d("TAGAdmin", "readstatuscountNotification: " + readstatuscountNotification);
@@ -947,7 +945,7 @@ public class EditNotification extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("p", page_to_call_notification + ""));
-            json = jParser.makeHttpRequest(MyConstants.url_GetNotificationsSentByAdmin, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_GetNotificationsSentByAdmin, "GET", params);
             try {
                 notificationcount = Integer.parseInt(json.getString("count"));
 
@@ -1098,7 +1096,7 @@ public class EditNotification extends AppCompatActivity {
             for (int i = 0; i < uniqueUploadersNotification.length; i++) {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", uniqueUploadersEncNotification[i]));       //0
-                json = jParser.makeHttpRequest(MyConstants.url_getlastupdated, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_getlastupdated, "GET", params);
                 try {
                     s = json.getString("lastupdated");
                     if (s.equals("noupdate")) {
@@ -1164,7 +1162,7 @@ public class EditNotification extends AppCompatActivity {
             params.add(new BasicNameValuePair("ids", deletids));       //1
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_DeleteNotification, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_DeleteNotification, "GET", params);
             try {
                 r = json.getString("info");
 

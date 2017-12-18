@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -170,25 +168,25 @@ public class PersonalProfileTabFragment extends Fragment  {
         defencetxt = (TextView) rootView.findViewById(R.id.defencetxt);
         caddrtxt = (TextView) rootView.findViewById(R.id.caddrtxt);
 
-        CheckBoxPSC.setTypeface(MyConstants.getBold(getActivity()));
-        radioButtonMale.setTypeface(MyConstants.getBold(getActivity()));
-        radioButtonFemale.setTypeface(MyConstants.getBold(getActivity()));
-        radioButtonHandicappedNo.setTypeface(MyConstants.getBold(getActivity()));
-        radioButtonHandicappedYes.setTypeface(MyConstants.getBold(getActivity()));
-        radioButtonSportsNo.setTypeface(MyConstants.getBold(getActivity()));
-        radioButtonSportsState.setTypeface(MyConstants.getBold(getActivity()));
-        radioButtonSportsNational.setTypeface(MyConstants.getBold(getActivity()));
-        radioButtonSportsInternational.setTypeface(MyConstants.getBold(getActivity()));
-        radioButtonDefenceNo.setTypeface(MyConstants.getBold(getActivity()));
-        radioButtonDefence.setTypeface(MyConstants.getBold(getActivity()));
-        radioButtonExserviceman.setTypeface(MyConstants.getBold(getActivity()));
+        CheckBoxPSC.setTypeface(Z.getBold(getActivity()));
+        radioButtonMale.setTypeface(Z.getBold(getActivity()));
+        radioButtonFemale.setTypeface(Z.getBold(getActivity()));
+        radioButtonHandicappedNo.setTypeface(Z.getBold(getActivity()));
+        radioButtonHandicappedYes.setTypeface(Z.getBold(getActivity()));
+        radioButtonSportsNo.setTypeface(Z.getBold(getActivity()));
+        radioButtonSportsState.setTypeface(Z.getBold(getActivity()));
+        radioButtonSportsNational.setTypeface(Z.getBold(getActivity()));
+        radioButtonSportsInternational.setTypeface(Z.getBold(getActivity()));
+        radioButtonDefenceNo.setTypeface(Z.getBold(getActivity()));
+        radioButtonDefence.setTypeface(Z.getBold(getActivity()));
+        radioButtonExserviceman.setTypeface(Z.getBold(getActivity()));
 
-        gendertxt.setTypeface(MyConstants.getLight(getActivity()));
-        paddrtxt.setTypeface(MyConstants.getLight(getActivity()));
-        handicappedtxt.setTypeface(MyConstants.getLight(getActivity()));
-        sportstxt.setTypeface(MyConstants.getLight(getActivity()));
-        defencetxt.setTypeface(MyConstants.getLight(getActivity()));
-        caddrtxt.setTypeface(MyConstants.getLight(getActivity()));
+        gendertxt.setTypeface(Z.getLight(getActivity()));
+        paddrtxt.setTypeface(Z.getLight(getActivity()));
+        handicappedtxt.setTypeface(Z.getLight(getActivity()));
+        sportstxt.setTypeface(Z.getLight(getActivity()));
+        defencetxt.setTypeface(Z.getLight(getActivity()));
+        caddrtxt.setTypeface(Z.getLight(getActivity()));
 
         fnameinput = (TextInputLayout) rootView.findViewById(R.id.fnameinput);
         mnameinput = (TextInputLayout) rootView.findViewById(R.id.mnameinput);
@@ -213,51 +211,51 @@ public class PersonalProfileTabFragment extends Fragment  {
         paddrline2input = (TextInputLayout) rootView.findViewById(R.id.paddrline2input);
         paddrline3input = (TextInputLayout) rootView.findViewById(R.id.paddrline3input);
 
-        fnameinput.setTypeface(MyConstants.getLight(getActivity()));
-        mnameinput.setTypeface(MyConstants.getLight(getActivity()));
-        snameinput.setTypeface(MyConstants.getLight(getActivity()));
-        nameas10input.setTypeface(MyConstants.getLight(getActivity()));
-        profileemailinput.setTypeface(MyConstants.getLight(getActivity()));
-        profileaemailinput.setTypeface(MyConstants.getLight(getActivity()));
-        mothernameinput.setTypeface(MyConstants.getLight(getActivity()));
-        dobinput.setTypeface(MyConstants.getLight(getActivity()));
-        phoneinput.setTypeface(MyConstants.getLight(getActivity()));
-        mobileinput.setTypeface(MyConstants.getLight(getActivity()));
-        amobileinput.setTypeface(MyConstants.getLight(getActivity()));
-        mothertongueinput.setTypeface(MyConstants.getLight(getActivity()));
-        hobbiesinput.setTypeface(MyConstants.getLight(getActivity()));
-        castinput.setTypeface(MyConstants.getLight(getActivity()));
-        prninput.setTypeface(MyConstants.getLight(getActivity()));
-        knownlanginput.setTypeface(MyConstants.getLight(getActivity()));
-        caddrline1input.setTypeface(MyConstants.getLight(getActivity()));
-        caddrline2input.setTypeface(MyConstants.getLight(getActivity()));
-        caddrline3input.setTypeface(MyConstants.getLight(getActivity()));
-        paddrline1input.setTypeface(MyConstants.getLight(getActivity()));
-        paddrline2input.setTypeface(MyConstants.getLight(getActivity()));
-        paddrline3input.setTypeface(MyConstants.getLight(getActivity()));
+        fnameinput.setTypeface(Z.getLight(getActivity()));
+        mnameinput.setTypeface(Z.getLight(getActivity()));
+        snameinput.setTypeface(Z.getLight(getActivity()));
+        nameas10input.setTypeface(Z.getLight(getActivity()));
+        profileemailinput.setTypeface(Z.getLight(getActivity()));
+        profileaemailinput.setTypeface(Z.getLight(getActivity()));
+        mothernameinput.setTypeface(Z.getLight(getActivity()));
+        dobinput.setTypeface(Z.getLight(getActivity()));
+        phoneinput.setTypeface(Z.getLight(getActivity()));
+        mobileinput.setTypeface(Z.getLight(getActivity()));
+        amobileinput.setTypeface(Z.getLight(getActivity()));
+        mothertongueinput.setTypeface(Z.getLight(getActivity()));
+        hobbiesinput.setTypeface(Z.getLight(getActivity()));
+        castinput.setTypeface(Z.getLight(getActivity()));
+        prninput.setTypeface(Z.getLight(getActivity()));
+        knownlanginput.setTypeface(Z.getLight(getActivity()));
+        caddrline1input.setTypeface(Z.getLight(getActivity()));
+        caddrline2input.setTypeface(Z.getLight(getActivity()));
+        caddrline3input.setTypeface(Z.getLight(getActivity()));
+        paddrline1input.setTypeface(Z.getLight(getActivity()));
+        paddrline2input.setTypeface(Z.getLight(getActivity()));
+        paddrline3input.setTypeface(Z.getLight(getActivity()));
 
-        fnameedittext.setTypeface(MyConstants.getBold(getActivity()));
-        mnameedittext.setTypeface(MyConstants.getBold(getActivity()));
-        snameedittext.setTypeface(MyConstants.getBold(getActivity()));
-        nameastenedittext.setTypeface(MyConstants.getBold(getActivity()));
-        caddrline1.setTypeface(MyConstants.getBold(getActivity()));
-        caddrline2.setTypeface(MyConstants.getBold(getActivity()));
-        caddrline3.setTypeface(MyConstants.getBold(getActivity()));
-        paddrline1.setTypeface(MyConstants.getBold(getActivity()));
-        paddrline2.setTypeface(MyConstants.getBold(getActivity()));
-        paddrline3.setTypeface(MyConstants.getBold(getActivity()));
-        emailedittext.setTypeface(MyConstants.getBold(getActivity()));
-        phoneedittext.setTypeface(MyConstants.getBold(getActivity()));
-        profileaemail.setTypeface(MyConstants.getBold(getActivity()));
-        mothernameedittext.setTypeface(MyConstants.getBold(getActivity()));
-        dobedittext.setTypeface(MyConstants.getBold(getActivity()));
-        mobileedittext.setTypeface(MyConstants.getBold(getActivity()));
-        alternatemobileedittext.setTypeface(MyConstants.getBold(getActivity()));
-        mothertongueedittext.setTypeface(MyConstants.getBold(getActivity()));
-        hobbiesedittext.setTypeface(MyConstants.getBold(getActivity()));
-        casteedittext.setTypeface(MyConstants.getBold(getActivity()));
-        prnedittext.setTypeface(MyConstants.getBold(getActivity()));
-        languagesknownedittext.setTypeface(MyConstants.getBold(getActivity()));
+        fnameedittext.setTypeface(Z.getBold(getActivity()));
+        mnameedittext.setTypeface(Z.getBold(getActivity()));
+        snameedittext.setTypeface(Z.getBold(getActivity()));
+        nameastenedittext.setTypeface(Z.getBold(getActivity()));
+        caddrline1.setTypeface(Z.getBold(getActivity()));
+        caddrline2.setTypeface(Z.getBold(getActivity()));
+        caddrline3.setTypeface(Z.getBold(getActivity()));
+        paddrline1.setTypeface(Z.getBold(getActivity()));
+        paddrline2.setTypeface(Z.getBold(getActivity()));
+        paddrline3.setTypeface(Z.getBold(getActivity()));
+        emailedittext.setTypeface(Z.getBold(getActivity()));
+        phoneedittext.setTypeface(Z.getBold(getActivity()));
+        profileaemail.setTypeface(Z.getBold(getActivity()));
+        mothernameedittext.setTypeface(Z.getBold(getActivity()));
+        dobedittext.setTypeface(Z.getBold(getActivity()));
+        mobileedittext.setTypeface(Z.getBold(getActivity()));
+        alternatemobileedittext.setTypeface(Z.getBold(getActivity()));
+        mothertongueedittext.setTypeface(Z.getBold(getActivity()));
+        hobbiesedittext.setTypeface(Z.getBold(getActivity()));
+        casteedittext.setTypeface(Z.getBold(getActivity()));
+        prnedittext.setTypeface(Z.getBold(getActivity()));
+        languagesknownedittext.setTypeface(Z.getBold(getActivity()));
 
 
         radioGroupHandicapped.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -682,7 +680,7 @@ public class PersonalProfileTabFragment extends Fragment  {
 
                 View view =super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(getActivity()));
+                tv.setTypeface(Z.getBold(getActivity()));
                 return view;
             }
 
@@ -692,7 +690,7 @@ public class PersonalProfileTabFragment extends Fragment  {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(getActivity()));
+                tv.setTypeface(Z.getBold(getActivity()));
                 if (position == 0) {
                     // Set the hint text color gray
                     tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
@@ -722,7 +720,7 @@ public class PersonalProfileTabFragment extends Fragment  {
 
                 View view =super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(getActivity()));
+                tv.setTypeface(Z.getBold(getActivity()));
                 return view;
             }
 
@@ -731,7 +729,7 @@ public class PersonalProfileTabFragment extends Fragment  {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(getActivity()));
+                tv.setTypeface(Z.getBold(getActivity()));
                 if (position == 0) {
                     // Set the hint text color gray
                     tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
@@ -768,7 +766,7 @@ public class PersonalProfileTabFragment extends Fragment  {
 
                 View view =super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(getActivity()));
+                tv.setTypeface(Z.getBold(getActivity()));
                 return view;
             }
 
@@ -777,7 +775,7 @@ public class PersonalProfileTabFragment extends Fragment  {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(getActivity()));
+                tv.setTypeface(Z.getBold(getActivity()));
                 if (position == 0) {
                     // Set the hint text color gray
                     tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
@@ -1602,7 +1600,7 @@ public class PersonalProfileTabFragment extends Fragment  {
             params.add(new BasicNameValuePair("d", encobj));        //1
 
                 Log.d("student", "onCreateView: " + Myrole);
-                json = jParser.makeHttpRequest(MyConstants.savepersonalinfo, "GET", params);
+                json = jParser.makeHttpRequest(Z.savepersonalinfo, "GET", params);
 
             try {
                 resultofop = json.getString("info");

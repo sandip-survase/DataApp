@@ -84,7 +84,7 @@ public class NewsFeedFragment extends Fragment {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             try {
 
-                json = jParser.makeHttpRequest(MyConstants.load_news,"GET", params);
+                json = jParser.makeHttpRequest(Z.load_news,"GET", params);
                 count = Integer.parseInt(json.getString("count"));
                 Log.d("TAG", "news count  "+count);
 

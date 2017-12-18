@@ -100,17 +100,17 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        usernameedittext.setTypeface(MyConstants.getBold(this));
-        passwordedittext.setTypeface(MyConstants.getBold(this));
-        usernameTextInputLayout.setTypeface(MyConstants.getLight(this));
-        passwordTextInputLayout.setTypeface(MyConstants.getLight(this));
+        usernameedittext.setTypeface(Z.getBold(this));
+        passwordedittext.setTypeface(Z.getBold(this));
+        usernameTextInputLayout.setTypeface(Z.getLight(this));
+        passwordTextInputLayout.setTypeface(Z.getLight(this));
 
 
         login = (Button) findViewById(R.id.login);
-        login.setTypeface(MyConstants.getBold(this));
+        login.setTypeface(Z.getBold(this));
         loginprogress = (ProgressBar) findViewById(R.id.loginprogress);
         forgotpassword = (TextView) findViewById(R.id.forgot);
-        forgotpassword.setTypeface(MyConstants.getBold(this));
+        forgotpassword.setTypeface(Z.getBold(this));
         forgotpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,10 +118,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         signup = (Button) findViewById(R.id.signup);
-        signup.setTypeface(MyConstants.getBold(this));
+        signup.setTypeface(Z.getBold(this));
 
         TextView newp = (TextView)findViewById(R.id.newp);
-        newp.setTypeface(MyConstants.getBold(this));
+        newp.setTypeface(Z.getBold(this));
 
         String otp = MySharedPreferencesManager.getData(LoginActivity.this,"otp");
 
@@ -185,8 +185,8 @@ public class LoginActivity extends AppCompatActivity {
                         String plainusername = new String(demo1DecryptedBytes1);
                         Log.d("login", "onClick: plain " + plainusername);
                         //
-                        MySharedPreferencesManager.save(LoginActivity.this,MyConstants.USERNAME_KEY, usernameenc);
-                        MySharedPreferencesManager.save(LoginActivity.this,MyConstants.PASSWORD_KEY, passwordenc);
+                        MySharedPreferencesManager.save(LoginActivity.this, Z.USERNAME_KEY, usernameenc);
+                        MySharedPreferencesManager.save(LoginActivity.this, Z.PASSWORD_KEY, passwordenc);
 
                         attemptLogin(usernameenc, passwordenc);
                     } catch (Exception e) {
@@ -236,7 +236,7 @@ public class LoginActivity extends AppCompatActivity {
                     params.add(new BasicNameValuePair("u", mEmail));
                     params.add(new BasicNameValuePair("p", mPassword));
 //                    params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken")));
-                    json = jParser.makeHttpRequest(MyConstants.url_login, "GET", params);
+                    json = jParser.makeHttpRequest(Z.url_login, "GET", params);
                     Log.d("TAG", "loginActivity json : "+json);
                     String s = null;
 
@@ -371,7 +371,7 @@ public class LoginActivity extends AppCompatActivity {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
-            HttpURLConnection localHttpURLConnection = (HttpURLConnection) new URL(MyConstants.IP).openConnection();
+            HttpURLConnection localHttpURLConnection = (HttpURLConnection) new URL(Z.IP).openConnection();
             localHttpURLConnection.setConnectTimeout(1000);
             localHttpURLConnection.connect();
             return true;
@@ -388,7 +388,7 @@ public class LoginActivity extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));    //0
             params.add(new BasicNameValuePair("m", getDeviceName()));      //1
-            json = jParser.makeHttpRequest(MyConstants.url_savesessiondetails, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_savesessiondetails, "GET", params);
             try {
                 r = json.getString("info");
 

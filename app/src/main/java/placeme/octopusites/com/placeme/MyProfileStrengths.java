@@ -174,27 +174,27 @@ public class MyProfileStrengths extends AppCompatActivity {
             }
         });
 
-        strengthinput1.setTypeface(MyConstants.getLight(this));
-        strengthinput2.setTypeface(MyConstants.getLight(this));
-        strengthinput3.setTypeface(MyConstants.getLight(this));
-        strengthinput4.setTypeface(MyConstants.getLight(this));
-        strengthinput5.setTypeface(MyConstants.getLight(this));
-        strengthinput6.setTypeface(MyConstants.getLight(this));
-        strengthinput7.setTypeface(MyConstants.getLight(this));
-        strengthinput8.setTypeface(MyConstants.getLight(this));
-        strengthinput9.setTypeface(MyConstants.getLight(this));
-        strengthinput10.setTypeface(MyConstants.getLight(this));
+        strengthinput1.setTypeface(Z.getLight(this));
+        strengthinput2.setTypeface(Z.getLight(this));
+        strengthinput3.setTypeface(Z.getLight(this));
+        strengthinput4.setTypeface(Z.getLight(this));
+        strengthinput5.setTypeface(Z.getLight(this));
+        strengthinput6.setTypeface(Z.getLight(this));
+        strengthinput7.setTypeface(Z.getLight(this));
+        strengthinput8.setTypeface(Z.getLight(this));
+        strengthinput9.setTypeface(Z.getLight(this));
+        strengthinput10.setTypeface(Z.getLight(this));
 
-        strength1.setTypeface(MyConstants.getBold(this));
-        strength2.setTypeface(MyConstants.getBold(this));
-        strength3.setTypeface(MyConstants.getBold(this));
-        strength4.setTypeface(MyConstants.getBold(this));
-        strength5.setTypeface(MyConstants.getBold(this));
-        strength6.setTypeface(MyConstants.getBold(this));
-        strength7.setTypeface(MyConstants.getBold(this));
-        strength8.setTypeface(MyConstants.getBold(this));
-        strength9.setTypeface(MyConstants.getBold(this));
-        strength10.setTypeface(MyConstants.getBold(this));
+        strength1.setTypeface(Z.getBold(this));
+        strength2.setTypeface(Z.getBold(this));
+        strength3.setTypeface(Z.getBold(this));
+        strength4.setTypeface(Z.getBold(this));
+        strength5.setTypeface(Z.getBold(this));
+        strength6.setTypeface(Z.getBold(this));
+        strength7.setTypeface(Z.getBold(this));
+        strength8.setTypeface(Z.getBold(this));
+        strength9.setTypeface(Z.getBold(this));
+        strength10.setTypeface(Z.getBold(this));
 
 
         strength1.addTextChangedListener(new TextWatcher() {
@@ -372,10 +372,10 @@ public class MyProfileStrengths extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
         TextView strengthtxt=(TextView)findViewById(R.id.strengthtxt);
-        strengthtxt.setTypeface(MyConstants.getBold(this));
+        strengthtxt.setTypeface(Z.getBold(this));
 
         TextView addmorestrengthtxt=(TextView)findViewById(R.id.addmorestrengthtxt);
-        addmorestrengthtxt.setTypeface(MyConstants.getBold(this));
+        addmorestrengthtxt.setTypeface(Z.getBold(this));
 
         addmorestrength=(View)findViewById(R.id.addmorestrength);
 
@@ -698,8 +698,8 @@ public class MyProfileStrengths extends AppCompatActivity {
             public void onShow(DialogInterface dialogInterface) {
                 alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileStrengths.this));
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileStrengths.this));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileStrengths.this));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileStrengths.this));
 
             }
         });
@@ -1547,7 +1547,7 @@ public class MyProfileStrengths extends AppCompatActivity {
             params.add(new BasicNameValuePair("u",username));       //0
             params.add(new BasicNameValuePair("t1",encobj));  //1
 
-            json = jParser.makeHttpRequest(MyConstants.url_savestrengths, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_savestrengths, "GET", params);
             try {
                 r = json.getString("info");
 
@@ -1641,8 +1641,8 @@ public class MyProfileStrengths extends AppCompatActivity {
                 public void onShow(DialogInterface dialogInterface) {
                     alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileStrengths.this));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileStrengths.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileStrengths.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileStrengths.this));
 
                 }
             });

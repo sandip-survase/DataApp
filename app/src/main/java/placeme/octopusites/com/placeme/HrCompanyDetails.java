@@ -99,26 +99,26 @@ public class HrCompanyDetails extends AppCompatActivity {
         instphoneainput = (TextInputLayout) findViewById(R.id.instphoneainput);
         instreginput = (TextInputLayout) findViewById(R.id.instreginput);
 
-        CompanyName.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
-        CompanyEmail.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
-        CompanyWebsite.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
-        CompanyPhone.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
-        CompanyAlternatePhone.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
-        CompanyCIN.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
-        CompanyAddressLine1.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
-        CompanyAddressLine2.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
-        CompanyAddressLine3.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
-        loctxt.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
+        CompanyName.setTypeface(Z.getBold(HrCompanyDetails.this));
+        CompanyEmail.setTypeface(Z.getBold(HrCompanyDetails.this));
+        CompanyWebsite.setTypeface(Z.getBold(HrCompanyDetails.this));
+        CompanyPhone.setTypeface(Z.getBold(HrCompanyDetails.this));
+        CompanyAlternatePhone.setTypeface(Z.getBold(HrCompanyDetails.this));
+        CompanyCIN.setTypeface(Z.getBold(HrCompanyDetails.this));
+        CompanyAddressLine1.setTypeface(Z.getBold(HrCompanyDetails.this));
+        CompanyAddressLine2.setTypeface(Z.getBold(HrCompanyDetails.this));
+        CompanyAddressLine3.setTypeface(Z.getBold(HrCompanyDetails.this));
+        loctxt.setTypeface(Z.getBold(HrCompanyDetails.this));
 
-        instnameinput.setTypeface(MyConstants.getLight(HrCompanyDetails.this));
-        addressline1input.setTypeface(MyConstants.getLight(HrCompanyDetails.this));
-        addressline2input.setTypeface(MyConstants.getLight(HrCompanyDetails.this));
-        addressline3input.setTypeface(MyConstants.getLight(HrCompanyDetails.this));
-        instemailinput.setTypeface(MyConstants.getLight(HrCompanyDetails.this));
-        instwebinput.setTypeface(MyConstants.getLight(HrCompanyDetails.this));
-        instphoneinput.setTypeface(MyConstants.getLight(HrCompanyDetails.this));
-        instphoneainput.setTypeface(MyConstants.getLight(HrCompanyDetails.this));
-        instreginput.setTypeface(MyConstants.getLight(HrCompanyDetails.this));
+        instnameinput.setTypeface(Z.getLight(HrCompanyDetails.this));
+        addressline1input.setTypeface(Z.getLight(HrCompanyDetails.this));
+        addressline2input.setTypeface(Z.getLight(HrCompanyDetails.this));
+        addressline3input.setTypeface(Z.getLight(HrCompanyDetails.this));
+        instemailinput.setTypeface(Z.getLight(HrCompanyDetails.this));
+        instwebinput.setTypeface(Z.getLight(HrCompanyDetails.this));
+        instphoneinput.setTypeface(Z.getLight(HrCompanyDetails.this));
+        instphoneainput.setTypeface(Z.getLight(HrCompanyDetails.this));
+        instreginput.setTypeface(Z.getLight(HrCompanyDetails.this));
 
 
         CompanyNamestr = h.getCompanyName();
@@ -154,7 +154,7 @@ public class HrCompanyDetails extends AppCompatActivity {
                 View view = super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
                 tv.setTextColor(getResources().getColor(R.color.dark_color));
-                tv.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
+                tv.setTypeface(Z.getBold(HrCompanyDetails.this));
                 return view;
             }
 
@@ -163,7 +163,7 @@ public class HrCompanyDetails extends AppCompatActivity {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(HrCompanyDetails.this));
+                tv.setTypeface(Z.getBold(HrCompanyDetails.this));
 
                 if (position == 0) {
                     // Set the hint text color gray
@@ -555,7 +555,7 @@ public class HrCompanyDetails extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", encUsername));
             params.add(new BasicNameValuePair("d", encobj));       //1
 
-            json = jsonParser.makeHttpRequest(MyConstants.url_SaveHrCompany, "GET", params);
+            json = jsonParser.makeHttpRequest(Z.url_SaveHrCompany, "GET", params);
             try {
                 r = json.getString("info");
 

@@ -114,8 +114,8 @@ public class AddUsersActivity extends AppCompatActivity {
         fab= (FloatingActionButton) findViewById(R.id.fab);
 
 
-        adduserinput.setTypeface(MyConstants.getLight(this));
-        email.setTypeface(MyConstants.getBold(this));
+        adduserinput.setTypeface(Z.getLight(this));
+        email.setTypeface(Z.getBold(this));
 
         encadminUsername=MySharedPreferencesManager.getUsername(AddUsersActivity.this);
 
@@ -177,14 +177,14 @@ public class AddUsersActivity extends AppCompatActivity {
         attchrl1=(RelativeLayout)findViewById(R.id.file1);
         t1=(TextView)findViewById(R.id.filename) ;
 
-        createpasstxt.setTypeface(MyConstants.getBold(this));
-        passsenstxt.setTypeface(MyConstants.getLight(this));
-        passsens1txt.setTypeface(MyConstants.getLight(this));
-        radioButtonsinle.setTypeface(MyConstants.getBold(this));
-        radioButtonmulti.setTypeface(MyConstants.getBold(this));
-        note.setTypeface(MyConstants.getLight(this));
-        note1.setTypeface(MyConstants.getBold(this));
-        note2.setTypeface(MyConstants.getBold(this));
+        createpasstxt.setTypeface(Z.getBold(this));
+        passsenstxt.setTypeface(Z.getLight(this));
+        passsens1txt.setTypeface(Z.getLight(this));
+        radioButtonsinle.setTypeface(Z.getBold(this));
+        radioButtonmulti.setTypeface(Z.getBold(this));
+        note.setTypeface(Z.getLight(this));
+        note1.setTypeface(Z.getBold(this));
+        note2.setTypeface(Z.getBold(this));
 
 
         prg1 = (ProgressBar) findViewById(R.id.PROGRESS_BAR);
@@ -306,7 +306,7 @@ public class AddUsersActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", encUsername));    //0
             params.add(new BasicNameValuePair("f", encfilename));
 
-            json = jParser.makeHttpRequest(MyConstants.url_delete_file, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_delete_file, "GET", params);
 
             try {
                 result = json.getString("info");
@@ -499,7 +499,7 @@ public class AddUsersActivity extends AppCompatActivity {
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(MyConstants.url_uploadSingleFile);
+                URL url = new URL(Z.url_uploadSingleFile);
                 httpConn = (HttpURLConnection) url.openConnection();
                 httpConn.setUseCaches(false);
                 httpConn.setDoOutput(true);	// indicates POST method
@@ -670,7 +670,7 @@ public class AddUsersActivity extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encadminUsername));    //0
             params.add(new BasicNameValuePair("ue", encuserEmail));//1
-            json = jParser.makeHttpRequest(MyConstants.url_createSingleUser_admin, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_createSingleUser_admin, "GET", params);
             try {
                 r = json.getString("info");
 
@@ -685,7 +685,7 @@ public class AddUsersActivity extends AppCompatActivity {
 
             if (result.equals("success")) {
                 Toast.makeText(AddUsersActivity.this, "Successfully Created..!", Toast.LENGTH_SHORT).show();
-                setResult(MyConstants.USER_DATA_CHANGE_RESULT_CODE);
+                setResult(Z.USER_DATA_CHANGE_RESULT_CODE);
 
             } else if (result.equals("userExist")) {
                 Toast.makeText(AddUsersActivity.this, "User already exist on Placeme", Toast.LENGTH_LONG).show();
@@ -712,7 +712,7 @@ public class AddUsersActivity extends AppCompatActivity {
             Log.d("TAG", "mul encuser "+encadminUsername);
             Log.d("TAG", "mul encfile "+encfilename);
 
-            json = jParser.makeHttpRequest(MyConstants.url_createMultipleUser_admin, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_createMultipleUser_admin, "GET", params);
 
             try {
                 result = json.getString("info");

@@ -1,13 +1,12 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -17,7 +16,6 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.design.widget.TextInputEditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -90,15 +88,15 @@ public class MyProfileContact extends AppCompatActivity {
         mobile2input=  (TextInputLayout) findViewById(R.id.mobile2input);
 
 
-        fnameTextInputLayout.setTypeface(MyConstants.getLight(this));
-        lnameTextInputLayout.setTypeface(MyConstants.getLight(this));
-        emai2input.setTypeface(MyConstants.getLight(this));
-        addressline2input.setTypeface(MyConstants.getLight(this));
-        addressline1input.setTypeface(MyConstants.getLight(this));
-        addressline3input.setTypeface(MyConstants.getLight(this));
-        phoneinput.setTypeface(MyConstants.getLight(this));
-        mobileinput.setTypeface(MyConstants.getLight(this));
-        mobile2input.setTypeface(MyConstants.getLight(this));
+        fnameTextInputLayout.setTypeface(Z.getLight(this));
+        lnameTextInputLayout.setTypeface(Z.getLight(this));
+        emai2input.setTypeface(Z.getLight(this));
+        addressline2input.setTypeface(Z.getLight(this));
+        addressline1input.setTypeface(Z.getLight(this));
+        addressline3input.setTypeface(Z.getLight(this));
+        phoneinput.setTypeface(Z.getLight(this));
+        mobileinput.setTypeface(Z.getLight(this));
+        mobile2input.setTypeface(Z.getLight(this));
 
 
         email.setFocusable(false);
@@ -288,19 +286,19 @@ public class MyProfileContact extends AppCompatActivity {
 //        addresstxt.setTypeface(custom_font1);
 //        contactnotxt.setTypeface(custom_font1);
 
-        fname.setTypeface(MyConstants.getBold(this));
-        lname.setTypeface(MyConstants.getBold(this));
+        fname.setTypeface(Z.getBold(this));
+        lname.setTypeface(Z.getBold(this));
 
-        email.setTypeface(MyConstants.getBold(this));
-        email2.setTypeface(MyConstants.getBold(this));
-        addressline1.setTypeface(MyConstants.getBold(this));
-        addressline2.setTypeface(MyConstants.getBold(this));
-        addressline3.setTypeface(MyConstants.getBold(this));
-        phone.setTypeface(MyConstants.getBold(this));
-        mobile.setTypeface(MyConstants.getBold(this));
-        mobile2.setTypeface(MyConstants.getBold(this));
-        addresstxt.setTypeface(MyConstants.getBold(this));
-        contactnotxt.setTypeface(MyConstants.getBold(this));
+        email.setTypeface(Z.getBold(this));
+        email2.setTypeface(Z.getBold(this));
+        addressline1.setTypeface(Z.getBold(this));
+        addressline2.setTypeface(Z.getBold(this));
+        addressline3.setTypeface(Z.getBold(this));
+        phone.setTypeface(Z.getBold(this));
+        mobile.setTypeface(Z.getBold(this));
+        mobile2.setTypeface(Z.getBold(this));
+        addresstxt.setTypeface(Z.getBold(this));
+        contactnotxt.setTypeface(Z.getBold(this));
 
         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -555,8 +553,8 @@ public class MyProfileContact extends AppCompatActivity {
                 public void onShow(DialogInterface dialogInterface) {
                     alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileContact.this));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileContact.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileContact.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileContact.this));
 
                 }
             });
@@ -576,13 +574,13 @@ public class MyProfileContact extends AppCompatActivity {
             params.add(new BasicNameValuePair("obj", strobj));               //1
 
             if (role.equals("hr"))
-                json = jParser.makeHttpRequest(MyConstants.url_SaveHrContact, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_SaveHrContact, "GET", params);
 
             else if (role.equals("admin"))
-                json = jParser.makeHttpRequest(MyConstants.url_SaveAdminContact, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_SaveAdminContact, "GET", params);
 
             else
-                json = jParser.makeHttpRequest(MyConstants.url_SaveStdalmContact, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_SaveStdalmContact, "GET", params);
 
             try {
 

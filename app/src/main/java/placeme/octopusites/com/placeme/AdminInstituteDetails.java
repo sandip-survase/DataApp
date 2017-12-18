@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -15,7 +16,6 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.design.widget.TextInputEditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -95,28 +95,28 @@ public class AdminInstituteDetails extends AppCompatActivity {
         caddrline3 = (TextInputEditText) findViewById(R.id.caddrline3);
 
 
-        instnameinput.setTypeface(MyConstants.getLight(this));
-        instemailinput.setTypeface(MyConstants.getLight(this));
-        instwebinput.setTypeface(MyConstants.getLight(this));
-        instphoneinput.setTypeface(MyConstants.getLight(this));
-        instphoneainput.setTypeface(MyConstants.getLight(this));
-        instuniversityinput.setTypeface(MyConstants.getLight(this));
-        instreginput.setTypeface(MyConstants.getLight(this));
-        caddrline1input.setTypeface(MyConstants.getLight(this));
-        caddrline2input.setTypeface(MyConstants.getLight(this));
-        caddrline3input.setTypeface(MyConstants.getLight(this));
+        instnameinput.setTypeface(Z.getLight(this));
+        instemailinput.setTypeface(Z.getLight(this));
+        instwebinput.setTypeface(Z.getLight(this));
+        instphoneinput.setTypeface(Z.getLight(this));
+        instphoneainput.setTypeface(Z.getLight(this));
+        instuniversityinput.setTypeface(Z.getLight(this));
+        instreginput.setTypeface(Z.getLight(this));
+        caddrline1input.setTypeface(Z.getLight(this));
+        caddrline2input.setTypeface(Z.getLight(this));
+        caddrline3input.setTypeface(Z.getLight(this));
 
-        iname.setTypeface(MyConstants.getBold(this));
-        iemail.setTypeface(MyConstants.getBold(this));
-        iweb.setTypeface(MyConstants.getBold(this));
-        iphone.setTypeface(MyConstants.getBold(this));
-        ialtphone.setTypeface(MyConstants.getBold(this));
-        uniname.setTypeface(MyConstants.getBold(this));
-        ireg.setTypeface(MyConstants.getBold(this));
-        caddrline1.setTypeface(MyConstants.getBold(this));
-        caddrline2.setTypeface(MyConstants.getBold(this));
-        caddrline3.setTypeface(MyConstants.getBold(this));
-        loctxt.setTypeface(MyConstants.getBold(this));
+        iname.setTypeface(Z.getBold(this));
+        iemail.setTypeface(Z.getBold(this));
+        iweb.setTypeface(Z.getBold(this));
+        iphone.setTypeface(Z.getBold(this));
+        ialtphone.setTypeface(Z.getBold(this));
+        uniname.setTypeface(Z.getBold(this));
+        ireg.setTypeface(Z.getBold(this));
+        caddrline1.setTypeface(Z.getBold(this));
+        caddrline2.setTypeface(Z.getBold(this));
+        caddrline3.setTypeface(Z.getBold(this));
+        loctxt.setTypeface(Z.getBold(this));
 
         instname = a.getInstitute();
         instemail = a.getInstemail();
@@ -505,7 +505,7 @@ public class AdminInstituteDetails extends AppCompatActivity {
             params.add(new BasicNameValuePair("obj", strobj));    //1
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_SaveAdminInstituteData, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_SaveAdminInstituteData, "GET", params);
             try {
 //                Log.d("Reversecheck", "doInBackground: "+json.getString("dataobj"));
                 r = json.getString("info");

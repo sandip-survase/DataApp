@@ -121,10 +121,10 @@ public class CareerobjProfileTabFragment extends Fragment {
         TextView weaktxt=(TextView)rootView.findViewById(R.id.weaktxt);
         TextView locationtxt=(TextView)rootView.findViewById(R.id.locationtxt);
 
-        careerobjtxt.setTypeface(MyConstants.getBold(getActivity()));
-        strengthtxt.setTypeface(MyConstants.getBold(getActivity()));
-        weaktxt.setTypeface(MyConstants.getBold(getActivity()));
-        locationtxt.setTypeface(MyConstants.getBold(getActivity()));
+        careerobjtxt.setTypeface(Z.getBold(getActivity()));
+        strengthtxt.setTypeface(Z.getBold(getActivity()));
+        weaktxt.setTypeface(Z.getBold(getActivity()));
+        locationtxt.setTypeface(Z.getBold(getActivity()));
 
         careerobjbutton=(View)rootView.findViewById(R.id.careerobjbutton);
         strengthbutton=(View)rootView.findViewById(R.id.strengthbutton);

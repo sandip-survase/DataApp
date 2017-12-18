@@ -76,9 +76,9 @@ public class ProjectsProfileTabFragment extends Fragment {
         role = MySharedPreferencesManager.getRole(getActivity());
 
         TextView projtxt = (TextView) rootView.findViewById(R.id.projtxt);
-        projtxt.setTypeface(MyConstants.getBold(getActivity()));
+        projtxt.setTypeface(Z.getBold(getActivity()));
         TextView addmoreprojecttxt=(TextView) rootView.findViewById(R.id.addmoreprojecttxt);
-        addmoreprojecttxt.setTypeface(MyConstants.getBold(getActivity()));
+        addmoreprojecttxt.setTypeface(Z.getBold(getActivity()));
         Log.d("dfgs", "onCreateView:COUNT2 " + projectscount2);
 
 
@@ -952,98 +952,98 @@ public class ProjectsProfileTabFragment extends Fragment {
         });
 
 
-        proj1.setTypeface(MyConstants.getBold(getActivity()));
-        domain1.setTypeface(MyConstants.getBold(getActivity()));
-        team1.setTypeface(MyConstants.getBold(getActivity()));
-        duration1.setTypeface(MyConstants.getBold(getActivity()));
+        proj1.setTypeface(Z.getBold(getActivity()));
+        domain1.setTypeface(Z.getBold(getActivity()));
+        team1.setTypeface(Z.getBold(getActivity()));
+        duration1.setTypeface(Z.getBold(getActivity()));
 
-        proj2.setTypeface(MyConstants.getBold(getActivity()));
-        domain2.setTypeface(MyConstants.getBold(getActivity()));
-        team2.setTypeface(MyConstants.getBold(getActivity()));
-        duration2.setTypeface(MyConstants.getBold(getActivity()));
+        proj2.setTypeface(Z.getBold(getActivity()));
+        domain2.setTypeface(Z.getBold(getActivity()));
+        team2.setTypeface(Z.getBold(getActivity()));
+        duration2.setTypeface(Z.getBold(getActivity()));
 
-        proj3.setTypeface(MyConstants.getBold(getActivity()));
-        domain3.setTypeface(MyConstants.getBold(getActivity()));
-        team3.setTypeface(MyConstants.getBold(getActivity()));
-        duration3.setTypeface(MyConstants.getBold(getActivity()));
+        proj3.setTypeface(Z.getBold(getActivity()));
+        domain3.setTypeface(Z.getBold(getActivity()));
+        team3.setTypeface(Z.getBold(getActivity()));
+        duration3.setTypeface(Z.getBold(getActivity()));
 
-        proj4.setTypeface(MyConstants.getBold(getActivity()));
-        domain4.setTypeface(MyConstants.getBold(getActivity()));
-        team4.setTypeface(MyConstants.getBold(getActivity()));
-        duration4.setTypeface(MyConstants.getBold(getActivity()));
+        proj4.setTypeface(Z.getBold(getActivity()));
+        domain4.setTypeface(Z.getBold(getActivity()));
+        team4.setTypeface(Z.getBold(getActivity()));
+        duration4.setTypeface(Z.getBold(getActivity()));
 
-        proj5.setTypeface(MyConstants.getBold(getActivity()));
-        domain5.setTypeface(MyConstants.getBold(getActivity()));
-        team5.setTypeface(MyConstants.getBold(getActivity()));
-        duration5.setTypeface(MyConstants.getBold(getActivity()));
+        proj5.setTypeface(Z.getBold(getActivity()));
+        domain5.setTypeface(Z.getBold(getActivity()));
+        team5.setTypeface(Z.getBold(getActivity()));
+        duration5.setTypeface(Z.getBold(getActivity()));
 
-        proj6.setTypeface(MyConstants.getBold(getActivity()));
-        domain6.setTypeface(MyConstants.getBold(getActivity()));
-        team6.setTypeface(MyConstants.getBold(getActivity()));
-        duration6.setTypeface(MyConstants.getBold(getActivity()));
+        proj6.setTypeface(Z.getBold(getActivity()));
+        domain6.setTypeface(Z.getBold(getActivity()));
+        team6.setTypeface(Z.getBold(getActivity()));
+        duration6.setTypeface(Z.getBold(getActivity()));
 
-        proj7.setTypeface(MyConstants.getBold(getActivity()));
-        domain7.setTypeface(MyConstants.getBold(getActivity()));
-        team7.setTypeface(MyConstants.getBold(getActivity()));
-        duration7.setTypeface(MyConstants.getBold(getActivity()));
+        proj7.setTypeface(Z.getBold(getActivity()));
+        domain7.setTypeface(Z.getBold(getActivity()));
+        team7.setTypeface(Z.getBold(getActivity()));
+        duration7.setTypeface(Z.getBold(getActivity()));
 
-        proj8.setTypeface(MyConstants.getBold(getActivity()));
-        domain8.setTypeface(MyConstants.getBold(getActivity()));
-        team8.setTypeface(MyConstants.getBold(getActivity()));
-        duration8.setTypeface(MyConstants.getBold(getActivity()));
+        proj8.setTypeface(Z.getBold(getActivity()));
+        domain8.setTypeface(Z.getBold(getActivity()));
+        team8.setTypeface(Z.getBold(getActivity()));
+        duration8.setTypeface(Z.getBold(getActivity()));
 
-        proj9.setTypeface(MyConstants.getBold(getActivity()));
-        domain9.setTypeface(MyConstants.getBold(getActivity()));
-        team9.setTypeface(MyConstants.getBold(getActivity()));
-        duration9.setTypeface(MyConstants.getBold(getActivity()));
+        proj9.setTypeface(Z.getBold(getActivity()));
+        domain9.setTypeface(Z.getBold(getActivity()));
+        team9.setTypeface(Z.getBold(getActivity()));
+        duration9.setTypeface(Z.getBold(getActivity()));
 
-        proj10.setTypeface(MyConstants.getBold(getActivity()));
-        domain10.setTypeface(MyConstants.getBold(getActivity()));
-        team10.setTypeface(MyConstants.getBold(getActivity()));
-        duration10.setTypeface(MyConstants.getBold(getActivity()));
+        proj10.setTypeface(Z.getBold(getActivity()));
+        domain10.setTypeface(Z.getBold(getActivity()));
+        team10.setTypeface(Z.getBold(getActivity()));
+        duration10.setTypeface(Z.getBold(getActivity()));
 
-        projinput1.setTypeface(MyConstants.getLight(getActivity()));
-        domaininput1.setTypeface(MyConstants.getLight(getActivity()));
-        teaminput1.setTypeface(MyConstants.getLight(getActivity()));
-        durationinput1.setTypeface(MyConstants.getLight(getActivity()));
-        projinput2.setTypeface(MyConstants.getLight(getActivity()));
-        domaininput2.setTypeface(MyConstants.getLight(getActivity()));
-        teaminput2.setTypeface(MyConstants.getLight(getActivity()));
-        durationinput2.setTypeface(MyConstants.getLight(getActivity()));
-        projinput3.setTypeface(MyConstants.getLight(getActivity()));
-        domaininput3.setTypeface(MyConstants.getLight(getActivity()));
-        teaminput3.setTypeface(MyConstants.getLight(getActivity()));
-        durationinput3.setTypeface(MyConstants.getLight(getActivity()));
+        projinput1.setTypeface(Z.getLight(getActivity()));
+        domaininput1.setTypeface(Z.getLight(getActivity()));
+        teaminput1.setTypeface(Z.getLight(getActivity()));
+        durationinput1.setTypeface(Z.getLight(getActivity()));
+        projinput2.setTypeface(Z.getLight(getActivity()));
+        domaininput2.setTypeface(Z.getLight(getActivity()));
+        teaminput2.setTypeface(Z.getLight(getActivity()));
+        durationinput2.setTypeface(Z.getLight(getActivity()));
+        projinput3.setTypeface(Z.getLight(getActivity()));
+        domaininput3.setTypeface(Z.getLight(getActivity()));
+        teaminput3.setTypeface(Z.getLight(getActivity()));
+        durationinput3.setTypeface(Z.getLight(getActivity()));
 
-        projinput4.setTypeface(MyConstants.getLight(getActivity()));
-        domaininput4.setTypeface(MyConstants.getLight(getActivity()));
-        teaminput4.setTypeface(MyConstants.getLight(getActivity()));
-        durationinput4.setTypeface(MyConstants.getLight(getActivity()));
-        projinput5.setTypeface(MyConstants.getLight(getActivity()));
-        domaininput5.setTypeface(MyConstants.getLight(getActivity()));
-        teaminput5.setTypeface(MyConstants.getLight(getActivity()));
-        durationinput5.setTypeface(MyConstants.getLight(getActivity()));
-        projinput6.setTypeface(MyConstants.getLight(getActivity()));
-        domaininput6.setTypeface(MyConstants.getLight(getActivity()));
-        teaminput6.setTypeface(MyConstants.getLight(getActivity()));
-        durationinput6.setTypeface(MyConstants.getLight(getActivity()));
-        projinput7.setTypeface(MyConstants.getLight(getActivity()));
-        domaininput7.setTypeface(MyConstants.getLight(getActivity()));
-        teaminput7.setTypeface(MyConstants.getLight(getActivity()));
-        durationinput7.setTypeface(MyConstants.getLight(getActivity()));
-        projinput8.setTypeface(MyConstants.getLight(getActivity()));
-        domaininput8.setTypeface(MyConstants.getLight(getActivity()));
-        teaminput8.setTypeface(MyConstants.getLight(getActivity()));
-        durationinput8.setTypeface(MyConstants.getLight(getActivity()));
-        projinput9.setTypeface(MyConstants.getLight(getActivity()));
-        domaininput9.setTypeface(MyConstants.getLight(getActivity()));
-        teaminput9.setTypeface(MyConstants.getLight(getActivity()));
-        durationinput9.setTypeface(MyConstants.getLight(getActivity()));
-        projinput10.setTypeface(MyConstants.getLight(getActivity()));
-        domaininput10.setTypeface(MyConstants.getLight(getActivity()));
+        projinput4.setTypeface(Z.getLight(getActivity()));
+        domaininput4.setTypeface(Z.getLight(getActivity()));
+        teaminput4.setTypeface(Z.getLight(getActivity()));
+        durationinput4.setTypeface(Z.getLight(getActivity()));
+        projinput5.setTypeface(Z.getLight(getActivity()));
+        domaininput5.setTypeface(Z.getLight(getActivity()));
+        teaminput5.setTypeface(Z.getLight(getActivity()));
+        durationinput5.setTypeface(Z.getLight(getActivity()));
+        projinput6.setTypeface(Z.getLight(getActivity()));
+        domaininput6.setTypeface(Z.getLight(getActivity()));
+        teaminput6.setTypeface(Z.getLight(getActivity()));
+        durationinput6.setTypeface(Z.getLight(getActivity()));
+        projinput7.setTypeface(Z.getLight(getActivity()));
+        domaininput7.setTypeface(Z.getLight(getActivity()));
+        teaminput7.setTypeface(Z.getLight(getActivity()));
+        durationinput7.setTypeface(Z.getLight(getActivity()));
+        projinput8.setTypeface(Z.getLight(getActivity()));
+        domaininput8.setTypeface(Z.getLight(getActivity()));
+        teaminput8.setTypeface(Z.getLight(getActivity()));
+        durationinput8.setTypeface(Z.getLight(getActivity()));
+        projinput9.setTypeface(Z.getLight(getActivity()));
+        domaininput9.setTypeface(Z.getLight(getActivity()));
+        teaminput9.setTypeface(Z.getLight(getActivity()));
+        durationinput9.setTypeface(Z.getLight(getActivity()));
+        projinput10.setTypeface(Z.getLight(getActivity()));
+        domaininput10.setTypeface(Z.getLight(getActivity()));
 
-        teaminput10.setTypeface(MyConstants.getLight(getActivity()));
-        durationinput10.setTypeface(MyConstants.getLight(getActivity()));
+        teaminput10.setTypeface(Z.getLight(getActivity()));
+        durationinput10.setTypeface(Z.getLight(getActivity()));
 
 
         addmoreproject = (View) rootView.findViewById(R.id.addmoreproject);
@@ -2883,8 +2883,8 @@ public class ProjectsProfileTabFragment extends Fragment {
 
                 alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(getActivity()));
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(getActivity()));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(getActivity()));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(getActivity()));
             }
         });
 
@@ -3971,7 +3971,7 @@ public class ProjectsProfileTabFragment extends Fragment {
             Log.d("TAG", "encrypted objec string2: " + param[0]);
             params.add(new BasicNameValuePair("d", param[0]));       //0
 
-            json = jParser.makeHttpRequest(MyConstants.url_saveprojects, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_saveprojects, "GET", params);
             try {
                 r = json.getString("info");
             } catch (Exception e) {

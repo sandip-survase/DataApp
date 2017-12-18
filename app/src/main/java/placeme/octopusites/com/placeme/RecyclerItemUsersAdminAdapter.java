@@ -39,10 +39,10 @@ public class RecyclerItemUsersAdminAdapter extends RecyclerView.Adapter<Recycler
             role=(TextView) view.findViewById(R.id.role);
             isactivated=(TextView) view.findViewById(R.id.placed);      // changed place to isactivated
             uploadedbyprofile=(CircleImageView) view.findViewById(R.id.uploadedbyprofile);
-            name.setTypeface(MyConstants.getBold(name.getContext()));
-            email.setTypeface(MyConstants.getLight(email.getContext()));
-            role.setTypeface(MyConstants.getLight(role.getContext()));
-            isactivated.setTypeface(MyConstants.getLight(isactivated.getContext()));
+            name.setTypeface(Z.getBold(name.getContext()));
+            email.setTypeface(Z.getLight(email.getContext()));
+            role.setTypeface(Z.getLight(role.getContext()));
+            isactivated.setTypeface(Z.getLight(isactivated.getContext()));
 
 
         }
@@ -72,7 +72,7 @@ public class RecyclerItemUsersAdminAdapter extends RecyclerView.Adapter<Recycler
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority(MyConstants.VPS_IP)
+                .authority(Z.VPS_IP)
                 .path("AESTest/GetImageThumbnail")
                 .appendQueryParameter("u", item.getEncemail())
                 .build();
@@ -98,7 +98,7 @@ public class RecyclerItemUsersAdminAdapter extends RecyclerView.Adapter<Recycler
         holder.role.setText(item.getRole());
         if(item.getIsactivated().equals("Not Activated")) {
             holder.isactivated.setTextColor(Color.parseColor("#00bcd4"));
-            holder.isactivated.setTypeface(MyConstants.getBold(holder.isactivated.getContext()));
+            holder.isactivated.setTypeface(Z.getBold(holder.isactivated.getContext()));
         }
             holder.isactivated.setText(item.getIsactivated());
 

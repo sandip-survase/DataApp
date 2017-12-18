@@ -245,7 +245,7 @@ public class EditPlacementHr extends AppCompatActivity {
             params.add(new BasicNameValuePair("p", page_to_call_placement + ""));  //1
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_GetPlacementSentByHr, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_GetPlacementSentByHr, "GET", params);
             try {
                 placementcount = Integer.parseInt(json.getString("count"));
 
@@ -558,7 +558,7 @@ try{
             for (int i = 0; i < uniqueUploadersPlacement.length; i++) {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", uniqueUploadersEncPlacement[i]));       //0
-                json = jParser.makeHttpRequest(MyConstants.url_getlastupdated, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_getlastupdated, "GET", params);
                 try {
                     String s = json.getString("lastupdated");
                     if (s.equals("noupdate")) {

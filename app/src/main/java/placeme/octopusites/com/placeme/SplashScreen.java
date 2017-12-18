@@ -137,8 +137,8 @@ public class SplashScreen extends Activity {
         TextView poweredbyid = (TextView) findViewById(R.id.poweredbyid);
         TextView companynamesplash = (TextView) findViewById(R.id.companynamesplash);
 
-        poweredbyid.setTypeface(MyConstants.getLight(this));
-        companynamesplash.setTypeface(MyConstants.getBold(this));
+        poweredbyid.setTypeface(Z.getLight(this));
+        companynamesplash.setTypeface(Z.getBold(this));
 
 // my code
 //        CaocConfig.Builder.create()
@@ -354,7 +354,7 @@ public class SplashScreen extends Activity {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
-            HttpURLConnection localHttpURLConnection = (HttpURLConnection) new URL(MyConstants.IP).openConnection();
+            HttpURLConnection localHttpURLConnection = (HttpURLConnection) new URL(Z.IP).openConnection();
             localHttpURLConnection.setConnectTimeout(1000);
             localHttpURLConnection.connect();
             return true;
@@ -380,7 +380,7 @@ public class SplashScreen extends Activity {
                     params.add(new BasicNameValuePair("u", mEmail));
                     params.add(new BasicNameValuePair("p", mPassword));
                     params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken")));
-                    json = jParser.makeHttpRequest(MyConstants.url_login, "GET", params);
+                    json = jParser.makeHttpRequest(Z.url_login, "GET", params);
                     String s = null;
 
                     s = json.getString("info");
@@ -452,7 +452,7 @@ public class SplashScreen extends Activity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));    //0
             params.add(new BasicNameValuePair("m", getDeviceName()));      //1
-            json = jParser.makeHttpRequest(MyConstants.url_savesessiondetails, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_savesessiondetails, "GET", params);
             try {
                 r = json.getString("info");
 
@@ -484,7 +484,7 @@ public class SplashScreen extends Activity {
             params.add(new BasicNameValuePair("did", device_id));
             params.add(new BasicNameValuePair("u", username));
 
-            json = jParser.makeHttpRequest(MyConstants.url_getdigest, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_getdigest, "GET", params);
             Log.d("  ***", "doInBackground: json -" + json);
             try {
                 info = json.getString("info");
@@ -541,7 +541,7 @@ public class SplashScreen extends Activity {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u", encUsername));       //0
                 params.add(new BasicNameValuePair("t", ""));             //1
-                json = jParser.makeHttpRequest(MyConstants.url_UpdateFirebaseToken, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_UpdateFirebaseToken, "GET", params);
 
 
                 resultofop = json.getString("info");

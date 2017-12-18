@@ -97,12 +97,12 @@ public class PushNotificationPreferences extends AppCompatActivity {
         TextView notifplacemetxt=(TextView)findViewById(R.id.notifplacemetxt);
         TextView blogtxt=(TextView)findViewById(R.id.blogtxt);
 
-        pushtxt.setTypeface(MyConstants.getLight(this));
-        placeinsttxt.setTypeface(MyConstants.getBold(this));
-        placeplacemetxt.setTypeface(MyConstants.getBold(this));
-        notiftxt.setTypeface(MyConstants.getBold(this));
-        notifplacemetxt.setTypeface(MyConstants.getBold(this));
-        blogtxt.setTypeface(MyConstants.getBold(this));
+        pushtxt.setTypeface(Z.getLight(this));
+        placeinsttxt.setTypeface(Z.getBold(this));
+        placeplacemetxt.setTypeface(Z.getBold(this));
+        notiftxt.setTypeface(Z.getBold(this));
+        notifplacemetxt.setTypeface(Z.getBold(this));
+        blogtxt.setTypeface(Z.getBold(this));
 
 
 

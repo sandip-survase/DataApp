@@ -5,13 +5,13 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -34,7 +34,6 @@ import java.util.List;
 import mabbas007.tagsedittext.TagsEditText;
 
 import static placeme.octopusites.com.placeme.AES4all.Encrypt;
-import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 
 public class EditPlacementMainHr extends AppCompatActivity {
 
@@ -578,7 +577,7 @@ if(passingyear!=null){
 
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_ModifyPlacementHr, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_ModifyPlacementHr, "GET", params);
             try {
                 r = json.getString("info");
 

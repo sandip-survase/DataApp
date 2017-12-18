@@ -1,7 +1,6 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -33,13 +32,13 @@ public class AchievementsProfileTabFragment extends Fragment {
         TextView publicationtxt=(TextView)rootView.findViewById(R.id.publicationtxt);
 
 
-        knownlangtxt.setTypeface(MyConstants.getBold(getActivity()));
-        certitxt.setTypeface(MyConstants.getBold(getActivity()));
-        coursetxt.setTypeface(MyConstants.getBold(getActivity()));
-        skillstxt.setTypeface(MyConstants.getBold(getActivity()));
-        honortxt.setTypeface(MyConstants.getBold(getActivity()));
-        patenttxt.setTypeface(MyConstants.getBold(getActivity()));
-        publicationtxt.setTypeface(MyConstants.getBold(getActivity()));
+        knownlangtxt.setTypeface(Z.getBold(getActivity()));
+        certitxt.setTypeface(Z.getBold(getActivity()));
+        coursetxt.setTypeface(Z.getBold(getActivity()));
+        skillstxt.setTypeface(Z.getBold(getActivity()));
+        honortxt.setTypeface(Z.getBold(getActivity()));
+        patenttxt.setTypeface(Z.getBold(getActivity()));
+        publicationtxt.setTypeface(Z.getBold(getActivity()));
 
         knownlang=(View)rootView.findViewById(R.id.studentBlock);
         skills=(View)rootView.findViewById(R.id.alumniBlock);

@@ -76,16 +76,16 @@ public class MyProfileCareerObj extends AppCompatActivity {
         radioButtonObj5=(RadioButton)findViewById(R.id.radioButtonObj5);
         radioButtonObj6=(RadioButton)findViewById(R.id.radioButtonObj6);
 
-        radioButtonObj1.setTypeface(MyConstants.getBold(this));
-        radioButtonObj2.setTypeface(MyConstants.getBold(this));
-        radioButtonObj3.setTypeface(MyConstants.getBold(this));
-        radioButtonObj4.setTypeface(MyConstants.getBold(this));
-        radioButtonObj5.setTypeface(MyConstants.getBold(this));
-        radioButtonObj6.setTypeface(MyConstants.getBold(this));
+        radioButtonObj1.setTypeface(Z.getBold(this));
+        radioButtonObj2.setTypeface(Z.getBold(this));
+        radioButtonObj3.setTypeface(Z.getBold(this));
+        radioButtonObj4.setTypeface(Z.getBold(this));
+        radioButtonObj5.setTypeface(Z.getBold(this));
+        radioButtonObj6.setTypeface(Z.getBold(this));
 
-        careerobjtxt.setTypeface(MyConstants.getBold(this));
-        otherobjinput.setTypeface(MyConstants.getLight(this));
-        otherobj.setTypeface(MyConstants.getBold(this));
+        careerobjtxt.setTypeface(Z.getBold(this));
+        otherobjinput.setTypeface(Z.getLight(this));
+        otherobj.setTypeface(Z.getBold(this));
 
 
         radioGroupCareerobj.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -223,7 +223,7 @@ public class MyProfileCareerObj extends AppCompatActivity {
 
 
         TextView careerobjtxt=(TextView)findViewById(R.id.careerobjtxt);
-        careerobjtxt.setTypeface(MyConstants.getBold(this));
+        careerobjtxt.setTypeface(Z.getBold(this));
 
 
 
@@ -307,7 +307,7 @@ public class MyProfileCareerObj extends AppCompatActivity {
             params.add(new BasicNameValuePair("u",username));       //0
             params.add(new BasicNameValuePair("c",encobj));
 
-            json = jParser.makeHttpRequest(MyConstants.url_savecareerobj, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_savecareerobj, "GET", params);
             Log.d("TAG", "SaveCareerObj json : "+json);
             try {
                 r = json.getString("info");
@@ -393,8 +393,8 @@ public class MyProfileCareerObj extends AppCompatActivity {
                 public void onShow(DialogInterface dialogInterface) {
                     alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileCareerObj.this));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileCareerObj.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileCareerObj.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileCareerObj.this));
 
                 }
             });

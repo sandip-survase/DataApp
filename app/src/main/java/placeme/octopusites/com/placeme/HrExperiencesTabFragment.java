@@ -127,17 +127,17 @@ public class HrExperiencesTabFragment extends Fragment {
         work9=(TextView)rootView.findViewById(R.id.work9);
         work10=(TextView)rootView.findViewById(R.id.work10);
 
-        addmoreexptxt.setTypeface(MyConstants.getBold(getActivity()));
-        work1.setTypeface(MyConstants.getBold(getActivity()));
-        work2.setTypeface(MyConstants.getBold(getActivity()));
-        work3.setTypeface(MyConstants.getBold(getActivity()));
-        work4.setTypeface(MyConstants.getBold(getActivity()));
-        work5.setTypeface(MyConstants.getBold(getActivity()));
-        work6.setTypeface(MyConstants.getBold(getActivity()));
-        work7.setTypeface(MyConstants.getBold(getActivity()));
-        work8.setTypeface(MyConstants.getBold(getActivity()));
-        work9.setTypeface(MyConstants.getBold(getActivity()));
-        work10.setTypeface(MyConstants.getBold(getActivity()));
+        addmoreexptxt.setTypeface(Z.getBold(getActivity()));
+        work1.setTypeface(Z.getBold(getActivity()));
+        work2.setTypeface(Z.getBold(getActivity()));
+        work3.setTypeface(Z.getBold(getActivity()));
+        work4.setTypeface(Z.getBold(getActivity()));
+        work5.setTypeface(Z.getBold(getActivity()));
+        work6.setTypeface(Z.getBold(getActivity()));
+        work7.setTypeface(Z.getBold(getActivity()));
+        work8.setTypeface(Z.getBold(getActivity()));
+        work9.setTypeface(Z.getBold(getActivity()));
+        work10.setTypeface(Z.getBold(getActivity()));
 
         postinput1=(TextInputLayout)rootView.findViewById(R.id.postinput1);
         postinput2=(TextInputLayout)rootView.findViewById(R.id.postinput2);
@@ -183,49 +183,49 @@ public class HrExperiencesTabFragment extends Fragment {
         todateinput9=(TextInputLayout)rootView.findViewById(R.id.todateinput9);
         todateinput10=(TextInputLayout)rootView.findViewById(R.id.todateinput10);
 
-        todateinput1.setTypeface(MyConstants.getLight(getActivity()));
-        todateinput2.setTypeface(MyConstants.getLight(getActivity()));
-        todateinput3.setTypeface(MyConstants.getLight(getActivity()));
-        todateinput4.setTypeface(MyConstants.getLight(getActivity()));
-        todateinput5.setTypeface(MyConstants.getLight(getActivity()));
-        todateinput6.setTypeface(MyConstants.getLight(getActivity()));
-        todateinput7.setTypeface(MyConstants.getLight(getActivity()));
-        todateinput8.setTypeface(MyConstants.getLight(getActivity()));
-        todateinput9.setTypeface(MyConstants.getLight(getActivity()));
-        todateinput10.setTypeface(MyConstants.getLight(getActivity()));
+        todateinput1.setTypeface(Z.getLight(getActivity()));
+        todateinput2.setTypeface(Z.getLight(getActivity()));
+        todateinput3.setTypeface(Z.getLight(getActivity()));
+        todateinput4.setTypeface(Z.getLight(getActivity()));
+        todateinput5.setTypeface(Z.getLight(getActivity()));
+        todateinput6.setTypeface(Z.getLight(getActivity()));
+        todateinput7.setTypeface(Z.getLight(getActivity()));
+        todateinput8.setTypeface(Z.getLight(getActivity()));
+        todateinput9.setTypeface(Z.getLight(getActivity()));
+        todateinput10.setTypeface(Z.getLight(getActivity()));
 
-        postinput1.setTypeface(MyConstants.getLight(getActivity()));
-        postinput2.setTypeface(MyConstants.getLight(getActivity()));
-        postinput3.setTypeface(MyConstants.getLight(getActivity()));
-        postinput4.setTypeface(MyConstants.getLight(getActivity()));
-        postinput5.setTypeface(MyConstants.getLight(getActivity()));
-        postinput6.setTypeface(MyConstants.getLight(getActivity()));
-        postinput7.setTypeface(MyConstants.getLight(getActivity()));
-        postinput8.setTypeface(MyConstants.getLight(getActivity()));
-        postinput9.setTypeface(MyConstants.getLight(getActivity()));
-        postinput10.setTypeface(MyConstants.getLight(getActivity()));
+        postinput1.setTypeface(Z.getLight(getActivity()));
+        postinput2.setTypeface(Z.getLight(getActivity()));
+        postinput3.setTypeface(Z.getLight(getActivity()));
+        postinput4.setTypeface(Z.getLight(getActivity()));
+        postinput5.setTypeface(Z.getLight(getActivity()));
+        postinput6.setTypeface(Z.getLight(getActivity()));
+        postinput7.setTypeface(Z.getLight(getActivity()));
+        postinput8.setTypeface(Z.getLight(getActivity()));
+        postinput9.setTypeface(Z.getLight(getActivity()));
+        postinput10.setTypeface(Z.getLight(getActivity()));
 
-        instinput1.setTypeface(MyConstants.getLight(getActivity()));
-        instinput2.setTypeface(MyConstants.getLight(getActivity()));
-        instinput3.setTypeface(MyConstants.getLight(getActivity()));
-        instinput4.setTypeface(MyConstants.getLight(getActivity()));
-        instinput5.setTypeface(MyConstants.getLight(getActivity()));
-        instinput6.setTypeface(MyConstants.getLight(getActivity()));
-        instinput7.setTypeface(MyConstants.getLight(getActivity()));
-        instinput8.setTypeface(MyConstants.getLight(getActivity()));
-        instinput9.setTypeface(MyConstants.getLight(getActivity()));
-        instinput10.setTypeface(MyConstants.getLight(getActivity()));
+        instinput1.setTypeface(Z.getLight(getActivity()));
+        instinput2.setTypeface(Z.getLight(getActivity()));
+        instinput3.setTypeface(Z.getLight(getActivity()));
+        instinput4.setTypeface(Z.getLight(getActivity()));
+        instinput5.setTypeface(Z.getLight(getActivity()));
+        instinput6.setTypeface(Z.getLight(getActivity()));
+        instinput7.setTypeface(Z.getLight(getActivity()));
+        instinput8.setTypeface(Z.getLight(getActivity()));
+        instinput9.setTypeface(Z.getLight(getActivity()));
+        instinput10.setTypeface(Z.getLight(getActivity()));
 
-        fromdateinput1.setTypeface(MyConstants.getLight(getActivity()));
-        fromdateinput2.setTypeface(MyConstants.getLight(getActivity()));
-        fromdateinput3.setTypeface(MyConstants.getLight(getActivity()));
-        fromdateinput4.setTypeface(MyConstants.getLight(getActivity()));
-        fromdateinput5.setTypeface(MyConstants.getLight(getActivity()));
-        fromdateinput6.setTypeface(MyConstants.getLight(getActivity()));
-        fromdateinput7.setTypeface(MyConstants.getLight(getActivity()));
-        fromdateinput8.setTypeface(MyConstants.getLight(getActivity()));
-        fromdateinput9.setTypeface(MyConstants.getLight(getActivity()));
-        fromdateinput10.setTypeface(MyConstants.getLight(getActivity()));
+        fromdateinput1.setTypeface(Z.getLight(getActivity()));
+        fromdateinput2.setTypeface(Z.getLight(getActivity()));
+        fromdateinput3.setTypeface(Z.getLight(getActivity()));
+        fromdateinput4.setTypeface(Z.getLight(getActivity()));
+        fromdateinput5.setTypeface(Z.getLight(getActivity()));
+        fromdateinput6.setTypeface(Z.getLight(getActivity()));
+        fromdateinput7.setTypeface(Z.getLight(getActivity()));
+        fromdateinput8.setTypeface(Z.getLight(getActivity()));
+        fromdateinput9.setTypeface(Z.getLight(getActivity()));
+        fromdateinput10.setTypeface(Z.getLight(getActivity()));
 
         //Edittext
         post1 = (EditText)rootView. findViewById(R.id.post1);
@@ -250,27 +250,27 @@ public class HrExperiencesTabFragment extends Fragment {
         inst19 = (EditText)rootView. findViewById(R.id.inst9);
         inst110 = (EditText)rootView. findViewById(R.id.inst10);
 
-        post1.setTypeface(MyConstants.getBold(getActivity()));
-        post2.setTypeface(MyConstants.getBold(getActivity()));
-        post3.setTypeface(MyConstants.getBold(getActivity()));
-        post4.setTypeface(MyConstants.getBold(getActivity()));
-        post5.setTypeface(MyConstants.getBold(getActivity()));
-        post6.setTypeface(MyConstants.getBold(getActivity()));
-        post7.setTypeface(MyConstants.getBold(getActivity()));
-        post8.setTypeface(MyConstants.getBold(getActivity()));
-        post9.setTypeface(MyConstants.getBold(getActivity()));
-        post10.setTypeface(MyConstants.getBold(getActivity()));
+        post1.setTypeface(Z.getBold(getActivity()));
+        post2.setTypeface(Z.getBold(getActivity()));
+        post3.setTypeface(Z.getBold(getActivity()));
+        post4.setTypeface(Z.getBold(getActivity()));
+        post5.setTypeface(Z.getBold(getActivity()));
+        post6.setTypeface(Z.getBold(getActivity()));
+        post7.setTypeface(Z.getBold(getActivity()));
+        post8.setTypeface(Z.getBold(getActivity()));
+        post9.setTypeface(Z.getBold(getActivity()));
+        post10.setTypeface(Z.getBold(getActivity()));
 
-        inst11.setTypeface(MyConstants.getBold(getActivity()));
-        inst12.setTypeface(MyConstants.getBold(getActivity()));
-        inst13.setTypeface(MyConstants.getBold(getActivity()));
-        inst14.setTypeface(MyConstants.getBold(getActivity()));
-        inst15.setTypeface(MyConstants.getBold(getActivity()));
-        inst16.setTypeface(MyConstants.getBold(getActivity()));
-        inst17.setTypeface(MyConstants.getBold(getActivity()));
-        inst18.setTypeface(MyConstants.getBold(getActivity()));
-        inst19.setTypeface(MyConstants.getBold(getActivity()));
-        inst110.setTypeface(MyConstants.getBold(getActivity()));
+        inst11.setTypeface(Z.getBold(getActivity()));
+        inst12.setTypeface(Z.getBold(getActivity()));
+        inst13.setTypeface(Z.getBold(getActivity()));
+        inst14.setTypeface(Z.getBold(getActivity()));
+        inst15.setTypeface(Z.getBold(getActivity()));
+        inst16.setTypeface(Z.getBold(getActivity()));
+        inst17.setTypeface(Z.getBold(getActivity()));
+        inst18.setTypeface(Z.getBold(getActivity()));
+        inst19.setTypeface(Z.getBold(getActivity()));
+        inst110.setTypeface(Z.getBold(getActivity()));
 
 
         switch1 = (SwitchCompat)rootView. findViewById(R.id.switch1);
@@ -308,29 +308,29 @@ public class HrExperiencesTabFragment extends Fragment {
         todate10=(EditText)rootView.findViewById(R.id.todate10);
 
 
-        fromdate1.setTypeface(MyConstants.getBold(getActivity()));
-        todate1.setTypeface(MyConstants.getBold(getActivity()));
-        fromdate2.setTypeface(MyConstants.getBold(getActivity()));
-        todate2.setTypeface(MyConstants.getBold(getActivity()));
-        fromdate3.setTypeface(MyConstants.getBold(getActivity()));
-        todate3.setTypeface(MyConstants.getBold(getActivity()));
-        fromdate4.setTypeface(MyConstants.getBold(getActivity()));
-        todate4.setTypeface(MyConstants.getBold(getActivity()));
-        fromdate5.setTypeface(MyConstants.getBold(getActivity()));
-        todate5.setTypeface(MyConstants.getBold(getActivity()));
-        fromdate6.setTypeface(MyConstants.getBold(getActivity()));
-        todate6.setTypeface(MyConstants.getBold(getActivity()));
-        fromdate7.setTypeface(MyConstants.getBold(getActivity()));
-        todate7.setTypeface(MyConstants.getBold(getActivity()));
-        fromdate8.setTypeface(MyConstants.getBold(getActivity()));
-        todate8.setTypeface(MyConstants.getBold(getActivity()));
-        fromdate9.setTypeface(MyConstants.getBold(getActivity()));
-        todate9.setTypeface(MyConstants.getBold(getActivity()));
-        fromdate10.setTypeface(MyConstants.getBold(getActivity()));
-        todate10.setTypeface(MyConstants.getBold(getActivity()));
+        fromdate1.setTypeface(Z.getBold(getActivity()));
+        todate1.setTypeface(Z.getBold(getActivity()));
+        fromdate2.setTypeface(Z.getBold(getActivity()));
+        todate2.setTypeface(Z.getBold(getActivity()));
+        fromdate3.setTypeface(Z.getBold(getActivity()));
+        todate3.setTypeface(Z.getBold(getActivity()));
+        fromdate4.setTypeface(Z.getBold(getActivity()));
+        todate4.setTypeface(Z.getBold(getActivity()));
+        fromdate5.setTypeface(Z.getBold(getActivity()));
+        todate5.setTypeface(Z.getBold(getActivity()));
+        fromdate6.setTypeface(Z.getBold(getActivity()));
+        todate6.setTypeface(Z.getBold(getActivity()));
+        fromdate7.setTypeface(Z.getBold(getActivity()));
+        todate7.setTypeface(Z.getBold(getActivity()));
+        fromdate8.setTypeface(Z.getBold(getActivity()));
+        todate8.setTypeface(Z.getBold(getActivity()));
+        fromdate9.setTypeface(Z.getBold(getActivity()));
+        todate9.setTypeface(Z.getBold(getActivity()));
+        fromdate10.setTypeface(Z.getBold(getActivity()));
+        todate10.setTypeface(Z.getBold(getActivity()));
 
         TextView exptxt=(TextView)rootView.findViewById(R.id.exptxt);
-        exptxt.setTypeface(MyConstants.getBold(getActivity()));
+        exptxt.setTypeface(Z.getBold(getActivity()));
 
         //my code
         trash1selectionview.setOnClickListener(new View.OnClickListener() {
@@ -4576,7 +4576,7 @@ public class HrExperiencesTabFragment extends Fragment {
 
             params.add(new BasicNameValuePair("u",username));      //0
             params.add(new BasicNameValuePair("d",encObjString));      //1
-            json = jParser.makeHttpRequest(MyConstants.url_SaveExperiences, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_SaveExperiences, "GET", params);
 
             try {
                 r = json.getString("info");

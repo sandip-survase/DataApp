@@ -70,7 +70,7 @@ public class RecyclerItemMessagesAdapter extends RecyclerView.Adapter<RecyclerIt
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority(MyConstants.VPS_IP)
+                .authority(Z.VPS_IP)
                 .path("AESTest/GetImageThumbnail")
                 .appendQueryParameter("u", item.getUploadedby())
                 .build();

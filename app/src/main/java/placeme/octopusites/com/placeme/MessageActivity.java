@@ -118,7 +118,7 @@ public class MessageActivity extends AppCompatActivity {
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority(MyConstants.VPS_IP)
+                .authority(Z.VPS_IP)
                 .path("AESTest/GetImageThumbnail")
                 .appendQueryParameter("u", encusername)
                 .build();
@@ -392,7 +392,7 @@ public class MessageActivity extends AppCompatActivity {
 
                 if(sender.equals(username)) {
                     tempflag=0;
-                    json = jParser.makeHttpRequest(MyConstants.url_savechat, "GET", params);
+                    json = jParser.makeHttpRequest(Z.url_savechat, "GET", params);
                     String s = null;
                 }
                 else
@@ -400,7 +400,7 @@ public class MessageActivity extends AppCompatActivity {
                     tempflag=1;
                     if(helper.isChatRoomActive(senderUID,recieverUID)) {
                         tempflag=2;
-                        json = jParser.makeHttpRequest(MyConstants.url_markread, "GET", params);
+                        json = jParser.makeHttpRequest(Z.url_markread, "GET", params);
                     }
                 }
 
@@ -466,7 +466,7 @@ public class MessageActivity extends AppCompatActivity {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("s", sender));    //0
                 params.add(new BasicNameValuePair("r", receiver));  //1
-                json = jParser.makeHttpRequest(MyConstants.url_GetLastPushedMessage, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_GetLastPushedMessage, "GET", params);
 
                 if(json.getString("info").equals("success"))
                 {
@@ -532,7 +532,7 @@ public class MessageActivity extends AppCompatActivity {
                 params.add(new BasicNameValuePair("s", sender));
                 params.add(new BasicNameValuePair("r", receiver));
 
-                json = jParser.makeHttpRequest(MyConstants.url_ChangeMessageReadStatus, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_ChangeMessageReadStatus, "GET", params);
 
                 result = json.getString("info");
 
@@ -582,7 +582,7 @@ public class MessageActivity extends AppCompatActivity {
                 params.add(new BasicNameValuePair("r", receiver));
                 params.add(new BasicNameValuePair("m", message));
                 params.add(new BasicNameValuePair("t", timestamp));
-                json = jParser.makeHttpRequest(MyConstants.url_SendPushNotification, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_SendPushNotification, "GET", params);
 
                 result = json.getString("info");
 
@@ -612,7 +612,7 @@ public class MessageActivity extends AppCompatActivity {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("s", senderUID));
                 params.add(new BasicNameValuePair("r", recieverUID));
-                json = jParser.makeHttpRequest(MyConstants.url_loadchat, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_loadchat, "GET", params);
                 String s = null;
                 resultofop = json.getString("chatroom");
                 if(resultofop.equals("chatroom1")||resultofop.equals("chatroom2"))

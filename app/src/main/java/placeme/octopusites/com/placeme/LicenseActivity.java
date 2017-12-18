@@ -1,13 +1,10 @@
 package placeme.octopusites.com.placeme;
 
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class LicenseActivity extends AppCompatActivity {
@@ -390,10 +387,10 @@ public class LicenseActivity extends AppCompatActivity {
 //        Typeface custom_font4 = Typeface.createFromAsset(getAssets(),  "fonts/meriitalic.ttf");
 //        Typeface custom_font5 = Typeface.createFromAsset(getAssets(),  "fonts/righteous.ttf");
 
-        Typeface custom_font6 = MyConstants.getLight(this);
-        Typeface custom_font7 = MyConstants.getBold(this);
+        Typeface custom_font6 = Z.getLight(this);
+        Typeface custom_font7 = Z.getBold(this);
 
-        mainheading.setTypeface(MyConstants.getBold(this));
+        mainheading.setTypeface(Z.getBold(this));
         subheading.setTypeface(custom_font6);
 
         license1.setTypeface(custom_font7);

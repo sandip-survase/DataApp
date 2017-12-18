@@ -5,21 +5,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
-import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,9 +49,9 @@ public class BroadcastMessage extends AppCompatActivity {
 
 
         notificationinput=(TextInputLayout)findViewById(R.id.notificationinput);
-        notificationinput.setTypeface(MyConstants.getBold(this));
+        notificationinput.setTypeface(Z.getBold(this));
         notification=(TextInputEditText)findViewById(R.id.notification);
-        notification.setTypeface(MyConstants.getBold(this));
+        notification.setTypeface(Z.getBold(this));
         facebookicon=(ImageView)findViewById(R.id.facebookicon);
         twittericon=(ImageView)findViewById(R.id.twittericon);
         linkedinicon=(ImageView)findViewById(R.id.linkedinicon);
@@ -110,9 +108,9 @@ public class BroadcastMessage extends AppCompatActivity {
         TextView passsenstxt=(TextView)findViewById(R.id.passsenstxt);
         TextView selecttxt=(TextView)findViewById(R.id.selecttxt);
 
-        createpasstxt.setTypeface(MyConstants.getBold(this));
-        passsenstxt.setTypeface(MyConstants.getLight(this));
-        selecttxt.setTypeface(MyConstants.getLight(this));
+        createpasstxt.setTypeface(Z.getBold(this));
+        passsenstxt.setTypeface(Z.getLight(this));
+        selecttxt.setTypeface(Z.getLight(this));
 
         fab=(FloatingActionButton)findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

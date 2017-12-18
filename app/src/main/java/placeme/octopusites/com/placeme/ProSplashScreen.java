@@ -3,10 +3,7 @@ package placeme.octopusites.com.placeme;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -26,7 +23,7 @@ public class ProSplashScreen extends Activity {
 
 
         TextView trytxt2=(TextView)findViewById(R.id.trytxt);
-        trytxt2.setTypeface(MyConstants.getBold(this));
+        trytxt2.setTypeface(Z.getBold(this));
 
 //        ProfileRole r=new ProfileRole();
 //        role=r.getRole();

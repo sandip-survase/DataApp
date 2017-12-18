@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -22,13 +23,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -63,9 +61,7 @@ import java.util.regex.Pattern;
 
 import mabbas007.tagsedittext.TagsEditText;
 
-
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
-import static placeme.octopusites.com.placeme.AES4all.decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
@@ -1460,7 +1456,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 
             }
 
-            json = jParser.makeHttpRequest(MyConstants.url_UploadAttach1, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_UploadAttach1, "GET", params);
             try {
                 r = json.getString("info");
 
@@ -1590,7 +1586,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             }
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_ModifyNotification, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_ModifyNotification, "GET", params);
             try {
                 r = json.getString("info");
             } catch (Exception e) {
@@ -1642,7 +1638,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(MyConstants.url_SavefileOnServer);
+                URL url = new URL(Z.url_SavefileOnServer);
                 httpConn = (HttpURLConnection) url.openConnection();
                 httpConn.setUseCaches(false);
                 httpConn.setDoOutput(true);    // indicates POST method
@@ -1830,7 +1826,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(MyConstants.url_SavefileOnServer);
+                URL url = new URL(Z.url_SavefileOnServer);
                 httpConn = (HttpURLConnection) url.openConnection();
                 httpConn.setUseCaches(false);
                 httpConn.setDoOutput(true);    // indicates POST method
@@ -1995,7 +1991,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(MyConstants.url_SavefileOnServer);
+                URL url = new URL(Z.url_SavefileOnServer);
                 httpConn = (HttpURLConnection) url.openConnection();
                 httpConn.setUseCaches(false);
                 httpConn.setDoOutput(true);    // indicates POST method
@@ -2159,7 +2155,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(MyConstants.url_SavefileOnServer);
+                URL url = new URL(Z.url_SavefileOnServer);
                 httpConn = (HttpURLConnection) url.openConnection();
                 httpConn.setUseCaches(false);
                 httpConn.setDoOutput(true);    // indicates POST method
@@ -2320,7 +2316,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
 //            MultipartUtility multipart = new MultipartUtility(upload_Attach_temp, "UTF-8");
                 // creates a unique boundary based on time stamp
                 boundary = "===" + System.currentTimeMillis() + "===";
-                URL url = new URL(MyConstants.url_SavefileOnServer);
+                URL url = new URL(Z.url_SavefileOnServer);
                 httpConn = (HttpURLConnection) url.openConnection();
                 httpConn.setUseCaches(false);
                 httpConn.setDoOutput(true);    // indicates POST method
@@ -2471,7 +2467,7 @@ public class CreateNotification extends AppCompatActivity implements TagsEditTex
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("id", ssnotificationid)); //0
 
-            json = jParser.makeHttpRequest(MyConstants.url_GetForWhomeNotification, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_GetForWhomeNotification, "GET", params);
             try {
                 Forwhomefromdb = json.getString("forwhom");
 

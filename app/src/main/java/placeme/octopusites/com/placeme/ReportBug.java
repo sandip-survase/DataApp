@@ -63,13 +63,13 @@ public class ReportBug extends AppCompatActivity {
         comments=(TextInputEditText)findViewById(R.id.comments);
         reportprogress=(ProgressBar)findViewById(R.id.reportprogress);
 
-        createreporttxt.setTypeface(MyConstants.getBold(this));
-        reportsenstxt.setTypeface(MyConstants.getBold(this));
-        titleinput.setTypeface(MyConstants.getLight(this));
-        commentsinput.setTypeface(MyConstants.getLight(this));
-        title.setTypeface(MyConstants.getBold(this));
-        comments.setTypeface(MyConstants.getBold(this));
-        reportbug_button.setTypeface(MyConstants.getBold(this));
+        createreporttxt.setTypeface(Z.getBold(this));
+        reportsenstxt.setTypeface(Z.getBold(this));
+        titleinput.setTypeface(Z.getLight(this));
+        commentsinput.setTypeface(Z.getLight(this));
+        title.setTypeface(Z.getBold(this));
+        comments.setTypeface(Z.getBold(this));
+        reportbug_button.setTypeface(Z.getBold(this));
 
 
         title.addTextChangedListener(new TextWatcher() {
@@ -166,7 +166,7 @@ public class ReportBug extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", username));
             params.add(new BasicNameValuePair("t", enctitle));
             params.add(new BasicNameValuePair("c", enccomments));
-            json = jParser.makeHttpRequest(MyConstants.url_report, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_report, "GET", params);
             try {
                 r = json.getString("info");
 

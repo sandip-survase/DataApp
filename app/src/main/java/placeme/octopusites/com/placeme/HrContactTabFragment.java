@@ -80,16 +80,16 @@ public class HrContactTabFragment extends Fragment {
         mobileinput=(TextInputLayout)rootView.findViewById(R.id.mobileinput);
         mobile2input=(TextInputLayout)rootView.findViewById(R.id.mobile2input);
 
-        fnameinput.setTypeface(MyConstants.getLight(getActivity()));
-        lnameinput.setTypeface(MyConstants.getLight(getActivity()));
-        emailinput.setTypeface(MyConstants.getLight(getActivity()));
-        emai2input.setTypeface(MyConstants.getLight(getActivity()));
-        addressline1input.setTypeface(MyConstants.getLight(getActivity()));
-        addressline2input.setTypeface(MyConstants.getLight(getActivity()));
-        addressline3input.setTypeface(MyConstants.getLight(getActivity()));
-        phoneinput.setTypeface(MyConstants.getLight(getActivity()));
-        mobileinput.setTypeface(MyConstants.getLight(getActivity()));
-        mobile2input.setTypeface(MyConstants.getLight(getActivity()));
+        fnameinput.setTypeface(Z.getLight(getActivity()));
+        lnameinput.setTypeface(Z.getLight(getActivity()));
+        emailinput.setTypeface(Z.getLight(getActivity()));
+        emai2input.setTypeface(Z.getLight(getActivity()));
+        addressline1input.setTypeface(Z.getLight(getActivity()));
+        addressline2input.setTypeface(Z.getLight(getActivity()));
+        addressline3input.setTypeface(Z.getLight(getActivity()));
+        phoneinput.setTypeface(Z.getLight(getActivity()));
+        mobileinput.setTypeface(Z.getLight(getActivity()));
+        mobile2input.setTypeface(Z.getLight(getActivity()));
 
         fname = (TextInputEditText) rootView.findViewById(R.id.fname);
         lname = (TextInputEditText) rootView.findViewById(R.id.lname);
@@ -102,16 +102,16 @@ public class HrContactTabFragment extends Fragment {
         mobile = (TextInputEditText) rootView.findViewById(R.id.mobile);
         mobile2 = (TextInputEditText) rootView.findViewById(R.id.mobile2);
 
-        fname.setTypeface(MyConstants.getBold(getActivity()));
-        lname.setTypeface(MyConstants.getBold(getActivity()));
-        email.setTypeface(MyConstants.getBold(getActivity()));
-        email2.setTypeface(MyConstants.getBold(getActivity()));
-        addressline1.setTypeface(MyConstants.getBold(getActivity()));
-        addressline2.setTypeface(MyConstants.getBold(getActivity()));
-        addressline3.setTypeface(MyConstants.getBold(getActivity()));
-        phone.setTypeface(MyConstants.getBold(getActivity()));
-        mobile.setTypeface(MyConstants.getBold(getActivity()));
-        mobile2.setTypeface(MyConstants.getBold(getActivity()));
+        fname.setTypeface(Z.getBold(getActivity()));
+        lname.setTypeface(Z.getBold(getActivity()));
+        email.setTypeface(Z.getBold(getActivity()));
+        email2.setTypeface(Z.getBold(getActivity()));
+        addressline1.setTypeface(Z.getBold(getActivity()));
+        addressline2.setTypeface(Z.getBold(getActivity()));
+        addressline3.setTypeface(Z.getBold(getActivity()));
+        phone.setTypeface(Z.getBold(getActivity()));
+        mobile.setTypeface(Z.getBold(getActivity()));
+        mobile2.setTypeface(Z.getBold(getActivity()));
 
 //        saveContactDetailsButton= (Button) rootView.findViewById(R.id.saveContactDetailsButton);
 //        contactDetailsProgress= (ProgressBar) rootView.findViewById(R.id.contactDetailsProgress);
@@ -125,8 +125,8 @@ public class HrContactTabFragment extends Fragment {
         TextView addresstxt = (TextView) rootView.findViewById(R.id.addresstxt);
         TextView contactnotxt = (TextView) rootView.findViewById(R.id.contactnotxt);
 
-        addresstxt.setTypeface(MyConstants.getBold(getActivity()));
-        contactnotxt.setTypeface(MyConstants.getBold(getActivity()));
+        addresstxt.setTypeface(Z.getBold(getActivity()));
+        contactnotxt.setTypeface(Z.getBold(getActivity()));
 
         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
@@ -500,13 +500,12 @@ public class HrContactTabFragment extends Fragment {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("obj", strobj));               //1
-//            json = jParser.makeHttpRequest(MyConstants.url_SaveAdminContact, "GET", params);
 
 
             if (role.equals("hr"))
-                json = jParser.makeHttpRequest(MyConstants.url_SaveHrContact, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_SaveHrContact, "GET", params);
             else
-                json = jParser.makeHttpRequest(MyConstants.url_SaveAdminContact, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_SaveAdminContact, "GET", params);
 
             try {
                 r = json.getString("info");

@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -18,7 +19,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -179,94 +179,94 @@ public class MyProfileCourses extends AppCompatActivity {
         todateinput10 = (TextInputLayout) findViewById(R.id.todateinput10);
 
 
-        fromdate1.setTypeface(MyConstants.getBold(this));
-        todate1.setTypeface(MyConstants.getBold(this));
-        fromdate2.setTypeface(MyConstants.getBold(this));
-        todate2.setTypeface(MyConstants.getBold(this));
-        fromdate3.setTypeface(MyConstants.getBold(this));
-        todate3.setTypeface(MyConstants.getBold(this));
-        fromdate4.setTypeface(MyConstants.getBold(this));
-        todate4.setTypeface(MyConstants.getBold(this));
-        fromdate5.setTypeface(MyConstants.getBold(this));
-        todate5.setTypeface(MyConstants.getBold(this));
-        fromdate6.setTypeface(MyConstants.getBold(this));
-        todate6.setTypeface(MyConstants.getBold(this));
-        fromdate7.setTypeface(MyConstants.getBold(this));
-        todate7.setTypeface(MyConstants.getBold(this));
-        fromdate8.setTypeface(MyConstants.getBold(this));
-        todate8.setTypeface(MyConstants.getBold(this));
-        fromdate9.setTypeface(MyConstants.getBold(this));
-        todate9.setTypeface(MyConstants.getBold(this));
-        fromdate10.setTypeface(MyConstants.getBold(this));
-        todate10.setTypeface(MyConstants.getBold(this));
-        name1.setTypeface(MyConstants.getBold(this));
-        inst1.setTypeface(MyConstants.getBold(this));
-        name2.setTypeface(MyConstants.getBold(this));
-        inst2.setTypeface(MyConstants.getBold(this));
-        name3.setTypeface(MyConstants.getBold(this));
-        inst3.setTypeface(MyConstants.getBold(this));
-        name4.setTypeface(MyConstants.getBold(this));
-        inst4.setTypeface(MyConstants.getBold(this));
-        name5.setTypeface(MyConstants.getBold(this));
-        inst5.setTypeface(MyConstants.getBold(this));
-        name6.setTypeface(MyConstants.getBold(this));
-        inst6.setTypeface(MyConstants.getBold(this));
-        name7.setTypeface(MyConstants.getBold(this));
-        inst7.setTypeface(MyConstants.getBold(this));
-        name8.setTypeface(MyConstants.getBold(this));
-        inst8.setTypeface(MyConstants.getBold(this));
-        name9.setTypeface(MyConstants.getBold(this));
-        inst9.setTypeface(MyConstants.getBold(this));
-        name10.setTypeface(MyConstants.getBold(this));
-        inst10.setTypeface(MyConstants.getBold(this));
+        fromdate1.setTypeface(Z.getBold(this));
+        todate1.setTypeface(Z.getBold(this));
+        fromdate2.setTypeface(Z.getBold(this));
+        todate2.setTypeface(Z.getBold(this));
+        fromdate3.setTypeface(Z.getBold(this));
+        todate3.setTypeface(Z.getBold(this));
+        fromdate4.setTypeface(Z.getBold(this));
+        todate4.setTypeface(Z.getBold(this));
+        fromdate5.setTypeface(Z.getBold(this));
+        todate5.setTypeface(Z.getBold(this));
+        fromdate6.setTypeface(Z.getBold(this));
+        todate6.setTypeface(Z.getBold(this));
+        fromdate7.setTypeface(Z.getBold(this));
+        todate7.setTypeface(Z.getBold(this));
+        fromdate8.setTypeface(Z.getBold(this));
+        todate8.setTypeface(Z.getBold(this));
+        fromdate9.setTypeface(Z.getBold(this));
+        todate9.setTypeface(Z.getBold(this));
+        fromdate10.setTypeface(Z.getBold(this));
+        todate10.setTypeface(Z.getBold(this));
+        name1.setTypeface(Z.getBold(this));
+        inst1.setTypeface(Z.getBold(this));
+        name2.setTypeface(Z.getBold(this));
+        inst2.setTypeface(Z.getBold(this));
+        name3.setTypeface(Z.getBold(this));
+        inst3.setTypeface(Z.getBold(this));
+        name4.setTypeface(Z.getBold(this));
+        inst4.setTypeface(Z.getBold(this));
+        name5.setTypeface(Z.getBold(this));
+        inst5.setTypeface(Z.getBold(this));
+        name6.setTypeface(Z.getBold(this));
+        inst6.setTypeface(Z.getBold(this));
+        name7.setTypeface(Z.getBold(this));
+        inst7.setTypeface(Z.getBold(this));
+        name8.setTypeface(Z.getBold(this));
+        inst8.setTypeface(Z.getBold(this));
+        name9.setTypeface(Z.getBold(this));
+        inst9.setTypeface(Z.getBold(this));
+        name10.setTypeface(Z.getBold(this));
+        inst10.setTypeface(Z.getBold(this));
 
 
-        nameinput1.setTypeface(MyConstants.getLight(this));
-        instinput1.setTypeface(MyConstants.getLight(this));
-        fromdateinput1.setTypeface(MyConstants.getLight(this));
-        todateinput1.setTypeface(MyConstants.getLight(this));
-        nameinput2.setTypeface(MyConstants.getLight(this));
-        instinput2.setTypeface(MyConstants.getLight(this));
-        fromdateinput2.setTypeface(MyConstants.getLight(this));
-        todateinput2.setTypeface(MyConstants.getLight(this));
-        nameinput3.setTypeface(MyConstants.getLight(this));
-        instinput3.setTypeface(MyConstants.getLight(this));
-        fromdateinput3.setTypeface(MyConstants.getLight(this));
-        todateinput3.setTypeface(MyConstants.getLight(this));
-        nameinput4.setTypeface(MyConstants.getLight(this));
-        instinput4.setTypeface(MyConstants.getLight(this));
-        fromdateinput4.setTypeface(MyConstants.getLight(this));
-        todateinput4.setTypeface(MyConstants.getLight(this));
-        nameinput5.setTypeface(MyConstants.getLight(this));
-        instinput5.setTypeface(MyConstants.getLight(this));
-        fromdateinput5.setTypeface(MyConstants.getLight(this));
-        todateinput5.setTypeface(MyConstants.getLight(this));
-        nameinput6.setTypeface(MyConstants.getLight(this));
-        instinput6.setTypeface(MyConstants.getLight(this));
-        fromdateinput6.setTypeface(MyConstants.getLight(this));
-        todateinput6.setTypeface(MyConstants.getLight(this));
-        nameinput7.setTypeface(MyConstants.getLight(this));
-        instinput7.setTypeface(MyConstants.getLight(this));
-        fromdateinput7.setTypeface(MyConstants.getLight(this));
-        todateinput7.setTypeface(MyConstants.getLight(this));
-        nameinput8.setTypeface(MyConstants.getLight(this));
-        instinput8.setTypeface(MyConstants.getLight(this));
-        fromdateinput8.setTypeface(MyConstants.getLight(this));
-        todateinput8.setTypeface(MyConstants.getLight(this));
-        nameinput9.setTypeface(MyConstants.getLight(this));
-        instinput9.setTypeface(MyConstants.getLight(this));
-        fromdateinput9.setTypeface(MyConstants.getLight(this));
-        todateinput9.setTypeface(MyConstants.getLight(this));
-        nameinput10.setTypeface(MyConstants.getLight(this));
-        instinput10.setTypeface(MyConstants.getLight(this));
-        fromdateinput10.setTypeface(MyConstants.getLight(this));
-        todateinput10.setTypeface(MyConstants.getLight(this));
+        nameinput1.setTypeface(Z.getLight(this));
+        instinput1.setTypeface(Z.getLight(this));
+        fromdateinput1.setTypeface(Z.getLight(this));
+        todateinput1.setTypeface(Z.getLight(this));
+        nameinput2.setTypeface(Z.getLight(this));
+        instinput2.setTypeface(Z.getLight(this));
+        fromdateinput2.setTypeface(Z.getLight(this));
+        todateinput2.setTypeface(Z.getLight(this));
+        nameinput3.setTypeface(Z.getLight(this));
+        instinput3.setTypeface(Z.getLight(this));
+        fromdateinput3.setTypeface(Z.getLight(this));
+        todateinput3.setTypeface(Z.getLight(this));
+        nameinput4.setTypeface(Z.getLight(this));
+        instinput4.setTypeface(Z.getLight(this));
+        fromdateinput4.setTypeface(Z.getLight(this));
+        todateinput4.setTypeface(Z.getLight(this));
+        nameinput5.setTypeface(Z.getLight(this));
+        instinput5.setTypeface(Z.getLight(this));
+        fromdateinput5.setTypeface(Z.getLight(this));
+        todateinput5.setTypeface(Z.getLight(this));
+        nameinput6.setTypeface(Z.getLight(this));
+        instinput6.setTypeface(Z.getLight(this));
+        fromdateinput6.setTypeface(Z.getLight(this));
+        todateinput6.setTypeface(Z.getLight(this));
+        nameinput7.setTypeface(Z.getLight(this));
+        instinput7.setTypeface(Z.getLight(this));
+        fromdateinput7.setTypeface(Z.getLight(this));
+        todateinput7.setTypeface(Z.getLight(this));
+        nameinput8.setTypeface(Z.getLight(this));
+        instinput8.setTypeface(Z.getLight(this));
+        fromdateinput8.setTypeface(Z.getLight(this));
+        todateinput8.setTypeface(Z.getLight(this));
+        nameinput9.setTypeface(Z.getLight(this));
+        instinput9.setTypeface(Z.getLight(this));
+        fromdateinput9.setTypeface(Z.getLight(this));
+        todateinput9.setTypeface(Z.getLight(this));
+        nameinput10.setTypeface(Z.getLight(this));
+        instinput10.setTypeface(Z.getLight(this));
+        fromdateinput10.setTypeface(Z.getLight(this));
+        todateinput10.setTypeface(Z.getLight(this));
 
 
         TextView coursetxt = (TextView) findViewById(R.id.coursetxt);
-        coursetxt.setTypeface(MyConstants.getBold(this));
+        coursetxt.setTypeface(Z.getBold(this));
         TextView addmorecoursetxt = (TextView) findViewById(R.id.addmorecoursetxt);
-        addmorecoursetxt.setTypeface(MyConstants.getBold(this));
+        addmorecoursetxt.setTypeface(Z.getBold(this));
 
         trash1selectionview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1741,8 +1741,8 @@ public class MyProfileCourses extends AppCompatActivity {
             public void onShow(DialogInterface dialogInterface) {
                 alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileCourses.this));
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileCourses.this));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileCourses.this));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileCourses.this));
 
             }
         });
@@ -4572,8 +4572,8 @@ public class MyProfileCourses extends AppCompatActivity {
 
                     alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileCourses.this));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileCourses.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileCourses.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileCourses.this));
 
                 }
             });
@@ -4595,7 +4595,7 @@ public class MyProfileCourses extends AppCompatActivity {
             params.add(new BasicNameValuePair("d", param[0]));       //0
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_savecourses, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_savecourses, "GET", params);
             try {
                 r = json.getString("info");
 

@@ -59,13 +59,13 @@ public class CreateNewPassword extends AppCompatActivity {
         progressBar=(ProgressBar)findViewById(R.id.changepassprogress);
         changepassbutton=(Button)findViewById(R.id.change_password_button);
 
-        createpasstxt.setTypeface(MyConstants.getBold(this));
-        passsenstxt.setTypeface(MyConstants.getLight(this));
-        newinput.setTypeface(MyConstants.getLight(this));
-        newainput.setTypeface(MyConstants.getLight(this));
-        newpassedittetx.setTypeface(MyConstants.getBold(this));
-        newpassaedittext.setTypeface(MyConstants.getBold(this));
-        changepassbutton.setTypeface(MyConstants.getBold(this));
+        createpasstxt.setTypeface(Z.getBold(this));
+        passsenstxt.setTypeface(Z.getLight(this));
+        newinput.setTypeface(Z.getLight(this));
+        newainput.setTypeface(Z.getLight(this));
+        newpassedittetx.setTypeface(Z.getBold(this));
+        newpassaedittext.setTypeface(Z.getBold(this));
+        changepassbutton.setTypeface(Z.getBold(this));
 
 
 
@@ -137,7 +137,7 @@ public class CreateNewPassword extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encUsername));
             params.add(new BasicNameValuePair("p", encpassword));
-            json = jParser.makeHttpRequest(MyConstants.url_CreatePass, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_CreatePass, "GET", params);
             try {
                 resultofop = json.getString("info");
 

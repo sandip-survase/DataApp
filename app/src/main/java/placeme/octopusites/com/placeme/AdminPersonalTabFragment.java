@@ -104,10 +104,10 @@ public class AdminPersonalTabFragment extends Fragment {
         paddrtxt=(TextView)rootView.findViewById(R.id.paddrtxt);
         loctxt=(TextView)rootView.findViewById(R.id.loctxt);
 
-        gendertxt.setTypeface(MyConstants.getLight(getActivity()));
-        caddrtxt.setTypeface(MyConstants.getLight(getActivity()));
-        paddrtxt.setTypeface(MyConstants.getLight(getActivity()));
-        loctxt.setTypeface(MyConstants.getBold(getActivity()));
+        gendertxt.setTypeface(Z.getLight(getActivity()));
+        caddrtxt.setTypeface(Z.getLight(getActivity()));
+        paddrtxt.setTypeface(Z.getLight(getActivity()));
+        loctxt.setTypeface(Z.getBold(getActivity()));
 
         fnameedittext = (TextInputEditText) rootView.findViewById(R.id.fname);
         mnameedittext = (TextInputEditText) rootView.findViewById(R.id.mname);
@@ -134,23 +134,23 @@ public class AdminPersonalTabFragment extends Fragment {
 //        save = (Button) rootView.findViewById(R.id.savepersonal);
 //        personalprogress = (ProgressBar) rootView.findViewById(R.id.personalprogress);
 
-        fnameedittext.setTypeface(MyConstants.getBold(getActivity()));
-        mnameedittext.setTypeface(MyConstants.getBold(getActivity()));
-        snameedittext.setTypeface(MyConstants.getBold(getActivity()));
-        role.setTypeface(MyConstants.getBold(getActivity()));
-        emailedittext.setTypeface(MyConstants.getBold(getActivity()));
-        profileaemail.setTypeface(MyConstants.getBold(getActivity()));
-        inst.setTypeface(MyConstants.getBold(getActivity()));
-        radioButtonMale.setTypeface(MyConstants.getBold(getActivity()));
-        radioButtonFemale.setTypeface(MyConstants.getBold(getActivity()));
-        caddrline1.setTypeface(MyConstants.getBold(getActivity()));
-        caddrline2.setTypeface(MyConstants.getBold(getActivity()));
-        caddrline3.setTypeface(MyConstants.getBold(getActivity()));
-        CheckBoxPSC.setTypeface(MyConstants.getBold(getActivity()));
-        fnameedittext.setTypeface(MyConstants.getBold(getActivity()));
-        paddrline1.setTypeface(MyConstants.getBold(getActivity()));
-        paddrline2.setTypeface(MyConstants.getBold(getActivity()));
-        paddrline3.setTypeface(MyConstants.getBold(getActivity()));
+        fnameedittext.setTypeface(Z.getBold(getActivity()));
+        mnameedittext.setTypeface(Z.getBold(getActivity()));
+        snameedittext.setTypeface(Z.getBold(getActivity()));
+        role.setTypeface(Z.getBold(getActivity()));
+        emailedittext.setTypeface(Z.getBold(getActivity()));
+        profileaemail.setTypeface(Z.getBold(getActivity()));
+        inst.setTypeface(Z.getBold(getActivity()));
+        radioButtonMale.setTypeface(Z.getBold(getActivity()));
+        radioButtonFemale.setTypeface(Z.getBold(getActivity()));
+        caddrline1.setTypeface(Z.getBold(getActivity()));
+        caddrline2.setTypeface(Z.getBold(getActivity()));
+        caddrline3.setTypeface(Z.getBold(getActivity()));
+        CheckBoxPSC.setTypeface(Z.getBold(getActivity()));
+        fnameedittext.setTypeface(Z.getBold(getActivity()));
+        paddrline1.setTypeface(Z.getBold(getActivity()));
+        paddrline2.setTypeface(Z.getBold(getActivity()));
+        paddrline3.setTypeface(Z.getBold(getActivity()));
 
 
         fnameinput=(TextInputLayout)rootView.findViewById(R.id.fnameinput);
@@ -168,20 +168,20 @@ public class AdminPersonalTabFragment extends Fragment {
         paddrline2input=(TextInputLayout)rootView.findViewById(R.id.paddrline2input);
         paddrline3input=(TextInputLayout)rootView.findViewById(R.id.paddrline3input);
 
-        fnameinput.setTypeface(MyConstants.getLight(getActivity()));
-        mnameinput.setTypeface(MyConstants.getLight(getActivity()));
-        snameinput.setTypeface(MyConstants.getLight(getActivity()));
-        roleinputlayout.setTypeface(MyConstants.getLight(getActivity()));
-        emailinputlayout.setTypeface(MyConstants.getLight(getActivity()));
-        profileaemailinput.setTypeface(MyConstants.getLight(getActivity()));
-        instinputlayout.setTypeface(MyConstants.getLight(getActivity()));
-        dobinput.setTypeface(MyConstants.getLight(getActivity()));
-        caddrline1input.setTypeface(MyConstants.getLight(getActivity()));
-        caddrline2input.setTypeface(MyConstants.getLight(getActivity()));
-        caddrline3input.setTypeface(MyConstants.getLight(getActivity()));
-        paddrline1input.setTypeface(MyConstants.getLight(getActivity()));
-        paddrline2input.setTypeface(MyConstants.getLight(getActivity()));
-        paddrline3input.setTypeface(MyConstants.getLight(getActivity()));
+        fnameinput.setTypeface(Z.getLight(getActivity()));
+        mnameinput.setTypeface(Z.getLight(getActivity()));
+        snameinput.setTypeface(Z.getLight(getActivity()));
+        roleinputlayout.setTypeface(Z.getLight(getActivity()));
+        emailinputlayout.setTypeface(Z.getLight(getActivity()));
+        profileaemailinput.setTypeface(Z.getLight(getActivity()));
+        instinputlayout.setTypeface(Z.getLight(getActivity()));
+        dobinput.setTypeface(Z.getLight(getActivity()));
+        caddrline1input.setTypeface(Z.getLight(getActivity()));
+        caddrline2input.setTypeface(Z.getLight(getActivity()));
+        caddrline3input.setTypeface(Z.getLight(getActivity()));
+        paddrline1input.setTypeface(Z.getLight(getActivity()));
+        paddrline2input.setTypeface(Z.getLight(getActivity()));
+        paddrline3input.setTypeface(Z.getLight(getActivity()));
 
 
 
@@ -756,7 +756,7 @@ public class AdminPersonalTabFragment extends Fragment {
             params.add(new BasicNameValuePair("u", encUsername));   //0
             params.add(new BasicNameValuePair("p", encobj));     //1
 
-            json = jParser.makeHttpRequest(MyConstants.url_SaveAdminPersonal, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_SaveAdminPersonal, "GET", params);
             try {
                 r = json.getString("info");
 

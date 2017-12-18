@@ -11,7 +11,7 @@ import android.view.animation.AnimationUtils;
  * Created by admin on 9/27/2017.
  */
 
-public class MyConstants {
+public class Z {
     public static final String VPS_IP = "104.237.4.236";   // for authority
     public static final String IP = "http://104.237.4.236/";
 
@@ -228,7 +228,7 @@ public class MyConstants {
     public static final String url_saveHrExperience = IP + "AESTest/SaveHrExperiences";
     public static final String url = IP + "HandleMobileRequests/getimg.jsp?username=";
     public static final String load_student_image = IP + "AESTest/GetImage";
-    public static final String upload_profile = IP + "AESTest/UploadProfile";
+    public static final String upload_profile = IP_8080 + "AESTest/UploadProfile";
     public static final String remove_profile = IP + "AESTest/RemoveImage";
 
     public static final String url_createSingleUser_admin = IP + "AESTest/CreateSingleUser";

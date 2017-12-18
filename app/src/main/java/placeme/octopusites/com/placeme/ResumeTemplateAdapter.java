@@ -166,7 +166,7 @@ public class ResumeTemplateAdapter extends RecyclerView.Adapter<ResumeTemplateAd
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u",username));
                 params.add(new BasicNameValuePair("id",id+""));
-                json = jParser.makeHttpRequest(MyConstants.download_resume_template, "GET", params);
+                json = jParser.makeHttpRequest(Z.download_resume_template, "GET", params);
 
                 try
                 {

@@ -1,14 +1,11 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.Intent;
-import android.graphics.Typeface;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -62,45 +59,45 @@ public class AdminActions extends AppCompatActivity implements View.OnClickListe
         TextView editnotificationtxt9=(TextView)findViewById(R.id.editnotificationtxt9);
         TextView editnotificationtxt10=(TextView)findViewById(R.id.editnotificationtxt10);
 
-        createnotificationtxt.setTypeface(MyConstants.getBold(this));
-        editnotificationtxt.setTypeface(MyConstants.getBold(this));
-        createplacementttxt.setTypeface(MyConstants.getBold(this));
-        editnotificationtxt2.setTypeface(MyConstants.getBold(this));
-        createnotificationtxt3.setTypeface(MyConstants.getBold(this));
-        editnotificationtxt3.setTypeface(MyConstants.getBold(this));
-        editnotificationtxt11.setTypeface(MyConstants.getBold(this));
-        editnotificationtxt4.setTypeface(MyConstants.getBold(this));
-        editnotificationtxt5.setTypeface(MyConstants.getBold(this));
-        editnotificationtxt6.setTypeface(MyConstants.getBold(this));
-        editnotificationtxt7.setTypeface(MyConstants.getBold(this));
-        editnotificationtxt8.setTypeface(MyConstants.getBold(this));
-        editnotificationtxt9.setTypeface(MyConstants.getBold(this));
-        editnotificationtxt10.setTypeface(MyConstants.getBold(this));
+        createnotificationtxt.setTypeface(Z.getBold(this));
+        editnotificationtxt.setTypeface(Z.getBold(this));
+        createplacementttxt.setTypeface(Z.getBold(this));
+        editnotificationtxt2.setTypeface(Z.getBold(this));
+        createnotificationtxt3.setTypeface(Z.getBold(this));
+        editnotificationtxt3.setTypeface(Z.getBold(this));
+        editnotificationtxt11.setTypeface(Z.getBold(this));
+        editnotificationtxt4.setTypeface(Z.getBold(this));
+        editnotificationtxt5.setTypeface(Z.getBold(this));
+        editnotificationtxt6.setTypeface(Z.getBold(this));
+        editnotificationtxt7.setTypeface(Z.getBold(this));
+        editnotificationtxt8.setTypeface(Z.getBold(this));
+        editnotificationtxt9.setTypeface(Z.getBold(this));
+        editnotificationtxt10.setTypeface(Z.getBold(this));
 
 
-        createnotitxt.setTypeface(MyConstants.getBold(this));
-        createplacementtxt.setTypeface(MyConstants.getBold(this));
-        createnotitxt3.setTypeface(MyConstants.getBold(this));
-        createnotitxt4.setTypeface(MyConstants.getBold(this));
-        createnotitxt5.setTypeface(MyConstants.getBold(this));
-        createnotitxt6.setTypeface(MyConstants.getBold(this));
-        createnotitxt7.setTypeface(MyConstants.getBold(this));
-        createnotitxt8.setTypeface(MyConstants.getBold(this));
-        createnotitxt9.setTypeface(MyConstants.getBold(this));
-        createnotitxt10.setTypeface(MyConstants.getBold(this));
-        createnotitxt11.setTypeface(MyConstants.getBold(this));
+        createnotitxt.setTypeface(Z.getBold(this));
+        createplacementtxt.setTypeface(Z.getBold(this));
+        createnotitxt3.setTypeface(Z.getBold(this));
+        createnotitxt4.setTypeface(Z.getBold(this));
+        createnotitxt5.setTypeface(Z.getBold(this));
+        createnotitxt6.setTypeface(Z.getBold(this));
+        createnotitxt7.setTypeface(Z.getBold(this));
+        createnotitxt8.setTypeface(Z.getBold(this));
+        createnotitxt9.setTypeface(Z.getBold(this));
+        createnotitxt10.setTypeface(Z.getBold(this));
+        createnotitxt11.setTypeface(Z.getBold(this));
 
-        createnotinotitxt.setTypeface(MyConstants.getLight(this));
-        createplacementplacementtxt.setTypeface(MyConstants.getLight(this));
-        createnotinotitxt3.setTypeface(MyConstants.getLight(this));
-        createnotinotitxt4.setTypeface(MyConstants.getLight(this));
-        createnotinotitxt5.setTypeface(MyConstants.getLight(this));
-        createnotinotitxt6.setTypeface(MyConstants.getLight(this));
-        createnotinotitxt7.setTypeface(MyConstants.getLight(this));
-        createnotinotitxt8.setTypeface(MyConstants.getLight(this));
-        createnotinotitxt9.setTypeface(MyConstants.getLight(this));
-        createnotinotitxt10.setTypeface(MyConstants.getLight(this));
-        createnotinotitxt11.setTypeface(MyConstants.getLight(this));
+        createnotinotitxt.setTypeface(Z.getLight(this));
+        createplacementplacementtxt.setTypeface(Z.getLight(this));
+        createnotinotitxt3.setTypeface(Z.getLight(this));
+        createnotinotitxt4.setTypeface(Z.getLight(this));
+        createnotinotitxt5.setTypeface(Z.getLight(this));
+        createnotinotitxt6.setTypeface(Z.getLight(this));
+        createnotinotitxt7.setTypeface(Z.getLight(this));
+        createnotinotitxt8.setTypeface(Z.getLight(this));
+        createnotinotitxt9.setTypeface(Z.getLight(this));
+        createnotinotitxt10.setTypeface(Z.getLight(this));
+        createnotinotitxt11.setTypeface(Z.getLight(this));
 
         RelativeLayout createnotificationrl=(RelativeLayout)findViewById(R.id.createnotificationrl);
         RelativeLayout editnotificationrl=(RelativeLayout)findViewById(R.id.editnotificationrl);

@@ -1,16 +1,9 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
 
 public class SwitchToProActivity extends AppCompatActivity {
@@ -29,9 +22,9 @@ public class SwitchToProActivity extends AppCompatActivity {
 
         TextView hitxt=(TextView)findViewById(R.id.hitxt);
         TextView staytxt=(TextView)findViewById(R.id.staytxt);
-        trytxt.setTypeface(MyConstants.getBold(this));
-        hitxt.setTypeface(MyConstants.getLight(this));
-        staytxt.setTypeface(MyConstants.getBold(this));
+        trytxt.setTypeface(Z.getBold(this));
+        hitxt.setTypeface(Z.getLight(this));
+        staytxt.setTypeface(Z.getBold(this));
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

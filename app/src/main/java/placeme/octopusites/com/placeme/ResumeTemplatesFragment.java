@@ -68,7 +68,7 @@ public class ResumeTemplatesFragment extends Fragment {
             String r=null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",username));
-            json = jParser.makeHttpRequest(MyConstants.load_resume_ids, "GET", params);
+            json = jParser.makeHttpRequest(Z.load_resume_ids, "GET", params);
             try {
                 String s = json.getString("count");
                 count=Integer.parseInt(s);
@@ -92,7 +92,7 @@ public class ResumeTemplatesFragment extends Fragment {
 
             for(int i=0;i<count;i++)
             {
-                ResumeTemplateItem item=new ResumeTemplateItem(resumeIds[i],MyConstants.IP+"AESTest/GetResumePage?a="+resumeIds[i]+"&b=1",resumeNames[i],resumeDownloadStatus[i]);
+                ResumeTemplateItem item=new ResumeTemplateItem(resumeIds[i], Z.IP+"AESTest/GetResumePage?a="+resumeIds[i]+"&b=1",resumeNames[i],resumeDownloadStatus[i]);
                 itemList.add(item);
             }
             adapter.notifyDataSetChanged();

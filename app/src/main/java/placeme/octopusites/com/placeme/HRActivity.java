@@ -128,7 +128,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        toolbar_title.setTypeface(MyConstants.getRighteous(HRActivity.this));
+        toolbar_title.setTypeface(Z.getRighteous(HRActivity.this));
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         toolbar_title.setText("Notifications");
@@ -377,21 +377,21 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
-                pt1.setTypeface(MyConstants.getBold(HRActivity.this));
+                pt1.setTypeface(Z.getBold(HRActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
-                pt2.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt2.setTypeface(Z.getLight(HRActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
-                pt3.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt3.setTypeface(Z.getLight(HRActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
 
@@ -399,19 +399,19 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
-                pt5.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt5.setTypeface(Z.getLight(HRActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
-                pt6.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt6.setTypeface(Z.getLight(HRActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
 
                 TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
-                pt7.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt7.setTypeface(Z.getLight(HRActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -433,21 +433,21 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
-                pt1.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt1.setTypeface(Z.getLight(HRActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon_selected);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
-                pt2.setTypeface(MyConstants.getBold(HRActivity.this));
+                pt2.setTypeface(Z.getBold(HRActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
-                pt3.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt3.setTypeface(Z.getLight(HRActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
 
@@ -455,18 +455,18 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
-                pt5.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt5.setTypeface(Z.getLight(HRActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
-                pt6.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt6.setTypeface(Z.getLight(HRActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
                 TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
-                pt7.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt7.setTypeface(Z.getLight(HRActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -495,39 +495,39 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
-                pt1.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt1.setTypeface(Z.getLight(HRActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
-                pt2.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt2.setTypeface(Z.getLight(HRActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon_selected);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
-                pt3.setTypeface(MyConstants.getBold(HRActivity.this));
+                pt3.setTypeface(Z.getBold(HRActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
-                pt5.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt5.setTypeface(Z.getLight(HRActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
-                pt6.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt6.setTypeface(Z.getLight(HRActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
                 TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
-                pt7.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt7.setTypeface(Z.getLight(HRActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -555,39 +555,39 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
-                pt1.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt1.setTypeface(Z.getLight(HRActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
-                pt2.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt2.setTypeface(Z.getLight(HRActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
-                pt3.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt3.setTypeface(Z.getLight(HRActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon_selected);
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
-                pt5.setTypeface(MyConstants.getBold(HRActivity.this));
+                pt5.setTypeface(Z.getBold(HRActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
-                pt6.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt6.setTypeface(Z.getLight(HRActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
                 TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
-                pt7.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt7.setTypeface(Z.getLight(HRActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -605,39 +605,39 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
-                pt1.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt1.setTypeface(Z.getLight(HRActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
-                pt2.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt2.setTypeface(Z.getLight(HRActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
-                pt3.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt3.setTypeface(Z.getLight(HRActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
-                pt5.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt5.setTypeface(Z.getLight(HRActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon_selected);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
-                pt6.setTypeface(MyConstants.getBold(HRActivity.this));
+                pt6.setTypeface(Z.getBold(HRActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
-                pt7.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt7.setTypeface(Z.getLight(HRActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.while_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -655,39 +655,39 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
                 profilei.setImageDrawable(myDrawable1);
 
                 TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
-                pt1.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt1.setTypeface(Z.getLight(HRActivity.this));
                 pt1.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable2 = getResources().getDrawable(R.drawable.notification_icon);
                 notificationi.setImageDrawable(myDrawable2);
 
                 TextView pt2 = (TextView) hView.findViewById(R.id.notificationtxt);
-                pt2.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt2.setTypeface(Z.getLight(HRActivity.this));
                 pt2.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable3 = getResources().getDrawable(R.drawable.placement_icon);
                 placementi.setImageDrawable(myDrawable3);
 
                 TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
-                pt3.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt3.setTypeface(Z.getLight(HRActivity.this));
                 pt3.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable5 = getResources().getDrawable(R.drawable.settings_icon);
                 settingsi.setImageDrawable(myDrawable5);
 
                 TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
-                pt5.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt5.setTypeface(Z.getLight(HRActivity.this));
                 pt5.setTextColor(getResources().getColor(R.color.while_color));
 
                 Drawable myDrawable6 = getResources().getDrawable(R.drawable.blog_icon);
                 newsi.setImageDrawable(myDrawable6);
 
                 TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
-                pt6.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt6.setTypeface(Z.getLight(HRActivity.this));
                 pt6.setTextColor(getResources().getColor(R.color.while_color));
 
                 TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
-                pt7.setTypeface(MyConstants.getLight(HRActivity.this));
+                pt7.setTypeface(Z.getLight(HRActivity.this));
                 pt7.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -701,27 +701,27 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         notificationi.setImageDrawable(myDrawable);
 
         TextView pt = (TextView) hView.findViewById(R.id.notificationtxt);
-        pt.setTypeface(MyConstants.getBold(HRActivity.this));
+        pt.setTypeface(Z.getBold(HRActivity.this));
         pt.setTextColor(getResources().getColor(R.color.sky_blue_color));
 
         TextView pt1 = (TextView) hView.findViewById(R.id.profiletxt);
-        pt1.setTypeface(MyConstants.getLight(HRActivity.this));
+        pt1.setTypeface(Z.getLight(HRActivity.this));
         pt1.setTextColor(getResources().getColor(R.color.while_color));
 
         TextView pt3 = (TextView) hView.findViewById(R.id.placementtxt);
-        pt3.setTypeface(MyConstants.getLight(HRActivity.this));
+        pt3.setTypeface(Z.getLight(HRActivity.this));
         pt3.setTextColor(getResources().getColor(R.color.while_color));
 
         TextView pt5 = (TextView) hView.findViewById(R.id.settingstxt);
-        pt5.setTypeface(MyConstants.getLight(HRActivity.this));
+        pt5.setTypeface(Z.getLight(HRActivity.this));
         pt5.setTextColor(getResources().getColor(R.color.while_color));
 
         TextView pt6 = (TextView) hView.findViewById(R.id.blogtxt);
-        pt6.setTypeface(MyConstants.getLight(HRActivity.this));
+        pt6.setTypeface(Z.getLight(HRActivity.this));
         pt6.setTextColor(getResources().getColor(R.color.while_color));
 
         TextView pt7 = (TextView) hView.findViewById(R.id.abttxt);
-        pt7.setTypeface(MyConstants.getLight(HRActivity.this));
+        pt7.setTypeface(Z.getLight(HRActivity.this));
         pt7.setTextColor(getResources().getColor(R.color.while_color));
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerViewPlacemetsHr = (RecyclerView) findViewById(R.id.recyclerViewPlacemetsHr);
@@ -1135,7 +1135,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority(MyConstants.VPS_IP)
+                .authority(Z.VPS_IP)
                 .path("AESTest/GetImage")
                 .appendQueryParameter("u", username)
                 .build();
@@ -1172,7 +1172,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         protected String doInBackground(String... param) {
             try {
                 File sourceFile = new File(filepath);
-                MultipartUtility multipart = new MultipartUtility(MyConstants.upload_profile, "UTF-8");
+                MultipartUtility multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
                 multipart.addFormField("u", username);
                 if (filename != "") {
                     multipart.addFormField("f", filename);
@@ -1229,7 +1229,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         @Override
         protected Bitmap doInBackground(String... urls) {
             Bitmap map = null;
-            map = downloadImage(MyConstants.load_student_image);
+            map = downloadImage(Z.load_student_image);
             return map;
         }
 
@@ -1241,7 +1241,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         private Bitmap downloadImage(String url) {
             Uri uri = new Uri.Builder()
                     .scheme("http")
-                    .authority(MyConstants.VPS_IP)
+                    .authority(Z.VPS_IP)
                     .path("AESTest/GetImage")
                     .appendQueryParameter("u", username)
                     .build();
@@ -1338,7 +1338,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
             Log.d("itemlistfromserver", "digest2: " + digest2);
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_GetPlacementsCreatedByHr, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_GetPlacementsCreatedByHr, "GET", params);
             try {
 
                 placemntscount = Integer.parseInt(json.getString("count"));

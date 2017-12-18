@@ -253,103 +253,103 @@ public class MyProfileAchievements extends AppCompatActivity {
         yearhonor9 = (TextInputLayout) findViewById(R.id.yearhonor9);
         yearhonor10 = (TextInputLayout) findViewById(R.id.yearhonor10);
 
-        title1.setTypeface(MyConstants.getBold(this));
-        issuer1.setTypeface(MyConstants.getBold(this));
-        description1.setTypeface(MyConstants.getBold(this));
-        title2.setTypeface(MyConstants.getBold(this));
-        issuer2.setTypeface(MyConstants.getBold(this));
-        description2.setTypeface(MyConstants.getBold(this));
-        title3.setTypeface(MyConstants.getBold(this));
-        issuer3.setTypeface(MyConstants.getBold(this));
-        description3.setTypeface(MyConstants.getBold(this));
-        title4.setTypeface(MyConstants.getBold(this));
-        issuer4.setTypeface(MyConstants.getBold(this));
-        description4.setTypeface(MyConstants.getBold(this));
-        title5.setTypeface(MyConstants.getBold(this));
-        issuer5.setTypeface(MyConstants.getBold(this));
-        description5.setTypeface(MyConstants.getBold(this));
-        title6.setTypeface(MyConstants.getBold(this));
-        issuer6.setTypeface(MyConstants.getBold(this));
-        description6.setTypeface(MyConstants.getBold(this));
-        title7.setTypeface(MyConstants.getBold(this));
+        title1.setTypeface(Z.getBold(this));
+        issuer1.setTypeface(Z.getBold(this));
+        description1.setTypeface(Z.getBold(this));
+        title2.setTypeface(Z.getBold(this));
+        issuer2.setTypeface(Z.getBold(this));
+        description2.setTypeface(Z.getBold(this));
+        title3.setTypeface(Z.getBold(this));
+        issuer3.setTypeface(Z.getBold(this));
+        description3.setTypeface(Z.getBold(this));
+        title4.setTypeface(Z.getBold(this));
+        issuer4.setTypeface(Z.getBold(this));
+        description4.setTypeface(Z.getBold(this));
+        title5.setTypeface(Z.getBold(this));
+        issuer5.setTypeface(Z.getBold(this));
+        description5.setTypeface(Z.getBold(this));
+        title6.setTypeface(Z.getBold(this));
+        issuer6.setTypeface(Z.getBold(this));
+        description6.setTypeface(Z.getBold(this));
+        title7.setTypeface(Z.getBold(this));
 
-        issuer7.setTypeface(MyConstants.getBold(this));
-        description7.setTypeface(MyConstants.getBold(this));
-        title8.setTypeface(MyConstants.getBold(this));
-        issuer8.setTypeface(MyConstants.getBold(this));
-        description8.setTypeface(MyConstants.getBold(this));
-        title9.setTypeface(MyConstants.getBold(this));
-        issuer9.setTypeface(MyConstants.getBold(this));
-        description9.setTypeface(MyConstants.getBold(this));
-        title10.setTypeface(MyConstants.getBold(this));
-        issuer10.setTypeface(MyConstants.getBold(this));
-        description10.setTypeface(MyConstants.getBold(this));
-        yearofhonor1.setTypeface(MyConstants.getBold(this));
-        yearofhonor2.setTypeface(MyConstants.getBold(this));
-        yearofhonor3.setTypeface(MyConstants.getBold(this));
-        yearofhonor4.setTypeface(MyConstants.getBold(this));
-        yearofhonor5.setTypeface(MyConstants.getBold(this));
-        yearofhonor6.setTypeface(MyConstants.getBold(this));
-        yearofhonor7.setTypeface(MyConstants.getBold(this));
-        yearofhonor8.setTypeface(MyConstants.getBold(this));
-        yearofhonor9.setTypeface(MyConstants.getBold(this));
-        yearofhonor10.setTypeface(MyConstants.getBold(this));
-
-
+        issuer7.setTypeface(Z.getBold(this));
+        description7.setTypeface(Z.getBold(this));
+        title8.setTypeface(Z.getBold(this));
+        issuer8.setTypeface(Z.getBold(this));
+        description8.setTypeface(Z.getBold(this));
+        title9.setTypeface(Z.getBold(this));
+        issuer9.setTypeface(Z.getBold(this));
+        description9.setTypeface(Z.getBold(this));
+        title10.setTypeface(Z.getBold(this));
+        issuer10.setTypeface(Z.getBold(this));
+        description10.setTypeface(Z.getBold(this));
+        yearofhonor1.setTypeface(Z.getBold(this));
+        yearofhonor2.setTypeface(Z.getBold(this));
+        yearofhonor3.setTypeface(Z.getBold(this));
+        yearofhonor4.setTypeface(Z.getBold(this));
+        yearofhonor5.setTypeface(Z.getBold(this));
+        yearofhonor6.setTypeface(Z.getBold(this));
+        yearofhonor7.setTypeface(Z.getBold(this));
+        yearofhonor8.setTypeface(Z.getBold(this));
+        yearofhonor9.setTypeface(Z.getBold(this));
+        yearofhonor10.setTypeface(Z.getBold(this));
 
 
 
 
 
-        titleinput1.setTypeface(MyConstants.getLight(this));
-        issuerinput1.setTypeface(MyConstants.getLight(this));
-        decrinput1.setTypeface(MyConstants.getLight(this));
-        yearhonor1.setTypeface(MyConstants.getLight(this));
 
-        titleinput2.setTypeface(MyConstants.getLight(this));
-        issuerinput2.setTypeface(MyConstants.getLight(this));
-        decrinput2.setTypeface(MyConstants.getLight(this));
-        yearhonor2.setTypeface(MyConstants.getLight(this));
 
-        titleinput3.setTypeface(MyConstants.getLight(this));
-        issuerinput3.setTypeface(MyConstants.getLight(this));
-        decrinput3.setTypeface(MyConstants.getLight(this));
-        yearhonor3.setTypeface(MyConstants.getLight(this));
+        titleinput1.setTypeface(Z.getLight(this));
+        issuerinput1.setTypeface(Z.getLight(this));
+        decrinput1.setTypeface(Z.getLight(this));
+        yearhonor1.setTypeface(Z.getLight(this));
 
-        titleinput4.setTypeface(MyConstants.getLight(this));
-        issuerinput4.setTypeface(MyConstants.getLight(this));
-        decrinput4.setTypeface(MyConstants.getLight(this));
-        yearhonor4.setTypeface(MyConstants.getLight(this));
+        titleinput2.setTypeface(Z.getLight(this));
+        issuerinput2.setTypeface(Z.getLight(this));
+        decrinput2.setTypeface(Z.getLight(this));
+        yearhonor2.setTypeface(Z.getLight(this));
 
-        titleinput5.setTypeface(MyConstants.getLight(this));
-        issuerinput5.setTypeface(MyConstants.getLight(this));
-        decrinput5.setTypeface(MyConstants.getLight(this));
-        yearhonor5.setTypeface(MyConstants.getLight(this));
+        titleinput3.setTypeface(Z.getLight(this));
+        issuerinput3.setTypeface(Z.getLight(this));
+        decrinput3.setTypeface(Z.getLight(this));
+        yearhonor3.setTypeface(Z.getLight(this));
 
-        titleinput6.setTypeface(MyConstants.getLight(this));
-        issuerinput6.setTypeface(MyConstants.getLight(this));
-        decrinput6.setTypeface(MyConstants.getLight(this));
-        yearhonor6.setTypeface(MyConstants.getLight(this));
+        titleinput4.setTypeface(Z.getLight(this));
+        issuerinput4.setTypeface(Z.getLight(this));
+        decrinput4.setTypeface(Z.getLight(this));
+        yearhonor4.setTypeface(Z.getLight(this));
 
-        titleinput7.setTypeface(MyConstants.getLight(this));
-        issuerinput7.setTypeface(MyConstants.getLight(this));
-        decrinput7.setTypeface(MyConstants.getLight(this));
-        yearhonor7.setTypeface(MyConstants.getLight(this));
+        titleinput5.setTypeface(Z.getLight(this));
+        issuerinput5.setTypeface(Z.getLight(this));
+        decrinput5.setTypeface(Z.getLight(this));
+        yearhonor5.setTypeface(Z.getLight(this));
 
-        titleinput8.setTypeface(MyConstants.getLight(this));
-        issuerinput8.setTypeface(MyConstants.getLight(this));
-        decrinput8.setTypeface(MyConstants.getLight(this));
-        yearhonor8.setTypeface(MyConstants.getLight(this));
+        titleinput6.setTypeface(Z.getLight(this));
+        issuerinput6.setTypeface(Z.getLight(this));
+        decrinput6.setTypeface(Z.getLight(this));
+        yearhonor6.setTypeface(Z.getLight(this));
 
-        titleinput9.setTypeface(MyConstants.getLight(this));
-        issuerinput9.setTypeface(MyConstants.getLight(this));
-        decrinput9.setTypeface(MyConstants.getLight(this));
-        yearhonor9.setTypeface(MyConstants.getLight(this));
+        titleinput7.setTypeface(Z.getLight(this));
+        issuerinput7.setTypeface(Z.getLight(this));
+        decrinput7.setTypeface(Z.getLight(this));
+        yearhonor7.setTypeface(Z.getLight(this));
 
-        titleinput10.setTypeface(MyConstants.getLight(this));
-        issuerinput10.setTypeface(MyConstants.getLight(this));
-        decrinput10.setTypeface(MyConstants.getLight(this));
-        yearhonor10.setTypeface(MyConstants.getLight(this));
+        titleinput8.setTypeface(Z.getLight(this));
+        issuerinput8.setTypeface(Z.getLight(this));
+        decrinput8.setTypeface(Z.getLight(this));
+        yearhonor8.setTypeface(Z.getLight(this));
+
+        titleinput9.setTypeface(Z.getLight(this));
+        issuerinput9.setTypeface(Z.getLight(this));
+        decrinput9.setTypeface(Z.getLight(this));
+        yearhonor9.setTypeface(Z.getLight(this));
+
+        titleinput10.setTypeface(Z.getLight(this));
+        issuerinput10.setTypeface(Z.getLight(this));
+        decrinput10.setTypeface(Z.getLight(this));
+        yearhonor10.setTypeface(Z.getLight(this));
 
 
 
@@ -1104,7 +1104,7 @@ public class MyProfileAchievements extends AppCompatActivity {
         });
 
         TextView achievementstxt = (TextView) findViewById(R.id.achievementstxt);
-        achievementstxt.setTypeface(MyConstants.getBold(this));
+        achievementstxt.setTypeface(Z.getBold(this));
 
         addmorehonor = (View) findViewById(R.id.addmorehonor);
         addmorehonor.setOnClickListener(new View.OnClickListener() {
@@ -1555,8 +1555,8 @@ public class MyProfileAchievements extends AppCompatActivity {
             public void onShow(DialogInterface dialogInterface) {
                 alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileAchievements.this));
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileAchievements.this));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileAchievements.this));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileAchievements.this));
 
             }
         });
@@ -3952,8 +3952,8 @@ public class MyProfileAchievements extends AppCompatActivity {
                 public void onShow(DialogInterface dialogInterface) {
                     alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileAchievements.this));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileAchievements.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileAchievements.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileAchievements.this));
 
                 }
             });
@@ -3973,7 +3973,7 @@ public class MyProfileAchievements extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("d", param[0]));       //0
 
-            json = jParser.makeHttpRequest(MyConstants.url_savehonors, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_savehonors, "GET", params);
             try {
                 r = json.getString("info");
 

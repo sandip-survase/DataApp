@@ -87,19 +87,19 @@ public class EditEmail extends AppCompatActivity {
 
         changeemailbutton=(Button)findViewById(R.id.changeemailbutton);
 
-        asstxt.setTypeface(MyConstants.getLight(this));
-        primaryemail.setTypeface(MyConstants.getBold(this));
-        emailemailtxt.setTypeface(MyConstants.getLight(this));
-        ass2txt.setTypeface(MyConstants.getBold(this));
-        emailinput.setTypeface(MyConstants.getLight(this));
-        newemail.setTypeface(MyConstants.getBold(this));
-        passinput.setTypeface(MyConstants.getLight(this));
-        accountpassword.setTypeface(MyConstants.getBold(this));
-        otpinput.setTypeface(MyConstants.getLight(this));
-        otp.setTypeface(MyConstants.getBold(this));
-        passpasstxt.setTypeface(MyConstants.getBold(this));
+        asstxt.setTypeface(Z.getLight(this));
+        primaryemail.setTypeface(Z.getBold(this));
+        emailemailtxt.setTypeface(Z.getLight(this));
+        ass2txt.setTypeface(Z.getBold(this));
+        emailinput.setTypeface(Z.getLight(this));
+        newemail.setTypeface(Z.getBold(this));
+        passinput.setTypeface(Z.getLight(this));
+        accountpassword.setTypeface(Z.getBold(this));
+        otpinput.setTypeface(Z.getLight(this));
+        otp.setTypeface(Z.getBold(this));
+        passpasstxt.setTypeface(Z.getBold(this));
 
-        changeemailbutton.setTypeface(MyConstants.getBold(this));
+        changeemailbutton.setTypeface(Z.getBold(this));
         byte[] demoKeyBytes = SimpleBase64Encoder.decode(digest1);
         byte[] demoIVBytes = SimpleBase64Encoder.decode(digest2);
         String sPadding = "ISO10126Padding";
@@ -182,7 +182,7 @@ public class EditEmail extends AppCompatActivity {
             params.add(new BasicNameValuePair("e",encnewemail));    //1
             params.add(new BasicNameValuePair("o",encOTP));         //2
 
-            json = jParser.makeHttpRequest(MyConstants.url_VerifyOTPEditEmail, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_VerifyOTPEditEmail, "GET", params);
 
             Log.d("TAG", "doInBackground: verifyotp username json : "+json);
             try {
@@ -231,7 +231,7 @@ public class EditEmail extends AppCompatActivity {
             Log.d("TAG", "ChangeEmailInFireBaseTask input old : "+username);
             Log.d("TAG", "ChangeEmailInFireBaseTask input new : "+encnewemail);
 
-            json = jParser.makeHttpRequest(MyConstants.url_ChangeUsernameFireBase, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_ChangeUsernameFireBase, "GET", params);
 
             try {
                 resultofop = json.getString("info");
@@ -248,7 +248,7 @@ public class EditEmail extends AppCompatActivity {
 
             if(result!=null && result.equals("success")){
 
-                MySharedPreferencesManager.save(EditEmail.this,MyConstants.USERNAME_KEY,encnewemail);
+                MySharedPreferencesManager.save(EditEmail.this, Z.USERNAME_KEY,encnewemail);
                 primaryemail.setText(snewemail);
                 Toast.makeText(EditEmail.this, "Username successfully changed from "+plainusername+" to " +snewemail , Toast.LENGTH_SHORT).show();
                 otpflag=0;
@@ -267,7 +267,7 @@ public class EditEmail extends AppCompatActivity {
             params.add(new BasicNameValuePair("u",username));       //0
             params.add(new BasicNameValuePair("e",encnewemail));             //1
             params.add(new BasicNameValuePair("p",encaccountpassword));             //2
-            json = jParser.makeHttpRequest(MyConstants.url_editemail, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_editemail, "GET", params);
             Log.d("TAG", "SaveEditedEmail json : "+json);
             try {
                 r = json.getString("info");

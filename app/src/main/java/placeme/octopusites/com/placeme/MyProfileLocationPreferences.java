@@ -88,20 +88,20 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
         location4 = (AutoCompleteTextView) findViewById(R.id.location4);
         location5 = (AutoCompleteTextView) findViewById(R.id.location5);
 
-        location1.setTypeface(MyConstants.getBold(this));
-        location2.setTypeface(MyConstants.getBold(this));
-        location3.setTypeface(MyConstants.getBold(this));
-        location4.setTypeface(MyConstants.getBold(this));
-        location5.setTypeface(MyConstants.getBold(this));
+        location1.setTypeface(Z.getBold(this));
+        location2.setTypeface(Z.getBold(this));
+        location3.setTypeface(Z.getBold(this));
+        location4.setTypeface(Z.getBold(this));
+        location5.setTypeface(Z.getBold(this));
 
-        locationinput1.setTypeface(MyConstants.getLight(this));
-        locationinput2.setTypeface(MyConstants.getLight(this));
-        locationinput3.setTypeface(MyConstants.getLight(this));
-        locationinput4.setTypeface(MyConstants.getLight(this));
-        locationinput5.setTypeface(MyConstants.getLight(this));
+        locationinput1.setTypeface(Z.getLight(this));
+        locationinput2.setTypeface(Z.getLight(this));
+        locationinput3.setTypeface(Z.getLight(this));
+        locationinput4.setTypeface(Z.getLight(this));
+        locationinput5.setTypeface(Z.getLight(this));
 
         TextView addmorelocationtxt = (TextView) findViewById(R.id.addmorelocationtxt);
-        addmorelocationtxt.setTypeface(MyConstants.getBold(this));
+        addmorelocationtxt.setTypeface(Z.getBold(this));
 
 
         trash1selectionview.setOnClickListener(new View.OnClickListener() {
@@ -265,7 +265,7 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
 
 
         TextView locationtxt = (TextView) findViewById(R.id.locationtxt);
-        locationtxt.setTypeface(MyConstants.getBold(this));
+        locationtxt.setTypeface(Z.getBold(this));
 
         addmorelocation = (View) findViewById(R.id.addmorelocation);
         addmorelocation.setOnClickListener(new View.OnClickListener() {
@@ -438,8 +438,8 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
             public void onShow(DialogInterface dialogInterface) {
                 alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileLocationPreferences.this));
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileLocationPreferences.this));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileLocationPreferences.this));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileLocationPreferences.this));
 
             }
         });
@@ -784,8 +784,8 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
                 public void onShow(DialogInterface dialogInterface) {
                     alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileLocationPreferences.this));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileLocationPreferences.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileLocationPreferences.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileLocationPreferences.this));
                 }
             });
 
@@ -804,7 +804,7 @@ public class MyProfileLocationPreferences extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("l1", encobj));  //1
 
-            json = jParser.makeHttpRequest(MyConstants.url_savelocationpreferences, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_savelocationpreferences, "GET", params);
             try {
                 r = json.getString("info");
 

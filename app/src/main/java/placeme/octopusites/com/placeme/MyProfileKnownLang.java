@@ -77,7 +77,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
         role=MySharedPreferencesManager.getRole(this);
 
         TextView addmorelangtxt=(TextView)findViewById(R.id.addmorelangtxt);
-        addmorelangtxt.setTypeface(MyConstants.getBold(this));
+        addmorelangtxt.setTypeface(Z.getBold(this));
 
         final Drawable upArrow = getResources().getDrawable(R.drawable.close);
         upArrow.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
@@ -94,7 +94,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
 //        }
 
         TextView knowntxt=(TextView)findViewById(R.id.knowntxt);
-        knowntxt.setTypeface(MyConstants.getBold(this));
+        knowntxt.setTypeface(Z.getBold(this));
 
         addmorelangView = (View)findViewById(R.id.addmorelang);
 
@@ -417,7 +417,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View view= super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileKnownLang.this));
+                tv.setTypeface(Z.getBold(MyProfileKnownLang.this));
                 tv.setTextColor(getResources().getColor(R.color.dark_color));
                 return view;
             }
@@ -427,7 +427,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileKnownLang.this));
+                tv.setTypeface(Z.getBold(MyProfileKnownLang.this));
                 if(position == 0){
                     // Set the hint text color gray
                     tv.setTextColor(getResources().getColor(R.color.sky_blue_color));
@@ -795,8 +795,8 @@ public class MyProfileKnownLang extends AppCompatActivity {
             public void onShow(DialogInterface dialogInterface) {
                 alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileKnownLang.this));
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileKnownLang.this));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileKnownLang.this));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileKnownLang.this));
 
             }
         });
@@ -1595,7 +1595,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View view= super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileKnownLang.this));
+                tv.setTypeface(Z.getBold(MyProfileKnownLang.this));
                 tv.setTextColor(getResources().getColor(R.color.dark_color));
                 return view;
             }
@@ -1605,7 +1605,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfileKnownLang.this));
+                tv.setTypeface(Z.getBold(MyProfileKnownLang.this));
 
                 if(position == 0){
                     // Set the hint text color gray
@@ -2414,7 +2414,7 @@ public class MyProfileKnownLang extends AppCompatActivity {
             params.add(new BasicNameValuePair("d",encObjString));       //0
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_savelanguages, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_savelanguages, "GET", params);
             try {
                 r = json.getString("info");
 
@@ -2524,8 +2524,8 @@ public class MyProfileKnownLang extends AppCompatActivity {
                 public void onShow(DialogInterface dialogInterface) {
                     alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileKnownLang.this));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileKnownLang.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileKnownLang.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileKnownLang.this));
 
                 }
             });

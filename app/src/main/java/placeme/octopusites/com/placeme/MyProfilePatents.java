@@ -370,161 +370,161 @@ public class MyProfilePatents extends AppCompatActivity {
         filinginput9 = (TextInputLayout) findViewById(R.id.filinginput9);
         filinginput10 = (TextInputLayout) findViewById(R.id.filinginput10);
 
-        statusradiotxt1.setTypeface(MyConstants.getLight(this));
-                statusradiotxt2.setTypeface(MyConstants.getLight(this));
-                statusradiotxt3.setTypeface(MyConstants.getLight(this));
-                statusradiotxt4.setTypeface(MyConstants.getLight(this));
-                statusradiotxt5.setTypeface(MyConstants.getLight(this));
-                statusradiotxt6.setTypeface(MyConstants.getLight(this));
-                statusradiotxt7.setTypeface(MyConstants.getLight(this));
-                statusradiotxt8.setTypeface(MyConstants.getLight(this));
-                statusradiotxt9.setTypeface(MyConstants.getLight(this));
-                statusradiotxt10.setTypeface(MyConstants.getLight(this));
+        statusradiotxt1.setTypeface(Z.getLight(this));
+                statusradiotxt2.setTypeface(Z.getLight(this));
+                statusradiotxt3.setTypeface(Z.getLight(this));
+                statusradiotxt4.setTypeface(Z.getLight(this));
+                statusradiotxt5.setTypeface(Z.getLight(this));
+                statusradiotxt6.setTypeface(Z.getLight(this));
+                statusradiotxt7.setTypeface(Z.getLight(this));
+                statusradiotxt8.setTypeface(Z.getLight(this));
+                statusradiotxt9.setTypeface(Z.getLight(this));
+                statusradiotxt10.setTypeface(Z.getLight(this));
 
-        title1.setTypeface(MyConstants.getBold(this));
-        appno1.setTypeface(MyConstants.getBold(this));
-        inventor1.setTypeface(MyConstants.getBold(this));
-        issue1.setTypeface(MyConstants.getBold(this));
-        filing1.setTypeface(MyConstants.getBold(this));
-        url1.setTypeface(MyConstants.getBold(this));
-        description1.setTypeface(MyConstants.getBold(this));
-        title2.setTypeface(MyConstants.getBold(this));
-        appno2.setTypeface(MyConstants.getBold(this));
-        inventor2.setTypeface(MyConstants.getBold(this));
-        issue2.setTypeface(MyConstants.getBold(this));
-        filing2.setTypeface(MyConstants.getBold(this));
-        url2.setTypeface(MyConstants.getBold(this));
-        description2.setTypeface(MyConstants.getBold(this));
-        title3.setTypeface(MyConstants.getBold(this));
-        appno3.setTypeface(MyConstants.getBold(this));
-        inventor3.setTypeface(MyConstants.getBold(this));
-        issue3.setTypeface(MyConstants.getBold(this));
-        filing3.setTypeface(MyConstants.getBold(this));
-        url3.setTypeface(MyConstants.getBold(this));
-        description3.setTypeface(MyConstants.getBold(this));
-        title4.setTypeface(MyConstants.getBold(this));
-        appno4.setTypeface(MyConstants.getBold(this));
-        inventor4.setTypeface(MyConstants.getBold(this));
-        issue4.setTypeface(MyConstants.getBold(this));
-        filing4.setTypeface(MyConstants.getBold(this));
-        url4.setTypeface(MyConstants.getBold(this));
-        description4.setTypeface(MyConstants.getBold(this));
-        title5.setTypeface(MyConstants.getBold(this));
-        appno5.setTypeface(MyConstants.getBold(this));
-        inventor5.setTypeface(MyConstants.getBold(this));
-        issue5.setTypeface(MyConstants.getBold(this));
-        filing5.setTypeface(MyConstants.getBold(this));
-        url5.setTypeface(MyConstants.getBold(this));
-        description5.setTypeface(MyConstants.getBold(this));
-        title6.setTypeface(MyConstants.getBold(this));
-        appno6.setTypeface(MyConstants.getBold(this));
-        inventor6.setTypeface(MyConstants.getBold(this));
-        issue6.setTypeface(MyConstants.getBold(this));
-        filing6.setTypeface(MyConstants.getBold(this));
-        url6.setTypeface(MyConstants.getBold(this));
-        description6.setTypeface(MyConstants.getBold(this));
-        title7.setTypeface(MyConstants.getBold(this));
-        appno7.setTypeface(MyConstants.getBold(this));
-        inventor7.setTypeface(MyConstants.getBold(this));
-        issue7.setTypeface(MyConstants.getBold(this));
-        filing7.setTypeface(MyConstants.getBold(this));
-        url7.setTypeface(MyConstants.getBold(this));
-        description7.setTypeface(MyConstants.getBold(this));
-        title8.setTypeface(MyConstants.getBold(this));
-        appno8.setTypeface(MyConstants.getBold(this));
-        inventor8.setTypeface(MyConstants.getBold(this));
-        issue8.setTypeface(MyConstants.getBold(this));
-        filing8.setTypeface(MyConstants.getBold(this));
-        url8.setTypeface(MyConstants.getBold(this));
-        description8.setTypeface(MyConstants.getBold(this));
-        title9.setTypeface(MyConstants.getBold(this));
-        appno9.setTypeface(MyConstants.getBold(this));
-        inventor9.setTypeface(MyConstants.getBold(this));
-        issue9.setTypeface(MyConstants.getBold(this));
-        filing9.setTypeface(MyConstants.getBold(this));
-        url9.setTypeface(MyConstants.getBold(this));
-        description9.setTypeface(MyConstants.getBold(this));
-        title10.setTypeface(MyConstants.getBold(this));
-        appno10.setTypeface(MyConstants.getBold(this));
-        inventor10.setTypeface(MyConstants.getBold(this));
-        issue10.setTypeface(MyConstants.getBold(this));
-        filing10.setTypeface(MyConstants.getBold(this));
-        url10.setTypeface(MyConstants.getBold(this));
-        description10.setTypeface(MyConstants.getBold(this));
+        title1.setTypeface(Z.getBold(this));
+        appno1.setTypeface(Z.getBold(this));
+        inventor1.setTypeface(Z.getBold(this));
+        issue1.setTypeface(Z.getBold(this));
+        filing1.setTypeface(Z.getBold(this));
+        url1.setTypeface(Z.getBold(this));
+        description1.setTypeface(Z.getBold(this));
+        title2.setTypeface(Z.getBold(this));
+        appno2.setTypeface(Z.getBold(this));
+        inventor2.setTypeface(Z.getBold(this));
+        issue2.setTypeface(Z.getBold(this));
+        filing2.setTypeface(Z.getBold(this));
+        url2.setTypeface(Z.getBold(this));
+        description2.setTypeface(Z.getBold(this));
+        title3.setTypeface(Z.getBold(this));
+        appno3.setTypeface(Z.getBold(this));
+        inventor3.setTypeface(Z.getBold(this));
+        issue3.setTypeface(Z.getBold(this));
+        filing3.setTypeface(Z.getBold(this));
+        url3.setTypeface(Z.getBold(this));
+        description3.setTypeface(Z.getBold(this));
+        title4.setTypeface(Z.getBold(this));
+        appno4.setTypeface(Z.getBold(this));
+        inventor4.setTypeface(Z.getBold(this));
+        issue4.setTypeface(Z.getBold(this));
+        filing4.setTypeface(Z.getBold(this));
+        url4.setTypeface(Z.getBold(this));
+        description4.setTypeface(Z.getBold(this));
+        title5.setTypeface(Z.getBold(this));
+        appno5.setTypeface(Z.getBold(this));
+        inventor5.setTypeface(Z.getBold(this));
+        issue5.setTypeface(Z.getBold(this));
+        filing5.setTypeface(Z.getBold(this));
+        url5.setTypeface(Z.getBold(this));
+        description5.setTypeface(Z.getBold(this));
+        title6.setTypeface(Z.getBold(this));
+        appno6.setTypeface(Z.getBold(this));
+        inventor6.setTypeface(Z.getBold(this));
+        issue6.setTypeface(Z.getBold(this));
+        filing6.setTypeface(Z.getBold(this));
+        url6.setTypeface(Z.getBold(this));
+        description6.setTypeface(Z.getBold(this));
+        title7.setTypeface(Z.getBold(this));
+        appno7.setTypeface(Z.getBold(this));
+        inventor7.setTypeface(Z.getBold(this));
+        issue7.setTypeface(Z.getBold(this));
+        filing7.setTypeface(Z.getBold(this));
+        url7.setTypeface(Z.getBold(this));
+        description7.setTypeface(Z.getBold(this));
+        title8.setTypeface(Z.getBold(this));
+        appno8.setTypeface(Z.getBold(this));
+        inventor8.setTypeface(Z.getBold(this));
+        issue8.setTypeface(Z.getBold(this));
+        filing8.setTypeface(Z.getBold(this));
+        url8.setTypeface(Z.getBold(this));
+        description8.setTypeface(Z.getBold(this));
+        title9.setTypeface(Z.getBold(this));
+        appno9.setTypeface(Z.getBold(this));
+        inventor9.setTypeface(Z.getBold(this));
+        issue9.setTypeface(Z.getBold(this));
+        filing9.setTypeface(Z.getBold(this));
+        url9.setTypeface(Z.getBold(this));
+        description9.setTypeface(Z.getBold(this));
+        title10.setTypeface(Z.getBold(this));
+        appno10.setTypeface(Z.getBold(this));
+        inventor10.setTypeface(Z.getBold(this));
+        issue10.setTypeface(Z.getBold(this));
+        filing10.setTypeface(Z.getBold(this));
+        url10.setTypeface(Z.getBold(this));
+        description10.setTypeface(Z.getBold(this));
 
 
-        titleinput1.setTypeface(MyConstants.getLight(this));
-        appnoinput1.setTypeface(MyConstants.getLight(this));
-        inventorinput1.setTypeface(MyConstants.getLight(this));
-        issueinput1.setTypeface(MyConstants.getLight(this));
-        descinput1.setTypeface(MyConstants.getLight(this));
-        urlinput1.setTypeface(MyConstants.getLight(this));
-        titleinput2.setTypeface(MyConstants.getLight(this));
-        appnoinput2.setTypeface(MyConstants.getLight(this));
-        inventorinput2.setTypeface(MyConstants.getLight(this));
-        issueinput2.setTypeface(MyConstants.getLight(this));
-        descinput2.setTypeface(MyConstants.getLight(this));
-        urlinput2.setTypeface(MyConstants.getLight(this));
-        titleinput3.setTypeface(MyConstants.getLight(this));
-        appnoinput3.setTypeface(MyConstants.getLight(this));
-        inventorinput3.setTypeface(MyConstants.getLight(this));
-        issueinput3.setTypeface(MyConstants.getLight(this));
-        descinput3.setTypeface(MyConstants.getLight(this));
-        urlinput3.setTypeface(MyConstants.getLight(this));
-        titleinput4.setTypeface(MyConstants.getLight(this));
-        appnoinput4.setTypeface(MyConstants.getLight(this));
-        inventorinput4.setTypeface(MyConstants.getLight(this));
-        issueinput4.setTypeface(MyConstants.getLight(this));
-        descinput4.setTypeface(MyConstants.getLight(this));
-        urlinput4.setTypeface(MyConstants.getLight(this));
-        titleinput5.setTypeface(MyConstants.getLight(this));
-        appnoinput5.setTypeface(MyConstants.getLight(this));
-        inventorinput5.setTypeface(MyConstants.getLight(this));
-        issueinput5.setTypeface(MyConstants.getLight(this));
-        descinput5.setTypeface(MyConstants.getLight(this));
-        urlinput5.setTypeface(MyConstants.getLight(this));
-        titleinput6.setTypeface(MyConstants.getLight(this));
-        appnoinput6.setTypeface(MyConstants.getLight(this));
-        inventorinput6.setTypeface(MyConstants.getLight(this));
-        issueinput6.setTypeface(MyConstants.getLight(this));
-        descinput6.setTypeface(MyConstants.getLight(this));
-        urlinput6.setTypeface(MyConstants.getLight(this));
-        titleinput7.setTypeface(MyConstants.getLight(this));
-        appnoinput7.setTypeface(MyConstants.getLight(this));
-        inventorinput7.setTypeface(MyConstants.getLight(this));
-        issueinput7.setTypeface(MyConstants.getLight(this));
-        descinput7.setTypeface(MyConstants.getLight(this));
-        urlinput7.setTypeface(MyConstants.getLight(this));
-        titleinput8.setTypeface(MyConstants.getLight(this));
-        appnoinput8.setTypeface(MyConstants.getLight(this));
-        inventorinput8.setTypeface(MyConstants.getLight(this));
-        issueinput8.setTypeface(MyConstants.getLight(this));
+        titleinput1.setTypeface(Z.getLight(this));
+        appnoinput1.setTypeface(Z.getLight(this));
+        inventorinput1.setTypeface(Z.getLight(this));
+        issueinput1.setTypeface(Z.getLight(this));
+        descinput1.setTypeface(Z.getLight(this));
+        urlinput1.setTypeface(Z.getLight(this));
+        titleinput2.setTypeface(Z.getLight(this));
+        appnoinput2.setTypeface(Z.getLight(this));
+        inventorinput2.setTypeface(Z.getLight(this));
+        issueinput2.setTypeface(Z.getLight(this));
+        descinput2.setTypeface(Z.getLight(this));
+        urlinput2.setTypeface(Z.getLight(this));
+        titleinput3.setTypeface(Z.getLight(this));
+        appnoinput3.setTypeface(Z.getLight(this));
+        inventorinput3.setTypeface(Z.getLight(this));
+        issueinput3.setTypeface(Z.getLight(this));
+        descinput3.setTypeface(Z.getLight(this));
+        urlinput3.setTypeface(Z.getLight(this));
+        titleinput4.setTypeface(Z.getLight(this));
+        appnoinput4.setTypeface(Z.getLight(this));
+        inventorinput4.setTypeface(Z.getLight(this));
+        issueinput4.setTypeface(Z.getLight(this));
+        descinput4.setTypeface(Z.getLight(this));
+        urlinput4.setTypeface(Z.getLight(this));
+        titleinput5.setTypeface(Z.getLight(this));
+        appnoinput5.setTypeface(Z.getLight(this));
+        inventorinput5.setTypeface(Z.getLight(this));
+        issueinput5.setTypeface(Z.getLight(this));
+        descinput5.setTypeface(Z.getLight(this));
+        urlinput5.setTypeface(Z.getLight(this));
+        titleinput6.setTypeface(Z.getLight(this));
+        appnoinput6.setTypeface(Z.getLight(this));
+        inventorinput6.setTypeface(Z.getLight(this));
+        issueinput6.setTypeface(Z.getLight(this));
+        descinput6.setTypeface(Z.getLight(this));
+        urlinput6.setTypeface(Z.getLight(this));
+        titleinput7.setTypeface(Z.getLight(this));
+        appnoinput7.setTypeface(Z.getLight(this));
+        inventorinput7.setTypeface(Z.getLight(this));
+        issueinput7.setTypeface(Z.getLight(this));
+        descinput7.setTypeface(Z.getLight(this));
+        urlinput7.setTypeface(Z.getLight(this));
+        titleinput8.setTypeface(Z.getLight(this));
+        appnoinput8.setTypeface(Z.getLight(this));
+        inventorinput8.setTypeface(Z.getLight(this));
+        issueinput8.setTypeface(Z.getLight(this));
 
-        descinput8.setTypeface(MyConstants.getLight(this));
-        urlinput8.setTypeface(MyConstants.getLight(this));
-        titleinput9.setTypeface(MyConstants.getLight(this));
-        appnoinput9.setTypeface(MyConstants.getLight(this));
-        inventorinput9.setTypeface(MyConstants.getLight(this));
-        issueinput9.setTypeface(MyConstants.getLight(this));
-        descinput9.setTypeface(MyConstants.getLight(this));
-        urlinput9.setTypeface(MyConstants.getLight(this));
-        titleinput10.setTypeface(MyConstants.getLight(this));
-        appnoinput10.setTypeface(MyConstants.getLight(this));
-        inventorinput10.setTypeface(MyConstants.getLight(this));
-        issueinput10.setTypeface(MyConstants.getLight(this));
-        descinput10.setTypeface(MyConstants.getLight(this));
-        urlinput10.setTypeface(MyConstants.getLight(this));
+        descinput8.setTypeface(Z.getLight(this));
+        urlinput8.setTypeface(Z.getLight(this));
+        titleinput9.setTypeface(Z.getLight(this));
+        appnoinput9.setTypeface(Z.getLight(this));
+        inventorinput9.setTypeface(Z.getLight(this));
+        issueinput9.setTypeface(Z.getLight(this));
+        descinput9.setTypeface(Z.getLight(this));
+        urlinput9.setTypeface(Z.getLight(this));
+        titleinput10.setTypeface(Z.getLight(this));
+        appnoinput10.setTypeface(Z.getLight(this));
+        inventorinput10.setTypeface(Z.getLight(this));
+        issueinput10.setTypeface(Z.getLight(this));
+        descinput10.setTypeface(Z.getLight(this));
+        urlinput10.setTypeface(Z.getLight(this));
 
-        filinginput1.setTypeface(MyConstants.getLight(this));
-        filinginput2.setTypeface(MyConstants.getLight(this));
-        filinginput3.setTypeface(MyConstants.getLight(this));
-        filinginput4.setTypeface(MyConstants.getLight(this));
-        filinginput5.setTypeface(MyConstants.getLight(this));
-        filinginput6.setTypeface(MyConstants.getLight(this));
-        filinginput7.setTypeface(MyConstants.getLight(this));
-        filinginput8.setTypeface(MyConstants.getLight(this));
-        filinginput9.setTypeface(MyConstants.getLight(this));
-        filinginput10.setTypeface(MyConstants.getLight(this));
+        filinginput1.setTypeface(Z.getLight(this));
+        filinginput2.setTypeface(Z.getLight(this));
+        filinginput3.setTypeface(Z.getLight(this));
+        filinginput4.setTypeface(Z.getLight(this));
+        filinginput5.setTypeface(Z.getLight(this));
+        filinginput6.setTypeface(Z.getLight(this));
+        filinginput7.setTypeface(Z.getLight(this));
+        filinginput8.setTypeface(Z.getLight(this));
+        filinginput9.setTypeface(Z.getLight(this));
+        filinginput10.setTypeface(Z.getLight(this));
 
 
         radioGroupPatent1 = (RadioGroup) findViewById(R.id.radioGroupPatent1);
@@ -560,26 +560,26 @@ public class MyProfilePatents extends AppCompatActivity {
         radioButtonPending9 = (RadioButton) findViewById(R.id.radioButtonPending9);
         radioButtonPending10 = (RadioButton) findViewById(R.id.radioButtonPending10);
 
-        radioButtonIssued1.setTypeface(MyConstants.getBold(this));
-        radioButtonPending1.setTypeface(MyConstants.getBold(this));
-        radioButtonIssued2.setTypeface(MyConstants.getBold(this));
-        radioButtonPending2.setTypeface(MyConstants.getBold(this));
-        radioButtonIssued3.setTypeface(MyConstants.getBold(this));
-        radioButtonPending3.setTypeface(MyConstants.getBold(this));
-        radioButtonIssued4.setTypeface(MyConstants.getBold(this));
-        radioButtonPending4.setTypeface(MyConstants.getBold(this));
-        radioButtonIssued5.setTypeface(MyConstants.getBold(this));
-        radioButtonPending5.setTypeface(MyConstants.getBold(this));
-        radioButtonIssued6.setTypeface(MyConstants.getBold(this));
-        radioButtonPending6.setTypeface(MyConstants.getBold(this));
-        radioButtonIssued7.setTypeface(MyConstants.getBold(this));
-        radioButtonPending7.setTypeface(MyConstants.getBold(this));
-        radioButtonIssued8.setTypeface(MyConstants.getBold(this));
-        radioButtonPending8.setTypeface(MyConstants.getBold(this));
-        radioButtonIssued9.setTypeface(MyConstants.getBold(this));
-        radioButtonPending9.setTypeface(MyConstants.getBold(this));
-        radioButtonIssued10.setTypeface(MyConstants.getBold(this));
-        radioButtonPending10.setTypeface(MyConstants.getBold(this));
+        radioButtonIssued1.setTypeface(Z.getBold(this));
+        radioButtonPending1.setTypeface(Z.getBold(this));
+        radioButtonIssued2.setTypeface(Z.getBold(this));
+        radioButtonPending2.setTypeface(Z.getBold(this));
+        radioButtonIssued3.setTypeface(Z.getBold(this));
+        radioButtonPending3.setTypeface(Z.getBold(this));
+        radioButtonIssued4.setTypeface(Z.getBold(this));
+        radioButtonPending4.setTypeface(Z.getBold(this));
+        radioButtonIssued5.setTypeface(Z.getBold(this));
+        radioButtonPending5.setTypeface(Z.getBold(this));
+        radioButtonIssued6.setTypeface(Z.getBold(this));
+        radioButtonPending6.setTypeface(Z.getBold(this));
+        radioButtonIssued7.setTypeface(Z.getBold(this));
+        radioButtonPending7.setTypeface(Z.getBold(this));
+        radioButtonIssued8.setTypeface(Z.getBold(this));
+        radioButtonPending8.setTypeface(Z.getBold(this));
+        radioButtonIssued9.setTypeface(Z.getBold(this));
+        radioButtonPending9.setTypeface(Z.getBold(this));
+        radioButtonIssued10.setTypeface(Z.getBold(this));
+        radioButtonPending10.setTypeface(Z.getBold(this));
 
 
         radioGroupPatent1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -2108,10 +2108,10 @@ public class MyProfilePatents extends AppCompatActivity {
         });
 
         TextView patenttxt = (TextView) findViewById(R.id.patenttxt);
-        patenttxt.setTypeface(MyConstants.getBold(this));
+        patenttxt.setTypeface(Z.getBold(this));
 
         TextView addmorepatenttxt = (TextView) findViewById(R.id.addmorepatenttxt);
-        addmorepatenttxt.setTypeface(MyConstants.getBold(this));
+        addmorepatenttxt.setTypeface(Z.getBold(this));
 
         addmorepatent = (View) findViewById(R.id.addmorepatent);
         addmorepatent.setOnClickListener(new OnClickListener() {
@@ -2642,8 +2642,8 @@ public class MyProfilePatents extends AppCompatActivity {
             public void onShow(DialogInterface dialogInterface) {
                 alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfilePatents.this));
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfilePatents.this));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfilePatents.this));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfilePatents.this));
 
 
             }
@@ -4820,7 +4820,7 @@ public class MyProfilePatents extends AppCompatActivity {
                 View view = super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
                 tv.setTextColor(getResources().getColor(R.color.dark_color));
-                tv.setTypeface(MyConstants.getBold(MyProfilePatents.this));
+                tv.setTypeface(Z.getBold(MyProfilePatents.this));
                 return view;
             }
 
@@ -4829,7 +4829,7 @@ public class MyProfilePatents extends AppCompatActivity {
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                tv.setTypeface(MyConstants.getBold(MyProfilePatents.this));
+                tv.setTypeface(Z.getBold(MyProfilePatents.this));
 
                 if (position == 0) {
                     // Set the hint text color gray
@@ -7051,8 +7051,8 @@ public class MyProfilePatents extends AppCompatActivity {
                 public void onShow(DialogInterface dialogInterface) {
                     alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfilePatents.this));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfilePatents.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfilePatents.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfilePatents.this));
 
                 }
             });
@@ -7200,7 +7200,7 @@ public class MyProfilePatents extends AppCompatActivity {
             params.add(new BasicNameValuePair("d", param[0]));       //1
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_savepatents, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_savepatents, "GET", params);
             try {
                 r = json.getString("info");
 

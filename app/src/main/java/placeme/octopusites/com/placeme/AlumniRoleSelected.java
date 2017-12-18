@@ -4,9 +4,10 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.graphics.Rect;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,7 +19,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
-import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -73,8 +73,8 @@ public class AlumniRoleSelected extends AppCompatActivity {
         instcodeTextInputLayout = (TextInputLayout)findViewById(R.id.instcodeTextInputLayout);
         instcode = (TextInputEditText)findViewById(R.id.instcode);
         fadeandmove(instcodeTextInputLayout);
-        instcode.setTypeface(MyConstants.getBold(this));
-        instcodeTextInputLayout.setTypeface(MyConstants.getLight(this));
+        instcode.setTypeface(Z.getBold(this));
+        instcodeTextInputLayout.setTypeface(Z.getLight(this));
         instcode.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -110,8 +110,8 @@ public class AlumniRoleSelected extends AppCompatActivity {
         Button btnPrev = (Button)findViewById(R.id.btnPrev);
         Button btnNext = (Button)findViewById(R.id.btn_next);
 
-        btnNext.setTypeface(MyConstants.getBold(this));
-        btnPrev.setTypeface(MyConstants.getBold(this));
+        btnNext.setTypeface(Z.getBold(this));
+        btnPrev.setTypeface(Z.getBold(this));
 
         btnPrev.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,7 +173,7 @@ public class AlumniRoleSelected extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", inputUcode));       //0
 
-            json = jParser.makeHttpRequest(MyConstants.url_checkUcode, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_checkUcode, "GET", params);
             Log.d("TAG", "checkUcode result: " + json);
             try {
                 r = json.getString("info");

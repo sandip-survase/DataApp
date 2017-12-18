@@ -3,9 +3,9 @@ package placeme.octopusites.com.placeme;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.graphics.Rect;
+import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -65,8 +65,8 @@ public class HRRoleSelected extends AppCompatActivity {
         professionalemailTextInputLayout = (TextInputLayout)findViewById(R.id.professionalemailTextInputLayout);
         professionalemail = (EditText)findViewById(R.id.professionalemail);
         fadeandmove(professionalemailTextInputLayout);
-        professionalemail.setTypeface(MyConstants.getBold(this));
-        professionalemailTextInputLayout.setTypeface(MyConstants.getLight(this));
+        professionalemail.setTypeface(Z.getBold(this));
+        professionalemailTextInputLayout.setTypeface(Z.getLight(this));
         professionalemail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -101,8 +101,8 @@ public class HRRoleSelected extends AppCompatActivity {
         Button btnPrev = (Button)findViewById(R.id.btnPrev);
         Button btnNext = (Button)findViewById(R.id.btn_next);
 
-        btnNext.setTypeface(MyConstants.getBold(this));
-        btnPrev.setTypeface(MyConstants.getBold(this));
+        btnNext.setTypeface(Z.getBold(this));
+        btnPrev.setTypeface(Z.getBold(this));
 
         btnPrev.setOnClickListener(new View.OnClickListener() {
             @Override

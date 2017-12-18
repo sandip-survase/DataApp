@@ -1,7 +1,6 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -28,10 +27,10 @@ public class EducationTabFragment extends Fragment {
         TextView pgtxt=(TextView)rootView.findViewById(R.id.pgtxt);
 
 
-        tenthtxt.setTypeface(MyConstants.getBold(getActivity()));
-        twelthtxt.setTypeface(MyConstants.getBold(getActivity()));
-        ugtxt.setTypeface(MyConstants.getBold(getActivity()));
-        pgtxt.setTypeface(MyConstants.getBold(getActivity()));
+        tenthtxt.setTypeface(Z.getBold(getActivity()));
+        twelthtxt.setTypeface(Z.getBold(getActivity()));
+        ugtxt.setTypeface(Z.getBold(getActivity()));
+        pgtxt.setTypeface(Z.getBold(getActivity()));
 
 
         tenth=(View)rootView.findViewById(R.id.tenthbutton);

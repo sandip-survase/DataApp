@@ -77,7 +77,7 @@ public class VideosFragment extends Fragment {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             try {
 
-                json = jParser.makeHttpRequest(MyConstants.load_videos,"GET", params);
+                json = jParser.makeHttpRequest(Z.load_videos,"GET", params);
                 count = Integer.parseInt(json.getString("count"));
 
                 id=new int[count];

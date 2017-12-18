@@ -48,12 +48,12 @@ public class OTP2Activity extends AppCompatActivity {
         otpedittext=(AppCompatEditText)findViewById(R.id.otp);
         verify=(Button)findViewById(R.id.submitotp);
 
-        entertxt.setTypeface(MyConstants.getBold(this));
-        otptxt.setTypeface(MyConstants.getLight(this));
-        resendotp.setTypeface(MyConstants.getBold(this));
-        otplayout.setTypeface(MyConstants.getLight(this));
-        otpedittext.setTypeface(MyConstants.getBold(this));
-        verify.setTypeface(MyConstants.getBold(this));
+        entertxt.setTypeface(Z.getBold(this));
+        otptxt.setTypeface(Z.getLight(this));
+        resendotp.setTypeface(Z.getBold(this));
+        otplayout.setTypeface(Z.getLight(this));
+        otpedittext.setTypeface(Z.getBold(this));
+        verify.setTypeface(Z.getBold(this));
 
         otpprogress=(ProgressBar)findViewById(R.id.otpprogress);
 
@@ -110,7 +110,7 @@ public class OTP2Activity extends AppCompatActivity {
             params.add(new BasicNameValuePair("ud", encUsername));
             params.add(new BasicNameValuePair("eo", encOTP));
 
-            json = jParser.makeHttpRequest(MyConstants.url_verifyotp, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_verifyotp, "GET", params);
             try {
                 resultofop = json.getString("info");
 
@@ -151,7 +151,7 @@ public class OTP2Activity extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("ud", encUsername));
 
-            json = jParser.makeHttpRequest(MyConstants.url_resendotp, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_resendotp, "GET", params);
             try {
                 resultofop = json.getString("info");
 

@@ -109,19 +109,19 @@ public class HrPersonalTabFragment extends Fragment {
         designinputlayout = (TextInputLayout) rootView.findViewById(R.id.instinputlayout);
         citystaecountryinputlayout = (TextInputLayout)rootView. findViewById(R.id.citystaecountryinputlayout);
 
-        fname.setTypeface(MyConstants.getBold(getActivity()));
-        lname.setTypeface(MyConstants.getBold(getActivity()));
-        role.setTypeface(MyConstants.getBold(getActivity()));
-        email.setTypeface(MyConstants.getBold(getActivity()));
-        designation.setTypeface(MyConstants.getBold(getActivity()));
-        citystaecountry.setTypeface(MyConstants.getBold(getActivity()));
+        fname.setTypeface(Z.getBold(getActivity()));
+        lname.setTypeface(Z.getBold(getActivity()));
+        role.setTypeface(Z.getBold(getActivity()));
+        email.setTypeface(Z.getBold(getActivity()));
+        designation.setTypeface(Z.getBold(getActivity()));
+        citystaecountry.setTypeface(Z.getBold(getActivity()));
 
-        fnameTextInputLayout.setTypeface(MyConstants.getLight(getActivity()));
-        lnameTextInputLayout.setTypeface(MyConstants.getLight(getActivity()));
-        roleinputlayout.setTypeface(MyConstants.getLight(getActivity()));
-        designinputlayout.setTypeface(MyConstants.getLight(getActivity()));
-        emailinputlayout.setTypeface(MyConstants.getLight(getActivity()));
-        citystaecountryinputlayout.setTypeface(MyConstants.getLight(getActivity()));
+        fnameTextInputLayout.setTypeface(Z.getLight(getActivity()));
+        lnameTextInputLayout.setTypeface(Z.getLight(getActivity()));
+        roleinputlayout.setTypeface(Z.getLight(getActivity()));
+        designinputlayout.setTypeface(Z.getLight(getActivity()));
+        emailinputlayout.setTypeface(Z.getLight(getActivity()));
+        citystaecountryinputlayout.setTypeface(Z.getLight(getActivity()));
 
         citystaecountry=(AutoCompleteTextView)rootView.findViewById(R.id.citystaecountry);
         userName = MySharedPreferencesManager.getUsername(getActivity());
@@ -378,7 +378,7 @@ public class HrPersonalTabFragment extends Fragment {
             params.add(new BasicNameValuePair("u", encUsername));
             params.add(new BasicNameValuePair("d", encobj));       //1
 
-            json = jParser.makeHttpRequest(MyConstants.url_SaveHrIntro, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_SaveHrIntro, "GET", params);
             try {
                 r = json.getString("info");
 

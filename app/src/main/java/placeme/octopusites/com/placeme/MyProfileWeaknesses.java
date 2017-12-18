@@ -88,16 +88,16 @@ public class MyProfileWeaknesses extends AppCompatActivity {
         weakinput9= (TextInputLayout) findViewById(R.id.weakinput9);
         weakinput10= (TextInputLayout) findViewById(R.id.weakinput10);
 
-        weakinput1.setTypeface(MyConstants.getLight(this));
-        weakinput2.setTypeface(MyConstants.getLight(this));
-        weakinput3.setTypeface(MyConstants.getLight(this));
-        weakinput4.setTypeface(MyConstants.getLight(this));
-        weakinput5.setTypeface(MyConstants.getLight(this));
-        weakinput6.setTypeface(MyConstants.getLight(this));
-        weakinput7.setTypeface(MyConstants.getLight(this));
-        weakinput8.setTypeface(MyConstants.getLight(this));
-        weakinput9.setTypeface(MyConstants.getLight(this));
-        weakinput10.setTypeface(MyConstants.getLight(this));
+        weakinput1.setTypeface(Z.getLight(this));
+        weakinput2.setTypeface(Z.getLight(this));
+        weakinput3.setTypeface(Z.getLight(this));
+        weakinput4.setTypeface(Z.getLight(this));
+        weakinput5.setTypeface(Z.getLight(this));
+        weakinput6.setTypeface(Z.getLight(this));
+        weakinput7.setTypeface(Z.getLight(this));
+        weakinput8.setTypeface(Z.getLight(this));
+        weakinput9.setTypeface(Z.getLight(this));
+        weakinput10.setTypeface(Z.getLight(this));
 
 
         weak1 = (EditText) findViewById(R.id.weak1);
@@ -111,20 +111,20 @@ public class MyProfileWeaknesses extends AppCompatActivity {
         weak9 = (EditText) findViewById(R.id.weak9);
         weak10 = (EditText) findViewById(R.id.weak10);
 
-        weak1.setTypeface(MyConstants.getBold(this));
-        weak2.setTypeface(MyConstants.getBold(this));
-        weak3.setTypeface(MyConstants.getBold(this));
-        weak4.setTypeface(MyConstants.getBold(this));
-        weak5.setTypeface(MyConstants.getBold(this));
-        weak6.setTypeface(MyConstants.getBold(this));
-        weak7.setTypeface(MyConstants.getBold(this));
-        weak8.setTypeface(MyConstants.getBold(this));
-        weak9.setTypeface(MyConstants.getBold(this));
-        weak10.setTypeface(MyConstants.getBold(this));
+        weak1.setTypeface(Z.getBold(this));
+        weak2.setTypeface(Z.getBold(this));
+        weak3.setTypeface(Z.getBold(this));
+        weak4.setTypeface(Z.getBold(this));
+        weak5.setTypeface(Z.getBold(this));
+        weak6.setTypeface(Z.getBold(this));
+        weak7.setTypeface(Z.getBold(this));
+        weak8.setTypeface(Z.getBold(this));
+        weak9.setTypeface(Z.getBold(this));
+        weak10.setTypeface(Z.getBold(this));
 
 
         TextView addmoreweaktxt = (TextView) findViewById(R.id.addmoreweaktxt);
-        addmoreweaktxt.setTypeface(MyConstants.getBold(this));
+        addmoreweaktxt.setTypeface(Z.getBold(this));
 
 
         trash1selectionview.setOnClickListener(new View.OnClickListener() {
@@ -377,7 +377,7 @@ public class MyProfileWeaknesses extends AppCompatActivity {
 
 
         TextView weaktxt = (TextView) findViewById(R.id.weaktxt);
-        weaktxt.setTypeface(MyConstants.getBold(this));
+        weaktxt.setTypeface(Z.getBold(this));
 
         addmoreweak = (View) findViewById(R.id.addmoreweak);
         addmoreweak.setOnClickListener(new View.OnClickListener() {
@@ -703,8 +703,8 @@ public class MyProfileWeaknesses extends AppCompatActivity {
             public void onShow(DialogInterface dialogInterface) {
                 alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileWeaknesses.this));
-                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileWeaknesses.this));
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileWeaknesses.this));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileWeaknesses.this));
 
             }
         });
@@ -1472,7 +1472,7 @@ public class MyProfileWeaknesses extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));       //0
             params.add(new BasicNameValuePair("w1", encobj));      //1
-            json = jParser.makeHttpRequest(MyConstants.url_saveweaknesses, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_saveweaknesses, "GET", params);
             try {
                 r = json.getString("info");
 
@@ -1570,8 +1570,8 @@ public class MyProfileWeaknesses extends AppCompatActivity {
                 public void onShow(DialogInterface dialogInterface) {
                     alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#00bcd4"));
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#00bcd4"));
-                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(MyConstants.getBold(MyProfileWeaknesses.this));
-                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(MyConstants.getBold(MyProfileWeaknesses.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(Z.getBold(MyProfileWeaknesses.this));
+                    alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(Z.getBold(MyProfileWeaknesses.this));
 
                 }
             });

@@ -3,10 +3,8 @@ package placeme.octopusites.com.placeme;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class AboutFragment extends Fragment {
@@ -40,11 +37,11 @@ public class AboutFragment extends Fragment {
         TextView allrightstxt=(TextView)rootView.findViewById(R.id.allrightstxt);
         TextView licensetxt=(TextView)rootView.findViewById(R.id.licensetxt);
 
-        aboutplacemetxt.setTypeface(MyConstants.getRighteous(getActivity()));
-        versiontxt.setTypeface(MyConstants.getLight(getActivity()));
-        copyrighttxt.setTypeface(MyConstants.getBold(getActivity()));
-        allrightstxt.setTypeface(MyConstants.getLight(getActivity()));
-        licensetxt.setTypeface(MyConstants.getBold(getActivity()));
+        aboutplacemetxt.setTypeface(Z.getRighteous(getActivity()));
+        versiontxt.setTypeface(Z.getLight(getActivity()));
+        copyrighttxt.setTypeface(Z.getBold(getActivity()));
+        allrightstxt.setTypeface(Z.getLight(getActivity()));
+        licensetxt.setTypeface(Z.getBold(getActivity()));
 
         licensetxt.setOnClickListener(new View.OnClickListener() {
             @Override

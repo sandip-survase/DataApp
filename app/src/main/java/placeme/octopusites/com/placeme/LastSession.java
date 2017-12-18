@@ -55,20 +55,20 @@ public class LastSession extends AppCompatActivity {
         detaildetailtxt=(TextView)findViewById(R.id.detaildetailtxt);
         detaildetaillasttxt=(TextView)findViewById(R.id.detaildetaillasttxt);
 
-        activetxt.setTypeface(MyConstants.getBold(this));
-        lasttxt.setTypeface(MyConstants.getBold(this));
-        detaildetailtxt.setTypeface(MyConstants.getLight(this));
-        detaildetaillasttxt.setTypeface(MyConstants.getLight(this));
-        countrytxt.setTypeface(MyConstants.getBold(this));
-        platformtxt.setTypeface(MyConstants.getBold(this));
-        countrylasttxt.setTypeface(MyConstants.getBold(this));
-        platformlasttxt.setTypeface(MyConstants.getBold(this));
-        iptxt.setTypeface(MyConstants.getBold(this));
-        iplasttxt.setTypeface(MyConstants.getBold(this));
-        ipiptxt.setTypeface(MyConstants.getLight(this));
-        ipiplasttxt.setTypeface(MyConstants.getLight(this));
-        lastaccessedtxttxt.setTypeface(MyConstants.getLight(this));
-        lastaccessedtxt.setTypeface(MyConstants.getBold(this));
+        activetxt.setTypeface(Z.getBold(this));
+        lasttxt.setTypeface(Z.getBold(this));
+        detaildetailtxt.setTypeface(Z.getLight(this));
+        detaildetaillasttxt.setTypeface(Z.getLight(this));
+        countrytxt.setTypeface(Z.getBold(this));
+        platformtxt.setTypeface(Z.getBold(this));
+        countrylasttxt.setTypeface(Z.getBold(this));
+        platformlasttxt.setTypeface(Z.getBold(this));
+        iptxt.setTypeface(Z.getBold(this));
+        iplasttxt.setTypeface(Z.getBold(this));
+        ipiptxt.setTypeface(Z.getLight(this));
+        ipiplasttxt.setTypeface(Z.getLight(this));
+        lastaccessedtxttxt.setTypeface(Z.getLight(this));
+        lastaccessedtxt.setTypeface(Z.getBold(this));
 
 
 
@@ -104,7 +104,7 @@ public class LastSession extends AppCompatActivity {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));
-            json = jParser.makeHttpRequest(MyConstants.url_getsession, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_getsession, "GET", params);
             try {
                 r = json.getString("current");
                 if(r.equals("found"))

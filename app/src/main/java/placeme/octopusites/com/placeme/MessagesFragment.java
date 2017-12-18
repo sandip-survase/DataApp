@@ -239,7 +239,7 @@ public class MessagesFragment extends Fragment {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", usernameenc));
-            json = jParser.makeHttpRequest(MyConstants.url_get_chatrooms, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_get_chatrooms, "GET", params);
             Bitmap map = null;
             try {
 
@@ -347,7 +347,7 @@ public class MessagesFragment extends Fragment {
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority(MyConstants.VPS_IP)
+                .authority(Z.VPS_IP)
                 .path("AESTest/GetImageThumbnail")
                 .appendQueryParameter("u", uname)
                 .build();
@@ -414,7 +414,7 @@ public class MessagesFragment extends Fragment {
 
             try {
 
-                json = jParser.makeHttpRequest(MyConstants.url_getmessagesreadstatus, "GET", params);
+                json = jParser.makeHttpRequest(Z.url_getmessagesreadstatus, "GET", params);
                 unread_count[index] = json.getString("unreadcount");
 
 

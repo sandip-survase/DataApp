@@ -4166,7 +4166,7 @@ public class HR_Experiences extends AppCompatActivity {
             params.add(new BasicNameValuePair("t10", enctodate10));
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_saveHrExperience, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_saveHrExperience, "GET", params);
 
 
             try {

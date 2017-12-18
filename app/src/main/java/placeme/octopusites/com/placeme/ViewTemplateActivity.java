@@ -108,7 +108,7 @@ public class ViewTemplateActivity extends AppCompatActivity {
         protected Bitmap doInBackground(String... urls) {
             Bitmap map = null;
 
-            map = downloadImage(MyConstants.load_resume_page+"?i="+id+"&p="+setFlag);
+            map = downloadImage(Z.load_resume_page+"?i="+id+"&p="+setFlag);
             return map;
         }
 
@@ -168,7 +168,7 @@ public class ViewTemplateActivity extends AppCompatActivity {
             String r=null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("i",id+""));
-            json = jParser.makeHttpRequest(MyConstants.load_resume_pages, "GET", params);
+            json = jParser.makeHttpRequest(Z.load_resume_pages, "GET", params);
             try {
                 String s = json.getString("count");
                 count=Integer.parseInt(s);

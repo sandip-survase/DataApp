@@ -145,10 +145,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         usernameedittext.setTypeface(bold);
         welcometextviewcontext1.setTypeface(bold);
         welcometextviewcontext2.setTypeface(light);
-        MyConstants.fade(this,enteremailimage);
-        MyConstants.fadeandmovedown(this,usernameTextInputLayout);
-        MyConstants.slideinleft1(this,welcometextviewcontext1);
-        MyConstants.slideinleft2(this,welcometextviewcontext2);
+        Z.fade(this,enteremailimage);
+        Z.fadeandmovedown(this,usernameTextInputLayout);
+        Z.slideinleft1(this,welcometextviewcontext1);
+        Z.slideinleft2(this,welcometextviewcontext2);
         usernameedittext.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -174,13 +174,13 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         alumnirl.setVisibility(View.VISIBLE);
         tporl.setVisibility(View.VISIBLE);
         hrrl.setVisibility(View.VISIBLE);
-        MyConstants.slideinleft1(this,rolewelcometextviewcontext1);
-        MyConstants.slideinleft2(this,rolewelcometextviewcontext2);
-        MyConstants.fade(this,rolewelcometextviewcontext3);
-        MyConstants.scale1(this,studentrl);
-        MyConstants.scale2(this,alumnirl);
-        MyConstants.scale3(this,tporl);
-        MyConstants.scale4(this,hrrl);
+        Z.slideinleft1(this,rolewelcometextviewcontext1);
+        Z.slideinleft2(this,rolewelcometextviewcontext2);
+        Z.fade(this,rolewelcometextviewcontext3);
+        Z.scale1(this,studentrl);
+        Z.scale2(this,alumnirl);
+        Z.scale3(this,tporl);
+        Z.scale4(this,hrrl);
     }
     public void animateStudentRl(){
 
@@ -308,8 +308,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         welcomepasswordwelcometextviewcontext1.setTypeface(bold);
         welcomepasswordwelcometextviewcontext2.setTypeface(light);
-        passwordedittext.setTypeface(MyConstants.getBold(this));
-        welcomepasswordTextInputLayout.setTypeface(MyConstants.getLight(this));
+        passwordedittext.setTypeface(Z.getBold(this));
+        welcomepasswordTextInputLayout.setTypeface(Z.getLight(this));
 
         try {
             welcomepasswordwelcometextviewcontext1.setText("Welcome back "+Decrypt(foundFname,digest1,digest2)+" !");
@@ -318,10 +318,10 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         }
 
 
-        MyConstants.fade(this,welcomepasswordenterpasswordimage);
-        MyConstants.fadeandmovedown(this,welcomepasswordTextInputLayout);
-        MyConstants.slideinleft1(this,welcomepasswordwelcometextviewcontext1);
-        MyConstants.slideinleft2(this,welcomepasswordwelcometextviewcontext2);
+        Z.fade(this,welcomepasswordenterpasswordimage);
+        Z.fadeandmovedown(this,welcomepasswordTextInputLayout);
+        Z.slideinleft1(this,welcomepasswordwelcometextviewcontext1);
+        Z.slideinleft2(this,welcomepasswordwelcometextviewcontext2);
     }
 
     public void setWelComeCreatePasswordView(View v) {
@@ -330,8 +330,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         enterPassword = (EditText) WelcomeCreatePasswordView.findViewById(R.id.enterPassword);
         confirmPassword = (EditText) WelcomeCreatePasswordView.findViewById(R.id.confirmPassword);
 //minor
-        enterPassword.setTypeface(MyConstants.getBold(this));
-        confirmPassword.setTypeface(MyConstants.getBold(this));
+        enterPassword.setTypeface(Z.getBold(this));
+        confirmPassword.setTypeface(Z.getBold(this));
         enterPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -374,8 +374,8 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         confirmPasswordTextInputLayout.setTypeface(light);
 
         createpasswordwelcometextviewcontext2.setText("\"Treat your password like your toothbrush. Don't let anybody else use it, and get a new one every six months\" - Clifford Stoll");
-        createpasswordwelcometextviewcontext1.setTypeface(MyConstants.getBold(this));
-        createpasswordwelcometextviewcontext2.setTypeface(MyConstants.getBoldItalic(this));
+        createpasswordwelcometextviewcontext1.setTypeface(Z.getBold(this));
+        createpasswordwelcometextviewcontext2.setTypeface(Z.getBoldItalic(this));
 
         enterpasswordimage=(ImageView) WelcomeCreatePasswordView.findViewById(R.id.enterpasswordimage);
 
@@ -391,9 +391,9 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         updateProgress = (ProgressBar)  WelComeIntroView.findViewById(R.id.updateProgress);
         ImageButton iv_camera = (ImageButton) WelComeIntroView.findViewById(R.id.iv_camera);
 
-        fnameEditText.setTypeface(MyConstants.getBold(this));
-        lnameEditText.setTypeface(MyConstants.getBold(this));
-        mobileEditText.setTypeface(MyConstants.getBold(this));
+        fnameEditText.setTypeface(Z.getBold(this));
+        lnameEditText.setTypeface(Z.getBold(this));
+        mobileEditText.setTypeface(Z.getBold(this));
 
         TextView getProfilePictureMsg=(TextView)WelComeIntroView.findViewById(R.id.getProfilePictureMsg);
         TextView welcometextviewcontext2=(TextView)WelComeIntroView.findViewById(R.id.welcometextviewcontext2);
@@ -403,27 +403,27 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         lnameTextInputLayout=(TextInputLayout)WelComeIntroView.findViewById(R.id.lnameTextInputLayout);
         mobileTextInputLayout=(TextInputLayout)WelComeIntroView.findViewById(R.id.mobileTextInputLayout);
 
-        MyConstants.slideinleft1(this,getProfilePictureMsg);
-        MyConstants.slideinleft2(this,welcometextviewcontext2);
+        Z.slideinleft1(this,getProfilePictureMsg);
+        Z.slideinleft2(this,welcometextviewcontext2);
 
-        MyConstants.fade(this,welcometextviewcontext3);
-        MyConstants.fade(this,profilePicture);
-        MyConstants.fade(this,iv_camera);
-        MyConstants.fadeandmovedown(this,fnameTextInputLayout);
-        MyConstants.fadeandmovedown(this,lnameTextInputLayout);
-        MyConstants.fadeandmovedown(this,mobileTextInputLayout);
+        Z.fade(this,welcometextviewcontext3);
+        Z.fade(this,profilePicture);
+        Z.fade(this,iv_camera);
+        Z.fadeandmovedown(this,fnameTextInputLayout);
+        Z.fadeandmovedown(this,lnameTextInputLayout);
+        Z.fadeandmovedown(this,mobileTextInputLayout);
 
         Log.d("TAG", "role: animation called page 2");
 
-        fnameTextInputLayout.setTypeface(MyConstants.getLight(this));
-        lnameTextInputLayout.setTypeface(MyConstants.getLight(this));
-        mobileTextInputLayout.setTypeface(MyConstants.getLight(this));
+        fnameTextInputLayout.setTypeface(Z.getLight(this));
+        lnameTextInputLayout.setTypeface(Z.getLight(this));
+        mobileTextInputLayout.setTypeface(Z.getLight(this));
 
         welcometextviewcontext2.setText("\"A good photograph is knowing where to stand.\" - Ansel Adams");
 
-        getProfilePictureMsg.setTypeface(MyConstants.getBold(this));
-        welcometextviewcontext2.setTypeface(MyConstants.getBoldItalic(this));
-        welcometextviewcontext3.setTypeface(MyConstants.getLight(this));
+        getProfilePictureMsg.setTypeface(Z.getBold(this));
+        welcometextviewcontext2.setTypeface(Z.getBoldItalic(this));
+        welcometextviewcontext3.setTypeface(Z.getLight(this));
 
 
         iv_camera.setOnClickListener(new View.OnClickListener() {
@@ -492,33 +492,33 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         updateProgress = (ProgressBar)  WelComeIntroThroughAdminView.findViewById(R.id.updateProgress);
         ImageButton iv_camera = (ImageButton) WelComeIntroThroughAdminView.findViewById(R.id.iv_camera);
 
-        fnameEditText.setTypeface(MyConstants.getBold(this));
-        lnameEditText.setTypeface(MyConstants.getBold(this));
-        mobileEditText.setTypeface(MyConstants.getBold(this));
+        fnameEditText.setTypeface(Z.getBold(this));
+        lnameEditText.setTypeface(Z.getBold(this));
+        mobileEditText.setTypeface(Z.getBold(this));
 
         TextView getProfilePictureMsg=(TextView)WelComeIntroThroughAdminView.findViewById(R.id.getProfilePictureMsg);
         adminInfo = (TextView) WelComeIntroThroughAdminView.findViewById(R.id.adminInfo);
         TextView welcometextviewcontext3=(TextView)WelComeIntroThroughAdminView.findViewById(R.id.welcometextviewcontext3);
 
-        getProfilePictureMsg.setTypeface(MyConstants.getBold(this));
-        adminInfo.setTypeface(MyConstants.getBoldItalic(this));
+        getProfilePictureMsg.setTypeface(Z.getBold(this));
+        adminInfo.setTypeface(Z.getBoldItalic(this));
 
         fnameTextInputLayout=(TextInputLayout)WelComeIntroThroughAdminView.findViewById(R.id.fnameTextInputLayout);
         lnameTextInputLayout=(TextInputLayout)WelComeIntroThroughAdminView.findViewById(R.id.lnameTextInputLayout);
         mobileTextInputLayout=(TextInputLayout)WelComeIntroThroughAdminView.findViewById(R.id.mobileTextInputLayout);
 
-        MyConstants.slideinleft1(this,getProfilePictureMsg);
-        MyConstants.slideinleft2(this,adminInfo);
-        MyConstants.fade(this,welcometextviewcontext3);
-        MyConstants.fade(this,profilePicture);
-        MyConstants.fade(this,iv_camera);
-        MyConstants.fadeandmovedown(this,fnameTextInputLayout);
-        MyConstants.fadeandmovedown(this,lnameTextInputLayout);
-        MyConstants.fadeandmovedown(this,mobileTextInputLayout);
+        Z.slideinleft1(this,getProfilePictureMsg);
+        Z.slideinleft2(this,adminInfo);
+        Z.fade(this,welcometextviewcontext3);
+        Z.fade(this,profilePicture);
+        Z.fade(this,iv_camera);
+        Z.fadeandmovedown(this,fnameTextInputLayout);
+        Z.fadeandmovedown(this,lnameTextInputLayout);
+        Z.fadeandmovedown(this,mobileTextInputLayout);
 
-        fnameTextInputLayout.setTypeface(MyConstants.getLight(this));
-        lnameTextInputLayout.setTypeface(MyConstants.getLight(this));
-        mobileTextInputLayout.setTypeface(MyConstants.getLight(this));
+        fnameTextInputLayout.setTypeface(Z.getLight(this));
+        lnameTextInputLayout.setTypeface(Z.getLight(this));
+        mobileTextInputLayout.setTypeface(Z.getLight(this));
 
         iv_camera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -594,13 +594,13 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         rolewelcometextviewcontext2.setText("\"There are many roles you can play in life, but you know there is one role you must play: TO BE YOURSELF !\"");
 
-        rolewelcometextviewcontext1.setTypeface(MyConstants.getBold(this));
-        rolewelcometextviewcontext2.setTypeface(MyConstants.getBoldItalic(this));
-        rolewelcometextviewcontext3.setTypeface(MyConstants.getLight(this));
-        studentrole.setTypeface(MyConstants.getBold(this));
-        alumnirole.setTypeface(MyConstants.getBold(this));
-        tporole.setTypeface(MyConstants.getBold(this));
-        hrrole.setTypeface(MyConstants.getBold(this));
+        rolewelcometextviewcontext1.setTypeface(Z.getBold(this));
+        rolewelcometextviewcontext2.setTypeface(Z.getBoldItalic(this));
+        rolewelcometextviewcontext3.setTypeface(Z.getLight(this));
+        studentrole.setTypeface(Z.getBold(this));
+        alumnirole.setTypeface(Z.getBold(this));
+        tporole.setTypeface(Z.getBold(this));
+        hrrole.setTypeface(Z.getBold(this));
 
 
         studentrl=(CardView)WelcomeRoleView.findViewById(R.id.studentrl);
@@ -627,11 +627,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 tporl.setVisibility(View.VISIBLE);
                 hrrl.setVisibility(View.VISIBLE);
 
-                MyConstants.scaledown(Welcome.this,alumnirl);
-                MyConstants.scaledown(Welcome.this,tporl);
-                MyConstants.scaledown(Welcome.this,hrrl);
-                MyConstants.slideoutleft2(Welcome.this,rolewelcometextviewcontext2);
-                MyConstants.fadeout(Welcome.this,rolewelcometextviewcontext3);
+                Z.scaledown(Welcome.this,alumnirl);
+                Z.scaledown(Welcome.this,tporl);
+                Z.scaledown(Welcome.this,hrrl);
+                Z.slideoutleft2(Welcome.this,rolewelcometextviewcontext2);
+                Z.fadeout(Welcome.this,rolewelcometextviewcontext3);
                 animateStudentRl();
 
             }
@@ -651,11 +651,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 tporl.setVisibility(View.VISIBLE);
                 hrrl.setVisibility(View.VISIBLE);
 
-                MyConstants.scaledown(Welcome.this,studentrl);
-                MyConstants.scaledown(Welcome.this,tporl);
-                MyConstants.scaledown(Welcome.this,hrrl);
-                MyConstants.slideoutleft2(Welcome.this,rolewelcometextviewcontext2);
-                MyConstants.fadeout(Welcome.this,rolewelcometextviewcontext3);
+                Z.scaledown(Welcome.this,studentrl);
+                Z.scaledown(Welcome.this,tporl);
+                Z.scaledown(Welcome.this,hrrl);
+                Z.slideoutleft2(Welcome.this,rolewelcometextviewcontext2);
+                Z.fadeout(Welcome.this,rolewelcometextviewcontext3);
                 animateAlumniRl();
 
             }
@@ -674,11 +674,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 tporl.setVisibility(View.GONE);
                 hrrl.setVisibility(View.VISIBLE);
 
-                MyConstants.scaledown(Welcome.this,studentrl);
-                MyConstants.scaledown(Welcome.this,alumnirl);
-                MyConstants.scaledown(Welcome.this,hrrl);
-                MyConstants.slideoutleft2(Welcome.this,rolewelcometextviewcontext2);
-                MyConstants.fadeout(Welcome.this,rolewelcometextviewcontext3);
+                Z.scaledown(Welcome.this,studentrl);
+                Z.scaledown(Welcome.this,alumnirl);
+                Z.scaledown(Welcome.this,hrrl);
+                Z.slideoutleft2(Welcome.this,rolewelcometextviewcontext2);
+                Z.fadeout(Welcome.this,rolewelcometextviewcontext3);
                 animateTPORl();
 
             }
@@ -697,11 +697,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 tporl.setVisibility(View.VISIBLE);
                 hrrl.setVisibility(View.GONE);
 
-                MyConstants.scaledown(Welcome.this,studentrl);
-                MyConstants.scaledown(Welcome.this,alumnirl);
-                MyConstants.scaledown(Welcome.this,tporl);
-                MyConstants.slideoutleft2(Welcome.this,rolewelcometextviewcontext2);
-                MyConstants.fadeout(Welcome.this,rolewelcometextviewcontext3);
+                Z.scaledown(Welcome.this,studentrl);
+                Z.scaledown(Welcome.this,alumnirl);
+                Z.scaledown(Welcome.this,tporl);
+                Z.slideoutleft2(Welcome.this,rolewelcometextviewcontext2);
+                Z.fadeout(Welcome.this,rolewelcometextviewcontext3);
                 animateHRRl();
 
             }
@@ -858,11 +858,11 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                 }
                 if(currentPosition==3&&path==2)
                 {
-                    MyConstants.fade(Welcome.this,enterpasswordimage);
-                    MyConstants.slideinleft1(Welcome.this,createpasswordwelcometextviewcontext1);
-                    MyConstants.slideinleft2(Welcome.this,createpasswordwelcometextviewcontext2);
-                    MyConstants.fadeandmovedown(Welcome.this,passwordTextInputLayout);
-                    MyConstants.fadeandmovedown(Welcome.this,confirmPasswordTextInputLayout);
+                    Z.fade(Welcome.this,enterpasswordimage);
+                    Z.slideinleft1(Welcome.this,createpasswordwelcometextviewcontext1);
+                    Z.slideinleft2(Welcome.this,createpasswordwelcometextviewcontext2);
+                    Z.fadeandmovedown(Welcome.this,passwordTextInputLayout);
+                    Z.fadeandmovedown(Welcome.this,confirmPasswordTextInputLayout);
                 }
             }
 
@@ -1182,7 +1182,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             }
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_SaveWelcomeIntroData, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_SaveWelcomeIntroData, "GET", params);
             try {
                 r = json.getString("info");
 
@@ -1223,7 +1223,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", inputUcode));       //0
 
-            json = jParser.makeHttpRequest(MyConstants.url_checkUcode, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_checkUcode, "GET", params);
             Log.d("TAG", "checkUcode result: " + json);
             try {
                 r = json.getString("info");
@@ -1263,7 +1263,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             Log.d("TAG", "doInBackground: enc role ========================  " + encrole);
 
 
-            json = jParser.makeHttpRequest(MyConstants.url_SaveStudentFnameLnameMobile, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_SaveStudentFnameLnameMobile, "GET", params);
             try {
                 r = json.getString("info");
             } catch (Exception e) {
@@ -1308,7 +1308,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             params.add(new BasicNameValuePair("p", p));
             params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken"))); //5
 
-            json = jParser.makeHttpRequest(MyConstants.url_create_firebase, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_create_firebase, "GET", params);
             try {
                 resultofop = json.getString("info");
                 Log.d("TAG", " CreateFirebaseUser json : " + json);
@@ -1523,7 +1523,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             params.add(new BasicNameValuePair("f", encfname));                  //1
             params.add(new BasicNameValuePair("l", enclname));                  //2
 
-            json = jParser.makeHttpRequest(MyConstants.url_SendActivationCode, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_SendActivationCode, "GET", params);
             try {
                 s = json.getString("info");
                 Log.d("TAG2", "json: " + json);
@@ -1597,7 +1597,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encUsersName));       //0
 
-            json = jParser.makeHttpRequest(MyConstants.url_Welcome, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_Welcome, "GET", params);
             try {
 
                 s = json.getString("info");
@@ -1702,7 +1702,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
                     params.add(new BasicNameValuePair("p", mPassword));
                     Log.d("TAG", "UserLoginTask user input : " + mEmail + " \t pass : " + mPassword);
 //                params.add(new BasicNameValuePair("t", new SharedPrefUtil(Welcome.this.getApplicationContext()).getString("firebaseToken")));
-                    json = jParser.makeHttpRequest(MyConstants.url_login, "GET", params);
+                    json = jParser.makeHttpRequest(Z.url_login, "GET", params);
                     String s = null;
 
                     s = json.getString("info");
@@ -1925,7 +1925,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
-            HttpURLConnection localHttpURLConnection = (HttpURLConnection) new URL(MyConstants.IP).openConnection();
+            HttpURLConnection localHttpURLConnection = (HttpURLConnection) new URL(Z.IP).openConnection();
             localHttpURLConnection.setConnectTimeout(1000);
             localHttpURLConnection.connect();
             return true;
@@ -1942,7 +1942,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encUsersName));    //0
             params.add(new BasicNameValuePair("m", getDeviceName()));      //1
-            json = jParser.makeHttpRequest(MyConstants.url_savesessiondetails, "GET", params);
+            json = jParser.makeHttpRequest(Z.url_savesessiondetails, "GET", params);
             try {
                 r = json.getString("info");
 
@@ -2125,7 +2125,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
         protected String doInBackground(String... param) {
             try {
                 File sourceFile = new File(filepath);
-                MultipartUtility multipart = new MultipartUtility(MyConstants.upload_profile, "UTF-8");
+                MultipartUtility multipart = new MultipartUtility(Z.upload_profile, "UTF-8");
                 multipart.addFormField("u", encUsersName);
                 if (filename != "") {
                     multipart.addFormField("f", filename);
@@ -2191,7 +2191,7 @@ public class Welcome extends AppCompatActivity implements ImagePickerCallback {
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority(MyConstants.VPS_IP)
+                .authority(Z.VPS_IP)
                 .path("AESTest/GetImage")
                 .appendQueryParameter("u", encUsersName)
                 .build();
