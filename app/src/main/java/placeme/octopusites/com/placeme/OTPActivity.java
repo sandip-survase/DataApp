@@ -102,7 +102,7 @@ public class OTPActivity extends AppCompatActivity {
             public void onClick(View view) {
                 resendotp.setVisibility(View.GONE);
 
-                new ResendOTP().execute();
+                new ResendOTP().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
         });
 
@@ -156,7 +156,7 @@ public class OTPActivity extends AppCompatActivity {
                 } catch (Exception e) {
                 }
 
-                new VerifyOTP().execute();
+                new VerifyOTP().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             }
         });
     }
@@ -197,7 +197,7 @@ public class OTPActivity extends AppCompatActivity {
 
             if (resultofop.equals("success")) {
                 //clear expired otp
-                new ClearOTPTask().execute();
+                new ClearOTPTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
 
                 if (activationMessageflag == false) {
@@ -212,22 +212,23 @@ public class OTPActivity extends AppCompatActivity {
                     String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
                     String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
 
-//                    new CreateFirebaseUser(u, p).execute();
+//                    new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                     Toast.makeText(OTPActivity.this, "Successfully Registered..!", Toast.LENGTH_LONG).show();
 
 
                     if (role.equals("student")) {
-                        new CreateFirebaseUser(u, p).execute();
-                        new AddStudentUnderAdmin().execute();
+                        Log.d("TAG", "onPostExecute: firebase inpute username = "+u+ "          pass "+p);
+                        new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                        new AddStudentUnderAdmin().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                         startActivity(new Intent(OTPActivity.this, MainActivity.class));
                         finish();
                     } else if (role.equals("admin")) {
-                        new AddStudentUnderAdmin().execute();
+                        new AddStudentUnderAdmin().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                         startActivity(new Intent(OTPActivity.this, AdminActivity.class));
                         finish();
                     } else if (role.equals("alumni")) {
-                        new CreateFirebaseUser(u, p).execute();
+                        new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                         startActivity(new Intent(OTPActivity.this, AlumniActivity.class));
                         finish();
                     } else if (role.equals("hr")) {
@@ -253,7 +254,7 @@ public class OTPActivity extends AppCompatActivity {
 //                String u = MySharedPreferencesManager.getUsername(OTPActivity.this);
 //                String p = MySharedPreferencesManager.getPassword(OTPActivity.this);
 //
-//                new CreateFirebaseUser(u, p).execute();
+//                new CreateFirebaseUser(u, p).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
                 startActivity(new Intent(OTPActivity.this, WelcomeGenrateCodeActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 finish();

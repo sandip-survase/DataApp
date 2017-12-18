@@ -128,8 +128,11 @@ public class LoginActivity extends AppCompatActivity {
         if (otp != null) {
             if (otp.equals("yes")) {
                 startActivity(new Intent(getApplicationContext(), OTPActivity.class));
+
             }
         }
+
+
 
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -207,9 +210,7 @@ public class LoginActivity extends AppCompatActivity {
         String newUserCheck = getIntent().getStringExtra("showOTP");
         if (newUserCheck!=null && newUserCheck.equals("yes")) {
             startActivity(new Intent(LoginActivity.this, OTPActivity.class));
-        }
-
-        if(MySharedPreferencesManager.getUsername(this)!=null&&MySharedPreferencesManager.getPassword(this)!=null)
+        }else if(MySharedPreferencesManager.getUsername(this)!=null&&MySharedPreferencesManager.getPassword(this)!=null)
             attemptLogin(MySharedPreferencesManager.getUsername(this),MySharedPreferencesManager.getPassword(this));
     }
 
