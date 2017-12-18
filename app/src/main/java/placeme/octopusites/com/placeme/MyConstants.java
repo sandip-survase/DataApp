@@ -15,6 +15,7 @@ public class MyConstants {
     public static final String VPS_IP = "104.237.4.236";   // for authority
     public static final String IP = "http://104.237.4.236/";
 
+    public static final String IP_8080 = "http://104.237.4.236:8080/";
     private static final String IP_100 = "http://192.168.100.100/";
     private static final String IP_10 = "http://192.168.100.10/";
     private static final String IP_20 = "http://192.168.100.20/";
