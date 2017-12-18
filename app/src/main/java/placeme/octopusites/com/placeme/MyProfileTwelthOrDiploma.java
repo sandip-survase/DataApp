@@ -248,6 +248,7 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
         coursecount = getResources().getStringArray(R.array.dcourses).length;
         courses = new String[coursecount];
         courses = getResources().getStringArray(R.array.dcourses);
+
         ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, R.layout.spinner_item, courses) {
         @Override
         public boolean isEnabled(int position) {
@@ -2239,7 +2240,6 @@ public class MyProfileTwelthOrDiploma extends AppCompatActivity {
 
         dcourse.setSelection(0);
         duniversity.setSelection(0);
-        dcourse.setSelection(0);
 
         s.setMarkssem1diploma("");
         s.setOutofsem1diploma("");
