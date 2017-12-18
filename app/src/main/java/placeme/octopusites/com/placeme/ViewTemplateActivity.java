@@ -2,17 +2,12 @@ package placeme.octopusites.com.placeme;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -37,8 +32,7 @@ public class ViewTemplateActivity extends AppCompatActivity {
     JSONParser jParser = new JSONParser();
     JSONObject json;
     String resultofop="",username;
-    private static String load_resume_pages = "http://192.168.100.100/AESTest/GetAvailableResumePages";
-    private static String load_resume_page= "http://192.168.100.100/AESTest/GetResumePage";
+
     ProgressBar progressbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +41,14 @@ public class ViewTemplateActivity extends AppCompatActivity {
 
         id=getIntent().getIntExtra("key",0);
 
-        Window window = ViewTemplateActivity.this.getWindow();
-        int sdklevel=Integer.valueOf(android.os.Build.VERSION.SDK);
-        if(sdklevel>=21) {
-
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(ViewTemplateActivity.this.getResources().getColor(R.color.background));
-        }
+//        Window window = ViewTemplateActivity.this.getWindow();
+//        int sdklevel=Integer.valueOf(android.os.Build.VERSION.SDK);
+//        if(sdklevel>=21) {
+//
+//            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//            window.setStatusBarColor(ViewTemplateActivity.this.getResources().getColor(R.color.background));
+//        }
 
         main=(ImageView)findViewById(R.id.main);
 
@@ -114,7 +108,7 @@ public class ViewTemplateActivity extends AppCompatActivity {
         protected Bitmap doInBackground(String... urls) {
             Bitmap map = null;
 
-            map = downloadImage(load_resume_page+"?i="+id+"&p="+setFlag);
+            map = downloadImage(MyConstants.load_resume_page+"?i="+id+"&p="+setFlag);
             return map;
         }
 
@@ -174,7 +168,7 @@ public class ViewTemplateActivity extends AppCompatActivity {
             String r=null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("i",id+""));
-            json = jParser.makeHttpRequest(load_resume_pages, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.load_resume_pages, "GET", params);
             try {
                 String s = json.getString("count");
                 count=Integer.parseInt(s);

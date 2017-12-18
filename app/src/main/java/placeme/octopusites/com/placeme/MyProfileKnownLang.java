@@ -1,10 +1,8 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,8 +16,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -39,7 +35,6 @@ import java.util.List;
 import placeme.octopusites.com.placeme.modal.KnownLangs;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 
 public class MyProfileKnownLang extends AppCompatActivity {
@@ -49,8 +44,6 @@ public class MyProfileKnownLang extends AppCompatActivity {
     View addmorelangView;
     JSONObject json;
     JSONParser jParser = new JSONParser();
-    //    private static String url_getlanguages = "http://192.168.100.10/AESTest/GetLanguages";
-//    private static String url_savelanguages= "http://192.168.100.10/AESTest/SaveLanguages";
     String languages[],codes[];
     List<String> languageslist = new ArrayList<String>();
     List<String> level = new ArrayList<String>();

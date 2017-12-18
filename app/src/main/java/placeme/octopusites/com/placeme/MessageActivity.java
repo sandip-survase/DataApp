@@ -8,21 +8,17 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.*;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
 
 import com.bumptech.glide.signature.ObjectKey;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,8 +41,6 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
-
 public class MessageActivity extends AppCompatActivity {
 
     EditText mETxtMessage;
@@ -58,12 +52,8 @@ public class MessageActivity extends AppCompatActivity {
     private String senderUID,recieverUID, email, firebaseToken;
     private ChatRecyclerAdapter mAdapter;
     DatabaseHelper helper = new DatabaseHelper(this);
-    private static String url_savechat= "http://192.168.100.100/PlaceMe/SaveChat";
-    private static String url_loadchat= "http://192.168.100.100/PlaceMe/LoadChat";
-    private static String url_push= "http://192.168.100.100/PlaceMe/SendPushNotification";
-    private static String url_markread= "http://192.168.100.100/PlaceMe/MarkRead";
-    private static String url_getlastpushed= "http://192.168.100.100/PlaceMe/GetLastPushedMessage";
-    private static String url_changereadstatus= "http://192.168.100.100/PlaceMe/ChangeMessageReadStatus";
+
+
     JSONObject json;
     JSONParser jParser = new JSONParser();
     String resultofop="";
@@ -128,7 +118,7 @@ public class MessageActivity extends AppCompatActivity {
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority("192.168.100.100")
+                .authority(MyConstants.VPS_IP)
                 .path("AESTest/GetImageThumbnail")
                 .appendQueryParameter("u", encusername)
                 .build();
@@ -402,7 +392,7 @@ public class MessageActivity extends AppCompatActivity {
 
                 if(sender.equals(username)) {
                     tempflag=0;
-                    json = jParser.makeHttpRequest(url_savechat, "GET", params);
+                    json = jParser.makeHttpRequest(MyConstants.url_savechat, "GET", params);
                     String s = null;
                 }
                 else
@@ -410,7 +400,7 @@ public class MessageActivity extends AppCompatActivity {
                     tempflag=1;
                     if(helper.isChatRoomActive(senderUID,recieverUID)) {
                         tempflag=2;
-                        json = jParser.makeHttpRequest(url_markread, "GET", params);
+                        json = jParser.makeHttpRequest(MyConstants.url_markread, "GET", params);
                     }
                 }
 
@@ -476,7 +466,7 @@ public class MessageActivity extends AppCompatActivity {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("s", sender));    //0
                 params.add(new BasicNameValuePair("r", receiver));  //1
-                json = jParser.makeHttpRequest(url_getlastpushed, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_GetLastPushedMessage, "GET", params);
 
                 if(json.getString("info").equals("success"))
                 {
@@ -542,7 +532,7 @@ public class MessageActivity extends AppCompatActivity {
                 params.add(new BasicNameValuePair("s", sender));
                 params.add(new BasicNameValuePair("r", receiver));
 
-                json = jParser.makeHttpRequest(url_changereadstatus, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_ChangeMessageReadStatus, "GET", params);
 
                 result = json.getString("info");
 
@@ -592,7 +582,7 @@ public class MessageActivity extends AppCompatActivity {
                 params.add(new BasicNameValuePair("r", receiver));
                 params.add(new BasicNameValuePair("m", message));
                 params.add(new BasicNameValuePair("t", timestamp));
-                json = jParser.makeHttpRequest(url_push, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_SendPushNotification, "GET", params);
 
                 result = json.getString("info");
 
@@ -622,7 +612,7 @@ public class MessageActivity extends AppCompatActivity {
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("s", senderUID));
                 params.add(new BasicNameValuePair("r", recieverUID));
-                json = jParser.makeHttpRequest(url_loadchat, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_loadchat, "GET", params);
                 String s = null;
                 resultofop = json.getString("chatroom");
                 if(resultofop.equals("chatroom1")||resultofop.equals("chatroom2"))

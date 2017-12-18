@@ -1,21 +1,18 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.support.design.widget.TextInputEditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +32,7 @@ public class ReportBug extends AppCompatActivity {
     Button reportbug_button;
     JSONObject json;
     JSONParser jParser = new JSONParser();
-    private static String url_report= "http://192.168.100.100/AESTest/ReportBug";
+
 
     String digest1,digest2;
     TextInputEditText title,comments;
@@ -169,7 +166,7 @@ public class ReportBug extends AppCompatActivity {
             params.add(new BasicNameValuePair("u", username));
             params.add(new BasicNameValuePair("t", enctitle));
             params.add(new BasicNameValuePair("c", enccomments));
-            json = jParser.makeHttpRequest(url_report, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_report, "GET", params);
             try {
                 r = json.getString("info");
 

@@ -3,7 +3,6 @@ package placeme.octopusites.com.placeme;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -49,7 +48,6 @@ public class MyProfilePublications extends AppCompatActivity {
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-    //    private static String url_savepublications= "http://192.168.100.10/AESTest/SavePublications";
     View trash1selectionview, trash2selectionview, trash3selectionview, trash4selectionview, trash5selectionview, trash6selectionview, trash7selectionview, trash8selectionview, trash9selectionview, trash10selectionview;
     int edittedFlag = 0;
     ;

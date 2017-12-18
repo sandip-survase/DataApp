@@ -159,8 +159,6 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
     int crop_flag=0;
     String reciever_username[],reciever_uid[];
     String unread_count[];
-    private static String url_get_chatrooms = "http://192.168.100.100/PlaceMe/GetChatRooms";
-    private static String url_getmessagesreadstatus= "http://192.168.100.100/PlaceMe/GetReadStatusOfMessages";
     int count;
     int unreadMessageCount=0;
     String sender_uid;
@@ -1353,7 +1351,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));
-            json = jParser.makeHttpRequest(url_get_chatrooms, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_get_chatrooms, "GET", params);
 
             try {
 
@@ -1434,7 +1432,7 @@ public class MainActivity extends AppCompatActivity implements ImagePickerCallba
 
             try {
 
-                json = jParser.makeHttpRequest(url_getmessagesreadstatus, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.url_getmessagesreadstatus, "GET", params);
                 unread_count[index] = json.getString("unreadcount");
 
 

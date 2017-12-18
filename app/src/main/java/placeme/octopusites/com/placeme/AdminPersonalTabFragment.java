@@ -1,15 +1,10 @@
 package placeme.octopusites.com.placeme;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
-
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -23,7 +18,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
-import android.support.design.widget.TextInputEditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -67,9 +61,6 @@ public class AdminPersonalTabFragment extends Fragment {
     TextView gendertxt,caddrtxt,paddrtxt,loctxt;
     JSONObject json;
     JSONParser jParser = new JSONParser();
-
-
-//    private static String url_savedata = "http://192.168.100.100/AESTest/SaveAdminPersonal";
 
 
 

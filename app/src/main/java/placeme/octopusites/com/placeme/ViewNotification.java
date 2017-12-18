@@ -1,29 +1,20 @@
 package placeme.octopusites.com.placeme;
 
 import android.app.DownloadManager;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -33,8 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static placeme.octopusites.com.placeme.AES4all.Decrypt;
-import static placeme.octopusites.com.placeme.AES4all.decrypt;
-import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
 
 
 public class ViewNotification extends AppCompatActivity {
@@ -271,7 +260,7 @@ public class ViewNotification extends AppCompatActivity {
     {
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .encodedAuthority("192.168.100.100:8080")
+                .encodedAuthority(MyConstants.VPS_IP)
                 .path("CreateNotificationTemp/DownloadAttachmentFiles")
                 .appendQueryParameter("u", username)
                 .appendQueryParameter("id", id)

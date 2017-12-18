@@ -1,10 +1,8 @@
 package placeme.octopusites.com.placeme;
 
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,7 +19,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -44,7 +41,6 @@ import java.util.List;
 import placeme.octopusites.com.placeme.modal.Experiences;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 import static placeme.octopusites.com.placeme.HrCompanyDetailsTabFragment.HRlog;
 
 
@@ -79,7 +75,6 @@ public class HrExperiencesTabFragment extends Fragment {
     SwitchCompat switch1, switch2, switch3, switch4, switch5, switch6, switch7, switch8, switch9, switch10;
     boolean blnswitch1, blnswitch2, blnswitch3, blnswitch4, blnswitch5, blnswitch6, blnswitch7, blnswitch8, blnswitch9, blnswitch10;
     private String username = "";
-//    private final String url_saveHrExperience = "http://192.168.100.10/AESTest/SaveHrExperiences";
     int errorflag = 0;
     byte[] demoKeyBytes, demoIVBytes;
     String sPadding;

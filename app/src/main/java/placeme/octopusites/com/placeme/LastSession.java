@@ -1,17 +1,11 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -23,8 +17,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
-
 public class LastSession extends AppCompatActivity {
 
     TextView countrytxt,platformtxt,iptxt,ipiptxt,ipiplasttxt,countrylasttxt,platformlasttxt,iplasttxt,lastaccessedtxt,lastaccessedtxttxt,activetxt,lasttxt,detaildetailtxt,detaildetaillasttxt;
@@ -32,7 +24,6 @@ public class LastSession extends AppCompatActivity {
     JSONObject json;
     String username;
     JSONParser jParser = new JSONParser();
-    private static String url_getsession= "http://192.168.100.100/AESTest/GetSessionDetails";
 
     int found_current=0,found_last=0;
     @Override
@@ -113,7 +104,7 @@ public class LastSession extends AppCompatActivity {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));
-            json = jParser.makeHttpRequest(url_getsession, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_getsession, "GET", params);
             try {
                 r = json.getString("current");
                 if(r.equals("found"))

@@ -1,21 +1,16 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.support.design.widget.TextInputEditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -28,8 +23,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
+import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 public class EditEmail extends AppCompatActivity {
 
 
@@ -37,7 +32,7 @@ public class EditEmail extends AppCompatActivity {
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-    private static String url_editemail= "http://192.168.100.100/AESTest/EditEmail";
+
     RelativeLayout rl1,rl2;
     View editselectionview;
     Button changeemailbutton;
@@ -49,7 +44,7 @@ public class EditEmail extends AppCompatActivity {
     int otpflag=0;
     String enteredOTP,encOTP;
     TextView primaryemail;
-    private static String url_verifyotp= "http://192.168.100.100/AESTest/VerifyOTPEditEmail";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -187,7 +182,7 @@ public class EditEmail extends AppCompatActivity {
             params.add(new BasicNameValuePair("e",encnewemail));    //1
             params.add(new BasicNameValuePair("o",encOTP));         //2
 
-            json = jParser.makeHttpRequest(url_verifyotp, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_VerifyOTPEditEmail, "GET", params);
 
             Log.d("TAG", "doInBackground: verifyotp username json : "+json);
             try {
@@ -272,7 +267,7 @@ public class EditEmail extends AppCompatActivity {
             params.add(new BasicNameValuePair("u",username));       //0
             params.add(new BasicNameValuePair("e",encnewemail));             //1
             params.add(new BasicNameValuePair("p",encaccountpassword));             //2
-            json = jParser.makeHttpRequest(url_editemail, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_editemail, "GET", params);
             Log.d("TAG", "SaveEditedEmail json : "+json);
             try {
                 r = json.getString("info");

@@ -1,22 +1,17 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.PorterDuff;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -36,7 +31,7 @@ public class GetMoreResumeTemplates extends AppCompatActivity {
     int resumeIds[];
     String resumeNames[],resumeDownloadStatus[];
 
-    private static String load_resume_ids = "http://192.168.100.100/AESTest/GetResumeIds";
+
     String username;
 
     @Override
@@ -82,7 +77,7 @@ public class GetMoreResumeTemplates extends AppCompatActivity {
             String r=null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",username));
-            json = jParser.makeHttpRequest(load_resume_ids, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.load_resume_ids, "GET", params);
             try {
                 String s = json.getString("count");
                 count=Integer.parseInt(s);

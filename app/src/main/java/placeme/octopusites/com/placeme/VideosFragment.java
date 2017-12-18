@@ -28,7 +28,7 @@ public class VideosFragment extends Fragment {
     private SwipeRefreshLayout swipe_refresh_layout;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-    private static String load_videos = "http://192.168.100.100/PlaceMe/GetVideos";
+
     int count=0;
     int[] id;
     String[] thumbnail,title,description,url;
@@ -77,7 +77,7 @@ public class VideosFragment extends Fragment {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             try {
 
-                json = jParser.makeHttpRequest(load_videos,"GET", params);
+                json = jParser.makeHttpRequest(MyConstants.load_videos,"GET", params);
                 count = Integer.parseInt(json.getString("count"));
 
                 id=new int[count];

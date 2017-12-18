@@ -1,8 +1,6 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -37,7 +35,6 @@ public class ForgotPasswordDialog extends AppCompatActivity {
     JSONObject json;
     String enteredemailorphone,encemailorphone;
     ProgressBar forgotprogress;
-    private static String url_forgotpassword= "http://192.168.100.100/AESTest/ForgotPassword";
     String resultofop="",encUsername;
     String digest1,digest2;
     private static  String android_id;

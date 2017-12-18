@@ -1,11 +1,6 @@
 package placeme.octopusites.com.placeme;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -15,37 +10,31 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
 
 import com.bumptech.glide.signature.ObjectKey;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -64,11 +53,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -148,7 +132,6 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
     //
     public static final int ALUMNI_DATA_CHANGE_RESULT_CODE =222 ;
-    //    private static String url = "http://192.168.100.100/HandleMobileRequests/getimg.jsp?username=";
     private String username="";
     CircleImageView profile;
     boolean doubleBackToExitPressedOnce = false;
@@ -182,9 +165,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
     private String plainusername;
     String filepath="",filename="";
     String directory,pass;
-    private static String upload_profile = "http://192.168.100.100/AESTest/UploadProfile";
     List<String> response;
-    private static String load_student_image = "http://192.168.100.100/AESTest/GetImage";
     //
 
     // noti
@@ -3041,7 +3022,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
         protected String doInBackground(String... param) {
             try {
                 File sourceFile = new File(filepath);
-                MultipartUtility multipart = new MultipartUtility(upload_profile, "UTF-8");
+                MultipartUtility multipart = new MultipartUtility(MyConstants.upload_profile, "UTF-8");
                 multipart.addFormField("u", username);
                 if(filename!="") {
                     multipart.addFormField("f", filename);
@@ -3108,7 +3089,7 @@ public class AlumniActivity extends AppCompatActivity implements ImagePickerCall
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority("192.168.100.100")
+                .authority(MyConstants.VPS_IP)
                 .path("AESTest/GetImage")
                 .appendQueryParameter("u", username)
                 .build();

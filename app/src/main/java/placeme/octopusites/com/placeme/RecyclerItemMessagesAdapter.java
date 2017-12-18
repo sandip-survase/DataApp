@@ -2,7 +2,6 @@ package placeme.octopusites.com.placeme;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
@@ -11,10 +10,9 @@ import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.bumptech.glide.Glide;
+
 import com.bumptech.glide.signature.ObjectKey;
 
 import java.text.DateFormat;
@@ -72,7 +70,7 @@ public class RecyclerItemMessagesAdapter extends RecyclerView.Adapter<RecyclerIt
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority("192.168.100.100")
+                .authority(MyConstants.VPS_IP)
                 .path("AESTest/GetImageThumbnail")
                 .appendQueryParameter("u", item.getUploadedby())
                 .build();

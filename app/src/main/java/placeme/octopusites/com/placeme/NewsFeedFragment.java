@@ -1,24 +1,19 @@
 package placeme.octopusites.com.placeme;
 
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.json.JSONObject;
@@ -26,11 +21,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static placeme.octopusites.com.placeme.R.id.toolbar;
-
 public class NewsFeedFragment extends Fragment {
 
-    // create news link - http://192.168.100.100/CreateNewsFeed/CreateNews
 
     private List<NewsFeedItem> itemList= new ArrayList<>();
     private RecyclerView recyclerView;
@@ -39,7 +31,7 @@ public class NewsFeedFragment extends Fragment {
     private SwipeRefreshLayout swipe_refresh_layout;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-    private static String load_news = "http://192.168.100.100/PlaceMe/GetNews";
+
     int count=0;
     int[] id;
     String[] uploadername,uploaderprofile,status,image,url,timestamp;
@@ -92,7 +84,7 @@ public class NewsFeedFragment extends Fragment {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             try {
 
-                json = jParser.makeHttpRequest(load_news,"GET", params);
+                json = jParser.makeHttpRequest(MyConstants.load_news,"GET", params);
                 count = Integer.parseInt(json.getString("count"));
                 Log.d("TAG", "news count  "+count);
 

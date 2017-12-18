@@ -1,6 +1,5 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -23,7 +22,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -42,7 +40,6 @@ import com.wx.wheelview.widget.WheelView;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -50,7 +47,6 @@ import java.util.List;
 
 import placeme.octopusites.com.placeme.modal.Patents;
 
-import static java.security.AccessController.getContext;
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
 
 public class MyProfilePatents extends AppCompatActivity {
@@ -72,12 +68,10 @@ public class MyProfilePatents extends AppCompatActivity {
     String digest1, digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-    //    private static String url_savepatents= "http://192.168.100.10/AESTest/SavePatents";
     View trash1selectionview, trash2selectionview, trash3selectionview, trash4selectionview, trash5selectionview, trash6selectionview, trash7selectionview, trash8selectionview, trash9selectionview, trash10selectionview;
     int edittedFlag = 0, isInvalidDate = 0;
     int d = 0;
     StudentData s = new StudentData();
-    //    private static String url_getcountries = "http://192.168.100.10/AESTest/GetCountries";
     int countrycount = 0;
     String countries[];
     List<String> countrieslist = new ArrayList<String>();

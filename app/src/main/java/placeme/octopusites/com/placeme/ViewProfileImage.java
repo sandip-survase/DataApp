@@ -2,28 +2,16 @@ package placeme.octopusites.com.placeme;
 
 
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.signature.ObjectKey;
-
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
 
 public class ViewProfileImage extends AppCompatActivity {
     ImageView profile_image;
-//    private static String load_student_image = "http://192.168.100.10/AESTest/GetImage";
 
     String username;
     @Override
@@ -62,7 +50,7 @@ public class ViewProfileImage extends AppCompatActivity {
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority("192.168.100.100")
+                .authority(MyConstants.VPS_IP)
                 .path("AESTest/GetImage")
                 .appendQueryParameter("u", username)
                 .build();

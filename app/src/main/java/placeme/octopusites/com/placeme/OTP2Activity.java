@@ -1,16 +1,13 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
 import android.widget.Button;
-import android.support.design.widget.TextInputEditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,8 +32,7 @@ public class OTP2Activity extends AppCompatActivity {
     String resultofop="";
     TextView resendotp,entertxt,otptxt;
     ProgressBar otpprogress;
-    private static String url_verifyotp= "http://192.168.100.100/AESTest/VerifyOTP";
-    private static String url_resendotp= "http://192.168.100.100/AESTest/ResendOTP";
+
     String digest1,digest2;
     public static final String MyPREFERENCES = "MyPrefs" ;
 
@@ -114,7 +110,7 @@ public class OTP2Activity extends AppCompatActivity {
             params.add(new BasicNameValuePair("ud", encUsername));
             params.add(new BasicNameValuePair("eo", encOTP));
 
-            json = jParser.makeHttpRequest(url_verifyotp, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_verifyotp, "GET", params);
             try {
                 resultofop = json.getString("info");
 
@@ -155,7 +151,7 @@ public class OTP2Activity extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("ud", encUsername));
 
-            json = jParser.makeHttpRequest(url_resendotp, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_resendotp, "GET", params);
             try {
                 resultofop = json.getString("info");
 

@@ -37,9 +37,8 @@ public class SplashScreen extends Activity {
     public static final String Username = "nameKey";
     public static final String Password = "passKey";
     public static final String Intro = "intro";
-    private static String url_login = "http://192.168.100.100/PlaceMe/Auth";
 
-    private static String url_savesessiondetails = "http://192.168.100.100/PlaceMe/SaveSessionDetails";
+
     SharedPreferences sharedpreferences;
     JSONParser jParser = new JSONParser();
     JSONObject json;
@@ -381,7 +380,7 @@ public class SplashScreen extends Activity {
                     params.add(new BasicNameValuePair("u", mEmail));
                     params.add(new BasicNameValuePair("p", mPassword));
                     params.add(new BasicNameValuePair("t", new SharedPrefUtil(getApplicationContext()).getString("firebaseToken")));
-                    json = jParser.makeHttpRequest(url_login, "GET", params);
+                    json = jParser.makeHttpRequest(MyConstants.url_login, "GET", params);
                     String s = null;
 
                     s = json.getString("info");
@@ -453,7 +452,7 @@ public class SplashScreen extends Activity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));    //0
             params.add(new BasicNameValuePair("m", getDeviceName()));      //1
-            json = jParser.makeHttpRequest(url_savesessiondetails, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_savesessiondetails, "GET", params);
             try {
                 r = json.getString("info");
 

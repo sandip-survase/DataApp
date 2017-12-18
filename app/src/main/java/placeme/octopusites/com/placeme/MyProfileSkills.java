@@ -1,10 +1,8 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,8 +19,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -35,17 +31,14 @@ import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import org.joda.time.LocalDate;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import placeme.octopusites.com.placeme.modal.Skills;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 public class MyProfileSkills extends AppCompatActivity {
 
@@ -59,7 +52,6 @@ public class MyProfileSkills extends AppCompatActivity {
     JSONParser jParser = new JSONParser();
     JSONObject json;
     StudentData s = new StudentData();
-    //    private static String url_saveskills = "http://192.168.100.10/AESTest/SaveSkills";
     EditText skill1, skill2, skill3, skill4, skill5, skill6, skill7, skill8, skill9, skill10, skill11, skill12, skill13, skill14, skill15, skill16, skill17, skill18, skill19, skill20;
     TextInputLayout skillinput1,skillinput2,skillinput3,skillinput4,skillinput5,skillinput6,skillinput7,skillinput8,skillinput9,skillinput10,skillinput11,skillinput12,skillinput13,skillinput14,skillinput15,skillinput16,skillinput17,skillinput18,skillinput19,skillinput20;
     String sskill1 = "", sskill2 = "", sskill3 = "", sskill4 = "", sskill5 = "", sskill6 = "", sskill7 = "", sskill8 = "", sskill9 = "", sskill10 = "", sskill11 = "", sskill12 = "", sskill13 = "", sskill14 = "", sskill15 = "", sskill16 = "", sskill17 = "", sskill18 = "", sskill19 = "", sskill20 = "";

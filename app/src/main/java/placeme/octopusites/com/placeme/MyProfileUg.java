@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,7 +15,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -24,8 +22,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -51,7 +47,6 @@ import java.util.List;
 import placeme.octopusites.com.placeme.modal.MyProfileUgModal;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 public class MyProfileUg extends AppCompatActivity {
 
@@ -76,8 +71,6 @@ public class MyProfileUg extends AppCompatActivity {
     StudentData s=new StudentData();
     String oldCourse="",oldStream="",oldUniversity="",encobj="";
     int edittedFlag=0,isCourseSet=0,isStreamSet=0;
-
-    public static String url_savedata_ug= "http://192.168.100.30:8080/CreateNotificationTemp/SaveUg";
 
 
     @Override
@@ -2040,7 +2033,7 @@ public class MyProfileUg extends AppCompatActivity {
 //            params.add(new BasicNameValuePair("u1",encselecteduniversity));       //28
 //            params.add(new BasicNameValuePair("s",encschoolname));     //29
 //            params.add(new BasicNameValuePair("y",encmonthandyearofpassing));       //30
-            json = jParser.makeHttpRequest(url_savedata_ug, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_savedata_ug, "GET", params);
             try {
                 r = json.getString("info");
 

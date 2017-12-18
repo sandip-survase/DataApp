@@ -1,14 +1,12 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -17,9 +15,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.support.design.widget.TextInputEditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -35,7 +30,6 @@ import java.util.List;
 import placeme.octopusites.com.placeme.modal.MyProfileCareerObjModal;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 public class MyProfileCareerObj extends AppCompatActivity {
 
@@ -44,7 +38,6 @@ public class MyProfileCareerObj extends AppCompatActivity {
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-    //    private static String url_savecareerobj= "http://192.168.100.100/AESTest/SaveCareerObj";
     int edittedFlag=0,currentsetFlag=1;
     RadioGroup radioGroupCareerobj;
     TextView careerobjtxt;

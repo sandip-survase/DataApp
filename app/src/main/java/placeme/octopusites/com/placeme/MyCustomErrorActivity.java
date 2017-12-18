@@ -1,8 +1,6 @@
 package placeme.octopusites.com.placeme;
 
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -46,8 +44,6 @@ public class MyCustomErrorActivity extends AppCompatActivity {
     String abd="";
     TextView ohsnapmsg,ohsnapmsg2;
 
-
-    private static String url_save_bug = "http://192.168.100.10/ProfileObjects/Save_Bug";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +96,7 @@ public class MyCustomErrorActivity extends AppCompatActivity {
 
             params.add(new BasicNameValuePair("u", username));  //0
             params.add(new BasicNameValuePair("k", str));     //1
-            json = jParser.makeHttpRequest(url_save_bug, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_save_bug, "GET", params);
             Log.d("TAG", "json - "+json);
             try {
                 r = json.getString("info");

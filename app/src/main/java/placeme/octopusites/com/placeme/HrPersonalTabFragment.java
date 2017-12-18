@@ -1,35 +1,25 @@
 package placeme.octopusites.com.placeme;
 
 
-
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -46,7 +36,6 @@ import placeme.octopusites.com.placeme.modal.ModalHrIntro;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
 import static placeme.octopusites.com.placeme.AES4all.demo1decrypt;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 
 /**
@@ -84,12 +73,6 @@ public class HrPersonalTabFragment extends Fragment {
     List<String> countrieslist = new ArrayList<String>();
     List<String> stateslist = new ArrayList<String>();
     List<String> citieslist = new ArrayList<String>();
-
-
-    private static String url_getcountries = "http://192.168.100.100/AESTest/GetCountries";
-    private static String url_getstates = "http://192.168.100.100/AESTest/GetStates";
-    private static String url_getcities = "http://192.168.100.100/AESTest/GetCities";
-//    private static String url_savedata = "http://192.168.100.10/AESTest/SaveHrIntro1";
 
     HrData hr = new HrData();
 

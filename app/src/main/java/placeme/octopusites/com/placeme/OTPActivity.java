@@ -1,18 +1,15 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.support.design.widget.TextInputEditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -49,8 +46,6 @@ public class OTPActivity extends AppCompatActivity {
     String resultofop = "";
     TextView resendotp;
     ProgressBar otpprogress;
-    private static String url_verifyotp = "http://192.168.100.100/AESTest/VerifyOTP";
-    private static String url_resendotp = "http://192.168.100.100/AESTest/ResendOTP";
     TextInputLayout otplayout;
     String digest1, digest2;
     byte[] demoKeyBytes;
@@ -184,7 +179,7 @@ public class OTPActivity extends AppCompatActivity {
             Log.d("TAG", "otp input encuser " + encUsernameVerify);
             Log.d("TAG", "otp input encotp " + encOTP);
 
-            json = jParser.makeHttpRequest(url_verifyotp, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_verifyotp, "GET", params);
             Log.d("TAG", "doInBackground: verfy OTP sevlet call");
             Log.d("TAG", "otp verify json : " + json);
             try {
@@ -309,7 +304,7 @@ public class OTPActivity extends AppCompatActivity {
             params.add(new BasicNameValuePair("l", enclname));
             Log.d("TAG", "doInBackground: resend otp usrename " + encUsername);
 
-            json = jParser.makeHttpRequest(url_resendotp, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_resendotp, "GET", params);
             try {
                 resultofop = json.getString("info");
 

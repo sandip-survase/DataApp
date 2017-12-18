@@ -1,10 +1,8 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,8 +16,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -36,7 +32,6 @@ import java.util.List;
 import placeme.octopusites.com.placeme.modal.MyProfileStrengthsModal;
 
 import static placeme.octopusites.com.placeme.AES4all.OtoString;
-import static placeme.octopusites.com.placeme.AES4all.demo1encrypt;
 
 public class MyProfileStrengths extends AppCompatActivity {
 
@@ -47,7 +42,6 @@ public class MyProfileStrengths extends AppCompatActivity {
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-    //    private static String url_savestrengths= "http://192.168.100.100/AESTest/SaveStrengths";
     View trash1selectionview,trash2selectionview,trash3selectionview,trash4selectionview,trash5selectionview,trash6selectionview,trash7selectionview,trash8selectionview,trash9selectionview,trash10selectionview;
     int edittedFlag=0;;
     int d=0;

@@ -2,19 +2,15 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +31,6 @@ public class CreateNewPassword extends AppCompatActivity {
     String encUsername,role,newpass,newpassa,encpassword,resultofop="";
     JSONObject json;
     JSONParser jParser = new JSONParser();
-    private static String url_changepass = "http://192.168.100.100/AESTest/CreatePass";
     ProgressBar progressBar;
     Button changepassbutton;
     String digest1,digest2;
@@ -142,7 +137,7 @@ public class CreateNewPassword extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", encUsername));
             params.add(new BasicNameValuePair("p", encpassword));
-            json = jParser.makeHttpRequest(url_changepass, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_CreatePass, "GET", params);
             try {
                 resultofop = json.getString("info");
 

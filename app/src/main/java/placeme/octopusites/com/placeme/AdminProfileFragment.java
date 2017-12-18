@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -72,8 +71,6 @@ import static placeme.octopusites.com.placeme.HrCompanyDetails.HRlog;
 public class AdminProfileFragment extends Fragment {
 
     final static CharSequence[] items = {"Update Profile Picture", "Delete Profile Picture"};
-    private static String load_student_image = "http://192.168.100.100/AESTest/GetImage";
-    private static String remove_profile = "http://192.168.100.100/AESTest/RemoveImage";
     CircleImageView myprofileimg;
     ImageButton iv_camera;
     TextView myprofilename, myprofilrole, myprofiledu, myprofilloc, myprofilemail, myprofilepercenttxt;
@@ -95,7 +92,6 @@ public class AdminProfileFragment extends Fragment {
     SwipeRefreshLayout swipe_refresh_layout;
     ProgressBar profileprogress;
 
-//    private static String load_Admin_data = "http://192.168.100.100/AESTest/GetAdminData";
     JSONParser jParser = new JSONParser();
     JSONObject json;
     String digest1, digest2;
@@ -2227,7 +2223,7 @@ public class AdminProfileFragment extends Fragment {
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority("192.168.100.100")
+                .authority(MyConstants.VPS_IP)
                 .path("AESTest/GetImage")
                 .appendQueryParameter("u", username)
                 .build();
@@ -2247,9 +2243,6 @@ public class AdminProfileFragment extends Fragment {
         @Override
         protected Bitmap doInBackground(String... urls) {
             Bitmap map = null;
-
-
-//            map = downloadImage(load_student_image);
 
             try {
                 percentProfile = 0;
@@ -3450,7 +3443,7 @@ public class AdminProfileFragment extends Fragment {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u", username));
-            json = jParser.makeHttpRequest(remove_profile, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.remove_profile, "GET", params);
 
             try {
 

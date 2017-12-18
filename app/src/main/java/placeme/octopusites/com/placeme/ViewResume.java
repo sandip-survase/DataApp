@@ -3,9 +3,8 @@ package placeme.octopusites.com.placeme;
 import android.app.DownloadManager;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -16,9 +15,7 @@ import android.widget.Toast;
 import com.github.barteksc.pdfviewer.PDFView;
 
 import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 
-import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -99,7 +96,7 @@ public class ViewResume extends AppCompatActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             try {
 
-                input = new URL("http://192.168.100.30:8080/CreateNotificationTemp/PDFView?u="+username).openStream();
+                input = new URL(MyConstants.IP+"CreateNotificationTemp/PDFView?u="+username).openStream();
 
             } catch (Exception ex) {
                 Log.d("TAG", "exp: " + ex.getMessage());
@@ -123,7 +120,7 @@ public class ViewResume extends AppCompatActivity {
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority("192.168.100.30")
+                .authority(MyConstants.VPS_IP)
                 .path("CreateNotificationTemp/PDFDownload2")
                 .appendQueryParameter("u",username)
                 .build();

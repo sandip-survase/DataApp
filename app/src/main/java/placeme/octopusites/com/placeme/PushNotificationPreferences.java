@@ -2,25 +2,15 @@ package placeme.octopusites.com.placeme;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
-import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class PushNotificationPreferences extends AppCompatActivity {
 
@@ -34,7 +24,7 @@ public class PushNotificationPreferences extends AppCompatActivity {
     String digest1,digest2;
     JSONParser jParser = new JSONParser();
     JSONObject json;
-    private static String url_savepreferences= "http://192.168.100.100/AESTest/SavePreferences";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,6 +1,5 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,7 +11,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenuView;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -1137,7 +1135,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
 
         Uri uri = new Uri.Builder()
                 .scheme("http")
-                .authority("192.168.100.100")
+                .authority(MyConstants.VPS_IP)
                 .path("AESTest/GetImage")
                 .appendQueryParameter("u", username)
                 .build();
@@ -1243,7 +1241,7 @@ public class HRActivity extends AppCompatActivity implements ImagePickerCallback
         private Bitmap downloadImage(String url) {
             Uri uri = new Uri.Builder()
                     .scheme("http")
-                    .authority("192.168.100.100")
+                    .authority(MyConstants.VPS_IP)
                     .path("AESTest/GetImage")
                     .appendQueryParameter("u", username)
                     .build();

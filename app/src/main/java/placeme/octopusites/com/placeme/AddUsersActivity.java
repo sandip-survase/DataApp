@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -18,7 +19,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.support.design.widget.TextInputEditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -96,7 +96,6 @@ public class AddUsersActivity extends AppCompatActivity {
     RelativeLayout attchrl1;
     TextView t1;
 
-//    private static String savefoleonserverURL = "http://192.168.100.100/AESTest/CreateMultipleUser";
 
     private String encfilename="";
 

@@ -1,7 +1,6 @@
 package placeme.octopusites.com.placeme;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,7 +21,6 @@ public class CareerobjProfileTabFragment extends Fragment {
 //    CheckBox CheckBoxWeak1,CheckBoxWeak2,CheckBoxWeak3,CheckBoxWeak4,CheckBoxWeak5,CheckBoxWeak6,CheckBoxWeak7,CheckBoxOtherWeak;
 //    String username,careerobj,strengths,weaknesses,location1,location2;
 //    JSONParser jParser = new JSONParser();
-//    private static String savecareerobjinfo = "http://192.168.0.6/HandleMobileRequests/SaveCareerObjData";
 //    JSONObject json;
 //    String resultofop="";
 //    ProgressBar careerobjprogress;

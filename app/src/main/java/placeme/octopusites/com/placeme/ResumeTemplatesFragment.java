@@ -1,6 +1,5 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.AsyncTask;
@@ -16,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -37,8 +35,7 @@ public class ResumeTemplatesFragment extends Fragment {
     int resumeIds[];
     String resumeNames[],resumeDownloadStatus[];
 
-    private static String load_resume_ids = "http://192.168.100.100/AESTest/GetResumeIds";
-    private static String load_resume_thumbnail= "http://192.168.100.100/AESTest/GetResumeThumbnail";
+
     String username;
     public ResumeTemplatesFragment() {
 
@@ -71,7 +68,7 @@ public class ResumeTemplatesFragment extends Fragment {
             String r=null;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",username));
-            json = jParser.makeHttpRequest(load_resume_ids, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.load_resume_ids, "GET", params);
             try {
                 String s = json.getString("count");
                 count=Integer.parseInt(s);
@@ -95,7 +92,7 @@ public class ResumeTemplatesFragment extends Fragment {
 
             for(int i=0;i<count;i++)
             {
-                ResumeTemplateItem item=new ResumeTemplateItem(resumeIds[i],"http://192.168.100.100/AESTest/GetResumePage?a="+resumeIds[i]+"&b=1",resumeNames[i],resumeDownloadStatus[i]);
+                ResumeTemplateItem item=new ResumeTemplateItem(resumeIds[i],MyConstants.IP+"AESTest/GetResumePage?a="+resumeIds[i]+"&b=1",resumeNames[i],resumeDownloadStatus[i]);
                 itemList.add(item);
             }
             adapter.notifyDataSetChanged();

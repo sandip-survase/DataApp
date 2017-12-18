@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -24,7 +23,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -35,11 +33,6 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +53,7 @@ public class PrintProfileTabFragment extends Fragment {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
     public static final String Username = "nameKey";
-    private static String load_resume_ids = "http://192.168.100.100/AESTest/GetMyResumeIds";
+
     String username,resultofop="";
     RadioGroup radioGroupFormat;
     RadioButton radioButtonWord,radioButtonPdf;
@@ -164,26 +157,7 @@ public class PrintProfileTabFragment extends Fragment {
                 Log.d("tag", "format - : "+format);
 //                Log.d("tag","temp id -"+temp);
 
-
-//                DownloadManager localDownloadManager = (DownloadManager)getContext().getSystemService(DOWNLOAD_SERVICE);
-//                Uri uri = new Uri.Builder()
-//                        .scheme("http")
-//                        .authority("192.168.100.10")
-//                        .path("GenerateResumeWithJODConverter3/DownloadResume")
-//                        .appendQueryParameter("u", username)
-//                        .appendQueryParameter("f", format)
-//                        .appendQueryParameter("t", resumeIds[selectedResumeTemplate]+"")
-//                        .build();
-//
-//                DownloadManager.Request localRequest = new DownloadManager.Request(uri);
-//                localRequest.setNotificationVisibility(1);
-//                localDownloadManager.enqueue(localRequest);
-
                 new GetStudentData().execute();
-
-//                downloadresume.setVisibility(View.VISIBLE);
-//                resumeprogress.setVisibility(View.GONE);
-//                Toast.makeText(getContext(),"Downloading Started..",Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -206,7 +180,7 @@ public class PrintProfileTabFragment extends Fragment {
             itemList.clear();
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("u",username));
-            json = jParser.makeHttpRequest(load_resume_ids, "GET", params);
+            json = jParser.makeHttpRequest(MyConstants.url_GetMyResumeIds, "GET", params);
             try {
                 String s = json.getString("count");
                 count=Integer.parseInt(s);
@@ -231,9 +205,9 @@ public class PrintProfileTabFragment extends Fragment {
             for(int i=0;i<count;i++)
             {
                 if(i==0)
-                    item=new ResumeTemplateItem(resumeIds[i],"http://192.168.100.100/AESTest/GetResumePage?a="+resumeIds[i]+"&b=1",resumeNames[i],"checked");
+                    item=new ResumeTemplateItem(resumeIds[i],MyConstants.IP+"AESTest/GetResumePage?a="+resumeIds[i]+"&b=1",resumeNames[i],"checked");
                 else
-                    item=new ResumeTemplateItem(resumeIds[i],"http://192.168.100.100/AESTest/GetResumePage?a="+resumeIds[i]+"&b=1",resumeNames[i],"unchecked");
+                    item=new ResumeTemplateItem(resumeIds[i],MyConstants.IP+"AESTest/GetResumePage?a="+resumeIds[i]+"&b=1",resumeNames[i],"unchecked");
                 itemList.add(item);
             }
             adapter.notifyDataSetChanged();
@@ -512,7 +486,7 @@ public class PrintProfileTabFragment extends Fragment {
                 DownloadManager localDownloadManager = (DownloadManager)getContext().getSystemService(DOWNLOAD_SERVICE);
                 Uri uri = new Uri.Builder()
                         .scheme("http")
-                        .authority("192.168.100.10")
+                        .authority(MyConstants.VPS_IP)
                         .path("GenerateResumeWithJODConverter3/DownloadResume")
                         .appendQueryParameter("username",username)
                         .appendQueryParameter("format",format)

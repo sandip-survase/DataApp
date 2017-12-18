@@ -1,18 +1,11 @@
 package placeme.octopusites.com.placeme;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
-import android.text.TextUtils;
-import android.text.format.DateUtils;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,13 +15,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.bumptech.glide.signature.ObjectKey;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -37,13 +27,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class ResumeTemplateAdapter extends RecyclerView.Adapter<ResumeTemplateAdapter.MyViewHolder> {
 
     private List<ResumeTemplateItem> itemList;
     private String username;
-    private static String download_resume_template = "http://192.168.100.100/AESTest/DownloadResumeTemplate";
+
     public ResumeTemplateAdapter(String username,List<ResumeTemplateItem> itemList) {
         this.username = username;
         this.itemList = itemList;
@@ -168,8 +156,6 @@ public class ResumeTemplateAdapter extends RecyclerView.Adapter<ResumeTemplateAd
 
     private void DownloadResumeTemplate(final int id)
     {
-
-
         new AsyncTask<Void, Void, Void>() {
 
             JSONParser jParser = new JSONParser();
@@ -180,7 +166,7 @@ public class ResumeTemplateAdapter extends RecyclerView.Adapter<ResumeTemplateAd
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("u",username));
                 params.add(new BasicNameValuePair("id",id+""));
-                json = jParser.makeHttpRequest(download_resume_template, "GET", params);
+                json = jParser.makeHttpRequest(MyConstants.download_resume_template, "GET", params);
 
                 try
                 {
